@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!-- Helpdesk Support Tree View  -->
+        <record model="ir.ui.view" id="crm_case_tree_view_helpdesk_dec">
+            <field name="name">CRM - Helpdesk Support Tree</field>
+            <field name="model">crm.helpdesk</field>
+            <field name="type">tree</field>
+			<field name="inherit_id" ref="crm_helpdesk.crm_case_tree_view_helpdesk"/>
+            <field name="arch" type="xml">
+             	<xpath expr="/tree/field[@name='name']" position="before">
+             		<field name="id"/>
+             	</xpath>
+             	<xpath expr="/tree/field[@name='partner_id']" position="after">
+             		<field name="partner_city"/>
+             	</xpath>
+             </field>
+        </record>
+       <!-- Helpdesk Support Search View  -->
+        
+       <record model="ir.ui.view" id="view_crm_case_helpdesk_filter_dec">
+            <field name="name">CRM - Helpdesk Search</field>
+            <field name="model">crm.helpdesk</field>
+            <field name="type">search</field>
+			<field name="inherit_id" ref="crm_helpdesk.view_crm_case_helpdesk_filter"/>
+            <field name="arch" type="xml">
+             	<xpath expr="/search/field[@name='partner_id']" position="after">
+             		<field name="partner_city" select="1"/>
+             	</xpath>
+            </field>
+        </record>
+        
+
+        
+
+    </data>
+</openerp>

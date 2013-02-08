@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice')]"/>
+    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice.layout')]"/>
+    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice.layout.dec')]"/>
+
+    <report id="account_invoices_1_dec"
+            string="Invoices"
+            model="account.invoice"
+            name="account.invoice.layout.dec"
+            rml="dec_account_invoice_layout/report/report_account_invoice_layout.rml"
+            attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+            attachment_use="True"
+            usage="default"
+            auto="False"/>
+    </data>
+</openerp>

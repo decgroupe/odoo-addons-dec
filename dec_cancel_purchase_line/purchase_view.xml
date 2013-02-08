@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="purchase_order_line_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.line.form.inherit</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="move_ids" position="after">
+                        <field name="origin_procurement_order_id" />
+                    </field>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

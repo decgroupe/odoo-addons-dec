@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <report
+			id="report_mrp_production_report_dec"
+			string="Production Order (DEC)"
+			model="mrp.production"
+			name="mrp.production.order.dec"
+			rml="dec_mrp/report/order_dec.rml"
+			auto="False"
+			/>
+			
+			<!--
+        <report
+			id="mrp.report_mrp_production_report"
+			string="Production Order (DEC)"
+			model="mrp.production"
+			name="mrp.production.order.dec"
+			rml="dec_mrp/report/order_dec.rml"
+			auto="False"
+			/>
+    -->
+    
+    </data>
+</openerp>
