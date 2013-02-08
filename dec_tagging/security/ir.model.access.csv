@@ -1,0 +1,2 @@
+"id","name","group_id:id","model_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"tagging_user_access","Access to Tagging","base.group_user","model_tagging_tags",1,1,1,1

@@ -1,0 +1,42 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* dec_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-23 14:16+0000\n"
+"PO-Revision-Date: 2013-01-23 14:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dec_purchase
+#: sql_constraint:purchase.order:0
+msgid "Order Reference must be unique per Company!"
+msgstr "La référence de commande doit être unique par Entreprise!"
+
+#. module: dec_purchase
+#: model:ir.model,name:dec_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: dec_purchase
+#: model:ir.model,name:dec_purchase.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: dec_purchase
+#: field:purchase.order.line,purchase_origin:0
+msgid "Procurement origin"
+msgstr "Origine de l'appro."
+
+#. module: dec_purchase
+#: view:purchase.order:0
+msgid "Mettre à jour les prix d'achat pour ce fournisseur"
+msgstr "Mettre à jour les prix d'achat pour ce fournisseur"
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+
+<!--    <delete model="ir.ui.view" search="[('name','=','project.project.gantt')]"/>-->
+<!--    <delete model="ir.ui.view" search="[('name','=','project.task.gantt')]"/>-->
+    
+       <record id="view_project_project_gantt" model="ir.ui.view">
+            <field name="name">project.project.gantt</field>
+            <field name="model">project.project</field>
+            <field name="type">gantt</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <gantt date_delay="planned_hours" date_start="date_start" progress="progress_rate" string="Projects">
+                </gantt>
+            </field>
+        </record>
+        
+        <record id="view_task_gantt" model="ir.ui.view">
+            <field name="name">project.task.gantt</field>
+            <field name="model">project.task</field>
+            <field name="type">gantt</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <gantt date_start="date_start" date_stop="date_end" progress="progress" string="Tasks" default_group_by="project_id">
+                </gantt>
+            </field>
+        </record>
+        
+	</data>
+</openerp>

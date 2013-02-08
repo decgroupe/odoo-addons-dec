@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="location_rd" model="stock.location">
+            <field name="name">Research and development</field>
+            <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+            <field name="usage">production</field>
+            <field name="company_id"></field>
+        </record>
+        
+        <record id="journal_stock_to_production" model="stock.journal">
+            <field name="name">Stock to Production</field>
+        </record>
+                
+        <record id="journal_stock_to_rd" model="stock.journal">
+            <field name="name">Stock to Development</field>
+        </record>
+        
+    </data>
+</openerp>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_partial_picking_form_dec" model="ir.ui.view">
+            <field name="name">stock.partial.picking.form</field>
+            <field name="model">stock.partial.picking</field>
+            <field name="inherit_id" ref="stock.stock_partial_picking_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+	            <field name="quantity" position="replace">
+	            	<field name="quantity"/> 
+	            	<field name="expected_quantity" readonly="1"/>
+	            </field>
+	            
+	            <field name="prodlot_id" position="replace">
+	            	<field name="move_final_location" readonly="1"/>
+	            	<field name="move_origin" readonly="1"/>
+	            </field>
+	            
+            </field>
+        </record>
+        
+    </data>
+</openerp>

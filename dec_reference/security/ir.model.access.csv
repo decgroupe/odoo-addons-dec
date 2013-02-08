@@ -1,0 +1,22 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ref_log_user,ref.log.user,model_ref_log,group_ref_user,1,0,1,0
+access_ref_category_user,ref.category.user,model_ref_category,group_ref_user,1,0,0,0
+access_ref_category_line_user,ref.category.line.user,model_ref_category_line,group_ref_user,1,0,0,0
+access_ref_property_user,ref.property.user,model_ref_property,group_ref_user,1,0,0,0
+access_ref_attribute_user,ref.attribute.user,model_ref_attribute,group_ref_user,1,0,0,0
+access_ref_reference_user,ref.reference.user,model_ref_reference,group_ref_user,1,1,0,0
+access_ref_reference_line_user,ref.reference.line.user,model_ref_reference_line,group_ref_user,1,0,0,0
+access_ref_version_user,ref.version.user,model_ref_version,group_ref_user,1,1,1,0
+access_ref_category_manager,ref.category.manager,model_ref_category,group_ref_manager,1,1,1,1
+access_ref_category_line_manager,ref.category.line.manager,model_ref_category_line,group_ref_manager,1,1,1,1
+access_ref_property_manager,ref.property.manager,model_ref_property,group_ref_manager,1,1,1,1
+access_ref_attribute_manager,ref.attribute.manager,model_ref_attribute,group_ref_manager,1,1,1,1
+access_ref_reference_manager,ref.reference.manager,model_ref_reference,group_ref_manager,1,1,1,1
+access_ref_reference_line_manager,ref.reference.line.manager,model_ref_reference_line,group_ref_manager,1,1,1,1
+access_ref_version_manager,ref.version.manager,model_ref_version,group_ref_manager,1,1,1,1
+access_ref_pack_user,ref.pack.user,model_ref_pack,group_ref_user,1,0,0,0
+access_ref_pack_manager,ref.pack.manager,model_ref_pack,group_ref_manager,1,1,1,1
+product.access_product_template_user,product.template.user,product.model_product_template,group_ref_manager,1,1,0,0
+product.access_product_product_employee,product.product employee,model_product_product,group_ref_manager,1,1,1,0
+product.access_product_template_user,product.template.user,product.model_product_template,base.group_user,1,1,0,0
+product.access_product_product_employee,product.product employee,model_product_product,base.group_user,1,1,0,0

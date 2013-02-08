@@ -1,0 +1,58 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+import time
+from report import report_sxw
+from osv import osv
+import pooler
+
+class picking_dec(report_sxw.rml_parse):
+    def __init__(self, cr, uid, name, context):
+        super(picking_dec, self).__init__(cr, uid, name, context=context)
+        self.localcontext.update({
+            'time': time,
+            'get_product_code':self._get_product_code,
+            'get_product_name':self._get_product_name,
+            'get_qtytotal':self._get_qtytotal
+        })
+        self.context = context
+        
+    def _get_product_code(self, move_line):
+        if move_line and move_line.product_id and move_line.product_id.code:
+            return '[%s]' % (move_line.product_id.code)
+        else:
+            return ''
+         
+    def _get_product_name(self, move_line):
+        if move_line and move_line.product_id:
+            return move_line.product_id.name
+        else:
+            return ''
+            
+    def _get_qtytotal(self,move_lines):
+        total = 0.0
+        uom = move_lines[0].product_uom.name
+        for move in move_lines:
+            total+=move.product_qty
+        return {'quantity':total,'uom':uom}
+
+report_sxw.report_sxw('report.stock.picking.dec','stock.picking','addons-dec/dec_stock/report/picking_dec.rml',parser=picking_dec,header='internal')
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

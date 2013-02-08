@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+			id="report_delivery_order_dec" 
+			model="stock.picking" 
+			name="stock.picking.delivery.order" 
+			string="Delivery order" 
+			rml="dec_stock/report/delivery_order.rml"
+		/>
+        <report 
+			id="report_picking_dec" 
+			model="stock.picking" 
+			name="stock.picking.dec" 
+			string="Picking List (Stock)" 
+			rml="dec_stock/report/picking_dec.rml"
+		/>
+    </data>
+</openerp>

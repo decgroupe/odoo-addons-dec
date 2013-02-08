@@ -1,0 +1,37 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* dec_project
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-04 16:20+0000\n"
+"PO-Revision-Date: 2013-02-04 17:39+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: dec_project
+#: model:ir.actions.report.xml,name:dec_project.project3_report_id
+msgid "Worksheet"
+msgstr "Feuille d'intervention"
+
+#. module: dec_project
+#: model:ir.actions.report.xml,name:dec_project.project2_report_id
+msgid "Sale Quotation Report"
+msgstr "Sale Quotation Report"
+
+#. module: dec_project
+#: report:ir.actions.report.xml:dec_project.project3_report_id
+msgid "Not assigned"
+msgstr "Non attribué"
+
+#. module: dec_project
+#: report:ir.actions.report.xml:dec_project.project3_report_id
+msgid "Working sheet"
+msgstr "Bon d'intervention"

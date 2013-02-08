@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+	<!-- Product view modification -->
+	<record model="ir.ui.view" id="product_normal_form_view_dec_product_pack">
+		<field name="name">product.product.pack.form</field>
+		<field name="model">product.product</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="product.product_normal_form_view" />
+		<field name="arch" type="xml">
+			<notebook position="inside">
+				<page string="Pack (Sale)">
+					<label string="If you add products in the 'Pack Products' field, all those products will be added automatically when a new sale quotation or order is created." colspan="4"/>
+					<field name="fixed_sale_price"/>
+<!--					<field name="stock_depends"/>-->
+					<label string=""/>
+					<separator string="Pack Products" colspan="4"/>
+					<field name="sale_pack_line_ids" colspan="4" nolabel="1"/>
+				</page>
+				<page string="Pack (Purchase)">
+					<label string="If you add products in the 'Pack Products' field, all those products will be added automatically when a new purchase quotation or order is created." colspan="4"/>
+					<field name="fixed_purchase_price"/>
+
+					<label string=""/>
+					<separator string="Pack Products" colspan="4"/>
+					<field name="purchase_pack_line_ids" colspan="4" nolabel="1"/>
+				</page>
+				
+			</notebook>
+		</field>
+	</record>
+
+	<!-- product.pack.saleline -->
+	<record model="ir.ui.view" id="dec_product_pack_saleline_form">
+		<field name="name">product.pack.saleline.form</field>
+		<field name="model">product.pack.saleline</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Pack Product Line">
+				<field name="quantity"/>
+				<field name="product_id"/>
+			</form>
+		</field>
+	</record>
+	
+	<record model="ir.ui.view" id="dec_product_pack_saleline_tree">
+		<field name="name">product.pack.saleline.tree</field>
+		<field name="model">product.pack.saleline</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Pack Product Lines">
+				<field name="quantity"/>
+				<field name="product_id"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- product.pack.purchaseline -->
+	<record model="ir.ui.view" id="dec_product_pack_purchaseline_form">
+		<field name="name">product.pack.purchaseline.form</field>
+		<field name="model">product.pack.purchaseline</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Pack Product Line">
+				<field name="quantity"/>
+				<field name="product_id"/>
+			</form>
+		</field>
+	</record>
+	
+	<record model="ir.ui.view" id="dec_product_pack_purchaseline_tree">
+		<field name="name">product.pack.purchaseline.tree</field>
+		<field name="model">product.pack.purchaseline</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Pack Product Lines">
+				<field name="quantity"/>
+				<field name="product_id"/>
+			</tree>
+		</field>
+	</record>
+	
+        <record id="view_order_form_layout_margin_dec_product_pack" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+			<field name="inherit_id" ref="dec_sale_layout_margin.view_order_form_layout_margin" />
+            <field name="arch" type="xml">
+            	<page string="Extra Info" position="before">
+					<page groups="base.group_extended" string="Pack options">
+						<field name="pack_expand"/>
+					 </page>
+                 </page>
+            </field>
+        </record>
+        
+        <record id="purchase_order_line_form_dec_product_pack" model="ir.ui.view">
+            <field name="name">purchase.order.line.form</field>
+            <field name="model">purchase.order.line</field>
+            <field name="type">form</field>
+			<field name="inherit_id" ref="purchase.purchase_order_line_form" />
+            <field name="arch" type="xml">
+	
+            	<page string="Notes" position="after">
+					<page string="Pack options">
+						<field name="pack_expand"/>
+					 </page>
+                 </page>
+            </field>
+        </record>            
+                            
+                            
+</data>
+</openerp>
+

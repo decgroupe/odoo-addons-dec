@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <record id="purchase_order_form_dec" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+            
+             	<xpath expr="/form/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree/field[@name='name']" position="after">
+               		<field name="merge_origin"/>
+                </xpath>
+            
+             	<xpath expr="/form/notebook/page[@string='Purchase Order']/group[1]/button" position="replace">
+	                <button name="button_refresh_prices" 
+	                	confirm="Vraiment ?"
+	                    string="Mettre à jour les prix d'achat pour ce fournisseur" 
+	                    states="draft" 
+	                    type="object" 
+	                    icon="gtk-apply"
+	                    colspan="1"/>
+             	</xpath>
+            </field>
+        </record>
+        
+
+       <record id="view_request_for_quotation_filter_dec" model="ir.ui.view">
+            <field name="name">request.quotation.select</field>
+            <field name="model">purchase.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="purchase.view_request_for_quotation_filter"/>
+            <field name="arch" type="xml">
+             	<xpath expr="/search/group/field[@name='name']" position="after">
+	                <field name="origin"/>
+             	</xpath>        
+       		</field>
+       	</record>
+    </data>
+</openerp>

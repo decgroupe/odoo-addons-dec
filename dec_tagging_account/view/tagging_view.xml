@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<record id="tags_form" model="ir.ui.view">
+			<field name="name">tagging.account.tags.form</field>
+			<field name="model">tagging.tags</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="tagging.tags_form" />
+			<field name="arch" type="xml">
+				<notebook colspan="4" position="inside">
+					<page string="Invoices">
+						<field name="invoice_ids" colspan="4" nolabel="1" />
+					</page>
+				</notebook>
+			</field>
+		</record>
+
+		<record id="invoice_form" model="ir.ui.view">
+			<field name="name">tagging.account.invoice.form</field>
+			<field name="model">account.invoice</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<notebook colspan="4" position="inside">
+					<page string="Tags">
+						<field name="tagging_ids" colspan="4" nolabel="1" />
+					</page>
+				</notebook>
+			</field>
+		</record>
+		<record id="invoice_supplier_form" model="ir.ui.view">
+			<field name="name">tagging.account.invoice.supplier.form</field>
+			<field name="model">account.invoice</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.invoice_supplier_form" />
+			<field name="arch" type="xml">
+				<notebook colspan="4" position="inside">
+					<page string="Tags">
+						<field name="tagging_ids" colspan="4" nolabel="1" />
+					</page>
+				</notebook>
+			</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!--Affichage de la marge total en bas mode Formulaire-->
+    <record model="ir.ui.view" id="sale_margin_sale_order">
+        <field name="name">sale.order.margin.view.form</field>
+        <field name="type">form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+        
+            <xpath expr="/form/group/group/field[@name='client_order_ref']" position="after">
+                <field name="summary" colspan="4"/>
+                <field name="validity"/>
+                <field name="warranty"/>
+            </xpath>
+                
+            <field name="amount_total" position="after">
+                <field name="margin"/>
+            </field>
+        </field>
+    </record>
+    
+    
+<!--Affichage de la marge par commande en mode liste -->
+    <record model="ir.ui.view" id="sale_margin_sale_order_tree">
+        <field name="name">sale.order.margin.view.tree</field>
+        <field name="type">tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="summary"/>
+            </field>
+            <field name="partner_id" position="after">
+                    <field name="partner_delivery_id"/>
+                    <field name="partner_delivery_city_id"/>
+            </field>  
+            
+            <field name="state" position="after">
+                <field name="margin"/>
+            </field>
+
+        </field>
+    </record>
+   
+<!--Affichage de la marge par commande en mode liste -->
+    <record model="ir.ui.view" id="sale_margin_sale_order_line_tree">
+        <field name="name">sale.order.margin.line.view.tree</field>
+        <field name="type">tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="price_subtotal" position="after">
+                <field name="margin"/>
+            </field>
+        </field>
+    </record>    
+
+
+        <record id="sale.action_order_line_tree2" model="ir.actions.act_window">
+          <field name="domain">[('layout_type','=', 'article')]</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_order_form_layout_margin">
+            <field name="name">sale.order.form.layout_margin</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority">1000</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            
+            
+<!--                <xpath expr="/form/notebook/page/group/button[@name='order_line']" position="replace">  </xpath>-->
+                
+               
+                <xpath expr="/form/notebook/page/field[@name='order_line']" position="replace">
+                    <field name="abstract_line_ids" colspan="4" nolabel="1" widget="one2many_list" domain="['order_id','=',active_id]" context="{'order_id':active_id}">
+                            <form string="Order Line">
+                                <notebook>
+                                    <page string="Order Line">
+                                    <group colspan="4" col="5">
+                                        <field colspan="3" name="layout_type" on_change="onchange_sale_order_line_view(layout_type)"/>
+                                        <field name="sequence" groups="base.group_extended"/>
+                                        <field colspan="3"
+                                            context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'shop':parent.shop_id,'uom':product_uom}"
+                                            name="product_id"
+                                            attrs="{'invisible':[('layout_type','!=','article')]}"
+                                            on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, True, parent.date_order, product_packaging, parent.fiscal_position, False, context)"
+                                            select="1"/>
+                                        <field
+                                            name="name" required="0"
+                                            attrs="{'invisible':[('layout_type','in',('line','break','subtotal'))], 'required':[('layout_type','not in',['line','break'])]}"/>
+
+                                        <field
+                                            context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'shop':parent.shop_id,'uom':product_uom}"
+                                            name="product_uom_qty"
+                                            attrs="{'invisible':[('layout_type','!=','article')]}"
+                                            on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, product_packaging, parent.fiscal_position, True, context)"/>
+                                        <field 
+                                        	name="product_uom"
+                                            nolabel="1"
+                                            required="0"
+                                            attrs="{'invisible':[('layout_type','!=','article')],  'required':[('layout_type','not in',['title','text','subtotal','line','break'])]}"
+                                            on_change="product_uom_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, context)"/>
+                                        <field 
+                                        	name="price_unit"
+                                        	on_change="onchange_price_unit(price_unit, purchase_price, product_uos_qty, discount, context)"
+                                            attrs="{'invisible':[('layout_type','!=','article')],'required':[('layout_type','not in',['title','text','subtotal','line','break'])]}"/>
+					               		<field 
+					               			name="purchase_price" 
+					               			on_change="onchange_purchase_price(price_unit, purchase_price, product_uos_qty, discount, context)"
+					               			attrs="{'invisible':[('layout_type','!=','article')]}"/>
+					                	<field 
+					                		name="margin" 
+					                		nolabel="1" 
+					                		attrs="{'invisible':[('layout_type','!=','article')]}"/>
+					                	<field 
+					                		name="margin_percent" 
+                                        	on_change="onchange_margin_percent(margin_percent, price_unit, purchase_price, product_uos_qty, discount, context)"
+                                        	invisible = "True"
+					                		attrs="{'invisible':[('layout_type','!=','article')]}"/>
+					                	<field 
+					                		name="markup_percent" 
+                                        	on_change="onchange_markup_percent(markup_percent, price_unit, purchase_price, product_uos_qty, discount, context)"
+					                		attrs="{'invisible':[('layout_type','!=','article')]}"/>
+					                		
+                                        
+                                        <field groups="product.group_uos" name="product_uos_qty" on_change="uos_change(product_uos, product_uos_qty, product_id)"/>
+                                        <field groups="product.group_uos" name="product_uos" nolabel="1"/>
+                                        <newline/>
+
+                                        <field
+                                            name="product_packaging"
+                                            colspan="3"
+                                            attrs="{'invisible':[('layout_type','!=','article')]}"
+                                            context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'shop':parent.shop_id,'uom':product_uom}"
+                                            on_change="product_packaging_change(parent.pricelist_id, product_id, product_uom_qty, product_uom, parent.partner_id, product_packaging, True, context)"
+                                            domain="[('product_id','=',product_id)]"
+                                            groups="base.group_extended"/>
+                                        <field
+                                            name="discount"
+                                            on_change="onchange_price_unit(price_unit, purchase_price, product_uos_qty, discount, context)"
+                                            attrs="{'invisible':[('layout_type','!=','article')]}"/>
+
+                                        <group colspan="5"
+                                            attrs="{'invisible':[('layout_type','not in', ['article','text'])]}">
+                                            <separator colspan="4" string="Notes"/>
+                                            <field colspan="4" name="notes" nolabel="1"/>
+                                        </group>
+
+                                        <group colspan="5"
+                                            attrs="{'invisible':[('layout_type','!=','article')]}">
+                                            <separator colspan="4" string="Taxes"/>
+                                            <field colspan="4" name="tax_id" domain="[('parent_id','=',False)]" nolabel="1"/>
+                                        </group>
+
+                                        <group col="5" colspan="5" attrs="{'invisible':[('layout_type','!=','article')]}">
+                                            <separator colspan="5" string="States"/>
+                                            <field name="state"/>
+                                            <field name="invoiced"/>
+                                            <button colspan="1" name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed,done" string="Make Invoice" type="action"/>
+                                        </group>
+                                    </group>
+                                    </page>
+                                    <page groups="base.group_extended" string="Extra Info"
+                                        attrs="{'invisible':[('layout_type','!=','article')]}">
+                                        <field name="type" attrs="{'invisible':[('layout_type','!=','article')]}"/>
+                                        <field name="delay" select="2" attrs="{'invisible':[('layout_type','!=','article')]}"/>
+                                        <field name="address_allotment_id" select="2"/>
+                                        <separator colspan="4" string="Properties"/>
+                                        <field colspan="4" name="property_ids" nolabel="1"/>
+                                    </page>
+                                    <page string="History" groups="base.group_extended"
+                                        attrs="{'invisible':[('layout_type','!=','article')]}">
+                                        <separator colspan="4" string="Invoice Lines"/>
+                                        <field colspan="4" name="invoice_lines" nolabel="1"/>
+                                        <separator colspan="4" string="Stock Moves"/>
+                                        <field colspan="4" name="move_ids" nolabel="1" widget="many2many"/>
+                                    </page>
+                                </notebook>
+                            </form>
+                            <tree string="Sales order lines">
+                                    <field colspan="4" name="name"/>
+                                    <field name="product_uom_qty" string="Qty"/>
+                                    <field name="product_uom" string="UoM"/>
+                                    <field name="purchase_price"/>  
+                					<field name="markup_percent"/>
+                                    <field name="price_unit"/>     
+                                    <field name="discount"/>    
+                                    <field name="margin"/>                                   
+                                    <field name="price_discount"/> 
+                                    <field name="price_subtotal"/> 
+                                    <field name="sequence"/>
+                                </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+        
+
+	        <record id="view_sales_order_filter_dec" model="ir.ui.view">
+            <field name="name">sale.order.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name" string="Command N°"/>
+				</field>
+                <field name="partner_id" position="before">
+                    <field name="client_order_ref"/>
+				</field>
+                <field name="partner_id" position="after">
+                    <field name="partner_delivery_id"/>
+                    <field name="partner_delivery_city_id"/>
+				</field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

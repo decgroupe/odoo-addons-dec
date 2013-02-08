@@ -1,0 +1,68 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* tagging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/bremskerl-addons/\n"
+"POT-Creation-Date: 2011-07-18 13:48+0000\n"
+"PO-Revision-Date: 2011-07-18 13:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: code:addons\tagging\tagging.py:18
+#: sql_constraint:tagging.tags:0
+#. module: tagging
+#, python-format
+msgid "The tag names must be unique!"
+msgstr ""
+
+#: model:ir.actions.act_window,name:tagging.open_tags_tree
+#: model:ir.ui.menu,name:tagging.menu_tagging_tags
+#: view:tagging.tags:0
+#. module: tagging
+msgid "Tags"
+msgstr ""
+
+#: field:tagging.tags,description:0
+#. module: tagging
+msgid "Short Description"
+msgstr ""
+
+#: view:tagging.tags:0
+#: field:tagging.tags,notes:0
+#. module: tagging
+msgid "Notes"
+msgstr ""
+
+#: field:tagging.tags,related_tags_ids:0
+#: view:tagging.tags:0
+#. module: tagging
+msgid "Related Tags"
+msgstr ""
+
+#: field:tagging.tags,name:0
+#. module: tagging
+msgid "Tag"
+msgstr ""
+
+#: field:tagging.tags,active:0
+#. module: tagging
+msgid "Active"
+msgstr ""
+
+#: model:ir.model,name:tagging.model_tagging_tags
+#. module: tagging
+msgid "tagging.tags"
+msgstr ""
+
+#: model:ir.ui.menu,name:tagging.menu_tagging
+#. module: tagging
+msgid "Tagging"
+msgstr ""
+
