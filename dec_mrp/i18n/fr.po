@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-23 13:54+0000\n"
-"PO-Revision-Date: 2013-02-08 09:43+0100\n"
+"PO-Revision-Date: 2013-02-13 14:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "Ordres de Travail"
 #: code:addons/dec_mrp/report/order_dec.py:179
 #, python-format
 msgid "Not dedicated"
-msgstr "Non réservé"
+msgstr "Réservé (mais peut être non dispo.)"
 
 #. module: dec_mrp
 #: view:mrp.production:0

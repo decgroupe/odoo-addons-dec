@@ -34,9 +34,13 @@ class product_pack_sale( osv.osv ):
     _name = 'product.pack.saleline'
     _rec_name = 'product_id'
     _columns = {
-        'parent_product_id': fields.many2one( 'product.product', 'Parent Product', ondelete='cascade', required=True ),
+        'parent_product_id': fields.many2one('product.product', 'Parent Product', ondelete='cascade', required=True),
         'quantity': fields.float('Quantity', required=True ),
         'product_id': fields.many2one('product.product', 'Product', required=True ),
+        'product_name': fields.related('product_id', 'name', type='char', string='Name'),
+        'product_code': fields.related('product_id', 'default_code', type='char', string='Default code'),        
+        'product_uom_id': fields.related('product_id', 'uom_id', type='many2one', relation='product.uom', string="Default Unit Of Measure", readonly="1"),
+        'product_categ_id': fields.related('product_id', 'categ_id', type='many2one', relation='product.category', string="Category"),
     }
     
     _defaults = {
@@ -49,9 +53,13 @@ class product_pack_purchase( osv.osv ):
     _name = 'product.pack.purchaseline'
     _rec_name = 'product_id'
     _columns = {
-        'parent_product_id': fields.many2one( 'product.product', 'Parent Product', ondelete='cascade', required=True ),
+        'parent_product_id': fields.many2one('product.product', 'Parent Product', ondelete='cascade', required=True),
         'quantity': fields.float('Quantity', required=True ),
-        'product_id': fields.many2one('product.product', 'Product', required=True ),
+        'product_id': fields.many2one('product.product', 'Product', required=True ),   
+        'product_name': fields.related('product_id', 'name', type='char', string='Name'),
+        'product_code': fields.related('product_id', 'default_code', type='char', string='Default code'),
+        'product_uom_id': fields.related('product_id', 'uom_po_id', type='many2one', relation='product.uom', string="Purchase Unit of Measure", readonly="1"),
+        'product_categ_id': fields.related('product_id', 'categ_id', type='many2one', relation='product.category', string="Category"),
     }
     
     _defaults = {

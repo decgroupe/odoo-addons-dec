@@ -39,7 +39,7 @@
             </field>  
             
             <field name="state" position="after">
-                <field name="margin"/>
+                <field name="margin" sum="Total Margin"/>
             </field>
 
         </field>

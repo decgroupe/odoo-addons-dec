@@ -25,7 +25,7 @@
             <field name="type">gantt</field>            
             <field eval="2" name="priority"/>
             <field name="arch" type="xml">
-	        	<gantt date_stop="date_finished" custom_name="view_name" date_start="date_start" string="Productions" default_group_by="assigned_workcenter" />
+	        	<gantt date_stop="date_finished" custom_name="view_name" date_start="date_start" string="Productions" day_length="7" default_group_by="assigned_workcenter" />
             </field>
         </record>
 

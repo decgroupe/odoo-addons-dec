@@ -104,7 +104,8 @@ class sale_order_dec(report_sxw.rml_parse):
                     res['product_uom'] = ''
                 elif entry.layout_type == 'title':
                     res['name'] = entry.name
-                    res['price_subtotal'] = ''
+                    res['price_discount'] = 0
+                    res['price_subtotal'] = 0
                     res['currency'] = ''
                 elif entry.layout_type == 'text':
                     res['name'] = entry.name

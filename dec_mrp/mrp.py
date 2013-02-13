@@ -275,6 +275,7 @@ class mrp_production_workcenter_line(osv.osv):
         return int(time.time())
 
     _columns = {
+        'name': fields.char('Work Order', size=300, required=True),
         'working_date': fields.date('Working Date', select=True, help="Date on which the work is done."),
     }
     _defaults = {

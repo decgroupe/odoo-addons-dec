@@ -112,9 +112,13 @@ class order_dec(report_sxw.rml_parse):
                 if procurement_order.state == 'exception':
                     result['state'] = _('Not enough stock') 
                     result['pick'] = _('Dedicated') 
-                elif procurement_order.state == 'ready' or procurement_order.state == 'done':
+                elif (procurement_order.state == 'ready' or procurement_order.state == 'done') and procurement_order.product_id.type == 'product':
                     result['state'] = _('From stock')
                     result['pick'] = _('Dedicated') 
+                    result['checked'] = True
+                elif (procurement_order.state == 'ready' or procurement_order.state == 'done') and procurement_order.product_id.type == 'consu':
+                    result['state'] = _('Consumable')
+                    result['pick'] = _('From workshop') 
                     result['checked'] = True
                 elif procurement_order.state == 'cancel':
                     result['state'] = _('From stock (automatic orderpoint canceled)')
