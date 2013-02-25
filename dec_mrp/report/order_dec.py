@@ -118,7 +118,7 @@ class order_dec(report_sxw.rml_parse):
                     result['checked'] = True
                 elif (procurement_order.state == 'ready' or procurement_order.state == 'done') and procurement_order.product_id.type == 'consu':
                     result['state'] = _('Consumable')
-                    result['pick'] = _('From workshop') 
+                    result['pick'] = _('From workshop or manual picking') 
                     result['checked'] = True
                 elif procurement_order.state == 'cancel':
                     result['state'] = _('From stock (automatic orderpoint canceled)')

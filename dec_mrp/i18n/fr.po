@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-23 13:54+0000\n"
-"PO-Revision-Date: 2013-02-13 14:16+0100\n"
+"POT-Creation-Date: 2013-02-15 14:24+0000\n"
+"PO-Revision-Date: 2013-02-15 15:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,25 +17,10 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:136
+#: code:addons/dec_mrp/report/order_dec.py:140
 #, python-format
 msgid "On procurement (quotation)"
 msgstr "Par appro. (devis)"
-
-#. module: dec_mrp
-#: field:mrp.production,picked_rate:0
-msgid "Picked"
-msgstr "Réceptionné"
-
-#. module: dec_mrp
-#: field:mrp.production,sale_commitment_date:0
-msgid "Commitment date"
-msgstr "Date d'engagement"
-
-#. module: dec_mrp
-#: field:mrp.production,sale_requested_date:0
-msgid "Requested date"
-msgstr "Date demandée"
 
 #. module: dec_mrp
 #: report:mrp.production.order.dec:0
@@ -43,17 +28,11 @@ msgid "Source Document"
 msgstr "Document d'origine"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:142
-#: code:addons/dec_mrp/report/order_dec.py:174
+#: code:addons/dec_mrp/report/order_dec.py:146
+#: code:addons/dec_mrp/report/order_dec.py:178
 #, python-format
 msgid "On procurement (delivered)"
 msgstr "Par appro. (livré)"
-
-#. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:197
-#, python-format
-msgid "Purchase order in quotation"
-msgstr "Purchase order in quotation"
 
 #. module: dec_mrp
 #: report:mrp.production.order.dec:0
@@ -61,20 +40,18 @@ msgid "From"
 msgstr "De"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:203
-#, python-format
-msgid "On purchase order: ???"
-msgstr "On purchase order: ???"
+#: sql_constraint:mrp.production:0
+msgid "Reference must be unique per Company!"
+msgstr "La référence doit être unique par société !"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:129
+#: code:addons/dec_mrp/report/order_dec.py:133
 #, python-format
 msgid "Procurement exception (supplier error)"
 msgstr "Problème d'appro. (erreur avec fournisseur)"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:120
-#: code:addons/dec_mrp/report/order_dec.py:188
+#: code:addons/dec_mrp/report/order_dec.py:124
 #, python-format
 msgid "From stock (automatic orderpoint canceled)"
 msgstr "Au stock (Remise à niveau automatique annulée)"
@@ -87,10 +64,15 @@ msgstr "Ordre de fabrication"
 #. module: dec_mrp
 #: constraint:mrp.bom:0
 msgid "BoM line product should not be same as BoM product."
-msgstr "Une ligne produit ne peux pas être celle du produit de la nomenclature"
+msgstr "BoM line product should not be same as BoM product."
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:171
+#: view:mrp.production:0
+msgid "Productions"
+msgstr "Productions"
+
+#. module: dec_mrp
+#: code:addons/dec_mrp/report/order_dec.py:175
 #, python-format
 msgid "On order: ???"
 msgstr "Sur commande ???"
@@ -101,13 +83,17 @@ msgid "Late"
 msgstr "En retard"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:199
-#, python-format
-msgid "Purchase order in progress"
-msgstr "Purchase order in progress"
+#: view:mrp.production:0
+msgid "Group By..."
+msgstr "Regrouper par..."
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:178
+#: view:mrp.production:0
+msgid "State"
+msgstr "Etat"
+
+#. module: dec_mrp
+#: code:addons/dec_mrp/report/order_dec.py:182
 #, python-format
 msgid "On procurement: ???"
 msgstr "Par appro. ???"
@@ -118,10 +104,10 @@ msgid "Work Orders"
 msgstr "Ordres de Travail"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:121
 #: code:addons/dec_mrp/report/order_dec.py:125
-#: code:addons/dec_mrp/report/order_dec.py:148
-#: code:addons/dec_mrp/report/order_dec.py:179
+#: code:addons/dec_mrp/report/order_dec.py:129
+#: code:addons/dec_mrp/report/order_dec.py:152
+#: code:addons/dec_mrp/report/order_dec.py:183
 #, python-format
 msgid "Not dedicated"
 msgstr "Réservé (mais peut être non dispo.)"
@@ -153,7 +139,7 @@ msgstr ""
 "lorsque l'ordre est terminé."
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:157
+#: code:addons/dec_mrp/report/order_dec.py:161
 #, python-format
 msgid "On order (purchase in progress)"
 msgstr "Sur commande (commande en cours)"
@@ -174,25 +160,19 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:195
-#, python-format
-msgid "Purchase order exception (supplier error)"
-msgstr "Purchase order exception (supplier error)"
-
-#. module: dec_mrp
 #: report:mrp.production.order.dec:0
 msgid "Production Order N° :"
 msgstr "Ordre de Production N° :"
 
 #. module: dec_mrp
-#: report:mrp.production.order.dec:0
+#: view:mrp.production:0 report:mrp.production.order.dec:0
 msgid "Product"
 msgstr "Produit"
 
 #. module: dec_mrp
-#: report:mrp.production.order.dec:0
-msgid "Partner Ref"
-msgstr "Réf. partenaire"
+#: view:mrp.production:0
+msgid "Total Hours"
+msgstr "Heures Totales"
 
 #. module: dec_mrp
 #: model:ir.model,name:dec_mrp.model_mrp_production_product_line
@@ -215,14 +195,18 @@ msgid "Manufacturing Orders"
 msgstr "Ordres de fabrication"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:124
-#: code:addons/dec_mrp/report/order_dec.py:192
+#: code:addons/dec_mrp/report/order_dec.py:128
 #, python-format
 msgid "From stock: ???"
 msgstr "Au stock ???"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:168
+#: report:mrp.production.order.dec:0
+msgid "Products to Consume"
+msgstr "Produits à consommer"
+
+#. module: dec_mrp
+#: code:addons/dec_mrp/report/order_dec.py:172
 #, python-format
 msgid "From stock (procurement canceled)"
 msgstr "Au stock (appro. annulé)"
@@ -233,36 +217,47 @@ msgid "Bill Of Material"
 msgstr "Nomenclature des Matériaux"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:145
+#: code:addons/dec_mrp/report/order_dec.py:149
 #, python-format
 msgid "On procurement (purchase ???)"
 msgstr "Par appro. (commande ???)"
 
 #. module: dec_mrp
-#: report:mrp.production.order.dec:0
+#: view:mrp.production:0 report:mrp.production.order.dec:0
 msgid "Date"
 msgstr "Date"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:159
+#: code:addons/dec_mrp/report/order_dec.py:163
 #, python-format
 msgid "On order (delivered)"
 msgstr "Sur commande (livré)"
 
 #. module: dec_mrp
-#: view:mrp.production:0
-msgid "Productions"
-msgstr "Productions"
+#: code:addons/dec_mrp/report/order_dec.py:120
+#, python-format
+msgid "Consumable"
+msgstr "Consommable"
 
 #. module: dec_mrp
 #: constraint:mrp.bom:0
 msgid "Error ! You cannot create recursive BoM."
-msgstr "Erreur ! On ne peut pas créer de nomenclature récursive."
+msgstr "Error ! You cannot create recursive BoM."
 
 #. module: dec_mrp
 #: report:mrp.production.order.dec:0
 msgid "Printing date"
 msgstr "Date d'impression"
+
+#. module: dec_mrp
+#: view:mrp.production:0
+msgid "Origin"
+msgstr "Origin"
+
+#. module: dec_mrp
+#: view:mrp.production:0
+msgid "Total Qty"
+msgstr "Qté Totale"
 
 #. module: dec_mrp
 #: sql_constraint:mrp.bom:0
@@ -281,19 +276,27 @@ msgid "Incoming State"
 msgstr "Etat d'entrée"
 
 #. module: dec_mrp
-#: report:mrp.production.order.dec:0
+#: field:mrp.production,sale_commitment_date:0
+msgid "Commitment date"
+msgstr "Date d'engagement"
+
+#. module: dec_mrp
+#: view:mrp.production:0 report:mrp.production.order.dec:0
 msgid "Scheduled Date"
 msgstr "Date planifiée"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:201
-#, python-format
-msgid "From stock (purchase order canceled)"
-msgstr "Au stock (commande annulée)"
+#: report:mrp.production.order.dec:0
+msgid "Partner Ref"
+msgstr "Réf. partenaire"
+
+#. module: dec_mrp
+#: field:mrp.production,sale_requested_date:0
+msgid "Requested date"
+msgstr "Date demandée"
 
 #. module: dec_mrp
 #: code:addons/dec_mrp/report/order_dec.py:116
-#: code:addons/dec_mrp/report/order_dec.py:190
 #, python-format
 msgid "From stock"
 msgstr "Au stock"
@@ -319,7 +322,7 @@ msgid "Production Order (DEC)"
 msgstr "Ordre de production (DEC)"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:165
+#: code:addons/dec_mrp/report/order_dec.py:169
 #, python-format
 msgid "On order (purchase done)"
 msgstr "Sur commande (terminée)"
@@ -330,7 +333,13 @@ msgid "Landmark"
 msgstr "Repère"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:154
+#: code:addons/dec_mrp/report/order_dec.py:121
+#, python-format
+msgid "From workshop or manual picking"
+msgstr "A l'atelier ou sortie manuelle"
+
+#. module: dec_mrp
+#: code:addons/dec_mrp/report/order_dec.py:158
 #, python-format
 msgid "On quotation (procurement canceled)"
 msgstr "Sur commande (devis)"
@@ -338,11 +347,11 @@ msgstr "Sur commande (devis)"
 #. module: dec_mrp
 #: constraint:mrp.production:0
 msgid "Order quantity cannot be negative or zero!"
-msgstr "La quantité commandée ne peut pas être nulle ou négative !"
+msgstr "Order quantity cannot be negative or zero!"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:132
-#: code:addons/dec_mrp/report/order_dec.py:140
+#: code:addons/dec_mrp/report/order_dec.py:136
+#: code:addons/dec_mrp/report/order_dec.py:144
 #, python-format
 msgid "On procurement (purchase in progress)"
 msgstr "Par appro. (commande en cours)"
@@ -353,17 +362,22 @@ msgid "Quantity"
 msgstr "Quantité"
 
 #. module: dec_mrp
-#: field:mrp.production,assigned_workcenter:0
+#: view:mrp.production:0 field:mrp.production,assigned_workcenter:0
 #: report:mrp.production.order.dec:0
 msgid "Assigned to"
 msgstr "Assigné à"
 
 #. module: dec_mrp
+#: field:mrp.production,view_name:0
+msgid "View name"
+msgstr "View name"
+
+#. module: dec_mrp
 #: code:addons/dec_mrp/report/order_dec.py:114
 #: code:addons/dec_mrp/report/order_dec.py:117
-#: code:addons/dec_mrp/report/order_dec.py:130
-#: code:addons/dec_mrp/report/order_dec.py:133
-#: code:addons/dec_mrp/report/order_dec.py:175
+#: code:addons/dec_mrp/report/order_dec.py:134
+#: code:addons/dec_mrp/report/order_dec.py:137
+#: code:addons/dec_mrp/report/order_dec.py:179
 #, python-format
 msgid "Dedicated"
 msgstr "Réservé"
@@ -374,7 +388,7 @@ msgid "Working Date"
 msgstr "Date de l'opération"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:151
+#: code:addons/dec_mrp/report/order_dec.py:155
 #, python-format
 msgid "From stock (purchase deleted)"
 msgstr "Au stock (commande annulée)"
@@ -410,18 +424,12 @@ msgid "WorkCenter"
 msgstr "Poste de charge"
 
 #. module: dec_mrp
-#: sql_constraint:mrp.production:0
-msgid "Reference must be unique per Company!"
-msgstr "La référence doit être unique par société !"
-
-#. module: dec_mrp
 #: report:mrp.production.order.dec:0
 msgid "SO Number"
 msgstr "Numéro de la Commande Client"
 
 #. module: dec_mrp
 #: code:addons/dec_mrp/report/order_dec.py:113
-#: code:addons/dec_mrp/report/order_dec.py:186
 #, python-format
 msgid "Not enough stock"
 msgstr "Pas assez de stock"
@@ -432,9 +440,9 @@ msgid "Date on which the work is done."
 msgstr "Date à laquelle l'opération est réalisée."
 
 #. module: dec_mrp
-#: report:mrp.production.order.dec:0
-msgid "Products to Consume"
-msgstr "Produits à consommer"
+#: field:mrp.production,picked_rate:0
+msgid "Picked"
+msgstr "Réceptionné"
 
 #. module: dec_mrp
 #: field:mrp.production,duration:0
@@ -447,7 +455,7 @@ msgid "New Manufacturing Orders ready to be validate."
 msgstr "Nouveaux ordres de production prêts à être validé."
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:162
+#: code:addons/dec_mrp/report/order_dec.py:166
 #, python-format
 msgid "On order (purchase ???)"
 msgstr "Sur commande (commande ???)"
@@ -456,9 +464,3 @@ msgstr "Sur commande (commande ???)"
 #: model:res.groups,name:dec_mrp.group_mrp_bomm_editor
 msgid "BoM editor2"
 msgstr "Editeur de nomenclature"
-
-#. module: dec_mrp
-#: code:addons/dec_mrp/report/order_dec.py:108
-#, python-format
-msgid "Hello world"
-msgstr "Hello world"
