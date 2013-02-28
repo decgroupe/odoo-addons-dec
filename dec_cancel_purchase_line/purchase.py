@@ -21,6 +21,7 @@ import netsvc
 from osv import fields
 from osv.orm import Model
 from osv.orm import browse_record, browse_null
+from tools.translate import _
 
 
 class purchase_order_line(Model):
@@ -41,6 +42,50 @@ class purchase_order_line(Model):
                 procurement_ids.append(line.origin_procurement_order_id.id)
         self.pool.get('procurement.order').action_cancel(cr, uid, procurement_ids)
         return super(purchase_order_line, self).unlink(cr, uid, ids, context)
+
+    def write(self, cr, uid, ids, vals, context=None):
+        
+        procurement_obj = self.pool.get('procurement.order') 
+        move_obj = self.pool.get('stock.move')
+        uom_obj = self.pool.get('product.uom') 
+        product_obj = self.pool.get('product.product') 
+        
+        for line in self.browse(cr, uid, ids, context):
+            # Edit procurement product data
+            if line.origin_procurement_order_id:
+        
+                note = ''
+                product_data = {}
+                if vals.has_key('product_id') and vals['product_id'] <> line.origin_procurement_order_id.product_id.id:
+                    product_data['product_id'] = vals['product_id']
+                    products = product_obj.browse(cr, uid, [line.origin_procurement_order_id.product_id.id, product_data['product_id']], context=context)  
+                    note += _('PO/Switching product from:\n  -[%s] %s\n to\n  -[%s] %s\n') % (products[0].default_code, products[0].name, products[1].default_code, products[1].name)
+                    
+                if vals.has_key('product_uom') and vals['product_uom'] <> line.origin_procurement_order_id.product_uom.id:
+                    product_data['product_uom'] = vals['product_uom']
+                    uoms = uom_obj.browse(cr, uid, [line.origin_procurement_order_id.product_uom.id, product_data['product_uom']], context=context)  
+                    note += _('PO/Switching uom from: %s to %s\n') % (uoms[0].name, uoms[1].name)
+                    
+                if vals.has_key('product_qty') and vals['product_qty'] <> line.origin_procurement_order_id.product_qty:
+                    product_data['product_qty'] = vals['product_qty']
+                    note += _('PO/Switching quantity from: %s to %s\n') % (line.origin_procurement_order_id.product_qty, product_data['product_qty'])
+                 
+                if product_data:
+                    
+                    if line.origin_procurement_order_id.note:
+                        product_data['note'] = line.origin_procurement_order_id.note + '\n' + note
+                    else:
+                        product_data['note'] = note
+                
+                    procurement_obj.write(cr, uid, [line.origin_procurement_order_id.id], product_data, context=context)
+                    # Update existing move in procurement
+                    if line.origin_procurement_order_id.move_id and line.origin_procurement_order_id.move_id.product_id.id == line.origin_procurement_order_id.product_id.id:
+                        move_obj.write(cr, uid, [line.origin_procurement_order_id.move_id.id], product_data, context=context)
+                        # Update next move
+                        if line.origin_procurement_order_id.move_id.move_dest_id and line.origin_procurement_order_id.move_id.move_dest_id.product_id.id == line.origin_procurement_order_id.product_id.id:
+                            move_obj.write(cr, uid, [line.origin_procurement_order_id.move_id.move_dest_id.id], product_data, context=context)
+
+        return super(purchase_order_line, self).write(cr, uid, ids, vals, context)
 
 
 class purchase_order(Model):

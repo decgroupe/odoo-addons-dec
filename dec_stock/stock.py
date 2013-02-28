@@ -69,6 +69,8 @@ class stock_move(osv.osv):
     _columns = {
          'move_origin': fields.function(_get_move_origin, type="char", string='Move origin', readonly=True),
          'move_final_location': fields.function(_get_move_final_location, type="char", string='Final location', readonly=True),
+         'create_uid':  fields.many2one('res.users', 'Creator'),
+         'write_uid':  fields.many2one('res.users', 'Last editor'),
     }
 
 stock_move()
