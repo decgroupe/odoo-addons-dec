@@ -28,7 +28,7 @@
     "description": """
     
                     """,
-    "depends" : ["project"],
+    "depends" : ["project","project_mrp"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
     "update_xml" : [

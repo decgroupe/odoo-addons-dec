@@ -28,5 +28,108 @@
             </field>
         </record>
         
+    	<record id="view_project_mrp_inherit_form2_dec" model="ir.ui.view">
+            <field name="name">project.mrp.form.view.inherit</field>
+            <field name="model">project.task</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="project_mrp.view_project_mrp_inherit_form2"/>
+            <field name="arch" type="xml">
+                        
+            	<field name="name" position="before">
+               		<separator string="Task" colspan="6"/>
+            	</field>
+            	
+            	<field name="progress" position="after">
+            		<newline/>
+               		<separator string="Source" colspan="6"/>
+                	<field name="origin"/>
+                	<field name="sale_requested_date"/>
+                	<field name="sale_commitment_date"/>
+                	<field name="partner_id"/>
+	                <field name="partner_address_id" domain="[('partner_id','=',partner_id)]"/>
+            	</field>
+            	
+	            <xpath expr="/form/notebook/page[@string='Extra Info']/field[@name='partner_id']" position="replace">
+	            </xpath> 
+	                      
+            	<button name="do_cancel" position="replace">
+               		<button name="do_cancel" states="draft,open,pending" string="Cancel" type="object" icon="gtk-cancel" confirm="Do you confirm cancel ? (Please use draft instead)"/>   
+            	</button>
+            	
+            	<button name="%(project.action_project_task_delegate)d" position="replace"/>
+	            
+            	<button name="action_close" position="replace">
+            		<button name="action_close" states="draft,pending,open" string="Done" type="object" icon="gtk-apply" help="For changing to done state"/>
+            	</button>
+            </field>
+      	</record>  
+
+        <record id="view_task_tree2_dec" model="ir.ui.view">
+            <field name="name">project.task.tree</field>
+            <field name="model">project.task</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+            
+            	<field name="project_id" position="replace">
+                    <field name="partner_id"/>
+                    <field name="partner_address_city_id"/>
+                    <field name="origin"/>
+            	</field>
+            	
+            	<field name="user_id" position="after">
+                    <field name="date_deadline"/>
+            	</field>
+            	
+            	<field name="type_id" position="replace"/>
+            	<button name="next_type" position="replace"/>
+            	
+            	<button name="%(project.action_project_task_delegate)d" position="replace"/>
+            	
+            	<button name="action_close" position="replace">
+            		<button name="action_close" states="draft,pending,open" string="Done" type="object" icon="gtk-apply" help="For changing to done state"/>
+            	</button>
+            </field>
+        </record>
+        
+         <record id="view_task_search_form_dec" model="ir.ui.view">
+            <field name="name">project.task.search.form</field>
+            <field name="model">project.task</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
+            <field name="arch" type="xml">
+
+            	 <field name="project_id" position="replace">
+            	 	<field name="partner_id"/>
+            	 	<field name="partner_address_city_id"/>	 
+            	 </field>
+            	 
+	            <xpath expr="/search/group[@string='Group By...']/filter[@string='Users']" position="after" >
+                	<filter string="Partners" name="group_partner_id" icon="terp-personal" domain="[]"  context="{'group_by':'partner_id'}"/>
+                	<separator orientation="vertical"/>
+	            </xpath>
+	            <xpath expr="/search/group[@string='Group By...']/filter[@name='group_project_id']" position="replace" />
+	            <xpath expr="/search/group[@string='Group By...']/filter[@name='group_stage_id']" position="replace" />   
+            </field>
+        </record>   
+            
+      	
+         <record id="action_view_task_dec" model="ir.actions.act_window">
+            <field name="name">Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,gantt,calendar,kanban</field>
+            <field eval="False" name="filter"/>
+            <field name="view_id" eval="False"/>
+            <field name="context">{"search_default_draft": 1, "search_default_open":1, "search_default_project_id": project_id}</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+            <field name="help">A task represents a work that has to be done. Each user works in his own list of tasks where he can record his task work in hours. He can work and close the task itself or delegate it to another user. If you delegate a task to another user, you get a new task in pending state, which will be reopened when you have to review the work achieved. If you install the project_timesheet module, task work can be invoiced based on the project configuration. With the project_mrp module, sales orders can create tasks automatically when they are confirmed.</field>
+        </record>
+
+    	<delete model="ir.ui.menu" id="project.menu_action_view_task"/>
+        <menuitem action="action_view_task_dec" id="menu_action_view_task_dec" parent="project.menu_project_management" sequence="3"/>
+
+        
 	</data>
 </openerp>

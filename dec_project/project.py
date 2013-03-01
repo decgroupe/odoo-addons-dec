@@ -42,11 +42,44 @@ from openerp.addons.resource.faces import task as Task
 #project()
 #
 #
-#class task(osv.osv):
-#    _name = "project.task"
-#    _inherit = _name
-#
-#task()
+
+class task(osv.osv):
+    _name = "project.task"
+    _inherit = _name
+    
+    
+    def _get_sale_dates(self, cr, uid, ids, field_names=None, arg=False, context=None):
+        if not field_names:
+            field_names = []
+        if context is None:
+            context = {}
+        res = {}
+        
+        for id in ids:
+            res[id] = {}.fromkeys(field_names, False)
+            
+        for task in self.browse(cr, uid, ids, context=context):
+            if task.sale_line_id:
+                for f in field_names:
+                    if f == 'sale_requested_date':
+                        res[task.id][f] = task.sale_line_id.order_id.requested_date  
+                    if f == 'sale_commitment_date':
+                        res[task.id][f] = task.sale_line_id.order_id.commitment_date  
+            
+        return res
+    
+    _columns = {
+        'origin': fields.char('Source Document', size=64),
+        'date_start': fields.date('Start Date', select=True),
+        'date_end': fields.date('End Date', select=True),
+        'partner_address_id': fields.many2one('res.partner.address', 'Address'),
+        'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City'),
+        'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
+        'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
+    }
+
+task()
+
 #
 #class project_work(osv.osv):
 #    _name = "project.task.work"

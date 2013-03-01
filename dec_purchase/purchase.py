@@ -76,7 +76,8 @@ class purchase_order_line(osv.osv):
             result = procurement_origin                 
             if merge_origin and merge_origin <> procurement_origin:
                 if result:
-                    result = '%s:%s' % (result, merge_origin) 
+                    if uid == 1:
+                        result = '%s <<< %s' % (result, merge_origin) 
                 else:
                     result = merge_origin
  

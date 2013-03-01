@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-04 16:20+0000\n"
-"PO-Revision-Date: 2013-02-04 17:39+0100\n"
+"POT-Creation-Date: 2013-03-01 13:28+0000\n"
+"PO-Revision-Date: 2013-03-01 14:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,42 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_project
-#: model:ir.actions.report.xml,name:dec_project.project3_report_id
-msgid "Worksheet"
-msgstr "Feuille d'intervention"
+#: field:project.task,partner_address_city_id:0
+msgid "City"
+msgstr "Ville"
+
+#. module: dec_project
+#: view:project.task:0
+msgid "Partners"
+msgstr "Partnenaires"
+
+#. module: dec_project
+#: constraint:project.task:0
+msgid "Error ! Task end-date must be greater then task start-date"
+msgstr ""
+"Erreur ! La date de fin de la tâche doit être postérieure à la date de "
+"démarrage"
+
+#. module: dec_project
+#: view:project.task:0
+msgid "Source"
+msgstr "Source"
+
+#. module: dec_project
+#: view:project.task:0
+msgid "For changing to done state"
+msgstr "Pour passer à l'état terminé"
+
+#. module: dec_project
+#: view:project.task:0
+msgid "Do you confirm cancel ? (Please use draft instead)"
+msgstr ""
+"Confirmer vous l'annulation ? (Il est préférable d'utiliser \"brouillon\")"
+
+#. module: dec_project
+#: constraint:project.task:0
+msgid "Error ! You cannot create recursive tasks."
+msgstr "Erreur ! Vous ne pouvez pas créer de tâches récursives"
 
 #. module: dec_project
 #: model:ir.actions.report.xml,name:dec_project.project2_report_id
@@ -27,11 +60,91 @@ msgid "Sale Quotation Report"
 msgstr "Sale Quotation Report"
 
 #. module: dec_project
-#: report:ir.actions.report.xml:dec_project.project3_report_id
-msgid "Not assigned"
-msgstr "Non attribué"
+#: field:project.task,partner_address_id:0
+msgid "Address"
+msgstr "Adresse"
+
+#. module: dec_project
+#: field:project.task,sale_requested_date:0
+msgid "Requested date"
+msgstr "Date demandée"
+
+#. module: dec_project
+#: view:project.project:0
+msgid "Projects"
+msgstr "Projets"
+
+#. module: dec_project
+#: model:ir.model,name:dec_project.model_project_task view:project.task:0
+msgid "Task"
+msgstr "Tâche"
+
+#. module: dec_project
+#: field:project.task,sale_commitment_date:0
+msgid "Commitment date"
+msgstr "Date d'engagement"
+
+#. module: dec_project
+#: model:ir.actions.report.xml,name:dec_project.project3_report_id
+msgid "Worksheet"
+msgstr "Feuille d'intervention"
+
+#. module: dec_project
+#: field:project.task,origin:0
+msgid "Source Document"
+msgstr "Origine"
+
+#. module: dec_project
+#: model:ir.model,name:dec_project.model_procurement_order
+msgid "Procurement"
+msgstr "Approvisionnement"
 
 #. module: dec_project
 #: report:ir.actions.report.xml:dec_project.project3_report_id
 msgid "Working sheet"
 msgstr "Bon d'intervention"
+
+#. module: dec_project
+#: model:ir.actions.act_window,name:dec_project.action_view_task_dec
+#: model:ir.ui.menu,name:dec_project.menu_action_view_task_dec
+#: view:project.task:0
+msgid "Tasks"
+msgstr "Tâches"
+
+#. module: dec_project
+#: model:ir.actions.act_window,help:dec_project.action_view_task_dec
+msgid ""
+"A task represents a work that has to be done. Each user works in his own "
+"list of tasks where he can record his task work in hours. He can work and "
+"close the task itself or delegate it to another user. If you delegate a task "
+"to another user, you get a new task in pending state, which will be reopened "
+"when you have to review the work achieved. If you install the "
+"project_timesheet module, task work can be invoiced based on the project "
+"configuration. With the project_mrp module, sales orders can create tasks "
+"automatically when they are confirmed."
+msgstr ""
+"Une tâche représente un travail qui doit être fait. Chaque utilisateur "
+"travaille dans sa propre liste de tâches pour lesquelles il peut enregistrer "
+"le travail réalisé (en heures). Il peut travailler et fermer la tâche  ou la "
+"déléguer à un autre utilisateur. Si vous déléguez une tâche à un autre "
+"utilisateur, vous obtenez une nouvelle tâche dans l'état 'attente'  qui sera "
+"rouverte lorsque vous devrez examiner le travail accompli. Si vous installez "
+"le module project_timesheet, les travaux d'une tâche peuvent être facturés "
+"en fonction de la manière dont le projet est facturé. Avec le module "
+"project_mrp, les commandes clients peuvent créer des tâches automatiquement "
+"quand elles sont confirmées."
+
+#. module: dec_project
+#: view:project.task:0
+msgid "Done"
+msgstr "Effectué"
+
+#. module: dec_project
+#: report:ir.actions.report.xml:dec_project.project3_report_id
+msgid "Not assigned"
+msgstr "Non attribué"
+
+#. module: dec_project
+#: view:project.task:0
+msgid "Cancel"
+msgstr "Annuler"

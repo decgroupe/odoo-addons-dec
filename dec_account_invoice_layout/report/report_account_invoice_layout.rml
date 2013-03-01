@@ -121,7 +121,8 @@
     <initialize>
       <paraStyle name="all" alignment="justify"/>
     </initialize>
-    <paraStyle name="P1" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P1" fontName="Helvetica" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -250,7 +251,7 @@
           <para style="terp_default_Centre_8">[[ formatLang(o.date_due,date=True) ]]</para>
         </td>
         <td>
-          <para style="P1">[[ (o.address_invoice_id  and o.address_invoice_id.partner_id and o.address_invoice_id.partner_id.ref) or  ' '  ]][[ (o.client_order_ref) or  ' '  ]]</para>
+          <para style="terp_default_Centre_9">[[ (o.address_invoice_id  and o.address_invoice_id.partner_id and o.address_invoice_id.partner_id.ref) or  ' '  ]][[ (o.client_order_ref) or  ' '  ]]</para>
         </td>
       </tr>
     </blockTable>
@@ -287,7 +288,12 @@
             <para style="terp_default_9"><font face="Helvetica">[[ ((a['type']=='title' or a['type']=='subtotal') and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font><font face="Helvetica">[[ a['name'] ]]</font>[[ a['type']=='article' and ('/ (' +  a['tax_types'] + ')' ) ]]</para>
           </td>
           <td>
-            <para style="terp_default_Right_9"><font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font><font face="Helvetica">[[ a['quantity'] ]]</font>[[ a['uos'] ]]</para>
+            <para style="terp_default_Right_9">
+              <font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>
+              <font face="Helvetica">[[ a['quantity'] ]]</font>
+              <font face="Helvetica"> </font>
+              <font face="Helvetica">[[ a['uos'] ]]</font>
+            </para>
           </td>
           <td>
             <para style="terp_default_Right_9">
@@ -482,6 +488,19 @@
       <tr>
         <td>
           <para style="terp_default_9">[[ (o.payment_term and o.payment_term.note) or  removeParentNode('blockTable') ]]</para>
+          <para style="terp_default_9">
+            <font color="white"> </font>
+          </para>
+          <para style="terp_default_Bold_8">
+            <font face="Helvetica">RÉSERVE DE PROPRIÉTÉ</font>
+            <font face="Helvetica">:</font>
+          </para>
+          <para style="P2">
+            <font face="Helvetica">Nous nous réservons la propriété des marchandises jusqu'au complet paiement du prix par l'acheteur.</font>
+          </para>
+          <para style="P1">
+            <font face="Helvetica">Notre droit de revendicaton porte aussi bien sur les marchandises que sur leur prix si elles ont déjà été revendues (Loi du 12 mai 1980).</font>
+          </para>
         </td>
       </tr>
     </blockTable>

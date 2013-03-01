@@ -236,9 +236,12 @@ class mrp_production(osv.osv):
         for prod in self.browse(cr, uid, ids, context=context):
             res[prod.id] = '%s: %s (%s)' % (prod.name, prod.product_id.name, prod.bom_id.name)  
             
-        return res    
+        return res  
+
     
     _columns = {
+        'product_id': fields.many2one('product.product', 'Product', required=True, readonly=False, states={'draft':[('readonly',False)]}),
+        'bom_id': fields.many2one('mrp.bom', 'Bill of Material', domain=[('bom_id','=',False)], required=True, readonly=False, states={'draft':[('readonly',False)]}),
         'duration': fields.float('Duration'),
         'date_start': fields.date('Start Date', select=True),
         'date_finished': fields.date('End Date', select=True),
@@ -254,9 +257,27 @@ class mrp_production(osv.osv):
 #                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines2'], 20),
 #                }),
     }
-    
 
-mrp_bom()
+    def write(self, cr, uid, ids, vals, context=None):
+        
+        procurement_obj = self.pool.get('procurement.order') 
+        move_obj = self.pool.get('stock.move')
+        uom_obj = self.pool.get('product.uom') 
+        product_obj = self.pool.get('product.product') 
+        
+        for prod in self.browse(cr, uid, ids, context):
+            if vals.has_key('product_id'):
+                for move in prod.move_created_ids:
+                    if move.product_id.id <> vals['product_id']:
+                        move_obj.write(cr, uid, [move.id], {'product_id': vals['product_id']}, context=context)
+                        
+                        # Update next move
+                        if move.move_dest_id and move.move_dest_id.product_id.id == move.product_id.id:
+                            move_obj.write(cr, uid, [move.move_dest_id.id],  {'product_id': vals['product_id']}, context=context)           
+
+        return super(mrp_production, self).write(cr, uid, ids, vals, context)
+
+mrp_production()
 
 
 class mrp_production_workcenter_line(osv.osv):
