@@ -110,6 +110,136 @@ class mrp_bom(osv.osv):
 
 mrp_bom()
 
+class stock_move(osv.osv):
+    _name = "stock.move"
+    _inherit="stock.move"
+    
+    
+    def _get_status(self, cr, uid, ids, field_names, arg, context=None):
+        if not field_names:
+            field_names = []
+        if context is None:
+            context = {}
+        res = {}
+        
+        stock_move_obj = self.pool.get('stock.move')
+        procurement_order_obj = self.pool.get('procurement.order')
+        
+        for id in ids:
+            res[id] = {}.fromkeys(field_names, False)
+            
+        shipment_move_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', ids)], context=context)   
+        shipment_move_ids = shipment_move_ids + ids             
+        procurement_order_ids = procurement_order_obj.search(cr, uid, [('move_id', 'in', shipment_move_ids)], context=context)  
+        for procurement_order in procurement_order_obj.browse(cr, uid, procurement_order_ids, context=context):
+            
+            if procurement_order.move_id.product_id == procurement_order.move_id.move_dest_id.product_id:  
+                i = procurement_order.move_id.move_dest_id.id 
+            else:
+                i = procurement_order.move_id.id 
+                
+            purchase_move_ids = stock_move_obj.search(cr, uid, [('move_dest_id', '=', procurement_order.move_id.id)], context=context)    
+            purchase_move = len(purchase_move_ids)>0 and stock_move_obj.browse(cr, uid, purchase_move_ids, context=context)[0]
+                            
+            if procurement_order.procure_method == 'make_to_stock':  
+                if procurement_order.state == 'exception':
+                    res[i]['status_status'] = _('Not enough stock') 
+                    res[i]['status_dedicated'] = _('Dedicated') 
+                elif (procurement_order.state == 'ready' or procurement_order.state == 'done') and procurement_order.product_id.type == 'product':
+                    res[i]['status_status'] = _('From stock')
+                    res[i]['status_dedicated'] = _('Dedicated') 
+                    res[i]['status_received'] = True
+                elif (procurement_order.state == 'ready' or procurement_order.state == 'done') and procurement_order.product_id.type == 'consu':
+                    res[i]['status_status'] = _('Consumable')
+                    res[i]['status_dedicated'] = _('From workshop or manual picking') 
+                    res[i]['status_received'] = True
+                elif procurement_order.state == 'cancel':
+                    res[i]['status_status'] = _('From stock (automatic orderpoint canceled)')
+                    res[i]['status_dedicated'] =  _('Not dedicated') 
+                    res[i]['status_received'] = True
+                else:
+                    res[i]['status_status'] = _('From stock: ???')
+                    res[i]['status_dedicated'] =  _('Not dedicated') 
+   
+            elif procurement_order.procure_method == 'make_to_order':  
+                if procurement_order.state == 'exception':
+                    res[i]['status_status'] = _('Procurement exception (supplier error)')
+                    res[i]['status_dedicated'] = _('Dedicated') 
+                elif procurement_order.state == 'running':
+                    res[i]['status_status'] = _('On procurement (purchase in progress)')
+                    res[i]['status_dedicated'] = _('Dedicated') 
+                    
+                    if procurement_order.purchase_id:
+                        if procurement_order.purchase_id.state == 'draft':
+                            res[i]['status_status'] = _('On procurement (quotation)')
+                        elif procurement_order.state == 'confirmed' or procurement_order.state == 'approved':
+                            
+                            if purchase_move and purchase_move.state == 'assigned':
+                                res[i]['status_status'] = _('On procurement (purchase in progress)')
+                            elif purchase_move and purchase_move.state == 'done':
+                                res[i]['status_status'] = _('On procurement (delivered)')
+                                res[i]['status_received'] = True
+                            else:
+                                res[i]['status_status'] = _('On procurement (purchase ???)')
+                    
+                elif procurement_order.state == 'cancel':
+                    res[i]['status_status'] = _('From stock (procurement canceled)')
+                    res[i]['status_dedicated'] =  _('Not dedicated') 
+                    res[i]['status_received'] = True
+                    
+                    if not procurement_order.purchase_id:
+                        res[i]['status_status'] = _('From stock (purchase deleted)')
+                        res[i]['status_received'] = True
+                    elif procurement_order.purchase_id.state == 'draft':
+                        res[i]['status_status'] = _('On quotation (procurement canceled)')
+                    elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved':
+                        if purchase_move and purchase_move.state == 'assigned':
+                            res[i]['status_status'] = _('On order (purchase in progress)')
+                        elif purchase_move and purchase_move.state == 'done':
+                            res[i]['status_status'] = _('On order (delivered)')
+                            res[i]['status_received'] = True
+                        else:
+                            res[i]['status_status'] = _('On order (purchase ???)')
+                        
+                    elif procurement_order.purchase_id.state == 'done':
+                        res[i]['status_status'] = _('On order (purchase done)')
+                        res[i]['status_received'] = True
+                    elif procurement_order.purchase_id.state == 'cancel':
+                        res[i]['status_status'] = _('From stock (procurement canceled)')
+                        res[i]['status_received'] = True
+                    else:
+                        res[i]['status_status'] = _('On order: ???')
+
+                elif procurement_order.state == 'ready' or procurement_order.state == 'done':
+                    res[i]['status_status'] = _('On procurement (delivered)')
+                    res[i]['status_dedicated'] = _('Dedicated') 
+                    res[i]['status_received'] = True
+                else:
+                    res[i]['status_status'] = _('On procurement: ???')
+                    res[i]['status_dedicated'] =  _('Not dedicated') 
+
+
+            
+#            sale_order_ids = sale_order_obj.search(cr, uid, [('name', '=', prod.sale_name)], context=context)   
+#            
+#            for sale_order in sale_order_obj.browse(cr, uid, sale_order_ids, context=context):
+#                for f in field_names:
+#                    if f == 'sale_requested_date':
+#                        res[prod.id][f] = sale_order.requested_date  
+#                    if f == 'sale_commitment_date':
+#                        res[prod.id][f] = sale_order.commitment_date  
+            
+        return res
+    
+    _columns = {
+        'status_status': fields.function(_get_status, type='char', string='Status', multi='group_get_status'),
+        'status_dedicated': fields.function(_get_status, type='char',  string='Dedicated', multi='group_get_status'),
+        'status_received': fields.function(_get_status, type='boolean', string='Received', multi='group_get_status'),
+    }
+    
+stock_move()
+
+
 
 class mrp_production(osv.osv):
     _name = 'mrp.production'
@@ -241,41 +371,112 @@ class mrp_production(osv.osv):
     
     _columns = {
         'product_id': fields.many2one('product.product', 'Product', required=True, readonly=False, states={'draft':[('readonly',False)]}),
-        'bom_id': fields.many2one('mrp.bom', 'Bill of Material', domain=[('bom_id','=',False)], required=True, readonly=False, states={'draft':[('readonly',False)]}),
+        'bom_id': fields.many2one('mrp.bom', 'Bill of Material', domain=[('bom_id','=',False)], required=True, readonly=False, states={'draft':[('readonly',False),('required',False)]}),
         'duration': fields.float('Duration'),
         'date_start': fields.date('Start Date', select=True),
         'date_finished': fields.date('End Date', select=True),
         'assigned_workcenter': fields.many2one('mrp.workcenter', 'Assigned to', required=False),
         'late': fields.function(_get_late, type='boolean', string='Late', store=True),
-        'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
-        'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
         'view_name': fields.function(_get_view_name, string='View name', type='char'), 
         'picked_rate': fields.function(_picked_rate, string='Picked', type='float'),
+        'move_all_src_ids': fields.many2many('stock.move', 'mrp_production_move_ids', 'production_id', 'move_id', 'Products IN', domain=[('state','!=', 'cancel')]),
+        'move_all_dst_ids': fields.one2many('stock.move', 'production_id', 'Products OUT', domain=[('state','!=', 'cancel')]),
+        
+        'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
+        'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
+        'partner_id': fields.many2one('res.partner', 'Partner'),
+        'partner_address_id': fields.many2one('res.partner.address', 'Address'),
+        'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City'),
 #        , store={
 #                'stock.picking': (lambda self, cr, uid, ids, c={}: ids, ['picking_id'], 20),
 #                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines'], 20),
 #                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines2'], 20),
 #                }),
     }
+    
+    def create(self, cr, uid, vals, context=None):
+        procurement_obj = self.pool.get('procurement.order') 
+        if vals.has_key('move_prod_id') and vals['move_prod_id'] != False:
+            proc_ids = procurement_obj.search(cr, uid, [('move_id', '=', vals['move_prod_id'])], context=context)   
+            for procurement in procurement_obj.browse(cr, uid, proc_ids, context):
+                if procurement and procurement.sale_line_id:
+                    vals['partner_id'] = procurement.sale_line_id.order_id and procurement.sale_line_id.order_id.partner_shipping_id.partner_id.id or False
+                    vals['partner_address_id'] = procurement.sale_line_id.order_id and procurement.sale_line_id.order_id.partner_shipping_id.id or False,
+                    break
+                    
+        return super(mrp_production, self).create(cr, uid, vals, context)
 
     def write(self, cr, uid, ids, vals, context=None):
-        
+        if isinstance(ids, (int, long)):
+          ids = [ids]
+          
+        production_obj = self.pool.get('mrp.production')  
         procurement_obj = self.pool.get('procurement.order') 
         move_obj = self.pool.get('stock.move')
         uom_obj = self.pool.get('product.uom') 
         product_obj = self.pool.get('product.product') 
         
-        for prod in self.browse(cr, uid, ids, context):
+        for production in production_obj.browse(cr, uid, ids, context):                   
             if vals.has_key('product_id'):
-                for move in prod.move_created_ids:
+                for move in production.move_all_dst_ids:
                     if move.product_id.id <> vals['product_id']:
                         move_obj.write(cr, uid, [move.id], {'product_id': vals['product_id']}, context=context)
                         
                         # Update next move
                         if move.move_dest_id and move.move_dest_id.product_id.id == move.product_id.id:
-                            move_obj.write(cr, uid, [move.move_dest_id.id],  {'product_id': vals['product_id']}, context=context)           
+                            move_obj.write(cr, uid, [move.move_dest_id.id],  {'product_id': vals['product_id']}, context=context)  
 
         return super(mrp_production, self).write(cr, uid, ids, vals, context)
+    
+    def copy(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default.update({
+            'date_start': False,
+            'date_finished': False,
+            'assigned_workcenter': False,
+            'workcenter_lines' : [],
+            'move_all_src_ids' : [],
+            'move_all_dst_ids' : [],
+            'partner_id' : False,
+            'partner_address_id' : False
+        })
+        return super(mrp_production, self).copy(cr, uid, id, default, context)
+
+    def button_create_task(self, cr, uid, ids, context=None):
+        if isinstance(ids, (int, long)):
+          ids = [ids]
+          
+        result = {} 
+        
+        task_obj = self.pool.get('project.task')
+        move_obj = self.pool.get('stock.move')
+        proc_obj = self.pool.get('procurement.order')
+        
+        for production in self.browse(cr, uid, ids, context):
+            
+            procurement = False
+            if production.move_prod_id:
+                proc_ids = proc_obj.search(cr, uid, [('move_id', '=', production.move_prod_id.id)], context=context)   
+                for procurement in proc_obj.browse(cr, uid, proc_ids, context):
+                    break
+                
+            data = {
+                'name': (_('Testing [%s] %s')) % (production.bom_id.name, production.product_id.name),
+                'origin': ('%s:%s') % (production.origin, production.name),
+                'date_deadline': production.date_planned,
+                'planned_hours': 4.0,
+                'procurement_id': procurement and procurement.id, 
+                'partner_id': production.partner_id,
+                'partner_address_id': production.partner_address_id,
+                'user_id': False,
+                'company_id': production.company_id.id,
+            }
+
+            task_id = task_obj.create(cr, uid, data, context=context)
+            result[production.id] = task_id
+            
+        return result
 
 mrp_production()
 

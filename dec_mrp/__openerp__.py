@@ -28,7 +28,7 @@
     "description": """
     
                     """,
-    "depends" : ["mrp","dec_procurement"],
+    "depends" : ["mrp","dec_procurement","dec_project"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
     'update_xml': [

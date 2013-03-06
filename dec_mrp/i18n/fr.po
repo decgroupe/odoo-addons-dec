@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-15 14:24+0000\n"
-"PO-Revision-Date: 2013-02-15 15:31+0100\n"
+"PO-Revision-Date: 2013-03-05 17:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,71 @@ msgstr "Document d'origine"
 #, python-format
 msgid "On procurement (delivered)"
 msgstr "Par appro. (livré)"
+
+#. module: dec_mrp
+#: field:mrp.production,partner_address_city_id:0
+msgid "City"
+msgstr "Ville"
+
+#. module: dec_mrp
+#: field:stock.move,status_received:0
+msgid "Received"
+msgstr "Réceptionné"
+
+#. module: dec_mrp
+#: field:mrp.production,move_all_dst_ids:0
+msgid "Products OUT"
+msgstr "Produits (SORTIE)"
+
+#. module: dec_mrp
+#: field:mrp.production,move_all_src_ids:0
+msgid "Products IN"
+msgstr "Produits (ENTREE)"
+
+#. module: dec_mrp
+#: view:mrp.production:0
+msgid "Origin"
+msgstr "Source"
+
+#. module: dec_mrp
+#: field:mrp.production,view_name:0
+msgid "View name"
+msgstr "Nom de vue"
+
+#. module: dec_mrp
+#: view:mrp.production:0
+msgid "Production order"
+msgstr "Ordre de production"
+
+#. module: dec_mrp
+#: view:mrp.production:0
+msgid "Create testing task"
+msgstr "Créer une tâche de test (BE)"
+
+#. module: dec_mrp
+#: view:mrp.production:0
+msgid "Procurement"
+msgstr "Approvisionnement"
+
+#. module: dec_mrp
+#: field:mrp.production,partner_id:0
+msgid "Partner"
+msgstr "Client"
+
+#. module: dec_mrp
+#: field:mrp.production,partner_address_id:0
+msgid "Address"
+msgstr "Adresse"
+
+#. module: dec_mrp
+#: view:mrp.production:0
+msgid "Moves"
+msgstr "Mouvements"
+
+#. module: dec_mrp
+#: field:stock.move,status_status:0
+msgid "Status"
+msgstr "Statut"
 
 #. module: dec_mrp
 #: report:mrp.production.order.dec:0
@@ -251,11 +316,6 @@ msgstr "Date d'impression"
 
 #. module: dec_mrp
 #: view:mrp.production:0
-msgid "Origin"
-msgstr "Origin"
-
-#. module: dec_mrp
-#: view:mrp.production:0
 msgid "Total Qty"
 msgstr "Qté Totale"
 
@@ -366,11 +426,6 @@ msgstr "Quantité"
 #: report:mrp.production.order.dec:0
 msgid "Assigned to"
 msgstr "Assigné à"
-
-#. module: dec_mrp
-#: field:mrp.production,view_name:0
-msgid "View name"
-msgstr "View name"
 
 #. module: dec_mrp
 #: code:addons/dec_mrp/report/order_dec.py:114

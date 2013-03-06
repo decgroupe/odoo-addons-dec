@@ -52,6 +52,15 @@
                            help="Production will start late as planned" />
              	</xpath>
              	
+             	
+                <field name="routing_id" position="replace">
+                	<field name="assigned_workcenter"/>
+                </field>
+                
+                <field name="origin" position="after">
+                	<field name="partner_address_city_id"/>
+                </field>
+             	
              	<xpath expr="/search/group[2]" position="replace">
              	     <group expand="0" string="Group By..." >
                         <filter string="Product" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'product_id'}"/>
@@ -97,6 +106,8 @@
 					<field name="picked_rate" widget="progressbar"/>
                     <field name="hour_total" sum="Total Hours"/>
                     <field name="origin"/>
+	                <field name="partner_id"/>
+                    <field name="partner_address_city_id"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -108,14 +119,70 @@
             <field name="type">form</field>
 			<field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
-             	<xpath expr="/form/notebook/page[@string='Consumed Products']/field[@name='routing_id']" position="after">
-
-             	</xpath>
-                <field name="origin" position="after">
-             		<field name="assigned_workcenter"/>
+            
+            	<field name="name" position="before">
+               		<separator string="Production order" colspan="7"/>
+            	</field>
+            	
+            	<button type="action" name="%(mrp.action_change_production_qty)d" position="replace" />
+            	
+                <field name="origin" position="replace">
+             		<field name="assigned_workcenter" />
+                </field>
+                            	
+                <field name="product_uos" position="after">
+            		<newline/>
+               		<separator string="Source" colspan="6"/>
+                	<field name="origin"/>
                 	<field name="sale_requested_date"/>
                 	<field name="sale_commitment_date"/>
+                	<field name="partner_id"/>
+	                <field name="partner_address_id" domain="[('partner_id','=',partner_id)]"/>
+	                <button name="button_create_task" confirm="Please confirm task creation, are you sure ?" string="Create testing task"  states="ready,confirmed,in_production,done" type="object" icon="terp-idea" colspan="2"/>
                 </field>
+
+
+             	<xpath expr="/form/notebook/page[@string='Consumed Products']" position="before">		                
+
+                       <page string="Procurement">  
+                                    		
+		                    <group colspan="4" col="4">
+		            		    <field name="bom_id" domain="[('product_id','=',product_id),('bom_id','=',False)]" on_change="bom_id_change(bom_id)"/>
+								<field name="picked_rate" widget="progressbar"/>
+		                        <field name="location_src_id" domain="[('usage','=','internal')]" on_change="location_id_change(location_src_id,location_dest_id)"/>
+		                        <field name="location_dest_id" domain="[('usage','=','internal')]"/>
+			                </group>
+			                
+	      	            <field colspan="4" name="move_all_src_ids" nolabel="1" widget="one2many_list" mode="tree" height="275" domain="[('state','&lt;&gt;', ('done', 'cancel'))]">
+		                    <tree colors="blue:state == 'draft';black:state in ('picking_except','confirmed','ready','in_production');gray:state in ('cancel','done')" string="Moves">
+		                        <field name="product_id" />
+		                        <field name="product_qty"  string="Qty"/>
+		                        <field name="product_uom"  string="UOM"/>
+		                        <field name="state"/>
+		                        <button name="%(stock.move_consume)d" string="Consume Products" type="action" icon="gtk-go-forward" context="{'consume': True}" states="draft,waiting,confirmed,assigned" />
+		                        <field name="status_received"/>
+		                        <field name="status_status"/>
+		                        <field name="status_dedicated"/>
+		                    </tree>
+	                    </field>
+                       </page>
+             	</xpath>
+             	
+             	<xpath expr="/form/notebook/page[@string='Consumed Products']" position="replace" />
+             	
+             	<xpath expr="/form/notebook" position="after">
+                            <group col="9" colspan="4">
+                                <field name="state" widget="statusbar" statusbar_visible="draft,ready,in_production,done" statusbar_colors='{"picking_except":"red","confirmed":"blue"}'/>
+                                <button name="button_cancel" states="draft,ready,in_production,picking_except" string="Cancel" icon="gtk-stop"/>
+                                <button name="action_cancel" type="object" states="confirmed" string="Cancel" icon="gtk-stop"/>
+                                <button name="button_confirm" states="draft" string="Confirm Production" icon="gtk-apply"/>
+                                <button name="button_produce" states="ready" string="Start Production" icon="terp-gtk-jump-to-ltr"/>
+                                <button name="%(mrp.act_mrp_product_produce)d" states="in_production" string="Produce" icon="gtk-ok" type="action"/>
+                                <button name="force_production" states="confirmed,picking_except" string="Force Reservation" type="object" icon="gtk-jump-to"/>
+                                <button name="button_recreate" states="picking_except" string="Recreate Picking" icon="terp-document-new"/>
+                            </group>
+               </xpath>
+
              	
                 <field name="workcenter_lines" position="replace">
 					<field colspan="4" name="workcenter_lines" nolabel="1" context="{'production_id':active_id}">

@@ -44,6 +44,8 @@ class purchase_order_line(Model):
         return super(purchase_order_line, self).unlink(cr, uid, ids, context)
 
     def write(self, cr, uid, ids, vals, context=None):
+        if isinstance(ids, (int, long)):
+          ids = [ids]
         
         procurement_obj = self.pool.get('procurement.order') 
         move_obj = self.pool.get('stock.move')
