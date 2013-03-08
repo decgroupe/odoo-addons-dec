@@ -31,7 +31,7 @@
     "depends" : ["procurement", "dec_cancel_purchase_line"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
-    "update_xml" : [],
+    "update_xml" : ["procurement_view.xml"],
     "active": False,
     "installable": True
 }

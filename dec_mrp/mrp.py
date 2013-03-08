@@ -172,7 +172,7 @@ class stock_move(osv.osv):
                     if procurement_order.purchase_id:
                         if procurement_order.purchase_id.state == 'draft':
                             res[i]['status_status'] = _('On procurement (quotation)')
-                        elif procurement_order.state == 'confirmed' or procurement_order.state == 'approved':
+                        elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved':
                             
                             if purchase_move and purchase_move.state == 'assigned':
                                 res[i]['status_status'] = _('On procurement (purchase in progress)')
@@ -181,13 +181,15 @@ class stock_move(osv.osv):
                                 res[i]['status_received'] = True
                             else:
                                 res[i]['status_status'] = _('On procurement (purchase ???)')
+                        else:
+                            res[i]['status_status'] = _('On procurement ???')
                     
                 elif procurement_order.state == 'cancel':
                     res[i]['status_status'] = _('From stock (procurement canceled)')
                     res[i]['status_dedicated'] =  _('Not dedicated') 
                     res[i]['status_received'] = True
                     
-                    if not procurement_order.purchase_id:
+                    if not procurement_order.purchase_id or not purchase_move:
                         res[i]['status_status'] = _('From stock (purchase deleted)')
                         res[i]['status_received'] = True
                     elif procurement_order.purchase_id.state == 'draft':
@@ -265,10 +267,15 @@ class mrp_production(osv.osv):
         wf_service = netsvc.LocalService("workflow")
         procurement_order = self.pool.get('procurement.order')
         production = production_line.production_id
-        location_id = production.location_src_id.id
-        date_planned = production.date_planned
-        procurement_name = (production.origin or '').split(':')[0] + ':' + production.name
         
+        # YP: Override source for consumable products
+        if production_line.product_id.type == 'consu':  
+            location_id = production_line.product_id.product_tmpl_id.property_stock_production.id
+        else:
+            location_id = production.location_src_id.id
+            
+        date_planned = production.date_planned
+        procurement_name = (production.origin or '').split(':')[0] + ':' + production.name   
         procurement_fields = {
                     'name': procurement_name,
                     'origin': procurement_name,
@@ -329,17 +336,12 @@ class mrp_production(osv.osv):
             ready_count = 0
             total_count = 0
             
+            count_move = []
             alt_moves = []
-            for move in prod.move_lines:
+            for move in prod.move_all_src_ids:
+                move.product_id.name
                 total_count += 1
-                if move.state in ('assigned'):
-                    ready_count += 1
-                elif move.state in ('waiting'):
-                    alt_moves += [move.id]
-                    
-            for move in prod.move_lines2:
-                if move.state in ('done'):
-                    total_count += 1
+                if move.state in ('assigned', 'done'):
                     ready_count += 1
                 elif move.state in ('waiting'):
                     alt_moves += [move.id]
@@ -353,6 +355,33 @@ class mrp_production(osv.osv):
                 res[prod.id] = float(ready_count)/float(total_count) * 100
             else:   
                 res[prod.id] = 0.0  
+        
+        return res
+    
+
+    def _get_tested(self, cr, uid, ids, field_names=None, arg=False, context=None):
+        if not field_names:
+            field_names = []
+        if context is None:
+            context = {}
+        res = {}
+        
+        for id in ids:
+            res[id] = {}.fromkeys(field_names, False)
+            
+        for prod in self.browse(cr, uid, ids, context=context):
+            total_count = 0
+            ready_count = 0
+            for task in prod.task_ids:
+                total_count += 1
+                if task.state in ('done','cancel'):
+                    ready_count += 1
+               
+            res[prod.id]['tested_count'] = total_count    
+            if total_count > 0: 
+                res[prod.id]['tested_rate'] = float(ready_count)/float(total_count) * 100
+            else:   
+                res[prod.id]['tested_rate'] = 0.0          
         
         return res
     
@@ -392,6 +421,9 @@ class mrp_production(osv.osv):
 #                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines'], 20),
 #                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines2'], 20),
 #                }),
+        'task_ids': fields.many2many('project.task', 'mrp_production_task_ids', 'production_id', 'task_id', 'Tasks', domain=[]),
+        'tested_rate': fields.function(_get_tested, string='Tested', type='float', multi='tested', store=False),
+        'tested_count': fields.function(_get_tested, string='Testing task count', type='float', multi='tested', store=False),
     }
     
     def create(self, cr, uid, vals, context=None):
@@ -467,13 +499,15 @@ class mrp_production(osv.osv):
                 'date_deadline': production.date_planned,
                 'planned_hours': 4.0,
                 'procurement_id': procurement and procurement.id, 
-                'partner_id': production.partner_id,
-                'partner_address_id': production.partner_address_id,
+                'partner_id': production.partner_id.id,
+                'partner_address_id': production.partner_address_id.id,
                 'user_id': False,
                 'company_id': production.company_id.id,
             }
 
             task_id = task_obj.create(cr, uid, data, context=context)
+            production.write({'task_ids': [(4, task_id)]}, context=context)
+            
             result[production.id] = task_id
             
         return result

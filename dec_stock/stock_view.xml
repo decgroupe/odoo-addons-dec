@@ -181,7 +181,7 @@
             <field name="model">stock.move</field>
             <field name="type">form</field>
 			<field name="inherit_id" ref="stock.view_move_form"/>
-            <field eval="4" name="priority"/>
+            <field eval="3" name="priority"/>
             <field name="arch" type="xml">
             
                  <field name="product_id" position="after">
@@ -197,8 +197,14 @@
                 </field>
                 
                  <field name="location_dest_id" position="after">
+                 	 <field name="move_dest_id"/>
                     <newline/>
                 </field>
+                
+                 <button name="action_done" position="after">
+                    <button name="action_assign" states="confirmed" string="Check Availability" type="object" icon="gtk-find"/>
+                </button>
+                        
                 
             </field>
         </record>

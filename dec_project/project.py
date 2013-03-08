@@ -27,22 +27,6 @@ from tools.translate import _
 from osv import fields, osv
 from openerp.addons.resource.faces import task as Task
 
-#
-#
-#class project_task_type(osv.osv):
-#    _name = 'project.task.type'
-#    _inherit =_name
-#
-#project_task_type()
-#
-#class project(osv.osv):
-#    _name = "project.project"
-#    _inherit = _name
-#
-#project()
-#
-#
-
 class task(osv.osv):
     _name = "project.task"
     _inherit = _name
@@ -57,8 +41,9 @@ class task(osv.osv):
         
         for id in ids:
             res[id] = {}.fromkeys(field_names, False)
-            
-        for task in self.browse(cr, uid, ids, context=context):
+         
+        SUPER_USER = 1   
+        for task in self.browse(cr, SUPER_USER, ids, context=context):
             if task.sale_line_id:
                 for f in field_names:
                     if f == 'sale_requested_date':
@@ -79,28 +64,4 @@ class task(osv.osv):
     }
 
 task()
-
-#
-#class project_work(osv.osv):
-#    _name = "project.task.work"
-#    _inherit = _name
-#   
-#project_work()
-#
-##
-## Tasks History, used for cumulative flow charts (Lean/Agile)
-##
-#
-#class project_task_history(osv.osv):
-#    _name = 'project.task.history'
-#    _inherit = _name
-#    
-#project_task_history()
-#
-#class project_task_history_cumulative(osv.osv):
-#    _name = 'project.task.history.cumulative'
-#    _inherit = _name
-#    
-#
-#project_task_history_cumulative()
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Procurement
+        -->
+
+        <record id="product_normal_form_view_dec" model="ir.ui.view">
+            <field name="name">product.normal.form.orderpoint.inherit.dec</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="procurement.product_normal_form_view"/>
+            <field name="arch" type="xml">
+            
+	            <xpath expr="/form/notebook/page[@string='Procurement &amp; Locations']/group[5]" position="replace">
+                      <group col="2" colspan="4" attrs="{'invisible':[('type', '=', 'service')]}">
+						  <separator string="Minimum Stock Rules" colspan="2"/>	
+                          <field name="orderpoint_ids" context="{'default_product_uom': uom_id, 'default_product_id': active_id}" nolabel="1">
+                              <tree string="Minimum Stock Rule" editable="bottom">
+                                  <field name="warehouse_id" on_change="onchange_warehouse_id(warehouse_id)" widget="selection"/>
+                                  <field name="location_id"/>
+                                  <field name="product_min_qty"/>
+                                  <field name="product_max_qty"/>
+                                  <field name="qty_multiple"/>
+                                  <field name="product_uom"/>
+                              </tree>
+                          </field>
+                      </group>
+                </xpath>
+                
+            </field>
+        </record>
+
+    </data>
+</openerp>

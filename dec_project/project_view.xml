@@ -39,6 +39,8 @@
                		<separator string="Task" colspan="6"/>
             	</field>
             	
+	            <field name="partner_id" position="replace"/>
+	            
             	<field name="progress" position="after">
             		<newline/>
                		<separator string="Source" colspan="6"/>
@@ -48,10 +50,13 @@
                 	<field name="partner_id"/>
 	                <field name="partner_address_id" domain="[('partner_id','=',partner_id)]"/>
             	</field>
-            	
-	            <xpath expr="/form/notebook/page[@string='Extra Info']/field[@name='partner_id']" position="replace">
-	            </xpath> 
-	                      
+
+
+
+	            <field name="sale_line_id" position="replace">
+	                <field name="sale_line_id" groups="base.group_sale_salesman_all_leads"/>
+	            </field>    
+               
             	<button name="do_cancel" position="replace">
                		<button name="do_cancel" states="draft,open,pending" string="Cancel" type="object" icon="gtk-cancel" confirm="Do you confirm cancel ? (Please use draft instead)"/>   
             	</button>

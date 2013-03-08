@@ -84,3 +84,27 @@ class procurement_order(osv.osv):
 procurement_order()
 
 
+class stock_warehouse_orderpoint(osv.osv):
+    _name = "stock.warehouse.orderpoint"
+    _inherit = _name
+    
+    def _get_default_warehouse(self, cr, uid, context={}):
+        result = False
+        wareshouse_obj = self.pool.get('stock.warehouse')
+        wareshouse_ids = wareshouse_obj.search(cr, uid, [], context=context)
+         
+        for warehouse in wareshouse_obj.browse(cr, uid, wareshouse_ids, context=context):
+            result = warehouse.id
+            break
+        
+        return result
+    
+    _columns = {
+        'warehouse_id': fields.many2one('stock.warehouse', 'Warehouse', required=True, ondelete="cascade"),
+    }
+    
+    _defaults = {
+        'warehouse_id': _get_default_warehouse,
+        'product_min_qty': lambda *a: 0.0,
+        'product_max_qty': lambda *a: 1,
+    }

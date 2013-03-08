@@ -34,6 +34,7 @@
     "update_xml" : [
         "reports.xml",
         "project_view.xml",
+        "security/sale_security.xml",
         ],
     "active": False,
     "installable": True
