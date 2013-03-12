@@ -25,6 +25,7 @@ from tools.misc import DEFAULT_SERVER_DATETIME_FORMAT
 from tools.float_utils import float_compare
 import decimal_precision as dp
 from tools.translate import _
+from openerp.tools import float_round, float_repr
 
 class stock_partial_picking_line(osv.TransientModel):
     _name = "stock.partial.picking.line"
@@ -55,8 +56,22 @@ class stock_partial_picking(osv.osv_memory):
 #            partial_move.update(update_cost=True, **self._product_cost_for_average_update(cr, uid, move))
 #        
         partial_move = super(stock_partial_picking, self)._partial_move_for(cr, uid, move)
-        partial_move['expected_quantity'] = partial_move['quantity']
-        partial_move['quantity'] = 0
+
+        
+        uom_obj = self.pool.get('product.uom') 
+        if move.product_uom.uom_type == 'reference':
+            uom_ref = move.product_uom 
+        else:
+            uom_ids = uom_obj.search(cr, uid, [('category_id', '=', move.product_uom.category_id.id)], context=None)
+            for uom_ref in uom_obj.browse(cr, uid, uom_ids, context=None):
+                if uom_ref.uom_type == 'reference':
+                    break
+              
+        partial_move['quantity'] = uom_obj._compute_qty_obj(cr, uid, move.product_uom, move.product_qty, uom_ref)         
+        partial_move['product_uom'] = uom_ref.id
+        
+        partial_move['expected_quantity'] = partial_move['quantity'] 
+        partial_move['quantity'] = 0    
         
         return partial_move
     
