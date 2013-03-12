@@ -20,6 +20,7 @@
 ##############################################################################
 
 from osv import fields, osv
+import decimal_precision as dp
 
 class account_invoice(osv.osv):
     
@@ -31,19 +32,44 @@ class account_invoice(osv.osv):
         sale_order_obj = self.pool.get('sale.order')    
         
         for invoice in self.browse(cr, uid, ids, context=context): 
-            res[invoice.id] = invoice.origin  
+            res[invoice.id] = invoice.origin or '' 
             sale_order_ids = sale_order_obj.search(cr, uid, [('name', '=', invoice.origin)], context=context)   
             for order in sale_order_obj.browse(cr, uid, sale_order_ids, context=context):    
                 if order.client_order_ref:
-                    res[invoice.id] = order.client_order_ref;
+                    res[invoice.id] = res[invoice.id] + ' ' + order.client_order_ref;
 
         return res
-
+    
     _inherit = "account.invoice"
     _columns = {
         'client_order_ref': fields.function(_get_client_order_ref, type='char', string='Customer Reference'),
     }
 
 account_invoice()
+
+
+class account_invoice_line(osv.osv):
+ 
+
+    def _discount_price(self, cr, uid, ids, prop, unknow_none, unknow_dict):
+        res = {}
+        tax_obj = self.pool.get('account.tax')
+        cur_obj = self.pool.get('res.currency')
+        for line in self.browse(cr, uid, ids):
+            price = line.price_unit * (1-(line.discount or 0.0)/100.0)
+            quantity = 1.0 if line.quantity > 0 else 0.0
+            taxes = tax_obj.compute_all(cr, uid, line.invoice_line_tax_id, price, quantity, product=line.product_id, address_id=line.invoice_id.address_invoice_id, partner=line.invoice_id.partner_id)
+            res[line.id] = taxes['total']
+            if line.invoice_id:
+                cur = line.invoice_id.currency_id
+                res[line.id] = cur_obj.round(cr, uid, cur, res[line.id])
+        return res
+
+    _inherit = "account.invoice.line"
+    _columns = {
+        'price_discount': fields.function(_discount_price, string='Unit Price (discount)', digits_compute= dp.get_precision('Account')),
+    }
+    
+account_invoice_line()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

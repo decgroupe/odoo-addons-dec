@@ -43,6 +43,7 @@ class sale_order_line(osv.osv):
             res.update(res_article)
         return res
               
+    # same code than _amount_line but with quantity set to 1 or 0
     def _discount_price(self, cr, uid, ids, field_name, arg, context=None):
         tax_obj = self.pool.get('account.tax')
         cur_obj = self.pool.get('res.currency')
@@ -55,11 +56,9 @@ class sale_order_line(osv.osv):
             if line.layout_type == 'article':
                 line_ids.append(line.id)
                 
-        for line in self.browse(cr, uid, line_ids, context=context):
-           #res_article = super(sale_order_line, self)._amount_line(cr, uid, line_ids, field_name, arg, context)
-            
+        for line in self.browse(cr, uid, line_ids, context=context):          
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            quantity = line.product_uom_qty / line.product_uom_qty if line.product_uom_qty > 0 else 0
+            quantity = 1.0 if line.product_uom_qty > 0 else 0.0
             taxes = tax_obj.compute_all(cr, uid, line.tax_id, price, quantity, line.order_id.partner_invoice_id.id, line.product_id, line.order_id.partner_id)
             cur = line.order_id.pricelist_id.currency_id
             res[line.id] = cur_obj.round(cr, uid, cur, taxes['total'])

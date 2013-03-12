@@ -12,7 +12,11 @@
             <field name="inherit_id" ref="procurement.product_normal_form_view"/>
             <field name="arch" type="xml">
             
-	            <xpath expr="/form/notebook/page[@string='Procurement &amp; Locations']/group[5]" position="replace">
+            
+			  <field name="orderpoint_ids" position="replace"/>
+              <separator string="Minimum Stock Rules" position="replace"/>
+                       
+	            <xpath expr="/form/notebook/page[@string='Procurement &amp; Locations']" >
                       <group col="2" colspan="4" attrs="{'invisible':[('type', '=', 'service')]}">
 						  <separator string="Minimum Stock Rules" colspan="2"/>	
                           <field name="orderpoint_ids" context="{'default_product_uom': uom_id, 'default_product_id': active_id}" nolabel="1">

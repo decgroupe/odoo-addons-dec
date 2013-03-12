@@ -36,5 +36,153 @@
              	</xpath>        
        		</field>
        	</record>
+       	
+
+        <record id="view_purchase_order_filter_dec" model="ir.ui.view">
+            <field name="name">purchase.order.list.select</field>
+            <field name="model">purchase.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+             	<xpath expr="/search/group/field[@name='name']" position="after">
+	                <field name="origin"/>
+             	</xpath>    
+            </field>
+        </record> 
+        
+          <record id="purchase_order_line_search_dec" model="ir.ui.view">
+            <field name="name">purchase.order.line.search</field>
+            <field name="model">purchase.order.line</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Purchase Order">
+                        <group>
+	                    <filter icon="terp-document-new" name="draft" string="Quotations" domain="[('order_state','=','draft')]"  help="Purchase order which are in draft state"/>
+	                    <filter icon="terp-check" name="approved" string="Approved" domain="[('order_state','in',('approved','done'))]"  help="Approved purchase order"/>
+	                    <separator orientation="vertical"/>
+                        <field name="order_id" string="Commande"/>
+                        <field name="order_origin" string="Origin"/>
+<!--                        <field name="order_state" />-->
+                        <field name="partner_id"  string="Supplier"/>
+                        <field name="product_id"/>
+                        </group>
+                        <newline/>
+                        <group expand="0" string="Group By...">
+                        <filter string="Supplier" icon="terp-partner" domain="[]" context="{'group_by' : 'partner_id'}" />
+                        <separator orientation="vertical"/>
+                        <filter string="Product" icon="terp-accessories-archiver" domain="[]" context="{'group_by' : 'product_id'}" />
+                        <filter icon="terp-gtk-jump-to-rtl" string="Order Reference" domain="[]" context="{'group_by' :'order_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by' : 'state'}" />
+                        </group>
+               </search>
+            </field>
+        </record>
+        
+        
+        <record id="purchase_line_action_dec" model="ir.actions.act_window">
+            <field name="name">Purchase Order lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+<!--            <field name="domain">[('order_id.invoice_method','&lt;&gt;','picking'), ('state','in',('draft','confirmed','done','cancel')), ('invoiced', '=', False)]</field>-->
+ 			<field name="domain">[('order_id.state','!=','cancel')]</field>
+            <!--<field name="domain">[]</field>-->
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_order_line_search_dec"/>
+        </record>	
+        
+
+        <record id="purchase_order_line_tree_dec" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree</field>
+            <field name="model">purchase.order.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Order Lines" colors="green:order_state in ('draft');magenta:order_state in ('wait');blue:order_state in ('confirmed','approved');darkGray:order_state in ('cancel');gray:order_state in ('done')">
+                    <field name="order_id"/>
+                    <field name="purchase_origin"/>
+                    <field name="name"/>
+                    <field name="product_type"/>
+                    <field name="product_procure_method"/>
+                    <field name="partner_id" string="Supplier" />
+                    <field name="product_id" invisible="1"/>
+                    <field name="price_unit"/>
+                    <field name="product_qty"/>
+                    <field name="product_uom"/>
+                    <field name="price_subtotal"/>
+                    <field name="date_planned"  widget="date" width="135"/>
+                    <field name="invoiced" invisible="1"/>
+                    <field name="state"/>
+                    <field name="order_state"/>
+                    <field name="order_origin"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="purchase_line_action_tree_dec" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="purchase_order_line_tree_dec"/>
+            <field name="act_window_id" ref="purchase_line_action_dec"/>
+        </record>
+        
+       <record id="purchase_order_line_form_dec" model="ir.ui.view">
+            <field name="name">purchase.order.line.form</field>
+            <field name="model">purchase.order.line</field>
+            <field name="type">form</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <form string="Purchase Order Line">
+                    <notebook colspan="4">
+                        <page string="Order Line">
+                               <separator colspan="4" string="General Information"/>
+                            <field name="order_id"/>
+                            <field name="purchase_origin"/>
+                            <field name="order_origin" colspan="4"/>
+                            <field name="product_id" readonly="1" />
+                            <field name="product_qty" readonly="1" />
+                            <field name="product_uom" readonly="1"/>
+                            <field colspan="4" name="name"/>
+                            <field name="date_planned" widget="date"  readonly="1"/>
+                            <field name="price_unit"/>
+                            <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                            <field name="account_analytic_id" colspan="4" groups="analytic.group_analytic_accounting" domain="[('type','&lt;&gt;','view'), ('company_id', '=', company_id), ('parent_id', '!=', False)]"/>
+                            <group colspan="4" col="4" groups="base.group_extended">
+                                <separator colspan="4" string="Taxes"/>
+                                <field colspan="4" nolabel="1" name="taxes_id"
+                                    domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
+                            </group>
+                            <field name="order_state"  widget="statusbar" statusbar_visible="draft,approved,done" statusbar_colors='{"except_picking":"red","except_invoice":"red","confirmed":"blue","wait":"blue"}' readonly="1"/>
+                            <field name="origin_procurement_order_id"/>
+                        </page>
+                        <page string="Invoicing" groups="base.group_extended">
+                            <separator colspan="4" string="Manual Invoices"/>
+                            <field name="invoiced"/>
+                            <newline/>
+                            <field colspan="4" name="invoice_lines" nolabel="1" widget="many2many"/>
+                        </page>
+                         <page string="Notes">
+                            <field colspan="4" name="notes" nolabel="1"/>
+                        </page>
+                        <page string="History" groups="base.group_extended">
+                               <separator colspan="4" string="Stock Moves"/>
+                               <field colspan="4" name="move_ids" nolabel="1" widget="many2many"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        
+    
+        <record id="purchase_line_action_form_dec" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase_order_line_form_dec"/>
+            <field name="act_window_id" ref="purchase_line_action_dec"/>
+        </record>
+        
+        <menuitem action="purchase_line_action_dec" id="menu_purchase_line_action_dec" parent="purchase.menu_procurement_management" />
+
+       	
     </data>
 </openerp>

@@ -70,6 +70,7 @@ class account_invoice_1(report_sxw.rml_parse):
                 res['quantity'] = self.formatLang(entry.quantity, digits=self.get_digits(dp='Account'))
                 res['price_unit'] = self.formatLang(entry.price_unit, digits=self.get_digits(dp='Account'))
                 res['discount'] = self.formatLang(entry.discount, digits=self.get_digits(dp='Account'))
+                res['price_discount'] = self.formatLang(entry.price_discount, digits=self.get_digits(dp='Account'))
                 res['price_subtotal'] = self.formatLang(entry.price_subtotal, digits=self.get_digits(dp='Account'))
                 sub_total[i] = entry.price_subtotal
                 i = i + 1
@@ -85,6 +86,7 @@ class account_invoice_1(report_sxw.rml_parse):
             else:
                 res['quantity'] = ''
                 res['price_unit'] = ''
+                res['price_discount'] = ''
                 res['discount'] = ''
                 res['tax_types'] = ''
                 res['type'] = entry.state
@@ -109,6 +111,7 @@ class account_invoice_1(report_sxw.rml_parse):
                     res['currency'] = invoice.currency_id.symbol
                     res['quantity'] = ''
                     res['price_unit'] = ''
+                    res['price_discount'] = ''
                     res['discount'] = ''
                     res['tax_types'] = ''
                     res['uos'] = ''

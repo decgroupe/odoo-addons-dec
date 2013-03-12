@@ -2,10 +2,13 @@
 <openerp>
     <data>
     
-    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice')]"/>
-    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice.layout')]"/>
-    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice.layout.dec')]"/>
+<!--    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice')]"/>-->
+<!--    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice.layout')]"/>-->
+<!--    <delete model="ir.actions.report.xml" search="[('report_name','=','account.invoice.layout.dec')]"/>-->
 
+    <delete model="ir.actions.report.xml" id="account_invoice_layout.account_invoices_1"/>
+    <delete model="ir.actions.report.xml" id="account_invoice_layout.account_invoices_layout_message"/>
+    	
     <report id="account_invoices_1_dec"
             string="Invoices"
             model="account.invoice"

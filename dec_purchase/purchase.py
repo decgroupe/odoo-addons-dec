@@ -84,10 +84,39 @@ class purchase_order_line(osv.osv):
             res[purchase_order_line.id] = result
                 
         return res
+    
+    PURCHASE_STATE_SELECTION = [
+        ('draft', 'Request for Quotation'),
+        ('wait', 'Waiting'),
+        ('confirmed', 'Waiting Approval'),
+        ('approved', 'Approved'),
+        ('except_picking', 'Shipping Exception'),
+        ('except_invoice', 'Invoice Exception'),
+        ('done', 'Done'),
+        ('cancel', 'Cancelled')
+    ]
+    
+    PRODUCT_PROCURE_METHOD = [
+        ('make_to_stock','Make to Stock'),
+        ('make_to_order','Make to Order')
+    ]
+    
+    PRODUCT_TYPE = [
+        ('product','Stockable Product'),
+        ('consu', 'Consumable'),
+        ('service','Service')
+    ]
 
     _columns = {
          'purchase_origin': fields.function(_get_purchase_origin, type="char", string='Procurement origin'),
+         
+         'product_procure_method': fields.related('product_id', 'procure_method', type='selection', selection=PRODUCT_PROCURE_METHOD, string="Product procurement Method"),
+         'product_type': fields.related('product_id', 'type', type='selection', selection=PRODUCT_TYPE, string="Product type"),
+         'order_origin': fields.related('order_id', 'origin', type='char', string="Purchase origin"),
+         'order_state': fields.related('order_id', 'state', type='selection', selection=PURCHASE_STATE_SELECTION, string="Purchase state"),
     }
+
+    _order = "id desc"
 
    
 

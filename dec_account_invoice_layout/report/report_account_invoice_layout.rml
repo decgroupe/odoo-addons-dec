@@ -121,8 +121,17 @@
     <initialize>
       <paraStyle name="all" alignment="justify"/>
     </initialize>
-    <paraStyle name="P1" fontName="Helvetica" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="P2" fontName="Helvetica" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P1" rightIndent="0.0" leftIndent="8.0" fontName="Helvetica" fontSize="7.0" leading="9" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P2" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P3" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P4" fontName="Helvetica" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P8" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P9" rightIndent="0.0" leftIndent="1.0" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P10" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -239,7 +248,7 @@
         </td>
       </tr>
     </blockTable>
-    <blockTable colWidths="162.0,90.0,92.0,194.0" style="Table_General_Detail_Content">
+    <blockTable colWidths="162.0,90.0,93.0,193.0" style="Table_General_Detail_Content">
       <tr>
         <td>
           <para style="terp_default_Centre_8">[[ o.name ]]</para>
@@ -251,64 +260,73 @@
           <para style="terp_default_Centre_8">[[ formatLang(o.date_due,date=True) ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_9">[[ (o.address_invoice_id  and o.address_invoice_id.partner_id and o.address_invoice_id.partner_id.ref) or  ' '  ]][[ (o.client_order_ref) or  ' '  ]]</para>
+          <para style="P11">[[ (o.address_invoice_id  and o.address_invoice_id.partner_id and o.address_invoice_id.partner_id.ref) or  ' '  ]][[ (o.client_order_ref) or  ' '  ]]</para>
         </td>
       </tr>
     </blockTable>
     <para style="Standard">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="283.0,71.0,57.0,57.0,71.0" style="Tableau6">
+    <blockTable colWidths="308.0,4.0,83.0,73.0,71.0" style="Tableau6">
       <tr>
         <td>
           <para style="terp_tblheader_Details">Description / Taxes</para>
         </td>
         <td>
+          <para style="terp_tblheader_Details_Centre">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P10">
+            <font face="Helvetica">P.U.(HT)</font>
+          </para>
+        </td>
+        <td>
           <para style="terp_tblheader_Details_Centre">Quantity</para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Right">Unit Price</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Disc. (%)</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Price</para>
+          <para style="P10">
+            <font face="Helvetica">Total (HT)</font>
+          </para>
         </td>
       </tr>
     </blockTable>
     <section>
       <para style="terp_default_8">[[ repeatIn(invoice_lines(o), 'a') ]]</para>
-      <blockTable colWidths="4.0,280.0,71.0,57.0,57.0,71.0" style="Table_Invoice_Line_Content">
+      <blockTable colWidths="4.0,304.0,4.0,83.0,73.0,71.0" style="Table_Invoice_Line_Content">
         <tr>
           <td>
             <para style="terp_default_9">[[ a['type']=='text' and removeParentNode('blockTable')]]</para>
           </td>
           <td>
-            <para style="terp_default_9"><font face="Helvetica">[[ ((a['type']=='title' or a['type']=='subtotal') and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font><font face="Helvetica">[[ a['name'] ]]</font>[[ a['type']=='article' and ('/ (' +  a['tax_types'] + ')' ) ]]</para>
+            <para style="P6">
+              <font face="Helvetica">[[ ((a['type']=='title' or a['type']=='subtotal') and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>
+              <font face="Helvetica">[[ a['name'] ]]</font>
+            </para>
+            <para style="P1">[[ a['type']=='article' and ('/ (' +  a['tax_types'] + ')' ) ]]</para>
           </td>
           <td>
             <para style="terp_default_Right_9">
+              <font face="Helvetica"/>
+            </para>
+          </td>
+          <td>
+            <para style="terp_default_Right_8">
+              <font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>
+              <font face="Helvetica">[[ a['price_discount'] ]]</font>
+              <font face="Helvetica">[[ a['currency'] ]]</font>
+            </para>
+          </td>
+          <td>
+            <para style="terp_default_Right_8">
               <font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>
               <font face="Helvetica">[[ a['quantity'] ]]</font>
-              <font face="Helvetica"> </font>
               <font face="Helvetica">[[ a['uos'] ]]</font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
-              <font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>
-              <font face="Helvetica">[[ a['price_unit'] ]]</font>
-            </para>
-          </td>
-          <td>
-            <para style="terp_default_Centre_9">
-              <font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>
-              <font face="Helvetica">[[ a['discount'] ]]</font>
-            </para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9"><font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>[[ a['price_subtotal'] ]][[ a['currency'] ]]</para>
+            <para style="terp_default_Right_8"><font face="Helvetica">[[ (a['type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-bold'}))) or removeParentNode('font') ]]</font>[[ a['price_subtotal'] ]] [[ a['currency'] ]]</para>
           </td>
         </tr>
         <tr>
@@ -361,27 +379,33 @@
         </tr>
       </blockTable>
       <para style="terp_default_1">[[ a['type']!='break' and removeParentNode('pageBreak')]]</para>
-      <blockTable colWidths="283.0,71.0,57.0,57.0,71.0" style="Table2">
+      <blockTable colWidths="307.0,5.0,83.0,73.0,71.0" style="Table2">
         <tr>
           <td>
             <para style="terp_tblheader_Details">Description / Taxes [[ a['type']!='break' and removeParentNode('blockTable')]]</para>
           </td>
           <td>
+            <para style="terp_tblheader_Details_Centre">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P10">
+              <font face="Helvetica">P.U.(HT)</font>
+            </para>
+          </td>
+          <td>
             <para style="terp_tblheader_Details_Centre">Quantity</para>
           </td>
           <td>
-            <para style="terp_tblheader_Details_Right">Unit Price</para>
-          </td>
-          <td>
-            <para style="terp_tblheader_Details_Right">Disc. (%)</para>
-          </td>
-          <td>
-            <para style="terp_tblheader_Details_Right">Price</para>
+            <para style="P10">
+              <font face="Helvetica">Total (HT)</font>
+            </para>
           </td>
         </tr>
       </blockTable>
     </section>
-    <blockTable colWidths="395.0,59.0,85.0" style="Tableau3">
+    <blockTable colWidths="346.0,89.0,104.0" style="Tableau3">
       <tr>
         <td>
           <para style="terp_default_9">
@@ -389,14 +413,14 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Net Total:</para>
+          <para style="P7"><font face="Helvetica">T</font>otal <font face="Helvetica">(HT)</font>:</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account')) ]][[ o.currency_id.symbol ]]</para>
+          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account')) ]]  [[ o.currency_id.symbol ]]</para>
         </td>
       </tr>
     </blockTable>
-    <blockTable colWidths="395.0,59.0,85.0" style="Table4">
+    <blockTable colWidths="346.0,88.0,104.0" style="Table4">
       <tr>
         <td>
           <para style="terp_default_9">
@@ -404,14 +428,14 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Taxes:</para>
+          <para style="P9">Taxes:</para>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_tax, digits=get_digits(dp='Account')) ]][[ o.currency_id.symbol ]]</para>
+          <para style="terp_default_Right_9">[[ formatLang(o.amount_tax, digits=get_digits(dp='Account')) ]]  [[ o.currency_id.symbol ]]</para>
         </td>
       </tr>
     </blockTable>
-    <blockTable colWidths="395.0,59.0,85.0" style="Table6">
+    <blockTable colWidths="347.0,88.0,104.0" style="Table6">
       <tr>
         <td>
           <para style="terp_default_9">
@@ -419,10 +443,10 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_Bold_9">Total:</para>
+          <para style="P3">Total <font face="Helvetica">(TTC)</font>:</para>
         </td>
         <td>
-          <para style="terp_default_Right_9_Bold">[[ formatLang(o.amount_total, digits=get_digits(dp='Account')) ]][[ o.currency_id.symbol ]]</para>
+          <para style="terp_default_Right_9_Bold">[[ formatLang(o.amount_total, digits=get_digits(dp='Account')) ]]  [[ o.currency_id.symbol ]]</para>
         </td>
       </tr>
     </blockTable>
@@ -488,25 +512,18 @@
       <tr>
         <td>
           <para style="terp_default_9">[[ (o.payment_term and o.payment_term.note) or  removeParentNode('blockTable') ]]</para>
-          <para style="terp_default_9">
-            <font color="white"> </font>
-          </para>
-          <para style="terp_default_Bold_8">
-            <font face="Helvetica">RÉSERVE DE PROPRIÉTÉ</font>
-            <font face="Helvetica">:</font>
-          </para>
-          <para style="P2">
-            <font face="Helvetica">Nous nous réservons la propriété des marchandises jusqu'au complet paiement du prix par l'acheteur.</font>
-          </para>
-          <para style="P1">
-            <font face="Helvetica">Notre droit de revendicaton porte aussi bien sur les marchandises que sur leur prix si elles ont déjà été revendues (Loi du 12 mai 1980).</font>
-          </para>
         </td>
       </tr>
     </blockTable>
-    <para style="Standard">
+    <para style="P8">
       <font color="white"> </font>
     </para>
+    <para style="P2">
+      <font face="Helvetica">RÉSERVE DE PROPRIÉTÉ</font>
+      <font face="Helvetica">:</font>
+    </para>
+    <para style="P5">Nous nous réservons la propriété des marchandises jusqu'au complet paiement du prix par l'acheteur.</para>
+    <para style="P5">Notre droit de revendicaton porte aussi bien sur les marchandises que sur leur prix si elles ont déjà été revendues (Loi du 12 mai 1980).</para>
   </story>
 </document>
 

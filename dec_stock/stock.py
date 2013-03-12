@@ -75,3 +75,22 @@ class stock_move(osv.osv):
 
 stock_move()
 
+
+class product_product(osv.osv):
+    _name = "product.product"
+    _inherit= _name
+    
+    
+    def search_unavailable(self, cr, uid, context=None):
+        res = {}
+        if context is None:
+            context = {}
+            
+        product_obj = self.pool.get('product.product')
+        products_ids = product_obj.search(cr, uid, [('purchase_ok', '=', True)], order='id', context=context)
+
+        return products_ids
+
+    
+product_product()
+

@@ -1,34 +1,36 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* dec_purchase
+# 	* dec_purchase
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-23 14:16+0000\n"
-"PO-Revision-Date: 2013-01-23 14:16+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2013-03-12 12:43+0000\n"
+"PO-Revision-Date: 2013-03-12 13:45+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_purchase
 #: sql_constraint:purchase.order:0
 msgid "Order Reference must be unique per Company!"
-msgstr "La référence de commande doit être unique par Entreprise!"
+msgstr "Order Reference must be unique per Company!"
+
+#. module: dec_purchase
+#: field:purchase.order.line,product_procure_method:0
+msgid "Product procurement Method"
+msgstr "Méthode d'appro."
 
 #. module: dec_purchase
 #: model:ir.model,name:dec_purchase.model_purchase_order_line
+#: view:purchase.order.line:0
 msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
-
-#. module: dec_purchase
-#: model:ir.model,name:dec_purchase.model_purchase_order
-msgid "Purchase Order"
-msgstr "Bon de commande"
 
 #. module: dec_purchase
 #: field:purchase.order.line,purchase_origin:0
@@ -36,7 +38,202 @@ msgid "Procurement origin"
 msgstr "Origine de l'appro."
 
 #. module: dec_purchase
+#: selection:purchase.order.line,order_state:0
+msgid "Request for Quotation"
+msgstr "Demande de prix"
+
+#. module: dec_purchase
+#: view:purchase.order:0
+msgid "Vraiment ?"
+msgstr "Vraiment ?"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Search Purchase Order"
+msgstr "Chercher un bon de commande"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Group By..."
+msgstr "Regrouper par..."
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "State"
+msgstr "État"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Purchase Order Lines"
+msgstr "Lignes d'ordre d'achat"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Approved purchase order"
+msgstr "Confirmé par fournisseur"
+
+#. module: dec_purchase
+#: field:purchase.order.line,order_state:0
+msgid "Purchase state"
+msgstr "Etat de la commande"
+
+#. module: dec_purchase
+#: field:purchase.order.line,product_type:0
+msgid "Product type"
+msgstr "Type de produit"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Invoicing"
+msgstr "Facturation"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,product_type:0
+msgid "Service"
+msgstr "Service"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,order_state:0
+msgid "Invoice Exception"
+msgstr "Incident de facturation"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,product_procure_method:0
+msgid "Make to Order"
+msgstr "Sur commande"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Manual Invoices"
+msgstr "Factures manuelles"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,product_procure_method:0
+msgid "Make to Stock"
+msgstr "Sur stock"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Order Reference"
+msgstr "Référence commande"
+
+#. module: dec_purchase
+#: model:ir.actions.act_window,name:dec_purchase.purchase_line_action_dec
+#: model:ir.ui.menu,name:dec_purchase.menu_purchase_line_action_dec
+msgid "Purchase Order lines"
+msgstr "Lignes d'achats"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,product_type:0
+msgid "Consumable"
+msgstr "Consommable"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0 selection:purchase.order.line,order_state:0
+msgid "Approved"
+msgstr "Confirmé par fournisseur"
+
+#. module: dec_purchase
 #: view:purchase.order:0
 msgid "Mettre à jour les prix d'achat pour ce fournisseur"
 msgstr "Mettre à jour les prix d'achat pour ce fournisseur"
 
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Purchase order which are in draft state"
+msgstr "Purchase order which are in draft state"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Notes"
+msgstr "Notes"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Taxes"
+msgstr "Taxes"
+
+#. module: dec_purchase
+#: model:ir.model,name:dec_purchase.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Commande"
+msgstr "Commande"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,order_state:0
+msgid "Shipping Exception"
+msgstr "Exception d'envoi"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,order_state:0
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Quotations"
+msgstr "Devis"
+
+#. module: dec_purchase
+#: field:purchase.order.line,order_origin:0
+msgid "Purchase origin"
+msgstr "Origine de la commande"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "History"
+msgstr "Historique"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Origin"
+msgstr "Origine"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,product_type:0
+msgid "Stockable Product"
+msgstr "Produit stockable"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,order_state:0
+msgid "Waiting"
+msgstr "En attente"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "General Information"
+msgstr "Informations générales"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,order_state:0
+msgid "Done"
+msgstr "Terminé"
+
+#. module: dec_purchase
+#: selection:purchase.order.line,order_state:0
+msgid "Waiting Approval"
+msgstr "En attente d'approbation"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Order Line"
+msgstr "Ligne de commande"
+
+#. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Stock Moves"
+msgstr "Mouvements de stock"

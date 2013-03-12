@@ -202,7 +202,7 @@
                 </field>
                 
                  <button name="action_done" position="after">
-                    <button name="action_assign" states="confirmed" string="Check Availability" type="object" icon="gtk-find"/>
+
                 </button>
                         
                 

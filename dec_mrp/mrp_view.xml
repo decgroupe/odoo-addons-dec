@@ -165,6 +165,7 @@
 		                        <field name="product_id" />
 		                        <field name="product_qty"  string="Qty"/>
 		                        <field name="product_uom"  string="UOM"/>
+		                        <field name="name"/>
 		                        <field name="state"/>
 		                        <button name="%(stock.move_consume)d" string="Consume Products" type="action" icon="gtk-go-forward" context="{'consume': True}" states="draft,waiting,confirmed,assigned" />
 		                        <field name="status_received"/>
