@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+    <record id="purchase_quotation_dec_report_id" model="ir.actions.report.xml">
+        <field name="name">Demande de prix (DEC)</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">purchase.order</field>
+        <field name="report_name">service_print_purchase_quotation</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
+        <field name="parser_loc">dec_purchase/report/purchase_parser.py</field>
+        <field name="report_rml">dec_purchase/report/purchase_quotation.odt</field>
+        <field name="parser_state">loc</field>
+        <field name="tml_source">file</field>
+    </record>
+
+    <ir_set>
+        <field name="name">Purchase Quotation Report</field>
+        <field eval="'action'" name="key"/>
+        <field eval="'client_print_multi'" name="key2"/>
+        <field eval="['purchase.order']" name="models"/>
+        <field eval="'ir.actions.report.xml,'+str(purchase_quotation_dec_report_id)" name="value"/>
+        <field eval="True" name="isobject"/>
+        <field eval="True" name="replace"/>
+    </ir_set>
+    
+    <record id="purchase_dec_report_id" model="ir.actions.report.xml">
+        <field name="name">Bon de commande (DEC)</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">purchase.order</field>
+        <field name="report_name">service_print_purchase</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
+        <field name="parser_loc">dec_purchase/report/purchase_parser.py</field>
+        <field name="report_rml">dec_purchase/report/purchase_report.odt</field>
+        <field name="parser_state">loc</field>
+        <field name="tml_source">file</field>
+    </record>
+    
+    <ir_set>
+        <field name="name">Purchase Report</field>
+        <field eval="'action'" name="key"/>
+        <field eval="'client_print_multi'" name="key2"/>
+        <field eval="['purchase.order']" name="models"/>
+        <field eval="'ir.actions.report.xml,'+str(purchase_dec_report_id)" name="value"/>
+        <field eval="True" name="isobject"/>
+        <field eval="True" name="replace"/>
+    </ir_set>
+    
+    
+	</data>
+</openerp>
+
