@@ -277,7 +277,7 @@ class mrp_production(osv.osv):
         date_planned = production.date_planned
         procurement_name = (production.origin or '').split(':')[0] + ':' + production.name   
         procurement_fields = {
-                    'name': procurement_name,
+                    'name': '%s > %s | %s | %s' % (procurement_name,production_line.product_id.type, production_line.product_id.procure_method, production_line.product_id.supply_method),
                     'origin': procurement_name,
                     'date_planned': date_planned,
                     'product_id': production_line.product_id.id,
@@ -474,6 +474,37 @@ class mrp_production(osv.osv):
             'partner_address_id' : False
         })
         return super(mrp_production, self).copy(cr, uid, id, default, context)
+    
+
+    def action_produce(self, cr, uid, production_id, production_mode, context=None):
+
+        stock_mov_obj = self.pool.get('stock.move')
+        production = self.browse(cr, uid, production_id, context=context)
+        
+        if production_mode in ['consume','produce']:
+            # Consume products (from the picking list to avoid consuming REF Manager moves)
+            mrp_moves = [move.move_dest_id for move in production.picking_id.move_lines if production.picking_id]
+            for move_consume in mrp_moves:
+                move_consume.action_consume(move_consume.product_qty, move.location_id.id, context=context)
+                
+            if production_mode == 'produce':
+                # Create products
+                for move_product in production.move_created_ids:
+                    move_product.action_consume(move_product.product_qty, move.location_id.id, context=context)
+                
+            # Update all moves history
+            for raw_product in production.move_lines2:
+                new_parent_ids = []
+                parent_move_ids = [x.id for x in raw_product.move_history_ids]
+                for final_product in production.move_created_ids2:
+                    if final_product.id not in parent_move_ids:
+                        new_parent_ids.append(final_product.id)
+                for new_parent_id in new_parent_ids:
+                    stock_mov_obj.write(cr, uid, [raw_product.id], {'move_history_ids': [(4,new_parent_id)]})
+
+        wf_service = netsvc.LocalService("workflow")
+        wf_service.trg_validate(uid, 'mrp.production', production_id, 'button_produce_done', cr)
+        return True
 
     def button_create_task(self, cr, uid, ids, context=None):
         if isinstance(ids, (int, long)):
