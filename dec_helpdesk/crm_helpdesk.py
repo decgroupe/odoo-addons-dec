@@ -30,7 +30,7 @@ class crm_helpdesk(osv.osv):
     _inherit="crm.helpdesk"
     
     _columns = {
-    'partner_city': fields.related('partner_id', 'city', type='text', string='City'),
+        'partner_city': fields.related('partner_id', 'city', type='text', string='City'),
     }
     
 

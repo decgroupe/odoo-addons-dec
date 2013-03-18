@@ -93,6 +93,20 @@
              	</xpath>
             </field>
         </record>
+        
+        <record id="product_category_form_view_dec" model="ir.ui.view">
+            <field name="name">product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="type">form</field>
+			<field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+
+	            <field name="type" position="after">
+	            	<field name="xml_id" />
+	            </field>
+
+            </field>
+        </record>
 		
 	</data>
 </openerp>

@@ -275,10 +275,18 @@ class mrp_production(osv.osv):
             location_id = production.location_src_id.id
             
         date_planned = production.date_planned
-        procurement_name = (production.origin or '').split(':')[0] + ':' + production.name   
+        origin = (production.origin or '').split(':')[0]
+        if origin:
+            origin += ':' 
+        procurement_origin = origin + production.name   
+        if production_line.product_id.type == 'service': 
+            procurement_name = '[%s] %s' % (production.bom_id.name, production.product_id.name)
+        else:
+            procurement_name = '%s (%s,%s,%s)' % (procurement_origin,production_line.product_id.type, production_line.product_id.procure_method, production_line.product_id.supply_method) 
+         
         procurement_fields = {
-                    'name': '%s > %s | %s | %s' % (procurement_name,production_line.product_id.type, production_line.product_id.procure_method, production_line.product_id.supply_method),
-                    'origin': procurement_name,
+                    'name': procurement_name,
+                    'origin': procurement_origin,
                     'date_planned': date_planned,
                     'product_id': production_line.product_id.id,
                     'product_qty': production_line.product_qty,
@@ -529,9 +537,10 @@ class mrp_production(osv.osv):
                 'origin': ('%s:%s') % (production.origin, production.name),
                 'date_deadline': production.date_planned,
                 'planned_hours': 4.0,
-                'procurement_id': procurement and procurement.id, 
-                'partner_id': production.partner_id.id,
-                'partner_address_id': production.partner_address_id.id,
+                'remaining_hours': 4.0,
+                'procurement_id': procurement and procurement.id or False, 
+                'partner_id': production.partner_id and production.partner_id.id or False,
+                'partner_address_id': production.partner_address_id and production.partner_address_id.id or False,
                 'user_id': False,
                 'company_id': production.company_id.id,
             }

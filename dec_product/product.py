@@ -24,7 +24,15 @@ import time
 from osv import fields
 from osv import osv
 
+class product_category(osv.osv):
 
+    _name = "product.category"
+    _inherit = _name
+    _columns = {
+        'xml_id': fields.function(osv.osv.get_xml_id, type='char', size=128, string="External ID", help="ID of the view defined in xml file"),
+    }
+    
+    
 class product_product(osv.osv):
     _name = "product.product.extended"
     _inherit="product.product"

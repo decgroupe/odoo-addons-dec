@@ -53,8 +53,29 @@ class task(osv.osv):
             
         return res
     
+    def _get_view_name(self, cr, uid, ids, field_names=None, arg=False, context=None):
+        if not field_names:
+            field_names = []
+        if context is None:
+            context = {}
+        res = {}
+             
+        for task in self.browse(cr, uid, ids, context=context):
+            res[task.id] = ''
+            if task.project_id:
+                res[task.id] = '%s: ' % (task.project_id.name[:3].upper())  
+                
+            res[task.id] += '%s' % (task.name)  
+            
+            if task.partner_address_id and task.partner_address_id.city:
+                res[task.id] += ' (%s)' % (task.partner_address_id.city)
+            
+        return res  
+    
     _columns = {
+        'view_name': fields.function(_get_view_name, string='View name', type='char'), 
         'origin': fields.char('Source Document', size=64),
+        'create_date' : fields.datetime('Create Date', readonly=True),
         'date_start': fields.date('Start Date', select=True),
         'date_end': fields.date('End Date', select=True),
         'partner_address_id': fields.many2one('res.partner.address', 'Address'),
@@ -62,6 +83,29 @@ class task(osv.osv):
         'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
         'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
     }
+    
+    def write(self, cr, uid, ids, vals, context=None):
+        if isinstance(ids, (int, long)):
+          ids = [ids]
+
+        return super(task, self).write(cr, uid, ids, vals, context)
+    
+    def create(self, cr, uid, vals, context=None):  
+                
+        # Hook to get back partner from production 
+        production_obj = self.pool.get('mrp.production')           
+        if vals.has_key('origin') and (vals.has_key('partner_id') and not vals['partner_id']) and (vals.has_key('partner_address_id') and not vals['partner_address_id']):
+            for origin in vals['origin'].split(' '):
+                for item in origin.split(':'):
+                    if item.count('MO/') > 0:
+                        production_ids = production_obj.search(cr, uid, [('name', '=', item)], context=context)
+                        if len(production_ids) > 0:
+                            production = production_obj.browse(cr, uid, production_ids, context)[0]
+                            vals['partner_id'] = production.partner_id and production.partner_id.id or False
+                            vals['partner_address_id'] = production.partner_address_id and production.partner_address_id.id or False                             
+                            break
+                    
+        return super(task, self).create(cr, uid, vals, context)
 
 task()
 
