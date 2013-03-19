@@ -34,7 +34,7 @@
             <field eval="7" name="priority"/>
             <field name="arch" type="xml">
              	<xpath expr="/tree" position="replace">
-	                <tree colors="green:state==False and type=='product' and supply_method=='produce';gray:state in ('obsolete','end');red:virtual_available&lt;0;blue:virtual_available&gt;=0 and state in ('draft', 'end');black:virtual_available&gt;=0 and state not in ('draft')" string="Products">
+	                <tree colors="green:state==False and type=='product' and supply_method=='produce';magenta:state in ('review');gray:state in ('obsolete','end');red:virtual_available&lt;0;blue:virtual_available&gt;=0 and state in ('draft', 'end');black:virtual_available&gt;=0 and state not in ('draft')" string="Products">
 	                    <field name="default_code"/>
 	                    <field name="name"/>	    
 	                    <field name="xml_id" groups="base.group_erp_manager"/>                       

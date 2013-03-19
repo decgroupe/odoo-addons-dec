@@ -36,7 +36,7 @@ class product_category(osv.osv):
 class product_product(osv.osv):
     _name = "product.product.extended"
     _inherit="product.product"
-    
+
     
     def _default_supplier_price(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
@@ -61,16 +61,32 @@ class product_product(osv.osv):
 
     
     _columns = {
-    'default_supplier_price': fields.function(_default_supplier_price, string='Default supplier price'),
+        'default_supplier_price': fields.function(_default_supplier_price, string='Default supplier price'),        
     }
     
 product_product()
+    
+class product_template(osv.osv):
+    _name = "product.template"
+    _inherit = _name
 
+    PRODUCT_STATE = [
+        ('',''),
+        ('draft','In Development'),
+        ('review', 'Need review'),
+        ('sellable', 'Normal'),
+        ('end','End of Lifecycle'),
+        ('obsolete','Obsolete'),
+    ] 
+    
+    _columns = {
+        'state': fields.selection(PRODUCT_STATE, 'Status', help="Tells the user if he can use the product or not."),
+    }
 
 class product_product(osv.osv):
     _name = 'product.product'
     _inherit = _name
-    
+
     
     def _default_supplier_code(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
@@ -114,6 +130,3 @@ class product_product(osv.osv):
             return res2
         return res
         
-    
-
-product_product()

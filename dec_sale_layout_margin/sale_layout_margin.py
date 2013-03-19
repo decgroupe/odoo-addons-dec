@@ -137,18 +137,32 @@ class sale_order_line(osv.osv):
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False, name='', partner_id=False, lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, context=None):
         result = super(sale_order_line, self).product_id_change(cr, uid, ids, pricelist, product, qty=qty, uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id, lang=lang, update_tax=update_tax, date_order=date_order, packaging=packaging, fiscal_position=fiscal_position, flag=flag, context=context)
         
+        product_obj = self.pool.get('product.product')
+        produit = product_obj.browse(cr, uid, [product], context=context)[0]
+        
         if product and not flag:
-            product_obj = self.pool.get('product.product')
-            product_obj = product_obj.browse(cr, uid, product, context=context)
-            if product_obj.ciel_code:
-                name = '[%s] %s' % (product_obj.ciel_code, product_obj.name) 
+            if produit.ciel_code:
+                name = '[%s] %s' % (produit.ciel_code, produit.name) 
                 result['value'].update({'name': name})
                 
-                if product_obj.default_code:
-                    notes =  'Ref. interne: [%s]' % (product_obj.default_code)
+                if produit.default_code:
+                    notes =  'Ref. interne: [%s]' % (produit.default_code)
                     if result['value'].has_key('notes'):
                         notes = notes + '\n' + result['value'].get('notes', '')  
                     result['value'].update({'notes': notes})
+                    
+        if product and not flag:
+            if produit.state == 'obsolete':
+                warning = {}
+                warning['title'] = _('Obsolete product!'), 
+                warning['message'] = _('Obsolete product\n (This product must not be sold anymore.)\n\n %s') % (produit.comments or '')
+                result['warning'] = warning
+                
+            elif produit.state == 'review':
+                warning = {}
+                warning['title'] = _('Review needed!'),
+                warning['message'] = _('This product need to be reviewed:\n\n - %s \n\n - Please contact "%s"') % (produit.comments or _('No comments'), produit.product_manager and produit.product_manager.name or _('No manager for this product') )
+                result['warning'] = warning
         
         if not pricelist:
             return result
@@ -382,8 +396,8 @@ class sale_order(osv.osv):
                 if line.product_id and (line.type == 'make_to_order') and (line.product_id.product_tmpl_id.type == 'product') and (line.product_id.product_tmpl_id.supply_method == 'produce'):
                     err1 = ''
                     err2 = ''
-                    if not line.product_id.state in ['draft', 'sellable']:   
-                        err1 = _('Cannot sell this product (state is quotation or obsolete)')   
+                    if not line.product_id.state in ['draft', 'review', 'sellable']:   
+                        err1 = _('Cannot sell this product (state is quotation, review or obsolete)')   
                     if not line.product_id.bom_ids:            
                         err2 = _('Missing BoM')
                     else:
