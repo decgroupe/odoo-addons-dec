@@ -20,6 +20,7 @@
 ##############################################################################
 
 from osv import fields, osv
+from tools.translate import _
 
 class account_invoice(osv.osv):
     _inherit = "account.invoice"
@@ -27,6 +28,30 @@ class account_invoice(osv.osv):
         'origin': fields.char('Source Document', size=300, help="Reference of the document that produced this invoice.", readonly=True, states={'draft':[('readonly',False)]}),
         'company_invoice_number': fields.char('Company invoice number', size=64, readonly=False, states={'draft':[('readonly',False)]}),
     }
+    
+    def unlink(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+            
+        sale_order_obj = self.pool.get('sale.order')
+        purchase_order_obj = self.pool.get('purchase.order')
+        SUPER_ADMIN = 1
+        
+        res = super(account_invoice, self).unlink(cr, uid, ids, context=context)
+        
+        if uid <> SUPER_ADMIN:   
+            for invoice in self.browse(cr, uid, ids, context=context):  
+                
+                sale_ids = sale_order_obj.search(cr, uid, [('invoice_ids','=',invoice.id)], context=context)
+                if len(sale_ids) > 0:   
+                    raise osv.except_osv(_('Invalid action !'), _('You can not delete an invoice linked to a sale order.'))
+                
+                purchase_ids = purchase_order_obj.search(cr, uid, [('invoice_ids','=',invoice.id)], context=context)
+                if len(purchase_ids) > 0:   
+                    raise osv.except_osv(_('Invalid action !'), _('You can not delete an invoice linked to a purchase order.'))
+
+        return res
+    
 account_invoice()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

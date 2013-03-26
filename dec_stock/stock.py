@@ -25,6 +25,21 @@ from osv import fields
 from osv import osv
 from tools.translate import _
 
+class stock_picking(osv.osv):
+    _name = "stock.picking"
+    _inherit = _name
+        
+    def unlink(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+            
+        SUPER_USER = 1
+        for pick in self.browse(cr, uid, ids, context=context):
+            if uid <> SUPER_USER:
+                raise osv.except_osv(_('Error'), _('You must be admin to execute delete action!'))
+            
+        return super(stock_picking, self).unlink(cr, uid, ids, context=context)
+
 class stock_move(osv.osv):
     _name = "stock.move"
     _inherit = "stock.move"
@@ -38,9 +53,15 @@ class stock_move(osv.osv):
         for move_line in self.browse(cr, uid, ids, context=context):  
             res[move_line.id] = False  
             
-            purchase_order_line_ids = purchase_order_line_obj.search(cr, uid, [('move_ids', '=', move_line.id)], context=context) 
-            for purchase_order_line in purchase_order_line_obj.browse(cr, uid, purchase_order_line_ids, context=context):
-                res[move_line.id] = purchase_order_line.purchase_origin
+            parent_move_ids = self.search(cr, uid, [('move_dest_id', '=', move_line.id)], context=context) 
+            for parent_move_line in self.browse(cr, uid, parent_move_ids, context=context):  
+                if parent_move_line.production_id:
+                    res[move_line.id] = parent_move_line.production_id.name
+                    break
+            else:
+                purchase_order_line_ids = purchase_order_line_obj.search(cr, uid, [('move_ids', '=', move_line.id)], context=context) 
+                for purchase_order_line in purchase_order_line_obj.browse(cr, uid, purchase_order_line_ids, context=context):
+                    res[move_line.id] = purchase_order_line.purchase_origin
 #                
 #                
 #                if purchase_order_line.origin_procurement_order_id:

@@ -30,6 +30,7 @@
     "demo_xml" : [ ],
     "update_xml" : [
         "security/ir.model.access.csv",
+        "security/security.xml",
         "wizard/stock_partial_picking_view.xml",
         "stock_data.xml",
         "stock_view.xml",

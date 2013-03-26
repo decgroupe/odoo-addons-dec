@@ -175,7 +175,10 @@ class stock_move(osv.osv):
                         elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved':
                             
                             if purchase_move and purchase_move.state == 'assigned':
-                                res[i]['status_status'] = _('On procurement (purchase in progress)')
+                                if len(purchase_move_ids) == 1:
+                                    res[i]['status_status'] = _('On procurement (purchase in progress)')
+                                else:
+                                    res[i]['status_status'] = _('On procurement (partially delivered)')
                             elif purchase_move and purchase_move.state == 'done':
                                 res[i]['status_status'] = _('On procurement (delivered)')
                                 res[i]['status_received'] = True

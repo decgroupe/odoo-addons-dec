@@ -55,6 +55,7 @@ class stock_partial_picking(osv.osv_memory):
 #        if move.picking_id.type == 'in' and move.product_id.cost_method == 'average':
 #            partial_move.update(update_cost=True, **self._product_cost_for_average_update(cr, uid, move))
 #        
+
         partial_move = super(stock_partial_picking, self)._partial_move_for(cr, uid, move)
 
         
