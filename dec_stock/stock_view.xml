@@ -403,18 +403,40 @@
         
         
 		<!-- Remove process button from tree view in picking out -->
+<!--        <record id="view_picking_out_tree_dec" model="ir.ui.view">-->
+<!--            <field name="name">stock.picking.out.tree</field>-->
+<!--            <field name="model">stock.picking</field>-->
+<!--            <field name="type">tree</field>-->
+<!--			<field name="inherit_id" ref="stock.view_picking_out_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--            	<button name="action_process" position="replace">-->
+<!--            		<button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward" groups="dec_stock.group_stock_dec_user"/>	-->
+<!--            	</button>-->
+<!--            </field>-->
+<!--        </record>-->
+        
         <record id="view_picking_out_tree_dec" model="ir.ui.view">
             <field name="name">stock.picking.out.tree</field>
             <field name="model">stock.picking</field>
             <field name="type">tree</field>
 			<field name="inherit_id" ref="stock.view_picking_out_tree"/>
             <field name="arch" type="xml">
-            	<button name="action_process" position="replace">
-            		<button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward" groups="dec_stock.group_stock_dec_user"/>	
-            	</button>
+            	<xpath expr="/tree" position="replace">
+	                <tree colors="green:state == 'draft'; magenta:state in ('auto');blue:state in ('confirmed');grey:state in ('cancel','done');red:state in ('assigned') and min_date &lt; current_date" string="Delivery Orders">
+	                    <field name="name"/>
+	                    <field name="partner_id"/>
+	                    <field name="origin"/>
+	                    <field name="date"/>
+	                    <field name="min_date"/>
+	                    <field name="backorder_id" groups="base.group_extended"/>
+	                    <field name="invoice_state"/>
+	                    <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
+	                    <field name="state"/>
+<!--	                    <button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward"/>-->
+	                </tree>
+                </xpath>
             </field>
         </record>
-        
 
         
         <record id="view_picking_out_form_dec" model="ir.ui.view">

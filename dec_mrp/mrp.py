@@ -27,6 +27,7 @@ from tools.translate import _
 import netsvc
 import time
 import tools
+import logging
 
 def rounding(f, r):
     import math
@@ -494,8 +495,17 @@ class mrp_production(osv.osv):
         
         if production_mode in ['consume','produce']:
             # Consume products (from the picking list to avoid consuming REF Manager moves)
-            mrp_moves = [move.move_dest_id for move in production.picking_id.move_lines if production.picking_id]
+            mrp_moves = []
+            if production.picking_id:
+                for move in production.picking_id.move_lines:
+                    if move.move_dest_id: 
+                        mrp_moves.append(move.move_dest_id)
+                    else:
+                        logging.getLogger('mrp.production').error('action_produce error, not move_dest %s: [%s] %s %s', move.name, move.product_id.default_code or '', move.product_id.name or '', move.picking_id and move.picking_id.name or '')
+                
+            #mrp_moves = [move.move_dest_id for move in production.picking_id.move_lines if production.picking_id]
             for move_consume in mrp_moves:
+                logging.getLogger('mrp.production').info('action_produce on %s: [%s] %s %s', move_consume.name, move_consume.product_id.default_code or '', move_consume.product_id.name or '', move_consume.picking_id and move_consume.picking_id.name or '')
                 move_consume.action_consume(move_consume.product_qty, move.location_id.id, context=context)
                 
             if production_mode == 'produce':

@@ -19,6 +19,7 @@
             <field name="amount_total" position="after">
                 <field name="margin"/>
             </field>
+            
         </field>
     </record>
     
@@ -40,6 +41,9 @@
             
             <field name="state" position="after">
                 <field name="margin" sum="Total Margin"/>
+            </field>
+            <field name="picked_rate" position="before">
+                <field name="picked_in_rate" widget="progressbar" groups="base.group_extended"/>
             </field>
 
         </field>
@@ -216,6 +220,7 @@
                     <field name="partner_delivery_id"/>
                     <field name="partner_delivery_city_id"/>
 				</field>
+				
             </field>
         </record>
 

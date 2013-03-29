@@ -118,12 +118,13 @@ class ref_category_line(osv.osv):
 
     _name = 'ref.category.line'
     _description = 'Category line'
-    _rec_name = 'sequence'
+    _rec_name = 'description'
 
     _columns = {     
-        'category': fields.many2one('ref.category', 'Category'),
-        'property': fields.many2one('ref.property', 'Property'),
-        'sequence': fields.integer('Position'),
+        'category': fields.many2one('ref.category', 'Category', required=True),
+        'property': fields.many2one('ref.property', 'Property', required=True),
+        'description': fields.char('Property description', size=128),
+        'sequence': fields.integer('Position', required=True),
     }
 
     _defaults = {

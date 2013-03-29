@@ -358,7 +358,39 @@ class sale_order(osv.osv):
                 res[order.id] = False;
 
         return res
+    
+    
 
+    def _picked_in_rate(self, cr, uid, ids, field_names=None, arg=False, context=None):
+        if not field_names:
+            field_names = []
+        if context is None:
+            context = {}
+        res = {}
+
+        move_obj = self.pool.get('stock.move') 
+        for order in self.browse(cr, uid, ids, context=context):
+            ready_count = 0
+            total_count = 0
+            
+            picking_ids = []
+            for picking in order.picking_ids:
+                picking_ids.append(picking.id)
+            
+            move_ids = move_obj.search(cr, uid, [('picking_id', 'in', picking_ids)])
+            move_ids = move_obj.browse(cr, uid, move_ids, context=context)
+            for move in move_ids: 
+                total_count += 1
+                if move.state in ('assigned','done','cancel'):
+                    ready_count += 1
+                      
+            if total_count > 0: 
+                res[order.id] = float(ready_count)/float(total_count) * 100
+            else:   
+                res[order.id] = order.picked_rate 
+
+                
+        return res
 
     _inherit = "sale.order"
     _columns = {
@@ -379,6 +411,7 @@ class sale_order(osv.osv):
         'partner_delivery_id': fields.related('partner_shipping_id', 'partner_id', type='many2one', relation='res.partner', string='Alloted'),
         'partner_delivery_city_id': fields.related('partner_shipping_id', 'city_id', type='many2one', relation='city.city', string='City'),
 #        'partner_delivery_city': fields.related('partner_shipping_id', 'city', type='char', string='City'),
+        'picked_in_rate': fields.function(_picked_in_rate, string='Received', type='float'),
     }
     _defaults = {
         'validity': 30,
