@@ -76,8 +76,16 @@
             <field name="arch" type="xml">
             
             
-<!--                <xpath expr="/form/notebook/page/group/button[@name='order_line']" position="replace">  </xpath>-->
-                
+        <xpath expr="/form/notebook/page[@string='History']/field[@name='invoice_ids']" position="attributes">     
+            <attribute name="domain">[('partner_id','in',[partner_id,partner_shipping_id])]</attribute>
+            <attribute name="attrs">{'readonly':[('state','=','draft')]}</attribute>
+        </xpath>
+        
+        <xpath expr="/form/notebook/page[@string='History']/field[@name='picking_ids']" position="attributes">
+            <attribute name="domain">[('origin','=',[name])]</attribute>
+            <attribute name="widget">many2many</attribute>
+            <attribute name="attrs">{'readonly':[('state','=','draft')]}</attribute>
+        </xpath>
                
                 <xpath expr="/form/notebook/page/field[@name='order_line']" position="replace">
                     <field name="abstract_line_ids" colspan="4" nolabel="1" widget="one2many_list" domain="['order_id','=',active_id]" context="{'order_id':active_id}">
@@ -179,7 +187,7 @@
                                     <page string="History" groups="base.group_extended"
                                         attrs="{'invisible':[('layout_type','!=','article')]}">
                                         <separator colspan="4" string="Invoice Lines"/>
-                                        <field colspan="4" name="invoice_lines" nolabel="1"/>
+                                        <field colspan="4" name="invoice_lines" nolabel="1" domain="[('partner_id','in',[partner_id])]"/>
                                         <separator colspan="4" string="Stock Moves"/>
                                         <field colspan="4" name="move_ids" nolabel="1" widget="many2many"/>
                                     </page>

@@ -412,6 +412,8 @@ class sale_order(osv.osv):
         'partner_delivery_city_id': fields.related('partner_shipping_id', 'city_id', type='many2one', relation='city.city', string='City'),
 #        'partner_delivery_city': fields.related('partner_shipping_id', 'city', type='char', string='City'),
         'picked_in_rate': fields.function(_picked_in_rate, string='Received', type='float'),
+        'invoice_ids': fields.many2many('account.invoice', 'sale_order_invoice_rel', 'order_id', 'invoice_id', 'Invoices', readonly=False, help="This is the list of invoices that have been generated for this sales order. The same sales order may have been invoiced in several times (by line for example)."),
+        'picking_ids': fields.one2many('stock.picking', 'sale_id', 'Related Picking', readonly=False, help="This is a list of picking that has been generated for this sales order."),
     }
     _defaults = {
         'validity': 30,
