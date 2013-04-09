@@ -506,12 +506,12 @@ class mrp_production(osv.osv):
             #mrp_moves = [move.move_dest_id for move in production.picking_id.move_lines if production.picking_id]
             for move_consume in mrp_moves:
                 logging.getLogger('mrp.production').info('action_produce on %s: [%s] %s %s', move_consume.name, move_consume.product_id.default_code or '', move_consume.product_id.name or '', move_consume.picking_id and move_consume.picking_id.name or '')
-                move_consume.action_consume(move_consume.product_qty, move.location_id.id, context=context)
+                move_consume.action_consume(move_consume.product_qty, move_consume.location_id.id, context=context)
                 
             if production_mode == 'produce':
                 # Create products
                 for move_product in production.move_created_ids:
-                    move_product.action_consume(move_product.product_qty, move.location_id.id, context=context)
+                    move_product.action_consume(move_product.product_qty, move_product.location_id.id, context=context)
                 
             # Update all moves history
             for raw_product in production.move_lines2:

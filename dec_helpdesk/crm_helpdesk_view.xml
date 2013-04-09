@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
+    
+        <delete model="ir.ui.view" id="crm.crm_case_gantt_view_meet"/>
 
         <!-- Helpdesk Support Tree View  -->
         <record model="ir.ui.view" id="crm_case_tree_view_helpdesk_dec">
