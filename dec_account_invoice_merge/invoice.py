@@ -101,7 +101,10 @@ class account_invoice(osv.osv):
                     order_infos['reference'] = (order_infos['reference'] or '') + (' %s' % (porder.reference,))
 
             for order_line in porder.invoice_line:
-                line_key = make_key(order_line, ('name', 'origin', 'discount', 'invoice_line_tax_id', 'price_unit', 'quantity', 'product_id', 'account_id', 'account_analytic_id'))
+                line_key = make_key(order_line, ('id', 'name', 'origin', 'discount', 'invoice_line_tax_id', 'price_unit', 'quantity', 'uos_id', 'product_id', 'account_id', 'account_analytic_id'))
+                order_infos['invoice_line'][line_key] = {}
+
+                '''
                 o_line = order_infos['invoice_line'].setdefault(line_key, {})
                 if o_line:
                     # merge the line with an existing line
@@ -113,6 +116,10 @@ class account_invoice(osv.osv):
                         if isinstance(field_val, browse_record):
                             field_val = field_val.id
                         o_line[field] = field_val
+                        
+                order_infos['invoice_line'][line_key] = o_line
+                '''
+
 
         allorders = []
         orders_info = {}

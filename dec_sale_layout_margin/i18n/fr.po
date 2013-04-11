@@ -27,6 +27,11 @@ msgid "City"
 msgstr "Ville"
 
 #. module: dec_sale_layout_margin
+#: field:sale.order,picked_in_rate:0
+msgid "Received"
+msgstr "Received"
+
+#. module: dec_sale_layout_margin
 #: field:sale.order.line,price_discount:0
 msgid "Unit Price (discount)"
 msgstr "Prix unitaire (remise)"

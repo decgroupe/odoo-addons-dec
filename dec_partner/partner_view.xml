@@ -11,13 +11,7 @@
 				<field name="lang" position="after">
 					<field name="partner_academy" attrs="{'invisible':[('customer','=',False)]}"/>	
 				</field>
-				
-				<notebook position="inside">
-					<page string="Education">
-						<separator string="Academy" colspan="4"/>
-						<field name="academy" nolabel="1" colspan="4"/>
-					</page>
-				</notebook>
+
 			</field>
 		</record>
 		
