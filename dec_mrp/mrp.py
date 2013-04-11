@@ -427,7 +427,7 @@ class mrp_production(osv.osv):
         'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
         'partner_id': fields.many2one('res.partner', 'Partner'),
         'partner_address_id': fields.many2one('res.partner.address', 'Address'),
-        'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City'),
+        'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City', store=True),
 #        , store={
 #                'stock.picking': (lambda self, cr, uid, ids, c={}: ids, ['picking_id'], 20),
 #                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines'], 20),

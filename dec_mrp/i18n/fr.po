@@ -60,6 +60,7 @@ msgid "On procurement (delivered)"
 msgstr "Par appro. (livré)"
 
 #. module: dec_mrp
+#: view:mrp.production:0
 #: field:mrp.production,partner_address_city_id:0
 msgid "City"
 msgstr "Ville"

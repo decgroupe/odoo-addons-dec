@@ -79,7 +79,7 @@ class task(osv.osv):
         'date_start': fields.date('Start Date', select=True),
         'date_end': fields.date('End Date', select=True),
         'partner_address_id': fields.many2one('res.partner.address', 'Address'),
-        'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City'),
+        'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City', store=True),
         'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
         'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
     }

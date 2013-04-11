@@ -47,6 +47,7 @@
              	<xpath expr="/search/group/field[@name='name']" position="after">
 	                <field name="origin"/>
              	</xpath>    
+             	<xpath expr="/search/group/field[@name='product_id']" position="replace"/> 
             </field>
         </record> 
         
@@ -182,6 +183,22 @@
         </record>
         
         <menuitem action="purchase_line_action_dec" id="menu_purchase_line_action_dec" parent="purchase.menu_procurement_management" />
+        
+        
+ 
+<!-- 	Replace default search view by removing default user id-->
+        <record id="purchase_form_action_dec" model="ir.actions.act_window">
+            <field name="name">Purchase Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="context">{'search_default_approved': 1}</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="help">Use this menu to search within your purchase orders by references, supplier, products, etc. For each purchase order, you can track the products received, and control the supplier invoices.</field>
+        </record>
+        
+        <delete model="ir.ui.menu" id="purchase.menu_purchase_form_action"/>
+        <menuitem action="purchase_form_action_dec" id="menu_purchase_form_action_dec" parent="purchase.menu_procurement_management" />
 
        	
     </data>

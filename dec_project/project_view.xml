@@ -113,12 +113,13 @@
 
             	 <field name="project_id" position="after">
             	 	<field name="partner_id"/>
-            	 	<field name="partner_address_city_id"/>	 
+            	 	<field name="partner_address_city_id"/>	  
             	 	<field name="origin"/>	 
             	 </field>
             	 
 	            <xpath expr="/search/group[@string='Group By...']/filter[@string='Users']" position="after" >
                 	<filter string="Partners" name="group_partner_id" icon="terp-personal" domain="[]"  context="{'group_by':'partner_id'}"/>
+                	<filter string="City" name="group_partner_address_city_id" icon="gtk-home" domain="[]"  context="{'group_by':'partner_address_city_id'}"/>
                 	<separator orientation="vertical"/>
 	            </xpath>
 <!--	            <xpath expr="/search/group[@string='Group By...']/filter[@name='group_project_id']" position="replace" />-->

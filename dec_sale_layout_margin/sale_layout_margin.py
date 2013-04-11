@@ -375,7 +375,8 @@ class sale_order(osv.osv):
             
             picking_ids = []
             for picking in order.picking_ids:
-                picking_ids.append(picking.id)
+                if picking.state not in ['cancel']: 
+                    picking_ids.append(picking.id)
             
             move_ids = move_obj.search(cr, uid, [('picking_id', 'in', picking_ids)])
             move_ids = move_obj.browse(cr, uid, move_ids, context=context)

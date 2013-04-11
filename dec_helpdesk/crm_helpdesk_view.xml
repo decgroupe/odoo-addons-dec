@@ -30,6 +30,13 @@
              	<xpath expr="/search/field[@name='partner_id']" position="after">
              		<field name="partner_city" select="1"/>
              	</xpath>
+             	<xpath expr="/search/field[@name='user_id']" position="replace">
+                    <field name="user_id">
+                        <filter domain="[('user_id','=',uid)]" help="Assigned to me" icon="terp-personal"/>
+                    </field>
+             	</xpath>
+             	
+
             </field>
         </record>
         
