@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-07 11:04+0000\n"
-"PO-Revision-Date: 2013-02-07 12:06+0100\n"
+"POT-Creation-Date: 2013-04-22 08:29+0000\n"
+"PO-Revision-Date: 2013-04-22 10:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,19 +17,127 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_stock
+#: report:stock.picking.dec:0
+msgid "Destination"
+msgstr "Destination"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Put in a new pack"
+msgstr "Mettre dans un nouveau colis"
+
+#. module: dec_stock
 #: view:stock.move:0
-msgid "Customer"
-msgstr "Client"
+msgid "Group By..."
+msgstr "Grouper par ..."
 
 #. module: dec_stock
-#: report:stock.picking.delivery.order:0
-msgid "Shipping Address :"
-msgstr "Adresse de livraison :"
+#: view:stock.move:0
+msgid "Today"
+msgstr "Aujourd'hui"
 
 #. module: dec_stock
-#: model:ir.actions.report.xml,name:dec_stock.report_picking_dec
-msgid "Picking List (Stock)"
+#: constraint:stock.move:0
+msgid "You can not move products from or to a location of the type view."
+msgstr ""
+"Vous ne pouvez pas déplacer des produits depuis ou vers un emplacement de "
+"type \"vue\"."
+
+#. module: dec_stock
+#: model:ir.actions.report.xml,name:dec_stock.report_delivery_order_dec
+msgid "Delivery order"
+msgstr "Bon de livraison"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Picking list"
 msgstr "Bon de transfert"
+
+#. module: dec_stock
+#: model:ir.model,name:dec_stock.model_stock_partial_picking
+msgid "Partial Picking Processing Wizard"
+msgstr "Assistant de livraison partielle"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Scrap Products"
+msgstr "Rebuts"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "UoM"
+msgstr "UdM"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Notes"
+msgstr "Notes"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Products"
+msgstr "Produits"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Put in current pack"
+msgstr "Ajouter dans le colis actuel"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "Packing List:"
+msgstr "Bon de livraison:"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "Waiting Another Move"
+msgstr "En attente d'un autre mouvement"
+
+#. module: dec_stock
+#: view:stock.move:0
+msgid "Stock to be delivered (Available or not)"
+msgstr "Stock à livré (disponible ou non)"
+
+#. module: dec_stock
+#: model:ir.model,name:dec_stock.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "Reception:"
+msgstr "Réception:"
+
+#. module: dec_stock
+#: code:addons/dec_stock/wizard/stock_partial_picking.py:90
+#, python-format
+msgid "Warning!"
+msgstr "Avertissement!"
+
+#. module: dec_stock
+#: view:stock.move:0 view:stock.picking:0
+msgid "_Cancel"
+msgstr "_Annuler"
+
+#. module: dec_stock
+#: view:stock.move:0 view:stock.picking:0
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Delivery Orders"
+msgstr "Bons de livraisons"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Operating date"
+msgstr "Date de l'opération"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0
+msgid "Case"
+msgstr "Casier"
 
 #. module: dec_stock
 #: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
@@ -43,28 +151,13 @@ msgstr "Confirmer"
 
 #. module: dec_stock
 #: view:stock.picking:0
-msgid "Cancel Availability"
-msgstr "Annuler la disponibilité"
+msgid "Internal Picking List"
+msgstr "Bon de transfert"
 
 #. module: dec_stock
 #: report:stock.picking.dec:0
-msgid "Destination"
-msgstr "Destination"
-
-#. module: dec_stock
-#: constraint:stock.move:0
-msgid "You must assign a production lot for this product"
-msgstr "Vous devez affecter un lot de fabrication à ce produit."
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Put in a new pack"
-msgstr "Mettre dans un nouveau colis"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid "Group By..."
-msgstr "Grouper par ..."
+msgid "Source"
+msgstr "Source"
 
 #. module: dec_stock
 #: view:stock.move:0 report:stock.picking.dec:0
@@ -73,19 +166,19 @@ msgid "State"
 msgstr "État"
 
 #. module: dec_stock
-#: view:stock.move:0
-msgid "Orders planned for today"
-msgstr "Ordres prévus aujourd'hui"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Process Later"
-msgstr "Traiter plus tard"
-
-#. module: dec_stock
 #: report:stock.picking.dec:0
 msgid "Location"
 msgstr "Emplacement"
+
+#. module: dec_stock
+#: model:ir.model,name:dec_stock.model_stock_picking
+msgid "Picking List"
+msgstr "Liste de prélèvement"
+
+#. module: dec_stock
+#: field:stock.partial.picking.line,expected_quantity:0
+msgid "Expected"
+msgstr "Attendu"
 
 #. module: dec_stock
 #: view:stock.move:0 report:stock.picking.dec:0
@@ -94,25 +187,9 @@ msgid "New"
 msgstr "Nouveau"
 
 #. module: dec_stock
-#: field:stock.partial.picking.line,expected_quantity:0
-msgid "Expected"
-msgstr "Attendu"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Move Information"
-msgstr "Information sur le mouvement"
-
-#. module: dec_stock
-#: field:stock.move,move_final_location:0
-#: field:stock.partial.picking.line,move_final_location:0
-msgid "Final location"
-msgstr "Emplacement final"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid "Today"
-msgstr "Aujourd'hui"
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "Waiting Availability"
+msgstr "En attente de disponibilité"
 
 #. module: dec_stock
 #: view:stock.move:0 report:stock.picking.dec:0
@@ -122,19 +199,8 @@ msgstr "Disponible"
 
 #. module: dec_stock
 #: model:ir.actions.act_window,name:dec_stock.action_special_outing_dec
-#: model:ir.ui.menu,name:dec_stock.menu_stock_special_outing
 msgid "Special outing"
 msgstr "Sortie du stock"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid "Product"
-msgstr "Produit"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Description"
-msgstr "Description"
 
 #. module: dec_stock
 #: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
@@ -142,9 +208,94 @@ msgid "Picking List:"
 msgstr "Bon de transfert:"
 
 #. module: dec_stock
+#: view:stock.move:0
+msgid "Stock available to be delivered"
+msgstr "Stock disponible à livrer"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Dates"
+msgstr "Dates"
+
+#. module: dec_stock
+#: view:stock.move:0
+msgid "Order Date"
+msgstr "Date de commande"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "["
+msgstr "["
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Force Availability"
+msgstr "Forcer la disponibilité"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0
+msgid "Rack"
+msgstr "Rayon"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Additional info"
+msgstr "Informations complémentaires"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Date Expected"
+msgstr "Date attendue"
+
+#. module: dec_stock
+#: model:ir.ui.menu,name:dec_stock.menu_action_pdct_in
+msgid "Receive Products"
+msgstr "Réceptions par produit"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Return Products"
+msgstr "Retourner les produits"
+
+#. module: dec_stock
+#: constraint:stock.move:0
+msgid "You try to assign a lot which is not from the same product"
+msgstr "Vous essayez d'attribuer un lot qui ne correspond pas au même produit"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "Order(Origin)"
+msgstr "Origine"
+
+#. module: dec_stock
+#: view:stock.move:0
+msgid " Waiting"
+msgstr " En attente"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Unit Of Measure"
+msgstr "Unité de mesure"
+
+#. module: dec_stock
+#: view:stock.move:0 view:stock.picking:0
+msgid "Stock Moves"
+msgstr "Mouvements de stocks"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Cancel Availability"
+msgstr "Annuler la disponibilité"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Move Information"
+msgstr "Information sur le mouvement"
+
+#. module: dec_stock
 #: report:stock.picking.delivery.order:0
 msgid "Contact Address :"
-msgstr "Addresse du contact :"
+msgstr "Adresse du contact :"
 
 #. module: dec_stock
 #: field:stock.move,move_origin:0
@@ -153,66 +304,14 @@ msgid "Move origin"
 msgstr "Origine du mouvement"
 
 #. module: dec_stock
-#: constraint:stock.move:0
-msgid "You can not move products from or to a location of the type view."
-msgstr ""
-"Vous ne pouvez pas déplacer des produits depuis ou vers un emplacement de "
-"type \"vue\"."
-
-#. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Journal"
-msgstr "Journal"
-
-#. module: dec_stock
 #: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
 msgid "Non Assigned Products:"
 msgstr "Produits non réservés"
 
 #. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "]"
-msgstr "]"
-
-#. module: dec_stock
-#: model:ir.actions.report.xml,name:dec_stock.report_delivery_order_dec
-msgid "Delivery order"
-msgstr "Bon de livraison"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Put in current pack"
-msgstr "Ajouter dans le colis actuel"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid "Stock available to be delivered"
-msgstr "Stock disponible à livrer"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Waiting Availability"
-msgstr "En attente de disponibilité"
-
-#. module: dec_stock
-#: model:ir.actions.act_window,name:dec_stock.action_out_picking_move_dec_rd
-msgid "Out (Developement)"
-msgstr "Pour le développement"
-
-#. module: dec_stock
 #: report:stock.picking.dec:0
 msgid "Date"
 msgstr "Date"
-
-#. module: dec_stock
-#: model:ir.model,name:dec_stock.model_stock_partial_picking
-msgid "Partial Picking Processing Wizard"
-msgstr "Assistant de livraison partielle"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Waiting Another Move"
-msgstr "En attente d'un autre mouvement"
 
 #. module: dec_stock
 #: model:stock.location,name:dec_stock.location_rd
@@ -225,24 +324,9 @@ msgid "Recipient"
 msgstr "Destinataire"
 
 #. module: dec_stock
-#: model:ir.actions.act_window,name:dec_stock.action_out_picking_move_dec_production
-msgid "Out (Production)"
-msgstr "Pour la production"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Reception:"
-msgstr "Réception:"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0
-msgid "Case"
-msgstr "Casier"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid "Stock to be delivered (Available or not)"
-msgstr "Stock à livrer (Disponible ou non)"
+#: field:stock.picking,move_ready_state:0
+msgid "Count"
+msgstr "Prêt(s)"
 
 #. module: dec_stock
 #: model:ir.model,name:dec_stock.model_stock_partial_picking_line
@@ -251,33 +335,29 @@ msgstr "stock.partial.picking.line"
 
 #. module: dec_stock
 #: view:stock.picking:0
-msgid "Internal Picking List"
-msgstr "Bon de transfert"
-
-#. module: dec_stock
-#: view:stock.picking:0
 msgid "Check Availability"
 msgstr "Vérifier la disponibilité"
 
 #. module: dec_stock
-#: view:stock.move:0 view:stock.picking:0
-msgid "_Cancel"
-msgstr "_Annuler"
+#: sql_constraint:stock.picking:0
+msgid "Reference must be unique per Company!"
+msgstr "La référence doit être unique par société !"
+
+#. module: dec_stock
+#: code:addons/dec_stock/stock.py:63
+#, python-format
+msgid "Error"
+msgstr "Erreur"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "Quantity"
+msgstr "Quantité"
 
 #. module: dec_stock
 #: view:stock.picking:0
-msgid "Notes"
-msgstr "Notes"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Picking list"
-msgstr "Bon de transfert"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid "Order Date"
-msgstr "Date de commande"
+msgid "Process Now"
+msgstr "Traiter maintenant"
 
 #. module: dec_stock
 #: report:stock.picking.delivery.order:0
@@ -285,19 +365,112 @@ msgid "Shipping Date"
 msgstr "Date de livraison"
 
 #. module: dec_stock
-#: report:stock.picking.dec:0
-msgid "Rack"
-msgstr "Rayon"
+#: field:stock.move,create_uid:0
+msgid "Creator"
+msgstr "Créateur"
 
 #. module: dec_stock
 #: view:stock.picking:0
-msgid "Products"
-msgstr "Produits"
+msgid "Process"
+msgstr "Traiter"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Locations"
+msgstr "Emplacements"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Create Invoice"
+msgstr "Créer la facture"
+
+#. module: dec_stock
+#: view:stock.move:0 report:stock.picking.dec:0
+#: report:stock.picking.delivery.order:0
+msgid "Done"
+msgstr "Terminé"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Split in production lots"
+msgstr "Diviser en lots de production"
+
+#. module: dec_stock
+#: view:stock.picking:0 field:stock.picking,partner_address_city_id:0
+msgid "City"
+msgstr "Ville"
+
+#. module: dec_stock
+#: report:stock.picking.delivery.order:0
+msgid "Shipping Address :"
+msgstr "Adresse de livraison :"
+
+#. module: dec_stock
+#: model:ir.actions.report.xml,name:dec_stock.report_picking_dec
+msgid "Picking List (Stock)"
+msgstr "Bon de transfert"
+
+#. module: dec_stock
+#: constraint:stock.move:0
+msgid "You must assign a production lot for this product"
+msgstr "Vous devez affecter un lot de fabrication à ce produit."
+
+#. module: dec_stock
+#: view:stock.move:0
+msgid "Orders planned for today"
+msgstr "Commandes prévues pour aujourd'hui"
+
+#. module: dec_stock
+#: view:stock.picking:0
+msgid "Process Later"
+msgstr "Traiter plus tard"
+
+#. module: dec_stock
+#: field:stock.move,write_uid:0
+msgid "Last editor"
+msgstr "Dernière modification"
+
+#. module: dec_stock
+#: field:stock.move,move_final_location:0
+#: field:stock.partial.picking.line,move_final_location:0
+msgid "Final location"
+msgstr "Emplacement final"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0
+msgid "Row"
+msgstr "Rangée"
+
+#. module: dec_stock
+#: model:ir.model,name:dec_stock.model_product_product view:stock.move:0
+msgid "Product"
+msgstr "Produit"
 
 #. module: dec_stock
 #: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "["
-msgstr "["
+msgid "Description"
+msgstr "Description"
+
+#. module: dec_stock
+#: code:addons/dec_stock/wizard/stock_partial_picking.py:90
+#, python-format
+msgid "Please provide Proper Quantity !"
+msgstr "Veuillez fournir la bonne quantité !"
+
+#. module: dec_stock
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: dec_stock
+#: view:stock.move:0
+msgid "Customer"
+msgstr "Client"
 
 #. module: dec_stock
 #: model:ir.actions.act_window,help:dec_stock.action_special_outing_dec
@@ -318,9 +491,9 @@ msgstr ""
 "aussi enregistrer manuellement des opérations de stock."
 
 #. module: dec_stock
-#: view:stock.picking:0
-msgid "Force Availability"
-msgstr "Forcer la disponibilité"
+#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
+msgid "]"
+msgstr "]"
 
 #. module: dec_stock
 #: view:stock.move:0
@@ -328,117 +501,22 @@ msgid "Order"
 msgstr "Commande"
 
 #. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Packing List:"
-msgstr "Bon de livraison:"
+#: code:addons/dec_stock/stock.py:63
+#, python-format
+msgid "You must be admin to execute delete action!"
+msgstr "Vous devez être administrateur pour supprimer!"
 
 #. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Quantity"
-msgstr "Quantité"
+#: model:res.groups,name:dec_stock.group_stock_dec_user
+msgid "DEC user"
+msgstr "Utilisateur DEC Industrie"
 
 #. module: dec_stock
-#: view:stock.picking:0
-msgid "Process Now"
-msgstr "Traiter maintenant"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Date Expected"
-msgstr "Date attendue"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Scrap Products"
-msgstr "Rebuts"
-
-#. module: dec_stock
-#: model:ir.ui.menu,name:dec_stock.menu_action_pdct_in
-msgid "Receive Products"
-msgstr "Réceptions par produit"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0
-msgid "Source"
-msgstr "Source"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Process"
-msgstr "Traiter"
-
-#. module: dec_stock
-#: model:ir.model,name:dec_stock.model_stock_move
-msgid "Stock Move"
-msgstr "Mouvement de stock"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Locations"
-msgstr "Emplacements"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Operating date"
-msgstr "Date d'opération"
-
-#. module: dec_stock
-#: constraint:stock.move:0
-msgid "You try to assign a lot which is not from the same product"
-msgstr "Vous essayez d'attribuer un lot qui ne correspond pas au même produit"
+#: constraint:product.product:0
+msgid "Error: Invalid ean code"
+msgstr "Erreur: code EAN invalide"
 
 #. module: dec_stock
 #: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
 msgid "Total"
 msgstr "Total"
-
-#. module: dec_stock
-#: view:stock.move:0 report:stock.picking.dec:0
-#: report:stock.picking.delivery.order:0
-msgid "Done"
-msgstr "Terminé"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Unit Of Measure"
-msgstr "Unité de mesure"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0 report:stock.picking.delivery.order:0
-msgid "Order(Origin)"
-msgstr "Origine"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid "Partner"
-msgstr "Partenaire"
-
-#. module: dec_stock
-#: view:stock.move:0 view:stock.picking:0
-msgid "Stock Moves"
-msgstr "Mouvements de stocks"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "UoM"
-msgstr "UdM"
-
-#. module: dec_stock
-#: view:stock.move:0
-msgid " Waiting"
-msgstr " En attente"
-
-#. module: dec_stock
-#: view:stock.picking:0
-msgid "Split in production lots"
-msgstr "Diviser en lots de production"
-
-#. module: dec_stock
-#: report:stock.picking.dec:0
-msgid "Row"
-msgstr "Rangée"

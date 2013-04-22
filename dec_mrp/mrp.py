@@ -221,7 +221,7 @@ class stock_move(osv.osv):
                     res[i]['status_dedicated'] = _('Dedicated') 
                     res[i]['status_received'] = True
                 else:
-                    res[i]['status_status'] = _('On procurement: ???')
+                    res[i]['status_status'] = _('On procurement ???')
                     res[i]['status_dedicated'] =  _('Not dedicated') 
 
 

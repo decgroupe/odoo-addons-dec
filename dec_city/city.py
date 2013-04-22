@@ -57,14 +57,20 @@ class city(osv.osv):
     _name = 'city.city'
     _description = 'City'
     _columns = {
-        'state_id': fields.many2one('res.country.state', 'State',
-            domain="[('country_id','=',country_id)]", select=1),
+        'active': fields.boolean('Active', help="If the active field is set to False, it will allow you to hide the location without removing it."),
+        'state_id': fields.many2one('res.country.state', 'State', domain="[('country_id','=',country_id)]", select=1),
         'name': fields.char('City', size=64, required=True, select=1),
         'zip': fields.char('ZIP', size=64, required=True, select=1),
         'country_id': fields.many2one('res.country', 'Country', select=1),
-        'code': fields.char('City Code', size=64,
-            help="The official code for the city"),
+        'code': fields.char('City Code', size=64, help="The official code for the city"),
     }
+    
+    _defaults = {
+        'active': lambda *a: 1,
+    }
+    
+    _order = 'zip asc'
+    
 city()
 
 
@@ -80,15 +86,9 @@ class res_partner_address(osv.osv):
     _inherit = "res.partner.address"
     _columns = {
         'city_id': fields.many2one('city.city', 'Location', select=1),
-        'zip': fields.related('city_id', 'zip', type="char", string="Zip",
-                               store={}),
-        'city': fields.related('city_id', 'name', type="char", string="City",
-                               store={}),
-        'state_id': fields.related('city_id', 'state_id', type="many2one",
-                                   relation="res.country.state", string="State",
-                                   store={}),
-        'country_id': fields.related('city_id', 'country_id', type="many2one",
-                                     relation="res.country", string="Country",
-                                     store={}),
+        'zip': fields.related('city_id', 'zip', type="char", string="Zip", store={}),
+        'city': fields.related('city_id', 'name', type="char", string="City", store={}),
+        'state_id': fields.related('city_id', 'state_id', type="many2one", relation="res.country.state", string="State", store={}),
+        'country_id': fields.related('city_id', 'country_id', type="many2one", relation="res.country", string="Country", store={}),
     }
 res_partner_address()

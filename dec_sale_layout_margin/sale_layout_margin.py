@@ -133,12 +133,22 @@ class sale_order_line(osv.osv):
         default['layout_type'] = self.browse(cr, uid, id, context=context).layout_type
         return super(sale_order_line, self).copy(cr, uid, id, default, context)
 
-
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False, name='', partner_id=False, lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, context=None):
         result = super(sale_order_line, self).product_id_change(cr, uid, ids, pricelist, product, qty=qty, uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id, lang=lang, update_tax=update_tax, date_order=date_order, packaging=packaging, fiscal_position=fiscal_position, flag=flag, context=context)
+        return result
+    
+    def product_id_change_ext(self, cr, uid, ids, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False, name='', partner_id=False, lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, price_unit=0.0, purchase_price=0.0, discount=0.0, context=None):
+        result = self.product_id_change(cr, uid, ids, pricelist, product, qty=qty, uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id, lang=lang, update_tax=update_tax, date_order=date_order, packaging=packaging, fiscal_position=fiscal_position, flag=flag, context=context)
         
         product_obj = self.pool.get('product.product')
         produit = product_obj.browse(cr, uid, [product], context=context)[0]
+        
+        # Remove price unit from result
+        if product and flag:
+            if 'value' in result and 'price_unit' in result['value']:
+                del result['value']['price_unit']
+                res2 = self.onchange_price_unit(cr, uid, ids, price_unit, purchase_price, qty, discount, context)
+                result['value'].update(res2['value'])
         
         if product and not flag:
             if produit.ciel_code:
@@ -166,14 +176,46 @@ class sale_order_line(osv.osv):
         
         if not pricelist:
             return result
+        
         frm_cur = self.pool.get('res.users').browse(cr, uid, uid).company_id.currency_id.id
         to_cur = self.pool.get('product.pricelist').browse(cr, uid, [pricelist])[0].currency_id.id
-        if product and not flag:
-            purchase_price = self.pool.get('product.product.extended').browse(cr, uid, product).default_supplier_price
+        
+        if product: 
+            purchase_price = produit.standard_price          
+            if produit.seller_id:
+                pricelist = produit.seller_id.property_product_pricelist_purchase
+                if pricelist:
+                    pricelist_pool = self.pool.get('product.pricelist')
+                    purchase_price = pricelist_pool.price_get(cr,uid,[pricelist.id], produit.id, qty, produit.seller_id.id, {
+                            'uom': uom,
+                            'date': time.strftime('%Y-%m-%d'),
+                            })[pricelist.id]
+            
             price = self.pool.get('res.currency').compute(cr, uid, frm_cur, to_cur, purchase_price, round=False)
             result['value'].update({'purchase_price': price})
         return result
+    
+    ## Override default one
+    def product_uom_change(self, cursor, user, ids, pricelist, product, qty=0,
+            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+            lang=False, update_tax=True, date_order=False, context=None):
+        if context is None:
+            context = {}
+        lang = lang or context.get('lang',False)
+        res = self.product_id_change_ext(cursor, user, ids, pricelist, product,
+                qty=qty, uom=uom, qty_uos=qty_uos, uos=uos, name=name,
+                partner_id=partner_id, lang=lang, update_tax=update_tax,
+                date_order=date_order, context=context)
+        if 'product_uom' in res['value']:
+            del res['value']['product_uom']
+        if not uom:
+            res['value']['price_unit'] = 0.0
+        return res
 
+
+    def uos_change(self, cr, uid, ids, product_uos, product_uos_qty=0, product_id=None):
+        return {'value': {}} 
+    
     def _product_margin(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
@@ -259,6 +301,7 @@ class sale_order_line(osv.osv):
         if not context.get('ignore_markup_update', False):
             value.update({'markup_percent': new_markup_percent})
 
+        value.update({'price_subtotal': product_uos_qty * price_unit * (1 - (discount or 0.0) / 100.0)})
         return {'value': value}
     
     def onchange_margin_percent(self, cr, uid, ids, margin_percent, price_unit, purchase_price, product_uos_qty, discount, context={}):   

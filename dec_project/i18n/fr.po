@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-01 13:28+0000\n"
-"PO-Revision-Date: 2013-03-18 09:09+0100\n"
+"POT-Creation-Date: 2013-04-22 08:21+0000\n"
+"PO-Revision-Date: 2013-04-22 10:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_project
-#: field:project.task,partner_address_city_id:0
+#: view:project.task:0 field:project.task,partner_address_city_id:0
 msgid "City"
 msgstr "Ville"
 
@@ -90,6 +90,12 @@ msgid "Worksheet"
 msgstr "Feuille d'intervention"
 
 #. module: dec_project
+#: code:addons/dec_project/project_procurement.py:55
+#, python-format
+msgid "from project: task created."
+msgstr "module projet: tâche créée."
+
+#. module: dec_project
 #: field:project.task,origin:0
 msgid "Source Document"
 msgstr "Origine"
@@ -103,6 +109,11 @@ msgstr "Approvisionnement"
 #: report:ir.actions.report.xml:dec_project.project3_report_id
 msgid "Working sheet"
 msgstr "Bon d'intervention"
+
+#. module: dec_project
+#: field:project.task,view_name:0
+msgid "View name"
+msgstr "Nom de vue"
 
 #. module: dec_project
 #: model:ir.actions.act_window,name:dec_project.action_view_task_dec

@@ -15,6 +15,26 @@
                 </field>
 			</field>
 		</record>
+		
+
+        <record id="view_picking_out_search_dec" model="ir.ui.view">
+            <field name="name">stock.picking.out.search</field>
+            <field name="model">stock.picking</field>
+            <field name="type">search</field>
+			<field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="arch" type="xml">
+            
+                <field name="partner_id" position="after">
+                	<field name="partner_address_city_id"/>
+                </field>
+                
+                <filter string="Partner" position="after">
+                	<filter string="City" name="group_partner_address_city_id" icon="gtk-home" domain="[]"  context="{'group_by':'partner_address_city_id'}"/>
+                </filter>
+                 
+            </field>
+        </record>
+
         
         <record id="view_move_tree_reception_picking_dec" model="ir.ui.view">
             <field name="name">stock.move.tree2</field>
@@ -425,6 +445,7 @@
 	                <tree colors="green:state == 'draft'; magenta:state in ('auto');blue:state in ('confirmed');grey:state in ('cancel','done');red:state in ('assigned') and min_date &lt; current_date" string="Delivery Orders">
 	                    <field name="name"/>
 	                    <field name="partner_id"/>
+	                    <field name="partner_address_city_id"/>
 	                    <field name="origin"/>
 	                    <field name="date"/>
 	                    <field name="min_date"/>
@@ -432,6 +453,8 @@
 	                    <field name="invoice_state"/>
 	                    <field name="stock_journal_id" groups="base.group_extended" widget="selection"/>
 	                    <field name="state"/>
+	                    <field name="move_ready_state"/>
+	                    
 <!--	                    <button name="action_process" states="assigned" string="Process" type="object" icon="gtk-go-forward"/>-->
 	                </tree>
                 </xpath>

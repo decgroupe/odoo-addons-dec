@@ -46,7 +46,32 @@ class product_pricelist(osv.osv):
                     res2[str(prod_id)] = res[key] # Return price only by product ID
                     #res2[str(key)] = res[key]
             return res2
-        return res
+        return res   
+     
+    # To avoid bug: "TypeError: dictionary key must be string"
+    def price_get_multi_xmlrpc(self, cr, uid, pricelist_ids, products_by_qty_by_partner, context=None):  
+        if context is None:
+            context = {}
+            
+        multiprices = self.price_get_multi(cr, uid, pricelist_ids, products_by_qty_by_partner, context=context)
+        
+        result = []
+        for product_id in multiprices:
+            if type(product_id) == int:  
+                prices = []
+                for prices_by_pricelist in multiprices[product_id]:
+                    if type(prices_by_pricelist) == int: 
+                        res2 = {}
+                        res2['pricelist_id'] = prices_by_pricelist
+                        res2['pricelist_price'] = multiprices[product_id][prices_by_pricelist]
+                        prices.append(res2)
+                   
+                res1 = {}     
+                res1['product_id'] = product_id
+                res1['prices'] = prices
+                result.append(res1)
+
+        return result
     
 
 product_pricelist()

@@ -44,14 +44,17 @@ class account_invoice(osv.osv):
                 
                 sale_ids = sale_order_obj.search(cr, uid, [('invoice_ids','=',invoice.id)], context=context)
                 if len(sale_ids) > 0:   
-                    raise osv.except_osv(_('Invalid action !'), _('You can not delete an invoice linked to a sale order.'))
+                    raise osv.except_osv(_('Invalid action !'), _('You cannot delete an invoice linked to a sale order.'))
                 
                 purchase_ids = purchase_order_obj.search(cr, uid, [('invoice_ids','=',invoice.id)], context=context)
                 if len(purchase_ids) > 0:   
-                    raise osv.except_osv(_('Invalid action !'), _('You can not delete an invoice linked to a purchase order.'))
+                    raise osv.except_osv(_('Invalid action !'), _('You cannot delete an invoice linked to a purchase order.'))
 
         return res
     
 account_invoice()
+
+    
+    
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

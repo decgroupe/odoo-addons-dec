@@ -28,6 +28,31 @@ from tools.translate import _
 class stock_picking(osv.osv):
     _name = "stock.picking"
     _inherit = _name
+    
+    def _get_move_ready_state(self, cr, uid, ids, field_names=None, arg=False, context=None):
+        if not field_names:
+            field_names = []
+        if context is None:
+            context = {}
+        res = {}
+             
+        for picking in self.browse(cr, uid, ids, context=context):
+            move_count = 0
+            move_ready = 0
+            for move in picking.move_lines:
+                if move.state not in ('done','cancel'):
+                    move_count += 1
+                    if move.state in ('assigned'):
+                        move_ready += 1
+            
+            res[picking.id] =  '{0:0>2d} / {1:0>2d}'.format(move_ready, move_count)
+            
+        return res  
+    
+    _columns = {
+        'move_ready_state': fields.function(_get_move_ready_state, string='Count', type='char'),
+        'partner_address_city_id': fields.related('address_id', 'city_id', type='many2one', relation='city.city', string='City', store=True),
+    }
         
     def unlink(self, cr, uid, ids, context=None):
         if context is None:
