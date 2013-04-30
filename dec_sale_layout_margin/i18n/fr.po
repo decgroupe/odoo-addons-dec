@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-21 15:50+0000\n"
-"PO-Revision-Date: 2013-04-21 18:12+0100\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2013-04-26 14:01+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_sale_layout_margin
 #: sql_constraint:sale.order:0
@@ -90,7 +90,7 @@ msgstr "Description"
 #. module: dec_sale_layout_margin
 #: view:sale.order:0
 msgid "Command N°"
-msgstr "N° de commande"
+msgstr "Commande N°"
 
 #. module: dec_sale_layout_margin
 #: field:sale.order.line,margin_percent:0

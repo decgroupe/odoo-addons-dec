@@ -196,9 +196,7 @@ class sale_order_line(osv.osv):
         return result
     
     ## Override default one
-    def product_uom_change(self, cursor, user, ids, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, context=None):
+    def product_uom_change(self, cursor, user, ids, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False, name='', partner_id=False, lang=False, update_tax=True, date_order=False, context=None):
         if context is None:
             context = {}
         lang = lang or context.get('lang',False)
@@ -230,7 +228,10 @@ class sale_order_line(osv.osv):
 #                    res[line.id] = round((line.price_unit*line.product_uos_qty*(100.0-line.discount)/100.0) -(line.product_id.standard_price*line.product_uos_qty), 2)
         return res
     
-    def _get_sequence(self, cr, uid, context={}):
+    def _get_sequence(self, cr, uid, context=None):
+        if context is None:
+            context = {}
+            
         result = 0
         if context and 'order_id' in context:
             sale_orders = self.pool.get('sale.order').browse(cr, uid, context['order_id'])
@@ -284,7 +285,10 @@ class sale_order_line(osv.osv):
         return round(result, 2)
         
     
-    def onchange_price_unit(self, cr, uid, ids, price_unit, purchase_price, product_uos_qty, discount, context={}):
+    def onchange_price_unit(self, cr, uid, ids, price_unit, purchase_price, product_uos_qty, discount, context=None):
+        if context is None:
+            context = {}
+            
         value = {'price_unit': price_unit}
             
         new_margin = self.compute_margin(price_unit, purchase_price, product_uos_qty, discount)   
@@ -304,13 +308,19 @@ class sale_order_line(osv.osv):
         value.update({'price_subtotal': product_uos_qty * price_unit * (1 - (discount or 0.0) / 100.0)})
         return {'value': value}
     
-    def onchange_margin_percent(self, cr, uid, ids, margin_percent, price_unit, purchase_price, product_uos_qty, discount, context={}):   
+    def onchange_margin_percent(self, cr, uid, ids, margin_percent, price_unit, purchase_price, product_uos_qty, discount, context=None):   
+        if context is None:
+            context = {}
+            
         new_price_unit = purchase_price / float(1-discount/100.0) * float(1+margin_percent/100.0) 
       
         context.update({'ignore_margin_update': True});
         return self.onchange_price_unit(cr, uid, ids, new_price_unit, purchase_price, product_uos_qty, discount, context)
     
-    def onchange_markup_percent(self, cr, uid, ids, markup_percent, price_unit, purchase_price, product_uos_qty, discount, context={}):       
+    def onchange_markup_percent(self, cr, uid, ids, markup_percent, price_unit, purchase_price, product_uos_qty, discount, context=None): 
+        if context is None:
+            context = {}
+                  
         if markup_percent < 100: 
             new_price_unit = purchase_price / float(1-discount/100.0) / float(1-markup_percent/100.0) 
         else:
@@ -320,7 +330,9 @@ class sale_order_line(osv.osv):
         result = self.onchange_price_unit(cr, uid, ids, new_price_unit, purchase_price, product_uos_qty, discount, context) 
         return result
     
-    def onchange_purchase_price(self, cr, uid, ids, price_unit, purchase_price, product_uos_qty, discount, context={}):
+    def onchange_purchase_price(self, cr, uid, ids, price_unit, purchase_price, product_uos_qty, discount, context=None):
+        if context is None:
+            context = {}
         return self.onchange_price_unit(cr, uid, ids, price_unit, purchase_price, product_uos_qty, discount, context)
         
     
