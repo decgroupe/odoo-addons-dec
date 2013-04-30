@@ -29,7 +29,7 @@
                     """,
     "depends":["sale","sale_order_dates","dec_product","mrp"],
     "demo_xml":[],
-    "update_xml":["sale_layout_margin_view.xml","security/ir.model.access.csv"],
+    "update_xml":["sale_layout_margin_view.xml","security/ir.model.access.csv","reports.xml"],
     "auto_install": False,
     "installable": True
 }
