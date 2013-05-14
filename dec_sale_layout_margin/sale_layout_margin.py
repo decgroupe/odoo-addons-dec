@@ -155,7 +155,7 @@ class sale_order_line(osv.osv):
                 name = '[%s] %s' % (produit.ciel_code, produit.name) 
                 result['value'].update({'name': name})
                 
-                if produit.default_code:
+                if produit.default_code and (produit.product_tmpl_id.supply_method == 'produce'):
                     notes =  'Ref. interne: [%s]' % (produit.default_code)
                     if result['value'].has_key('notes'):
                         notes = notes + '\n' + result['value'].get('notes', '')  
