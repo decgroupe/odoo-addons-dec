@@ -128,10 +128,12 @@ class sale_order_line(osv.osv):
         return super(sale_order_line, self).write(cr, user, ids, vals, context)
 
     def copy(self, cr, uid, id, default=None, context=None):
+        res = False
         if default is None:
             default = {}
         default['layout_type'] = self.browse(cr, uid, id, context=context).layout_type
-        return super(sale_order_line, self).copy(cr, uid, id, default, context)
+        res = super(sale_order_line, self).copy(cr, uid, id, default, context)
+        return res
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False, name='', partner_id=False, lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, context=None):
         result = super(sale_order_line, self).product_id_change(cr, uid, ids, pricelist, product, qty=qty, uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id, lang=lang, update_tax=update_tax, date_order=date_order, packaging=packaging, fiscal_position=fiscal_position, flag=flag, context=context)
@@ -356,8 +358,21 @@ class sale_order(osv.osv):
     def copy(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
-        default['order_line'] = False
-        return super(sale_order, self).copy(cr, uid, id, default, context)
+        
+        so = self.browse(cr, uid, id, context=context)  
+        origin = so.origin
+        if origin:
+            origin = ('%s:%s') % (so.name, origin)
+        else:
+            origin = so.name
+        
+        default.update({
+            'order_line': False,
+            'date_order': fields.date.context_today(self,cr,uid,context=context),
+            'origin': origin,
+        })
+        res = super(sale_order, self).copy(cr, uid, id, default, context)
+        return res
 
     def _product_margin(self, cr, uid, ids, field_name, arg, context=None):
         result = {}

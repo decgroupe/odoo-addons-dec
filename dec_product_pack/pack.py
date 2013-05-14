@@ -147,7 +147,8 @@ class sale_order_line(osv.osv):
     }
     
     def create(self, cr, user, vals, context=None):
-        result = super(sale_order_line, self).create(cr, user, vals, context) 
+        result = False
+        #result = super(sale_order_line, self).create(cr, user, vals, context)  
         return result
     
     def copy_data(self, cr, uid, id, default=None, context=None):
@@ -178,6 +179,7 @@ class sale_order(osv.osv):
 
     def create(self, cr, uid, vals, context=None):
         result = super(sale_order,self).create(cr, uid, vals, context)
+        # To fix: expand is disabled to avoid pack line duplication 
         #self.expand_packs(cr, uid, [result], context)
         return result
 

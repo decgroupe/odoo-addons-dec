@@ -29,7 +29,7 @@
 !--> 
 
     <record id="sale_discount_dec_report_id" model="ir.actions.report.xml">
-        <field name="name">Devis / Cmde (Rem.) 2</field>
+        <field name="name">Devis / Cmde (Rem.) (PROTO)</field>
         <field name="type">ir.actions.report.xml</field>
         <field name="model">sale.order</field>
         <field name="report_name">service_print_sale_discount</field>
