@@ -28,6 +28,7 @@
 ##############################################################################
 
 import math
+import simplejson
 from osv import fields,osv
 
 class product_pack_sale( osv.osv ):
@@ -148,28 +149,18 @@ class sale_order_line(osv.osv):
     
     def create(self, cr, user, vals, context=None):
         result = False
-        #result = super(sale_order_line, self).create(cr, user, vals, context)  
+        result = super(sale_order_line, self).create(cr, user, vals, context)  
         return result
     
     def copy_data(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
 			
-        new_line_data = self.read(cr, uid, id, [], context=context)
-        original_order_line = self.browse(cr, uid, id, context)
-        original_order = self.pool.get('sale.order').browse(cr, uid, original_order_line.order_id.id) 
-        
-        parent_sequence = -1
-        for line in original_order.order_line:
-            if line.sequence == line['sequence'] and line.pack_parent_line_id:
-                parent_sequence = line.pack_parent_line_id.sequence 
-                
-        if parent_sequence >= 0:
-           parent_sequence = 1000 
-
-		#'product_id': new_line_data['product_id'],
-        default.update({'the_test':'YEAAAHHHHH', 'pack_parent_line_id':False, 'pack_child_line_ids':False, 'pack_depth':0})
+        default.update({'pack_child_line_ids':False, 'pack_depth':0})
         result = super(sale_order_line, self).copy_data(cr, uid, id, default, context=context) 
+        if result.get('pack_parent_line_id', False) <> False:
+            result['pack_delete'] = True
+        
         return result
     
 sale_order_line()
@@ -179,8 +170,7 @@ class sale_order(osv.osv):
 
     def create(self, cr, uid, vals, context=None):
         result = super(sale_order,self).create(cr, uid, vals, context)
-        # To fix: expand is disabled to avoid pack line duplication 
-        #self.expand_packs(cr, uid, [result], context)
+        self.expand_packs(cr, uid, [result], context)
         return result
 
     def write(self, cr, uid, ids, vals, context=None):
@@ -190,6 +180,23 @@ class sale_order(osv.osv):
     
     def copy(self, cr, uid, ids, vals, context=None):
         result = super(sale_order,self).copy(cr, uid, ids, vals, context)
+        return result
+    
+    
+    def copy_data(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+
+        result = super(sale_order, self).copy_data(cr, uid, id, default, context=context) 
+        
+        def copy_data_filter(line):
+            # line is tuple with data a position 3 tuple(0,0,{})
+            return line[2].get('pack_delete', False) 
+         
+        if result.has_key('abstract_line_ids'):  
+            # We create a list comprehension by filtering data and removing lines to delete
+            result['abstract_line_ids'] = [x for x in result['abstract_line_ids'] if not copy_data_filter(x)]
+
         return result
 
     def expand_packs(self, cr, uid, ids, context={}, depth=1):
@@ -336,9 +343,12 @@ class purchase_order_line(osv.osv):
     def copy_data(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
-
-        default.update({'pack_parent_line_id':False, 'pack_child_line_ids':False, 'pack_depth':0})
+            
+        default.update({'pack_child_line_ids':False, 'pack_depth':0})
         result = super(purchase_order_line, self).copy_data(cr, uid, id, default, context=context) 
+        if result.get('pack_parent_line_id', False) <> False:
+            result['pack_delete'] = True
+        
         return result
     
 purchase_order_line()
@@ -355,6 +365,23 @@ class purchase_order(osv.osv):
     def write(self, cr, uid, ids, vals, context=None):
         result = super(purchase_order,self).write(cr, uid, ids, vals, context)
         self.expand_packs(cr, uid, ids, context)
+        return result
+    
+    
+    def copy_data(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+
+        result = super(purchase_order, self).copy_data(cr, uid, id, default, context=context) 
+        
+        def copy_data_filter(line):
+            # line is tuple with data a position 3 tuple(0,0,{})
+            return line[2].get('pack_delete', False) 
+         
+        if result.has_key('order_line'):  
+            # We create a list comprehension by filtering data and removing lines to delete
+            result['order_line'] = [x for x in result['order_line'] if not copy_data_filter(x)]
+
         return result
 
     def expand_packs(self, cr, uid, ids, context={}, depth=1):
