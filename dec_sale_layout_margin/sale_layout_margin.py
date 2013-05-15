@@ -367,7 +367,7 @@ class sale_order(osv.osv):
             origin = so.name
         
         default.update({
-            'order_line': False,
+            'order_line': False, # all data is duplicated from abstract_line_ids
             'date_order': fields.date.context_today(self,cr,uid,context=context),
             'origin': origin,
         })
