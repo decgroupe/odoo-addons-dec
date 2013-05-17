@@ -1,73 +1,49 @@
 <?xml version="1.0"?>
 <openerp>
 	<data>
-    <record id="project2_report_id" model="ir.actions.report.xml">
-        <field name="name">Sale Quotation Report</field>
-        <field name="type">ir.actions.report.xml</field>
-        <field name="model">sale.order</field>
-        <field name="report_name">sale_quot_report_sample</field>
-        <field name="report_type">aeroo</field>
-        <field name="in_format">oo-odt</field>
-        <field name="report_rml">dec_project/report/quote.odt</field>
-        <field name="parser_state">default</field>
-        <field name="tml_source">file</field>
-    </record>
-
-    <ir_set>
-        <field eval="'action'" name="key"/>
-        <field eval="'client_print_multi'" name="key2"/>
-        <field eval="['sale.order']" name="models"/>
-        <field name="name">Sale Quotation Report</field>
-        <field eval="'ir.actions.report.xml,'+str(project2_report_id)" name="value"/>
-        <field eval="True" name="isobject"/>
-        <field eval="True" name="replace"/>
-    </ir_set>
     
-    <record id="project3_report_id" model="ir.actions.report.xml">
-        <field name="name">Worksheet</field>
+    <record id="project_timesheet_dec_report_id" model="ir.actions.report.xml">
+        <field name="name">Feuille d'intervention</field>
         <field name="type">ir.actions.report.xml</field>
         <field name="model">project.task</field>
         <field name="report_name">service_print_worksheet</field>
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-odt</field>
+        <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
         <field name="report_rml">dec_project/report/worksheet.odt</field>
         <field name="parser_state">default</field>
         <field name="tml_source">file</field>
+    </record>    
+    
+    <record id="project_timesheet_indus_dec_report_id" model="ir.actions.report.xml">
+        <field name="name">Feuille d'intervention (Indus.)</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">project.task</field>
+        <field name="report_name">service_print_worksheet_indus</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
+        <field name="report_rml">dec_project/report/worksheet_indus.odt</field>
+        <field name="parser_state">default</field>
+        <field name="tml_source">file</field>
     </record>
+    
+    
+    
 
+<!--
     <ir_set>
         <field eval="'action'" name="key"/>
         <field eval="'client_print_multi'" name="key2"/>
         <field eval="['project.task']" name="models"/>
         <field name="name">Worksheet</field>
-        <field eval="'ir.actions.report.xml,'+str(project3_report_id)" name="value"/>
+        <field eval="'ir.actions.report.xml,'+str(project_timesheet_dec_report_id)" name="value"/>
         <field eval="True" name="isobject"/>
         <field eval="True" name="replace"/>
     </ir_set>
-	
-<!--
-    <record id="project4_report_id" model="ir.actions.report.xml">
-        <field name="name">Purchase</field>
-        <field name="type">ir.actions.report.xml</field>
-        <field name="model">purchase.order</field>
-        <field name="report_name">service_print_purchase</field>
-        <field name="report_type">aeroo</field>
-        <field name="in_format">oo-odt</field>
-        <field name="report_rml">dec_project/report/purchase.odt</field>
-        <field name="parser_state">default</field>
-        <field name="tml_source">file</field>
-    </record>
+!--> 
 
-    <ir_set>
-        <field eval="'action'" name="key"/>
-        <field eval="'client_print_multi'" name="key2"/>
-        <field eval="['purchase.order']" name="models"/>
-        <field name="name">Purchase</field>
-        <field eval="'ir.actions.report.xml,'+str(project4_report_id)" name="value"/>
-        <field eval="True" name="isobject"/>
-        <field eval="True" name="replace"/>
-    </ir_set>
-!-->
+
 
 
 	</data>

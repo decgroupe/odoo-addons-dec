@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <openerp>
 	<data>
-<!--
+
 
     <record id="sale_standard_dec_report_id" model="ir.actions.report.xml">
-        <field name="name">Devis / Commande 2</field>
+        <field name="name">Devis / Commande [*]</field>
         <field name="type">ir.actions.report.xml</field>
         <field name="model">sale.order</field>
         <field name="report_name">service_print_sale_standard</field>
@@ -16,7 +16,7 @@
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
     </record>
-
+<!--
     <ir_set>
         <field name="name">Sale standard Report</field>
         <field eval="'action'" name="key"/>
@@ -29,7 +29,7 @@
 !--> 
 
     <record id="sale_discount_dec_report_id" model="ir.actions.report.xml">
-        <field name="name">Devis / Cmde (Rem.) (PROTO)</field>
+        <field name="name">Devis / Cmde (Rem.) [*]</field>
         <field name="type">ir.actions.report.xml</field>
         <field name="model">sale.order</field>
         <field name="report_name">service_print_sale_discount</field>
@@ -41,7 +41,7 @@
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
     </record>
-    
+<!--
     <ir_set>
         <field name="name">Sale discount Report</field>
         <field eval="'action'" name="key"/>
@@ -51,6 +51,8 @@
         <field eval="True" name="isobject"/>
         <field eval="True" name="replace"/>
     </ir_set>
+!--> 
+
     
 	</data>
 </openerp>
