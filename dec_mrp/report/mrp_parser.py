@@ -20,7 +20,11 @@
 ##############################################################################
 
 import time
+from datetime import datetime, timedelta
+from dateutil.rrule import *
+from dateutil.relativedelta import relativedelta
 from report import report_sxw
+from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, float_compare
 from tools.translate import _
 
 class Parser(report_sxw.rml_parse):
@@ -29,6 +33,8 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'manufacturer': self.get_manufacturer,
+            'date_procurement': self.get_date_procurement,
+            'date_shipping': self.get_date_shipping,
         })
         self.context = context
 
@@ -45,4 +51,32 @@ class Parser(report_sxw.rml_parse):
                 res = ('%s') % (categ_id.name) 
 
         return res
+        
+    def get_date_procurement(self, production):
+         
+        product = production.product_id 
+        if product.sale_delay and product.produce_delay and (product.sale_delay >= product.produce_delay):
+            working_delay = product.sale_delay-product.produce_delay 
+            if working_delay >= 5:
+                delay = working_delay*7/5
+            else:
+                delay = working_delay
+                 
+            dtstart = datetime.strptime(production.date_planned, DEFAULT_SERVER_DATETIME_FORMAT) - relativedelta(days=delay)
+            #result = list(rrule(DAILY, count=1+(working_delay or 0.0), byweekday=(MO,TU,WE,TH,FR), dtstart=dtstart))[-1] 
+            return dtstart 
+        else:
+            return production.date_planned 
+            
+         
+    def get_date_shipping(self, production):   
+        
+        product = production.product_id 
+        if product.produce_delay:
+            dtstart = datetime.strptime(production.date_planned, DEFAULT_SERVER_DATETIME_FORMAT)
+            dtshipping = list(rrule(DAILY, count=1+(product.produce_delay or 0.0), byweekday=(MO,TU,WE,TH,FR), dtstart=dtstart))[-1] 
+            return dtshipping
+        else:
+            return production.date_planned 
+        
         
