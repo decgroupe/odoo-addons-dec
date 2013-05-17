@@ -19,8 +19,30 @@
 #
 ##############################################################################
 
-import order_dec
-import mrp_parser
+import time
+from report import report_sxw
+from tools.translate import _
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class Parser(report_sxw.rml_parse):
+    def __init__(self, cr, uid, name, context):
+        super(Parser, self).__init__(cr, uid, name, context=context)
+        self.localcontext.update({
+            'time': time,
+            'manufacturer': self.get_manufacturer,
+        })
+        self.context = context
 
+    def get_manufacturer(self, product):
+        res = ''
+        categ_id = product.categ_id
+        if categ_id:
+            while categ_id.parent_id and (categ_id.parent_id.id <> 1):
+                categ_id = categ_id.parent_id
+
+            if categ_id <> product.categ_id:
+                res = ('%s - %s') % (categ_id.name, product.categ_id.name)
+            else:
+                res = ('%s') % (categ_id.name) 
+
+        return res
+        
