@@ -61,7 +61,7 @@ class product_product(osv.osv):
 
     
     _columns = {
-        'default_supplier_price': fields.function(_default_supplier_price, string='Default supplier price'),        
+        'default_supplier_price': fields.function(_default_supplier_price, string='Default supplier price'),    
     }
     
 product_product()
@@ -100,17 +100,85 @@ class product_product(osv.osv):
                 res[product.id] = False;
 
         return res
+    
+    
+    def _default_purchase_price(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        if context is None:
+            context = {}
+        
+        for product in self.browse(cr, uid, ids, context=context):     
+            if product.seller_id:
+                pricelist = product.seller_id.property_product_pricelist_purchase
+                if pricelist:
+                    pricelist_pool = self.pool.get('product.pricelist')
+                    price = pricelist_pool.price_get(cr,uid,[pricelist.id], product.id, 1.0, product.seller_id.id, {
+                            'uom': product.uom_po_id.id,
+                            'date': time.strftime('%Y-%m-%d'),
+                            })[pricelist.id]
+            else:
+                price = product.standard_price
+                
+            res[product.id] = price
 
+        return res
+    
+    def _default_sell_price(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        if context is None:
+            context = {}
+
+        pricelist_pool = self.pool.get('product.pricelist')
+        for product in self.browse(cr, uid, ids, context=context):     
+            if product.company_id and product.company_id.partner_id:
+                pricelist = product.company_id.partner_id.property_product_pricelist
+                if pricelist:
+                    price = pricelist_pool.price_get(cr,uid,[pricelist.id], product.id, 1.0, product.seller_id.id, {
+                            'uom': product.uom_po_id.id,
+                            'date': time.strftime('%Y-%m-%d'),
+                            })[pricelist.id]
+            else:
+                price = product.list_price
+                
+            res[product.id] = price
+
+        return res
     
     _columns = {
-#        'move_lines': fields.one2many('stock.move', 'product_id', 'Product moves'),
+        'default_purchase_price': fields.function(_default_purchase_price, string='Purchase price', help="Purchase price based on default seller pricelist"),   
+        'default_sell_price': fields.function(_default_sell_price, string='Sell price', help="Sell price based on default sell pricelist"),     
         'supplier_code': fields.function(_default_supplier_code, type='char', string='Supplier code', store=True),        
         'xml_id': fields.function(osv.osv.get_xml_id, type='char', size=128, string="External ID", help="ID of the view defined in xml file"),
         'create_date' : fields.datetime('Create Date', readonly=True),
         'create_uid' : fields.many2one('res.users', 'Creator', readonly=True),
         'write_date' : fields.datetime('Last Write Date', readonly=True),
         'write_uid' : fields.many2one('res.users', 'Last Writer', readonly=True),
+           
+        'pricelist_bypass': fields.boolean('By-pass', help="A bypass action will create a pricelist item to overwrite pricelist computation"),
+#        'pricelist_item_id': fields.many2one('product.pricelist.item', 'Net price item', domain="[('product_id','=',active_id)]"), 
+#        'pricelist_surcharge':  fields.related('pricelist_item_id', 'price_surcharge', type="float", string="Net price value", store=False),
+        'price_write_date' : fields.datetime('Price write date'),
+        'price_write_uid' : fields.many2one('res.users', 'Price last editor'),
     }
+    
+
+    def write(self, cr, uid, ids, vals, context=None):
+        if not vals:
+            vals= {}
+            
+        if 'standard_price' in vals:
+            vals['price_write_date'] = time.strftime('%Y-%m-%d')
+            vals['price_write_uid'] = uid
+            
+            
+        if 'pricelist_bypass' in vals:
+            if vals['pricelist_bypass']:
+                pass
+            else:
+                pass
+        
+        result = super(product_product,self).write(cr, uid, ids, vals, context)
+        return result
 
     def get_product_available_xmlrpc(self, cr, uid, ids, context=None):
         if context is None:

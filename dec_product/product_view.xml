@@ -85,12 +85,40 @@
                         <field name="purchase_ok"/>
                         <field name="create_date" groups="base.group_erp_manager"/>
                         <field name="create_uid" groups="base.group_erp_manager"/>
+                        <field name="price_write_date" groups="base.group_erp_manager"/>
+                        <field name="price_write_uid" groups="base.group_erp_manager"/>
                     </group>
                     <group colspan="1" col="1">
                         <field name="product_image" widget='image' nolabel="1"/>
                     </group> 
                    </group>
              	</xpath>
+             	
+             	
+             	
+<!--	            <field name="list_price" position="after">-->
+<!--	            	<field name="pricelist_item_id"  groups="base.group_erp_manager" />-->
+<!--	            	<field name="pricelist_surcharge" attrs="{'readonly':[('pricelist_item_id','=','False')]}" groups="base.group_erp_manager" />-->
+<!--	            </field>-->
+
+	            <field name="list_price" position="after">
+	            	<field name="pricelist_bypass"/>
+	            	<field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}" groups="base.group_erp_manager" />
+	            </field>
+	            
+	            
+	            <field name="cost_method" position="replace">
+	            	<field name="cost_method" invisible="True"/>
+	            </field>
+
+	            
+	            <field name="standard_price" position="replace">
+               		<separator string="Cost price and purchase price" colspan="2"/>
+	            	<field name="standard_price" string="Base price" />
+	            	<field name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}" groups="base.group_erp_manager" />
+	            </field>
+	            
+             	
             </field>
         </record>
         
