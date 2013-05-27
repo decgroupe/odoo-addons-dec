@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-21 15:50+0000\n"
-"PO-Revision-Date: 2013-04-26 14:01+0100\n"
+"PO-Revision-Date: 2013-05-23 13:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -209,7 +209,7 @@ msgstr ""
 #. module: dec_sale_layout_margin
 #: view:sale.order:0
 msgid "Unit sell price"
-msgstr "Prix de vente unitaire"
+msgstr "Prix de vente"
 
 #. module: dec_sale_layout_margin
 #: field:sale.order,validity_date:0
@@ -299,7 +299,7 @@ msgstr "Ligne de commande"
 #. module: dec_sale_layout_margin
 #: view:sale.order:0
 msgid "Unit cost price"
-msgstr "Coût de revient unitaire"
+msgstr "Coût de revient"
 
 #. module: dec_sale_layout_margin
 #: model:ir.model,name:dec_sale_layout_margin.model_sale_order_line

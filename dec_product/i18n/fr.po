@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:22+0000\n"
-"PO-Revision-Date: 2013-03-19 10:31+0100\n"
+"POT-Creation-Date: 2013-05-22 13:28+0000\n"
+"PO-Revision-Date: 2013-05-22 15:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,29 @@ msgstr ""
 #: view:product.product:0
 msgid "Supply"
 msgstr "Fourniture"
+
+#. module: dec_product
+#: help:product.product.extended,qty_available:0
+msgid ""
+"Current quantity of products.\n"
+"In a context with a single Stock Location, this includes goods stored at "
+"this Location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"In a context with a single Shop, this includes goods stored in the Stock "
+"Location of the Warehouse of this Shop, or any of its children.\n"
+"Otherwise, this includes goods stored in any Stock Location typed as "
+"'internal'."
+msgstr ""
+"Quantité de produits\n"
+"Dans le contexte d'un emplacement de stock, cela comprend les marchandises "
+"stockées dans cet emplacement ou ses enfants.\n"
+"Dans le contexte d'un entrepôt, cela comprend les marchandises stockées dans "
+"l'emplacement de stock de cet entrepôt, ou ses enfants.\n"
+"Dans le contexte d'un magasin, cela comprend les marchandises stockées dans "
+"l'emplacement de stock de l'entrepôt de ce magasin, ou ses enfants.\n"
+"Dans les autres cas, cela comprend les marchandises de tous les emplacements "
+"de stock de type \"interne\""
 
 #. module: dec_product
 #: help:product.product.extended,valuation:0
@@ -48,24 +71,30 @@ msgid "Track Outgoing Lots"
 msgstr "Suivre les lots sortants"
 
 #. module: dec_product
-#: view:product.product:0
-msgid "Warehouse..."
-msgstr "Entrepôt..."
+#: code:addons/dec_product/product.py:205
+#, python-format
+msgid "You need one sale pricelist version to use by-pass functionnality"
+msgstr ""
+"Vous devez avoir une liste de prix de vente pour utiliser les "
+"fonctionnalités du by-pass."
 
 #. module: dec_product
-#: field:product.product.extended,location_id:0
-msgid "Location"
-msgstr "Emplacement"
+#: help:product.product,default_purchase_price:0
+msgid "Purchase price based on default seller pricelist"
+msgstr "Prix d'achat basé sur la liste de prix du founisseur par défaut"
+
+#. module: dec_product
+#: constraint:product.template:0
+msgid ""
+"Error: The default UOM and the purchase UOM must be in the same category."
+msgstr ""
+"Erreur: l'UdM par défaut et l'UdM d'achat doivent appartenir à la même "
+"catégorie."
 
 #. module: dec_product
 #: field:product.product.extended,comments:0
 msgid "Comments"
 msgstr "Commentaires"
-
-#. module: dec_product
-#: selection:product.product,state:0
-msgid "Obsolete"
-msgstr "Obsolète"
 
 #. module: dec_product
 #: field:product.product.extended,valuation:0
@@ -112,6 +141,11 @@ msgid "Warehouse"
 msgstr "Entrepôt"
 
 #. module: dec_product
+#: field:product.product.extended,incoming_qty:0
+msgid "Incoming"
+msgstr "Entrée"
+
+#. module: dec_product
 #: field:product.product.extended,packaging:0
 msgid "Logistical Units"
 msgstr "Unités logistique"
@@ -120,11 +154,6 @@ msgstr "Unités logistique"
 #: selection:product.product.extended,valuation:0
 msgid "Real Time (automated)"
 msgstr "Temps réel (automatisé)"
-
-#. module: dec_product
-#: field:product.product,state:0
-msgid "Status"
-msgstr "Status"
 
 #. module: dec_product
 #: help:product.product.extended,track_production:0
@@ -136,14 +165,15 @@ msgstr ""
 "concernant ce produit et générés par un ordre de fabrication."
 
 #. module: dec_product
-#: field:product.product.extended,outgoing_qty:0
-msgid "Outgoing"
-msgstr "Sortie"
+#: view:product.product:0
+msgid "Base price"
+msgstr "Prix de base"
 
 #. module: dec_product
-#: model:ir.model,name:dec_product.model_product_category
-msgid "Product Category"
-msgstr "Catégorie de produits"
+#: model:ir.model,name:dec_product.model_product_product
+#: model:ir.model,name:dec_product.model_product_product_extended
+msgid "Product"
+msgstr "Produit"
 
 #. module: dec_product
 #: field:product.product.extended,price_margin:0
@@ -156,9 +186,9 @@ msgid "Last Writer"
 msgstr "Modifié par"
 
 #. module: dec_product
-#: selection:product.product,state:0
-msgid "Normal"
-msgstr "Normal"
+#: field:product.product.extended,tagging_ids:0
+msgid "Tags"
+msgstr "Tags"
 
 #. module: dec_product
 #: field:product.product.extended,lst_price:0
@@ -181,9 +211,14 @@ msgid "Procure"
 msgstr "Appro."
 
 #. module: dec_product
-#: help:product.product,state:0
-msgid "Tells the user if he can use the product or not."
-msgstr "Indique à l'utilisateur s'il peut utiliser le produit ou pas."
+#: help:product.product,default_sell_price:0
+msgid "Sell price based on default sell pricelist"
+msgstr "Prix de vente basé sur la liste de prix par défaut"
+
+#. module: dec_product
+#: field:product.product,price_write_uid:0
+msgid "Price last editor"
+msgstr "Dernière edtion du prix"
 
 #. module: dec_product
 #: help:product.product.extended,outgoing_qty:0
@@ -219,6 +254,11 @@ msgid "Quantity On Hand"
 msgstr "Quantité en stock"
 
 #. module: dec_product
+#: view:product.product:0
+msgid "Warehouse..."
+msgstr "Entrepôt..."
+
+#. module: dec_product
 #: field:product.product.extended,active:0
 msgid "Active"
 msgstr "Actif"
@@ -231,7 +271,13 @@ msgstr "Règle de stock minimum"
 #. module: dec_product
 #: field:product.product.extended,virtual_available:0
 msgid "Quantity Available"
-msgstr "Quantity Available"
+msgstr "Quantité disponible"
+
+#. module: dec_product
+#: code:addons/dec_product/product.py:192
+#, python-format
+msgid "Too many pricelist version!"
+msgstr "Trop de version de liste de prix!"
 
 #. module: dec_product
 #: field:product.product.extended,track_incoming:0
@@ -262,37 +308,15 @@ msgstr ""
 "emplacements de stock de type \"interne\"."
 
 #. module: dec_product
-#: help:product.product.extended,qty_available:0
-msgid ""
-"Current quantity of products.\n"
-"In a context with a single Stock Location, this includes goods stored at "
-"this Location, or any of its children.\n"
-"In a context with a single Warehouse, this includes goods stored in the "
-"Stock Location of this Warehouse, or any of its children.\n"
-"In a context with a single Shop, this includes goods stored in the Stock "
-"Location of the Warehouse of this Shop, or any of its children.\n"
-"Otherwise, this includes goods stored in any Stock Location typed as "
-"'internal'."
-msgstr ""
-"Quantité de produits\n"
-"Dans le contexte d'un emplacement de stock, cela comprend les marchandises "
-"stockées dans cet emplacement ou ses enfants.\n"
-"Dans le contexte d'un entrepôt, cela comprend les marchandises stockées dans "
-"l'emplacement de stock de cet entrepôt, ou ses enfants.\n"
-"Dans le contexte d'un magasin, cela comprend les marchandises stockées dans "
-"l'emplacement de stock de l'entrepôt de ce magasin, ou ses enfants.\n"
-"Dans les autres cas, cela comprend les marchandises de tous les emplacements "
-"de stock de type \"interne\""
+#: code:addons/dec_product/product.py:196
+#, python-format
+msgid "BY-PASS [%s] %s"
+msgstr "BY-PASS [%s] %s"
 
 #. module: dec_product
-#: field:product.product.extended,tagging_ids:0
-msgid "Tags"
-msgstr "Tags"
-
-#. module: dec_product
-#: field:product.product.extended,incoming_qty:0
-msgid "Incoming"
-msgstr "Entrée"
+#: field:product.product,pricelist_bypass:0
+msgid "By-pass"
+msgstr "By-pass"
 
 #. module: dec_product
 #: view:product.product:0 field:product.product.extended,name_template:0
@@ -305,11 +329,6 @@ msgid "EAN13"
 msgstr "EAN13"
 
 #. module: dec_product
-#: selection:product.product,state:0
-msgid "In Development"
-msgstr "En développement"
-
-#. module: dec_product
 #: help:product.product.extended,track_incoming:0
 msgid ""
 "Forces to specify a Production Lot for all moves containing this product and "
@@ -319,10 +338,19 @@ msgstr ""
 "produit lorsqu'il vient d'un emplacement fournisseur"
 
 #. module: dec_product
-#: model:ir.model,name:dec_product.model_product_product
-#: model:ir.model,name:dec_product.model_product_product_extended
-msgid "Product"
-msgstr "Produit"
+#: field:product.product,default_purchase_price:0
+msgid "Purchase price"
+msgstr "Prix acheté"
+
+#. module: dec_product
+#: field:product.product.extended,outgoing_qty:0
+msgid "Outgoing"
+msgstr "Sortie"
+
+#. module: dec_product
+#: view:product.product:0
+msgid "Cost price and purchase price"
+msgstr "Coût de revient et prix d'achat"
 
 #. module: dec_product
 #: field:product.product.extended,project_id:0
@@ -330,9 +358,20 @@ msgid "Project"
 msgstr "Projet"
 
 #. module: dec_product
+#: model:ir.model,name:dec_product.model_product_template
 #: field:product.product.extended,product_tmpl_id:0
 msgid "Product Template"
 msgstr "Modèle de produit"
+
+#. module: dec_product
+#: field:product.product.extended,location_id:0
+msgid "Location"
+msgstr "Emplacement"
+
+#. module: dec_product
+#: model:ir.model,name:dec_product.model_product_category
+msgid "Product Category"
+msgstr "Catégorie de produits"
 
 #. module: dec_product
 #: view:product.product:0
@@ -343,6 +382,16 @@ msgstr "Produits"
 #: field:product.product.extended,price_extra:0
 msgid "Variant Price Extra"
 msgstr "Supplément prix de la variante"
+
+#. module: dec_product
+#: code:addons/dec_product/product.py:208
+#, python-format
+msgid ""
+"Only one sale pricelist item must exists for this product to disable by-pass "
+"functionnality"
+msgstr ""
+"Seul une règle de de prix doit exister poru ce produit pour désactiver le by-"
+"pass"
 
 #. module: dec_product
 #: help:product.product.extended,track_outgoing:0
@@ -359,11 +408,6 @@ msgid "Supplier code"
 msgstr "Code fournisseur"
 
 #. module: dec_product
-#: selection:product.product,state:0
-msgid "Need review"
-msgstr "A réviser"
-
-#. module: dec_product
 #: model:ir.model,name:dec_product.model_product_pricelist
 #: field:product.product.extended,price:0
 #: field:product.product.extended,pricelist_id:0
@@ -371,9 +415,9 @@ msgid "Pricelist"
 msgstr "Liste de prix"
 
 #. module: dec_product
-#: selection:product.product,state:0
-msgid "End of Lifecycle"
-msgstr "Fin de vie"
+#: field:product.product,price_write_date:0
+msgid "Price write date"
+msgstr "Date d'édition du prix"
 
 #. module: dec_product
 #: help:product.product.extended,packaging:0
@@ -446,7 +490,18 @@ msgstr "Décocher le champ \"Actif\" cache le produit sans le supprimer."
 #. module: dec_product
 #: selection:product.product.extended,valuation:0
 msgid "Periodical (manual)"
-msgstr "Periodique (manuell)"
+msgstr "Periodique (manuel)"
+
+#. module: dec_product
+#: field:product.product,default_sell_price:0
+msgid "Sell price"
+msgstr "Prix vendu"
+
+#. module: dec_product
+#: code:addons/dec_product/product.py:205
+#, python-format
+msgid "No pricelist version!"
+msgstr "Pas de version pour cette liste de prix!"
 
 #. module: dec_product
 #: constraint:product.product:0 constraint:product.product.extended:0
@@ -454,9 +509,31 @@ msgid "Error: Invalid ean code"
 msgstr "Erreur: code EAN invalide"
 
 #. module: dec_product
+#: code:addons/dec_product/product.py:192
+#, python-format
+msgid ""
+"Only one sale pricelist version must exists to use by-pass functionnality"
+msgstr ""
+"Seul une version de liste de prix doit exister pour utiliser le by-pass"
+
+#. module: dec_product
 #: view:product.product:0
 msgid "UoM"
 msgstr "UdM"
+
+#. module: dec_product
+#: help:product.product,pricelist_bypass:0
+msgid ""
+"A bypass action will create a pricelist item to overwrite pricelist "
+"computation"
+msgstr ""
+"Un bypass va créer une règle de prix net prioritaire sur les dérogations"
+
+#. module: dec_product
+#: code:addons/dec_product/product.py:208
+#, python-format
+msgid "Too many pricelist item for this product!"
+msgstr "Trop de règles de prix pour ce produit!"
 
 #. module: dec_product
 #: field:product.product.extended,product_image:0

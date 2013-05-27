@@ -61,7 +61,7 @@ class city(osv.osv):
         'state_id': fields.many2one('res.country.state', 'State', domain="[('country_id','=',country_id)]", select=1),
         'name': fields.char('City', size=64, required=True, select=1),
         'zip': fields.char('ZIP', size=64, required=True, select=1),
-        'country_id': fields.many2one('res.country', 'Country', select=1),
+        'country_id': fields.many2one('res.country', 'Country', required=True , select=1),
         'code': fields.char('City Code', size=64, help="The official code for the city"),
     }
     

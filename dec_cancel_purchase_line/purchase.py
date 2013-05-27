@@ -30,7 +30,7 @@ class purchase_order_line(Model):
 
     _columns = {
         'origin_procurement_order_id': fields.many2one('procurement.order', 'Procurement'),         
-        'merge_origin': fields.char('Merge source', size=64),
+        'merge_origin': fields.char('Merge source', size=512),
     }
 
     def unlink(self, cr, uid, ids, context=None):

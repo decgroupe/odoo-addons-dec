@@ -103,7 +103,7 @@
 
 	            <field name="list_price" position="after">
 	            	<field name="pricelist_bypass"/>
-	            	<field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}" groups="base.group_erp_manager" />
+	            	<field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}" />
 	            </field>
 	            
 	            
@@ -115,7 +115,7 @@
 	            <field name="standard_price" position="replace">
                		<separator string="Cost price and purchase price" colspan="2"/>
 	            	<field name="standard_price" string="Base price" />
-	            	<field name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}" groups="base.group_erp_manager" />
+	            	<field name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}" />
 	            </field>
 	            
              	

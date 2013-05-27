@@ -20,9 +20,11 @@
 ##############################################################################
 
 import time
+import decimal_precision as dp
 
 from osv import fields
 from osv import osv
+from tools.translate import _
 
 class product_category(osv.osv):
 
@@ -42,6 +44,7 @@ class product_product(osv.osv):
         res = {}
         if context is None:
             context = {}
+
         
         for product in self.browse(cr, uid, ids, context=context):     
             if product.seller_id:
@@ -81,6 +84,7 @@ class product_template(osv.osv):
     
     _columns = {
         'state': fields.selection(PRODUCT_STATE, 'Status', help="Tells the user if he can use the product or not."),
+#        'standard_price': fields.float('Base Price', required=True, digits_compute=dp.get_precision('Purchase Price'), help="-Produce: Cost price\n-Buy: Public Price "),
     }
 
 class product_product(osv.osv):
@@ -105,7 +109,17 @@ class product_product(osv.osv):
     def _default_purchase_price(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         if context is None:
-            context = {}
+            context = {}            
+            
+#        
+#        supplierinfo_pool = self.pool.get('product.supplierinfo')
+#        products_seller = self.read(cr, uid, ids, ['seller_id'], context=context)   #list: [{'seller_id': (2260, u'Avenplast'), 'id': 198592}]
+#            
+#        supplier_ids = [rec['seller_id'][0] for rec in products_seller]
+#        suppliers = supplierinfo_pool.read(cr, uid, ids, ['property_product_pricelist_purchase'], context=context)
+#            
+#        
+
         
         for product in self.browse(cr, uid, ids, context=context):     
             if product.seller_id:
@@ -145,8 +159,8 @@ class product_product(osv.osv):
         return res
     
     _columns = {
-        'default_purchase_price': fields.function(_default_purchase_price, string='Purchase price', help="Purchase price based on default seller pricelist"),   
-        'default_sell_price': fields.function(_default_sell_price, string='Sell price', help="Sell price based on default sell pricelist"),     
+        'default_purchase_price': fields.function(_default_purchase_price, string='Purchase price', digits_compute=dp.get_precision('Purchase Price'), help="Purchase price based on default seller pricelist"),   
+        'default_sell_price': fields.function(_default_sell_price, string='Sell price', digits_compute=dp.get_precision('Sale Price'), help="Sell price based on default sell pricelist"),     
         'supplier_code': fields.function(_default_supplier_code, type='char', string='Supplier code', store=True),        
         'xml_id': fields.function(osv.osv.get_xml_id, type='char', size=128, string="External ID", help="ID of the view defined in xml file"),
         'create_date' : fields.datetime('Create Date', readonly=True),
@@ -154,6 +168,7 @@ class product_product(osv.osv):
         'write_date' : fields.datetime('Last Write Date', readonly=True),
         'write_uid' : fields.many2one('res.users', 'Last Writer', readonly=True),
            
+        'shipping_cost': fields.float('Shipping cost', digits_compute=dp.get_precision('Sale Price'), help="Shipping cost, only used manually to compute sell price"), 
         'pricelist_bypass': fields.boolean('By-pass', help="A bypass action will create a pricelist item to overwrite pricelist computation"),
 #        'pricelist_item_id': fields.many2one('product.pricelist.item', 'Net price item', domain="[('product_id','=',active_id)]"), 
 #        'pricelist_surcharge':  fields.related('pricelist_item_id', 'price_surcharge', type="float", string="Net price value", store=False),
@@ -163,20 +178,49 @@ class product_product(osv.osv):
     
 
     def write(self, cr, uid, ids, vals, context=None):
+        if isinstance(ids, (int, long)):
+          ids = [ids]
+          
         if not vals:
             vals= {}
+            
+        date = time.strftime('%Y-%m-%d')
+        pricelist_pool = self.pool.get('product.pricelist')
+        pricelist_version = self.pool.get('product.pricelist.version')
+        pricelist_item = self.pool.get('product.pricelist.item')
             
         if 'standard_price' in vals:
             vals['price_write_date'] = time.strftime('%Y-%m-%d')
             vals['price_write_uid'] = uid
+
+        for product in self.browse(cr, uid, ids, context):    
+            if 'pricelist_bypass' in vals:
+                pricelist_ids = pricelist_pool.search(cr, uid, [('type','=','sale')])
+                pricelist_version_ids = pricelist_version.search(cr, uid, [('pricelist_id', 'in', pricelist_ids), '|', ('date_start', '=', False), ('date_start', '<=', date), '|', ('date_end', '=', False), ('date_end', '>=', date), ])
+                pricelist_item_ids = pricelist_item.search(cr, uid, [('product_id','=', product.id),('price_version_id','in',pricelist_version_ids)])
             
+                if vals['pricelist_bypass']:
+                    if len(pricelist_version_ids) > 1:
+                        raise osv.except_osv(_('Too many pricelist version!'),_("Only one sale pricelist version must exists to use by-pass functionnality"))
+                    elif pricelist_version_ids:
+                        if not pricelist_item_ids:
+                            data = {
+                                'name': (_('BY-PASS [%s] %s')) % (product.default_code, product.name),
+                                'price_version_id': pricelist_version_ids[0],
+                                'product_id': product.id,
+                                'base': 1,
+                                'sequence': 4,
+                                'company_id': product.company_id.id,
+                            }
+                            pricelist_item_id = pricelist_item.create(cr, uid, data, context=context)
+                    else:
+                        raise osv.except_osv(_('No pricelist version!'),_("You need one sale pricelist version to use by-pass functionnality"))
+                else:
+                    if len(pricelist_item_ids) > 1:
+                        raise osv.except_osv(_('Too many pricelist item for this product!'),_("Only one sale pricelist item must exists for this product to disable by-pass functionnality"))
+                    elif pricelist_item_ids:
+                        pricelist_item.unlink(cr, uid, pricelist_item_ids, context=context)
             
-        if 'pricelist_bypass' in vals:
-            if vals['pricelist_bypass']:
-                pass
-            else:
-                pass
-        
         result = super(product_product,self).write(cr, uid, ids, vals, context)
         return result
 
