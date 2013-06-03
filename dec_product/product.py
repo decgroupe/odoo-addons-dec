@@ -170,6 +170,7 @@ class product_product(osv.osv):
            
         'shipping_cost': fields.float('Shipping cost', digits_compute=dp.get_precision('Sale Price'), help="Shipping cost, only used manually to compute sell price"), 
         'pricelist_bypass': fields.boolean('By-pass', help="A bypass action will create a pricelist item to overwrite pricelist computation"),
+        'market_place': fields.boolean('Market place', help="Tip to know if the product must be displayed on the market place"),
 #        'pricelist_item_id': fields.many2one('product.pricelist.item', 'Net price item', domain="[('product_id','=',active_id)]"), 
 #        'pricelist_surcharge':  fields.related('pricelist_item_id', 'price_surcharge', type="float", string="Net price value", store=False),
         'price_write_date' : fields.datetime('Price write date'),
