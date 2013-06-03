@@ -13,6 +13,7 @@
         <field name="report_rml">dec_project/report/worksheet.odt</field>
         <field name="parser_state">default</field>
         <field name="tml_source">file</field>
+        <field name="process_sep">True</field>
     </record>    
     
     <record id="project_timesheet_indus_dec_report_id" model="ir.actions.report.xml">
@@ -26,6 +27,7 @@
         <field name="report_rml">dec_project/report/worksheet_indus.odt</field>
         <field name="parser_state">default</field>
         <field name="tml_source">file</field>
+        <field name="process_sep">True</field>
     </record>
     
     

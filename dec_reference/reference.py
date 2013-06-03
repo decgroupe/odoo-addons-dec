@@ -69,7 +69,7 @@ class ref_category(osv.osv):
 
     _name = 'ref.category'
     _description = 'Category'
-    _rec_name = 'code'
+    _rec_name = 'name'
 
     _columns = {     
         'code': fields.char('Code', size=3, required=True),
@@ -88,6 +88,21 @@ class ref_category(osv.osv):
 
 
     _order = 'code'
+    
+    def name_get(self, cr, user, ids, context=None):
+        if isinstance(ids, (int, long)):
+            ids = [ids]           
+        if context is None:
+            context = {}
+        if not len(ids):
+            return []
+        
+        result = []
+        for category in self.browse(cr, user, ids, context=context):
+            name =  ('%s: %s') % (category.code, category.name) 
+            result.append((category.id, name))
+
+        return result
 
 ref_category()
 
@@ -167,6 +182,7 @@ class ref_reference(osv.osv):
         'category': fields.many2one('ref.category', 'Category', required=True),
         'product': fields.many2one('product.product', 'Product', required=True),
         'product_ciel_code': fields.related('product', 'ciel_code', type='char', string='Ciel'),
+        'product_ciel_code2': fields.related('product', 'ciel_code', type='char', string='Ciel', store={}),
         'product_name': fields.related('product', 'name', type='char', string='Name'),
         'product_state': fields.related('product', 'state', type='selection', string='Status'),
         'product_comments': fields.related('product', 'comments', type='text', string='Comments'),

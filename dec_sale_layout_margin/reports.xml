@@ -15,6 +15,7 @@
         <field name="report_rml">dec_sale_layout_margin/report/sale_standard.odt</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
+        <field name="process_sep">True</field>
     </record>
 <!--
     <ir_set>
@@ -40,6 +41,7 @@
         <field name="report_rml">dec_sale_layout_margin/report/sale_discount.odt</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
+        <field name="process_sep">True</field>
     </record>
 <!--
     <ir_set>

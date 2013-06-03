@@ -14,6 +14,7 @@
         <field name="report_rml">dec_purchase/report/purchase_quotation.odt</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
+        <field name="process_sep">True</field>
     </record>
 
     <ir_set>
@@ -38,6 +39,7 @@
         <field name="report_rml">dec_purchase/report/purchase_report.odt</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
+        <field name="process_sep">True</field>
     </record>
     
     <ir_set>

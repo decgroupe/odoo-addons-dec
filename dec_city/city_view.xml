@@ -132,14 +132,14 @@
      </record>
 
     <record model="ir.actions.act_window" id="action_city">
-        <field name="name">City</field>
+        <field name="name">Cities</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">city.city</field>
         <field name="view_type">form</field>
         <field name="search_view_id" ref="city_search_view"/>
     </record>
 
-    <menuitem name="Cities" groups="base.group_system" action="action_city" parent="base.menu_localisation" id="menu_city_partner"/>
+    <menuitem groups="base.group_system" action="action_city" parent="base.menu_localisation" id="menu_city_partner1" sequence="30"/>
 
     </data>
 </openerp>
