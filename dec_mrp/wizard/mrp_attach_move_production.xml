@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+		<record id="view_mrp_attach_move_production_wizard" model="ir.ui.view">
+            <field name="name">Attach production move out</field>
+            <field name="model">mrp.attach.move.production</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="">
+                	<group col="4" colspan="4">
+					    <field name="production_id" />
+					    <field name="product_id"/>
+					    <field name="move_id" colspan="4" on_change="onchange_move_id(picking_id, move_id)" domain="[('product_id','=',product_id),('state','=','confirmed'),('location_dest_id.usage','=','customer')]" options='{"quick_create": false}'/>
+				    </group>
+				    <newline/>
+                	<separator string="" colspan="4" />
+                	<label string="" colspan="2" />
+                	<group col="2" colspan="1">
+                		<button icon='gtk-stop' special="cancel" string="Cancel" />
+                		<button name="do_attach" string="Confirm" colspan="1" type="object" icon="gtk-ok" />
+                	</group>
+                </form>
+            </field>
+        </record>
+   	
+        <record id="act_mrp_attach_move_production" model="ir.actions.act_window">
+            <field name="name">Link production to move out</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.attach.move.production</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>    
+        
+	</data>
+</openerp>	

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-22 08:24+0000\n"
-"PO-Revision-Date: 2013-04-22 10:32+0100\n"
+"POT-Creation-Date: 2013-06-12 14:14+0000\n"
+"PO-Revision-Date: 2013-06-12 16:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -61,6 +61,11 @@ msgid "Supplier"
 msgstr "Fournisseur"
 
 #. module: dec_mrp
+#: report:mrp.production.order.dec:0
+msgid "Products to Consume"
+msgstr "Produits à consommer"
+
+#. module: dec_mrp
 #: field:mrp.production,move_all_dst_ids:0
 msgid "Products OUT"
 msgstr "Produits (SORTIE)"
@@ -85,6 +90,11 @@ msgstr ""
 
 #. module: dec_mrp
 #: view:mrp.production:0
+msgid "Consume Products"
+msgstr "Produits consommés"
+
+#. module: dec_mrp
+#: view:mrp.production:0
 msgid "Late (Future)"
 msgstr "En retard (futur)"
 
@@ -103,6 +113,12 @@ msgstr "Par appro. (commande ???)"
 #: field:stock.move,status_received:0
 msgid "Received"
 msgstr "Réceptionné"
+
+#. module: dec_mrp
+#: model:ir.actions.act_window,name:dec_mrp.act_mrp_attach_move_production
+#: model:ir.model,name:dec_mrp.model_mrp_attach_move_production
+msgid "Link production to move out"
+msgstr "Lier une production à une sortie de stock (vers client)"
 
 #. module: dec_mrp
 #: model:ir.model,name:dec_mrp.model_mrp_bom
@@ -166,7 +182,7 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/mrp.py:189
+#: code:addons/dec_mrp/mrp.py:189 code:addons/dec_mrp/mrp.py:224
 #, python-format
 msgid "On procurement ???"
 msgstr "Par appro. ???"
@@ -192,9 +208,9 @@ msgid "From"
 msgstr "De"
 
 #. module: dec_mrp
-#: view:mrp.product.produce.dec:0
+#: view:mrp.attach.move.production:0 view:mrp.product.produce.dec:0
 msgid "Confirm"
-msgstr "Confirm"
+msgstr "Confirmer"
 
 #. module: dec_mrp
 #: constraint:mrp.bom:0
@@ -235,6 +251,14 @@ msgstr "Consommer seulement"
 #: report:mrp.production.order.dec:0
 msgid "Production Order N° :"
 msgstr "Ordre de Production N° :"
+
+#. module: dec_mrp
+#: code:addons/dec_mrp/wizard/mrp_attach_move_production.py:92
+#: code:addons/dec_mrp/wizard/mrp_attach_move_production.py:107
+#: code:addons/dec_mrp/wizard/mrp_attach_move_production.py:109
+#, python-format
+msgid "Error !"
+msgstr "Erreur !"
 
 #. module: dec_mrp
 #: model:ir.model,name:dec_mrp.model_mrp_production_product_line
@@ -307,9 +331,9 @@ msgid "Not enough stock"
 msgstr "Pas assez de stock"
 
 #. module: dec_mrp
-#: field:mrp.production,picked_rate:0
-msgid "Picked"
-msgstr "Réceptionné"
+#: view:mrp.production:0
+msgid "Finished Manufacturing Orders."
+msgstr "Ordres de production terminés."
 
 #. module: dec_mrp
 #: code:addons/dec_mrp/mrp.py:155 code:addons/dec_mrp/report/order_dec.py:121
@@ -330,7 +354,7 @@ msgstr "Mouvements"
 #. module: dec_mrp
 #: view:mrp.production:0
 msgid "Create testing task"
-msgstr "Créer une tâche de test (BE)"
+msgstr "Créer un tâche de test (BE)"
 
 #. module: dec_mrp
 #: view:mrp.production:0
@@ -391,6 +415,11 @@ msgid "Not dedicated"
 msgstr "Réservé (mais peut être non dispo.)"
 
 #. module: dec_mrp
+#: view:mrp.production:0
+msgid "Attach to an existing picking order"
+msgstr "Rattacher à un bon de livraison existant"
+
+#. module: dec_mrp
 #: code:addons/dec_mrp/mrp.py:203 code:addons/dec_mrp/report/order_dec.py:161
 #, python-format
 msgid "On order (purchase in progress)"
@@ -400,6 +429,11 @@ msgstr "Sur commande (commande en cours)"
 #: field:stock.move,status_status:0
 msgid "Status"
 msgstr "Statut"
+
+#. module: dec_mrp
+#: model:ir.actions.report.xml,name:dec_mrp.mrp_dec_report_id
+msgid "Ordre de production(PROTO)"
+msgstr "Ordre de production(PROTO)"
 
 #. module: dec_mrp
 #: constraint:stock.move:0
@@ -485,7 +519,7 @@ msgid "Assigned to"
 msgstr "Assigné à"
 
 #. module: dec_mrp
-#: view:mrp.production:0
+#: field:mrp.attach.move.production,production_id:0 view:mrp.production:0
 msgid "Production order"
 msgstr "Ordre de production"
 
@@ -515,7 +549,8 @@ msgid "Productions"
 msgstr "Productions"
 
 #. module: dec_mrp
-#: view:mrp.product.produce.dec:0 view:mrp.production:0
+#: view:mrp.attach.move.production:0 view:mrp.product.produce.dec:0
+#: view:mrp.production:0
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -537,6 +572,12 @@ msgid "City"
 msgstr "Ville"
 
 #. module: dec_mrp
+#: code:addons/dec_mrp/wizard/mrp_attach_move_production.py:92
+#, python-format
+msgid "This move is already assigned."
+msgstr "Ce mouvement de stock est déjà assigné."
+
+#. module: dec_mrp
 #: constraint:stock.move:0
 msgid "You must assign a production lot for this product"
 msgstr "Vous devez affecter un lot de fabrication à ce produit."
@@ -547,7 +588,7 @@ msgid "Late"
 msgstr "En retard"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/mrp.py:224 code:addons/dec_mrp/report/order_dec.py:182
+#: code:addons/dec_mrp/report/order_dec.py:182
 #, python-format
 msgid "On procurement: ???"
 msgstr "Par appro. ???"
@@ -561,7 +602,7 @@ msgstr "Ordre de fabrication"
 #: code:addons/dec_mrp/mrp.py:549
 #, python-format
 msgid "Testing [%s] %s"
-msgstr "Test [%s] %s"
+msgstr "Test de [%s] %s"
 
 #. module: dec_mrp
 #: view:mrp.production:0 report:mrp.production.order.dec:0
@@ -569,7 +610,8 @@ msgid "Scheduled Date"
 msgstr "Date planifiée"
 
 #. module: dec_mrp
-#: view:mrp.production:0 report:mrp.production.order.dec:0
+#: field:mrp.attach.move.production,product_id:0 view:mrp.production:0
+#: report:mrp.production.order.dec:0
 msgid "Product"
 msgstr "Produit"
 
@@ -595,8 +637,8 @@ msgstr "Nomenclature des Matériaux"
 
 #. module: dec_mrp
 #: view:mrp.production:0
-msgid "Consume Products"
-msgstr "Produits consommés"
+msgid "Finished"
+msgstr "Terminé"
 
 #. module: dec_mrp
 #: model:ir.actions.act_window,name:dec_mrp.act_mrp_product_produce_dec
@@ -618,6 +660,12 @@ msgstr "Date demandée"
 #: help:mrp.production.workcenter.line,working_date:0
 msgid "Date on which the work is done."
 msgstr "Date à laquelle l'opération est réalisée."
+
+#. module: dec_mrp
+#: code:addons/dec_mrp/wizard/mrp_attach_move_production.py:109
+#, python-format
+msgid "You must select a production order."
+msgstr "Vous devez sélectionner un ordre de production."
 
 #. module: dec_mrp
 #: report:mrp.production.order.dec:0
@@ -650,14 +698,25 @@ msgid "Mode"
 msgstr "Mode"
 
 #. module: dec_mrp
+#: field:mrp.attach.move.production,move_id:0
+msgid "Product move"
+msgstr "Mouvement de produit"
+
+#. module: dec_mrp
+#: code:addons/dec_mrp/wizard/mrp_attach_move_production.py:107
+#, python-format
+msgid "You must select a move."
+msgstr "Vous devez sélectionner un mouvement de stock."
+
+#. module: dec_mrp
 #: field:mrp.production,view_name:0
 msgid "View name"
-msgstr "Nom de vue"
+msgstr "View name"
 
 #. module: dec_mrp
 #: report:mrp.production.order.dec:0
 msgid "Sequence"
-msgstr "Séquence"
+msgstr "Sequence"
 
 #. module: dec_mrp
 #: view:mrp.production:0
@@ -665,9 +724,9 @@ msgid "Please confirm task creation, are you sure ?"
 msgstr "Merci de confirmer la création d'une tâche, êtes vous sûre ?"
 
 #. module: dec_mrp
-#: report:mrp.production.order.dec:0
-msgid "Products to Consume"
-msgstr "Produits à consommer"
+#: field:mrp.production,picked_rate:0
+msgid "Picked"
+msgstr "Réceptionné"
 
 #. module: dec_mrp
 #: field:mrp.production,duration:0

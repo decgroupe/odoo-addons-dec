@@ -35,6 +35,7 @@
         'security/mrp_security.xml',
         'security/ir.model.access.csv',
         'wizard/mrp_product_produce_view.xml',
+        'wizard/mrp_attach_move_production.xml',
         'mrp_view.xml',
         'mrp_report.xml',
 

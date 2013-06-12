@@ -45,13 +45,19 @@
                            domain="[('state','=','draft')]"
                            help="New Manufacturing Orders ready to be validate."/>
              	</xpath>      
-                           
+             	
+                <xpath expr="/search/group/filter[@name='inprogress']" position="after">
+                       <filter icon="STOCK_CLOSE" string="Finished" name="finished"
+                           domain="[('state','=','done')]"
+                           help="Finished Manufacturing Orders."/>
+             	</xpath>      
+            
              	<xpath expr="/search/group/filter[@string='Late']" position="after">
                        <filter icon="terp-gnome-cpu-frequency-applet+" string="Late (Future)"
                            domain="['&amp;', ('late','=', True), ('state', 'in', ('draft', 'confirmed', 'ready'))]"
                            help="Production will start late as planned" />
              	</xpath>
-             	
+
              	
                 <field name="routing_id" position="replace">
                 	<field name="assigned_workcenter"/>
@@ -83,6 +89,7 @@
             <field name="res_model">mrp.production</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar,graph,gantt</field>
+            <field name="domain">[('state','!=','cancel')]</field>
             <field name="view_id" eval="False"/>
             <field name="search_view_id" ref="view_mrp_production_filter_dec"/>
             <field name="context">{'search_default_new':1,'search_default_ready':1,'search_default_pending':1}</field>
@@ -140,6 +147,7 @@
                 	<field name="sale_commitment_date"/>
                 	<field name="partner_id"/>
 	                <field name="partner_address_id" domain="[('partner_id','=',partner_id)]"/>
+	                <button name="%(dec_mrp.act_mrp_attach_move_production)d" string="Attach to an existing picking order" icon="STOCK_YES" type="action" colspan="2" attrs="{'invisible': [('move_prod_id','!=',False)]}"/>
 	            </field>
 
 
@@ -192,7 +200,7 @@
                             </group>
                </xpath>
 
-             	
+
                 <field name="workcenter_lines" position="replace">
 					<field colspan="4" name="workcenter_lines" nolabel="1" context="{'production_id':active_id}">
 						<form string="Production Work Centers">
