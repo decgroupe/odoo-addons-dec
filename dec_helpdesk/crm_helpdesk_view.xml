@@ -40,8 +40,21 @@
             </field>
         </record>
         
-
-        
+        <record model="ir.ui.view" id="crm_case_form_view_helpdesk_dec">
+            <field name="name">CRM - Helpdesk Support Form</field>
+            <field name="model">crm.helpdesk</field>
+            <field name="type">form</field>
+			<field name="inherit_id" ref="crm_helpdesk.crm_case_form_view_helpdesk"/>
+            <field name="arch" type="xml">
+            
+            	<field name="partner_address_id" position="after">
+                   <button name="make_sale_order"
+                       states="open,pending"
+                       string="Create sale order" type="object"
+                       icon="stock_log" />
+            	</field>
+            </field>
+        </record>        
 
     </data>
 </openerp>
