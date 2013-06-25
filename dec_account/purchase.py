@@ -31,10 +31,31 @@ from osv import fields, osv
 
 class purchase_order(osv.osv):
     _inherit = 'purchase.order'
+    
+    def _get_default_payment_term(self, cr, uid, context=None):
+        res = False
+        partner_id = context and context.get('partner_id', False) or False
+        partner_obj = self.pool.get('res.partner') 
+        if partner_id:
+            res = partner_obj.browse(cr, uid, partner_id).property_payment_term_supplier.id
+            if not res:
+                res = partner_obj.browse(cr, uid, partner_id).property_payment_term.id
+                
+        return res
+    
     _columns = {
         'payment_term': fields.many2one('account.payment.term', 'Payment Term', help='The payment terms. They will be transferred to the invoice.'),
         'partner_bank': fields.many2one('res.partner.bank','Bank Account', select=True, help='The bank account to pay to or to be paid from. It will be transferred to the invoice.'),
     }
+    
+    _defaults = {
+        #'payment_term': lambda self, cr, uid, context: context.get('partner_id', False) and self.pool.get('res.partner').browse(cr, uid, context['partner_id']).property_payment_term_supplier.id,
+        'payment_term': _get_default_payment_term,
+    }
+    
+
+                
+        
 
     def onchange_partner_id(self, cr, uid, ids, partner_id):
         """
@@ -44,7 +65,12 @@ class purchase_order(osv.osv):
         if partner_id:
             partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
             partner_payment_term_id = partner.property_payment_term_supplier and partner.property_payment_term_supplier.id or False
-            result['value']['payment_term'] = partner_payment_term_id
+            if partner_payment_term_id:
+                result['value']['payment_term'] = partner_payment_term_id
+            else:
+                partner_payment_term_id = partner.property_payment_term and partner.property_payment_term.id or False
+                result['value']['payment_term'] = partner_payment_term_id
+            
 
         return result
 
@@ -61,7 +87,7 @@ class purchase_order(osv.osv):
         #
         vals = {}
         for order in self.browse(cr, uid, ids):
-            if order.payment_type:
+            if order.payment_term:
                 vals['payment_term'] = order.payment_term.id
             if order.partner_bank:
                 vals['partner_bank_id'] = order.partner_bank.id
