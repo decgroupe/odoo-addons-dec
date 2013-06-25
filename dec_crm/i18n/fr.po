@@ -1,0 +1,27 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* dec_crm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-24 12:22+0000\n"
+"PO-Revision-Date: 2013-06-24 14:23+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: dec_crm
+#: model:ir.model,name:dec_crm.model_crm_lead
+msgid "crm.lead"
+msgstr "crm.lead"
+
+#. module: dec_crm
+#: view:crm.lead:0
+msgid "Unsubscribe"
+msgstr "Désinscription"

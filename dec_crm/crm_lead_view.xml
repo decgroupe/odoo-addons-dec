@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+        <!-- CRM Lead Form View  -->
+    <record model="ir.ui.view" id="crm_case_form_view_leads_dec">
+        <field name="name">CRM - Leads Form</field>
+        <field name="model">crm.lead</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+        <field name="arch" type="xml">
+            <field name="section_id" position="replace">
+              <button name="unsubscribe" string="Unsubscribe" colspan="2" 
+                  states="draft" type="object"
+                  icon="stock_log" context="{'stage_type': 'lead'}" />
+            </field>
+        </field>
+    </record>
+
+    <!-- CRM Lead Tree View -->
+
+    <record model="ir.ui.view" id="crm_case_tree_view_leads_dec">
+        <field name="name">Leads</field>
+        <field name="model">crm.lead</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+              <button name="unsubscribe" string="Unsubscribe"
+                  states="draft" type="object"
+                  icon="stock_log" context="{'stage_type': 'lead'}" />
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>
