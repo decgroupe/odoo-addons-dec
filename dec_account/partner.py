@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
-#
+#    
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,12 +15,31 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
 #
 ##############################################################################
 
-import account_invoice
-import partner
-import purchase
-import stock
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from osv import fields, osv
+from tools.translate import _
+
+
+class res_partner(osv.osv):
+    """
+    Extends the partners to add a payment terms for purchases option.
+    """
+    _inherit = 'res.partner'
+
+    _columns = {
+        'property_payment_term_supplier': fields.property(
+            'account.payment.term',
+            type='many2one',
+            relation='account.payment.term',
+            string ='Payment Term',
+            method=True,
+            view_load=True,
+            help="This payment term will be used instead of the default one for the current partner on purchases"),
+    }
+    
+res_partner()
+
+    

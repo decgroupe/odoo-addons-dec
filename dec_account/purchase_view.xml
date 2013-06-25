@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purchase_order_form_dec" model="ir.ui.view">
+            <field name="name">purchase.order.form.add_payment_info</field>
+            <field name="type">form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="payment_term" widget="selection"/>
+                    <field name="partner_bank" domain="[('partner_id','=',partner_id)]"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

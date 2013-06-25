@@ -28,11 +28,13 @@
     "description": """
     
                     """,
-    "depends" : ["account"],
+    "depends" : ["account","purchase"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
     'update_xml': [
         'account_invoice_view.xml',
+        'partner_view.xml',
+        'purchase_view.xml',
 
     ],
     "active": False,

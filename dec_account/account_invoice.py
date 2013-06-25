@@ -52,9 +52,47 @@ class account_invoice(osv.osv):
 
         return res
     
+    
+    def onchange_partner_id(self, cr, uid, ids, type, partner_id,
+            date_invoice=False, payment_term=False, partner_bank_id=False, company_id=False):
+        """
+        Extend the onchange to use the supplier payment terms if this is
+        a purchase invoice.
+        """
+
+        result = super(account_invoice, self).onchange_partner_id(cr, uid, ids, type, partner_id,
+                            date_invoice=False, payment_term=False, partner_bank_id=False, company_id=False)
+
+        #
+        # Set the correct payment term
+        #
+        partner_payment_term_id = None
+        if partner_id:
+            partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
+            if type in ('in_invoice', 'in_refund'):
+                # Purchase invoice
+                partner_payment_term_id = partner.property_payment_term_supplier and partner.property_payment_term_supplier.id or False
+            else:
+                # Sale invoice
+                partner_payment_term_id = partner.property_payment_term and partner.property_payment_term.id or False
+
+        result['value']['payment_term'] = partner_payment_term_id
+
+        #
+        # Recalculate the due date if needed
+        #
+        if payment_term != partner_payment_term_id:
+            if partner_payment_term_id:
+                to_update = self.onchange_payment_term_date_invoice(cr, uid, ids, partner_payment_term_id, date_invoice)
+                result['value'].update(to_update['value'])
+            else:
+                result['value']['date_due'] = False
+
+        return result
+    
 account_invoice()
 
-    
+
     
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
