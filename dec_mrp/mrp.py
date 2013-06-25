@@ -408,6 +408,17 @@ class mrp_production(osv.osv):
             res[prod.id] = '%s: %s (%s)' % (prod.name, prod.product_id.name, prod.bom_id.name)  
             
         return res  
+    
+    
+    def _get_invalid_move_prod(self, cr, uid, ids, fieldnames, args, context=None):
+        result = {}
+        for prod in self.browse(cr, uid, ids, context=context):
+            if not prod.move_prod_id or (prod.move_prod_id and prod.move_prod_id.state == 'cancel'):
+                result[prod.id] = True
+            else:
+                result[prod.id] = False 
+                             
+        return result
 
     
     _columns = {
@@ -436,6 +447,7 @@ class mrp_production(osv.osv):
         'task_ids': fields.many2many('project.task', 'mrp_production_task_ids', 'production_id', 'task_id', 'Tasks', domain=[]),
         'tested_rate': fields.function(_get_tested, string='Tested', type='float', multi='tested', store=False),
         'tested_count': fields.function(_get_tested, string='Testing task count', type='float', multi='tested', store=False),
+        'invalid_move_prod': fields.function(_get_invalid_move_prod, type='boolean', string='Invalid production move', store=True),
     }
     
     def create(self, cr, uid, vals, context=None):
