@@ -20,6 +20,10 @@
                 <field name="margin"/>
             </field>
             
+            <field name="shipped" position="after">
+                <field name="locked"/>
+            </field>
+            
         </field>
     </record>
     

@@ -355,6 +355,27 @@ class one2many_mod2(fields.one2many):
 
 class sale_order(osv.osv):
     
+
+    def write(self, cr, uid, ids, vals, context=None):
+
+        locked_fields = set(['user_id','date_order','abstract_line_ids'])    
+              
+        for sale in self.browse(cr, uid, ids, context=context):
+            if sale.state == 'draft':
+                # Check if someone is trying to unlock a quotation
+                if vals.has_key('locked') and vals['locked'] <> sale.locked :
+                    allow_lock_change = (uid == sale.user_id.id)
+                    if allow_lock_change:
+                        pass
+                    else:
+                        raise osv.except_osv(_('Operation forbidden'), _('Only %s is able to lock/unlock this object') % (sale.user_id.name))
+                
+                # Check if someone is trying to modify a locked quotation
+                if not vals.has_key('locked') and sale.locked and locked_fields.intersection(vals): 
+                    raise osv.except_osv(_('Operation forbidden'), _('%s is currently locked, you are not allowed to make changes') % (sale.name))
+                
+        return super(sale_order, self).write(cr, uid, ids, vals, context)
+    
     def copy(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
@@ -370,6 +391,7 @@ class sale_order(osv.osv):
             'order_line': False, # all data is duplicated from abstract_line_ids
             'date_order': fields.date.context_today(self,cr,uid,context=context),
             'origin': origin,
+            'locked': False,
         })
         res = super(sale_order, self).copy(cr, uid, id, default, context)
         return res
@@ -485,6 +507,7 @@ class sale_order(osv.osv):
         'picked_in_rate': fields.function(_picked_in_rate, string='Received', type='float'),
         'invoice_ids': fields.many2many('account.invoice', 'sale_order_invoice_rel', 'order_id', 'invoice_id', 'Invoices', readonly=False, help="This is the list of invoices that have been generated for this sales order. The same sales order may have been invoiced in several times (by line for example)."),
         'picking_ids': fields.one2many('stock.picking', 'sale_id', 'Related Picking', readonly=False, help="This is a list of picking that has been generated for this sales order."),
+        'locked': fields.boolean('Locked', help="This allows the seller to prevent changes by other users.", readonly=True, states={'draft': [('readonly', False)]}),
     }
     _defaults = {
         'validity': 30,
