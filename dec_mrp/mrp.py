@@ -171,13 +171,15 @@ class stock_move(osv.osv):
                     res[i]['status_dedicated'] = _('Dedicated') 
                     
                     if procurement_order.purchase_id:
+                        res[i]['status_dedicated'] =  ('%s (%s: %s)') % (res[i]['status_dedicated'], procurement_order.purchase_id.name, procurement_order.purchase_id.partner_id.name)
+                        
                         if procurement_order.purchase_id.state == 'draft':
                             res[i]['status_status'] = _('On procurement (quotation)')
                         elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved':
                             
                             if purchase_move and purchase_move.state == 'assigned':
                                 if len(purchase_move_ids) == 1:
-                                    res[i]['status_status'] = _('On procurement (purchase in progress)')
+                                    res[i]['status_status'] = _('On procurement (purchase in progress)') 
                                 else:
                                     res[i]['status_status'] = _('On procurement (partially delivered)')
                             elif purchase_move and purchase_move.state == 'done':
@@ -185,6 +187,8 @@ class stock_move(osv.osv):
                                 res[i]['status_received'] = True
                             else:
                                 res[i]['status_status'] = _('On procurement (purchase ???)')
+                        elif procurement_order.purchase_id.state == 'except_picking':
+                            res[i]['status_status'] = _('On procurement (exception)')
                         else:
                             res[i]['status_status'] = _('On procurement ???')
                     
@@ -200,7 +204,7 @@ class stock_move(osv.osv):
                         res[i]['status_status'] = _('On quotation (procurement canceled)')
                     elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved':
                         if purchase_move and purchase_move.state == 'assigned':
-                            res[i]['status_status'] = _('On order (purchase in progress)')
+                            res[i]['status_status'] = _('On order (%s, %s)') % (procurement_order.purchase_id.name, procurement_order.purchase_id.partner_id.name)
                         elif purchase_move and purchase_move.state == 'done':
                             res[i]['status_status'] = _('On order (delivered)')
                             res[i]['status_received'] = True
@@ -219,6 +223,7 @@ class stock_move(osv.osv):
                 elif procurement_order.state == 'ready' or procurement_order.state == 'done':
                     res[i]['status_status'] = _('On procurement (delivered)')
                     res[i]['status_dedicated'] = _('Dedicated') 
+                    res[i]['status_dedicated'] =  ('%s (%s: %s)') % (res[i]['status_dedicated'], procurement_order.purchase_id.name, procurement_order.purchase_id.partner_id.name)
                     res[i]['status_received'] = True
                 else:
                     res[i]['status_status'] = _('On procurement ???')
@@ -546,6 +551,7 @@ class mrp_production(osv.osv):
         result = {} 
         
         task_obj = self.pool.get('project.task')
+        project_obj = self.pool.get('project.project')
         move_obj = self.pool.get('stock.move')
         proc_obj = self.pool.get('procurement.order')
         
@@ -556,9 +562,13 @@ class mrp_production(osv.osv):
                 proc_ids = proc_obj.search(cr, uid, [('move_id', '=', production.move_prod_id.id)], context=context)   
                 for procurement in proc_obj.browse(cr, uid, proc_ids, context):
                     break
+                    
+            project_ids = project_obj.search(cr, uid, [('name', 'ilike', 'test')], context=context) 
                 
             data = {
-                'name': (_('Testing [%s] %s')) % (production.bom_id.name, production.product_id.name),
+                'name': production.product_id.name, 
+                'notes': (_('Testing [%s] %s')) % (production.bom_id.name, production.product_id.name),
+                'project_id': project_ids and project_ids[0] or False,
                 'origin': ('%s:%s') % (production.origin, production.name),
                 'date_deadline': production.date_planned,
                 'planned_hours': 4.0,
