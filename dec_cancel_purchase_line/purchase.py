@@ -82,7 +82,14 @@ class purchase_order_line(Model):
                     procurement_obj.write(cr, uid, [line.origin_procurement_order_id.id], product_data, context=context)
                     # Update existing move in procurement
                     if line.origin_procurement_order_id.move_id and line.origin_procurement_order_id.move_id.product_id.id == line.origin_procurement_order_id.product_id.id:
+                             
+                        # Do not update quantity on BL when the move is directly attached to a sale order
+                        if line.origin_procurement_order_id.move_id.sale_line_id:
+                            product_data.pop('product_qty', None)
+                            note += _('PO/Switching quantity forbidden\n')
+                            
                         move_obj.write(cr, uid, [line.origin_procurement_order_id.move_id.id], product_data, context=context)
+                        
                         # Update next move
                         if line.origin_procurement_order_id.move_id.move_dest_id and line.origin_procurement_order_id.move_id.move_dest_id.product_id.id == line.origin_procurement_order_id.product_id.id:
                             move_obj.write(cr, uid, [line.origin_procurement_order_id.move_id.move_dest_id.id], product_data, context=context)
