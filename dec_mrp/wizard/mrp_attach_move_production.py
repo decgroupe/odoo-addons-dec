@@ -93,7 +93,7 @@ class mrp_attach_move_production(osv.osv_memory):
             
                 if not mrp_production.move_prod_id and not move_src_ids:                   
                     data = {
-                        'origin': ('%s:%s') % (mrp_production.origin, mrp_attach.move_id.picking_id.origin),
+                        'origin': ('%s:%s') % (mrp_production.origin or 'PROTO', mrp_attach.move_id.picking_id.origin),
                         'partner_id': mrp_attach.move_id.picking_id.partner_id.id,
                         'address_id': mrp_attach.move_id.picking_id.address_id.id,
                         'move_prod_id': mrp_attach.move_id.id,

@@ -223,7 +223,7 @@ class stock_move(osv.osv):
                 elif procurement_order.state == 'ready' or procurement_order.state == 'done':
                     res[i]['status_status'] = _('On procurement (delivered)')
                     res[i]['status_dedicated'] = _('Dedicated') 
-                    res[i]['status_dedicated'] =  ('%s (%s: %s)') % (res[i]['status_dedicated'], procurement_order.purchase_id.name, procurement_order.purchase_id.partner_id.name)
+                    res[i]['status_dedicated'] =  ('%s (%s: %s)') % (res[i]['status_dedicated'], procurement_order.purchase_id and procurement_order.purchase_id.name, procurement_order.purchase_id and procurement_order.purchase_id.partner_id and procurement_order.purchase_id.partner_id.name)
                     res[i]['status_received'] = True
                 else:
                     res[i]['status_status'] = _('On procurement ???')
