@@ -30,6 +30,9 @@ class Parser(report_sxw.rml_parse):
 
         for line in order_lines:
             
+            if line.pack_parent_line_id and not line.pack_parent_line_id.pack_print:
+                continue
+            
             for res in result:
                 if (res.product_id.id == line.product_id.id) and (res.product_uom.id == line.product_uom.id) and (res.price_unit == line.price_unit) and (res.notes == line.notes):
                     res.product_qty += line.product_qty
