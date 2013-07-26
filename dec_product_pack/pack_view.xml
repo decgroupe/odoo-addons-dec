@@ -13,6 +13,7 @@
 				<page string="Pack (Sale)">
 					<label string="If you add products in the 'Pack Products' field, all those products will be added automatically when a new sale quotation or order is created." colspan="4"/>
 					<field name="fixed_sale_price"/>
+
 <!--					<field name="stock_depends"/>-->
 					<label string=""/>
 					<separator string="Pack Products" colspan="4"/>
@@ -21,7 +22,7 @@
 				<page string="Pack (Purchase)">
 					<label string="If you add products in the 'Pack Products' field, all those products will be added automatically when a new purchase quotation or order is created." colspan="4"/>
 					<field name="fixed_purchase_price"/>
-
+					
 					<label string=""/>
 					<separator string="Pack Products" colspan="4"/>
 					<field name="purchase_pack_line_ids" colspan="4" nolabel="1"/>
@@ -90,6 +91,7 @@
             	<page string="Extra Info" position="before">
 					<page groups="base.group_extended" string="Pack options">
 						<field name="pack_expand"/>
+						<field name="pack_print"/>
 					 </page>
                  </page>
             </field>
@@ -105,6 +107,7 @@
             	<page string="Notes" position="after">
 					<page string="Pack options">
 						<field name="pack_expand"/>
+						<field name="pack_print"/>
 					 </page>
                  </page>
             </field>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-15 12:12+0000\n"
-"PO-Revision-Date: 2013-01-17 19:29+0100\n"
+"POT-Creation-Date: 2013-07-26 09:10+0000\n"
+"PO-Revision-Date: 2013-07-26 11:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,32 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_product_pack
+#: field:product.pack.purchaseline,product_categ_id:0
+#: field:product.pack.saleline,product_categ_id:0
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: dec_product_pack
 #: sql_constraint:purchase.order:0 sql_constraint:sale.order:0
 msgid "Order Reference must be unique per Company!"
 msgstr "La référence de commande doit être unique par société!"
+
+#. module: dec_product_pack
+#: help:purchase.order.line,pack_print:0
+msgid "If checked, the product pack content will be print"
+msgstr "Si activé, le contenu de pack sera imprimé"
+
+#. module: dec_product_pack
+#: field:purchase.order.line,pack_child_line_ids:0
+#: field:sale.order.line,pack_child_line_ids:0
+msgid "Lines in pack"
+msgstr "Lignes dans le pack"
+
+#. module: dec_product_pack
+#: help:purchase.order.line,sequence:0
+msgid ""
+"Gives the sequence order when displaying a list of purchase order lines."
+msgstr "Indique la séquence d'affichage"
 
 #. module: dec_product_pack
 #: model:ir.model,name:dec_product_pack.model_purchase_order_line
@@ -27,15 +50,10 @@ msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
 
 #. module: dec_product_pack
-#: view:product.product:0
-msgid "Pack (Sale)"
-msgstr "Pack de vente"
-
-#. module: dec_product_pack
-#: help:purchase.order.line,sequence:0
-msgid ""
-"Gives the sequence order when displaying a list of purchase order lines."
-msgstr "Indique la séquence d'affichage"
+#: field:product.pack.purchaseline,product_code:0
+#: field:product.pack.saleline,product_code:0
+msgid "Default code"
+msgstr "Référence"
 
 #. module: dec_product_pack
 #: help:purchase.order.line,pack_depth:0 help:sale.order.line,pack_depth:0
@@ -55,6 +73,11 @@ msgstr ""
 "Si activé, le pack sera automatiquement explosé lors de l'enregistrement"
 
 #. module: dec_product_pack
+#: field:product.product,printable_purchase_lines:0
+msgid "Print lines"
+msgstr "Imprimer les lignes"
+
+#. module: dec_product_pack
 #: model:ir.model,name:dec_product_pack.model_product_product
 #: field:product.pack.purchaseline,product_id:0
 #: field:product.pack.saleline,product_id:0
@@ -65,21 +88,25 @@ msgstr "Produit"
 #: view:product.product:0
 msgid ""
 "If you add products in the 'Pack Products' field, all those products will be "
-"added automatically when a new purchase quotation or order is created."
+"added automatically when a new sale quotation or order is created."
 msgstr ""
-"Les composants de ce pack sont automatiquement ajoutés aux commandes d'achats"
+"Les composants de ce pack sont automatiquement ajoutés aux commandes de "
+"ventes."
 
 #. module: dec_product_pack
-#: field:purchase.order.line,pack_child_line_ids:0
-#: field:sale.order.line,pack_child_line_ids:0
-msgid "Lines in pack"
-msgstr "Lignes dans le pack"
+#: field:product.pack.purchaseline,product_uom_id:0
+msgid "Purchase Unit of Measure"
+msgstr "Unité de mesure d'achat"
 
 #. module: dec_product_pack
-#: field:product.pack.purchaseline,quantity:0
-#: field:product.pack.saleline,quantity:0
-msgid "Quantity"
-msgstr "Quantité"
+#: view:product.product:0
+msgid "Pack (Sale)"
+msgstr "Pack de vente"
+
+#. module: dec_product_pack
+#: field:product.product,printable_sale_lines:0
+msgid "Sale lines"
+msgstr "Lignes de vente"
 
 #. module: dec_product_pack
 #: view:product.product:0
@@ -87,10 +114,10 @@ msgid "Pack (Purchase)"
 msgstr "Pack d'achat"
 
 #. module: dec_product_pack
-#: field:purchase.order.line,pack_parent_line_id:0
-#: field:sale.order.line,pack_parent_line_id:0
-msgid "Pack"
-msgstr "Pack"
+#: field:product.pack.purchaseline,quantity:0
+#: field:product.pack.saleline,quantity:0
+msgid "Quantity"
+msgstr "Quantité"
 
 #. module: dec_product_pack
 #: help:product.product,fixed_purchase_price:0
@@ -114,13 +141,23 @@ msgid "Pack options"
 msgstr "Options du pack"
 
 #. module: dec_product_pack
+#: field:product.product,stock_depends:0
+msgid "Stock depends of components"
+msgstr "Le stock dépend des composants"
+
+#. module: dec_product_pack
+#: field:product.pack.purchaseline,product_name:0
+#: field:product.pack.saleline,product_name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: dec_product_pack
 #: view:product.product:0
 msgid ""
 "If you add products in the 'Pack Products' field, all those products will be "
-"added automatically when a new sale quotation or order is created."
+"added automatically when a new purchase quotation or order is created."
 msgstr ""
-"Les composants de ce pack sont automatiquement ajoutés aux commandes de "
-"ventes."
+"Les composants de ce pack sont automatiquement ajoutés aux commandes d'achats"
 
 #. module: dec_product_pack
 #: view:purchase.order.line:0
@@ -128,9 +165,12 @@ msgid "Notes"
 msgstr "Notes"
 
 #. module: dec_product_pack
-#: field:product.product,stock_depends:0
-msgid "Stock depends of components"
-msgstr "Le stock dépend des composants"
+#: help:product.product,printable_purchase_lines:0
+#: help:product.product,printable_sale_lines:0
+msgid "Mark this field if the lines should not be displayed on a report."
+msgstr ""
+"Coché ce champ si les lignes de ce pack ne doivent pas apparaître sur le "
+"rapport."
 
 #. module: dec_product_pack
 #: model:ir.model,name:dec_product_pack.model_purchase_order
@@ -141,6 +181,16 @@ msgstr "Bon de commande"
 #: field:purchase.order.line,pack_depth:0 field:sale.order.line,pack_depth:0
 msgid "Depth"
 msgstr "Profondeur"
+
+#. module: dec_product_pack
+#: view:product.pack.purchaseline:0 view:product.pack.saleline:0
+msgid "Pack Product Lines"
+msgstr "Produits contenus dans le pack"
+
+#. module: dec_product_pack
+#: field:product.pack.saleline,product_uom_id:0
+msgid "Default Unit Of Measure"
+msgstr "Unité de mesure par défaut"
 
 #. module: dec_product_pack
 #: help:purchase.order.line,pack_parent_line_id:0
@@ -154,9 +204,10 @@ msgid "product.pack.saleline"
 msgstr "product.pack.saleline"
 
 #. module: dec_product_pack
-#: view:product.pack.purchaseline:0 view:product.pack.saleline:0
-msgid "Pack Product Lines"
-msgstr "Produits contenus dans le pack"
+#: field:purchase.order.line,pack_parent_line_id:0
+#: field:sale.order.line,pack_parent_line_id:0
+msgid "Pack"
+msgstr "Pack"
 
 #. module: dec_product_pack
 #: view:product.product:0 field:product.product,purchase_pack_line_ids:0
@@ -173,7 +224,12 @@ msgstr "Séquence"
 #: field:product.pack.purchaseline,parent_product_id:0
 #: field:product.pack.saleline,parent_product_id:0
 msgid "Parent Product"
-msgstr "Parent Product"
+msgstr "Produit parent"
+
+#. module: dec_product_pack
+#: field:purchase.order.line,pack_print:0
+msgid "Pack print"
+msgstr "Imprimer le contenu pack"
 
 #. module: dec_product_pack
 #: help:product.product,stock_depends:0

@@ -333,10 +333,12 @@ class purchase_order_line(osv.osv):
         'pack_parent_line_id': fields.many2one('purchase.order.line', 'Pack', help='The pack that contains this product.'),
         'pack_child_line_ids': fields.one2many('purchase.order.line', 'pack_parent_line_id', 'Lines in pack', help=''),
         'pack_expand': fields.boolean( 'Pack expand', help='If checked, the product pack will be automatically expanded when computed' ),
+        'pack_print': fields.boolean( 'Pack print', help='If checked, the product pack content will be print' ),
     }
     _defaults = {
         'pack_depth': lambda *a: 0,
         'pack_expand': True,
+        'pack_print': True,
     }
     
     
