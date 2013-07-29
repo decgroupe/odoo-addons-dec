@@ -91,7 +91,6 @@
             	<page string="Extra Info" position="before">
 					<page groups="base.group_extended" string="Pack options">
 						<field name="pack_expand"/>
-						<field name="pack_print"/>
 					 </page>
                  </page>
             </field>

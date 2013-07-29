@@ -19,20 +19,5 @@
 #
 ##############################################################################
 
-{
-    "name" : "DEC Product",
-    "version" : "1.0",
-    "author" : "Yann Papouin",
-    "website" : "http://www.dec-industrie.com",
-    "category" : "",
-    "description": """
-    
-                    """,
-    "depends" : ["base","product","dec_reference"],
-    "init_xml" : [ ],
-    "demo_xml" : [ ],
-    "update_xml" : ["security/ir.model.access.csv","product_view.xml","reports.xml"],
-    "active": False,
-    "installable": True
-}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+import label_parser
