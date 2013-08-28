@@ -14,7 +14,7 @@
         <field name="report_rml">dec_product/report/label_report.odt</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
-        <field name="process_sep">True</field>
+        <field name="process_sep">False</field>
     </record>
 
     <ir_set>
