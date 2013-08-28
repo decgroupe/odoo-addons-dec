@@ -48,7 +48,7 @@
                 	<field name="sale_requested_date"/>
                 	<field name="sale_commitment_date"/>
                 	<field name="partner_id"/>
-	                <field name="partner_address_id" domain="[('partner_id','=',partner_id)]"/>
+	                <field name="partner_address_id" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id':partner_id}" options='{"quick_create": false}'/>
             	</field>
 
 
