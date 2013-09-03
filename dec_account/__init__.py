@@ -20,6 +20,7 @@
 ##############################################################################
 
 import account_invoice
+import account_move_line
 import partner
 import purchase
 import stock
