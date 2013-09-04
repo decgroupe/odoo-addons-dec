@@ -24,12 +24,41 @@ import time
 from osv import fields
 from osv import osv
 from tools.translate import _
+from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
 class purchase_order(osv.osv):
     _name = "purchase.order"
     _inherit = "purchase.order"
     
 
+    def _prepare_order_picking(self, cr, uid, order, context=None):
+        result = super(purchase_order, self)._prepare_order_picking(cr, uid, order, context=context)
+        
+        # Overwrite picking date with approve date fom order
+        result['date'] = order.date_approve
+        return result
+        
+    def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, context=None):
+    
+        # Hack to update all purchase lines at confirmation with their new delay
+        product_supplierinfo = self.pool.get('product.supplierinfo')
+        supplierinfo_ids = product_supplierinfo.search(cr, uid, [('name', '=', order.partner_id.name), ('product_id', '=', order_line.product_id.product_tmpl_id.id)])
+        if supplierinfo_ids:
+            supplierinfo = product_supplierinfo.browse(cr, uid, supplierinfo_ids[0], context=context)
+            
+        purchase_order_line = self.pool.get('purchase.order.line')
+        dt = purchase_order_line._get_date_planned(cr, uid, supplierinfo, order.date_approve, context=context).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        
+        # Update DB
+        order_line.write({'date_planned': dt})
+        # Also update current query
+        order_line.date_planned = dt        
+        
+        result = super(purchase_order, self)._prepare_order_line_move(cr, uid, order, order_line, picking_id, context=context)
+        
+        # Overwrite move date with approve date fom order
+        result['date'] = order.date_approve
+        return result
 
     def button_refresh_prices(self, cr, uid, ids, context={}):
         if not ids :

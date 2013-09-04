@@ -179,7 +179,7 @@ class stock_move(osv.osv):
                             
                             if purchase_move and purchase_move.state == 'assigned':
                                 if len(purchase_move_ids) == 1:
-                                    res[i]['status_status'] = _('On procurement (purchase in progress)') 
+                                    res[i]['status_status'] = _('On procurement (purchase in progress)')
                                 else:
                                     res[i]['status_status'] = _('On procurement (partially delivered)')
                             elif purchase_move and purchase_move.state == 'done':
