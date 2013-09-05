@@ -46,13 +46,13 @@ class purchase_order(osv.osv):
         if supplierinfo_ids:
             supplierinfo = product_supplierinfo.browse(cr, uid, supplierinfo_ids[0], context=context)
             
-        purchase_order_line = self.pool.get('purchase.order.line')
-        dt = purchase_order_line._get_date_planned(cr, uid, supplierinfo, order.date_approve, context=context).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        
-        # Update DB
-        order_line.write({'date_planned': dt})
-        # Also update current query
-        order_line.date_planned = dt        
+            purchase_order_line = self.pool.get('purchase.order.line')
+            dt = purchase_order_line._get_date_planned(cr, uid, supplierinfo, order.date_approve, context=context).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+            
+            # Update DB
+            order_line.write({'date_planned': dt})
+            # Also update current query
+            order_line.date_planned = dt        
         
         result = super(purchase_order, self)._prepare_order_line_move(cr, uid, order, order_line, picking_id, context=context)
         
