@@ -16,6 +16,7 @@ access_ref_reference_line_manager,ref.reference.line.manager,model_ref_reference
 access_ref_version_manager,ref.version.manager,model_ref_version,group_ref_manager,1,1,1,1
 access_ref_pack_user,ref.pack.user,model_ref_pack,group_ref_user,1,0,0,0
 access_ref_pack_manager,ref.pack.manager,model_ref_pack,group_ref_manager,1,1,1,1
+access_ref_market_category_user,ref.market.category,model_ref_market_category,group_ref_user,1,1,1,1
 product.access_product_template_user,product.template.user,product.model_product_template,group_ref_manager,1,1,0,0
 product.access_product_product_employee,product.product employee,model_product_product,group_ref_manager,1,1,1,0
 product.access_product_template_user,product.template.user,product.model_product_template,base.group_user,1,1,0,0

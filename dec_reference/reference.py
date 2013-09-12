@@ -150,6 +150,28 @@ class ref_category_line(osv.osv):
 
 ref_category_line()
 
+
+class ref_market_category(osv.osv):
+    """ Description """
+
+    _name = 'ref.market.category'
+    _description = 'Market Category'
+    _rec_name = 'description'
+
+    _columns = {     
+        'prefix': fields.char('Prefix', size=6, required=True),
+        'description': fields.char('Description', size=128, required=True),
+        'sequence': fields.integer('Position', required=True),
+    }
+
+    _defaults = {
+
+    }
+    _order = 'sequence'
+    
+
+ref_category_line()
+
 class ref_attribute(osv.osv):
     """ Description """
 
