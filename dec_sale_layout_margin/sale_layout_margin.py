@@ -27,6 +27,12 @@ import time
 import decimal_precision as dp
 from tools.translate import _
 
+def rounding(f, r):
+    import math
+    if not r:
+        return f
+    return math.ceil(f / r) * r
+
 class sale_order_line(osv.osv):
     
               
@@ -264,7 +270,7 @@ class sale_order_line(osv.osv):
         'margin': fields.function(_product_margin, string='Margin', store = True),  
         'margin_percent': fields.float('Margin (%)', digits=(16,2)), # taux_marge = marge_commerciale/cout_achat_HT * 100
         'markup_percent': fields.float('Markup (%)', digits=(16,2)), # taux_marque = marge_commerciale/prix_vente_HT * 100
-        'purchase_price': fields.float('Cost Price', digits=(16,2)),
+        'purchase_price': fields.float('Cost Price', digits_compute=dp.get_precision('Purchase Price')),
         
         # Changed by YP
         'product_id': fields.many2one('product.product', 'Product', domain=[], change_default=True),
@@ -301,16 +307,16 @@ class sale_order_line(osv.osv):
             new_margin_percent = 0
             new_markup_percent = 0
             
-        if not context.get('ignore_margin_update', False):
-            value.update({'margin': new_margin, 'margin_percent': new_margin_percent})
-            
-        if not context.get('ignore_markup_update', False):
-            value.update({'markup_percent': new_markup_percent})
-
+        value.update({'margin': new_margin, 'margin_percent': new_margin_percent})
+        value.update({'markup_percent': new_markup_percent})
         value.update({'price_subtotal': product_uos_qty * price_unit * (1 - (discount or 0.0) / 100.0)})
         return {'value': value}
     
     def onchange_margin_percent(self, cr, uid, ids, margin_percent, price_unit, purchase_price, product_uos_qty, discount, context=None):   
+        value = {}
+        return {'value': value}
+        """
+        print 'onchange_margin_percent'
         if context is None:
             context = {}
             
@@ -318,19 +324,26 @@ class sale_order_line(osv.osv):
       
         context.update({'ignore_margin_update': True});
         return self.onchange_price_unit(cr, uid, ids, new_price_unit, purchase_price, product_uos_qty, discount, context)
+        """
     
     def onchange_markup_percent(self, cr, uid, ids, markup_percent, price_unit, purchase_price, product_uos_qty, discount, context=None): 
         if context is None:
             context = {}
                   
-        if markup_percent < 100: 
-            new_price_unit = purchase_price / float(1-discount/100.0) / float(1-markup_percent/100.0) 
+        value = {}
+        
+        if purchase_price > 0:
+            if markup_percent < 100: 
+                new_price_unit = purchase_price / float(1-discount/100.0) / float(1-markup_percent/100.0) 
+                new_price_unit = rounding(new_price_unit, 0.01)
+            else:
+                new_price_unit = 0
+                
+            value.update({'price_unit': new_price_unit})
         else:
-            new_price_unit = 0
+            value.update({'markup_percent': 0})
             
-        context.update({'ignore_markup_update': True});
-        result = self.onchange_price_unit(cr, uid, ids, new_price_unit, purchase_price, product_uos_qty, discount, context) 
-        return result
+        return {'value': value}
     
     def onchange_purchase_price(self, cr, uid, ids, price_unit, purchase_price, product_uos_qty, discount, context=None):
         if context is None:
