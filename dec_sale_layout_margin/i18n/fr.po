@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-25 09:06+0000\n"
-"PO-Revision-Date: 2013-06-25 11:11+0100\n"
+"POT-Creation-Date: 2013-09-13 12:45+0000\n"
+"PO-Revision-Date: 2013-09-13 14:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,13 +27,20 @@ msgid "City"
 msgstr "Ville"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:529
+#: help:sale.order.line,report_hide_line:0
+msgid "This allows the seller to hide the entire printed line"
+msgstr ""
+"Ceci permet au vendeur de cacher la ligne entière pour qu'elle "
+"n'apparaissent pas sur le rapport"
+
+#. module: dec_sale_layout_margin
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:544
 #, python-format
 msgid "Cannot sell this product (state is quotation, review or obsolete)"
 msgstr "Impossible de vendre ce produit (en devis, à réviser ou obsolète)"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:176
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:182
 #, python-format
 msgid "No manager for this product"
 msgstr "Pas de responsable pour ce produit"
@@ -44,7 +51,12 @@ msgid "Unit Price (discount)"
 msgstr "Prix unitaire (remise)"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:375
+#: model:ir.model,name:dec_sale_layout_margin.model_stock_picking
+msgid "Picking List"
+msgstr "Liste de prélèvement"
+
+#. module: dec_sale_layout_margin
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:390
 #, python-format
 msgid "%s is currently locked, you are not allowed to make changes"
 msgstr ""
@@ -57,15 +69,15 @@ msgid "Warranty delay in year(s)"
 msgstr "Durée de garantie en année(s)"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:175
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:181
 #, python-format
 msgid "Review needed!"
 msgstr "A réviser!"
 
 #. module: dec_sale_layout_margin
-#: model:ir.model,name:dec_sale_layout_margin.model_stock_picking
-msgid "Picking List"
-msgstr "Liste de prélèvement"
+#: field:sale.order.line,report_hide_line:0
+msgid "Hide Line"
+msgstr "Cacher la ligne"
 
 #. module: dec_sale_layout_margin
 #: help:sale.order,margin:0
@@ -85,7 +97,14 @@ msgid "Invoice Lines"
 msgstr "Lignes de facture"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:550
+#: help:sale.order.line,report_hide_uom:0
+msgid "This allows the seller to hide units on the printed line"
+msgstr ""
+"Ceci permet au vendeur de cacher le prix unitaire, la quantité et l'unité de "
+"la ligne afin qu'ils n'apparaissent pas sur le rapport"
+
+#. module: dec_sale_layout_margin
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:565
 #, python-format
 msgid "Error !"
 msgstr "Erreur !"
@@ -118,7 +137,7 @@ msgid "Title"
 msgstr "Intitulé"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:176
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:182
 #, python-format
 msgid "No comments"
 msgstr "Pas de commentaires"
@@ -134,7 +153,7 @@ msgid "Make Invoice"
 msgstr "Créer facture"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:531
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:546
 #, python-format
 msgid "Missing BoM"
 msgstr "Nomenclature manquante"
@@ -150,7 +169,7 @@ msgid "Unit cost price"
 msgstr "Coût de revient"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:536
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:551
 #, python-format
 msgid "Empty BoM (%s) %d"
 msgstr "Nomenclature vide (%s) %d"
@@ -176,7 +195,7 @@ msgid "Prix de revient"
 msgstr "Prix de revient"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:371
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:386
 #, python-format
 msgid "Only %s is able to lock/unlock this object"
 msgstr "Seul %s est autorisé à verrouiller/déverrouiller ce devis"
@@ -197,7 +216,7 @@ msgid "Procurement"
 msgstr "Approvisionnement"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:170
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:176
 #, python-format
 msgid ""
 "Obsolete product\n"
@@ -211,7 +230,7 @@ msgstr ""
 " %s"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:169
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:175
 #, python-format
 msgid "Obsolete product!"
 msgstr "Produit obsolète!"
@@ -222,7 +241,7 @@ msgid "Reference must be unique per Company!"
 msgstr "La référence doit être unique par société !"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:176
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:182
 #, python-format
 msgid ""
 "This product need to be reviewed:\n"
@@ -288,8 +307,8 @@ msgid "Validity period"
 msgstr "Période de validité"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:371
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:375
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:386
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:390
 #, python-format
 msgid "Operation forbidden"
 msgstr "Opération interdite"
@@ -318,6 +337,11 @@ msgstr "États"
 #: view:sale.order:0
 msgid "Extra Info"
 msgstr "Info supplémentaires"
+
+#. module: dec_sale_layout_margin
+#: field:sale.order.line,report_hide_uom:0
+msgid "Hide Uom"
+msgstr "Cacher quantité et unité"
 
 #. module: dec_sale_layout_margin
 #: help:sale.order,validity_date:0

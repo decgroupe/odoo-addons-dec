@@ -218,12 +218,14 @@
                                     <page groups="base.group_extended" string="Extra Info"
                                         attrs="{'invisible':[('layout_type','!=','article')]}">
 
-                                        <field name="address_allotment_id" select="2"/>
+<!--                                    <field name="address_allotment_id" select="2"/>-->
                                         <separator colspan="4" string="Properties"/>
-                                        <field colspan="4" name="property_ids" nolabel="1"/>
+                                        <field name="report_hide_line" attrs="{'invisible':[('layout_type','!=','article')]}" />
+                                        <field name="report_hide_uom" attrs="{'invisible':[('layout_type','!=','article')]}" />
+                                        
+<!--                                        <field colspan="4" name="property_ids" nolabel="1"/>-->
 
-                                        <group colspan="5"
-                                            attrs="{'invisible':[('layout_type','!=','article')]}">
+                                        <group colspan="5" attrs="{'invisible':[('layout_type','!=','article')]}">
                                             <separator colspan="4" string="Taxes"/>
                                             <field colspan="4" name="tax_id" domain="[('parent_id','=',False)]" nolabel="1"/>
                                         </group>

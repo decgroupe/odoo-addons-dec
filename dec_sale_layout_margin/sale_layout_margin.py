@@ -276,7 +276,9 @@ class sale_order_line(osv.osv):
         'product_id': fields.many2one('product.product', 'Product', domain=[], change_default=True),
         'price_discount': fields.function(_discount_price, string='Unit Price (discount)', digits_compute= dp.get_precision('Sale Price')),
         
-        #'tax_id': fields.many2many('account.tax', 'sale_order_tax', 'order_line_id', 'tax_id', 'Taxes', readonly=False, states={'draft': [('readonly', False)]}),
+        'report_hide_line': fields.boolean('Hide Line', help="This allows the seller to hide the entire printed line"),
+        'report_hide_uom': fields.boolean('Hide Uom', help="This allows the seller to hide units on the printed line"),
+
     }
 
     _defaults = {
