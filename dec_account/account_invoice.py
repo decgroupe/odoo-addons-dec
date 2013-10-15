@@ -90,6 +90,16 @@ class account_invoice(osv.osv):
 
         return result
     
+    
+    def test_paid(self, cr, uid, ids, *args):
+        res = super(account_invoice, self).test_paid(cr, uid, ids, args)
+        if not res:
+            for order in self.browse(cr, uid, ids, context=None):
+                if order.invoice_line and not order.amount_total:
+                    res = True
+
+        return res
+    
 account_invoice()
 
 
