@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-22 08:29+0000\n"
-"PO-Revision-Date: 2013-04-22 10:54+0100\n"
+"POT-Creation-Date: 2013-09-20 11:44+0000\n"
+"PO-Revision-Date: 2013-09-20 13:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr "En attente d'un autre mouvement"
 #. module: dec_stock
 #: view:stock.move:0
 msgid "Stock to be delivered (Available or not)"
-msgstr "Stock à livré (disponible ou non)"
+msgstr "Stock to be delivered (Available or not)"
 
 #. module: dec_stock
 #: model:ir.model,name:dec_stock.model_stock_move
@@ -132,7 +132,7 @@ msgstr "Bons de livraisons"
 #. module: dec_stock
 #: view:stock.picking:0
 msgid "Operating date"
-msgstr "Date de l'opération"
+msgstr "Operating date"
 
 #. module: dec_stock
 #: report:stock.picking.dec:0
@@ -210,7 +210,7 @@ msgstr "Bon de transfert:"
 #. module: dec_stock
 #: view:stock.move:0
 msgid "Stock available to be delivered"
-msgstr "Stock disponible à livrer"
+msgstr "Stock available to be delivered"
 
 #. module: dec_stock
 #: view:stock.picking:0
@@ -326,7 +326,7 @@ msgstr "Destinataire"
 #. module: dec_stock
 #: field:stock.picking,move_ready_state:0
 msgid "Count"
-msgstr "Prêt(s)"
+msgstr "Nombre"
 
 #. module: dec_stock
 #: model:ir.model,name:dec_stock.model_stock_partial_picking_line
@@ -344,7 +344,7 @@ msgid "Reference must be unique per Company!"
 msgstr "La référence doit être unique par société !"
 
 #. module: dec_stock
-#: code:addons/dec_stock/stock.py:63
+#: code:addons/dec_stock/stock.py:67
 #, python-format
 msgid "Error"
 msgstr "Erreur"
@@ -365,7 +365,7 @@ msgid "Shipping Date"
 msgstr "Date de livraison"
 
 #. module: dec_stock
-#: field:stock.move,create_uid:0
+#: field:stock.move,create_uid:0 field:stock.picking,create_uid:0
 msgid "Creator"
 msgstr "Créateur"
 
@@ -423,7 +423,7 @@ msgstr "Vous devez affecter un lot de fabrication à ce produit."
 #. module: dec_stock
 #: view:stock.move:0
 msgid "Orders planned for today"
-msgstr "Commandes prévues pour aujourd'hui"
+msgstr "Orders planned for today"
 
 #. module: dec_stock
 #: view:stock.picking:0
@@ -431,7 +431,7 @@ msgid "Process Later"
 msgstr "Traiter plus tard"
 
 #. module: dec_stock
-#: field:stock.move,write_uid:0
+#: field:stock.move,write_uid:0 field:stock.picking,write_uid:0
 msgid "Last editor"
 msgstr "Dernière modification"
 
@@ -501,7 +501,7 @@ msgid "Order"
 msgstr "Commande"
 
 #. module: dec_stock
-#: code:addons/dec_stock/stock.py:63
+#: code:addons/dec_stock/stock.py:67
 #, python-format
 msgid "You must be admin to execute delete action!"
 msgstr "Vous devez être administrateur pour supprimer!"

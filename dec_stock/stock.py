@@ -29,6 +29,7 @@ class stock_picking(osv.osv):
     _name = "stock.picking"
     _inherit = _name
     
+    
     def _get_move_ready_state(self, cr, uid, ids, field_names=None, arg=False, context=None):
         if not field_names:
             field_names = []
@@ -52,6 +53,8 @@ class stock_picking(osv.osv):
     _columns = {
         'move_ready_state': fields.function(_get_move_ready_state, string='Count', type='char'),
         'partner_address_city_id': fields.related('address_id', 'city_id', type='many2one', relation='city.city', string='City', store=True),
+        'create_uid':  fields.many2one('res.users', 'Creator'),
+        'write_uid':  fields.many2one('res.users', 'Last editor'),
     }
         
     def unlink(self, cr, uid, ids, context=None):

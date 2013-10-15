@@ -91,4 +91,21 @@ class res_partner_address(osv.osv):
         'state_id': fields.related('city_id', 'state_id', type="many2one", relation="res.country.state", string="State", store={}),
         'country_id': fields.related('city_id', 'country_id', type="many2one", relation="res.country", string="Country", store={}),
     }
+    
+    
+    def create(self, cr, uid, vals, context=None):
+        return super(res_partner_address, self).create(cr, uid, vals, context)
+    
+    def write(self, cr, uid, ids, vals, context=None):
+        if isinstance(ids, (int, long)):
+          ids = [ids]
+          
+        return super(res_partner_address, self).write(cr, uid, ids, vals, context)
+    
 res_partner_address()
+
+class res_partner(osv.osv):
+    _inherit = "res.partner"
+    _columns = {
+        'city_id': fields.related('address', 'city_id', type='many2one', relation='city.city', string='City'),
+    }
