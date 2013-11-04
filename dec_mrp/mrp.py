@@ -103,10 +103,50 @@ class mrp_bom(osv.osv):
                 result2 = result2 + res[1]
         return result, result2
     
+    
+    def get_purchase_price(self, cr, uid, ids, context=None):
+        result = 0.0
+        if context is None:
+            context = {}            
+
+        pricelist_pool = self.pool.get('product.pricelist')
+        for bom_line in self.browse(cr, uid, ids, context=context):
+            partner_id = bom_line.partner_id
+            if not partner_id:
+                partner_id = bom_line.product_id.seller_id
+                     
+            if partner_id and partner_id.id <> bom_line.product_id.company_id.partner_id.id:
+                pricelist = partner_id.property_product_pricelist_purchase
+                if pricelist:
+                    price = pricelist_pool.price_get(cr,uid,[pricelist.id], bom_line.product_id.id, bom_line.product_qty, partner_id.id, {
+                            'uom': bom_line.product_uom.id,
+                            'date': time.strftime('%Y-%m-%d'),
+                            })[pricelist.id]
+            else:
+                price = bom_line.product_id.standard_price
+                
+            result = result + (price * bom_line.product_qty)
+            
+        return result
+    
+    def get_cost_price(self, cr, uid, ids, context=None):
+        result = {}
+        if context is None:
+            context = {}     
+            
+        for id in ids:
+            bom_line_ids = self.search(cr, uid, [('bom_id', '=', id)], context=context) 
+            purchase_price = self.get_purchase_price(cr, uid, bom_line_ids, context=context)
+            result[id] = purchase_price
+                
+        return result       
+    
     _columns = {
 	    'code': fields.char('Reference', size=64),
         'landmark': fields.char('Landmark', size=64),
         'partner_id': fields.many2one('res.partner', 'Supplier'),
+        #'purchase_price': fields.function(_get_purchase_price, string='Purchase price', digits_compute=dp.get_precision('Purchase Price'), help="Purchase price based on partner pricelist"), 
+        #'cost_price': fields.function(_get_cost_price, string='Cost price', digits_compute=dp.get_precision('Purchase Price'), help="Total cost price of current BoM"), 
     }
 
 mrp_bom()

@@ -23,7 +23,12 @@ import time
 
 from osv import fields
 from osv import osv
+from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from tools.translate import _
+import decimal_precision as dp
 import time
+import logging
+import pooler
 
 
 
@@ -34,7 +39,11 @@ class ref_product(osv.osv):
     _columns = {
         'ciel_code': fields.char('Ciel', size=24),
         'comments': fields.text('Comments'),
+        'market_bom_id': fields.many2one('ref.market.bom', 'Market bill of materials and services'),
+        'market_markup_rate': fields.float('Markup rate', help='Used by REF manager Market'), 
+        'market_material_cost_factor': fields.float('Material factor (PF)', help='Used by REF manager Market'),     
     }
+    
 ref_product()
 
 
@@ -170,7 +179,28 @@ class ref_market_category(osv.osv):
     _order = 'sequence'
     
 
-ref_category_line()
+ref_market_category()
+
+
+class ref_market_bom(osv.osv):
+
+    _name = 'ref.market.bom'
+    _columns = {
+        'name': fields.char('Name', size=64, required=True),
+        'product_id': fields.many2one('product.product', 'Product', required=True),
+        'product_qty': fields.float('Product Qty', required=True, digits_compute=dp.get_precision('Product UoM')),
+        'product_uom': fields.many2one('product.uom', 'Product UOM', required=True, help="UoM (Unit of Measure) is the unit of measurement for the inventory control"),
+        'partner_id': fields.many2one('res.partner', 'Supplier'),
+        'bom_lines': fields.one2many('ref.market.bom', 'bom_id', 'BoM Lines'),
+        'bom_id': fields.many2one('ref.market.bom', 'Parent BoM', ondelete='cascade', select=True),
+        'xml_id': fields.function(osv.osv.get_xml_id, type='char', size=128, string="External ID", help="ID of the view defined in xml file"),
+        'create_date' : fields.datetime('Create Date', readonly=True),
+        'create_uid' : fields.many2one('res.users', 'Creator', readonly=True),
+        'write_date' : fields.datetime('Last Write Date', readonly=True),
+        'write_uid' : fields.many2one('res.users', 'Last Writer', readonly=True),
+    }
+    
+ref_market_bom()
 
 class ref_attribute(osv.osv):
     """ Description """
@@ -192,6 +222,34 @@ class ref_attribute(osv.osv):
     _order = 'value'
 
 ref_attribute()
+
+
+class ref_price(osv.osv):
+    """ Description """
+
+    _name = 'ref.price'
+    _description = 'Price'
+    _columns = { 
+        'reference_id': fields.many2one('ref.reference', 'Reference', ondelete='cascade', required=True),
+        'date': fields.date('Date', required=True),   
+        'value': fields.float('Price'),
+    }
+    
+    _defaults = {
+        'date': fields.datetime.now,
+    }
+    
+    _order = 'date desc'
+
+    def name_get(self, cr, uid, ids, context=None):
+        result = []
+        if ids:
+            for price in self.browse(cr, uid, ids, context=context):
+                result.append((r.id, ''))
+            
+        return result
+        
+ref_price()
 
 class ref_reference(osv.osv):
     """ Description """
@@ -216,7 +274,7 @@ class ref_reference(osv.osv):
         'folder_error': fields.integer('Product folder error count'),
         'folder_warning': fields.integer('Product folder warning count'),
         'folder_task': fields.integer('Product folder task count'),
-        'picturepath': fields.text('Path to picture'),
+        'picturepath': fields.text('Path to picture'),  
     }
 
     _defaults = {
@@ -265,7 +323,71 @@ class ref_reference(osv.osv):
                 res = res + search_value + search_category + search_name + search_comments + search_ciel + search_tags
         
         return res
+    
+    
+    def run_material_cost_scheduler(self, cr, uid, ids=None, context=None):
+        if context is None:
+            context = {}
 
+        mrp_bom_obj = self.pool.get('mrp.bom')
+        ref_price_obj = self.pool.get('ref.price')
+
+        use_new_cursor = False
+        if use_new_cursor:
+            cr = pooler.get_db(cr.dbname).cursor()
+        
+        if not ids:
+            ids = self.search(cr, uid, [])
+        for reference in self.browse(cr, uid, ids, context=context):
+            data = {}
+            cost_price = 0.0
+            if reference.product and reference.product.bom_ids:
+                bom_id = mrp_bom_obj._bom_find(cr, uid, reference.product.id, reference.product.uom_id and reference.product.uom_id.id, [])
+                if bom_id:
+                    logging.getLogger('ref.reference').info('Compute material cost price for [%s] %s', reference.value, reference.product.name)
+                    cost_price = mrp_bom_obj.get_cost_price(cr, uid, [bom_id], context=context)[bom_id]
+                    
+            data['reference_id'] = reference.id
+            data['value'] = cost_price
+            ref_price_obj.create(cr, uid, data, context=context)
+            if use_new_cursor:   
+                cr.commit()
+
+        if use_new_cursor:
+            cr.close()
+        else:
+            self.generate_material_cost_report(cr, uid, ids, context)
+            
+    def generate_material_cost_report(self, cr, uid, ids=None, context=None):
+        if context is None:
+            context = {}
+            
+        ref_price_obj = self.pool.get('ref.price')
+        mail_message_obj = self.pool.get('mail.message')
+        
+        if not ids:
+            ids = self.search(cr, uid, [])
+
+        emailfrom = 'refmanager@dec-industrie.com'
+        emails = ['decindustrie@gmail.com']
+        subject = _('Price surcharge alert')
+        body = '\n'
+        warn = False
+          
+        for reference in self.browse(cr, uid, ids, context=context):           
+            price_ids = ref_price_obj.search(cr, uid, [('reference_id','=', reference.id)], limit=2)
+            if (len(price_ids) >= 2):  
+                prices = ref_price_obj.browse(cr, uid, price_ids, context=context)
+                if prices[0].value > prices[1].value:   
+                    warn = True                 
+                    body += ('[%s] %s\n') % (reference.value, reference.product.name)
+                    body += ('%s: %.2f\n') % (prices[0].date, prices[0].value)   
+                    body += ('%s: %.2f (+%.2f)\n') % (prices[1].date, prices[1].value, prices[0].value-prices[1].value)   
+                    body += '\n'
+          
+        if warn:          
+            mail_message_obj.schedule_with_attach(cr, uid, emailfrom, emails, subject, body, model='ref.reference', reply_to=emailfrom)
+            
 ref_reference()
 
 class ref_version(osv.osv):

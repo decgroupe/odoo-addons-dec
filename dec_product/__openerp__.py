@@ -28,7 +28,7 @@
     "description": """
     
                     """,
-    "depends" : ["base","product","dec_reference"],
+    "depends" : ["base","product","mrp","dec_reference"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
     "update_xml" : ["security/ir.model.access.csv","product_view.xml","reports.xml"],

@@ -1,0 +1,404 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* dec_reference
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-04 16:28+0000\n"
+"PO-Revision-Date: 2013-11-04 17:36+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_category
+#: field:ref.category.line,category:0 field:ref.reference,category:0
+msgid "Category"
+msgstr "Categorie"
+
+#. module: dec_reference
+#: field:ref.log,datetime:0 field:ref.version,datetime:0
+msgid "Modification date"
+msgstr "Date de modification"
+
+#. module: dec_reference
+#: field:ref.reference,product_state:0
+msgid "Status"
+msgstr "Etat"
+
+#. module: dec_reference
+#: field:ref.market.bom,xml_id:0
+msgid "External ID"
+msgstr "ID externe"
+
+#. module: dec_reference
+#: field:ref.reference,folder_count:0
+msgid "Product folder item count"
+msgstr "Nombre d'éléments dans le dossier produit"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_log
+msgid "Log"
+msgstr "Log"
+
+#. module: dec_reference
+#: help:ref.market.bom,product_uom:0
+msgid ""
+"UoM (Unit of Measure) is the unit of measurement for the inventory control"
+msgstr ""
+"UoM (Unit of Measure) is the unit of measurement for the inventory control"
+
+#. module: dec_reference
+#: field:ref.version,author:0
+msgid "Author"
+msgstr "Auteur"
+
+#. module: dec_reference
+#: field:ref.attribute,tagging_ids:0 field:ref.reference,tagging_ids:0
+msgid "Tags"
+msgstr "Tags"
+
+#. module: dec_reference
+#: field:product.product,comments:0 field:ref.reference,product_comments:0
+msgid "Comments"
+msgstr "Commentaires"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_price field:ref.price,value:0
+msgid "Price"
+msgstr "Prix"
+
+#. module: dec_reference
+#: field:ref.market.bom,partner_id:0
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_version
+msgid "Reference version"
+msgstr "Version de référence"
+
+#. module: dec_reference
+#: sql_constraint:ref.category:0
+msgid "Code category must be unique !"
+msgstr "Le code de la categorie doit être unique !"
+
+#. module: dec_reference
+#: field:ref.market.bom,write_date:0
+msgid "Last Write Date"
+msgstr "Date de dernière écriture"
+
+#. module: dec_reference
+#: field:ref.category,description_template:0
+msgid "Template"
+msgstr "Modèle"
+
+#. module: dec_reference
+#: field:ref.category.line,sequence:0 field:ref.market.category,sequence:0
+#: field:ref.reference.line,sequence:0
+msgid "Position"
+msgstr "Position"
+
+#. module: dec_reference
+#: field:ref.category,product_category:0
+msgid "Product category"
+msgstr "Catégorie de produit"
+
+#. module: dec_reference
+#: field:ref.reference,folder_task:0
+msgid "Product folder task count"
+msgstr "Nombre de tâches dans le dossier produit"
+
+#. module: dec_reference
+#: field:ref.log,operation:0
+msgid "operation"
+msgstr "contenu"
+
+#. module: dec_reference
+#: field:ref.reference,picturepath:0
+msgid "Path to picture"
+msgstr "Chemin vers l'image"
+
+#. module: dec_reference
+#: field:ref.property,fixed:0
+msgid "Fixed values"
+msgstr "Valeurs fixes"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_product_product
+#: field:ref.market.bom,product_id:0 field:ref.pack,product:0
+#: field:ref.reference,product:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: dec_reference
+#: field:ref.reference,searchvalue:0
+msgid "Search value"
+msgstr "Valeur de recherche"
+
+#. module: dec_reference
+#: field:ref.market.category,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: dec_reference
+#: field:ref.market.bom,write_uid:0
+msgid "Last Writer"
+msgstr "Dernier écrit"
+
+#. module: dec_reference
+#: field:ref.property,format:0
+msgid "Format"
+msgstr "Format"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_reference_line
+msgid "Reference line"
+msgstr "Ligne de référence"
+
+#. module: dec_reference
+#: selection:ref.pack,type:0
+msgid "Company"
+msgstr "Société"
+
+#. module: dec_reference
+#: help:ref.market.bom,xml_id:0
+msgid "ID of the view defined in xml file"
+msgstr "ID de la vue défini dans le XML"
+
+#. module: dec_reference
+#: field:ref.market.category,prefix:0
+msgid "Prefix"
+msgstr "Préfix"
+
+#. module: dec_reference
+#: sql_constraint:ref.reference:0
+msgid "Reference value must be unique !"
+msgstr "La référence doit être unique !"
+
+#. module: dec_reference
+#: code:addons/dec_reference/reference.py:373
+#, python-format
+msgid "Price surcharge alert"
+msgstr "Alerte augmentation de prix"
+
+#. module: dec_reference
+#: constraint:product.product:0
+msgid "Error: Invalid ean code"
+msgstr "Erreur: code EAN invalide"
+
+#. module: dec_reference
+#: field:ref.reference,current_version:0
+msgid "Current version"
+msgstr "Version actuelle"
+
+#. module: dec_reference
+#: model:res.groups,name:dec_reference.group_ref_user
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: dec_reference
+#: field:ref.market.bom,bom_lines:0
+msgid "BoM Lines"
+msgstr "Lignes de nomenclature"
+
+#. module: dec_reference
+#: field:ref.price,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: dec_reference
+#: field:ref.version,name:0
+msgid "Modification name"
+msgstr "Nom de la modification"
+
+#. module: dec_reference
+#: field:product.product,ciel_code:0 field:ref.pack,ciel_code:0
+#: field:ref.reference,product_ciel_code:0
+#: field:ref.reference,product_ciel_code2:0
+msgid "Ciel"
+msgstr "Ciel"
+
+#. module: dec_reference
+#: field:ref.reference,datetime:0
+msgid "Create date"
+msgstr "Date de création"
+
+#. module: dec_reference
+#: selection:ref.pack,type:0
+msgid "Manufacturer"
+msgstr "Fabriquant"
+
+#. module: dec_reference
+#: field:ref.log,username:0
+msgid "username"
+msgstr "utilisateur"
+
+#. module: dec_reference
+#: field:ref.category.line,description:0
+msgid "Property description"
+msgstr "Description de la propriété"
+
+#. module: dec_reference
+#: field:ref.market.bom,product_qty:0
+msgid "Product Qty"
+msgstr "Quantité de produit"
+
+#. module: dec_reference
+#: sql_constraint:tagging.tags:0
+msgid "The tag names must be unique!"
+msgstr "Le nom du tag doit être unique!"
+
+#. module: dec_reference
+#: field:ref.attribute,name:0 field:ref.category,name:0
+#: field:ref.market.bom,name:0 field:ref.pack,name:0 field:ref.property,name:0
+#: field:ref.reference,product_name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_test
+msgid "Test"
+msgstr "Test"
+
+#. module: dec_reference
+#: model:ir.module.category,description:dec_reference.module_category_reference
+msgid "Reference management by DEC Industrie."
+msgstr "Gestionnaire de référence par DEC Industrie."
+
+#. module: dec_reference
+#: field:ref.attribute,value:0 field:ref.reference,value:0
+#: field:ref.reference.line,value:0
+msgid "Value"
+msgstr "Valeur"
+
+#. module: dec_reference
+#: field:ref.market.bom,product_uom:0
+msgid "Product UOM"
+msgstr "Unité de mesure produit"
+
+#. module: dec_reference
+#: field:ref.reference,folder_warning:0
+msgid "Product folder warning count"
+msgstr "Nombre d'avertissements dans le dossier produit"
+
+#. module: dec_reference
+#: field:ref.version,version:0
+msgid "Version"
+msgstr "Version"
+
+#. module: dec_reference
+#: field:ref.reference,folder_error:0
+msgid "Product folder error count"
+msgstr "Nombre d'erreurs dans le dossier produit"
+
+#. module: dec_reference
+#: field:tagging.tags,attribute_ids:0
+msgid "Attributes"
+msgstr "Attributs"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_property
+#: field:ref.category.line,property:0 field:ref.reference.line,property:0
+msgid "Property"
+msgstr "Propriété"
+
+#. module: dec_reference
+#: field:ref.log,ipaddress:0
+msgid "ipaddress"
+msgstr "ipaddress"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_pack
+msgid "Pack"
+msgstr "Pack"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_market_category
+msgid "Market Category"
+msgstr "Catégorie du tarif"
+
+#. module: dec_reference
+#: field:ref.log,localcomputername:0
+msgid "localcomputername"
+msgstr "localcomputername"
+
+#. module: dec_reference
+#: field:ref.category,code:0 field:ref.pack,default_code:0
+msgid "Code"
+msgstr "Code"
+
+#. module: dec_reference
+#: field:ref.log,localusername:0
+msgid "localusername"
+msgstr "localusername"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_reference
+#: field:ref.price,reference_id:0 field:ref.reference.line,reference:0
+#: field:ref.version,reference:0
+msgid "Reference"
+msgstr "Référence"
+
+#. module: dec_reference
+#: field:ref.market.bom,create_uid:0
+msgid "Creator"
+msgstr "Créateur"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_attribute
+#: field:ref.reference.line,attribute_id:0
+msgid "Attribute"
+msgstr "Attribut"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_category_line
+msgid "Category line"
+msgstr "Lignes de catégorie"
+
+#. module: dec_reference
+#: field:ref.pack,type:0
+msgid "Pack Type"
+msgstr "Type de pack"
+
+#. module: dec_reference
+#: model:res.groups,name:dec_reference.group_ref_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: dec_reference
+#: field:ref.market.bom,create_date:0
+msgid "Create Date"
+msgstr "Date de création"
+
+#. module: dec_reference
+#: model:ir.module.category,name:dec_reference.module_category_reference
+#: field:tagging.tags,reference_ids:0
+msgid "References"
+msgstr "Références"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_ref_market_bom
+msgid "ref.market.bom"
+msgstr "ref.market.bom"
+
+#. module: dec_reference
+#: field:ref.attribute,owner:0
+msgid "Owner"
+msgstr "Propriétaire"
+
+#. module: dec_reference
+#: model:ir.model,name:dec_reference.model_tagging_tags
+msgid "tagging.tags"
+msgstr "tagging.tags"
+
+#. module: dec_reference
+#: field:ref.market.bom,bom_id:0
+msgid "Parent BoM"
+msgstr "Nomenclature parente"
