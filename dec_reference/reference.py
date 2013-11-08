@@ -383,8 +383,8 @@ class ref_reference(osv.osv):
                 if prices[0].value > prices[1].value:   
                     warn = True                 
                     body += ('[%s] %s\n') % (reference.value, reference.product.name)
-                    body += ('%s: %.2f\n') % (prices[0].date, prices[0].value)   
-                    body += ('%s: %.2f (+%.2f)\n') % (prices[1].date, prices[1].value, prices[0].value-prices[1].value)   
+                    body += ('%s: %.2f\n') % (prices[1].date, prices[1].value)   
+                    body += ('%s: %.2f (+%.2f)\n') % (prices[0].date, prices[0].value, prices[0].value-prices[1].value)   
                     body += '\n'
           
         if warn:          
