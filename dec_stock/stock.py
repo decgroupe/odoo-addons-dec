@@ -24,6 +24,7 @@ import time
 from osv import fields
 from osv import osv
 from tools.translate import _
+from openerp import SUPERUSER_ID
 
 class stock_picking(osv.osv):
     _name = "stock.picking"
@@ -90,6 +91,9 @@ class stock_move(osv.osv):
                 purchase_order_line_ids = purchase_order_line_obj.search(cr, uid, [('move_ids', '=', move_line.id)], context=context) 
                 for purchase_order_line in purchase_order_line_obj.browse(cr, uid, purchase_order_line_ids, context=context):
                     res[move_line.id] = purchase_order_line.purchase_origin
+                    if 'INT:BE' in res[move_line.id] or 'INT:ATELIER' in res[move_line.id]: 
+                        if purchase_order_line.origin_procurement_order_id and purchase_order_line.origin_procurement_order_id.create_uid.id <> SUPERUSER_ID:  
+                            res[move_line.id] = '%s (%s)' % (res[move_line.id], purchase_order_line.origin_procurement_order_id.create_uid.name)
 #                
 #                
 #                if purchase_order_line.origin_procurement_order_id:
