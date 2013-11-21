@@ -140,7 +140,7 @@
             <field name="help">A task represents a work that has to be done. Each user works in his own list of tasks where he can record his task work in hours. He can work and close the task itself or delegate it to another user. If you delegate a task to another user, you get a new task in pending state, which will be reopened when you have to review the work achieved. If you install the project_timesheet module, task work can be invoiced based on the project configuration. With the project_mrp module, sales orders can create tasks automatically when they are confirmed.</field>
         </record>
 
-    	<delete model="ir.ui.menu" id="project.menu_action_view_task"/>
+<!--     	<delete model="ir.ui.menu" id="project.menu_action_view_task"/> -->
         <menuitem action="action_view_task_dec" id="menu_action_view_task_dec" parent="project.menu_project_management" sequence="3"/>
 
         

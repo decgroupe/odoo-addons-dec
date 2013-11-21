@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 12:45+0000\n"
-"PO-Revision-Date: 2013-09-13 14:48+0100\n"
+"POT-Creation-Date: 2013-11-12 07:53+0000\n"
+"PO-Revision-Date: 2013-11-12 08:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,11 @@ msgid "This allows the seller to hide the entire printed line"
 msgstr ""
 "Ceci permet au vendeur de cacher la ligne entière pour qu'elle "
 "n'apparaissent pas sur le rapport"
+
+#. module: dec_sale_layout_margin
+#: view:sale.order:0
+msgid "Manual fix"
+msgstr "Réparé manuellement"
 
 #. module: dec_sale_layout_margin
 #: code:addons/dec_sale_layout_margin/sale_layout_margin.py:544

@@ -215,7 +215,7 @@ class stock_move(osv.osv):
                         
                         if procurement_order.purchase_id.state == 'draft':
                             res[i]['status_status'] = _('On procurement (quotation)')
-                        elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved':
+                        elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved' or procurement_order.purchase_id.state == 'except_picking':
                             
                             if purchase_move and purchase_move.state == 'assigned':
                                 if len(purchase_move_ids) == 1:
@@ -227,8 +227,9 @@ class stock_move(osv.osv):
                                 res[i]['status_received'] = True
                             else:
                                 res[i]['status_status'] = _('On procurement (purchase ???)')
-                        elif procurement_order.purchase_id.state == 'except_picking':
-                            res[i]['status_status'] = _('On procurement (exception)')
+                                
+                            if procurement_order.purchase_id.state == 'except_picking':
+                                res[i]['status_status'] = res[i]['status_status'] + _('(Purchase exception)')
                         else:
                             res[i]['status_status'] = _('On procurement ???')
                     
