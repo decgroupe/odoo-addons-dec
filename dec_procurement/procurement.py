@@ -37,6 +37,8 @@ class procurement_order(osv.osv):
 
     _columns = {
         'product_supplier_id': fields.many2one('res.partner', 'Supplier'),
+        'create_uid':  fields.many2one('res.users', 'Creator'),
+        'write_uid':  fields.many2one('res.users', 'Last editor'),
     }
     
     def create_procurement_purchase_order(self, cr, uid, procurement, po_vals, line_vals, context=None):
