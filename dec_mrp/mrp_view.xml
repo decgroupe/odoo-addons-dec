@@ -140,6 +140,8 @@
                 </field>
                             	
                 <field name="product_uos" position="after">
+	           		<newline/>
+	           		<field name="note" colspan="6"/>
             		<newline/>
                		<separator string="Source" colspan="6"/>
                 	<field name="origin"/>

@@ -270,17 +270,6 @@ class stock_move(osv.osv):
                     res[i]['status_status'] = _('On procurement ???')
                     res[i]['status_dedicated'] =  _('Not dedicated') 
 
-
-            
-#            sale_order_ids = sale_order_obj.search(cr, uid, [('name', '=', prod.sale_name)], context=context)   
-#            
-#            for sale_order in sale_order_obj.browse(cr, uid, sale_order_ids, context=context):
-#                for f in field_names:
-#                    if f == 'sale_requested_date':
-#                        res[prod.id][f] = sale_order.requested_date  
-#                    if f == 'sale_commitment_date':
-#                        res[prod.id][f] = sale_order.commitment_date  
-            
         return res
     
     _columns = {
@@ -476,24 +465,19 @@ class mrp_production(osv.osv):
         'assigned_workcenter': fields.many2one('mrp.workcenter', 'Assigned to', required=False),
         'late': fields.function(_get_late, type='boolean', string='Late', store=True),
         'view_name': fields.function(_get_view_name, string='View name', type='char'), 
-        'picked_rate': fields.function(_picked_rate, string='Picked', type='float'),
+        'picked_rate': fields.function(_picked_rate, string='Picked', type='float', store=True),
         'move_all_src_ids': fields.many2many('stock.move', 'mrp_production_move_ids', 'production_id', 'move_id', 'Products IN', domain=[('state','!=', 'cancel')]),
         'move_all_dst_ids': fields.one2many('stock.move', 'production_id', 'Products OUT', domain=[('state','!=', 'cancel')]),
-        
         'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
         'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
         'partner_id': fields.many2one('res.partner', 'Partner'),
         'partner_address_id': fields.many2one('res.partner.address', 'Address'),
         'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City', store=True),
-#        , store={
-#                'stock.picking': (lambda self, cr, uid, ids, c={}: ids, ['picking_id'], 20),
-#                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines'], 20),
-#                'mrp.production': (lambda self, cr, uid, ids, c={}: ids, ['move_lines2'], 20),
-#                }),
         'task_ids': fields.many2many('project.task', 'mrp_production_task_ids', 'production_id', 'task_id', 'Tasks', domain=[]),
         'tested_rate': fields.function(_get_tested, string='Tested', type='float', multi='tested', store=False),
         'tested_count': fields.function(_get_tested, string='Testing task count', type='float', multi='tested', store=False),
         'invalid_move_prod': fields.function(_get_invalid_move_prod, type='boolean', string='Invalid production move', store=True),
+        'note': fields.text('Notes'),
     }
     
     def create(self, cr, uid, vals, context=None):
@@ -518,7 +502,7 @@ class mrp_production(osv.osv):
         uom_obj = self.pool.get('product.uom') 
         product_obj = self.pool.get('product.product') 
         
-        for production in production_obj.browse(cr, uid, ids, context):                   
+        for production in production_obj.browse(cr, uid, ids, context):                               
             if vals.has_key('product_id'):
                 for move in production.move_all_dst_ids:
                     if move.product_id.id <> vals['product_id']:
@@ -544,6 +528,16 @@ class mrp_production(osv.osv):
             'partner_address_id' : False
         })
         return super(mrp_production, self).copy(cr, uid, id, default, context)
+    
+    def run_picked_rate_scheduler(self, cr, uid, ids=None, context=None):
+        if context is None:
+            context = {}
+        if not ids:
+            ids = self.search(cr, uid, [('state', 'in', ('confirmed', 'picking_except', 'ready', 'in_production'))])
+
+        for data in self.read(cr, uid, ids, ['picked_rate'], context=context): 
+            vals = {'picked_rate': data['picked_rate'],}
+            self.write(cr, uid, data['id'], vals, context=context)
     
 
     def action_produce(self, cr, uid, production_id, production_mode, context=None):
