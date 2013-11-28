@@ -35,8 +35,15 @@ class Parser(report_sxw.rml_parse):
             'manufacturer': self.get_manufacturer,
             'date_procurement': self.get_date_procurement,
             'date_shipping': self.get_date_shipping,
+            'picking': self.get_picking,
         })
         self.context = context
+        
+    def get_picking(self, data):
+        if data.has_key('form') and data['form'].has_key('picking'):
+            return data['form']['picking']
+        else:
+            return True
 
     def get_manufacturer(self, product):
         res = ''

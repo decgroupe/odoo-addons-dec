@@ -19,9 +19,37 @@
 #
 ##############################################################################
 
-import mrp_product_produce
-import mrp_attach_move_production
-import mrp_custom_report
+from osv import osv, fields
+
+class mrp_custom_report(osv.TransientModel):
+    _name = 'mrp.custom.report'
+    _description = 'Customize production report'
+
+    _columns = {
+            'picking': fields.boolean('Picking list'),
+        }
+    
+    _defaults = {
+        'picking': True,
+    }
+
+    def check_report(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
+        view_data = self.read(cr, uid, ids, [], context=context)[0]
+        datas = {
+             'ids': context.get('active_ids',[]),
+             'model': 'mrp.production',
+             'form': view_data,
+        }
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'service_print_mrp',
+            'datas': datas,
+        }
+        
+
+mrp_custom_report()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
