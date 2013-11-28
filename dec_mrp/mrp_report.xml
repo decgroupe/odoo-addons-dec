@@ -1,78 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
-
-        <report
-			id="report_mrp_production_report_dec"
-			string="Production Order (DEC)"
-			model="mrp.production"
-			name="mrp.production.order.dec"
-			rml="dec_mrp/report/order_dec.rml"
-			auto="False"
-			/>
-			
-			<!--
-        <report
-			id="mrp.report_mrp_production_report"
-			string="Production Order (DEC)"
-			model="mrp.production"
-			name="mrp.production.order.dec"
-			rml="dec_mrp/report/order_dec.rml"
-			auto="False"
-			/>
-    -->
-    
-
-    <record id="mrp_dec_report_id" model="ir.actions.report.xml">
-        <field name="name">Ordre de production(PROTO)</field>
-        <field name="type">ir.actions.report.xml</field>
-        <field name="model">mrp.production</field>
-        <field name="report_name">service_print_mrp</field>
-        <field name="report_type">aeroo</field>
-        <field name="in_format">oo-odt</field>
-        <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
-        <field name="parser_loc">dec_mrp/report/mrp_parser.py</field>
-        <field name="report_rml">dec_mrp/report/mrp_report.odt</field>
-        <field name="parser_state">loc</field>
-        <field name="tml_source">file</field>
-        <field name="process_sep">True</field>
-    </record>
-    
-    <ir_set>
-        <field name="name">MRP Report</field>
-        <field eval="'action'" name="key"/>
-        <field eval="'client_print_multi'" name="key2"/>
-        <field eval="['sale.order']" name="models"/>
-        <field eval="'ir.actions.report.xml,'+str(mrp_dec_report_id)" name="value"/>
-        <field eval="True" name="isobject"/>
-        <field eval="True" name="replace"/>
-    </ir_set>
-        
-
-    <record id="mrp_dec_report_nobl_id" model="ir.actions.report.xml">
-        <field name="name">Ordre de production(NOBL)</field>
-        <field name="type">ir.actions.report.xml</field>
-        <field name="model">mrp.production</field>
-        <field name="report_name">service_print_mrp_nobl</field>
-        <field name="report_type">aeroo</field>
-        <field name="in_format">oo-odt</field>
-        <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
-        <field name="parser_loc">dec_mrp/report/mrp_parser.py</field>
-        <field name="report_rml">dec_mrp/report/mrp_nobl_report.odt</field>
-        <field name="parser_state">loc</field>
-        <field name="tml_source">file</field>
-        <field name="process_sep">True</field>
-    </record>
-    
-    <ir_set>
-        <field name="name">MRP NOBL Report</field>
-        <field eval="'action'" name="key"/>
-        <field eval="'client_print_multi'" name="key2"/>
-        <field eval="['sale.order']" name="models"/>
-        <field eval="'ir.actions.report.xml,'+str(mrp_dec_report_nobl_id)" name="value"/>
-        <field eval="True" name="isobject"/>
-        <field eval="True" name="replace"/>
-    </ir_set>
+      <record id="mrp_dec_report_id" model="ir.actions.report.xml">
+          <field name="name">Ordre de production(PROTO)</field>
+          <field name="type">ir.actions.report.xml</field>
+          <field name="model">mrp.production</field>
+          <field name="report_name">service_print_mrp</field>
+          <field name="report_type">aeroo</field>
+          <field name="in_format">oo-odt</field>
+          <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
+          <field name="parser_loc">dec_mrp/report/mrp_parser.py</field>
+          <field name="report_rml">dec_mrp/report/mrp_report.odt</field>
+          <field name="parser_state">loc</field>
+          <field name="tml_source">file</field>
+          <field name="process_sep">True</field>
+      </record>
     </data>
 </openerp>
