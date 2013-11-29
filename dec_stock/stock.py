@@ -52,6 +52,7 @@ class stock_picking(osv.osv):
         return res  
     
     _columns = {
+        'origin': fields.char('Origin', size=512, help="Reference of the document that produced this picking.", select=True),
         'move_ready_state': fields.function(_get_move_ready_state, string='Count', type='char'),
         'partner_address_city_id': fields.related('address_id', 'city_id', type='many2one', relation='city.city', string='City', store=True),
         'create_uid':  fields.many2one('res.users', 'Creator'),
