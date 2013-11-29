@@ -578,6 +578,22 @@ class mrp_production(osv.osv):
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(uid, 'mrp.production', production_id, 'button_produce_done', cr)
         return True
+    
+    
+    def action_cancel(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+            
+        picking_obj = self.pool.get('stock.picking')
+        picking_ids = []
+        for production in self.browse(cr, uid, ids, context=context):
+            if production.state == 'confirmed' and production.picking_id.state not in ('draft', 'cancel'):
+                picking_ids.append(production.picking_id.id)
+                
+        if picking_ids:
+            picking_obj.action_cancel(cr, uid, picking_ids, context=context)
+                
+        return super(mrp_production, self).action_cancel(cr, uid, ids, context = context)
 
     def button_create_task(self, cr, uid, ids, context=None):
         if isinstance(ids, (int, long)):
