@@ -251,6 +251,8 @@
                                         <field colspan="4" name="invoice_lines" nolabel="1" domain="[('partner_id','in',[partner_id])]"/>
                                         <separator colspan="4" string="Stock Moves"/>
                                         <field colspan="4" name="move_ids" nolabel="1" widget="many2many"/>
+			                            <separator colspan="4" string="Procurements"/>
+			                            <field colspan="4" name="procurement_ids" nolabel="1"/> 
                                     </page>
                                 </notebook>
                             </form>
