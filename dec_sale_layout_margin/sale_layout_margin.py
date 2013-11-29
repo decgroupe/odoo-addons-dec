@@ -270,12 +270,12 @@ class sale_order_line(osv.osv):
                 ('subtotal', 'Sub Total'),
                 ('line', 'Separator Line'),
                 ('break', 'Page Break'),]
-            ,'Line Type', select=True, required=True),
-        'sequence': fields.integer('Line Sequence', select=True),
+            ,'Line Type', select=True, required=True, readonly=True, states={'draft': [('readonly', False)]}),
+        'sequence': fields.integer('Line Sequence', select=True, readonly=True, states={'draft': [('readonly', False)]}),
         'price_unit': fields.float('Unit Price', required=True, digits_compute= dp.get_precision('Sale Price'), readonly=True, states={'draft': [('readonly', False)]}),
         'product_uom_qty': fields.float('Quantity (UoM)', digits_compute= dp.get_precision('Product UoS')),
-        'product_uom': fields.many2one('product.uom', 'Product UoM'),
-        'procurement_ids': fields.one2many('procurement.order', 'sale_line_id', 'Procurements'),
+        'product_uom': fields.many2one('product.uom', 'Product UoM', readonly=True, states={'draft': [('readonly', False)]}),
+        'procurement_ids': fields.one2many('procurement.order', 'sale_line_id', 'Procurements', readonly=True),
         # Override the field to call the overridden _amount_line function
         'price_subtotal': fields.function(_amount_line, method=True, string='Subtotal', digits_compute= dp.get_precision('Sale Price')),
         'margin': fields.function(_product_margin, string='Margin', store = True),  
@@ -284,7 +284,7 @@ class sale_order_line(osv.osv):
         'purchase_price': fields.float('Cost Price', digits_compute=dp.get_precision('Purchase Price')),
         
         # Changed by YP
-        'product_id': fields.many2one('product.product', 'Product', domain=[], change_default=True),
+        'product_id': fields.many2one('product.product', 'Product', domain=[], change_default=True, states={'draft': [('readonly', False)]}),
         'price_discount': fields.function(_discount_price, string='Unit Price (discount)', digits_compute= dp.get_precision('Sale Price')),
         
         'report_hide_line': fields.boolean('Hide Line', help="This allows the seller to hide the entire printed line"),
