@@ -474,7 +474,7 @@ class purchase_order(osv.osv):
                         #'procurement_id': line.procurement_id and line.procurement_id.id or False,
                         'date_planned': line.date_planned,
                         'price_unit': price,
-                        'tax_id': [(6,0,tax_ids)],
+                        'taxes_id': [(6,0,tax_ids)],
                         'type': subproduct.procure_method,
                         'property_ids': [(6,0,[])],
                         'address_allotment_id': False,
