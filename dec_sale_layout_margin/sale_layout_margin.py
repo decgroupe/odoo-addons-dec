@@ -669,7 +669,7 @@ class sale_order(osv.osv):
         bom_pool = self.pool.get('mrp.bom')
             
         msg = ''        
-        for sale in self.browse(cr, uid, ids):              
+        for sale in self.browse(cr, uid, ids, context=context):              
             for line in sale.order_line:
                 if line.product_id and (line.type == 'make_to_order') and (line.product_id.product_tmpl_id.type == 'product') and (line.product_id.product_tmpl_id.supply_method == 'produce'):
                     err1 = ''
@@ -709,6 +709,20 @@ class sale_order(osv.osv):
             for pick in sale.picking_ids:
                 if pick.state not in ('draft', 'cancel'):
                     picking_ids.append(pick.id)
+ 
+        emailfrom = 'vente@dec-industrie.com'
+        emails = ['achat@dec-industrie.com','production@dec-industrie.com']
+        subject = _('Sale order(s) canceled')
+        body = ('%s\n\n') % (cr.dbname)
+        warn = False
+
+        body += _('The following sale order(s) have been canceled:\n') 
+        for sale in self.browse(cr, uid, ids, context=context): 
+            warn = True
+            body += ' - %s\n' % (sale.name)    
+            
+        if warn:          
+            self.pool.get('mail.message').schedule_with_attach(cr, uid, emailfrom, emails, subject, body, model='sale.order', reply_to=emailfrom)  
                     
         if picking_ids:
             picking_obj.action_cancel(cr, uid, picking_ids, context=context)

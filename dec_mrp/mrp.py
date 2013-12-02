@@ -585,6 +585,8 @@ class mrp_production(osv.osv):
             context = {}
             
         picking_obj = self.pool.get('stock.picking')
+        procurement_obj = self.pool.get('procurement.order')
+        move_obj = self.pool.get('stock.move')
         picking_ids = []
         for production in self.browse(cr, uid, ids, context=context):
             if production.state == 'confirmed' and production.picking_id.state not in ('draft', 'cancel'):
@@ -592,6 +594,33 @@ class mrp_production(osv.osv):
                 
         if picking_ids:
             picking_obj.action_cancel(cr, uid, picking_ids, context=context)
+            
+        emailfrom = 'production@dec-industrie.com'
+        emails = ['achat@dec-industrie.com']
+        subject = _('Production order(s) canceled')
+        body = ('%s\n\n') % (cr.dbname)
+        warn = False
+
+        body += _('The following production order(s) have been canceled:\n') 
+        for production in self.browse(cr, uid, ids, context=context): 
+            warn = True
+            body += '\n - %s\n' % (production.name)  
+            
+            purchase_names = []
+            if production.picking_id:
+                move_ids = move_obj.search(cr, uid, [('picking_id', '=', production.picking_id.id)])   
+                proc_ids = procurement_obj.search(cr, uid, [('move_id', 'in', move_ids)])  
+                for procurement in procurement_obj.browse(cr, uid, proc_ids, context=context): 
+                    if procurement.purchase_id.name and (not purchase_names or not procurement.purchase_id.name in purchase_names): 
+                        purchase_names.append(procurement.purchase_id.name)
+                    
+            if purchase_names:  
+                body += '  ' + _('Related purchase order(s):\n')   
+                for name in purchase_names:
+                    body += '  ' + ' - %s\n' % (name)  
+            
+        if warn:          
+            self.pool.get('mail.message').schedule_with_attach(cr, uid, emailfrom, emails, subject, body, model='mrp.production', reply_to=emailfrom)
                 
         return super(mrp_production, self).action_cancel(cr, uid, ids, context = context)
 
