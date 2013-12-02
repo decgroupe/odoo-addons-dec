@@ -20,7 +20,6 @@
 ##############################################################################
 
 import time
-
 from osv import fields
 from osv import osv
 from tools.translate import _
@@ -66,7 +65,7 @@ class purchase_order(osv.osv):
         for purchaseorder in self.browse(cr, uid, ids, context):
             if isinstance(purchaseorder.pricelist_id, osv.orm.browse_null) :
                 raise osv.except_osv('Warning !', 'Please set the price list the purchase order')
-            #we modify the requiered data in the line
+            #we modify the required data in the line
             for line in purchaseorder.order_line :
                 if  type(line.product_id) != osv.orm.browse_null and line.product_id:
                     res = line.product_id_change(
@@ -115,6 +114,12 @@ class purchase_order_line(osv.osv):
                 
         return res
     
+    def _get_sequence(self, cr, uid, context=None):
+        if context is None:
+            context = {}      
+            
+        return int(time.time())
+    
     PURCHASE_STATE_SELECTION = [
         ('draft', 'Request for Quotation'),
         ('wait', 'Waiting'),
@@ -138,15 +143,19 @@ class purchase_order_line(osv.osv):
     ]
 
     _columns = {
-         'purchase_origin': fields.function(_get_purchase_origin, type="char", string='Procurement origin'),
-         
-         'product_procure_method': fields.related('product_id', 'procure_method', type='selection', selection=PRODUCT_PROCURE_METHOD, string="Product procurement Method"),
-         'product_type': fields.related('product_id', 'type', type='selection', selection=PRODUCT_TYPE, string="Product type"),
-         'order_origin': fields.related('order_id', 'origin', type='char', string="Purchase origin"),
-         'order_state': fields.related('order_id', 'state', type='selection', selection=PURCHASE_STATE_SELECTION, string="Purchase state"),
+        'sequence': fields.integer('Line Sequence', select=True),
+        'purchase_origin': fields.function(_get_purchase_origin, type="char", string='Procurement origin'),
+        'product_procure_method': fields.related('product_id', 'procure_method', type='selection', selection=PRODUCT_PROCURE_METHOD, string="Product procurement Method"),
+        'product_type': fields.related('product_id', 'type', type='selection', selection=PRODUCT_TYPE, string="Product type"),
+        'order_origin': fields.related('order_id', 'origin', type='char', string="Purchase origin"),
+        'order_state': fields.related('order_id', 'state', type='selection', selection=PURCHASE_STATE_SELECTION, string="Purchase state"),
     }
-
-    _order = "id desc"
+    
+    _defaults = {
+        'sequence': _get_sequence,
+    }
+   
+    _order = "order_id, sequence asc"
 
    
 

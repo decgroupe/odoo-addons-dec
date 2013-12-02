@@ -10,6 +10,7 @@
             
              	<xpath expr="/form/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree/field[@name='name']" position="after">
                		<field name="merge_origin"/>
+               		<field name="sequence" invisible="1"/>
                 </xpath>
             
              	<xpath expr="/form/notebook/page[@string='Purchase Order']/group[1]/button" position="replace">

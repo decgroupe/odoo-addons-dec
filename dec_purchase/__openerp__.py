@@ -33,6 +33,7 @@
     "demo_xml" : [ ],
     "update_xml" : [
         "purchase_view.xml",
+        "wizard/purchase_custom_report.xml",
         "reports.xml",
         ],
     "active": False,

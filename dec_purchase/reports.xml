@@ -16,16 +16,6 @@
         <field name="tml_source">file</field>
         <field name="process_sep">True</field>
     </record>
-
-    <ir_set>
-        <field name="name">Purchase Quotation Report</field>
-        <field eval="'action'" name="key"/>
-        <field eval="'client_print_multi'" name="key2"/>
-        <field eval="['purchase.order']" name="models"/>
-        <field eval="'ir.actions.report.xml,'+str(purchase_quotation_dec_report_id)" name="value"/>
-        <field eval="True" name="isobject"/>
-        <field eval="True" name="replace"/>
-    </ir_set>
     
     <record id="purchase_dec_report_id" model="ir.actions.report.xml">
         <field name="name">Bon de commande (DEC)</field>
@@ -41,16 +31,6 @@
         <field name="tml_source">file</field>
         <field name="process_sep">True</field>
     </record>
-    
-    <ir_set>
-        <field name="name">Purchase Report</field>
-        <field eval="'action'" name="key"/>
-        <field eval="'client_print_multi'" name="key2"/>
-        <field eval="['purchase.order']" name="models"/>
-        <field eval="'ir.actions.report.xml,'+str(purchase_dec_report_id)" name="value"/>
-        <field eval="True" name="isobject"/>
-        <field eval="True" name="replace"/>
-    </ir_set>
     
     
 	</data>
