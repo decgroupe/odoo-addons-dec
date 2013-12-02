@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-26 09:10+0000\n"
-"PO-Revision-Date: 2013-07-26 11:28+0100\n"
+"POT-Creation-Date: 2013-12-02 09:47+0000\n"
+"PO-Revision-Date: 2013-12-02 10:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,10 +33,9 @@ msgid "If checked, the product pack content will be print"
 msgstr "Si activé, le contenu de pack sera imprimé"
 
 #. module: dec_product_pack
-#: field:purchase.order.line,pack_child_line_ids:0
-#: field:sale.order.line,pack_child_line_ids:0
-msgid "Lines in pack"
-msgstr "Lignes dans le pack"
+#: view:product.product:0
+msgid "Pack (Sale)"
+msgstr "Pack de vente"
 
 #. module: dec_product_pack
 #: help:purchase.order.line,sequence:0
@@ -73,11 +72,6 @@ msgstr ""
 "Si activé, le pack sera automatiquement explosé lors de l'enregistrement"
 
 #. module: dec_product_pack
-#: field:product.product,printable_purchase_lines:0
-msgid "Print lines"
-msgstr "Imprimer les lignes"
-
-#. module: dec_product_pack
 #: model:ir.model,name:dec_product_pack.model_product_product
 #: field:product.pack.purchaseline,product_id:0
 #: field:product.pack.saleline,product_id:0
@@ -99,14 +93,10 @@ msgid "Purchase Unit of Measure"
 msgstr "Unité de mesure d'achat"
 
 #. module: dec_product_pack
-#: view:product.product:0
-msgid "Pack (Sale)"
-msgstr "Pack de vente"
-
-#. module: dec_product_pack
-#: field:product.product,printable_sale_lines:0
-msgid "Sale lines"
-msgstr "Lignes de vente"
+#: field:purchase.order.line,pack_child_line_ids:0
+#: field:sale.order.line,pack_child_line_ids:0
+msgid "Lines in pack"
+msgstr "Lignes dans le pack"
 
 #. module: dec_product_pack
 #: view:product.product:0
@@ -141,11 +131,6 @@ msgid "Pack options"
 msgstr "Options du pack"
 
 #. module: dec_product_pack
-#: field:product.product,stock_depends:0
-msgid "Stock depends of components"
-msgstr "Le stock dépend des composants"
-
-#. module: dec_product_pack
 #: field:product.pack.purchaseline,product_name:0
 #: field:product.pack.saleline,product_name:0
 msgid "Name"
@@ -165,12 +150,9 @@ msgid "Notes"
 msgstr "Notes"
 
 #. module: dec_product_pack
-#: help:product.product,printable_purchase_lines:0
-#: help:product.product,printable_sale_lines:0
-msgid "Mark this field if the lines should not be displayed on a report."
-msgstr ""
-"Coché ce champ si les lignes de ce pack ne doivent pas apparaître sur le "
-"rapport."
+#: field:product.product,stock_depends:0
+msgid "Stock depends of components"
+msgstr "Le stock dépend des composants"
 
 #. module: dec_product_pack
 #: model:ir.model,name:dec_product_pack.model_purchase_order
@@ -224,7 +206,7 @@ msgstr "Séquence"
 #: field:product.pack.purchaseline,parent_product_id:0
 #: field:product.pack.saleline,parent_product_id:0
 msgid "Parent Product"
-msgstr "Produit parent"
+msgstr "Parent Product"
 
 #. module: dec_product_pack
 #: field:purchase.order.line,pack_print:0
