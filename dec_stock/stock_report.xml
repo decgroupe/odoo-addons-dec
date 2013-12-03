@@ -15,5 +15,36 @@
 			string="Picking List (Stock)" 
 			rml="dec_stock/report/picking_dec.rml"
 		/>
+		
+		
+    <delete model="ir.actions.report.xml" id="stock.report_picking_list"/>
+    <delete model="ir.actions.report.xml" id="report_delivery_order_dec"/>
+    <delete model="ir.actions.report.xml" id="report_picking_dec"/>
+
+    <record id="picking_dec_report_id" model="ir.actions.report.xml">
+        <field name="name">Picking list</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">stock.picking</field>
+        <field name="report_name">service_print_picking</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
+        <field name="parser_loc">dec_stock/report/picking_parser.py</field>
+        <field name="report_rml">dec_stock/report/picking_report.odt</field>
+        <field name="parser_state">loc</field>
+        <field name="tml_source">file</field>
+        <field name="process_sep">True</field>
+    </record>
+    
+    <ir_set>
+        <field name="name">Picking Report</field>
+        <field eval="'action'" name="key"/>
+        <field eval="'client_print_multi'" name="key2"/>
+        <field eval="['stock.picking']" name="models"/>
+        <field eval="'ir.actions.report.xml,'+str(picking_dec_report_id)" name="value"/>
+        <field eval="True" name="isobject"/>
+        <field eval="True" name="replace"/>
+    </ir_set>
+    
     </data>
 </openerp>

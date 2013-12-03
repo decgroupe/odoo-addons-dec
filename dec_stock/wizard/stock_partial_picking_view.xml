@@ -20,6 +20,10 @@
 	            	<field name="move_origin" readonly="1"/>
 	            </field>
 	            
+	            <field name="move_ids" position="after">
+	            	<button name="full_quantites" string="Full quantities" type="object" icon="gtk-fullscreen"/>
+	            </field>
+	            
             </field>
         </record>
         

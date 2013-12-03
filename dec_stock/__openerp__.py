@@ -32,6 +32,7 @@
         "security/ir.model.access.csv",
         "security/security.xml",
         "wizard/stock_partial_picking_view.xml",
+        "wizard/stock_custom_report.xml",
         "stock_data.xml",
         "stock_view.xml",
         "stock_report.xml",

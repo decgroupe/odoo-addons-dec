@@ -76,6 +76,12 @@ class stock_partial_picking(osv.osv_memory):
         
         return partial_move
     
+    def full_quantites(self, cr, uid, ids, context=None):
+        partial = self.browse(cr, uid, ids[0], context=context)
+        for wizard_line in partial.move_ids:
+            data = {'quantity':  wizard_line.expected_quantity}
+            self.pool.get('stock.partial.picking.line').write(cr, uid, wizard_line.id, data, context=context)
+
 
     def do_partial(self, cr, uid, ids, context=None):
         assert len(ids) == 1, 'Partial picking processing may only be done one at a time'
