@@ -32,6 +32,8 @@
         <field name="process_sep">True</field>
     </record>
     
+    <delete model="ir.actions.report.xml" id="purchase.report_purchase_quotation"/>
+    <delete model="ir.actions.report.xml" id="purchase.report_purchase_order"/>
     
 	</data>
 </openerp>

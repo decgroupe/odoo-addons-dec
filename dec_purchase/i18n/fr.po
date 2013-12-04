@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 09:28+0000\n"
-"PO-Revision-Date: 2013-12-02 10:32+0100\n"
+"POT-Creation-Date: 2013-12-04 15:09+0000\n"
+"PO-Revision-Date: 2013-12-04 16:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,14 +43,14 @@ msgid "Procurement origin"
 msgstr "Origine de l'appro."
 
 #. module: dec_purchase
-#: selection:purchase.order.line,order_state:0
-msgid "Request for Quotation"
+#: model:ir.actions.report.xml,name:dec_purchase.purchase_quotation_dec_report_id
+msgid "Demande de prix"
 msgstr "Demande de prix"
 
 #. module: dec_purchase
-#: model:ir.actions.act_window,name:dec_purchase.action_purchase_custom_report
-msgid "Purchase Order ..."
-msgstr "Bon de commande ..."
+#: selection:purchase.order.line,order_state:0
+msgid "Request for Quotation"
+msgstr "Demande de prix"
 
 #. module: dec_purchase
 #: view:purchase.order:0
@@ -98,15 +98,9 @@ msgid "Show full pack content"
 msgstr "Afficher tout le pack"
 
 #. module: dec_purchase
-#: model:ir.actions.act_window,name:dec_purchase.purchase_line_action_dec
-#: model:ir.ui.menu,name:dec_purchase.menu_purchase_line_action_dec
-msgid "Purchase Order lines"
-msgstr "Lignes d'achats"
-
-#. module: dec_purchase
 #: field:purchase.order.line,product_type:0
 msgid "Product type"
-msgstr "Type de produit"
+msgstr "Product type"
 
 #. module: dec_purchase
 #: selection:purchase.custom.report,pack_print:0
@@ -135,9 +129,9 @@ msgid "Customize purchase report"
 msgstr "Rapport d'achat personnalisé"
 
 #. module: dec_purchase
-#: model:ir.actions.report.xml,name:dec_purchase.purchase_dec_report_id
-msgid "Bon de commande (DEC)"
-msgstr "Bon de commande (DEC)"
+#: view:purchase.order.line:0
+msgid "Product"
+msgstr "Produit"
 
 #. module: dec_purchase
 #: view:purchase.order.line:0
@@ -160,9 +154,9 @@ msgid "Make to Order"
 msgstr "Sur commande"
 
 #. module: dec_purchase
-#: view:purchase.order.line:0
-msgid "Manual Invoices"
-msgstr "Factures manuelles"
+#: model:ir.actions.report.xml,name:dec_purchase.purchase_dec_report_id
+msgid "Bon de commande"
+msgstr "Bon de commande"
 
 #. module: dec_purchase
 #: selection:purchase.order.line,product_procure_method:0
@@ -175,9 +169,10 @@ msgid "Order Reference"
 msgstr "Référence commande"
 
 #. module: dec_purchase
-#: model:ir.actions.report.xml,name:dec_purchase.purchase_quotation_dec_report_id
-msgid "Demande de prix (DEC)"
-msgstr "Demande de prix (DEC)"
+#: model:ir.actions.act_window,name:dec_purchase.purchase_line_action_dec
+#: model:ir.ui.menu,name:dec_purchase.menu_purchase_line_action_dec
+msgid "Purchase Order lines"
+msgstr "Lignes d'achats"
 
 #. module: dec_purchase
 #: selection:purchase.order.line,product_type:0
@@ -195,6 +190,11 @@ msgid "Approved"
 msgstr "Confirmé par fournisseur"
 
 #. module: dec_purchase
+#: view:purchase.order.line:0
+msgid "Manual Invoices"
+msgstr "Factures manuelles"
+
+#. module: dec_purchase
 #: view:purchase.custom.report:0
 msgid "Print order"
 msgstr "Bon de commande"
@@ -207,17 +207,12 @@ msgstr "Mettre à jour les prix d'achat pour ce fournisseur"
 #. module: dec_purchase
 #: view:purchase.order.line:0
 msgid "Purchase order which are in draft state"
-msgstr "Commande d'achat à l'état de brouillon"
+msgstr "Purchase order which are in draft state"
 
 #. module: dec_purchase
 #: view:purchase.order.line:0
 msgid "Notes"
 msgstr "Notes"
-
-#. module: dec_purchase
-#: view:purchase.order.line:0
-msgid "Product"
-msgstr "Produit"
 
 #. module: dec_purchase
 #: field:purchase.order.line,order_state:0
@@ -316,6 +311,11 @@ msgstr "Terminé"
 #: view:purchase.custom.report:0
 msgid "Cancel"
 msgstr "Annuler"
+
+#. module: dec_purchase
+#: model:ir.actions.act_window,name:dec_purchase.action_purchase_custom_report
+msgid "Wizard ..."
+msgstr "Assistant ..."
 
 #. module: dec_purchase
 #: selection:purchase.order.line,order_state:0
