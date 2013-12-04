@@ -3,7 +3,7 @@
 	<data>
 
     <record id="purchase_quotation_dec_report_id" model="ir.actions.report.xml">
-        <field name="name">Demande de prix (DEC)</field>
+        <field name="name">Demande de prix</field>
         <field name="type">ir.actions.report.xml</field>
         <field name="model">purchase.order</field>
         <field name="report_name">service_print_purchase_quotation</field>
@@ -18,7 +18,7 @@
     </record>
     
     <record id="purchase_dec_report_id" model="ir.actions.report.xml">
-        <field name="name">Bon de commande (DEC)</field>
+        <field name="name">Bon de commande</field>
         <field name="type">ir.actions.report.xml</field>
         <field name="model">purchase.order</field>
         <field name="report_name">service_print_purchase</field>

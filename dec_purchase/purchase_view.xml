@@ -198,7 +198,7 @@
             <field name="help">Use this menu to search within your purchase orders by references, supplier, products, etc. For each purchase order, you can track the products received, and control the supplier invoices.</field>
         </record>
         
-<!--        <delete model="ir.ui.menu" id="purchase.menu_purchase_form_action"/>-->
+        <delete model="ir.ui.menu" id="purchase.menu_purchase_form_action"/>
         <menuitem action="purchase_form_action_dec" id="menu_purchase_form_action_dec" parent="purchase.menu_procurement_management" sequence="7"/>
 
        	

@@ -486,18 +486,14 @@ class sale_order(osv.osv):
 
             # Create procurement for new lines but also for existing one where their procurement has been canceled
             if line.product_id:
-                
-                if line.state == 'confirmed':
-                    # Do not recreate currently running procurement
-                    if line.procurement_id and line.procurement_id.state in ('confirmed', 'running', 'ready', 'done', 'waiting'):
-                        continue
-                elif line.state == 'exception':
+
+                if line.state == 'exception':
                     # Reset line state to confirmed state
-                    self.pool.get('sale.order.line').button_confirm(cr, uid, [line.id]) 
+                    line.button_confirm(context=context) 
                     # Cancel existing move if the canceled procurement exists 
                     if line.procurement_id and line.procurement_id.state == 'cancel'\
                     and line.procurement_id.move_id and line.procurement_id.move_id.state not in ('done', 'cancel'):
-                        move_obj.action_cancel(cr, uid, [line.procurement_id.move_id.id])
+                        line.procurement_id.move_id.action_cancel(context=context)
                 
                 if line.product_id.product_tmpl_id.type in ('product', 'consu'):
                     if not picking_id:

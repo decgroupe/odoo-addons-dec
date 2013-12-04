@@ -3,7 +3,7 @@
     <data>
 
         <record id="purchase_custom_report_view" model="ir.ui.view">
-            <field name="name">Customize production report</field>
+            <field name="name">Customize purchase report</field>
             <field name="model">purchase.custom.report</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
@@ -28,7 +28,7 @@
         </record>
 
         <record id="action_purchase_custom_report" model="ir.actions.act_window">
-            <field name="name">Purchase Order ...</field>
+            <field name="name">Wizard ...</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">purchase.custom.report</field>
             <field name="view_type">form</field>
