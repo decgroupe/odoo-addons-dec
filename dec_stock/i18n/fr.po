@@ -1,23 +1,23 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* dec_stock
+# 	* dec_stock
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-03 14:26+0000\n"
-"PO-Revision-Date: 2013-12-03 14:26+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2013-12-03 15:43+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_stock
-#: view:stock.picking:0
-#: field:stock.picking,partner_address_city_id:0
+#: view:stock.picking:0 field:stock.picking,partner_address_city_id:0
 msgid "City"
 msgstr "Ville"
 
@@ -29,7 +29,7 @@ msgstr "Retourner les produits"
 #. module: dec_stock
 #: view:stock.move:0
 msgid "Orders planned for today"
-msgstr "Orders planned for today"
+msgstr "Commandes planifiées pour ajourd'hui"
 
 #. module: dec_stock
 #: view:stock.picking:0
@@ -49,7 +49,7 @@ msgstr "Vérifier la disponibilité"
 #. module: dec_stock
 #: view:stock.partial.picking:0
 msgid "Full quantities"
-msgstr "Full quantities"
+msgstr "Quantités complètes"
 
 #. module: dec_stock
 #: view:stock.picking:0
@@ -118,8 +118,7 @@ msgid "Special outing"
 msgstr "Sortie du stock"
 
 #. module: dec_stock
-#: field:stock.move,write_uid:0
-#: field:stock.picking,write_uid:0
+#: field:stock.move,write_uid:0 field:stock.picking,write_uid:0
 msgid "Last editor"
 msgstr "Dernière modification"
 
@@ -207,7 +206,7 @@ msgstr "Client"
 #. module: dec_stock
 #: view:stock.move:0
 msgid "Stock to be delivered (Available or not)"
-msgstr "Stock to be delivered (Available or not)"
+msgstr "Stock à livrer (disponible ou non)"
 
 #. module: dec_stock
 #: view:stock.picking:0
@@ -236,8 +235,7 @@ msgid "You must be admin to execute delete action!"
 msgstr "Vous devez être administrateur pour supprimer!"
 
 #. module: dec_stock
-#: model:ir.model,name:dec_stock.model_product_product
-#: view:stock.move:0
+#: model:ir.model,name:dec_stock.model_product_product view:stock.move:0
 msgid "Product"
 msgstr "Produit"
 
@@ -280,8 +278,21 @@ msgstr "Erreur"
 
 #. module: dec_stock
 #: model:ir.actions.act_window,help:dec_stock.action_special_outing_dec
-msgid "Internal Moves display all inventory operations you have to perform in your warehouse. All operations can be categorized into stock journals, so that each worker has his own list of operations to perform in his own journal. Most operations are prepared automatically by OpenERP according to your preconfigured logistics rules, but you can also record manual stock operations."
-msgstr "Les mouvements internes affichent toutes les opérations d'inventaire que vous avez effectuées dans votre entrepôt. Toutes les opérations peuvent être rangées dans des catégories grâce aux journaux de stock, pour que chaque travailleur ait sa liste d'opérations à faire dans son propre journal. La plupart des opérations sont préparées automatiquement par OpenERP en fonction de vos règles de logistiques pré-configurées, mais vous pouvez aussi enregistrer manuellement des opérations de stock."
+msgid ""
+"Internal Moves display all inventory operations you have to perform in your "
+"warehouse. All operations can be categorized into stock journals, so that "
+"each worker has his own list of operations to perform in his own journal. "
+"Most operations are prepared automatically by OpenERP according to your "
+"preconfigured logistics rules, but you can also record manual stock "
+"operations."
+msgstr ""
+"Les mouvements internes affichent toutes les opérations d'inventaire que "
+"vous avez effectuées dans votre entrepôt. Toutes les opérations peuvent être "
+"rangées dans des catégories grâce aux journaux de stock, pour que chaque "
+"travailleur ait sa liste d'opérations à faire dans son propre journal. La "
+"plupart des opérations sont préparées automatiquement par OpenERP en "
+"fonction de vos règles de logistiques pré-configurées, mais vous pouvez "
+"aussi enregistrer manuellement des opérations de stock."
 
 #. module: dec_stock
 #: view:stock.picking:0
@@ -306,7 +317,7 @@ msgstr "Traiter maintenant"
 #. module: dec_stock
 #: help:stock.custom.report,message:0
 msgid "Allow to display a custom text"
-msgstr "Permet d'afficher du texte personnaliser"
+msgstr "Permet d'afficher du texte personnalisé"
 
 #. module: dec_stock
 #: constraint:stock.move:0
@@ -329,8 +340,7 @@ msgid "Custom message"
 msgstr "Message personnalisé"
 
 #. module: dec_stock
-#: field:stock.move,create_uid:0
-#: field:stock.picking,create_uid:0
+#: field:stock.move,create_uid:0 field:stock.picking,create_uid:0
 msgid "Creator"
 msgstr "Créateur"
 
@@ -380,31 +390,29 @@ msgid "Unit Of Measure"
 msgstr "Unité de mesure"
 
 #. module: dec_stock
-#: view:stock.move:0
-#: view:stock.picking:0
+#: view:stock.move:0 view:stock.picking:0
 msgid "_Cancel"
 msgstr "_Annuler"
 
 #. module: dec_stock
 #: constraint:stock.move:0
 msgid "You can not move products from or to a location of the type view."
-msgstr "Vous ne pouvez pas déplacer des produits depuis ou vers un emplacement de type \"vue\"."
+msgstr ""
+"Vous ne pouvez pas déplacer des produits depuis ou vers un emplacement de "
+"type \"vue\"."
 
 #. module: dec_stock
-#: view:stock.custom.report:0
-#: view:stock.picking:0
+#: view:stock.custom.report:0 view:stock.picking:0
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: dec_stock
-#: view:stock.move:0
-#: view:stock.picking:0
+#: view:stock.move:0 view:stock.picking:0
 msgid "Partner"
 msgstr "Partenaire"
 
 #. module: dec_stock
-#: view:stock.move:0
-#: view:stock.picking:0
+#: view:stock.move:0 view:stock.picking:0
 msgid "Stock Moves"
 msgstr "Mouvements de stocks"
 
@@ -427,4 +435,3 @@ msgstr "Diviser en lots de production"
 #: model:ir.actions.act_window,name:dec_stock.action_stock_custom_report
 msgid "Picking list ..."
 msgstr "Générer un bon ..."
-
