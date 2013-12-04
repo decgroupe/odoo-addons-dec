@@ -33,7 +33,7 @@
     "demo_xml" : [ ],
     "update_xml" : [
         'account_invoice_layout_report.xml',
-        'reports.xml',
+        'account_invoice_view.xml',
         ],
     "active": False,
     "installable": True
