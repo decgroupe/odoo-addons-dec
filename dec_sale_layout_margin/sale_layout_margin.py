@@ -303,6 +303,7 @@ class sale_order_line(osv.osv):
     
     def button_fix(self, cr, uid, ids, context=None):
         res = self.write(cr, uid, ids, {'procurement_id': False, 'procurement_ids': []})
+        # Set line state to 'done' to be ignored when recreating pickings
         return res and self.button_done(cr, uid, ids, context=context)
 
     def compute_margin(self, price_unit, purchase_price, product_uos_qty, discount):
@@ -484,10 +485,14 @@ class sale_order(osv.osv):
 
             date_planned = self._get_date_planned(cr, uid, order, line, order.date_confirm, context=context) #https://code.launchpad.net/~openerp-dev/openobject-addons/6.1-opw-587363-ado
 
-            # Create procurement for new lines but also for existing one where their procurement has been canceled
+            # Create procurement for new lines but also for existing one if the procurement has been canceled
             if line.product_id:
-
-                if line.state == 'exception':
+                if line.state == 'confirmed':
+                    # Ignore existing procurement and linked move if not canceled
+                    if line.procurement_id and line.procurement_id.state != 'cancel'\
+                    and line.procurement_id.move_id and line.procurement_id.move_id.state != 'cancel': 
+                        continue
+                elif line.state == 'exception':
                     # Reset line state to confirmed state
                     line.button_confirm(context=context) 
                     # Cancel existing move if the canceled procurement exists 
