@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-28 15:45+0000\n"
-"PO-Revision-Date: 2013-11-28 16:48+0100\n"
+"POT-Creation-Date: 2013-12-05 10:05+0000\n"
+"PO-Revision-Date: 2013-12-05 11:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr "En retard (futur)"
 #. module: dec_mrp
 #: field:mrp.production,invalid_move_prod:0
 msgid "Invalid production move"
-msgstr "Invalid production move"
+msgstr "Mouvement de production incorrect"
 
 #. module: dec_mrp
 #: code:addons/dec_mrp/mrp.py:229
@@ -335,6 +335,12 @@ msgid "Customize production report"
 msgstr "Personnaliser le rapport de production"
 
 #. module: dec_mrp
+#: code:addons/dec_mrp/mrp.py:618
+#, python-format
+msgid "Related purchase order(s):\n"
+msgstr "Commande(s) d'achat(s) rattachée(s):\n"
+
+#. module: dec_mrp
 #: model:ir.model,name:dec_mrp.model_mrp_production
 msgid "Manufacturing Order"
 msgstr "Ordre de fabrication"
@@ -475,6 +481,12 @@ msgid "Productions"
 msgstr "Productions"
 
 #. module: dec_mrp
+#: code:addons/dec_mrp/mrp.py:600
+#, python-format
+msgid "Production order(s) canceled"
+msgstr "Ordre(s) de production annulé(s)"
+
+#. module: dec_mrp
 #: view:mrp.attach.move.production:0 view:mrp.custom.report:0
 #: view:mrp.product.produce.dec:0 view:mrp.production:0
 msgid "Cancel"
@@ -513,12 +525,18 @@ msgid "Late"
 msgstr "En retard"
 
 #. module: dec_mrp
+#: code:addons/dec_mrp/mrp.py:604
+#, python-format
+msgid "The following production order(s) have been canceled:\n"
+msgstr "Les ordres de production suivant ont été annulés:\n"
+
+#. module: dec_mrp
 #: model:ir.model,name:dec_mrp.model_mrp_production_workcenter_line
 msgid "Work Order"
 msgstr "Ordre de fabrication"
 
 #. module: dec_mrp
-#: code:addons/dec_mrp/mrp.py:605
+#: code:addons/dec_mrp/mrp.py:650
 #, python-format
 msgid "Testing [%s] %s"
 msgstr "Test [%s] %s"

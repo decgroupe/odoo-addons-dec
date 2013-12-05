@@ -493,9 +493,9 @@ class sale_order(osv.osv):
                     and line.procurement_id.move_id and line.procurement_id.move_id.state != 'cancel': 
                         continue
                 elif line.state == 'exception':
-                    # Reset line state to confirmed state
+                    # Reset line state to confirmed
                     line.button_confirm(context=context) 
-                    # Cancel existing move if the canceled procurement exists 
+                    # Cancel existing move if a canceled procurement exists 
                     if line.procurement_id and line.procurement_id.state == 'cancel'\
                     and line.procurement_id.move_id and line.procurement_id.move_id.state not in ('done', 'cancel'):
                         line.procurement_id.move_id.action_cancel(context=context)
