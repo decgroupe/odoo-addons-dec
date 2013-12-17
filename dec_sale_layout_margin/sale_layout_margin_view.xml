@@ -204,11 +204,12 @@
                                     	 </group>
 
 										<label string=""/>
-                                        <group col="6" colspan="6" attrs="{'invisible':[('layout_type','!=','article')]}">
-                                            <separator colspan="5" string="States"/>
+                                        <group col="7" colspan="6" attrs="{'invisible':[('layout_type','!=','article')]}">
+                                            <separator colspan="6" string="States"/>
                                             <field name="state"/>
                                             <field name="invoiced"/>
-                                            <button colspan="1" name="button_fix" string="Manual fix" states="exception" type="object" icon="gtk-execute"/>
+                                            <button colspan="1" name="button_make_to_stock" string="Make to stock" attrs="{'invisible':['|',('type','==','make_to_stock'),('state','!=','exception')]}" type="object" icon="gtk-execute"/>
+                                            <button colspan="1" name="button_make_to_order" string="Make to order" attrs="{'invisible':['|',('type','==','make_to_order'),('state','!=','exception')]}" type="object" icon="gtk-execute"/>
                                             <button colspan="1" name="%(sale.action_view_sale_order_line_make_invoice)d" states="confirmed,done" string="Make Invoice" type="action"/>
                                        		
                                         </group>

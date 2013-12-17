@@ -302,14 +302,21 @@ class sale_order_line(osv.osv):
         return True
     
     def button_fix(self, cr, uid, ids, context=None):
-        res = self.write(cr, uid, ids, {'procurement_id': False, 'procurement_ids': []})
+        res = self.write(cr, uid, ids, {'procurement_id': False, 'procurement_ids': []}, context=context)
         # Set line state to 'done' to be ignored when recreating pickings
         return res and self.button_done(cr, uid, ids, context=context)
+    
+    def button_make_to_stock(self, cr, uid, ids, context=None):
+        res = self.write(cr, uid, ids, {'type': 'make_to_stock'}, context=context)
+        return res# and self.button_confirm(cr, uid, ids, context=context)
+    
+    def button_make_to_order(self, cr, uid, ids, context=None):
+        res = self.write(cr, uid, ids, {'type': 'make_to_order'}, context=context)
+        return res# and self.button_confirm(cr, uid, ids, context=context)
 
     def compute_margin(self, price_unit, purchase_price, product_uos_qty, discount):
         result = (price_unit*product_uos_qty*(100.0-discount)/100.0) -(purchase_price*product_uos_qty)
         return round(result, 2)
-        
     
     def onchange_price_unit(self, cr, uid, ids, price_unit, purchase_price, product_uos_qty, discount, context=None):
         if context is None:

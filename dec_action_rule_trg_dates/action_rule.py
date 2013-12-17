@@ -44,7 +44,7 @@ class ActionRule(osv.osv):
                                                "('ttype','in',('date','datetime'))]"),
     }
 
-    def pre_action(self, cr, uid, ids, model, context=None):
+    def post_action(self, cr, uid, ids, model, context=None):
         """
         change trg_date_type by trg_date_id
         """
@@ -112,18 +112,12 @@ class ActionRule(osv.osv):
                     base = get_datetime(base)
                     delay = fnct[rule.trg_date_range_type](rule.trg_date_range)
                     action_date = base + delay
+                    if obj_id == 244:
+                        pass
                     if (not last_run or (last_run <= action_date < now)):
                         self._action(cr, uid, [rule.id], [obj], context=context)
             rule_pool.write(cr, uid, [rule.id], {'last_run': now},
                             context=context)
             
-
-    def do_check(self, cr, uid, action, obj, context=None):
-        if action.trg_date_id:
-            # Ignore action with a date as trigger as they will be checked by the scheduler
-            return False
-        else:
-            res = super(ActionRule, self).do_check(cr, uid, action, obj, context=context)
-            return res
 
 ActionRule()

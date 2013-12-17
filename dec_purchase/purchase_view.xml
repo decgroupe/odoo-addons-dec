@@ -22,6 +22,12 @@
 	                    icon="gtk-apply"
 	                    colspan="1"/>
              	</xpath>
+             	
+             	<field name="invoice_ids" position="after">
+                    <separator string="Packings" colspan="4"/>
+                    <newline/>
+             		<field name="picking_ids" colspan="4" nolabel="1"/> 
+             	</field>
             </field>
         </record>
         

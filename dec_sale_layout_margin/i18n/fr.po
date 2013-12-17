@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-05 10:02+0000\n"
-"PO-Revision-Date: 2013-12-05 11:03+0100\n"
+"POT-Creation-Date: 2013-12-12 09:52+0000\n"
+"PO-Revision-Date: 2013-12-12 10:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,12 +34,7 @@ msgstr ""
 "n'apparaissent pas sur le rapport"
 
 #. module: dec_sale_layout_margin
-#: view:sale.order:0
-msgid "Manual fix"
-msgstr "Réparé manuellement"
-
-#. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:679
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:686
 #, python-format
 msgid "Cannot sell this product (state is quotation, review or obsolete)"
 msgstr "Impossible de vendre ce produit (en devis, à réviser ou obsolète)"
@@ -61,7 +56,7 @@ msgid "Picking List"
 msgstr "Liste de prélèvement"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:405
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:412
 #, python-format
 msgid "%s is currently locked, you are not allowed to make changes"
 msgstr ""
@@ -74,10 +69,20 @@ msgid "Warranty delay in year(s)"
 msgstr "Durée de garantie en année(s)"
 
 #. module: dec_sale_layout_margin
+#: view:sale.order:0
+msgid "Make to order"
+msgstr "Sur commande"
+
+#. module: dec_sale_layout_margin
 #: code:addons/dec_sale_layout_margin/sale_layout_margin.py:190
 #, python-format
 msgid "Review needed!"
 msgstr "A réviser!"
+
+#. module: dec_sale_layout_margin
+#: view:sale.order:0
+msgid "Make to stock"
+msgstr "Depuis le stock"
 
 #. module: dec_sale_layout_margin
 #: field:sale.order.line,report_hide_line:0
@@ -109,7 +114,7 @@ msgstr ""
 "la ligne afin qu'ils n'apparaissent pas sur le rapport"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:700
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:707
 #, python-format
 msgid "Error !"
 msgstr "Erreur !"
@@ -153,7 +158,7 @@ msgid "Quantity"
 msgstr "Quantité"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:720
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:727
 #, python-format
 msgid "The following sale order(s) have been canceled:\n"
 msgstr "Les commande(s) de vente suivantes ont été annulée(s):\n"
@@ -164,7 +169,7 @@ msgid "Make Invoice"
 msgstr "Créer facture"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:681
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:688
 #, python-format
 msgid "Missing BoM"
 msgstr "Nomenclature manquante"
@@ -180,7 +185,7 @@ msgid "Unit cost price"
 msgstr "Coût de revient"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:686
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:693
 #, python-format
 msgid "Empty BoM (%s) %d"
 msgstr "Nomenclature vide (%s) %d"
@@ -206,7 +211,7 @@ msgid "Prix de revient"
 msgstr "Prix de revient"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:401
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:408
 #, python-format
 msgid "Only %s is able to lock/unlock this object"
 msgstr "Seul %s est autorisé à verrouiller/déverrouiller ce devis"
@@ -283,7 +288,7 @@ msgid "Margin"
 msgstr "Marge"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:716
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:723
 #, python-format
 msgid "Sale order(s) canceled"
 msgstr "Commande(s) de vente annulée(s)"
@@ -324,8 +329,8 @@ msgid "Validity period"
 msgstr "Période de validité"
 
 #. module: dec_sale_layout_margin
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:401
-#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:405
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:408
+#: code:addons/dec_sale_layout_margin/sale_layout_margin.py:412
 #, python-format
 msgid "Operation forbidden"
 msgstr "Opération interdite"

@@ -59,10 +59,12 @@ class purchase_order(osv.osv):
         result['date'] = order.date_approve
         return result
     
+    '''
     _columns = {
         'origin': fields.char('Source Document', size=512, help="Reference of the document that generated this purchase order request."
         ),
      }
+    '''
 
     def button_refresh_prices(self, cr, uid, ids, context={}):
         if not ids :

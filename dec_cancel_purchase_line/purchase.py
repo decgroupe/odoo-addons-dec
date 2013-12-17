@@ -100,6 +100,10 @@ class purchase_order_line(Model):
 class purchase_order(Model):
 
     _inherit = 'purchase.order'
+    
+    def merge_orders(self, cr, uid, ids, context=None):
+        res = super(purchase_order, self).merge_orders(cr, uid, ids, context=context)
+        return res
 
     def do_merge(self, cr, uid, ids, context=None):
         """
@@ -223,6 +227,7 @@ class purchase_order(Model):
 
             po_line_obj.write(
                 cr, uid, old_line_ids, {'origin_procurement_order_id': False}, context=context)
+            
 
             # make triggers pointing to the old orders point to the new order
             for old_id in old_ids:
