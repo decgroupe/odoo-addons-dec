@@ -291,15 +291,8 @@ class ref_reference(osv.osv):
     
 
     def search_custom(self, cr, uid, keywords, context=None):
-        ref_pool = self.pool.get('ref.reference')
-        #product = self.browse
-        #res = {}
-        #res = ref_pool.search(cr, uid, [('product.tagging_ids.name','ilike',keywords)])
-        #toto = keywords[0][0]
-
         res = []
-        for key in keywords[0]:
-            
+        for key in keywords[0]: 
             if key and key[0] == '+':
                 use_comments = True
                 key = key[1:]
@@ -307,18 +300,18 @@ class ref_reference(osv.osv):
                 use_comments = False
             
             if key:
-                search_value = ref_pool.search(cr, uid, [('searchvalue', 'ilike', key)])
-                search_category = ref_pool.search(cr, uid, [('category.name', 'ilike', key)])
-                search_name = ref_pool.search(cr, uid, [('product.name', 'ilike', key)])
-                search_ciel = ref_pool.search(cr, uid, [('product.ciel_code', '=', key)])
+                search_value = self.search(cr, uid, [('searchvalue', 'ilike', key)], context=context)
+                search_category = self.search(cr, uid, [('category.name', 'ilike', key)], context=context)
+                search_name = self.search(cr, uid, [('product.name', 'ilike', key)], context=context)
+                search_ciel = self.search(cr, uid, [('product.ciel_code', '=', key)], context=context)
                 
                 if use_comments: 
-                    search_comments = ref_pool.search(cr, uid, [('product.comments', 'ilike', key)])
+                    search_comments = self.search(cr, uid, [('product.comments', 'ilike', key)], context=context)
                 else:
                     search_comments = []    
                 
                 if len(key) >2:
-                    search_tags = ref_pool.search(cr, uid, [('product.tagging_ids.name', 'ilike', key)])
+                    search_tags = self.search(cr, uid, [('product.tagging_ids.name', 'ilike', key)], context=context)
                 else:
                     search_tags = []
                      
