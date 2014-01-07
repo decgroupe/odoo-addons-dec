@@ -726,8 +726,9 @@ class sale_order(osv.osv):
 
         body += _('The following sale order(s) have been canceled:\n') 
         for sale in self.browse(cr, uid, ids, context=context): 
-            warn = True
-            body += ' - %s\n' % (sale.name)    
+            if sale.state <> 'draft':
+                warn = True
+                body += ' - %s\n' % (sale.name)    
             
         if warn:          
             self.pool.get('mail.message').schedule_with_attach(cr, uid, emailfrom, emails, subject, body, model='sale.order', reply_to=emailfrom)  

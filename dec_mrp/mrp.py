@@ -388,7 +388,7 @@ class mrp_production(osv.osv):
             for move in prod.move_all_src_ids:
                 move.product_id.name
                 total_count += 1
-                if move.state in ('assigned', 'done'):
+                if move.state in ('assigned', 'done') and move.status_received:
                     ready_count += 1
                 elif move.state in ('waiting'):
                     alt_moves += [move.id]
@@ -397,6 +397,9 @@ class mrp_production(osv.osv):
             for move in move_obj.browse(cr, uid, move_ids, context=context):
                 if move.state in ('assigned'):
                     ready_count += 1
+                    
+            #ready_count = move_obj.search_count(cr, uid, [('id', 'in', prod.move_all_src_ids), ('status_received', '=', True)], context=context)
+            #total_count = len(prod.move_all_src_ids)    
                    
             if total_count > 0: 
                 res[prod.id] = float(ready_count)/float(total_count) * 100
@@ -706,3 +709,23 @@ class mrp_production_product_line(osv.osv):
     }
     
 mrp_production_product_line()
+
+
+class product_template(osv.osv):
+    _name = "product.template"
+    _inherit = _name
+    
+    def write(self, cr, uid, ids, vals, context=None):
+        if 'uom_po_id' in vals:
+            bom_obj = self.pool.get('mrp.bom')
+            new_uom = self.pool.get('product.uom').browse(cr, uid, vals['uom_po_id'], context=context)
+            for product in self.browse(cr, uid, ids, context=context):
+                old_uom = product.uom_po_id
+                bom_ids = bom_obj.search(cr, uid, [('product_id', '=', product.id)], context=context)
+                if (old_uom.category_id.id != new_uom.category_id.id) and bom_ids:
+                    raise osv.except_osv(_('UoM categories Mismatch!'), 
+                                         _('This product is used in a BoM (%s)') % (str(bom_ids)) + '\n\n' +
+                                         _("New UoM '%s' must belong to same UoM category '%s' as of old UoM '%s'. If you need to change the unit of measure, you may desactivate this product from the 'Procurement & Locations' tab and create a new one.") % (new_uom.name, old_uom.category_id.name, old_uom.name,))
+        return super(product_template, self).write(cr, uid, ids, vals, context=context)
+
+    
