@@ -44,6 +44,44 @@ class ref_product(osv.osv):
         'market_material_cost_factor': fields.float('Material factor (PF)', help='Used by REF manager Market'),     
     }
     
+
+    def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=100):
+        result = super(ref_product,self).name_search(cr, user, name=name, args=args, operator=operator, context=context, limit=limit)
+        
+        # Make a specific search according to market reference
+        ids = self.search(cr, user, [('ciel_code', '=', name), ('state', '!=', 'obsolete')], limit=limit, context=context)
+        if ids:
+            res = []
+            ciel_result = self.name_get(cr, user, ids, context=context)
+            for item in ciel_result:
+                item = list(item)
+                item[1] = ('%s (%s)') % (item[1], name)
+                res.append(item)
+            result = res + result
+                
+        # Make a specific search to find a product with version inside
+        if not result and 'V' in name:
+            reference = name.rpartition('V')
+            if reference[0]:
+                res = []
+                ids = self.search(cr, user, [('default_code', '=', reference[0])], limit=limit, context=context)
+                res = self.name_get(cr, user, ids, context=context)
+                result = res + result
+            
+        """
+        # Search for obsolete products
+        ids = [item[0] for item in result] 
+        ids = self.search(cr, user, [('state', '=', 'obsolete'), ('id', 'in', ids)], limit=limit, context=context)
+        if ids:
+            for i, item in enumerate(result):
+                if item[0] in ids: 
+                    item = list(item)
+                    item[1] = ('%s (OBSOLETE)') % (item[1])
+                    result[i] = tuple(item) 
+        """
+            
+        return result  
+    
 ref_product()
 
 
