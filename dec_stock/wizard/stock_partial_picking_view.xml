@@ -9,6 +9,9 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
             
+	            <field name="product_id" position="replace">
+	            </field>
+            
 	            <field name="quantity" position="replace">
 	            	<field name="quantity"/> 
 	            	<field name="expected_quantity" readonly="1"/>
@@ -16,12 +19,13 @@
 
 	            
 	            <field name="prodlot_id" position="replace">
+	            	<field name="product_id" readonly="1"/>
 	            	<field name="move_final_location" readonly="1"/>
 	            	<field name="move_origin" readonly="1"/>
 	            </field>
 	            
 	            <field name="move_ids" position="after">
-	            	<button name="full_quantites" string="Full quantities" type="object" icon="gtk-fullscreen"/>
+	            	<button name="full_quantites" string="Full quantities" type="object" icon="gtk-fullscreen" groups="base.group_erp_manager"/>
 	            </field>
 	            
             </field>

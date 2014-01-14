@@ -126,6 +126,13 @@ class stock_move(osv.osv):
          'create_uid':  fields.many2one('res.users', 'Creator'),
          'write_uid':  fields.many2one('res.users', 'Last editor'),
     }
+    
+
+    def name_get(self, cr, uid, ids, context=None):
+        res = []
+        for line in self.browse(cr, uid, ids, context=context):
+            res.append((line.id, ('%s: %s > %s') % (line.product_id.name_get(context=context)[0][1] or '/', line.location_id.name, line.location_dest_id.name)))
+        return res
 
 stock_move()
 
