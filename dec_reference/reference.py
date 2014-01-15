@@ -379,19 +379,27 @@ class ref_reference(osv.osv):
                 if bom_id:
                     logging.getLogger('ref.reference').info('Compute material cost price for [%s] %s', reference.value, reference.product.name)
                     cost_price = mrp_bom_obj.get_cost_price(cr, uid, [bom_id], context=context)[bom_id]
-                    
-            data['reference_id'] = reference.id
-            data['value'] = cost_price
-            ref_price_obj.create(cr, uid, data, context=context)
-            if use_new_cursor:   
-                cr.commit()
+                 
+            ref_price = False   
+            ref_price_ids = ref_price_obj.search(cr, uid, [('reference_id', '=', reference.id)], limit=1, context=context)
+            if ref_price_ids:
+                ref_price = ref_price_obj.browse(cr, uid, ref_price_ids, context=context)[0]
+                
+            if not ref_price or ref_price.value <> cost_price: 
+                data['reference_id'] = reference.id
+                data['value'] = cost_price
+                ref_price_obj.create(cr, uid, data, context=context)
+                if use_new_cursor:   
+                    cr.commit()
+            else:
+                logging.getLogger('ref.reference').info('Price did not change for [%s] %s', reference.value, reference.product.name) 
 
         if use_new_cursor:
             cr.close()
         else:
             self.generate_material_cost_report(cr, uid, ids, context)
             
-    def generate_material_cost_report(self, cr, uid, ids=None, context=None):
+    def generate_material_cost_report(self, cr, uid, ids=None, date_ref1=False, date_ref2=False, context=None):
         if context is None:
             context = {}
             
@@ -404,21 +412,44 @@ class ref_reference(osv.osv):
         emailfrom = 'refmanager@dec-industrie.com'
         emails = ['decindustrie@gmail.com']
         subject = _('Price surcharge alert')
-        body = ('%s\n\n') % (cr.dbname)
-        warn = False
+        body = ('%s\n\n') % (cr.dbname)        
+        ref_content = []
           
-        for reference in self.browse(cr, uid, ids, context=context):           
-            price_ids = ref_price_obj.search(cr, uid, [('reference_id','=', reference.id)], limit=2)
+        for reference in self.browse(cr, uid, ids, context=context): 
+            ref1_ids = []
+            ref2_ids = []
+            if date_ref1:
+                ref1_ids = ref_price_obj.search(cr, uid, [('reference_id','=', reference.id), ('date','<=', date_ref1)], limit=1)
+            if date_ref2:
+                ref2_ids = ref_price_obj.search(cr, uid, [('reference_id','=', reference.id), ('date','<=', date_ref2)], limit=1)
+             
+            if ref1_ids and ref2_ids:
+                price_ids = ref2_ids + ref1_ids
+            else:  
+                price_ids = ref_price_obj.search(cr, uid, [('reference_id','=', reference.id)], limit=2)
+                
             if (len(price_ids) >= 2):  
                 prices = ref_price_obj.browse(cr, uid, price_ids, context=context)
-                if prices[0].value > prices[1].value:   
-                    warn = True                 
-                    body += ('[%s] %s\n') % (reference.value, reference.product.name)
-                    body += ('%s: %.2f\n') % (prices[1].date, prices[1].value)   
-                    body += ('%s: %.2f (+%.2f)\n') % (prices[0].date, prices[0].value, prices[0].value-prices[1].value)   
-                    body += '\n'
+                if prices[0].value > prices[1].value: 
+                    assert(prices[0].id == price_ids[0])
+                    ref_content.append({'id': reference.id, 
+                                       'reference': reference.value,
+                                       'product': reference.product.name,
+                                       'price0_date': prices[0].date,
+                                       'price0_value': prices[0].value,
+                                       'price1_date': prices[1].date,
+                                       'price1_value': prices[1].value,
+                                       'diff': prices[0].value - prices[1].value 
+                                       })
+                    
+        ref_content = sorted(ref_content, key=lambda k: k['diff'], reverse=True)
+        for content in ref_content:           
+            body += ('[%s] %s - %d\n') % (content['reference'], content['product'], content['id'])
+            body += ('%s:   %.2f\n') % (content['price1_date'], content['price1_value'])   
+            body += ('%s:   %.2f (+%.2f)\n') % (content['price0_date'], content['price0_value'], content['price0_value']-content['price1_value'])   
+            body += '\n'
           
-        if warn:          
+        if ref_content:          
             mail_message_obj.schedule_with_attach(cr, uid, emailfrom, emails, subject, body, model='ref.reference', reply_to=emailfrom)
             
 ref_reference()
@@ -533,4 +564,38 @@ class ref_attribute_taggings(osv.osv):
     }
 ref_attribute_taggings()
 
+
+class ref_task_wizard(osv.osv_memory):
+    _name = 'ref.task.wizard'
+
+    def action_start_task(self, cr, uid, data, context):
+        ref_reference_obj = self.pool.get('ref.reference')
+        ref_price_obj = self.pool.get('ref.price') 
+        
+        # Remove duplicates
+        ids = ref_reference_obj.search(cr, uid, [], context=context)
+        for reference in ref_reference_obj.browse(cr, uid, ids, context=context):           
+            price_ids = ref_price_obj.search(cr, uid, [('reference_id','=', reference.id)], context=context, order='date asc')
+            if price_ids:
+                price_ids_to_delete = []
+                previous_price = False                
+                for i, price in enumerate(ref_price_obj.browse(cr, uid, price_ids, context=context)):
+                    assert(price_ids[i] == price.id)
+                    if previous_price and price.value == previous_price.value:
+                        #print 'Add %s to delete' % (price.date)
+                        price_ids_to_delete.append(price.id)
+                    previous_price = price
+                    
+                if price_ids_to_delete:
+                    assert(len(price_ids_to_delete)<ids)
+                    diff = [x for x in price_ids if x not in price_ids_to_delete]
+                    ref_price_obj.unlink(cr, uid, price_ids_to_delete, context=context)
+                    logging.getLogger('ref.task.wizard').info('Remaining ids %s for [%s] %s', diff, reference.value, reference.product.name) 
+                  
+        today = time.strftime('%Y-%m-%d')
+        ref_reference_obj.generate_material_cost_report(cr, uid, ids, '2014-01-01', today, context=context)  
+        
+        return {}
+
+ref_task_wizard()
 

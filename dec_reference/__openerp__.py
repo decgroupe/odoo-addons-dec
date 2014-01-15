@@ -31,7 +31,7 @@
     "depends" : ["base","product","mrp","dec_partner","dec_mrp","dec_tagging"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
-    "update_xml" : ["security/model_security.xml","security/ir.model.access.csv"],
+    "update_xml" : ["reference_wizard.xml","security/model_security.xml","security/ir.model.access.csv"],
     "active": False,
     "installable": True
 }
