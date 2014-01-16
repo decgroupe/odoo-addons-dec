@@ -193,7 +193,7 @@ class product_product(osv.osv):
         pricelist_version = self.pool.get('product.pricelist.version')
         pricelist_item = self.pool.get('product.pricelist.item')
             
-        if 'standard_price' in vals:
+        if 'list_price' in vals:
             vals['price_write_date'] = time.strftime('%Y-%m-%d')
             vals['price_write_uid'] = uid
 

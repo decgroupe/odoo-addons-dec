@@ -28,7 +28,7 @@
     "description": """
     
                     """,
-    "depends" : ["crm"],
+    "depends" : ["crm","sale"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
     "update_xml" : ["crm_lead_view.xml"],

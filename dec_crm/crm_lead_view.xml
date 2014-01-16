@@ -31,6 +31,22 @@
             </field>
         </field>
     </record>
+    
+    <record model="ir.ui.view" id="crm_case_form_view_oppor_dec">
+        <field name="name">Opportunities</field>
+        <field name="model">crm.lead</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="ref2" position="after">
+                <separator colspan="4" string="Sale orders"/>
+                <field colspan="4" name="sale_order_ids" nolabel="1" widget="many2many"/>
+            </field>
+        </field>
+    </record>
+    
+    
+    
 
 </data>
 </openerp>

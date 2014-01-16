@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 12:22+0000\n"
-"PO-Revision-Date: 2013-06-24 14:23+0100\n"
+"POT-Creation-Date: 2014-01-16 12:45+0000\n"
+"PO-Revision-Date: 2014-01-16 13:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,31 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: dec_crm
-#: model:ir.model,name:dec_crm.model_crm_lead
-msgid "crm.lead"
-msgstr "crm.lead"
+#: field:sale.order,crm_lead_ids:0
+msgid "CRM leads"
+msgstr "Opportunités"
+
+#. module: dec_crm
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique per Company!"
+msgstr "La référence de commande doit être unique par société!"
+
+#. module: dec_crm
+#: model:ir.model,name:dec_crm.model_sale_order
+msgid "Sales Order"
+msgstr "Commande de ventes"
 
 #. module: dec_crm
 #: view:crm.lead:0
 msgid "Unsubscribe"
 msgstr "Désinscription"
+
+#. module: dec_crm
+#: model:ir.model,name:dec_crm.model_crm_lead
+msgid "crm.lead"
+msgstr "crm.lead"
+
+#. module: dec_crm
+#: view:crm.lead:0 field:crm.lead,sale_order_ids:0
+msgid "Sale orders"
+msgstr "Commandes de ventes"

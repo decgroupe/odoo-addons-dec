@@ -24,10 +24,24 @@ from datetime import datetime
 from tools.translate import _
 
 
+class sale_order(osv.osv):
+    _name = "sale.order"
+    _inherit = _name
+    
+    _columns = {
+        'crm_lead_ids': fields.many2many('crm.lead', 'sale_order_crm_lead_ids', 'sale_order_id', 'crm_lead_id', 'CRM leads', domain=[]),  
+    }
+    
+sale_order()
+
 class crm_lead(osv.osv):
     """ CRM Lead Case """
     _name = "crm.lead"
     _inherit = _name
+    
+    _columns = {
+        'sale_order_ids': fields.many2many('sale.order', 'sale_order_crm_lead_ids', 'crm_lead_id', 'sale_order_id', 'Sale orders', domain=[]),  
+    }
 
     def unsubscribe(self, cr, uid, ids, context=None):
         if isinstance(ids, (int, long)):
@@ -57,6 +71,26 @@ class crm_lead(osv.osv):
             }
         else:
             return False
+        
+    def write(self, cr, uid, ids, vals, context=None):
+        if isinstance(ids, (int, long)):
+          ids = [ids]
+          
+        if not vals:
+            vals= {}
+            
+        if 'ref' in vals:
+            values = vals['ref'].split(',')
+            if values and values[1].isdigit():
+                model_name = values[0] 
+                model_id = int(values[1])  
+                if model_name == 'sale.order' and model_id > 0:
+                    vals.update({
+                        'sale_order_ids': [(4, model_id)],
+                        })
+            
+        result = super(crm_lead,self).write(cr, uid, ids, vals, context)
+        return result
 
 crm_lead()
 
