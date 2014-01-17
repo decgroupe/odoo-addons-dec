@@ -542,7 +542,8 @@ class purchase_order(osv.osv):
                         child_move = child.move_ids[0]
                         default = {
                             'name': 'PACK Forward: %s' % child_move.name,
-                            'picking_id': picking and picking.id, 
+                            'picking_id': False, 
+                            'auto_validate': True,
                             'address_id': False,
                             'move_dest_id': move.id,
                             'location_id': child_move.location_dest_id.id,
