@@ -513,6 +513,54 @@ class purchase_order(osv.osv):
             # This way we support packs inside other packs.
             self.expand_packs(cr, uid, ids, context, depth+1)
         return
+    
+    
+    def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None):  
+        result = super(purchase_order, self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
+        
+        def get_final_move(move):
+            if move.move_dest_id and (move.product_id.id == move.move_dest_id.product_id.id): 
+                return get_final_move(move.move_dest_id)   
+            else:
+                return move   
+            
+        stock_move_obj = self.pool.get('stock.move')
+        mrp_production_obj = self.pool.get('mrp.production')
+        
+        # Create a new move with the same destination that the parent move 
+
+        for order_line in order_lines:
+            if order_line.pack_child_line_ids:
+                move = order_line.origin_procurement_order_id and order_line.origin_procurement_order_id.move_id 
+                picking = move.picking_id 
+                move = get_final_move(move)
+                
+            move_ids = []
+            if move:   
+                for child in order_line.pack_child_line_ids:
+                    if child.move_ids:
+                        child_move = child.move_ids[0]
+                        default = {
+                            'name': 'PACK Forward: %s' % child_move.name,
+                            'picking_id': picking and picking.id, 
+                            'address_id': False,
+                            'move_dest_id': move.id,
+                            'location_id': child_move.location_dest_id.id,
+                            'location_dest_id': move.location_dest_id.id,   
+                            'state': 'waiting',   
+                            'purchase_line_id': False,       
+                        }
+                        new_move_id = stock_move_obj.copy(cr, uid, child_move.id, default, context=context)
+                        move_ids.append(new_move_id)
+                        child_move.write({'move_dest_id': new_move_id})
+                        
+            if picking:
+                production_ids = mrp_production_obj.search(cr, uid, [('picking_id', '=', picking.id)], context=context)
+                if production_ids:
+                    for new_move_id in move_ids:
+                        mrp_production_obj.write(cr, uid, production_ids, {'move_all_src_ids': [(4, new_move_id)]}, context=context)
+             
+        return result
 
 purchase_order()
 
