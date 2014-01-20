@@ -545,8 +545,14 @@ class purchase_order(osv.osv):
                 procurement_move = order_line.origin_procurement_order_id and order_line.origin_procurement_order_id.move_id 
                 prod_move = get_final_move(procurement_move)
                 picking = procurement_move and procurement_move.picking_id 
+                # Get production order from PTN data
                 if picking:
                     production_ids = mrp_production_obj.search(cr, uid, [('picking_id', '=', picking.id)], context=context)
+                # If the move comes from REFManager, we need to get it from production move data
+                if not production_ids:
+                    production_ids = mrp_production_obj.search(cr, uid, [('move_all_src_ids', '=', procurement_move.id)], context=context)  
+            
+                assert(production_ids <> [])
                 
             if prod_move:   
                 for child in order_line.pack_child_line_ids:
