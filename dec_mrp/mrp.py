@@ -161,117 +161,111 @@ class stock_move(osv.osv):
             field_names = []
         if context is None:
             context = {}
-        res = {}
+        moves = {}
         
         stock_move_obj = self.pool.get('stock.move')
+        purchase_order_obj = self.pool.get('purchase.order')
         procurement_order_obj = self.pool.get('procurement.order')
+        
+        extended_names =  [  
+            'procure_method',
+            'product_type',      
+            'procurement_move',
+            'procurement_state',
+            'purchase_state',
+        ]
         
         # Set False as default values for each field of all ids
         for id in ids:
-            res[id] = {}.fromkeys(field_names, False)
-            
-        shipment_move_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', ids)], context=context)   
-        shipment_move_ids = shipment_move_ids + ids             
-        procurement_order_ids = procurement_order_obj.search(cr, uid, [('move_id', 'in', shipment_move_ids)], context=context)  
+            moves[id] = {}.fromkeys(field_names+extended_names, False)
+        
+        # Shipment moves are used to retrieve procurement data (from PTN and REFManager)    
+        shipment_move_ids = ids + stock_move_obj.search(cr, uid, [('move_dest_id', 'in', ids)], context=context)   
+        procurement_order_ids = procurement_order_obj.search(cr, uid, [('move_id', 'in', shipment_move_ids)], context=context)
+        
         for procurement_order in procurement_order_obj.browse(cr, uid, procurement_order_ids, context=context):
-            
-            if procurement_order.move_id.product_id == procurement_order.move_id.move_dest_id.product_id:  
-                i = procurement_order.move_id.move_dest_id.id 
+            # Retrieve move ID from procurement_order 
+            if procurement_order.move_id and procurement_order.move_id.product_id == procurement_order.move_id.move_dest_id.product_id:  
+                # We need to by pass the PTN to get the correct move
+                id = procurement_order.move_id.move_dest_id.id 
             else:
-                i = procurement_order.move_id.id 
+                # REFManager stock move are directly linked from procurement
+                id = procurement_order.move_id.id 
                 
-            purchase_move_ids = stock_move_obj.search(cr, uid, [('move_dest_id', '=', procurement_order.move_id.id)], context=context)    
-            purchase_move = len(purchase_move_ids)>0 and stock_move_obj.browse(cr, uid, purchase_move_ids, context=context)[0]
-                            
-            if procurement_order.procure_method == 'make_to_stock':  
-                if procurement_order.state == 'exception':
-                    res[i]['status_status'] = _('Not enough stock') 
-                    res[i]['status_dedicated'] = _('Dedicated') 
-                elif (procurement_order.state == 'ready' or procurement_order.state == 'done') and procurement_order.product_id.type == 'product':
-                    res[i]['status_status'] = _('From stock')
-                    res[i]['status_dedicated'] = _('Dedicated') 
-                    res[i]['status_received'] = True
-                elif (procurement_order.state == 'ready' or procurement_order.state == 'done') and procurement_order.product_id.type == 'consu':
-                    res[i]['status_status'] = _('Consumable')
-                    res[i]['status_dedicated'] = _('From workshop or manual picking') 
-                    res[i]['status_received'] = True
-                elif procurement_order.state == 'cancel':
-                    res[i]['status_status'] = _('From stock (automatic orderpoint canceled)')
-                    res[i]['status_dedicated'] =  _('Not dedicated') 
-                    res[i]['status_received'] = True
-                else:
-                    res[i]['status_status'] = _('From stock: ???')
-                    res[i]['status_dedicated'] =  _('Not dedicated') 
-   
-            elif procurement_order.procure_method == 'make_to_order':  
-                if procurement_order.state == 'exception':
-                    res[i]['status_status'] = _('Procurement exception (supplier error)')
-                    res[i]['status_dedicated'] = _('Dedicated') 
-                elif procurement_order.state == 'running':
-                    res[i]['status_status'] = _('On procurement (purchase in progress)')
-                    res[i]['status_dedicated'] = _('Dedicated') 
-                    
-                    if procurement_order.purchase_id:
-                        res[i]['status_dedicated'] =  ('%s (%s: %s)') % (res[i]['status_dedicated'], procurement_order.purchase_id.name, procurement_order.purchase_id.partner_id.name)
-                        
-                        if procurement_order.purchase_id.state == 'draft':
-                            res[i]['status_status'] = _('On procurement (quotation)')
-                        elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved' or procurement_order.purchase_id.state == 'except_picking':
-                            
-                            if purchase_move and purchase_move.state == 'assigned':
-                                if len(purchase_move_ids) == 1:
-                                    res[i]['status_status'] = _('On procurement (purchase in progress)')
-                                else:
-                                    res[i]['status_status'] = _('On procurement (partially delivered)')
-                            elif purchase_move and purchase_move.state == 'done':
-                                res[i]['status_status'] = _('On procurement (delivered)')
-                                res[i]['status_received'] = True
-                            else:
-                                res[i]['status_status'] = _('On procurement (purchase ???)')
-                                
-                            if procurement_order.purchase_id.state == 'except_picking':
-                                res[i]['status_status'] = res[i]['status_status'] + _('(Purchase exception)')
-                        else:
-                            res[i]['status_status'] = _('On procurement ???')
-                    
-                elif procurement_order.state == 'cancel':
-                    res[i]['status_status'] = _('From stock (procurement canceled)')
-                    res[i]['status_dedicated'] =  _('Not dedicated') 
-                    res[i]['status_received'] = True
-                    
-                    if not procurement_order.purchase_id or not purchase_move:
-                        res[i]['status_status'] = _('From stock (purchase deleted)')
-                        res[i]['status_received'] = True
-                    elif procurement_order.purchase_id.state == 'draft':
-                        res[i]['status_status'] = _('On quotation (procurement canceled)')
-                    elif procurement_order.purchase_id.state == 'confirmed' or procurement_order.purchase_id.state == 'approved':
-                        if purchase_move and purchase_move.state == 'assigned':
-                            res[i]['status_status'] = _('On order (%s, %s)') % (procurement_order.purchase_id.name, procurement_order.purchase_id.partner_id.name)
-                        elif purchase_move and purchase_move.state == 'done':
-                            res[i]['status_status'] = _('On order (delivered)')
-                            res[i]['status_received'] = True
-                        else:
-                            res[i]['status_status'] = _('On order (purchase ???)')
-                        
-                    elif procurement_order.purchase_id.state == 'done':
-                        res[i]['status_status'] = _('On order (purchase done)')
-                        res[i]['status_received'] = True
-                    elif procurement_order.purchase_id.state == 'cancel':
-                        res[i]['status_status'] = _('From stock (procurement canceled)')
-                        res[i]['status_received'] = True
-                    else:
-                        res[i]['status_status'] = _('On order: ???')
+            moves[id]['procure_method'] = procurement_order.procure_method 
+            moves[id]['product_type'] = procurement_order.product_id.type 
+            moves[id]['procurement_move'] = procurement_order.move_id 
+            moves[id]['procurement_state'] = procurement_order.state 
+             
+        for id in moves.keys():
+            move_dest_ids = moves[id]['procurement_move'] and moves[id]['procurement_move'].id or id
+            purchase_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', '=', move_dest_ids)], context=context)  
+            purchase_moves = stock_move_obj.browse(cr, uid, purchase_moves_ids, context=context) 
+            purchase_moves_wait = [k for k in purchase_moves if k.state in ('waiting','assigned')] 
+            purchase_moves_done = [k for k in purchase_moves if k.state == 'done']
+            purchase_moves = purchase_moves_wait + purchase_moves_done 
+            
+            message = ''
+            received = False
+            if moves[id]['product_type'] == 'consu':
+                dedicated = _('From workshop or manual picking')     
+            elif moves[id]['procurement_state'] == 'cancel':
+                dedicated = _('Not dedicated')
+            else:  
+                dedicated = _('Dedicated') 
+            
+            if purchase_moves:
+                purchase_id = purchase_moves[0].purchase_line_id and purchase_moves[0].purchase_line_id.order_id
+                purchase_state = purchase_id and purchase_id.state or ''
+                message = _('On order')
+                if purchase_state == 'draft' and moves[id]['procurement_state'] == 'running':
+                    message = _('On procurement (quotation)')
+                elif purchase_state == 'draft' and moves[id]['procurement_state'] == 'cancel':
+                    message = _('On quotation (procurement canceled)')
+                elif purchase_state == 'cancel' and moves[id]['procurement_state'] == 'cancel':
+                    message = _('From stock (procurement canceled)')               
+                elif purchase_state == 'cancel' and not moves[id]['procurement_state']:
+                    message = _('From stock (purchase canceled)')
+                elif purchase_state in ('confirmed', 'approved') and purchase_moves_wait and not purchase_moves_done:
+                    message = _('On procurement (purchase in progress)')
+                elif purchase_state in ('confirmed', 'approved') and purchase_moves_wait and purchase_moves_done:
+                    message = _('On procurement (partially delivered)')
+                elif purchase_state in ('confirmed', 'approved') and not purchase_moves_wait and purchase_moves_done:
+                    message = _('On procurement (delivered)')
+                elif moves[id]['procurement_state'] == 'running':     
+                    message = _('On procurement (purchase in progress)')    
+                elif moves[id]['procurement_state'] in ('ready','done') or purchase_state == ('done'):
+                    message = _('On procurement (delivered)')        
+                if purchase_id:
+                    dedicated =  ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)    
+                if purchase_moves_done and not purchase_moves_wait:
+                    received = True
+                     
+            else:
+                message = _('From stock')
+                if moves[id]['procurement_state'] == 'cancel' and moves[id]['procure_method'] == 'make_to_stock':
+                    message = _('From stock (automatic orderpoint canceled)')
+                elif moves[id]['procurement_state'] == 'cancel' and moves[id]['procure_method'] == 'make_to_order':     
+                    message = _('From stock (procurement canceled)')  
+                elif moves[id]['procurement_state'] == 'exception' and moves[id]['procure_method'] == 'make_to_stock':
+                    message = _('Not enough stock')
+                elif moves[id]['procurement_state'] == 'exception' and moves[id]['procure_method'] == 'make_to_order':     
+                    message = _('Procurement exception (supplier error)')    
+                elif moves[id]['procurement_state'] in ('ready','done') and moves[id]['product_type'] == 'consu':
+                    message = _('Consumable')
+                if moves[id]['procurement_state'] <> 'exception':
+                    received = True
 
-                elif procurement_order.state == 'ready' or procurement_order.state == 'done':
-                    res[i]['status_status'] = _('On procurement (delivered)')
-                    res[i]['status_dedicated'] = _('Dedicated') 
-                    res[i]['status_dedicated'] =  ('%s (%s: %s)') % (res[i]['status_dedicated'], procurement_order.purchase_id and procurement_order.purchase_id.name, procurement_order.purchase_id and procurement_order.purchase_id.partner_id and procurement_order.purchase_id.partner_id.name)
-                    res[i]['status_received'] = True
-                else:
-                    res[i]['status_status'] = _('On procurement ???')
-                    res[i]['status_dedicated'] =  _('Not dedicated') 
-
-        return res
+            moves[id]['status_status'] = message
+            moves[id]['status_dedicated'] = dedicated
+            moves[id]['status_received'] = received
+            
+        # Remove fields used for internal purpose
+        for id in moves.keys():
+            for key in extended_names:  
+                del moves[id][key]   
+                
+        return moves
     
     _columns = {
         'status_status': fields.function(_get_status, type='char', string='Status', multi='group_get_status'),
