@@ -166,6 +166,7 @@ class stock_move(osv.osv):
         stock_move_obj = self.pool.get('stock.move')
         procurement_order_obj = self.pool.get('procurement.order')
         
+        # Set False as default values for each field of all ids
         for id in ids:
             res[id] = {}.fromkeys(field_names, False)
             

@@ -36,6 +36,7 @@ class Parser(report_sxw.rml_parse):
             'date_procurement': self.get_date_procurement,
             'date_shipping': self.get_date_shipping,
             'picking': self.get_picking,
+            'sorted_stock_moves': self.sorted_stock_moves,
         })
         self.context = context
         
@@ -85,5 +86,40 @@ class Parser(report_sxw.rml_parse):
             return dtshipping
         else:
             return production.date_planned 
+        
+        
+    def sorted_stock_moves(self, all_moves):
+        result = []
+        
+        def sort(moves):
+            deferred_moves = []
+            for move in moves:
+                # Add simple moves (not a pack item)
+                if not move.move_dest_id or move.move_dest_id and move.move_dest_id not in all_moves:
+                    move.level = 0
+                    move.pack = False
+                    result.append(move)
+                # If line is from a pack then add it
+                elif move.move_dest_id and move.move_dest_id in all_moves:
+                    if move.move_dest_id in result:
+                        parent_move = result[result.index(move.move_dest_id)] 
+                        parent_move.pack = True
+                        move.level = parent_move.level + 1
+                        move.pack = False
+                        result.insert(result.index(move.move_dest_id)+1, move)
+                    else:
+                        deferred_moves.append(move)
+                else:
+                    raise Exception('Missing move condition')
+                
+            if deferred_moves:
+                sort(deferred_moves)
+                
+        sort(all_moves)
+        return result
+
+                    
+                 
+            
         
         
