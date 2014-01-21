@@ -4,7 +4,7 @@
 	"version" : "1.0",
 	"author" : "Yann Papouin",
 	"website" : "http://www.dec-industrie.com",
-	"depends" : ["product","dec_sale_layout_margin","purchase"],
+	"depends" : ["product","dec_sale_layout_margin","dec_purchase"],
 	"category" : "Custom Modules",
 	"init_xml" : [],
 	"demo_xml" : [],

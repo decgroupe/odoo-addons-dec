@@ -515,6 +515,12 @@ class purchase_order(osv.osv):
         return
     
 
+    def line_refresh_price(self, order, line, context=None):
+        if line.pack_parent_line_id:
+            result = line.price_unit
+        else
+            result = super(purchase_order, self).line_refresh_price(order, line, context)
+
     def action_fix_extend_pack_pickings(self, cr, uid, ids, context=None): 
         for order in self.browse(cr, uid, ids):
             self._extend_pack_pickings(cr, uid, order, order.order_line, context)
@@ -587,7 +593,7 @@ class purchase_order(osv.osv):
                     
     def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None):  
         result = super(purchase_order, self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
-        _extend_pack_pickings(cr, uid, order, order_lines, context)  
+        self._extend_pack_pickings(cr, uid, order, order_lines, context)  
         return result
 
 purchase_order()

@@ -65,8 +65,16 @@ class purchase_order(osv.osv):
         ),
      }
     '''
+    def line_refresh_price(self, order, line, context=None):
+        res = line.product_id_change(order.pricelist_id.id, line.product_id.id, line.product_qty, line.product_uom.id, 
+                                        order.partner_id.id, order.date_order, order.fiscal_position, context=context)
+        if not line.product_uom :
+            price_unit = 0.0
+        else :
+            price_unit = res['value']['price_unit']
+        return price_unit 
 
-    def button_refresh_prices(self, cr, uid, ids, context={}):
+    def button_refresh_prices(self, cr, uid, ids, context=None):
         if not ids :
             return False
         for purchaseorder in self.browse(cr, uid, ids, context):
@@ -74,24 +82,9 @@ class purchase_order(osv.osv):
                 raise osv.except_osv('Warning !', 'Please set the price list the purchase order')
             #we modify the required data in the line
             for line in purchaseorder.order_line :
-                if  type(line.product_id) != osv.orm.browse_null and line.product_id:
-                    res = line.product_id_change(
-                                                    purchaseorder.pricelist_id.id,
-                                                    line.product_id.id,
-                                                    line.product_qty,
-                                                    line.product_uom.id,
-                                                    purchaseorder.partner_id.id, 
-                                                    purchaseorder.date_order, 
-                                                    purchaseorder.fiscal_position
-                                                )
-                else:
-                    continue
-                if not line.product_uom :
-                    price_unit = 0.0
-                else :
-                    price_unit = res['value']['price_unit']
-                
-                self.pool.get('purchase.order.line').write(cr, uid, line.id, {'price_unit' : price_unit}, {})
+                price_unit = line_refresh_price(purchaseorder, line, context=context)   
+                if price_unit <> line.price_unit:             
+                    self.pool.get('purchase.order.line').write(cr, uid, line.id, {'price_unit' : price_unit}, {})
         return True
     
 
