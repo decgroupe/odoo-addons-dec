@@ -198,11 +198,14 @@ class stock_move(osv.osv):
             moves[id]['procurement_state'] = procurement_order.state 
              
         for id in moves.keys():
-            move_dest_ids = moves[id]['procurement_move'] and moves[id]['procurement_move'].id or id
-            purchase_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', '=', move_dest_ids)], context=context)  
+            move_dest_ids = [id]
+            if moves[id]['procurement_move']:
+                move_dest_ids.append(moves[id]['procurement_move'].id)
+            purchase_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids)], context=context)  
             purchase_moves = stock_move_obj.browse(cr, uid, purchase_moves_ids, context=context) 
             purchase_moves_wait = [k for k in purchase_moves if k.state in ('waiting','assigned')] 
-            purchase_moves_done = [k for k in purchase_moves if k.state == 'done']
+            purchase_moves_exclude = [k.move_dest_id for k in purchase_moves_wait if k.move_dest_id] 
+            purchase_moves_done = [k for k in purchase_moves if k.state == 'done' and not k in purchase_moves_exclude]  
             purchase_moves = purchase_moves_wait + purchase_moves_done 
             
             message = ''
