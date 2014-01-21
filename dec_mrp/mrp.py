@@ -207,6 +207,8 @@ class stock_move(osv.osv):
             
             message = ''
             received = False
+            purchase_state = ''
+            purchase_id = False
             if moves[id]['product_type'] == 'consu':
                 dedicated = _('From workshop or manual picking')     
             elif moves[id]['procurement_state'] == 'cancel':
@@ -215,8 +217,12 @@ class stock_move(osv.osv):
                 dedicated = _('Dedicated') 
             
             if purchase_moves:
-                purchase_id = purchase_moves[0].purchase_line_id and purchase_moves[0].purchase_line_id.order_id
-                purchase_state = purchase_id and purchase_id.state or ''
+                for purchase_move in purchase_moves:
+                    purchase_id = purchase_move.purchase_line_id and purchase_move.purchase_line_id.order_id
+                    if purchase_id:
+                        purchase_state = purchase_id and purchase_id.state or ''
+                        break
+                    
                 message = _('On order')
                 if purchase_state == 'draft' and moves[id]['procurement_state'] == 'running':
                     message = _('On procurement (quotation)')
@@ -229,7 +235,7 @@ class stock_move(osv.osv):
                 elif purchase_state in ('confirmed', 'approved') and purchase_moves_wait and not purchase_moves_done:
                     message = _('On procurement (purchase in progress)')
                 elif purchase_state in ('confirmed', 'approved') and purchase_moves_wait and purchase_moves_done:
-                    message = _('On procurement (partially delivered)')
+                    message = _('On procurement (partially delivered)') + ' %d/%d' % (len(purchase_moves_done),len(purchase_moves_wait)+len(purchase_moves_done))
                 elif purchase_state in ('confirmed', 'approved') and not purchase_moves_wait and purchase_moves_done:
                     message = _('On procurement (delivered)')
                 elif moves[id]['procurement_state'] == 'running':     
