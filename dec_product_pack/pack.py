@@ -518,7 +518,7 @@ class purchase_order(osv.osv):
     def line_refresh_price(self, order, line, context=None):
         if line.pack_parent_line_id:
             result = line.price_unit
-        else
+        else:
             result = super(purchase_order, self).line_refresh_price(order, line, context)
 
     def action_fix_extend_pack_pickings(self, cr, uid, ids, context=None): 
