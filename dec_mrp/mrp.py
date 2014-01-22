@@ -169,7 +169,8 @@ class stock_move(osv.osv):
         
         extended_names =  [  
             'procure_method',
-            'product_type',      
+            'product_type',    
+            'procurement',  
             'procurement_move',
             'procurement_state',
             'purchase_state',
@@ -194,6 +195,7 @@ class stock_move(osv.osv):
                 
             moves[id]['procure_method'] = procurement_order.procure_method 
             moves[id]['product_type'] = procurement_order.product_id.type 
+            moves[id]['procurement'] = procurement_order
             moves[id]['procurement_move'] = procurement_order.move_id 
             moves[id]['procurement_state'] = procurement_order.state 
              
@@ -210,8 +212,12 @@ class stock_move(osv.osv):
             
             message = ''
             received = False
+            forced = False
             purchase_state = ''
             purchase_id = False
+            procurement = moves[id]['procurement'] or False
+            procurement_state = procurement and procurement.state or ''
+            
             if moves[id]['product_type'] == 'consu':
                 dedicated = _('From workshop or manual picking')     
             elif moves[id]['procurement_state'] == 'cancel':
@@ -223,15 +229,21 @@ class stock_move(osv.osv):
                 for purchase_move in purchase_moves:
                     purchase_id = purchase_move.purchase_line_id and purchase_move.purchase_line_id.order_id
                     if purchase_id:
-                        purchase_state = purchase_id and purchase_id.state or ''
                         break
+                    
+                if not purchase_id:
+                    forced = True
+                    purchase_id = moves[id]['procurement'] and moves[id]['procurement'].purchase_id
+                    
+                if purchase_id:
+                    purchase_state = purchase_id and purchase_id.state or ''
                     
                 message = _('On order')
                 if purchase_state == 'draft' and moves[id]['procurement_state'] == 'running':
                     message = _('On procurement (quotation)')
                 elif purchase_state == 'draft' and moves[id]['procurement_state'] == 'cancel':
                     message = _('On quotation (procurement canceled)')
-                elif purchase_state == 'cancel' and moves[id]['procurement_state'] == 'cancel':
+                elif purchase_state in ('','cancel') and moves[id]['procurement_state'] == 'cancel':
                     message = _('From stock (procurement canceled)')               
                 elif purchase_state == 'cancel' and not moves[id]['procurement_state']:
                     message = _('From stock (purchase canceled)')
@@ -247,7 +259,7 @@ class stock_move(osv.osv):
                     message = _('On procurement (delivered)')        
                 if purchase_id:
                     dedicated =  ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)    
-                if purchase_moves_done and not purchase_moves_wait:
+                if purchase_moves_done and not purchase_moves_wait and not forced:
                     received = True
                      
             else:
