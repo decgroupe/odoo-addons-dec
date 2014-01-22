@@ -167,13 +167,8 @@ class stock_move(osv.osv):
         purchase_order_obj = self.pool.get('purchase.order')
         procurement_order_obj = self.pool.get('procurement.order')
         
-        extended_names =  [  
-            'procure_method',
-            'product_type',    
+        extended_names =  [   
             'procurement',  
-            'procurement_move',
-            'procurement_state',
-            'purchase_state',
         ]
         
         # Set False as default values for each field of all ids
@@ -193,16 +188,14 @@ class stock_move(osv.osv):
                 # REFManager stock move are directly linked from procurement
                 id = procurement_order.move_id.id 
                 
-            moves[id]['procure_method'] = procurement_order.procure_method 
-            moves[id]['product_type'] = procurement_order.product_id.type 
             moves[id]['procurement'] = procurement_order
-            moves[id]['procurement_move'] = procurement_order.move_id 
-            moves[id]['procurement_state'] = procurement_order.state 
              
         for id in moves.keys():
+            procurement = moves[id]['procurement'] or False
+            
             move_dest_ids = [id]
-            if moves[id]['procurement_move']:
-                move_dest_ids.append(moves[id]['procurement_move'].id)
+            if procurement and procurement.move_id:
+                move_dest_ids.append(procurement.move_id.id)
             purchase_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids)], context=context)  
             purchase_moves = stock_move_obj.browse(cr, uid, purchase_moves_ids, context=context) 
             purchase_moves_wait = [k for k in purchase_moves if k.state in ('waiting','assigned')] 
@@ -215,12 +208,13 @@ class stock_move(osv.osv):
             forced = False
             purchase_state = ''
             purchase_id = False
-            procurement = moves[id]['procurement'] or False
             procurement_state = procurement and procurement.state or ''
+            procure_method = procurement and procurement.procure_method or '' 
+            product_type = procurement and procurement.product_id.type or '' 
             
-            if moves[id]['product_type'] == 'consu':
+            if product_type == 'consu':
                 dedicated = _('From workshop or manual picking')     
-            elif moves[id]['procurement_state'] == 'cancel':
+            elif procurement_state == 'cancel':
                 dedicated = _('Not dedicated')
             else:  
                 dedicated = _('Dedicated') 
@@ -231,21 +225,21 @@ class stock_move(osv.osv):
                     if purchase_id:
                         break
                     
-                if not purchase_id:
+                if not purchase_id and procurement:
                     forced = True
-                    purchase_id = moves[id]['procurement'] and moves[id]['procurement'].purchase_id
+                    purchase_id = procurement.purchase_id
                     
                 if purchase_id:
                     purchase_state = purchase_id and purchase_id.state or ''
                     
                 message = _('On order')
-                if purchase_state == 'draft' and moves[id]['procurement_state'] == 'running':
+                if purchase_state == 'draft' and procurement_state == 'running':
                     message = _('On procurement (quotation)')
-                elif purchase_state == 'draft' and moves[id]['procurement_state'] == 'cancel':
+                elif purchase_state == 'draft' and procurement_state == 'cancel':
                     message = _('On quotation (procurement canceled)')
-                elif purchase_state in ('','cancel') and moves[id]['procurement_state'] == 'cancel':
+                elif purchase_state in ('','cancel') and procurement_state == 'cancel':
                     message = _('From stock (procurement canceled)')               
-                elif purchase_state == 'cancel' and not moves[id]['procurement_state']:
+                elif purchase_state == 'cancel' and not procurement_state:
                     message = _('From stock (purchase canceled)')
                 elif purchase_state in ('confirmed', 'approved') and purchase_moves_wait and not purchase_moves_done:
                     message = _('On procurement (purchase in progress)')
@@ -253,9 +247,9 @@ class stock_move(osv.osv):
                     message = _('On procurement (partially delivered)') + ' %d/%d' % (len(purchase_moves_done),len(purchase_moves_wait)+len(purchase_moves_done))
                 elif purchase_state in ('confirmed', 'approved') and not purchase_moves_wait and purchase_moves_done:
                     message = _('On procurement (delivered)')
-                elif moves[id]['procurement_state'] == 'running':     
+                elif procurement_state == 'running':     
                     message = _('On procurement (purchase in progress)')    
-                elif moves[id]['procurement_state'] in ('ready','done') or purchase_state == ('done'):
+                elif procurement_state in ('ready','done') or purchase_state == ('done'):
                     message = _('On procurement (delivered)')        
                 if purchase_id:
                     dedicated =  ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)    
@@ -264,17 +258,17 @@ class stock_move(osv.osv):
                      
             else:
                 message = _('From stock')
-                if moves[id]['procurement_state'] == 'cancel' and moves[id]['procure_method'] == 'make_to_stock':
+                if procurement_state == 'cancel' and procure_method == 'make_to_stock':
                     message = _('From stock (automatic orderpoint canceled)')
-                elif moves[id]['procurement_state'] == 'cancel' and moves[id]['procure_method'] == 'make_to_order':     
+                elif procurement_state == 'cancel' and procure_method == 'make_to_order':     
                     message = _('From stock (procurement canceled)')  
-                elif moves[id]['procurement_state'] == 'exception' and moves[id]['procure_method'] == 'make_to_stock':
+                elif procurement_state == 'exception' and procure_method == 'make_to_stock':
                     message = _('Not enough stock')
-                elif moves[id]['procurement_state'] == 'exception' and moves[id]['procure_method'] == 'make_to_order':     
+                elif procurement_state == 'exception' and procure_method == 'make_to_order':     
                     message = _('Procurement exception (supplier error)')    
-                elif moves[id]['procurement_state'] in ('ready','done') and moves[id]['product_type'] == 'consu':
+                elif procurement_state in ('ready','done') and product_type == 'consu':
                     message = _('Consumable')
-                if moves[id]['procurement_state'] <> 'exception':
+                if procurement_state <> 'exception':
                     received = True
 
             moves[id]['status_status'] = message
