@@ -49,7 +49,7 @@ class ref_product(osv.osv):
         result = super(ref_product,self).name_search(cr, user, name=name, args=args, operator=operator, context=context, limit=limit)
         
         # Make a specific search according to market reference
-        ids = self.search(cr, user, [('ciel_code', '=', name), ('state', '!=', 'obsolete')], limit=limit, context=context)
+        ids = self.search(cr, user, [('ciel_code', '=', name),'|',('state', '!=', 'obsolete'),('state', '=', False)], limit=limit, context=context)
         if ids:
             res = []
             ciel_result = self.name_get(cr, user, ids, context=context)
