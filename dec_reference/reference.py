@@ -409,6 +409,7 @@ class ref_reference(osv.osv):
         if not ids:
             ids = self.search(cr, uid, [])
 
+        today = time.strftime('%Y-%m-%d')
         emailfrom = 'refmanager@dec-industrie.com'
         emails = ['decindustrie@gmail.com']
         subject = _('Price surcharge alert')
@@ -430,7 +431,7 @@ class ref_reference(osv.osv):
                 
             if (len(price_ids) >= 2):  
                 prices = ref_price_obj.browse(cr, uid, price_ids, context=context)
-                if prices[0].value > prices[1].value: 
+                if (prices[0].value > prices[1].value) and (date_ref1 or date_ref2) or (prices[0].date == today): 
                     assert(prices[0].id == price_ids[0])
                     ref_content.append({'id': reference.id, 
                                        'reference': reference.value,
@@ -572,6 +573,9 @@ class ref_task_wizard(osv.osv_memory):
         ref_reference_obj = self.pool.get('ref.reference')
         ref_price_obj = self.pool.get('ref.price') 
         
+        
+        #ref_reference_obj.run_material_cost_scheduler(cr, uid)
+        
         # Remove duplicates
         ids = ref_reference_obj.search(cr, uid, [], context=context)
         for reference in ref_reference_obj.browse(cr, uid, ids, context=context):           
@@ -594,6 +598,7 @@ class ref_task_wizard(osv.osv_memory):
                   
         today = time.strftime('%Y-%m-%d')
         ref_reference_obj.generate_material_cost_report(cr, uid, ids, '2014-01-01', today, context=context)  
+        #ref_reference_obj.generate_material_cost_report(cr, uid, ids, False, False, context=context)  
         
         return {}
 
