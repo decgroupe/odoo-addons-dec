@@ -29,6 +29,7 @@
 
 import math
 import simplejson
+import logging
 from osv import fields,osv
 from tools.translate import _
 
@@ -520,6 +521,7 @@ class purchase_order(osv.osv):
             result = line.price_unit
         else:
             result = super(purchase_order, self).line_refresh_price(order, line, context)
+        return result
 
     def action_fix_extend_pack_pickings(self, cr, uid, ids, context=None): 
         for order in self.browse(cr, uid, ids):
@@ -542,6 +544,7 @@ class purchase_order(osv.osv):
             
         stock_move_obj = self.pool.get('stock.move')
         mrp_production_obj = self.pool.get('mrp.production')
+                
         
         # Create a new move with the same destination that the parent move 
         for order_line in order_lines:
@@ -560,14 +563,15 @@ class purchase_order(osv.osv):
             
                 assert(production_ids <> [])
                 
-            if prod_move:   
+            if prod_move:  
+                logging.getLogger('purchase.order').info('Extend picking for purchase %s: %s', order.name, order_line.product_id.name_get()[0][1]) 
                 for child in order_line.pack_child_line_ids:
                     child_move_ids = [move for move in child.move_ids if move.state <> 'cancel' and not move.move_dest_id]
                     if child_move_ids:
                         # Create a new move with the same data that the purchase one 
                         child_purchase_move = child_move_ids[0]  
                         default = {
-                            'name': '%s: %s' % (prod_move.name, prod_move.product_id.default_code or ''),
+                            'name': '%s: %s' % (prod_move.name, prod_move.product_id.default_code or prod_move.product_id.name or ''),
                             'picking_id': False, 
                             'auto_validate': True,
                             'address_id': False,
@@ -585,6 +589,7 @@ class purchase_order(osv.osv):
                         # Finalize the new stock move if the pack is done
                         if child_purchase_move.state == 'done':   
                             stock_move_obj.browse(cr, uid, new_move_id, context=context).action_done()
+                            stock_move_obj.write(cr, uid, new_move_id, {'date': child_purchase_move.date,'create_date': child_purchase_move.create_date}, context=context)
                       
             # Instant finalize reception of the pack himself
             if order_line.pack_child_line_ids:  
