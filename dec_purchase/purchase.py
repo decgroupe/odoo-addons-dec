@@ -82,7 +82,7 @@ class purchase_order(osv.osv):
                 raise osv.except_osv('Warning !', 'Please set the price list the purchase order')
             #we modify the required data in the line
             for line in purchaseorder.order_line :
-                price_unit = line_refresh_price(purchaseorder, line, context=context)   
+                price_unit = self.line_refresh_price(purchaseorder, line, context=context)   
                 if price_unit <> line.price_unit:             
                     self.pool.get('purchase.order.line').write(cr, uid, line.id, {'price_unit' : price_unit}, {})
         return True
