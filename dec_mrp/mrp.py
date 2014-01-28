@@ -196,27 +196,30 @@ class stock_move(osv.osv):
             forced = False
             purchase_state = ''
             purchase_id = False
-            purchase_moves = []
-            purchase_moves_wait = []
-            purchase_moves_done = []
+            production_state = ''
+            production_id = False
+            parent_moves = []
+            parent_moves_wait = []
+            parent_moves_done = []
 
             procurement = moves[id]['procurement'] or False
             procurement_state = procurement and procurement.state or ''
             procure_method = procurement and procurement.procure_method or ''
             product_type = procurement and procurement.product_id.type or ''
+            supply_method = procurement and procurement.product_id.supply_method or ''
 
             move_dest_ids = [id]
-            if procurement and procurement.move_id:
+            if procurement and procurement.move_id and procurement.move_id.id <> id:
                 move_dest_ids.append(procurement.move_id.id)
 
             if procure_method <> 'make_to_stock':
-                purchase_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids)], context=context)
-                if purchase_moves_ids:
-                    purchase_moves = stock_move_obj.browse(cr, uid, purchase_moves_ids, context=context)
-                    purchase_moves_wait = [k for k in purchase_moves if k.state in ('waiting', 'assigned')]
-                    purchase_moves_exclude = [k.move_dest_id for k in purchase_moves_wait if k.move_dest_id]
-                    purchase_moves_done = [k for k in purchase_moves if k.state == 'done' and not k in purchase_moves_exclude]
-                    purchase_moves = purchase_moves_wait + purchase_moves_done
+                parent_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids)], context=context)
+                if parent_moves_ids:
+                    parent_moves = stock_move_obj.browse(cr, uid, parent_moves_ids, context=context)
+                    parent_moves_wait = [k for k in parent_moves if k.state in ('waiting', 'assigned')]
+                    purchase_moves_exclude = [k.move_dest_id for k in parent_moves_wait if k.move_dest_id]
+                    parent_moves_done = [k for k in parent_moves if k.state == 'done' and not k in purchase_moves_exclude]
+                    parent_moves = parent_moves_wait + parent_moves_done
 
 
             if product_type == 'consu':
@@ -226,18 +229,19 @@ class stock_move(osv.osv):
             else:
                 dedicated = _('Dedicated')
 
-            if purchase_moves or (procurement and procurement.purchase_id):
-                for purchase_move in purchase_moves:
-                    purchase_id = purchase_move.purchase_line_id and purchase_move.purchase_line_id.order_id
-                    if purchase_id:
-                        break
+            if parent_moves or (procurement and procurement.purchase_id):
+                for parent_move in parent_moves:
+                    if not purchase_id:
+                        purchase_id = parent_move.purchase_line_id and parent_move.purchase_line_id.order_id    
+                    if not production_id:
+                        production_id = parent_move.production_id
 
-                if not purchase_id and procurement and not product_type == 'consu':
+                if not purchase_id and not production_id and procurement and not product_type == 'consu':
                     forced = True
                     purchase_id = procurement.purchase_id
 
-                if purchase_id:
-                    purchase_state = purchase_id and purchase_id.state or ''
+                purchase_state = purchase_id and purchase_id.state or ''
+                production_state = production_id and production_id.state or ''
 
                 message = _('On order')
                 if purchase_state == 'draft' and procurement_state == 'running':
@@ -248,21 +252,29 @@ class stock_move(osv.osv):
                     message = _('From stock (procurement canceled)')
                 elif purchase_state in ('', 'cancel') and not procurement_state:
                     message = _('From stock (purchase canceled)')
-                elif purchase_state in ('confirmed', 'approved') and purchase_moves_wait and not purchase_moves_done:
+                elif purchase_state in ('confirmed', 'approved') and parent_moves_wait and not parent_moves_done:
                     message = _('On procurement (purchase in progress)')
-                elif purchase_state in ('confirmed', 'approved') and purchase_moves_wait and purchase_moves_done:
-                    message = _('On procurement (partially delivered)') + ' %d/%d' % (len(purchase_moves_done), len(purchase_moves_wait) + len(purchase_moves_done))
-                elif purchase_state in ('confirmed', 'approved') and not purchase_moves_wait and purchase_moves_done:
+                elif purchase_state in ('confirmed', 'approved') and parent_moves_wait and parent_moves_done:
+                    message = _('On procurement (partially delivered)') + ' %d/%d' % (len(parent_moves_done), len(parent_moves_wait) + len(parent_moves_done))
+                elif purchase_state in ('confirmed', 'approved') and not parent_moves_wait and parent_moves_done:
                     message = _('On procurement (delivered)')
-                elif procurement_state == 'exception':
+                elif procurement_state == 'exception' and supply_method == 'buy':
                     message = _('Procurement exception (supplier error)')
-                elif procurement_state == 'running':
+                elif procurement_state == 'exception' and supply_method == 'produce':
+                    message = _('Procurement exception (BoM error)')
+                elif procurement_state == 'running' and supply_method == 'buy':
                     message = _('On procurement (purchase in progress)')
-                elif procurement_state in ('ready', 'done') or purchase_state == ('done'):
+                elif procurement_state == 'running' and supply_method == 'produce':
+                    message = _('On procurement (production in progress)')
+                elif (procurement_state in ('ready', 'done') or purchase_state == 'done') and supply_method == 'buy':
                     message = _('On procurement (delivered)')
+                elif (procurement_state in ('ready', 'done') or production_state == 'done') and supply_method == 'produce':
+                    message = _('On procurement (produced)')
                 if purchase_id:
                     dedicated = ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)
-                if purchase_moves_done and not purchase_moves_wait and not forced:
+                if production_id:
+                    dedicated = ('%s (%s: %s)') % (dedicated, production_id.name, production_id.state)
+                if parent_moves_done and not parent_moves_wait and not forced:
                     received = True
 
             else:
@@ -501,14 +513,16 @@ class mrp_production(osv.osv):
     }
 
     def create(self, cr, uid, vals, context=None):
-        procurement_obj = self.pool.get('procurement.order')
+        move_obj = self.pool.get('stock.move')
         if vals.has_key('move_prod_id') and vals['move_prod_id'] != False:
-            proc_ids = procurement_obj.search(cr, uid, [('move_id', '=', vals['move_prod_id'])], context=context)
-            for procurement in procurement_obj.browse(cr, uid, proc_ids, context):
-                if procurement and procurement.sale_line_id:
-                    vals['partner_id'] = procurement.sale_line_id.order_id and procurement.sale_line_id.order_id.partner_shipping_id.partner_id.id or False
-                    vals['partner_address_id'] = procurement.sale_line_id.order_id and procurement.sale_line_id.order_id.partner_shipping_id.id or False,
+            move_prod_id = move_obj.browse(cr, uid, vals['move_prod_id'], context)
+            while move_prod_id:
+                if move_prod_id.sale_line_id and move_prod_id.sale_line_id.order_id:
+                    partner_address_id = move_prod_id.sale_line_id.order_id and move_prod_id.sale_line_id.order_id.partner_shipping_id or False
+                    vals['partner_address_id'] = partner_address_id.id   
+                    vals['partner_id'] = partner_address_id and partner_address_id.partner_id.id or False         
                     break
+                move_prod_id = move_prod_id.move_dest_id
 
         return super(mrp_production, self).create(cr, uid, vals, context)
 

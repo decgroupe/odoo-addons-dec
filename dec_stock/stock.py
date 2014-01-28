@@ -121,6 +121,7 @@ class stock_move(osv.osv):
         return res
 
     _columns = {
+         'origin': fields.related('picking_id','origin',type='char', size=512, relation="stock.picking", string="Origin", store=True),
          'move_origin': fields.function(_get_move_origin, type="char", string='Move origin', readonly=True),
          'move_final_location': fields.function(_get_move_final_location, type="char", string='Final location', readonly=True),
          'create_uid':  fields.many2one('res.users', 'Creator'),
