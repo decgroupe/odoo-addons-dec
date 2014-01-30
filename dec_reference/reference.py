@@ -371,6 +371,7 @@ class ref_reference(osv.osv):
         
         if not ids:
             ids = self.search(cr, uid, [])
+            #ids = [126,556]
         for reference in self.browse(cr, uid, ids, context=context):
             data = {}
             cost_price = 0.0
@@ -385,7 +386,7 @@ class ref_reference(osv.osv):
             if ref_price_ids:
                 ref_price = ref_price_obj.browse(cr, uid, ref_price_ids, context=context)[0]
                 
-            if not ref_price or ref_price.value <> cost_price: 
+            if not ref_price or round(ref_price.value,2) <> round(cost_price,2): #abs(ref_price.value - cost_price) > 0.1
                 data['reference_id'] = reference.id
                 data['value'] = cost_price
                 ref_price_obj.create(cr, uid, data, context=context)
@@ -397,7 +398,7 @@ class ref_reference(osv.osv):
         if use_new_cursor:
             cr.close()
         else:
-            self.generate_material_cost_report(cr, uid, ids, context)
+            self.generate_material_cost_report(cr, uid, ids, context=context)
             
     def generate_material_cost_report(self, cr, uid, ids=None, date_ref1=False, date_ref2=False, context=None):
         if context is None:
@@ -431,7 +432,7 @@ class ref_reference(osv.osv):
                 
             if (len(price_ids) >= 2):  
                 prices = ref_price_obj.browse(cr, uid, price_ids, context=context)
-                if (prices[0].value > prices[1].value) and (date_ref1 or date_ref2) or (prices[0].date == today): 
+                if (round(prices[0].value,2) > round(prices[1].value,2)) and ((date_ref1 or date_ref2) or (prices[0].date == today)): 
                     assert(prices[0].id == price_ids[0])
                     ref_content.append({'id': reference.id, 
                                        'reference': reference.value,
@@ -578,6 +579,7 @@ class ref_task_wizard(osv.osv_memory):
         
         # Remove duplicates
         ids = ref_reference_obj.search(cr, uid, [], context=context)
+
         for reference in ref_reference_obj.browse(cr, uid, ids, context=context):           
             price_ids = ref_price_obj.search(cr, uid, [('reference_id','=', reference.id)], context=context, order='date asc')
             if price_ids:
@@ -595,10 +597,12 @@ class ref_task_wizard(osv.osv_memory):
                     diff = [x for x in price_ids if x not in price_ids_to_delete]
                     ref_price_obj.unlink(cr, uid, price_ids_to_delete, context=context)
                     logging.getLogger('ref.task.wizard').info('Remaining ids %s for [%s] %s', diff, reference.value, reference.product.name) 
-                  
+         
         today = time.strftime('%Y-%m-%d')
         ref_reference_obj.generate_material_cost_report(cr, uid, ids, '2014-01-01', today, context=context)  
-        #ref_reference_obj.generate_material_cost_report(cr, uid, ids, False, False, context=context)  
+        #ref_reference_obj.generate_material_cost_report(cr, uid, ids, False, False, context=context) 
+        
+        #ref_reference_obj.run_material_cost_scheduler(cr, uid, context=context) 
         
         return {}
 
