@@ -216,7 +216,7 @@ class stock_move(osv.osv):
                 parent_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids)], context=context)
                 if parent_moves_ids:
                     parent_moves = stock_move_obj.browse(cr, uid, parent_moves_ids, context=context)
-                    parent_moves_wait = [k for k in parent_moves if k.state in ('waiting', 'assigned')]
+                    parent_moves_wait = [k for k in parent_moves if k.state in ('waiting', 'confirmed')]
                     purchase_moves_exclude = [k.move_dest_id for k in parent_moves_wait if k.move_dest_id]
                     parent_moves_done = [k for k in parent_moves if k.state == 'done' and not k in purchase_moves_exclude]
                     parent_moves = parent_moves_wait + parent_moves_done
