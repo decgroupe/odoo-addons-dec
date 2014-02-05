@@ -198,6 +198,7 @@ class stock_move(osv.osv):
             purchase_id = False
             production_state = ''
             production_id = False
+            product_id = False
             parent_moves = []
             parent_moves_wait = []
             parent_moves_done = []
@@ -205,22 +206,26 @@ class stock_move(osv.osv):
             procurement = moves[id]['procurement'] or False
             procurement_state = procurement and procurement.state or ''
             procure_method = procurement and procurement.procure_method or ''
-            product_type = procurement and procurement.product_id.type or ''
-            supply_method = procurement and procurement.product_id.supply_method or ''
+            product_id = procurement and procurement.product_id or False 
+            product_type = product_id and product_id.type or ''
+            product_pack = product_id and product_id.purchase_pack_line_ids or False 
+            supply_method = product_id and product_id.supply_method or ''
 
-            move_dest_ids = [id]
+            move_dest_ids = [id]   
             if procurement and procurement.move_id and procurement.move_id.id <> id:
                 move_dest_ids.append(procurement.move_id.id)
 
             if procure_method <> 'make_to_stock':
-                parent_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids)], context=context)
+                if product_pack:
+                    parent_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids), ('product_id', '!=', product_id.id)], context=context)
+                else:
+                    parent_moves_ids = stock_move_obj.search(cr, uid, [('move_dest_id', 'in', move_dest_ids)], context=context)
+                    
                 if parent_moves_ids:
-                    parent_moves = stock_move_obj.browse(cr, uid, parent_moves_ids, context=context)
-                    parent_moves_wait = [k for k in parent_moves if k.state in ('waiting', 'confirmed')]
+                    parent_moves = stock_move_obj.browse(cr, uid, parent_moves_ids, context=context)                        
+                    parent_moves_wait = [k for k in parent_moves if k.state in ('waiting', 'confirmed', 'assigned')]
                     purchase_moves_exclude = [k.move_dest_id for k in parent_moves_wait if k.move_dest_id]
                     parent_moves_done = [k for k in parent_moves if k.state == 'done' and not k in purchase_moves_exclude]
-                    parent_moves = parent_moves_wait + parent_moves_done
-
 
             if product_type == 'consu':
                 dedicated = _('From workshop or manual picking')
