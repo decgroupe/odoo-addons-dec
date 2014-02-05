@@ -271,7 +271,7 @@ class stock_move(osv.osv):
                     message = _('On procurement (purchase in progress)')
                 elif procurement_state == 'running' and supply_method == 'produce':
                     message = _('On procurement (production in progress)')
-                elif (procurement_state in ('ready', 'done') or purchase_state == 'done') and supply_method == 'buy':
+                elif (procurement_state in ('ready', 'done') and supply_method == 'buy') or purchase_state == 'done':
                     message = _('On procurement (delivered)')
                 elif (procurement_state in ('ready', 'done') or production_state == 'done') and supply_method == 'produce':
                     message = _('On procurement (produced)')
@@ -279,7 +279,7 @@ class stock_move(osv.osv):
                     dedicated = ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)
                 if production_id:
                     dedicated = ('%s (%s: %s)') % (dedicated, production_id.name, production_id.state)
-                if parent_moves_done and not parent_moves_wait and not forced:
+                if parent_moves_done and not parent_moves_wait and (not forced or product_pack):
                     received = True
 
             else:
