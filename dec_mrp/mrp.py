@@ -279,7 +279,7 @@ class stock_move(osv.osv):
                     dedicated = ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)
                 if production_id:
                     dedicated = ('%s (%s: %s)') % (dedicated, production_id.name, production_id.state)
-                if parent_moves_done and not parent_moves_wait and (not forced or product_pack):
+                if parent_moves_done and not parent_moves_wait:# and (not forced or product_pack):
                     received = True
 
             else:
