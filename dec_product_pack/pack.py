@@ -548,22 +548,27 @@ class purchase_order(osv.osv):
         
         # Create a new move with the same destination that the parent move 
         for order_line in order_lines:
-            prod_move = False
+            final_move = False
             production_ids = []
             if order_line.pack_child_line_ids:
                 procurement_move = order_line.origin_procurement_order_id and order_line.origin_procurement_order_id.move_id 
-                prod_move = get_final_move(procurement_move)
+                final_move = get_final_move(procurement_move)
                 picking = procurement_move and procurement_move.picking_id 
-                # Get production order from PTN data
-                if picking:
-                    production_ids = mrp_production_obj.search(cr, uid, [('picking_id', '=', picking.id)], context=context)
-                # If the move comes from REFManager, we need to get it from production move data
-                if not production_ids:
-                    production_ids = mrp_production_obj.search(cr, uid, [('move_all_src_ids', '=', procurement_move.id)], context=context)  
-            
-                assert(production_ids <> [])
+                assert (picking <> False) 
                 
-            if prod_move:  
+                if picking.type == 'internal': 
+                    # Get production order from PTN data
+                    production_ids = mrp_production_obj.search(cr, uid, [('picking_id', '=', picking.id)], context=context)
+                    # If the move comes from REFManager, we need to get it from production move data
+                    if not production_ids:
+                        production_ids = mrp_production_obj.search(cr, uid, [('move_all_src_ids', '=', procurement_move.id)], context=context)  
+                    assert(production_ids <> [])
+                elif picking.type == 'in': 
+                    pass
+                elif picking.type == 'out': 
+                    pass
+                
+            if final_move:  
                 logging.getLogger('purchase.order').info('Extend picking for purchase %s: %s', order.name, order_line.product_id.name_get()[0][1]) 
                 for child in order_line.pack_child_line_ids:
                     child_move_ids = [move for move in child.move_ids if move.state <> 'cancel' and not move.move_dest_id]
@@ -571,21 +576,27 @@ class purchase_order(osv.osv):
                         # Create a new move with the same data that the purchase one 
                         child_purchase_move = child_move_ids[0]  
                         default = {
-                            'name': '%s: %s' % (prod_move.name, prod_move.product_id.default_code or prod_move.product_id.name or ''),
+                            'name': '%s: %s' % (final_move.name, final_move.product_id.default_code or final_move.product_id.name or ''),
                             'picking_id': False, 
                             'auto_validate': True,
                             'address_id': False,
-                            'move_dest_id': prod_move.id,
+                            'move_dest_id': final_move.id,
                             'location_id': child_purchase_move.location_dest_id.id,
-                            'location_dest_id': prod_move.location_dest_id.id,   
-                            'state': 'waiting',   
+                            'location_dest_id': final_move.location_dest_id.id,   
+                            'state': 'confirmed',   
                             'purchase_line_id': False,  
                             'price_unit': False,     
                         }
+                        if picking.type == 'out': 
+                            default['picking_id'] = picking and picking.id
+                            
                         new_move_id = stock_move_obj.copy(cr, uid, child_purchase_move.id, default, context=context)
                         child_purchase_move.write({'move_dest_id': new_move_id})
-                        # Attach the new move to the same production order
-                        mrp_production_obj.write(cr, uid, production_ids, {'move_all_src_ids': [(4, new_move_id)]}, context=context)  
+                        
+                        if production_ids: 
+                            # Attach the new move to the same production order
+                            mrp_production_obj.write(cr, uid, production_ids, {'move_all_src_ids': [(4, new_move_id)]}, context=context)  
+                            
                         # Finalize the new stock move if the pack is done
                         if child_purchase_move.state == 'done':   
                             stock_move_obj.browse(cr, uid, new_move_id, context=context).action_done()
