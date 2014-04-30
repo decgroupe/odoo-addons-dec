@@ -230,7 +230,7 @@ class ref_market_bom(osv.osv):
         'product_uom': fields.many2one('product.uom', 'Product UOM', required=True, help="UoM (Unit of Measure) is the unit of measurement for the inventory control"),
         'partner_id': fields.many2one('res.partner', 'Supplier'),
         'locked_price': fields.boolean('Locked price'),
-        'price': fields.float('Price', digits_compute=dp.get_precision('Purchase Price')),
+        'price': fields.float('Price', digits_compute=dp.get_precision('Sale Price')),
         'bom_lines': fields.one2many('ref.market.bom', 'bom_id', 'BoM Lines'),
         'bom_id': fields.many2one('ref.market.bom', 'Parent BoM', ondelete='cascade', select=True),
         'xml_id': fields.function(osv.osv.get_xml_id, type='char', size=128, string="External ID", help="ID of the view defined in xml file"),

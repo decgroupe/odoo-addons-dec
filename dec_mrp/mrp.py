@@ -187,6 +187,9 @@ class stock_move(osv.osv):
             else:
                 # REFManager stock move are directly linked from procurement
                 id = procurement_order.move_id.id
+                
+            if not id in moves:
+                moves[id] = {}
 
             moves[id]['procurement'] = procurement_order
 
@@ -213,6 +216,7 @@ class stock_move(osv.osv):
 
             move_dest_ids = [id]   
             if procurement and procurement.move_id and procurement.move_id.id <> id:
+                pass
                 move_dest_ids.append(procurement.move_id.id)
 
             if procure_method <> 'make_to_stock':
@@ -225,7 +229,13 @@ class stock_move(osv.osv):
                     parent_moves = stock_move_obj.browse(cr, uid, parent_moves_ids, context=context)                        
                     parent_moves_wait = [k for k in parent_moves if k.state in ('waiting', 'confirmed', 'assigned')]
                     purchase_moves_exclude = [k.move_dest_id for k in parent_moves_wait if k.move_dest_id]
-                    parent_moves_done = [k for k in parent_moves if k.state == 'done' and not k in purchase_moves_exclude]
+                    parent_moves_done = [k for k in parent_moves if k.state == 'done' and not k in purchase_moves_exclude]     
+                    
+                    # Exclude all waiting moves where their parent is done
+                    parent_moves_done_dest = [k.move_dest_id for k in parent_moves_done if k.move_dest_id]  
+                    parent_moves_wait2 = [k for k in parent_moves_wait if k not in parent_moves_done_dest]
+                    
+                    parent_moves_wait = parent_moves_wait2
 
             if product_type == 'consu':
                 dedicated = _('From workshop or manual picking')
@@ -273,8 +283,10 @@ class stock_move(osv.osv):
                     message = _('On procurement (production in progress)')
                 elif (procurement_state in ('ready', 'done') and supply_method == 'buy') or purchase_state == 'done':
                     message = _('On procurement (delivered)')
+                    received = True
                 elif (procurement_state in ('ready', 'done') or production_state == 'done') and supply_method == 'produce':
                     message = _('On procurement (produced)')
+                    received = True
                 if purchase_id:
                     dedicated = ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)
                 if production_id:
