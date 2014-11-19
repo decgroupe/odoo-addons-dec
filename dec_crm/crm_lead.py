@@ -79,7 +79,7 @@ class crm_lead(osv.osv):
         if not vals:
             vals= {}
             
-        if 'ref' in vals:
+        if 'ref' in vals and vals['ref']:
             values = vals['ref'].split(',')
             if values and values[1].isdigit():
                 model_name = values[0] 

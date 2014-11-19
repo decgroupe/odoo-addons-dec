@@ -29,6 +29,7 @@ class res_partner(osv.osv):
     _name = "res.partner"
     _inherit="res.partner"
     _columns = {
+        'academy': fields.char('City', size=64),
         'partner_academy': fields.many2one('res.partner.academy', 'Academy', help="Educational academy of the current partner."),
         'zip': fields.related('address', 'zip', type='char', string='Zip'),
     }

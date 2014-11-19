@@ -562,6 +562,8 @@ class purchase_order(osv.osv):
                     # If the move comes from REFManager, we need to get it from production move data
                     if not production_ids:
                         production_ids = mrp_production_obj.search(cr, uid, [('move_all_src_ids', '=', procurement_move.id)], context=context)  
+                    # YP: 14-05-2014: Remove assertion since it could be made only a procurment for STOCK
+                    # But there is a stock error in that case, maybe just deleting the pack line is enought
                     assert(production_ids <> [])
                 elif picking.type == 'in': 
                     pass
