@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-28 15:32+0000\n"
-"PO-Revision-Date: 2014-01-28 16:46+0100\n"
+"PO-Revision-Date: 2014-11-14 11:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.5\n"
+"Language: fr\n"
 
 #. module: dec_mrp
 #: code:addons/dec_mrp/mrp.py:759
@@ -139,7 +140,7 @@ msgstr "Repère"
 #: code:addons/dec_mrp/mrp.py:250
 #, python-format
 msgid "On quotation (procurement canceled)"
-msgstr "Sur commande (devis)"
+msgstr "Sur devis (appro. annulée)"
 
 #. module: dec_mrp
 #: view:mrp.production:0

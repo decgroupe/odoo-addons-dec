@@ -90,6 +90,7 @@ class Parser(report_sxw.rml_parse):
         
     def sorted_stock_moves(self, all_moves):
         result = []
+        all_moves_sorted = sorted(all_moves, key=lambda x: x.product_id.default_code or '' + x.product_id.name, reverse=False)
         
         def sort(moves):
             deferred_moves = []
@@ -115,7 +116,7 @@ class Parser(report_sxw.rml_parse):
             if deferred_moves:
                 sort(deferred_moves)
                 
-        sort(all_moves)
+        sort(all_moves_sorted)
         return result
 
                     

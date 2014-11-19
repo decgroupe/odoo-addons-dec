@@ -199,6 +199,7 @@ class stock_move(osv.osv):
             forced = False
             purchase_state = ''
             purchase_id = False
+            purchase_line_id = False
             production_state = ''
             production_id = False
             product_id = False
@@ -246,6 +247,8 @@ class stock_move(osv.osv):
 
             if parent_moves or (procurement and procurement.purchase_id):
                 for parent_move in parent_moves:
+                    if not purchase_line_id:
+                        purchase_line_id = parent_move.purchase_line_id  
                     if not purchase_id:
                         purchase_id = parent_move.purchase_line_id and parent_move.purchase_line_id.order_id    
                     if not production_id:
@@ -256,15 +259,18 @@ class stock_move(osv.osv):
                     purchase_id = procurement.purchase_id
 
                 purchase_state = purchase_id and purchase_id.state or ''
+                purchase_line_state = purchase_line_id and purchase_line_id.state or ''
                 production_state = production_id and production_id.state or ''
 
                 message = _('On order')
                 if purchase_state == 'draft' and procurement_state == 'running':
                     message = _('On procurement (quotation)')
-                elif purchase_state == 'draft' and procurement_state == 'cancel':
+                elif purchase_state == 'draft' and procurement_state == 'cancel' and purchase_line_state:
                     message = _('On quotation (procurement canceled)')
-                elif purchase_state in ('', 'cancel') and procurement_state == 'cancel':
+                elif purchase_state in ('', 'cancel') and procurement_state == 'cancel' and purchase_line_state:
                     message = _('From stock (procurement canceled)')
+                elif procurement_state == 'cancel' and not purchase_line_state:
+                    message = _('From stock (purchase line deleted)')
                 elif purchase_state in ('', 'cancel') and not procurement_state:
                     message = _('From stock (purchase canceled)')
                 elif purchase_state in ('confirmed', 'approved') and parent_moves_wait and not parent_moves_done:
@@ -287,7 +293,10 @@ class stock_move(osv.osv):
                 elif (procurement_state in ('ready', 'done') or production_state == 'done') and supply_method == 'produce':
                     message = _('On procurement (produced)')
                     received = True
-                if purchase_id:
+
+                #message = ('%s: %s - %s - %s - %s ') % (message, procurement_state, purchase_state, purchase_line_state, production_state)
+
+                if purchase_id and purchase_line_id:
                     dedicated = ('%s (%s: %s)') % (dedicated, purchase_id.name, purchase_id.partner_id.name)
                 if production_id:
                     dedicated = ('%s (%s: %s)') % (dedicated, production_id.name, production_id.state)
@@ -717,6 +726,16 @@ class mrp_production(osv.osv):
             result[production.id] = task_id
 
         return result
+    
+    
+    def fix_workflow_yp_2014_08_28(self, cr, uid, ids=None, context=None):
+        for id in ids:
+            cr.execute('select id from wkf_instance WHERE res_type = %s and res_id = %s', ('mrp.production', id))
+            workflow_ids = map(lambda x: x[0], cr.fetchall())
+            if workflow_ids:
+                workflow_id = workflow_ids[0]
+                cr.execute('update wkf_workitem set act_id=39 where act_id=38 and inst_id=%s', (workflow_id,))
+
 
 mrp_production()
 
