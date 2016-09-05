@@ -50,6 +50,8 @@ class task(osv.osv):
                         res[task.id][f] = task.sale_line_id.order_id.requested_date  
                     if f == 'sale_commitment_date':
                         res[task.id][f] = task.sale_line_id.order_id.commitment_date  
+                    if f == 'sale_picked_rate':
+                        res[task.id][f] = task.sale_line_id.order_id.picked_rate  
             
         return res
     
@@ -82,6 +84,7 @@ class task(osv.osv):
         'partner_address_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City', store=True),
         'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
         'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
+        'sale_picked_rate': fields.function(_get_sale_dates, type='float', string='Picked rate', multi='sale_dates', store=False),
     }
     
     def write(self, cr, uid, ids, vals, context=None):
