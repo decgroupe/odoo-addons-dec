@@ -40,7 +40,9 @@ class crm_lead(osv.osv):
     _inherit = _name
     
     _columns = {
-        'sale_order_ids': fields.many2many('sale.order', 'sale_order_crm_lead_ids', 'crm_lead_id', 'sale_order_id', 'Sale orders', domain=[]),  
+        'sale_order_ids': fields.many2many('sale.order', 'sale_order_crm_lead_ids', 'crm_lead_id', 'sale_order_id', 'Sale orders', domain=[]),         
+        'partner_academy': fields.related('partner_id', 'partner_academy', type='many2one', relation='res.partner.academy', string='Academy'),        
+        'partner_city_id': fields.related('partner_address_id', 'city_id', type='many2one', relation='city.city', string='City'), 
     }
 
     def unsubscribe(self, cr, uid, ids, context=None):

@@ -176,7 +176,8 @@ class product_product(osv.osv):
 #        'pricelist_surcharge':  fields.related('pricelist_item_id', 'price_surcharge', type="float", string="Net price value", store=False),
         'price_write_date' : fields.datetime('Price write date'),
         'price_write_uid' : fields.many2one('res.users', 'Price last editor'),
-
+        'standard_price_write_date' : fields.datetime('Standard price write date'),
+        'standard_price_write_uid' : fields.many2one('res.users', 'Standard price last editor'),
         
     }
     
@@ -194,8 +195,12 @@ class product_product(osv.osv):
         pricelist_item = self.pool.get('product.pricelist.item')
             
         if 'list_price' in vals:
-            vals['price_write_date'] = time.strftime('%Y-%m-%d')
+            vals['price_write_date'] = time.strftime('%Y-%m-%d %H:%M:%S')
             vals['price_write_uid'] = uid
+
+        if 'standard_price' in vals:
+            vals['standard_price_write_date'] = time.strftime('%Y-%m-%d %H:%M:%S')
+            vals['standard_price_write_uid'] = uid
 
         for product in self.browse(cr, uid, ids, context):    
             if 'pricelist_bypass' in vals:

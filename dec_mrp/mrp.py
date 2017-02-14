@@ -564,13 +564,19 @@ class mrp_production(osv.osv):
 
         for production in production_obj.browse(cr, uid, ids, context):
             if vals.has_key('product_id'):
-                for move in production.move_all_dst_ids:
-                    if move.product_id.id <> vals['product_id']:
-                        move_obj.write(cr, uid, [move.id], {'product_id': vals['product_id']}, context=context)
+                if production.state == 'draft':
+                    if production.move_prod_id:
+                        move = production.move_prod_id
+                        if move.product_id.id <> vals['product_id']:
+                            move_obj.write(cr, uid, [move.id], {'product_id': vals['product_id']}, context=context)         
+                else:
+                    for move in production.move_all_dst_ids:
+                        if move.product_id.id <> vals['product_id']:
+                            move_obj.write(cr, uid, [move.id], {'product_id': vals['product_id']}, context=context)
 
-                        # Update next move
-                        if move.move_dest_id and move.move_dest_id.product_id.id == move.product_id.id:
-                            move_obj.write(cr, uid, [move.move_dest_id.id], {'product_id': vals['product_id']}, context=context)
+                            # Update next move
+                            if move.move_dest_id and move.move_dest_id.product_id.id == move.product_id.id:
+                                move_obj.write(cr, uid, [move.move_dest_id.id], {'product_id': vals['product_id']}, context=context)
 
         return super(mrp_production, self).write(cr, uid, ids, vals, context)
 

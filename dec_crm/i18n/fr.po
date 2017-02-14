@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-16 12:45+0000\n"
-"PO-Revision-Date: 2014-01-16 13:46+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2015-01-16 12:23+0000\n"
+"PO-Revision-Date: 2015-01-16 13:23+0100\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"Language: fr\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #. module: dec_crm
 #: field:sale.order,crm_lead_ids:0
@@ -30,6 +31,16 @@ msgstr "La référence de commande doit être unique par société!"
 #: model:ir.model,name:dec_crm.model_sale_order
 msgid "Sales Order"
 msgstr "Commande de ventes"
+
+#. module: dec_crm
+#: field:crm.lead,partner_city_id:0
+msgid "City"
+msgstr "Ville/CP"
+
+#. module: dec_crm
+#: field:crm.lead,partner_academy:0
+msgid "Academy"
+msgstr "Académie"
 
 #. module: dec_crm
 #: view:crm.lead:0

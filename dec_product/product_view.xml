@@ -116,6 +116,8 @@
                		<separator string="Cost price and purchase price" colspan="2"/>
 	            	<field name="standard_price" string="Base price" />
 	            	<field name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}" />
+					<field name="standard_price_write_date"/>
+					<field name="standard_price_write_uid"/>
 	            </field>
 	            
              	

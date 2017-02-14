@@ -299,7 +299,7 @@ class sale_order(osv.osv):
                         'move_ids': [(6,0,[])],
                         'discount': discount,
                         'number_packages': False,
-                        'notes': False,
+                        'notes': subproduct.description_sale,
                         'th_weight': False,
                         'state': 'draft',
                         'pack_parent_line_id': line.id,
@@ -562,8 +562,10 @@ class purchase_order(osv.osv):
                     # If the move comes from REFManager, we need to get it from production move data
                     if not production_ids:
                         production_ids = mrp_production_obj.search(cr, uid, [('move_all_src_ids', '=', procurement_move.id)], context=context)  
-                    # YP: 14-05-2014: Remove assertion since it could be made only a procurment for STOCK
+                    # YP: 14-05-2014: Remove assertion since it could be made only a procurement for STOCK
                     # But there is a stock error in that case, maybe just deleting the pack line is enought
+                    # YP: 04-05-2015: Maybe it is just a human error, the valid workflow should be 
+                    # sale-purchase-send or production-purchase-send
                     assert(production_ids <> [])
                 elif picking.type == 'in': 
                     pass
