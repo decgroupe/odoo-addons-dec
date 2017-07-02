@@ -379,8 +379,11 @@ class ref_reference(osv.osv):
                 bom_id = mrp_bom_obj._bom_find(cr, uid, reference.product.id, reference.product.uom_id and reference.product.uom_id.id, [])
                 if bom_id:
                     logging.getLogger('ref.reference').info('Compute material cost price for [%s] %s', reference.value, reference.product.name)
-                    cost_price = mrp_bom_obj.get_cost_price(cr, uid, [bom_id], context=context)[bom_id]
-                 
+                    try:
+                        cost_price = mrp_bom_obj.get_cost_price(cr, uid, [bom_id], context=context)[bom_id]
+                    except Exception, e:
+                        logging.getLogger('ref.reference').exception("Failed to get cost price for [%s] %s\n %s", reference.value, reference.product.name, tools.ustr(e))
+
             ref_price = False   
             ref_price_ids = ref_price_obj.search(cr, uid, [('reference_id', '=', reference.id)], limit=1, context=context)
             if ref_price_ids:
@@ -418,6 +421,8 @@ class ref_reference(osv.osv):
         ref_content = []
           
         for reference in self.browse(cr, uid, ids, context=context): 
+            if reference.value.startswith("ADT"):
+                continue
             ref1_ids = []
             ref2_ids = []
             if date_ref1:
