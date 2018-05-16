@@ -325,11 +325,14 @@ class sale_order_line(osv.osv):
         value = {'price_unit': price_unit}
             
         new_margin = self.compute_margin(price_unit, purchase_price, product_uos_qty, discount)   
-        if (purchase_price > 0) and (product_uos_qty>0) and (price_unit>0):
+        if (purchase_price > 0) and (product_uos_qty > 0):
             new_margin_percent = new_margin/float(product_uos_qty) * 100 / float(purchase_price) 
-            new_markup_percent = new_margin/float(product_uos_qty) * 100 / float(price_unit - (price_unit*discount/100.0))  
         else:
             new_margin_percent = 0
+
+        if (discount < 100) and (product_uos_qty > 0) and (price_unit > 0):
+            new_markup_percent = new_margin/float(product_uos_qty) * 100 / float(price_unit - (price_unit * discount / 100.0))  
+        else:
             new_markup_percent = 0
             
         value.update({'margin': new_margin, 'margin_percent': new_margin_percent})
@@ -357,7 +360,7 @@ class sale_order_line(osv.osv):
                   
         value = {}
         
-        if purchase_price > 0:
+        if purchase_price > 0 and discount < 100:
             if markup_percent < 100: 
                 new_price_unit = purchase_price / float(1-discount/100.0) / float(1-markup_percent/100.0) 
                 new_price_unit = rounding(new_price_unit, 0.01)
