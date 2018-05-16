@@ -515,6 +515,8 @@ class ref_pack(osv.osv):
         'name': fields.related('product', 'name', type='char', string='Name'),
         'default_code': fields.related('product', 'default_code', type='char', string='Code'),
         'ciel_code': fields.related('product', 'ciel_code', type='char', string='Ciel'),
+        'list_price': fields.related('product', 'list_price', type='float', string='Sale Price'),
+        'standard_price': fields.related('product', 'standard_price', type='float', string='Cost Price'),
         'type': fields.selection([('company','Company'),('manufacturer', 'Manufacturer')], 'Pack Type', required=True),
     }
 
