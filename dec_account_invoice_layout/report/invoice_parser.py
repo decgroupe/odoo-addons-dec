@@ -11,12 +11,10 @@ class Parser(report_sxw.rml_parse):
         super(Parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'current_subtotal': self._current_subtotal,
-            'hello_world':self.hello_world,
+            'get_bank_from_wizard':self.get_bank_from_wizard,
+            'tax_summary':self.tax_summary,
         })
         self.context = context
-
-    def hello_world(self, name):
-        return "Hello, %s!" % name
 
     def _current_subtotal(self, order, current_line):
         sum = 0
@@ -28,4 +26,17 @@ class Parser(report_sxw.rml_parse):
                 sum = 0 
             
         return 0
-        
+    
+    def get_bank_from_wizard(self):
+        result = False
+        partner_bank_tuple = self.datas.has_key('form') and self.datas['form'].get('partner_bank_id', result)   
+        if partner_bank_tuple:
+            id = partner_bank_tuple[0]
+            bank_obj = self.pool.get('res.partner.bank')
+            result = bank_obj.browse(self.cr, self.uid, [id], context=self.context)[0]
+        return result
+    
+    def tax_summary(self):
+        result = True
+        result = self.datas.has_key('form') and self.datas['form'].get('tax_summary', result)   
+        return result

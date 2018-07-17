@@ -28,12 +28,13 @@
     "description": """
     
                     """,
-    "depends" : ["account_invoice_layout"],
+    "depends" : ["account_invoice_layout","dec_account_invoice_merge"],
     "init_xml" : [ ],
     "demo_xml" : [ ],
     "update_xml" : [
         'account_invoice_layout_report.xml',
         'account_invoice_view.xml',
+        "wizard/invoice_custom_report.xml",
         ],
     "active": False,
     "installable": True

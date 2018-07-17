@@ -19,9 +19,7 @@
 #
 ##############################################################################
 
-import report
-import account_invoice_layout
-import wizard
+import invoice_custom_report
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
