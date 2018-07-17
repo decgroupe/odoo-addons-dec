@@ -19,7 +19,41 @@
 #
 ##############################################################################
 
-import account_voucher
-import report
-import wizard
+from osv import osv, fields
+
+class voucher_custom_report(osv.TransientModel):
+    _name = 'voucher.custom.report'
+    _description = 'Customize voucher report'
+
+    _columns = {
+        'option_1': fields.boolean(
+            'Option 1', 
+            help=""
+            ),
+    }
+    
+    _defaults = {
+        'option_1': False,
+    }
+
+    def check_report(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
+        view_data = self.read(cr, uid, ids, [], context=context)[0]
+        datas = {
+             'ids': context.get('active_ids',[]),
+             'model': 'account.voucher',
+             'form': view_data,
+        }
+        res = {
+            'type': 'ir.actions.report.xml',
+            'datas': datas,
+        }
+
+        res['report_name'] = 'service_print_voucher'
+        return res
+
+voucher_custom_report()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

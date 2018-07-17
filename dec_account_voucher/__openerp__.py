@@ -33,7 +33,8 @@
     "demo_xml" : [ ],
     'update_xml': [
         'partner_view.xml',
-
+        "wizard/voucher_custom_report.xml",
+        "reports.xml",
     ],
     "active": False,
     "installable": True

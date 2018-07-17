@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="voucher_custom_report_view" model="ir.ui.view">
+            <field name="name">Customize voucher report</field>
+            <field name="model">voucher.custom.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Select Options">
+                    <group colspan="4" col="8">
+                        <field name="option_1"/>
+                        <newline/>
+                    </group>
+                    <separator colspan="4"/>
+                    <group colspan="4" col="6">
+                        <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                        <label string="" colspan="3"/>
+                        <button name="check_report" string="Print report" type="object" icon="gtk-print" context="{'report_type':'voucher'}"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_voucher_custom_report" model="ir.actions.act_window">
+            <field name="name">Wizard ...</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">voucher.custom.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="voucher_custom_report_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="voucher_custom_report_values">
+            <field name="model_id" ref="dec_account_voucher.model_account_voucher" />
+            <field name="name">Customize voucher report</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_voucher_custom_report'))" />
+            <field name="key">action</field>
+            <field name="model">account.voucher</field>
+        </record>
+
+    </data>
+</openerp>
