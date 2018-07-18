@@ -373,6 +373,8 @@ class ref_reference(osv.osv):
             ids = self.search(cr, uid, [])
             #ids = [126,556]
         for reference in self.browse(cr, uid, ids, context=context):
+            if reference.category.name in ['ADT']:
+                continue
             data = {}
             cost_price = 0.0
             if reference.product and reference.product.bom_ids:
@@ -421,7 +423,7 @@ class ref_reference(osv.osv):
         ref_content = []
           
         for reference in self.browse(cr, uid, ids, context=context): 
-            if reference.value.startswith("ADT"):
+            if reference.category.name in ['ADT']:
                 continue
             ref1_ids = []
             ref2_ids = []
