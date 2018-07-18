@@ -9,7 +9,11 @@
             <field name="arch" type="xml">
                 <form string="Select Options">
                     <group colspan="4" col="8">
-                        <field name="option_1"/>
+                        <field name="should_print_debit_lines"/>
+                        <field name="should_print_debit_line_at_0"/>
+                        <newline/>
+                        <field name="should_print_credit_lines"/>
+                        <field name="should_print_credit_line_at_0"/>
                         <newline/>
                     </group>
                     <separator colspan="4"/>

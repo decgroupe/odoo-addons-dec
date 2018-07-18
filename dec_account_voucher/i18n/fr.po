@@ -48,3 +48,33 @@ msgstr "Partenaire"
 #: view:res.partner:0
 msgid "Accounting"
 msgstr "Comptabilité"
+
+#. module: dec_account_voucher
+#: view:voucher.custom.report:0
+msgid "Print report"
+msgstr "Imprimer le rapport"
+
+#. module: dec_account_voucher
+#: field:voucher.custom.report,should_print_debit_line_at_0:0
+msgid "Print debit lines with an amount of zero"
+msgstr "Afficher les lignes de débit ayant un montant à zéro"
+
+#. module: dec_account_voucher
+#: field:voucher.custom.report,should_print_credit_line_at_0:0
+msgid "Print credit lines with an amount of zero"
+msgstr "Afficher les lignes de crédit ayant un montant à zéro"
+
+#. module: dec_account_voucher
+#: field:voucher.custom.report,should_print_debit_lines:0
+msgid "Print debit lines"
+msgstr "Afficher les lignes de débit (factures)"
+
+#. module: dec_account_voucher
+#: field:voucher.custom.report,should_print_credit_lines:0
+msgid "Print credit lines"
+msgstr "Afficher les lignes de crédit (avoirs)"
+
+#. module: dec_account_voucher
+#: model:ir.actions.act_window,name:dec_account_voucher.action_voucher_custom_report
+msgid "Wizard ..."
+msgstr "Assistant ..."

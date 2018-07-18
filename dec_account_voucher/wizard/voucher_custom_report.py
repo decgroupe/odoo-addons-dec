@@ -26,14 +26,29 @@ class voucher_custom_report(osv.TransientModel):
     _description = 'Customize voucher report'
 
     _columns = {
-        'option_1': fields.boolean(
-            'Option 1', 
+        'should_print_debit_lines': fields.boolean(
+            'Print debit lines', 
+            help=""
+            ),
+        'should_print_debit_line_at_0': fields.boolean(
+            'Print debit lines with an amount of zero', 
+            help=""
+            ),
+        'should_print_credit_lines': fields.boolean(
+            'Print credit lines', 
+            help=""
+            ),
+        'should_print_credit_line_at_0': fields.boolean(
+            'Print credit lines with an amount of zero', 
             help=""
             ),
     }
     
     _defaults = {
-        'option_1': False,
+        'should_print_debit_lines': True,
+        'should_print_debit_line_at_0': True,
+        'should_print_credit_lines': True,
+        'should_print_credit_line_at_0': True,
     }
 
     def check_report(self, cr, uid, ids, context=None):
