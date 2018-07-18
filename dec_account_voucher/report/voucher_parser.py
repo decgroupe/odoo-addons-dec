@@ -1,8 +1,4 @@
-##############################################################################
-#
-#
-##############################################################################
-
+# -*- coding: utf-8 -*-
 from report import report_sxw
 from report.report_sxw import rml_parse
 
@@ -140,7 +136,7 @@ class Parser(report_sxw.rml_parse):
             local.newline = 2
             if address_id.phone:
                 add_new_line(6)
-                local.result += 'T\xc3\xa9l.: ' + address_id.phone
+                local.result += u'Tél.: ' + address_id.phone
                 local.newline = True
             if address_id.fax:
                 add_new_line(7)
