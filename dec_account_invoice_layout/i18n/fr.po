@@ -171,3 +171,39 @@ msgstr "Facture"
 #: report:account.invoice.layout.dec:0
 msgid "Supplier Refund"
 msgstr "Note de Crédit Fournisseur"
+
+#. module: dec_account_invoice_layout
+#: help:invoice.custom.report,partner_bank_id:0
+msgid "Bank Account Number to which the invoice will be paid. A Company bank account if this is a Customer Invoice or Supplier Refund, otherwise a Partner bank account number."
+msgstr "Le compte bancaire qui sera utilisé pour le paiement."
+
+#. module: dec_account_invoice_layout
+#: view:invoice.custom.report:0
+msgid "Print report"
+msgstr "Imprimer"
+
+#. module: dec_account_invoice_layout
+#: field:invoice.custom.report,partner_bank_id:0
+msgid "Bank Account"
+msgstr "Compte bancaire"
+
+#. module: dec_account_invoice_layout
+#: model:ir.actions.act_window,name:dec_account_invoice_layout.action_invoice_custom_report
+msgid "Wizard ..."
+msgstr "Assistant ..."
+
+#. module: dec_account_invoice_layout
+#: model:ir.model,name:dec_account_invoice_layout.model_invoice_custom_report
+msgid "Customize invoice report"
+msgstr "Personnaliser la facture"
+
+
+#. module: dec_account_invoice_layout
+#: field:invoice.custom.report,tax_summary:0
+msgid "Print tax summary"
+msgstr "Afficher un récapitulatif des taxes"
+
+#. module: dec_account_invoice_layout
+#: help:invoice.custom.report,tax_summary:0
+msgid "A table at end of the report will be displayed with the total amount per tax"
+msgstr "Un tableau récapitulatif des taxes est affiché à la fin du rapport"
