@@ -30,7 +30,7 @@ import time
 import logging
 import pooler
 
-
+log = logging.getLogger('ref.reference')
 
 class ref_product(osv.osv):
     _inherit = "product.product"
@@ -373,8 +373,9 @@ class ref_reference(osv.osv):
             ids = self.search(cr, uid, [])
             #ids = [126,556]
         for reference in self.browse(cr, uid, ids, context=context):
-            if reference.category.name in ['ADT']:
+            if reference.category.code in ['ADT']:
                 continue
+            #log.info("Reference category name is {0}".format(reference.category.name))
             data = {}
             cost_price = 0.0
             if reference.product and reference.product.bom_ids:
