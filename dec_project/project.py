@@ -43,15 +43,18 @@ class task(osv.osv):
             res[id] = {}.fromkeys(field_names, False)
          
         SUPER_USER = 1   
-        for task in self.browse(cr, SUPER_USER, ids, context=context):
-            if task.sale_line_id:
-                for f in field_names:
-                    if f == 'sale_requested_date':
-                        res[task.id][f] = task.sale_line_id.order_id.requested_date  
-                    if f == 'sale_commitment_date':
-                        res[task.id][f] = task.sale_line_id.order_id.commitment_date  
-                    if f == 'sale_picked_rate':
-                        res[task.id][f] = task.sale_line_id.order_id.picked_rate  
+        try:
+            for task in self.browse(cr, SUPER_USER, ids, context=context):
+                if task.sale_line_id and task.sale_line_id.order_id:
+                    for f in field_names:
+                        if f == 'sale_requested_date':
+                            res[task.id][f] = task.sale_line_id.order_id.requested_date  
+                        if f == 'sale_commitment_date':
+                            res[task.id][f] = task.sale_line_id.order_id.commitment_date  
+                        if f == 'sale_picked_rate':
+                            res[task.id][f] = task.sale_line_id.order_id.picked_rate  
+        except:
+            pass
             
         return res
     

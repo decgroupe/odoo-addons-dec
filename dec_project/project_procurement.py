@@ -38,7 +38,7 @@ class procurement_order(osv.osv):
             project = self._get_project(cr, uid, procurement, context=context)
             planned_hours = self._convert_qty_company_hours(cr, uid, procurement, context=context)
             task_id = project_task.create(cr, uid, {
-                'name': '%s: %s: %s %s' % (procurement.product_id.name, procurement.name, procurement.product_qty, procurement.product_uom.name),
+                'name': '[%s] %s: %s: %s %s' % (procurement.product_id.default_code, procurement.product_id.name, procurement.name, procurement.product_qty, procurement.product_uom.name),
                 'origin': procurement.origin,
                 'date_deadline': procurement.date_planned,
                 'planned_hours':planned_hours,
