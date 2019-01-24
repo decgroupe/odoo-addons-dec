@@ -26,6 +26,9 @@ from datetime import datetime, date
 from tools.translate import _
 from osv import fields, osv
 from openerp.addons.resource.faces import task as Task
+import logging
+
+log = logging.getLogger('dec.project')
 
 class task(osv.osv):
     _name = "project.task"
@@ -76,6 +79,28 @@ class task(osv.osv):
                 res[task.id] += ' (%s)' % (task.partner_address_id.city)
             
         return res  
+
+    def _get_analytic_account_ids(self, cr, uid, project_id=False, context=None):
+        ids = []
+        if project_id:
+            project = self.pool.get('project.project').browse(cr, uid, project_id, context)
+        else:
+            user = self.pool.get('res.users') 
+            project = user.browse(cr, uid, uid, context).context_project_id
+            
+        if project and project.analytic_account_id:
+            ids.append(project.analytic_account_id.id)
+            for analytic_account in project.child_complete_ids:
+                ids.append(analytic_account.id)
+
+        return ids
+
+    def _get_project_ids(self, cr, uid, analytic_account_ids, context=None):
+        ids = []
+        project = self.pool.get('project.project') 
+        args = ([('analytic_account_id', 'in', analytic_account_ids)])
+        ids = project.search(cr, uid, args, context=context)
+        return ids
     
     _columns = {
         'view_name': fields.function(_get_view_name, string='View name', type='char'), 
@@ -113,5 +138,61 @@ class task(osv.osv):
                     
         return super(task, self).create(cr, uid, vals, context)
 
+    def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
+        if context is None:
+            context = {}
+
+        # new_args = []
+        # project_ids = []
+        # for domain_item in args:
+        #     if isinstance(domain_item, (list, tuple)) and len(domain_item) == 3 and domain_item[0] == 'project_id':
+        #         new_args.append(('project_id', 'in', project_ids))
+        #     else:
+        #         new_args.append(domain_item)\
+
+        context_project_id = context.get('search_default_project_id', False)
+        if context_project_id:
+            del context['search_default_project_id']
+
+        new_args = []
+        for item in args:
+            if isinstance(item, (list, tuple)) and len(item) == 3 and item[0] == 'project_id':
+                project_id = item[2]
+                analytic_account_ids = self._get_analytic_account_ids(cr, uid, project_id, context)
+                project_ids = self._get_project_ids(cr, uid, analytic_account_ids, context)
+                new_args.append(('project_id', 'in', project_ids))
+            else:
+                new_args.append(item)
+        args = new_args
+
+        # replace_arg = False
+        # context_project_id = context.get('search_default_project_id', False)
+        # if context_project_id:
+        #     item = ['project_id', '=', context_project_id]
+        #     if item in args:
+        #         replace_arg = True
+        #         args.remove(item)
+        #     if replace_arg:
+        #         analytic_account_ids = self._get_analytic_account_ids(cr, uid, context_project_id, context)
+        #         project_ids = self._get_project_ids(cr, uid, analytic_account_ids, context)
+        #         args.append(('project_id', 'in', project_ids))
+
+        res = super(task, self).search(cr, uid, args, offset, limit, order, context=context, count=count)
+        return res
+
 task()
+
+class project(osv.osv):
+    _name = "project.project"
+    _inherit = _name
+
+    def name_get(self, cr, uid, ids, context=None):
+        if not ids:
+            return []
+        res = []
+        for project in self.browse(cr, uid, ids, context=context):
+            res.append((project.id, project.analytic_account_id.complete_name))
+        return res
+
+project()
 
