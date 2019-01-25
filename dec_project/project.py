@@ -138,46 +138,52 @@ class task(osv.osv):
                     
         return super(task, self).create(cr, uid, vals, context)
 
-    def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
+    def _replace_project_id_with_childs_ids(self, cr, uid, args, context=None):
         if context is None:
             context = {}
-
-        # new_args = []
-        # project_ids = []
-        # for domain_item in args:
-        #     if isinstance(domain_item, (list, tuple)) and len(domain_item) == 3 and domain_item[0] == 'project_id':
-        #         new_args.append(('project_id', 'in', project_ids))
-        #     else:
-        #         new_args.append(domain_item)\
 
         context_project_id = context.get('search_default_project_id', False)
         if context_project_id:
             del context['search_default_project_id']
 
         new_args = []
+        replace_args = False
         for item in args:
-            if isinstance(item, (list, tuple)) and len(item) == 3 and item[0] == 'project_id':
+            if isinstance(item, (list, tuple)) and len(item) == 3 and item[0] == 'project_id' and item[1] == '=':
                 project_id = item[2]
                 analytic_account_ids = self._get_analytic_account_ids(cr, uid, project_id, context)
                 project_ids = self._get_project_ids(cr, uid, analytic_account_ids, context)
-                new_args.append(('project_id', 'in', project_ids))
+                new_item = ['project_id', 'in', project_ids]
+                new_args.append(new_item)
+                replace_args = True
+                log.info(" Replacing item {0} with {1}".format(item, new_item))
             else:
                 new_args.append(item)
-        args = new_args
+                
+        if replace_args:
+            log.info("Replacing args \n {0} with \n {1}".format(args, new_args))
+            args = new_args
 
-        # replace_arg = False
-        # context_project_id = context.get('search_default_project_id', False)
-        # if context_project_id:
-        #     item = ['project_id', '=', context_project_id]
-        #     if item in args:
-        #         replace_arg = True
-        #         args.remove(item)
-        #     if replace_arg:
-        #         analytic_account_ids = self._get_analytic_account_ids(cr, uid, context_project_id, context)
-        #         project_ids = self._get_project_ids(cr, uid, analytic_account_ids, context)
-        #         args.append(('project_id', 'in', project_ids))
+        return args
+        
 
+    def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
+        if context is None:
+            context = {}
+        replace = context.get('replace_single_project_id', False)
+        if replace:
+            args = self._replace_project_id_with_childs_ids(cr, uid, args, context=context)
         res = super(task, self).search(cr, uid, args, offset, limit, order, context=context, count=count)
+        return res
+
+
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0,
+                   limit=None, context=None, orderby=False):
+        
+        domain = self._replace_project_id_with_childs_ids(cr, uid, domain, context=context)
+        res = super(task, self).read_group(
+            cr, uid, domain, fields, groupby,
+            offset, limit, context, orderby)
         return res
 
 task()
@@ -186,6 +192,17 @@ class project(osv.osv):
     _name = "project.project"
     _inherit = _name
 
+    def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
+        if args is None:
+            args = []
+        if context is None:
+            context = {}
+        ids = []
+        if name:
+            ids = self.search(cr, uid, ['|', ('name', 'ilike', name),  ('parent_id', 'ilike', name)]+ args, limit=limit)
+
+        return self.name_get(cr, uid, ids, context=context)
+
     def name_get(self, cr, uid, ids, context=None):
         if not ids:
             return []
@@ -193,6 +210,20 @@ class project(osv.osv):
         for project in self.browse(cr, uid, ids, context=context):
             res.append((project.id, project.analytic_account_id.complete_name))
         return res
+
+
+    def search(self, cr, user, args, offset=0, limit=None, order=None, context=None, count=False):
+        res = super(project, self).search(cr, user, args, offset=offset, limit=limit, order=order,
+            context=context, count=count)
+        return res
+
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0,
+                   limit=None, context=None, orderby=False):
+        res = super(project, self).read_group(
+            cr, uid, domain, fields, groupby,
+            offset, limit, context, orderby)
+        return res
+
 
 project()
 
