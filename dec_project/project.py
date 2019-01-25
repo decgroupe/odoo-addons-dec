@@ -113,11 +113,39 @@ class task(osv.osv):
         'sale_requested_date': fields.function(_get_sale_dates, type='date', string='Requested date', multi='sale_dates', store=False),
         'sale_commitment_date': fields.function(_get_sale_dates, type='date', string='Commitment date', multi='sale_dates', store=False),
         'sale_picked_rate': fields.function(_get_sale_dates, type='float', string='Picked rate', multi='sale_dates', store=False),
+        'meeting_id': fields.many2one('crm.meeting', 'Meeting'),
     }
     
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
-          ids = [ids]
+            ids = [ids]
+
+        if any(k in vals for k in ('name', 'date_start', 'date_end', 'user_id', 'partner_address_id')):
+            meeting_obj = self.pool.get('crm.meeting')
+            address_obj = self.pool.get('res.partner.address')
+            for item in self.browse(cr, uid, ids, context):
+                location = False
+                address_id = vals.get('partner_address_id', False)
+                if not address_id and item.partner_address_id and not 'partner_address_id' in vals:
+                    location = item.partner_address_id.name_get()[0][1]
+                if address_id and not location:
+                    location = address_obj.browse(cr, uid, address_id, context).name_get()[0][1]
+                data = {
+                    'name': '🔒' + vals.get('name', item.name.encode('utf-8')),
+                    'date': vals.get('date_start', item.date_start),
+                    'date_deadline': vals.get('date_end', item.date_end),
+                    'allday': True,
+                    'user_id': vals.get('user_id', item.user_id.id),
+                    'location': location, #item.partner_address_id and item.partner_address_id.name_get()[0][1] or False,
+                    'description': "Ce rendez-vous a été créé automatiquement,"\
+                        "pour le modifier vous devez modifier la tâche correspondante"
+                }
+                if not item.meeting_id:
+                    meeting_id = meeting_obj.create(cr, uid, data, context=context)
+                    self.write(cr, uid, ids, {'meeting_id' : meeting_id}, context)
+                else:
+                    meeting_obj.write(cr, uid, [item.meeting_id.id], data, context=context)
+
 
         return super(task, self).write(cr, uid, ids, vals, context)
     
@@ -165,7 +193,7 @@ class task(osv.osv):
             args = new_args
 
         return args
-        
+
 
     def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
         if context is None:
