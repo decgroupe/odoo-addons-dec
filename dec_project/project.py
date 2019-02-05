@@ -140,11 +140,16 @@ class task(osv.osv):
                     'description': "Ce rendez-vous a été créé automatiquement,"\
                         "pour le modifier vous devez modifier la tâche correspondante"
                 }
-                if not item.meeting_id:
-                    meeting_id = meeting_obj.create(cr, uid, data, context=context)
-                    self.write(cr, uid, ids, {'meeting_id' : meeting_id}, context)
-                else:
-                    meeting_obj.write(cr, uid, [item.meeting_id.id], data, context=context)
+                
+                if data['date'] and data['date_deadline']:
+                    if not item.meeting_id:
+                            meeting_id = meeting_obj.create(cr, uid, data, context=context)
+                            self.write(cr, uid, ids, {'meeting_id' : meeting_id}, context)
+                    else:
+                        meeting_obj.write(cr, uid, [item.meeting_id.id], data, context=context)
+                elif item.meeting_id:
+                    meeting_obj.unlink(cr, uid, [item.meeting_id.id], context=context)
+                    self.write(cr, uid, ids, {'meeting_id' : False}, context)
 
 
         return super(task, self).write(cr, uid, ids, vals, context)
