@@ -131,7 +131,7 @@ class task(osv.osv):
                 if address_id and not location:
                     location = address_obj.browse(cr, uid, address_id, context).name_get()[0][1]
                 data = {
-                    'name': '🔒'.decode('utf-8') + vals.get('name', item.name.encode('utf-8')),
+                    'name': '🔒'.decode('utf-8') + vals.get('name', item.name),
                     'date': vals.get('date_start', item.date_start),
                     'date_deadline': vals.get('date_end', item.date_end),
                     'allday': True,
