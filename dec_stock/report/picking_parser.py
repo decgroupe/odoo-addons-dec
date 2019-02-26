@@ -50,7 +50,9 @@ class Parser(report_sxw.rml_parse):
             if pack:
                 if sale_order_line.pack_parent_line_id:
                     res = sale_order_line.pack_parent_line_id.name
-                    if sale_order_line.pack_parent_line_id.notes:
+                    if sale_order_line.pack_parent_line_id.product_id and not sale_order_line.pack_parent_line_id.product_id.name in res:
+                        res += '\n' + sale_order_line.pack_parent_line_id.product_id.name
+                    if sale_order_line.pack_parent_line_id.notes and sale_order_line.pack_parent_line_id.notes != "Ref. interne: [PACK]":
                         res += '\n' + sale_order_line.pack_parent_line_id.notes
             else:
                 res = sale_order_line.name
