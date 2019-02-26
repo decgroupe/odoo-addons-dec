@@ -16,15 +16,50 @@ class Parser(report_sxw.rml_parse):
             'get_production_order':self.get_production_order,
             'get_selection_value':self.get_selection_value,
             'get_origin_creator':self.get_origin_creator,
+            'get_sale_line':self.get_sale_line,
+            'get_sale_description':self.get_sale_description,
         })
         self.context = context
-        
+        self.sale_lines = {}
    
     def get_message(self, data):
         if data.has_key('form') and data['form'].has_key('message'):
             return data['form']['message']
         else:
             return ''
+
+    def get_sale_line(self, move_line):
+        if move_line not in self.sale_lines:
+            sale_order_line_obj = self.pool.get('sale.order.line')
+            sale_order_line_ids = sale_order_line_obj.search(self.cr, self.uid, [('move_ids', 'in', [move_line.id] )], context=self.context)
+            
+            if sale_order_line_ids:
+                sale_order_line = sale_order_line_obj.browse(self.cr, self.uid, sale_order_line_ids, context=self.context)[0]
+
+                self.sale_lines[move_line] = sale_order_line
+
+        if move_line in self.sale_lines:
+            return self.sale_lines[move_line]
+        else:
+            return None
+
+    def get_sale_description(self, move_line, pack = False):
+        res = ''
+        sale_order_line = self.get_sale_line(move_line)
+        if sale_order_line:
+            if pack:
+                if sale_order_line.pack_parent_line_id:
+                    res = sale_order_line.pack_parent_line_id.name
+                    if sale_order_line.pack_parent_line_id.notes:
+                        res += '\n' + sale_order_line.pack_parent_line_id.notes
+            else:
+                res = sale_order_line.name
+                if sale_order_line.notes:
+                    res += '\n' + sale_order_line.notes
+
+            return res
+        else:
+            return None
         
     def get_production_order(self, picking):
         production_obj = self.pool.get('mrp.production')
