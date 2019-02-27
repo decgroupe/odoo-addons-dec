@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_partner_form_dec">
+			<field name="name">res.partner.form</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+			
+				<field name="lang" position="after">
+					<field name="partner_academy" attrs="{'invisible':[('customer','=',False)]}"/>	
+				</field>
+
+			</field>
+		</record>
+		
+       <record model="ir.ui.view" id="view_res_partner_filter_dec">
+            <field name="name">res.partner.select</field>
+            <field name="model">res.partner</field>
+            <field name="type">search</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+             	<xpath expr="/search/group/field[@name='country']" position="before">
+             		<field name="city" select="1"/>
+             	</xpath>
+            </field>
+        </record>
+        
+	</data>
+</openerp>
