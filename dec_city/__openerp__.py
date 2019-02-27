@@ -22,7 +22,7 @@
 ##############################################################################
 {
     "name" : "DEC City",
-    "version" : "2.0",
+    "version" : "8.0.1.0",
     "author" : "Pablo Rocandio",
     "category" : "",
     "description": """Creates a model for storing cities
@@ -30,10 +30,7 @@ Zip code, city, state and country fields are replaced with a location field in p
 This module helps to keep homogeneous address data in the database.""",
     "depends" : ["base"],
     "init_xml" : [],
-    "update_xml" : [
-        'city_view.xml',
-        'security/ir.model.access.csv'
-        ],
     "active": False,
-    "installable": True
+    "installable": True,
+    "force_migration": True
 }
