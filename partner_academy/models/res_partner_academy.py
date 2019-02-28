@@ -9,9 +9,7 @@ class ResPartnerAcademy(models.Model):
     _description = 'Academy'
     _rec_name = 'name'
 
-    _columns = {     
-        'name': fields.Text('Name', required=True),
-    }
+    name = fields.Text('Name', required=True)
 
     _defaults = {
 
