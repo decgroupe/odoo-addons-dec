@@ -29,12 +29,7 @@ from tools.translate import _
 class crm_helpdesk(osv.osv):
     _name = "crm.helpdesk"
     _inherit="crm.helpdesk"
-    
-    def _get_shop_id(self, cr, uid, ids, context=None):
-        cmpny_id = self.pool.get('res.users')._get_company(cr, uid, context=context)
-        shop = self.pool.get('sale.shop').search(cr, uid, [('company_id', '=', cmpny_id)])
-        return shop and shop[0] or False
-    
+
     _columns = {
         'partner_city': fields.related('partner_id', 'city', type='text', string='City'),
     }
@@ -66,7 +61,6 @@ class crm_helpdesk(osv.osv):
                 'origin': _('SAV%05d') % (case.id),
                 'section_id': case.section_id and case.section_id.id or False,
                 'categ_id': case.categ_id and case.categ_id.id or False,
-                #'shop_id': self._get_shop_id.id,
                 'partner_id': partner.id,
                 'pricelist_id': pricelist,
                 'partner_invoice_id': partner_addr['invoice'],
@@ -85,8 +79,6 @@ class crm_helpdesk(osv.osv):
             self.log(cr, uid, case.id, message)
             self.message_append(cr, uid, [case], _("Converted to Sales Quotation(%s).") % (sale_order.name), context=context)
 
-            #if case.close:
-            #    self.case_close(cr, uid, data)
         if not new_ids:
             return {'type': 'ir.actions.act_window_close'}
         if len(new_ids)<=1:
