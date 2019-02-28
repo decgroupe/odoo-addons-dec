@@ -5,17 +5,17 @@ import time
 from openerp import models, fields, api
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
 
     _inherit="res.partner"
-    _columns = {
-        'partner_academy': fields.many2one('res.partner.academy', 'Academy', help="Educational academy of the current partner."),
-        'zip': fields.related('address', 'zip', type='char', string='Zip'),
-    }
+    # _columns = {
+    #     'partner_academy': fields.Many2one('res.partner.academy', 'Academy', help="Educational academy of the current partner."),
+    #     'zip': fields.Char(related='address.zip', string='Zip'),
+    # }
     
     
     def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
-        res = super(res_partner,self).name_search(cr, uid, name=name, args=args, operator=operator, context=context, limit=limit)
+        res = super(ResPartner,self).name_search(cr, uid, name=name, args=args, operator=operator, context=context, limit=limit)
 
         result = []
         for item in res:
@@ -27,4 +27,3 @@ class res_partner(models.Model):
             
         return result
 
-res_partner()

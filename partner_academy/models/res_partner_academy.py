@@ -2,7 +2,7 @@
 
 from openerp import models, fields, api
 
-class res_partner_academy(models.Model):
+class ResPartnerAcademy(models.Model):
     """ Description """
 
     _name = 'res.partner.academy'
@@ -10,7 +10,7 @@ class res_partner_academy(models.Model):
     _rec_name = 'name'
 
     _columns = {     
-        'name': fields.text('Name', required=True),
+        'name': fields.Text('Name', required=True),
     }
 
     _defaults = {
@@ -19,6 +19,5 @@ class res_partner_academy(models.Model):
  
     _order = 'name'
 
-res_partner_academy()
 
 

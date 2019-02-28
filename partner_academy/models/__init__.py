@@ -1,4 +1,4 @@
 # -*- encoding: utf-8 -*-
 
-from . import partner
-from . import partner_academy
+from . import res_partner
+from . import res_partner_academy
