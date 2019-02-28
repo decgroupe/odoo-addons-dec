@@ -1,13 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-import time
+from openerp import models, fields, api
 
-from osv import fields
-from osv import osv
-
-
-
-class res_partner_academy(osv.osv):
+class res_partner_academy(models.Model):
     """ Description """
 
     _name = 'res.partner.academy'

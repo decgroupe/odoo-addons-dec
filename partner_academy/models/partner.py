@@ -2,12 +2,11 @@
 
 import time
 
-from osv import fields
-from osv import osv
+from openerp import models, fields, api
 
 
-class res_partner(osv.osv):
-    _name = "res.partner"
+class res_partner(models.Model):
+
     _inherit="res.partner"
     _columns = {
         'partner_academy': fields.many2one('res.partner.academy', 'Academy', help="Educational academy of the current partner."),
