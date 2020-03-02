@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
-    
-        <record model="ir.ui.view" id="view_partner_form_dec">
+        <record model="ir.ui.view" id="view_partner_form_partner_academy">
             <field name="name">res.partner.form</field>
             <field name="model">res.partner</field>
             <field name="type">form</field>
@@ -13,18 +12,5 @@
                 </field>
             </field>
         </record>
-
-        <record model="ir.ui.view" id="view_res_partner_filter_dec">
-            <field name="name">res.partner.select</field>
-            <field name="model">res.partner</field>
-            <field name="type">search</field>
-            <field name="inherit_id" ref="base.view_res_partner_filter"/>
-            <field name="arch" type="xml">
-                <xpath expr="/search/group/field[@name='country']" position="before">
-                    <field name="city" select="1"/>
-                </xpath>
-            </field>
-        </record>
-
     </data>
-</openerp>
+</odoo>
