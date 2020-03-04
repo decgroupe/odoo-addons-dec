@@ -14,32 +14,42 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+from odoo import api, fields, models, _
 
+_logger = logging.getLogger(__name__)
 
-class ref_pack(osv.osv):
+class ref_pack(models.Model):
     """ Description """
 
     _name = 'ref.pack'
     _description = 'Pack'
-    _rec_name = 'product_name'
+    _rec_name = 'name'
 
-    _columns = {     
-        'product': fields.many2one('product.product', 'Product', required=True),
-        'name': fields.related('product', 'name', type='char', string='Name'),
-        'default_code': fields.related('product', 'default_code', type='char', string='Code'),
-        'ciel_code': fields.related('product', 'ciel_code', type='char', string='Ciel'),
-        'list_price': fields.related('product', 'list_price', type='float', string='Sale Price'),
-        'standard_price': fields.related('product', 'standard_price', type='float', string='Cost Price'),
-        'type': fields.selection([('company','Company'),('manufacturer', 'Manufacturer')], 'Pack Type', required=True),
-    }
+    product = fields.Many2one('product.product', 'Product', required=True)
+    name = fields.Char(
+        related='product.name',
+        string='Name',
+    )
+    default_code = fields.Char(
+        related='product.default_code',
+        string='Code',
+    )
+    ciel_code = fields.Char(
+        related='product.ciel_code',
+        string='Ciel',
+    )
+    list_price = fields.Float(
+        related='product.list_price',
+        string='Sale Price',
+    )
+    standard_price = fields.Float(
+        related='product.standard_price',
+        string='Cost Price',
+    )
+    type = fields.Selection(
+        [('company', 'Company'), ('manufacturer', 'Manufacturer')],
+        'Pack Type',
+        required=True
+    )

@@ -14,34 +14,23 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+from odoo import api, fields, models, _
+
+_logger = logging.getLogger(__name__)
 
 
-class ref_attribute(osv.osv):
+class ref_attribute(models.Model):
     """ Description """
 
     _name = 'ref.attribute'
     _description = 'Attribute'
     _rec_name = 'name'
-
-    _columns = {     
-        'owner': fields.many2one('ref.property', 'Owner', required=True),
-        'value': fields.text('Value', required=True),
-        'name': fields.text('Name', required=True),
-    }
-
-    _defaults = {
-
-    }  
- 
     _order = 'value'
+
+    owner = fields.Many2one('ref.property', 'Owner', required=True)
+    value = fields.Text('Value', required=True)
+    name = fields.Text('Name', required=True)
+
+

@@ -14,34 +14,22 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+from odoo import api, fields, models, _
+
+_logger = logging.getLogger(__name__)
 
 
-class ref_market_category(osv.osv):
+class ref_market_category(models.Model):
     """ Description """
 
     _name = 'ref.market.category'
     _description = 'Market Category'
     _rec_name = 'description'
-
-    _columns = {     
-        'prefix': fields.char('Prefix', size=6, required=True),
-        'description': fields.char('Description', size=128, required=True),
-        'sequence': fields.integer('Position', required=True),
-    }
-
-    _defaults = {
-
-    }
     _order = 'sequence'
-    
+
+    prefix = fields.Char('Prefix', size=6, required=True)
+    description = fields.Char('Description', size=128, required=True)
+    sequence = fields.Integer('Position', required=True)
+

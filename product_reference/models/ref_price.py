@@ -14,39 +14,30 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+from odoo import api, fields, models, _
 
-class ref_price(osv.osv):
+_logger = logging.getLogger(__name__)
+
+
+class ref_price(models.Model):
     """ Description """
 
     _name = 'ref.price'
     _description = 'Price'
-    _columns = { 
-        'reference_id': fields.many2one('ref.reference', 'Reference', ondelete='cascade', required=True),
-        'date': fields.date('Date', required=True),   
-        'value': fields.float('Price'),
-    }
-    
-    _defaults = {
-        'date': fields.datetime.now,
-    }
-    
     _order = 'date desc'
 
-    def name_get(self, cr, uid, ids, context=None):
+    reference_id = fields.Many2one(
+        'ref.reference', 'Reference', ondelete='cascade', required=True
+    )
+    date = fields.Date('Date', required=True, default=fields.Datetime.now)
+    value = fields.Float('Price')
+
+    @api.multi
+    def name_get(self):
         result = []
-        if ids:
-            for price in self.browse(cr, uid, ids, context=context):
-                result.append((r.id, ''))
-            
+        for price in self:
+            result.append((price.id, ''))
+
         return result

@@ -14,37 +14,24 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+from odoo import api, fields, models, _
+
+_logger = logging.getLogger(__name__)
 
 
-class ref_log(osv.osv):
+class ref_log(models.Model):
     """ Reference log for all operations """
 
     _name = 'ref.log'
     _description = 'Log'
     _rec_name = 'operation'
-
-    _columns = {
-        'operation': fields.text('operation', required=True),
-        'username': fields.text('username', required=True), 
-        'localcomputername': fields.text('localcomputername', required=True),
-        'localusername': fields.text('localusername', required=True),  
-        'ipaddress': fields.text('ipaddress', required=True),   
-        'datetime': fields.datetime('Modification date'),
-    }
-
-    _defaults = {
-        'datetime': fields.datetime.now,
-    }
-    
     _order = 'id desc'
+
+    operation = fields.Text('operation', required=True)
+    username = fields.Text('username', required=True)
+    localcomputername = fields.Text('localcomputername', required=True)
+    localusername = fields.Text('localusername', required=True)
+    ipaddress = fields.Text('ipaddress', required=True)
+    datetime = fields.Datetime('Modification date', default=fields.Datetime.now)

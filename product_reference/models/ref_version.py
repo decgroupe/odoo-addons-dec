@@ -14,31 +14,21 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+from odoo import api, fields, models, _
+
+_logger = logging.getLogger(__name__)
 
 
-class ref_version(osv.osv):
+class ref_version(models.Model):
     _name = 'ref.version'
     _description = 'Reference version'
-    _columns = {
-        'name': fields.char('Modification name', size=128, required=True),
-        'version': fields.integer('Version', required=True),
-        'datetime': fields.datetime('Modification date'),
-        'author': fields.many2one('res.users', 'Author'),
-        'reference': fields.many2one('ref.reference', 'Reference', select=True),
-    }
 
-    _defaults = {
-        'author': lambda x, y, z, c: z,
-        'datetime': fields.datetime.now,
-    }
+    name = fields.Char('Modification name', size=128, required=True)
+    version = fields.Integer('Version', required=True)
+    datetime = fields.Datetime('Modification date', default=fields.Datetime.now)
+    author = fields.Many2one(
+        'res.users', 'Author', default=lambda x, y, z, c: z
+    )
+    reference = fields.Many2one('ref.reference', 'Reference', select=True)

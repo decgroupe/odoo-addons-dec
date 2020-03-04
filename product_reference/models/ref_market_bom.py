@@ -14,38 +14,46 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+import odoo.addons.decimal_precision as dp
+from odoo import api, fields, models, _
+
+_logger = logging.getLogger(__name__)
 
 
-
-class ref_market_bom(osv.osv):
+class ref_market_bom(models.Model):
 
     _name = 'ref.market.bom'
-    _columns = {
-        'name': fields.char('Name', size=64, required=True),
-        'product_id': fields.many2one('product.product', 'Product', required=True),
-        'product_qty': fields.float('Product Qty', required=True, digits_compute=dp.get_precision('Product UoM')),
-        'product_uom': fields.many2one('product.uom', 'Product UOM', required=True, help="UoM (Unit of Measure) is the unit of measurement for the inventory control"),
-        'partner_id': fields.many2one('res.partner', 'Supplier'),
-        'locked_price': fields.boolean('Locked price'),
-        'price': fields.float('Price', digits_compute=dp.get_precision('Sale Price')),
-        'bom_lines': fields.one2many('ref.market.bom', 'bom_id', 'BoM Lines'),
-        'bom_id': fields.many2one('ref.market.bom', 'Parent BoM', ondelete='cascade', select=True),
-        'xml_id': fields.function(osv.osv.get_xml_id, type='char', size=128, string="External ID", help="ID of the view defined in xml file"),
-        'create_date' : fields.datetime('Create Date', readonly=True),
-        'create_uid' : fields.many2one('res.users', 'Creator', readonly=True),
-        'write_date' : fields.datetime('Last Write Date', readonly=True),
-        'write_uid' : fields.many2one('res.users', 'Last Writer', readonly=True),
-    }
-    
-ref_market_bom()
+
+    name = fields.Char('Name', size=64, required=True)
+    product_id = fields.Many2one('product.product', 'Product', required=True)
+    product_qty = fields.Float(
+        'Product Qty',
+        required=True,
+        digits_compute=dp.get_precision('Product UoM')
+    )
+    product_uom = fields.Many2one(
+        'product.uom',
+        'Product UOM',
+        required=True,
+        help=
+        "UoM (Unit of Measure) is the unit of measurement for the inventory control"
+    )
+    partner_id = fields.Many2one('res.partner', 'Supplier')
+    locked_price = fields.Boolean('Locked price')
+    price = fields.Float('Price', digits_compute=dp.get_precision('Sale Price'))
+    bom_lines = fields.One2many('ref.market.bom', 'bom_id', 'BoM Lines')
+    bom_id = fields.Many2one(
+        'ref.market.bom', 'Parent BoM', ondelete='cascade', select=True
+    )
+    xml_id = fields.Char(
+        compute="models.Model.get_xml_id",
+        size=128,
+        string="External ID",
+        help="ID of the view defined in xml file"
+    )
+    create_date = fields.Datetime('Create Date', readonly=True)
+    create_uid = fields.Many2one('res.users', 'Creator', readonly=True)
+    write_date = fields.Datetime('Last Write Date', readonly=True)
+    write_uid = fields.Many2one('res.users', 'Last Writer', readonly=True)

@@ -14,55 +14,36 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import time
-
-from osv import fields
-from osv import osv
-from tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from tools.translate import _
-import decimal_precision as dp
-import time
 import logging
-import pooler
 
-log = logging.getLogger('ref.reference')
+from odoo import api, fields, models, _
+
+_logger = logging.getLogger(__name__)
 
 
-class ref_category(osv.osv):
+class ref_category(models.Model):
     """ Description """
 
     _name = 'ref.category'
     _description = 'Category'
     _rec_name = 'name'
-
-    _columns = {     
-        'code': fields.char('Code', size=3, required=True),
-        'name': fields.text('Name', required=True),
-        'product_category': fields.many2one('product.category', 'Product category'),
-        'description_template': fields.text('Template', required=False),
-    }
-
-    _defaults = {
-
-    }
-    
-    _sql_constraints = [
-       ('code_uniq', 'unique(code)', 'Code category must be unique !'),
-    ] 
-
-
     _order = 'code'
-    
-    def name_get(self, cr, user, ids, context=None):
-        if isinstance(ids, (int, long)):
-            ids = [ids]           
-        if context is None:
-            context = {}
-        if not len(ids):
-            return []
-        
+
+    code = fields.Char('Code', size=3, required=True)
+    name = fields.Text('Name', required=True)
+    product_category = fields.Many2one('product.category', 'Product category')
+    description_template = fields.Text('Template', required=False)
+
+    _sql_constraints = [
+        ('code_uniq', 'unique(code)', 'Code category must be unique !'),
+    ]
+
+    @api.multi
+    @api.depends('name', 'code')
+    def name_get(self):
         result = []
-        for category in self.browse(cr, user, ids, context=context):
-            name =  ('%s: %s') % (category.code, category.name) 
+        for category in self:
+            name = ('%s: %s') % (category.code, category.name)
             result.append((category.id, name))
 
         return result
