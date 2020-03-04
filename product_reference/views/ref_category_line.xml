@@ -7,11 +7,22 @@
             <field name="model">ref.category.line</field>
             <field name="arch" type="xml">
                 <tree string="Category lines">
-                    <field name="category"/>
                     <field name="sequence"/>
                     <field name="property"/>
                     <field name="description"/>
                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ref_category_line_form_view" >
+            <field name="name">ref.category.line.form</field>
+            <field name="model">ref.category.line</field>
+            <field name="arch" type="xml">
+                <form string="Category lines">
+                    <field name="sequence"/>
+                    <field name="property"/>
+                    <field name="description"/>
+                </form>
             </field>
         </record>
 

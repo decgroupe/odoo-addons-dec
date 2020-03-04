@@ -7,11 +7,24 @@
             <field name="model">ref.reference.line</field>
             <field name="arch" type="xml">
                 <tree string="Reference lines">
-                    <field name="reference"/>
                     <field name="sequence"/>
                     <field name="property"/>
                     <field name="attribute_id"/>
+                    <field name="value"/>
                 </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="ref_reference_line_form_view" >
+            <field name="name">ref.reference.line.form</field>
+            <field name="model">ref.reference.line</field>
+            <field name="arch" type="xml">
+                <form string="Reference lines">
+                    <field name="sequence"/>
+                    <field name="property"/>
+                    <field name="attribute_id"/>
+                    <field name="value"/>
+                </form>
             </field>
         </record>
 

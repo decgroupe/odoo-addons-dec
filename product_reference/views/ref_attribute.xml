@@ -7,10 +7,20 @@
             <field name="model">ref.attribute</field>
             <field name="arch" type="xml">
                 <tree string="Attributes">
-                    <field name="name"/>
                     <field name="value"/>
-                    <field name="owner"/>
+                    <field name="name"/>
                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ref_attribute_form_view" >
+            <field name="name">ref.attribute.form</field>
+            <field name="model">ref.attribute</field>
+            <field name="arch" type="xml">
+                <form string="Attributes">
+                    <field name="value"/>
+                    <field name="name"/>
+                </form>
             </field>
         </record>
 

@@ -21,7 +21,10 @@
             'views/ref_reference_line.xml',
             'views/ref_category.xml',
             'views/ref_category_line.xml',
+            'views/ref_version.xml',
             'views/ref_log.xml',
+            'views/ref_price.xml',
+            'views/ref_pack.xml',
             'views/menu.xml',
         ],
     'installable': True

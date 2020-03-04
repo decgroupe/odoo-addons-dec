@@ -6,34 +6,44 @@
         <field name="parent_id" ref="dec.menu_dec"/>
     </record>
 
-    <record model="ir.ui.menu" id="menu_ref_reference">
-        <field name="name">References</field>
-        <field name="action" ref="act_window_ref_reference"/>
-        <field name="parent_id" ref="menu_product_reference"/>
-    </record>
-
-    <record model="ir.ui.menu" id="menu_ref_category">
-        <field name="name">Categories</field>
-        <field name="action" ref="act_window_ref_category"/>
-        <field name="parent_id" ref="menu_product_reference"/>
-    </record>
-
-    <record model="ir.ui.menu" id="menu_ref_attribute">
-        <field name="name">Attributes</field>
-        <field name="action" ref="act_window_ref_attribute"/>
-        <field name="parent_id" ref="menu_product_reference"/>
-    </record>
-
-    <record model="ir.ui.menu" id="menu_ref_property">
-        <field name="name">Properties</field>
-        <field name="action" ref="act_window_ref_property"/>
+    <record model="ir.ui.menu" id="menu_product_reference_manager">
+        <field name="name">REF Manager</field>
         <field name="parent_id" ref="menu_product_reference"/>
     </record>
 
     <record model="ir.ui.menu" id="menu_ref_log">
         <field name="name">Logs</field>
+        <field name="sequence" eval="10"/>
         <field name="action" ref="act_window_ref_log"/>
-        <field name="parent_id" ref="menu_product_reference"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_ref_reference">
+        <field name="name">References</field>
+        <field name="sequence" eval="20"/>
+        <field name="action" ref="act_window_ref_reference"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_ref_category">
+        <field name="name">Categories</field>
+        <field name="sequence" eval="30"/>
+        <field name="action" ref="act_window_ref_category"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_ref_property">
+        <field name="name">Category properties</field>
+        <field name="sequence" eval="40"/>
+        <field name="action" ref="act_window_ref_property"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_ref_pack">
+        <field name="name">Packs</field>
+        <field name="sequence" eval="10"/>
+        <field name="action" ref="act_window_ref_pack"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
     </record>
 
 </odoo>

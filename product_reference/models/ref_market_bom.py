@@ -31,7 +31,7 @@ class ref_market_bom(models.Model):
     product_qty = fields.Float(
         'Product Qty',
         required=True,
-        digits_compute=dp.get_precision('Product UoM')
+        digits=dp.get_precision('Product UoM')
     )
     product_uom = fields.Many2one(
         'product.uom',
@@ -42,11 +42,9 @@ class ref_market_bom(models.Model):
     )
     partner_id = fields.Many2one('res.partner', 'Supplier')
     locked_price = fields.Boolean('Locked price')
-    price = fields.Float('Price', digits_compute=dp.get_precision('Sale Price'))
+    price = fields.Float('Price', digits=dp.get_precision('Sale Price'))
     bom_lines = fields.One2many('ref.market.bom', 'bom_id', 'BoM Lines')
-    bom_id = fields.Many2one(
-        'ref.market.bom', 'Parent BoM', ondelete='cascade', select=True
-    )
+    bom_id = fields.Many2one('ref.market.bom', 'Parent BoM', ondelete='cascade')
     xml_id = fields.Char(
         compute="models.Model.get_xml_id",
         size=128,

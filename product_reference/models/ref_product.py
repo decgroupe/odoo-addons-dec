@@ -39,37 +39,39 @@ class ref_product(models.Model):
     def name_search(self, name, args=None, operator='ilike', limit=100):
         if not args:
             args = []
+        if not name:
+            return None
         # Make a search with default criteria
         result = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
 
         # Make a specific search according to market reference
-        ids = self.search(
+        products = self.search(
             [
                 ('ciel_code', '=', name), '|', ('state', '!=', 'obsolete'),
                 ('state', '=', False)
             ],
             limit=limit
         )
-        if ids:
-            res = []
-            ciel_result = self.name_get(ids)
+        if products:
+            res2 = []
+            ciel_result = products.name_get()
             for item in ciel_result:
                 item = list(item)
                 item[1] = ('%s (%s)') % (item[1], name)
-                res.append(item)
-            result = res + result
+                res2.append(item)
+            result = res2 + result
 
         # Make a specific search to find a product with version inside
-        if not result and 'V' in name:
-            reference = name.rpartition('V')
+        if not result and 'V' in name.upper():
+            reference = name.upper().rpartition('V')
             if reference[0]:
                 res = []
-                ids = self.search(
-                    [('default_code', '=', reference[0])], limit=limit
+                products = self.search(
+                    [('default_code', 'ilike', reference[0])], limit=limit
                 )
-                res = self.name_get(ids)
+                res = products.name_get()
                 result = res + result
         """
         # Search for obsolete products

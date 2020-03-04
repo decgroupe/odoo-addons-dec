@@ -7,10 +7,9 @@
             <field name="model">ref.log</field>
             <field name="arch" type="xml">
                 <tree string="Logs">
-                    <field name="operation"/>
                     <field name="username"/>
+                    <field name="operation"/>
                     <field name="localcomputername"/>
-                    <field name="localusername"/>
                     <field name="ipaddress"/>
                     <field name="datetime"/>
                 </tree>

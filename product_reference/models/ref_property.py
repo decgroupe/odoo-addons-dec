@@ -20,6 +20,7 @@ from odoo import api, fields, models, _
 
 _logger = logging.getLogger(__name__)
 
+
 class ref_property(models.Model):
     """ Description """
 
@@ -31,4 +32,4 @@ class ref_property(models.Model):
     name = fields.Text('Name', required=True)
     format = fields.Text('Format', required=True)
     fixed = fields.Boolean('Fixed values')
-
+    attributes = fields.One2many('ref.attribute', 'owner')

@@ -33,6 +33,7 @@ class ref_category(models.Model):
     name = fields.Text('Name', required=True)
     product_category = fields.Many2one('product.category', 'Product category')
     description_template = fields.Text('Template', required=False)
+    category_lines= fields.One2many('ref.category.line','category')
 
     _sql_constraints = [
         ('code_uniq', 'unique(code)', 'Code category must be unique !'),

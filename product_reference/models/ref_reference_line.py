@@ -31,7 +31,7 @@ class ref_reference_line(models.Model):
 
     reference = fields.Many2one('ref.reference', 'Reference', required=True)
     property = fields.Many2one('ref.property', 'Property', required=True)
-    attribute_id = fields.Integer('Attribute')
+    attribute_id = fields.Many2one('ref.attribute', 'Attribute')
     value = fields.Text('Value')
     sequence = fields.Integer('Position', required=True)
 

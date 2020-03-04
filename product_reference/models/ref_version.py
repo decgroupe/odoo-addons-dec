@@ -31,4 +31,4 @@ class ref_version(models.Model):
     author = fields.Many2one(
         'res.users', 'Author', default=lambda x, y, z, c: z
     )
-    reference = fields.Many2one('ref.reference', 'Reference', select=True)
+    reference = fields.Many2one('ref.reference', 'Reference')

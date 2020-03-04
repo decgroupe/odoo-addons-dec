@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <tree string="Packs">
                     <field name="name"/>
-                    <field name="name"/>
-                    <field name="product_pack"/>
-                    <field name="description_template"/>
+                    <field name="product"/>
+                    <field name="default_code"/>
+                    <field name="ciel_code"/>
                 </tree>
             </field>
         </record>
@@ -40,9 +40,6 @@
                                 <field name="list_price"/>
                                 <field name="standard_price"/>
                             </group>
-                        </group>
-                        <group>
-                            <field name="description_template"/>
                         </group>
                     </sheet>
                 </form>

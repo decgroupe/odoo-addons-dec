@@ -14,6 +14,19 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="ref_property_form_view" >
+            <field name="name">ref.property.form</field>
+            <field name="model">ref.property</field>
+            <field name="arch" type="xml">
+                <form string="Properties">
+                    <field name="name"/>
+                    <field name="format"/>
+                    <field name="fixed"/>
+                    <field name="attributes"/>
+                </form>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_window_ref_property" >
             <field name="name">Properties</field>
             <field name="res_model">ref.property</field>
