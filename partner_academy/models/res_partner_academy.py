@@ -22,9 +22,7 @@ class ResPartnerAcademy(models.Model):
     _name = 'res.partner.academy'
     _description = 'Academy'
     _rec_name = 'name'
+    _order = 'name'
 
     name = fields.Text('Name', required=True)
 
-    _defaults = {}
-
-    _order = 'name'
