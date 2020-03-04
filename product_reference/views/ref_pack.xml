@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="ref_pack_tree_view" >
+            <field name="name">ref.pack.tree</field>
+            <field name="model">ref.pack</field>
+            <field name="arch" type="xml">
+                <tree string="Packs">
+                    <field name="name"/>
+                    <field name="name"/>
+                    <field name="product_pack"/>
+                    <field name="description_template"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ref_pack_form_view" >
+            <field name="name">ref.pack.form</field>
+            <field name="model">ref.pack</field>
+            <field name="arch" type="xml">
+                <form string="Pack">
+                    <sheet>
+                        <group>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only"/>
+                                <h1>
+                                    <field name="name"/>
+                                </h1>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                            <group>
+                                <field name="product"/>
+                                <field name="default_code"/>
+                                <field name="ciel_code"/>
+                            </group>
+                            <group>
+                                <field name="list_price"/>
+                                <field name="standard_price"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description_template"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_window_ref_pack" >
+            <field name="name">Packs</field>
+            <field name="res_model">ref.pack</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="ref_pack_tree_view"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_window_view_ref_pack_tree" >
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ref_pack_tree_view"/>
+            <field name="act_window_id" ref="act_window_ref_pack"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_window_view_ref_pack_form" >
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ref_pack_form_view"/>
+            <field name="act_window_id" ref="act_window_ref_pack"/>
+        </record>
+
+    </data>
+</odoo>
+
