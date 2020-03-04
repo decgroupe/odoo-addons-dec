@@ -7,6 +7,7 @@
     'depends': [
         'base',
         'mrp',
+        'dec',
         'product_state',
     ],
     'data':
@@ -14,6 +15,14 @@
             # 'views/reference_wizard.xml',
             'security/model_security.xml',
             'security/ir.model.access.csv',
+            'views/ref_attribute.xml',
+            'views/ref_property.xml',
+            'views/ref_reference.xml',
+            'views/ref_reference_line.xml',
+            'views/ref_category.xml',
+            'views/ref_category_line.xml',
+            'views/ref_log.xml',
+            'views/menu.xml',
         ],
     'installable': True
 }

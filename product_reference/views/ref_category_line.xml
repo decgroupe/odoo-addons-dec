@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="ref_category_line_tree_view" >
+            <field name="name">ref.category.line.tree</field>
+            <field name="model">ref.category.line</field>
+            <field name="arch" type="xml">
+                <tree string="Category lines">
+                    <field name="category"/>
+                    <field name="sequence"/>
+                    <field name="property"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_window_ref_category_line" >
+            <field name="name">Category lines</field>
+            <field name="res_model">ref.category.line</field>
+            <field name="view_id" ref="ref_category_line_tree_view"/>
+        </record>
+
+    </data>
+</odoo>

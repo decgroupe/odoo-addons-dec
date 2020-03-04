@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="ref_category_tree_view" >
+            <field name="name">ref.category.tree</field>
+            <field name="model">ref.category</field>
+            <field name="arch" type="xml">
+                <tree string="Categories">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="product_category"/>
+                    <field name="description_template"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_window_ref_category" >
+            <field name="name">Categories</field>
+            <field name="res_model">ref.category</field>
+            <field name="view_id" ref="ref_category_tree_view"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="ref_attribute_tree_view" >
+            <field name="name">ref.attribute.tree</field>
+            <field name="model">ref.attribute</field>
+            <field name="arch" type="xml">
+                <tree string="Attributes">
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name="owner"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_window_ref_attribute" >
+            <field name="name">Attributes</field>
+            <field name="res_model">ref.attribute</field>
+            <field name="view_id" ref="ref_attribute_tree_view"/>
+        </record>
+
+    </data>
+</odoo>
