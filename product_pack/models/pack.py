@@ -1,31 +1,17 @@
-# -*- encoding: latin-1 -*-
-##############################################################################
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
 #
-# Copyright (c) 2009 Angel Avarez - NaN  (http://www.nan-tic.com) All Rights Reserved.
-#
-#
-# WARNING: This program as such is intended to be used by professional
-# programmers who take the whole responsability of assessing all potential
-# consequences resulting from its eventual inadequacies and bugs
-# End users who are looking for a ready-to-use solution with commercial
-# garantees and support are strongly adviced to contract a Free Software
-# Service Company
-#
-# This program is Free Software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-#
-##############################################################################
+# CONFIDENTIAL NOTICE: Unauthorized copying and/or use of this file,
+# via any medium is strictly prohibited.
+# All information contained herein is, and remains the property of
+# DEC SARL and its suppliers, if any.
+# The intellectual and technical concepts contained herein are
+# proprietary to DEC SARL and its suppliers and may be covered by
+# French Law and Foreign Patents, patents in process, and are
+# protected by trade secret or copyright law.
+# Dissemination of this information or reproduction of this material
+# is strictly forbidden unless prior written permission is obtained
+# from DEC SARL.
+# Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
 import math
 import simplejson
