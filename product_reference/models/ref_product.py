@@ -22,12 +22,12 @@ _logger = logging.getLogger(__name__)
 
 
 class ref_product(models.Model):
-    _inherit = "product.product"
+    _inherit = "product.template"
     _name = _inherit
 
     ciel_code = fields.Char('Ciel', size=24)
     comments = fields.Text('Comments')
-    #market_bom_id= fields.Many2one('ref.market.bom', 'Market bill of materials and services')
+    market_bom_id= fields.Many2one('ref.market.bom', 'Market bill of materials and services')
     market_markup_rate = fields.Float(
         'Markup rate', help='Used by REF manager Market'
     )

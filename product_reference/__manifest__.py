@@ -10,6 +10,7 @@
         'dec',
         'product_state',
     ],
+    #'force_migration':'12.0.0.0.0',
     'data':
         [
             # 'views/reference_wizard.xml',

@@ -27,7 +27,7 @@ class ref_pack(models.Model):
     _description = 'Pack'
     _rec_name = 'name'
 
-    product = fields.Many2one('product.product', 'Product', required=True)
+    product = fields.Many2one('product.template', 'Product', required=True)
     name = fields.Char(
         related='product.name',
         string='Name',
