@@ -26,10 +26,10 @@ class ResPartner(models.Model):
         # Add city and zip to quickly identify a partner
         result = []
         for item in names:
-            item = list(item)
-            data = self.read(item[0], ['city', 'zip'])
-            if data['zip'] and data['city']:
-                item[1] = ('%s (%s %s)') % (item[1], data['zip'], data['city'])
-            result.append(item)
+            #item = list(item)
+            partner = self.browse(item[0])[0]
+            # Don't reuse item[1] lazy result as it contains line feeds with address
+            override_name_get = ('%s (%s %s)') % (partner.name, partner.zip, partner.city)
+            result.append((item[0], override_name_get))
 
         return result
