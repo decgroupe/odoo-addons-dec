@@ -25,7 +25,7 @@ class sale_order_line(models.Model):
 
     _inherit = 'sale.order.line'
 
-    pack_depth = fields.integer(
+    pack_depth = fields.Integer(
         'Depth',
         required=True,
         default=lambda *a: 0,
@@ -45,19 +45,19 @@ class sale_order_line(models.Model):
     )
 
 
-    def create(self, cr, user, vals, context=None):
-        result = False
-        result = super(sale_order_line, self).create(cr, user, vals, context)
-        return result
+    # def create(self, cr, user, vals, context=None):
+    #     result = False
+    #     result = super(sale_order_line, self).create(cr, user, vals, context)
+    #     return result
 
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
+    # def copy_data(self, cr, uid, id, default=None, context=None):
+    #     if default is None:
+    #         default = {}
 
-        default.update({'pack_child_line_ids': False, 'pack_depth': 0})
-        result = super(sale_order_line,
-                       self).copy_data(cr, uid, id, default, context=context)
-        if result.get('pack_parent_line_id', False) <> False:
-            result['pack_delete'] = True
+    #     default.update({'pack_child_line_ids': False, 'pack_depth': 0})
+    #     result = super(sale_order_line,
+    #                    self).copy_data(cr, uid, id, default, context=context)
+    #     if result.get('pack_parent_line_id', False) <> False:
+    #         result['pack_delete'] = True
 
-        return result
+    #     return result

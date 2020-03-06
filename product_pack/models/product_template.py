@@ -26,6 +26,37 @@ class product_template(models.Model):
     _name = "product.template"
     _inherit = _name
 
+    stock_depends = fields.Boolean(
+        'Stock depends of components',
+        help='Mark if pack stock is calculated from component stock'
+    )
+    sale_pack_line_ids = fields.One2many(
+        'product.pack.saleline',
+        'parent_product_id',
+        'Pack Products',
+        help='List of products that are part of this pack.'
+    )
+    fixed_sale_price = fields.Boolean(
+        'Pack has fixed price',
+        default=True,
+        help='''Mark this field if the price of the pack should be fixed. 
+        Do not mark it if the price should be calculated from the sum 
+        of the prices of the products in the pack.'''
+    )
+    purchase_pack_line_ids = fields.One2many(
+        'product.pack.purchaseline',
+        'parent_product_id',
+        'Pack Products',
+        help='List of products that are part of this pack.'
+    )
+    fixed_purchase_price = fields.Boolean(
+        'Pack has fixed price',
+        default=True,
+        help='''Mark this field if the price of the pack should be fixed. 
+        Do not mark it if the price should be calculated from the sum 
+        of the prices of the products in the pack.'''
+    )
+
     def write(self, cr, uid, ids, vals, context=None):
         if 'uom_po_id' in vals:
             pack_saleline_obj = self.pool.get('product.pack.saleline')

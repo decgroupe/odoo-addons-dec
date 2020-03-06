@@ -21,33 +21,17 @@ from odoo import api, fields, models, _
 _logger = logging.getLogger(__name__)
 
 
-class product_pack_sale(models.Model):
+class product_pack_saleline(models.Model):
+
     _name = 'product.pack.saleline'
     _rec_name = 'product_id'
 
     parent_product_id = fields.Many2one(
-        'product.product', 'Parent Product', ondelete='cascade', required=True
+        'product.template', 'Parent Product', ondelete='cascade', required=True
     )
     quantity = fields.Float(required=True, default=1.0)
-    product_id = fields.Many2one('product.product', 'Product', required=True)
-    product_name = fields.related(
-        'product_id', 'name', type='char', string='Name'
-    )
-    product_code = fields.related(
-        'product_id', 'default_code', type='char', string='Default code'
-    )
-    product_uom_id = fields.related(
-        'product_id',
-        'uom_id',
-        type='many2one',
-        relation='product.uom',
-        string="Default Unit Of Measure",
-        readonly="1"
-    )
-    product_categ_id = fields.related(
-        'product_id',
-        'categ_id',
-        type='many2one',
-        relation='product.category',
-        string="Category"
-    )
+    product_id = fields.Many2one('product.template', 'Product', required=True)
+    product_name = fields.Char(related='product_id.name')
+    product_code = fields.Char(related='product_id.default_code')
+    product_uom_id = fields.Many2one(related='product_id.uom_id', readonly="1")
+    product_categ_id = fields.Many2one(related='product_id.categ_id')

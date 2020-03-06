@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+            <record model="ir.ui.view" id="product_pack_purchase_order_line_form">
+                <field name="name">purchase.order.line.form</field>
+                <field name="model">purchase.order.line</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="purchase.purchase_order_line_form" />
+                <field name="arch" type="xml">
+                    <page string="Notes" position="after">
+                        <page string="Pack options">
+                            <field name="pack_expand"/>
+                            <field name="pack_print"/>
+                        </page>
+                    </page>
+                </field>
+            </record>
+            
+    </data>
+</odoo>
+

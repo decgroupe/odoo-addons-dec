@@ -25,12 +25,12 @@ class purchase_order_line(models.Model):
 
     _inherit = 'purchase.order.line'
 
-    sequence = fields.integer(
+    sequence = fields.Integer(
         'Sequence',
         help=
         "Gives the sequence order when displaying a list of purchase order lines."
     )
-    pack_depth = fields.integer(
+    pack_depth = fields.Integer(
         'Depth',
         default=lambda *a: 0,
         required=True,
@@ -56,14 +56,14 @@ class purchase_order_line(models.Model):
         help='If checked, the product pack content will be print'
     )
 
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
+    # def copy_data(self, cr, uid, id, default=None, context=None):
+    #     if default is None:
+    #         default = {}
 
-        default.update({'pack_child_line_ids': False, 'pack_depth': 0})
-        result = super(purchase_order_line,
-                       self).copy_data(cr, uid, id, default, context=context)
-        if result.get('pack_parent_line_id', False) <> False:
-            result['pack_delete'] = True
+    #     default.update({'pack_child_line_ids': False, 'pack_depth': 0})
+    #     result = super(purchase_order_line,
+    #                    self).copy_data(cr, uid, id, default, context=context)
+    #     if result.get('pack_parent_line_id', False) <> False:
+    #         result['pack_delete'] = True
 
-        return result
+    #     return result

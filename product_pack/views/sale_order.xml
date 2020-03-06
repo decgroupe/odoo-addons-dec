@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+            <record model="ir.ui.view" id="product_pack_sale_order_line_form">
+                <field name="name">sale.order.form</field>
+                <field name="model">sale.order</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="sale.sale_order_line_form" />
+                <field name="arch" type="xml">
+                    <page string="Extra Info" position="before">
+                        <page groups="base.group_extended" string="Pack options">
+                            <field name="pack_expand"/>
+                        </page>
+                    </page>
+                </field>
+            </record>
+
+    </data>
+</odoo>
+
