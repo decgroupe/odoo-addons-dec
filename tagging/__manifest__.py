@@ -6,10 +6,13 @@
     'summary': '''Tagging support for every models''',
     'depends': [
         'base',
+        'dec',
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/tagging_view.xml',
-    ],
+    'data':
+        [
+            'security/ir.model.access.csv',
+            'views/tagging.xml',
+            'views/menu.xml',
+        ],
     'installable': True
 }

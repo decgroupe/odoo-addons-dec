@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_tagging">
+        <field name="name">Tagging</field>
+        <field name="sequence" eval="49"/>
+        <field name="parent_id" ref="dec.menu_dec"/>
+        <field name="groups" ref="base.group_user"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_tagging_tags">
+        <field name="name">Tags</field>
+        <field name="sequence" eval="10"/>
+        <field name="action" ref="act_open_tags_tree"/>
+        <field name="parent_id" ref="menu_tagging"/>
+        <field name="groups" ref="base.group_user"/>
+    </record>
+
+</odoo>

@@ -1,73 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-	<data>
+<odoo>
+    <data>
 
-		<!-- views -->
-		<record id="tags_search" model="ir.ui.view">
-			<field name="name">tagging.tags.search</field>
-			<field name="model">tagging.tags</field>
-			<field name="type">search</field>
-			<field name="arch" type="xml">
-				<search string="Tags">
-					<field name="name" />
-					<field name="description" />
-				</search>
-			</field>
-		</record>
+        <record model="ir.ui.view" id="tags_search">
+            <field name="name">tagging.tags.search</field>
+            <field name="model">tagging.tags</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Tags">
+                    <field name="name" />
+                    <field name="description" />
+                </search>
+            </field>
+        </record>
 
-		<record id="tags_tree" model="ir.ui.view">
-			<field name="name">tagging.tags.tree</field>
-			<field name="model">tagging.tags</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Tags">
-					<field name="name" />
-					<field name="description" />
-				</tree>
-			</field>
-		</record>
+        <record model="ir.ui.view" id="tags_tree">
+            <field name="name">tagging.tags.tree</field>
+            <field name="model">tagging.tags</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Tags">
+                    <field name="name" />
+                    <field name="description" />
+                </tree>
+            </field>
+        </record>
 
-		<record id="tags_form" model="ir.ui.view">
-			<field name="name">tagging.tags.form</field>
-			<field name="model">tagging.tags</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Tags">
-					<group colspan="4" col="4">
-						<field name="name" on_change="on_change_tag_name(name)"/>
-						<field name="active" />
-						<field name="description" colspan="4" />
-					</group>
-					<notebook colspan="4">
-						<page string="Notes">
-							<separator string="Notes" colspan="4" />
-							<field name="notes" colspan="4" nolabel="1" />
-						</page>
-						<page string="Related Tags">
-							<field name="related_tags_ids" colspan="4" nolabel="1" />
-						</page>
-					</notebook>
-				</form>
-			</field>
-		</record>
+        <record model="ir.ui.view" id="tags_form">
+            <field name="name">tagging.tags.form</field>
+            <field name="model">tagging.tags</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <group colspan="4" col="4">
+                        <field name="name" on_change="on_change_tag_name(name)"/>
+                        <field name="active" />
+                        <field name="description" colspan="4" />
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Notes">
+                            <separator string="Notes" colspan="4" />
+                            <field name="notes" colspan="4" nolabel="1" />
+                        </page>
+                        <page string="Related Tags">
+                            <field name="related_tags_ids" colspan="4" nolabel="1" />
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
 
+        <record model="ir.actions.act_window" id="act_open_tags_tree">
+            <field name="name">Tags</field>
+            <field name="res_model">tagging.tags</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tags_tree" />
+            <field name="search_view_id" ref="tags_search" />
+        </record>
 
-		<!-- actions -->
-		<record id="open_tags_tree" model="ir.actions.act_window">
-			<field name="name">Tags</field>
-			<field name="res_model">tagging.tags</field>
-			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-			<field name="view_id" ref="tags_tree" />
-			<field name="search_view_id" ref="tags_search" />
-		</record>
-
-		<!-- menus -->
-		<menuitem id="menu_tagging" sequence="49" name="Tagging"
-			parent="base.menu_tools" groups="base.group_extended" />
-
-		<menuitem action="open_tags_tree" id="menu_tagging_tags"
-			parent="menu_tagging" groups="base.group_extended" sequence="10" />
-
-	</data>
-</openerp>
+    </data>
+</odoo>
