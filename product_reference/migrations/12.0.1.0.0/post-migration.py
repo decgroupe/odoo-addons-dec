@@ -1,6 +1,4 @@
 from openupgradelib import openupgrade
-from psycopg2 import sql
-from odoo.tools import float_is_zero
 
 columns = [
     'ciel_code',
@@ -17,9 +15,7 @@ def migrate(env, version):
 
     mapping_str = []
     for item in legacy_mapping:
-        mapping_str.append('{0}=pp.{1}'.format(
-            item[0], item[1]
-        ))
+        mapping_str.append('{0}=pp.{1}'.format(item[0], item[1]))
 
     openupgrade.logged_query(
         env.cr, """
