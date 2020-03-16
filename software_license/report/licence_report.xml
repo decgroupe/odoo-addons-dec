@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
-      <record id="licence_dec_report_id" model="ir.actions.report.xml">
-          <field name="name">Licence (Information Client)</field>
-          <field name="type">ir.actions.report.xml</field>
-          <field name="model">licence.licence</field>
-          <field name="report_name">service_print_licence</field>
-          <field name="report_type">aeroo</field>
-          <field name="in_format">oo-odt</field>
-          <field name="out_format" search="[('code', '=', 'oo-pdf')]"/>
-          <field name="parser_loc">dec_licence/report/licence_parser.py</field>
-          <field name="report_rml">dec_licence/report/licence_report.odt</field>
-          <field name="parser_state">loc</field>
-          <field name="tml_source">file</field>
-          <field name="process_sep">True</field>
-      </record>
+
+        <record model="ir.actions.report" id="software_license_report">
+            <field name="name">License (customer information)</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">software.license</field>
+            <field name="report_name">software_license_report</field>
+            <field name="report_type">aeroo</field>
+            <field name="aeroo_in_format">odt</field>
+            <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_pdf_odt"/>
+            <field name="aeroo_template_source">file</field>
+            <field name="aeroo_lang_eval">o.partner_id.lang</field>
+            <field name="aeroo_country_eval">o.partner_id.country_id</field>
+            <field name="aeroo_currency_eval" eval="None"/>
+            <field name="aeroo_template_path">software_license/report/licence_report.odt</field>
+            <field name="attachment_use" eval="True"/>
+        </record>
+
     </data>
-</openerp>
+</odoo>

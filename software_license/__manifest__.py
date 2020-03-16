@@ -17,6 +17,7 @@
             'views/software_license.xml',
             'views/software_license_application.xml',
             'views/menu.xml',
+            'report/licence_report.xml',
         ],
     'installable': True
 }
