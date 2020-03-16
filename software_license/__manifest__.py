@@ -13,7 +13,6 @@
     #'force_migration':'12.0.0.0.0',
     'data':
         [
-            'security/model_security.xml',
             'security/ir.model.access.csv',
             'views/software_license.xml',
             'views/software_license_application.xml',

@@ -8,11 +8,14 @@
         'base',
         'product',
         'mrp',
+        'software',
     ],
     'data':
         [
-            # 'views/tagging.xml',
-            # 'views/product.xml',
+            'security/ir.model.access.csv',
+            'views/software_account.xml',
+            'views/software_account_supplier.xml',
+            'views/menu.xml',
         ],
     'installable': True
 }

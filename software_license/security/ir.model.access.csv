@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_software_license_user,Read and write access to software license for User,model_software_license,group_software_user,1,1,0,0
-access_software_license_manager,Full access to software license for Manager,model_software_license,group_software_manager,1,1,1,1
-access_software_license_application_user,Read and write access to software license application for User,model_software_license_application,group_software_user,1,1,0,0
-access_software_license_application_manager,Full access to software license application for Manager,model_software_license_application,group_software_manager,1,1,1,1
+access_software_license_user,Read and write access to software license for User,model_software_license,software.group_software_user,1,1,0,0
+access_software_license_manager,Full access to software license for Manager,model_software_license,software.group_software_manager,1,1,1,1
+access_software_license_application_user,Read and write access to software license application for User,model_software_license_application,software.group_software_user,1,1,0,0
+access_software_license_application_manager,Full access to software license application for Manager,model_software_license_application,software.group_software_manager,1,1,1,1
