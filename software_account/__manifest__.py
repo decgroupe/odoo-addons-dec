@@ -16,6 +16,7 @@
             'views/software_account.xml',
             'views/software_account_supplier.xml',
             'views/menu.xml',
+            'report/software_account.xml',
         ],
     'installable': True
 }

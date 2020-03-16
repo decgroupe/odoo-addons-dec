@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.report" id="software_account_report">
+            <field name="name">Account (customer information)</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">software.account</field>
+            <field name="report_name">software_account_report</field>
+            <field name="report_type">aeroo</field>
+            <field name="aeroo_in_format">odt</field>
+            <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_pdf_odt"/>
+            <field name="aeroo_template_source">file</field>
+            <field name="aeroo_lang_eval">o.partner_id.lang</field>
+            <field name="aeroo_country_eval">o.partner_id.country_id</field>
+            <field name="aeroo_currency_eval" eval="None"/>
+            <field name="aeroo_template_path">software_account/report/software_account.odt</field>
+            <field name="attachment_use" eval="True"/>
+        </record>
+
+    </data>
+</odoo>
