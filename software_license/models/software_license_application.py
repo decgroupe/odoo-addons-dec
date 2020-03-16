@@ -22,7 +22,7 @@ class SoftwareLicenseApplication(models.Model):
     _order = 'application_id asc, name'
 
     application_id = fields.Integer(
-        'ID',
+        'AppID',
         required=True,
         default=0,
     )

@@ -27,7 +27,7 @@ class SoftwareLicense(models.Model):
         required=True,
     )
     application_id = fields.Many2one(
-        'licence.application',
+        'software.license.application',
         'Application',
         required=True,
     )
