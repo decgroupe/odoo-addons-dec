@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_markup_assets_backend" name="sale_markup assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link href="/sale_markup/static/src/css/style.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+</odoo>
