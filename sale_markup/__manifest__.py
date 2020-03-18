@@ -12,9 +12,8 @@
     #'force_migration':'12.0.0.0.0',
     'data':
         [
-            # 'security/model_security.xml',
             'views/assets.xml',
-            'views/sale_order_views.xml',
+            'views/sale_order.xml',
         ],
     'installable': True
 }
