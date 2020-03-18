@@ -41,7 +41,8 @@ odoo.define('report.web_pdf_preview', function (require) {
             require('web.framework').unblockUI();
             location.href = url;
         } else {
-            window.open(url);
+            var w = window.open(url);
+            w.document.title = '...';
             if (typeof options.success === 'function') {
                 options.success();
             }
