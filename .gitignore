@@ -2,4 +2,6 @@
 *.swp
 *.mo
 *.bzrignore
+*.odt#*
 *.bzr/*
+*__pycache__/*
