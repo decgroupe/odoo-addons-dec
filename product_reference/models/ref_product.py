@@ -88,49 +88,6 @@ class ref_product(models.Model):
         return result
 
 
-# class taggings_ref_reference(models.Model):
-#     _inherit = "tagging.tags"
-#     _name = _inherit
-
-#     _columns = {
-#         "reference_ids": fields.many2many("ref.reference", "tagging_ref_reference", "tag_id", "reference_id", string="References"),
-
-#     }
-
-# taggings_ref_reference()
-
-# class ref_reference_taggings(models.Model):
-#     _inherit = "ref.reference"
-#     _name = _inherit
-
-#     _columns = {
-#         "tagging_ids": fields.many2many("tagging.tags", "tagging_ref_reference", "reference_id", "tag_id", string="Tags"),
-
-#     }
-
-# ref_reference_taggings()
-
-# class taggings_ref_attribute(models.Model):
-#     _inherit = "tagging.tags"
-#     _name = _inherit
-
-#     _columns = {
-#         "attribute_ids": fields.many2many("ref.attribute", "tagging_ref_attribute", "tag_id", "attribute_id", string="Attributes"),
-
-#     }
-
-# taggings_ref_reference()
-
-# class ref_attribute_taggings(models.Model):
-#     _inherit = "ref.attribute"
-#     _name = _inherit
-
-#     _columns = {
-#         "tagging_ids": fields.many2many("tagging.tags", "tagging_ref_attribute", "attribute_id", "tag_id", string="Tags"),
-
-#     }
-# ref_attribute_taggings()
-
 # class ref_task_wizard(models.Model_memory):
 #     _name = 'ref.task.wizard'
 
