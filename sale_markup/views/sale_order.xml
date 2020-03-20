@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- /media/data/ypa/projects/12.0/OCB/addons/sale/views/sale_views.xml -->
     <record model="ir.ui.view" id="sale_order_form_view" >
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
-            <field name="price_subtotal" position="replace"/>
+            <!-- Remove div container for :
+                <field name="product_uom_qty"/>
+                <field name="product_uom"/>
+            in order to keep good alignement with next fields -->
+            <xpath expr="//label[@for='product_uom_qty']/following-sibling::div" position="replace"/>
             <label for="product_uom_qty" position="replace"/>
-            <field name="product_uom_qty" position="replace"/>
-            <field name="product_uom" position="replace"/>
-            <field name="purchase_price" position="replace"/>
+
+            <!-- Remove invisible price_subtotal field -->
+            <field name="price_subtotal" position="replace"/>
             <field name="price_unit" position="replace"/>
+            <field name="purchase_price" position="replace"/>
+
             <label for="discount" position="replace"/>
             <field name="discount" position="replace"/>
 
@@ -50,11 +57,12 @@
                             'required': [('display_type', '=', False)],
                         }"
                         nolabel="1"
+                        
                     />
-                    <field name="purchase_price" groups="base.group_user" nolabel="1"/>
+                    <field name="purchase_price" groups="base.group_user" nolabel="1" />
                     <field name="price_unit"  nolabel="1"/>
                     <div name="discount" groups="sale.group_discount_per_so_line">
-                        <field name="discount" nolabel="1"/>
+                        <field name="discount" nolabel="1" />
                     </div>
                     <field name="markup_percent"  nolabel="1"/>
 
@@ -64,9 +72,9 @@
                     <div class="row_header"></div>
                     <newline/>
                     <label string="" colspan="4"/>
-                    <field name="margin" groups="base.group_user"/>
+                    <field name="margin" groups="base.group_user" />
                     <label string="" colspan="4"/>
-                    <field name="price_subtotal"/>
+                    <field name="price_subtotal" />
 
                 </group>
                 
