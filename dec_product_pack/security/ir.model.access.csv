@@ -1,5 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_product_pack_saleline_manager","product.pack.saleline manager","model_product_pack_saleline","base.group_sale_manager",1,1,1,1
-"access_product_pack_saleline_mployee","product.pack.saleline employee","model_product_pack_saleline","base.group_user",1,0,0,0
-"access_product_pack_purchaseline_manager","product.pack.purchaseline manager","model_product_pack_purchaseline","base.group_sale_manager",1,1,1,1
-"access_product_pack_purchaseline_mployee","product.pack.purchaseline employee","model_product_pack_purchaseline","base.group_user",1,0,0,0

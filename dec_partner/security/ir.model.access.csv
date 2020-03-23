@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_mrp_bom_editor,mrp.bom.editor,model_mrp_bom,dec_mrp.group_mrp_bomm_editor,1,1,1,1
-access_mrp_bomrevision_editor,mrp.bom.revision.editor,mrp.model_mrp_bom_revision,dec_mrp.group_mrp_bomm_editor,1,0,1,0
-mrp.access_mrp_production,mrp.production user,model_mrp_production,mrp.group_mrp_user,1,0,0,0
-mrp.access_mrp_production_salesman,mrp.production salesman,model_mrp_production,base.group_sale_salesman,1,1,1,0
-mrp.access_mrp_production_stock_worker,mrp.production stock_worker,model_mrp_production,stock.group_stock_user,1,1,0,0
-access_workcenter_user_base,mrp.production.workcenter.line.user,mrp.model_mrp_production_workcenter_line,base.group_user,1,1,1,1
-access_mrp_workcenter_base,mrp.workcenter,mrp.model_mrp_workcenter,base.group_user,1,0,0,0
-access_resource_resource_mrp_manager,resource.resource,resource.model_resource_resource,mrp.group_mrp_manager,1,1,1,1

@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_purchase_order_stockuser,purchase.order,purchase.model_purchase_order,stock.group_stock_user,1,1,1,0
-access_purchase_order_line_stockuser,purchase.order.line,purchase.model_purchase_order_line,stock.group_stock_user,1,1,1,0
