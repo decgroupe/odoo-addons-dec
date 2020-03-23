@@ -26,4 +26,4 @@ def migrate(env, version):
             FROM 
                 product_pack_purchaseline;
             """)
-        cr.execute("DROP TABLE product_pack_line;")
+        cr.execute("DROP TABLE product_pack_purchaseline;")
