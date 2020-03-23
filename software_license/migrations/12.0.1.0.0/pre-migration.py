@@ -15,6 +15,8 @@ def migrate(env, version):
     cr = env.cr
     if openupgrade.table_exists(cr, 'licence_licence'):
         openupgrade.rename_models(cr, _model_renames)
-        cr.execute("DROP TABLE software_license;")
-        cr.execute("DROP TABLE software_license_application;")
+        if openupgrade.table_exists(cr, 'software_license'):
+            cr.execute("DROP TABLE software_license;")
+        if openupgrade.table_exists(cr, 'software_license_application'):
+            cr.execute("DROP TABLE software_license_application;")
         openupgrade.rename_tables(cr, _table_renames)
