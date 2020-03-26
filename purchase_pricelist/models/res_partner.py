@@ -50,11 +50,11 @@ class Partner(models.Model):
 
     @api.multi
     def _compute_product_pricelist_purchase(self):
+        Pricelist = self.env['product.pricelist']
         company = self.env.context.get('force_company', False)
-        res = self.env['product.pricelist'
-                      ]._get_partner_pricelist_purchase_multi(
-                          self.ids, company_id=company
-                      )
+        res = Pricelist._get_partner_pricelist_purchase_multi(
+            self.ids, company_id=company
+        )
         for p in self:
             p.property_product_pricelist_purchase = res.get(p.id)
 
