@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_product_pricelist">
+        <field name="name">Pricelists</field>
+        <field name="sequence" eval="17"/>
+        <field name="action" ref="act_window_product_pricelist"/>
+        <field name="parent_id" ref="purchase.menu_procurement_management"/>
+    </record>
+
+</odoo>
