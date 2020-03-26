@@ -40,7 +40,9 @@ class ProductPricelist(models.Model):
         return res[partner_id].id
 
     # Adaptation for purchase from addons/product/models/product_pricelist.py
-    def _get_partner_pricelist_purchase_multi(self, partner_ids, company_id=None):
+    def _get_partner_pricelist_purchase_multi(
+        self, partner_ids, company_id=None
+    ):
         """ Retrieve the applicable pricelist for given partners in a given company.
 
             It will return the pricelist of the specific property (res_id set),
@@ -53,8 +55,12 @@ class ProductPricelist(models.Model):
         # `partner_ids` might be ID from inactive users. We should use active_test
         # as we will do a search() later (real case for website public user).
         Partner = self.env['res.partner'].with_context(active_test=False)
-        Property = self.env['ir.property'].with_context(force_company=company_id or self.env.user.company_id.id)
+        Property = self.env['ir.property'].with_context(
+            force_company=company_id or self.env.user.company_id.id
+        )
         Pricelist = self.env['product.pricelist']
         # if no specific property, try to find a fitting pricelist
-        result = Property.get_multi('property_product_pricelist_purchase', Partner._name, partner_ids)
+        result = Property.get_multi(
+            'property_product_pricelist_purchase', Partner._name, partner_ids
+        )
         return result
