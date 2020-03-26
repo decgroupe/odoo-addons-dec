@@ -5,12 +5,13 @@
     'website': 'http://www.dec-industrie.com',
     'summary': '''Use same pricelist model for sale and purchase''',
     'depends': [
+        'product',
         'purchase',
         'sale',
     ],
     'data':
         [
-            'views/product_pricelist_sale.xml',
+            'views/product_pricelist.xml',
             'views/purchase_order.xml',
             'views/res_partner.xml',
             'views/menu.xml',
