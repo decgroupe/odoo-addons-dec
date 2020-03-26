@@ -6,8 +6,11 @@
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
         <field name="arch" type="xml">
-            <field name="discount_policy" position="before">
-                <field name="type"/>
+            <field name="name" position="after">
+                <field name="type" invisible="1"/>
+            </field>
+            <field name="discount_policy" position="attributes">
+                <attribute name="attrs">{'invisible': [('type', '=', 'purchase')]}</attribute>
             </field>
         </field>
     </record>
@@ -17,8 +20,12 @@
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view"/>
         <field name="arch" type="xml">
-            <field name="discount_policy" position="before">
+            <field name="discount_policy" position="replace">
                 <field name="type"/>
+                <field name="discount_policy" attrs="{'invisible': [('type', '=', 'purchase')]}"/>
+            </field>
+            <field name="country_group_ids" position="replace">
+                <field name="country_group_ids" attrs="{'invisible': [('type', '=', 'purchase')]}"/>
             </field>
         </field>
     </record>
@@ -36,7 +43,6 @@
         </field>
     </record>
 
-    
     <record model="ir.actions.act_window" id="product.product_pricelist_action2" >
         <field name="domain">[('type', '=', 'sale')]</field>
     </record>

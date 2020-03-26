@@ -13,32 +13,25 @@
 # from DEC SARL.
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-
-from odoo import api, fields, models, SUPERUSER_ID, _
-# from odoo.osv import expression
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-# from odoo.tools.float_utils import float_compare
-# from odoo.exceptions import UserError, AccessError
-# from odoo.tools.misc import formatLang
-# from odoo.addons import decimal_precision as dp
-
+from odoo import api, models
 
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
+    # _get_display_price is inspired from the 'sale.order.line'
+    # same name function
     @api.multi
     def _get_display_price(self, product):
         # For purchase pricelists, we don't care about the discount_policy
         # We always return the discounted price
         return product.with_context(pricelist=self.order_id.pricelist_id.id).price
 
+    # _onchange_quantity is inspired from the 'sale.order.line'
+    # product_id_change function
     @api.onchange('product_qty', 'product_uom')
     def _onchange_quantity(self):
-        if not self.product_id:
-            return
-        if self.order_id.pricelist_id and self.order_id.partner_id:
+        super()._onchange_quantity()
+        if self.product_id and self.order_id.pricelist_id and self.order_id.partner_id:
             product = self.product_id.with_context(
                 lang=self.order_id.partner_id.lang,
                 partner=self.order_id.partner_id,
@@ -50,12 +43,10 @@ class PurchaseOrderLine(models.Model):
             )
             self.price_unit = self.env['account.tax']._fix_tax_included_price_company(
                 self._get_display_price(product), 
-                product.taxes_id, 
+                product.supplier_taxes_id, 
                 self.taxes_id, 
                 self.company_id,
             )
-        else:
-            super()._onchange_quantity()
 
     def _suggest_quantity(self):
         super()._suggest_quantity()
