@@ -62,8 +62,8 @@ class Partner(models.Model):
     def _inverse_product_pricelist_purchase(self):
         Property = self.env['ir.property']
         actual = Property.get(
-            'property_product_pricelist_purchase', 'res.partner',
-            'res.partner,%s' % self.id
+            'property_product_pricelist_purchase', self._name,
+            '%s,%s' % (self._name, self.id)
         )
 
         # update at each change country, and so erase old pricelist
