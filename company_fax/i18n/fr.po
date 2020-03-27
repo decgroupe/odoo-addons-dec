@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* company_fax
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-27 15:17+0000\n"
+"PO-Revision-Date: 2020-03-27 15:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: company_fax
+#: model:ir.model,name:company_fax.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: company_fax
+#: model:ir.model.fields,field_description:company_fax.field_res_company__fax
+msgid "Fax"
+msgstr "Fax"
+
+#. module: company_fax
+#: model_terms:ir.ui.view,arch_db:company_fax.company_form_view
+msgid "Fax..."
+msgstr "Fax..."
+
