@@ -8,7 +8,7 @@
         'base',
         'mrp',
         'dec',
-        'product_state',
+        'product_state_revision',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':

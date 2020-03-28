@@ -29,9 +29,9 @@ class ref_log(models.Model):
     _rec_name = 'operation'
     _order = 'id desc'
 
-    operation = fields.Text('operation', required=True)
-    username = fields.Text('username', required=True)
-    localcomputername = fields.Text('localcomputername', required=True)
-    localusername = fields.Text('localusername', required=True)
-    ipaddress = fields.Text('ipaddress', required=True)
+    operation = fields.Text('Operation', required=True)
+    username = fields.Text('User', required=True)
+    localcomputername = fields.Text('Computer', required=True)
+    localusername = fields.Text('Local Username', required=True)
+    ipaddress = fields.Text('IP Address', required=True)
     datetime = fields.Datetime('Modification date', default=fields.Datetime.now)
