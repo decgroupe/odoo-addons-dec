@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_location
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-29 14:44+0000\n"
+"PO-Revision-Date: 2020-03-29 16:46+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: product_location
+#: model:ir.model.fields,field_description:product_location.field_product_product__loc_case
+#: model:ir.model.fields,field_description:product_location.field_product_template__loc_case
+msgid "Case"
+msgstr "Casier"
+
+#. module: product_location
+#: model:ir.model,name:product_location.model_product_template
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: product_location
+#: model:ir.model.fields,field_description:product_location.field_product_product__loc_rack
+#: model:ir.model.fields,field_description:product_location.field_product_template__loc_rack
+msgid "Rack"
+msgstr "Rayon"
+
+#. module: product_location
+#: model:ir.model.fields,field_description:product_location.field_product_product__loc_row
+#: model:ir.model.fields,field_description:product_location.field_product_template__loc_row
+msgid "Row"
+msgstr "Rangée"
+
+#. module: product_location
+#: model_terms:ir.ui.view,arch_db:product_location.product_template_form_view
+msgid "Storage Location"
+msgstr "Emplacement de stockage"
