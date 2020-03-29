@@ -432,7 +432,7 @@ msgstr "Prix"
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__product
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__product
 msgid "Product"
-msgstr "Article"
+msgstr "Produits"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__product_qty
