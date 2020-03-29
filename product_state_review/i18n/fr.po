@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * product_state
+# * product_state_review
 #
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
@@ -19,38 +19,38 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: product_state
+#. module: product_state_review
 #: selection:product.template,state:0
 msgid "End of Lifecycle"
 msgstr "Fin de vie"
 
-#. module: product_state
+#. module: product_state_review
 #: selection:product.template,state:0
 msgid "In Development"
 msgstr "Phase de recherche et de développement"
 
-#. module: product_state
+#. module: product_state_review
 #: selection:product.template,state:0
 msgid "Normal"
 msgstr "Normal"
 
-#. module: product_state
+#. module: product_state_review
 #: selection:product.template,state:0
 msgid "Obsolete"
 msgstr "Obsolète"
 
-#. module: product_state
+#. module: product_state_review
 #: selection:product.template,state:0
 msgid "Need review"
 msgstr "Révision"
 
-#. module: product_state
-#: model:ir.model,name:product_state.model_product_template
+#. module: product_state_review
+#: model:ir.model,name:product_state_review.model_product_template
 msgid "Product Template"
 msgstr "Modèle de produit"
 
-#. module: product_state
-#: model:ir.model.fields,field_description:product_state.field_product_product__state
-#: model:ir.model.fields,field_description:product_state.field_product_template__state
+#. module: product_state_review
+#: model:ir.model.fields,field_description:product_state_review.field_product_product__state
+#: model:ir.model.fields,field_description:product_state_review.field_product_template__state
 msgid "Status"
 msgstr "Statut"
