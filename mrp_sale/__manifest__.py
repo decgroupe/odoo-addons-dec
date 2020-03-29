@@ -8,6 +8,8 @@
         'mrp',
         'sale_stock',
     ],
-    'data': [],
+    'data': [
+        'views/mrp_production.xml',
+    ],
     'installable': True
 }

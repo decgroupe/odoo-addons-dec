@@ -28,7 +28,7 @@ class MrpProduction(models.Model):
     @api.model
     def create(self, values):
         # Use sale_line_id from sale_stock module to retrieve partner_id
-        if values.has_key('move_prod_id') and values['move_prod_id'] != False:
+        if 'move_prod_id' in values and values['move_prod_id']:
             move_prod_id = self.env['stock.move'].browse(values['move_prod_id'])
             while move_prod_id:
                 if move_prod_id.sale_line_id and move_prod_id.sale_line_id.order_id:
