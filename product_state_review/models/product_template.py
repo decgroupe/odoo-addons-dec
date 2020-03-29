@@ -9,6 +9,7 @@ class ProductTemplate(models.Model):
 
     state = fields.Selection(selection=[
         ('draft', 'In Development'),
+        ('review', 'Need review'),
         ('sellable', 'Normal'),
         ('end', 'End of Lifecycle'),
         ('obsolete', 'Obsolete')],
