@@ -45,6 +45,8 @@ class ProductTemplate(models.Model):
             product.seller_info_id = main_supplier and main_supplier.id or False
             product.seller_delay = main_supplier and main_supplier.delay or 1
             product.seller_id = main_supplier and main_supplier.name.id or False
+            product.seller_product_code = main_supplier and main_supplier.product_code or False
+            product.seller_product_name = main_supplier and main_supplier.product_name or False
 
     seller_info_id = fields.Many2one(
         'product.supplierinfo',
@@ -67,3 +69,14 @@ on reordering delays."
         string='Main Supplier',
         help="Main Supplier who has highest priority in Supplier List.",
     )
+    seller_product_code = fields.Char(
+        compute=_calc_seller,
+        string='Vendor Product Code',
+        help="Main supplier product code",
+    )
+    seller_product_name = fields.Char(
+        compute=_calc_seller,
+        string='Vendor Product Name',
+        help="Main supplier product name",
+    )
+
