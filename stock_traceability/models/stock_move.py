@@ -38,10 +38,10 @@ class StockMove(models.Model):
         for move in self:
             move.final_location = move.location_dest_id.name
             move_dest_id = move.move_dest_ids and move.move_dest_ids[0] or False
-            if move_dest_id and (
-                move.product_id.id == move_dest_id.product_id.id
-            ):
-                if admin:
-                    move.final_location += ' > ' + move_dest_id.final_location
-                else:
-                    move.final_location = move_dest_id.final_location
+            if move_dest_id and move.product_id.id == move_dest_id.product_id.id:
+                final_location = move_dest_id.final_location
+                if final_location:
+                    if admin:
+                        move.final_location += ' > ' + final_location
+                    else:
+                        move.final_location = final_location
