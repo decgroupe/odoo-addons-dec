@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_traceability">
+        <field name="name">Traceability</field>
+        <field name="parent_id" ref="dec.menu_dec"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_ref_log">
+        <field name="name">Procurements</field>
+        <field name="sequence" eval="10"/>
+        <field name="action" ref="act_window_procurement_group"/>
+        <field name="parent_id" ref="menu_traceability"/>
+    </record>
+
+</odoo>
