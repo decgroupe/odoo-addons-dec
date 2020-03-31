@@ -1,16 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+#	* mrp_sale
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-31 17:10+0000\n"
-"PO-Revision-Date: 2020-03-27 15:20+0000\n"
+"PO-Revision-Date: 2020-03-31 17:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
+
+#. module: mrp_sale
+#: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__partner_id
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: mrp_sale
+#: model:ir.model,name:mrp_sale.model_mrp_production
+msgid "Production Order"
+msgstr ""
+

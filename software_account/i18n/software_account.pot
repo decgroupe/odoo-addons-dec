@@ -1,0 +1,206 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* software_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-31 17:12+0000\n"
+"PO-Revision-Date: 2020-03-31 17:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: software_account
+#: model:ir.ui.menu,name:software_account.menu_software_account
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_form_view
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
+msgid "Account"
+msgstr "Compte"
+
+#. module: software_account
+#: model:ir.actions.report,name:software_account.software_account_report
+msgid "Account (customer information)"
+msgstr ""
+
+#. module: software_account
+#: model:ir.ui.menu,name:software_account.menu_software_accounting
+msgid "Accounting"
+msgstr "Comptabilité"
+
+#. module: software_account
+#: model:ir.actions.act_window,name:software_account.act_window_software_account
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_tree_view
+msgid "Accounts"
+msgstr "Comptes"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__answer
+msgid "Answer"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__create_uid
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__create_date
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__display_name
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__email
+msgid "E-Mail"
+msgstr "Courriel"
+
+#. module: software_account
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
+msgid "Email"
+msgstr "Courriel"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__firstname
+msgid "Firstname"
+msgstr ""
+
+#. module: software_account
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__id
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__id
+msgid "ID"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__image
+msgid "Image"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__info
+msgid "Informations"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account____last_update
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__write_uid
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__write_date
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__lastname
+msgid "Lastname"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__login
+msgid "Login"
+msgstr "Connexion"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__datetime
+msgid "Modification date"
+msgstr "Date de modification"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__partner_id
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__password
+msgid "Password"
+msgstr "Mot de passe"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__pin
+msgid "Pin Code"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__product_id
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
+msgid "Product"
+msgstr "Article"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__production_id
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
+msgid "Production"
+msgstr "Fabrication"
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__question
+msgid "Question"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__rules
+msgid "Rules"
+msgstr "Règles"
+
+#. module: software_account
+#: model:ir.model,name:software_account.model_software_account
+msgid "Software Account"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model,name:software_account.model_software_account_supplier
+msgid "Software Account supplier"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__supplier_id
+#: model:ir.ui.menu,name:software_account.menu_software_account_supplier
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_form_view
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_kanban_view
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: software_account
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_form_view
+msgid "Supplier name"
+msgstr ""
+
+#. module: software_account
+#: model:ir.actions.act_window,name:software_account.act_window_software_account_supplier
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_search_view
+#: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_tree_view
+msgid "Suppliers"
+msgstr "Fournisseurs"
+

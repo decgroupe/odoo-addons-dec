@@ -1,25 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* purchase_pricelist
+#	* purchase_pricelist
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 16:48+0000\n"
-"PO-Revision-Date: 2020-03-27 13:47+0000\n"
+"POT-Creation-Date: 2020-03-31 17:11+0000\n"
+"PO-Revision-Date: 2020-03-31 17:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_res_partner
 msgid "Contact"
-msgstr "Contact"
+msgstr ""
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_product_pricelist
@@ -76,7 +75,7 @@ msgstr "Liste de prix d'achat"
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_sale_order
 msgid "Sale Order"
-msgstr "Bon de commande"
+msgstr ""
 
 #. module: purchase_pricelist
 #: selection:product.pricelist,type:0
@@ -86,29 +85,22 @@ msgstr "Liste de prix de vente"
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_partner__property_product_pricelist_purchase
 #: model:ir.model.fields,help:purchase_pricelist.field_res_users__property_product_pricelist_purchase
-msgid ""
-"This pricelist will be used, instead of the default one, for purchases from "
-"the current partner"
-msgstr ""
-"Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les "
-"achats du partenaire courant"
+msgid "This pricelist will be used, instead of the default one, for purchases from the current partner"
+msgstr "Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les achats du partenaire courant"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_partner__property_product_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_users__property_product_pricelist
-msgid ""
-"This pricelist will be used, instead of the default one, for sales to the "
-"current partner"
-msgstr ""
-"Cette liste de prix sera utilisée, à la place de la liste par défaut, pour "
-"les ventes faites au partenaire actuel."
+msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
+msgstr "Cette liste de prix sera utilisée, à la place de la liste par défaut, pour les ventes faites au partenaire actuel."
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__type
 msgid "Type"
-msgstr "Type"
+msgstr ""
 
 #. module: purchase_pricelist
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist.partner_property_form_view
 msgid "the parent company"
 msgstr "la société parente"
+
