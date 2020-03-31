@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-31 16:48+0000\n"
-"PO-Revision-Date: 2020-03-27 13:47+0000\n"
+"PO-Revision-Date: 2020-03-31 23:40+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_res_partner
@@ -38,12 +39,12 @@ msgstr "Type de liste de prix"
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_purchase_order__pricelist_id
 msgid "Pricelist for current purchase order."
-msgstr "Liste de prix du bon de commande d'achat actuel"
+msgstr "Liste de prix du bon de commande d'achat actuel."
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_sale_order__pricelist_id
 msgid "Pricelist for current sales order."
-msgstr "Liste de prix du bon de commande actuel"
+msgstr "Liste de prix du bon de commande actuel."
 
 #. module: purchase_pricelist
 #: model:ir.actions.act_window,name:purchase_pricelist.act_window_product_pricelist
@@ -101,7 +102,7 @@ msgid ""
 "current partner"
 msgstr ""
 "Cette liste de prix sera utilisée, à la place de la liste par défaut, pour "
-"les ventes faites au partenaire actuel."
+"les ventes faites au partenaire actuel"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__type

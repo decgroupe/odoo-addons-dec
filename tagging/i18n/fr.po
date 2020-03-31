@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-31 17:12+0000\n"
-"PO-Revision-Date: 2020-03-31 17:09+0000\n"
+"PO-Revision-Date: 2020-03-31 23:59+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__active
@@ -44,7 +45,7 @@ msgstr "Nom affiché"
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags____last_update
@@ -65,13 +66,13 @@ msgstr "Dernière mise à jour le"
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__notes
 #: model_terms:ir.ui.view,arch_db:tagging.tags_form
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__related_tags_ids
 #: model_terms:ir.ui.view,arch_db:tagging.tags_form
 msgid "Related Tags"
-msgstr ""
+msgstr "Tags associés"
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__description
@@ -81,12 +82,12 @@ msgstr "Description courte"
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__name
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #. module: tagging
 #: model:ir.ui.menu,name:tagging.menu_tagging
 msgid "Tagging"
-msgstr ""
+msgstr "Etiquettage"
 
 #. module: tagging
 #: model:ir.actions.act_window,name:tagging.act_open_tags_tree

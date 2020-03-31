@@ -1,25 +1,26 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_pack_line
+# 	* product_pack_line
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-03-27 15:14+0000\n"
-"PO-Revision-Date: 2020-03-27 15:14+0000\n"
+"PO-Revision-Date: 2020-03-31 21:27+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: product_pack_line
 #: model:ir.model.fields,help:product_pack_line.field_product_pack_line__product_uom_id
 msgid "Default unit of measure used for purchase orders. It must be in the same category as the default unit of measure."
-msgstr "Unité de mesure par défaut pour les ordres d'achat. Elle doit appartenir à la même catégorie que l'unité de mesure par défaut.""
+msgstr "Unité de mesure par défaut pour les ordres d'achat. Elle doit appartenir à la même catégorie que l'unité de mesure par défaut."
 
 #. module: product_pack_line
 #: model:ir.model.fields,field_description:product_pack_line.field_product_pack_line__product_code
@@ -50,4 +51,3 @@ msgstr "Unité de mesure d'achat"
 #: model:ir.model.fields,help:product_pack_line.field_product_pack_line__product_categ_id
 msgid "Select category for the current product"
 msgstr "Sélectionnez la catégorie de l'article actuel"
-
