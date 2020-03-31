@@ -11,11 +11,11 @@
     ],
     'data':
         [
+            'security/purchase_pricelist.xml',
             'views/product_pricelist.xml',
             'views/purchase_order.xml',
             'views/res_partner.xml',
             'views/menu.xml',
-            'security/purchase_pricelist.xml',
         ],
     'installable': True
 }
