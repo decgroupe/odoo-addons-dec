@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="stock_move_lots_form_view" >
+            <field name="name">stock.move.lots.form</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="before">
+                    <field name="group_id"/>
+                </field>
+                <field name="active_move_line_ids" position="after">
+                    <field name="move_orig_ids"/>
+                    <field name="move_dest_ids"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

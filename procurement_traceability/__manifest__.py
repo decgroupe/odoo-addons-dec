@@ -5,6 +5,8 @@
     'website': 'http://www.dec-industrie.com',
     'summary': '''Add procurement view to track moves''',
     'depends': [
+        'sale',
+        'purchase',
         'stock',
         'sale_stock',
         'purchase_stock',
@@ -13,6 +15,11 @@
     'data':
         [
             'views/procurement.xml',
+            'views/mrp_production.xml',
+            'views/stock_move.xml',
+            'views/stock_picking.xml',
+            'views/sale_order.xml',
+            'views/purchase_order.xml',
             'views/menu.xml',
         ],
     'installable': True

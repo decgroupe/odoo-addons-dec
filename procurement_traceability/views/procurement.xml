@@ -5,6 +5,8 @@
         <record model="ir.ui.view" id="procurement_group_tree_view" >
             <field name="name">procurement.group.tree</field>
             <field name="model">procurement.group</field>
+            <field name="type">tree</field>
+            <field eval="1" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Procurements">
                     <field name="name"/>
@@ -17,6 +19,7 @@
             <field name="name">procurement.group.form</field>
             <field name="model">procurement.group</field>
             <field name="type">form</field>
+            <field eval="1" name="priority"/>
             <field name="arch" type="xml">
                 <form string="Procurement group">
                     <sheet>
