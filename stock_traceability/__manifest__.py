@@ -5,6 +5,9 @@
     'website': 'http://www.dec-industrie.com',
     'summary': '''Get move final location from any move of the chain''',
     'depends': ['stock', ],
-    'data': [],
+    'data':
+        [
+            'views/stock_picking.xml',
+        ],
     'installable': True
 }
