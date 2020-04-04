@@ -10,6 +10,32 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
                     <field name="mrp_status"/>
+                    <field name="state"/>
+                    <field name="unit_factor">
+                        <attribute name="attrs">{'invisible': False}</attribute>
+                    </field>
+                </xpath>
+                <xpath expr="//field[@name='finished_move_line_ids']/tree" position="inside">
+                    <field name="state">
+                        <attribute name="attrs">{'invisible': False}</attribute>
+                    </field>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="stock_move_lots_form_view" >
+            <field name="name">stock.move.lots.form</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
+            <field name="arch" type="xml">
+                <field name="picking_type_id" position="after">
+                    <field name="unit_factor"/>
+                </field>
+                <xpath expr="//field[@name='active_move_line_ids']/tree" position="inside">
+                    <field name="state"/>
+                    <field name="consume_line_ids"/>
+                    <field name="produce_line_ids"/>
                 </xpath>
             </field>
         </record>
