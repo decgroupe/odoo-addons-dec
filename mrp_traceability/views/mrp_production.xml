@@ -30,6 +30,9 @@
             <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
             <field name="arch" type="xml">
                 <field name="picking_type_id" position="after">
+                    <field name="product_uom_qty" string="To Consume"/>
+                    <field name="reserved_availability" string="Reserved"/>
+                    <field name="quantity_done" string="Consumed" readonly="1"/>
                     <field name="unit_factor"/>
                 </field>
                 <xpath expr="//field[@name='active_move_line_ids']/tree" position="inside">
