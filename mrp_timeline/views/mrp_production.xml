@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_production_timeline_view" >
+        <field name="name">mrp.production.timeline</field>
+        <field name="model">mrp.production</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline date_start="date_planned_start"
+                    date_stop="date_planned_finished"
+                    default_group_by="user_id"
+                    event_open_popup="true"
+                    colors="#ec7063: user_id == false; #2ecb71: state == 'done';">
+                <field name="user_id"/>
+                <field name="bom_id"/>
+                <field name="bom_name"/>
+                <field name="product_id"/>
+                <templates>
+                    <t t-name="timeline-item">
+                        <div class="o_mrp_timeline_item">
+                            <img t-if="record.user_id"
+                                t-attf-src="/web/image/res.users/#{record.user_id[0]}/image/24x24"
+                                t-att-title="record.user_id[1]" width="24" height="24" class="mr8"/>
+                            <span name="display_name">
+                                <t t-esc="record.display_name"/>
+                            </span>
+                            <br/>
+                            <small name="bom" class="text-muted ml4">
+                                <t t-esc="record.bom_name"/>
+                            </small>
+                        </div>
+                    </t>
+                </templates>
+            </timeline>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="mrp.mrp_production_action">
+        <field name="view_mode">tree,kanban,form,calendar,timeline,pivot,graph</field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="date_planned_finished" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
