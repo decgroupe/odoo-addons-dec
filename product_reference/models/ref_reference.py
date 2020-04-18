@@ -35,7 +35,7 @@ class ref_reference(models.Model):
         required=True,
     )
     product = fields.Many2one(
-        'product.template',
+        'product.product',
         'Product',
         required=True,
     )

@@ -22,8 +22,7 @@ _logger = logging.getLogger(__name__)
 
 
 class ref_product(models.Model):
-    _inherit = "product.template"
-    _name = _inherit
+    _inherit = "product.product"
 
     ciel_code = fields.Char('Ciel', size=24)
     comments = fields.Text('Comments')
