@@ -33,6 +33,9 @@ defined, having the display on footer checkbox set.",
             r = []
             for bank in company.bank_ids:
                 if bank.footer:
-                    r.append(bank.name_get()[0][1])
+                    n = '{}: {} - {}'.format(
+                        bank.bank_name, bank.display_name, bank.bank_bic
+                    )
+                    r.append(n)
             res = ' | '.join(r)
             company.report_bank_footer = res
