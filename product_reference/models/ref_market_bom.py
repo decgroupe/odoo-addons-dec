@@ -23,8 +23,8 @@ _logger = logging.getLogger(__name__)
 
 
 class ref_market_bom(models.Model):
-
     _name = 'ref.market.bom'
+    _description = 'Market BoM parent and children line'
 
     name = fields.Char('Name', size=64, required=True)
     product_id = fields.Many2one('product.product', 'Product', required=True)
@@ -34,7 +34,7 @@ class ref_market_bom(models.Model):
         digits=dp.get_precision('Product UoM')
     )
     product_uom = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         'Product UOM',
         required=True,
         help=

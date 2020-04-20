@@ -6,6 +6,8 @@
     'summary': '''Product reference management''',
     'depends': [
         'base',
+        'uom',
+        'product',
         'mrp',
         'dec',
         'product_state_review',
