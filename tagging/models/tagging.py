@@ -19,6 +19,7 @@ import string
 
 class TaggingTag(models.Model):
     _name = "tagging.tags"
+    _description = 'Tag'
     _order = 'name'
 
     name = fields.Char("Tag", size=64, required=True)
