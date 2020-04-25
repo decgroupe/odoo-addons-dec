@@ -15,6 +15,12 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, Apr 2020
 
 from odoo import api, fields, models, _
+from .emoji_helper import (
+    production_to_emoji,
+    purchase_to_emoji,
+    stockmove_to_emoji,
+    product_type_to_emoji,
+)
 
 
 class StockMove(models.Model):
@@ -27,38 +33,39 @@ class StockMove(models.Model):
         store=False,
     )
 
+    def _get_mto_mrp_status(self, move):
+        res = '❓(???)[{0}]'.format(move.state)
+        if move.created_purchase_line_id:
+            res = '🛒{0}[{1}]'.format(
+                move.created_purchase_line_id.order_id.name,
+                purchase_to_emoji(move.created_purchase_line_id),
+            )
+        elif move.created_production_id:
+            res = '⚙️{0}[{1}]'.format(
+                move.created_production_id.name,
+                production_to_emoji(move.created_production_id),
+            )
+        return res
+
+    def _get_mts_mrp_status(self, move):
+        res = '📦[{0}]'.format(stockmove_to_emoji(move))
+        if move.created_purchase_line_archive and not move.created_purchase_line_id:
+            res = res + '\n' + '♻️PO canceled'
+        elif move.created_production_archive and not move.created_production_id:
+            res = res + '\n' + '♻️MO canceled'
+        return res
+
     @api.multi
     def _compute_mrp_status(self):
-        Production = self.env['mrp.production']
         for move in self:
-            s = '...'
+            res = '...'
             if move.procure_method == 'make_to_order':
-                if move.created_purchase_line_id:
-                    s = '🛒{0}: [{1}]'.format(
-                        move.created_purchase_line_id.order_id.name,
-                        move.created_purchase_line_id.state,
-                    )
-                elif move.created_production_id:
-                    #Production.browse(move.production_id)
-                    s = '⚙️{0}: [{1}]'.format(
-                            move.created_production_id.name,
-                            move.created_production_id.state,
-                        )
-                else:
-                    s = '📦[{0}] (procurement canceled)'.format(
-                            move.state,
-                        )
+                res = self._get_mto_mrp_status(move)
             elif move.procure_method == 'make_to_stock':
-                s = '📦[{0}]'.format(
-                        move.state,
-                    )
-            #move.picking_type_id
-            if move.product_type == 'product':
-                pass
+                res = self._get_mts_mrp_status(move)
 
-            move.mrp_status = '{0}:{1}\n({2}){3}'.format(
+            move.mrp_status = '{0}{1}:{2}'.format(
+                product_type_to_emoji(move.product_type),
                 move.id,
-                s,
-                move.procure_method,
-                move.product_type,
+                res
             )
