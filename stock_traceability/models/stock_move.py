@@ -32,6 +32,40 @@ class StockMove(models.Model):
         readonly=True,
     )
 
+    created_purchase_line_archive = fields.Integer(
+        readonly=True,
+        copy=False,
+    )
+    created_production_archive = fields.Integer(
+        readonly=True,
+        copy=False,
+    )
+
+    def _archive_purchase_line(self, values):
+        if 'created_purchase_line_id' in values:
+            if values['created_purchase_line_id']:
+                values['created_purchase_line_archive'] = values[
+                    'created_purchase_line_id']
+
+    def _archive_production(self, values):
+        if 'created_production_id' in values:
+            if values['created_production_id']:
+                values['created_production_archive'] = values[
+                    'created_production_id']
+
+    @api.model
+    def create(self, values):
+        self._archive_purchase_line(values)
+        self._archive_production(values)
+        stock_move = super().create(values)
+        return stock_move
+
+    @api.multi
+    def write(self, values):
+        self._archive_purchase_line(values)
+        self._archive_production(values)
+        return super(StockMove, self).write(values)
+
     @api.depends('move_dest_ids', 'location_dest_id', 'product_id')
     def _compute_final_location(self):
         admin = self.user_has_groups('base.group_system')
