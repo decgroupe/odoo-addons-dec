@@ -10,10 +10,6 @@
                 <field name="product_id" position="before">
                     <field name="group_id"/>
                 </field>
-                <field name="active_move_line_ids" position="after">
-                    <field name="move_orig_ids"/>
-                    <field name="move_dest_ids"/>
-                </field>
             </field>
         </record>
 

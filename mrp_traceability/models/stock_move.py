@@ -117,3 +117,10 @@ class StockMove(models.Model):
         action['views'] = [(form.id, 'form')]
         action['res_id'] = self.created_production_id.id
         return action
+
+    def action_view_picking(self):
+        action = self.env.ref('mrp_traceability.stock_move_open_picking').read()[0]
+        form = self.env.ref('stock.view_picking_form')
+        action['views'] = [(form.id, 'form')]
+        action['res_id'] = self.picking_id.id
+        return action

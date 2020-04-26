@@ -1,61 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="mrp_production_form_view">
-            <field name="name">mrp.production.form</field>
-            <field name="model">mrp.production</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='move_raw_ids']/tree" position="attributes">
-                    <attribute name="class">d_mrp_production</attribute>
-                    <attribute name="limit">1000</attribute>
-                </xpath>
-                <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
-                    <field name="created_purchase_line_id" invisible="1"/>
-                    <field name="created_production_id" invisible="1"/>
-                    <field name="mrp_status" class="d_mrp_status"/>
-                    <button 
-                        name="action_view_created_item" 
-                        string="Open" 
-                        type="object"
-                        attrs="{'invisible': [('created_purchase_line_id', '=', False), ('created_production_id', '=', False)]}"
-                        icon="fa-external-link">
-                    </button>
-                    <field name="state" invisible="1"/>
-                    <field name="unit_factor">
-                        <attribute name="attrs">{'invisible': False}</attribute>
-                    </field>
-                </xpath>
-                <xpath expr="//field[@name='finished_move_line_ids']/tree" position="inside">
-                    <field name="state">
-                        <attribute name="attrs">{'invisible': False}</attribute>
-                    </field>
-                </xpath>
-                
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="stock_move_lots_form_view" >
-            <field name="name">stock.move.lots.form</field>
-            <field name="model">stock.move</field>
-            <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
-            <field name="arch" type="xml">
-                <field name="picking_type_id" position="after">
-                    <field name="product_uom_qty" string="To Consume"/>
-                    <field name="reserved_availability" string="Reserved"/>
-                    <field name="quantity_done" string="Consumed" readonly="1"/>
-                    <field name="unit_factor"/>
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_raw_ids']" position="attributes">
+                <attribute name="context">
+                {
+                    'form_view_ref': 'mrp_traceability.stock_move_details_form_view', 
+                    'final_lots': show_final_lots, 
+                    'default_location_id': location_src_id, 
+                    'default_location_dest_id': production_location_id,
+                    'default_state': 'confirmed', 
+                    'default_raw_material_production_id': id, 
+                    'default_picking_type_id': picking_type_id
+                }
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']/tree" position="attributes">
+                <attribute name="class">d_mrp_production</attribute>
+                <attribute name="limit">1000</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
+                <field name="created_purchase_line_id" invisible="1"/>
+                <field name="created_production_id" invisible="1"/>
+                <field name="mrp_status" class="d_mrp_status"/>
+                <button 
+                    name="action_view_created_item" 
+                    string="Open" 
+                    type="object"
+                    attrs="{'invisible': [('created_purchase_line_id', '=', False), ('created_production_id', '=', False)]}"
+                    icon="fa-external-link">
+                </button>
+                <field name="state" invisible="1"/>
+                <field name="unit_factor">
+                    <attribute name="attrs">{'invisible': False}</attribute>
                 </field>
-                <xpath expr="//field[@name='active_move_line_ids']/tree" position="inside">
-                    <field name="state"/>
-                    <field name="consume_line_ids"/>
-                    <field name="produce_line_ids"/>
-                </xpath>
-            </field>
-        </record>
+            </xpath>
+            <xpath expr="//field[@name='finished_move_line_ids']/tree" position="inside">
+                <field name="state">
+                    <attribute name="attrs">{'invisible': False}</attribute>
+                </field>
+            </xpath>
+            
+        </field>
+    </record>
 
-    </data>
+    <record model="ir.ui.view" id="stock_move_tree_view" >
+        <field name="name">stock.move.tree.picking.button</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Moves" decoration-muted="state == 'cancel'" create="false">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="product_uom"/>
+                <field name="location_id"/>
+                <field name="location_dest_id"/>
+                <field name="origin"/>
+                <field name="state"/>
+                <field name="picking_id"/>
+                <button 
+                    name="action_view_picking" 
+                    string="Open" 
+                    type="object"
+                    attrs="{'invisible': [('picking_id', '=', False)]}"
+                    icon="fa-truck">
+                </button>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_details_form_view">
+        <field name="name">stock.move.details.form</field>
+        <field name="model">stock.move</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <form string="Details">
+                <label for="move_orig_ids"/>
+                <field name="move_orig_ids" context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}" />
+                <header>
+                    <field name="state" widget="statusbar" force_save="1"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="product_id" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <label for="product_uom_qty"/>
+                        <div class="o_row">
+                            <span><field name="product_uom_qty" readonly="1" nolabel="1"/></span>
+                            <span><field name="product_uom" readonly="1" force_save="1" nolabel="1"/></span>
+                        </div>
+                        <label for="quantity_done" string="Done/Reserved"/>
+                        <div class="o_row">
+                            <span><field name="quantity_done" attrs="{'readonly': ['|', ('is_locked', '=', True), '|', ('finished_lots_exist', '=', True), ('has_tracking', '!=', 'none')]}" nolabel="1"/></span>
+                            <span> / </span>
+                            <span><field name="reserved_availability" nolabel="1"/></span>
+                            <span><field name="product_uom" readonly="1" nolabel="1"/></span>
+                        </div>
+                        <field name="is_done" invisible="1"/>
+                        <field name="workorder_id" invisible="1"/>
+                        <field name="production_id" invisible="1"/>
+                        <field name="raw_material_production_id" invisible="1"/>
+                        <field name="is_locked" invisible="1"/>
+                        <field name="has_tracking" invisible="1"/>
+                        <field name="order_finished_lot_ids" invisible="1"/>
+                        <field name="finished_lots_exist" invisible="1"/>
+                        <field name="picking_type_id" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="unit_factor"/>
+                        <field name="location_id"/>
+                        <field name="location_dest_id"/>
+                    </group>
+                </group>
+                <field name="active_move_line_ids" attrs="{'readonly': ['|', ('is_locked', '=', True), ('state', '=', 'cancel')]}" context="{'default_workorder_id': workorder_id, 'default_product_uom_id': product_uom, 'default_product_id': product_id,  'default_location_id': location_id, 'default_location_dest_id': location_dest_id, 'default_production_id': production_id or raw_material_production_id}">
+                    <tree editable="bottom" decoration-success="product_qty==qty_done" decoration-danger="(product_qty &gt; 0) and (qty_done&gt;product_qty)">
+                        <field name="date"/>
+                        <field name="lot_id" attrs="{'column_invisible': [('parent.has_tracking', '=', 'none')]}" domain="[('product_id', '=', parent.product_id)]" context="{'default_product_id': parent.product_id}"/>
+                        <field name="lot_produced_id" options="{'no_open': True, 'no_create': True}" domain="[('id', 'in', parent.order_finished_lot_ids)]" invisible="not context.get('final_lots')"/>
+                        <field name="product_qty" string="Reserved" readonly="1"/>
+                        <field name="qty_done"/>
+                        <field name="workorder_id" invisible="1"/>
+                        <field name="product_id" invisible="1"/>
+                        <field name="product_uom_id" invisible="1"/>
+                        <field name="location_id" invisible="1"/>
+                        <field name="location_dest_id" invisible="1"/>
+                        <field name="done_wo" invisible="1"/>
+                        <field name="production_id" invisible="1"/>
+                        <field name="state"/>
+                        <field name="consume_line_ids"/>
+                        <field name="produce_line_ids"/>
+                    </tree>
+                </field>
+                <label for="move_dest_ids"/>
+                <field name="move_dest_ids" context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}" />
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_move_open_picking" model="ir.actions.act_window">
+        <field name="name">Receptions</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[('purchase_id', '=', active_id)]</field> -->
+    </record>
+
 </odoo>
 
