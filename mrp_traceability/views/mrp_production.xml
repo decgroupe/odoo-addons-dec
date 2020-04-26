@@ -9,11 +9,21 @@
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='move_raw_ids']/tree" position="attributes">
+                    <attribute name="class">d_mrp_production</attribute>
                     <attribute name="limit">1000</attribute>
                 </xpath>
                 <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
+                    <field name="created_purchase_line_id" invisible="1"/>
+                    <field name="created_production_id" invisible="1"/>
                     <field name="mrp_status" class="d_mrp_status"/>
-                    <field name="state"/>
+                    <button 
+                        name="action_view_created_item" 
+                        string="Open" 
+                        type="object"
+                        attrs="{'invisible': [('created_purchase_line_id', '=', False), ('created_production_id', '=', False)]}"
+                        icon="fa-external-link">
+                    </button>
+                    <field name="state" invisible="1"/>
                     <field name="unit_factor">
                         <attribute name="attrs">{'invisible': False}</attribute>
                     </field>

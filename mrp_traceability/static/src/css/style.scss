@@ -1,4 +1,53 @@
+
+.d_mrp_production{
+
+    .table-sm th, .table-sm td {
+        padding: 0.2rem;
+    }
+}
+
 .d_mrp_status{
-    font-size: 80%;
-    max-width: 16em;
+    // font-family: $font-family-monospace;
+    font-size: 75%;
+    width: 19em;
+}
+
+
+.d_move{
+    border-radius: 2px;
+    >ul{
+        padding-left: 1rem;
+        margin-bottom: auto;
+    }
+}
+
+.d_move_draft{
+    background-color: rgba(1, 197, 96, 0.28);
+}
+
+.d_move_waiting{
+    background-color: rgba(255, 61, 207, 0.28);
+}
+
+.d_move_confirmed{
+    background-color: rgba(51, 198, 255, 0.28);
+}
+
+.d_move_partially_available{
+    background-color: rgba(255, 49, 49, 0.28);
+}
+
+.d_move_assigned{
+    >small{
+        background-color: bisque;
+    }
+}
+
+.d_move_done{
+    background-color: rgba(159, 158, 158, 0.28);
+}
+
+.d_move_cancel{
+    background-color: rgba(159, 158, 158, 0.28);
+    text-decoration: line-through;
 }
