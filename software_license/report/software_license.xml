@@ -13,6 +13,7 @@
         <field name="aeroo_lang_eval">o.partner_id.lang</field>
         <field name="aeroo_country_eval">o.partner_id.country_id</field>
         <field name="aeroo_currency_eval" eval="None"/>
+        <field name="aeroo_company_eval" eval="None"/>
         <field name="aeroo_template_path">software_license/report/software_license.odt</field>
         <field name="attachment_use" eval="False"/>
         <!-- Binding fields are only used to create an entry in the Print menu 
