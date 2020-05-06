@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.actions.report" id="software_license_report">
-            <field name="name">License (customer information)</field>
-            <field name="type">ir.actions.report</field>
-            <field name="model">software.license</field>
-            <field name="report_name">software_license_report</field>
-            <field name="report_type">aeroo</field>
-            <field name="aeroo_in_format">odt</field>
-            <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_pdf_odt"/>
-            <field name="aeroo_template_source">file</field>
-            <field name="aeroo_lang_eval">o.partner_id.lang</field>
-            <field name="aeroo_country_eval">o.partner_id.country_id</field>
-            <field name="aeroo_currency_eval" eval="None"/>
-            <field name="aeroo_template_path">software_license/report/software_license.odt</field>
-            <field name="attachment_use" eval="False"/>
-        </record>
+    <record model="ir.actions.report" id="software_license_report">
+        <field name="name">License (customer information)</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">software.license</field>
+        <field name="report_name">software_license_report</field>
+        <field name="report_type">aeroo</field>
+        <field name="aeroo_in_format">odt</field>
+        <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_pdf_odt"/>
+        <field name="aeroo_template_source">file</field>
+        <field name="aeroo_lang_eval">o.partner_id.lang</field>
+        <field name="aeroo_country_eval">o.partner_id.country_id</field>
+        <field name="aeroo_currency_eval" eval="None"/>
+        <field name="aeroo_template_path">software_license/report/software_license.odt</field>
+        <field name="attachment_use" eval="False"/>
+        <!-- Binding fields are only used to create an entry in the Print menu 
+            Assigning them is like executing IrActionsReport.create_action() -->
+        <field name="binding_model_id" ref="software_license.model_software_license" />
+        <field name="binding_type">report</field>
+    </record>
 
-    </data>
 </odoo>
