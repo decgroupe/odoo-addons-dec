@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.actions.report" id="software_license_report">
-        <field name="name">License (customer information)</field>
+        <field name="name">📄License (customer information)</field>
         <field name="type">ir.actions.report</field>
         <field name="model">software.license</field>
         <field name="report_name">software_license_report</field>
