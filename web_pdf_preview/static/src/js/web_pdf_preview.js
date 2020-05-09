@@ -50,6 +50,7 @@ odoo.define('report.web_pdf_preview', function (require) {
                 options.complete();
             }
         }
+        return true;
     };
 
 });
