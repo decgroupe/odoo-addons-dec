@@ -12,8 +12,7 @@ odoo.define('report.web_pdf_preview', function (require) {
 
     session.get_file = function (options) {
         if (!options || ['/report/download', '/web/report_aeroo'].indexOf(options.url) < 0) {
-            get_file.apply(this, arguments);
-            return;
+            return get_file.apply(this, arguments);
         }
 
         switch (options.url) {
@@ -37,20 +36,26 @@ odoo.define('report.web_pdf_preview', function (require) {
          * Open the PDF report in current window on mobile (since iPhone prevents
          * opening in new window), while open in new window on desktop.
          */
+
+        var result = true;
         if (is_mobile()) {
             require('web.framework').unblockUI();
             location.href = url;
         } else {
             var w = window.open(url);
-            w.document.title = '...';
-            if (typeof options.success === 'function') {
-                options.success();
+            if (w) {
+                w.document.title = '...';
+                if (typeof options.success === 'function') {
+                    options.success();
+                }
+            } else {
+                result = false;
             }
             if (typeof options.complete === 'function') {
                 options.complete();
             }
         }
-        return true;
+        return result;
     };
 
 });
