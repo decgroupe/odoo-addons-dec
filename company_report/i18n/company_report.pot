@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* company_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-14 14:44+0000\n"
+"PO-Revision-Date: 2020-05-14 14:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: company_report
+#: model:ir.model,name:company_report.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: company_report
+#: model:ir.model.fields,field_description:company_report.field_res_company__report_bank_footer
+msgid "Bank Accounts Footer"
+msgstr ""
+
+#. module: company_report
+#: model:ir.model,name:company_report.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: company_report
+#: model:ir.model.fields,field_description:company_report.field_res_partner_bank__footer
+msgid "Display on Reports"
+msgstr ""
+
+#. module: company_report
+#: model:ir.model.fields,help:company_report.field_res_partner_bank__footer
+msgid "Display this bank account on the footer of printed documents like invoices and sales orders."
+msgstr ""
+
+#. module: company_report
+#: model_terms:ir.ui.view,arch_db:company_report.company_form_view
+msgid "Footer"
+msgstr "Bas de page"
+
+#. module: company_report
+#: model:ir.model.fields,help:company_report.field_res_company__report_bank_footer
+msgid "This field is computed automatically based on bank accounts defined, having the display on footer checkbox set."
+msgstr ""
+
+#. module: company_report
+#: model_terms:ir.ui.view,arch_db:company_report.company_form_view
+msgid "e.g. Opening hours, bank accounts (one per line)"
+msgstr "Par ex. Heures d'ouverture, comptes bancaires (un par ligne)"
+

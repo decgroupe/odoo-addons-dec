@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_timeline
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-14 14:45+0000\n"
+"PO-Revision-Date: 2020-05-14 14:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_timeline
+#: model:ir.model.fields,field_description:mrp_timeline.field_mrp_production__bom_name
+msgid "Bill of Materials Name"
+msgstr "Nom de la nomenclature"
+
+#. module: mrp_timeline
+#: model:ir.model,name:mrp_timeline.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
