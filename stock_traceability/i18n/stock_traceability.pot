@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 17:12+0000\n"
-"PO-Revision-Date: 2020-03-31 17:12+0000\n"
+"POT-Creation-Date: 2020-05-14 15:06+0000\n"
+"PO-Revision-Date: 2020-05-14 15:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_traceability
-#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__final_location
-msgid "Final location"
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_production_archive
+msgid "Created Production Archive"
 msgstr ""
 
 #. module: stock_traceability
-#: model:ir.model,name:stock_traceability.model_procurement_group
-msgid "Procurement Group"
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_purchase_line_archive
+msgid "Created Purchase Line Archive"
 msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__final_location
+msgid "Final location"
+msgstr "Emplacement final"
 
 #. module: stock_traceability
 #: model:ir.model.fields,help:stock_traceability.field_stock_move__final_location

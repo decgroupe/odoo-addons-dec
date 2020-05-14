@@ -1,5 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+#	* uom_smart_search
 #
 msgid ""
 msgstr ""
@@ -13,4 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: uom_smart_search
+#: model:ir.model,name:uom_smart_search.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "Unité de mesure d'article"
 

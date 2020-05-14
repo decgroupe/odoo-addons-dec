@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 17:11+0000\n"
-"PO-Revision-Date: 2020-03-31 17:11+0000\n"
+"POT-Creation-Date: 2020-05-14 15:05+0000\n"
+"PO-Revision-Date: 2020-05-14 15:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Type de liste de prix"
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_purchase_order__pricelist_id
 msgid "Pricelist for current purchase order."
-msgstr "Liste de prix du bon de commande d'achat actuel"
+msgstr "Liste de prix du bon de commande d'achat actuel."
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_sale_order__pricelist_id
@@ -58,7 +58,7 @@ msgstr "Les listes de prix sont gérées sur"
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_purchase_order
 msgid "Purchase Order"
-msgstr "Commande d'achat"
+msgstr "Commande fournisseur"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_purchase_order_line
@@ -73,9 +73,14 @@ msgid "Purchase Pricelist"
 msgstr "Liste de prix d'achat"
 
 #. module: purchase_pricelist
+#: model:res.groups,name:purchase_pricelist.group_purchase_pricelist
+msgid "Purchase Pricelists"
+msgstr ""
+
+#. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Bon de commande"
 
 #. module: purchase_pricelist
 #: selection:product.pricelist,type:0

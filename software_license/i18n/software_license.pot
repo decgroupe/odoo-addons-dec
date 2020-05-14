@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 17:12+0000\n"
-"PO-Revision-Date: 2020-03-31 17:12+0000\n"
+"POT-Creation-Date: 2020-05-14 15:06+0000\n"
+"PO-Revision-Date: 2020-05-14 15:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,13 +67,13 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__dongle_id_encrypted
 msgid "Dongle ID Encrypted"
-msgstr ""
+msgstr "Identifiant clé"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__dongle_product_id
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__dongle_product_id
 msgid "Dongle Product ID"
-msgstr ""
+msgstr "ID Produit (dongle)"
 
 #. module: software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
@@ -102,7 +102,7 @@ msgstr "Dernière modification le"
 #: model:ir.model.fields,field_description:software_license.field_software_license__write_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__write_uid
 msgid "Last Updated by"
-msgstr "Dernière modification par"
+msgstr "Dernière mise à jour par"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__write_date
@@ -116,28 +116,23 @@ msgstr "Dernière mise à jour le"
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_form_view
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "License"
-msgstr ""
-
-#. module: software_license
-#: model:ir.actions.report,name:software_license.software_license_report
-msgid "License (customer information)"
-msgstr ""
+msgstr "Licence"
 
 #. module: software_license
 #: model:ir.model,name:software_license.model_software_license_application
 msgid "License application"
-msgstr ""
+msgstr "Application"
 
 #. module: software_license
 #: model:ir.actions.act_window,name:software_license.act_window_software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_tree_view
 msgid "Licenses"
-msgstr ""
+msgstr "Licence"
 
 #. module: software_license
 #: model:ir.ui.menu,name:software_license.menu_software_licensing
 msgid "Licensing"
-msgstr ""
+msgstr "Gestion des licences"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__datetime
@@ -159,7 +154,7 @@ msgstr "Article"
 #. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license_application__dongle_product_id
 msgid "Product ID to write into the dongle"
-msgstr ""
+msgstr "ID du produit à écrire dans le dongle"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__production_id
@@ -170,30 +165,35 @@ msgstr "Fabrication"
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__serial
 msgid "Serial"
-msgstr ""
+msgstr "Numéro de série"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__cave
 msgid "System Cave"
-msgstr ""
+msgstr "Cave"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__classic
 msgid "System Classic"
-msgstr ""
+msgstr "Classic"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__rift
 msgid "System Rift"
-msgstr ""
+msgstr "Rift"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__vive
 msgid "System Vive"
-msgstr ""
+msgstr "Vive"
 
 #. module: software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "With dongle"
+msgstr "Avec dongle"
+
+#. module: software_license
+#: model:ir.actions.report,name:software_license.software_license_report
+msgid "📄License (customer information)"
 msgstr ""
 

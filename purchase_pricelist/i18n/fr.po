@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 16:48+0000\n"
+"POT-Creation-Date: 2020-05-14 15:05+0000\n"
 "PO-Revision-Date: 2020-03-31 23:40+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -75,6 +75,12 @@ msgid "Purchase Pricelist"
 msgstr "Liste de prix d'achat"
 
 #. module: purchase_pricelist
+#: model:res.groups,name:purchase_pricelist.group_purchase_pricelist
+#, fuzzy
+msgid "Purchase Pricelists"
+msgstr "Liste de prix d'achat"
+
+#. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_sale_order
 msgid "Sale Order"
 msgstr "Bon de commande"
@@ -87,22 +93,14 @@ msgstr "Liste de prix de vente"
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_partner__property_product_pricelist_purchase
 #: model:ir.model.fields,help:purchase_pricelist.field_res_users__property_product_pricelist_purchase
-msgid ""
-"This pricelist will be used, instead of the default one, for purchases from "
-"the current partner"
-msgstr ""
-"Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les "
-"achats du partenaire courant"
+msgid "This pricelist will be used, instead of the default one, for purchases from the current partner"
+msgstr "Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les achats du partenaire courant"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_partner__property_product_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_users__property_product_pricelist
-msgid ""
-"This pricelist will be used, instead of the default one, for sales to the "
-"current partner"
-msgstr ""
-"Cette liste de prix sera utilisée, à la place de la liste par défaut, pour "
-"les ventes faites au partenaire actuel"
+msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
+msgstr "Cette liste de prix sera utilisée, à la place de la liste par défaut, pour les ventes faites au partenaire actuel"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__type
