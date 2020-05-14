@@ -7,6 +7,7 @@
         <field name="model">software.license</field>
         <field name="report_name">software_license_report</field>
         <field name="report_type">aeroo</field>
+        <field name="print_report_name">(object._get_aeroo_report_filename())</field>
         <field name="aeroo_in_format">odt</field>
         <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_pdf_odt"/>
         <field name="aeroo_template_source">file</field>

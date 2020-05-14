@@ -40,3 +40,9 @@ class SoftwareAccount(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner')
     datetime = fields.Datetime('Modification date', default=fields.Datetime.now)
     info = fields.Text('Informations')
+
+    @api.multi
+    def _get_aeroo_report_filename(self):
+        names = [x.name for x in self]
+        res = '-'.join(names)
+        return res
