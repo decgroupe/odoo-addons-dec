@@ -3,24 +3,33 @@
 
     <record model="ir.ui.menu" id="menu_product_reference">
         <field name="name">Products</field>
+        <field name="sequence" eval="10"/>
         <field name="parent_id" ref="dec.menu_dec"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_product_template_as_product">
+        <field name="name">Products</field>
+        <field name="sequence" eval="5"/>
+        <field name="action" ref="act_window_product_template_as_product"/>
+        <field name="parent_id" ref="menu_product_reference"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_product_template_as_service">
+        <field name="name">Services</field>
+        <field name="sequence" eval="6"/>
+        <field name="action" ref="act_window_product_template_as_service"/>
+        <field name="parent_id" ref="menu_product_reference"/>
     </record>
 
     <record model="ir.ui.menu" id="menu_product_reference_manager">
         <field name="name">REF Manager</field>
-        <field name="parent_id" ref="menu_product_reference"/>
-    </record>
-
-    <record model="ir.ui.menu" id="menu_ref_log">
-        <field name="name">Logs</field>
         <field name="sequence" eval="10"/>
-        <field name="action" ref="act_window_ref_log"/>
-        <field name="parent_id" ref="menu_product_reference_manager"/>
+        <field name="parent_id" ref="menu_product_reference"/>
     </record>
 
     <record model="ir.ui.menu" id="menu_ref_reference">
         <field name="name">References</field>
-        <field name="sequence" eval="20"/>
+        <field name="sequence" eval="10"/>
         <field name="action" ref="act_window_ref_reference"/>
         <field name="parent_id" ref="menu_product_reference_manager"/>
     </record>
@@ -41,9 +50,17 @@
 
     <record model="ir.ui.menu" id="menu_ref_pack">
         <field name="name">Packs</field>
-        <field name="sequence" eval="10"/>
+        <field name="sequence" eval="50"/>
         <field name="action" ref="act_window_ref_pack"/>
         <field name="parent_id" ref="menu_product_reference_manager"/>
     </record>
+
+    <record model="ir.ui.menu" id="menu_ref_log">
+        <field name="name">Logs</field>
+        <field name="sequence" eval="60"/>
+        <field name="action" ref="act_window_ref_log"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+    </record>
+
 
 </odoo>

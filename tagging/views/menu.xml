@@ -3,7 +3,7 @@
 
     <record model="ir.ui.menu" id="menu_tagging">
         <field name="name">Tagging</field>
-        <field name="sequence" eval="49"/>
+        <field name="sequence" eval="1000"/>
         <field name="parent_id" ref="dec.menu_dec"/>
         <field name="groups" ref="base.group_user"/>
     </record>

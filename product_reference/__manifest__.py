@@ -18,6 +18,7 @@
             # 'views/reference_wizard.xml',
             'security/model_security.xml',
             'security/ir.model.access.csv',
+            'views/product_template.xml',
             'views/ref_attribute.xml',
             'views/ref_property.xml',
             'views/ref_reference.xml',

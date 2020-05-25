@@ -3,6 +3,7 @@
 
     <record model="ir.ui.menu" id="menu_software">
         <field name="name">Software</field>
+        <field name="sequence" eval="80"/>
         <field name="parent_id" ref="dec.menu_dec"/>
     </record>
 
