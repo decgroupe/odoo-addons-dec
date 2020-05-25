@@ -3,6 +3,7 @@
 
     <record model="ir.ui.menu" id="menu_traceability">
         <field name="name">Traceability</field>
+        <field name="sequence" eval="100"/>
         <field name="parent_id" ref="dec.menu_dec"/>
     </record>
 
