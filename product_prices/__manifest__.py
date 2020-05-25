@@ -6,10 +6,11 @@
     'summary': '''Store prices write dates''',
     'depends': [
         'product',
+        'product_seller',
     ],
     'data':
         [
-            'views/product.xml',
+            'views/product_template.xml',
         ],
     'installable': True
 }
