@@ -12,6 +12,7 @@
         [
             'views/product_pricelist_item.xml',
             'views/product_pricelist.xml',
+            'views/product_template.xml',
             'views/menu.xml',
         ],
     'installable': True
