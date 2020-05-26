@@ -113,7 +113,7 @@ class ProductTemplate(models.Model):
                 if not pricelist_items:
                     data = {
                         'sequence': 2,
-                        'note': _('By-pass'),
+                        'note': _('By-pass {}').format(product.default_code),
                         'pricelist_id': pricelists.ids[0],
                         'product_tmpl_id': product.id,
                         'product_id': product.id,
