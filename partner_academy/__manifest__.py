@@ -8,6 +8,7 @@
         'base',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/partner_view.xml',
     ],
     'installable': True
