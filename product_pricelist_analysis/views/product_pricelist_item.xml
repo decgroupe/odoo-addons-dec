@@ -41,8 +41,8 @@
                 <field name="product_tmpl_id"/>
                 <field name="product_id" groups="product.group_product_variant"/>
                 <separator/>
-                <filter string="Sale" name="filter_pricelist_sale" domain="[('pricelist_id.type','=','sale')]"/>
-                <filter string="Purchase" name="filter_pricelist_purchase" domain="[('pricelist_id.type','=','purchase')]"/>
+                <filter string="Sale Pricelist" name="filter_pricelist_sale" domain="[('pricelist_id.type','=','sale')]"/>
+                <filter string="Purchase Pricelist" name="filter_pricelist_purchase" domain="[('pricelist_id.type','=','purchase')]"/>
                 <separator/>
                 <filter string="Permanent" name="filter_permanent" domain="[('date_start','=',False), ('date_end','=',False)]"/>
                 <group string="Group By" name="groupby">

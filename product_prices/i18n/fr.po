@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_prices
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-26 11:50+0000\n"
+"PO-Revision-Date: 2020-05-26 11:50+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__pricelist_bypass
+#: model:ir.model.fields,help:product_prices.field_product_template__pricelist_bypass
+msgid "A bypass action will create a pricelist item to overwrite pricelist computation"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__pricelist_bypass
+#: model:ir.model.fields,field_description:product_prices.field_product_template__pricelist_bypass
+msgid "By-pass"
+msgstr ""
+
+#. module: product_prices
+#: code:addons/product_prices/models/product_template.py:116
+#, python-format
+msgid "By-pass {}"
+msgstr ""
+
+#. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Cost price and purchase price"
+msgstr ""
+
+#. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Edit date"
+msgstr ""
+
+#. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Editor"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__market_place
+#: model:ir.model.fields,field_description:product_prices.field_product_template__market_place
+msgid "Market place"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__price_write_uid
+#: model:ir.model.fields,field_description:product_prices.field_product_template__price_write_uid
+msgid "Price last editor"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__price_write_date
+#: model:ir.model.fields,field_description:product_prices.field_product_template__price_write_date
+msgid "Price write date"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__pricelist_bypass_item
+#: model:ir.model.fields,field_description:product_prices.field_product_template__pricelist_bypass_item
+msgid "Pricelist item"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model,name:product_prices.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: product_prices
+#: model:ir.model,name:product_prices.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price
+#: model:ir.model.fields,field_description:product_prices.field_product_template__default_purchase_price
+msgid "Purchase price"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__default_purchase_price
+#: model:ir.model.fields,help:product_prices.field_product_template__default_purchase_price
+msgid "Purchase price based on default seller pricelist"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__default_sell_price
+#: model:ir.model.fields,field_description:product_prices.field_product_template__default_sell_price
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Sell price"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__default_sell_price
+#: model:ir.model.fields,help:product_prices.field_product_template__default_sell_price
+msgid "Sell price based on default sell pricelist"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price_write_uid
+#: model:ir.model.fields,field_description:product_prices.field_product_template__standard_price_write_uid
+msgid "Standard price last editor"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price_write_date
+#: model:ir.model.fields,field_description:product_prices.field_product_template__standard_price_write_date
+msgid "Standard price write date"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__market_place
+#: model:ir.model.fields,help:product_prices.field_product_template__market_place
+msgid "Tip to know if the product must be displayed on the market place"
+msgstr ""
+
+#. module: product_prices
+#: code:addons/product_prices/models/product_template.py:129
+#, python-format
+msgid "Too many pricelist items for this product!, only one sale pricelist item must exist for this product to disable by-pass functionality"
+msgstr ""
+
+#. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Unit of Measure"
+msgstr "Unité de mesure"
+

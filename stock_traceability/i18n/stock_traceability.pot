@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-14 15:06+0000\n"
-"PO-Revision-Date: 2020-05-14 15:06+0000\n"
+"POT-Creation-Date: 2020-05-26 11:52+0000\n"
+"PO-Revision-Date: 2020-05-26 11:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,12 @@ msgstr ""
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_production_archive
 msgid "Created Production Archive"
-msgstr ""
+msgstr "Archive de l'ordre de fabrication créé"
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_purchase_line_archive
 msgid "Created Purchase Line Archive"
-msgstr ""
+msgstr "Archive de ligne d'achat créé"
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__final_location

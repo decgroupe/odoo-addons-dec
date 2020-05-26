@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-14 15:03+0000\n"
-"PO-Revision-Date: 2020-05-14 15:03+0000\n"
+"POT-Creation-Date: 2020-05-26 11:49+0000\n"
+"PO-Revision-Date: 2020-05-26 11:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Comptes bancaires"
 #. module: company_report
 #: model:ir.model.fields,field_description:company_report.field_res_company__report_bank_footer
 msgid "Bank Accounts Footer"
-msgstr ""
+msgstr "Pied de page des comptes bancaires"
 
 #. module: company_report
 #: model:ir.model,name:company_report.model_res_company
@@ -33,12 +33,12 @@ msgstr "Sociétés"
 #. module: company_report
 #: model:ir.model.fields,field_description:company_report.field_res_partner_bank__footer
 msgid "Display on Reports"
-msgstr ""
+msgstr "Afficher sur les rapports"
 
 #. module: company_report
 #: model:ir.model.fields,help:company_report.field_res_partner_bank__footer
 msgid "Display this bank account on the footer of printed documents like invoices and sales orders."
-msgstr ""
+msgstr "Afficher ce compte bancaire sur le pied de page des documents imprimés tels que les factures et les commandes de vente."
 
 #. module: company_report
 #: model_terms:ir.ui.view,arch_db:company_report.company_form_view
@@ -48,7 +48,7 @@ msgstr "Bas de page"
 #. module: company_report
 #: model:ir.model.fields,help:company_report.field_res_company__report_bank_footer
 msgid "This field is computed automatically based on bank accounts defined, having the display on footer checkbox set."
-msgstr ""
+msgstr "Ce champ est calculé automatiquement en fonction des comptes bancaires définis et son affichage en pied de page est possible si la case à cocher est cochée."
 
 #. module: company_report
 #: model_terms:ir.ui.view,arch_db:company_report.company_form_view

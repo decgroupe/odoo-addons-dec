@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* company_fax
+#	* mrp_bom_dates
 #
 msgid ""
 msgstr ""
@@ -15,18 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: company_fax
-#: model:ir.model,name:company_fax.model_res_company
-msgid "Companies"
-msgstr "Sociétés"
+#. module: mrp_bom_dates
+#: model:ir.model,name:mrp_bom_dates.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
 
-#. module: company_fax
-#: model:ir.model.fields,field_description:company_fax.field_res_company__fax
-msgid "Fax"
+#. module: mrp_bom_dates
+#: model:ir.model.fields,field_description:mrp_bom_dates.field_mrp_bom__date_start
+msgid "Valid From"
 msgstr ""
 
-#. module: company_fax
-#: model_terms:ir.ui.view,arch_db:company_fax.company_form_view
-msgid "Fax..."
+#. module: mrp_bom_dates
+#: model:ir.model.fields,field_description:mrp_bom_dates.field_mrp_bom__date_stop
+msgid "Valid Until"
 msgstr ""
 

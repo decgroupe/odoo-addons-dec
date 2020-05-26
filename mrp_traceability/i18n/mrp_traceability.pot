@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-14 15:04+0000\n"
-"PO-Revision-Date: 2020-05-14 15:04+0000\n"
+"POT-Creation-Date: 2020-05-26 11:50+0000\n"
+"PO-Revision-Date: 2020-05-26 11:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Détails"
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
 msgid "Done/Reserved"
-msgstr ""
+msgstr "Terminé/Réservé"
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
@@ -34,7 +34,7 @@ msgstr "Ouvert"
 #. module: mrp_traceability
 #: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__mrp_status
 msgid "Procurement status"
-msgstr ""
+msgstr "État de l'appro."
 
 #. module: mrp_traceability
 #: model:ir.model,name:mrp_traceability.model_mrp_production
@@ -65,5 +65,5 @@ msgstr "Mouvements de stocks"
 #: code:addons/mrp_traceability/models/stock_move.py:76
 #, python-format
 msgid "canceled"
-msgstr ""
+msgstr "annulé"
 
