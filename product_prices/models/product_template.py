@@ -59,9 +59,12 @@ class ProductTemplate(models.Model):
         'Standard price last editor',
     )
 
+    @api.multi
     @api.depends('seller_id', 'standard_price')
     def _compute_default_purchase_price(self):
         for product in self:
+            if isinstance(product.id, models.NewId):
+                continue
             if product.seller_id:
                 pricelist = product.seller_id.property_product_pricelist_purchase
                 if pricelist:
@@ -76,9 +79,12 @@ class ProductTemplate(models.Model):
 
             product.default_purchase_price = price
 
+    @api.multi
     @api.depends('company_id', 'seller_id', 'list_price')
     def _compute_default_sell_price(self):
         for product in self:
+            if isinstance(product.id, models.NewId):
+                continue
             if product.seller_id \
                 and product.company_id and product.company_id.partner_id:
                 pricelist = product.company_id.partner_id.property_product_pricelist

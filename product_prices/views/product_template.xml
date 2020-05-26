@@ -11,8 +11,8 @@
                 <separator string="Sell price" colspan="2"/>
             </field>
             <field name="list_price" position="after">
-                <field name="pricelist_bypass"/>
-                <field name="pricelist_bypass_item" attrs="{'invisible':[('pricelist_bypass','!=',True)]}" groups="base.group_erp_manager"/>
+                <field name="pricelist_bypass" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
+                <field name="pricelist_bypass_item" attrs="{'invisible':[('sale_ok','!=',True), ('pricelist_bypass','!=',True)]}" groups="base.group_erp_manager"/>
                 <field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
                 <field name="price_write_date" string="Edit date" readonly="1" groups="base.group_erp_manager"/>
                 <field name="price_write_uid" string="Editor" readonly="1" groups="base.group_erp_manager"/>
