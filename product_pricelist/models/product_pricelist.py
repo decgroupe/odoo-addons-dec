@@ -55,6 +55,12 @@ class ProductPricelist(models.Model):
         if not products:
             return {}
 
+        def addto_history(id, message):
+            if 'history' in self.env.context:
+                if not id in self.env.context['history']:
+                    context['history'][id] = {'steps':[]}
+                self.env.context['history'][id]['steps'].append(message)
+
         categ_ids = {}
         for p in products:
             categ = p.categ_id
@@ -94,6 +100,7 @@ class ProductPricelist(models.Model):
         items = self.env['product.pricelist.item'].browse(item_ids)
         results = {}
         for product, qty, partner in products_qty_partner:
+            addto_history(product.id, _('{} rule(s) loaded').format(len(items)))
             results[product.id] = 0.0
             suitable_rule = False
 
@@ -110,10 +117,12 @@ class ProductPricelist(models.Model):
                 except UserError:
                     # Ignored - incompatible UoM in context, use default product UoM
                     pass
-
+            addto_history(product.id, _('Quantity is {}').format(qty_in_product_uom))
+            
             # if Public user try to access standard price from website sale, need to call price_compute.
             # TDE SURPRISE: product can actually be a template
             price = product.price_compute('list_price')[product.id]
+            addto_history(product.id, _('Base price is {}').format(price))
 
             price_uom = self.env['uom.uom'].browse([qty_uom_id])
             for rule in items:
@@ -141,38 +150,50 @@ class ProductPricelist(models.Model):
                         continue
 
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
+                    if rule.compute_price == 'formula':
+                        addto_history(product.id, _('Price is based on another pricelist: {}').format(rule.base_pricelist_id.name))
                     price_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)], date, uom_id)[product.id][0]  # TDE: 0 = price, 1 = rule
                     price = rule.base_pricelist_id.currency_id._convert(price_tmp, self.currency_id, self.env.user.company_id, date, round=False)
                 else:
                     # if base option is public price take sale price else cost price of product
                     # price_compute returns the price in the context UoM, i.e. qty_uom_id
+                    if rule.compute_price == 'formula':
+                        addto_history(product.id, _('Price is based on {}').format(rule.base))
                     price = product.price_compute(rule.base)[product.id]
-
+                    
+                if rule.compute_price == 'formula':
+                    addto_history(product.id, _('Base price is now {}').format(price))
                 convert_to_price_uom = (lambda price: product.uom_id._compute_price(price, price_uom))
 
                 if price is not False:
                     if rule.compute_price == 'fixed':
                         price = convert_to_price_uom(rule.fixed_price)
+                        addto_history(product.id, _('Price (fixed) set to {}').format(price))
                     elif rule.compute_price == 'percentage':
                         price = (price - (price * (rule.percent_price / 100))) or 0.0
+                        addto_history(product.id, _('Price (percentage) set to {}').format(price))
                     else:
                         # complete formula
                         price_limit = price
                         price = (price - (price * (rule.price_discount / 100))) or 0.0
                         if rule.price_round:
                             price = tools.float_round(price, precision_rounding=rule.price_round)
+                            addto_history(product.id, _('Price rounded to {}').format(price))
 
                         if rule.price_surcharge:
                             price_surcharge = convert_to_price_uom(rule.price_surcharge)
                             price += price_surcharge
+                            addto_history(product.id, _('Price surcharge applied {} (+{})').format(price, price_surcharge))
 
                         if rule.price_min_margin:
                             price_min_margin = convert_to_price_uom(rule.price_min_margin)
                             price = max(price, price_limit + price_min_margin)
+                            addto_history(product.id, _('Price updated (minimum margin) to {}').format(price))
 
                         if rule.price_max_margin:
                             price_max_margin = convert_to_price_uom(rule.price_max_margin)
                             price = min(price, price_limit + price_max_margin)
+                            addto_history(product.id, _('Price updated (maximum margin) to {}').format(price))
                     suitable_rule = rule
                 break
             # Final price conversion into pricelist currency
