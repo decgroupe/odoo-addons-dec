@@ -6,25 +6,24 @@
         <field name="model">product.template</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
         <field name="arch" type="xml">
             <field name="list_price" position="before">
                 <separator string="Sell price" colspan="2"/>
             </field>
             <field name="list_price" position="after">
                 <field name="pricelist_bypass"/>
-                <field name="pricelist_bypass_item" attrs="{'invisible':[('pricelist_bypass','!=',True)]}" />
+                <field name="pricelist_bypass_item" attrs="{'invisible':[('pricelist_bypass','!=',True)]}" groups="base.group_erp_manager"/>
                 <field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
-                <field name="price_write_date" string="Edit date" readonly="1"/>
-                <field name="price_write_uid" string="Editor" readonly="1"/>
+                <field name="price_write_date" string="Edit date" readonly="1" groups="base.group_erp_manager"/>
+                <field name="price_write_uid" string="Editor" readonly="1" groups="base.group_erp_manager"/>
             </field>
             <label for="standard_price" position="before">
                 <separator string="Cost price and purchase price" colspan="2"/>
             </label>
             <div name="standard_price_uom" position="after">
                 <field name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}" />
-                <field name="standard_price_write_date" string="Edit date" readonly="1"/>
-                <field name="standard_price_write_uid" string="Editor" readonly="1"/>
+                <field name="standard_price_write_date" string="Edit date" readonly="1" groups="base.group_erp_manager"/>
+                <field name="standard_price_write_uid" string="Editor" readonly="1" groups="base.group_erp_manager"/>
             </div>
             <field name="uom_id" position="before">
                 <separator string="Unit of Measure" colspan="2"/>

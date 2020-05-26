@@ -7,6 +7,7 @@
     'depends': [
         'product',
         'product_seller',
+        'product_pricelist',
     ],
     'data':
         [
