@@ -9,14 +9,6 @@
             <field name="name" position="before">
                 <field name="sequence"/>
             </field>
-            <field name="categ_id" position="after">
-                <field name="price" string="Price"/>
-                <field name="base"/>
-                <field name="base_pricelist_id"/>
-                <field name="price_discount"/>
-                <field name="applied_on"/>
-                <field name="compute_price"/>
-            </field>
         </field>
     </record>
 
