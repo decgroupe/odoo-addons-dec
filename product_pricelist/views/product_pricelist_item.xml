@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_pricelist_item_tree_view">
+        <field name="name">product.pricelist.item.tree</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="sequence"/>
+            </field>
+            <field name="categ_id" position="after">
+                <field name="price" string="Price"/>
+                <field name="base"/>
+                <field name="base_pricelist_id"/>
+                <field name="price_discount"/>
+                <field name="applied_on"/>
+                <field name="compute_price"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view"  id="product_pricelist_item_form_view" >
+        <field name="name">product.pricelist.item.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h1" position="after">
+                <field name="note"/>
+            </xpath>
+            <field name="applied_on" position="before">
+                <field name="sequence"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
