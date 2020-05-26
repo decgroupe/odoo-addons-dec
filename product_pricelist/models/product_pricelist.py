@@ -55,11 +55,22 @@ class ProductPricelist(models.Model):
         if not products:
             return {}
 
-        def addto_history(id, message):
+        def addto_history(id, message=False, indent=False, unindent=False):
             if 'history' in self.env.context:
                 if not id in self.env.context['history']:
-                    context['history'][id] = {'steps':[]}
-                self.env.context['history'][id]['steps'].append(message)
+                    self.env.context['history'][id] = {
+                        'steps': [],
+                        'indent': 0,
+                    }
+                ctx = self.env.context['history'][id]
+                if indent:
+                    ctx['indent'] = ctx['indent'] + 2
+                elif unindent:
+                    ctx['indent'] = max(0, ctx['indent'] - 2)
+
+                tab = ' ' * ctx['indent']
+                if message:
+                    ctx['steps'].append(tab+message)
 
         categ_ids = {}
         for p in products:
@@ -100,7 +111,8 @@ class ProductPricelist(models.Model):
         items = self.env['product.pricelist.item'].browse(item_ids)
         results = {}
         for product, qty, partner in products_qty_partner:
-            addto_history(product.id, _('{} rule(s) loaded').format(len(items)))
+            if len(items) > 0:
+                addto_history(product.id, _('{} rule(s) loaded').format(len(items)))
             results[product.id] = 0.0
             suitable_rule = False
 
@@ -149,23 +161,23 @@ class ProductPricelist(models.Model):
                     if not cat:
                         continue
 
+                addto_history(product.id, _('Use rule id {}').format(rule.id))
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
-                    if rule.compute_price == 'formula':
-                        addto_history(product.id, _('Price is based on another pricelist: {}').format(rule.base_pricelist_id.name))
+                    addto_history(product.id, _('Price is based on another pricelist: {}').format(rule.base_pricelist_id.name))
+                    addto_history(product.id, indent=True)
                     price_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)], date, uom_id)[product.id][0]  # TDE: 0 = price, 1 = rule
+                    addto_history(product.id, unindent=True)
                     price = rule.base_pricelist_id.currency_id._convert(price_tmp, self.currency_id, self.env.user.company_id, date, round=False)
                 else:
                     # if base option is public price take sale price else cost price of product
                     # price_compute returns the price in the context UoM, i.e. qty_uom_id
-                    if rule.compute_price == 'formula':
-                        addto_history(product.id, _('Price is based on {}').format(rule.base))
+                    addto_history(product.id, _('Price is based on {}').format(rule.base))
                     price = product.price_compute(rule.base)[product.id]
                     
-                if rule.compute_price == 'formula':
-                    addto_history(product.id, _('Base price is now {}').format(price))
                 convert_to_price_uom = (lambda price: product.uom_id._compute_price(price, price_uom))
 
                 if price is not False:
+                    addto_history(product.id, _('Base price is now {} ({})').format(price, rule.compute_price))
                     if rule.compute_price == 'fixed':
                         price = convert_to_price_uom(rule.fixed_price)
                         addto_history(product.id, _('Price (fixed) set to {}').format(price))
@@ -207,3 +219,18 @@ class ProductPricelist(models.Model):
             results[product.id] = (price, suitable_rule and suitable_rule.id or False)
 
         return results
+
+
+    @api.multi
+    def price_get_multi_history(self, raw_products_by_qty_by_partner):
+        """ Multi pricelist, multi product  - return tuple """
+        history = {}
+        products_by_qty_by_partner = []
+        for product, qty, partner in raw_products_by_qty_by_partner:
+            if type(product) == int:
+                product = self.env['product.product'].browse(product)
+            if type(partner) == int:
+                partner = self.env['res.partner'].browse(partner)
+            products_by_qty_by_partner.append((product, qty, partner))
+        res = self.with_context(history=history)._compute_price_rule_multi(products_by_qty_by_partner)
+        return history
