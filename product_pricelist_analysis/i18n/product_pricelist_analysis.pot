@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-26 11:50+0000\n"
-"PO-Revision-Date: 2020-05-26 11:50+0000\n"
+"POT-Creation-Date: 2020-05-27 08:22+0000\n"
+"PO-Revision-Date: 2020-05-27 08:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,18 +44,19 @@ msgstr "Liste de prix"
 #. module: product_pricelist_analysis
 #: model:ir.actions.act_window,name:product_pricelist_analysis.act_window_product_pricelist_item
 #: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_form_view
+#: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_template_form_view
 msgid "Pricelist Items"
 msgstr "Éléments de la liste de prix"
 
 #. module: product_pricelist_analysis
 #: model:ir.ui.menu,name:product_pricelist_analysis.menu_pricelist_items
 msgid "Pricelist items"
-msgstr ""
+msgstr "Éléments de la liste de prix"
 
 #. module: product_pricelist_analysis
 #: model:ir.ui.menu,name:product_pricelist_analysis.menu_price_management
 msgid "Prices"
-msgstr ""
+msgstr "Prix"
 
 #. module: product_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_item_search_view
@@ -63,14 +64,19 @@ msgid "Product"
 msgstr "Article"
 
 #. module: product_pricelist_analysis
-#: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_item_search_view
-msgid "Purchase"
-msgstr "Achats"
+#: model:ir.model,name:product_pricelist_analysis.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
 
 #. module: product_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_item_search_view
-msgid "Sale"
-msgstr "Vente"
+msgid "Purchase Pricelist"
+msgstr ""
+
+#. module: product_pricelist_analysis
+#: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_item_search_view
+msgid "Sale Pricelist"
+msgstr ""
 
 #. module: product_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_item_search_view
@@ -84,11 +90,12 @@ msgstr "Séquence"
 
 #. module: product_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_form_view
+#: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_template_form_view
 msgid "Show pricelist items details"
-msgstr ""
+msgstr "Afficher tous les éléments de la liste de prix"
 
 #. module: product_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_item_search_view
 msgid "Variant"
-msgstr ""
+msgstr "Variante"
 
