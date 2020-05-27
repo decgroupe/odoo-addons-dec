@@ -22,6 +22,13 @@
             <label for="standard_price" position="before">
                 <separator string="Cost price and purchase price" colspan="2"/>
             </label>
+            <label for="standard_price" position="replace">
+                <label name="standard_price" class="o_form_label" groups="base.group_user" 
+                    attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                    style="min-width: 250px;">
+                    Purchase Price (PO) / Cost Price (SO)
+                </label>
+            </label>
             <div name="standard_price_uom" position="after">
                 <label name="default_purchase_price" class="o_form_label" attrs="{'invisible':[('purchase_ok','!=',True)]}">Purchase Prices</label>
                 <div name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}">
