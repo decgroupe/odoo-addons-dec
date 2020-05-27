@@ -161,7 +161,7 @@ class ProductPricelist(models.Model):
                     if not cat:
                         continue
 
-                addto_history(product.id, _('Use rule id {}').format(rule.id))
+                addto_history(product.id, _('Use rule id [{}] {}').format(rule.id, rule.name))
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
                     addto_history(product.id, _('Price is based on another pricelist: {}').format(rule.base_pricelist_id.name))
                     addto_history(product.id, indent=True)
@@ -171,7 +171,7 @@ class ProductPricelist(models.Model):
                 else:
                     # if base option is public price take sale price else cost price of product
                     # price_compute returns the price in the context UoM, i.e. qty_uom_id
-                    addto_history(product.id, _('Price is based on {}').format(rule.base))
+                    addto_history(product.id, _('Price is based on "{}"').format(rule.base))
                     price = product.price_compute(rule.base)[product.id]
                     
                 convert_to_price_uom = (lambda price: product.uom_id._compute_price(price, price_uom))
@@ -188,6 +188,10 @@ class ProductPricelist(models.Model):
                         # complete formula
                         price_limit = price
                         price = (price - (price * (rule.price_discount / 100))) or 0.0
+
+                        if rule.price_discount:
+                            addto_history(product.id, _('Price discounted to {} ({}%)').format(price, rule.price_discount))
+
                         if rule.price_round:
                             price = tools.float_round(price, precision_rounding=rule.price_round)
                             addto_history(product.id, _('Price rounded to {}').format(price))
