@@ -23,11 +23,19 @@ from odoo.exceptions import UserError
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    default_purchase_price = fields.Monetary(
+    default_purchase_price_default_uom = fields.Monetary(
         compute='_compute_default_purchase_price',
-        string='Purchase price',
+        string='Purchase price (default UoM)',
         digits=dp.get_precision('Purchase Price'),
-        help="Purchase price based on default seller pricelist",
+        help=
+        "Purchase price based on default seller pricelist computed with default Unit of Measure",
+    )
+    default_purchase_price_purchase_uom = fields.Monetary(
+        compute='_compute_default_purchase_price',
+        string='Purchase price (purchase UoM)',
+        digits=dp.get_precision('Purchase Price'),
+        help=
+        "Purchase price based on default seller pricelist computed with purchase Unit of Measure",
     )
     default_sell_price = fields.Monetary(
         compute='_compute_default_sell_price',
@@ -60,7 +68,7 @@ class ProductTemplate(models.Model):
     )
 
     @api.multi
-    @api.depends('seller_id', 'standard_price')
+    @api.depends('seller_id', 'standard_price', 'uom_po_id', 'uom_id')
     def _compute_default_purchase_price(self):
         for product in self:
             if isinstance(product.id, models.NewId):
@@ -68,19 +76,26 @@ class ProductTemplate(models.Model):
             if product.seller_id:
                 pricelist = product.seller_id.property_product_pricelist_purchase
                 if pricelist:
-                    price = pricelist.with_context(uom=product.uom_po_id.id
-                                                  ).price_get(
-                                                      product.id,
-                                                      1.0,
-                                                      product.seller_id.id,
-                                                  )[pricelist.id]
+                    product.default_purchase_price_purchase_uom = pricelist.with_context(
+                        uom=product.uom_po_id.id
+                    ).price_get(
+                        product.id,
+                        1.0,
+                        product.seller_id.id,
+                    )[pricelist.id]
+                    product.default_purchase_price_default_uom = pricelist.with_context(
+                        uom=product.uom_id.id
+                    ).price_get(
+                        product.id,
+                        1.0,
+                        product.seller_id.id,
+                    )[pricelist.id]
             else:
-                price = product.standard_price
-
-            product.default_purchase_price = price
+                product.default_purchase_price_purchase_uom = product.standard_price
+                product.default_purchase_price_default_uom = product.standard_price
 
     @api.multi
-    @api.depends('company_id', 'seller_id', 'list_price')
+    @api.depends('company_id', 'seller_id', 'list_price', 'uom_id')
     def _compute_default_sell_price(self):
         for product in self:
             if isinstance(product.id, models.NewId):
@@ -89,16 +104,15 @@ class ProductTemplate(models.Model):
                 and product.company_id and product.company_id.partner_id:
                 pricelist = product.company_id.partner_id.property_product_pricelist
                 if pricelist:
-                    price = pricelist.with_context(uom=product.uom_id.id
-                                                  ).price_get(
-                                                      product.id,
-                                                      1.0,
-                                                      product.seller_id.id,
-                                                  )[pricelist.id]
+                    product.default_sell_price = pricelist.with_context(
+                        uom=product.uom_id.id
+                    ).price_get(
+                        product.id,
+                        1.0,
+                        product.seller_id.id,
+                    )[pricelist.id]
             else:
-                price = product.list_price
-
-            product.default_sell_price = price
+                product.default_sell_price = product.list_price
 
     @api.multi
     def update_bypass(self, state):
