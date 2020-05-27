@@ -25,7 +25,7 @@
             <label for="standard_price" position="replace">
                 <label name="standard_price" class="o_form_label" groups="base.group_user" 
                     attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
-                    style="min-width: 250px;">
+                    style="min-width: 220px;">
                     Purchase Price (PO) / Cost Price (SO)
                 </label>
             </label>
