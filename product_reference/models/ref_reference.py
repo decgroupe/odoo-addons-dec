@@ -95,22 +95,22 @@ class ref_reference(models.Model):
                 use_comments = False
 
             if key:
-                search_value = self.search([('searchvalue', 'ilike', key)])
-                search_category = self.search([('category.name', 'ilike', key)])
-                search_name = self.search([('product.name', 'ilike', key)])
-                search_ciel = self.search([('product.ciel_code', '=', key)])
+                search_value = self.search([('searchvalue', 'ilike', key)]).ids
+                search_category = self.search([('category.name', 'ilike', key)]).ids
+                search_name = self.search([('product.name', 'ilike', key)]).ids
+                search_ciel = self.search([('product.ciel_code', '=', key)]).ids
 
                 if use_comments:
                     search_comments = self.search(
                         [('product.comments', 'ilike', key)]
-                    )
+                    ).ids
                 else:
                     search_comments = []
 
                 if len(key) > 2:
                     search_tags = self.search(
                         [('product.tagging_ids.name', 'ilike', key)]
-                    )
+                    ).ids
                 else:
                     search_tags = []
 
