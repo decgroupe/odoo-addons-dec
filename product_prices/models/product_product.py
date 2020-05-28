@@ -23,17 +23,7 @@ from odoo.exceptions import UserError
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
-    def price_compute(
-        self, price_type, uom=False, currency=False, company=False,
-    ):
-        prices = super().price_compute(price_type, uom, currency, company)
-        # By applying the following formula, we assume that all product
-        # prices that can be set on the product page are set in purchase
-        # Unit Of Measure (uom_po_id):
-        for product in self:
-            prices[product.id] = product.uom_po_id._compute_price(
-                prices[product.id],
-                product.uom_id,
-            )
-        return prices
+    # Override digit field to increase precision
+    standard_price = fields.Float(
+        digits=dp.get_precision('Purchase Price'),
+    )
