@@ -52,7 +52,7 @@ class ProductTemplate(models.Model):
     )
     default_purchase_price_graph = fields.Char(
         compute='_compute_default_purchase_price',
-        string='Purchase Price Graph',
+        string='Purchase Price Graph (Default UoM)',
     )
     default_purchase_price_po_uom = fields.Monetary(
         compute='_compute_default_purchase_price',
@@ -60,6 +60,10 @@ class ProductTemplate(models.Model):
         digits=dp.get_precision('Purchase Price'),
         help='Purchase price based on default seller pricelist computed with '
         '"Purchase Unit of Measure"',
+    )
+    default_purchase_price_graph_po_uom = fields.Char(
+        compute='_compute_default_purchase_price',
+        string='Purchase Price Graph',
     )
     default_sell_price = fields.Monetary(
         compute='_compute_default_sell_price',
@@ -153,13 +157,20 @@ class ProductTemplate(models.Model):
                     graph = history[p.id]['graph']['header'] + \
                             history[p.id]['graph']['body']
                     p.default_purchase_price_graph = '\n'.join(graph)
+
+                    history.clear()
                     p.default_purchase_price_po_uom = \
                         pricelist.get_product_price(
                             p, 1, False, uom_id=p.uom_po_id.id
-                        )
+                        )                    
+                    graph = history[p.id]['graph']['header'] + \
+                            history[p.id]['graph']['body']
+                    p.default_purchase_price_graph_po_uom = '\n'.join(graph)
             else:
                 p.default_purchase_price = p.standard_price
+                p.default_purchase_price_graph = False
                 p.default_purchase_price_po_uom = p.standard_price_po_uom
+                p.default_purchase_price_graph_po_uom = False
 
     @api.multi
     @api.depends(
@@ -186,6 +197,7 @@ class ProductTemplate(models.Model):
                     p.default_sell_price_graph = '\n'.join(graph)
             else:
                 p.default_sell_price = p.list_price
+                p.default_sell_price_graph = False
 
     @api.multi
     def update_bypass(self, state):

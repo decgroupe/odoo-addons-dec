@@ -27,3 +27,9 @@ class ProductProduct(models.Model):
     standard_price = fields.Float(
         digits=dp.get_precision('Purchase Price'),
     )
+
+    @api.multi
+    def open_price_graph(self):
+        self.ensure_one()
+        action = self.env.ref('product_prices.act_window_product_price_graph').read()[0]
+        return action

@@ -11,7 +11,7 @@
                     <field name="product_id" invisible="1"/>
                 </group>
                     <field name="default_sell_price_graph" widget="mermaid" invisible="not context.get('sell_price', False)"/>
-                    <field name="default_purchase_price_graph" widget="mermaid" invisible="not context.get('purchase_price', False)"/>
+                    <field name="default_purchase_price_graph_po_uom" widget="mermaid" invisible="not context.get('purchase_price', False)"/>
                 <footer>
                     <button special="cancel" string="Cancel" class="btn-secondary"/>
                 </footer>
