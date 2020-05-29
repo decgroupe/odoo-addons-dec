@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_price_graph_view">
+        <field name="name">Show product prices computation graph</field>
+        <field name="model">product.price.graph</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Price Graph">
+                <group>
+                    <field name="product_id" invisible="1"/>
+                </group>
+                    <field name="default_sell_price_graph" widget="mermaid" invisible="not context.get('sell_price', False)"/>
+                    <field name="default_purchase_price_graph" widget="mermaid" invisible="not context.get('purchase_price', False)"/>
+                <footer>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="act_window_product_price_graph"
+        name="Price Graph"
+        res_model="product.price.graph"
+        view_mode="form"
+        view_id="product_price_graph_view"
+        target="new"
+    />
+
+</odoo>

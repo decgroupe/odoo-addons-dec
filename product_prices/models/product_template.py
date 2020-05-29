@@ -244,3 +244,9 @@ functionality'
             self.update_bypass(state=vals['pricelist_bypass'])
         res = super().write(vals)
         return res
+
+    @api.multi
+    def open_price_graph(self):
+        self.ensure_one()
+        action = self.env.ref('product_prices.act_window_product_price_graph').read()[0]
+        return action

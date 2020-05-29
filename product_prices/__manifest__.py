@@ -14,6 +14,7 @@
         [
             'views/assets.xml',
             'views/product_template.xml',
+            'wizard/product_price_graph.xml',
         ],
     'installable': True
 }

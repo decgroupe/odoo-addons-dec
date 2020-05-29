@@ -13,8 +13,11 @@
             <field name="list_price" position="after">
                 <field name="pricelist_bypass" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
                 <field name="pricelist_bypass_item" attrs="{'invisible':['|', ('sale_ok','!=',True), ('pricelist_bypass','!=',True)]}" groups="base.group_erp_manager"/>
-                <field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}" class="default_price"/>
-                <field name="default_sell_price_graph" widget="mermaid"/>
+                <label for="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
+                <div name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}">
+                    <field name="default_sell_price" class="default_price"/>
+                    <button name="open_price_graph" string="Open Graph ..." type="object" context="{'sell_price':True}"/>
+                </div>
                 <label for="price_write_uid" string="Edited" groups="base.group_erp_manager" attrs="{'invisible':[('price_write_uid','=',False)]}" />
                 <div name="price_write_editor" groups="base.group_erp_manager" attrs="{'invisible':[('price_write_uid','=',False)]}">
                     <field name="price_write_date" nolabel="1" readonly="1"/> by <field name="price_write_uid" readonly="1"/>
@@ -46,7 +49,7 @@
                     </div>
                     <div>
                         <field name="default_purchase_price_po_uom" class="default_price"/>
-                        <field name="default_purchase_price_graph" widget="mermaid"/>
+                        <button name="open_price_graph" string="Open Graph ..." type="object" context="{'purchase_price':True}"/>
                     </div>
                 </div>
                 <label for="standard_price_write_uid" string="Edited" groups="base.group_erp_manager" attrs="{'invisible':[('standard_price_write_uid','=',False)]}" />
