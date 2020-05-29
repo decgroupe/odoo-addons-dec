@@ -14,6 +14,7 @@
 # Written by Yann Papouin <y.papouin@dec-industrie.com>, May 2020
 
 from datetime import datetime
+from itertools import chain
 
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
@@ -55,12 +56,22 @@ class ProductPricelist(models.Model):
         if not products:
             return {}
 
-        def addto_history(id, message=False, indent=False, unindent=False):
+        def addto_history(id, message=False, indent=False, unindent=False, graph_last=False, action=''):
+            res = message
             if 'history' in self.env.context:
                 if not id in self.env.context['history']:
                     self.env.context['history'][id] = {
                         'steps': [],
                         'indent': 0,
+                        'graph': {
+                            'header': ['stateDiagram'],
+                            'body': [],
+                            'depth': 0,
+                            'state': {
+                                'last': '',
+                                'count': 0,
+                            }
+                        },
                     }
                 ctx = self.env.context['history'][id]
                 if indent:
@@ -69,8 +80,36 @@ class ProductPricelist(models.Model):
                     ctx['indent'] = max(0, ctx['indent'] - 2)
 
                 tab = ' ' * ctx['indent']
+            
+                graph = ctx['graph']
+                state = graph['state']
+                if action == 'open':
+                    graph['depth'] = graph['depth'] + 1
+                elif  action == 'close':
+                    graph['depth'] = graph['depth'] - 1
+                if not graph_last:
+                    graph_last = state.get('last', False)
+
                 if message:
                     ctx['steps'].append(tab+message)
+
+                    state['count'] = state['count'] + 1
+                    state_name = 's{}'.format(state['count'])
+                    graph['header'].append('{}: {}'.format(
+                        state_name,
+                        message.replace(':', ' '),
+                    ))
+                    state['last'] = state_name
+                    res = state_name
+
+                if action == 'open' and graph['depth'] == 1 and state_name:
+                    graph['body'].append('[*] --> {}'.format(state_name))
+                elif graph_last and action == 'close' and graph['depth'] == 0:
+                    graph['body'].append('{} --> [*]'.format(graph_last))
+                elif graph_last and state_name:
+                    graph['body'].append('{} --> {}'.format(graph_last, state_name))
+
+            return res
 
         categ_ids = {}
         for p in products:
@@ -111,6 +150,7 @@ class ProductPricelist(models.Model):
         items = self.env['product.pricelist.item'].browse(item_ids)
         results = {}
         for product, qty, partner in products_qty_partner:
+            addto_history(product.id, _('Using {}').format(self.name), action='open')
             if len(items) > 0:
                 addto_history(product.id, _('{} rule(s) loaded').format(len(items)))
             results[product.id] = 0.0
@@ -134,10 +174,11 @@ class ProductPricelist(models.Model):
             # if Public user try to access standard price from website sale, need to call price_compute.
             # TDE SURPRISE: product can actually be a template
             price = product.price_compute('list_price')[product.id]
-            addto_history(product.id, _('Base price is {}').format(price))
+            last = addto_history(product.id, _('Base price is {}').format(price))
 
             price_uom = self.env['uom.uom'].browse([qty_uom_id])
             for rule in items:
+                addto_history(product.id, _('Parse rule [{}] {}').format(rule.id, rule.name), graph_last=last)
                 if rule.min_quantity and qty_in_product_uom < rule.min_quantity:
                     continue
                 if is_product_template:
@@ -161,7 +202,6 @@ class ProductPricelist(models.Model):
                     if not cat:
                         continue
 
-                addto_history(product.id, _('Use rule id [{}] {}').format(rule.id, rule.name))
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
                     addto_history(product.id, _('Price is based on another pricelist: {}').format(rule.base_pricelist_id.name))
                     addto_history(product.id, indent=True)
@@ -221,7 +261,8 @@ class ProductPricelist(models.Model):
                 price = cur._convert(price, self.currency_id, self.env.user.company_id, date, round=False)
 
             results[product.id] = (price, suitable_rule and suitable_rule.id or False)
-
+        
+            addto_history(product.id, action='close')
         return results
 
 
