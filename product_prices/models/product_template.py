@@ -43,25 +43,33 @@ class ProductTemplate(models.Model):
         help='Are "Default Unit of Measure" and "Purchase Unit of Measure" '
         'identical ?',
     )
-    default_purchase_price_default_uom = fields.Monetary(
+    default_purchase_price = fields.Monetary(
         compute='_compute_default_purchase_price',
-        string='Purchase price (default UoM)',
+        string='Purchase Price (Default UoM)',
         digits=dp.get_precision('Purchase Price'),
         help='Purchase price based on default seller pricelist computed with '
         '"Default Unit of Measure"',
     )
-    default_purchase_price_purchase_uom = fields.Monetary(
+    default_purchase_price_graph = fields.Char(
         compute='_compute_default_purchase_price',
-        string='Purchase price (purchase UoM)',
+        string='Purchase Price Graph',
+    )
+    default_purchase_price_po_uom = fields.Monetary(
+        compute='_compute_default_purchase_price',
+        string='Purchase Price',
         digits=dp.get_precision('Purchase Price'),
         help='Purchase price based on default seller pricelist computed with '
         '"Purchase Unit of Measure"',
     )
     default_sell_price = fields.Monetary(
         compute='_compute_default_sell_price',
-        string='Sell price',
+        string='Sell Price',
         digits=dp.get_precision('Product Price'),
         help="Sell price based on default sell pricelist",
+    )
+    default_sell_price_graph = fields.Char(
+        compute='_compute_default_sell_price',
+        string='Sell Price Graph',
     )
     pricelist_bypass = fields.Boolean(
         'By-pass',
@@ -130,56 +138,54 @@ class ProductTemplate(models.Model):
         'uom_po_id',
     )
     def _compute_default_purchase_price(self):
-        for product in self:
-            if isinstance(product.id, models.NewId):
+        for p in self:
+            if isinstance(p.id, models.NewId):
                 continue
-            if product.seller_id:
-                pricelist = product.seller_id.property_product_pricelist_purchase
+            if p.seller_id:
+                history = {}
+                pricelist = p.seller_id.property_product_pricelist_purchase.\
+                    with_context(history=history)
                 if pricelist:
-                    product.default_purchase_price_purchase_uom = pricelist.with_context(
-                        uom=product.uom_po_id.id
-                    ).price_get(
-                        product.id,
-                        1.0,
-                        product.seller_id.id,
-                    )[pricelist.id]
-                    product.default_purchase_price_default_uom = pricelist.with_context(
-                        uom=product.uom_id.id
-                    ).price_get(
-                        product.id,
-                        1.0,
-                        product.seller_id.id,
-                    )[pricelist.id]
+                    p.default_purchase_price = \
+                        pricelist.get_product_price(
+                            p, 1, False, uom_id=p.uom_id.id
+                        )
+                    graph = history[p.id]['graph']['header'] + \
+                            history[p.id]['graph']['body']
+                    p.default_purchase_price_graph = '\n'.join(graph)
+                    p.default_purchase_price_po_uom = \
+                        pricelist.get_product_price(
+                            p, 1, False, uom_id=p.uom_po_id.id
+                        )
             else:
-                product.default_purchase_price_purchase_uom = product.standard_price
-                product.default_purchase_price_default_uom = product.standard_price
+                p.default_purchase_price = p.standard_price
+                p.default_purchase_price_po_uom = p.standard_price_po_uom
 
     @api.multi
     @api.depends(
         'company_id',
-        'seller_id',
         'list_price',
         'standard_price',
         'uom_id',
-        'uom_po_id',
     )
     def _compute_default_sell_price(self):
-        for product in self:
-            if isinstance(product.id, models.NewId):
+        for p in self:
+            if isinstance(p.id, models.NewId):
                 continue
-            if product.seller_id \
-                and product.company_id and product.company_id.partner_id:
-                pricelist = product.company_id.partner_id.property_product_pricelist
+            if p.company_id and p.company_id.partner_id:
+                history = {}
+                pricelist = p.company_id.partner_id.\
+                    property_product_pricelist.with_context(history=history)
                 if pricelist:
-                    product.default_sell_price = pricelist.with_context(
-                        uom=product.uom_id.id
-                    ).price_get(
-                        product.id,
-                        1.0,
-                        product.seller_id.id,
-                    )[pricelist.id]
+                    p.default_sell_price = \
+                        pricelist.get_product_price(
+                            p, 1, False, uom_id=p.uom_id.id
+                        )
+                    graph = history[p.id]['graph']['header'] + \
+                            history[p.id]['graph']['body']
+                    p.default_sell_price_graph = '\n'.join(graph)
             else:
-                product.default_sell_price = product.list_price
+                p.default_sell_price = p.list_price
 
     @api.multi
     def update_bypass(self, state):

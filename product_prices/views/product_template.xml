@@ -12,11 +12,12 @@
             </field>
             <field name="list_price" position="after">
                 <field name="pricelist_bypass" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
-                <field name="pricelist_bypass_item" attrs="{'invisible':[('sale_ok','!=',True), ('pricelist_bypass','!=',True)]}" groups="base.group_erp_manager"/>
-                <field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
-                <span name="price_write_editor" class="o_form_label" groups="base.group_erp_manager" attrs="{'invisible':[('price_write_uid','=',False)]}" >Edited</span>
+                <field name="pricelist_bypass_item" attrs="{'invisible':['|', ('sale_ok','!=',True), ('pricelist_bypass','!=',True)]}" groups="base.group_erp_manager"/>
+                <field name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}" class="default_price"/>
+                <field name="default_sell_price_graph" widget="mermaid"/>
+                <label for="price_write_uid" string="Edited" groups="base.group_erp_manager" attrs="{'invisible':[('price_write_uid','=',False)]}" />
                 <div name="price_write_editor" groups="base.group_erp_manager" attrs="{'invisible':[('price_write_uid','=',False)]}">
-                    <field name="price_write_date" nolabel="1" readonly="1"/> by <field name="price_write_uid" nolabel="1" readonly="1"/>
+                    <field name="price_write_date" nolabel="1" readonly="1"/> by <field name="price_write_uid" readonly="1"/>
                 </div>
             </field>
             <label for="standard_price" position="before">
@@ -38,18 +39,19 @@
                                 ('same_uom', '=', True)]
                         }"
                 />
-                <span name="default_purchase_price" class="o_form_label" attrs="{'invisible':[('purchase_ok','!=',True)]}">Purchase Prices</span>
+                <label for="default_purchase_price_po_uom" string="Purchase Prices" attrs="{'invisible':[('purchase_ok','!=',True)]}"/>
                 <div name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}">
                     <div>
-                        <field name="default_purchase_price_default_uom" nolabel="1"/>
+                        <small><field name="default_purchase_price" nolabel="1" attrs="{'invisible':[('same_uom','=',True)]}" class="default_price"/></small>
                     </div>
                     <div>
-                        <field name="default_purchase_price_purchase_uom" nolabel="1"/>
+                        <field name="default_purchase_price_po_uom" class="default_price"/>
+                        <field name="default_purchase_price_graph" widget="mermaid"/>
                     </div>
                 </div>
-                <span name="standard_price_write_editor" class="o_form_label" groups="base.group_erp_manager" attrs="{'invisible':[('standard_price_write_uid','=',False)]}" >Edited</span>
+                <label for="standard_price_write_uid" string="Edited" groups="base.group_erp_manager" attrs="{'invisible':[('standard_price_write_uid','=',False)]}" />
                 <div name="standard_price_write_editor" groups="base.group_erp_manager" attrs="{'invisible':[('standard_price_write_uid','=',False)]}">
-                    <field name="standard_price_write_date" nolabel="1" readonly="1"/> by <field name="standard_price_write_uid" nolabel="1" readonly="1"/>
+                    <field name="standard_price_write_date" nolabel="1" readonly="1"/> by <field name="standard_price_write_uid" readonly="1"/>
                 </div>
             </div>
             <field name="uom_id" position="before">
