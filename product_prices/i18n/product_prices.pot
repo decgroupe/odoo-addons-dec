@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 08:22+0000\n"
-"PO-Revision-Date: 2020-05-27 08:22+0000\n"
+"POT-Creation-Date: 2020-05-29 16:43+0000\n"
+"PO-Revision-Date: 2020-05-29 16:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,12 @@ msgstr ""
 #: model:ir.model.fields,help:product_prices.field_product_product__pricelist_bypass
 #: model:ir.model.fields,help:product_prices.field_product_template__pricelist_bypass
 msgid "A bypass action will create a pricelist item to overwrite pricelist computation"
+msgstr "Un bypass va créer une règle de prix net prioritaire sur les dérogations"
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__same_uom
+#: model:ir.model.fields,help:product_prices.field_product_template__same_uom
+msgid "Are \"Default Unit of Measure\" and \"Purchase Unit of Measure\" identical ?"
 msgstr ""
 
 #. module: product_prices
@@ -28,52 +34,126 @@ msgid "By-pass"
 msgstr ""
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:136
+#: code:addons/product_prices/models/product_template.py:221
 #, python-format
 msgid "By-pass {}"
 msgstr ""
 
 #. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_price_graph_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price
+#: model:ir.model.fields,field_description:product_prices.field_product_template__standard_price
+msgid "Cost"
+msgstr "Coût"
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price_po_uom
+#: model:ir.model.fields,field_description:product_prices.field_product_template__standard_price_po_uom
+msgid "Cost (Purchase UoM)"
+msgstr ""
+
+#. module: product_prices
 #: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
 msgid "Cost price and purchase price"
+msgstr "Coût de revient et prix d'achat"
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_template__standard_price
+msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
 msgstr ""
 
 #. module: product_prices
-#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
-msgid "Edit date"
+#: model:ir.model.fields,help:product_prices.field_product_product__standard_price
+msgid "Cost used for stock valuation in standard price and as a first price to set in average/fifo. Also used as a base price for pricelists. Expressed in the default unit of measure of the product."
+msgstr "Également utilisé comme prix de base pour les listes. Exprimé dans l'unité de mesure par défaut du produit."
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: product_prices
+#: model:ir.model,name:product_prices.model_product_price_graph
+msgid "Customize purchase report"
 msgstr ""
 
 #. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_prices
 #: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
-msgid "Editor"
+msgid "Edited"
 msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__id
+msgid "ID"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__market_place
 #: model:ir.model.fields,field_description:product_prices.field_product_template__market_place
 msgid "Market place"
+msgstr "Tarif"
+
+#. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Open Graph ..."
+msgstr ""
+
+#. module: product_prices
+#: model:ir.actions.act_window,name:product_prices.act_window_product_price_graph
+#: model_terms:ir.ui.view,arch_db:product_prices.product_price_graph_view
+msgid "Price Graph"
 msgstr ""
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__price_write_uid
 #: model:ir.model.fields,field_description:product_prices.field_product_template__price_write_uid
 msgid "Price last editor"
-msgstr ""
+msgstr "Modifié par"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__price_write_date
 #: model:ir.model.fields,field_description:product_prices.field_product_template__price_write_date
 msgid "Price write date"
-msgstr ""
+msgstr "Date de modification"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__pricelist_bypass_item
 #: model:ir.model.fields,field_description:product_prices.field_product_template__pricelist_bypass_item
 msgid "Pricelist item"
-msgstr ""
+msgstr "Règle de prix"
 
 #. module: product_prices
 #: model:ir.model,name:product_prices.model_product_product
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__product_id
 msgid "Product"
 msgstr "Article"
 
@@ -83,68 +163,119 @@ msgid "Product Template"
 msgstr "Modèle d'article"
 
 #. module: product_prices
-#: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price_default_uom
-#: model:ir.model.fields,field_description:product_prices.field_product_template__default_purchase_price_default_uom
-msgid "Purchase price (default UoM)"
+#: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price_po_uom
+#: model:ir.model.fields,field_description:product_prices.field_product_template__default_purchase_price_po_uom
+msgid "Purchase Price"
 msgstr ""
 
 #. module: product_prices
-#: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price_purchase_uom
-#: model:ir.model.fields,field_description:product_prices.field_product_template__default_purchase_price_purchase_uom
-msgid "Purchase price (purchase UoM)"
+#: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price
+#: model:ir.model.fields,field_description:product_prices.field_product_template__default_purchase_price
+msgid "Purchase Price (Default UoM)"
 msgstr ""
 
 #. module: product_prices
-#: model:ir.model.fields,help:product_prices.field_product_product__default_purchase_price_default_uom
-#: model:ir.model.fields,help:product_prices.field_product_template__default_purchase_price_default_uom
-msgid "Purchase price based on default seller pricelist computed with default Unit of Measure"
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Purchase Price (PO) / Cost Price (MO)"
 msgstr ""
 
 #. module: product_prices
-#: model:ir.model.fields,help:product_prices.field_product_product__default_purchase_price_purchase_uom
-#: model:ir.model.fields,help:product_prices.field_product_template__default_purchase_price_purchase_uom
-msgid "Purchase price based on default seller pricelist computed with purchase Unit of Measure"
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__default_purchase_price_graph_po_uom
+#: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price_graph_po_uom
+#: model:ir.model.fields,field_description:product_prices.field_product_template__default_purchase_price_graph_po_uom
+msgid "Purchase Price Graph"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price_graph
+#: model:ir.model.fields,field_description:product_prices.field_product_template__default_purchase_price_graph
+msgid "Purchase Price Graph (Default UoM)"
+msgstr ""
+
+#. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "Purchase Prices"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__default_purchase_price
+#: model:ir.model.fields,help:product_prices.field_product_template__default_purchase_price
+msgid "Purchase price based on default seller pricelist computed with \"Default Unit of Measure\""
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__default_purchase_price_po_uom
+#: model:ir.model.fields,help:product_prices.field_product_template__default_purchase_price_po_uom
+msgid "Purchase price based on default seller pricelist computed with \"Purchase Unit of Measure\""
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_product__same_uom
+#: model:ir.model.fields,field_description:product_prices.field_product_template__same_uom
+msgid "Same Uom"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,help:product_prices.field_product_product__standard_price_po_uom
+#: model:ir.model.fields,help:product_prices.field_product_template__standard_price_po_uom
+msgid "Same field than standard_price but expressed in \"Purchase Unit of Measure\"."
 msgstr ""
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__default_sell_price
 #: model:ir.model.fields,field_description:product_prices.field_product_template__default_sell_price
+msgid "Sell Price"
+msgstr ""
+
+#. module: product_prices
+#: model:ir.model.fields,field_description:product_prices.field_product_price_graph__default_sell_price_graph
+#: model:ir.model.fields,field_description:product_prices.field_product_product__default_sell_price_graph
+#: model:ir.model.fields,field_description:product_prices.field_product_template__default_sell_price_graph
+msgid "Sell Price Graph"
+msgstr ""
+
+#. module: product_prices
 #: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
 msgid "Sell price"
-msgstr ""
+msgstr "Prix vendu"
 
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_product__default_sell_price
 #: model:ir.model.fields,help:product_prices.field_product_template__default_sell_price
 msgid "Sell price based on default sell pricelist"
-msgstr ""
+msgstr "Prix de vente basé sur la liste de prix par défaut"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price_write_uid
 #: model:ir.model.fields,field_description:product_prices.field_product_template__standard_price_write_uid
 msgid "Standard price last editor"
-msgstr ""
+msgstr "Modifié par"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price_write_date
 #: model:ir.model.fields,field_description:product_prices.field_product_template__standard_price_write_date
 msgid "Standard price write date"
-msgstr ""
+msgstr "Date de modification"
 
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_product__market_place
 #: model:ir.model.fields,help:product_prices.field_product_template__market_place
 msgid "Tip to know if the product must be displayed on the market place"
-msgstr ""
+msgstr "Indique si ce produit doit apparaitre sur le tarif"
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:149
+#: code:addons/product_prices/models/product_template.py:234
 #, python-format
 msgid "Too many pricelist items for this product!, only one sale pricelist item must exist for this product to disable by-pass functionality"
-msgstr ""
+msgstr "Trop de règles de prix pour ce produit!, seule une règle de vente doit exister pour cet article pour désactiver le by-pass"
 
 #. module: product_prices
 #: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
 msgid "Unit of Measure"
 msgstr "Unité de mesure"
+
+#. module: product_prices
+#: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
+msgid "by"
+msgstr "par"
 
