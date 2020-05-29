@@ -56,7 +56,7 @@ class ProductPricelist(models.Model):
         if not products:
             return {}
 
-        def addto_history(id, message=False, indent=False, unindent=False, graph_last=False, action=''):
+        def addto_history(id, message=False, indent=False, unindent=False, last_state_id=False, action=''):
             res = message
             if 'history' in self.env.context:
                 if not id in self.env.context['history']:
@@ -64,11 +64,12 @@ class ProductPricelist(models.Model):
                         'steps': [],
                         'indent': 0,
                         'graph': {
-                            'header': ['stateDiagram'],
+                            'header': ['graph TD'],
                             'body': [],
+                            'descriptions': {},
                             'depth': 0,
                             'state': {
-                                'last': '',
+                                'last_id': '',
                                 'count': 0,
                             }
                         },
@@ -83,31 +84,33 @@ class ProductPricelist(models.Model):
             
                 graph = ctx['graph']
                 state = graph['state']
+                descriptions = graph['descriptions']
+                state_id= False
+
                 if action == 'open':
                     graph['depth'] = graph['depth'] + 1
                 elif  action == 'close':
                     graph['depth'] = graph['depth'] - 1
-                if not graph_last:
-                    graph_last = state.get('last', False)
+                if not last_state_id:
+                    last_state_id = state.get('last_id', False)
 
                 if message:
                     ctx['steps'].append(tab+message)
 
                     state['count'] = state['count'] + 1
-                    state_name = 's{}'.format(state['count'])
-                    graph['header'].append('{}: {}'.format(
-                        state_name,
-                        message.replace(':', ' '),
-                    ))
-                    state['last'] = state_name
-                    res = state_name
+                    state_id = 's{}'.format(state['count'])
+                    descriptions[state_id] = message
+                    state['last_id'] = state_id
+                    res = state_id
 
-                if action == 'open' and graph['depth'] == 1 and state_name:
-                    graph['body'].append('[*] --> {}'.format(state_name))
-                elif graph_last and action == 'close' and graph['depth'] == 0:
-                    graph['body'].append('{} --> [*]'.format(graph_last))
-                elif graph_last and state_name:
-                    graph['body'].append('{} --> {}'.format(graph_last, state_name))
+                if last_state_id and state_id:
+                    graph['body'].append('{}["{}"] --> {}["{}"]'.\
+                        format(
+                            last_state_id, 
+                            descriptions[last_state_id], 
+                            state_id,
+                            descriptions[state_id], 
+                        ))
 
             return res
 
@@ -174,11 +177,11 @@ class ProductPricelist(models.Model):
             # if Public user try to access standard price from website sale, need to call price_compute.
             # TDE SURPRISE: product can actually be a template
             price = product.price_compute('list_price')[product.id]
-            last = addto_history(product.id, _('Base price is {}').format(price))
+            history_state_id = addto_history(product.id, _('Base price is {}').format(price))
 
             price_uom = self.env['uom.uom'].browse([qty_uom_id])
             for rule in items:
-                addto_history(product.id, _('Parse rule [{}] {}').format(rule.id, rule.name), graph_last=last)
+                addto_history(product.id, _('Parse rule [{}] {}').format(rule.id, rule.name), last_state_id=history_state_id)
                 if rule.min_quantity and qty_in_product_uom < rule.min_quantity:
                     continue
                 if is_product_template:
