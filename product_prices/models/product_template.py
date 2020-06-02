@@ -40,6 +40,8 @@ class ProductTemplate(models.Model):
     # Used only to hide standard_price_po_uom field from view if not needed
     same_uom = fields.Boolean(
         compute='_compute_same_uom',
+        store=True,
+        compute_sudo=True,
         help='Are "Default Unit of Measure" and "Purchase Unit of Measure" '
         'identical ?',
     )
