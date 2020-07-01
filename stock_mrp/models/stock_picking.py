@@ -26,7 +26,7 @@ class StockPicking(models.Model):
     )
     production_count = fields.Integer(
         compute='_compute_production_ids',
-        string='Manufacturing Orders',
+        string='Number of Manufacturing Orders',
     )
 
     @api.depends('group_id')
