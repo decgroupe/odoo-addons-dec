@@ -28,7 +28,7 @@ class StockMove(models.Model):
     final_location = fields.Char(
         'Final location',
         compute='_compute_final_location',
-        help='Quantity in the default UoM of the product',
+        help='Get final location name',
         readonly=True,
     )
 
