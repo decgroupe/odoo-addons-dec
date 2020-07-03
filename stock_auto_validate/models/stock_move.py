@@ -25,7 +25,10 @@ from odoo import api, fields, models, _
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    auto_validate = fields.Boolean('Auto Validate')
+    auto_validate = fields.Boolean(
+        'Auto Validate',
+        help="Also validate linked moves when this move is validated.",
+    )
 
     def _action_done(self):
         res = super()._action_done()

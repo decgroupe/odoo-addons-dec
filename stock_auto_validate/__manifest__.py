@@ -6,6 +6,6 @@
     'summary': '''Auto validate linked stock moves''',
     'depends': ['stock'],
     #'force_migration':'12.0.0.0.0',
-    'data': [],
+    'data': ['views/stock_move.xml', ],
     'installable': True
 }
