@@ -28,10 +28,16 @@ class StockMove(models.Model):
     auto_validate = fields.Boolean('Auto Validate')
 
     def _action_done(self):
-        moves_todo = super()._action_done()
-        next_moves_todo = moves_todo.\
+        res = super()._action_done()
+        auto_validated_moves = res.\
             mapped('move_dest_ids').\
             filtered(lambda m: m.auto_validate and m.state == 'assigned')
-        if next_moves_todo:
-            next_moves_todo._action_done()
-        return moves_todo
+        for move in auto_validated_moves:
+            # Apply logic from addons/stock/wizard/stock_immediate_transfer.py
+            # and process every move lines
+            for move_line in move.move_line_ids:
+                move_line.qty_done = move_line.product_uom_qty
+        # Finally call action_done
+        if auto_validated_moves:
+            auto_validated_moves._action_done()
+        return res
