@@ -19,7 +19,7 @@ msgstr ""
 #: model:ir.model.fields,help:product_legacy_routes.field_product_product__procure_method
 #: model:ir.model.fields,help:product_legacy_routes.field_product_template__procure_method
 msgid "'Make to Stock': When needed, take from the stock or wait until re-supplying. 'Make to Order': When needed, purchase or produce for the procurement request."
-msgstr "'Sur stock' : au besoin, on prend dans le stock ou on attend jusqu'au prochain réapprovisionnement. 'À la demande\': au besoin, on achète ou on fabrique selon la demande."
+msgstr "'Sur stock' : au besoin, on prend dans le stock ou on attend jusqu'au prochain réapprovisionnement. 'À la demande': au besoin, on achète ou on fabrique selon la demande."
 
 #. module: product_legacy_routes
 #: code:addons/product_legacy_routes/models/product_template.py:58
