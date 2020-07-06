@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_workcenter_kanban_view">
+        <field name="name">mrp.workcenter.kanban</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="type">kanban</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="replace">
+            <kanban class="oe_background_grey o_kanban_dashboard o_workcenter_kanban" create="0">
+                <field name="name"/>
+                <field name="color"/>
+                <field name="production_count"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
+                            <div t-attf-class="o_kanban_card_header o_kanban_record_top">
+                                <div class="o_kanban_record_headings o_kanban_card_header_title">
+                                    <span class="o_primary ml8" style="display: inline-block">
+                                        <field name="name"/>
+                                    </span>
+                                </div>
+                                <div class="o_kanban_manage_button_section">
+                                    <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_content">
+                                <div class="row mb16">
+                                    <div class="col-6 o_kanban_primary_left">
+                                        <div class="btn-group" name="o_wo">
+                                        <t t-if="record.production_count.raw_value &gt; 0">
+                                            <button class="btn btn-primary" name="%(mrp.action_work_orders)d" type="action" context="{'search_default_ready': 1, 'search_default_progress': 1}">
+                                                <span>WORK ORDERS</span>
+                                            </button>
+                                        </t>
+                                        <t  t-if="record.production_count.raw_value &lt;= 0">
+                                            <button class="btn btn-warning" name="%(mrp.act_product_mrp_production_workcenter)d" type="action">
+                                                <span>PLAN ORDERS</span>
+                                            </button>
+                                        </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+
