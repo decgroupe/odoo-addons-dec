@@ -8,9 +8,10 @@
         <field name="arch" type="xml">
             <timeline date_start="date_planned_start"
                     date_stop="date_planned_finished"
-                    default_group_by="user_id"
+                    default_group_by="assigned_workcenter_id"
                     event_open_popup="true"
-                    colors="#ec7063: user_id == false; #2ecb71: state == 'done';">
+                    colors="#ec7063: assigned_workcenter_id == false; #2ecb71: state == 'done';">
+                <field name="assigned_workcenter_id"/>
                 <field name="user_id"/>
                 <field name="bom_id"/>
                 <field name="bom_name"/>

@@ -6,6 +6,7 @@
     'summary': "Timeline view for production",
     'depends': [
         'mrp',
+        'mrp_workcenter',
         'web_timeline',
     ],
     "data": [
