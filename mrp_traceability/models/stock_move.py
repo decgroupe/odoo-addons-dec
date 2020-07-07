@@ -16,9 +16,9 @@
 
 from odoo import api, fields, models, _
 from .emoji_helper import (
-    production_to_emoji,
-    purchase_to_emoji,
-    stockmove_to_emoji,
+    production_state_to_emoji,
+    purchase_state_to_emoji,
+    stockmove_state_to_emoji,
     product_type_to_emoji,
 )
 from .html_helper import (div, ul, li, small)
@@ -34,43 +34,42 @@ class StockMove(models.Model):
         store=False,
     )
 
-    def _get_mto_mrp_status(self, move):
-        if move.created_purchase_line_id:
-            p = move.created_purchase_line_id
+    def _get_mto_mrp_status(self):
+        if self.created_purchase_line_id:
+            p = self.created_purchase_line_id
             state = dict(p._fields['state']._description_selection(self.env)
                         ).get(p.state)
             res = li('🛒{0} ' + small('{1}{2}')).format(
                 p.order_id.name,
-                purchase_to_emoji(p),
+                purchase_state_to_emoji(p.state),
                 state,
             )
-        elif move.created_production_id:
-            p = move.created_production_id
+        elif self.created_production_id:
+            p = self.created_production_id
             state = dict(p._fields['state']._description_selection(self.env)
                         ).get(p.state)
             res = li('⚙️{0} ' + small('{1}{2}')).format(
                 p.name,
-                production_to_emoji(p),
+                production_state_to_emoji(p.state),
                 state,
             )
         else:
-            res = li('❓(???)[{0}]').format(move.state)
+            res = li('❓(???)[{0}]').format(self.state)
         return res
 
-    def _get_mts_mrp_status(self, move):
-        #procure_method = dict(move._fields['procure_method']._description_selection(self.env)).get(move.procure_method)
+    def _get_mts_mrp_status(self):
         procure_method = 'Stock'
-        state = dict(move._fields['state']._description_selection(self.env)
-                    ).get(move.state)
+        state = dict(self._fields['state']._description_selection(self.env)
+                    ).get(self.state)
         res = li('📦{0} ' + small('{1}{2}')).format(
             procure_method,
-            stockmove_to_emoji(move),
+            stockmove_state_to_emoji(self.state),
             state,
         )
         pre = False
-        if move.created_purchase_line_archive and not move.created_purchase_line_id:
+        if self.created_purchase_line_archive and not self.created_purchase_line_id:
             pre = '♻️PO/'
-        elif move.created_production_archive and not move.created_production_id:
+        elif self.created_production_archive and not self.created_production_id:
             pre = '♻️MO/'
         if pre:
             res = ('{0}' + li('{1}{2}')).format(res, pre, _('canceled'))
@@ -81,12 +80,12 @@ class StockMove(models.Model):
         for move in self:
             res = '...'
             if move.procure_method == 'make_to_order':
-                res = self._get_mto_mrp_status(move)
+                res = move._get_mto_mrp_status()
             elif move.procure_method == 'make_to_stock':
-                res = self._get_mts_mrp_status(move)
+                res = move._get_mts_mrp_status()
 
             product_type = dict(
-                move._fields['product_type']._description_selection(self.env)
+                move._fields['product_type']._description_selection(move.env)
             ).get(move.product_type)
 
             head = '{0}{1} ({2})'.format(
@@ -119,7 +118,8 @@ class StockMove(models.Model):
         return action
 
     def action_view_picking(self):
-        action = self.env.ref('mrp_traceability.stock_move_open_picking').read()[0]
+        action = self.env.ref('mrp_traceability.stock_move_open_picking'
+                             ).read()[0]
         form = self.env.ref('stock.view_picking_form')
         action['views'] = [(form.id, 'form')]
         action['res_id'] = self.picking_id.id

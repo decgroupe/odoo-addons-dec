@@ -16,8 +16,8 @@
 
 # ⭕
 
-def production_to_emoji(production):
-    res = production.state
+def production_state_to_emoji(state):
+    res = state
     if res == 'confirmed':
         res = '🏳️'
     elif res == 'planned':
@@ -30,8 +30,8 @@ def production_to_emoji(production):
         res = '❌'
     return res
 
-def purchase_to_emoji(purchase):
-    res = purchase.state
+def purchase_state_to_emoji(state):
+    res = state
     if res == 'draft':
         res = '🏳️'
     elif res == 'sent':
@@ -46,8 +46,8 @@ def purchase_to_emoji(purchase):
         res = '❌'
     return res
 
-def stockmove_to_emoji(move):
-    res = move.state
+def stockmove_state_to_emoji(state):
+    res = state
     if res == 'draft':
         res = '🏳️'
     elif res == 'waiting':
