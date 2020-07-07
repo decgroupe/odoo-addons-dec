@@ -34,67 +34,80 @@ class StockMove(models.Model):
         store=False,
     )
 
-    def _get_mto_mrp_status(self):
+    def _get_mto_mrp_status(self, html=False):
+        res = []
         if self.created_purchase_line_id:
             p = self.created_purchase_line_id
             state = dict(p._fields['state']._description_selection(self.env)
                         ).get(p.state)
-            res = li('🛒{0} ' + small('{1}{2}')).format(
-                p.order_id.name,
-                purchase_state_to_emoji(p.state),
-                state,
-            )
+            head = '🛒{0}'.format(p.order_id.name)
+            desc = '{0}{1}'.format(purchase_state_to_emoji(p.state), state)
+            if html:
+                res.append('{0} {1}'.format(head, small(desc)))
+            else:
+                res.append('{0} {1}'.format(head, desc))
         elif self.created_production_id:
             p = self.created_production_id
             state = dict(p._fields['state']._description_selection(self.env)
                         ).get(p.state)
-            res = li('⚙️{0} ' + small('{1}{2}')).format(
-                p.name,
-                production_state_to_emoji(p.state),
-                state,
-            )
+            head = '⚙️{0}'.format(p.name)
+            desc = '{0}{1}'.format(production_state_to_emoji(p.state), state)
+            if html:
+                res.append('{0} {1}'.format(head, small(desc)))
+            else:
+                res.append('{0} {1}'.format(head, desc))
         else:
-            res = li('❓(???)[{0}]').format(self.state)
+            res.append('❓(???)[{0}]'.format(self.state))
         return res
 
-    def _get_mts_mrp_status(self):
-        procure_method = 'Stock'
+    def _get_mts_mrp_status(self, html=False):
+        res = []
         state = dict(self._fields['state']._description_selection(self.env)
                     ).get(self.state)
-        res = li('📦{0} ' + small('{1}{2}')).format(
-            procure_method,
-            stockmove_state_to_emoji(self.state),
-            state,
-        )
+
+        head = '📦{0}'.format('Stock')
+        desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
+        if html:
+            res.append('{0} {1}'.format(head, small(desc)))
+        else:
+            res.append('{0} {1}'.format(head, desc))
         pre = False
         if self.created_purchase_line_archive and not self.created_purchase_line_id:
             pre = '♻️PO/'
         elif self.created_production_archive and not self.created_production_id:
             pre = '♻️MO/'
         if pre:
-            res = ('{0}' + li('{1}{2}')).format(res, pre, _('canceled'))
+            res.append('{0}{1}'.format(pre, _('canceled')))
         return res
+
+    def get_mrp_status(self, html=False):
+        status = []
+        if self.procure_method == 'make_to_order':
+            status = self._get_mto_mrp_status(html)
+        elif self.procure_method == 'make_to_stock':
+            status = self._get_mts_mrp_status(html)
+
+        product_type = dict(
+            self._fields['product_type']._description_selection(self.env)
+        ).get(self.product_type)
+
+        head = '{0}{1}'.format(
+            product_type_to_emoji(self.product_type),
+            product_type,
+        )
+        if self.user_has_groups('base.group_no_one'):
+            head = '{0} ({1})'.format(head, self.id)
+        status.insert(0, head)
+        if html:
+            list_as_html = ''.join(list(map(li, status)))
+            return div(ul(list_as_html), 'd_move d_move_' + self.state)
+        else:
+            return '\n'.join(status)
 
     @api.multi
     def _compute_mrp_status(self):
         for move in self:
-            res = '...'
-            if move.procure_method == 'make_to_order':
-                res = move._get_mto_mrp_status()
-            elif move.procure_method == 'make_to_stock':
-                res = move._get_mts_mrp_status()
-
-            product_type = dict(
-                move._fields['product_type']._description_selection(move.env)
-            ).get(move.product_type)
-
-            head = '{0}{1} ({2})'.format(
-                product_type_to_emoji(move.product_type),
-                product_type,
-                move.id,
-            )
-            status = ul('{0}{1}').format(li(head), res)
-            move.mrp_status = div(status, 'd_move d_move_' + move.state)
+            move.mrp_status = move.get_mrp_status(html=True)
 
     def action_view_created_item(self):
         self.ensure_one()
