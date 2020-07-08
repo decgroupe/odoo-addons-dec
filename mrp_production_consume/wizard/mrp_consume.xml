@@ -13,7 +13,7 @@
                         <field name="product_id" readonly="1"/>
                         <label for="product_qty"/>
                         <div class="o_row">
-                            <field name="product_qty" attrs="{'readonly': [('serial', '=', True)]}"/>
+                            <field name="product_qty" readonly="1" attrs="{'readonly': [('serial', '=', True)]}"/>
                             <field name="product_uom_id" readonly="1" groups="uom.group_uom"/>
                         </div>
                         <field name="product_tracking" invisible="1"/>
@@ -35,7 +35,7 @@
                     </field>
                 </group>
                 <footer>
-                    <button name="do_consume" type="object" string="Record Production" class="btn-primary"/>
+                    <button name="do_consume" type="object" string="Consume" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
