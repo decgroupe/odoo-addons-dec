@@ -49,20 +49,11 @@ class MrpConsume(models.TransientModel):
     product_tracking = fields.Selection(related="product_id.tracking", readonly=True)
 
     @api.multi
-    def do_produce(self):
-        # Nothing to do for lots since values are created using default data (stock.move.lots)
-        quantity = self.product_qty
-        if float_compare(quantity, 0, precision_rounding=self.product_uom_id.rounding) <= 0:
-            raise UserError(_("The production order for '%s' has no quantity specified.") % self.product_id.display_name)
-        for move in self.production_id.move_finished_ids:
-            if move.product_id.tracking == 'none' and move.state not in ('done', 'cancel'):
-                rounding = move.product_uom.rounding
-                if move.product_id.id == self.production_id.product_id.id:
-                    move.quantity_done += float_round(quantity, precision_rounding=rounding)
-                elif move.unit_factor:
-                    # byproducts handling
-                    move.quantity_done += float_round(quantity * move.unit_factor, precision_rounding=rounding)
+    def do_consume(self):
+        # Check finished move where consumed move lines should be generated
         self.check_finished_move_lots()
+        # Post inventory immediatly to execute _action_done on stock moves
+        self.post_inventory()
         if self.production_id.state == 'confirmed':
             self.production_id.write({
                 'state': 'progress',
@@ -138,7 +129,7 @@ class MrpConsume(models.TransientModel):
                 lines.append({
                     'move_id': move.id,
                     'qty_to_consume': to_consume_in_line,
-                    'qty_done': to_consume_in_line,
+                    'qty_done': 0, #to_consume_in_line,
                     'lot_id': move_line.lot_id.id,
                     'product_uom_id': move.product_uom.id,
                     'product_id': move.product_id.id,
@@ -151,7 +142,7 @@ class MrpConsume(models.TransientModel):
                         lines.append({
                             'move_id': move.id,
                             'qty_to_consume': 1,
-                            'qty_done': 1,
+                            'qty_done': 0, #1,
                             'product_uom_id': move.product_uom.id,
                             'product_id': move.product_id.id,
                         })
@@ -160,7 +151,7 @@ class MrpConsume(models.TransientModel):
                     lines.append({
                         'move_id': move.id,
                         'qty_to_consume': qty_to_consume,
-                        'qty_done': qty_to_consume,
+                        'qty_done': 0, #qty_to_consume,
                         'product_uom_id': move.product_uom.id,
                         'product_id': move.product_id.id,
                     })

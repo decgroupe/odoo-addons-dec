@@ -35,7 +35,7 @@
                     </field>
                 </group>
                 <footer>
-                    <button name="do_produce" type="object" string="Record Production" class="btn-primary"/>
+                    <button name="do_consume" type="object" string="Record Production" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
