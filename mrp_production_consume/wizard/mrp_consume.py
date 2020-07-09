@@ -53,6 +53,41 @@ class MrpConsume(models.TransientModel):
         for pl in self.produce_line_ids:
             pl.qty_done = 0
 
+    @api.multi
+    def action_minimize_qty_done(self):
+        self.ensure_one()
+        for pl in self.produce_line_ids:
+            pl.qty_done = 0
+        return self._reopen()
+
+    @api.multi
+    def action_maximize_qty_done_reserved(self):
+        self.ensure_one()
+        for pl in self.produce_line_ids:
+            pl.qty_done = pl.qty_reserved
+        return self._reopen()
+
+    @api.multi
+    def action_maximize_qty_done_to_consume(self):
+        self.ensure_one()
+        for pl in self.produce_line_ids:
+            pl.qty_done = pl.qty_to_consume
+        return self._reopen()
+
+    @api.multi
+    def _reopen(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_id': self.id,
+            'res_model': self._name,
+            'target': 'new',
+            'context': {
+                'default_model': self._name,
+            },
+        }
+
 
 class MrpConsumeLine(models.TransientModel):
     _name = "mrp.consume.line"
@@ -60,3 +95,24 @@ class MrpConsumeLine(models.TransientModel):
     _description = "Consume Production Line"
 
     product_produce_id = fields.Many2one('mrp.consume')
+    is_minimized = fields.Boolean(compute='_compute_is_m_status')
+    is_maximized = fields.Boolean(compute='_compute_is_m_status')
+
+    @api.depends('qty_done', 'qty_reserved', 'qty_to_consume')
+    def _compute_is_m_status(self):
+        for line in self:
+            line.is_minimized = (line.qty_done == 0)
+            line.is_maximized = (line.qty_done == line.qty_reserved) \
+                                or (line.qty_done == line.qty_to_consume)
+
+    @api.multi
+    def action_minimize_qty_done(self):
+        self.ensure_one()
+        self.qty_done = 0
+        return self.product_produce_id._reopen()
+
+    @api.multi
+    def action_maximize_qty_done_reserved(self):
+        self.ensure_one()
+        self.qty_done = self.qty_reserved
+        return self.product_produce_id._reopen()

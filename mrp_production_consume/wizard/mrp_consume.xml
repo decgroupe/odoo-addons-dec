@@ -25,17 +25,59 @@
                         <tree editable="top" delete="0" decoration-danger="(qty_to_consume &lt; qty_done) or (qty_done &gt; qty_reserved)">
                             <field name="product_id" attrs="{'readonly': [('move_id', '!=', False)]}" required="1" domain="[('id', '!=', parent.product_id)]" force_save="1"/>
                             <field name="product_tracking" invisible="1"/>
-                            <field name="lot_id" attrs="{'readonly': [('product_tracking', '=', 'none')]}" context="{'default_product_id': product_id}" domain="[('product_id', '=', product_id)]" groups="stock.group_production_lot"/>
-                            <field name="qty_to_consume" readonly="1"/>
-                            <field name="qty_reserved" readonly="1"/>
+                            <field name="lot_id" attrs="{'readonly': [('product_tracking', '=', 'none')]}" force_save="1" context="{'default_product_id': product_id}" domain="[('product_id', '=', product_id)]" groups="stock.group_production_lot"/>
+                            <field name="qty_to_consume" readonly="1" force_save="1"/>
+                            <field name="qty_reserved" readonly="1" force_save="1"/>
+                            <field name="is_minimized" invisible="1"/>
+                            <button 
+                                name="action_minimize_qty_done" 
+                                string="Minimize" 
+                                type="object"
+                                attrs="{'invisible': [('is_minimized', '=', True)]}"
+                                icon="fa-backward">
+                            </button>
                             <field name="qty_done"/>
+                            <field name="is_maximized" invisible="1"/>
+                            <button 
+                                name="action_maximize_qty_done_reserved" 
+                                string="Maximize" 
+                                type="object"
+                                attrs="{'invisible': [('is_maximized', '=', True)]}"
+                                icon="fa-forward">
+                            </button>
                             <field name="product_uom_id" readonly="1" force_save="1" groups="uom.group_uom"/>
                             <field name="move_id" invisible="1"/>
                         </tree>
                     </field>
                 </group>
+                <group col="3">
+                    <button 
+                        name="action_minimize_qty_done" 
+                        string="Minimize all" 
+                        type="object"
+                        icon="fa-fast-backward">
+                    </button>
+                    <button 
+                        name="action_maximize_qty_done_reserved" 
+                        string="Maximize all (reserved only)" 
+                        type="object"
+                        icon="fa-fast-forward">
+                    </button>
+                    <button 
+                        name="action_maximize_qty_done_to_consume" 
+                        string="Maximize all" 
+                        type="object"
+                        icon="fa-fast-forward">
+                    </button>
+                </group>
                 <footer>
-                    <button name="do_consume" type="object" string="Consume" class="btn-primary"/>
+                    <button 
+                        name="do_consume" 
+                        string="Consume" 
+                        confirm="Are you sure that you want to consume these lines?"
+                        type="object" 
+                        class="btn-primary">
+                    </button>
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
