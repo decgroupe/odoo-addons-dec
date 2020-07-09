@@ -23,16 +23,6 @@ _logger = logging.getLogger(__name__)
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    @api.multi
-    def _generate_moves(self):
-        super(MrpProduction, self)._generate_moves()
-        for production in self:
-            # Assign consumable immediatly
-            consu_move_ids = production.move_raw_ids.filtered(
-                lambda r: r.product_type == 'consu'
-            )
-            consu_move_ids._action_assign()
-
     def _generate_raw_moves(self, exploded_lines):
         moves = super(MrpProduction, self)._generate_raw_moves(exploded_lines)
         return moves
