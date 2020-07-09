@@ -7,6 +7,7 @@
     'depends': [
         'product',
         'product_pricelist',
+        'dec',
     ],
     'data':
         [
