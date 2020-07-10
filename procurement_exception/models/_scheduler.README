@@ -1,0 +1,54 @@
+SIMPLE ANALYZE OF ODOO'S NEW PROCUREMENT PROCESS
+
+#   addons\stock\wizard\stock_scheduler_compute.py
+('stock.scheduler.compute')._procure_calculation_orderpoint 
+    """ 
+    Run Scheduler Manually and internally call:
+    ('procurement.group').run_scheduler()
+    """
+
+# addons\stock\models\stock_rule.py
+('procurement.group').run_scheduler()
+    """ 
+    Call the scheduler as SUPERUSER in order to check the running procurements 
+    (super method), to check the minimum stock rules and the availability 
+    of moves. 
+    """
+
+# addons\stock_account\models\stock.py
+('procurement.group')._run_scheduler_tasks()
+    """ Override to call fifo_vacuum  """
+
+# addons\stock\models\stock_rule.py
+('procurement.group')._run_scheduler_tasks()
+    """ 
+    Minimum stock rules => _procure_orderpoint_confirm
+        Search all confirmed stock_moves and try to assign them
+        Merge duplicated quants 
+    """
+
+# addons\stock\models\stock_rule.py
+('procurement.group')._procure_orderpoint_confirm()
+    """ 
+    Create procurements based on orderpoints.
+
+        foreach orderpoint:
+            ('procurement.group').run()
+
+    if an error is raised, then it is stored as activity using _log_next_activity
+    """
+
+# addons\stock\models\stock_rule.py
+('procurement.group').run()
+    """
+    Run method is dynamically called based on action name:
+
+    action = 'pull'         : ('stock.rule')._run_pull()
+    action = 'pull_push'    : ('stock.rule')._run_pull() # Special case (action renamed)
+    action = 'buy'          : ('stock.rule')._run_buy()
+    action = 'push'         : ('stock.rule')._run_push()
+    action = 'manufacture'  : ('stock.rule')._run_manufacture()
+
+    if an error is raised, then logged to console:
+        _logger.error("The method _run_%s doesn't exist on the procument rules" % action)
+    """

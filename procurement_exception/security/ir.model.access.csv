@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_procurement_exception_user,Read and write access to procurement exception for User,model_procurement_exception,base.group_user,1,0,0,0
+access_procurement_exception_manager,Full access to procurement exception for Manager,model_procurement_exception,base.group_erp_manager,1,1,1,1

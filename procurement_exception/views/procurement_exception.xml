@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="procurement_exception_tree_view" >
+        <field name="name">procurement.exception.tree</field>
+        <field name="model">procurement.exception</field>
+        <field name="arch" type="xml">
+            <tree string="Procurement Exceptions">
+                <field name="regex_pattern"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="procurement_exception_form_view" >
+        <field name="name">procurement.exception.form</field>
+        <field name="model">procurement.exception</field>
+        <field name="arch" type="xml">
+            <form string="Procurement Exception">
+                <sheet>
+                    <group>
+                        <field name="regex_pattern"/>
+                        <field name="user_id"/>
+                    </group>
+                    <div>
+                        Test your expression on <a href="https://regex101.com/">regex101.com</a>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="procurement_exception_search_view">
+        <field name="name">procurement.exception.search</field>
+        <field name="model">procurement.exception</field>
+        <field name="arch" type="xml">
+            <search string="Procurement Exception">
+                <field name="regex_pattern"/>
+                <field name="user_id"/>
+                <separator/>
+                <group string="Group By" name="groupby">
+                    <filter string="User" name="groupby_user_id" context="{'group_by':'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_window_procurement_exception" >
+        <field name="name">Procurement Exceptions Redirections</field>
+        <field name="res_model">procurement.exception</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="procurement_exception_tree_view"/>
+        <field name="search_view_id" ref="procurement_exception_search_view"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_window_view_procurement_exception_tree" >
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="procurement_exception_tree_view"/>
+        <field name="act_window_id" ref="act_window_procurement_exception"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_window_view_procurement_exception_form" >
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="procurement_exception_form_view"/>
+        <field name="act_window_id" ref="act_window_procurement_exception"/>
+    </record>
+
+</odoo>
