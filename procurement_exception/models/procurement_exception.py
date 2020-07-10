@@ -26,6 +26,13 @@ _logger = logging.getLogger(__name__)
 class ProcurementException(models.Model):
     _name = 'procurement.exception'
     _description = "Procurement Exception"
+    _order = "sequence, id"
+
+    sequence = fields.Integer(
+        'Sequence',
+        default=lambda self: self._default_sequence(),
+        help="Gives the sequence order when displaying."
+    )
 
     regex_pattern = fields.Char(
         string='RegEx',
@@ -38,6 +45,11 @@ class ProcurementException(models.Model):
         string='User',
         ondelete='cascade',
     )
+
+    @api.model
+    def _default_sequence(self):
+        rule = self.search([], limit=1, order="sequence DESC")
+        return (rule.sequence + 1)
 
     def match(self, message):
         self.ensure_one()

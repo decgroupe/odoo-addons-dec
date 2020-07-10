@@ -6,6 +6,7 @@
         <field name="model">procurement.exception</field>
         <field name="arch" type="xml">
             <tree string="Procurement Exceptions">
+                <field name="sequence" widget='handle'/>
                 <field name="regex_pattern"/>
                 <field name="user_id"/>
             </tree>
@@ -19,6 +20,7 @@
             <form string="Procurement Exception">
                 <sheet>
                     <group>
+                        <field name="sequence"/>
                         <field name="regex_pattern"/>
                         <field name="user_id"/>
                     </group>
