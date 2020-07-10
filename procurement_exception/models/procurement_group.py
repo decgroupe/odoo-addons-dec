@@ -43,14 +43,14 @@ class ProcurementGroup(models.Model):
                 res = super().run(product_id, product_qty, product_uom, \
                     location_id, name, origin, values)
         except UserError as error:
-            message = error.name
-            _logger.info(message)
+            note = error.name
+            _logger.info(note)
             # Try to intercept exception
             redirections = self.env['procurement.exception'].search([])
             for redirection in redirections:
-                if redirection.user_id and redirection.match(message):
+                if redirection.user_id and redirection.match(product_id, note):
                     self._log_next_activity(
-                        product_id, message, redirection.user_id
+                        product_id, note, redirection.user_id
                     )
                     # Stop after first match
                     break
