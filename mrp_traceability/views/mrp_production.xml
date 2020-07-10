@@ -7,7 +7,7 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
-            <field name="origing" position="after">
+            <field name="origin" position="after">
                 <field name="orderpoint_id" readonly="1"/>
             </field>
             <xpath expr="//field[@name='move_raw_ids']" position="attributes">
@@ -30,12 +30,19 @@
             <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
                 <field name="created_purchase_line_id" invisible="1"/>
                 <field name="created_production_id" invisible="1"/>
+                <field name="orderpoint_created_purchase_line_ids" invisible="1"/>
+                <field name="orderpoint_created_production_ids" invisible="1"/>
                 <field name="mrp_status" class="d_mrp_status"/>
                 <button 
                     name="action_view_created_item" 
                     string="Open" 
                     type="object"
-                    attrs="{'invisible': [('created_purchase_line_id', '=', False), ('created_production_id', '=', False)]}"
+                    attrs="{'invisible': [
+                            ('created_purchase_line_id', '=', False),
+                            ('created_production_id', '=', False),
+                            ('orderpoint_created_purchase_line_ids', '=', False),
+                            ('orderpoint_created_production_ids', '=', False),
+                        ]}"
                     icon="fa-external-link">
                 </button>
                 <field name="state" invisible="1"/>

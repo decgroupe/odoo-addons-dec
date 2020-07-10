@@ -24,6 +24,13 @@ from .emoji_helper import (
 from .html_helper import (div, ul, li, small)
 
 
+def format_hd(head, desc, html):
+    if html:
+        return '{0} {1}'.format(head, small(desc))
+    else:
+        return '{0} {1}'.format(head, desc)
+
+
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
@@ -33,44 +40,62 @@ class StockMove(models.Model):
         default='',
         store=False,
     )
+    orderpoint_created_production_ids = fields.Many2many(
+        'mrp.production',
+        'Created Production Orders by Orderpoint',
+        compute='_compute_orderpoint_created_orders',
+    )
+    orderpoint_created_purchase_line_ids = fields.Many2many(
+        'purchase.order.line',
+        'Created Purchase Order Lines by Orderpoint',
+        compute='_compute_orderpoint_created_orders',
+    )
+
+    def _get_production_status(self, production_id):
+        p = production_id
+        state = dict(p._fields['state']._description_selection(self.env)).get(
+            p.state
+        )
+        head = '⚙️{0}'.format(p.name)
+        desc = '{0}{1}'.format(production_state_to_emoji(p.state), state)
+        return head, desc
+
+    def _get_purchase_status(self, purchase_line_id):
+        p = purchase_line_id
+        state = dict(p._fields['state']._description_selection(self.env)).get(
+            p.state
+        )
+        head = '🛒{0}'.format(p.order_id.name)
+        desc = '{0}{1}'.format(purchase_state_to_emoji(p.state), state)
+        return head, desc
+
+    def _get_stock_status(self):
+        state = dict(self._fields['state']._description_selection(self.env)
+                    ).get(self.state)
+        head = '📦{0}'.format('Stock')
+        desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
+        return head, desc
 
     def _get_mto_mrp_status(self, html=False):
         res = []
         if self.created_purchase_line_id:
-            p = self.created_purchase_line_id
-            state = dict(p._fields['state']._description_selection(self.env)
-                        ).get(p.state)
-            head = '🛒{0}'.format(p.order_id.name)
-            desc = '{0}{1}'.format(purchase_state_to_emoji(p.state), state)
-            if html:
-                res.append('{0} {1}'.format(head, small(desc)))
-            else:
-                res.append('{0} {1}'.format(head, desc))
+            head, desc = self._get_purchase_status(
+                self.created_purchase_line_id
+            )
+            res.append(format_hd(head, desc, html))
         elif self.created_production_id:
-            p = self.created_production_id
-            state = dict(p._fields['state']._description_selection(self.env)
-                        ).get(p.state)
-            head = '⚙️{0}'.format(p.name)
-            desc = '{0}{1}'.format(production_state_to_emoji(p.state), state)
-            if html:
-                res.append('{0} {1}'.format(head, small(desc)))
-            else:
-                res.append('{0} {1}'.format(head, desc))
+            head, desc = self._get_production_status(self.created_production_id)
+            res.append(format_hd(head, desc, html))
         else:
             res.append('❓(???)[{0}]'.format(self.state))
         return res
 
     def _get_mts_mrp_status(self, html=False):
         res = []
-        state = dict(self._fields['state']._description_selection(self.env)
-                    ).get(self.state)
 
-        head = '📦{0}'.format('Stock')
-        desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
-        if html:
-            res.append('{0} {1}'.format(head, small(desc)))
-        else:
-            res.append('{0} {1}'.format(head, desc))
+        head, desc = self._get_stock_status()
+        res.append(format_hd(head, desc, html))
+
         pre = False
         if self.created_purchase_line_archive and not self.created_purchase_line_id:
             pre = '♻️PO/'
@@ -78,6 +103,15 @@ class StockMove(models.Model):
             pre = '♻️MO/'
         if pre:
             res.append('{0}{1}'.format(pre, _('canceled')))
+
+        for p in self.orderpoint_created_production_ids:
+            head, desc = self._get_production_status(p)
+            res.append(format_hd('♻️⮡ ' + head, desc, html))
+
+        for p in self.orderpoint_created_purchase_line_ids:
+            head, desc = self._get_purchase_status(p)
+            res.append(format_hd('♻️⮡ ' + head, desc, html))
+
         return res
 
     def get_mrp_status(self, html=False):
@@ -109,25 +143,57 @@ class StockMove(models.Model):
         for move in self:
             move.mrp_status = move.get_mrp_status(html=True)
 
+    @api.multi
+    def _compute_orderpoint_created_orders(self):
+        Orderpoint = self.env['stock.warehouse.orderpoint']
+        Production = self.env['mrp.production']
+        PurchaseLine = self.env['purchase.order.line']
+        for move in self:
+            if move.procure_method == 'make_to_stock' and move.state == 'confirmed':
+                reordering_rules = Orderpoint.search(
+                    [('product_id', '=', move.product_id.id)]
+                )
+                if reordering_rules.ids:
+                    # Search for production orders created by mts rules
+                    move.orderpoint_created_production_ids = \
+                        Production.search(
+                            [('orderpoint_id', 'in', reordering_rules.ids)]
+                        )
+                    # Search for purchase orders created by mts rules
+                    move.orderpoint_created_purchase_line_ids = \
+                        PurchaseLine.search(
+                            [('orderpoint_ids', 'in', reordering_rules.ids)]
+                        )
+
     def action_view_created_item(self):
         self.ensure_one()
         if self.created_purchase_line_id:
-            return self.action_view_created_purchase()
+            return self.action_view_purchase(
+                self.created_purchase_line_id.order_id.id
+            )
         elif self.created_production_id:
-            return self.action_view_created_production()
+            return self.action_view_production(self.created_production_id.id)
+        elif self.orderpoint_created_purchase_line_ids:
+            return self.action_view_purchase(
+                self.orderpoint_created_purchase_line_ids[0].order_id.id
+            )
+        elif self.orderpoint_created_production_ids:
+            return self.action_view_production(
+                self.orderpoint_created_production_ids.ids[0]
+            )
 
-    def action_view_created_purchase(self):
+    def action_view_purchase(self, id):
         action = self.env.ref('purchase.purchase_form_action').read()[0]
         form = self.env.ref('purchase.purchase_order_form')
         action['views'] = [(form.id, 'form')]
-        action['res_id'] = self.created_purchase_line_id.order_id.id
+        action['res_id'] = id
         return action
 
-    def action_view_created_production(self):
+    def action_view_production(self, id):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
         form = self.env.ref('mrp.mrp_production_form_view')
         action['views'] = [(form.id, 'form')]
-        action['res_id'] = self.created_production_id.id
+        action['res_id'] = id
         return action
 
     def action_view_picking(self):

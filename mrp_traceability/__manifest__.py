@@ -11,6 +11,7 @@
         'purchase_stock',
         'stock_traceability',
         'stock_orderpoint_mrp_link',
+        'stock_orderpoint_purchase_link',
     ],
     'data': [
         'views/assets.xml',
