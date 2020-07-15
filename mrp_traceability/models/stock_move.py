@@ -88,6 +88,9 @@ class StockMove(models.Model):
             res.append(format_hd(head, desc, html))
         else:
             res.append('❓(???)[{0}]'.format(self.state))
+            # Since the current status is unknown, fallback using mts status
+            # to print archive when exists
+            res.extend(self._get_mts_mrp_status(html))
         return res
 
     def _get_mts_mrp_status(self, html=False):
