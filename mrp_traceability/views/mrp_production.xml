@@ -40,8 +40,8 @@
                     attrs="{'invisible': [
                             ('created_purchase_line_id', '=', False),
                             ('created_production_id', '=', False),
-                            ('orderpoint_created_purchase_line_ids', '=', False),
-                            ('orderpoint_created_production_ids', '=', False),
+                            ('orderpoint_created_purchase_line_ids', '=', []),
+                            ('orderpoint_created_production_ids', '=', []),
                         ]}"
                     icon="fa-external-link">
                 </button>

@@ -152,6 +152,8 @@ class StockMove(models.Model):
         Production = self.env['mrp.production']
         PurchaseLine = self.env['purchase.order.line']
         for move in self:
+            move.orderpoint_created_production_ids = False
+            move.orderpoint_created_purchase_line_ids = False
             if move.procure_method == 'make_to_stock' and move.state == 'confirmed':
                 reordering_rules = Orderpoint.search(
                     [('product_id', '=', move.product_id.id)]
