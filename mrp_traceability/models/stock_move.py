@@ -73,6 +73,8 @@ class StockMove(models.Model):
         state = dict(self._fields['state']._description_selection(self.env)
                     ).get(self.state)
         head = '📦{0}'.format('Stock')
+        if self.procure_method == 'make_to_order':
+            head = '❓{0}'.format(_(self.procure_method))
         desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
         return head, desc
 
