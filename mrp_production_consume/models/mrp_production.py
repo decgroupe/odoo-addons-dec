@@ -12,7 +12,7 @@
 # Dissemination of this information or reproduction of this material
 # is strictly forbidden unless prior written permission is obtained
 # from DEC SARL.
-# Written by Yann Papouin <y.papouin@dec-industrie.com>, Mar 2020
+# Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
 from odoo import api, fields, models, _
 
