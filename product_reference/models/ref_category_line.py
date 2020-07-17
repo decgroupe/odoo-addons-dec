@@ -13,7 +13,21 @@ class RefCategoryLine(models.Model):
     _rec_name = 'description'
     _order = 'sequence'
 
-    category = fields.Many2one('ref.category', 'Category', required=True)
-    property = fields.Many2one('ref.property', 'Property', required=True)
-    description = fields.Char('Property description', size=128)
-    sequence = fields.Integer('Position', required=True)
+    category = fields.Many2one(
+        'ref.category',
+        'Category',
+        required=True,
+    )
+    property = fields.Many2one(
+        'ref.property',
+        'Property',
+        required=True,
+    )
+    description = fields.Char(
+        'Property description',
+        size=128,
+    )
+    sequence = fields.Integer(
+        'Position',
+        required=True,
+    )

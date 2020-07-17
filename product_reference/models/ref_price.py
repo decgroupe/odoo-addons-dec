@@ -13,9 +13,16 @@ class RefPrice(models.Model):
     _order = 'date desc'
 
     reference_id = fields.Many2one(
-        'ref.reference', 'Reference', ondelete='cascade', required=True
+        'ref.reference',
+        'Reference',
+        ondelete='cascade',
+        required=True,
     )
-    date = fields.Date('Date', required=True, default=fields.Datetime.now)
+    date = fields.Date(
+        'Date',
+        required=True,
+        default=fields.Datetime.now,
+    )
     value = fields.Float('Price')
 
     @api.multi
