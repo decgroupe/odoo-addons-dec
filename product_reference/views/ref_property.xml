@@ -22,7 +22,7 @@
                     <field name="name"/>
                     <field name="format"/>
                     <field name="fixed"/>
-                    <field name="attributes"/>
+                    <field name="attribute_ids" attrs="{'invisible': [('fixed', '=', False)]}"/>
                 </form>
             </field>
         </record>

@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <tree string="Reference lines">
                     <field name="sequence"/>
-                    <field name="property"/>
+                    <field name="property_id"/>
                     <field name="attribute_id"/>
                     <field name="value"/>
                 </tree>
@@ -21,7 +21,7 @@
             <field name="arch" type="xml">
                 <form string="Reference lines">
                     <field name="sequence"/>
-                    <field name="property"/>
+                    <field name="property_id"/>
                     <field name="attribute_id"/>
                     <field name="value"/>
                 </form>

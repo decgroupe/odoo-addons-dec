@@ -18,31 +18,37 @@ class RefReference(models.Model):
     _rec_name = 'value'
     _order = 'value'
 
-    category = fields.Many2one(
+    category_id = fields.Many2one(
         'ref.category',
         'Category',
         required=True,
+        oldname='category',
     )
-    product = fields.Many2one(
+    product_id = fields.Many2one(
         'product.product',
         'Product',
         required=True,
+        oldname='product',
     )
-    product_ciel_code = fields.Char(
-        related='product.ciel_code',
-        string='Ciel',
+    public_code = fields.Char(
+        related='product_id.public_code',
+        string='Public Code',
+        oldname='product_ciel_code',
     )
-    product_name = fields.Char(
-        related='product.name',
+    name = fields.Char(
+        related='product_id.name',
         string='Name',
+        oldname='product_name',
     )
-    product_state = fields.Selection(
-        related='product.state',
+    state = fields.Selection(
+        related='product_id.state',
         string='Status',
+        oldname='product_state',
     )
-    product_comments = fields.Text(
-        related='product.comments',
-        string='Comments',
+    internal_notes = fields.Text(
+        related='product_id.internal_notes',
+        string='Internal Notes',
+        oldname='product_comments',
     )
     current_version = fields.Integer(
         'Current version',
@@ -65,9 +71,24 @@ class RefReference(models.Model):
     folder_task = fields.Integer('Product folder task count')
     picturepath = fields.Text('Path to picture')
 
-    reference_lines = fields.One2many('ref.reference.line', 'reference')
-    version_lines = fields.One2many('ref.version', 'reference')
-    price_lines = fields.One2many('ref.price', 'reference_id')
+    reference_line_ids = fields.One2many(
+        'ref.reference.line',
+        'reference_id',
+        string='Lines',
+        oldname='reference_lines',
+    )
+    version_ids = fields.One2many(
+        'ref.version',
+        'reference_id',
+        string='Versions',
+        oldname='version_lines',
+    )
+    price_ids = fields.One2many(
+        'ref.price',
+        'reference_id',
+        string='Prices',
+        oldname='price_lines',
+    )
 
     _sql_constraints = [
         ('value_uniq', 'unique(value)', 'Reference value must be unique !'),
@@ -78,55 +99,61 @@ class RefReference(models.Model):
         res = []
         for key in keywords[0]:
             if key and key[0] == '+':
-                use_comments = True
+                use_internal_notes = True
                 key = key[1:]
             else:
-                use_comments = False
+                use_internal_notes = False
 
             if key:
                 search_value = self.search([('searchvalue', 'ilike', key)]).ids
-                search_category = self.search([('category.name', 'ilike', key)]).ids
-                search_name = self.search([('product.name', 'ilike', key)]).ids
-                search_ciel = self.search([('product.ciel_code', '=', key)]).ids
+                search_category = self.search(
+                    [('category_id.name', 'ilike', key)]
+                ).ids
+                search_name = self.search(
+                    [('product_id.name', 'ilike', key)]
+                ).ids
+                search_ciel = self.search(
+                    [('product_id.public_code', '=', key)]
+                ).ids
 
-                if use_comments:
-                    search_comments = self.search(
-                        [('product.comments', 'ilike', key)]
+                if use_internal_notes:
+                    search_internal_notes = self.search(
+                        [('product_id.internal_notes', 'ilike', key)]
                     ).ids
                 else:
-                    search_comments = []
+                    search_internal_notes = []
 
                 if len(key) > 2:
                     search_tags = self.search(
-                        [('product.tagging_ids.name', 'ilike', key)]
+                        [('product_id.tagging_ids.name', 'ilike', key)]
                     ).ids
                 else:
                     search_tags = []
 
-                res = res + search_value + search_category + search_name + search_comments + search_ciel + search_tags
+                res = res + search_value + search_category + search_name + search_internal_notes + search_ciel + search_tags
 
         return res
 
     @api.multi
     def run_material_cost_scheduler(self):
-        mrp_bom_obj = self.env['mrp.bom']
-        ref_price_obj = self.env['ref.price']
+        MrpBom = self.env['mrp.bom']
+        RefPrice = self.env['ref.price']
 
         ids = self.ids
         if not self.ids:
             ids = self.search([])
         for reference in self.browse(ids):
-            if reference.category.code in ['ADT']:
+            if reference.category_id.code in ['ADT']:
                 continue
-            #_logger.info("Reference category name is {0}".format(reference.category.name))
+            #_logger.info("Reference category name is {0}".format(reference.category_id.name))
             data = {}
             cost_price = 0.0
-            if reference.product and reference.product.bom_ids:
-                bom_id = mrp_bom_obj._bom_find(product=reference.product)
+            if reference.product_id and reference.product_id.bom_ids:
+                bom_id = mrp_bom_obj._bom_find(product=reference.product_id)
                 if bom_id:
                     _logger.info(
                         'Compute material cost price for [%s] %s',
-                        reference.value, reference.product.name
+                        reference.value, reference.product_id.name
                     )
                     try:
                         cost_price = mrp_bom_obj.get_cost_price([bom_id]
@@ -134,15 +161,15 @@ class RefReference(models.Model):
                     except Exception as e:
                         _logger.exception(
                             "Failed to get cost price for [%s] %s\n %s",
-                            reference.value, reference.product.name, e
+                            reference.value, reference.product_id.name, e
                         )
 
             ref_price = False
-            ref_price_ids = ref_price_obj.search(
+            ref_price_ids = RefPrice.search(
                 [('reference_id', '=', reference.id)], limit=1
             )
             if ref_price_ids:
-                ref_price = ref_price_obj.browse(ref_price_ids)[0]
+                ref_price = RefPrice.browse(ref_price_ids)[0]
 
             if not ref_price or (
                 round(ref_price.value, 2) != round(cost_price, 2)
@@ -150,11 +177,11 @@ class RefReference(models.Model):
                 #abs(ref_price.value - cost_price) > 0.1
                 data['reference_id'] = reference.id
                 data['value'] = cost_price
-                ref_price_obj.create(data)
+                RefPrice.create(data)
             else:
                 _logger.info(
                     'Price did not change for [%s] %s', reference.value,
-                    reference.product.name
+                    reference.product_id.name
                 )
 
         self.generate_material_cost_report(ids)
@@ -163,7 +190,7 @@ class RefReference(models.Model):
     def generate_material_cost_report(
         self, ids, date_ref1=False, date_ref2=False
     ):
-        ref_price_obj = self.pool.get('ref.price')
+        RefPrice = self.pool.get('ref.price')
         mail_message_obj = self.env['mail.mail'].sudo()
 
         if not ids:
@@ -177,12 +204,12 @@ class RefReference(models.Model):
         ref_content = []
 
         for reference in self.browse(ids):
-            if reference.category.name in ['ADT']:
+            if reference.category_id.name in ['ADT']:
                 continue
             ref1_ids = []
             ref2_ids = []
             if date_ref1:
-                ref1_ids = ref_price_obj.search(
+                ref1_ids = RefPrice.search(
                     [
                         ('reference_id', '=', reference.id),
                         ('date', '<=', date_ref1)
@@ -190,7 +217,7 @@ class RefReference(models.Model):
                     limit=1
                 )
             if date_ref2:
-                ref2_ids = ref_price_obj.search(
+                ref2_ids = RefPrice.search(
                     [
                         ('reference_id', '=', reference.id),
                         ('date', '<=', date_ref2)
@@ -201,12 +228,12 @@ class RefReference(models.Model):
             if ref1_ids and ref2_ids:
                 price_ids = ref2_ids + ref1_ids
             else:
-                price_ids = ref_price_obj.search(
+                price_ids = RefPrice.search(
                     [('reference_id', '=', reference.id)], limit=2
                 )
 
             if (len(price_ids) >= 2):
-                prices = ref_price_obj.browse(price_ids)
+                prices = RefPrice.browse(price_ids)
                 if (round(prices[0].value, 2) > round(prices[1].value, 2)) and (
                     (date_ref1 or date_ref2) or (prices[0].date == today)
                 ):
@@ -215,7 +242,7 @@ class RefReference(models.Model):
                         {
                             'id': reference.id,
                             'reference': reference.value,
-                            'product': reference.product.name,
+                            'product': reference.product_id.name,
                             'price0_date': prices[0].date,
                             'price0_value': prices[0].value,
                             'price1_date': prices[1].date,

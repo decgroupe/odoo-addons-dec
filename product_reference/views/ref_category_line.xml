@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <tree string="Category lines">
                     <field name="sequence"/>
-                    <field name="property"/>
+                    <field name="property_id"/>
                     <field name="description"/>
                 </tree>
             </field>
@@ -20,7 +20,7 @@
             <field name="arch" type="xml">
                 <form string="Category lines">
                     <field name="sequence"/>
-                    <field name="property"/>
+                    <field name="property_id"/>
                     <field name="description"/>
                 </form>
             </field>

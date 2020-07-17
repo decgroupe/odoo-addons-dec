@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <tree string="References">
                     <field name="value"/>
-                    <field name="category"/>
-                    <field name="product"/>
-                    <field name="product_state"/>
+                    <field name="category_id"/>
+                    <field name="product_id"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -31,26 +31,26 @@
                         </group>
                         <group>
                             <group>
-                                <field name="product"/>
-                                <field name="product_state"/>
-                                <field name="product_ciel_code"/>
-                                <field name="category"/>
+                                <field name="product_id"/>
+                                <field name="state"/>
+                                <field name="public_code"/>
+                                <field name="category_id"/>
                                 <field name="searchvalue"/>
                             </group>
                             <group>
                                 <field name="datetime"/>
-                                <field name="reference_lines"/>
+                                <field name="reference_line_ids"/>
                             </group>
                         </group>
                         <group>
                             <field name="current_version"/>
-                            <field name="version_lines"/>
+                            <field name="version_ids"/>
                         </group>
                         <group>
-                            <field name="price_lines"/>
+                            <field name="price_ids"/>
                         </group>
                         <group>
-                            <field name="product_comments"/>
+                            <field name="internal_notes"/>
                         </group>
                     </sheet>
                     <field name="folder_count"/>

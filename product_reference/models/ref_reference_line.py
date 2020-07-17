@@ -13,15 +13,17 @@ class RefReferenceLine(models.Model):
     _rec_name = 'value'
     _order = 'sequence'
 
-    reference = fields.Many2one(
+    reference_id = fields.Many2one(
         'ref.reference',
         'Reference',
         required=True,
+        oldname='reference',
     )
-    property = fields.Many2one(
+    property_id = fields.Many2one(
         'ref.property',
         'Property',
         required=True,
+        oldname='property',
     )
     attribute_id = fields.Many2one(
         'ref.attribute',

@@ -22,17 +22,19 @@ class RefCategory(models.Model):
         'Name',
         required=True,
     )
-    product_category = fields.Many2one(
+    product_category_id = fields.Many2one(
         'product.category',
         'Product category',
+        oldname='product_category',
     )
     description_template = fields.Text(
         'Template',
         required=False,
     )
-    category_lines = fields.One2many(
+    category_line_ids = fields.One2many(
         'ref.category.line',
-        'category',
+        'category_id',
+        oldname='category_lines',
     )
 
     _sql_constraints = [

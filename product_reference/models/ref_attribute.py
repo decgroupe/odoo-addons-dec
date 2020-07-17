@@ -13,10 +13,11 @@ class RefAttribute(models.Model):
     _rec_name = 'name'
     _order = 'value'
 
-    owner = fields.Many2one(
+    property_id = fields.Many2one(
         'ref.property',
-        'Owner',
+        'Property (owner)',
         required=True,
+        oldname='owner',
     )
     value = fields.Text(
         'Value',

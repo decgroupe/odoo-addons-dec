@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <tree string="Packs">
                     <field name="name"/>
-                    <field name="product"/>
+                    <field name="product_id"/>
                     <field name="default_code"/>
-                    <field name="ciel_code"/>
+                    <field name="public_code"/>
                 </tree>
             </field>
         </record>
@@ -32,9 +32,9 @@
                         <group>
                             <field name="type"/>
                             <group>
-                                <field name="product"/>
+                                <field name="product_id"/>
                                 <field name="default_code"/>
-                                <field name="ciel_code"/>
+                                <field name="public_code"/>
                             </group>
                             <group>
                                 <field name="list_price"/>

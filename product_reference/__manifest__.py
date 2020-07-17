@@ -12,6 +12,8 @@
         'dec',
         'product_state_review',
         'mrp_production_request',
+        'mrp_bom_dates',
+        'mrp_bom_supplier',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':
@@ -32,7 +34,7 @@
             'views/ref_pack.xml',
             'views/menu.xml',
         ],
-    'force_post_init_hook': True,
+    #'force_post_init_hook': True,
     'post_init_hook': 'post_init',
     'installable': True
 }

@@ -13,7 +13,17 @@ class RefProperty(models.Model):
     _rec_name = 'name'
     _order = 'name'
 
-    name = fields.Text('Name', required=True)
-    format = fields.Text('Format', required=True)
+    name = fields.Text(
+        'Name',
+        required=True,
+    )
+    format = fields.Text(
+        'Format',
+        required=True,
+    )
     fixed = fields.Boolean('Fixed values')
-    attributes = fields.One2many('ref.attribute', 'owner')
+    attribute_ids = fields.One2many(
+        'ref.attribute',
+        'property_id',
+        oldname='attributes',
+    )

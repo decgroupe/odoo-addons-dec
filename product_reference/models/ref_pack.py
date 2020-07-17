@@ -12,29 +12,35 @@ class RefPack(models.Model):
     _description = 'Pack'
     _rec_name = 'name'
 
-    product = fields.Many2one('product.product', 'Product', required=True)
+    product_id = fields.Many2one(
+        'product.product',
+        'Product',
+        required=True,
+        oldname='product',
+    )
     name = fields.Char(
-        related='product.name',
+        related='product_id.name',
         string='Name',
     )
     default_code = fields.Char(
-        related='product.default_code',
+        related='product_id.default_code',
         string='Code',
     )
-    ciel_code = fields.Char(
-        related='product.ciel_code',
-        string='Ciel',
+    public_code = fields.Char(
+        related='product_id.public_code',
+        string='Public Code',
+        oldname='ciel_code',
     )
     list_price = fields.Float(
-        related='product.list_price',
+        related='product_id.list_price',
         string='Sale Price',
     )
     standard_price = fields.Float(
-        related='product.standard_price',
+        related='product_id.standard_price',
         string='Cost Price',
     )
     type = fields.Selection(
         [('company', 'Company'), ('manufacturer', 'Manufacturer')],
         'Pack Type',
-        required=True
+        required=True,
     )

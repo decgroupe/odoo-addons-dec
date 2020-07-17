@@ -25,12 +25,13 @@ class RefMarketBom(models.Model):
         required=True,
         digits=dp.get_precision('Product UoM'),
     )
-    product_uom = fields.Many2one(
+    product_uom_id = fields.Many2one(
         'uom.uom',
         'Product UOM',
         required=True,
         help=
         "UoM (Unit of Measure) is the unit of measurement for the inventory control",
+        oldname='product_uom'
     )
     partner_id = fields.Many2one(
         'res.partner',

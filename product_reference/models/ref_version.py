@@ -22,12 +22,14 @@ class RefVersion(models.Model):
         'Modification date',
         default=fields.Datetime.now,
     )
-    author = fields.Many2one(
+    author_id = fields.Many2one(
         'res.users',
         'Author',
         default=lambda self: self.env.user,
+        oldname='author',
     )
-    reference = fields.Many2one(
+    reference_id = fields.Many2one(
         'ref.reference',
         'Reference',
+        oldname='reference',
     )

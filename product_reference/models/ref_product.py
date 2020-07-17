@@ -8,8 +8,15 @@ from odoo import api, fields, models
 class RefProduct(models.Model):
     _inherit = "product.product"
 
-    ciel_code = fields.Char('Ciel', size=24)
-    comments = fields.Text('Comments')
+    public_code = fields.Char(
+        'Public Code',
+        size=24,
+        oldname="ciel_code",
+    )
+    internal_notes = fields.Text(
+        'Internal Notes',
+        oldname='comments',
+    )
     market_bom_id = fields.Many2one(
         'ref.market.bom',
         'Market bill of materials and services',
@@ -37,7 +44,7 @@ class RefProduct(models.Model):
         # Make a specific search according to market reference
         products = self.search(
             [
-                ('ciel_code', '=', name), '|', ('state', '!=', 'obsolete'),
+                ('public_code', '=', name), '|', ('state', '!=', 'obsolete'),
                 ('state', '=', False)
             ],
             limit=limit
