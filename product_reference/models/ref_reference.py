@@ -95,6 +95,15 @@ class RefReference(models.Model):
     ]
 
     @api.model
+    def create(self, values):
+        product_id = values.get('product_id')
+        if product_id:
+            product = self.env['product.product'].browse(product_id)
+            product.mrp_production_request = True
+        reference = super().create(values)
+        return reference
+
+    @api.model
     def search_custom(self, keywords):
         res = []
         for key in keywords[0]:
