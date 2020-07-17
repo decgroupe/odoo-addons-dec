@@ -5,7 +5,7 @@
 from odoo import fields, models
 
 
-class ref_attribute(models.Model):
+class RefAttribute(models.Model):
     """ Description """
 
     _name = 'ref.attribute'

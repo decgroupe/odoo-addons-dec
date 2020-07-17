@@ -2,15 +2,18 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-
 from odoo import fields, models
 
 
-class ref_version(models.Model):
+class RefVersion(models.Model):
     _name = 'ref.version'
     _description = 'Reference version'
 
-    name = fields.Char('Modification name', size=128, required=True)
+    name = fields.Char(
+        'Modification name',
+        size=128,
+        required=True,
+    )
     version = fields.Integer(
         'Version',
         required=True,

@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class ref_price(models.Model):
+class RefPrice(models.Model):
     """ Description """
 
     _name = 'ref.price'

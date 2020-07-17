@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class ref_category(models.Model):
+class RefCategory(models.Model):
     """ Description """
 
     _name = 'ref.category'

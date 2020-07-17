@@ -10,7 +10,7 @@ from odoo import api, fields, models, _
 _logger = logging.getLogger(__name__)
 
 
-class ref_reference(models.Model):
+class RefReference(models.Model):
     """ Description """
 
     _name = 'ref.reference'

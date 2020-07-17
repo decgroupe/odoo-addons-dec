@@ -6,7 +6,7 @@ import odoo.addons.decimal_precision as dp
 from odoo import fields, models
 
 
-class ref_market_bom(models.Model):
+class RefMarketBom(models.Model):
     _name = 'ref.market.bom'
     _description = 'Market BoM parent and children line'
 

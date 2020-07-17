@@ -5,7 +5,7 @@
 from odoo import fields, models
 
 
-class ref_category_line(models.Model):
+class RefCategoryLine(models.Model):
     """ Description """
 
     _name = 'ref.category.line'

@@ -5,7 +5,7 @@
 from odoo import fields, models
 
 
-class ref_pack(models.Model):
+class RefPack(models.Model):
     """ Description """
 
     _name = 'ref.pack'

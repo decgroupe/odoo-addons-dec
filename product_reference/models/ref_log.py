@@ -5,7 +5,7 @@
 from odoo import fields, models
 
 
-class ref_log(models.Model):
+class RefLog(models.Model):
     """ Reference log for all operations """
 
     _name = 'ref.log'

@@ -5,7 +5,7 @@
 from odoo import fields, models
 
 
-class ref_reference_line(models.Model):
+class RefReferenceLine(models.Model):
     """ Description """
 
     _name = 'ref.reference.line'

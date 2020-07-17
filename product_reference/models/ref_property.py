@@ -5,7 +5,7 @@
 from odoo import fields, models
 
 
-class ref_property(models.Model):
+class RefProperty(models.Model):
     """ Description """
 
     _name = 'ref.property'

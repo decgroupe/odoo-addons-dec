@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class ref_product(models.Model):
+class RefProduct(models.Model):
     _inherit = "product.product"
 
     ciel_code = fields.Char('Ciel', size=24)

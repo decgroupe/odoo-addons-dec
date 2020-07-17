@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class product_price_graph(models.TransientModel):
+class ProductPriceGraph(models.TransientModel):
     _name = 'product.price.graph'
     _description = 'Customize purchase report'
 
