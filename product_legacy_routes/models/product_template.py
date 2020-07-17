@@ -3,32 +3,18 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, May 2020
 
 from odoo import api, fields, models, _
-from odoo.addons import decimal_precision as dp
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
-
-    # supply_method = fields.Selection(
-    #     string='Supply method',
-    #     selection='_get_supply_method',
-    #     help=
-    #     "Produce will generate production order or tasks, according to the product type. Buy will trigger purchase orders when requested.",
-    # )
-
-    # procure_method = fields.selection(
-    #     string='Procurement method',
-    #     selection='_get_procure_method',
-    #     help=
-    #     "'Make to Stock': When needed, take from the stock or wait until re-supplying. 'Make to Order': When needed, purchase or produce for the procurement request.",
-    # )
 
     supply_method = fields.Char(
         compute='_compute_supply_method',
         inverse='_inverse_supply_method',
         string='Supply method',
         help=
-        "Produce will generate production order or tasks, according to the product type. Buy will trigger purchase orders when requested.",
+        "Produce will generate production order or tasks, according to the \
+product type. Buy will trigger purchase orders when requested.",
     )
 
     procure_method = fields.Char(
@@ -36,7 +22,9 @@ class ProductTemplate(models.Model):
         inverse='_inverse_procure_method',
         string='Procurement method',
         help=
-        "'Make to Stock': When needed, take from the stock or wait until re-supplying. 'Make to Order': When needed, purchase or produce for the procurement request.",
+        "'Make to Stock': When needed, take from the stock or wait until \
+re-supplying. 'Make to Order': When needed, purchase or produce for the \
+procurement request.",
     )
 
     @api.model

@@ -2,13 +2,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-import time
-import logging
-
 import odoo.addons.decimal_precision as dp
-from odoo import api, fields, models, _
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
 class ref_market_bom(models.Model):
@@ -18,9 +13,7 @@ class ref_market_bom(models.Model):
     name = fields.Char('Name', size=64, required=True)
     product_id = fields.Many2one('product.product', 'Product', required=True)
     product_qty = fields.Float(
-        'Product Qty',
-        required=True,
-        digits=dp.get_precision('Product UoM')
+        'Product Qty', required=True, digits=dp.get_precision('Product UoM')
     )
     product_uom = fields.Many2one(
         'uom.uom',

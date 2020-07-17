@@ -4,11 +4,7 @@
 
 import re
 
-from odoo import api, fields, models, _
-from odoo.exceptions import UserError
-
-import logging
-_logger = logging.getLogger(__name__)
+from odoo import api, fields, models
 
 
 class ProcurementException(models.Model):
@@ -31,8 +27,7 @@ class ProcurementException(models.Model):
         'product.product',
         'Product',
         ondelete='cascade',
-        help=
-        "Specify a product if this rule only applies to one product. Keep \
+        help="Specify a product if this rule only applies to one product. Keep \
 empty otherwise."
     )
     categ_id = fields.Many2one(

@@ -2,12 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-import time
-import logging
-
-from odoo import api, fields, models, _
-
-_logger = logging.getLogger(__name__)
+from odoo import api, fields, models
 
 
 class ref_product(models.Model):
@@ -15,12 +10,17 @@ class ref_product(models.Model):
 
     ciel_code = fields.Char('Ciel', size=24)
     comments = fields.Text('Comments')
-    market_bom_id= fields.Many2one('ref.market.bom', 'Market bill of materials and services')
+    market_bom_id = fields.Many2one(
+        'ref.market.bom',
+        'Market bill of materials and services',
+    )
     market_markup_rate = fields.Float(
-        'Markup rate', help='Used by REF manager Market'
+        'Markup rate',
+        help='Used by REF manager Market',
     )
     market_material_cost_factor = fields.Float(
-        'Material factor (PF)', help='Used by REF manager Market'
+        'Material factor (PF)',
+        help='Used by REF manager Market',
     )
 
     @api.model

@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-from odoo import api, fields, models, tools, _
+from odoo import fields, models
 
 
 class ProductPricelist(models.Model):
@@ -47,7 +47,6 @@ class ProductPricelist(models.Model):
         Property = self.env['ir.property'].with_context(
             force_company=company_id or self.env.user.company_id.id
         )
-        Pricelist = self.env['product.pricelist']
         # if no specific property, try to find a fitting pricelist
         result = Property.get_multi(
             'property_product_pricelist_purchase', Partner._name, partner_ids

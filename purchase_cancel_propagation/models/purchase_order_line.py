@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Apr 2020
 
-from odoo import fields, models, api
+from odoo import models, api
 
 
 class PurchaseOrderLine(models.Model):
@@ -41,7 +41,7 @@ class PurchaseOrderLine(models.Model):
     def action_close_dialog(self):
         self.ensure_one()
         # OCA module needed: web_ir_actions_act_view_reload
-        view =  {
+        view = {
             'type': 'ir.actions.act_view_reload',
         }
         return view

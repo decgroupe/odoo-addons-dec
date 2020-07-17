@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -68,4 +68,3 @@ on reordering delays."
         string='Vendor Product Name',
         help="Main supplier product name",
     )
-

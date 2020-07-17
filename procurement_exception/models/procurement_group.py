@@ -2,15 +2,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Jul 2020
 
-from datetime import datetime
-from dateutil import relativedelta
-from itertools import groupby
-from operator import itemgetter
+import logging
 
-from odoo import api, fields, models, _
+from odoo import api, models
 from odoo.exceptions import UserError
 
-import logging
 _logger = logging.getLogger(__name__)
 
 

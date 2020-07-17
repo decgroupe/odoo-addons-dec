@@ -2,12 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-import time
-import logging
-
-from odoo import api, fields, models, _
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
 class ref_market_category(models.Model):
@@ -21,4 +16,3 @@ class ref_market_category(models.Model):
     prefix = fields.Char('Prefix', size=6, required=True)
     description = fields.Char('Description', size=128, required=True)
     sequence = fields.Integer('Position', required=True)
-

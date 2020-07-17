@@ -2,12 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-from datetime import datetime
-from dateutil import relativedelta
-from itertools import groupby
-from operator import itemgetter
-
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class StockMove(models.Model):

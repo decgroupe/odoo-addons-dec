@@ -2,12 +2,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-import time
-import logging
+from odoo import fields, models
 
-from odoo import api, fields, models, _
-
-_logger = logging.getLogger(__name__)
 
 class ref_pack(models.Model):
     """ Description """

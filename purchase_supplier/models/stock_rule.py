@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Jul 2020
 
-from odoo import api, fields, models, _
+from odoo import models
 
 
 class StockRule(models.Model):

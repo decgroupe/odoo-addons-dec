@@ -2,12 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-import time
-import logging
-
-from odoo import api, fields, models, _
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
 class ref_attribute(models.Model):
@@ -21,5 +16,3 @@ class ref_attribute(models.Model):
     owner = fields.Many2one('ref.property', 'Owner', required=True)
     value = fields.Text('Value', required=True)
     name = fields.Text('Name', required=True)
-
-

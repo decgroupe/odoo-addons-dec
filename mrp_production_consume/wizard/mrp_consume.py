@@ -4,7 +4,7 @@
 
 from datetime import datetime
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class MrpConsume(models.TransientModel):

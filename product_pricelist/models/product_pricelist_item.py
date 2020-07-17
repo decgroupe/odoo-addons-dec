@@ -2,11 +2,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, May 2020
 
-from datetime import datetime
 
-from odoo import api, fields, models, _
-from odoo.addons import decimal_precision as dp
-from odoo.exceptions import UserError
+from odoo import api, fields, models
 
 
 class ProductPricelistItem(models.Model):
