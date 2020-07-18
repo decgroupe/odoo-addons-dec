@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class RefProduct(models.Model):
+class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     public_code = fields.Char(
@@ -32,8 +32,20 @@ class RefProduct(models.Model):
     reference_id = fields.Many2one(
         'ref.reference',
         'Reference',
-        readonly=True
+        compute='_compute_reference_id',
+        readonly=True,
     )
+    reference_ids = fields.One2many(
+        'ref.reference',
+        'product_id',
+    )
+
+    @api.multi
+    @api.depends('reference_ids')
+    def _compute_reference_id(self):
+        for product in self:
+            if len(product.reference_ids) > 0:
+                product.reference_id = product.reference_ids[0]
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):

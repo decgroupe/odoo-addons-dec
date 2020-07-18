@@ -6,6 +6,8 @@ columns = [
     'market_bom_id',
     'market_markup_rate',
     'market_material_cost_factor',
+    'public_code',
+    'internal_notes',
 ]
 
 
@@ -15,8 +17,18 @@ def migrate(env, version):
 
     mapping_str = []
     for item in legacy_mapping:
-        mapping_str.append('{0}=pp.{1}'.format(item[0], item[1]))
+        if openupgrade.column_exists(env.cr, 'product_product', item[1]):
+            new_col_name = item[0]
+            # Force new names since framework will create column with these
+            # names.
+            if new_col_name == 'ciel_code':
+                new_col_name = 'public_code'
+            if new_col_name == 'comments':
+                new_col_name = 'internal_notes'
 
+            mapping_str.append('{0}=pp.{1}'.format(new_col_name, item[1]))
+
+    print(legacy_mapping)
     openupgrade.logged_query(
         env.cr, """
         UPDATE product_template pt SET

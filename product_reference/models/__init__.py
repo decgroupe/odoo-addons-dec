@@ -1,4 +1,4 @@
-from . import product_product
+from . import product_template
 from . import ref_property
 from . import ref_attribute
 from . import ref_log
