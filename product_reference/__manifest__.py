@@ -22,6 +22,7 @@
             'security/model_security.xml',
             'security/ir.model.access.csv',
             'views/product_template.xml',
+            'views/product_product.xml',
             'views/ref_attribute.xml',
             'views/ref_property.xml',
             'views/ref_reference.xml',

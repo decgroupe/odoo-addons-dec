@@ -29,6 +29,11 @@ class RefProduct(models.Model):
         'Material factor (PF)',
         help='Used by REF manager Market',
     )
+    reference_id = fields.Many2one(
+        'ref.reference',
+        'Reference',
+        readonly=True
+    )
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
