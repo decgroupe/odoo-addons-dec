@@ -13,7 +13,7 @@ class RefPack(models.Model):
     _rec_name = 'name'
 
     product_id = fields.Many2one(
-        'product.product',
+        'product.template',
         'Product',
         required=True,
         oldname='product',

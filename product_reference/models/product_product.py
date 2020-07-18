@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 
 class RefProduct(models.Model):
-    _inherit = "product.product"
+    _inherit = "product.template"
 
     public_code = fields.Char(
         'Public Code',

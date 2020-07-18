@@ -25,7 +25,7 @@ class RefReference(models.Model):
         oldname='category',
     )
     product_id = fields.Many2one(
-        'product.product',
+        'product.template',
         'Product',
         required=True,
         oldname='product',
