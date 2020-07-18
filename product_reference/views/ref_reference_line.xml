@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="ref_reference_line_tree_view" >
-            <field name="name">ref.reference.line.tree</field>
-            <field name="model">ref.reference.line</field>
-            <field name="arch" type="xml">
-                <tree string="Reference lines">
-                    <field name="sequence"/>
-                    <field name="property_id"/>
-                    <field name="attribute_id"/>
-                    <field name="value"/>
-                </tree>
-            </field>
-        </record>
-        
-        <record model="ir.ui.view" id="ref_reference_line_form_view" >
-            <field name="name">ref.reference.line.form</field>
-            <field name="model">ref.reference.line</field>
-            <field name="arch" type="xml">
-                <form string="Reference lines">
-                    <field name="sequence"/>
-                    <field name="property_id"/>
-                    <field name="attribute_id"/>
-                    <field name="value"/>
-                </form>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="ref_reference_line_tree_view" >
+        <field name="name">ref.reference.line.tree</field>
+        <field name="model">ref.reference.line</field>
+        <field name="arch" type="xml">
+            <tree string="Reference lines">
+                <field name="sequence"/>
+                <field name="property_id"/>
+                <field name="attribute_id"/>
+                <field name="value"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="ref_reference_line_form_view" >
+        <field name="name">ref.reference.line.form</field>
+        <field name="model">ref.reference.line</field>
+        <field name="arch" type="xml">
+            <form string="Reference lines">
+                <field name="sequence"/>
+                <field name="property_id"/>
+                <field name="attribute_id"/>
+                <field name="value"/>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="act_window_ref_reference_line" >
-            <field name="name">Reference lines</field>
-            <field name="res_model">ref.reference.line</field>
-            <field name="view_id" ref="ref_reference_line_tree_view"/>
-        </record>
+    <record model="ir.actions.act_window" id="act_window_ref_reference_line" >
+        <field name="name">Reference lines</field>
+        <field name="res_model">ref.reference.line</field>
+        <field name="view_id" ref="ref_reference_line_tree_view"/>
+    </record>
 
-    </data>
 </odoo>

@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="ref_price_tree_view" >
-            <field name="name">ref.price.tree</field>
-            <field name="model">ref.price</field>
-            <field name="arch" type="xml">
-                <tree string="Prices">
-                    <field name="date"/>
-                    <field name="value"/>
-                </tree>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="ref_price_tree_view" >
+        <field name="name">ref.price.tree</field>
+        <field name="model">ref.price</field>
+        <field name="arch" type="xml">
+            <tree string="Prices">
+                <field name="date"/>
+                <field name="value"/>
+            </tree>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="ref_price_form_view" >
-            <field name="name">ref.price.form</field>
-            <field name="model">ref.price</field>
-            <field name="arch" type="xml">
-                <form string="Prices">
-                    <field name="date"/>
-                    <field name="value"/>
-                </form>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="ref_price_form_view" >
+        <field name="name">ref.price.form</field>
+        <field name="model">ref.price</field>
+        <field name="arch" type="xml">
+            <form string="Prices">
+                <field name="date"/>
+                <field name="value"/>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="act_window_ref_price" >
-            <field name="name">Prices</field>
-            <field name="res_model">ref.price</field>
-            <field name="view_id" ref="ref_price_tree_view"/>
-        </record>
+    <record model="ir.actions.act_window" id="act_window_ref_price" >
+        <field name="name">Prices</field>
+        <field name="res_model">ref.price</field>
+        <field name="view_id" ref="ref_price_tree_view"/>
+    </record>
 
-    </data>
 </odoo>

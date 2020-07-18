@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="ref_version_tree_view" >
-            <field name="name">ref.version.tree</field>
-            <field name="model">ref.version</field>
-            <field name="arch" type="xml">
-                <tree string="Versions">
-                    <field name="version"/>
-                    <field name="datetime"/>
-                    <field name="name"/>
-                    <field name="author_id"/>
-                </tree>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="ref_version_tree_view" >
+        <field name="name">ref.version.tree</field>
+        <field name="model">ref.version</field>
+        <field name="arch" type="xml">
+            <tree string="Versions">
+                <field name="version"/>
+                <field name="datetime"/>
+                <field name="name"/>
+                <field name="author_id"/>
+            </tree>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="act_window_ref_version" >
-            <field name="name">Versions</field>
-            <field name="res_model">ref.version</field>
-            <field name="view_id" ref="ref_version_tree_view"/>
-        </record>
+    <record model="ir.actions.act_window" id="act_window_ref_version" >
+        <field name="name">Versions</field>
+        <field name="res_model">ref.version</field>
+        <field name="view_id" ref="ref_version_tree_view"/>
+    </record>
 
-    </data>
 </odoo>
