@@ -15,15 +15,34 @@
         </field>
     </record>
 
-    <!-- <record model="ir.ui.view" id="product_template_search_view">
+    <record model="ir.ui.view" id="product_template_search_view">
         <field name="name">product.template.search</field>
         <field name="model">product.template</field>
-        <field name="mode">primary</field>
         <field name="inherit_id" ref="product.product_template_search_view"/>
         <field name="arch" type="xml">
-
+            <field name="name" position="after">
+                <field name="public_code"/>
+            </field>
+            <filter name="filter_to_sell" position="before">
+                <filter 
+                    string="Has a Public Code" 
+                    name="filter_has_public_code" 
+                    domain="[('public_code','!=',False)]">
+                </filter>
+            </filter>
         </field>
-    </record> -->
+    </record>
+
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="default_code" position="before">
+                <field name="public_code"/>
+            </field>
+        </field>
+    </record>
 
     <record model="ir.actions.act_window" id="act_window_product_template_as_product">
         <field name="name">Products</field>
@@ -32,7 +51,11 @@
         <field name="view_mode">tree,form,kanban</field>
         <field name="limit">20</field>
         <field name="search_view_id" ref="product.product_template_search_view"/>
-        <field name="context">{"search_default_consumable": 1, 'default_type': 'product'}</field>
+        <field name="context">{
+            'search_default_consumable': 1, 
+            'search_default_filter_has_public_code': 1,
+            'default_type': 'product'}
+        </field>
     </record>
 
     <record model="ir.actions.act_window" id="act_window_product_template_as_service">
@@ -42,7 +65,11 @@
         <field name="view_mode">tree,form,kanban</field>
         <field name="limit">20</field>
         <field name="search_view_id" ref="product.product_template_search_view"/>
-        <field name="context">{"search_default_services": 1, 'default_type': 'service'}</field>
+        <field name="context">{
+            'search_default_services': 1, 
+            'search_default_filter_has_public_code': 1,
+            'default_type': 'service'}
+        </field>
     </record>
 
 </odoo>
