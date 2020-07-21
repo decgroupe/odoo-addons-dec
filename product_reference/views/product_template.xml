@@ -67,7 +67,6 @@
         <field name="search_view_id" ref="product.product_template_search_view"/>
         <field name="context">{
             'search_default_services': 1, 
-            'search_default_filter_has_public_code': 1,
             'default_type': 'service'}
         </field>
     </record>
