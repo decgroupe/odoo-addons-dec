@@ -81,8 +81,7 @@ class SaleOrder(models.Model):
                 raise UserError(
                     _('A salesperson must be set before locking a sale order')
                 )
-            allow_lock_change = (self.env.user.id == self.user_id.id)
-            if allow_lock_change:
+            if self.same_user:
                 if vals.get('locked_draft'):
                     msg = _('Locked by {}').format(self.env.user.name)
                 else:
