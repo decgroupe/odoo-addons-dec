@@ -9,12 +9,28 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    locked = fields.Boolean(
+    locked_draft = fields.Boolean(
         string="Locked",
         copy=False,
         default=False,
-        help="This allows the seller to prevent changes by other users."
+        help="Prevent changes by users other than the salesperson",
+        oldname="locked"
     )
+
+    same_user = fields.Boolean(
+        compute='_compute_same_user',
+        readonly=True,
+    )
+
+    @api.multi
+    def action_draft_lock(self):
+        for order in self:
+            order.locked_draft = True
+
+    @api.multi
+    def action_draft_unlock(self):
+        for order in self:
+            order.locked_draft = False
 
     @api.multi
     def write(self, vals):
@@ -25,7 +41,7 @@ class SaleOrder(models.Model):
             locked_fields = []
         for order in self:
             if order.state == 'draft':
-                self._check_unlock(vals)
+                self._check_lock_unlock(vals)
                 if inter_fields:
                     self._check_lock_changes(vals, locked_fields)
         res = super().write(vals)
@@ -47,21 +63,27 @@ class SaleOrder(models.Model):
         """
         self.ensure_one()
         translated_fields = [fields[k]['string'] for k in fields]
-        if self.locked and not 'locked' in vals:
+        if self.locked_draft and not 'locked_draft' in vals:
             raise UserError(
                 _(
-                    '%s is currently locked, you are not allowed to make changes on %s'
+                    '%s is currently locked, you are not allowed to make changes to %s'
                 ) % (self.name, ', '.join(translated_fields))
             )
 
-    def _check_unlock(self, vals):
+    def _check_lock_unlock(self, vals):
         """Check if someone is trying to unlock a quotation
         """
         self.ensure_one()
-        if 'locked' in vals and vals.get('locked') != self.locked:
+        if 'locked_draft' in vals and vals.get(
+            'locked_draft'
+        ) != self.locked_draft:
+            if vals.get('locked_draft') and not self.user_id:
+                raise UserError(
+                    _('A salesperson must be set before locking a sale order')
+                )
             allow_lock_change = (self.env.user.id == self.user_id.id)
             if allow_lock_change:
-                if vals.get('locked'):
+                if vals.get('locked_draft'):
                     msg = _('Locked by {}').format(self.env.user.name)
                 else:
                     msg = _('Unlocked by {}').format(self.env.user.name)
@@ -71,3 +93,8 @@ class SaleOrder(models.Model):
                     _('Only %s is able to lock/unlock this object') %
                     (self.user_id.name)
                 )
+
+    @api.multi
+    def _compute_same_user(self):
+        for order in self:
+            order.same_user = (order.user_id == self.env.user)
