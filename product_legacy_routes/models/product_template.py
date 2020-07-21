@@ -8,24 +8,62 @@ from odoo import api, fields, models, _
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    supply_method = fields.Char(
+    supply_method = fields.Selection(
+        [
+            ('produce', 'Produce'),
+            ('buy', 'Buy'),
+        ],
         compute='_compute_supply_method',
         inverse='_inverse_supply_method',
         string='Supply method',
-        help=
-        "Produce will generate production order or tasks, according to the \
+        help="Produce will generate production order or tasks, according to the \
 product type. Buy will trigger purchase orders when requested.",
     )
 
-    procure_method = fields.Char(
+    procure_method = fields.Selection(
+        [
+            ('make_to_stock', 'Make to Stock'),
+            ('make_to_order', 'Make to Order'),
+        ],
         compute='_compute_procure_method',
         inverse='_inverse_procure_method',
         string='Procurement method',
-        help=
-        "'Make to Stock': When needed, take from the stock or wait until \
+        help="'Make to Stock': When needed, take from the stock or wait until \
 re-supplying. 'Make to Order': When needed, purchase or produce for the \
 procurement request.",
     )
+
+    raw_supply_method = fields.Char(
+        compute='_compute_raw_supply_method',
+        inverse='_inverse_raw_supply_method',
+    )
+
+    raw_procure_method = fields.Char(
+        compute='_compute_raw_procure_method',
+        inverse='_inverse_raw_procure_method',
+    )
+
+    @api.multi
+    @api.depends('raw_supply_method')
+    def _compute_supply_method(self):
+        for product in self:
+            product.supply_method = product.raw_supply_method
+
+    @api.multi
+    def _inverse_supply_method(self):
+        for product in self:
+            product.raw_supply_method = product.supply_method
+
+    @api.multi
+    @api.depends('raw_procure_method')
+    def _compute_procure_method(self):
+        for product in self:
+            product.procure_method = product.raw_procure_method
+
+    @api.multi
+    def _inverse_procure_method(self):
+        for product in self:
+            product.raw_procure_method = product.procure_method
 
     @api.model
     def _get_buy_route(self):
@@ -56,44 +94,44 @@ procurement request.",
 
     @api.multi
     @api.depends('route_ids')
-    def _compute_supply_method(self):
+    def _compute_raw_supply_method(self):
         buy_route = self._get_buy_route()
         produce_route = self._get_produce_route()
         for product in self:
             if produce_route in product.route_ids and \
                 not buy_route in product.route_ids:
-                product.supply_method = 'produce'
+                product.raw_supply_method = 'produce'
             elif buy_route in product.route_ids and \
                 not produce_route in product.route_ids:
-                product.supply_method = 'buy'
+                product.raw_supply_method = 'buy'
 
     @api.multi
-    def _inverse_supply_method(self):
+    def _inverse_raw_supply_method(self):
         buy_route = self._get_buy_route()
         produce_route = self._get_produce_route()
         for product in self:
-            if product.supply_method == 'produce':
+            if product.raw_supply_method == 'produce':
                 product.route_ids += produce_route
                 product.route_ids -= buy_route
-            elif product.supply_method == 'buy':
+            elif product.raw_supply_method == 'buy':
                 product.route_ids += buy_route
                 product.route_ids -= produce_route
 
     @api.multi
     @api.depends('route_ids')
-    def _compute_procure_method(self):
+    def _compute_raw_procure_method(self):
         mto_route = self._get_mto_route()
         for product in self:
             if mto_route in product.route_ids:
-                product.procure_method = 'make_to_order'
+                product.raw_procure_method = 'make_to_order'
             else:
-                product.procure_method = 'make_to_stock'
+                product.raw_procure_method = 'make_to_stock'
 
     @api.multi
-    def _inverse_procure_method(self):
+    def _inverse_raw_procure_method(self):
         mto_route = self._get_mto_route()
         for product in self:
-            if product.procure_method == 'make_to_order':
+            if product.raw_procure_method == 'make_to_order':
                 product.route_ids += mto_route
-            elif product.procure_method == 'make_to_stock':
+            elif product.raw_procure_method == 'make_to_stock':
                 product.route_ids -= mto_route

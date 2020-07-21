@@ -9,6 +9,8 @@
         <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
         <field name="arch" type="xml">
             <field name="type" position="after">
+                <field name="raw_procure_method" invisible="1"/>
+                <field name="raw_supply_method" invisible="1"/>
                 <field name="procure_method"/>
                 <field name="supply_method"/>
             </field>
