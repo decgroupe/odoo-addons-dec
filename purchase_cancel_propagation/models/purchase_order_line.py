@@ -32,8 +32,16 @@ class PurchaseOrderLine(models.Model):
             if moves_to_cancel:
                 moves_to_cancel._action_cancel()
 
+        # Keep a link with orders
+        purchase_orders = self.env['purchase.order']
+        for line in self:
+            purchase_orders |= line.order_id
         # Finally delete all
         self.unlink()
+        # Cancel empty orders
+        for order in purchase_orders:
+            if not order.order_line:
+                order.button_cancel()
         # Close current form and reload
         return self.action_close_dialog()
 
