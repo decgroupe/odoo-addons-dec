@@ -16,13 +16,11 @@
                 <button 
                     name="action_draft_unlock" 
                     type="object" 
+                    disabled="[('same_user', '=', False)]"
                     attrs="{'invisible': 
                         [
-                            ('|'),
-                                ('same_user', '=', False),
-                                ('&amp;'),
-                                    ('state', '=', 'draft'),
-                                    ('locked_draft', '=', False), 
+                            ('state', '=', 'draft'),
+                            ('locked_draft', '=', False), 
                         ]}"
                     class="btn btn-warning"
                     string="Unlock">
