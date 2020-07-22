@@ -11,6 +11,7 @@
         'mrp',
         'dec',
         'product_state_review',
+        'product_location',
         'mrp_production_request',
         'mrp_bom_dates',
         'mrp_bom_supplier',

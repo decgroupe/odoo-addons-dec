@@ -11,7 +11,7 @@
             </field>
             <field name="default_code" position="after">
                 <field name="public_code"/>
-            </field>
+            </field>     
         </field>
     </record>
 
@@ -37,9 +37,15 @@
         <field name="name">product.template.tree</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="mode">primary</field>
         <field name="arch" type="xml">
             <field name="default_code" position="before">
                 <field name="public_code"/>
+            </field>       
+            <field name="name" position="after">
+                <field name="loc_rack"/>
+                <field name="loc_row"/>
+                <field name="loc_case"/>
             </field>
         </field>
     </record>
@@ -56,6 +62,12 @@
             'search_default_filter_has_public_code': 1,
             'default_type': 'product'}
         </field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_window_view_product_template_tree" >
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_template_tree_view"/>
+        <field name="act_window_id" ref="act_window_product_template_as_product"/>
     </record>
 
     <record model="ir.actions.act_window" id="act_window_product_template_as_service">
