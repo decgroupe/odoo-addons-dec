@@ -10,7 +10,14 @@
                 <button 
                     name="action_draft_lock" 
                     type="object" 
-                    attrs="{'invisible': [('state', '=', 'draft'), ('locked_draft', '=', True)]}"
+                    attrs="{'invisible': 
+                        [
+                            ('|'),
+                                ('state', '!=', 'draft'),
+                                ('&amp;'),
+                                    ('state', '=', 'draft'),
+                                    ('locked_draft', '=', True), 
+                        ]}"
                     string="Lock">
                 </button>
                 <button 
@@ -19,8 +26,9 @@
                     disabled="[('same_user', '=', False)]"
                     attrs="{'invisible': 
                         [
-                            ('state', '=', 'draft'),
-                            ('locked_draft', '=', False), 
+                            ('|'),
+                                ('state', '=', 'draft'),
+                                ('locked_draft', '=', False), 
                         ]}"
                     class="btn btn-warning"
                     string="Unlock">
