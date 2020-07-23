@@ -30,19 +30,20 @@ def migrate(env, version):
 
             mapping_str.append('{0}=pp.{1}'.format(new_col_name, item[1]))
 
-    print(legacy_mapping)
-    openupgrade.logged_query(
-        env.cr, """
-        UPDATE product_template pt SET
-            {0}
-        FROM product_product pp
-        WHERE pt.id = pp.id
-        """.format(','.join(mapping_str))
-    )
+    if mapping_str:
+        print(legacy_mapping)
+        openupgrade.logged_query(
+            env.cr, """
+            UPDATE product_template pt SET
+                {0}
+            FROM product_product pp
+            WHERE pt.id = pp.id
+            """.format(','.join(mapping_str))
+        )
 
-    # Remove old columns
-    for item in legacy_mapping:
-        if openupgrade.column_exists(env.cr, PRODUCT, item[1]):
-            openupgrade.drop_columns(env.cr, [
-                (PRODUCT, item[1]),
-            ])
+        # Remove old columns
+        for item in legacy_mapping:
+            if openupgrade.column_exists(env.cr, PRODUCT, item[1]):
+                openupgrade.drop_columns(env.cr, [
+                    (PRODUCT, item[1]),
+                ])
