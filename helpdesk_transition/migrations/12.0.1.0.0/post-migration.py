@@ -11,8 +11,11 @@ def html_newline(content):
 
 
 def attach_messages_to_ticket(messages, ticket):
-    plaintext_description = tools.html2plaintext(ticket.description)
-    plaintext_description = plaintext_description.replace("\n", "")
+    if ticket.description is None:
+        plaintext_description = ''
+    else:
+        plaintext_description = tools.html2plaintext(ticket.description)
+        plaintext_description = plaintext_description.replace("\n", "").strip()
     for message in messages:
         data = {
             'message_type':
@@ -30,8 +33,8 @@ def attach_messages_to_ticket(messages, ticket):
             msg = '<p><b>{}</b></p>'.format(message.subject)
             if message.body:
                 plaintext_body = tools.html2plaintext(message.body)
-                plaintext_body = plaintext_body.replace("\n", "")
-                if plaintext_body != plaintext_description:
+                plaintext_body = plaintext_body.replace("\n", "").strip()
+                if plaintext_body and plaintext_body != plaintext_description:
                     msg += '<small>{}</small>'.format(
                         html_newline(message.body)
                     )
@@ -170,6 +173,7 @@ def migrate_progress(env, cr):
         sequence.number_next_actual = max(
             sequence.number_next_actual, max_id + 1
         )
+
 
 @openupgrade.migrate()
 def migrate(env, version):
