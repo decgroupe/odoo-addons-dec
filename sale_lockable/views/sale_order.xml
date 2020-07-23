@@ -18,7 +18,7 @@
                                     ('state', '=', 'draft'),
                                     ('locked_draft', '=', True), 
                         ]}"
-                    string="Lock">
+                    string="Lock Changes">
                 </button>
                 <button 
                     name="action_draft_unlock" 
@@ -31,7 +31,7 @@
                                 ('locked_draft', '=', False), 
                         ]}"
                     class="btn btn-warning"
-                    string="Unlock">
+                    string="Allow Changes">
                 </button>
             </xpath>
             <xpath expr="//field[@name='validity_date']" position="before">
