@@ -1,11 +1,47 @@
+import re
 from openupgradelib import openupgrade
+from odoo import tools
+
+br = re.compile(r"(\r\n|\r|\n)")  # Supports CRLF, LF, CR
 
 
-@openupgrade.migrate()
-def migrate(env, version):
+def html_newline(content):
+    res = br.sub(r"<br />\n", content)  # \n for sourcecode
+    return res
+
+
+def attach_messages_to_ticket(messages, ticket):
+    plaintext_description = tools.html2plaintext(ticket.description)
+    plaintext_description = plaintext_description.replace("\n", "")
+    for message in messages:
+        data = {
+            'message_type':
+                'notification',
+            'model':
+                'helpdesk.ticket',
+            'res_id':
+                ticket.id,
+            'author_id':
+                ticket.user_id and ticket.user_id.partner_id
+                and ticket.user_id.partner_id.id,
+        }
+        message.write(data)
+        if message.subject:
+            msg = '<p><b>{}</b></p>'.format(message.subject)
+            if message.body:
+                plaintext_body = tools.html2plaintext(message.body)
+                plaintext_body = plaintext_body.replace("\n", "")
+                if plaintext_body != plaintext_description:
+                    msg += '<small>{}</small>'.format(
+                        html_newline(message.body)
+                    )
+            message.body = msg
+
+
+@openupgrade.progress()
+def migrate_progress(env, cr):
     HelpdeskTicket = env['helpdesk.ticket']
     MailMessage = env['mail.message']
-    cr = env.cr
     if openupgrade.table_exists(cr, 'crm_helpdesk'):
         # channel_id: crm.case.channel
         channel_mapping = {
@@ -50,64 +86,82 @@ def migrate(env, version):
         """
         )
         max_id = 0
-        i = 0
+        debug_counter = 0
         for val in cr.dictfetchall():
             max_id = max(max_id, val['id'])
-            channel_id = False
-            if val.get('channel_id') in channel_mapping:
-                channel_id = channel_mapping[val.get('channel_id')][1]
-            data = {
-                'create_uid': val['create_uid'],
-                'create_date': val['create_date'],
-                'write_date': val['write_date'],
-                'write_uid': val['write_uid'],
-                'description': val.get('description') or '---',
-                'name': val['name'],
-                'partner_id': val['partner_id'],
-                'partner_name': '---',
-                'partner_email': val['email_from'],
-                'assigned_date': val['date'],
-                'user_id': val['user_id'],
-                'channel_id': channel_id and channel_id.id or False,
-                'number': "HT{:05d}".format(val['id']),
-            }
-            print(data)
-            ticket = HelpdeskTicket.create(data)
-            # Update stage
-            stage_id = False
-            if val.get('state') in state_mapping:
-                stage_id = state_mapping[val.get('state')]
-            data = {
-                'stage_id': stage_id and stage_id.id or False,
-            }
-            print(data)
-            ticket.write(data)
-            # Override closed date
-            data = {
-                'closed_date': val['date_closed'],
-            }
-            print(data)
-            ticket.write(data)
+            number = "HT{:05d}".format(val['id'])
+            ticket = HelpdeskTicket.search([
+                ('number', '=', number),
+            ])
+            if not ticket:
+                debug_counter += 1
+                channel_id = False
+                if val.get('channel_id') in channel_mapping:
+                    channel_id = channel_mapping[val.get('channel_id')][1]
 
-            i += 1
-            if i == 10:
-                break
-            # TODO: Seach model and res_id and recreate using messagepost
+                description = val.get('description')
+                if description:
+                    description = html_newline(description)
+                else:
+                    description = '---'
+
+                data = {
+                    'create_uid': val['create_uid'],
+                    'create_date': val['create_date'],
+                    'write_date': val['write_date'],
+                    'write_uid': val['write_uid'],
+                    'description': description,
+                    'name': val['name'],
+                    'partner_id': val['partner_id'],
+                    'partner_name': '---',
+                    'partner_email': val['email_from'],
+                    'assigned_date': val['date'],
+                    'user_id': val['user_id'],
+                    'channel_id': channel_id and channel_id.id or False,
+                    'number': number,
+                }
+                print(data)
+                ticket = HelpdeskTicket.create(data)
+                # Update stage
+                stage_id = False
+                if val.get('state') in state_mapping:
+                    stage_id = state_mapping[val.get('state')]
+                data = {
+                    'stage_id': stage_id and stage_id.id or False,
+                }
+                print(data)
+                ticket.write(data)
+                # Override closed date
+                data = {
+                    'closed_date':
+                        val['date_closed'],
+                    'last_stage_update':
+                        val['write_date'] or val['create_date'],
+                }
+                print(data)
+                ticket.write(data)
+
+            # Search for old messages to re-attach them to this ticket
             messages = MailMessage.search(
                 [
                     ('model', '=', 'crm.helpdesk'),
                     ('res_id', '=', val.get('id')),
                 ]
             )
+            attach_messages_to_ticket(messages, ticket)
             if messages:
-                data = {
-                    'model': 'helpdesk.ticket',
-                    'res_id': ticket.id,
-                }
-                messages.write(data)
+                print(number)
+
+            # if debug_counter > 10:
+            #     break
 
         # Update sequence helpdesk ticket sequence
         sequence = env.ref('helpdesk_mgmt.helpdesk_ticket_sequence')
         sequence.number_next_actual = max(
             sequence.number_next_actual, max_id + 1
         )
+
+@openupgrade.migrate()
+def migrate(env, version):
+    cr = env.cr
+    migrate_progress(env, cr)
