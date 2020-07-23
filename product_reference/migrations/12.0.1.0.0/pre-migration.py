@@ -28,7 +28,10 @@ column_renames_new = {
 
 @openupgrade.migrate()
 def migrate(env, version):
-    openupgrade.rename_columns(env.cr, column_renames)
+    if openupgrade.column_exists(
+        env.cr, PRODUCT, column_renames[PRODUCT][0][0]
+    ):
+        openupgrade.rename_columns(env.cr, column_renames)
 
     if openupgrade.column_exists(
         env.cr, PRODUCT, column_renames_old[PRODUCT][0][0]

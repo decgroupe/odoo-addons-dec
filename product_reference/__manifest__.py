@@ -16,7 +16,7 @@
         'mrp_bom_dates',
         'mrp_bom_supplier',
     ],
-    #'force_migration':'12.0.0.0.0',
+    'force_migration':'12.0.0.0.0',
     'data':
         [
             # 'views/reference_wizard.xml',
