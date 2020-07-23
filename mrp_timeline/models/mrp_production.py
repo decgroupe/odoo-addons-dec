@@ -10,6 +10,6 @@ class MrpProduction(models.Model):
 
     bom_name = fields.Char(
         'Bill of Materials Name',
-        related='bom_id.name',
+        related='bom_id.code',
         readonly=True,
     )
