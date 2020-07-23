@@ -10,6 +10,8 @@ columns = [
     'internal_notes',
 ]
 
+PRODUCT = 'product_product'
+
 
 @openupgrade.migrate()
 def migrate(env, version):
@@ -17,7 +19,7 @@ def migrate(env, version):
 
     mapping_str = []
     for item in legacy_mapping:
-        if openupgrade.column_exists(env.cr, 'product_product', item[1]):
+        if openupgrade.column_exists(env.cr, PRODUCT, item[1]):
             new_col_name = item[0]
             # Force new names since framework will create column with these
             # names.
@@ -37,3 +39,10 @@ def migrate(env, version):
         WHERE pt.id = pp.id
         """.format(','.join(mapping_str))
     )
+
+    # Remove old columns
+    for item in legacy_mapping:
+        if openupgrade.column_exists(env.cr, PRODUCT, item[1]):
+            openupgrade.drop_columns(env.cr, [
+                (PRODUCT, item[1]),
+            ])
