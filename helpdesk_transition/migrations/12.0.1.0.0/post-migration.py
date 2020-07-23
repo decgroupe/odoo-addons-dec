@@ -41,6 +41,7 @@ def attach_messages_to_ticket(messages, ticket):
 @openupgrade.progress()
 def migrate_progress(env, cr):
     HelpdeskTicket = env['helpdesk.ticket']
+    HelpdeskTicketReference = env['helpdesk.ticket.reference']
     MailMessage = env['mail.message']
     if openupgrade.table_exists(cr, 'crm_helpdesk'):
         # channel_id: crm.case.channel
@@ -80,7 +81,7 @@ def migrate_progress(env, cr):
                 id, create_uid, create_date, write_date, write_uid,
                 date_closed, description, 
                 date, partner_id, user_id, name, date_deadline,
-                ref, email_from, state, channel_id
+                ref, ref2, email_from, state, channel_id
             FROM
                 crm_helpdesk;
         """
@@ -151,6 +152,15 @@ def migrate_progress(env, cr):
             attach_messages_to_ticket(messages, ticket)
             if messages:
                 print(number)
+
+            # Create reference to first ref
+            for ref_field in ('ref', 'ref2'):
+                if val.get(ref_field):
+                    data = {
+                        'ticket_id': ticket.id,
+                        'model_ref_id': val.get(ref_field),
+                    }
+                    HelpdeskTicketReference.create(data)
 
             # if debug_counter > 10:
             #     break

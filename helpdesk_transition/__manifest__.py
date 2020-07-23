@@ -5,8 +5,9 @@
     'website': 'http://www.dec-industrie.com',
     'summary': '''Create helpdesk data from crm.helpdesk''',
     'depends': [
-        'dec', # Added only to force create dummy
+        'dec', # Added only to force create dummy smtp server
         'helpdesk_mgmt',
+        'helpdesk_references',
     ],
     'force_migration':'12.0.0.0.0',
     'data': [
