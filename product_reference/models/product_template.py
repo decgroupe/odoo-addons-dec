@@ -38,6 +38,7 @@ class ProductTemplate(models.Model):
     reference_ids = fields.One2many(
         'ref.reference',
         'product_id',
+        string='References',
     )
 
     @api.multi

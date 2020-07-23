@@ -11,7 +11,7 @@
             </field>
             <field name="default_code" position="after">
                 <field name="public_code"/>
-            </field>     
+            </field>
         </field>
     </record>
 
@@ -29,7 +29,45 @@
                     name="filter_has_public_code" 
                     domain="[('public_code','!=',False)]">
                 </filter>
+                <filter 
+                    string="Has a Location" 
+                    name="filter_has_location" 
+                    domain="[
+                        ('|'),
+                            ('loc_rack','!=',False),
+                            ('|'),
+                                ('loc_row','!=',False),
+                                ('loc_case','!=',False),
+                    ]">
+                </filter>
+                <separator/>
+                <filter 
+                    string="Is not a Pack" 
+                    name="filter_is_not_a_pack" 
+                    domain="[('pack_ok','=',False)]">
+                </filter>
+                <separator/>
             </filter>
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <group string="Group By" name="groupby">
+                    <filter 
+                        string="Rack" 
+                        name="groupby_loc_rack" 
+                        context="{'group_by':'loc_rack'}">
+                    </filter>
+                    <filter 
+                        string="Row" 
+                        name="groupby_loc_row" 
+                        context="{'group_by':'loc_row'}">
+                    </filter>
+                    <filter 
+                        string="Case" 
+                        name="groupby_loc_case" 
+                        context="{'group_by':'loc_case'}">
+                    </filter>
+                </group>
+            </xpath>
         </field>
     </record>
 
@@ -60,6 +98,7 @@
         <field name="context">{
             'search_default_consumable': 1, 
             'search_default_filter_has_public_code': 1,
+            'search_default_filter_has_location': 1,
             'default_type': 'product'}
         </field>
     </record>
@@ -79,6 +118,7 @@
         <field name="search_view_id" ref="product.product_template_search_view"/>
         <field name="context">{
             'search_default_services': 1, 
+            'search_default_filter_is_not_a_pack': 1,
             'default_type': 'service'}
         </field>
     </record>
