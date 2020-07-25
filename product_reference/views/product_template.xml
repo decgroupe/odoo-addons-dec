@@ -66,6 +66,12 @@
                         name="groupby_loc_case" 
                         context="{'group_by':'loc_case'}">
                     </filter>
+                    <separator/>
+                    <filter 
+                        string="Default Code" 
+                        name="groupby_default_code" 
+                        context="{'group_by':'default_code'}">
+                    </filter>
                 </group>
             </xpath>
         </field>
