@@ -18,4 +18,5 @@ class MrpBom(models.Model):
     @api.depends('bom_line_ids.cost_price')
     def _compute_cost_price(self):
         for bom in self:
-            bom.cost_price = sum(bom.bom_line_ids.mapped['cost_price'])
+            prices = bom.bom_line_ids.mapped('cost_price')
+            bom.cost_price = sum(prices)
