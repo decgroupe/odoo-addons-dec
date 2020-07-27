@@ -17,6 +17,7 @@
         'mrp_bom_dates',
         'mrp_bom_supplier',
         'mrp_bom_prices',
+        'wizard_run',
     ],
     'force_migration':'12.0.0.0.0',
     'data':

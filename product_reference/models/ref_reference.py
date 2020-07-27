@@ -148,7 +148,12 @@ class RefReference(models.Model):
         MrpBom = self.env['mrp.bom']
         RefPrice = self.env['ref.price']
 
-        for reference in self.search([]):
+        if not self.ids:
+            references = self.search([])
+        else:
+            references = self
+
+        for reference in references:
             if reference.category_id.code in ['ADT']:
                 continue
             #_logger.info("Reference category name is {0}".format(reference.category_id.name))
@@ -189,7 +194,7 @@ class RefReference(models.Model):
                     reference.product_id.name
                 )
 
-        self.generate_material_cost_report()
+        references.generate_material_cost_report()
 
     @api.multi
     def generate_material_cost_report(
@@ -198,9 +203,6 @@ class RefReference(models.Model):
         RefPrice = self.pool.get('ref.price')
         mail_message_obj = self.env['mail.mail'].sudo()
 
-        if not self:
-            self.search([]).generate_material_cost_report(())
-
         today = time.strftime('%Y-%m-%d')
         emailfrom = 'refmanager@dec-industrie.com'
         emails = ['decindustrie@gmail.com']
@@ -208,11 +210,16 @@ class RefReference(models.Model):
         body = ('%s\n\n') % (self.env.cr.dbname)
         ref_content = []
 
-        for reference in self.browse(ids):
+        if not self.ids:
+            references = self.search([])
+        else:
+            references = self
+
+        for reference in references:
             if reference.category_id.name in ['ADT']:
                 continue
-            ref1_ids = []
-            ref2_ids = []
+            ref1_ids = RefPrice
+            ref2_ids = RefPrice
             if date_ref1:
                 ref1_ids = RefPrice.search(
                     [
@@ -231,18 +238,16 @@ class RefReference(models.Model):
                 )
 
             if ref1_ids and ref2_ids:
-                price_ids = ref2_ids + ref1_ids
+                prices = ref2_ids + ref1_ids
             else:
-                price_ids = RefPrice.search(
+                prices = RefPrice.search(
                     [('reference_id', '=', reference.id)], limit=2
                 )
 
-            if (len(price_ids) >= 2):
-                prices = RefPrice.browse(price_ids)
+            if (len(prices) >= 2):
                 if (round(prices[0].value, 2) > round(prices[1].value, 2)) and (
                     (date_ref1 or date_ref2) or (prices[0].date == today)
                 ):
-                    assert (prices[0].id == price_ids[0])
                     ref_content.append(
                         {
                             'id': reference.id,
