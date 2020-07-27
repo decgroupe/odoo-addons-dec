@@ -148,25 +148,21 @@ class RefReference(models.Model):
         MrpBom = self.env['mrp.bom']
         RefPrice = self.env['ref.price']
 
-        ids = self.ids
-        if not self.ids:
-            ids = self.search([])
-        for reference in self.browse(ids):
+        for reference in self.search([]):
             if reference.category_id.code in ['ADT']:
                 continue
             #_logger.info("Reference category name is {0}".format(reference.category_id.name))
             data = {}
             cost_price = 0.0
             if reference.product_id and reference.product_id.bom_ids:
-                bom_id = mrp_bom_obj._bom_find(product=reference.product_id)
+                bom_id = MrpBom._bom_find(product_tmpl=reference.product_id)
                 if bom_id:
                     _logger.info(
                         'Compute material cost price for [%s] %s',
                         reference.value, reference.product_id.name
                     )
                     try:
-                        cost_price = mrp_bom_obj.get_cost_price([bom_id]
-                                                               )[bom_id]
+                        cost_price = bom_id.cost_price
                     except Exception as e:
                         _logger.exception(
                             "Failed to get cost price for [%s] %s\n %s",
@@ -174,18 +170,18 @@ class RefReference(models.Model):
                         )
 
             ref_price = False
-            ref_price_ids = RefPrice.search(
+            ref_prices = RefPrice.search(
                 [('reference_id', '=', reference.id)], limit=1
             )
-            if ref_price_ids:
-                ref_price = RefPrice.browse(ref_price_ids)[0]
+            if ref_prices:
+                ref_price = ref_prices[0]
 
-            if not ref_price or (
-                round(ref_price.value, 2) != round(cost_price, 2)
-            ):
+            if not ref_price or (round(ref_price.value, 2) != round(cost_price, 2)):
                 #abs(ref_price.value - cost_price) > 0.1
-                data['reference_id'] = reference.id
-                data['value'] = cost_price
+                data = {
+                    'reference_id': reference.id,
+                    'value': cost_price,
+                }
                 RefPrice.create(data)
             else:
                 _logger.info(
@@ -193,17 +189,17 @@ class RefReference(models.Model):
                     reference.product_id.name
                 )
 
-        self.generate_material_cost_report(ids)
+        self.generate_material_cost_report()
 
-    @api.model
+    @api.multi
     def generate_material_cost_report(
-        self, ids, date_ref1=False, date_ref2=False
+        self, date_ref1=False, date_ref2=False
     ):
         RefPrice = self.pool.get('ref.price')
         mail_message_obj = self.env['mail.mail'].sudo()
 
-        if not ids:
-            ids = self.search([])
+        if not self:
+            self.search([]).generate_material_cost_report(())
 
         today = time.strftime('%Y-%m-%d')
         emailfrom = 'refmanager@dec-industrie.com'

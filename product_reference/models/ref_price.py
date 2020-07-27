@@ -21,7 +21,7 @@ class RefPrice(models.Model):
     date = fields.Date(
         'Date',
         required=True,
-        default=fields.Datetime.now,
+        default=lambda self: fields.Date.today(),
     )
     value = fields.Float('Price')
 
