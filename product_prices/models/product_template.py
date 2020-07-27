@@ -125,6 +125,36 @@ class ProductTemplate(models.Model):
     def onchange_prices(self):
         self._compute_default_purchase_price()
 
+    def get_purchase_price(self, seller_id=False, uom_id=False):
+        """Use same logic from _compute_default_purchase_price without
+            the history thing
+
+        Args:
+            seller_id (bool, optional): Partner to use to get purchase 
+            pricelist. Use the seller_id from product if not set. Defaults
+            to False.
+            uom_id (bool, optional): Unit used to compute the price. Use the
+            uom_id from product Defaults to False.
+
+        Returns:
+            float: Purchase price
+        """
+        self.ensure_one()
+        res = 0
+        if not seller_id:
+            seller_id = self.seller_id
+        if not uom_id:
+            uom_id = self.uom_id
+        if seller_id:
+            pricelist = seller_id.property_product_pricelist_purchase
+            if pricelist:
+                res = pricelist.get_product_price(
+                    self, 1, False, uom_id=uom_id.id
+                )
+        else:
+            res = self.standard_price
+        return res
+
     @api.multi
     @api.depends(
         'seller_id',
@@ -153,7 +183,7 @@ class ProductTemplate(models.Model):
                     p.default_purchase_price_po_uom = \
                         pricelist.get_product_price(
                             p, 1, False, uom_id=p.uom_po_id.id
-                        )                    
+                        )
                     graph = history[p.id]['graph']['header'] + \
                             history[p.id]['graph']['body']
                     p.default_purchase_price_graph_po_uom = '\n'.join(graph)
@@ -251,5 +281,6 @@ functionality'
     @api.multi
     def open_price_graph(self):
         self.ensure_one()
-        action = self.env.ref('product_prices.act_window_product_price_graph').read()[0]
+        action = self.env.ref('product_prices.act_window_product_price_graph'
+                             ).read()[0]
         return action

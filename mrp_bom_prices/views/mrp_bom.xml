@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="mrp_bom_form_view">
+            <field name="name">mrp.bom.form</field>
+            <field name="model">mrp.bom</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bom_line_ids']/tree//field[@name='product_uom_id']" position="after">
+                    <field name="public_price"/>
+                    <field name="unit_price"/>
+                    <field name="cost_price"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_bom_line_view_form">
+            <field name="name">mrp.bom.line.view.form</field>
+            <field name="model">mrp.bom.line</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_line_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group//field[@name='product_uom_id']" position="after">
+                    <field name="public_price"/>
+                    <field name="unit_price"/>
+                    <field name="cost_price"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
