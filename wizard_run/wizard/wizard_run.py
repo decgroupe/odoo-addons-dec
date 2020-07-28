@@ -36,7 +36,7 @@ class WizardRun(models.TransientModel):
                     return {}
 
             self.execute()
-
+            new_cr.commit()
             new_cr.close()
             return {}
 
