@@ -42,12 +42,10 @@ class WizardRun(models.TransientModel):
 
     def run(self):
         thread = threading.Thread(
-            target=self._threaded_run(
-                # Try to get xml id from context, that way it can be set
-                # in button context
-                self.env.context.get('scheduler_cron_xml_id')
-            ),
-            args=()
+            target=self._threaded_run,
+            # Try to get xml id from context, that way it can be set
+            # in button context
+            args=(self.env.context.get('scheduler_cron_xml_id'), )
         )
         thread.start()
         return {
