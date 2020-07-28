@@ -20,7 +20,7 @@
         <field name="arch" type="xml">
             <form string="Reference">
                 <sheet>
-                    <group>
+                    <group name="head">
                         <div class="oe_title">
                             <label for="value" class="oe_edit_only"/>
                             <h1>
@@ -28,27 +28,24 @@
                             </h1>
                         </div>
                     </group>
-                    <group>
-                        <group>
+                    <group name="common">
+                        <group name="details">
                             <field name="product_id"/>
                             <field name="state"/>
                             <field name="public_code"/>
                             <field name="category_id"/>
                             <field name="searchvalue"/>
                         </group>
-                        <group>
+                        <group name="composition">
                             <field name="datetime"/>
                             <field name="reference_line_ids"/>
                         </group>
                     </group>
-                    <group>
+                    <group name="versions">
                         <field name="current_version"/>
                         <field name="version_ids"/>
                     </group>
-                    <group>
-                        <field name="price_ids"/>
-                    </group>
-                    <group>
+                    <group name="notes">
                         <field name="internal_notes"/>
                     </group>
                 </sheet>

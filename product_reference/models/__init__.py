@@ -7,7 +7,6 @@ from . import ref_category_line
 from . import ref_market_bom
 from . import ref_market_category
 from . import ref_pack
-from . import ref_price
 from . import ref_reference
 from . import ref_reference_line
 from . import ref_version

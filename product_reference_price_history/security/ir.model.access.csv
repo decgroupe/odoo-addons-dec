@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ref_price_user,Read only access to prices for User,model_ref_price,product_reference.group_ref_user,1,0,0,0
+access_ref_price_manager,Full access to prices for Manager,model_ref_price,product_reference.group_ref_manager,1,1,1,1

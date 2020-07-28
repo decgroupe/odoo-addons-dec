@@ -23,11 +23,4 @@
         <field name="target">new</field>
     </record>
 
-    <menuitem 
-        action="action_reference_generate_material_cost_report" 
-        id="menu_reference_generate_material_cost_report" 
-        parent="dec.menu_configuration" 
-        sequence="210">
-    </menuitem>
-
 </odoo>
