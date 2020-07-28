@@ -18,5 +18,6 @@ class ProductTemplate(models.Model):
         ],
         string='Status',
         default='sellable',
-        index=True
+        index=True,
+        oldname='openupgrade_legacy_10_0_state'
     )
