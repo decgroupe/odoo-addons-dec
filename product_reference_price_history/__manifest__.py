@@ -21,6 +21,7 @@
             'views/ref_reference.xml',
             'views/ref_price.xml',
             'data/ref_reference_data.xml',
+            'data/ref_reference_cron.xml',
             'wizard/reference_compute_material_cost.xml',
             'wizard/reference_generate_material_cost_report.xml',
             'wizard/menu.xml',
