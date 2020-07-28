@@ -24,6 +24,7 @@ class RefPrice(models.Model):
         default=lambda self: fields.Date.today(),
     )
     value = fields.Float('Price')
+    product_count = fields.Integer('Products')
 
     @api.multi
     def name_get(self):

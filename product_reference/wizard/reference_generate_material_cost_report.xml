@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="reference_generate_material_cost_report_wizard_view">
+        <field name="model">reference.generate_material_cost_report</field>
+        <field name="inherit_id" ref="wizard_run.wizard_run_wizard_view"/>
+        <field name="arch" type="xml">
+            <p name="title" position="inside">
+                Generate a report for last price changes and send it as a mail.
+            </p>
+            <button name="run" position="attributes">
+                <attribute name="context">{'ignore_date':True}</attribute>
+            </button>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_reference_generate_material_cost_report" >
+        <field name="name">Generate Material Cost Report</field>
+        <field name="res_model">reference.generate_material_cost_report</field>
+        <field name="view_id" ref="reference_generate_material_cost_report_wizard_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem 
+        action="action_reference_generate_material_cost_report" 
+        id="menu_reference_generate_material_cost_report" 
+        parent="dec.menu_configuration" 
+        sequence="210">
+    </menuitem>
+
+</odoo>
