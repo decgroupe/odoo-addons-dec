@@ -2,7 +2,6 @@
 <odoo>
 
     <record model="ir.ui.view" id="reference_compute_material_cost_wizard_view">
-        <field name="name">Run Schedulers Manually</field>
         <field name="model">reference.compute_material_cost</field>
         <field name="inherit_id" ref="wizard_run.wizard_run_wizard_view"/>
         <field name="arch" type="xml">

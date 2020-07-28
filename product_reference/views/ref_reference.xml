@@ -52,10 +52,6 @@
                         <field name="internal_notes"/>
                     </group>
                 </sheet>
-                <field name="folder_count"/>
-                <field name="folder_error"/>
-                <field name="folder_warning"/>
-                <field name="folder_task"/>
             </form>
         </field>
     </record>
