@@ -23,17 +23,22 @@ msgstr ""
 #. module: product_state_review
 #: selection:product.template,state:0
 msgid "End of Lifecycle"
-msgstr "Fin de vie"
+msgstr "En fin de vie"
+
+#. module: product_state_review
+#: selection:product.template,state:0
+msgid "In Quotation"
+msgstr "En devis"
 
 #. module: product_state_review
 #: selection:product.template,state:0
 msgid "In Development"
-msgstr "Développement"
+msgstr "En développement"
 
 #. module: product_state_review
 #: selection:product.template,state:0
 msgid "Need review"
-msgstr "Révision"
+msgstr "À réviser"
 
 #. module: product_state_review
 #: selection:product.template,state:0
