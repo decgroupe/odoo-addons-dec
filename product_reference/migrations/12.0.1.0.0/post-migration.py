@@ -1,4 +1,11 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
+# Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
+
+import logging
+
 from openupgradelib import openupgrade
+_logger = logging.getLogger(__name__)
 
 columns = [
     'ciel_code',
@@ -11,6 +18,23 @@ columns = [
 ]
 
 PRODUCT = 'product_product'
+
+
+@openupgrade.progress()
+def migrate_product_state(env, version):
+    for ref in env['ref.reference'].search([('state', '=', False)]):
+        if ref.product_id.state == False:
+            _logger.info(
+                '{}: {}'.format(ref.product_id.name, ref.product_id.state)
+            )
+            ref.product_id.state = 'quotation'
+
+    openupgrade.logged_query(
+        env.cr, """
+        UPDATE product_template SET state='normal'
+        WHERE state is NULL;
+        """
+    )
 
 
 @openupgrade.migrate()
@@ -47,3 +71,5 @@ def migrate(env, version):
                 openupgrade.drop_columns(env.cr, [
                     (PRODUCT, item[1]),
                 ])
+
+    migrate_product_state(env, version)
