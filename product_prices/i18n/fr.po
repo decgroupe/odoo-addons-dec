@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-29 16:43+0000\n"
-"PO-Revision-Date: 2020-05-26 11:50+0000\n"
+"POT-Creation-Date: 2020-07-28 19:59+0000\n"
+"PO-Revision-Date: 2020-07-29 15:02+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_product__pricelist_bypass
@@ -35,7 +36,7 @@ msgid "By-pass"
 msgstr "By-pass"
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:221
+#: code:addons/product_prices/models/product_template.py:242
 #, python-format
 msgid "By-pass {}"
 msgstr "By-pass {}"
@@ -65,7 +66,7 @@ msgstr "Coût de revient et prix d'achat"
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_template__standard_price
 msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
-msgstr ""
+msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à fixer en moyenne / FIFO."
 
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_product__standard_price
@@ -84,9 +85,8 @@ msgstr "Créé le"
 
 #. module: product_prices
 #: model:ir.model,name:product_prices.model_product_price_graph
-#, fuzzy
 msgid "Customize purchase report"
-msgstr "Coût de revient et prix d'achat"
+msgstr "Rapport d'achat personnalisé"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_price_graph__display_name
@@ -266,7 +266,7 @@ msgid "Tip to know if the product must be displayed on the market place"
 msgstr "Indique si ce produit doit apparaitre sur le tarif"
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:234
+#: code:addons/product_prices/models/product_template.py:255
 #, python-format
 msgid "Too many pricelist items for this product!, only one sale pricelist item must exist for this product to disable by-pass functionality"
 msgstr "Trop de règles de prix pour ce produit!, seule une règle de vente doit exister pour cet article pour désactiver le by-pass"

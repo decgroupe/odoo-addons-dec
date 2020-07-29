@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_legacy_routes
+# 	* product_legacy_routes
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-26 11:50+0000\n"
-"PO-Revision-Date: 2020-05-26 11:50+0000\n"
+"POT-Creation-Date: 2020-07-28 19:59+0000\n"
+"PO-Revision-Date: 2020-07-28 22:55+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
 
 #. module: product_legacy_routes
 #: model:ir.model.fields,help:product_legacy_routes.field_product_product__procure_method
@@ -22,19 +24,30 @@ msgid "'Make to Stock': When needed, take from the stock or wait until re-supply
 msgstr "'Sur stock' : au besoin, on prend dans le stock ou on attend jusqu'au prochain réapprovisionnement. 'À la demande': au besoin, on achète ou on fabrique selon la demande."
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:58
+#: code:addons/product_legacy_routes/models/product_template.py:41
+#: selection:product.template,supply_method:0
 #, python-format
 msgid "Buy"
 msgstr "Acheter"
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:76
+#: code:addons/product_legacy_routes/models/product_template.py:59
 #, python-format
 msgid "Make To Order"
-msgstr "À la demande"
+msgstr "Sur commande"
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:67
+#: selection:product.template,procure_method:0
+msgid "Make to Order"
+msgstr "Sur commande"
+
+#. module: product_legacy_routes
+#: selection:product.template,procure_method:0
+msgid "Make to Stock"
+msgstr "Production sur stock"
+
+#. module: product_legacy_routes
+#: code:addons/product_legacy_routes/models/product_template.py:50
 #, python-format
 msgid "Manufacture"
 msgstr "Produire"
@@ -46,15 +59,15 @@ msgid "Procurement method"
 msgstr "Méthode d'approvisionnement"
 
 #. module: product_legacy_routes
+#: selection:product.template,supply_method:0
+msgid "Produce"
+msgstr "Produire"
+
+#. module: product_legacy_routes
 #: model:ir.model.fields,help:product_legacy_routes.field_product_product__supply_method
 #: model:ir.model.fields,help:product_legacy_routes.field_product_template__supply_method
 msgid "Produce will generate production order or tasks, according to the product type. Buy will trigger purchase orders when requested."
 msgstr "Produire génère l'ordre de fabrication ou les tâches, en fonction du type de produit. Acheter déclenchera des commandes d'achat en cas de besoin."
-
-#. module: product_legacy_routes
-#: model:ir.model,name:product_legacy_routes.model_product_product
-msgid "Product"
-msgstr "Article"
 
 #. module: product_legacy_routes
 #: model:ir.model,name:product_legacy_routes.model_product_template
@@ -66,4 +79,3 @@ msgstr "Modèle d'article"
 #: model:ir.model.fields,field_description:product_legacy_routes.field_product_template__supply_method
 msgid "Supply method"
 msgstr "Méthode de fourniture"
-

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 08:23+0000\n"
-"PO-Revision-Date: 2020-05-27 08:23+0000\n"
+"POT-Creation-Date: 2020-07-28 20:02+0000\n"
+"PO-Revision-Date: 2020-07-28 20:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "Dernière modification le"
 #: model:ir.model.fields,field_description:software_account.field_software_account__write_uid
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "Dernière modification par"
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__write_date
@@ -139,7 +139,7 @@ msgstr "Partenaire"
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__password
 msgid "Password"
-msgstr "Mot de passe"
+msgstr "Mot de passe :"
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__pin
@@ -202,5 +202,5 @@ msgstr "Fournisseurs"
 #. module: software_account
 #: model:ir.actions.report,name:software_account.software_account_report
 msgid "📄Account (customer information)"
-msgstr ""
+msgstr "📄Compte (informations client)"
 

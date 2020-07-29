@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_workcenter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-28 19:58+0000\n"
+"PO-Revision-Date: 2020-07-28 22:41+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: mrp_workcenter
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter.mrp_workcenter_kanban_view
+msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
+msgstr "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Gérer\" title=\"Gérer\"/>"
+
+#. module: mrp_workcenter
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter.mrp_workcenter_kanban_view
+msgid "<span>PLAN ORDERS</span>"
+msgstr "<span>PLANNIFIER LES ORDRES</span>"
+
+#. module: mrp_workcenter
+#: model_terms:ir.ui.view,arch_db:mrp_workcenter.mrp_workcenter_kanban_view
+msgid "<span>WORK ORDERS</span>"
+msgstr "<span>ORDRES DE TRAVAIL</span>"
+
+#. module: mrp_workcenter
+#: model:ir.model.fields,field_description:mrp_workcenter.field_mrp_production__assigned_workcenter_id
+msgid "Assigned to"
+msgstr "Assigné à"
+
+#. module: mrp_workcenter
+#: model:ir.model.fields,field_description:mrp_workcenter.field_mrp_workcenter__user_id
+msgid "Mapped to"
+msgstr "Rattaché à"
+
+#. module: mrp_workcenter
+#: model:ir.model,name:mrp_workcenter.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_workcenter
+#: model:ir.model.fields,field_description:mrp_workcenter.field_mrp_workcenter__production_ids
+msgid "Production Orders"
+msgstr "Ordres de fabrication"
+
+#. module: mrp_workcenter
+#: model:ir.model.fields,field_description:mrp_workcenter.field_mrp_workcenter__production_count
+msgid "Production count"
+msgstr "Nombre de fabrication"
+
+#. module: mrp_workcenter
+#: model:ir.model,name:mrp_workcenter.model_mrp_workcenter
+msgid "Work Center"
+msgstr "Poste de charge"

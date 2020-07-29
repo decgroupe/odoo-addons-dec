@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 08:22+0000\n"
-"PO-Revision-Date: 2020-05-27 08:22+0000\n"
+"POT-Creation-Date: 2020-07-28 20:00+0000\n"
+"PO-Revision-Date: 2020-07-28 20:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,20 +17,20 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_attribute
+#: model:ir.model.fields,field_description:product_reference.field_ref_property__attribute_ids
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__attribute_id
 msgid "Attribute"
 msgstr "Attribut"
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_attribute
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__attributes
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_attribute_form_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_attribute_tree_view
 msgid "Attributes"
 msgstr "Caractéristiques"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__author
+#: model:ir.model.fields,field_description:product_reference.field_ref_version__author_id
 msgid "Author"
 msgstr "Auteur"
 
@@ -38,6 +38,11 @@ msgstr "Auteur"
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__bom_lines
 msgid "BoM Lines"
 msgstr "Lignes de nomenclature"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Case"
+msgstr ""
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_category
@@ -48,16 +53,16 @@ msgstr "Catégories"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_category
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__category
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__category
+#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__category_id
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__category_id
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_category_form_view
 msgid "Category"
 msgstr "Catégorie"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__category_lines
-msgid "Category Lines"
-msgstr "Lignes de catégorie"
+#: model:ir.model.fields,field_description:product_reference.field_ref_category__category_line_ids
+msgid "Category Line"
+msgstr ""
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_category_line
@@ -77,13 +82,6 @@ msgid "Category properties"
 msgstr "Propriétés de catégorie"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_product_product__ciel_code
-#: model:ir.model.fields,field_description:product_reference.field_ref_pack__ciel_code
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_ciel_code
-msgid "Ciel"
-msgstr ""
-
-#. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__code
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__default_code
 msgid "Code"
@@ -95,15 +93,14 @@ msgid "Code category must be unique !"
 msgstr "Le code de la categorie doit être unique !"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_product_product__comments
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_comments
-msgid "Comments"
-msgstr "Commentaires"
-
-#. module: product_reference
 #: selection:ref.pack,type:0
 msgid "Company"
 msgstr "Société"
+
+#. module: product_reference
+#: model:ir.model,name:product_reference.model_reference_compute_material_cost
+msgid "Compute Material Cost Manually"
+msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__localcomputername
@@ -117,8 +114,8 @@ msgstr "Prix de revient"
 
 #. module: product_reference
 #: model:ir.model.fields,help:product_reference.field_ref_pack__standard_price
-msgid "Cost used for stock valuation in standard price and as a first price to set in average/fifo. Also used as a base price for pricelists. Expressed in the default unit of measure of the product."
-msgstr "Également utilisé comme prix de base pour les listes. Exprimé dans l'unité de mesure par défaut du produit."
+msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
+msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__create_date
@@ -137,7 +134,6 @@ msgstr "Date de création"
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__create_uid
@@ -152,7 +148,6 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__create_date
@@ -171,9 +166,9 @@ msgid "Current version"
 msgstr "Version actuelle"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__date
-msgid "Date"
-msgstr "Date "
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Default Code"
+msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category__description
@@ -188,7 +183,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__display_name
@@ -199,7 +193,7 @@ msgstr "Nom affiché"
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__xml_id
 msgid "External ID"
-msgstr "ID Externe"
+msgstr "Identifiant externe"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__fixed
@@ -212,6 +206,26 @@ msgid "Format"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model,name:product_reference.model_reference_generate_material_cost_report
+msgid "Generate Material Cost Report"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Has a Location"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Has a Public Code"
+msgstr ""
+
+#. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__id
@@ -219,7 +233,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__id
@@ -238,6 +251,18 @@ msgid "IP Address"
 msgstr "Adresse IP"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_product_product__internal_notes
+#: model:ir.model.fields,field_description:product_reference.field_product_template__internal_notes
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__internal_notes
+msgid "Internal Notes"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Is not a Pack"
+msgstr ""
+
+#. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line____last_update
@@ -245,7 +270,6 @@ msgstr "Adresse IP"
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_price____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_property____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line____last_update
@@ -260,13 +284,12 @@ msgstr "Dernière modification le"
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "Dernière modification par"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__write_date
@@ -275,7 +298,6 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_category__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__write_date
@@ -292,6 +314,11 @@ msgstr "Date de dernière modification"
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__write_uid
 msgid "Last Writer"
 msgstr "Modifié par"
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__reference_line_ids
+msgid "Lines"
+msgstr "Lignes"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__localusername
@@ -332,16 +359,19 @@ msgstr "Catégorie du tarif"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_product_product__market_bom_id
+#: model:ir.model.fields,field_description:product_reference.field_product_template__market_bom_id
 msgid "Market bill of materials and services"
 msgstr "Nomenclatures et services du Tarif"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_product_product__market_markup_rate
+#: model:ir.model.fields,field_description:product_reference.field_product_template__market_markup_rate
 msgid "Markup rate"
 msgstr "Taux de marque"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_product_product__market_material_cost_factor
+#: model:ir.model.fields,field_description:product_reference.field_product_template__market_material_cost_factor
 msgid "Material factor (PF)"
 msgstr ""
 
@@ -354,7 +384,7 @@ msgstr "Date de modification"
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__name
 msgid "Modification name"
-msgstr "Nom de la modification"
+msgstr "Nom de la Modification"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__name
@@ -362,7 +392,7 @@ msgstr "Nom de la modification"
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__name
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__name
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__name
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_name
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__name
 msgid "Name"
 msgstr "Nom"
 
@@ -370,11 +400,6 @@ msgstr "Nom"
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__operation
 msgid "Operation"
 msgstr "Opération"
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__owner
-msgid "Owner"
-msgstr "Propriétaire"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_pack
@@ -419,14 +444,8 @@ msgstr "Préfixe"
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_price
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__price
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__value
 msgid "Price"
 msgstr "Prix"
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__price_lines
-msgid "Price Lines"
-msgstr "Lignes de prix"
 
 #. module: product_reference
 #: model:ir.model.fields,help:product_reference.field_ref_pack__list_price
@@ -434,23 +453,9 @@ msgid "Price at which the product is sold to customers."
 msgstr "Prix auquel le produit est vendu aux clients."
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_reference.py:186
-#, python-format
-msgid "Price surcharge alert"
-msgstr "Alert d'augmentation de prix"
-
-#. module: product_reference
-#: model:ir.actions.act_window,name:product_reference.act_window_ref_price
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_price_form_view
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_price_tree_view
-msgid "Prices"
-msgstr "Prix"
-
-#. module: product_reference
-#: model:ir.model,name:product_reference.model_product_product
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__product_id
-#: model:ir.model.fields,field_description:product_reference.field_ref_pack__product
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product
+#: model:ir.model.fields,field_description:product_reference.field_ref_pack__product_id
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_id
 msgid "Product"
 msgstr "Article"
 
@@ -460,14 +465,19 @@ msgid "Product Qty"
 msgstr "Qté de produit"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__product_uom
+#: model:ir.model,name:product_reference.model_product_template
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__product_uom_id
 msgid "Product UOM"
 msgstr "UdM du produit"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__product_category
+#: model:ir.model.fields,field_description:product_reference.field_ref_category__product_category_id
 msgid "Product category"
-msgstr "Catégorie de produit"
+msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__folder_error
@@ -505,10 +515,15 @@ msgstr "Propriétés"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_property
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__property
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__property
+#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__property_id
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__property_id
 msgid "Property"
 msgstr "Propriété"
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__property_id
+msgid "Property (owner)"
+msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__description
@@ -516,23 +531,32 @@ msgid "Property description"
 msgstr "Description de la propriété"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_product_product__public_code
+#: model:ir.model.fields,field_description:product_reference.field_product_template__public_code
+#: model:ir.model.fields,field_description:product_reference.field_ref_pack__public_code
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__public_code
+msgid "Public Code"
+msgstr ""
+
+#. module: product_reference
 #: model:ir.ui.menu,name:product_reference.menu_product_reference_manager
 msgid "REF Manager"
 msgstr ""
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Rack"
+msgstr ""
+
+#. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_price__reference_id
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__reference
+#: model:ir.model.fields,field_description:product_reference.field_product_product__reference_id
+#: model:ir.model.fields,field_description:product_reference.field_product_template__reference_id
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__reference_id
+#: model:ir.model.fields,field_description:product_reference.field_ref_version__reference_id
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
 msgid "Reference"
 msgstr "Référence"
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__reference_lines
-msgid "Reference Lines"
-msgstr "Lignes de référence"
 
 #. module: product_reference
 #: model:res.groups,name:product_reference.group_ref_manager
@@ -573,10 +597,17 @@ msgstr "Version de référence"
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_reference
+#: model:ir.model.fields,field_description:product_reference.field_product_product__reference_ids
+#: model:ir.model.fields,field_description:product_reference.field_product_template__reference_ids
 #: model:ir.ui.menu,name:product_reference.menu_ref_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_tree_view
 msgid "References"
 msgstr "Références"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+msgid "Row"
+msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_pack__list_price
@@ -595,9 +626,9 @@ msgid "Services"
 msgstr "Prestations"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_state
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__state
 msgid "Status"
-msgstr "État"
+msgstr "Statut"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__partner_id
@@ -610,13 +641,15 @@ msgid "Template"
 msgstr "Modèle"
 
 #. module: product_reference
-#: model:ir.model.fields,help:product_reference.field_ref_market_bom__product_uom
+#: model:ir.model.fields,help:product_reference.field_ref_market_bom__product_uom_id
 msgid "UoM (Unit of Measure) is the unit of measurement for the inventory control"
 msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,help:product_reference.field_product_product__market_markup_rate
 #: model:ir.model.fields,help:product_reference.field_product_product__market_material_cost_factor
+#: model:ir.model.fields,help:product_reference.field_product_template__market_markup_rate
+#: model:ir.model.fields,help:product_reference.field_product_template__market_material_cost_factor
 msgid "Used by REF manager Market"
 msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
 
@@ -638,12 +671,8 @@ msgid "Version"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__version_lines
-msgid "Version Lines"
-msgstr "Lignes de version"
-
-#. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_version
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__version_ids
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_version_tree_view
 msgid "Versions"
 msgstr ""

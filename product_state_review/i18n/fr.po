@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 16:48+0000\n"
+"POT-Creation-Date: 2020-07-28 20:00+0000\n"
 "PO-Revision-Date: 2020-03-31 23:39+0200\n"
 "Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
@@ -27,13 +27,13 @@ msgstr "En fin de vie"
 
 #. module: product_state_review
 #: selection:product.template,state:0
-msgid "In Quotation"
-msgstr "En devis"
+msgid "In Development"
+msgstr "En développement"
 
 #. module: product_state_review
 #: selection:product.template,state:0
-msgid "In Development"
-msgstr "En développement"
+msgid "In Quotation"
+msgstr "En devis"
 
 #. module: product_state_review
 #: selection:product.template,state:0

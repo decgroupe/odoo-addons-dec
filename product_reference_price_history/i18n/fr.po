@@ -1,0 +1,301 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_reference_price_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-28 20:00+0000\n"
+"PO-Revision-Date: 2020-07-29 15:06+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: product_reference_price_history
+#: model:mail.template,body_html:product_reference_price_history.material_cost_report_email_template
+msgid ""
+"<table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" style=\"border-collapse: collapse;background-color: White;color: Black;\">\n"
+"    % set colors = {'quotation': '#00B050', 'draft': '#0066ff', 'review': '#c00588', 'sellable': 'black', 'end': '#424242', 'obsolete': '#757575'}\n"
+"    <tr>\n"
+"        <td style=\"border:none; padding: 0px;font-family: Tahoma;font-size: 12px;\">\n"
+"            <table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" style=\"border-collapse: collapse;\">\n"
+"                % set job_name = ctx.get('job_name')\n"
+"                %if job_name:\n"
+"                <tr style=\"height:70px\">\n"
+"                    <td style=\"width: 80%;border: none;background-color: #00B050;color: White;font-weight: bold;font-size: 16px;height: 70px;vertical-align: bottom;padding: 0 0 17px 15px;font-family: Tahoma;\">\n"
+"                        ${ctx.get('job_name')}\n"
+"                        % set job_description = ctx.get('job_description')\n"
+"                        %if job_description:\n"
+"                        <div style=\"margin-top: 5px;font-size: 12px;\">\n"
+"                            ${ctx.get('job_description')}\n"
+"                        </div>\n"
+"                        %endif\n"
+"                    </td>\n"
+"                    <td style=\"border: none;padding: 0px;font-family: Tahoma;font-size: 12px;background-color: #00B050;color: White;font-weight: bold;font-size: 16px;height: 70px;vertical-align: bottom;padding: 0 0 17px 15px;font-family: Tahoma;\">\n"
+"                        ${ctx.get('job_result')}\n"
+"                        % set job_result_details = ctx.get('job_result_details')\n"
+"                        %if job_result_details:\n"
+"                        <div style=\"margin-top: 5px;font-size: 12px;\">\n"
+"                            ${ctx.get('job_result_details')}\n"
+"                        </div>\n"
+"                        %endif\n"
+"                    </td>\n"
+"                </tr>\n"
+"                %endif\n"
+"                <tr>\n"
+"                    <td colspan=\"2\" style=\"border: none; padding: 0px;font-family: Tahoma;font-size: 12px;\">\n"
+"                        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" class=\"inner\" border=\"0\" style=\"margin: 0px;border-collapse: collapse;\">\n"
+"                            <tr style=\"height: 17px;\">\n"
+"                                <td colspan=\"9\" style=\"border-style: solid; border-color:#a7a9ac; border-width: 1px 1px 0 1px;height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;\">\n"
+"                                    <span>${ctx.get('today')}</span></td>\n"
+"                            </tr>\n"
+"                            <tr style=\"height: 17px;\">\n"
+"                                <td nowrap=\"\" style=\"width: 1%;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Start time</b></td>\n"
+"                                <td nowrap=\"\" style=\"width:85px;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${ctx.get('start_time')}</td>\n"
+"\n"
+"                                <td nowrap=\"\" style=\"width:125px;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Total References</b></td>\n"
+"                                <td nowrap=\"\" style=\"width:85px;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${ctx.get('total_references')}</td>\n"
+"\n"
+"                                <td rowspan=\"3\" colspan=\"5\" style=\"border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 10px;vertical-align: top;\">\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            <tr style=\"height: 17px;\">\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>End time</b></td>\n"
+"                                <td style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${ctx.get('end_time')}</td>\n"
+"\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Total Products</b></td>\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${ctx.get('total_products')}</td>\n"
+"\n"
+"                            </tr>\n"
+"                            <tr style=\"height: 17px;\">\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Duration</b></td>\n"
+"                                <td style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${ctx.get('duration')}</td>\n"
+"\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>---</b></td>\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ---</td>\n"
+"\n"
+"                            </tr>\n"
+"                            <tr style=\"height: 17px;\">\n"
+"                                <td colspan=\"9\" nowrap=\"\" style=\"height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;border: 1px solid #a7a9ac;\">\n"
+"                                    Details\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            <tr style=\"height: 23px\">\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Reference</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" width=\"50%\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Product</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Date</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Count</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Previous Price</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Date</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Count</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>New Price</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Diff</b>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            % for line in ctx.get('report_lines'):\n"
+"                            <tr style=\"height: 17px;\">\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Consolas;font-size: 12px;\">\n"
+"                                    <span>\n"
+"                                        <a href=\"${line['href']}\" style=\"text-decoration: none;color:${colors[line['reference'].product_id.state] or 'black'};\">\n"
+"                                            ${line['reference'].value}\n"
+"                                        </a>\n"
+"                                    </span>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <span style=\"color:${colors[line['reference'].product_id.state] or 'black'};\">${line['reference'].product_id.name}</span>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"text-align: center;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${line['price1_date']}\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${line['price1_product_count']}\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${line['price1_fmt']}\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"text-align: center;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${line['price0_date']}\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    ${line['price0_product_count']}\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>${line['price0_fmt']}</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>+${line['diff']}</b>\n"
+"                                </td>\n"
+"                            </tr>\n"
+"                            % endfor\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"    <tr>\n"
+"        <td> </td>\n"
+"    </tr>\n"
+"    <tr>\n"
+"        <td style=\"font-size:12px;color:#626365;padding: 2px 3px 2px 3px;vertical-align: top;font-family: Tahoma;\">\n"
+"            ${ctx.get('company_name')}\n"
+"        </td>\n"
+"    </tr>\n"
+"</table>\n"
+"\n"
+"        "
+msgstr ""
+
+#. module: product_reference_price_history
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_compute_material_cost_wizard_view
+msgid "Check all references for price changes and send a mail with results."
+msgstr "Vérifie un changement de prix sur toutes les références et envoi le résultat par e-mail."
+
+#. module: product_reference_price_history
+#: model:ir.actions.act_window,name:product_reference_price_history.action_reference_compute_material_cost
+#: model:ir.ui.menu,name:product_reference_price_history.menu_reference_compute_material_cost
+msgid "Compute Material Cost"
+msgstr "Calculer les coûts matériels"
+
+#. module: product_reference_price_history
+#: model:ir.model,name:product_reference_price_history.model_reference_compute_material_cost
+msgid "Compute Material Cost Manually"
+msgstr "Calculer les coûts matériels manuellement"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__create_uid
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__create_uid
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__create_date
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__create_date
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__date
+msgid "Date"
+msgstr "Date"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__display_name
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__display_name
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_reference_price_history
+#: model:ir.actions.act_window,name:product_reference_price_history.action_reference_generate_material_cost_report
+#: model:ir.model,name:product_reference_price_history.model_reference_generate_material_cost_report
+#: model:ir.ui.menu,name:product_reference_price_history.menu_reference_generate_material_cost_report
+msgid "Generate Material Cost Report"
+msgstr "Générer un rapport des coûts matériels"
+
+#. module: product_reference_price_history
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_generate_material_cost_report_wizard_view
+msgid "Generate a report for last price changes and send it as a mail."
+msgstr "Génère un rapport pour les derniers changements de prix et l'envoi par e-mail."
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__id
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__id
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price____last_update
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost____last_update
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__write_uid
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__write_uid
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__write_date
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__write_date
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: product_reference_price_history
+#: model:mail.template,subject:product_reference_price_history.material_cost_report_email_template
+msgid "Material Cost Report"
+msgstr "Rapport des coûts matériels"
+
+#. module: product_reference_price_history
+#: model:ir.model,name:product_reference_price_history.model_ref_price
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__value
+msgid "Price"
+msgstr "Prix"
+
+#. module: product_reference_price_history
+#: model:ir.actions.act_window,name:product_reference_price_history.act_window_ref_price
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_reference__price_ids
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.ref_price_form_view
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.ref_price_tree_view
+msgid "Prices"
+msgstr "Prix"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__product_count
+msgid "Products"
+msgstr "Articles"
+
+#. module: product_reference_price_history
+#: model:ir.model,name:product_reference_price_history.model_ref_reference
+#: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__reference_id
+msgid "Reference"
+msgstr "Référence"
+
+#. module: product_reference_price_history
+#: model:ir.actions.server,name:product_reference_price_history.ir_cron_scheduler_material_cost_ir_actions_server
+#: model:ir.cron,cron_name:product_reference_price_history.ir_cron_scheduler_material_cost
+#: model:ir.cron,name:product_reference_price_history.ir_cron_scheduler_material_cost
+msgid "Reference: Compute Material Cost"
+msgstr "Référence: Calculer les coûts matériels"

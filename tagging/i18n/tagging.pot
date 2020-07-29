@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 08:24+0000\n"
-"PO-Revision-Date: 2020-05-27 08:24+0000\n"
+"POT-Creation-Date: 2020-07-28 20:03+0000\n"
+"PO-Revision-Date: 2020-07-28 20:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Dernière modification le"
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "Dernière modification par"
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__write_date
@@ -70,7 +70,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__related_tags_ids
 #: model_terms:ir.ui.view,arch_db:tagging.tags_form
 msgid "Related Tags"
-msgstr "Tags associés"
+msgstr "Mots clés associés"
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__description
@@ -81,12 +81,7 @@ msgstr "Description courte"
 #: model:ir.model,name:tagging.model_tagging_tags
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__name
 msgid "Tag"
-msgstr ""
-
-#. module: tagging
-#: model:ir.ui.menu,name:tagging.menu_tagging
-msgid "Tagging"
-msgstr "Etiquettage"
+msgstr "Mot clé"
 
 #. module: tagging
 #: model:ir.actions.act_window,name:tagging.act_open_tags_tree
@@ -98,9 +93,9 @@ msgid "Tags"
 msgstr "Étiquettes"
 
 #. module: tagging
-#: code:addons/tagging/models/tagging.py:41
+#: code:addons/tagging/models/tagging.py:29
 #: sql_constraint:tagging.tags:0
 #, python-format
 msgid "The tag names must be unique!"
-msgstr "Le nom du tag doit être unique!"
+msgstr "Le nom du mot clé doit être unique!"
 

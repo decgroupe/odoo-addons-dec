@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 08:21+0000\n"
-"PO-Revision-Date: 2020-05-27 08:21+0000\n"
+"POT-Creation-Date: 2020-07-28 19:58+0000\n"
+"PO-Revision-Date: 2020-07-28 19:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Production"
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__orderpoint_ids
 msgid "Orderpoint"
-msgstr "Réapprovisionnement"
+msgstr "Point de commande"
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__picking_ids
@@ -38,7 +38,7 @@ msgstr "Opération de manutention"
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__picking_count
 msgid "Picking count"
-msgstr "Nombre des préparations"
+msgstr "Nombre de préparations"
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
@@ -48,7 +48,7 @@ msgstr "Préparations"
 #. module: procurement_traceability
 #: model:ir.model,name:procurement_traceability.model_procurement_group
 msgid "Procurement Group"
-msgstr "Groupe d'approvisionnement"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
@@ -80,7 +80,7 @@ msgstr ""
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_ids
 msgid "Purchase Order"
-msgstr "Commande fournisseur"
+msgstr "Bon de commande"
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
@@ -120,7 +120,7 @@ msgstr ""
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__sale_order_ids
 msgid "Sale Order"
-msgstr "Bon de commande"
+msgstr "Commande client"
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
@@ -150,7 +150,7 @@ msgstr "Mouvements de stocks"
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__stock_rule_ids
 msgid "Stock Rule"
-msgstr "Règle de stock minimum"
+msgstr "Règle de stock"
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__stock_move_count

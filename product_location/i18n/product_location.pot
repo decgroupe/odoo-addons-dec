@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 08:22+0000\n"
-"PO-Revision-Date: 2020-05-27 08:22+0000\n"
+"POT-Creation-Date: 2020-07-28 19:59+0000\n"
+"PO-Revision-Date: 2020-07-28 19:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Casier"
 #. module: product_location
 #: model:ir.model,name:product_location.model_product_template
 msgid "Product Template"
-msgstr "Modèle d'article"
+msgstr "Modèle de produit"
 
 #. module: product_location
 #: model:ir.model.fields,field_description:product_location.field_product_product__loc_rack
