@@ -6,6 +6,8 @@
     'summary': '''Scheduler task extended to re-create PO/MO''',
     'depends': [
         'stock',
+        'mrp',
+        'purchase_stock',
     ],
     'data':
         [

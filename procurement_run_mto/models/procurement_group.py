@@ -43,11 +43,7 @@ class ProcurementGroup(models.Model):
             [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
         )
         # Select only valid moves
-        moves_to_confirm = picking_ids.mapped('move_lines').filtered(
-            lambda x: x.state not in ('done', 'cancel') and \
-                x.procure_method == 'make_to_order' and \
-                x.location_id == self.env.ref('stock.stock_location_stock')
-        )
+        moves_to_confirm = self._filter_moves_to_confirm(picking_ids)
         for move in moves_to_confirm:
             try:
                 with self._cr.savepoint():
@@ -58,6 +54,17 @@ class ProcurementGroup(models.Model):
                 )
         if use_new_cursor:
             self._cr.commit()
+
+    @api.model
+    def _filter_moves_to_confirm(self, picking_ids):
+        return picking_ids.mapped('move_lines').filtered(
+            lambda x: \
+            x.state not in ('done', 'cancel') and \
+            x.procure_method == 'make_to_order' and \
+            x.location_id == self.env.ref('stock.stock_location_stock') and \
+            x.created_purchase_line_id == False and \
+            x.created_production_id == False
+        )
 
     @api.model
     def _action_confirm_one_move(self, move):
