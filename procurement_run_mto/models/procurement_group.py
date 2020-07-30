@@ -62,8 +62,8 @@ class ProcurementGroup(models.Model):
             x.state not in ('done', 'cancel') and \
             x.procure_method == 'make_to_order' and \
             x.location_id == self.env.ref('stock.stock_location_stock') and \
-            x.created_purchase_line_id == False and \
-            x.created_production_id == False
+            x.created_purchase_line_id.id == False and \
+            x.created_production_id.id == False
         )
 
     @api.model
