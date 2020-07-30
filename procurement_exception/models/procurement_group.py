@@ -38,12 +38,41 @@ class ProcurementGroup(models.Model):
                     )
                     # Stop after first match
                     break
-            # We cannot call raise UserError since we are in a transaction
-            # so we call _log_next_activity ourself.
+            # We cannot call raise UserError since we are possibly in a
+            # transaction so we call _log_next_activity ourself.
             # (note that implementation from stock.rule also check for an
             # existing activty).
             self.env['stock.rule']._log_next_activity(product_id, error.name)
         return res
+
+    @api.model
+    def _action_confirm_one_move(self, move):
+        """ This method override existing one to catch UserError and call
+        a custom implementation of _log_next_activity to redirect the error
+        according to settings of this module.
+        Redirection is built upon a regex string that is mapped to a user_id
+        """
+        product_id = move.product_id
+        try:
+            with self._cr.savepoint():
+                super()._action_confirm_one_move(move)
+        except UserError as error:
+            note = error.name
+            _logger.info(note)
+            # Try to intercept exception
+            redirections = self.env['procurement.exception'].search([])
+            for redirection in redirections:
+                if redirection.user_id and redirection.match(product_id, note):
+                    self._log_next_activity(
+                        product_id, note, redirection.user_id
+                    )
+                    # Stop after first match
+                    break
+            # We cannot call raise UserError since we are possibly in a
+            # transaction so we call _log_next_activity ourself.
+            # (note that implementation from stock.rule also check for an
+            # existing activty).
+            self.env['stock.rule']._log_next_activity(product_id, error.name)
 
     def _log_next_activity(self, product_id, note, user_id):
         MailActivity = self.env['mail.activity']
@@ -57,15 +86,18 @@ class ProcurementGroup(models.Model):
             ]
         )
         if not existing_activity:
-            # If the user deleted todo activity type.
+            # If the user deleted warning activity type.
             try:
-                activity_type_id = self.env.ref('mail.mail_activity_data_todo')
+                activity_type_id = self.env.ref(
+                    'mail.mail_activity_data_warning'
+                )
             except:
                 activity_type_id = False
 
             MailActivity.create(
                 {
-                    'activity_type_id': activity_type_id.id,
+                    'activity_type_id': activity_type_id and \
+                        activity_type_id.id or False,
                     'note': note,
                     'user_id': user_id.id,
                     'res_id': product_id.product_tmpl_id.id,

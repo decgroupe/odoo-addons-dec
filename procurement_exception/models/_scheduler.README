@@ -52,3 +52,14 @@ SIMPLE ANALYZE OF ODOO'S NEW PROCUREMENT PROCESS
     if an error is raised, then logged to console:
         _logger.error("The method _run_%s doesn't exist on the procument rules" % action)
     """
+
+
+## OUT OF SCHEDULER :
+
+# addons/stock/models/stock_move.py
+('stock.move')._action_confirm()
+    """
+    In this method, if the procure_method is 'make_to_order' then
+    it will create new procurements using move._prepare_procurement_values()
+    and finally call self.env['procurement.group'].run(...)
+    """

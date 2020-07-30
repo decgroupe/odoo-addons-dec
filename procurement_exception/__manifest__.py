@@ -6,6 +6,7 @@
     'summary': '''Create and customize activitiy redirection''',
     'depends': [
         'stock',
+        'procurement_run_mto',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':
