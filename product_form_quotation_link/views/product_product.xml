@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_normal_form_view_inherit_purchase">
+        <field name="name">product.product.purchase.button.inherit (in product_form_quotation_link)</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="purchase.product_normal_form_view_inherit_purchase"/>
+        <field name="arch" type="xml">
+            <button name="toggle_active" position="before">
+                <button 
+                    class="oe_stat_button" 
+                    name="%(product_form_quotation_link.action_purchase_line_product_product_tree)d" 
+                    type="action" 
+                    solid_icon="fa-shopping-basket">
+                    <field string="Quotations" name="in_quotation_product_qty" widget="statinfo"/>
+                </button>
+            </button>
+        </field>
+    </record>
+
+</odoo>
