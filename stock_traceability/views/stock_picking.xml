@@ -8,7 +8,15 @@
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
-                    <field name="procure_method"/>
+                    <field 
+                        name="procure_method" 
+                        attrs="{'readonly': [
+                            ('|'),
+                                ('state', 'in', ['draft', 'cancel', 'partially_available', 'assigned', 'done']),
+                                ('procure_method', '==', 'make_to_order'),
+                        ]}"
+                        force_save="1">
+                    </field>
                     <field name="move_orig_ids"/>
                     <field name="move_dest_ids"/>
                 </xpath>
