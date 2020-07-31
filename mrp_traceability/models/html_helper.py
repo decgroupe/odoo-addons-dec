@@ -17,3 +17,10 @@ def li(content):
 
 def small(content):
     return '<small>{}</small>'.format(content)
+
+    
+def format_hd(head, desc, html):
+    if html:
+        return '{0} {1}'.format(head, small(desc))
+    else:
+        return '{0} {1}'.format(head, desc)

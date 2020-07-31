@@ -4,6 +4,7 @@
 
 # ⭕
 
+
 def production_state_to_emoji(state):
     res = state
     if res == 'confirmed':
@@ -17,6 +18,22 @@ def production_state_to_emoji(state):
     elif res == 'cancel':
         res = '❌'
     return res
+
+
+def production_request_state_to_emoji(state):
+    res = state
+    if res == 'draft':
+        res = '🏳️'
+    elif res == 'to_approve':
+        res = '⏳'
+    elif res == 'approved':
+        res = '🚧'
+    elif res == 'done':
+        res = '✅'
+    elif res == 'cancel':
+        res = '❌'
+    return res
+
 
 def purchase_state_to_emoji(state):
     res = state
@@ -33,6 +50,7 @@ def purchase_state_to_emoji(state):
     elif res == 'cancel':
         res = '❌'
     return res
+
 
 def stockmove_state_to_emoji(state):
     res = state
@@ -51,6 +69,7 @@ def stockmove_state_to_emoji(state):
     elif res == 'cancel':
         res = '❌'
     return res
+
 
 def product_type_to_emoji(product_type):
     res = product_type

@@ -9,14 +9,7 @@ from .emoji_helper import (
     stockmove_state_to_emoji,
     product_type_to_emoji,
 )
-from .html_helper import (div, ul, li, small)
-
-
-def format_hd(head, desc, html):
-    if html:
-        return '{0} {1}'.format(head, small(desc))
-    else:
-        return '{0} {1}'.format(head, desc)
+from .html_helper import (div, ul, li, small, format_hd)
 
 
 class StockMove(models.Model):
@@ -107,13 +100,7 @@ class StockMove(models.Model):
 
         return res
 
-    def get_mrp_status(self, html=False):
-        status = []
-        if self.procure_method == 'make_to_order':
-            status = self._get_mto_mrp_status(html)
-        elif self.procure_method == 'make_to_stock':
-            status = self._get_mts_mrp_status(html)
-
+    def _format_status_header(self, status, html=False):
         product_type = dict(
             self._fields['product_type']._description_selection(self.env)
         ).get(self.product_type)
@@ -131,7 +118,22 @@ class StockMove(models.Model):
         else:
             return '\n'.join(status)
 
+    def get_mrp_status(self, html=False):
+        status = []
+        if self.procure_method == 'make_to_order':
+            status = self._get_mto_mrp_status(html)
+        elif self.procure_method == 'make_to_stock':
+            status = self._get_mts_mrp_status(html)
+
+        return self._format_status_header(status, html)
+
     @api.multi
+    @api.depends(
+        'procure_method',
+        'product_type',
+        'created_purchase_line_id',
+        'created_production_id',
+    )
     def _compute_mrp_status(self):
         for move in self:
             move.mrp_status = move.get_mrp_status(html=True)

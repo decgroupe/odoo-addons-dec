@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="picking_form_view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
+                <field name="created_purchase_line_id" invisible="1"/>
+                <field name="created_production_id" invisible="1"/>
+                <field name="orderpoint_created_purchase_line_ids" invisible="1"/>
+                <field name="orderpoint_created_production_ids" invisible="1"/>
+                <field name="mrp_status" class="d_mrp_status"/>
+                <field name="pick_status" class="d_mrp_status"/>
+                <button 
+                    name="action_view_created_item" 
+                    string="Open" 
+                    type="object"
+                    attrs="{'invisible': [
+                            ('created_purchase_line_id', '=', False),
+                            ('created_production_id', '=', False),
+                            ('orderpoint_created_purchase_line_ids', '=', []),
+                            ('orderpoint_created_production_ids', '=', []),
+                        ]}"
+                    icon="fa-external-link">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
