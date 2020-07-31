@@ -2,7 +2,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class StockMove(models.Model):
@@ -47,6 +51,15 @@ class StockMove(models.Model):
     def write(self, values):
         self._archive_purchase_line(values)
         self._archive_production(values)
+        if values.get('procure_method'):
+            for move in self:
+                _logger.info(
+                    'Procure method of move %d for product %s set to %s',
+                    move.id,
+                    move.product_id.display_name,
+                    values.get('procure_method'),
+                )
+
         return super(StockMove, self).write(values)
 
     @api.depends('move_dest_ids', 'location_dest_id', 'product_id')
