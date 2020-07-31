@@ -4,7 +4,15 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+
+from .emoji_helper import (
+    production_state_to_emoji,
+    purchase_state_to_emoji,
+    stockmove_state_to_emoji,
+    product_type_to_emoji,
+)
+from .html_helper import (div, ul, li, small, format_hd)
 
 _logger = logging.getLogger(__name__)
 
@@ -16,6 +24,11 @@ class StockMove(models.Model):
         'Final location',
         compute='_compute_final_location',
         help='Get final location name',
+        readonly=True,
+    )
+
+    action_view_created_item_visible = fields.Boolean(
+        compute='_compute_action_view_created_item_visible',
         readonly=True,
     )
 
@@ -75,3 +88,138 @@ class StockMove(models.Model):
                         move.final_location += ' > ' + final_location
                     else:
                         move.final_location = final_location
+
+    def action_view_created_item(self):
+        """ Generate an action that will match the nearest object linked
+        to this move. It is used to open a Purchase, Sale, etc.
+        """
+        self.ensure_one()
+        view = False
+        if self.created_purchase_line_id:
+            view = self.action_view_purchase(
+                self.created_purchase_line_id.order_id.id
+            )
+        elif self.created_production_id:
+            view = self.action_view_production(self.created_production_id.id)
+        elif self.production_id:
+            view = self.action_view_production(self.production_id.id)
+        return view
+
+    def _compute_action_view_created_item_visible(self):
+        for move in self:
+            move.action_view_created_item_visible = \
+                move.is_action_view_created_item_visible()
+
+    def is_action_view_created_item_visible(self):
+        self.ensure_one()
+        return self.created_purchase_line_id \
+            or self.created_production_id \
+            or self.production_id
+
+    def action_view_purchase(self, id):
+        action = self.env.ref('purchase.purchase_form_action').read()[0]
+        form = self.env.ref('purchase.purchase_order_form')
+        action['views'] = [(form.id, 'form')]
+        action['res_id'] = id
+        return action
+
+    def action_view_production(self, id):
+        action = self.env.ref('mrp.mrp_production_action').read()[0]
+        form = self.env.ref('mrp.mrp_production_form_view')
+        action['views'] = [(form.id, 'form')]
+        action['res_id'] = id
+        return action
+
+    def _get_production_status(self, production_id):
+        p = production_id
+        state = dict(p._fields['state']._description_selection(self.env)).get(
+            p.state
+        )
+        head = '⚙️{0}'.format(p.name)
+        desc = '{0}{1}'.format(production_state_to_emoji(p.state), state)
+        return head, desc
+
+    def _get_purchase_status(self, purchase_line_id):
+        p = purchase_line_id
+        state = dict(p._fields['state']._description_selection(self.env)).get(
+            p.state
+        )
+        head = '🛒{0}'.format(p.order_id.name)
+        desc = '{0}{1}'.format(purchase_state_to_emoji(p.state), state)
+        return head, desc
+
+    def _get_stock_status(self):
+        state = dict(self._fields['state']._description_selection(self.env)
+                    ).get(self.state)
+        head = '📦{0}'.format('Stock')
+        if self.procure_method == 'make_to_order':
+            head = '❓{0}'.format(_(self.procure_method))
+        desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
+        return head, desc
+
+    def _get_mto_status(self, html=False):
+        res = []
+        if self.created_purchase_line_id:
+            head, desc = self._get_purchase_status(
+                self.created_purchase_line_id
+            )
+            res.append(format_hd(head, desc, html))
+        elif self.created_production_id:
+            head, desc = self._get_production_status(self.created_production_id)
+            res.append(format_hd(head, desc, html))
+        elif self.production_id:
+            head, desc = self._get_production_status(self.production_id)
+            res.append(format_hd(head, desc, html))
+        else:
+            res.append('❓(???)[{0}]'.format(self.state))
+            # Since the current status is unknown, fallback using mts status
+            # to print archive when exists
+            res.extend(self._get_mts_status(html))
+        return res
+
+    def _get_mts_status(self, html=False):
+        res = []
+
+        head, desc = self._get_stock_status()
+        res.append(format_hd(head, desc, html))
+
+        pre = False
+        if self.created_purchase_line_archive and not self.created_purchase_line_id:
+            pre = '♻️PO/'
+        elif self.created_production_archive and not self.created_production_id:
+            pre = '♻️MO/'
+        if pre:
+            res.append('{0}{1}'.format(pre, _('canceled')))
+
+        return res
+    
+    def _get_upstream(self, ensure_same_product = True):
+        res = self.env['stock.move']
+        if self.move_orig_ids:
+            for move in self.move_orig_ids:
+                if ensure_same_product:
+                    if (move.product_id == self.product_id):
+                        res = move
+                        break
+                else:
+                    res = move
+                    break
+        return res
+
+    def _format_status_header(self, status, html=False):
+        product_type = dict(
+            self._fields['product_type']._description_selection(self.env)
+        ).get(self.product_type)
+
+        head = '{0}{1}'.format(
+            product_type_to_emoji(self.product_type),
+            product_type,
+        )
+        if self.user_has_groups('base.group_no_one'):
+            head = '{0} ({1})'.format(head, self.id)
+        status.insert(0, head)
+        if html:
+            list_as_html = ''.join(list(map(li, status)))
+            return div(ul(list_as_html), 'd_move d_move_' + self.state)
+        else:
+            return '\n'.join(status)

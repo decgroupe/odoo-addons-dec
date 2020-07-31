@@ -7,8 +7,9 @@
     'depends': [
         'stock',
         'mrp',
-        # testing to remove
-        'mrp_traceability',
+        'mrp_production_request',
+        'stock_traceability',
+        'stock_orderpoint_traceability',
     ],
     'data': ['views/stock_picking.xml', ],
     'installable': True

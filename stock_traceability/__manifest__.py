@@ -4,10 +4,15 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': '''Get move final location from any move of the chain''',
-    'depends': ['stock', ],
-    'data':
-        [
-            'views/stock_picking.xml',
-        ],
+    'depends': [
+        'stock',
+        'purchase',
+        'purchase_stock',
+        'mrp',
+    ],
+    'data': [
+        'views/assets.xml',
+        'views/stock_picking.xml',
+    ],
     'installable': True
 }

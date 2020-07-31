@@ -28,21 +28,13 @@
                 <attribute name="limit">1000</attribute>
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
-                <field name="created_purchase_line_id" invisible="1"/>
-                <field name="created_production_id" invisible="1"/>
-                <field name="orderpoint_created_purchase_line_ids" invisible="1"/>
-                <field name="orderpoint_created_production_ids" invisible="1"/>
-                <field name="mrp_status" class="d_mrp_status"/>
+                <field name="action_view_created_item_visible" invisible="1"/>
+                <field name="mrp_status" class="d_move_procurement_status"/>
                 <button 
                     name="action_view_created_item" 
                     string="Open" 
                     type="object"
-                    attrs="{'invisible': [
-                            ('created_purchase_line_id', '=', False),
-                            ('created_production_id', '=', False),
-                            ('orderpoint_created_purchase_line_ids', '=', []),
-                            ('orderpoint_created_production_ids', '=', []),
-                        ]}"
+                    attrs="{'invisible': [('action_view_created_item_visible', '=', False),]}"
                     icon="fa-external-link">
                 </button>
                 <field name="state" invisible="1"/>
