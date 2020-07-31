@@ -5,7 +5,7 @@
 import logging
 
 from odoo import api, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, MissingError
 
 _logger = logging.getLogger(__name__)
 
@@ -52,7 +52,14 @@ class ProcurementGroup(models.Model):
         according to settings of this module.
         Redirection is built upon a regex string that is mapped to a user_id
         """
-        product_id = move.product_id
+        try:
+            product_id = move.product_id
+        except MissingError:
+            # When this function is called from a loop, then since
+            # _action_confirm is allowed to merge moves with same
+            # characteristics, the next moves can be already deleted
+            # from database, so we ignore them
+            return None
         try:
             with self._cr.savepoint():
                 super()._action_confirm_one_move(move)

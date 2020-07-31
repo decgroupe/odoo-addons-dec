@@ -6,7 +6,7 @@ import logging
 
 from odoo import api, fields, models
 
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, MissingError
 
 _logger = logging.getLogger(__name__)
 
@@ -46,11 +46,19 @@ class ProcurementGroup(models.Model):
         moves_to_confirm = self._filter_moves_to_confirm(picking_ids)
         for move in moves_to_confirm:
             try:
+                product_id = move.product_id
+            except MissingError:
+                # When this function is called from a loop, then since
+                # _action_confirm is allowed to merge moves with same
+                # characteristics, the next moves can be already deleted
+                # from database, so we ignore them
+                continue
+            try:
                 with self._cr.savepoint():
                     self._action_confirm_one_move(move)
             except UserError as error:
                 self.env['stock.rule']._log_next_activity(
-                    move.product_id, error.name
+                    product_id, error.name
                 )
         if use_new_cursor:
             self._cr.commit()
