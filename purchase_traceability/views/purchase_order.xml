@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record model="ir.ui.view" id="purchase_order_view_form_inherit" >
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='account_analytic_id']" position="before">
+                <field name="product_type" invisible="1"/>
+                <field name="sale_line_id" attrs="{'invisible': [('product_type', '!=', 'service')]}"/>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>
