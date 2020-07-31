@@ -10,7 +10,7 @@ class StockMove(models.Model):
 
     mrp_status = fields.Html(
         compute='_compute_mrp_status',
-        string='Procurement status',
+        string='Manufacturing Upstream Status',
         default='',
         store=False,
     )

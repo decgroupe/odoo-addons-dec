@@ -29,7 +29,7 @@
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
                 <field name="action_view_created_item_visible" invisible="1"/>
-                <field name="mrp_status" class="d_move_procurement_status"/>
+                <field name="mrp_status" string="Procurement status" class="d_move_procurement_status"/>
                 <button 
                     name="action_view_created_item" 
                     string="Open" 

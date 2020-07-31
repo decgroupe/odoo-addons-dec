@@ -17,7 +17,7 @@ class StockMove(models.Model):
 
     pick_status = fields.Html(
         compute='_compute_pick_status',
-        string='Procurement status ',
+        string='Picking Upstream Status',
         default='',
         store=False,
     )
