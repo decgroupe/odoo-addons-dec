@@ -5,7 +5,7 @@
 import logging
 
 from odoo import _, api, fields, models
-from odoo.tools import html2plaintext
+from odoo.tools import html2plaintext, ormcache
 
 from .emoji_helper import (
     production_state_to_emoji,
@@ -93,19 +93,39 @@ class StockMove(models.Model):
                     else:
                         move.final_location = final_location
 
+    @api.model
+    @ormcache()
+    def _get_product_template_ir_model_id(self):
+        """This method returns an ID so it can be cached."""
+        ir_model = self.env['ir.model'].sudo().search(
+            [('model', '=', self.product_id.product_tmpl_id._name)]
+        )
+        return ir_model.id
+
+    @api.model
+    @ormcache()
+    def _get_warning_activity_type_id(self):
+        """This method returns an ID so it can be cached."""
+        activity_type_id = self.env.ref('mail.mail_activity_data_warning')
+        return activity_type_id.id
+
     @api.multi
     @api.depends('product_id')
     def _compute_product_activity_id(self):
         for move in self:
-            ir_model = move.env['ir.model'].sudo().search(
-                [('model', '=', move.product_id.product_tmpl_id._name)]
-            )
-            activity_type_id = move.env.ref('mail.mail_activity_data_warning')
             move.product_activity_id = move.env['mail.activity'].search(
                 [
                     ('res_id', '=', move.product_id.product_tmpl_id.id),
-                    ('res_model_id', '=', ir_model.id),
-                    ('activity_type_id', '=', activity_type_id.id),
+                    (
+                        'res_model_id',
+                        '=',
+                        move._get_product_template_ir_model_id(),
+                    ),
+                    (
+                        'activity_type_id',
+                        '=',
+                        move._get_warning_activity_type_id(),
+                    ),
                 ],
                 limit=1
             )

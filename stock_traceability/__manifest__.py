@@ -9,6 +9,7 @@
         'purchase',
         'purchase_stock',
         'mrp',
+        'mail',
     ],
     'data': [
         'views/assets.xml',
