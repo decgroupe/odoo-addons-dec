@@ -5,11 +5,13 @@
 import logging
 
 from odoo import _, api, fields, models
+from odoo.tools import html2plaintext
 
 from .emoji_helper import (
     production_state_to_emoji,
     purchase_state_to_emoji,
     stockmove_state_to_emoji,
+    activity_state_to_emoji,
     product_type_to_emoji,
 )
 from .html_helper import (div, ul, li, small, format_hd)
@@ -157,6 +159,18 @@ class StockMove(models.Model):
         desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
         return head, desc
 
+    def _get_activity_status(self, activity_id):
+        a = activity_id
+        state = dict(a._fields['state']._description_selection(self.env)).get(
+            a.state
+        )
+        product_name = self.product_id.product_tmpl_id.display_name
+        activity_text = html2plaintext(a.summary or a.note)
+        activity_text = activity_text.replace(product_name, '')
+        head = '⚠️{0}'.format(activity_text)
+        desc = '{0}{1}'.format(activity_state_to_emoji(a.state), state)
+        return head, desc
+
     def _get_mto_status(self, html=False):
         res = []
         if self.created_purchase_line_id:
@@ -171,10 +185,26 @@ class StockMove(models.Model):
             head, desc = self._get_production_status(self.production_id)
             res.append(format_hd(head, desc, html))
         else:
-            res.append('❓(???)[{0}]'.format(self.state))
-            # Since the current status is unknown, fallback using mts status
-            # to print archive when exists
-            res.extend(self._get_mts_status(html))
+            ir_model = self.env['ir.model'].sudo().search(
+                [('model', '=', self.product_id.product_tmpl_id._name)]
+            )
+            activity_type_id = self.env.ref('mail.mail_activity_data_warning')
+            activity_id = self.env['mail.activity'].search(
+                [
+                    ('res_id', '=', self.product_id.product_tmpl_id.id),
+                    ('res_model_id', '=', ir_model.id),
+                    ('activity_type_id', '=', activity_type_id.id),
+                ],
+                limit=1
+            )
+            if activity_id:
+                head, desc = self._get_activity_status(activity_id)
+                res.append(format_hd(head, desc, html))
+            else:
+                res.append('❓(???)[{0}]'.format(self.state))
+                # Since the current status is unknown, fallback using mts status
+                # to print archive when exists
+                res.extend(self._get_mts_status(html))
         return res
 
     def _get_mts_status(self, html=False):
@@ -192,8 +222,8 @@ class StockMove(models.Model):
             res.append('{0}{1}'.format(pre, _('canceled')))
 
         return res
-    
-    def _get_upstream(self, ensure_same_product = True):
+
+    def _get_upstream(self, ensure_same_product=True):
         res = self.env['stock.move']
         if self.move_orig_ids:
             for move in self.move_orig_ids:

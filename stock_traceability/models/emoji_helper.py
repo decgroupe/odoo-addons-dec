@@ -71,6 +71,17 @@ def stockmove_state_to_emoji(state):
     return res
 
 
+def activity_state_to_emoji(state):
+    res = state
+    if res == 'overdue':
+        res = '🕸️'
+    elif res == 'today':
+        res = '✅'
+    elif res == 'planned':
+        res = '📅'
+    return res
+
+
 def product_type_to_emoji(product_type):
     res = product_type
     if res == 'product':
