@@ -71,7 +71,8 @@ class ProcurementGroup(models.Model):
             x.procure_method == 'make_to_order' and \
             x.location_id == self.env.ref('stock.stock_location_stock') and \
             x.created_purchase_line_id.id == False and \
-            x.created_production_id.id == False
+            x.created_production_id.id == False and \
+            x.move_orig_ids.ids == []
         )
 
     @api.model
