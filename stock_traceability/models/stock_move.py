@@ -28,12 +28,10 @@ class StockMove(models.Model):
         help='Get final location name',
         readonly=True,
     )
-
     action_view_created_item_visible = fields.Boolean(
         compute='_compute_action_view_created_item_visible',
         readonly=True,
     )
-
     created_purchase_line_archive = fields.Integer(
         readonly=True,
         copy=False,
@@ -41,6 +39,10 @@ class StockMove(models.Model):
     created_production_archive = fields.Integer(
         readonly=True,
         copy=False,
+    )
+    product_activity_id = fields.Many2one(
+        'mail.activity',
+        compute='_compute_product_activity_id',
     )
 
     def _archive_purchase_line(self, values):
@@ -91,6 +93,23 @@ class StockMove(models.Model):
                     else:
                         move.final_location = final_location
 
+    @api.multi
+    @api.depends('product_id')
+    def _compute_product_activity_id(self):
+        for move in self:
+            ir_model = move.env['ir.model'].sudo().search(
+                [('model', '=', move.product_id.product_tmpl_id._name)]
+            )
+            activity_type_id = move.env.ref('mail.mail_activity_data_warning')
+            move.product_activity_id = move.env['mail.activity'].search(
+                [
+                    ('res_id', '=', move.product_id.product_tmpl_id.id),
+                    ('res_model_id', '=', ir_model.id),
+                    ('activity_type_id', '=', activity_type_id.id),
+                ],
+                limit=1
+            )
+
     def action_view_created_item(self):
         """ Generate an action that will match the nearest object linked
         to this move. It is used to open a Purchase, Sale, etc.
@@ -105,6 +124,8 @@ class StockMove(models.Model):
             view = self.action_view_production(self.created_production_id.id)
         elif self.production_id:
             view = self.action_view_production(self.production_id.id)
+        elif self.product_activity_id:
+            view = self.action_view_activity(self.product_activity_id.id)
         return view
 
     def _compute_action_view_created_item_visible(self):
@@ -116,7 +137,8 @@ class StockMove(models.Model):
         self.ensure_one()
         return self.created_purchase_line_id \
             or self.created_production_id \
-            or self.production_id
+            or self.production_id \
+            or self.product_activity_id
 
     def action_view_purchase(self, id):
         action = self.env.ref('purchase.purchase_form_action').read()[0]
@@ -128,6 +150,25 @@ class StockMove(models.Model):
     def action_view_production(self, id):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
         form = self.env.ref('mrp.mrp_production_form_view')
+        action['views'] = [(form.id, 'form')]
+        action['res_id'] = id
+        return action
+
+    def action_view_activity(self, id):
+        #action = self.env.ref('mail.mail_activity_action').read()[0]
+        action = {
+            'type': 'ir.actions.act_window',
+            'name': 'My Action Name',
+            'display_name': 'Activities',
+            'res_model': 'mail.activity',
+            'context': '{}',
+            'domain': '[]',
+            'filter': False,
+            'target': 'current',
+            'view_mode': 'form',
+            'view_type': 'form',
+        }
+        form = self.env.ref('mail.mail_activity_view_form_popup')
         action['views'] = [(form.id, 'form')]
         action['res_id'] = id
         return action
@@ -184,27 +225,14 @@ class StockMove(models.Model):
         elif self.production_id:
             head, desc = self._get_production_status(self.production_id)
             res.append(format_hd(head, desc, html))
+        elif self.product_activity_id:
+            head, desc = self._get_activity_status(self.product_activity_id)
+            res.append(format_hd(head, desc, html))
         else:
-            ir_model = self.env['ir.model'].sudo().search(
-                [('model', '=', self.product_id.product_tmpl_id._name)]
-            )
-            activity_type_id = self.env.ref('mail.mail_activity_data_warning')
-            activity_id = self.env['mail.activity'].search(
-                [
-                    ('res_id', '=', self.product_id.product_tmpl_id.id),
-                    ('res_model_id', '=', ir_model.id),
-                    ('activity_type_id', '=', activity_type_id.id),
-                ],
-                limit=1
-            )
-            if activity_id:
-                head, desc = self._get_activity_status(activity_id)
-                res.append(format_hd(head, desc, html))
-            else:
-                res.append('❓(???)[{0}]'.format(self.state))
-                # Since the current status is unknown, fallback using mts status
-                # to print archive when exists
-                res.extend(self._get_mts_status(html))
+            res.append('❓(???)[{0}]'.format(self.state))
+            # Since the current status is unknown, fallback using mts status
+            # to print archive when exists
+            res.extend(self._get_mts_status(html))
         return res
 
     def _get_mts_status(self, html=False):
