@@ -1,1 +1,1 @@
-from . import procurement
+from . import procurement_group
