@@ -22,5 +22,3 @@ product.access_product_product_employee,"Extend access (+write, +create) to prod
 product.access_product_template_user,Extend access (+write) to product templates for User,product.model_product_template,base.group_user,1,1,0,0
 product.access_product_product_employee,Extend access (+write) to products for User,product.model_product_product,base.group_user,1,1,0,0
 access_ref_market_bom,Full access to market bom lines for User,model_ref_market_bom,group_ref_user,1,1,1,1
-access_ref_price_user,Read only access to prices for User,model_ref_price,group_ref_user,1,0,0,0
-access_ref_price_manager,Full access to prices for Manager,model_ref_price,group_ref_manager,1,1,1,1
