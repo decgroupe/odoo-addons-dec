@@ -37,8 +37,8 @@ def migrate_product_state(env, version):
     )
 
 
-@openupgrade.migrate()
-def migrate(env, version):
+@openupgrade.progress()
+def migrate_columns(env, version):
     legacy_mapping = [(x, openupgrade.get_legacy_name(x)) for x in columns]
 
     mapping_str = []
@@ -72,4 +72,8 @@ def migrate(env, version):
                     (PRODUCT, item[1]),
                 ])
 
+
+@openupgrade.migrate()
+def migrate(env, version):
+    migrate_columns(env, version)
     migrate_product_state(env, version)
