@@ -13,10 +13,13 @@
         'product_state_review',
         'product_location',
         'product_prices',
+        'product_legacy_routes',
         'mrp_production_request',
         'mrp_bom_dates',
         'mrp_bom_supplier',
         'mrp_bom_prices',
+        'sale_purchase',
+        'sale_timesheet',
     ],
     'force_migration':'12.0.0.0.0',
     'data':

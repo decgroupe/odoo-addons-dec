@@ -73,7 +73,22 @@ def migrate_columns(env, version):
                 ])
 
 
+@openupgrade.progress()
+def migrate_services(env, version):
+    for p in env['product.product'].search([('type', '=', 'service')]):
+        tmpl_id = p.product_tmpl_id
+        if tmpl_id.procure_method == 'make_to_stock':
+            tmpl_id.service_tracking = 'no'
+        elif tmpl_id.procure_method == 'make_to_order':
+            if tmpl_id.supply_method == 'produce':
+                tmpl_id.service_tracking = 'task_new_project'
+            elif tmpl_id.supply_method == 'buy':
+                tmpl_id.service_tracking = 'no'
+                tmpl_id.service_to_purchase = True
+
+
 @openupgrade.migrate()
 def migrate(env, version):
     migrate_columns(env, version)
     migrate_product_state(env, version)
+    migrate_services(env, version)
