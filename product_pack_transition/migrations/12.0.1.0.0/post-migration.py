@@ -8,3 +8,5 @@ def migrate(env, version):
             template.pack_ok = True
             template.pack_type = 'detailed'
             template.pack_component_price = 'ignored'
+            if template.type == 'service':
+                template.service_tracking = 'no'
