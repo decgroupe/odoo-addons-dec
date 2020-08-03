@@ -76,6 +76,14 @@ class StockMove(models.Model):
                     move.product_id.display_name,
                     values.get('procure_method'),
                 )
+        if values.get('state'):
+            for move in self:
+                _logger.info(
+                    'State of move %d for product %s set to %s',
+                    move.id,
+                    move.product_id.display_name,
+                    values.get('state'),
+                )
 
         return super(StockMove, self).write(values)
 
