@@ -23,7 +23,7 @@ class StockMove(models.Model):
     )
 
     def _get_production_request_status(self, request_id):
-        r = request_id
+        r = request_id.sudo()
         state = dict(r._fields['state']._description_selection(self.env)).get(
             r.state
         )
@@ -88,16 +88,15 @@ class StockMove(models.Model):
 
     def action_view_created_item(self):
         self.ensure_one()
-        if self.created_mrp_production_request_id:
+        upstream_move = self._get_upstream()
+        if upstream_move:
+            view = upstream_move.action_view_created_item()
+        elif self.created_mrp_production_request_id:
             view = self.action_view_production_request(
                 self.created_mrp_production_request_id.id
             )
         else:
             view = super().action_view_created_item()
-            if not view:
-                upstream_move = self._get_upstream()
-                if upstream_move:
-                    view = upstream_move.action_view_created_item()
         return view
 
     def is_action_view_created_item_visible(self):
