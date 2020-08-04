@@ -1,120 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="procurement_group_tree_view" >
-            <field name="name">procurement.group.tree</field>
-            <field name="model">procurement.group</field>
-            <field name="type">tree</field>
-            <field eval="1" name="priority"/>
-            <field name="arch" type="xml">
-                <tree string="Procurements">
-                    <field name="name"/>
-                    <field name="move_type"/>
-                </tree>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="procurement_group_tree_view" >
+        <field name="name">procurement.group.tree</field>
+        <field name="model">procurement.group</field>
+        <field name="type">tree</field>
+        <field eval="1" name="priority"/>
+        <field name="arch" type="xml">
+            <tree string="Procurements">
+                <field name="name"/>
+                <field name="move_type"/>
+                <field name="sale_id"/>
+                <field name="partner_id"/>
+            </tree>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="procurement_group_form_view">
-            <field name="name">procurement.group.form</field>
-            <field name="model">procurement.group</field>
-            <field name="type">form</field>
-            <field eval="1" name="priority"/>
-            <field name="arch" type="xml">
-                <form string="Procurement group">
-                    <sheet>
-                        <notebook>
-                            <page string="General">
-                                <div class="oe_button_box" name="button_box">
-                                    <button type="object"
-                                        name="action_view_sale_orders"
-                                        class="oe_stat_button" icon="fa-pencil-square-o">
-                                            <field name="sale_order_count" widget="statinfo" string="Sales"/>
-                                    </button>
-                                    <button type="object"
-                                        name="action_view_purchase_orders"
-                                        class="oe_stat_button" icon="fa-shopping-cart">
-                                            <field name="purchase_order_count" widget="statinfo" string="Purchases"/>
-                                    </button>
-                                    <button type="object"
-                                        name="action_view_mrp_productions"
-                                        class="oe_stat_button" icon="fa-wrench">
-                                            <field name="mrp_production_count" widget="statinfo" string="Productions"/>
-                                    </button>
-                                    <button type="object"
-                                        name="action_view_pickings"
-                                        class="oe_stat_button" icon="fa-truck">
-                                            <field name="picking_count" widget="statinfo" string="Pickings"/>
-                                    </button>
-                                    <button type="object"
-                                        name= "action_view_stock_moves"
-                                        class="oe_stat_button" icon="fa-arrows-v">
-                                            <field name="stock_move_count" widget="statinfo" string="Stock Moves"/>
-                                    </button>
-                                    <button type="object"
-                                        name="action_view_orderpoints"
-                                        class="oe_stat_button" icon="fa-refresh">
-                                            <field name="orderpoint_count" widget="statinfo" string="Reordering Rules"/>
-                                    </button>
-                                    <button type="object"
-                                        name= "action_view_stock_rules"
-                                        class="oe_stat_button" icon="fa-cogs">
-                                            <field name="stock_rule_count" widget="statinfo" string="Routes"/>
-                                    </button>
-                                </div>
-                                
-                                <group>
-                                    <field name="name"/>
-                                    <field name="move_type"/>
-                                </group>
-                            </page>
-                            <page string="Sale Orders" attrs="{'invisible': [('sale_order_ids', '=', [])]}">
-                                <field name="sale_order_ids"/>
-                            </page>
-                            <page string="Purchase Orders" attrs="{'invisible': [('purchase_order_ids', '=', [])]}">
-                                <field name="purchase_order_ids"/>
-                            </page>
-                            <page string="Production Orders" attrs="{'invisible': [('mrp_production_ids', '=', [])]}">
-                                <field name="mrp_production_ids"/>
-                            </page>
-                            <page string="Pickings" attrs="{'invisible': [('picking_ids', '=', [])]}">
-                                <field name="picking_ids"/>
-                            </page>
-                            <page string="Stock Moves" attrs="{'invisible': [('stock_move_ids', '=', [])]}">
-                                <field name="stock_move_ids"/>
-                            </page>
-                            <page string="Reordering Rules" attrs="{'invisible': [('orderpoint_ids', '=', [])]}">
-                                <field name="orderpoint_ids"/>
-                            </page>
-                            <page string="Routes" attrs="{'invisible': [('stock_rule_ids', '=', [])]}">
-                                <field name="stock_rule_ids"/>
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="procurement_group_form_view">
+        <field name="name">procurement.group.form</field>
+        <field name="model">procurement.group</field>
+        <field name="type">form</field>
+        <field eval="1" name="priority"/>
+        <field name="arch" type="xml">
+            <form string="Procurement group">
+                <sheet>
+                    <notebook>
+                        <page string="General">
+                            <div class="oe_button_box" name="button_box">
+                                <button type="object"
+                                    name="action_view_sale_orders"
+                                    class="oe_stat_button" icon="fa-pencil-square-o">
+                                        <field name="sale_order_count" widget="statinfo" string="Sales"/>
+                                </button>
+                                <button type="object"
+                                    name="action_view_purchase_orders"
+                                    class="oe_stat_button" icon="fa-shopping-cart">
+                                        <field name="purchase_order_count" widget="statinfo" string="Purchases"/>
+                                </button>
+                                <button type="object"
+                                    name="action_view_mrp_productions"
+                                    class="oe_stat_button" icon="fa-wrench">
+                                        <field name="mrp_production_count" widget="statinfo" string="Productions"/>
+                                </button>
+                                <button type="object"
+                                    name="action_view_pickings"
+                                    class="oe_stat_button" icon="fa-truck">
+                                        <field name="picking_count" widget="statinfo" string="Pickings"/>
+                                </button>
+                                <button type="object"
+                                    name= "action_view_stock_moves"
+                                    class="oe_stat_button" icon="fa-arrows-v">
+                                        <field name="stock_move_count" widget="statinfo" string="Stock Moves"/>
+                                </button>
+                                <button type="object"
+                                    name="action_view_orderpoints"
+                                    class="oe_stat_button" icon="fa-refresh">
+                                        <field name="orderpoint_count" widget="statinfo" string="Reordering Rules"/>
+                                </button>
+                                <button type="object"
+                                    name= "action_view_stock_rules"
+                                    class="oe_stat_button" icon="fa-cogs">
+                                        <field name="stock_rule_count" widget="statinfo" string="Routes"/>
+                                </button>
+                            </div>
+                            <group>
+                                <field name="name"/>
+                                <field name="move_type"/>
+                                <field name="sale_id"/>
+                                <field name="partner_id"/>
+                            </group>
+                        </page>
+                        <page string="Sale Orders" attrs="{'invisible': [('sale_order_ids', '=', [])]}">
+                            <field name="sale_order_ids"/>
+                        </page>
+                        <page string="Purchase Orders" attrs="{'invisible': [('purchase_order_ids', '=', [])]}">
+                            <field name="purchase_order_ids"/>
+                        </page>
+                        <page string="Production Orders" attrs="{'invisible': [('mrp_production_ids', '=', [])]}">
+                            <field name="mrp_production_ids"/>
+                        </page>
+                        <page string="Pickings" attrs="{'invisible': [('picking_ids', '=', [])]}">
+                            <field name="picking_ids"/>
+                        </page>
+                        <page string="Stock Moves" attrs="{'invisible': [('stock_move_ids', '=', [])]}">
+                            <field name="stock_move_ids"/>
+                        </page>
+                        <page string="Reordering Rules" attrs="{'invisible': [('orderpoint_ids', '=', [])]}">
+                            <field name="orderpoint_ids"/>
+                        </page>
+                        <page string="Routes" attrs="{'invisible': [('stock_rule_ids', '=', [])]}">
+                            <field name="stock_rule_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="act_window_procurement_group" >
-            <field name="name">Procurements</field>
-            <field name="res_model">procurement.group</field>
-            <field name="view_mode">form,tree</field>
-            <field name="view_id" ref="procurement_group_tree_view"/>
-        </record>
+    <record model="ir.actions.act_window" id="act_window_procurement_group" >
+        <field name="name">Procurements</field>
+        <field name="res_model">procurement.group</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="procurement_group_tree_view"/>
+    </record>
 
-        <record model="ir.actions.act_window.view" id="act_window_view_procurement_group_tree" >
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="procurement_group_tree_view"/>
-            <field name="act_window_id" ref="act_window_procurement_group"/>
-        </record>
+    <record model="ir.actions.act_window.view" id="act_window_view_procurement_group_tree" >
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="procurement_group_tree_view"/>
+        <field name="act_window_id" ref="act_window_procurement_group"/>
+    </record>
 
-        <record model="ir.actions.act_window.view" id="act_window_view_procurement_group_form" >
-            <field name="sequence" eval="2"/>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="procurement_group_form_view"/>
-            <field name="act_window_id" ref="act_window_procurement_group"/>
-        </record>
+    <record model="ir.actions.act_window.view" id="act_window_view_procurement_group_form" >
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="procurement_group_form_view"/>
+        <field name="act_window_id" ref="act_window_procurement_group"/>
+    </record>
 
-    </data>
 </odoo>
