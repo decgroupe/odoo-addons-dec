@@ -10,6 +10,7 @@
     ],
     'data': [
         'views/mrp_production.xml',
+        'views/mrp_production_request.xml',
     ],
     'installable': True
 }

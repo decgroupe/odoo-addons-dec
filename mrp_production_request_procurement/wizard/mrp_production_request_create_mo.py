@@ -10,20 +10,30 @@ from odoo.exceptions import UserError
 class MrpProductionRequestCreateMo(models.TransientModel):
     _inherit = "mrp.production.request.create.mo"
 
-    def _create_procurement_group(self):
+    def _get_production_name(self):
+        self.ensure_one()
         """This function helps to get a production name like it is done in the
         original code: addons/mrp/models/mrp_production.py
         Returns:
-            [type]: [description]
+            [string]: Production name
         """
         self.ensure_one()
         request_id = self.mrp_production_request_id
         if request_id.picking_type_id:
-            mo_name = request_id.picking_type_id.sequence_id.next_by_id()
+            res = request_id.picking_type_id.sequence_id.next_by_id()
         else:
-            mo_name = self.env['ir.sequence'].next_by_code('mrp.production')
+            res = self.env['ir.sequence'].next_by_code('mrp.production')
+        return res
+
+    def _create_procurement_group(self):
+        """This function helps to create a procurement group like it's done
+        in the original code: addons/mrp/models/mrp_production.py
+        Returns:
+            [procurement.group]: [description]
+        """
+        self.ensure_one()
         procurement_group_id = self.env["procurement.group"].create(
-            {'name': mo_name}
+            {'name': self._get_production_name()}
         )
         return procurement_group_id
 
@@ -32,23 +42,25 @@ class MrpProductionRequestCreateMo(models.TransientModel):
         self.ensure_one()
         res = super()._prepare_manufacturing_order()
         request_id = self.mrp_production_request_id
-        if request_id.mrp_production_ids:
-            production_id = request_id.mrp_production_ids[0]
-            procurement_group_id = production_id.procurement_group_id
-            res['procurement_group_id'] = procurement_group_id.id
+        # Generate and store a unique name as base for all production orders
+        if not request_id.production_name:
+            request_id.production_name = self._get_production_name()
+        if request_id.use_common_procurement_group:
+            if not request_id.common_procurement_group_id:
+                request_id.common_procurement_group_id = self._create_procurement_group()
+            res['procurement_group_id'] = request_id.common_procurement_group_id.id
         else:
-            procurement_group_id = self._create_procurement_group()
-            res['procurement_group_id'] = procurement_group_id.id
+            res['procurement_group_id'] = False
 
-        # Use procurement group name to generate a manufacturing order with
+        # Use production_name as prefix to generate a manufacturing order with
         # the same name or with an index if waiting quantity > 1
-        if request_id.product_qty > 1 or request_id.manufacured_qty > 0:
+        if request_id.product_qty > 1 or request_id.manufactured_qty > 0:
             res['name'] = '{0}/{1:2d}'.format(
-                procurement_group_id.name,
-                request_id.manufacured_qty + 1,
+                request_id.production_name,
+                round(request_id.manufactured_qty) + 1,
             )
         else:
-            res['name'] = procurement_group_id.name
+            res['name'] = request_id.production_name
         return res
 
     @api.multi
