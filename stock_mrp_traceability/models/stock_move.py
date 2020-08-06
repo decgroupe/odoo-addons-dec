@@ -50,14 +50,28 @@ class StockMove(models.Model):
     def _get_mts_pick_status(self, html=False):
         return self._get_mts_status(html)
 
-    def get_pick_status(self, upstream_move, html=False):
+    def get_pick_status(self, html=False):
         status = []
         if self.procure_method == 'make_to_order':
-            status = upstream_move._get_mto_pick_status(html)
+            status += self._get_mto_pick_status(html)
         elif self.procure_method == 'make_to_stock':
-            status = upstream_move._get_mts_pick_status(html)
+            status += self._get_mts_pick_status(html)
 
-        return upstream_move._format_status_header(status, html)
+        upstream_moves = self._get_upstreams()
+        for move in upstream_moves:
+            upstream_status = []
+            if self.procure_method == 'make_to_order':
+                upstream_status += move._get_mto_pick_status(html)
+            elif self.procure_method == 'make_to_stock':
+                upstream_status += move._get_mts_pick_status(html)
+            # Check if status is not a duplicate, it could happen in some
+            # cases where we can have self.created_production_id identical to
+            # move.production_id
+            for upstream_status_line in upstream_status:
+                if upstream_status_line not in status:
+                    status.append(upstream_status_line)
+
+        return self._format_status_header(status, html)
 
     def _is_related(self):
         if self.created_purchase_line_id \
@@ -76,22 +90,13 @@ class StockMove(models.Model):
     )
     def _compute_pick_status(self):
         for move in self:
-            upstream_move = move._get_upstream()
-            if upstream_move and upstream_move.action_view_created_item_visible:
-                move.pick_status = move.get_pick_status(
-                    upstream_move, html=True
-                )
-            elif move.action_view_created_item_visible:
-                move.pick_status = move.get_pick_status(move, html=True)
+            if move.action_view_created_item_visible:
+                move.pick_status = move.get_pick_status(html=True)
             else:
                 move.pick_status = move.get_mrp_status(html=True)
 
     def action_view_created_item(self):
-        self.ensure_one()
-        upstream_move = self._get_upstream()
-        if upstream_move:
-            view = upstream_move.action_view_created_item()
-        elif self.created_mrp_production_request_id:
+        if self.created_mrp_production_request_id:
             view = self.action_view_production_request(
                 self.created_mrp_production_request_id.id
             )
@@ -104,10 +109,6 @@ class StockMove(models.Model):
         res = self.created_mrp_production_request_id
         if not res:
             res = super().is_action_view_created_item_visible()
-            if not res:
-                upstream_move = self._get_upstream()
-                if upstream_move:
-                    res = upstream_move.is_action_view_created_item_visible()
         return res
 
     def action_view_production_request(self, id):

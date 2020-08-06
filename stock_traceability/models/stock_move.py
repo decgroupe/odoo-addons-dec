@@ -292,6 +292,17 @@ class StockMove(models.Model):
                     break
         return res
 
+    def _get_upstreams(self, ensure_same_product=True):
+        res = self.env['stock.move']
+        if self.move_orig_ids:
+            for move in self.move_orig_ids:
+                if ensure_same_product:
+                    if (move.product_id == self.product_id):
+                        res += move
+                else:
+                    res += move
+        return res
+
     def _format_status_header(self, status, html=False):
         product_type = dict(
             self._fields['product_type']._description_selection(self.env)
