@@ -97,9 +97,13 @@ class StockMove(models.Model):
 
     def action_view_created_item(self):
         if self.created_mrp_production_request_id:
-            view = self.action_view_production_request(
-                self.created_mrp_production_request_id.id
-            )
+            if self.created_mrp_production_request_id.mrp_production_ids:
+                view = self.created_mrp_production_request_id.\
+                    action_view_mrp_productions()
+            else:
+                view = self.action_view_production_request(
+                    self.created_mrp_production_request_id.id
+                )
         else:
             view = super().action_view_created_item()
         return view
