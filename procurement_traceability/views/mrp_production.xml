@@ -21,9 +21,6 @@
                 <field name="origin" position="after">
                     <field name="procurement_group_id"/>
                 </field>
-                <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
-                    <field name="group_id"/>
-                </xpath>
             </field>
         </record>
 
