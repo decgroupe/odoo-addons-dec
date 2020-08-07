@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_production_request_form_view">
+        <field name="name">mrp.production.request.form</field>
+        <field name="model">mrp.production.request</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_form"/>
+        <field name="arch" type="xml">
+            <button name="button_done" position="before">
+                <button 
+                    name="create_all_manufacturing_orders" 
+                    states="approved"
+                    string="Create all Manufacturing Orders" 
+                    type="object" 
+                    class="oe_highlight"
+                    groups="mrp_production_request.group_mrp_production_request_manager"
+                    attrs="{'invisible': 
+                        [
+                            ('done_qty', '=', 0)
+                        ]}" >
+                </button>
+            </button>
+        </field>
+    </record>
+
+</odoo>
+
