@@ -81,6 +81,34 @@ class ProcurementGroup(models.Model):
             # existing activty).
             self.env['stock.rule']._log_next_activity(product_id, error.name)
 
+    @api.model
+    def _action_cannot_reorder_product(self, product_id):
+        """ This method override existing one to catch UserError and call
+        a custom implementation of _log_next_activity to redirect the error
+        according to settings of this module.
+        Redirection is built upon a regex string that is mapped to a user_id
+        """
+        try:
+            with self._cr.savepoint():
+                super()._action_cannot_reorder_product(product_id)
+        except UserError as error:
+            note = error.name
+            _logger.info(note)
+            # Try to intercept exception
+            redirections = self.env['procurement.exception'].search([])
+            for redirection in redirections:
+                if redirection.user_id and redirection.match(product_id, note):
+                    self._log_next_activity(
+                        product_id, note, redirection.user_id
+                    )
+                    # Stop after first match
+                    break
+            # We cannot call raise UserError since we are possibly in a
+            # transaction so we call _log_next_activity ourself.
+            # (note that implementation from stock.rule also check for an
+            # existing activty).
+            self.env['stock.rule']._log_next_activity(product_id, error.name)
+
     def _log_next_activity(self, product_id, note, user_id):
         MailActivity = self.env['mail.activity']
         model_product_template = self.env.ref('product.model_product_template')
