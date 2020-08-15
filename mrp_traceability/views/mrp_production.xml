@@ -38,9 +38,9 @@
                     icon="fa-external-link">
                 </button>
                 <field name="state" invisible="1"/>
-                <field name="unit_factor">
-                    <attribute name="attrs">{'invisible': False}</attribute>
-                </field>
+            </xpath>
+            <xpath expr="//field[@name='finished_move_line_ids']" position="before">
+                <field name="move_finished_ids" readonly="1"/>
             </xpath>
             <xpath expr="//field[@name='finished_move_line_ids']/tree" position="inside">
                 <field name="state">
@@ -81,8 +81,6 @@
         <field name="priority">1000</field>
         <field name="arch" type="xml">
             <form string="Details">
-                <label for="move_orig_ids"/>
-                <field name="move_orig_ids" context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}" />
                 <header>
                     <field name="state" widget="statusbar" force_save="1"/>
                 </header>
@@ -113,11 +111,21 @@
                         <field name="picking_type_id" invisible="1"/>
                     </group>
                     <group>
+                        <field 
+                            name="procure_method" 
+                            attrs="{'readonly': [
+                                ('|'),
+                                    ('state', 'in', ['draft', 'cancel', 'partially_available', 'assigned', 'done']),
+                                    ('procure_method', '==', 'make_to_order'),
+                            ]}"
+                            force_save="1">
+                        </field>
                         <field name="unit_factor"/>
                         <field name="location_id"/>
                         <field name="location_dest_id"/>
                     </group>
                 </group>
+                <label for="active_move_line_ids"/>
                 <field name="active_move_line_ids" attrs="{'readonly': ['|', ('is_locked', '=', True), ('state', '=', 'cancel')]}" context="{'default_workorder_id': workorder_id, 'default_product_uom_id': product_uom, 'default_product_id': product_id,  'default_location_id': location_id, 'default_location_dest_id': location_dest_id, 'default_production_id': production_id or raw_material_production_id}">
                     <tree editable="bottom" decoration-success="product_qty==qty_done" decoration-danger="(product_qty &gt; 0) and (qty_done&gt;product_qty)">
                         <field name="date"/>
@@ -137,6 +145,8 @@
                         <field name="produce_line_ids"/>
                     </tree>
                 </field>
+                <label for="move_orig_ids"/>
+                <field name="move_orig_ids" context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}" />
                 <label for="move_dest_ids"/>
                 <field name="move_dest_ids" context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}" />
             </form>
