@@ -43,7 +43,7 @@ class ProcurementGroup(models.Model):
             [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
         )
         # Select only valid moves
-        moves_to_confirm = self._filter_moves_to_confirm(picking_ids)
+        moves_to_confirm = self._filter_mto_moves_to_confirm(picking_ids)
         for move in moves_to_confirm:
             try:
                 product_id = move.product_id
@@ -64,7 +64,7 @@ class ProcurementGroup(models.Model):
             self._cr.commit()
 
     @api.model
-    def _filter_moves_to_confirm(self, picking_ids):
+    def _filter_mto_moves_to_confirm(self, picking_ids):
         return picking_ids.mapped('move_lines').filtered(
             lambda x: \
             x.state not in ('done', 'cancel') and \
