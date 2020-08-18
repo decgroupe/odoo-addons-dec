@@ -56,6 +56,7 @@ class ProcurementGroup(models.Model):
     sale_order_ids = fields.One2many(
         'sale.order',
         'procurement_group_id',
+        string='Sale Orders',
     )
     sale_order_count = fields.Integer(
         compute='_compute_sale_order',
