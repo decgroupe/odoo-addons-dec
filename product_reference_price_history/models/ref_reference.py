@@ -87,8 +87,8 @@ class RefReference(models.Model):
                     reference.product_id.name
                 )
 
-            if len(new_prices) >= 5:
-                break
+            # if len(new_prices) >= 5:
+            #     break
 
         end_time = fields.Datetime.context_timestamp(self, datetime.now())
 
