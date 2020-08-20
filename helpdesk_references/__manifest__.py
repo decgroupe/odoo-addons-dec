@@ -3,7 +3,7 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
-    'summary': '''Link helpdesk ticket with sale, manufacturing, projetct, etc.''',
+    'summary': '''Link helpdesk ticket with sale, manufacturing, project, etc.''',
     'depends': [
         'helpdesk_mgmt',
     ],

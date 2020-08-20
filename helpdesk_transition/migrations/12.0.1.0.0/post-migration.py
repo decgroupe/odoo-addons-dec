@@ -159,11 +159,19 @@ def migrate_progress(env, cr):
             # Create reference to first ref
             for ref_field in ('ref', 'ref2'):
                 if val.get(ref_field):
-                    data = {
-                        'ticket_id': ticket.id,
-                        'model_ref_id': val.get(ref_field),
-                    }
-                    HelpdeskTicketReference.create(data)
+                    ticket_ref = HelpdeskTicketReference.search(
+                        [
+                            ('ticket_id', '=', ticket.id),
+                            ('model_ref_id', '=', val.get(ref_field)),
+                        ]
+                    )
+                    if not ticket_ref:
+                        data = {
+                            'ticket_id': ticket.id,
+                            'model_ref_id': val.get(ref_field),
+                        }
+
+                        HelpdeskTicketReference.create(data)
 
             # if debug_counter > 10:
             #     break
