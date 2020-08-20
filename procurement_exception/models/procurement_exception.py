@@ -12,6 +12,7 @@ class ProcurementException(models.Model):
     _description = "Procurement Exception"
     _order = "sequence, id"
 
+    name = fields.Char()
     sequence = fields.Integer(
         'Sequence',
         default=lambda self: self._default_sequence(),
