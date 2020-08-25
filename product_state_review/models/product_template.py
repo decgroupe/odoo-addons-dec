@@ -1,7 +1,7 @@
 # Copyright 2017 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class ProductTemplate(models.Model):
@@ -21,3 +21,11 @@ class ProductTemplate(models.Model):
         index=True,
         oldname='openupgrade_legacy_10_0_state'
     )
+
+    @api.multi
+    def write(self, vals):
+        # Auto set state to obsolete when archiving a product
+        if 'active' in vals and not vals.get('active'):
+            vals['state'] = 'obsolete'
+        res = super().write(vals)
+        return res
