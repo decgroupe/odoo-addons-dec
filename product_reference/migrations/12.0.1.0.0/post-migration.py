@@ -31,7 +31,7 @@ def migrate_product_state(env, version):
 
     openupgrade.logged_query(
         env.cr, """
-        UPDATE product_template SET state='normal'
+        UPDATE product_template SET state='sellable'
         WHERE state is NULL;
         """
     )
