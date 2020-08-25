@@ -5,12 +5,10 @@
 import time
 import logging
 
-from datetime import datetime, timedelta, date
-from dateutil.relativedelta import relativedelta
-from werkzeug import url_encode
 
 from odoo import api, fields, models, _
 from odoo.tools.misc import formatLang
+from odoo.addons.tools_miscellaneous.tools.bench import Bench
 
 _logger = logging.getLogger(__name__)
 
@@ -105,6 +103,7 @@ class RefReference(models.Model):
     @api.model
     def search_custom(self, keywords):
         res = []
+        bench = Bench().start()
         for key in keywords[0]:
             if key and key[0] == '+':
                 use_internal_notes = True
@@ -113,31 +112,42 @@ class RefReference(models.Model):
                 use_internal_notes = False
 
             if key:
-                search_value = self.search([('searchvalue', 'ilike', key)]).ids
-                search_category = self.search(
-                    [('category_id.name', 'ilike', key)]
-                ).ids
-                search_name = self.search(
-                    [('product_id.name', 'ilike', key)]
-                ).ids
-                search_ciel = self.search(
-                    [('product_id.public_code', '=', key)]
-                ).ids
+                res_value = self.search([
+                    ('searchvalue', 'ilike', key),
+                ])
+                res += res_value.ids
+                res_category = self.search(
+                    [
+                        ('category_id.name', 'ilike', key),
+                    ]
+                )
+                res += res_category.ids
+                res_name = self.search([
+                    ('product_id.name', 'ilike', key),
+                ])
+                res += res_name.ids
+                res_public_code = self.search(
+                    [
+                        ('product_id.public_code', '=', key),
+                    ]
+                )
+                res += res_public_code.ids
 
                 if use_internal_notes:
-                    search_internal_notes = self.search(
-                        [('product_id.internal_notes', 'ilike', key)]
-                    ).ids
-                else:
-                    search_internal_notes = []
-
+                    res_internal_notes = self.search(
+                        [
+                            ('product_id.internal_notes', 'ilike', key),
+                        ]
+                    )
+                    res += res_internal_notes.ids
+                # A tag must be at least 2 characters
                 if len(key) > 2:
-                    search_tags = self.search(
-                        [('product_id.tagging_ids.name', 'ilike', key)]
-                    ).ids
-                else:
-                    search_tags = []
+                    res_tags = self.search(
+                        [
+                            ('product_id.tagging_ids.name', 'ilike', key),
+                        ]
+                    )
+                    res += res_tags.ids
 
-                res = res + search_value + search_category + search_name + search_internal_notes + search_ciel + search_tags
-
+        _logger.info('Search elapsed time is %s', bench.stop().duration())
         return res

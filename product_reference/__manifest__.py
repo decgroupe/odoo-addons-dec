@@ -14,6 +14,7 @@
         'product_location',
         'product_prices',
         'product_legacy_routes',
+        'product_tagging',
         'mrp_production_request',
         'mrp_bom_dates',
         'mrp_bom_supplier',
