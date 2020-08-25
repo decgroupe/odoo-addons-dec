@@ -5,8 +5,8 @@
 import time
 import logging
 
-
 from odoo import api, fields, models, _
+from odoo.osv import expression
 from odoo.tools.misc import formatLang
 from odoo.addons.tools_miscellaneous.tools.bench import Bench
 
@@ -148,6 +148,68 @@ class RefReference(models.Model):
                         ]
                     )
                     res += res_tags.ids
+
+        _logger.info('Search elapsed time is %s', bench.stop().duration())
+        return res
+
+    @api.model
+    def search_custom2(self, keywords):
+        res = []
+        value_domain = []
+        category_domain = []
+        name_domain = []
+        public_code_domain = []
+        internal_notes_domain = []
+        tags_domain = []
+
+        def add_to(domain, filter):
+            if domain:
+                domain[:] = expression.OR([domain, filter])
+            else:
+                domain[:] = filter
+            return domain
+
+        bench = Bench().start()
+        for key in keywords[0]:
+            if key and key[0] == '+':
+                use_internal_notes = True
+                key = key[1:]
+            else:
+                use_internal_notes = False
+
+            if key:
+                add_to(value_domain, [('searchvalue', 'ilike', key)])
+                add_to(category_domain, [('category_id.name', 'ilike', key)])
+                add_to(name_domain, [('product_id.name', 'ilike', key)])
+                add_to(
+                    public_code_domain, [('product_id.public_code', '=', key)]
+                )
+                if use_internal_notes:
+                    add_to(
+                        internal_notes_domain,
+                        [('product_id.internal_notes', 'ilike', key)]
+                    )
+                # A tag must be at least 2 characters
+                if len(key) > 2:
+                    add_to(
+                        tags_domain,
+                        [('product_id.tagging_ids.name', 'ilike', key)]
+                    )
+
+        res_value = self.search(value_domain)
+        res += res_value.ids
+        res_category = self.search(category_domain)
+        res += res_category.ids
+        res_name = self.search(name_domain)
+        res += res_name.ids
+        res_public_code = self.search(public_code_domain)
+        res += res_public_code.ids
+        if internal_notes_domain:
+            res_internal_notes = self.search(internal_notes_domain)
+            res += res_internal_notes.ids
+        if tags_domain:
+            res_tags = self.search(tags_domain)
+            res += res_tags.ids
 
         _logger.info('Search elapsed time is %s', bench.stop().duration())
         return res
