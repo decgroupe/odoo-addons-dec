@@ -6,8 +6,7 @@ from odoo import fields, models
 
 
 class Product(models.Model):
-    _inherit = 'product.product'
-    _name = _inherit
+    _inherit = 'product.template'
 
     tagging_ids = fields.Many2many(
         comodel_name='tagging.tags',

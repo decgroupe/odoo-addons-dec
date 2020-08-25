@@ -21,7 +21,7 @@ class TaggingTag(models.Model):
     _name = _inherit
 
     product_ids = fields.Many2many(
-        comodel_name='product.product',
+        comodel_name='product.template',
         relation='tagging_product',
         column1='tag_id',
         column2='product_id',
