@@ -19,7 +19,8 @@ class ProductTemplate(models.Model):
         string='Status',
         default='sellable',
         index=True,
-        oldname='openupgrade_legacy_10_0_state'
+        oldname='openupgrade_legacy_10_0_state',
+        track_visibility='onchange',
     )
 
     @api.multi
