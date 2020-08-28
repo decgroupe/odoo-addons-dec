@@ -71,6 +71,7 @@ class StockMove(models.Model):
                 if upstream_status_line not in status:
                     status.append(upstream_status_line)
 
+        status += self._get_assignable_status(html)
         return self._format_status_header(status, html)
 
     def _is_related(self):

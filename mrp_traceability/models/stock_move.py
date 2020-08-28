@@ -28,6 +28,7 @@ class StockMove(models.Model):
         elif self.procure_method == 'make_to_stock':
             status = self._get_mts_mrp_status(html)
 
+        status += self._get_assignable_status(html)
         return self._format_status_header(status, html)
 
     @api.multi

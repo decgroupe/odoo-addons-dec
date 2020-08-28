@@ -6,6 +6,7 @@ import logging
 
 from odoo import _, api, fields, models
 from odoo.tools import html2plaintext, ormcache
+from odoo.tools.float_utils import float_compare
 
 from .emoji_helper import (
     production_state_to_emoji,
@@ -279,17 +280,35 @@ class StockMove(models.Model):
 
         return res
 
-    def _get_upstream(self, ensure_same_product=True):
-        res = self.env['stock.move']
-        if self.move_orig_ids:
-            for move in self.move_orig_ids:
-                if ensure_same_product:
-                    if (move.product_id == self.product_id):
-                        res = move
-                        break
-                else:
-                    res = move
-                    break
+    def _get_assignable_status(self, html=False):
+        Quant = self.env['stock.quant']
+        res = []
+        if self.state == 'waiting' and self.move_orig_ids and all(
+            orig.state in ('done', 'cancel') for orig in self.move_orig_ids
+        ):
+            rounding = self.product_id.uom_id.rounding
+            needed_quantity = self.product_qty - sum(
+                self.move_line_ids.mapped('product_qty')
+            )
+            available_quantity = Quant._get_available_quantity(
+                self.product_id,
+                self.location_id,
+                strict=True,
+                allow_negative=True,
+            )
+            if float_compare(
+                needed_quantity,
+                available_quantity,
+                precision_rounding=rounding
+            ) > 0:
+                head = '⚠️{0}'.format('Reservation issue')
+                desc = '\n{0} needed but {1} available'.format(
+                    needed_quantity, available_quantity
+                )
+                hd = format_hd(head, desc, html)
+                if html:
+                    hd = div(hd, 'alert-warning')
+                res.append(hd)
         return res
 
     def _get_upstreams(self, ensure_same_product=True):
