@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="ref_pack_tree_view" >
-        <field name="name">ref.pack.tree</field>
+        <field name="name">ref.pack.tree@product_reference</field>
         <field name="model">ref.pack</field>
         <field name="arch" type="xml">
             <tree string="Packs">
@@ -15,7 +15,7 @@
     </record>
 
     <record model="ir.ui.view" id="ref_pack_form_view" >
-        <field name="name">ref.pack.form</field>
+        <field name="name">ref.pack.form@product_reference</field>
         <field name="model">ref.pack</field>
         <field name="arch" type="xml">
             <form string="Pack">

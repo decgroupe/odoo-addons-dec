@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="mrp_bom_form_view">
-        <field name="name">mrp.bom.form</field>
+        <field name="name">mrp.bom.form@mrp_bom_dates</field>
         <field name="model">mrp.bom</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
@@ -15,7 +15,7 @@
     </record>
 
     <record model="ir.ui.view" id="mrp_bom_tree_view">
-        <field name="name">mrp.bom.tree</field>
+        <field name="name">mrp.bom.tree@mrp_bom_dates</field>
         <field name="model">mrp.bom</field>
         <field name="type">tree</field>
         <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>

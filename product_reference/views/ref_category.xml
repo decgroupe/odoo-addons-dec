@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="ref_category_tree_view" >
-        <field name="name">ref.category.tree</field>
+        <field name="name">ref.category.tree@product_reference</field>
         <field name="model">ref.category</field>
         <field name="arch" type="xml">
             <tree string="Categories">
@@ -15,7 +15,7 @@
     </record>
 
     <record model="ir.ui.view" id="ref_category_form_view" >
-        <field name="name">ref.category.form</field>
+        <field name="name">ref.category.form@product_reference</field>
         <field name="model">ref.category</field>
         <field name="arch" type="xml">
             <form string="Category">

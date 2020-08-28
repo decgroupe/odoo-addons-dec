@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_request_form_view">
-        <field name="name">mrp.production.request.form</field>
+        <field name="name">mrp.production.request.form@mrp_production_request_all</field>
         <field name="model">mrp.production.request</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_form"/>

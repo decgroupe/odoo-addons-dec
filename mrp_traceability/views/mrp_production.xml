@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_form_view">
-        <field name="name">mrp.production.form</field>
+        <field name="name">mrp.production.form@mrp_traceability</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
@@ -58,7 +58,7 @@
     </record>
 
     <record model="ir.ui.view" id="stock_move_tree_view" >
-        <field name="name">stock.move.tree.picking.button</field>
+        <field name="name">stock.move.tree.picking.button@mrp_traceability</field>
         <field name="model">stock.move</field>
         <field name="arch" type="xml">
             <tree string="Stock Moves" decoration-muted="state == 'cancel'" create="false">
@@ -83,7 +83,7 @@
     </record>
 
     <record model="ir.ui.view" id="stock_move_details_form_view">
-        <field name="name">stock.move.details.form</field>
+        <field name="name">stock.move.details.form@mrp_traceability</field>
         <field name="model">stock.move</field>
         <field name="priority">1000</field>
         <field name="arch" type="xml">

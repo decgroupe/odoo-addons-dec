@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="ref_log_tree_view" >
-        <field name="name">ref.log.tree</field>
+        <field name="name">ref.log.tree@product_reference</field>
         <field name="model">ref.log</field>
         <field name="arch" type="xml">
             <tree string="Logs">

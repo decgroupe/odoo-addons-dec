@@ -1,110 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="software_account_tree_view" >
-            <field name="name">software.account.tree</field>
-            <field name="model">software.account</field>
-            <field name="arch" type="xml">
-                <tree string="Accounts">
-                    <field name="supplier_id"/>
-                    <field name="login"/>
-                    <field name="password"/>
-                    <field name="email"/>
-                    <field name="firstname"/>
-                    <field name="lastname"/>
-                    <field name="product_id"/>
-                    <field name="production_id"/>
-                    <field name="partner_id"/>
-                    <field name="datetime"/>
-                </tree>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="software_account_tree_view" >
+        <field name="name">software.account.tree@software_account</field>
+        <field name="model">software.account</field>
+        <field name="arch" type="xml">
+            <tree string="Accounts">
+                <field name="supplier_id"/>
+                <field name="login"/>
+                <field name="password"/>
+                <field name="email"/>
+                <field name="firstname"/>
+                <field name="lastname"/>
+                <field name="product_id"/>
+                <field name="production_id"/>
+                <field name="partner_id"/>
+                <field name="datetime"/>
+            </tree>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="software_account_form_view" >
-            <field name="name">software.account.form</field>
-            <field name="model">software.account</field>
-            <field name="arch" type="xml">
-                <form string="Account">
-                    <sheet>
-                        <group>
-                            <div class="oe_title">
-                                <label for="login" class="oe_edit_only"/>
-                                <h1>
-                                    <field name="login"/>
-                                </h1>
-                            </div>
-                        </group>
-                        <group>
-                            <group>
-                                <field name="password"/>
-                                <field name="question"/>
-                                <field name="answer"/>
-                                <field name="pin"/>
-                                <field name="datetime"/>
-                            </group>
-                            <group>
-                                <field name="email"/>
-                                <field name="firstname"/>
-                                <field name="lastname"/>
-                            </group>
-                        </group>
-                        <group>
-                            <field name="product_id"/>
-                            <field name="production_id"/>
-                            <field name="partner_id"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="software_account_search_view">
-            <field name="name">software.account.search</field>
-            <field name="model">software.account</field>
-            <field name="arch" type="xml">
-                <search string="Account">
-                    <field name="supplier_id"/>
-                    <field name="login"/>
-                    <field name="email"/>
-                    <field name="firstname"/>
-                    <field name="lastname"/>
-                    <field name="product_id"/>
-                    <field name="production_id"/>
-                    <field name="partner_id"/> 
-                    <separator/>
-                    <group string="Group By" name="groupby">
-                        <filter string="Supplier" name="groupby_supplier_id" context="{'group_by':'supplier_id'}"/>
-                        <filter string="Partner" name="groupby_partner_id" context="{'group_by':'partner_id'}"/>
-                        <filter string="Email" name="groupby_email" context="{'group_by':'email'}"/>
-                        <filter string="Product" name="groupby_product_id" context="{'group_by':'product_id'}"/>
-                        <filter string="Production" name="groupby_production_id" context="{'group_by':'production_id'}"/>
+    <record model="ir.ui.view" id="software_account_form_view" >
+        <field name="name">software.account.form@software_account</field>
+        <field name="model">software.account</field>
+        <field name="arch" type="xml">
+            <form string="Account">
+                <sheet>
+                    <group>
+                        <div class="oe_title">
+                            <label for="login" class="oe_edit_only"/>
+                            <h1>
+                                <field name="login"/>
+                            </h1>
+                        </div>
                     </group>
-                </search>
-            </field>
-        </record>
+                    <group>
+                        <group>
+                            <field name="password"/>
+                            <field name="question"/>
+                            <field name="answer"/>
+                            <field name="pin"/>
+                            <field name="datetime"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                            <field name="firstname"/>
+                            <field name="lastname"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="production_id"/>
+                        <field name="partner_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="act_window_software_account" >
-            <field name="name">Accounts</field>
-            <field name="res_model">software.account</field>
-            <field name="view_mode">form,tree</field>
-            <field name="view_id" ref="software_account_tree_view"/>
-            <field name="search_view_id" ref="software_account_search_view"/>
-        </record>
+    <record model="ir.ui.view" id="software_account_search_view">
+        <field name="name">software.account.search@software_account</field>
+        <field name="model">software.account</field>
+        <field name="arch" type="xml">
+            <search string="Account">
+                <field name="supplier_id"/>
+                <field name="login"/>
+                <field name="email"/>
+                <field name="firstname"/>
+                <field name="lastname"/>
+                <field name="product_id"/>
+                <field name="production_id"/>
+                <field name="partner_id"/> 
+                <separator/>
+                <group string="Group By" name="groupby">
+                    <filter string="Supplier" name="groupby_supplier_id" context="{'group_by':'supplier_id'}"/>
+                    <filter string="Partner" name="groupby_partner_id" context="{'group_by':'partner_id'}"/>
+                    <filter string="Email" name="groupby_email" context="{'group_by':'email'}"/>
+                    <filter string="Product" name="groupby_product_id" context="{'group_by':'product_id'}"/>
+                    <filter string="Production" name="groupby_production_id" context="{'group_by':'production_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window.view" id="act_window_view_software_account_tree" >
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="software_account_tree_view"/>
-            <field name="act_window_id" ref="act_window_software_account"/>
-        </record>
+    <record model="ir.actions.act_window" id="act_window_software_account" >
+        <field name="name">Accounts</field>
+        <field name="res_model">software.account</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="software_account_tree_view"/>
+        <field name="search_view_id" ref="software_account_search_view"/>
+    </record>
 
-        <record model="ir.actions.act_window.view" id="act_window_view_software_account_form" >
-            <field name="sequence" eval="2"/>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="software_account_form_view"/>
-            <field name="act_window_id" ref="act_window_software_account"/>
-        </record>
+    <record model="ir.actions.act_window.view" id="act_window_view_software_account_tree" >
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="software_account_tree_view"/>
+        <field name="act_window_id" ref="act_window_software_account"/>
+    </record>
 
-    </data>
+    <record model="ir.actions.act_window.view" id="act_window_view_software_account_form" >
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="software_account_form_view"/>
+        <field name="act_window_id" ref="act_window_software_account"/>
+    </record>
+
 </odoo>

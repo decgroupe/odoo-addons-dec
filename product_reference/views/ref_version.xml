@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="ref_version_tree_view" >
-        <field name="name">ref.version.tree</field>
+        <field name="name">ref.version.tree@product_reference</field>
         <field name="model">ref.version</field>
         <field name="arch" type="xml">
             <tree string="Versions">

@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="product_pricelist_form_view">
-        <field name="name">product.pricelist.form</field>
+        <field name="name">product.pricelist.form@product_pricelist_analysis</field>
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product_pricelist.product_pricelist_form_view"/>
         <field name="arch" type="xml">

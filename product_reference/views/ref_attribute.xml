@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="ref_attribute_tree_view" >
-        <field name="name">ref.attribute.tree</field>
+        <field name="name">ref.attribute.tree@product_reference</field>
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
             <tree string="Attributes">
@@ -13,7 +13,7 @@
     </record>
 
     <record model="ir.ui.view" id="ref_attribute_form_view" >
-        <field name="name">ref.attribute.form</field>
+        <field name="name">ref.attribute.form@product_reference</field>
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
             <form string="Attributes">

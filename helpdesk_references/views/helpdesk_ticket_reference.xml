@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="helpdesk_ticket_reference_tree_view" >
-        <field name="name">helpdesk.ticket.reference.tree</field>
+        <field name="name">helpdesk.ticket.reference.tree@helpdesk_references</field>
         <field name="model">helpdesk.ticket.reference</field>
         <field name="arch" type="xml">
             <tree string="References">
@@ -12,7 +12,7 @@
     </record>
 
     <record model="ir.ui.view" id="helpdesk_ticket_reference_form_view" >
-        <field name="name">helpdesk.ticket.reference.form</field>
+        <field name="name">helpdesk.ticket.reference.form@helpdesk_references</field>
         <field name="model">helpdesk.ticket.reference</field>
         <field name="arch" type="xml">
             <form string="Reference">

@@ -1,100 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <record model="ir.ui.view" id="software_account_supplier_kanban_view">
-            <field name="name">software.account.supplier.kanban</field>
-            <field name="model">software.account.supplier</field>
-            <field name="arch" type="xml">
-                <kanban>
-                    <field name="id"/>
-                    <field name="image"/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
-                                <div class="o_kanban_image">
-                                    <img t-att-src="kanban_image('software.account.supplier', 'image', record.id.raw_value)" alt="Supplier"/>
-                                </div>
-                                <div class="oe_kanban_details">
-                                    <strong class="o_kanban_record_title"><field name="name"/></strong>
-                                    <div name="tags"/>
-                                </div>
+    <record model="ir.ui.view" id="software_account_supplier_kanban_view">
+        <field name="name">software.account.supplier.kanban@software_account</field>
+        <field name="model">software.account.supplier</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('software.account.supplier', 'image', record.id.raw_value)" alt="Supplier"/>
                             </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="software_account_supplier_tree_view" >
-            <field name="name">software.account.supplier.tree</field>
-            <field name="model">software.account.supplier</field>
-            <field name="arch" type="xml">
-                <tree string="Suppliers">
-                    <field name="name"/>
-                </tree>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="software_account_supplier_form_view" >
-            <field name="name">software.account.supplier.form</field>
-            <field name="model">software.account.supplier</field>
-            <field name="arch" type="xml">
-                <form string="Supplier">
-                    <sheet>
-                        <field name="image" widget="image" class="oe_avatar"/>
-                        <div class="oe_title">
-                            <label for="name" class="oe_edit_only"/>
-                            <h1>
-                                <field name="name" placeholder="Supplier name"/>
-                            </h1>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <div name="tags"/>
+                            </div>
                         </div>
-                        <group>
-                            <field name="rules"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <record model="ir.ui.view" id="software_account_supplier_search_view">
-            <field name="name">software.account.supplier.search</field>
-            <field name="model">software.account.supplier</field>
-            <field name="arch" type="xml">
-                <search string="Suppliers">
-                    <field name="name"/>
-                </search>
-            </field>
-        </record>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="act_window_software_account_supplier" >
-            <field name="name">Suppliers</field>
-            <field name="res_model">software.account.supplier</field>
-            <field name="view_mode">kanban,form,tree</field>
-            <field name="view_id" ref="software_account_supplier_tree_view"/>
-            <field name="search_view_id" ref="software_account_supplier_search_view"/>
-        </record>
+    <record model="ir.ui.view" id="software_account_supplier_tree_view" >
+        <field name="name">software.account.supplier.tree@software_account</field>
+        <field name="model">software.account.supplier</field>
+        <field name="arch" type="xml">
+            <tree string="Suppliers">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window.view" id="act_window_view_software_account_supplier_kanban" >
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">kanban</field>
-            <field name="view_id" ref="software_account_supplier_kanban_view"/>
-            <field name="act_window_id" ref="act_window_software_account_supplier"/>
-        </record>
+    <record model="ir.ui.view" id="software_account_supplier_form_view" >
+        <field name="name">software.account.supplier.form@software_account</field>
+        <field name="model">software.account.supplier</field>
+        <field name="arch" type="xml">
+            <form string="Supplier">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Supplier name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="rules"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="software_account_supplier_search_view">
+        <field name="name">software.account.supplier.search@software_account</field>
+        <field name="model">software.account.supplier</field>
+        <field name="arch" type="xml">
+            <search string="Suppliers">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window.view" id="act_window_view_software_account_supplier_tree" >
-            <field name="sequence" eval="2"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="software_account_supplier_tree_view"/>
-            <field name="act_window_id" ref="act_window_software_account_supplier"/>
-        </record>
+    <record model="ir.actions.act_window" id="act_window_software_account_supplier" >
+        <field name="name">Suppliers</field>
+        <field name="res_model">software.account.supplier</field>
+        <field name="view_mode">kanban,form,tree</field>
+        <field name="view_id" ref="software_account_supplier_tree_view"/>
+        <field name="search_view_id" ref="software_account_supplier_search_view"/>
+    </record>
 
-        <record model="ir.actions.act_window.view" id="act_window_view_software_account_supplier_form" >
-            <field name="sequence" eval="3"/>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="software_account_supplier_form_view"/>
-            <field name="act_window_id" ref="act_window_software_account_supplier"/>
-        </record>
+    <record model="ir.actions.act_window.view" id="act_window_view_software_account_supplier_kanban" >
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="software_account_supplier_kanban_view"/>
+        <field name="act_window_id" ref="act_window_software_account_supplier"/>
+    </record>
 
-    </data>
+    <record model="ir.actions.act_window.view" id="act_window_view_software_account_supplier_tree" >
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="software_account_supplier_tree_view"/>
+        <field name="act_window_id" ref="act_window_software_account_supplier"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_window_view_software_account_supplier_form" >
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="software_account_supplier_form_view"/>
+        <field name="act_window_id" ref="act_window_software_account_supplier"/>
+    </record>
+
 </odoo>

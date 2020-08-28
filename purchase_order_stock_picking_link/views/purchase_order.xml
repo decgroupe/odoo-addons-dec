@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="purchase_order_view_form_inherit" >
-        <field name="name">purchase.order.form.inherit</field>
+        <field name="name">purchase.order.form.inherit@purchase_order_stock_picking_link</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
         <field name="arch" type="xml">

@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="product_normal_form_view_inherit_purchase">
-        <field name="name">product.product.purchase.button.inherit (in product_form_quotation_link)</field>
+        <field name="name">product.product.purchase.button.inherit@product_form_quotation_link</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="purchase.product_normal_form_view_inherit_purchase"/>
         <field name="arch" type="xml">

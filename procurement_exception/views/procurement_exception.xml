@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="procurement_exception_tree_view" >
-        <field name="name">procurement.exception.tree</field>
+        <field name="name">procurement.exception.tree@procurement_exception</field>
         <field name="model">procurement.exception</field>
         <field name="arch" type="xml">
             <tree string="Procurement Exceptions">
@@ -17,7 +17,7 @@
     </record>
 
     <record model="ir.ui.view" id="procurement_exception_form_view" >
-        <field name="name">procurement.exception.form</field>
+        <field name="name">procurement.exception.form@procurement_exception</field>
         <field name="model">procurement.exception</field>
         <field name="arch" type="xml">
             <form string="Procurement Exception">
@@ -50,7 +50,7 @@
     </record>
 
     <record model="ir.ui.view" id="procurement_exception_search_view">
-        <field name="name">procurement.exception.search</field>
+        <field name="name">procurement.exception.search@procurement_exception</field>
         <field name="model">procurement.exception</field>
         <field name="arch" type="xml">
             <search string="Procurement Exception">

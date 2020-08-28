@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record model="ir.ui.view" id="view_res_partner_search_city">
-            <field name="name">res.partner.select</field>
+            <field name="name">res.partner.select@partner_search_city</field>
             <field name="model">res.partner</field>
             <field name="type">search</field>
             <field name="inherit_id" ref="base.view_res_partner_filter"/>

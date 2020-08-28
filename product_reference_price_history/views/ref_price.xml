@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="ref_price_tree_view" >
-        <field name="name">ref.price.tree</field>
+        <field name="name">ref.price.tree@product_reference_price_history</field>
         <field name="model">ref.price</field>
         <field name="arch" type="xml">
             <tree string="Prices">
@@ -13,7 +13,7 @@
     </record>
 
     <record model="ir.ui.view" id="ref_price_form_view" >
-        <field name="name">ref.price.form</field>
+        <field name="name">ref.price.form@product_reference_price_history</field>
         <field name="model">ref.price</field>
         <field name="arch" type="xml">
             <form string="Prices">

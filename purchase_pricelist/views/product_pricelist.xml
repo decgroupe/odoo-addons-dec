@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="product_pricelist_tree_view">
-        <field name="name">product.pricelist.tree</field>
+        <field name="name">product.pricelist.tree@purchase_pricelist</field>
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
         <field name="arch" type="xml">
@@ -16,7 +16,7 @@
     </record>
 
     <record model="ir.ui.view" id="product_pricelist_form_view" >
-        <field name="name">product.pricelist.form</field>
+        <field name="name">product.pricelist.form@purchase_pricelist</field>
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view"/>
         <field name="arch" type="xml">
@@ -31,7 +31,7 @@
     </record>
 
     <record model="ir.ui.view" id="product_pricelist_view_kanban">
-        <field name="name">product.pricelist.kanban</field>
+        <field name="name">product.pricelist.kanban@purchase_pricelist</field>
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view_kanban"/>
         <field name="arch" type="xml">

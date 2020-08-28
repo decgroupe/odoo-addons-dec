@@ -2,6 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="sequence_view" >
+        <field name="name">ir.sequence.form@base_sequence_first_number</field>
         <field name="model">ir.sequence</field>
         <field name="inherit_id" ref="base.sequence_view"/>
         <field name="arch" type="xml">

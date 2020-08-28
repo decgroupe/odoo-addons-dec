@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="ticket_view_form" >
-        <field name="name">helpdesk.ticket.view.form</field>
+        <field name="name">helpdesk.ticket.view.form@helpdesk_sale</field>
         <field name="model">helpdesk.ticket</field>
         <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
         <field name="arch" type="xml">

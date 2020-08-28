@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="quotation_tree_view">
-        <field name="name">sale.order.tree</field>
+        <field name="name">sale.order.tree@sale_summary</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_quotation_tree"/>
         <field name="arch" type="xml">
@@ -13,7 +13,7 @@
     </record>
 
     <record model="ir.ui.view" id="order_tree_view">
-        <field name="name">sale.order.tree</field>
+        <field name="name">sale.order.tree@sale_summary</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
@@ -24,7 +24,7 @@
     </record>
 
     <record model="ir.ui.view" id="sale_order_form_view">
-        <field name="name">sale.order.form</field>
+        <field name="name">sale.order.form@sale_summary</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
