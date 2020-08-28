@@ -6,6 +6,9 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="before">
+                <field name="id" groups="base.group_erp_manager"/>
+            </xpath>
             <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
                 <field 
                     name="procure_method" 
@@ -29,6 +32,24 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='move_dest_ids']" position="before">
                 <field name="move_orig_ids" groups="base.group_no_one" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_form_view">
+        <field name="name">stock.move.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_grp']/group[@name='main_grp_col1']/field[@name='reference']" position="before">
+                <field name="id"/>
+            </xpath>
+            <xpath expr="//group[@name='linked_group']/field[@name='move_orig_ids']/tree/field[@name='location_id']" position="before">
+                <field name="id"/>
+            </xpath>
+            <xpath expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_id']" position="before">
+                <field name="id"/>
             </xpath>
         </field>
     </record>
