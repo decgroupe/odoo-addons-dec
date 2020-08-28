@@ -38,12 +38,7 @@ class ProcurementGroup(models.Model):
             self = self.with_context(
                 company_id=company_id, force_company=company_id
             )
-        # Search all active pickings
-        picking_ids = self.env['stock.picking'].search(
-            [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
-        )
-        # Select only valid moves
-        moves_to_confirm = self._filter_mto_moves_to_confirm(picking_ids)
+        moves_to_confirm = self._get_mto_moves_to_confirm()
         for move in moves_to_confirm:
             try:
                 product_id = move.product_id
@@ -63,8 +58,20 @@ class ProcurementGroup(models.Model):
         if use_new_cursor:
             self._cr.commit()
 
+
     @api.model
-    def _filter_mto_moves_to_confirm(self, picking_ids):
+    def _get_mto_moves_to_confirm(self):
+        # Search all active pickings
+        picking_ids = self.env['stock.picking'].search(
+            [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
+        )
+        # Select only valid moves
+        res = self._filter_picking_moves_to_confirm(picking_ids)
+        return res
+
+
+    @api.model
+    def _filter_picking_moves_to_confirm(self, picking_ids):
         return picking_ids.mapped('move_lines').filtered(
             lambda x: \
             x.state not in ('done', 'cancel') and \

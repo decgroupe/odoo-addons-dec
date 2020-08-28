@@ -37,12 +37,8 @@ class ProcurementGroup(models.Model):
             self = self.with_context(
                 company_id=company_id, force_company=company_id
             )
-        # Search all active pickings
-        picking_ids = self.env['stock.picking'].search(
-            [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
-        )
-        # Select only valid moves
-        moves_to_reorder = self._filter_mts_moves_to_reorder(picking_ids)
+        # Find and select only valid moves
+        moves_to_reorder = self._get_mts_moves_to_reorder()
         for product_id in moves_to_reorder.mapped('product_id'):
             try:
                 with self._cr.savepoint():
@@ -55,8 +51,39 @@ class ProcurementGroup(models.Model):
             self._cr.commit()
 
     @api.model
-    def _filter_mts_moves_to_reorder(self, picking_ids):
+    def _get_mts_moves_to_reorder(self):
+        # Search all active pickings
+        picking_ids = self.env['stock.picking'].search(
+            [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
+        )
+        # Select only valid moves
+        res = self._filter_picking_moves_to_reorder(picking_ids)
+
+        # Search all active manufacturing orders
+        production_ids = self.env['mrp.production'].search(
+            [('state', 'not in', ('done', 'cancel'))]
+        )
+        # Select only valid moves
+        res += self._filter_production_moves_to_reorder(production_ids)
+        return res
+
+    @api.model
+    def _filter_picking_moves_to_reorder(self, picking_ids):
         return picking_ids.mapped('move_lines').filtered(
+            lambda x: \
+            x.state in ('confirmed') and \
+            x.procure_method == 'make_to_stock' and \
+            x.product_id.nbr_reordering_rules == 0 and \
+            x.location_id == self.env.ref('stock.stock_location_stock') and \
+            x.created_purchase_line_id.id == False and \
+            x.created_production_id.id == False and \
+            x.orderpoint_created_production_ids.ids == [] and \
+            x.orderpoint_created_purchase_line_ids.ids == []
+        )
+        
+    @api.model
+    def _filter_production_moves_to_reorder(self, production_ids):
+        return production_ids.mapped('move_raw_ids').filtered(
             lambda x: \
             x.state in ('confirmed') and \
             x.procure_method == 'make_to_stock' and \
