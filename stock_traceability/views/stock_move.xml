@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="move_picking_form_view">
+        <field name="name">stock.move.form@stock_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="scrapped" position="after">
+                <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
+            </field>
+            <xpath expr="//field[@name='move_dest_ids']" position="before">
+                <field name="move_orig_ids" groups="base.group_no_one" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="move_tree_view">
+        <field name="name">stock.move.form@stock_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="arch" type="xml">
+            <field name="date" position="before">
+                <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_receipt_picking_tree_view" >
+        <field name="name">stock.move.tree2@stock_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree_receipt_picking"/>
+        <field name="arch" type="xml">
+            <field name="date_expected" position="before">
+                <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_form_view">
+        <field name="name">stock.move.form@stock_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_grp']/group[@name='main_grp_col1']/field[@name='reference']" position="before">
+                <field name="id" widget="widget_id"/>
+            </xpath>
+            <xpath expr="//group[@name='linked_group']/field[@name='move_orig_ids']/tree/field[@name='location_id']" position="before">
+                <field name="id" widget="widget_id"/>
+            </xpath>
+            <xpath expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_id']" position="before">
+                <field name="id" widget="widget_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
