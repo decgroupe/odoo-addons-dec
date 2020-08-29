@@ -37,8 +37,8 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="stock_move_form_view">
-        <field name="name">stock.move.form@stock_traceability</field>
+    <record model="ir.ui.view" id="admin_stock_move_form_view">
+        <field name="name">stock.move.form#admin@stock_traceability</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_move_form"/>
         <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
@@ -51,6 +51,29 @@
             </xpath>
             <xpath expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_id']" position="before">
                 <field name="id" widget="widget_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_form_view">
+        <field name="name">stock.move.form@stock_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='origin_grp']" position="replace">
+                <group name="main_origin_grp" colspan="2">
+                    <group name="origin_grp_col1">$0</group>
+                    <group name="origin_grp_col2">
+                        <field name="created_purchase_line_id"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//group[@name='linked_group']/field[@name='move_orig_ids']/tree/field[@name='location_dest_id']" position="after">
+                <field name="product_id"/>
+            </xpath>
+            <xpath expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_dest_id']" position="after">
+                <field name="product_id"/>
             </xpath>
         </field>
     </record>

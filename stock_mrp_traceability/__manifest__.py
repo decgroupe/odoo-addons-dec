@@ -4,13 +4,17 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': '''Show picking line origin''',
-    'depends': [
-        'stock',
-        'mrp',
-        'mrp_production_request',
-        'stock_traceability',
-        'stock_orderpoint_traceability',
+    'depends':
+        [
+            'stock',
+            'mrp',
+            'mrp_production_request',
+            'stock_traceability',
+            'stock_orderpoint_traceability',
+        ],
+    'data': [
+        'views/stock_picking.xml',
+        'views/stock_move.xml',
     ],
-    'data': ['views/stock_picking.xml', ],
     'installable': True
 }
