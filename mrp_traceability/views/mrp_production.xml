@@ -28,7 +28,7 @@
                 <attribute name="limit">1000</attribute>
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='product_id']" position="before">
-                <field name="id" groups="base.group_erp_manager"/>
+                <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='name']" position="attributes">
                 <attribute name="invisible">False</attribute>
@@ -62,7 +62,7 @@
         <field name="model">stock.move</field>
         <field name="arch" type="xml">
             <tree string="Stock Moves" decoration-muted="state == 'cancel'" create="false">
-                <field name="id" groups="base.group_erp_manager"/>
+                <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="product_uom"/>
@@ -93,7 +93,7 @@
                 </header>
                 <group>
                     <group>
-                        <field name="id" groups="base.group_erp_manager"/>
+                        <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
                         <field name="name"/>
                         <field name="product_id" attrs="{'readonly': [('id', '!=', False)]}"/>
                         <label for="product_uom_qty"/>
