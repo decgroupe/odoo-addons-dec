@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form@sale_purchase_traceability</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='state']" position="before">
+                <!-- 
+                    A purchase line is directly linked to sale order line
+                    (using 'sale_line_id') when no stock move is created, that
+                    means buying a service. This link is done in:
+                        addons/sale_purchase/models/sale_order.py:
+                        _purchase_service_prepare_line_values
+                -->
+                <div name="purchases" groups="base.group_no_one" attrs="{'invisible': ['|', ('display_type', '!=', False), ('purchase_line_ids', '=', [])]}">
+                    <label for="purchase_line_ids"/>
+                    <field name="purchase_line_ids"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
