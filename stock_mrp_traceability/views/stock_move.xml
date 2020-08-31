@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='origin_grp_col2']" position="inside">
                 <field name="created_production_id"/>
+                <field name="production_id"/>
                 <field name="raw_material_production_id"/>
             </xpath>
         </field>
