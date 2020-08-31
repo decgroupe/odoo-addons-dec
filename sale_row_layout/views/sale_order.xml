@@ -2,85 +2,100 @@
 <odoo>
 
     <!-- /media/data/ypa/projects/12.0/OCB/addons/sale/views/sale_views.xml -->
-    <record model="ir.ui.view" id="sale_order_form_view" >
-        <field name="name">sale.order.form@sale_row_layout</field>
+    <record model="ir.ui.view" id="empty_row_layout_sale_order_form_view" >
+        <field name="name">sale.order.form#empty_row_layout@sale_row_layout</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
+            <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
+                <group name="row_display" col="6" colspan="6" attrs="{'invisible':[('display_type', '!=', False)]}">
+                    <div class="row_header" name="row_label_10"/>
+                    <div class="row_header" name="row_label_20"/>
+                    <div class="row_header" name="row_label_30"/>
+                    <div class="row_header" name="row_label_40"/>
+                    <div class="row_header" name="row_label_50"/>
+                    <div class="row_header" name="row_label_60"/>
+                    <newline/>
+                    <div name="row_field_10"/>
+                    <div name="row_field_20"/>
+                    <div name="row_field_30"/>
+                    <div name="row_field_40"/>
+                    <div name="row_field_50"/>
+                    <div name="row_field_60"/>
+                    <label string="" colspan="4"/>
+                    <div class="row_header"/>
+                    <div class="row_header"/>
+                    <newline/>
+                    <label string="" colspan="4"/>
+                    <field name="margin"/>
+                    <label string="" colspan="4"/>
+                    <field name="price_subtotal" position="move"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="row_layout_sale_order_form_view" >
+        <field name="name">sale.order.form#row_layout@sale_row_layout</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_row_layout.empty_row_layout_sale_order_form_view"/>
+        <field name="arch" type="xml">
+            
             <!-- Remove div container for :
                 <field name="product_uom_qty"/>
                 <field name="product_uom"/>
-            in order to keep good alignement with next fields -->
-            <xpath expr="//label[@for='product_uom_qty']/following-sibling::div" position="replace"/>
-            <label for="product_uom_qty" position="replace"/>
-
-            <!-- Remove invisible price_subtotal field -->
-            <field name="price_subtotal" position="replace"/>
-            <field name="price_unit" position="replace"/>
-            <field name="purchase_price" position="replace"/>
-
-            <label for="discount" position="replace"/>
-            <field name="discount" position="replace"/>
-
-            <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
-                <group name="row_display" col="6" colspan="6" attrs="{'invisible':[('display_type', '!=', False)]}">
-                    <div class="row_header">
-                        <label for="product_uom_qty" class="row_label"/>
-                    </div>
-                    <div class="row_header">
-                        <label for="product_uom" class="row_label"/>
-                    </div>
-                    <div class="row_header">
-                        <label for="purchase_price" class="row_label"/>
-                    </div>
-                    <div class="row_header">
-                        <label for="price_unit" class="row_label"/>
-                    </div>
-                    <div class="row_header">
-                        <label for="discount" groups="sale.group_discount_per_so_line" class="row_label"/>
-                    </div>
-                    <div class="row_header" name="extra_field_label">
-                        <!-- <label for="markup_percent" class="row_label"/> -->
-                    </div>
-                    <newline/>
-
-                    <field
-                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'uom_qty_change':True, 'company_id': parent.company_id}"
-                        name="product_uom_qty" nolabel="1"/>
-                    <field
-                        name="product_uom"
-                        force_save="1"
-                        groups="uom.group_uom"
-                        attrs="{
-                            'readonly': [('state', 'in', ('sale', 'done', 'cancel'))],
-                            'required': [('display_type', '=', False)],
-                        }"
-                        nolabel="1"
-                        
-                    />
-                    <field name="purchase_price" groups="base.group_user" nolabel="1" />
-                    <field name="price_unit"  nolabel="1"/>
-                    <div name="discount" groups="sale.group_discount_per_so_line">
-                        <field name="discount" nolabel="1" />
-                    </div>
-                    <div name="extra_field">
-
-                    </div>
-                    <!-- <field name="markup_percent"  nolabel="1"/> -->
-
-                    <label string="" colspan="4"/>
-                    <div class="row_header"></div>
-                    <div class="row_header"></div>
-                    <newline/>
-                    <label string="" colspan="4"/>
-                    <field name="margin" groups="base.group_user" />
-                    <label string="" colspan="4"/>
-                    <field name="price_subtotal" />
-
-                </group>
-                
+            in order to keep good alignement with next fields (step 1/2) -->
+            <xpath expr="//label[@for='product_uom_qty']/following-sibling::div" position="attributes">
+                <attribute name="name">product_uom_div</attribute>
             </xpath>
+
+            <xpath expr="//field[@name='order_line']/form//label[@for='product_uom_qty']" position="attributes">
+                <attribute name="class">row_label</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//label[@for='discount']" position="attributes">
+                <attribute name="class">row_label</attribute>
+            </xpath>
+            
+            <xpath expr="//div[@name='row_label_10']" position="inside">
+                <xpath expr="//field[@name='order_line']/form//label[@for='product_uom_qty']" position="move"/>
+            </xpath>
+            <xpath expr="//div[@name='row_label_20']" position="inside">
+                <label for="product_uom" class="row_label"/>
+            </xpath>
+            <xpath expr="//div[@name='row_label_30']" position="inside">
+                <label for="purchase_price" class="row_label"/>
+            </xpath>
+            <xpath expr="//div[@name='row_label_40']" position="inside">
+                <label for="price_unit" class="row_label"/>
+            </xpath>
+            <xpath expr="//div[@name='row_label_50']" position="inside">
+                <xpath expr="//field[@name='order_line']/form//label[@for='discount']" position="move"/>
+            </xpath>
+
+            <xpath expr="//div[@name='row_field_10']" position="inside">
+                <xpath expr="//field[@name='order_line']/form//field[@name='product_uom_qty']" position="move"/>
+            </xpath>
+            <xpath expr="//div[@name='row_field_20']" position="inside">
+                <xpath expr="//field[@name='order_line']/form//field[@name='product_uom']" position="move"/>
+            </xpath>
+            <xpath expr="//div[@name='row_field_30']" position="inside">
+                <xpath expr="//field[@name='order_line']/form//field[@name='purchase_price']" position="move"/>
+            </xpath>
+            <xpath expr="//div[@name='row_field_40']" position="inside">
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="move"/>
+            </xpath>
+            <xpath expr="//div[@name='row_field_50']" position="inside">
+                <xpath expr="//field[@name='order_line']/form//div[@name='discount']" position="move"/>
+            </xpath>
+
+            <!-- Remove div container for :
+                <field name="product_uom_qty"/>
+                <field name="product_uom"/>
+            in order to keep good alignement with next fields (step 2/2) -->
+            <xpath expr="//div[@name='product_uom_div']" position="replace"/>
+            
         </field>
     </record>
 
