@@ -7,12 +7,11 @@
     'summary': '''Adds the 'Markup' on sales order''',
     'depends': [
         'dec',
-        'sale_margin'
+        'sale_row_layout'
     ],
     #'force_migration':'12.0.0.0.0',
     'data':
         [
-            'views/assets.xml',
             'views/sale_order.xml',
         ],
     'installable': True
