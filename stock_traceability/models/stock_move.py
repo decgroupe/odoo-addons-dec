@@ -149,6 +149,8 @@ class StockMove(models.Model):
             view = self.action_view_purchase(
                 self.created_purchase_line_id.order_id.id
             )
+        elif self.purchase_line_id:
+            view = self.action_view_purchase(self.purchase_line_id.order_id.id)
         elif self.created_production_id:
             view = self.action_view_production(self.created_production_id.id)
         elif self.production_id:
@@ -165,6 +167,7 @@ class StockMove(models.Model):
     def is_action_view_created_item_visible(self):
         self.ensure_one()
         return self.created_purchase_line_id \
+            or self.purchase_line_id \
             or self.created_production_id \
             or self.production_id \
             or self.product_activity_id
@@ -247,6 +250,9 @@ class StockMove(models.Model):
             head, desc = self._get_purchase_status(
                 self.created_purchase_line_id
             )
+            res.append(format_hd(head, desc, html))
+        elif self.purchase_line_id:
+            head, desc = self._get_purchase_status(self.purchase_line_id)
             res.append(format_hd(head, desc, html))
         elif self.created_production_id:
             head, desc = self._get_production_status(self.created_production_id)

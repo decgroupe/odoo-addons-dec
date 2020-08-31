@@ -76,6 +76,7 @@ class StockMove(models.Model):
 
     def _is_related(self):
         if self.created_purchase_line_id \
+            or self.purchase_line_id \
             or self.created_mrp_production_request_id \
             or self.production_id:
             return True
