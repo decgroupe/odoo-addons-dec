@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_row_layout_assets_backend" name="sale_row_layout assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link href="/sale_row_layout/static/src/css/style.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+</odoo>

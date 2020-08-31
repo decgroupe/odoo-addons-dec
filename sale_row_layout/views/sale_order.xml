@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- /media/data/ypa/projects/12.0/OCB/addons/sale/views/sale_views.xml -->
+    <record model="ir.ui.view" id="sale_order_form_view" >
+        <field name="name">sale.order.form@sale_row_layout</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Remove div container for :
+                <field name="product_uom_qty"/>
+                <field name="product_uom"/>
+            in order to keep good alignement with next fields -->
+            <xpath expr="//label[@for='product_uom_qty']/following-sibling::div" position="replace"/>
+            <label for="product_uom_qty" position="replace"/>
+
+            <!-- Remove invisible price_subtotal field -->
+            <field name="price_subtotal" position="replace"/>
+            <field name="price_unit" position="replace"/>
+            <field name="purchase_price" position="replace"/>
+
+            <label for="discount" position="replace"/>
+            <field name="discount" position="replace"/>
+
+            <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
+                <group name="row_display" col="6" colspan="6" attrs="{'invisible':[('display_type', '!=', False)]}">
+                    <div class="row_header">
+                        <label for="product_uom_qty" class="row_label"/>
+                    </div>
+                    <div class="row_header">
+                        <label for="product_uom" class="row_label"/>
+                    </div>
+                    <div class="row_header">
+                        <label for="purchase_price" class="row_label"/>
+                    </div>
+                    <div class="row_header">
+                        <label for="price_unit" class="row_label"/>
+                    </div>
+                    <div class="row_header">
+                        <label for="discount" groups="sale.group_discount_per_so_line" class="row_label"/>
+                    </div>
+                    <div class="row_header" name="extra_field_label">
+                        <!-- <label for="markup_percent" class="row_label"/> -->
+                    </div>
+                    <newline/>
+
+                    <field
+                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'uom_qty_change':True, 'company_id': parent.company_id}"
+                        name="product_uom_qty" nolabel="1"/>
+                    <field
+                        name="product_uom"
+                        force_save="1"
+                        groups="uom.group_uom"
+                        attrs="{
+                            'readonly': [('state', 'in', ('sale', 'done', 'cancel'))],
+                            'required': [('display_type', '=', False)],
+                        }"
+                        nolabel="1"
+                        
+                    />
+                    <field name="purchase_price" groups="base.group_user" nolabel="1" />
+                    <field name="price_unit"  nolabel="1"/>
+                    <div name="discount" groups="sale.group_discount_per_so_line">
+                        <field name="discount" nolabel="1" />
+                    </div>
+                    <div name="extra_field">
+
+                    </div>
+                    <!-- <field name="markup_percent"  nolabel="1"/> -->
+
+                    <label string="" colspan="4"/>
+                    <div class="row_header"></div>
+                    <div class="row_header"></div>
+                    <newline/>
+                    <label string="" colspan="4"/>
+                    <field name="margin" groups="base.group_user" />
+                    <label string="" colspan="4"/>
+                    <field name="price_subtotal" />
+
+                </group>
+                
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
