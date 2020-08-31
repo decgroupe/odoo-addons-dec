@@ -24,7 +24,7 @@
             <field name="discount" position="replace"/>
 
             <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
-                <group col="6" colspan="6" attrs="{'invisible':[('display_type', '!=', False)]}">
+                <group name="row_display" col="6" colspan="6" attrs="{'invisible':[('display_type', '!=', False)]}">
                     <div class="row_header">
                         <label for="product_uom_qty" class="row_label"/>
                     </div>
