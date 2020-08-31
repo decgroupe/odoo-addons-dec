@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="stock_move_tree_view" >
+        <field name="name">stock.move.tree.picking.button@mrp_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <tree string="Stock Moves" decoration-muted="state == 'cancel'" create="false">
+                <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="product_uom"/>
+                <field name="location_id"/>
+                <field name="location_dest_id"/>
+                <field name="origin"/>
+                <field name="state"/>
+                <field name="picking_id"/>
+                <button 
+                    name="action_view_picking" 
+                    string="Open" 
+                    type="object"
+                    attrs="{'invisible': [('picking_id', '=', False)]}"
+                    icon="fa-truck">
+                </button>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_details_form_view">
+        <field name="name">stock.move.details.form@mrp_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <form string="Details">
+                <header>
+                    <field name="state" widget="statusbar" force_save="1"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
+                        <field name="name"/>
+                        <field name="product_id" attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <label for="product_uom_qty"/>
+                        <div class="o_row">
+                            <span><field name="product_uom_qty" readonly="1" nolabel="1"/></span>
+                            <span><field name="product_uom" readonly="1" force_save="1" nolabel="1"/></span>
+                        </div>
+                        <label for="quantity_done" string="Done/Reserved"/>
+                        <div class="o_row">
+                            <span><field name="quantity_done" attrs="{'readonly': ['|', ('is_locked', '=', True), '|', ('finished_lots_exist', '=', True), ('has_tracking', '!=', 'none')]}" nolabel="1"/></span>
+                            <span> / </span>
+                            <span><field name="reserved_availability" nolabel="1"/></span>
+                            <span><field name="product_uom" readonly="1" nolabel="1"/></span>
+                        </div>
+                        <field name="is_done" invisible="1"/>
+                        <field name="workorder_id" invisible="1"/>
+                        <field name="production_id" invisible="1"/>
+                        <field name="raw_material_production_id" invisible="1"/>
+                        <field name="is_locked" invisible="1"/>
+                        <field name="has_tracking" invisible="1"/>
+                        <field name="order_finished_lot_ids" invisible="1"/>
+                        <field name="finished_lots_exist" invisible="1"/>
+                        <field name="picking_type_id" invisible="1"/>
+                    </group>
+                    <group>
+                        <field 
+                            name="procure_method" 
+                            attrs="{'readonly': [
+                                ('|'),
+                                    ('state', 'in', ['draft', 'cancel', 'partially_available', 'assigned', 'done']),
+                                    ('procure_method', '==', 'make_to_order'),
+                            ]}"
+                            force_save="1">
+                        </field>
+                        <field name="unit_factor"/>
+                        <field name="location_id"/>
+                        <field name="location_dest_id"/>
+                    </group>
+                </group>
+                <label for="active_move_line_ids"/>
+                <field name="active_move_line_ids" attrs="{'readonly': ['|', ('is_locked', '=', True), ('state', '=', 'cancel')]}" context="{'default_workorder_id': workorder_id, 'default_product_uom_id': product_uom, 'default_product_id': product_id,  'default_location_id': location_id, 'default_location_dest_id': location_dest_id, 'default_production_id': production_id or raw_material_production_id}">
+                    <tree editable="bottom" decoration-success="product_qty==qty_done" decoration-danger="(product_qty &gt; 0) and (qty_done&gt;product_qty)">
+                        <field name="date"/>
+                        <field name="lot_id" attrs="{'column_invisible': [('parent.has_tracking', '=', 'none')]}" domain="[('product_id', '=', parent.product_id)]" context="{'default_product_id': parent.product_id}"/>
+                        <field name="lot_produced_id" options="{'no_open': True, 'no_create': True}" domain="[('id', 'in', parent.order_finished_lot_ids)]" invisible="not context.get('final_lots')"/>
+                        <field name="product_qty" string="Reserved" readonly="1"/>
+                        <field name="qty_done"/>
+                        <field name="workorder_id" invisible="1"/>
+                        <field name="product_id" invisible="1"/>
+                        <field name="product_uom_id" invisible="1"/>
+                        <field name="location_id" invisible="1"/>
+                        <field name="location_dest_id" invisible="1"/>
+                        <field name="done_wo" invisible="1"/>
+                        <field name="production_id" invisible="1"/>
+                        <field name="state"/>
+                        <field name="consume_line_ids"/>
+                        <field name="produce_line_ids"/>
+                    </tree>
+                </field>
+                <label for="move_orig_ids"/>
+                <field name="move_orig_ids" context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}" />
+                <label for="move_dest_ids"/>
+                <field name="move_dest_ids" context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}" />
+            </form>
+        </field>
+    </record>
+
+</odoo>
