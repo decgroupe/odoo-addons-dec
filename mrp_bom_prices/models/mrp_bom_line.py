@@ -35,8 +35,9 @@ class MrpBomLine(models.Model):
     )
     def _compute_prices(self):
         for line in self:
-            line.unit_price = line.product_id.product_tmpl_id.get_purchase_price(
-                line.partner_id, line.product_uom_id
-            )
-            line.cost_price = line.unit_price * line.product_qty
-            line.public_price = line.product_id.lst_price / line.product_uom_id.factor
+            if line.product_id:
+                line.unit_price = line.product_id.product_tmpl_id.get_purchase_price(
+                    line.partner_id, line.product_uom_id
+                )
+                line.cost_price = line.unit_price * line.product_qty
+                line.public_price = line.product_id.lst_price / line.product_uom_id.factor
