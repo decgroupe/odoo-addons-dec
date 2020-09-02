@@ -4,9 +4,9 @@
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_mrp_traceability</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale_row_layout.sale_order_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/form//field[@name='state']" position="before">
+            <xpath expr="//div[@name='traceability_container']" position="inside">
                 <div name="moves" groups="base.group_no_one" attrs="{'invisible': ['|', ('display_type', '!=', False), ('move_ids', '=', [])]}">
                     <label for="move_ids"/>
                     <field name="move_ids" context="{

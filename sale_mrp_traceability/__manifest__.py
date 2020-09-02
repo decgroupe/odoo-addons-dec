@@ -7,6 +7,7 @@
     'summary': '''Show related stock moves on sale order line form''',
     'depends': [
         'sale',
+        'sale_row_layout',
         'stock_mrp_traceability',
     ],
     #'force_migration':'12.0.0.0.0',

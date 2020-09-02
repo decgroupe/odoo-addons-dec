@@ -6,6 +6,8 @@
     'category': 'Sales',
     'summary': '''Show related tasks on sale order line form''',
     'depends': [
+        'sale',
+        'sale_row_layout',
         'sale_timesheet',
     ],
     #'force_migration':'12.0.0.0.0',

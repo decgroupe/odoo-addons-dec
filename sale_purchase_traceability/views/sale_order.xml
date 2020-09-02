@@ -4,9 +4,9 @@
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_purchase_traceability</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale_row_layout.sale_order_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/form//field[@name='state']" position="before">
+            <xpath expr="//div[@name='traceability_container']" position="inside">
                 <!-- 
                     A purchase line is directly linked to sale order line
                     (using 'sale_line_id') when no stock move is created, that
