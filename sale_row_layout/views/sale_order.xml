@@ -2,10 +2,31 @@
 <odoo>
 
     <!-- /media/data/ypa/projects/12.0/OCB/addons/sale/views/sale_views.xml -->
+    <record model="ir.ui.view" id="sale_order_form_view" >
+        <field name="name">sale.order.form@sale_row_layout</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Dedicated container for traceability -->
+            <xpath expr="//field[@name='order_line']/form//field[@name='state']" position="before">
+                <div name="traceability_container">
+
+                </div>
+            </xpath>
+            
+            <!-- Create a div container for invoice lines for easier inheriting -->
+            <xpath expr="//field[@name='invoice_lines']/parent::div" position="attributes">
+                <attribute name="name">invoice_lines</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="empty_row_layout_sale_order_form_view" >
         <field name="name">sale.order.form#empty_row_layout@sale_row_layout</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale_row_layout.sale_order_form_view"/>
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
@@ -95,7 +116,7 @@
                 <field name="product_uom"/>
             in order to keep good alignement with next fields (step 2/2) -->
             <xpath expr="//div[@name='product_uom_div']" position="replace"/>
-            
+
         </field>
     </record>
 
