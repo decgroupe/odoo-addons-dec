@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class RefPack(models.Model):
@@ -44,3 +44,15 @@ class RefPack(models.Model):
         'Pack Type',
         required=True,
     )
+
+    @api.model
+    def create(self, values):
+        product_id = values.get('product_id')
+        if product_id:
+            product = self.env['product.template'].browse(product_id)
+            product.pack_ok = True
+            product.pack_type = 'detailed'
+            product.pack_component_price = 'ignored'
+            product.pack_modifiable = False
+        ref_pack = super().create(values)
+        return ref_pack
