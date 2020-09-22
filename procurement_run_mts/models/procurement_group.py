@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 from odoo.exceptions import UserError, MissingError
 
@@ -98,5 +98,5 @@ class ProcurementGroup(models.Model):
     @api.model
     def _action_cannot_reorder_product(self, product_id):
         product_id.ensure_one()
-        error_msg = 'Not enough stock and no minimum orderpoint rule'
+        error_msg = _('Not enough stock and no minimum orderpoint rule')
         raise UserError(error_msg)
