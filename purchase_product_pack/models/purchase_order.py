@@ -2,7 +2,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Sep 2020
 
-
 from odoo import models, api, _
 from odoo.exceptions import UserError
 
@@ -37,3 +36,20 @@ class PurchaseOrder(models.Model):
                     ' to delete the pack itself'
                 )
             )
+
+    @api.multi
+    def _create_picking(self):
+        self._create_pack_stock_moves()
+        return super()._create_picking()
+
+    @api.multi
+    def _create_pack_stock_moves(self):
+        for order in self:
+            if any(
+                [
+                    ptype in ['product', 'consu']
+                    for ptype in order.order_line.mapped('product_id.type')
+                ]
+            ):
+                moves = order.order_line._create_pack_stock_moves()
+        return True
