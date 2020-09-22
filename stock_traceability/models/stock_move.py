@@ -122,22 +122,21 @@ class StockMove(models.Model):
     @api.depends('product_id')
     def _compute_product_activity_id(self):
         for move in self:
-            move.product_activity_id = move.env['mail.activity'].search(
-                [
-                    ('res_id', '=', move.product_id.product_tmpl_id.id),
-                    (
-                        'res_model_id',
-                        '=',
-                        move._get_product_template_ir_model_id(),
-                    ),
-                    (
-                        'activity_type_id',
-                        '=',
-                        move._get_warning_activity_type_id(),
-                    ),
-                ],
-                limit=1
-            )
+            domain = [
+                ('res_id', '=', move.product_id.product_tmpl_id.id),
+                (
+                    'res_model_id',
+                    '=',
+                    move._get_product_template_ir_model_id(),
+                ),
+                (
+                    'activity_type_id',
+                    '=',
+                    move._get_warning_activity_type_id(),
+                ),
+            ]
+            activity = move.env['mail.activity'].search(domain, limit=1)
+            move.product_activity_id = activity
 
     def action_view_created_item(self):
         """ Generate an action that will match the nearest object linked
@@ -283,6 +282,10 @@ class StockMove(models.Model):
             pre = '♻️MO/'
         if pre:
             res.append('{0}{1}'.format(pre, _('canceled')))
+
+        if self.product_activity_id:
+            head, desc = self._get_activity_status(self.product_activity_id)
+            res.append(format_hd(head, desc, html))
 
         return res
 
