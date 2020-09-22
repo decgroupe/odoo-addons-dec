@@ -237,7 +237,7 @@ class StockMove(models.Model):
             a.state
         )
         product_name = self.product_id.product_tmpl_id.display_name
-        activity_text = html2plaintext(a.summary or a.note)
+        activity_text = html2plaintext(a.note or a.summary)
         activity_text = activity_text.replace(product_name, '')
         head = '⚠️{0}'.format(activity_text)
         desc = '{0}{1}'.format(activity_state_to_emoji(a.state), state)
