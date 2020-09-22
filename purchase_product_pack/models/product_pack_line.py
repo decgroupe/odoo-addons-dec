@@ -6,7 +6,7 @@ from odoo import api, fields, models
 import odoo.addons.decimal_precision as dp
 
 
-class ProductPack(models.Model):
+class ProductPackLine(models.Model):
     _inherit = 'product.pack.line'
 
     @api.multi
