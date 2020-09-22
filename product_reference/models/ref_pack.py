@@ -54,5 +54,11 @@ class RefPack(models.Model):
             product.pack_type = 'detailed'
             product.pack_component_price = 'ignored'
             product.pack_modifiable = False
+            if product.sale_ok and product.purchase_ok:
+                product.pack_order_type = 'all'
+            elif product.sale_ok:
+                product.pack_order_type = 'sale'
+            elif product.purchase_ok:
+                product.pack_order_type = 'purchase'
         ref_pack = super().create(values)
         return ref_pack
