@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, models, registry, tools
+from odoo import api, models, registry, tools, _
 from odoo.exceptions import UserError, MissingError
 from psycopg2 import extensions
 
@@ -93,8 +93,8 @@ class ProcurementGroup(models.Model):
         product_id = product_id.with_env(product_id.env(cr=cr))
         user_id = user_id.with_env(user_id.env(cr=cr))
 
-        note = tools.plaintext2html(message)
-
+        #note = tools.plaintext2html(message)
+        note = message
         MailActivity = self.env['mail.activity']
         model_product_template = self.env.ref('product.model_product_template')
         existing_activity = MailActivity.search(
@@ -110,16 +110,23 @@ class ProcurementGroup(models.Model):
             activity_type_id = self.env.ref(
                 'mail.mail_activity_data_warning', raise_if_not_found=False
             )
-            MailActivity.create(
-                {
-                    'activity_type_id': activity_type_id and \
-                        activity_type_id.id or False,
-                    'note': note,
-                    'user_id': user_id.id,
-                    'res_id': product_id.product_tmpl_id.id,
-                    'res_model_id': model_product_template.id,
-                }
+            _logger.info(
+                "Creating new exception (Activity): {}: {}".format(
+                    product_id.product_tmpl_id.display_name,
+                    note,
+                )
             )
+            activity_data = {
+                'activity_type_id': activity_type_id and \
+                    activity_type_id.id or False,
+                'note': note,
+                'summary': _('Exception'),
+                'user_id': user_id.id,
+                'res_id': product_id.product_tmpl_id.id,
+                'res_model_id': model_product_template.id,
+            }
+            _logger.debug(activity_data)
+            MailActivity.create(activity_data)
         # Commit this created activity to keep it even after a rollback
         cr.commit()
         cr.close()
