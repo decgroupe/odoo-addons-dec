@@ -33,6 +33,7 @@ class StockRule(models.Model):
     ):
         res = []
         try:
+            self._check_product_active(product_id)
             self._check_product_state(product_id)
         except UserError as error:
             res.append(error.name)

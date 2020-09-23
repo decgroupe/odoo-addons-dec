@@ -1,6 +1,6 @@
 {
     'name':
-        'Manufacturing (warnings)',
+        'Procurement (warnings)',
     'version':
         '12.0.1.0.0',
     'author':

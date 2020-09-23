@@ -7,3 +7,8 @@ from odoo import api, fields, models
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
+
+    @api.model
+    def create(self, values):
+        production = super(MrpProduction, self).create(values)
+        return production
