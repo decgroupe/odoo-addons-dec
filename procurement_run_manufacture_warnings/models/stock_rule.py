@@ -43,6 +43,13 @@ class StockRule(models.Model):
             res.append(error.name)
         return res
 
+    def _check_product_active(self, product_id):
+        if not product_id.active:
+            raise UserError(
+                _('Cannot manufacture product %s, because it is archived. ') %
+                (product_id.display_name, )
+            )
+
     def _check_product_state(self, product_id):
         if product_id.state not in ['draft', 'sellable']:
             state_desc = dict(
