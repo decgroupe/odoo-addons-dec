@@ -8,6 +8,7 @@
         'stock',
         'mrp',
         'purchase_stock',
+        'mrp_production_request',
     ],
     'data':
         [
