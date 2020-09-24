@@ -17,5 +17,5 @@
     'data': [
         'views/product_views.xml',
     ],
-    'application': True,
+    'application': False,
 }
