@@ -31,7 +31,7 @@ msgstr "Terminé/Réservé"
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_tree_view
 msgid "Open"
-msgstr "Ouvert"
+msgstr "Ouvrir"
 
 #. module: mrp_traceability
 #: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__orderpoint_created_production_ids
