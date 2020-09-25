@@ -283,7 +283,9 @@ class StockMove(models.Model):
         if pre:
             res.append('{0}{1}'.format(pre, _('canceled')))
 
-        if self.product_activity_id:
+        if self.state not in (
+            'assigned', 'done', 'cancel'
+        ) and self.product_activity_id:
             head, desc = self._get_activity_status(self.product_activity_id)
             res.append(format_hd(head, desc, html))
 
