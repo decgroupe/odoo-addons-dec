@@ -8,6 +8,7 @@
         'stock',
         'purchase_stock',
         'mrp',
+        'stock_mts_mto_rule',
     ],
     'data':
         [

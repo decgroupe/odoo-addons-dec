@@ -60,6 +60,14 @@ procurement request.",
         )
         return mto_route
 
+    @api.model
+    def _get_mto_mts_route(self):
+        mto_mts_route = self.env['stock.warehouse']._find_global_route(
+            'stock_mts_mto_rule.route_mto_mts',
+            _('Make To Order + Make To Stock'),
+        )
+        return mto_mts_route
+
     @api.multi
     @api.depends('route_ids')
     def _compute_supply_method(self):
@@ -89,8 +97,10 @@ procurement request.",
     @api.depends('route_ids')
     def _compute_procure_method(self):
         mto_route = self._get_mto_route()
+        mto_mts_route = self._get_mto_mts_route()
         for product in self:
-            if mto_route in product.route_ids:
+            if (mto_route in product.route_ids) \
+            or (mto_mts_route in product.route_ids):
                 product.procure_method = 'make_to_order'
             else:
                 product.procure_method = 'make_to_stock'
@@ -98,8 +108,13 @@ procurement request.",
     @api.multi
     def _inverse_procure_method(self):
         mto_route = self._get_mto_route()
+        mto_mts_route = self._get_mto_mts_route()
         for product in self:
+            route_ids = product.route_ids
             if product.procure_method == 'make_to_order':
-                product.route_ids += mto_route
+                route_ids += mto_route
+                route_ids -= mto_mts_route
             elif product.procure_method == 'make_to_stock':
-                product.route_ids -= mto_route
+                route_ids -= mto_route
+                route_ids -= mto_mts_route
+            product.route_ids = route_ids
