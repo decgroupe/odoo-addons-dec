@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-26 11:45+0000\n"
-"PO-Revision-Date: 2020-07-29 15:11+0200\n"
+"POT-Creation-Date: 2020-09-25 17:03+0000\n"
+"PO-Revision-Date: 2020-09-25 19:33+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,9 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: purchase_stock_cancel
+#: code:addons/purchase_stock_cancel/models/purchase_order_line.py:12
+#, python-format
+msgid "Procure method of move <small>%s</small> for <small>%s</small> has been set to \"<b>%s</b>\" after cancellation from <b>%s</b>"
+msgstr "La méthode d'appro. du mouvement <small>%s</small> pour <small>%s</small> a été définie sur \"<b>%s</b>\" après annulation par <b>%s</b>"
 
 #. module: purchase_stock_cancel
 #: model:ir.model,name:purchase_stock_cancel.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Ligne d'achat"
+
+#. module: purchase_stock_cancel
+#: code:addons/purchase_stock_cancel/models/purchase_order_line.py:42
+#, python-format
+msgid "Some move(s) have changed:"
+msgstr "Certains mouvements ont changé:"
+
+#. module: purchase_stock_cancel
+#: code:addons/purchase_stock_cancel/models/purchase_order_line.py:18
+#, python-format
+msgid "make_to_stock"
+msgstr "make_to_stock"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 20:00+0000\n"
+"POT-Creation-Date: 2020-09-25 17:02+0000\n"
 "PO-Revision-Date: 2020-07-28 23:12+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -98,11 +98,6 @@ msgstr "Le code de la categorie doit être unique !"
 #: selection:ref.pack,type:0
 msgid "Company"
 msgstr "Société"
-
-#. module: product_reference
-#: model:ir.model,name:product_reference.model_reference_compute_material_cost
-msgid "Compute Material Cost Manually"
-msgstr "Calculez les coûts matériel manuellement"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_log__localcomputername
@@ -206,11 +201,6 @@ msgstr "Valeurs fixes"
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__format
 msgid "Format"
 msgstr "Format"
-
-#. module: product_reference
-#: model:ir.model,name:product_reference.model_reference_generate_material_cost_report
-msgid "Generate Material Cost Report"
-msgstr "Générer le rapport sur les coûts matériel"
 
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
@@ -444,7 +434,6 @@ msgid "Prefix"
 msgstr "Préfixe"
 
 #. module: product_reference
-#: model:ir.model,name:product_reference.model_ref_price
 #: model:ir.model.fields,field_description:product_reference.field_ref_market_bom__price
 msgid "Price"
 msgstr "Prix"
@@ -678,6 +667,12 @@ msgstr "Version"
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_version_tree_view
 msgid "Versions"
 msgstr "Versions"
+
+#~ msgid "Compute Material Cost Manually"
+#~ msgstr "Calculez les coûts matériel manuellement"
+
+#~ msgid "Generate Material Cost Report"
+#~ msgstr "Générer le rapport sur les coûts matériel"
 
 #~ msgid "Ciel"
 #~ msgstr "Ciel"

@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_pack_order_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-25 17:02+0000\n"
+"PO-Revision-Date: 2020-09-25 19:40+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: product_pack_order_type
+#: selection:product.template,pack_order_type:0
+msgid "All"
+msgstr "Tout"
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__pack_order_type
+msgid "Order Type"
+msgstr "Type de commande"
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_product_product
+msgid "Product"
+msgstr "Produit"
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_product_template
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_product_product__pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_product_template__pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_purchase_order_line__pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_sale_order_line__pack_order_type
+msgid ""
+"Product will be treated as a pack:\n"
+"* All: Everywhere.\n"
+"* Sale: Only when added in a Sale Order* Purchase: Only when added in a Purchase Order"
+msgstr ""
+"Le produit sera considéré comme un pack:\n"
+"* Tout: partout\n"
+"* Vente: uniquement lorsqu'il est ajouté à une commande client\n"
+"* Achat: uniquement lorsqu'il est ajouté à une commande fournisseur"
+
+#. module: product_pack_order_type
+#: selection:product.template,pack_order_type:0
+msgid "Purchase"
+msgstr "Achat"
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: product_pack_order_type
+#: selection:product.template,pack_order_type:0
+msgid "Sale"
+msgstr "Vente"
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"

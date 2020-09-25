@@ -18,13 +18,13 @@ class StockMove(models.Model):
 
     orderpoint_created_production_ids = fields.Many2many(
         'mrp.production',
-        'Created Production Orders by Orderpoint',
         compute='_compute_orderpoint_created_orders',
+        string='Created Production Orders by Orderpoint',
     )
     orderpoint_created_purchase_line_ids = fields.Many2many(
         'purchase.order.line',
-        'Created Purchase Order Lines by Orderpoint',
         compute='_compute_orderpoint_created_orders',
+        string='Created Purchase Order Lines by Orderpoint',
     )
 
     @api.multi

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 19:56+0000\n"
-"PO-Revision-Date: 2020-07-28 19:56+0000\n"
+"POT-Creation-Date: 2020-09-25 16:48+0000\n"
+"PO-Revision-Date: 2020-09-25 16:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Créé le"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Nom d’affichage"
 
 #. module: helpdesk_transition
 #: model:ir.model,name:helpdesk_transition.model_crm_helpdesk
@@ -58,7 +58,7 @@ msgstr ""
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_follower_ids
 msgid "Followers"
-msgstr "Abonnés"
+msgstr ""
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_channel_ids
@@ -78,7 +78,7 @@ msgstr "Ticket d'assistance"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__id
 msgid "ID"
-msgstr ""
+msgstr "Id."
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,help:helpdesk_transition.field_crm_helpdesk__message_unread
@@ -103,12 +103,12 @@ msgstr "Est un abonné"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__write_uid
 msgid "Last Updated by"
-msgstr "Dernière modification par"
+msgstr "Dernière mise à jour par"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__write_date
@@ -178,12 +178,12 @@ msgstr "Nombre de messages non lus"
 #. module: helpdesk_transition
 #: selection:crm.helpdesk,activity_state:0
 msgid "Overdue"
-msgstr ""
+msgstr "Dû"
 
 #. module: helpdesk_transition
 #: selection:crm.helpdesk,activity_state:0
 msgid "Planned"
-msgstr ""
+msgstr "Planifié"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__activity_user_id
@@ -204,7 +204,7 @@ msgstr "Statut basé sur les activités\n"
 #. module: helpdesk_transition
 #: selection:crm.helpdesk,activity_state:0
 msgid "Today"
-msgstr ""
+msgstr "Aujourd'hui"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_unread

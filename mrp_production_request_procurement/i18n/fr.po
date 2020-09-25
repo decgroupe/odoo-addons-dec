@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_production_request_procurement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-25 16:48+0000\n"
+"PO-Revision-Date: 2020-09-25 19:52+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__common_procurement_group_id
+msgid "Common Procurement Group"
+msgstr "Groupe d'approvisionnement commun"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,help:mrp_production_request_procurement.field_mrp_production_request__use_common_procurement_group
+msgid "If checked, when the first manufacturing order is created a procurement order is first created based on the MO sequence. "
+msgstr "Si cette case est cochée, lorsque le premier ordre de fabrication est créé, un groupe d'approvisionnement est d'abord créé en fonction de la séquence MO. "
+
+#. module: mrp_production_request_procurement
+#: model:ir.model,name:mrp_production_request_procurement.model_mrp_production_request
+msgid "Manufacturing Request"
+msgstr "Demande de fabrication"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__production_name
+msgid "Prefix"
+msgstr "Préfixe"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model,name:mrp_production_request_procurement.model_mrp_production
+msgid "Production Order"
+msgstr "Odre de fabrication"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model,name:mrp_production_request_procurement.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__use_common_procurement_group
+msgid "Use Common Procurement Group"
+msgstr "Utiliser un groupe d'approvisionnement commun"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model,name:mrp_production_request_procurement.model_mrp_production_request_create_mo
+msgid "Wizard to create Manufacturing Orders"
+msgstr "Assistant pour créer des ordres de fabrication"
+
+#. module: mrp_production_request_procurement
+#: model:ir.model,name:mrp_production_request_procurement.model_mrp_production_request_create_mo_line
+msgid "Wizard to create Manufacturing Orders Line"
+msgstr "Assistant pour créer une ligne d'ordre de fabrication"

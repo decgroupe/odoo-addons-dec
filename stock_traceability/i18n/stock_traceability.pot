@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 20:03+0000\n"
-"PO-Revision-Date: 2020-07-28 20:03+0000\n"
+"POT-Creation-Date: 2020-09-25 17:06+0000\n"
+"PO-Revision-Date: 2020-09-25 17:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__action_view_created_item_visible
+msgid "Action View Created Item Visible"
+msgstr ""
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_production_archive
@@ -36,7 +41,23 @@ msgid "Get final location name"
 msgstr ""
 
 #. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__product_activity_id
+msgid "Product Activity"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: stock_traceability
 #: model:ir.model,name:stock_traceability.model_stock_move
 msgid "Stock Move"
 msgstr "Mouvement de stock"
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:284
+#, python-format
+msgid "canceled"
+msgstr ""
 

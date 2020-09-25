@@ -19,8 +19,8 @@ class ProductTemplate(models.Model):
         ],
         'Order Type',
         help="Product will be treated as a pack:\n"
-        "* All: Everywhere.\n"
-        "* Sale: Only when added in a Sale Order"
+        "* All: Everywhere\n"
+        "* Sale: Only when added in a Sale Order\n"
         "* Purchase: Only when added in a Purchase Order"
     )
 

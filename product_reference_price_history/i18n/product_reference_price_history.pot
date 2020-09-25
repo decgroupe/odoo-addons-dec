@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 20:00+0000\n"
-"PO-Revision-Date: 2020-07-28 20:00+0000\n"
+"POT-Creation-Date: 2020-09-25 17:02+0000\n"
+"PO-Revision-Date: 2020-09-25 17:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -181,18 +181,18 @@ msgstr ""
 #. module: product_reference_price_history
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_compute_material_cost_wizard_view
 msgid "Check all references for price changes and send a mail with results."
-msgstr ""
+msgstr "Vérifie un changement de prix sur toutes les références et envoi le résultat par e-mail."
 
 #. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.action_reference_compute_material_cost
 #: model:ir.ui.menu,name:product_reference_price_history.menu_reference_compute_material_cost
 msgid "Compute Material Cost"
-msgstr ""
+msgstr "Calculer les coûts matériels"
 
 #. module: product_reference_price_history
 #: model:ir.model,name:product_reference_price_history.model_reference_compute_material_cost
 msgid "Compute Material Cost Manually"
-msgstr ""
+msgstr "Calculer les coûts matériels manuellement"
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__create_uid
@@ -218,40 +218,40 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__display_name
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Nom d’affichage"
 
 #. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.action_reference_generate_material_cost_report
 #: model:ir.model,name:product_reference_price_history.model_reference_generate_material_cost_report
 #: model:ir.ui.menu,name:product_reference_price_history.menu_reference_generate_material_cost_report
 msgid "Generate Material Cost Report"
-msgstr ""
+msgstr "Générer un rapport des coûts matériels"
 
 #. module: product_reference_price_history
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_generate_material_cost_report_wizard_view
 msgid "Generate a report for last price changes and send it as a mail."
-msgstr ""
+msgstr "Génère un rapport pour les derniers changements de prix et l'envoi par e-mail."
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__id
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__id
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__id
 msgid "ID"
-msgstr ""
+msgstr "Id."
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price____last_update
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost____last_update
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__write_uid
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__write_uid
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__write_uid
 msgid "Last Updated by"
-msgstr "Dernière modification par"
+msgstr "Dernière mise à jour par"
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__write_date
@@ -263,7 +263,7 @@ msgstr "Dernière mise à jour le"
 #. module: product_reference_price_history
 #: model:mail.template,subject:product_reference_price_history.material_cost_report_email_template
 msgid "Material Cost Report"
-msgstr ""
+msgstr "Rapport des coûts matériels"
 
 #. module: product_reference_price_history
 #: model:ir.model,name:product_reference_price_history.model_ref_price
@@ -295,5 +295,5 @@ msgstr "Référence"
 #: model:ir.cron,cron_name:product_reference_price_history.ir_cron_scheduler_material_cost
 #: model:ir.cron,name:product_reference_price_history.ir_cron_scheduler_material_cost
 msgid "Reference: Compute Material Cost"
-msgstr ""
+msgstr "Référence: Calculer les coûts matériels"
 

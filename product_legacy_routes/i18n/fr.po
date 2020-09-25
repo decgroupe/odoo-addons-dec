@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 19:59+0000\n"
+"POT-Creation-Date: 2020-09-25 17:01+0000\n"
 "PO-Revision-Date: 2020-07-28 22:55+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -34,6 +34,12 @@ msgstr "Acheter"
 #: code:addons/product_legacy_routes/models/product_template.py:59
 #, python-format
 msgid "Make To Order"
+msgstr "Sur commande"
+
+#. module: product_legacy_routes
+#: code:addons/product_legacy_routes/models/product_template.py:67
+#, fuzzy, python-format
+msgid "Make To Order + Make To Stock"
 msgstr "Sur commande"
 
 #. module: product_legacy_routes

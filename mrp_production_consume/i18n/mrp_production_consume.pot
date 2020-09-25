@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 19:57+0000\n"
-"PO-Revision-Date: 2020-07-28 19:57+0000\n"
+"POT-Creation-Date: 2020-09-25 16:48+0000\n"
+"PO-Revision-Date: 2020-09-25 16:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 msgid "Are you sure that you want to consume these lines?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir consommer ces lignes ?"
 
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
@@ -30,22 +30,22 @@ msgstr "Annuler"
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_production_form_view
 msgid "Consume"
-msgstr ""
+msgstr "Consommer"
 
 #. module: mrp_production_consume
 #: model:ir.model,name:mrp_production_consume.model_mrp_consume
 msgid "Consume Production"
-msgstr ""
+msgstr "Consommer la production"
 
 #. module: mrp_production_consume
 #: model:ir.model,name:mrp_production_consume.model_mrp_consume_line
 msgid "Consume Production Line"
-msgstr ""
+msgstr "Consommer une ligne de production"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__qty_done
 msgid "Consumed"
-msgstr ""
+msgstr "Consommée"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__create_uid
@@ -63,7 +63,7 @@ msgstr "Créé le"
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__display_name
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Nom d’affichage"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,help:mrp_production_consume.field_mrp_consume__product_tracking
@@ -75,29 +75,29 @@ msgstr "Assure la tracabilité d'un article stockable dans votre entrepôt"
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__id
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__id
 msgid "ID"
-msgstr ""
+msgstr "Id."
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__is_maximized
 msgid "Is Maximized"
-msgstr ""
+msgstr "Est maximizé"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__is_minimized
 msgid "Is Minimized"
-msgstr ""
+msgstr "Est minimisé"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume____last_update
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__write_uid
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__write_uid
 msgid "Last Updated by"
-msgstr "Dernière modification par"
+msgstr "Dernière mise à jour par"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__write_date
@@ -114,27 +114,27 @@ msgstr "Lot/numéro de série"
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 msgid "Maximize"
-msgstr ""
+msgstr "Maximizer"
 
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 msgid "Maximize all"
-msgstr ""
+msgstr "Maximizer tout"
 
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 msgid "Maximize all (reserved only)"
-msgstr ""
+msgstr "Maximizer tout (seulement les quantités réservées)"
 
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 msgid "Minimize"
-msgstr ""
+msgstr "Minimiser"
 
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 msgid "Minimize all"
-msgstr ""
+msgstr "Minimiser tout"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__move_id

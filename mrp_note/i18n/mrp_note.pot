@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-28 19:57+0000\n"
-"PO-Revision-Date: 2020-07-28 19:57+0000\n"
+"POT-Creation-Date: 2020-09-25 16:48+0000\n"
+"PO-Revision-Date: 2020-09-25 16:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,13 +18,13 @@ msgstr ""
 #. module: mrp_note
 #: model:ir.model.fields,field_description:mrp_note.field_mrp_production__note
 msgid "Internal Notes"
-msgstr ""
+msgstr "Notes internes"
 
 #. module: mrp_note
 #: code:addons/mrp_note/models/mrp_production.py:17
 #, python-format
 msgid "Internal notes changed to: {}"
-msgstr ""
+msgstr "Notes internes modifiées: {}"
 
 #. module: mrp_note
 #: model_terms:ir.ui.view,arch_db:mrp_note.mrp_production_form_view

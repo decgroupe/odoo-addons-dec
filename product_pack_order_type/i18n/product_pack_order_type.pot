@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_pack_order_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-25 17:02+0000\n"
+"PO-Revision-Date: 2020-09-25 17:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_pack_order_type
+#: selection:product.template,pack_order_type:0
+msgid "All"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__pack_order_type
+msgid "Order Type"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_product_product
+msgid "Product"
+msgstr "Produit"
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_product_template
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_product_product__pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_product_template__pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_purchase_order_line__pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_sale_order_line__pack_order_type
+msgid "Product will be treated as a pack:\n"
+"* All: Everywhere.\n"
+"* Sale: Only when added in a Sale Order* Purchase: Only when added in a Purchase Order"
+msgstr ""
+
+#. module: product_pack_order_type
+#: selection:product.template,pack_order_type:0
+msgid "Purchase"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: product_pack_order_type
+#: selection:product.template,pack_order_type:0
+msgid "Sale"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model,name:product_pack_order_type.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+

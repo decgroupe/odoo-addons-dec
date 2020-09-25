@@ -30,6 +30,7 @@ class StockMove(models.Model):
         readonly=True,
     )
     action_view_created_item_visible = fields.Boolean(
+        "Show Link to Created Item",
         compute='_compute_action_view_created_item_visible',
         readonly=True,
     )
@@ -43,6 +44,7 @@ class StockMove(models.Model):
     )
     product_activity_id = fields.Many2one(
         'mail.activity',
+        string="Related Activity",
         compute='_compute_product_activity_id',
     )
 

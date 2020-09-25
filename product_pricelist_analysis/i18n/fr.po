@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-27 08:22+0000\n"
+"POT-Creation-Date: 2020-09-25 17:02+0000\n"
 "PO-Revision-Date: 2020-05-26 11:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -60,6 +60,7 @@ msgid "Prices"
 msgstr "Prix"
 
 #. module: product_pricelist_analysis
+#: model:ir.model,name:product_pricelist_analysis.model_product_product
 #: model_terms:ir.ui.view,arch_db:product_pricelist_analysis.product_pricelist_item_search_view
 msgid "Product"
 msgstr "Article"
