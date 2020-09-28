@@ -11,7 +11,10 @@ class SaleOrder(models.Model):
     warranty = fields.Integer(
         'Warranty period',
         readonly=True,
-        states={'draft': [('readonly', False)]},
+        states={
+            'draft': [('readonly', False)],
+            'sent': [('readonly', False)],
+        },
         help="Warranty delay in year(s)",
         default=2
     )
