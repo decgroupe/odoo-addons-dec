@@ -3,7 +3,7 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
 import odoo.addons.decimal_precision as dp
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class RefMarketBom(models.Model):
@@ -53,7 +53,7 @@ class RefMarketBom(models.Model):
         ondelete='cascade',
     )
     xml_id = fields.Char(
-        compute="models.Model.get_external_id",
+        compute='_compute_xml_id',
         size=128,
         string="External ID",
         help="ID defined in xml file"
@@ -76,3 +76,9 @@ class RefMarketBom(models.Model):
         'Last Writer',
         readonly=True,
     )
+
+    @api.multi
+    def _compute_xml_id(self):
+        res = self.get_external_id()
+        for record in self:
+            record.xml_id = res.get(record.id)
