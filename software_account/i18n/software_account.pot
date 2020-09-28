@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:05+0000\n"
-"PO-Revision-Date: 2020-09-25 17:05+0000\n"
+"POT-Creation-Date: 2020-09-25 22:40+0000\n"
+"PO-Revision-Date: 2020-09-25 22:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Comptabilité"
 #: model:ir.actions.act_window,name:software_account.act_window_software_account
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_tree_view
 msgid "Accounts"
-msgstr "Comptes"
+msgstr "Identifiants"
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__answer
@@ -54,7 +54,7 @@ msgstr "Créé le"
 #: model:ir.model.fields,field_description:software_account.field_software_account__display_name
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__display_name
 msgid "Display Name"
-msgstr "Nom d’affichage"
+msgstr "Nom affiché"
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__email
@@ -80,7 +80,7 @@ msgstr "Regrouper par"
 #: model:ir.model.fields,field_description:software_account.field_software_account__id
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__id
 msgid "ID"
-msgstr "Id."
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__image
@@ -96,7 +96,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_account.field_software_account____last_update
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__write_uid
@@ -118,7 +118,7 @@ msgstr "Nom"
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__login
 msgid "Login"
-msgstr "Connexion"
+msgstr "Identifiant"
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__datetime

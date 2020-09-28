@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 16:48+0000\n"
-"PO-Revision-Date: 2020-09-25 16:48+0000\n"
+"POT-Creation-Date: 2020-09-25 22:39+0000\n"
+"PO-Revision-Date: 2020-09-25 22:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_needaction
 msgid "Action Needed"
-msgstr "A besoin d'une action"
+msgstr "Nécessite une action"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__activity_ids
@@ -48,17 +48,17 @@ msgstr "Créé le"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__display_name
 msgid "Display Name"
-msgstr "Nom d’affichage"
+msgstr "Nom affiché"
 
 #. module: helpdesk_transition
 #: model:ir.model,name:helpdesk_transition.model_crm_helpdesk
 msgid "Dummy model for transition"
-msgstr ""
+msgstr "Modèle temporaire pour la transition"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_channel_ids
@@ -78,7 +78,7 @@ msgstr "Ticket d'assistance"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__id
 msgid "ID"
-msgstr "Id."
+msgstr ""
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,help:helpdesk_transition.field_crm_helpdesk__message_unread
@@ -88,7 +88,7 @@ msgstr "Si coché, de nouveaux messages demandent votre attention."
 #. module: helpdesk_transition
 #: model:ir.model.fields,help:helpdesk_transition.field_crm_helpdesk__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "si elle est cochée, de nouveaux messages requièrent votre attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,help:helpdesk_transition.field_crm_helpdesk__message_has_error
@@ -103,7 +103,7 @@ msgstr "Est un abonné"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__write_uid
@@ -153,7 +153,7 @@ msgstr "Type d'Activités à Venir"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Nombre d'Actions"
+msgstr "Nombre d'actions"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_has_error_counter
@@ -163,7 +163,7 @@ msgstr "Nombre d'erreurs"
 #. module: helpdesk_transition
 #: model:ir.model.fields,help:helpdesk_transition.field_crm_helpdesk__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Nombre de messages demandant une action"
+msgstr "Nombre de messages exigeant une action"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,help:helpdesk_transition.field_crm_helpdesk__message_has_error_counter
@@ -209,7 +209,7 @@ msgstr "Aujourd'hui"
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Messages non lus"
 
 #. module: helpdesk_transition
 #: model:ir.model.fields,field_description:helpdesk_transition.field_crm_helpdesk__message_unread_counter

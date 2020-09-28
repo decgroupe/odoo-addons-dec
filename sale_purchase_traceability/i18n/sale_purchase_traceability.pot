@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:04+0000\n"
-"PO-Revision-Date: 2020-09-25 17:04+0000\n"
+"POT-Creation-Date: 2020-09-25 22:40+0000\n"
+"PO-Revision-Date: 2020-09-25 22:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,10 +18,10 @@ msgstr ""
 #. module: sale_purchase_traceability
 #: model_terms:ir.ui.view,arch_db:sale_purchase_traceability.sale_order_form_view
 msgid "Purchase Lines"
-msgstr ""
+msgstr "Lignes d'achat"
 
 #. module: sale_purchase_traceability
 #: model:ir.model,name:sale_purchase_traceability.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Bon de commande"
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:05+0000\n"
-"PO-Revision-Date: 2020-09-25 17:05+0000\n"
+"POT-Creation-Date: 2020-09-25 22:40+0000\n"
+"PO-Revision-Date: 2020-09-25 22:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: stock_cancel
 #: model:ir.model.fields,field_description:stock_cancel.field_stock_move__is_cancellable
 msgid "Is Cancellable"
-msgstr ""
+msgstr "Est annulable"
 
 #. module: stock_cancel
 #: model:ir.model,name:stock_cancel.model_stock_move
@@ -28,5 +28,5 @@ msgstr "Mouvement de stock"
 #. module: stock_cancel
 #: model:ir.model.fields,help:stock_cancel.field_stock_move__is_cancellable
 msgid "Technical field to check for button visibility"
-msgstr ""
+msgstr "Champ technique pour vérifier la visibilité du bouton"
 

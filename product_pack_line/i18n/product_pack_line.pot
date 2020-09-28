@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:02+0000\n"
-"PO-Revision-Date: 2020-09-25 17:02+0000\n"
+"POT-Creation-Date: 2020-09-25 22:40+0000\n"
+"PO-Revision-Date: 2020-09-25 22:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: product_pack_line
 #: model:ir.model.fields,help:product_pack_line.field_product_pack_line__product_uom_id
 msgid "Default unit of measure used for purchase orders. It must be in the same category as the default unit of measure."
-msgstr "Unité de mesure par défaut pour les ordres d'achat. Elle doit appartenir à la même catégorie que l'unité de mesure par défaut."
+msgstr "Unité de mesure par défaut utilisée pour les bons de commande. Elle doit être dans la même catégorie que l'unité de mesure par défaut."
 
 #. module: product_pack_line
 #: model:ir.model.fields,field_description:product_pack_line.field_product_pack_line__product_code
@@ -33,7 +33,7 @@ msgstr "Nom"
 #. module: product_pack_line
 #: model:ir.model.fields,field_description:product_pack_line.field_product_pack_line__product_categ_id
 msgid "Product Category"
-msgstr "Catégorie d'articles"
+msgstr "Catégorie d'article"
 
 #. module: product_pack_line
 #: model:ir.model,name:product_pack_line.model_product_pack_line

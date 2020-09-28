@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 16:47+0000\n"
-"PO-Revision-Date: 2020-09-25 16:47+0000\n"
+"POT-Creation-Date: 2020-09-25 22:37+0000\n"
+"PO-Revision-Date: 2020-09-25 22:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Créé le"
 #. module: helpdesk_references
 #: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference__display_name
 msgid "Display Name"
-msgstr "Nom d’affichage"
+msgstr "Nom affiché"
 
 #. module: helpdesk_references
 #: model:ir.model,name:helpdesk_references.model_helpdesk_ticket
@@ -38,12 +38,12 @@ msgstr "Ticket d'assistance"
 #. module: helpdesk_references
 #: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference__id
 msgid "ID"
-msgstr "Id."
+msgstr ""
 
 #. module: helpdesk_references
 #: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: helpdesk_references
 #: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference__write_uid

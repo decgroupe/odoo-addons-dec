@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:02+0000\n"
-"PO-Revision-Date: 2020-09-25 17:02+0000\n"
+"POT-Creation-Date: 2020-09-25 22:40+0000\n"
+"PO-Revision-Date: 2020-09-25 22:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,12 +64,12 @@ msgstr "Coût de revient et prix d'achat"
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_template__standard_price
 msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
-msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
+msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à fixer en moyenne / FIFO."
 
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_product__standard_price
 msgid "Cost used for stock valuation in standard price and as a first price to set in average/fifo. Also used as a base price for pricelists. Expressed in the default unit of measure of the product."
-msgstr ""
+msgstr "Également utilisé comme prix de base pour les listes. Exprimé dans l'unité de mesure par défaut du produit."
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_price_graph__create_uid
@@ -89,7 +89,7 @@ msgstr "Rapport d'achat personnalisé"
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_price_graph__display_name
 msgid "Display Name"
-msgstr "Nom d’affichage"
+msgstr "Nom affiché"
 
 #. module: product_prices
 #: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
@@ -99,12 +99,12 @@ msgstr "Edité"
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_price_graph__id
 msgid "ID"
-msgstr "Id."
+msgstr ""
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_price_graph____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_price_graph__write_uid
@@ -155,12 +155,12 @@ msgstr "Règle de prix"
 #: model:ir.model,name:product_prices.model_product_product
 #: model:ir.model.fields,field_description:product_prices.field_product_price_graph__product_id
 msgid "Product"
-msgstr "Produit"
+msgstr "Article"
 
 #. module: product_prices
 #: model:ir.model,name:product_prices.model_product_template
 msgid "Product Template"
-msgstr "Modèle de produit"
+msgstr "Modèle d'article"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__default_purchase_price_po_uom

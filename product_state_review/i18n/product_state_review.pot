@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:03+0000\n"
-"PO-Revision-Date: 2020-09-25 17:03+0000\n"
+"POT-Creation-Date: 2020-09-25 22:40+0000\n"
+"PO-Revision-Date: 2020-09-25 22:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: product_state_review
 #: selection:product.template,state:0
 msgid "End of Lifecycle"
-msgstr "Fin de cycle de vie"
+msgstr "En fin de vie"
 
 #. module: product_state_review
 #: selection:product.template,state:0
@@ -48,7 +48,7 @@ msgstr "Obsolète"
 #. module: product_state_review
 #: model:ir.model,name:product_state_review.model_product_template
 msgid "Product Template"
-msgstr "Modèle de produit"
+msgstr "Modèle d'article"
 
 #. module: product_state_review
 #: model:ir.model.fields,field_description:product_state_review.field_product_product__state

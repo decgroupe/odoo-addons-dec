@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:01+0000\n"
-"PO-Revision-Date: 2020-09-25 17:01+0000\n"
+"POT-Creation-Date: 2020-09-25 22:39+0000\n"
+"PO-Revision-Date: 2020-09-25 22:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,12 @@ msgstr ""
 #. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.res_config_settings_form_view
 msgid "<span class=\"o_form_label\">Exceptions Redirection</span>"
-msgstr ""
+msgstr "<span class=\"o_form_label\">Redirection des exceptions</span>"
 
 #. module: procurement_exception
 #: model:ir.model,name:procurement_exception.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Paramètres de config"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__create_uid
@@ -38,7 +38,7 @@ msgstr "Créé le"
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__display_name
 msgid "Display Name"
-msgstr "Nom d’affichage"
+msgstr "Nom affiché"
 
 #. module: procurement_exception
 #: code:addons/procurement_exception/models/procurement_group.py:123
@@ -59,12 +59,12 @@ msgstr "Regrouper par"
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__id
 msgid "ID"
-msgstr "Id."
+msgstr ""
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__write_uid
@@ -79,7 +79,7 @@ msgstr "Dernière mise à jour le"
 #. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.res_config_settings_form_view
 msgid "Manage redirections"
-msgstr ""
+msgstr "Gérer les redirections"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__name
@@ -91,23 +91,23 @@ msgstr "Nom"
 #: model_terms:ir.ui.view,arch_db:procurement_exception.procurement_exception_form_view
 #: model_terms:ir.ui.view,arch_db:procurement_exception.procurement_exception_search_view
 msgid "Procurement Exception"
-msgstr ""
+msgstr "Exception d'approvisionnement"
 
 #. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.procurement_exception_tree_view
 #: model_terms:ir.ui.view,arch_db:procurement_exception.res_config_settings_form_view
 msgid "Procurement Exceptions"
-msgstr ""
+msgstr "Exceptions d'approvisionnement"
 
 #. module: procurement_exception
 #: model:ir.actions.act_window,name:procurement_exception.act_window_procurement_exception
 msgid "Procurement Exceptions Redirections"
-msgstr ""
+msgstr "Redirection d'exceptions d'approvisionnement"
 
 #. module: procurement_exception
 #: model:ir.model,name:procurement_exception.model_procurement_group
 msgid "Procurement Group"
-msgstr ""
+msgstr "Groupe d'approvisionnement"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__product_id
@@ -117,12 +117,12 @@ msgstr "Article"
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__categ_id
 msgid "Product Category"
-msgstr "Catégorie d'articles"
+msgstr "Catégorie d'article"
 
 #. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.res_config_settings_form_view
 msgid "Redirect procurement exceptions to specific Users"
-msgstr ""
+msgstr "Rediriger les exceptions d'approvisionnement vers des utilisateurs spécifiques"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__regex_pattern
@@ -132,7 +132,7 @@ msgstr ""
 #. module: procurement_exception
 #: model:ir.model.fields,help:procurement_exception.field_procurement_exception__regex_pattern
 msgid "Regular Expression used to parse procurement exception message"
-msgstr ""
+msgstr "Expression régulière utilisée pour analyser le message de l'exception générée lors de l'approvisionnement"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__sequence
@@ -150,9 +150,14 @@ msgid "Specify a product if this rule only applies to one product. Keep empty ot
 msgstr "Indiquez un article si cette règle ne s'applique qu'à lui. Laissez vide dans le cas contraire."
 
 #. module: procurement_exception
+#: model:ir.model,name:procurement_exception.model_stock_rule
+msgid "Stock Rule"
+msgstr "Règle de stock minimum"
+
+#. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.procurement_exception_form_view
 msgid "Test your expression on"
-msgstr ""
+msgstr "Tester votre expression sur"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__user_id

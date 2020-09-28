@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:03+0000\n"
-"PO-Revision-Date: 2020-09-25 17:03+0000\n"
+"POT-Creation-Date: 2020-09-25 22:40+0000\n"
+"PO-Revision-Date: 2020-09-25 22:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,13 +42,13 @@ msgstr "Nom de l'article chez le fournisseur principal"
 #. module: product_seller
 #: model:ir.model,name:product_seller.model_product_template
 msgid "Product Template"
-msgstr "Modèle de produit"
+msgstr "Modèle d'article"
 
 #. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_product__seller_info_id
 #: model:ir.model.fields,field_description:product_seller.field_product_template__seller_info_id
 msgid "Seller Info"
-msgstr ""
+msgstr "Informations du vendeur"
 
 #. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_product__seller_delay
