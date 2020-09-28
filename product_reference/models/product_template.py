@@ -49,53 +49,52 @@ class ProductTemplate(models.Model):
                 product.reference_id = product.reference_ids[0]
 
     @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
         if not args:
             args = []
-        if not name:
-            return None
         # Make a search with default criteria
         result = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
+        result = self.append_public_code_search(name, result, limit)
+        result = self.append_reference_search(name, result, limit)
+        return result
 
-        # Make a specific search according to market reference
-        products = self.search(
-            [
-                ('public_code', '=', name), '|', ('state', '!=', 'obsolete'),
-                ('state', '=', False)
-            ],
-            limit=limit
-        )
-        if products:
-            res2 = []
-            ciel_result = products.name_get()
-            for item in ciel_result:
-                item = list(item)
-                item[1] = ('%s (%s)') % (item[1], name)
-                res2.append(item)
-            result = res2 + result
-
-        # Make a specific search to find a product with version inside
-        if not result and 'V' in name.upper():
-            reference = name.upper().rpartition('V')
-            if reference[0]:
+    @api.model
+    def append_public_code_search(self, name, name_search_result, limit=100):
+        result = name_search_result
+        if name:
+            # Make a specific search according to public code
+            products = self.search(
+                [
+                    ('public_code', 'ilike', name + '%'),
+                    '|',
+                    ('state', '!=', 'obsolete'),
+                    ('state', '=', False),
+                ],
+                limit=limit
+            )
+            if products:
                 res = []
-                products = self.search(
-                    [('default_code', 'ilike', reference[0])], limit=limit
-                )
-                res = products.name_get()
+                for product in products:
+                    item = list(product.name_get()[0])
+                    item[1] = ('%s (%s)') % (item[1], product.public_code)
+                    res.append(item)
                 result = res + result
-        """
-        # Search for obsolete products
-        ids = [item[0] for item in result] 
-        ids = self.search(cr, user, [('state', '=', 'obsolete'), ('id', 'in', ids)], limit=limit, context=context)
-        if ids:
-            for i, item in enumerate(result):
-                if item[0] in ids: 
-                    item = list(item)
-                    item[1] = ('%s (OBSOLETE)') % (item[1])
-                    result[i] = tuple(item) 
-        """
+        return result
 
+    @api.model
+    def append_reference_search(self, name, name_search_result, limit=100):
+        result = name_search_result
+        if name:
+            # Make a specific search to find a product with version inside
+            if not result and 'V' in name.upper():
+                reference = name.upper().rpartition('V')
+                if reference[0]:
+                    res = []
+                    products = self.search(
+                        [('default_code', 'ilike', reference[0])], limit=limit
+                    )
+                    res = products.name_get()
+                    result = res + result
         return result
