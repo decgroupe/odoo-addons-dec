@@ -11,3 +11,4 @@ from . import ref_pack
 from . import ref_reference
 from . import ref_reference_line
 from . import ref_version
+from . import sale_order
