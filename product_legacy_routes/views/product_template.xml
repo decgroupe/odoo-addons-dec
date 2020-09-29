@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
         <field name="arch" type="xml">
-            <field name="type" position="after">
+            <field name="type" position="before">
                 <field name="procure_method"/>
                 <field name="supply_method"/>
             </field>

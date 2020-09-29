@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_normal_form_view">
+        <field name="name">product.product.form@product_template_link</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="class">d_product_tmpl_id</attribute>
+            </xpath>
+
+            <field name="product_tmpl_id" position="after">
+                <button name="open_product_template" type="object" string="Open Product template Pop-up" class="oe_link"/>
+            </field>
+
+            <xpath expr="//field[@name='default_code']" position="after">
+                <field name="public_code"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+
