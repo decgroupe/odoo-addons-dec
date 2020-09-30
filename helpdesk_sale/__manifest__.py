@@ -9,7 +9,7 @@
         'helpdesk_references',
         'sale_summary',
     ],
-    # 'force_migration':'12.0.0.0.0',
+    'force_migration':'12.0.0.0.0',
     'data': [
         "views/helpdesk_ticket.xml",
     ],

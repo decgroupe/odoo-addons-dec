@@ -23,7 +23,7 @@
         'sale_purchase',
         'sale_timesheet',
     ],
-    # 'force_migration':'12.0.0.0.0',
+    'force_migration':'12.0.0.0.0',
     'data':
         [
             'security/model_security.xml',

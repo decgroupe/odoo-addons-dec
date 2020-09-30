@@ -9,7 +9,7 @@
         'helpdesk_mgmt',
         'helpdesk_references',
     ],
-    # 'force_migration':'12.0.0.0.0',
+    'force_migration':'12.0.0.0.0',
     'data': [
 
     ],

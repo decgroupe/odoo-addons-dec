@@ -11,7 +11,7 @@
         'product_pack',
         'sale_timesheet',
     ],
-    # 'force_migration':'12.0.0.0.0',
+    'force_migration':'12.0.0.0.0',
     'data': [
 
     ],
