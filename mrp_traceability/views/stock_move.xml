@@ -75,6 +75,8 @@
                         <field name="unit_factor"/>
                         <field name="location_id"/>
                         <field name="location_dest_id"/>
+                        <field name="created_purchase_line_id"/>
+                        <field name="created_production_id"/>
                     </group>
                 </group>
                 <label for="active_move_line_ids"/>
