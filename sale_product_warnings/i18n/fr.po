@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_warnings
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-02 21:40+0000\n"
+"PO-Revision-Date: 2020-10-02 23:32+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order.py:25
+#: code:addons/sale_product_warnings/models/sale_order.py:39
+#, python-format
+msgid "No internal notes"
+msgstr "Pas de notes internes"
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order.py:41
+#, python-format
+msgid "No responsible for this product"
+msgstr "Pas de responsable assigné pour ce produit"
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order.py:21
+#, python-format
+msgid ""
+"Obsolete product!\n"
+" (This product must not be sold anymore.)\n"
+"\n"
+" %s"
+msgstr ""
+"Produit obsolète\n"
+" (Ce produit ne doit plus être vendu.)\n"
+"\n"
+" %s"
+
+#. module: sale_product_warnings
+#: model:ir.model,name:sale_product_warnings.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order.py:34
+#, python-format
+msgid ""
+"This product needs to be reviewed:\n"
+"\n"
+" - %s \n"
+"\n"
+" - Please contact \"%s\""
+msgstr ""
+"Ce produit doit être révisé:\n"
+"\n"
+" - %s \n"
+"\n"
+" - Merci de contacter \"%s\""
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order.py:19
+#: code:addons/sale_product_warnings/models/sale_order.py:32
+#, python-format
+msgid "Warning for %s"
+msgstr "Avertissement pour %s"

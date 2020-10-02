@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_autoset_ok
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-02 21:45+0000\n"
+"PO-Revision-Date: 2020-10-02 21:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_autoset_ok
+#: model:ir.actions.server,name:product_autoset_ok.ir_cron_product_autoset_ok_ir_actions_server
+#: model:ir.cron,cron_name:product_autoset_ok.ir_cron_product_autoset_ok
+#: model:ir.cron,name:product_autoset_ok.ir_cron_product_autoset_ok
+msgid "Autoset products: Set sale_ok/purchase_ok if used in sale/purchase orders"
+msgstr ""
+
+#. module: product_autoset_ok
+#: model:ir.model,name:product_autoset_ok.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
