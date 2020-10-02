@@ -12,8 +12,8 @@
                     name="create_all_manufacturing_orders" 
                     string="Create all Manufacturing Orders" 
                     help="This action will create a new Manufacturing Order for each quantity:
-                        *- If required quantity=1.0 when it will generate 1 x MO of 1 unit
-                        *- If required quantity=5.0 when it will generate 5 x MO of 1 unit"
+- If required quantity=1.0 when it will generate 1 x MO of 1 unit
+- If required quantity=5.0 when it will generate 5 x MO of 1 unit"
                     type="object" 
                     class="oe_highlight"
                     groups="mrp_production_request.group_mrp_production_request_manager"
