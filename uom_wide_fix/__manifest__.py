@@ -14,6 +14,6 @@
         'stock',
         'mrp',
     ],
-    "data": [],
+    "data": ['views/product_template.xml', ],
     'installable': True
 }

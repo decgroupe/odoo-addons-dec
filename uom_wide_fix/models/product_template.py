@@ -9,6 +9,9 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     @api.multi
-    def action_fix_uom(self):
+    def action_fix_uom_consistency(self):
         for rec in self:
-            pass
+            self.env['stock.move'].search(
+                ['product_tmpl_id', '=', rec.id],
+                ['product_uom.category_id.id', '!=', rec.id],
+            )

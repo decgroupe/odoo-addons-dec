@@ -8,9 +8,9 @@
         <field name="arch" type="xml">
             <field name="uom_po_id" position="after">
                 <button 
-                    name="action_fix_uom" 
-                    string="Fix Uom" 
-                    confirm="Are you sure that you want to try fixing Units?"
+                    name="action_fix_uom_consistency" 
+                    string="UoM category consistency" 
+                    confirm="Are you sure that you want to try fixing this product unit of measure?"
                     type="object"
                     data-dismiss="modal"
                     class="btn btn-primary"
