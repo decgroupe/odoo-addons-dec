@@ -24,12 +24,12 @@ class Users(models.Model):
             )
             if user_id.partner_id:
                 _logger.info(
-                    'Participant %s added to %d events',
+                    'Adding participant %s to %d events',
                     user_id.partner_id.display_name, len(user_events)
                 )
-                for event in user_events:
-                    event.partner_ids = [(6, 0, [user_id.partner_id.id])]
-                    _logger.info(' - %s', event.name)
+                user_events.write({
+                    'partner_ids': [(6, 0, [user_id.partner_id.id])],
+                })
             else:
                 _logger.info(
                     '!!! No partner linked to %s %s', user_id.display_name,
