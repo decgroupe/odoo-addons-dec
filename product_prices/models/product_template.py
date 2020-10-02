@@ -8,6 +8,7 @@ from datetime import datetime
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
+from odoo.tools import float_compare, float_round
 
 _logger = logging.getLogger(__name__)
 
@@ -284,3 +285,84 @@ functionality'
         action = self.env.ref('product_prices.act_window_product_price_graph'
                              ).read()[0]
         return action
+
+    @api.model
+    def convert_openerp_to_odoo_prices(self):
+        """
+            With our OpenERP, instance, prices were set for purchase UoM
+            but now, we are using the Odoo way, so all prices must be set
+            for product Uom. This function is done to be called only once,
+            and immediatly after the migration.
+        """
+        SUBJECT = 'Price Conversion'
+        FIELDS = [
+            'name', 'default_code', 'standard_price', 'list_price', 'uom_id',
+            'uom_po_id'
+        ]
+        done_ids = []
+        product_ids = self.search([('same_uom', '!=', True)])
+        notification_ids = self.env['mail.message'].search(
+            [
+                ('model', '=', self._name), ('res_id', 'in', product_ids.ids),
+                ('message_type', '=', 'notification'),
+                ('subject', '=', SUBJECT)
+            ]
+        )
+        if notification_ids:
+            done_ids = notification_ids.mapped('res_id')
+
+        for product_id in product_ids:
+            if product_id.id in done_ids:
+                continue
+            p = product_id.read(FIELDS)[0]
+            uom_id = self.env['uom.uom'].browse(p['uom_id'][0])
+            uom_po_id = self.env['uom.uom'].browse(p['uom_po_id'][0])
+            _logger.info(
+                '[%s]%s:  %.2f=1x%s  %.4f=1x%s', p['default_code'], p['name'],
+                p['list_price'], uom_id.name, p['standard_price'],
+                uom_po_id.name
+            )
+            list_price = float_round(
+                p['list_price'] / uom_id.factor_inv,
+                precision_rounding=uom_id.rounding
+            )
+            standard_price = float_round(
+                p['standard_price'] / uom_po_id.factor_inv,
+                precision_rounding=uom_po_id.rounding
+            )
+
+            data = {}
+            body = []
+            # Prepare data that will update sell price (list_price)
+            if float_compare(
+                p['list_price'], list_price, precision_rounding=uom_id.rounding
+            ) != 0:
+                data['list_price'] = list_price
+                body.append(
+                    _('Sell price set to {} (from {} for 1x%s)').format(
+                        list_price, p['list_price'], uom_id.name
+                    )
+                )
+            # Prepare data that will update sell price (list_price)
+            if float_compare(
+                p['standard_price'],
+                standard_price,
+                precision_rounding=uom_po_id.rounding
+            ) != 0:
+                data['standard_price'] = standard_price
+                body.append(
+                    _('Purchase price set to {} (from {} for 1x%s)').format(
+                        standard_price, p['standard_price'], uom_po_id.name
+                    )
+                )
+
+            if body:
+                body = '\n'.join(body)
+                _logger.info(
+                    'New prices are: {}, {}'.format(list_price, standard_price)
+                )
+                product_id.message_post(body=body, subject=SUBJECT)
+
+            if data:
+                product_id.write(data)
+                break
