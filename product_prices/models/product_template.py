@@ -311,6 +311,13 @@ functionality'
         if notification_ids:
             done_ids = notification_ids.mapped('res_id')
 
+        product_price_precision = self.env['decimal.precision'].precision_get(
+            'Product Price'
+        )
+        purchase_price_precision = self.env['decimal.precision'].precision_get(
+            'Purchase Price'
+        )
+
         for product_id in product_ids:
             if product_id.id in done_ids:
                 continue
@@ -322,36 +329,39 @@ functionality'
                 p['list_price'], uom_id.name, p['standard_price'],
                 uom_po_id.name
             )
+            ratio = uom_po_id.factor_inv * uom_id.factor_inv
             list_price = float_round(
-                p['list_price'] / uom_id.factor_inv,
-                precision_rounding=uom_id.rounding
+                p['list_price'] / ratio,
+                precision_digits=product_price_precision
             )
             standard_price = float_round(
-                p['standard_price'] / uom_po_id.factor_inv,
-                precision_rounding=uom_po_id.rounding
+                p['standard_price'] / ratio,
+                precision_digits=purchase_price_precision
             )
 
             data = {}
             body = []
             # Prepare data that will update sell price (list_price)
             if float_compare(
-                p['list_price'], list_price, precision_rounding=uom_id.rounding
+                p['list_price'],
+                list_price,
+                precision_digits=product_price_precision
             ) != 0:
                 data['list_price'] = list_price
                 body.append(
-                    _('Sell price set to {} (from {} for 1x%s)').format(
-                        list_price, p['list_price'], uom_id.name
+                    _('Sell price set to {} (from {} for 1×{})').format(
+                        list_price, p['list_price'], uom_po_id.name
                     )
                 )
             # Prepare data that will update sell price (list_price)
             if float_compare(
                 p['standard_price'],
                 standard_price,
-                precision_rounding=uom_po_id.rounding
+                precision_digits=purchase_price_precision
             ) != 0:
                 data['standard_price'] = standard_price
                 body.append(
-                    _('Purchase price set to {} (from {} for 1x%s)').format(
+                    _('Purchase price set to {} (from {} for 1×{})').format(
                         standard_price, p['standard_price'], uom_po_id.name
                     )
                 )
@@ -365,4 +375,4 @@ functionality'
 
             if data:
                 product_id.write(data)
-                break
+                self.env.cr.commit()
