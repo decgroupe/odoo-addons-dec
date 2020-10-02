@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_template_only_form_view">
+        <field name="name">product.template.product.form@uom_wide_fix</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="uom_po_id" position="after">
+                <button 
+                    name="action_fix_uom" 
+                    string="Fix Uom" 
+                    confirm="Are you sure that you want to try fixing Units?"
+                    type="object"
+                    data-dismiss="modal"
+                    class="btn btn-primary"
+                    context="{}">
+                </button>
+            </field>
+        </field>
+    </record>
+
+</odoo>
