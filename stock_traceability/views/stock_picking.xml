@@ -18,6 +18,9 @@
                                 ('state', 'in', ['draft', 'cancel', 'partially_available', 'assigned', 'done']),
                                 ('procure_method', '=', 'make_to_order'),
                         ],
+                        'column_invisible': [
+                            ('parent.picking_type_code', '=', 'incoming')
+                        ],
                         'invisible': [
                             ('picking_code', '=', 'incoming'),
                         ]
