@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_procurement_button_form_view_">
+        <field name="name">product.product.procurement@product_stock</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button//field[@name='outgoing_qty']" position="after">
+                <br/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
