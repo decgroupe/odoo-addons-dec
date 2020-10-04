@@ -33,6 +33,15 @@ class StockMove(models.Model):
         )
         return head, desc
 
+    def _get_procurement_group_status(self, group_id):
+        g = group_id.sudo()
+        head = '🧩{0}'.format(g.name)
+        if g.sale_id and g.sale_id.name != g.name:
+            desc = g.sale_id.name
+        else:
+            desc = ''
+        return head, desc
+
     def _get_mto_status(self, html=False):
         res = []
         if self.created_mrp_production_request_id:
@@ -70,6 +79,18 @@ class StockMove(models.Model):
             for upstream_status_line in upstream_status:
                 if upstream_status_line not in status:
                     status.append(upstream_status_line)
+
+        if self.picking_code == 'incoming':
+            for group_id in self.move_dest_ids.mapped('group_id'):
+                head, desc = self._get_procurement_group_status(group_id)
+                head += '📥'
+                status.append(format_hd(head, desc, html))
+
+        if self.picking_code == 'outgoing':
+            for group_id in self.move_orig_ids.mapped('group_id'):
+                head, desc = self._get_procurement_group_status(group_id)
+                head += '📤'
+                status.append(format_hd(head, desc, html))
 
         status += self._get_assignable_status(html)
         return self._format_status_header(status, html)
