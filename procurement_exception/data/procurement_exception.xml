@@ -5,6 +5,7 @@
             <field name="name">Default rule to redirect every exception to admin user</field>
             <field name="user_id" ref="base.user_admin"/>
             <field name="regex_pattern">.*</field>
+            <field name="sequence" eval="10"/>
         </record>
     </data>
 </odoo>
