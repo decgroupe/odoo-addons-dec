@@ -7,7 +7,7 @@
     'depends': [
         'helpdesk_mgmt',
     ],
-    'force_migration':'12.0.0.0.0',
+    #'force_migration':'12.0.0.0.0',
     'data': [
         "security/ir.model.access.csv",
         "views/helpdesk_ticket_reference.xml",
