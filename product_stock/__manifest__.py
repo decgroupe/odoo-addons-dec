@@ -6,6 +6,7 @@
     'summary': '''Cosmetic changes''',
     'depends': [
         'product',
+        'stock',
     ],
     # 'force_migration':'12.0.0.0.0',
     'data': [
