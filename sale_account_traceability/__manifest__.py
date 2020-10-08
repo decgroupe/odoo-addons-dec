@@ -6,12 +6,13 @@
     'category': 'Sales',
     'summary': '''Show related invoice lines on sale order line form''',
     'depends': [
-        'sale',
+        'sale_traceability',
         'sale_row_layout',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':
         [
+            'security/res_groups.xml',
             'views/sale_order.xml',
         ],
     'installable': True

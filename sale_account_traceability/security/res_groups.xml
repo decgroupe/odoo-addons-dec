@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="group_sale_account_traceability" model="res.groups">
+        <field name="name">Accounting traceability (account)</field>
+        <field name="category_id" ref="sale_traceability.module_sale_traceability_category"/>
+    </record>
+
+</odoo>

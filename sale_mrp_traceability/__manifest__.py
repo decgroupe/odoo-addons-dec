@@ -6,13 +6,14 @@
     'category': 'Sales',
     'summary': '''Show related stock moves on sale order line form''',
     'depends': [
-        'sale',
+        'sale_traceability',
         'sale_row_layout',
         'stock_mrp_traceability',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':
         [
+            'security/res_groups.xml',
             'views/sale_order.xml',
             'views/stock_move.xml',
         ],

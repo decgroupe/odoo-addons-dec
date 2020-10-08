@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="module_sale_traceability_category" model="ir.module.category">
+        <field name="name">Sale</field>
+        <field name="sequence">20</field>
+    </record>
+
+</odoo>
