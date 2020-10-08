@@ -8,6 +8,7 @@
         'product',
         'purchase',
         'sale',
+        'product_pricelist_supplierinfo',
     ],
     'data':
         [

@@ -32,7 +32,7 @@ class PurchaseOrder(models.Model):
                 'pricelist_id', partner.property_product_pricelist and
                 partner.property_product_pricelist.id
             )
-        super().create(vals)
+        return super().create(vals)
 
     @api.onchange('partner_id', 'company_id')
     def onchange_partner_id(self):
@@ -46,3 +46,13 @@ class PurchaseOrder(models.Model):
                     or False,
             }
             self.update(values)
+
+
+    @api.onchange('pricelist_id')
+    def onchange_pricelist_id(self):
+        self.action_recompute_all_lines()
+
+    def action_recompute_all_lines(self):
+        for order in self:
+            for line in order.order_line:
+                line._onchange_quantity()

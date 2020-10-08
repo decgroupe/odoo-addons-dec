@@ -6,6 +6,15 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
+            <button name="action_rfq_send" position="before">
+                <button 
+                    name="action_recompute_all_lines" 
+                    string="Recompute Prices" 
+                    type="object"
+                    attrs="{'invisible': [('state', 'in', ['to_approve', 'done', 'cancel'])]}"
+                    icon="">
+                </button>
+            </button>
             <field name="date_order" position="after">
                 <field name="pricelist_id"/>
             </field>
