@@ -23,6 +23,17 @@ class PurchaseOrder(models.Model):
         help="Pricelist for current purchase order."
     )
 
+    @api.model
+    def create(self, vals):
+        # Make sure 'pricelist_id' is defined
+        if any(f not in vals for f in ['pricelist_id']):
+            partner = self.env['res.partner'].browse(vals.get('partner_id'))
+            vals['pricelist_id'] = vals.setdefault(
+                'pricelist_id', partner.property_product_pricelist and
+                partner.property_product_pricelist.id
+            )
+        super().create(vals)
+
     @api.onchange('partner_id', 'company_id')
     def onchange_partner_id(self):
         super().onchange_partner_id()
