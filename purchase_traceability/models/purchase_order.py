@@ -17,5 +17,7 @@ class PurchaseOrder(models.Model):
                     lambda line: not line.procurement_group_id
                 )
             if lines:
-                lines.procurement_group_id = values['group_id']
+                lines.write({
+                    'procurement_group_id': values['group_id']
+                })
         return super().write(values)
