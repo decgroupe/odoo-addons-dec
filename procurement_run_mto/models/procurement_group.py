@@ -67,8 +67,14 @@ class ProcurementGroup(models.Model):
         )
         # Select only valid moves
         res = self._filter_picking_moves_to_confirm(picking_ids)
-        return res
 
+        # # Search all active manufacturing orders
+        # production_ids = self.env['mrp.production'].search(
+        #     [('state', 'not in', ('done', 'cancel'))]
+        # )
+        # # Select only valid moves
+        # res += self._filter_production_moves_to_reorder(production_ids)
+        return res
 
     @api.model
     def _filter_picking_moves_to_confirm(self, picking_ids):
@@ -80,6 +86,21 @@ class ProcurementGroup(models.Model):
             x.created_purchase_line_id.id == False and \
             x.created_production_id.id == False and \
             x.created_mrp_production_request_id.id == False and \
+            x.move_orig_ids.ids == []
+        )
+
+    @api.model
+    def _filter_production_moves_to_reorder(self, production_ids):
+        return production_ids.mapped('move_raw_ids').filtered(
+            lambda x: \
+            x.state in ('waiting') and \
+            x.procure_method == 'make_to_order' and \
+            x.location_id == self.env.ref('stock.stock_location_stock') and \
+            x.created_purchase_line_id.id == False and \
+            x.created_production_id.id == False and \
+            x.created_mrp_production_request_id.id == False and \
+            x.orderpoint_created_production_ids.ids == [] and \
+            x.orderpoint_created_purchase_line_ids.ids == [] and \
             x.move_orig_ids.ids == []
         )
 

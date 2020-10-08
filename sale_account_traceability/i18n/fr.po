@@ -6,16 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 19:31+0000\n"
-"PO-Revision-Date: 2020-09-25 19:31+0200\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2020-10-08 21:06+0000\n"
+"PO-Revision-Date: 2020-10-08 23:07+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: sale_account_traceability
+#: model:res.groups,name:sale_account_traceability.group_sale_account_traceability
+msgid "Accounting traceability (account)"
+msgstr "Traçabilité de la facturation (account)"
 
 #. module: sale_account_traceability
 #: model:ir.model,name:sale_account_traceability.model_sale_order

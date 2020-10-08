@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 13:35+0000\n"
-"PO-Revision-Date: 2020-03-31 23:40+0200\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2020-10-08 21:06+0000\n"
+"PO-Revision-Date: 2020-10-08 22:35+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -58,6 +58,11 @@ msgid "Pricelists are managed on"
 msgstr "Les listes de prix sont gérées sur"
 
 #. module: purchase_pricelist
+#: model:ir.model,name:purchase_pricelist.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_purchase_order
 msgid "Purchase Order"
 msgstr "Commande d'achat"
@@ -76,9 +81,8 @@ msgstr "Liste de prix d'achat"
 
 #. module: purchase_pricelist
 #: model:res.groups,name:purchase_pricelist.group_purchase_pricelist
-#, fuzzy
 msgid "Purchase Pricelists"
-msgstr "Liste de prix d'achat"
+msgstr "Listes de prix d'achat"
 
 #. module: purchase_pricelist
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist.purchase_order_form_view

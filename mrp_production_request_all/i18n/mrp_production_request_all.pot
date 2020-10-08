@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 22:03+0000\n"
-"PO-Revision-Date: 2020-10-02 22:03+0000\n"
+"POT-Creation-Date: 2020-10-08 21:05+0000\n"
+"PO-Revision-Date: 2020-10-08 21:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,6 @@ msgstr "Mouvement de stock"
 
 #. module: mrp_production_request_all
 #: model_terms:ir.ui.view,arch_db:mrp_production_request_all.mrp_production_request_form_view
-msgid "This action will create a new Manufacturing Order for each quantity: - If required quantity=1.0 when it will generate 1 x MO of 1 unit - If required quantity=5.0 when it will generate 5 x MO of 1 unit"
-msgstr ""
+msgid "This action will create a new Manufacturing Order for each quantity: - If required quantity=1.0 when it will generate 1 × MO of 1 unit - If required quantity=5.0 when it will generate 5 × MO of 1 unit"
+msgstr "Cette action va créer un ordre de fabrication individuel pour chaque quantité: - Si la quantité demandé est quantité=1.0 alors cela va générer 1 x MO de 1 unité - Si la quantité demandé est quantité=5.0 alors cela va générer 5 x MO de 1 unité"
 

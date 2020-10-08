@@ -1,22 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_template_link
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 21:06+0000\n"
-"PO-Revision-Date: 2020-10-08 21:06+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2020-10-08 23:10+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
 
-#. module: product_template_link
-#: model_terms:ir.ui.view,arch_db:product_template_link.product_normal_form_view
-msgid "Open Product template Pop-up"
-msgstr "Ouvrir le produit modèle dans une Pop-up"
-
+#. module: sale_traceability
+#: model:ir.module.category,name:sale_traceability.module_sale_traceability_category
+msgid "Sale"
+msgstr "Vente"

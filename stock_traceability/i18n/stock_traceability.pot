@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:45+0000\n"
-"PO-Revision-Date: 2020-10-02 21:45+0000\n"
+"POT-Creation-Date: 2020-10-08 21:06+0000\n"
+"PO-Revision-Date: 2020-10-08 21:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,12 +43,12 @@ msgstr ""
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__product_activity_id
 msgid "Related Activity"
-msgstr ""
+msgstr "Activité associée"
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__action_view_created_item_visible
 msgid "Show Link to Created Item"
-msgstr ""
+msgstr "Afficher le lien vers l'élément créé"
 
 #. module: stock_traceability
 #: model:ir.model,name:stock_traceability.model_stock_move
@@ -60,4 +60,24 @@ msgstr "Mouvement de stock"
 #, python-format
 msgid "canceled"
 msgstr "annulé"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "stock.move.form#admin@stock_traceability"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.stock_move_form_view
+msgid "stock.move.form@stock_traceability"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_move_picking_form_view
+msgid "stock.move.picking.form#admin@stock_traceability"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.move_picking_form_view
+msgid "stock.move.picking.form@stock_traceability"
+msgstr ""
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:44+0000\n"
-"PO-Revision-Date: 2020-10-02 21:44+0000\n"
+"POT-Creation-Date: 2020-10-08 21:05+0000\n"
+"PO-Revision-Date: 2020-10-08 21:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -210,10 +210,10 @@ msgid "Purchase price based on default seller pricelist computed with \"Purchase
 msgstr "Prix d'achat basé sur la liste de prix du founisseur par défaut exprimé dans l'\"Unité de mesure d'achat\""
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:354
+#: code:addons/product_prices/models/product_template.py:364
 #, python-format
-msgid "Purchase price set to {} (from {} for 1x%s)"
-msgstr ""
+msgid "Purchase price set to {} (from {} for 1×{})"
+msgstr "Le prix d'achat a changé pour {} (à partir de {} pour 1x%s)"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__same_uom
@@ -225,7 +225,7 @@ msgstr "Même UdM"
 #: model:ir.model.fields,help:product_prices.field_product_product__standard_price_po_uom
 #: model:ir.model.fields,help:product_prices.field_product_template__standard_price_po_uom
 msgid "Same field than standard_price but expressed in \"Purchase Unit of Measure\"."
-msgstr "Même champ que standard_price mais exprimé dans l'\"Unité de mesure d'achat\""
+msgstr "Même champ que standard_price mais exprimé dans \"l'Unité de mesure d'achat\"."
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__default_sell_price
@@ -252,10 +252,10 @@ msgid "Sell price based on default sell pricelist"
 msgstr "Prix de vente basé sur la liste de prix par défaut"
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:342
+#: code:addons/product_prices/models/product_template.py:352
 #, python-format
-msgid "Sell price set to {} (from {} for 1x%s)"
-msgstr ""
+msgid "Sell price set to {} (from {} for 1×{})"
+msgstr "Le prix de vente a changé pour {} (à partir de {} pour 1x%s)"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price_write_uid

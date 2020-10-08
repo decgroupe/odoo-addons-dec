@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 18:56+0000\n"
-"PO-Revision-Date: 2020-10-02 23:33+0200\n"
+"POT-Creation-Date: 2020-10-08 20:16+0000\n"
+"PO-Revision-Date: 2020-10-08 22:50+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -27,7 +27,7 @@ msgstr "Un bypass va créer une règle de prix net prioritaire sur les dérogati
 #: model:ir.model.fields,help:product_prices.field_product_product__same_uom
 #: model:ir.model.fields,help:product_prices.field_product_template__same_uom
 msgid "Are \"Default Unit of Measure\" and \"Purchase Unit of Measure\" identical ?"
-msgstr "\"Unité de mesure\" et \"Unité de measure d'achat\" sont-ils identiques ?"
+msgstr "\"Unité de mesure\" et \"Unité de mesure d'achat\" sont-elles identiques ?"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__pricelist_bypass
@@ -212,10 +212,10 @@ msgid "Purchase price based on default seller pricelist computed with \"Purchase
 msgstr "Prix d'achat basé sur la liste de prix du founisseur par défaut exprimé dans l'\"Unité de mesure d'achat\""
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:354
+#: code:addons/product_prices/models/product_template.py:364
 #, python-format
-msgid "Purchase price set to {} (from {} for 1x%s)"
-msgstr "Le prix d'achat a changé pour {} (à partir de {} pour 1x%s)"
+msgid "Purchase price set to {} (from {} for 1×{})"
+msgstr "Le prix d'achat a changé pour {} (à partir de {} pour 1×{})"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__same_uom
@@ -254,10 +254,10 @@ msgid "Sell price based on default sell pricelist"
 msgstr "Prix de vente basé sur la liste de prix par défaut"
 
 #. module: product_prices
-#: code:addons/product_prices/models/product_template.py:342
+#: code:addons/product_prices/models/product_template.py:352
 #, python-format
-msgid "Sell price set to {} (from {} for 1x%s)"
-msgstr "Le prix de vente a changé pour {} (à partir de {} pour 1x%s)"
+msgid "Sell price set to {} (from {} for 1×{})"
+msgstr "Le prix de vente a changé pour {} (à partir de {} pour 1×{})"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__standard_price_write_uid

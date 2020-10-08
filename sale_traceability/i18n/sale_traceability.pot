@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_template_link
+#	* sale_traceability
 #
 msgid ""
 msgstr ""
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: product_template_link
-#: model_terms:ir.ui.view,arch_db:product_template_link.product_normal_form_view
-msgid "Open Product template Pop-up"
-msgstr "Ouvrir le produit modèle dans une Pop-up"
+#. module: sale_traceability
+#: model:ir.module.category,name:sale_traceability.module_sale_traceability_category
+msgid "Sale"
+msgstr ""
 

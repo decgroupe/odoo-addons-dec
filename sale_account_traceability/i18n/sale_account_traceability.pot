@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:44+0000\n"
-"PO-Revision-Date: 2020-10-02 21:44+0000\n"
+"POT-Creation-Date: 2020-10-08 21:06+0000\n"
+"PO-Revision-Date: 2020-10-08 21:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_account_traceability
+#: model:res.groups,name:sale_account_traceability.group_sale_account_traceability
+msgid "Accounting traceability (account)"
+msgstr ""
 
 #. module: sale_account_traceability
 #: model:ir.model,name:sale_account_traceability.model_sale_order

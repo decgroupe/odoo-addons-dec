@@ -5,12 +5,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:40+0000\n"
-"PO-Revision-Date: 2020-10-02 21:14+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2020-10-08 20:17+0000\n"
+"PO-Revision-Date: 2020-10-08 22:49+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: mrp_transition
+#: model:ir.model.fields,field_description:mrp_transition.field_stock_move__compare_quantity_done
+msgid "Compare Quantity Done"
+msgstr "Comparer les quantités terminées"
+
+#. module: mrp_transition
+#: model:ir.model.fields,help:mrp_transition.field_stock_move__compare_quantity_done
+msgid ""
+"Compare quantity_done with product_uom_qty :\n"
+" - Return 1 if quantity_done > product_uom_qty\n"
+" - Return 0 if quantity_done = product_uom_qty\n"
+" - Return -1 if quantity_done < product_uom_qty"
+msgstr ""
+"Compare quantity_done avec product_uom_qty :\n"
+" - Renvoi 1 si quantity_done > product_uom_qty\n"
+" - Renvoi 0 si quantity_done = product_uom_qty\n"
+" - Renvoi -1 si quantity_done < product_uom_qty"
+
+#. module: mrp_transition
+#: model:ir.model.fields,field_description:mrp_transition.field_stock_move__move_lines_count
+msgid "Move Lines Count"
+msgstr "Nombre de lignes de mouvement de stock"
+
+#. module: mrp_transition
+#: model:ir.model.fields,field_description:mrp_transition.field_mrp_production__picking_id
+msgid "Picking List"
+msgstr "Liste de prélèvement"
+
+#. module: mrp_transition
+#: model:ir.model,name:mrp_transition.model_mrp_production
+msgid "Production Order"
+msgstr "Odre de fabrication"
+
+#. module: mrp_transition
+#: model:res.groups,name:mrp_transition.group_mrp_transition
+msgid "Show extra fields on production order form"
+msgstr "Afficher plus de champs sur la fiche d'un ordre de fabrication"
+
+#. module: mrp_transition
+#: model:ir.model,name:mrp_transition.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: mrp_transition
+#: model_terms:ir.ui.view,arch_db:mrp_transition.mrp_production_form_view
+msgid "mrp.production.form#admin@mrp_transition"
+msgstr ""

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:45+0000\n"
-"PO-Revision-Date: 2020-10-02 21:45+0000\n"
+"POT-Creation-Date: 2020-10-08 21:06+0000\n"
+"PO-Revision-Date: 2020-10-08 21:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,13 +20,13 @@ msgstr ""
 #: code:addons/sale_product_warnings/models/sale_order.py:39
 #, python-format
 msgid "No internal notes"
-msgstr ""
+msgstr "Pas de notes internes"
 
 #. module: sale_product_warnings
 #: code:addons/sale_product_warnings/models/sale_order.py:41
 #, python-format
 msgid "No responsible for this product"
-msgstr ""
+msgstr "Pas de responsable assigné pour ce produit"
 
 #. module: sale_product_warnings
 #: code:addons/sale_product_warnings/models/sale_order.py:21
@@ -35,7 +35,10 @@ msgid "Obsolete product!\n"
 " (This product must not be sold anymore.)\n"
 "\n"
 " %s"
-msgstr ""
+msgstr "Produit obsolète\n"
+" (Ce produit ne doit plus être vendu.)\n"
+"\n"
+" %s"
 
 #. module: sale_product_warnings
 #: model:ir.model,name:sale_product_warnings.model_sale_order_line
@@ -50,7 +53,11 @@ msgid "This product needs to be reviewed:\n"
 " - %s \n"
 "\n"
 " - Please contact \"%s\""
-msgstr ""
+msgstr "Ce produit doit être révisé:\n"
+"\n"
+" - %s \n"
+"\n"
+" - Merci de contacter \"%s\""
 
 #. module: sale_product_warnings
 #: code:addons/sale_product_warnings/models/sale_order.py:19
