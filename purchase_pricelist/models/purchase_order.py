@@ -29,8 +29,8 @@ class PurchaseOrder(models.Model):
         if any(f not in vals for f in ['pricelist_id']):
             partner = self.env['res.partner'].browse(vals.get('partner_id'))
             vals['pricelist_id'] = vals.setdefault(
-                'pricelist_id', partner.property_product_pricelist and
-                partner.property_product_pricelist.id
+                'pricelist_id', partner.property_product_pricelist_purchase and
+                partner.property_product_pricelist_purchase.id
             )
         return super().create(vals)
 
