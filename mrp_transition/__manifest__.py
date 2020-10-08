@@ -10,6 +10,7 @@
         'stock_mrp_traceability',
     ],
     'data': [
+        'security/res_groups.xml',
         'views/mrp_production.xml',
     ],
     'installable': True
