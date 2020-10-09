@@ -12,7 +12,11 @@
                 <field name="use_common_procurement_group" 
                     attrs="{'invisible': 
                         [
-                            ('state', 'not in', ('draft', 'to_approve'))
+                            '|',
+                            ('state', 'not in', ('draft', 'to_approve')),
+                                '|',
+                                ('done_qty', '&gt;', 0),
+                                ('manufactured_qty', '&gt;', 0),
                         ]}" >
                 </field>
                 <field 
