@@ -4,9 +4,8 @@
 
 from datetime import datetime
 
-from odoo import api, fields, models, _
-from odoo.exceptions import UserError
-from odoo.tools import float_compare, float_round
+from odoo import models, _
+from ...stock_traceability.models.html_helper import (ul, div)
 
 
 class MrpUnbuild(models.Model):
@@ -15,12 +14,15 @@ class MrpUnbuild(models.Model):
     def _generate_produce_moves(self):
         self.ensure_one()
         moves = super()._generate_produce_moves()
-        edited_products = moves.mapped('product_id').\
-            update_routes_after_return_to_stock()
+        ids = moves.mapped('product_id').\
+            update_routes_after_return_to_stock(self.name)
+        edited_products = self.env['product.product'].browse(ids)
         if edited_products:
-            body = _('Following product\'s routes has been edited:<br><ul>')
+            title = _('Following product\'s routes has been edited:')
+            product_lines = []
             for product_names in edited_products.mapped('display_name'):
-                body += '<li>%s</li>' % (product_names, )
+                product_lines.append('<li>%s</li>' % (product_names, ))
+            body = div(title) + ul(''.join(product_lines))
             self.message_post(body=body)
 
         return moves

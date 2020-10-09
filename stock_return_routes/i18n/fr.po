@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_return_routes
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-09 12:32+0000\n"
+"PO-Revision-Date: 2020-10-09 13:53+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: stock_return_routes
+#: code:addons/stock_return_routes/models/mrp_unbuild.py:21
+#, python-format
+msgid "Following product's routes has been edited:"
+msgstr "Les routes des produits suivants ont été modifiées:"
+
+#. module: stock_return_routes
+#: model:ir.model,name:stock_return_routes.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: stock_return_routes
+#: code:addons/stock_return_routes/models/product_product.py:23
+#, python-format
+msgid "Route <small><b>%s</b></small> replaced with route <small><b>%s</b></small> while processing %s."
+msgstr "La route <small><b>%s</b></small> a remplacé la route <small><b>%s</b></small> pendant l'opération de %s."
+
+#. module: stock_return_routes
+#: model:ir.model,name:stock_return_routes.model_mrp_unbuild
+msgid "Unbuild Order"
+msgstr "Ordre de deconstruction"
