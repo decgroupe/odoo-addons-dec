@@ -15,7 +15,7 @@ from .emoji_helper import (
     activity_state_to_emoji,
     product_type_to_emoji,
 )
-from .html_helper import (div, ul, li, small, format_hd)
+from .html_helper import (div, ul, li, small, b, format_hd)
 
 _logger = logging.getLogger(__name__)
 
@@ -233,6 +233,23 @@ class StockMove(models.Model):
         desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
         return head, desc
 
+    def _get_stock_location(self, html=False):
+        def try_append_loc(location, loc):
+            if loc:
+                if html:
+                    loc = b(loc)
+                location.append(loc)
+
+        location = []
+        try_append_loc(location, self.product_id.loc_rack)
+        try_append_loc(location, self.product_id.loc_row)
+        try_append_loc(location, self.product_id.loc_case)
+        if not location:
+            location = [_('Not Set')]
+        head = '🗺️{0}'.format(_('Location'))
+        desc = ' . '.join(location)
+        return head, desc
+
     def _get_activity_status(self, activity_id):
         a = activity_id
         state = dict(a._fields['state']._description_selection(self.env)).get(
@@ -276,6 +293,21 @@ class StockMove(models.Model):
 
         head, desc = self._get_stock_status()
         res.append(format_hd(head, desc, html))
+
+        # Print location only when destination moves are for stock
+        if self.move_dest_ids:
+            stock_location = self.env.ref('stock.stock_location_stock')
+            same_destination = all(
+                x.id == stock_location.id
+                for x in self.move_dest_ids.mapped('location_dest_id')
+            )
+            different_product = any(
+                x.id != self.product_id.id
+                for x in self.move_dest_ids.mapped('product_id')
+            )
+            if same_destination or different_product:
+                head, desc = self._get_stock_location(html)
+                res.append(format_hd(head, desc, html=False))
 
         pre = False
         if self.created_purchase_line_archive and not self.created_purchase_line_id:
