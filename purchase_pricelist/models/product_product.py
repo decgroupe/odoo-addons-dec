@@ -20,5 +20,5 @@ class ProductProduct(models.Model):
         """
         seller_ids = super()._prepare_sellers(params)
         return seller_ids.sorted(
-            key=lambda r: (r.min_qty, 1.0 / r.sequence), reverse=True
+            key=lambda r: (r.min_qty, 1.0 / (r.sequence or 1.0)), reverse=True
         )
