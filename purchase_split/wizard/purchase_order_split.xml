@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_split_form_view">
+        <field name="name">purchase.order.split@purchase_split</field>
+        <field name="model">purchase.order.split</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Select Options">
+                <p class="oe_grey">
+                    Select an existing order to merge next lines or let
+                    it empty to create a new purchase order.
+                </p>
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="origin_order_id" invisible="1"/>
+                    <field name="order_id"
+                        domain="[
+                            ('id', '!=', origin_order_id),
+                            ('partner_id', '=', partner_id),
+                            ('state', 'in', ['draft', 'sent', 'to approve']),
+                        ]"
+                        options="{
+                            'no_create': True,
+                            'no_create_edit': True,
+                            'no_quick_create': True,
+                        }"
+                    />
+                    <field name="order_line_ids"/>
+                </group>
+                <footer>
+                    <button 
+                        class="btn-primary"
+                        string="Confirm Split"
+                        name="action_split"
+                        type="object"
+                        default_focus="1"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-secondary"
+                        string="Cancel"
+                        special="cancel"
+                        context="{}">
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="act_window_purchase_order_split"
+        name="🧙‍♂️Split ..."
+        src_model="purchase.order.line"
+        res_model="purchase.order.split"
+        view_type="form"
+        view_mode="form"
+        multi="True"
+        key2="client_action_multi" 
+        target="new"
+    />
+
+    <!-- <act_window id="act_window_stock_picking_custom_report"
+        name="🧙‍♂️Wizard ..."
+        src_model="stock.picking"
+        res_model="stock.picking.custom.report"
+        key2="client_print_multi"
+        view_mode="form"
+        target="new"
+        view_id="stock_picking_custom_report_view"
+    /> -->
+
+</odoo>
