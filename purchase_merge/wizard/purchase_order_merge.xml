@@ -29,6 +29,17 @@
                             'no_quick_create': True,
                         }"
                     />
+                    <field name="group_id"
+                        attrs="{
+                            'readonly': [('pre_process', '=', 'merge')],
+                        }"
+                        options="{
+                            'no_create': True,
+                            'no_create_edit': True,
+                            'no_quick_create': True,
+                        }"
+                    />
+                    <field name="merge_quantities"/>
                     <p class="oe_grey">
                         After the merge, remaining orders must be deleted or
                         cancelled. It depends on your internal traceability

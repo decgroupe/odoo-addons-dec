@@ -23,6 +23,12 @@ class PurchaseOrderMerge(models.TransientModel):
         string='Origin Orders',
         readonly=True,
     )
+    group_id = fields.Many2one(
+        'procurement.group',
+        string="Procurement Group",
+        help="Multiple orders means multiple procurement groups. You need to "
+        "select which group will be used in the newly created order.",
+    )
     pre_process = fields.Selection(
         [
             ('create', 'Create new order'),
@@ -38,6 +44,11 @@ class PurchaseOrderMerge(models.TransientModel):
         ],
         string="Remaining Order(s)",
         default='cancel'
+    )
+    merge_quantities = fields.Boolean(
+        'Merge Quantities',
+        help="If checked, all lines with the same product will be merged "
+        "and their quantities will be added",
     )
 
     def _check_selection_count(self, order_ids):
@@ -108,30 +119,26 @@ class PurchaseOrderMerge(models.TransientModel):
             )
         return rec
 
-    # @api.onchange('post_process')
-    # def onchange_post_process(self):
-    #     res = {}
-    #     for wizard in self:
-    #         wizard.order_id = False
-    #         if wizard.post_process in ['cancel', 'delete']:
-    #             res['domain'] = {
-    #                 'order_id': [('id', 'in', self.origin_order_ids.ids)]
-    #             }
-    #         return res
+    @api.onchange('order_id')
+    def _onchange_order_id(self):
+        self.group_id = self.order_id.group_id
 
     def _try_merging(self, line):
         match_line = False
         if self.order_id.order_line:
             for po_line in self.order_id.order_line:
-                if line.product_id == po_line.product_id and \
-                        line.price_unit == po_line.price_unit:
+                if line.product_id == po_line.product_id \
+                and line.product_uom == po_line.product_uom \
+                and line.price_unit == po_line.price_unit \
+                and line.procurement_group_id == po_line.procurement_group_id \
+                and line.taxes_id == po_line.taxes_id \
+                and line.name == po_line.name:
                     match_line = po_line
                     break
         if match_line:
             match_line.product_qty += line.product_qty
-            po_taxes = [tax.id for tax in match_line.taxes_id]
-            [po_taxes.append((tax.id)) for tax in line.taxes_id]
-            match_line.taxes_id = [(6, 0, po_taxes)]
+            match_line.move_ids += line.move_ids
+            match_line.move_dest_ids += line.move_dest_ids
             return True
         else:
             return False
@@ -142,21 +149,56 @@ class PurchaseOrderMerge(models.TransientModel):
                 'trigger_onchange': True,
                 'onchange_fields_to_trigger': [self.partner_id]
             }
-        ).create({'partner_id': self.partner_id})
-        self.pre_process_merge()
+        ).create({
+            'partner_id': self.partner_id.id,
+        })
+        self._pre_process_merge()
 
     def _pre_process_merge(self):
-        default = {'order_id': self.order_id.id}
         # Remove selected order from list
         self.origin_order_ids -= self.order_id
+        sequences = self.order_id.order_line.mapped('sequence')
+        if sequences:
+            sequence = max(sequences)
+        else:
+            sequence = 0
         for order in self.origin_order_ids:
             for line in order.order_line:
-                merged = self._try_merging(line, self.order_id)
+                if self.merge_quantities:
+                    merged = self._try_merging(line)
+                    line.unlink()
+                else:
+                    merged = False
                 if not merged:
-                    line.copy(default=default)
+                    sequence += 1
+                    line.write(
+                        {
+                            'sequence': sequence,
+                            'order_id': self.order_id.id,
+                        }
+                    )
+        self._set_origin()
+        self.order_id.message_post_with_view(
+            'purchase_merge.merged_with_template',
+            values={
+                'order_ids': self.origin_order_ids,
+            },
+            subtype_id=self.env.ref('mail.mt_note').id,
+        )
+
+    def _set_origin(self):
+        if self.order_id.origin:
+            self.order_id.origin += ','
+        else:
+            self.order_id.origin = ''
+        display_names = list(set(self.origin_order_ids.mapped('display_name')))
+        self.order_id.origin += ','.join(display_names)
 
     def _post_process_cancel(self):
         for order_id in self.origin_order_ids:
+            order_id.message_post(
+                body=_("Merged to {}").format(self.order_id.name)
+            )
             order_id.button_cancel()
 
     def _post_process_delete(self):
@@ -175,3 +217,14 @@ class PurchaseOrderMerge(models.TransientModel):
             self._post_process_cancel()
         elif self.post_process == 'delete':
             self._post_process_delete()
+
+        action_vals = {
+            'name': _('Purchase Orders (after merge)'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_id': self.order_id.id,
+            'res_model': 'purchase.order',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+        }
+        return action_vals

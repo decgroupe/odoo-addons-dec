@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="merged_with_template">
+        <div>
+            <strong>Merged with:</strong>
+            <ul>
+                <t t-foreach="order_ids" t-as="order_id">
+                <li><a href="#" t-att-data-oe-model="order_id._name" t-att-data-oe-id="order_id.id"> <t t-esc="order_id.display_name"/></a>: <t t-esc="order_id.origin"/></li>
+                </t>
+            </ul>
+        </div>
+    </template>
+
+</odoo>
