@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_merge_form_view" >
+        <field name="name">purchase.order.merge@purchase_merge</field>
+        <field name="model">purchase.order.merge</field>
+        <field name="arch" type="xml">
+            <form string="Select Options">
+                <p class="oe_grey">
+                    In <b>merge</b> mode, select an existing order to merge it
+                    with remaining orders or use <b>create</b> mode to create 
+                    a new purchase order dedicated to this merge.
+                </p>
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="origin_order_ids" invisible="1"/>
+                    <field name="pre_process" required="1"/>
+                    <field name="order_id"
+                        attrs="{
+                            'invisible': [('pre_process', '=', 'create')],
+                            'required': [('pre_process', '!=', 'create')],
+                        }"
+                        domain="[
+                            ('id', 'in', origin_order_ids),
+                        ]"
+                        options="{
+                            'no_create': True,
+                            'no_create_edit': True,
+                            'no_quick_create': True,
+                        }"
+                    />
+                    <p class="oe_grey">
+                        After the merge, remaining orders must be deleted or
+                        cancelled. It depends on your internal traceability
+                        process.
+                    </p>
+                    <field name="post_process" required="1"/>
+                </group>
+                <footer>
+                    <button 
+                        class="btn-primary"
+                        string="Confirm Merge"
+                        name="action_merge"
+                        type="object"
+                        default_focus="1"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-secondary"
+                        string="Cancel"
+                        special="cancel"
+                        context="{}">
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="act_window_purchase_order_merge"
+        name="🧙‍♂️Merge ..."
+        src_model="purchase.order"
+        res_model="purchase.order.merge"
+        view_type="tree"
+        view_mode="form"
+        multi="True"
+        key2="client_action_multi" 
+        target="new"
+    />
+
+</odoo>
