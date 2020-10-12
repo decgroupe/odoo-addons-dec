@@ -38,6 +38,11 @@
                                         <field name="purchase_order_count" widget="statinfo" string="Purchases"/>
                                 </button>
                                 <button type="object"
+                                    name="action_view_purchase_order_lines"
+                                    class="oe_stat_button" icon="fa-shopping-cart">
+                                        <field name="purchase_order_line_count" widget="statinfo" string="Purchase Lines"/>
+                                </button>
+                                <button type="object"
                                     name="action_view_mrp_productions"
                                     class="oe_stat_button" icon="fa-wrench">
                                         <field name="mrp_production_count" widget="statinfo" string="Productions"/>
@@ -75,6 +80,9 @@
                         </page>
                         <page string="Purchase Orders" attrs="{'invisible': [('purchase_order_ids', '=', [])]}">
                             <field name="purchase_order_ids"/>
+                        </page>
+                        <page string="Purchase Order Lines" attrs="{'invisible': [('purchase_order_line_ids', '=', [])]}">
+                            <field name="purchase_order_line_ids"/>
                         </page>
                         <page string="Production Orders" attrs="{'invisible': [('mrp_production_ids', '=', [])]}">
                             <field name="mrp_production_ids"/>

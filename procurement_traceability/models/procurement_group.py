@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-from odoo import fields, models
+from odoo import fields, models, _
 
 
 class ProcurementGroup(models.Model):
@@ -86,6 +86,17 @@ class ProcurementGroup(models.Model):
         default=0,
         store=False,
     )
+    # addons-oca/purchase-workflow/purchase_line_procurement_group/models/purchase.py
+    purchase_order_line_ids = fields.One2many(
+        'purchase.order.line',
+        'procurement_group_id',
+    )
+    purchase_order_line_count = fields.Integer(
+        compute='_compute_purchase_order_line',
+        string='Purchase lines count',
+        default=0,
+        store=False,
+    )
 
     def _compute_picking(self):
         for procurement in self:
@@ -119,9 +130,16 @@ class ProcurementGroup(models.Model):
                 procurement.mrp_production_ids
             )
 
+    def _compute_purchase_order_line(self):
+        for procurement in self:
+            procurement.purchase_order_line_count = len(
+                procurement.purchase_order_line_ids
+            )
+
     def action_view_pickings(self):
         self.ensure_one()
-        action = self.env.ref('stock.stock_picking_action_picking_type').read()[0]
+        action = self.env.ref('stock.stock_picking_action_picking_type'
+                             ).read()[0]
         action['domain'] = [('group_id', '=', self.id)]
         action['context'] = {}
         return action
@@ -144,7 +162,7 @@ class ProcurementGroup(models.Model):
         self.ensure_one()
         action = self.env.ref('stock.stock_move_action').read()[0]
         action['domain'] = [('group_id', '=', self.id)]
-        action['context'] = {'group_by':'origin'}
+        action['context'] = {'group_by': 'origin'}
         return action
 
     def action_view_sale_orders(self):
@@ -164,6 +182,13 @@ class ProcurementGroup(models.Model):
     def action_view_mrp_productions(self):
         self.ensure_one()
         action = self.env.ref('mrp.mrp_production_action').read()[0]
+        action['domain'] = [('procurement_group_id', '=', self.id)]
+        action['context'] = {}
+        return action
+
+    def action_view_purchase_order_lines(self):
+        self.ensure_one()
+        action = self.env.ref('procurement_traceability.action_purchase_order_line_tree').read()[0]
         action['domain'] = [('procurement_group_id', '=', self.id)]
         action['context'] = {}
         return action
