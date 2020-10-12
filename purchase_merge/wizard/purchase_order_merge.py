@@ -196,8 +196,12 @@ class PurchaseOrderMerge(models.TransientModel):
 
     def _post_process_cancel(self):
         for order_id in self.origin_order_ids:
-            order_id.message_post(
-                body=_("Merged to {}").format(self.order_id.name)
+            order_id.message_post_with_view(
+                'purchase_merge.merged_to_template',
+                values={
+                    'order_id': self.order_id,
+                },
+                subtype_id=self.env.ref('mail.mt_note').id,
             )
             order_id.button_cancel()
 
