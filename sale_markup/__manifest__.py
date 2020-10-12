@@ -7,7 +7,8 @@
     'summary': '''Adds the 'Markup' on sales order''',
     'depends': [
         'dec',
-        'sale_row_layout'
+        'sale_row_layout',
+        'sale_margin',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':
