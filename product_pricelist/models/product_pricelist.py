@@ -143,6 +143,11 @@ class ProductPricelist(models.Model):
             addto_history(product.id, _('Using {}').format(self.name), action='open')
             if len(items) > 0:
                 addto_history(product.id, _('{} rule(s) loaded').format(len(items)))
+            else:
+                addto_history(product.id, _('No rules loaded at this step'))
+                results[product.id] = (0.0, False)
+                return results
+
             results[product.id] = 0.0
             suitable_rule = False
 
@@ -195,9 +200,12 @@ class ProductPricelist(models.Model):
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
                     addto_history(product.id, _('Price is based on another pricelist: {}').format(rule.base_pricelist_id.name))
                     addto_history(product.id, indent=True)
-                    price_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)], date, uom_id)[product.id][0]  # TDE: 0 = price, 1 = rule
+                    price_tmp, rule_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)], date, uom_id)[product.id]  # TDE: 0 = price, 1 = rule
                     addto_history(product.id, unindent=True)
-                    price = rule.base_pricelist_id.currency_id._convert(price_tmp, self.currency_id, self.env.user.company_id, date, round=False)
+                    if rule_tmp:
+                        price = rule.base_pricelist_id.currency_id._convert(price_tmp, self.currency_id, self.env.user.company_id, date, round=False)
+                    else:
+                        continue
                 else:
                     # if base option is public price take sale price else cost price of product
                     # price_compute returns the price in the context UoM, i.e. qty_uom_id
