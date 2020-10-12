@@ -33,6 +33,9 @@
                         attrs="{
                             'readonly': [('pre_process', '=', 'merge')],
                         }"
+                        domain="[
+                            ('purchase_order_line_ids.order_id', 'in', origin_order_ids),
+                        ]"
                         options="{
                             'no_create': True,
                             'no_create_edit': True,
@@ -40,12 +43,12 @@
                         }"
                     />
                     <field name="merge_quantities"/>
+                    <field name="post_process" required="1"/>
                     <p class="oe_grey">
                         After the merge, remaining orders must be deleted or
                         cancelled. It depends on your internal traceability
                         process.
                     </p>
-                    <field name="post_process" required="1"/>
                 </group>
                 <footer>
                     <button 

@@ -7,6 +7,7 @@
     'depends': [
         'purchase',
         'purchase_stock',
+        'purchase_line_procurement_group',
     ],
     'data': [
         'views/purchase_order.xml',
