@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production.form@mrp_unlock_raw_quantity_done</field>
+        <field name="model">mrp.production</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <button name="action_toggle_is_locked" position="after">
+                <button 
+                    name="action_force_raw_quantity_done" 
+                    string="Force Raw Quantity Done" 
+                    help="Action to use when multiple assigned moves are in a 'red' state, it will set quantity done to expected value"
+                    type="object"
+                    attrs="{'invisible': [('is_locked', '=', True)]}"
+                    icon="">
+                </button>
+            </button>
+        </field>
+    </record>
+
+</odoo>
+
