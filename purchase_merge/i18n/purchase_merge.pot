@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-11 20:46+0000\n"
-"PO-Revision-Date: 2020-10-11 20:46+0000\n"
+"POT-Creation-Date: 2020-10-13 20:13+0000\n"
+"PO-Revision-Date: 2020-10-13 20:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,19 +18,21 @@ msgstr ""
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.merged_to_template
 msgid "<strong>Merged to:</strong>"
-msgstr ""
+msgstr "<strong>Fusionné vers:</strong>"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.merged_with_template
 msgid "<strong>Merged with:</strong>"
-msgstr ""
+msgstr "<strong>Fusionné avec:</strong>"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_order_merge_form_view
 msgid "After the merge, remaining orders must be deleted or\n"
 "                        cancelled. It depends on your internal traceability\n"
 "                        process."
-msgstr ""
+msgstr "Après la fusion, les commandes d'origines seront supprimées ou\n"
+"                        annulées. Cela dépend de votre processus interne de\n"
+"                        traçabilité."
 
 #. module: purchase_merge
 #: code:addons/purchase_merge/wizard/purchase_order_merge.py:94
@@ -38,7 +40,9 @@ msgstr ""
 msgid "All orders must have the same supplier.\n"
 "You have selected orders from these partners:\n"
 "%s"
-msgstr ""
+msgstr "Toutes les commandes doivent avoir le même fournisseur.\n"
+"Vous avez sélectionné des commandes des contacts suivant:\n"
+"%s"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_order_merge_form_view
@@ -49,12 +53,12 @@ msgstr "Annuler"
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_order_merge_form_view
 msgid "Confirm Merge"
-msgstr ""
+msgstr "Confirmer la fusion"
 
 #. module: purchase_merge
 #: selection:purchase.order.merge,pre_process:0
 msgid "Create new order"
-msgstr ""
+msgstr "Créer une nouvelle commande"
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__create_uid
@@ -69,7 +73,7 @@ msgstr "Créé le"
 #. module: purchase_merge
 #: selection:purchase.order.merge,post_process:0
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__display_name
@@ -84,14 +88,16 @@ msgstr ""
 #. module: purchase_merge
 #: model:ir.model.fields,help:purchase_merge.field_purchase_order_merge__merge_quantities
 msgid "If checked, all lines with the same product will be merged and their quantities will be added"
-msgstr ""
+msgstr "Si coché, toutes les lignes du même produit seront fusionnées et leur quantités additionnées"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_order_merge_form_view
 msgid "In <b>merge</b> mode, select an existing order to merge it\n"
 "                    with remaining orders or use <b>create</b> mode to create \n"
 "                    a new purchase order dedicated to this merge."
-msgstr ""
+msgstr "Dans le mode <b>fusion</b>, sélectionner une commande existante à fusionner\n"
+"                    avec les autres commandes ou utilisé le mode <b>créer</b> pour créer \n"
+"                    une nouvelle commande dédiée à cette fusion."
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge____last_update
@@ -111,38 +117,38 @@ msgstr "Dernière mise à jour le"
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__pre_process
 msgid "Merge Mode"
-msgstr ""
+msgstr "Mode de fusion"
 
 #. module: purchase_merge
 #: model:ir.model,name:purchase_merge.model_purchase_order_merge
 msgid "Merge Purchase Order"
-msgstr ""
+msgstr "Fusion de bons de commandes"
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__merge_quantities
 msgid "Merge Quantities"
-msgstr ""
+msgstr "Additionner les quantités"
 
 #. module: purchase_merge
 #: selection:purchase.order.merge,pre_process:0
 msgid "Merge orders on selected order"
-msgstr ""
+msgstr "Fusionner les commandes sur une de référence"
 
 #. module: purchase_merge
 #: model:ir.model.fields,help:purchase_merge.field_purchase_order_merge__group_id
 msgid "Multiple orders means multiple procurement groups. You need to select which group will be used in the newly created order."
-msgstr ""
+msgstr "Plusieurs commandes signifie plusieurs groupes d'approvisionnements. Vous devez sélectionner lequel deviendra le groupe utilisé pour la commande fournisseur nouvellement créée."
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__origin_order_ids
 msgid "Origin Orders"
-msgstr ""
+msgstr "Commandes d'origine"
 
 #. module: purchase_merge
 #: code:addons/purchase_merge/wizard/purchase_order_merge.py:57
 #, python-format
 msgid "Please select two or more orders in the list view"
-msgstr ""
+msgstr "Merci de sélectionner deux ou plus encore de commandes dans la vue liste"
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__group_id
@@ -159,12 +165,12 @@ msgstr "Commande fournisseur"
 #: code:addons/purchase_merge/wizard/purchase_order_merge.py:226
 #, python-format
 msgid "Purchase Orders (after merge)"
-msgstr ""
+msgstr "Commandes fournisseur (après fusion)"
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__post_process
 msgid "Remaining Order(s)"
-msgstr ""
+msgstr "Commande(s) restante(s)"
 
 #. module: purchase_merge
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_order_merge_form_view
@@ -176,7 +182,8 @@ msgstr "Choisir les options"
 #, python-format
 msgid "Selection contains order(s) in incompatible states:\n"
 "%s"
-msgstr ""
+msgstr "La sélection contient des commandes avec un état incompatible avec la fusion:\n"
+"%s"
 
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__partner_id
@@ -186,5 +193,5 @@ msgstr "Fournisseur"
 #. module: purchase_merge
 #: model:ir.actions.act_window,name:purchase_merge.act_window_purchase_order_merge
 msgid "🧙‍♂️Merge ..."
-msgstr ""
+msgstr "🧙‍♂️Fusionner ..."
 

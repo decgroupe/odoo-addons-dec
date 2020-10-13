@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 21:06+0000\n"
-"PO-Revision-Date: 2020-10-08 21:06+0000\n"
+"POT-Creation-Date: 2020-10-13 20:12+0000\n"
+"PO-Revision-Date: 2020-10-13 20:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Liste de prix d'achat"
 #. module: purchase_pricelist
 #: model:res.groups,name:purchase_pricelist.group_purchase_pricelist
 msgid "Purchase Pricelists"
-msgstr ""
+msgstr "Listes de prix d'achat"
 
 #. module: purchase_pricelist
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist.purchase_order_form_view
@@ -96,6 +96,11 @@ msgstr "Bon de commande"
 #: selection:product.pricelist,type:0
 msgid "Sale Pricelist"
 msgstr "Liste de prix de vente"
+
+#. module: purchase_pricelist
+#: model:ir.model,name:purchase_pricelist.model_stock_rule
+msgid "Stock Rule"
+msgstr "Règle de stock minimum"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_partner__property_product_pricelist_purchase

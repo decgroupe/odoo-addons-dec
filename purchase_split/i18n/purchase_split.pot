@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-11 20:46+0000\n"
-"PO-Revision-Date: 2020-10-11 20:46+0000\n"
+"POT-Creation-Date: 2020-10-13 20:13+0000\n"
+"PO-Revision-Date: 2020-10-13 20:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Annuler"
 #. module: purchase_split
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_split_form_view
 msgid "Confirm Split"
-msgstr ""
+msgstr "Confirmer la scission"
 
 #. module: purchase_split
 #: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__create_uid
@@ -68,7 +68,7 @@ msgstr "Lignes"
 #. module: purchase_split
 #: model:ir.model,name:purchase_split.model_purchase_order_split
 msgid "Move purchase order lines to another order"
-msgstr ""
+msgstr "Déplacer les lignes d'achats vers une autre commande"
 
 #. module: purchase_split
 #: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__order_id
@@ -78,7 +78,7 @@ msgstr "Référence commande"
 #. module: purchase_split
 #: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__origin_order_id
 msgid "Origin Order"
-msgstr ""
+msgstr "Commande d'origine"
 
 #. module: purchase_split
 #: model:ir.model,name:purchase_split.model_purchase_order
@@ -89,12 +89,12 @@ msgstr "Commande fournisseur"
 #: code:addons/purchase_split/wizard/purchase_order_split.py:64
 #, python-format
 msgid "Purchase Orders (after split)"
-msgstr ""
+msgstr "Commandes fournisseur (après scission)"
 
 #. module: purchase_split
 #: model:ir.actions.act_window,name:purchase_split.action_purchase_order_line_tree
 msgid "Quotation Lines"
-msgstr ""
+msgstr "Lignes de devis"
 
 #. module: purchase_split
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_split_form_view
@@ -105,17 +105,18 @@ msgstr "Choisir les options"
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_split_form_view
 msgid "Select an existing order to merge next lines or let\n"
 "                    it empty to create a new purchase order."
-msgstr ""
+msgstr "Selectionner une commande existante avec laquelle fusionner les lignes suivantes ou laisser\n"
+"                    vide pour créer une nouvelle commande."
 
 #. module: purchase_split
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_view_form_inherit
 msgid "Select lines to move to a new order"
-msgstr ""
+msgstr "Sélectionner les lignes à déplacer vers une autre commande"
 
 #. module: purchase_split
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_view_form_inherit
 msgid "Split"
-msgstr ""
+msgstr "Scinder"
 
 #. module: purchase_split
 #: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__partner_id
@@ -126,10 +127,10 @@ msgstr "Fournisseur"
 #: code:addons/purchase_split/wizard/purchase_order_split.py:48
 #, python-format
 msgid "You can't select all lines"
-msgstr ""
+msgstr "Vous ne pouvez pas sélectionner toutes les lignes"
 
 #. module: purchase_split
 #: model:ir.actions.act_window,name:purchase_split.act_window_purchase_order_split
 msgid "🧙‍♂️Split ..."
-msgstr ""
+msgstr "🧙‍♂️Scinder ..."
 

@@ -101,7 +101,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange(
         'product_id', 'product_uom_qty', 'product_uom', 'price_unit',
-        'discount', 'name', 'tax_id'
+        'name', 'taxes_id'
     )
     def check_pack_line_modify(self):
         """ Do not let to edit a purchase order line if this one belongs to pack

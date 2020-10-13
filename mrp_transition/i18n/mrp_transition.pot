@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 21:06+0000\n"
-"PO-Revision-Date: 2020-10-08 21:06+0000\n"
+"POT-Creation-Date: 2020-10-13 20:13+0000\n"
+"PO-Revision-Date: 2020-10-13 20:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: mrp_transition
 #: model:ir.model.fields,field_description:mrp_transition.field_stock_move__compare_quantity_done
 msgid "Compare Quantity Done"
-msgstr ""
+msgstr "Comparer les quantités terminées"
 
 #. module: mrp_transition
 #: model:ir.model.fields,help:mrp_transition.field_stock_move__compare_quantity_done
@@ -26,17 +26,20 @@ msgid "Compare quantity_done with product_uom_qty :\n"
 " - Return 1 if quantity_done > product_uom_qty\n"
 " - Return 0 if quantity_done = product_uom_qty\n"
 " - Return -1 if quantity_done < product_uom_qty"
-msgstr ""
+msgstr "Compare quantity_done avec product_uom_qty :\n"
+" - Renvoi 1 si quantity_done > product_uom_qty\n"
+" - Renvoi 0 si quantity_done = product_uom_qty\n"
+" - Renvoi -1 si quantity_done < product_uom_qty"
 
 #. module: mrp_transition
 #: model:ir.model.fields,field_description:mrp_transition.field_stock_move__move_lines_count
 msgid "Move Lines Count"
-msgstr ""
+msgstr "Nombre de lignes de mouvement de stock"
 
 #. module: mrp_transition
 #: model:ir.model.fields,field_description:mrp_transition.field_mrp_production__picking_id
 msgid "Picking List"
-msgstr ""
+msgstr "Liste de prélèvement"
 
 #. module: mrp_transition
 #: model:ir.model,name:mrp_transition.model_mrp_production
@@ -46,7 +49,7 @@ msgstr ""
 #. module: mrp_transition
 #: model:res.groups,name:mrp_transition.group_mrp_transition
 msgid "Show extra fields on production order form"
-msgstr ""
+msgstr "Afficher plus de champs sur la fiche d'un ordre de fabrication"
 
 #. module: mrp_transition
 #: model:ir.model,name:mrp_transition.model_stock_move

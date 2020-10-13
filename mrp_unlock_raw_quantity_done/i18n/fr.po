@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_unlock_raw_quantity_done
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-13 20:13+0000\n"
+"PO-Revision-Date: 2020-10-13 22:21+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: mrp_unlock_raw_quantity_done
+#: model_terms:ir.ui.view,arch_db:mrp_unlock_raw_quantity_done.mrp_production_form_view
+msgid "Action to use when multiple assigned moves are in a 'red' state, it will set quantity done to expected value"
+msgstr "Action à utiliser quand plusieurs mouvements sont r=en 'rouge', elle va modifier les quantités terminées à la valeur attendue"
+
+#. module: mrp_unlock_raw_quantity_done
+#: model_terms:ir.ui.view,arch_db:mrp_unlock_raw_quantity_done.mrp_production_form_view
+msgid "Force Raw Quantity Done"
+msgstr "Forcer les quantités terminées"
+
+#. module: mrp_unlock_raw_quantity_done
+#: model:ir.model,name:mrp_unlock_raw_quantity_done.model_mrp_production
+msgid "Production Order"
+msgstr "Odre de fabrication"
+
+#. module: mrp_unlock_raw_quantity_done
+#: model:ir.model,name:mrp_unlock_raw_quantity_done.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"

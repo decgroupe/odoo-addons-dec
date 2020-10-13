@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 21:05+0000\n"
-"PO-Revision-Date: 2020-10-08 21:05+0000\n"
+"POT-Creation-Date: 2020-10-13 20:12+0000\n"
+"PO-Revision-Date: 2020-10-13 20:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:210
+#: code:addons/product_pricelist/models/product_pricelist.py:218
 #, python-format
 msgid "Base price is now {} ({})"
 msgstr "Le prix de référence est maintenant {} ({})"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:167
+#: code:addons/product_pricelist/models/product_pricelist.py:172
 #, python-format
 msgid "Base price is {}"
 msgstr "Le prix de référence est {}"
@@ -38,61 +38,67 @@ msgid "Gives the order in which the pricelist items will be checked. The evaluat
 msgstr "Donne l'ordre dans lequel les entrées de la liste de prix sont vérifiées. L'évaluation donne la plus grande priorité à la séquence la plus petite."
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:171
+#: code:addons/product_pricelist/models/product_pricelist.py:147
+#, python-format
+msgid "No rules loaded at this step"
+msgstr ""
+
+#. module: product_pricelist
+#: code:addons/product_pricelist/models/product_pricelist.py:176
 #, python-format
 msgid "Parse rule [{}] {}"
 msgstr "Analyse de la règle [{}] {}"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:213
+#: code:addons/product_pricelist/models/product_pricelist.py:221
 #, python-format
 msgid "Price (fixed) set to {}"
 msgstr "Le prix (fixe) est {}"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:216
+#: code:addons/product_pricelist/models/product_pricelist.py:224
 #, python-format
 msgid "Price (percentage) set to {}"
 msgstr "Le prix (pourcentage) est {}"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:223
+#: code:addons/product_pricelist/models/product_pricelist.py:231
 #, python-format
 msgid "Price discounted to {} ({}%)"
 msgstr "Le prix remisé est {} ({}%)"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:204
+#: code:addons/product_pricelist/models/product_pricelist.py:212
 #, python-format
 msgid "Price is based on \"{}\""
 msgstr "Le prix de référence est \"{}\""
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:196
+#: code:addons/product_pricelist/models/product_pricelist.py:201
 #, python-format
 msgid "Price is based on another pricelist: {}"
 msgstr "Le prix de référence se  base sur une autre liste de prix: {}"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:227
+#: code:addons/product_pricelist/models/product_pricelist.py:235
 #, python-format
 msgid "Price rounded to {}"
 msgstr "Prix arrondie à {}"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:232
+#: code:addons/product_pricelist/models/product_pricelist.py:240
 #, python-format
 msgid "Price surcharge applied {} (+{})"
 msgstr "Supplément de prix appliqué {} (+{})"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:242
+#: code:addons/product_pricelist/models/product_pricelist.py:250
 #, python-format
 msgid "Price updated (maximum margin) to {}"
 msgstr "Prix mis à jour (selon la limite de marge maximum) à {}"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:237
+#: code:addons/product_pricelist/models/product_pricelist.py:245
 #, python-format
 msgid "Price updated (minimum margin) to {}"
 msgstr "Prix mis à jour (selon la limite de marge minimum) à {}"
@@ -108,7 +114,7 @@ msgid "Pricelist Item"
 msgstr "Élément de la liste de prix"
 
 #. module: product_pricelist
-#: code:addons/product_pricelist/models/product_pricelist.py:162
+#: code:addons/product_pricelist/models/product_pricelist.py:167
 #, python-format
 msgid "Quantity is {}"
 msgstr "La quantité est de {}"
