@@ -13,3 +13,14 @@ class ResUsers(models.Model):
         help="This field is only used on reports when the report engine does "
         "not support html rendering",
     )
+
+    def __init__(self, pool, cr):
+        """ Override of __init__ to add access rights on notification_email_send
+            and alias fields. Access rights are disabled by default, but allowed
+            on some specific fields defined in self.SELF_{READ/WRITE}ABLE_FIELDS.
+        """
+        init_res = super().__init__(pool, cr)
+        type(self).SELF_WRITEABLE_FIELDS = list(
+            set(self.SELF_WRITEABLE_FIELDS + ['signature_text'])
+        )
+        return init_res
