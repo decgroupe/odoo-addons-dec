@@ -11,7 +11,7 @@
                     name="action_recompute_all_lines" 
                     string="Recompute Prices" 
                     type="object"
-                    attrs="{'invisible': [('state', 'in', ['to_approve', 'done', 'cancel'])]}"
+                    attrs="{'invisible': [('state', 'in', ['to_approve', 'purchase', 'done', 'cancel'])]}"
                     icon="">
                 </button>
             </button>

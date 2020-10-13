@@ -50,7 +50,8 @@ class PurchaseOrderLine(models.Model):
     @api.onchange('product_qty', 'product_uom')
     def _onchange_quantity(self):
         super()._onchange_quantity()
-        if self.product_id and self.order_id.pricelist_id and self.order_id.partner_id:
+        if self._is_editable() and self.product_id \
+            and self.order_id.pricelist_id and self.order_id.partner_id:
             self.price_unit = self._get_price_unit_by_quantity(
                 self.order_id, self.product_id, self.product_uom_qty,
                 self.product_uom, self.taxes_id

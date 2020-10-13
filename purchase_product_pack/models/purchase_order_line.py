@@ -92,6 +92,13 @@ class PurchaseOrderLine(models.Model):
                 record.move_dest_ids._action_cancel()
                 record.move_dest_ids.unlink()
 
+    def _is_editable(self):
+        #res = super().is_line_editable()
+        res = True
+        if self.pack_parent_line_id and not self.pack_modifiable:
+            res = False
+        return res
+
     @api.onchange(
         'product_id', 'product_uom_qty', 'product_uom', 'price_unit',
         'discount', 'name', 'tax_id'
@@ -99,8 +106,7 @@ class PurchaseOrderLine(models.Model):
     def check_pack_line_modify(self):
         """ Do not let to edit a purchase order line if this one belongs to pack
         """
-        if self._origin.pack_parent_line_id and \
-           not self._origin.pack_modifiable:
+        if not self._origin._is_editable():
             raise UserError(
                 _(
                     'You can not change this line because is part of a pack'
