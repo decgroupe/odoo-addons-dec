@@ -10,12 +10,40 @@ class PurchaseOrderLine(models.Model):
 
     # _get_display_price is inspired from the 'sale.order.line'
     # same name function
-    @api.multi
-    def _get_display_price(self, product):
+    @api.model
+    def _get_display_price(self, product, pricelist_id):
         # For purchase pricelists, we don't care about the discount_policy
         # We always return the discounted price
-        product = product.with_context(pricelist=self.order_id.pricelist_id.id)
+        product = product.with_context(pricelist=pricelist_id.id)
         return product.price
+
+    @api.model
+    def _get_price_unit(self, product_id, pricelist_id, taxes_id, company_id):
+        res = self.env['account.tax']._fix_tax_included_price_company(
+            self._get_display_price(product_id, pricelist_id),
+            product_id.supplier_taxes_id,
+            taxes_id,
+            company_id,
+        )
+        return res
+
+    @api.model
+    def _get_price_unit_by_quantity(
+        self, order_id, product_id, product_uom_qty, product_uom_id, taxes_id
+    ):
+        product = product_id.with_context(
+            lang=order_id.partner_id.lang,
+            partner=order_id.partner_id,
+            quantity=product_uom_qty,
+            date=order_id.date_order,
+            pricelist=order_id.pricelist_id.id,
+            uom=product_uom_id.id,
+            fiscal_position=self.env.context.get('fiscal_position')
+        )
+        res = self._get_price_unit(
+            product, order_id.pricelist_id, taxes_id, order_id.company_id
+        )
+        return res
 
     # _onchange_quantity is inspired from the 'sale.order.line'
     # product_id_change function
@@ -23,21 +51,9 @@ class PurchaseOrderLine(models.Model):
     def _onchange_quantity(self):
         super()._onchange_quantity()
         if self.product_id and self.order_id.pricelist_id and self.order_id.partner_id:
-            Tax = self.env['account.tax']
-            product = self.product_id.with_context(
-                lang=self.order_id.partner_id.lang,
-                partner=self.order_id.partner_id,
-                quantity=self.product_uom_qty,
-                date=self.order_id.date_order,
-                pricelist=self.order_id.pricelist_id.id,
-                uom=self.product_uom.id,
-                fiscal_position=self.env.context.get('fiscal_position')
-            )
-            self.price_unit = Tax._fix_tax_included_price_company(
-                self._get_display_price(product),
-                product.supplier_taxes_id,
-                self.taxes_id,
-                self.company_id,
+            self.price_unit = self._get_price_unit_by_quantity(
+                self.order_id, self.product_id, self.product_uom_qty,
+                self.product_uom, self.taxes_id
             )
 
     def _suggest_quantity(self):
