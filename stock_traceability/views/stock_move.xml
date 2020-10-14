@@ -95,6 +95,35 @@
             <xpath expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_id']" position="before">
                 <field name="id" widget="widget_id"/>
             </xpath>
+            <form position="inside">
+                <footer>
+                    <button
+                        name="action_assign"
+                        string="Check Assign"
+                        type="object"
+                        class="btn-primary">
+                    </button>
+                    <button 
+                        name="action_recompute_state"
+                        string="Recompute State"
+                        type="object"
+                        class="btn-primary">
+                    </button>
+                    <button 
+                        name="action_force_state_confirmed_to_assigned" 
+                        string="Force Assigned" 
+                        type="object" 
+                        confirm="Are you sure that you want to set this move state to Assigned (ignoring virtual available quantity) ?"
+                        class="btn-primary" 
+                        attrs="{
+                            'invisible': [
+                                ('state', '!=', 'confirmed'),
+                            ]
+                        }">
+                    </button>
+                    <a data-action="discard" data-dismiss="modal" href="#">Close</a>
+                </footer>
+            </form>
         </field>
     </record>
 
@@ -129,10 +158,18 @@
             <xpath expr="//field[@name='reference']" position="before">
                 <field name="name"/>
                 <field name="picking_id"/>
-            </xpath>        
+            </xpath>
             
             <xpath expr="//field[@name='product_id']" position="before">
-                <field name="procure_method"/>
+                <field name="picking_code" invisible="1"/>
+                <field 
+                    name="procure_method" 
+                    attrs="{
+                        'invisible': [
+                            ('picking_code', '=', 'incoming'),
+                        ]
+                    }">
+                </field>
             </xpath>
 
             <xpath expr="//group[@name='linked_group']/field[@name='move_orig_ids']" position="before">
