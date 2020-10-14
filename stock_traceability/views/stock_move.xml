@@ -106,6 +106,17 @@
             <form position="inside">
                 <div class="d_view_name" groups="base.group_erp_manager">stock.move.form@stock_traceability</div>
             </form>
+
+            <xpath expr="//group[@name='main_grp_col2']//field[@name='name']" position="before">
+                <label for="quantity_done" string="Done/Reserved"/>
+                <div class="o_row">
+                    <span><field name="quantity_done" readonly="1" nolabel="1"/></span>
+                    <span> / </span>
+                    <span><field name="reserved_availability" nolabel="1"/></span>
+                    <span><field name="product_uom" readonly="1" nolabel="1"/></span>
+                </div>
+            </xpath>
+
             <xpath expr="//group[@name='origin_grp']" position="replace">
                 <group name="main_origin_grp" colspan="2">
                     <group name="origin_grp_col1">$0</group>
