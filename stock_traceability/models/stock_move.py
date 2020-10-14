@@ -328,7 +328,8 @@ class StockMove(models.Model):
     def _get_assignable_status(self, html=False):
         Quant = self.env['stock.quant']
         res = []
-        if self.state == 'waiting' and self.move_orig_ids and all(
+        if self.state in ('waiting', 'confirmed') and self.move_orig_ids \
+            and all(
             orig.state in ('done', 'cancel') for orig in self.move_orig_ids
         ):
             rounding = self.product_id.uom_id.rounding
@@ -346,10 +347,9 @@ class StockMove(models.Model):
                 available_quantity,
                 precision_rounding=rounding
             ) > 0:
-                head = '⚠️{0}'.format('Reservation issue')
-                desc = '\n{0} needed but {1} available'.format(
-                    needed_quantity, available_quantity
-                )
+                head = '⚠️{0}'.format(_('Reservation issue'))
+                desc = '\n' + _('{0} needed but {1} available'
+                               ).format(needed_quantity, available_quantity)
                 hd = format_hd(head, desc, html)
                 if html:
                     hd = div(hd, 'alert-warning')
