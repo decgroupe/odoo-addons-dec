@@ -30,7 +30,8 @@ class MrpProduction(models.Model):
         """
         for production_id in self:
             for move in production_id.move_raw_ids.filtered(
-                lambda m: not m.is_done and m.state == 'assigned'
+                lambda m: not m.is_done and m.state in
+                ('partially_available', 'assigned')
             ):
                 rounding = move.product_uom.rounding
                 cmp1 = float_compare(
@@ -45,7 +46,12 @@ class MrpProduction(models.Model):
                 )
 
                 if cmp1 <= 0 and cmp2 > 0:
-                    move.quantity_done = move.product_uom_qty
+                    if move.state == 'assigned':
+                        move.quantity_done = move.product_uom_qty
+                    elif move.state == 'partially_available':
+                        move.quantity_done = move.product_uom_qty
+                        move.reserved_availability = 0
+
                     _logger.info(
                         "Force quantity done to {} on move {}: {}".format(
                             move.product_uom_qty, move.id,
