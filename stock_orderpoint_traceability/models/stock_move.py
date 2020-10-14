@@ -4,10 +4,11 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 from ...stock_traceability.models.html_helper import (
     format_hd,
+    div,
 )
 
 _logger = logging.getLogger(__name__)
@@ -54,13 +55,35 @@ class StockMove(models.Model):
     def _get_mts_status(self, html=False):
         res = super()._get_mts_status(html)
 
-        for p in self.orderpoint_created_production_ids:
-            head, desc = self._get_production_status(p)
-            res.append(format_hd('♻️⮡ ' + head, desc, html))
+        production_ids = self.orderpoint_created_production_ids.filtered(
+            lambda p: p.state not in ('done', 'cancel')
+        )
+        if production_ids:
+            for p in self.production_ids:
+                head, desc = self._get_production_status(p)
+                res.append(format_hd('♻️⮡ ' + head, desc, html))
+        # else:
+        #     head = '⚠️{0}'.format(_('Orderpoint issue'))
+        #     desc = '\n' + _('No production order in progress')
+        #     hd = format_hd(head, desc, html)
+        #     if html:
+        #         hd = div(hd, 'alert-warning')
+        #     res.append(hd)
 
-        for p in self.orderpoint_created_purchase_line_ids:
-            head, desc = self._get_purchase_status(p)
-            res.append(format_hd('♻️⮡ ' + head, desc, html))
+        purchase_line_ids = self.orderpoint_created_purchase_line_ids.filtered(
+            lambda p: p.state not in ('done', 'cancel')
+        )
+        if purchase_line_ids:
+            for p in purchase_line_ids:
+                head, desc = self._get_purchase_status(p)
+                res.append(format_hd('♻️⮡ ' + head, desc, html))
+        # else:
+        #     head = '⚠️{0}'.format(_('Orderpoint issue'))
+        #     desc = '\n' + _('No purchase order in progress')
+        #     hd = format_hd(head, desc, html)
+        #     if html:
+        #         hd = div(hd, 'alert-warning')
+        #     res.append(hd)
 
         return res
 
