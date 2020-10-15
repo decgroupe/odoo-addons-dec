@@ -12,8 +12,11 @@ def lf2html(text):
     return text
 
 
-def div(content, html_class):
-    return '<div class="{}">{}</div>'.format(html_class, content)
+def div(content, html_class=''):
+    if html_class:
+        return '<div class="{}">{}</div>'.format(html_class, content)
+    else:
+        return '<div>{}</div>'.format(content)
 
 
 def ul(content):
