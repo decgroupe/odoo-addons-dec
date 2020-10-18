@@ -8,10 +8,6 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    internal_notes = fields.Text(
-        'Internal Notes',
-        oldname='comments',
-    )
     reference_id = fields.Many2one(
         'ref.reference',
         'Reference',

@@ -48,10 +48,9 @@ class RefReference(models.Model):
         string='Status',
         oldname='product_state',
     )
-    internal_notes = fields.Text(
-        related='product_id.internal_notes',
+    description = fields.Text(
+        related='product_id.description',
         string='Internal Notes',
-        oldname='product_comments',
     )
     current_version = fields.Integer(
         'Current version',
@@ -106,10 +105,10 @@ class RefReference(models.Model):
         bench = Bench().start()
         for key in keywords[0]:
             if key and key[0] == '+':
-                use_internal_notes = True
+                use_description = True
                 key = key[1:]
             else:
-                use_internal_notes = False
+                use_description = False
 
             if key:
                 res_value = self.search([
@@ -133,13 +132,13 @@ class RefReference(models.Model):
                 )
                 res += res_public_code.ids
 
-                if use_internal_notes:
-                    res_internal_notes = self.search(
+                if use_description:
+                    res_description = self.search(
                         [
-                            ('product_id.internal_notes', 'ilike', key),
+                            ('product_id.description', 'ilike', key),
                         ]
                     )
-                    res += res_internal_notes.ids
+                    res += res_description.ids
                 # A tag must be at least 2 characters
                 if len(key) > 2:
                     res_tags = self.search(
@@ -159,7 +158,7 @@ class RefReference(models.Model):
         category_domain = []
         name_domain = []
         public_code_domain = []
-        internal_notes_domain = []
+        description_domain = []
         tags_domain = []
 
         def add_to(domain, filter):
@@ -172,10 +171,10 @@ class RefReference(models.Model):
         bench = Bench().start()
         for key in keywords[0]:
             if key and key[0] == '+':
-                use_internal_notes = True
+                use_description = True
                 key = key[1:]
             else:
-                use_internal_notes = False
+                use_description = False
 
             if key:
                 add_to(value_domain, [('searchvalue', 'ilike', key)])
@@ -184,10 +183,10 @@ class RefReference(models.Model):
                 add_to(
                     public_code_domain, [('product_id.public_code', '=', key)]
                 )
-                if use_internal_notes:
+                if use_description:
                     add_to(
-                        internal_notes_domain,
-                        [('product_id.internal_notes', 'ilike', key)]
+                        description_domain,
+                        [('product_id.description', 'ilike', key)]
                     )
                 # A tag must be at least 2 characters
                 if len(key) > 2:
@@ -204,9 +203,9 @@ class RefReference(models.Model):
         res += res_name.ids
         res_public_code = self.search(public_code_domain)
         res += res_public_code.ids
-        if internal_notes_domain:
-            res_internal_notes = self.search(internal_notes_domain)
-            res += res_internal_notes.ids
+        if description_domain:
+            res_description = self.search(description_domain)
+            res += res_description.ids
         if tags_domain:
             res_tags = self.search(tags_domain)
             res += res_tags.ids

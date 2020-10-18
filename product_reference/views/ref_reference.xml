@@ -46,7 +46,7 @@
                         <field name="version_ids"/>
                     </group>
                     <group name="notes">
-                        <field name="internal_notes"/>
+                        <field name="description"/>
                     </group>
                 </sheet>
             </form>
