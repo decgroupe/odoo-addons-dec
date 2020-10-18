@@ -1,0 +1,385 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_reference
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-18 16:12+0000\n"
+"PO-Revision-Date: 2020-10-18 18:16+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: product_reference_management
+#: model:ir.ui.menu,name:product_reference_management.menu_product_reference
+msgid "Products"
+msgstr "Articles"
+
+#. module: product_reference_management
+#: model:ir.ui.menu,name:product_reference_management.menu_product_reference_manager
+msgid "REF Manager"
+msgstr "REF Manager"
+
+#. module: product_reference_management
+#: model:res.groups,name:product_reference_management.group_ref_manager
+msgid "Reference Manager"
+msgstr "Gestionnaire des références"
+
+#. module: product_reference_management
+#: model:res.groups,name:product_reference_management.group_ref_user
+msgid "Reference User"
+msgstr "Utilisateur des références"
+
+#. module: product_reference_management
+#: model:ir.module.category,name:product_reference_management.module_category_reference
+msgid "Reference management"
+msgstr "Gestion des références"
+
+#~ msgid "Attribute"
+#~ msgstr "Attribut"
+
+#~ msgid "Attributes"
+#~ msgstr "Attributs"
+
+#~ msgid "Author"
+#~ msgstr "Auteur"
+
+#~ msgid "BoM Lines"
+#~ msgstr "Lignes de nomenclature"
+
+#~ msgid "Case"
+#~ msgstr "Casier"
+
+#~ msgid "Categories"
+#~ msgstr "Catégories"
+
+#~ msgid "Category"
+#~ msgstr "Catégorie"
+
+#~ msgid "Category Line"
+#~ msgstr "Ligne de catégorie"
+
+#~ msgid "Category line"
+#~ msgstr "Ligne de catégorie"
+
+#~ msgid "Category lines"
+#~ msgstr "Lignes de catégorie"
+
+#~ msgid "Category properties"
+#~ msgstr "Propriétés de catégorie"
+
+#~ msgid "Code"
+#~ msgstr "Code"
+
+#~ msgid "Code category must be unique !"
+#~ msgstr "Le code de la categorie doit être unique !"
+
+#~ msgid "Company"
+#~ msgstr "Société"
+
+#~ msgid "Computer"
+#~ msgstr "PC"
+
+#~ msgid "Cost Price"
+#~ msgstr "Prix de revient"
+
+#~ msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
+#~ msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
+
+#~ msgid "Create Date"
+#~ msgstr "Date de création"
+
+#~ msgid "Create date"
+#~ msgstr "Date de création"
+
+#~ msgid "Created by"
+#~ msgstr "Créé par"
+
+#~ msgid "Created on"
+#~ msgstr "Créé le"
+
+#~ msgid "Creator"
+#~ msgstr "Créateur"
+
+#~ msgid "Current version"
+#~ msgstr "Version actuelle"
+
+#~ msgid "Default Code"
+#~ msgstr "Référence interne"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "External ID"
+#~ msgstr "Identifiant externe"
+
+#~ msgid "Fixed values"
+#~ msgstr "Valeurs fixes"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Group By"
+#~ msgstr "Regrouper par"
+
+#~ msgid "Has a Location"
+#~ msgstr "Est repéré"
+
+#~ msgid "Has a Public Code"
+#~ msgstr "A une référence commerciale"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID defined in xml file"
+#~ msgstr "ID de la vue définie dans le fichier XML"
+
+#~ msgid "IP Address"
+#~ msgstr "Adresse IP"
+
+#~ msgid "Internal Notes"
+#~ msgstr "Notes internes"
+
+#~ msgid "Is not a Pack"
+#~ msgstr "N'est pas un Pack"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Dernière modification par"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Dernière mise à jour le"
+
+#~ msgid "Last Write Date"
+#~ msgstr "Date de dernière modification"
+
+#~ msgid "Last Writer"
+#~ msgstr "Modifié par"
+
+#~ msgid "Lines"
+#~ msgstr "Lignes"
+
+#~ msgid "Local Username"
+#~ msgstr "Nom utilisateur PC"
+
+#~ msgid "Locked price"
+#~ msgstr "Prix verrouillé"
+
+#~ msgid "Log"
+#~ msgstr "Historique"
+
+#~ msgid "Logs"
+#~ msgstr "Historiques"
+
+#~ msgid "Manufacturer"
+#~ msgstr "Fabriquant"
+
+#~ msgid "Market BoM parent and children line"
+#~ msgstr "À la fois parent et ligne de tarif"
+
+#~ msgid "Market Category"
+#~ msgstr "Catégorie du tarif"
+
+#~ msgid "Market bill of materials and services"
+#~ msgstr "Nomenclatures et services du Tarif"
+
+#~ msgid "Markup rate"
+#~ msgstr "Taux de marque"
+
+#~ msgid "Material factor (PF)"
+#~ msgstr "Ratio petite fourniture (PF)"
+
+#~ msgid "Modification date"
+#~ msgstr "Date de modification"
+
+#~ msgid "Modification name"
+#~ msgstr "Nom de la modification"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Operation"
+#~ msgstr "Opération"
+
+#~ msgid "Pack"
+#~ msgstr "Pack"
+
+#~ msgid "Pack Type"
+#~ msgstr "Type de pack"
+
+#~ msgid "Packs"
+#~ msgstr "Packs"
+
+#~ msgid "Parent BoM"
+#~ msgstr "Nomenclature mère"
+
+#~ msgid "Path to picture"
+#~ msgstr "Chemin vers l'image"
+
+#~ msgid "Position"
+#~ msgstr "Position"
+
+#~ msgid "Prefix"
+#~ msgstr "Préfixe"
+
+#~ msgid "Price"
+#~ msgstr "Prix"
+
+#~ msgid "Price at which the product is sold to customers."
+#~ msgstr "Prix auquel le produit est vendu aux clients."
+
+#~ msgid "Product"
+#~ msgstr "Produits"
+
+#~ msgid "Product Qty"
+#~ msgstr "Qté de produit"
+
+#~ msgid "Product Template"
+#~ msgstr "Modèle de produit"
+
+#~ msgid "Product UOM"
+#~ msgstr "UdM du produit"
+
+#~ msgid "Product category"
+#~ msgstr "Catégorie de produit"
+
+#~ msgid "Product folder error count"
+#~ msgstr "Nombre d'erreurs dans le dossier produit"
+
+#~ msgid "Product folder item count"
+#~ msgstr "Nombre d'éléments dans le dossier produit"
+
+#~ msgid "Product folder task count"
+#~ msgstr "Nombre de tâches dans le dossier produit"
+
+#~ msgid "Product folder warning count"
+#~ msgstr "Nombre d'avertissements dans le dossier produit"
+
+#~ msgid "Properties"
+#~ msgstr "Propriétés"
+
+#~ msgid "Property"
+#~ msgstr "Propriété"
+
+#~ msgid "Property (owner)"
+#~ msgstr "Propriétaire "
+
+#~ msgid "Property description"
+#~ msgstr "Description de la propriété"
+
+#~ msgid "Public Code"
+#~ msgstr "Référence commerciale"
+
+#~ msgid "Rack"
+#~ msgstr "Rayon"
+
+#~ msgid "Reference"
+#~ msgstr "Référence"
+
+#~ msgid "Reference line"
+#~ msgstr "Ligne de référence"
+
+#~ msgid "Reference lines"
+#~ msgstr "Lignes de référence"
+
+#~ msgid "Reference value must be unique !"
+#~ msgstr "La référence doit être unique !"
+
+#~ msgid "Reference version"
+#~ msgstr "Version de référence"
+
+#~ msgid "References"
+#~ msgstr "Références"
+
+#~ msgid "Row"
+#~ msgstr "Rangée"
+
+#~ msgid "Sale Price"
+#~ msgstr "Prix de vente"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Ligne de commande de vente"
+
+#~ msgid "Search value"
+#~ msgstr "Valeur de recherche"
+
+#~ msgid "Services"
+#~ msgstr "Prestations"
+
+#~ msgid "Status"
+#~ msgstr "État"
+
+#~ msgid "Supplier"
+#~ msgstr "Fournisseur"
+
+#~ msgid "Template"
+#~ msgstr "Modèle"
+
+#~ msgid "UoM (Unit of Measure) is the unit of measurement for the inventory control"
+#~ msgstr "UdM (Unité de mesure) est l'unité utilisée pour le contrôle d'inventaire"
+
+#~ msgid "Used by REF manager Market"
+#~ msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
+
+#~ msgid "User"
+#~ msgstr "Utilisateur"
+
+#~ msgid "Value"
+#~ msgstr "Valeur"
+
+#~ msgid "Version"
+#~ msgstr "Version"
+
+#~ msgid "Versions"
+#~ msgstr "Versions"
+
+#~ msgid "Compute Material Cost Manually"
+#~ msgstr "Calculez les coûts matériel manuellement"
+
+#~ msgid "Generate Material Cost Report"
+#~ msgstr "Générer le rapport sur les coûts matériel"
+
+#~ msgid "Ciel"
+#~ msgstr "Ciel"
+
+#~ msgid "Comments"
+#~ msgstr "Commentaires"
+
+#~ msgid "Date"
+#~ msgstr "Date"
+
+#~ msgid "Owner"
+#~ msgstr "Propriétaire"
+
+#~ msgid "Price Lines"
+#~ msgstr "Lignes de prix"
+
+#~ msgid "Price surcharge alert"
+#~ msgstr "Alert d'augmentation de prix"
+
+#~ msgid "Prices"
+#~ msgstr "Prix"
+
+#~ msgid "Reference Lines"
+#~ msgstr "Lignes de référence"
+
+#~ msgid "Version Lines"
+#~ msgstr "Lignes de version"
+
+#~ msgid "localcomputername"
+#~ msgstr "localcomputername"
+
+#~ msgid "username"
+#~ msgstr "username"

@@ -20,6 +20,5 @@ class Product(models.Model):
         result = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        result = self.product_tmpl_id.append_public_code_search(name, result, limit)
-        result = self.product_tmpl_id.append_reference_search(name, result, limit)
+        result = self.product_tmpl_id.append_extra_search(name, result, limit)
         return result

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_template_search_view">
+        <field name="name">product.template.search@product_reference_pack</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="filter_to_sell" position="before">
+                <separator/>
+                <filter 
+                    string="Is not a Pack" 
+                    name="filter_is_not_a_pack" 
+                    domain="[('pack_ok','=',False)]">
+                </filter>
+                <separator/>
+            </filter>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_window_product_template_as_service">
+        <field name="name">Services</field>
+        <field name="res_model">product.template</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="limit">20</field>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="context">{
+            'search_default_services': 1, 
+            'search_default_filter_is_not_a_pack': 1,
+            'default_type': 'service'}
+        </field>
+    </record>
+
+</odoo>

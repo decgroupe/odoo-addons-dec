@@ -6,9 +6,8 @@
     'summary': '''Add a link to template from variant form''',
     'depends': [
         'product',
-        'product_reference',
+        'product_public_code',
     ],
-    # 'force_migration':'12.0.0.0.0',
     'data': [
         'views/assets.xml',
         'views/product_product.xml',

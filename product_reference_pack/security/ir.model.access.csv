@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ref_pack_user,Read only access to packs for User,model_ref_pack,group_ref_pack_user,1,0,0,0
+access_ref_pack_manager,Full access to packs for Manager,model_ref_pack,group_ref_pack_manager,1,1,1,1

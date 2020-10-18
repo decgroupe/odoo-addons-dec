@@ -9,13 +9,14 @@
         'uom',
         'product',
         'mrp',
-        'dec',
+        'product_reference_management',
         'product_state_review',
         'product_location',
         'product_prices',
         'product_legacy_routes',
         'product_tagging',
         'product_pack_order_type',
+        'product_public_code',
         'mrp_production_request',
         'mrp_bom_dates',
         'mrp_bom_supplier',
@@ -23,7 +24,6 @@
         'sale_purchase',
         'sale_timesheet',
     ],
-    #'force_migration':'12.0.0.0.0',
     'data':
         [
             'security/model_security.xml',
@@ -37,11 +37,7 @@
             'views/ref_category.xml',
             'views/ref_category_line.xml',
             'views/ref_version.xml',
-            'views/ref_log.xml',
-            'views/ref_pack.xml',
             'views/menu.xml',
         ],
-    #'force_post_init_hook': True,
-    'post_init_hook': 'post_init',
     'installable': True
 }

@@ -16,7 +16,6 @@ class RefPack(models.Model):
         'product.template',
         'Product',
         required=True,
-        oldname='product',
     )
     name = fields.Char(
         related='product_id.name',
@@ -29,7 +28,6 @@ class RefPack(models.Model):
     public_code = fields.Char(
         related='product_id.public_code',
         string='Public Code',
-        oldname='ciel_code',
     )
     list_price = fields.Float(
         related='product_id.list_price',

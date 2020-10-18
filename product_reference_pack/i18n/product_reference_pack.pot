@@ -1,0 +1,140 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_reference_pack
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-18 16:12+0000\n"
+"PO-Revision-Date: 2020-10-18 16:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__default_code
+msgid "Code"
+msgstr ""
+
+#. module: product_reference_pack
+#: selection:ref.pack,type:0
+msgid "Company"
+msgstr "Société"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__standard_price
+msgid "Cost Price"
+msgstr "Prix de revient"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__standard_price
+msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
+msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à fixer en moyenne / FIFO."
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__id
+msgid "ID"
+msgstr ""
+
+#. module: product_reference_pack
+#: model_terms:ir.ui.view,arch_db:product_reference_pack.product_template_search_view
+msgid "Is not a Pack"
+msgstr "N'est pas un Pack"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: product_reference_pack
+#: selection:ref.pack,type:0
+msgid "Manufacturer"
+msgstr "Fabriquant"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: product_reference_pack
+#: model:ir.model,name:product_reference_pack.model_ref_pack
+#: model_terms:ir.ui.view,arch_db:product_reference_pack.ref_pack_form_view
+msgid "Pack"
+msgstr ""
+
+#. module: product_reference_pack
+#: model:res.groups,name:product_reference_pack.group_ref_pack_manager
+msgid "Pack Manager"
+msgstr ""
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__type
+msgid "Pack Type"
+msgstr "Type de pack"
+
+#. module: product_reference_pack
+#: model:res.groups,name:product_reference_pack.group_ref_pack_user
+msgid "Pack User"
+msgstr ""
+
+#. module: product_reference_pack
+#: model:ir.actions.act_window,name:product_reference_pack.act_window_ref_pack
+#: model:ir.ui.menu,name:product_reference_pack.menu_ref_pack
+#: model_terms:ir.ui.view,arch_db:product_reference_pack.ref_pack_tree_view
+msgid "Packs"
+msgstr ""
+
+#. module: product_reference_pack
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__list_price
+msgid "Price at which the product is sold to customers."
+msgstr "Prix auquel l'article est vendu aux clients."
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__public_code
+msgid "Public Code"
+msgstr "Référence commerciale"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__list_price
+msgid "Sale Price"
+msgstr "Prix de vente"
+
+#. module: product_reference_pack
+#: model:ir.actions.act_window,name:product_reference_pack.act_window_product_template_as_service
+msgid "Services"
+msgstr "Prestations"
+

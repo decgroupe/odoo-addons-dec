@@ -22,7 +22,7 @@ class SaleOrderLine(models.Model):
                         'Obsolete product!\n '
                         '(This product must not be sold anymore.)\n\n %s'
                     ) %
-                    (self.product_id.internal_notes or _('No internal notes'))
+                    (self.product_id.description or _('No internal notes'))
             }
             res = {'warning': warning}
 
@@ -35,7 +35,7 @@ class SaleOrderLine(models.Model):
                         'This product needs to be reviewed:\n\n - %s \n\n - '
                         'Please contact "%s"'
                     ) % (
-                        self.product_id.internal_notes or
+                        self.product_id.description or
                         _('No internal notes'), self.product_id.responsible_id
                         and self.product_id.responsible_id.name or
                         _('No responsible for this product')

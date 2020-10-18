@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ref_log_user,Read and create access to logs for User,model_ref_log,group_ref_log_user,1,0,1,0

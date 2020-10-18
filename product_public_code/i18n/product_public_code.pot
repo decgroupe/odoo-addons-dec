@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_public_code
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-18 16:12+0000\n"
+"PO-Revision-Date: 2020-10-18 16:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_public_code
+#: model_terms:ir.ui.view,arch_db:product_public_code.product_template_search_view
+msgid "Has a Public Code"
+msgstr "A une référence commerciale"
+
+#. module: product_public_code
+#: model:ir.model,name:product_public_code.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: product_public_code
+#: model:ir.model,name:product_public_code.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_public_code
+#: model:ir.model.fields,field_description:product_public_code.field_product_product__public_code
+#: model:ir.model.fields,field_description:product_public_code.field_product_template__public_code
+msgid "Public Code"
+msgstr "Référence commerciale"
+
+#. module: product_public_code
+#: model:ir.model,name:product_public_code.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+

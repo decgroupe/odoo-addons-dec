@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record model="res.groups" id="group_ref_pack_user">
+            <field name="name">Pack User</field>
+            <field name="category_id" ref="product_reference_management.module_category_reference"/>
+        </record>
+        
+        <record model="res.groups" id="group_ref_pack_manager">
+            <field name="name">Pack Manager</field>
+            <field name="category_id" ref="product_reference_management.module_category_reference"/>
+            <field name="implied_ids" eval="[(4, ref('group_ref_pack_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+    </data>
+</odoo>

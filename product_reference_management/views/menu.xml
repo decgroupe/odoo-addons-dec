@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_product_reference">
+        <field name="name">Products</field>
+        <field name="sequence" eval="10"/>
+        <field name="parent_id" ref="dec.menu_dec"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_product_reference_manager">
+        <field name="name">REF Manager</field>
+        <field name="sequence" eval="10"/>
+        <field name="parent_id" ref="menu_product_reference"/>
+    </record>
+
+</odoo>

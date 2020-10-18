@@ -1,24 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ref_log_user,Read and create access to logs for User,model_ref_log,group_ref_user,1,0,1,0
-access_ref_category_user,Read only access to categories for User,model_ref_category,group_ref_user,1,0,0,0
-access_ref_category_line_user,Read only access to category lines for User,model_ref_category_line,group_ref_user,1,0,0,0
-access_ref_property_user,Read only access to properties for User,model_ref_property,group_ref_user,1,0,0,0
-access_ref_attribute_user,Read only access to attributes for User,model_ref_attribute,group_ref_user,1,0,0,0
-access_ref_reference_user,Read and write access to references for User,model_ref_reference,group_ref_user,1,1,0,0
-access_ref_reference_line_user,Read only access to reference lines for User,model_ref_reference_line,group_ref_user,1,0,0,0
-access_ref_version_user,Edit access to reference version lines for User,model_ref_version,group_ref_user,1,1,1,0
-access_ref_category_manager,Full access to categories for Manager,model_ref_category,group_ref_manager,1,1,1,1
-access_ref_category_line_manager,Full access to category lines for Manager,model_ref_category_line,group_ref_manager,1,1,1,1
-access_ref_property_manager,Full access to properties for Manager,model_ref_property,group_ref_manager,1,1,1,1
-access_ref_attribute_manager,Full access to attributes for Manager,model_ref_attribute,group_ref_manager,1,1,1,1
-access_ref_reference_manager,Full access to references for Manager,model_ref_reference,group_ref_manager,1,1,1,1
-access_ref_reference_line_manager,Full access to reference lines for Manager,model_ref_reference_line,group_ref_manager,1,1,1,1
-access_ref_version_manager,Full access to reference version lines for Manager,model_ref_version,group_ref_manager,1,1,1,1
-access_ref_pack_user,Read only access to packs for User,model_ref_pack,group_ref_user,1,0,0,0
-access_ref_pack_manager,Full access to packs for Manager,model_ref_pack,group_ref_manager,1,1,1,1
-access_ref_market_category_user,Full access to market categories for User,model_ref_market_category,group_ref_user,1,1,1,1
-product.access_product_template_user,Extend access (+write) to product templates for Manager,product.model_product_template,group_ref_manager,1,1,0,0
-product.access_product_product_employee,"Extend access (+write, +create) to products for Manager",product.model_product_product,group_ref_manager,1,1,1,0
-product.access_product_template_user,Extend access (+write) to product templates for User,product.model_product_template,base.group_user,1,1,0,0
-product.access_product_product_employee,Extend access (+write) to products for User,product.model_product_product,base.group_user,1,1,0,0
-access_ref_market_bom,Full access to market bom lines for User,model_ref_market_bom,group_ref_user,1,1,1,1
+access_ref_category_user,Read only access to categories for User,model_ref_category,product_reference_management.group_ref_user,1,0,0,0
+access_ref_category_line_user,Read only access to category lines for User,model_ref_category_line,product_reference_management.group_ref_user,1,0,0,0
+access_ref_property_user,Read only access to properties for User,model_ref_property,product_reference_management.group_ref_user,1,0,0,0
+access_ref_attribute_user,Read only access to attributes for User,model_ref_attribute,product_reference_management.group_ref_user,1,0,0,0
+access_ref_reference_user,Read and write access to references for User,model_ref_reference,product_reference_management.group_ref_user,1,1,0,0
+access_ref_reference_line_user,Read only access to reference lines for User,model_ref_reference_line,product_reference_management.group_ref_user,1,0,0,0
+access_ref_version_user,Edit access to reference version lines for User,model_ref_version,product_reference_management.group_ref_user,1,1,1,0
+access_ref_category_manager,Full access to categories for Manager,model_ref_category,product_reference_management.group_ref_manager,1,1,1,1
+access_ref_category_line_manager,Full access to category lines for Manager,model_ref_category_line,product_reference_management.group_ref_manager,1,1,1,1
+access_ref_property_manager,Full access to properties for Manager,model_ref_property,product_reference_management.group_ref_manager,1,1,1,1
+access_ref_attribute_manager,Full access to attributes for Manager,model_ref_attribute,product_reference_management.group_ref_manager,1,1,1,1
+access_ref_reference_manager,Full access to references for Manager,model_ref_reference,product_reference_management.group_ref_manager,1,1,1,1
+access_ref_reference_line_manager,Full access to reference lines for Manager,model_ref_reference_line,product_reference_management.group_ref_manager,1,1,1,1
+access_ref_version_manager,Full access to reference version lines for Manager,model_ref_version,product_reference_management.group_ref_manager,1,1,1,1

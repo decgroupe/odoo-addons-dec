@@ -8,7 +8,6 @@
     'depends': [
         'sale',
         'product',
-        'product_reference',
         'product_state_review',
     ],
     #'force_migration':'12.0.0.0.0',
