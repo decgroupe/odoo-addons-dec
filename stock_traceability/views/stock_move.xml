@@ -40,6 +40,12 @@
         <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
         <field name="arch" type="xml">
             <form position="inside">
+                <button
+                    name="action_open_stock_move_form"
+                    string="Open Advanced Form View"
+                    type="object"
+                    class="btn-primary">
+                </button>
                 <div class="d_view_name" groups="base.group_erp_manager">stock.move.picking.form#admin@stock_traceability</div>
             </form>
             <xpath expr="//form" position="attributes">

@@ -206,6 +206,24 @@ class StockMove(models.Model):
         action['res_id'] = id
         return action
 
+    def action_open_stock_move_form(self):
+        #action = self.env.ref('mail.mail_activity_action').read()[0]
+        action = {
+            'type': 'ir.actions.act_window',
+            'name': 'Open Advanced Stock Move Form View',
+            'display_name': ' Stock Move Advanced View',
+            'res_model': 'stock.move',
+            'context': '{}',
+            'domain': '[]',
+            'filter': False,
+            'target': 'new',
+            'view_id': self.env.ref('stock.view_move_form').id,
+            'view_mode': 'form',
+            'view_type': 'form',
+        }
+        action['res_id'] = self.id
+        return action
+
     def _get_production_status(self, production_id):
         p = production_id
         state = dict(p._fields['state']._description_selection(self.env)).get(
