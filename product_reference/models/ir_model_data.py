@@ -42,16 +42,17 @@ class IrModelData(models.Model):
                     _("This record already owns an external ID: %s") %
                     (current_xmlid, )
                 )
-        self.sudo().create(
-            {
-                'module': module,
-                'name': name,
-                'model': record._name,
-                'res_id': record.id,
-                'noupdate': noupdate,
-            }
-        )
-        self._create_parents_xmlid(record, noupdate, replace)
+        if module and name:
+            self.sudo().create(
+                {
+                    'module': module,
+                    'name': name,
+                    'model': record._name,
+                    'res_id': record.id,
+                    'noupdate': noupdate,
+                }
+            )
+            self._create_parents_xmlid(record, noupdate, replace)
         return True
 
     @api.model
