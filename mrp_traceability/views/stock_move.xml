@@ -110,4 +110,25 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="admin_stock_move_details_form_view">
+        <field name="name">stock.move.details.form#admin@mrp_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="mrp_traceability.stock_move_details_form_view"/>
+        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <div class="d_view_name" groups="base.group_erp_manager">stock.move.details.form#admin@mrp_traceability</div>
+                <footer>
+                    <button
+                        name="action_open_stock_move_form"
+                        string="Open Advanced Form View"
+                        type="object"
+                        class="btn-primary">
+                    </button>
+                    <a data-action="discard" data-dismiss="modal" href="#">Close</a>
+                </footer>
+            </form>
+        </field>
+    </record>
+
 </odoo>
