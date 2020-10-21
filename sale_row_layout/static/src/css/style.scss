@@ -1,0 +1,40 @@
+.row_group {
+    margin: 0px 0 !important;
+}
+
+.row_table th {
+    background-color: #eee;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.row_table {
+    .row_cell {
+        width: 33%;
+    }
+}
+
+.row_total th {
+    background-color: #eee;
+    border-right: 2px solid #dee2e6;
+}
+
+.row_total td {
+    border: 0 solid #dee2e6;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.row_total {
+    .row_cell {
+        width: 50%;
+    }
+}
+
+.row_layout{
+    width: 100%;
+}
+
+.row_layout label {
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+}
