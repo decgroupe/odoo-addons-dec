@@ -174,12 +174,6 @@
             <xpath expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_id']" position="before">
                 <field name="id" widget="widget_id"/>
             </xpath>
-            <xpath expr="//field[@name='quantity_done']" position="attributes">
-                <attribute name="readonly">False</attribute>
-            </xpath>
-            <xpath expr="//field[@name='reserved_availability']" position="attributes">
-                <attribute name="readonly">False</attribute>
-            </xpath>
             <form position="inside">
                 <footer>
                     <button
