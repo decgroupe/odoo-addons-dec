@@ -15,6 +15,7 @@ class ProductTemplate(models.Model):
         ],
         compute='_compute_supply_method',
         inverse='_inverse_supply_method',
+        store=True,
         string='Supply method',
         help="Produce will generate production order or tasks, according to the \
 product type. Buy will trigger purchase orders when requested.",
@@ -27,6 +28,7 @@ product type. Buy will trigger purchase orders when requested.",
         ],
         compute='_compute_procure_method',
         inverse='_inverse_procure_method',
+        store=True,
         string='Procurement method',
         help="'Make to Stock': When needed, take from the stock or wait until \
 re-supplying. 'Make to Order': When needed, purchase or produce for the \
