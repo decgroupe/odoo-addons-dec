@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_attach_picking_view">
+        <field name="name">mrp.attach.picking@mrp_attach_picking</field>
+        <field name="model">mrp.attach.picking</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <field name="production_id"/>
+                    <field name="product_uom_qty"/>
+                    <field name="product_id"/>
+                    <field name="move_id"
+                        options="{
+                            'no_quick_create':True, 
+                            'no_create_edit':True
+                        }"
+                        domain="[
+                            ('product_id', '=', product_id),
+                            ('product_uom_qty', '=', product_uom_qty),
+                            ('move_orig_ids', '=', False),
+                            ('procure_method', '=', 'make_to_stock'),
+                            ('state', 'in', ('assigned', 'confirmed')),
+                            ('location_dest_id.usage', '=', 'customer')
+                        ]">
+                    </field>
+                </group>
+                <footer>
+                    <button type="object" 
+                        name="do_attach" 
+                        string="Confirm" 
+                        class="btn-primary" 
+                        context="{}">
+                    </button>
+                    <button special="cancel" 
+                        string="Cancel" 
+                        class="btn-secondary">
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_mrp_attach_picking">
+        <field name="name">Attach production order to picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.attach.picking</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
