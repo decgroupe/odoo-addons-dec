@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_purchase_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-23 11:39+0000\n"
+"PO-Revision-Date: 2020-10-23 11:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_purchase_link
+#: model:ir.model,name:account_purchase_link.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: account_purchase_link
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_invoice__purchase_order_ids
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: account_purchase_link
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_invoice__purchase_order_count
+msgid "Purchase Order count"
+msgstr ""
+
+#. module: account_purchase_link
+#: model_terms:ir.ui.view,arch_db:account_purchase_link.invoice_supplier_form_view
+msgid "Purchase Orders"
+msgstr "Bons de commande"
+
+#. module: account_purchase_link
+#: model_terms:ir.ui.view,arch_db:account_purchase_link.invoice_supplier_form_view
+msgid "Show purchase orders related to this invoice"
+msgstr ""
+
