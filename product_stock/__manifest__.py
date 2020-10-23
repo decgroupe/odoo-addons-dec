@@ -3,14 +3,13 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
-    'summary': '''Cosmetic changes''',
+    'summary':
+        'Cosmetic changes and add support to find inventory '
+        'at specific location',
     'depends': [
         'product',
         'stock',
     ],
-    # 'force_migration':'12.0.0.0.0',
-    'data': [
-        'views/product_product.xml',
-    ],
+    'data': ['views/product_product.xml', ],
     'installable': True
 }
