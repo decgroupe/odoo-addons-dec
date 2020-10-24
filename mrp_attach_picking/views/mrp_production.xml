@@ -7,16 +7,17 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
-            <field name="finished_move_line_ids" position="before">
-                <field name="move_finished_ids" invisible="1"/>
+            <xpath expr="//field[@name='finished_move_line_ids']" position="before">
+                <field name="allow_attach_picking" invisible="1"/>
                 <button 
                     name="%(mrp_attach_picking.act_mrp_attach_picking)d"
                     string="Attach to an existing picking order" 
                     type="action"
-                    attrs="{'invisible': [('move_finished_ids', '=', [])]}"
+                    class="oe_link"
+                    attrs="{'invisible': [('allow_attach_picking', '=', False)]}"
                     icon="">
                 </button>
-            </field>
+            </xpath>
         </field>
     </record>
 

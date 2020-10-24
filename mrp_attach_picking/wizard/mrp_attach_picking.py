@@ -2,7 +2,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Oct 2020
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class MrpAttachPicking(models.TransientModel):
@@ -22,9 +23,7 @@ class MrpAttachPicking(models.TransientModel):
         required=True,
         readonly=True,
     )
-    product_uom_qty = fields.Float(
-        related='production_id.product_uom_qty',
-    )
+    product_uom_qty = fields.Float(related='production_id.product_uom_qty', )
     move_id = fields.Many2one(
         'stock.move',
         'Move',
@@ -49,59 +48,29 @@ class MrpAttachPicking(models.TransientModel):
             )
         return rec
 
-    # def onchange_move_id(self, cr, uid, ids, picking_id, move_id, context=None):
-    #     if isinstance(ids, (int, long)):
-    #         ids = [ids]
-    #     if context is None:
-    #         context = {}
-
-    #     result = {}
-    #     stock_move_obj = self.pool.get('stock.move')
-    #     stock_picking_obj = self.pool.get('stock.picking')
-
-    #     if move_id:
-    #         move = stock_move_obj.browse(cr, uid, move_id, context=context)
-    #         if move.picking_id and move.picking_id.id != picking_id:
-    #             result = {'picking_id': move.picking_id.id}
-
-    #     return {'value': result}
-
     def do_attach(self):
-        pass
-
-    # def do_attach(self, cr, uid, ids, context=None):
-    #     if isinstance(ids, (int, long)):
-    #         ids = [ids]
-    #     if context is None:
-    #         context = {}
-
-    #     mrp_production_obj = self.pool.get('mrp.production')
-    #     stock_move_obj = self.pool.get('stock.move')
-    #     mrp_attach = self.browse(cr, uid, ids[0], context=context)
-    #     if mrp_attach.production_id:
-    #         mrp_production = mrp_production_obj.browse(cr, uid, mrp_attach.production_id.id, context=context)
-
-    #         if mrp_attach.move_id:
-    #             move_src_ids = stock_move_obj.search(cr, uid, [('move_dest_id', '=', mrp_attach.move_id.id)], context=context)
-
-    #             if move_src_ids:
-    #                 raise osv.except_osv(_('Error !'),_('This move is already assigned.'))
-
-    #             if not mrp_production.move_prod_id and not move_src_ids:
-    #                 data = {
-    #                     'origin': ('%s:%s') % (mrp_production.origin or 'PROTO', mrp_attach.move_id.picking_id.origin),
-    #                     'partner_id': mrp_attach.move_id.picking_id.partner_id.id,
-    #                     'address_id': mrp_attach.move_id.picking_id.address_id.id,
-    #                     'move_prod_id': mrp_attach.move_id.id,
-    #                 }
-
-    #                 mrp_production_obj.write(cr, uid, [mrp_production.id], data, context=context)
-
-    #                 for move in mrp_production.move_created_ids:
-    #                     stock_move_obj.write(cr, uid, [move.id], {'move_dest_id': mrp_attach.move_id.id}, context=context)
-    #         else:
-    #             raise osv.except_osv(_('Error !'),_('You must select a move.'))
-    #     else:
-    #         raise osv.except_osv(_('Error !'),_('You must select a production order.'))
-
-    #     return {}
+        self.ensure_one()
+        if not self.move_id:
+            raise ValidationError(_('A valid stock move must be selected.'))
+        # Filter finished move in case of some of them are cancelled
+        move_finished_ids = self.production_id.move_finished_ids.filtered(
+            lambda x: x.state in ('confirmed', 'assigned', 'done')
+        )
+        if not move_finished_ids:
+            raise ValidationError(
+                _('None of the production finished moves can be linked.')
+            )
+        # In case of one move is already done, set the next
+        # move state to assigned
+        if 'done' in move_finished_ids.mapped('state'):
+            state = 'assigned'
+        else:
+            state = 'waiting'
+        # Link chosen move with our production order
+        self.move_id.write(
+            {
+                'procure_method': 'make_to_order',
+                'state': state,
+                'move_orig_ids': [(6, 0, move_finished_ids.ids)],
+            }
+        )

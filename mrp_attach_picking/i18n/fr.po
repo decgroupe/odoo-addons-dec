@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_attach_picking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-24 13:54+0000\n"
+"PO-Revision-Date: 2020-10-24 15:54+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: mrp_attach_picking
+#: code:addons/mrp_attach_picking/wizard/mrp_attach_picking.py:54
+#, python-format
+msgid "A valid stock move must be selected."
+msgstr "Un mouvement de stock valide doit être sélectionné."
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_production__allow_attach_picking
+msgid "Allow Attach Picking"
+msgstr "Autoriser le lien avec un bon de préparation"
+
+#. module: mrp_attach_picking
+#: model:ir.actions.act_window,name:mrp_attach_picking.act_mrp_attach_picking
+#: model:ir.model,name:mrp_attach_picking.model_mrp_attach_picking
+msgid "Attach production order to picking"
+msgstr "Attacher un ordre de production à un bon de livraison"
+
+#. module: mrp_attach_picking
+#: model_terms:ir.ui.view,arch_db:mrp_attach_picking.mrp_production_form_view
+msgid "Attach to an existing picking order"
+msgstr "Rattacher à un bon de livraison"
+
+#. module: mrp_attach_picking
+#: model_terms:ir.ui.view,arch_db:mrp_attach_picking.mrp_attach_picking_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mrp_attach_picking
+#: model_terms:ir.ui.view,arch_db:mrp_attach_picking.mrp_attach_picking_view
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__move_id
+msgid "Move"
+msgstr "Mouvement"
+
+#. module: mrp_attach_picking
+#: code:addons/mrp_attach_picking/wizard/mrp_attach_picking.py:61
+#, python-format
+msgid "None of the production finished moves can be linked."
+msgstr "Aucun des mouvements de fin de production ne peut être lié."
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: mrp_attach_picking
+#: model:ir.model,name:mrp_attach_picking.model_mrp_production
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__production_id
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_attach_picking
+#: model:ir.model,name:mrp_attach_picking.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,help:mrp_attach_picking.field_mrp_production__allow_attach_picking
+msgid "Technical field used to hide attach picking action if production order is already linked to picking"
+msgstr "Champ technique utilisé pour masquer l’action qui permet d'attacher l’ordre de production à un bon de livraison si c'est déjà le cas"
+
+#. module: mrp_attach_picking
+#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__product_uom_qty
+msgid "Total Quantity"
+msgstr "Quantité totale"
