@@ -21,6 +21,7 @@
         'mrp_bom_dates',
         'mrp_bom_supplier',
         'mrp_bom_prices',
+        'mrp_buy_consu',
         'sale_purchase',
         'sale_timesheet',
     ],
