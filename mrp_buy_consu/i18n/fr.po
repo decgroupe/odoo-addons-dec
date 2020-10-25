@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_buy_consu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-25 19:47+0000\n"
+"PO-Revision-Date: 2020-10-25 20:47+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"Un produit stockable est un produit dont on gère le stock. L'application \"Inventaire\" doit être installée. \n"
+"Un produit consommable, d'un autre côté, est un produit pour lequel le stock n'est pas géré.\n"
+"Un service est un produit immatériel que vous fournissez."
+
+#. module: mrp_buy_consu
+#: model:ir.model,name:mrp_buy_consu.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr "Ligne de nomenclature"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__buy_consu
+msgid "Buy"
+msgstr "Acheter"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_type
+msgid "Product Type"
+msgstr "Type d'article"
+
+#. module: mrp_buy_consu
+#: model:ir.model,name:mrp_buy_consu.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__buy_consu
+msgid "Used to force buying a consumable product."
+msgstr "Utilisé pour forcer l’achat d’un produit consommable."
