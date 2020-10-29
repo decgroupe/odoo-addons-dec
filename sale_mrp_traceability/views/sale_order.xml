@@ -8,7 +8,7 @@
         <field name="groups_id" eval="[(4,ref('sale_mrp_traceability.group_sale_mrp_traceability'))]"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='traceability_container']" position="inside">
-                <div name="moves" groups="base.group_no_one" attrs="{'invisible': ['|', ('display_type', '!=', False), ('move_ids', '=', [])]}">
+                <div name="moves" attrs="{'invisible': ['|', ('display_type', '!=', False), ('move_ids', '=', [])]}">
                     <label for="move_ids"/>
                     <field name="move_ids" context="{
                         'tree_view_ref':'sale_mrp_traceability.stock_move_tree_view',

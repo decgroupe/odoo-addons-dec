@@ -15,7 +15,7 @@
                         addons/sale_purchase/models/sale_order.py:
                         _purchase_service_prepare_line_values
                 -->
-                <div name="purchases" groups="base.group_no_one" attrs="{'invisible': ['|', ('display_type', '!=', False), ('purchase_line_ids', '=', [])]}">
+                <div name="purchases" attrs="{'invisible': ['|', ('display_type', '!=', False), ('purchase_line_ids', '=', [])]}">
                     <label for="purchase_line_ids" string="Purchase Lines"/>
                     <field name="purchase_line_ids"/>
                 </div>
