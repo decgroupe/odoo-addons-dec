@@ -20,13 +20,14 @@ class IrModelData(models.Model):
         replace=False
     ):
         record = self.env[model_name].browse(model_id)
-        self.record_to_xmlid(record, module, name, noupdate, replace)
-        return True
+        xml_id = self.record_to_xmlid(record, module, name, noupdate, replace)
+        return xml_id.id
 
     @api.model
     def record_to_xmlid(
         self, record, module, name, noupdate=False, replace=False
     ):
+        rec = self.env['ir.model.data']
         if replace:
             xml_ids = self.sudo().search(
                 [
@@ -43,7 +44,7 @@ class IrModelData(models.Model):
                     (current_xmlid, )
                 )
         if module and name:
-            self.sudo().create(
+            rec = self.sudo().create(
                 {
                     'module': module,
                     'name': name,
@@ -53,7 +54,7 @@ class IrModelData(models.Model):
                 }
             )
             self._create_parents_xmlid(record, noupdate, replace)
-        return True
+        return rec
 
     @api.model
     def get_xmlid(self, record):
