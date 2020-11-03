@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_report_qweb
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-03 14:59+0000\n"
+"PO-Revision-Date: 2020-11-03 14:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<span groups=\"account.group_show_line_subtotals_tax_excluded\">Amount (Tax-Excluded)</span>\n"
+"                <span groups=\"account.group_show_line_subtotals_tax_included\">Total Price (Tax-Included)</span>"
+msgstr "<span groups=\"account.group_show_line_subtotals_tax_excluded\">Sous-Total HT</span>\n"
+"                <span groups=\"account.group_show_line_subtotals_tax_included\">Sous-Total TTC</span>"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<span>Description</span>"
+msgstr ""
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<span>Disc.(%)</span>"
+msgstr "<span>Rem.(%)</span>"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<span>Quantity</span>"
+msgstr "<span>Quantité</span>"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<span>Source Document</span>"
+msgstr "<span>Document Source</span>"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<span>Taxes</span>"
+msgstr ""
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<span>Unit Price (Tax-Excluded)</span>"
+msgstr "<span>P.U. HT</span>"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_excluded\">Subtotal (Tax-Excluded)</strong>\n"
+"            <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Subtotal (Tax-Included)</strong>"
+msgstr "<strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_excluded\">Sous-Total HT</strong>\n"
+"                                    <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Sous-Total TTC</strong>"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<strong>Subtotal (Tax-Excluded)</strong>"
+msgstr "<strong>Sous-total HT</strong>"
+
+#. module: account_report_qweb
+#: model_terms:ir.ui.view,arch_db:account_report_qweb.report_invoice_document
+msgid "<strong>Total (Tax-Included)</strong>"
+msgstr "<strong>Total TTC</strong>"
+

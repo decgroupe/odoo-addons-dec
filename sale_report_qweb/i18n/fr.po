@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 13:05+0000\n"
-"PO-Revision-Date: 2020-11-03 14:14+0100\n"
+"POT-Creation-Date: 2020-11-03 14:35+0000\n"
+"PO-Revision-Date: 2020-11-03 15:40+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -26,10 +26,20 @@ msgstr "<span>Rem.(%)</span>"
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
 msgid ""
 "<strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_excluded\">Subtotal (Tax-Excluded)</strong>\n"
-"                                    <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Subtotal (Tax-Included)</strong>"
+"            <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Subtotal (Tax-Included)</strong>"
 msgstr ""
 "<strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_excluded\">Sous-Total HT</strong>\n"
-"                                    <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Sous-Total TTC</strong>"
+"            <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Sous-Total TTC</strong>"
+
+#. module: sale_report_qweb
+#: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
+msgid "<strong>Subtotal (Tax-Excluded)</strong>"
+msgstr "<strong>Sous-total HT</strong>"
+
+#. module: sale_report_qweb
+#: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
+msgid "<strong>Total (Tax-Included)</strong>"
+msgstr "<strong>Total TTC</strong>"
 
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
@@ -60,9 +70,6 @@ msgstr "Prix TTC"
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
 msgid "Unit Price (Tax-Excluded)"
 msgstr "P.U. HT"
-
-#~ msgid "<strong class=\"mr16\">Subtotal</strong>"
-#~ msgstr "<strong class=\"mr16\">Sous-total</strong>"
 
 #~ msgid "Amount"
 #~ msgstr "Montant"

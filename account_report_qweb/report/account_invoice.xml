@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    // [(name, amount, base, formated amount, formated base)]
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+
+        <xpath expr="//table[hasclass('o_main_table')]/thead/tr" position="replace">
+            <!-- TODO: remove in master -->
+            <t t-set="colspan" t-value="6" />
+            <th class="text-left">
+                <span>Description</span>
+            </th>
+            <th class="d-none text-left">
+                <span>Source Document</span>
+            </th>
+            <th class="text-right" style="min-width:5rem">
+                <span>Quantity</span>
+            </th>
+            <th t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" style="min-width:5rem">
+                <span>Unit Price (Tax-Excluded)</span>
+            </th>
+            <th t-if="display_discount" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                <span>Disc.(%)</span>
+                <!-- TODO: remove in master -->
+                <t t-set="colspan" t-value="colspan+1" />
+            </th>
+            <th t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" style="min-width:5rem">
+                <span>Taxes</span>
+            </th>
+            <th class="text-right" style="min-width:5rem">
+                <span groups="account.group_show_line_subtotals_tax_excluded">Amount (Tax-Excluded)</span>
+                <span groups="account.group_show_line_subtotals_tax_included">Total Price (Tax-Included)</span>
+            </th>
+        </xpath>
+
+        <!-- Override whole group specific td to set align to center -->
+        <xpath expr="//t[@name='account_invoice_line_accountable']/td[6]" position="attributes">
+            <attribute name="t-attf-class">text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}</attribute>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]/tbody//tr[hasclass('is-subtotal')]/td[1]/strong" position="replace">
+            <strong class="mr16" groups="account.group_show_line_subtotals_tax_excluded">Subtotal (Tax-Excluded)</strong>
+            <strong class="mr16" groups="account.group_show_line_subtotals_tax_included">Subtotal (Tax-Included)</strong>
+        </xpath>
+
+        <xpath expr="//tr[hasclass('o_subtotal')]/td[1]/strong" position="replace">
+            <strong>Subtotal (Tax-Excluded)</strong>
+        </xpath>
+
+        <xpath expr="//tr[hasclass('o_total')]/td[1]/strong" position="replace">
+            <strong>Total (Tax-Included)</strong>
+        </xpath>
+
+    </template>
+
+</odoo>
