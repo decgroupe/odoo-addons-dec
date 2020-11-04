@@ -1,0 +1,16 @@
+{
+    'name': 'Document Page Style',
+    'version': '12.0.1.0.0',
+    'author': 'DEC, Yann Papouin',
+    'website': 'http://www.dec-industrie.com',
+    'summary': '''Create new parent style for sheet''',
+    'depends': [
+        'document_page',
+        'web_responsive',
+    ],
+    'data': [
+        'views/assets.xml',
+        'views/document_page.xml',
+    ],
+    'installable': True
+}
