@@ -100,8 +100,8 @@ class PurchaseOrderLine(models.Model):
         return res
 
     @api.onchange(
-        'product_id', 'product_uom_qty', 'product_uom', 'price_unit',
-        'name', 'taxes_id'
+        'product_id', 'product_uom_qty', 'product_uom', 'price_unit', 'name',
+        'taxes_id'
     )
     def check_pack_line_modify(self):
         """ Do not let to edit a purchase order line if this one belongs to pack
@@ -174,4 +174,15 @@ class PurchaseOrderLine(models.Model):
                 data = line._get_pack_line_move_data(parent_move)
                 child_move = self.env['stock.move'].create(data)
                 moves += child_move
+        return moves
+
+    @api.multi
+    def _get_parent_pack_stock_moves(self):
+        moves = self.env['stock.move']
+        for line in self:
+            # Set parent pack move done since there is no
+            # physical pack item to receive
+            if line.pack_child_line_ids:
+                moves += line.move_dest_ids
+                moves += line.move_ids
         return moves

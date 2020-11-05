@@ -40,7 +40,9 @@ class PurchaseOrder(models.Model):
     @api.multi
     def _create_picking(self):
         self._create_pack_stock_moves()
-        return super()._create_picking()
+        res = super()._create_picking()
+        self._force_parent_pack_stock_moves()
+        return res
 
     @api.multi
     def _create_pack_stock_moves(self):
@@ -56,4 +58,18 @@ class PurchaseOrder(models.Model):
                 production_ids += moves.mapped('raw_material_production_id')
         if production_ids:
             production_ids.update_move_raw_sequences()
+        return True
+
+    @api.multi
+    def _force_parent_pack_stock_moves(self):
+        for order in self:
+            if any(
+                [
+                    ptype in ['product', 'consu']
+                    for ptype in order.order_line.mapped('product_id.type')
+                ]
+            ):
+                moves = order.order_line._get_parent_pack_stock_moves()
+                moves.action_auto_operation_fill()
+                moves._action_done()
         return True
