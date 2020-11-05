@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="picking_form_view">
+        <field name="name">stock.picking.form@stock_picking_line_auto_fill</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="after">
+                <field name="action_auto_operation_fill_visible" invisible="1"/>
+                <button
+                    name="action_auto_operation_fill"
+                    type="object"
+                    class="btn btn-secondary"
+                    string="Full"
+                    solid_icon="fa-thumbs-up"
+                    attrs="{
+                        'column_invisible': [
+                            ('parent.picking_type_code', '!=', 'incoming')
+                        ],
+                        'invisible': [
+                            '|',
+                            ('picking_code', '!=', 'incoming'),
+                            '|',
+                            ('action_auto_operation_fill_visible', '=', False),
+                            '|',
+                            ('parent.action_pack_op_auto_fill_allowed','=', False),
+                            ('parent.auto_fill_operation', '=', True),
+                        ]
+                    }"
+                    help="This button will automatically fill this operation if it have no tracking set on the product, no processed qty and no selected package.">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
