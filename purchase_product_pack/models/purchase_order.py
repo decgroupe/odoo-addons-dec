@@ -44,6 +44,7 @@ class PurchaseOrder(models.Model):
 
     @api.multi
     def _create_pack_stock_moves(self):
+        production_ids = self.env['mrp.production']
         for order in self:
             if any(
                 [
@@ -52,4 +53,7 @@ class PurchaseOrder(models.Model):
                 ]
             ):
                 moves = order.order_line._create_pack_stock_moves()
+                production_ids += moves.mapped('raw_material_production_id')
+        if production_ids:
+            production_ids.update_move_raw_sequences()
         return True

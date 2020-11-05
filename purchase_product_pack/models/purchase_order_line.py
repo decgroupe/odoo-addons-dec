@@ -159,6 +159,9 @@ class PurchaseOrderLine(models.Model):
             "auto_validate": move.auto_validate,
             "move_dest_ids": [(6, 0, move.move_dest_ids.ids)],
             "state": move.state,
+            "sequence": move.sequence,
+            # Set as pack line, will auto-set pack_child_move_ids on its parent
+            "pack_parent_move_id": move.id,
         }
         return res
 
@@ -167,7 +170,8 @@ class PurchaseOrderLine(models.Model):
         moves = self.env['stock.move']
         for line in self:
             if line.pack_parent_line_id and line.pack_parent_line_id.move_dest_ids:
-                move = line.pack_parent_line_id.move_dest_ids[0]
-                data = line._get_pack_line_move_data(move)
-                moves += self.env['stock.move'].create(data)
+                parent_move = line.pack_parent_line_id.move_dest_ids[0]
+                data = line._get_pack_line_move_data(parent_move)
+                child_move = self.env['stock.move'].create(data)
+                moves += child_move
         return moves
