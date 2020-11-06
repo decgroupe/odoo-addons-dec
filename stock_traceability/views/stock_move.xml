@@ -224,7 +224,8 @@
         <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_uom_qty']" position="attributes">
-                <attribute name="readonly">0</attribute>
+                <!-- DO NOT ENABLE THIS: never set reserved manually using UI -->
+                <!-- <attribute name="readonly">0</attribute> -->
             </xpath>
             <xpath expr="//field[@name='product_uom_id']" position="attributes">
                 <attribute name="force_save">1</attribute>
