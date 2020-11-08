@@ -17,6 +17,14 @@ class StockMove(models.Model):
     pack_child_move_ids = fields.One2many(
         'stock.move', 'pack_parent_move_id', 'Lines in pack'
     )
+    pack_level = fields.Integer(compute='_compute_pack_level')
+
+    @api.multi
+    def _compute_pack_level(self):
+        for move in self:
+            move.pack_level = 0
+            if move.pack_parent_move_id:
+                move.pack_level = move.pack_parent_move_id.pack_level + 1
 
     @api.multi
     def _update_sequence(self, sequence=0, updated_ids=None):
