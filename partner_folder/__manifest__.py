@@ -1,15 +1,14 @@
 {
-    'name': 'Partner Search City',
+    'name': 'Partner Folder',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com/',
-    'summary': '''Add a search field to find all partners in a city''',
+    'summary': 'Add a folder/URL field to store path to resources',
     'depends': [
         'base',
-        'base_location',
     ],
     'data': [
-        'views/partner_view.xml',
+        'views/partner.xml',
     ],
     'installable': True
 }

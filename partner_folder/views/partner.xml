@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="partner_form_view">
+        <field name="name">res.partner.form@partner_folder</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="website" position="after">
+                <field name="folder_uri" widget="url" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="partner_tree_view">
+        <field name="name">res.partner.tree@partner_folder</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <field name="folder_uri"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
