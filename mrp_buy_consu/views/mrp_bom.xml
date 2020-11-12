@@ -8,8 +8,8 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='bom_line_ids']/tree//field[@name='product_uom_id']" position="after">
-                <field name="product_type" invisible="1"/>
-                <field name="buy_consu" attrs="{'invisible': [('product_type', '!=', 'consu')]}"/>
+                <field name="product_is_consumable" invisible="1"/>
+                <field name="buy_consumable" attrs="{'invisible': [('product_is_consumable', '!=', True)]}"/>
             </xpath>
         </field>
     </record>
@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="mrp.mrp_bom_line_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//group//field[@name='product_uom_id']" position="after">
-                <field name="buy_consu"/>
+                <field name="buy_consumable"/>
             </xpath>
         </field>
     </record>

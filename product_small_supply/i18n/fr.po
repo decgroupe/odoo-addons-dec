@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_small_supply
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-10 20:49+0000\n"
+"PO-Revision-Date: 2020-11-10 20:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_small_supply
+#: model:ir.model.fields,help:product_small_supply.field_product_product__small_supply
+#: model:ir.model.fields,help:product_small_supply.field_product_template__small_supply
+msgid "If checked, then this product will be considered like a consumable stockable product"
+msgstr "Si coché, alors ce produit sera consideré comme un consommable stockable"
+
+#. module: product_small_supply
+#: model:ir.model.fields,field_description:product_small_supply.field_product_product__is_consumable
+#: model:ir.model.fields,field_description:product_small_supply.field_product_template__is_consumable
+msgid "Is Consumable"
+msgstr "Est consommable"
+
+#. module: product_small_supply
+#: model:ir.model,name:product_small_supply.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_small_supply
+#: model:ir.model.fields,field_description:product_small_supply.field_product_product__small_supply
+#: model:ir.model.fields,field_description:product_small_supply.field_product_template__small_supply
+msgid "Small Supply"
+msgstr "Petite fourniture"

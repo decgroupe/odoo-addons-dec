@@ -12,7 +12,10 @@ class MrpBomLine(models.Model):
         related='product_id.type',
         readonly=True,
     )
-    buy_consu = fields.Boolean(
+    product_is_consumable = fields.Boolean(related='product_id.is_consumable', )
+
+    buy_consumable = fields.Boolean(
         string='Buy',
         help="Used to force buying a consumable product.",
+        oldname='buy_consu',
     )

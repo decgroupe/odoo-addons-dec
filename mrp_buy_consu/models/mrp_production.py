@@ -19,10 +19,10 @@ class MrpProduction(models.Model):
     def _get_raw_move_data(self, bom_line, line_data):
         res = super()._get_raw_move_data(bom_line, line_data)
         if res is not None:
-            if bom_line.product_id.type == 'consu':
-                # Check bom line if this product MUST be
-                # purchased (using buy_consu boolean)
-                if bom_line.buy_consu:
+            if bom_line.product_id.is_consumable:
+                # Check this bom line if this product MUST be
+                # purchased (using buy_consumable boolean)
+                if bom_line.buy_consumable:
                     res['procure_method'] = 'make_to_order'
                 else:
                     # Override source location if product is consumable
