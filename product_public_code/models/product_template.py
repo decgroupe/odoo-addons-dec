@@ -39,15 +39,22 @@ class ProductTemplate(models.Model):
         result = name_search_result
         if name:
             # Make a specific search according to public code
-            products = self.search(
-                [
-                    ('public_code', 'ilike', name + '%'),
-                    '|',
-                    ('state', '!=', 'obsolete'),
-                    ('state', '=', False),
-                ],
-                limit=limit
-            )
+            # Check for state field to see if 'product_state_review' module
+            # is installed or not
+            if 'state' in self._fields:
+                products = self.search(
+                    [
+                        ('public_code', 'ilike', name + '%'),
+                        '|',
+                        ('state', '!=', 'obsolete'),
+                        ('state', '=', False),
+                    ],
+                    limit=limit
+                )
+            else:
+                products = self.search(
+                    [('public_code', 'ilike', name + '%')], limit=limit
+                )
             if products:
                 res = []
                 for product in products:
