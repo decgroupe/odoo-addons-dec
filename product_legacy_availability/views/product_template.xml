@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_template_only_form_view">
+        <field name="name">product.template.product.form@product_legacy_availability</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <group name="group_lots_and_weight" position="after">
+                <group name="legacy_availability" string="Legacy Availability">
+                    <field name="legacy_qty_available" string="Quantity On Hand" />
+                    <field name="legacy_virtual_available" string="Quantity Available" />
+                    <field name="legacy_incoming_qty" string="Incoming" />
+                    <field name="legacy_outgoing_qty" string="Outgoing" />
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>
