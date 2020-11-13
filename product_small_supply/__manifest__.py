@@ -4,7 +4,11 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': 'Small supply is a new consumable definition',
-    'depends': ['product', ],
+    'depends': [
+        'product',
+        'stock',
+        'product_legacy_availability',
+    ],
     'data': [
         'views/product_template.xml',
         'views/product_product.xml',

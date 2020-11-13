@@ -390,10 +390,21 @@ class StockMove(models.Model):
             self._fields['product_type']._description_selection(self.env)
         ).get(self.product_type)
 
-        head = '{0}{1}'.format(
-            product_type_to_emoji(self.product_type),
-            product_type,
-        )
+        # Add support for 'product_small_supply' module
+        if 'small_supply' in self.product_id._fields and \
+            self.product_type == 'product' and self.product_id.small_supply:
+            # Translate field name to display string
+            head = '{0}{1}'.format(
+                '⛽', self.env['ir.translation'].get_field_string(
+                    self.product_id._name
+                )['small_supply']
+            )
+        else:
+            head = '{0}{1}'.format(
+                product_type_to_emoji(self.product_type),
+                product_type,
+            )
+
         if self.user_has_groups('base.group_no_one'):
             head = '{0} ({1})'.format(head, self.id)
         status.insert(0, head)
