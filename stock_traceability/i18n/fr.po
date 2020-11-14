@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-09 11:35+0000\n"
-"PO-Revision-Date: 2020-10-02 23:29+0200\n"
+"POT-Creation-Date: 2020-11-14 11:12+0000\n"
+"PO-Revision-Date: 2020-11-14 12:39+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Are you sure that you want to set this move state to Assigned (ignoring virtual available quantity) ?"
+msgstr "Êtes-vous sur de vouloir forcer l'état de ce mouvement à \"Disponible\" (en ignorant la quantité disponible) ?"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Check Assign"
+msgstr "Vérifier la disponibilité"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_move_picking_form_view
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Close"
+msgstr "Fermer"
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_production_archive
@@ -28,9 +44,19 @@ msgid "Created Purchase Line Archive"
 msgstr "Archive de ligne d'achat créé"
 
 #. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.stock_move_form_view
+msgid "Done/Reserved"
+msgstr "Terminé/Réservé"
+
+#. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__final_location
 msgid "Final location"
 msgstr "Emplacement final"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Force Assigned"
+msgstr "Forcer la disponibilité"
 
 #. module: stock_traceability
 #: model:ir.model.fields,help:stock_traceability.field_stock_move__final_location
@@ -38,16 +64,26 @@ msgid "Get final location name"
 msgstr "Obtenir le nom de l’emplacement final"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:249
+#: code:addons/stock_traceability/models/stock_move.py:267
 #, python-format
 msgid "Location"
 msgstr "Emplacement"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:248
+#: model:ir.actions.act_window,name:stock_traceability.act_product_template_stock_move_open
+msgid "Moves"
+msgstr "Mouvements"
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:266
 #, python-format
 msgid "Not Set"
 msgstr "Non défini"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_move_picking_form_view
+msgid "Open Advanced Form View"
+msgstr "Ouvrir la vue étendue"
 
 #. module: stock_traceability
 #: model:ir.model,name:stock_traceability.model_stock_quant
@@ -55,9 +91,20 @@ msgid "Quants"
 msgstr "Quants"
 
 #. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Recompute State"
+msgstr "Recalculer l'état"
+
+#. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__product_activity_id
 msgid "Related Activity"
 msgstr "Activité associée"
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:368
+#, python-format
+msgid "Reservation issue"
+msgstr "Problème de réservation"
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__action_view_created_item_visible
@@ -70,7 +117,7 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:318
+#: code:addons/stock_traceability/models/stock_move.py:336
 #, python-format
 msgid "canceled"
 msgstr "annulé"
@@ -78,22 +125,28 @@ msgstr "annulé"
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
 msgid "stock.move.form#admin@stock_traceability"
-msgstr ""
+msgstr "stock.move.form#admin@stock_traceability"
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.stock_move_form_view
 msgid "stock.move.form@stock_traceability"
-msgstr ""
+msgstr "stock.move.form@stock_traceability"
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_move_picking_form_view
 msgid "stock.move.picking.form#admin@stock_traceability"
-msgstr ""
+msgstr "stock.move.picking.form#admin@stock_traceability"
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.move_picking_form_view
 msgid "stock.move.picking.form@stock_traceability"
-msgstr ""
+msgstr "stock.move.picking.form@stock_traceability"
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:369
+#, python-format
+msgid "{0} needed but {1} available"
+msgstr "{0} nécessaire mais {1} disponible"
 
 #~ msgid "Quantity in the default UoM of the product"
 #~ msgstr "Quantité dans l'UdM par défaut de l'article"

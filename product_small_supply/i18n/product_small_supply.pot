@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 20:49+0000\n"
-"PO-Revision-Date: 2020-11-10 20:49+0000\n"
+"POT-Creation-Date: 2020-11-14 11:12+0000\n"
+"PO-Revision-Date: 2020-11-14 11:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,16 +16,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_small_supply
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_normal_form_view
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view
+msgid "<span class=\"o_form_label\" style=\"font-weight: bold;\" attrs=\"{'invisible': [                         '|',                             ('type', '!=', 'consu'),                             ('small_supply', '=', True),                     ]}\">\n"
+"                    Small Supply\n"
+"                </span>"
+msgstr ""
+
+#. module: product_small_supply
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_normal_form_view
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view
+msgid "Convert to Small Supply"
+msgstr ""
+
+#. module: product_small_supply
 #: model:ir.model.fields,help:product_small_supply.field_product_product__small_supply
 #: model:ir.model.fields,help:product_small_supply.field_product_template__small_supply
 msgid "If checked, then this product will be considered like a consumable stockable product"
-msgstr ""
+msgstr "Si coché, alors ce produit sera consideré comme un consommable stockable"
 
 #. module: product_small_supply
 #: model:ir.model.fields,field_description:product_small_supply.field_product_product__is_consumable
 #: model:ir.model.fields,field_description:product_small_supply.field_product_template__is_consumable
 msgid "Is Consumable"
 msgstr "Est consommable"
+
+#. module: product_small_supply
+#: model:ir.model,name:product_small_supply.model_product_product
+msgid "Product"
+msgstr "Article"
 
 #. module: product_small_supply
 #: model:ir.model,name:product_small_supply.model_product_template

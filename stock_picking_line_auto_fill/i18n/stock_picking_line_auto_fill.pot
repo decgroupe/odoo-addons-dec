@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-05 09:38+0000\n"
-"PO-Revision-Date: 2020-11-05 09:38+0000\n"
+"POT-Creation-Date: 2020-11-14 11:12+0000\n"
+"PO-Revision-Date: 2020-11-14 11:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Complet"
 #. module: stock_picking_line_auto_fill
 #: model:ir.model.fields,field_description:stock_picking_line_auto_fill.field_stock_move__action_auto_operation_fill_visible
 msgid "Show button to auto fill operations"
-msgstr ""
+msgstr "Affiche le bouton des opérations de remplissage automatique"
 
 #. module: stock_picking_line_auto_fill
 #: model:ir.model,name:stock_picking_line_auto_fill.model_stock_move
@@ -33,7 +33,7 @@ msgstr "Mouvement de stock"
 #. module: stock_picking_line_auto_fill
 #: model_terms:ir.ui.view,arch_db:stock_picking_line_auto_fill.picking_form_view
 msgid "This button will automatically fill this operation if it have no tracking set on the product, no processed qty and no selected package."
-msgstr ""
+msgstr "Ce bouton va automatiquement remplir cette opération si elle n'a pas de suivi renseigné sur le produit, pas de quantité traitée et pas de paquet sélectionné."
 
 #. module: stock_picking_line_auto_fill
 #: model:ir.model,name:stock_picking_line_auto_fill.model_stock_picking

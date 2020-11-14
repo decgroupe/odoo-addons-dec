@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-18 16:12+0000\n"
-"PO-Revision-Date: 2020-10-18 16:12+0000\n"
+"POT-Creation-Date: 2020-11-14 11:12+0000\n"
+"PO-Revision-Date: 2020-11-14 11:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr ""
 #. module: product_reference_pack
 #: model:res.groups,name:product_reference_pack.group_ref_pack_manager
 msgid "Pack Manager"
-msgstr ""
+msgstr "Gestionnaire des packs"
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__type
@@ -104,7 +104,7 @@ msgstr "Type de pack"
 #. module: product_reference_pack
 #: model:res.groups,name:product_reference_pack.group_ref_pack_user
 msgid "Pack User"
-msgstr ""
+msgstr "Utilisateur des packs"
 
 #. module: product_reference_pack
 #: model:ir.actions.act_window,name:product_reference_pack.act_window_ref_pack

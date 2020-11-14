@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:12+0000\n"
-"PO-Revision-Date: 2020-10-13 20:12+0000\n"
+"POT-Creation-Date: 2020-11-14 11:11+0000\n"
+"PO-Revision-Date: 2020-11-14 11:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Donne l'ordre dans lequel les entrées de la liste de prix sont vérifi�
 #: code:addons/product_pricelist/models/product_pricelist.py:147
 #, python-format
 msgid "No rules loaded at this step"
-msgstr ""
+msgstr "Aucune règle chargée à cette étape"
 
 #. module: product_pricelist
 #: code:addons/product_pricelist/models/product_pricelist.py:176

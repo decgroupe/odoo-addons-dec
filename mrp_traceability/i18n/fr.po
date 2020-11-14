@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:00+0000\n"
+"POT-Creation-Date: 2020-11-14 11:10+0000\n"
 "PO-Revision-Date: 2020-09-25 19:49+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 2.3.1\n"
+
+#. module: mrp_traceability
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
+msgid "Close"
+msgstr "Fermer"
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
@@ -37,6 +42,11 @@ msgstr "État en amont de la fabrication"
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_tree_view
 msgid "Open"
 msgstr "Ouvrir"
+
+#. module: mrp_traceability
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
+msgid "Open Advanced Form View"
+msgstr "Ouvrir la vue étendue"
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
@@ -67,6 +77,16 @@ msgstr "Mouvement de stock"
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_tree_view
 msgid "Stock Moves"
 msgstr "Mouvements de stocks"
+
+#. module: mrp_traceability
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
+msgid "stock.move.details.form#admin@mrp_traceability"
+msgstr "stock.move.details.form#admin@mrp_traceability"
+
+#. module: mrp_traceability
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
+msgid "stock.move.details.form@mrp_traceability"
+msgstr "stock.move.details.form@mrp_traceability"
 
 #~ msgid "Orderpoint Created Production"
 #~ msgstr "Ordre de fabrication créé par le réapprovisionnement"

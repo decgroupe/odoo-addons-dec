@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:40+0000\n"
+"POT-Creation-Date: 2020-11-14 11:12+0000\n"
 "PO-Revision-Date: 2020-10-02 21:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,3 +14,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: uom_wide_fix
+#: model_terms:ir.ui.view,arch_db:uom_wide_fix.product_template_only_form_view
+msgid "Are you sure that you want to try fixing this product unit of measure?"
+msgstr "Êtes-vous sur de vouloir tenter de corriger les erreurs d'unité de mesure ?"
+
+#. module: uom_wide_fix
+#: model_terms:ir.ui.view,arch_db:uom_wide_fix.product_template_only_form_view
+msgid "Ensure UoM Category Consistency"
+msgstr "Assurer la consistence de la catégorie d'UdM"
+
+#. module: uom_wide_fix
+#: model:ir.model,name:uom_wide_fix.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"

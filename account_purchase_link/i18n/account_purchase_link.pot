@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 11:39+0000\n"
-"PO-Revision-Date: 2020-10-23 11:39+0000\n"
+"POT-Creation-Date: 2020-11-14 11:12+0000\n"
+"PO-Revision-Date: 2020-11-14 11:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Commande fournisseur"
 #. module: account_purchase_link
 #: model:ir.model.fields,field_description:account_purchase_link.field_account_invoice__purchase_order_count
 msgid "Purchase Order count"
-msgstr ""
+msgstr "Nombre de commandes fournisseur"
 
 #. module: account_purchase_link
 #: model_terms:ir.ui.view,arch_db:account_purchase_link.invoice_supplier_form_view
@@ -38,5 +38,5 @@ msgstr "Bons de commande"
 #. module: account_purchase_link
 #: model_terms:ir.ui.view,arch_db:account_purchase_link.invoice_supplier_form_view
 msgid "Show purchase orders related to this invoice"
-msgstr ""
+msgstr "Afficher les commandes fournisseur liées à cette facture"
 

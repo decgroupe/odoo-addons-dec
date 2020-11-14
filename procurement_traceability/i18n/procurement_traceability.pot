@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:12+0000\n"
-"PO-Revision-Date: 2020-10-13 20:12+0000\n"
+"POT-Creation-Date: 2020-11-14 11:11+0000\n"
+"PO-Revision-Date: 2020-11-14 11:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr "Ligne de commande d'achat"
 #: model:ir.actions.act_window,name:procurement_traceability.action_purchase_order_line_tree
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Purchase Order Lines"
-msgstr "Lignes d'ordre d'achat"
+msgstr "Lignes d'achats"
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
@@ -111,7 +111,7 @@ msgstr "Nombre d'achats"
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_line_count
 msgid "Purchase lines count"
-msgstr ""
+msgstr "Nombre de lignes d'achats"
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:13+0000\n"
-"PO-Revision-Date: 2020-10-13 20:13+0000\n"
+"POT-Creation-Date: 2020-11-14 11:12+0000\n"
+"PO-Revision-Date: 2020-11-14 11:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,12 @@ msgstr ""
 #. module: mrp_unlock_raw_quantity_done
 #: model_terms:ir.ui.view,arch_db:mrp_unlock_raw_quantity_done.mrp_production_form_view
 msgid "Action to use when multiple assigned moves are in a 'red' state, it will set quantity done to expected value"
-msgstr ""
+msgstr "Action à utiliser quand plusieurs mouvements sont r=en 'rouge', elle va modifier les quantités terminées à la valeur attendue"
 
 #. module: mrp_unlock_raw_quantity_done
 #: model_terms:ir.ui.view,arch_db:mrp_unlock_raw_quantity_done.mrp_production_form_view
 msgid "Force Raw Quantity Done"
-msgstr ""
+msgstr "Forcer les quantités terminées"
 
 #. module: mrp_unlock_raw_quantity_done
 #: model:ir.model,name:mrp_unlock_raw_quantity_done.model_mrp_production

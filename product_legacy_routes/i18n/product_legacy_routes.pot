@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:12+0000\n"
-"PO-Revision-Date: 2020-10-13 20:12+0000\n"
+"POT-Creation-Date: 2020-11-14 11:11+0000\n"
+"PO-Revision-Date: 2020-11-14 11:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,20 +22,20 @@ msgid "'Make to Stock': When needed, take from the stock or wait until re-supply
 msgstr "'Sur stock' : au besoin, on prend dans le stock ou on attend jusqu'au prochain réapprovisionnement. 'À la demande': au besoin, on achète ou on fabrique selon la demande."
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:41
+#: code:addons/product_legacy_routes/models/product_template.py:43
 #: selection:product.template,supply_method:0
 #, python-format
 msgid "Buy"
 msgstr "Acheter"
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:59
+#: code:addons/product_legacy_routes/models/product_template.py:61
 #, python-format
 msgid "Make To Order"
 msgstr ""
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:67
+#: code:addons/product_legacy_routes/models/product_template.py:69
 #, python-format
 msgid "Make To Order + Make To Stock"
 msgstr ""
@@ -51,7 +51,7 @@ msgid "Make to Stock"
 msgstr "Production sur stock"
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:50
+#: code:addons/product_legacy_routes/models/product_template.py:52
 #, python-format
 msgid "Manufacture"
 msgstr ""
