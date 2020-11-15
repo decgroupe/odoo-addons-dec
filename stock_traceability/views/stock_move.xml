@@ -180,13 +180,23 @@
                         name="action_assign"
                         string="Check Assign"
                         type="object"
-                        class="btn-primary">
+                        class="btn-primary"
+                        attrs="{
+                            'invisible': [
+                                ('state', 'in', ('done','cancel')),
+                            ]
+                        }">
                     </button>
                     <button 
                         name="action_recompute_state"
                         string="Recompute State"
                         type="object"
-                        class="btn-primary">
+                        class="btn-primary"
+                        attrs="{
+                            'invisible': [
+                                ('state', 'in', ('done','cancel')),
+                            ]
+                        }">
                     </button>
                     <button 
                         name="action_force_state_confirmed_to_assigned" 
@@ -197,6 +207,19 @@
                         attrs="{
                             'invisible': [
                                 ('state', '!=', 'confirmed'),
+                            ]
+                        }">
+                    </button>
+                    <!-- stock_cancel module must be installed -->
+                    <button 
+                        name="action_cancel" 
+                        string="Cancel" 
+                        type="object" 
+                        confirm="Are you sure that you want to cancel this move ?"
+                        class="btn-danger" 
+                        attrs="{
+                            'invisible': [
+                                ('state', 'in', ('done','cancel')),
                             ]
                         }">
                     </button>
