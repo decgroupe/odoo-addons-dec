@@ -56,11 +56,14 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _convert_consu_to_small_supply(
-        self, stock_location_ids=False, merge_quants=True
+        self,
+        stock_location_ids=False,
+        merge_quants=True,
+        raise_exception=True
     ):
         product_variant_ids = self.mapped('product_variant_ids')
         product_variant_ids._convert_consu_to_small_supply(
-            stock_location_ids, merge_quants
+            stock_location_ids, merge_quants, raise_exception
         )
 
     @api.multi

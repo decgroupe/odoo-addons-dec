@@ -2,10 +2,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Nov 2020
 
+import logging
 from pprint import pformat
 
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
+
+_logger = logging.getLogger(__name__)
 
 
 class Product(models.Model):
@@ -13,7 +16,10 @@ class Product(models.Model):
 
     @api.multi
     def _convert_consu_to_small_supply(
-        self, stock_location_ids=False, merge_quants=True
+        self,
+        stock_location_ids=False,
+        merge_quants=True,
+        raise_exception=True
     ):
         res = {}.fromkeys(self.ids, {'before': {}, 'after': {}})
         for consu in self.filtered(lambda x: x.type == 'consu'):
@@ -57,7 +63,13 @@ class Product(models.Model):
         for k, v in res.items():
             for move_id in v['before']:
                 if v['before'][move_id] != v['after'][move_id]:
-                    raise Exception('State is not consistent:' + pformat(res))
+                    message = 'State is not consistent:' + pformat(res)
+                    if raise_exception and not self.env.context.get(
+                        'ignore_inconsistent_states'
+                    ):
+                        raise Exception(message)
+                    else:
+                        _logger.warning(message)
 
         return res
 
