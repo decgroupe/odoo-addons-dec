@@ -46,6 +46,6 @@ class SoftwareLicense(models.Model):
 
     @api.multi
     def _get_aeroo_report_filename(self):
-        names = [x.name or str(x.id) for x in self]
+        names = [x.serial or str(x.id) for x in self]
         res = '-'.join(names)
         return res
