@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
+"POT-Creation-Date: 2020-11-17 13:55+0000\n"
+"PO-Revision-Date: 2020-11-17 13:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,18 @@ msgstr ""
 
 #. module: product_small_supply
 #: model_terms:ir.ui.view,arch_db:product_small_supply.product_normal_form_view
-#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view
-msgid "<span class=\"o_form_label\" style=\"font-weight: bold;\" attrs=\"{'invisible': [                         '|',                             ('type', '!=', 'consu'),                             ('small_supply', '=', True),                     ]}\">\n"
+msgid "<div class=\"o_form_label\" style=\"font-weight: bold;\" attrs=\"{'invisible': [                         '|',                             ('type', '!=', 'consu'),                             ('small_supply', '=', True),                     ]}\">\n"
 "                    Small Supply\n"
-"                </span>"
-msgstr ""
+"                </div>"
+msgstr "<div class=\"o_form_label\" style=\"font-weight: bold;\" attrs=\"{'invisible': [                         '|',                             ('type', '!=', 'consu'),                             ('small_supply', '=', True),                     ]}\">\n"
+"                    Petite fourniture\n"
+"                </div>"
 
 #. module: product_small_supply
 #: model_terms:ir.ui.view,arch_db:product_small_supply.product_normal_form_view
-#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view2
 msgid "Convert to Small Supply"
-msgstr ""
+msgstr "Convertir en petite fourniture"
 
 #. module: product_small_supply
 #: model:ir.model.fields,help:product_small_supply.field_product_product__small_supply
@@ -54,6 +55,8 @@ msgstr "Modèle d'article"
 #. module: product_small_supply
 #: model:ir.model.fields,field_description:product_small_supply.field_product_product__small_supply
 #: model:ir.model.fields,field_description:product_small_supply.field_product_template__small_supply
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view2
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_search_view
 msgid "Small Supply"
 msgstr "Petite fourniture"
 
