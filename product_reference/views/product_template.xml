@@ -66,6 +66,10 @@
         <field name="inherit_id" ref="product_public_code.product_template_tree_view"/>
         <field name="mode">primary</field>
         <field name="arch" type="xml">
+            <field name="name" position="before">
+                <!-- WARNING: the string character is a non-breakable space -->
+                <field name="image_small" string=" " widget="image"/>
+            </field>
             <field name="name" position="after">
                 <field name="loc_rack"/>
                 <field name="loc_row"/>
