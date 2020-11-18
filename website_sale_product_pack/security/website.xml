@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="website_pack_line_product_rule_public" model="ir.rule">
+        <field name="name">website.page: portal/public: read pack line from published product</field>
+        <field name="model_id" ref="product.model_product_template" />
+        <field name="domain_force">[('parent_pack_website_published', '=', True)]</field>
+        <field name="groups" eval="[
+            (4, ref('base.group_portal')),
+            (4, ref('base.group_public'))
+        ]" />
+    </record>
+
+</odoo>
