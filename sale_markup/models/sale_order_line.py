@@ -41,7 +41,8 @@ class SaleOrderLine(models.Model):
             else:
                 price = 0
 
-            if self._onchange_origin in ('discount', 'price_unit'):
+            if hasattr(self, '_onchange_origin') and \
+                self._onchange_origin in ('discount', 'price_unit'):
                 # Do not update `price_unit` when `discount` is at the origin
                 # of the @onchange event to avoid rounding issues
                 # Note that `_onchange_origin` is set from function
@@ -97,6 +98,14 @@ class SaleOrderLine(models.Model):
         previous_markup_percent = self.markup_percent
         # Recompute price_unit
         super().product_uom_change()
-        # Restore previous markup and update price_unit
-        self.markup_percent = previous_markup_percent
-        self.onchange_markup_percent()
+
+        if hasattr(self, '_onchange_origin') and \
+            self._onchange_origin in ('product_id'):
+            # Do not update `price_unit` when `product_id` is at the origin
+            # of the @onchange event to avoid price issues when a rule
+            # with a fixed price has already set the discount property
+            pass
+        else:
+            # Restore previous markup and update price_unit
+            self.markup_percent = previous_markup_percent
+            self.onchange_markup_percent()
