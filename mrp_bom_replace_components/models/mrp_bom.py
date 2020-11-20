@@ -90,25 +90,8 @@ class MrpBom(models.Model):
                         'previous': previous_line_state,
                     }
 
-        tracked_field_names = {}
-        for key in TRACKED_FIELDS:
-            tracked_field_names[key] = IrTranslation.get_field_string(
-                BomLine._name
-            )[key]
-
         for id in add_ids:
-            current_line_state = current_state[id]
-            line = self.env['mrp.bom.line'].browse(id)
-            record_fields = {}
-            for field in TRACKED_FIELDS:
-                record_fields[field] = getattr(line, field)
-            values['added_lines'][id] = {
-                'line': line,
-                'tracked_fields': TRACKED_FIELDS,
-                'field_names': tracked_field_names,
-                'record_fields': record_fields,
-                'current': current_line_state,
-            }
+            values['added_lines'][id] = self.env['mrp.bom.line'].browse(id)
 
         for id in rem_ids:
             previous_line_state = previous_state[id]
