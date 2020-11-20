@@ -6,25 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-20 11:33+0000\n"
-"PO-Revision-Date: 2020-11-20 12:41+0100\n"
+"POT-Creation-Date: 2020-11-20 11:54+0000\n"
+"PO-Revision-Date: 2020-11-20 12:54+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
 "X-Generator: Poedit 2.3.1\n"
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
-msgid ""
-"<br/>\n"
-"                    After:"
-msgstr ""
-"<br/>\n"
-"                    Après:"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
@@ -53,8 +44,13 @@ msgstr "<strong>Certains articles ont été remplacés à l’aide de l’assist
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
-msgid "Before:"
-msgstr "Avant:"
+msgid "After"
+msgstr "Après"
+
+#. module: mrp_bom_replace_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
+msgid "Before"
+msgstr "Avant"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model,name:mrp_bom_replace_components.model_mrp_bom
@@ -139,6 +135,11 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: mrp_bom_replace_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
+msgid "Line"
+msgstr "Ligne"
+
+#. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.replace_bom_components_form_view
 msgid "Mapping"
 msgstr "Correspondance"
@@ -152,11 +153,6 @@ msgstr "Nouveau"
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "New Value"
 msgstr "Nouvelle valeur"
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
-msgid "On line with sequence"
-msgstr "Sur la ligne avec la séquence"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__owner_id
@@ -213,3 +209,13 @@ msgstr "Tuple pour stocker les articles à remplacer"
 #: model:ir.actions.act_window,name:mrp_bom_replace_components.act_window_replace_bom_components
 msgid "🧙‍♂️ Replace components ..."
 msgstr "🧙‍♂️ Remplacer des composants ..."
+
+#~ msgid ""
+#~ "<br/>\n"
+#~ "                    After:"
+#~ msgstr ""
+#~ "<br/>\n"
+#~ "                    Après:"
+
+#~ msgid "On line with sequence"
+#~ msgstr "Sur la ligne avec la séquence"

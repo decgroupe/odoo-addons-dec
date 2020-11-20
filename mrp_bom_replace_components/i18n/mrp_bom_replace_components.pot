@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-20 11:33+0000\n"
-"PO-Revision-Date: 2020-11-20 11:33+0000\n"
+"POT-Creation-Date: 2020-11-20 11:54+0000\n"
+"PO-Revision-Date: 2020-11-20 11:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,40 +16,39 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
-msgid "<br/>\n"
-"                    After:"
-msgstr ""
-
-#. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "<strong>Added:</strong>"
-msgstr ""
+msgstr "<strong>Ajoutés:</strong>"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "<strong>Bill of materials has changed.</strong><br/>"
-msgstr ""
+msgstr "<strong>La nomenclature a changé.</strong><br/>"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "<strong>Edited:</strong>"
-msgstr ""
+msgstr "<strong>Édités:</strong>"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "<strong>Removed:</strong>"
-msgstr ""
+msgstr "<strong>Supprimés:</strong>"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
 msgid "<strong>Some products have been replaced using replacement wizard.</strong>"
+msgstr "<strong>Certains articles ont été remplacés à l’aide de l’assistant de remplacement.</strong>"
+
+#. module: mrp_bom_replace_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
+msgid "After"
 msgstr ""
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
-msgid "Before:"
-msgstr ""
+msgid "Before"
+msgstr "Avant:"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model,name:mrp_bom_replace_components.model_mrp_bom
@@ -74,12 +73,12 @@ msgstr "Annuler"
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "Component"
-msgstr ""
+msgstr "Composant"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.replace_bom_components_form_view
 msgid "Confirm Replacement"
-msgstr ""
+msgstr "Confirmer le remplacement"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components__create_uid
@@ -102,7 +101,7 @@ msgstr "Nom affiché"
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.replace_bom_components_form_view
 msgid "Do you want to proceed replacement?"
-msgstr ""
+msgstr "Voulez-vous procéder au remplacement ?"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
@@ -134,9 +133,14 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: mrp_bom_replace_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
+msgid "Line"
+msgstr ""
+
+#. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.replace_bom_components_form_view
 msgid "Mapping"
-msgstr ""
+msgstr "Correspondance"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__new_product_id
@@ -146,12 +150,7 @@ msgstr "Nouveau"
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "New Value"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
-msgid "On line with sequence"
-msgstr ""
+msgstr "Nouvelle valeur"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__owner_id
@@ -161,12 +160,12 @@ msgstr "Propriétaire"
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__previous_product_id
 msgid "Previous"
-msgstr ""
+msgstr "Précédent"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
 msgid "Previous Value"
-msgstr ""
+msgstr "Valeur précédente"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components__bom_product_ids
@@ -176,12 +175,12 @@ msgstr "Articles"
 #. module: mrp_bom_replace_components
 #: model:ir.model,name:mrp_bom_replace_components.model_replace_bom_components
 msgid "Replace BoM Components"
-msgstr ""
+msgstr "Remplacer les composants de nomenclature"
 
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components__replacement_ids
 msgid "Replacements"
-msgstr ""
+msgstr "Remplacements"
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.replace_bom_components_form_view
@@ -193,15 +192,17 @@ msgstr "Choisir les options"
 msgid "Select a product existing in at least one bill of materials\n"
 "                    and choose a new product that will replace it in all\n"
 "                    selected bill of materials."
-msgstr ""
+msgstr "Sélectionner un article existant dans au moins une des nomenclatures\n"
+"                    et choisir un autre article qui le remplacera dans tous les\n"
+"                    nomenclatures sélectionnées."
 
 #. module: mrp_bom_replace_components
 #: model:ir.model,name:mrp_bom_replace_components.model_replace_bom_tuple
 msgid "Tuple to store product to replace"
-msgstr ""
+msgstr "Tuple pour stocker les articles à remplacer"
 
 #. module: mrp_bom_replace_components
 #: model:ir.actions.act_window,name:mrp_bom_replace_components.act_window_replace_bom_components
 msgid "🧙‍♂️ Replace components ..."
-msgstr ""
+msgstr "🧙‍♂️ Remplacer les composants ..."
 

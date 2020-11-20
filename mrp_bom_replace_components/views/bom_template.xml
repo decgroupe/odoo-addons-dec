@@ -4,13 +4,34 @@
     <template id="track_bom_line_template">
         <div>
             <strong>Some products have been replaced using replacement wizard.</strong>
-            <ul>
-                <t t-foreach="lines" t-as="bom_line">
-                    <li>On line with sequence <t t-esc="bom_line.sequence"/>:</li>
-                    Before: <t t-esc="bom_line_value['before'].display_name" /><br/>
-                    After: <t t-esc="bom_line_value['after'].display_name" /><br/>
-                </t>
-            </ul>
+            <small>
+                <table class="note_table">
+                    <thead>
+                        <tr>
+                            <th>Line</th>
+                            <th>Before</th>
+                            <th>After</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="lines" t-as="bom_line">
+                            <tr t-attf-class="{{ bom_line_parity }}">
+                                <td>
+                                    L<small><t t-esc="bom_line.sequence"/>:</small>
+                                </td>
+                                <td>
+                                    <t t-esc="bom_line_value['before'].display_name" />
+                                    (<t t-esc="bom_line_value['before'].state" />)
+                                </td>
+                                <td>
+                                    <t t-esc="bom_line_value['after'].display_name" />
+                                    (<t t-esc="bom_line_value['after'].state" />)
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </small>
         </div>
     </template>
 
