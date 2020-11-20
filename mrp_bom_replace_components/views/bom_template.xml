@@ -18,39 +18,41 @@
         <div>
             <strong>Bill of materials has been edited.</strong>
             <t t-if="edited_lines">
-                <ul>
-                    <t t-foreach="edited_lines" t-as="id">
-                        <li>Line <t t-esc="edited_lines[id]['line'].sequence"/>:
-                            <t t-esc="edited_lines[id]['line'].product_id.display_name"/></li>
-                        <small>
-                            <table class="note_table">
-                                <thead>
+                <small>
+                    <table class="note_table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Field</th>
+                                <th>Old</th>
+                                <th>New</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="edited_lines" t-as="id">
+                                <t t-foreach="edited_lines[id]['diffkeys']" t-as="diffkey">
                                     <tr>
-                                        <th>Field</th>
-                                        <th>Old</th>
-                                        <th>New</th>
+                                        <td>
+                                            <span t-field="edited_lines[id]['line'].sequence"/>
+                                            <span t-field="edited_lines[id]['line'].product_id"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="tracked_fields[diffkey]"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="edited_lines[id]['previous'][diffkey]"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="edited_lines[id]['current'][diffkey]"/>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <t t-foreach="edited_lines[id]['diffkeys']" t-as="diffkey">
-                                        <tr>
-                                            <td>
-                                                <t t-esc="edited_lines[id]['field_names'][diffkey]"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="edited_lines[id]['previous'][diffkey]"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="edited_lines[id]['current'][diffkey]"/>
-                                            </td>
-                                        </tr>
-                                    </t>
-                                </tbody>
-                            </table>
-                        </small>
-                    </t>
-                </ul>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </small>
             </t>
+            
             <t t-if="added_lines">
                 <strong>Added:</strong>
                 <ul>
