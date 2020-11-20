@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="replace_bom_components_form_view" >
+        <field name="name">replace.bom.components@mrp_bom_replace_components</field>
+        <field name="model">replace.bom.components</field>
+        <field name="arch" type="xml">
+            <form string="Select Options">
+                <p class="oe_grey">
+                    Select a product existing in at least one bill of materials
+                    and choose a new product that will replace it in all
+                    selected bill of materials.
+                </p>
+                <group>
+                    <field name="bom_product_ids" invisible="1" />
+                    <field name="replacement_ids">
+                        <tree editable="top">
+                            <field name="owner_id" invisible="1" />
+                            <field name="previous_product_id"
+                                domain="[('id', 'in', parent.bom_product_ids)]"
+                            />
+                            <field name="new_product_id"/>
+                        </tree>
+                        <form string="Mapping">
+                            <field name="previous_product_id"/>
+                            <field name="new_product_id"/>
+                        </form>
+                    </field>
+                </group>
+                <footer>
+                    <button 
+                        class="btn-primary"
+                        string="Confirm Replacement"
+                        confirm="Do you want to proceed replacement?"
+                        name="action_replace"
+                        type="object"
+                        default_focus="1"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-secondary"
+                        string="Cancel"
+                        special="cancel"
+                        context="{}">
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="act_window_replace_bom_components"
+        name="🧙‍♂️ Replace components ..."
+        src_model="mrp.bom"
+        res_model="replace.bom.components"
+        view_type="tree"
+        view_mode="form"
+        multi="True"
+        key2="client_action_multi" 
+        target="new"
+    />
+
+</odoo>
