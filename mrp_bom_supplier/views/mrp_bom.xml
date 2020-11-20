@@ -14,18 +14,6 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="mrp_bom_tree_view">
-        <field name="name">mrp.bom.tree@mrp_bom_supplier</field>
-        <field name="model">mrp.bom</field>
-        <field name="type">tree</field>
-        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
-        <field name="arch" type="xml">
-            <field name="product_tmpl_id" position="before">
-                <field name="code"/>
-            </field>
-        </field>
-    </record>
-
     <record model="ir.ui.view" id="mrp_bom_line_view_form">
         <field name="name">mrp.bom.line.view.form@mrp_bom_supplier</field>
         <field name="model">mrp.bom.line</field>
@@ -40,4 +28,3 @@
     </record>
 
 </odoo>
-
