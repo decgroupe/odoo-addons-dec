@@ -8,6 +8,10 @@ from odoo import api, fields, models, _
 class MrpBomLine(models.Model):
     _inherit = 'mrp.bom.line'
 
+    product_small_supply = fields.Boolean(
+        related='product_id.small_supply',
+        readonly=True,
+    )
     product_type = fields.Selection(
         related='product_id.type',
         readonly=True,
