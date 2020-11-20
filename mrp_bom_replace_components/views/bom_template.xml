@@ -19,34 +19,41 @@
             <strong>Bill of materials has changed.</strong><br/>
             <small>
                 <t t-if="edited_lines">
-                    <span>Edited:</span>
+                    <strong>Edited:</strong>
                     <table class="note_table">
                         <thead>
                             <tr>
                                 <th>Component</th>
                                 <th>Field</th>
-                                <th>Previous</th>
-                                <th>Current</th>
+                                <th>Previous Value</th>
+                                <th>New Value</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <t t-set="i" t-value="1"/>
                             <t t-foreach="edited_lines" t-as="id">
-                                <t t-foreach="edited_lines[id]['diffkeys']" t-as="diffkey">
-                                    <tr>
+                                <t t-set="name_defined" t-value="False"/>
+                                <t t-foreach="edited_lines[id]['edited_fields']" t-as="edited_field">
+                                    <tr t-attf-class="{{ id_parity }}">
                                         <td>
-                                            <small><span t-field="edited_lines[id]['line'].sequence"/>:</small>
-                                            <span t-field="edited_lines[id]['line'].product_id"/>
+                                            <t t-if="not name_defined">
+                                                <t t-set="name_defined" t-value="True"/>
+                                                L<small><span t-field="edited_lines[id]['line'].sequence"/>:</small>
+                                                <span t-field="edited_lines[id]['line'].product_id"/>
+                                            </t>
+                                            <t t-else=""> </t>
                                         </td>
                                         <td>
-                                            <t t-esc="tracked_fields[diffkey]"/>
+                                            <t t-esc="tracked_fields[edited_field]"/>
                                         </td>
                                         <td>
-                                            <t t-esc="edited_lines[id]['previous'][diffkey]"/>
+                                            <t t-esc="edited_lines[id]['previous'][edited_field]"/>
                                         </td>
                                         <td>
-                                            <t t-esc="edited_lines[id]['current'][diffkey]"/>
+                                            <t t-esc="edited_lines[id]['current'][edited_field]"/>
                                         </td>
                                     </tr>
+                                    <t t-set="i" t-value="i+1"/>
                                 </t>
                             </t>
                         </tbody>
@@ -54,7 +61,7 @@
                 </t>
                 
                 <t t-if="added_lines">
-                    <span>Added:</span>
+                    <strong>Added:</strong>
                     <table class="note_table">
                         <thead>
                             <tr>
@@ -86,27 +93,30 @@
                         </thead>
                         <tbody>
                             <t t-foreach="added_lines" t-as="id">
-                                <tr>
+                                <tr t-attf-class="{{ id_parity }}">
                                     <td>
-                                        <small><span t-field="added_lines[id].sequence"/>:</small>
+                                        L<small><span t-field="added_lines[id].sequence"/>:</small>
                                         <span t-field="added_lines[id].product_id"/>
                                     </td>
                                     <td>
                                         <span t-field="added_lines[id].partner_id"/>
                                     </td>
                                     <td>
-                                        <t t-if="added_lines[id].buy_consumable">
-                                            <i class="fa fa-check-square-o" aria-hidden="true"></i><br/>
+                                        <t t-if="added_lines[id].product_is_consumable">
+                                            <t t-if="added_lines[id].buy_consumable">
+                                                <i class="fa fa-check-square-o" aria-hidden="true"></i><br/>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa fa-square-o" aria-hidden="false"></i><br/>
+                                            </t>
                                         </t>
-                                        <t t-else="">
-                                            <i class="fa fa-square-o" aria-hidden="false"></i><br/>
-                                        </t>
+                                        <t t-else=""> </t>
                                     </td>
                                     <td>
                                         <span t-field="added_lines[id].landmark"/>
                                     </td>
                                     <td>
-                                        <span t-field="added_lines[id].product_qty"/> <span t-field="added_lines[id].product_uom_id"/>
+                                        <span t-field="added_lines[id].product_qty"/> &#xD7; <span t-field="added_lines[id].product_uom_id"/>
                                     </td>
                                     <td>
                                         <span t-field="added_lines[id].public_price"/>
@@ -124,7 +134,7 @@
                 </t>
 
                 <t t-if="removed_lines">
-                    <span>Removed:</span>
+                    <strong>Removed:</strong>
                     <table class="note_table">
                         <thead>
                             <tr>
@@ -156,12 +166,12 @@
                         </thead>
                         <tbody>
                             <t t-foreach="removed_lines" t-as="id">
-                                <tr>
+                                <tr t-attf-class="{{ id_parity }}">
                                     <td>
-                                        <t t-esc="removed_lines[id]['product_id']"/>
+                                        <t t-esc="removed_lines[id]['product_id'][1]"/>
                                     </td>
                                     <td>
-                                        <t t-esc="removed_lines[id]['partner_id']"/>
+                                        <t t-esc="removed_lines[id]['partner_id'][1]"/>
                                     </td>
                                     <td>
                                         <t t-if="removed_lines[id]['buy_consumable']">
@@ -175,7 +185,7 @@
                                         <t t-esc="removed_lines[id]['landmark']"/>
                                     </td>
                                     <td>
-                                        <t t-esc="removed_lines[id]['product_qty']"/> <t t-esc="removed_lines[id]['product_uom_id']"/>
+                                        <t t-esc="removed_lines[id]['product_qty']"/> &#xD7; <t t-esc="removed_lines[id]['product_uom_id'][1]"/>
                                     </td>
                                     <td>
                                         <t t-esc="removed_lines[id]['public_price']"/>

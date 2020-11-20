@@ -6,6 +6,8 @@
     'summary': '''Replace in batch''',
     'depends': [
         'mrp',
+        'mrp_bom_supplier',
+        'mrp_buy_consu',
     ],
     'data': [
         'views/bom_template.xml',

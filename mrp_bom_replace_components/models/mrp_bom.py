@@ -20,37 +20,43 @@ TRACKED_FIELDS = [
 ]
 
 
+def fix(res):
+    """ 
+        Ensure all dictionaries keys are string
+        Ensure all tuples becomes lists
+    """
+    if res is None:
+        return False
+    elif type(res) == dict:
+        return dict((str(key), fix(value)) for key, value in res.items())
+    elif type(res) == list:
+        return list(fix(x) for x in res)
+    elif type(res) == tuple:
+        return list(fix(x) for x in res)
+    else:
+        return res
+
+
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
     def get_track_state(self):
         self.ensure_one()
+        vals = self.bom_line_ids.read(fields=TRACKED_FIELDS)
         res = {}
-        for line in self.bom_line_ids:
-            read = line.read(fields=TRACKED_FIELDS)[0]
-            vals = line._convert_to_write(read)
-            res[line.id] = vals
+        for v in vals:
+            id = v.pop('id')
+            res[id] = v
+        res = fix(res)
         return res
 
     def set_track_state(self, previous_state):
         BomLine = self.env['mrp.bom.line']
         IrTranslation = self.env['ir.translation']
-        # Convert previous state dict key to integer since XML-RPC
-        # does not allow anything else than a string for a key
-        rpc_previous_state = previous_state.copy()
-        previous_state = {}
-        for key in rpc_previous_state:
-            previous_state[int(key)] = rpc_previous_state[key]
 
-        values = {
-            'tracked_fields': {},
-            'edited_lines': {},
-            'added_lines': {},
-            'removed_lines': {},
-        }
-        for key in TRACKED_FIELDS:
-            values['tracked_fields'][key] = \
-                IrTranslation.get_field_string(BomLine._name)[key]
+        edited_lines = {}
+        added_lines = {}
+        removed_lines = {}
 
         current_state = self.get_track_state()
         add_ids = list(set(current_state) - set(previous_state))
@@ -59,7 +65,7 @@ class MrpBom(models.Model):
             if id not in add_ids and id not in rem_ids:
                 previous_line_state = previous_state[id]
                 current_line_state = current_state[id]
-                diffkeys = []
+                edited_fields = []
                 for k in current_line_state:
                     if current_line_state[k] != previous_line_state[k]:
                         # Specific case for floats, use float_compare to
@@ -71,46 +77,39 @@ class MrpBom(models.Model):
                                 previous_line_state[k],
                                 precision_digits=digits[1]
                             ):
-                                diffkeys.append(k)
+                                edited_fields.append(k)
                         else:
-                            diffkeys.append(k)
+                            edited_fields.append(k)
 
-                field_names = {}
-                for key in diffkeys:
-                    field_names[key] = IrTranslation.get_field_string(
-                        BomLine._name
-                    )[key]
-
-                if diffkeys:
-                    values['edited_lines'][id] = {
-                        'line': self.env['mrp.bom.line'].browse(id),
-                        'diffkeys': diffkeys,
-                        'field_names': field_names,
+                if edited_fields:
+                    edited_lines[id] = {
+                        'line': self.env['mrp.bom.line'].browse(int(id)),
+                        'edited_fields': edited_fields,
                         'current': current_line_state,
                         'previous': previous_line_state,
                     }
 
         for id in add_ids:
-            values['added_lines'][id] = self.env['mrp.bom.line'].browse(id)
+            added_lines[id] = self.env['mrp.bom.line'].browse(int(id))
 
         for id in rem_ids:
-            previous_line_state = previous_state[id]
-            # Resolve IDs
-            previous_line_state['product_id'] = self.env[
-                'product.product'].browse(
-                    previous_line_state['product_id']
-                ).display_name
-            previous_line_state['partner_id'] = self.env['res.partner'].browse(
-                previous_line_state['partner_id']
-            ).display_name
-            previous_line_state['product_uom_id'] = self.env['uom.uom'].browse(
-                previous_line_state['product_uom_id']
-            ).display_name
-            values['removed_lines'][id] = previous_line_state
+            removed_lines[id] = previous_state[id]
 
-        self.message_post_with_view(
-            'mrp_bom_replace_components.track_bom_template',
-            values=values,
-            subtype_id=self.env.ref('mail.mt_note').id
-        )
+        if edited_lines or added_lines or removed_lines:
+            # Store tracked fields with their translation
+            tracked_fields = {}
+            for key in TRACKED_FIELDS:
+                tracked_fields[key] = \
+                    IrTranslation.get_field_string(BomLine._name)[key]
+
+            self.message_post_with_view(
+                'mrp_bom_replace_components.track_bom_template',
+                values={
+                    'tracked_fields': tracked_fields,
+                    'edited_lines': edited_lines,
+                    'added_lines': added_lines,
+                    'removed_lines': removed_lines,
+                },
+                subtype_id=self.env.ref('mail.mt_note').id
+            )
         return True
