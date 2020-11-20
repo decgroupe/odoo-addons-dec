@@ -3,8 +3,7 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Nov 2020
 
 from odoo import fields, models, api, _
-from odoo.exceptions import UserError
-
+from odoo.addons.queue_job.job import job
 
 class ReplaceTuple(models.TransientModel):
     _name = 'replace.bom.tuple'
@@ -67,6 +66,10 @@ class ReplaceBomComponents(models.TransientModel):
 
     @api.multi
     def action_replace(self):
+        self.with_delay()._do_replace()
+
+    @job
+    def _do_replace(self):
         previous_product_ids = self.replacement_ids.mapped(
             'previous_product_id'
         )
