@@ -16,8 +16,9 @@
 
     <template id="track_bom_template">
         <div>
-            <strong>Bill of materials has been edited.</strong>
+            <strong>Bill of materials has changed.</strong><br/>
             <t t-if="edited_lines">
+                <span>Edited:</span>
                 <small>
                     <table class="note_table">
                         <thead>
@@ -33,7 +34,7 @@
                                 <t t-foreach="edited_lines[id]['diffkeys']" t-as="diffkey">
                                     <tr>
                                         <td>
-                                            <span t-field="edited_lines[id]['line'].sequence"/>
+                                            <small><span t-field="edited_lines[id]['line'].sequence"/>:</small>
                                             <span t-field="edited_lines[id]['line'].product_id"/>
                                         </td>
                                         <td>
@@ -54,85 +55,146 @@
             </t>
             
             <t t-if="added_lines">
-                <strong>Added:</strong>
-                <ul>
-                    <t t-foreach="added_lines" t-as="id">
-                        <li>Line <t t-esc="added_lines[id]['line'].sequence"/></li>
-                        <small>
-                            <table class="note_table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['product_id']"/>
-                                        </th>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['partner_id']"/>
-                                        </th>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['buy_consumable']"/>
-                                        </th>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['landmark']"/>
-                                        </th>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['product_qty']"/>
-                                        </th>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['public_price']"/>
-                                        </th>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['unit_price']"/>
-                                        </th>
-                                        <th>
-                                            <t t-esc="added_lines[id]['field_names']['cost_price']"/>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <span t-field="added_lines[id]['line'].product_id"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="added_lines[id]['line'].partner_id"/>
-                                        </td>
-                                        <td>
-                                            <t t-if="added_lines[id]['line'].buy_consumable">
-                                                <i class="fa fa-check-square" aria-hidden="true"></i><br/>
-                                            </t>
-                                            <t t-else="">
-                                                <i class="fa fa-square" aria-hidden="false"></i><br/>
-                                            </t>
-                                        </td>
-                                        <td>
-                                            <span t-field="added_lines[id]['line'].landmark"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="added_lines[id]['line'].product_qty"/> <span t-field="added_lines[id]['line'].product_uom_id"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="added_lines[id]['line'].public_price"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="added_lines[id]['line'].unit_price"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="added_lines[id]['line'].cost_price"/>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </small>
-                    </t>
-                </ul>
+                <span>Added:</span>
+                <small>
+                    <table class="note_table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <t t-esc="tracked_fields['product_id']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['partner_id']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['buy_consumable']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['landmark']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['product_qty']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['public_price']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['unit_price']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['cost_price']"/>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="added_lines" t-as="id">
+                                <tr>
+                                    <td>
+                                        <small><span t-field="added_lines[id]['line'].sequence"/>:</small>
+                                        <span t-field="added_lines[id]['line'].product_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="added_lines[id]['line'].partner_id"/>
+                                    </td>
+                                    <td>
+                                        <t t-if="added_lines[id]['line'].buy_consumable">
+                                            <i class="fa fa-check-square" aria-hidden="true"></i><br/>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa fa-square" aria-hidden="false"></i><br/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span t-field="added_lines[id]['line'].landmark"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="added_lines[id]['line'].product_qty"/> <span t-field="added_lines[id]['line'].product_uom_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="added_lines[id]['line'].public_price"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="added_lines[id]['line'].unit_price"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="added_lines[id]['line'].cost_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </small>
             </t>
+
             <t t-if="removed_lines">
-                <strong>Removed:</strong>
-                <ul>
-                    <t t-foreach="removed_lines" t-as="id">
-                        <li>Line <t t-esc="removed_lines[id]['id']"/>:</li>
-                    </t>
-                </ul>
+                <span>Removed:</span>
+                <small>
+                    <table class="note_table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <t t-esc="tracked_fields['product_id']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['partner_id']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['buy_consumable']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['landmark']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['product_qty']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['public_price']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['unit_price']"/>
+                                </th>
+                                <th>
+                                    <t t-esc="tracked_fields['cost_price']"/>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="removed_lines" t-as="id">
+                                <tr>
+                                    <td>
+                                        <t t-esc="removed_lines[id]['product_id']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="removed_lines[id]['partner_id']"/>
+                                    </td>
+                                    <td>
+                                        <t t-if="removed_lines[id]['buy_consumable']">
+                                            <i class="fa fa-check-square-o" aria-hidden="true"></i><br/>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa fa-square-o" aria-hidden="false"></i><br/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-esc="removed_lines[id]['landmark']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="removed_lines[id]['product_qty']"/> <t t-esc="removed_lines[id]['product_uom_id']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="removed_lines[id]['public_price']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="removed_lines[id]['unit_price']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="removed_lines[id]['cost_price']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </small>
             </t>
         </div>
     </template>

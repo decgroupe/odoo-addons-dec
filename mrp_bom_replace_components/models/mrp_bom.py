@@ -112,6 +112,17 @@ class MrpBom(models.Model):
 
         for id in rem_ids:
             previous_line_state = previous_state[id]
+            # Resolve IDs
+            previous_line_state['product_id'] = self.env[
+                'product.product'].browse(
+                    previous_line_state['product_id']
+                ).display_name
+            previous_line_state['partner_id'] = self.env['res.partner'].browse(
+                previous_line_state['partner_id']
+            ).display_name
+            previous_line_state['product_uom_id'] = self.env['uom.uom'].browse(
+                previous_line_state['product_uom_id']
+            ).display_name
             values['removed_lines'][id] = previous_line_state
 
         self.message_post_with_view(
