@@ -14,7 +14,7 @@
                 <group>
                     <field name="bom_product_ids" invisible="1" />
                     <field name="replacement_ids">
-                        <tree editable="top">
+                        <tree editable="bottom">
                             <field name="owner_id" invisible="1" />
                             <field name="previous_product_id"
                                 domain="[('id', 'in', parent.bom_product_ids)]"

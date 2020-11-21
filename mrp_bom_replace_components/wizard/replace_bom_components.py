@@ -2,8 +2,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Nov 2020
 
+import logging
+
 from odoo import fields, models, api, _
 from odoo.addons.queue_job.job import job
+
+_logger = logging.getLogger(__name__)
+
 
 class ReplaceTuple(models.TransientModel):
     _name = 'replace.bom.tuple'
@@ -73,8 +78,18 @@ class ReplaceBomComponents(models.TransientModel):
         previous_product_ids = self.replacement_ids.mapped(
             'previous_product_id'
         )
-        for bom_id in self.bom_ids:
+        boms_data = self.env['mrp.bom.line'].read_group(
+            [
+                ('product_id', 'in', previous_product_ids.ids),
+                ('bom_id', 'in', self.bom_ids.ids),
+            ], ['bom_id'], ['bom_id']
+        )
+        bom_to_process_ids = [x['bom_id'][0] for x in boms_data]
+
+        for bom_id in self.env['mrp.bom'].browse(bom_to_process_ids):
+            _logger.info('Processing BoM %s', bom_id.code)
             values = {'lines': {}}
+            replace_count = 0
             for bom_line in bom_id.bom_line_ids.filtered(
                 lambda x: x.product_id in previous_product_ids
             ):
@@ -85,10 +100,12 @@ class ReplaceBomComponents(models.TransientModel):
                             'after': replacement_id.new_product_id,
                         }
                         bom_line.product_id = replacement_id.new_product_id
+                        replace_count += 1
                         break
 
-            bom_id.message_post_with_view(
-                'mrp_bom_replace_components.track_bom_line_template',
-                values=values,
-                subtype_id=self.env.ref('mail.mt_note').id
-            )
+            if replace_count > 0:
+                bom_id.message_post_with_view(
+                    'mrp_bom_replace_components.track_bom_line_template',
+                    values=values,
+                    subtype_id=self.env.ref('mail.mt_note').id
+                )
