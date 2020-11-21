@@ -16,4 +16,14 @@
         border-bottom: 2px solid #dee2e6;
         font-weight: bold !important;
     }
+
+    tr.even {
+        background-color: #ddd;
+    }
+
+    tr.odd {
+        background-color: #e8e8e8;
+
+    }
+
 }
