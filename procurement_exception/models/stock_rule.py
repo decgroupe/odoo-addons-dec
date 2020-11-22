@@ -28,4 +28,4 @@ class StockRule(models.Model):
         super()._log_next_activity(product_id, note)
         # Commit this created activity to keep it even after a rollback
         cr.commit()
-        cr.close
+        cr.close()
