@@ -18,8 +18,11 @@
                             <field name="owner_id" invisible="1" />
                             <field name="previous_product_id"
                                 domain="[('id', 'in', parent.bom_product_ids)]"
+                                options="{'no_create_edit': True, 'no_quick_create': True}" 
                             />
-                            <field name="new_product_id"/>
+                            <field name="new_product_id"
+                                options="{'no_create_edit': True, 'no_quick_create': True}" 
+                            />
                         </tree>
                         <form string="Mapping">
                             <field name="previous_product_id"/>
