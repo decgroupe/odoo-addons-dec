@@ -86,7 +86,7 @@ class ProcurementGroup(models.Model):
         default=0,
         store=False,
     )
-    # addons-oca/purchase-workflow/purchase_line_procurement_group/models/purchase.py
+    # odoo-addons/oca/purchase-workflow/purchase_line_procurement_group/models/purchase.py
     purchase_order_line_ids = fields.One2many(
         'purchase.order.line',
         'procurement_group_id',

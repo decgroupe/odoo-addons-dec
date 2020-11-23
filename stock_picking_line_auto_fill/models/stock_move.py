@@ -20,7 +20,7 @@ class StockMove(models.Model):
             move.action_auto_operation_fill_visible = visible
 
     # Copy logic from :
-    # ./addons-oca/stock-logistics-workflow/stock_move_line_auto_fill/models/stock_picking.py
+    # ./odoo-addons/oca/stock-logistics-workflow/stock_move_line_auto_fill/models/stock_picking.py
     def action_auto_operation_fill(self):
         for move in self:
             operations = move.mapped('move_line_ids')
