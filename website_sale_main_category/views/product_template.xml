@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_template_search_view_website">
+        <field name="name">product.template.search@website_sale_main_category</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="website_sale.product_template_search_view_website"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="public_categ_id"/>
+                <filter 
+                    string="Website Main Product Category" 
+                    name="groupby_public_categ_id" 
+                    context="{'group_by':'public_categ_id'}">
+                </filter>
+            </field>
+        </field>
+    </record>
+
+</odoo>
