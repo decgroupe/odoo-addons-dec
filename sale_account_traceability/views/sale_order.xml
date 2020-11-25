@@ -12,7 +12,9 @@
                     {'invisible': [
                         '|', 
                             ('display_type', '!=', False), 
-                            ('invoice_lines', '=', []),
+                            '&amp;', 
+                                ('parent.state', 'not in', ['sale', 'done']),
+                                ('invoice_lines', '=', []),
                     ]}
                 </attribute>
             </xpath>
