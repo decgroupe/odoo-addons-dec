@@ -10,19 +10,13 @@
         </xpath>
     </template>
 
-    <template id="product" name="Display product public code" inherit_id="website_sale.product" customize_show="True">
+    <template id="product" name="Display product public code" inherit_id="website_sale_workflow_dec.product_v1" customize_show="True">
         <xpath expr="//t[@t-set='additional_title']" positions="before">
             <t t-set="additional_title" t-value="product.website_public_code" />
         </xpath>
-        <!-- Breadcrumb -->
-        <xpath expr="//span[@t-field='product.name']" position="after">
-            <small>
-                (<span t-field="product.website_public_code"/>)
-            </small>
-        </xpath>
         <!-- Product Title -->
-        <xpath expr="//h1[@t-field='product.name']" position="after">
-            <div>
+        <xpath expr="//h2[@t-field='product.name']" position="after">
+            <div class="badge badge-dark">
                 Ref: <span itemprop="website_public_code" t-field="product.website_public_code"/>
             </div>
         </xpath>

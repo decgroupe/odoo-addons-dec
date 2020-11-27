@@ -5,7 +5,7 @@
     'website': 'http://www.dec-industrie.com',
     'summary': '''Display product public code in e-commerce''',
     'depends': [
-        'website_sale',
+        'website_sale_workflow_dec',
         'product_public_code',
     ],
     'data': ["views/website_sale.xml", ],
