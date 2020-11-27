@@ -10,7 +10,7 @@
         </xpath>
     </template>
 
-    <template id="product" name="Display product public code" inherit_id="website_sale_workflow_dec.product_v1" customize_show="True">
+    <template id="product" name="Display product public code" inherit_id="website_sale_workflow_dec.product" customize_show="True">
         <xpath expr="//t[@t-set='additional_title']" positions="before">
             <t t-set="additional_title" t-value="product.website_public_code" />
         </xpath>
