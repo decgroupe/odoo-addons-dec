@@ -9,5 +9,5 @@
         'product_pack',
     ],
     'data': ['security/website.xml'],
-    'installable': True
+    'installable': False
 }

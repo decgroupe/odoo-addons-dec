@@ -2,14 +2,19 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Nov 2020
 
-from odoo import fields, models, api
+import logging
 
+from odoo import fields, models, api
+from odoo.osv import expression
+
+_logger = logging.getLogger(__name__)
 
 class Product(models.Model):
     _inherit = 'product.product'
 
     parent_pack_website_published = fields.Boolean(
-        compute='_compute_parent_pack_website_published'
+        compute='_compute_parent_pack_website_published',
+        search='_search_parent_pack_website_published',
     )
 
     @api.multi
@@ -22,3 +27,15 @@ class Product(models.Model):
             rec.parent_pack_website_published = any(
                 parent_product_ids.mapped('website_published')
             )
+
+
+    def _search_parent_pack_website_published(self, operator, value):
+        if not isinstance(value, bool) or operator not in ('=', '!='):
+            _logger.warning('unsupported search on parent_pack_website_published: %s, %s', operator, value)
+            return [()]
+
+        if operator in expression.NEGATIVE_TERM_OPERATORS:
+            value = not value
+
+        # Need to be implemented, otherwise parent_pack_website_published
+        # must not be used in domain filtering
