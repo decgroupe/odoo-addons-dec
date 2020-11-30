@@ -6,7 +6,7 @@ import logging
 
 from odoo import _, api, fields, models
 
-from ...stock_traceability.models.html_helper import (
+from odoo.addons.tools_miscellaneous.tools.html_helper import (
     format_hd,
     div,
 )
@@ -60,7 +60,7 @@ class StockMove(models.Model):
         )
         if production_ids:
             for p in self.production_ids:
-                head, desc = self._get_production_status(p)
+                head, desc = p.get_head_desc()
                 res.append(format_hd('♻️⮡ ' + head, desc, html))
         # else:
         #     head = '⚠️{0}'.format(_('Orderpoint issue'))
@@ -75,7 +75,7 @@ class StockMove(models.Model):
         )
         if purchase_line_ids:
             for p in purchase_line_ids:
-                head, desc = self._get_purchase_status(p)
+                head, desc = p.get_head_desc()
                 res.append(format_hd('♻️⮡ ' + head, desc, html))
         # else:
         #     head = '⚠️{0}'.format(_('Orderpoint issue'))

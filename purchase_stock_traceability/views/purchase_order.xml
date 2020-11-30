@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_view_form_inherit">
+        <field name="name">purchase.order.form.inherit@purchase_stock_traceability</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_line_procurement_group.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//field[@name='order_line']/tree/field[@name='procurement_group_id']" position="replace">
+                <field name="procurement_origin" class="d_move_procurement_status"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

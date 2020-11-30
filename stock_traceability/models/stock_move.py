@@ -8,16 +8,30 @@ from odoo import _, api, fields, models
 from odoo.tools import html2plaintext, ormcache
 from odoo.tools.float_utils import float_compare
 
-from .emoji_helper import (
-    production_state_to_emoji,
-    purchase_state_to_emoji,
-    stockmove_state_to_emoji,
-    activity_state_to_emoji,
-    product_type_to_emoji,
+from odoo.addons.tools_miscellaneous.tools.html_helper import (
+    div, ul, li, small, b, format_hd
 )
-from .html_helper import (div, ul, li, small, b, format_hd)
 
 _logger = logging.getLogger(__name__)
+
+
+def stockmove_state_to_emoji(state):
+    res = state
+    if res == 'draft':
+        res = '🏳️'
+    elif res == 'waiting':
+        res = '⛓️'
+    elif res == 'confirmed':
+        res = '⏳'
+    elif res == 'partially_available':
+        res = '✴️'
+    elif res == 'assigned':
+        res = '✳️'
+    elif res == 'done':
+        res = '✅'
+    elif res == 'cancel':
+        res = '❌'
+    return res
 
 
 class StockMove(models.Model):
@@ -47,6 +61,12 @@ class StockMove(models.Model):
         string="Related Activity",
         compute='_compute_product_activity_id',
     )
+    state_emoji = fields.Char(compute='_compute_state_emoji')
+
+    @api.multi
+    def _compute_state_emoji(self):
+        for rec in self:
+            rec.state_emoji = stockmove_state_to_emoji(rec.state)
 
     def _archive_purchase_line(self, values):
         if 'created_purchase_line_id' in values:
@@ -224,31 +244,13 @@ class StockMove(models.Model):
         action['res_id'] = self.id
         return action
 
-    def _get_production_status(self, production_id):
-        p = production_id
-        state = dict(p._fields['state']._description_selection(self.env)).get(
-            p.state
-        )
-        head = '⚙️{0}'.format(p.name)
-        desc = '{0}{1}'.format(production_state_to_emoji(p.state), state)
-        return head, desc
-
-    def _get_purchase_status(self, purchase_line_id):
-        p = purchase_line_id
-        state = dict(p._fields['state']._description_selection(self.env)).get(
-            p.state
-        )
-        head = '🛒{0}'.format(p.order_id.name)
-        desc = '{0}{1}'.format(purchase_state_to_emoji(p.state), state)
-        return head, desc
-
-    def _get_stock_status(self):
+    def get_head_desc(self):
         state = dict(self._fields['state']._description_selection(self.env)
                     ).get(self.state)
         head = '📦{0}'.format('Stock')
         if self.procure_method == 'make_to_order':
             head = '❓{0}'.format(_(self.procure_method))
-        desc = '{0}{1}'.format(stockmove_state_to_emoji(self.state), state)
+        desc = '{0}{1}'.format(self.state_emoji, state)
         return head, desc
 
     def _get_stock_location(self, html=False):
@@ -268,36 +270,22 @@ class StockMove(models.Model):
         desc = ' . '.join(location)
         return head, desc
 
-    def _get_activity_status(self, activity_id):
-        a = activity_id
-        state = dict(a._fields['state']._description_selection(self.env)).get(
-            a.state
-        )
-        product_name = self.product_id.product_tmpl_id.display_name
-        activity_text = html2plaintext(a.note or a.summary)
-        activity_text = activity_text.replace(product_name, '')
-        head = '⚠️{0}'.format(activity_text)
-        desc = '{0}{1}'.format(activity_state_to_emoji(a.state), state)
-        return head, desc
-
     def _get_mto_status(self, html=False):
         res = []
         if self.created_purchase_line_id:
-            head, desc = self._get_purchase_status(
-                self.created_purchase_line_id
-            )
+            head, desc = self.created_purchase_line_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         elif self.purchase_line_id:
-            head, desc = self._get_purchase_status(self.purchase_line_id)
+            head, desc = self.purchase_line_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         elif self.created_production_id:
-            head, desc = self._get_production_status(self.created_production_id)
+            head, desc = self.created_production_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         elif self.production_id:
-            head, desc = self._get_production_status(self.production_id)
+            head, desc = self.production_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         elif self.product_activity_id:
-            head, desc = self._get_activity_status(self.product_activity_id)
+            head, desc = self.product_activity_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         else:
             res.append('❓(???)[{0}]'.format(self.state))
@@ -309,7 +297,7 @@ class StockMove(models.Model):
     def _get_mts_status(self, html=False):
         res = []
 
-        head, desc = self._get_stock_status()
+        head, desc = self.get_head_desc()
         res.append(format_hd(head, desc, html))
 
         # Print location only when destination moves are for stock
@@ -338,7 +326,7 @@ class StockMove(models.Model):
         if self.state not in (
             'assigned', 'done', 'cancel'
         ) and self.product_activity_id:
-            head, desc = self._get_activity_status(self.product_activity_id)
+            head, desc = self.product_activity_id.get_head_desc()
             res.append(format_hd(head, desc, html))
 
         return res
@@ -400,10 +388,7 @@ class StockMove(models.Model):
                 )['small_supply']
             )
         else:
-            head = '{0}{1}'.format(
-                product_type_to_emoji(self.product_type),
-                product_type,
-            )
+            head = '{0}{1}'.format(self.product_id.type_emoji, product_type)
 
         if self.user_has_groups('base.group_no_one'):
             head = '{0} ({1})'.format(head, self.id)

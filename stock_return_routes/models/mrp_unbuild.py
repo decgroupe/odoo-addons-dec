@@ -5,7 +5,7 @@
 from datetime import datetime
 
 from odoo import models, _
-from ...stock_traceability.models.html_helper import (ul, div)
+from odoo.addons.tools_miscellaneous.tools.html_helper import (ul, div)
 
 
 class MrpUnbuild(models.Model):

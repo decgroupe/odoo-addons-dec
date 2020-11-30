@@ -4,10 +4,7 @@
 
 from odoo import api, fields, models, _
 
-from ...stock_traceability.models.emoji_helper import (
-    production_request_state_to_emoji,
-)
-from ...stock_traceability.models.html_helper import (
+from odoo.addons.tools_miscellaneous.tools.html_helper import (
     format_hd,
 )
 
@@ -22,32 +19,10 @@ class StockMove(models.Model):
         store=False,
     )
 
-    def _get_production_request_status(self, request_id):
-        r = request_id.sudo()
-        state = dict(r._fields['state']._description_selection(self.env)).get(
-            r.state
-        )
-        head = '🗃️{0}'.format(r.name)
-        desc = '{0}{1}'.format(
-            production_request_state_to_emoji(r.state), state
-        )
-        return head, desc
-
-    def _get_procurement_group_status(self, group_id):
-        g = group_id.sudo()
-        head = '🧩{0}'.format(g.name)
-        if g.sale_id and g.sale_id.name != g.name:
-            desc = g.sale_id.name
-        else:
-            desc = ''
-        return head, desc
-
     def _get_mto_status(self, html=False):
         res = []
         if self.created_mrp_production_request_id:
-            head, desc = self._get_production_request_status(
-                self.created_mrp_production_request_id
-            )
+            head, desc = self.created_mrp_production_request_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         else:
             res.extend(super()._get_mto_status(html))
@@ -82,13 +57,13 @@ class StockMove(models.Model):
 
         if self.picking_code == 'incoming':
             for group_id in self.move_dest_ids.mapped('group_id'):
-                head, desc = self._get_procurement_group_status(group_id)
+                head, desc = group_id.get_head_desc()
                 head += '📥'
                 status.append(format_hd(head, desc, html))
 
         if self.picking_code == 'outgoing':
             for group_id in self.move_orig_ids.mapped('group_id'):
-                head, desc = self._get_procurement_group_status(group_id)
+                head, desc = group_id.get_head_desc()
                 head += '📤'
                 status.append(format_hd(head, desc, html))
 
