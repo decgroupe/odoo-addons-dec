@@ -8,6 +8,14 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook//field[@name='order_line']/tree/field[@name='procurement_group_id']" position="replace">
                 <field name="procurement_origin" class="d_move_procurement_status"/>
+                <field name="action_view_origin_item_visible" invisible="1"/>
+                <button 
+                    name="action_view_origin_item" 
+                    string="Open" 
+                    type="object"
+                    attrs="{'invisible': [('action_view_origin_item_visible', '=', False),]}"
+                    icon="fa-external-link">
+                </button>
             </xpath>
         </field>
     </record>
