@@ -285,7 +285,7 @@ class StockMove(models.Model):
             head, desc = self.production_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         elif self.product_activity_id:
-            head, desc = self.product_activity_id.get_head_desc()
+            head, desc = self.product_activity_id.get_head_desc(self.product_id)
             res.append(format_hd(head, desc, html))
         else:
             res.append('❓(???)[{0}]'.format(self.state))

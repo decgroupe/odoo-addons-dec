@@ -27,12 +27,13 @@ class MailActivity(models.Model):
         for rec in self:
             rec.state_emoji = activity_state_to_emoji(rec.state)
 
-    def get_head_desc(self):
+    def get_head_desc(self, product_id=False):
         state = dict(self._fields['state']._description_selection(self.env)
                     ).get(self.state)
-        product_name = self.product_id.product_tmpl_id.display_name
         activity_text = html2plaintext(self.note or self.summary)
-        activity_text = activity_text.replace(product_name, '')
+        if product_id:
+            product_name = product_id.product_tmpl_id.display_name
+            activity_text = activity_text.replace(product_name, '')
         head = '⚠️{0}'.format(activity_text)
         desc = '{0}{1}'.format(self.state_emoji, state)
         return head, desc
