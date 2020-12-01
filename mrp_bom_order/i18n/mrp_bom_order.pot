@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_bom_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-01 11:02+0000\n"
+"PO-Revision-Date: 2020-12-01 11:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_order
+#: model_terms:ir.ui.view,arch_db:mrp_bom_order.mrp_production_form_view
+msgid "<span>⚠️ A newer Bill of Materials exists for this product: </span>"
+msgstr ""
+
+#. module: mrp_bom_order
+#: model:ir.model,name:mrp_bom_order.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_bom_order
+#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_production__newer_bom_id
+msgid "Newer BoM"
+msgstr ""
+
+#. module: mrp_bom_order
+#: model:ir.model,name:mrp_bom_order.model_mrp_production
+msgid "Production Order"
+msgstr ""
+

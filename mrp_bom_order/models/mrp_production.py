@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
+# Written by Yann Papouin <y.papouin at dec-industrie.com>, Dec 2020
+
+import logging
+
+from odoo import api, fields, models, _
+
+_logger = logging.getLogger(__name__)
+
+
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
+
+    newer_bom_id = fields.Many2one(
+        'mrp.bom',
+        'Newer BoM',
+        compute='_compute_newer_bom_id',
+    )
+
+    @api.multi
+    @api.depends('bom_id', 'product_id')
+    def _compute_newer_bom_id(self):
+        for production in self:
+            bom_id = self.env['mrp.bom']._bom_find(
+                product=production.product_id
+            )
+            if bom_id and production.bom_id != bom_id:
+                production.newer_bom_id = bom_id

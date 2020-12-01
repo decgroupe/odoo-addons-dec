@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_production_tree_view">
+        <field name="name">mrp.production.tree@mrp_bom_order</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="newer_bom_id"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production.form@mrp_bom_order</field>
+        <field name="model">mrp.production</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="bom_id" position="after">
+                <div colspan="2" 
+                    class="alert alert-warning" role="alert" 
+                    style="margin-right: 15px;"
+                    attrs="{'invisible': [('newer_bom_id', '=', False)]}">
+                    <span>⚠️ A newer Bill of Materials exists for this product: </span>
+                    <field name="newer_bom_id"/>
+                </div>
+            </field>
+        </field>
+    </record>
+
+</odoo>
