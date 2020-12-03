@@ -134,5 +134,5 @@ msgstr "Vous ne pouvez pas sélectionner toutes les lignes"
 
 #. module: purchase_split
 #: model:ir.actions.act_window,name:purchase_split.act_window_purchase_order_split
-msgid "🧙‍♂️Split ..."
-msgstr "🧙‍♂️Scinder ..."
+msgid "🧙‍♂️ Split ..."
+msgstr "🧙‍♂️ Scinder ..."

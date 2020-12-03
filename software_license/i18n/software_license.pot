@@ -194,6 +194,6 @@ msgstr "Avec dongle"
 
 #. module: software_license
 #: model:ir.actions.report,name:software_license.software_license_report
-msgid "📄License (customer information)"
-msgstr "📄Licence (informations client)"
+msgid "📄 License (customer information)"
+msgstr "📄 Licence (informations client)"
 

@@ -201,5 +201,5 @@ msgstr "Fournisseur"
 
 #. module: purchase_merge
 #: model:ir.actions.act_window,name:purchase_merge.act_window_purchase_order_merge
-msgid "🧙‍♂️Merge ..."
-msgstr "🧙‍♂️Fusionner ..."
+msgid "🧙‍♂️ Merge ..."
+msgstr "🧙‍♂️ Fusionner ..."

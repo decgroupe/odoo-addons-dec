@@ -201,6 +201,6 @@ msgstr "Fournisseurs"
 
 #. module: software_account
 #: model:ir.actions.report,name:software_account.software_account_report
-msgid "📄Account (customer information)"
-msgstr "📄Compte (informations client)"
+msgid "📄 Account (customer information)"
+msgstr "📄 Compte (informations client)"
 

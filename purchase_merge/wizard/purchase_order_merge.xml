@@ -71,7 +71,7 @@
     </record>
 
     <act_window id="act_window_purchase_order_merge"
-        name="🧙‍♂️Merge ..."
+        name="🧙‍♂️ Merge ..."
         src_model="purchase.order"
         res_model="purchase.order.merge"
         view_type="tree"
