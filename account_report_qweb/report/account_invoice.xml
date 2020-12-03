@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    // [(name, amount, base, formated amount, formated base)]
+
     <template id="report_invoice_document" inherit_id="account.report_invoice_document">
 
         <xpath expr="//table[hasclass('o_main_table')]/thead/tr" position="replace">
