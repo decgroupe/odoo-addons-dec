@@ -41,9 +41,9 @@ class SaleOrder(models.Model):
             locked_fields = []
         for order in self:
             if order.state == 'draft':
-                self._check_lock_unlock(vals)
+                order._check_lock_unlock(vals)
                 if inter_fields:
-                    self._check_lock_changes(vals, locked_fields)
+                    order._check_lock_changes(vals, locked_fields)
         res = super().write(vals)
         return res
 
