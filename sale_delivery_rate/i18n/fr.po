@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_delivery_rate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-08 16:06+0000\n"
+"PO-Revision-Date: 2020-12-08 16:06+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_delivery_rate
+#: model:ir.model.fields,field_description:sale_delivery_rate.field_sale_order__delivery_rate
+msgid "Delivery Rate"
+msgstr "Taux de livraison"
+
+#. module: sale_delivery_rate
+#: model:ir.model.fields,help:sale_delivery_rate.field_sale_order__delivery_rate
+msgid "Rate of delivery"
+msgstr "Taux de livraison"
+
+#. module: sale_delivery_rate
+#: model:ir.model.fields,help:sale_delivery_rate.field_sale_order__sent_rate
+msgid "Rate of sent products"
+msgstr "Taux d'articles envoyés"
+
+#. module: sale_delivery_rate
+#: model:ir.model.fields,help:sale_delivery_rate.field_sale_order__task_rate
+msgid "Rate of tasks progression"
+msgstr "Taux de progression des tâches"
+
+#. module: sale_delivery_rate
+#: model:ir.model,name:sale_delivery_rate.model_sale_order
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: sale_delivery_rate
+#: model:ir.model.fields,field_description:sale_delivery_rate.field_sale_order__sent_rate
+msgid "Sent Rate"
+msgstr "Taux d'expédition"
+
+#. module: sale_delivery_rate
+#: model:ir.model.fields,field_description:sale_delivery_rate.field_sale_order__task_rate
+msgid "Task Rate"
+msgstr "Taux de réalisation"
+
