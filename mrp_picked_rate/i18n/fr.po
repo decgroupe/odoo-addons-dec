@@ -25,7 +25,7 @@ msgstr "Réceptionné"
 #. module: mrp_picked_rate
 #: model:ir.model,name:mrp_picked_rate.model_mrp_production
 msgid "Production Order"
-msgstr "Odre de fabrication"
+msgstr "Ordre de fabrication"
 
 #. module: mrp_picked_rate
 #: model:ir.model.fields,help:mrp_picked_rate.field_mrp_production__picked_rate

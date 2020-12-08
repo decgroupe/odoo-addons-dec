@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_tree_view" >
+        <field name="name">purchase.order.tree@purchase_delivery_rate</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field 
+                    name="picked_rate" 
+                    widget="progressbar"
+                    attrs="{
+                        'invisible': [
+                            ('state', 'not in', ['purchase', 'done', 'cancel'])
+                        ]}">
+                </field>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_order_view_form_inherit">
+        <field name="name">purchase.order.form.inherit@purchase_delivery_rate</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field 
+                    name="picked_rate" 
+                    widget="progressbar"
+                    attrs="{
+                        'invisible': [
+                            ('state', 'not in', ['purchase', 'done', 'cancel'])
+                        ]}">
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
