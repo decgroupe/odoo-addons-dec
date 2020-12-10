@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="product_product_expense_plane" model="product.product">
+            <field name="name">Plane</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_bus" model="product.product">
+            <field name="name">Bus</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_fuel" model="product.product">
+            <field name="name">Fuel</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_car_rent" model="product.product">
+            <field name="name">Car rent</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_car_metro" model="product.product">
+            <field name="name">Metro</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_car_park" model="product.product">
+            <field name="name">Car park</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_toll" model="product.product">
+            <field name="name">Toll</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_taxi" model="product.product">
+            <field name="name">Taxi</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_train" model="product.product">
+            <field name="name">Train</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_consumption" model="product.product">
+            <field name="name">Consumption</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_catering"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_restaurant" model="product.product">
+            <field name="name">Restaurant</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_catering"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_food" model="product.product">
+            <field name="name">Food</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_catering"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_hotel" model="product.product">
+            <field name="name">Hotel</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_lodging"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_infraction" model="product.product">
+            <field name="name">Infraction</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_vehicle_insurance" model="product.product">
+            <field name="name">Vehicle insurance</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_other_insurance" model="product.product">
+            <field name="name">Other insurance</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_customer_gifts" model="product.product">
+            <field name="name">Customer gifts</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_membership_fee" model="product.product">
+            <field name="name">Membership fee</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_decoration" model="product.product">
+            <field name="name">Decoration</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_various" model="product.product">
+            <field name="name">Various</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_documentation_book" model="product.product">
+            <field name="name">Documentation / Book</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+
+        <record id="product_product_expense_maintenance_repair_equipment" model="product.product">
+            <field name="name">Maintenance / Repair equipment</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_maintenance_repair_vehicle" model="product.product">
+            <field name="name">Maintenance / Repair vehicle</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_exhibition_fair" model="product.product">
+            <field name="name">Exhibition / Fair</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_training" model="product.product">
+            <field name="name">Training</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+
+        <record id="product_product_expense_administrative_supplies" model="product.product">
+            <field name="name">Administrative supplies</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_postal_charges" model="product.product">
+            <field name="name">Postal charges</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_newspapers" model="product.product">
+            <field name="name">Newspapers</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_equipment_rental" model="product.product">
+            <field name="name">Equipment rental</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_room_rental" model="product.product">
+            <field name="name">Room rental</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_small_equipment" model="product.product">
+            <field name="name">Small equipment</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_pharmacy" model="product.product">
+            <field name="name">Pharmacy</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_tips_usual_donations" model="product.product">
+            <field name="name">Tips, usual donations</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_foodstuffs" model="product.product">
+            <field name="name">Foodstuffs</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_maintenance_products" model="product.product">
+            <field name="name">Maintenance products</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_advertising" model="product.product">
+            <field name="name">Advertising</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_publication_and_print" model="product.product">
+            <field name="name">Publication and print</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_seminars_colloquiums_conferences" model="product.product">
+            <field name="name">Seminars, colloquiums, conferences</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_phone" model="product.product">
+            <field name="name">Phone</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_carrier" model="product.product">
+            <field name="name">Carrier</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_work_clothes" model="product.product">
+            <field name="name">Work clothes</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+        <record id="product_product_expense_internet" model="product.product">
+            <field name="name">Internet</field>
+            <field name="default_code"></field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="hr_expense_easy.cat_other"/>
+            <field name="can_be_expensed" eval="True"/>
+        </record>
+
+    </data>
+</odoo>
