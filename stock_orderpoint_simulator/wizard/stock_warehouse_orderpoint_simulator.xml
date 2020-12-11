@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="stock_warehouse_orderpoint_simulator_form_view" >
+        <field name="name">stock.warehouse.orderpoint.simulator@stock_orderpoint_simulator</field>
+        <field name="model">stock.warehouse.orderpoint.simulator</field>
+        <field name="arch" type="xml">
+            <form string="Select Options">
+                <p class="oe_grey">
+                    You can change <b>editable</b> fields to simulate an orderpoint.
+                    Default values are loaded from real product state.
+                    Click <b>Apply</b> to copy <b>minimum</b> and <b>maximum</b> values.
+                </p>
+                <group>
+                    <field name="available_qty"/>
+                    <field name="product_min_qty" string="Minimum" required="1"/>
+                    <field name="product_max_qty" string="Maximum" required="1"/>
+                    <field name="needed_qty" readonly="True"/>
+                    <field name="qty_multiple" string="Multiple" required="1"/>
+                    <p class="oe_grey">
+                        This multiple is normally equal to the Purchase Unit of Measure <b>ratio</b>. (<field name="product_uom_po_id" readonly="1"/>)
+                        You can change it to simulate your result but don't forget to change
+                        this UoM in the product form if you want match your simulation.
+                    </p>
+                    <field name="remaining_qty" string="Remaining" readonly="True"/>
+                    <field name="qty_to_order" readonly="True"/>
+                </group>
+                <footer>
+                    <button 
+                        class="btn-primary"
+                        string="Apply"
+                        name="action_apply"
+                        type="object"
+                        default_focus="1"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-secondary"
+                        string="Cancel"
+                        special="cancel"
+                        context="{}">
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_orderpoint_simulator">
+        <field name="name">Minimum Stock Rule Simulator</field>
+        <field name="res_model">stock.warehouse.orderpoint.simulator</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <act_window id="act_window_stock_warehouse_orderpoint_simulator"
+        name="🧙‍♂️ Simulator ..."
+        src_model="stock.warehouse.orderpoint"
+        res_model="stock.warehouse.orderpoint.simulator"
+        view_type="form"
+        view_mode="form"
+        multi="False"
+        key2="client_action_multi" 
+        target="new"
+    />
+    
+</odoo>
