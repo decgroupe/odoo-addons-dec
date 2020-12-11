@@ -98,7 +98,8 @@ class ProductTemplate(models.Model):
     @api.multi
     @api.depends('standard_price', 'uom_id', 'uom_po_id')
     def _compute_standard_price_po_uom(self):
-        for product in self:
+        # Check that uom_id is not False (possibility in editing mode)
+        for product in self.filtered('uom_id'):
             price = product.uom_id._compute_price(
                 product.standard_price,
                 product.uom_po_id,
@@ -108,7 +109,8 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _set_standard_price_po_uom(self):
-        for product in self:
+        # Check that uoms are not False (possibility in editing mode)
+        for product in self.filtered('uom_po_id').filtered('uom_id'):
             price = product.uom_po_id._compute_price(
                 product.standard_price_po_uom,
                 product.uom_id,
