@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_case_leads_tree_view">
+        <field name="name">crm.lead.tree.lead@crm_lead_quick_actions</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='team_id']" position="after">
+                <button 
+                    name="unlink" 
+                    string="Delete" 
+                    type="object"
+                    attrs="{
+                        'invisible': [
+                            ('partner_id', '!=', False)
+                        ]}"
+                    groups="base.group_no_one"
+                    icon="fa-trash-o">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
