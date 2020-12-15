@@ -1,0 +1,258 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_location_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-15 09:48+0000\n"
+"PO-Revision-Date: 2020-12-15 10:43+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__dst_object_id
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__object_ids
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__group_by_city_id
+msgid "City"
+msgstr "Ville"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__object_ids
+msgid "City/Location"
+msgstr "Localisation"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "Close"
+msgstr "Fermer"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__create_uid
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__create_date
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__current_line_id
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__current_line_id
+msgid "Current Line"
+msgstr "Ligne actuelle"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__dst_object_id
+msgid "Destination City/Location"
+msgstr "Localisation de destination"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__display_name
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: base_location_merge
+#: selection:merge.res.city.wizard,state:0
+#: selection:merge.res.city.zip.wizard,state:0
+msgid "Finished"
+msgstr "Terminé"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__number_group
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__number_group
+msgid "Group of Objects"
+msgstr "Groupe d’objets"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__id
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard____last_update
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__write_uid
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__write_date
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__line_ids
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__line_ids
+msgid "Lines"
+msgstr "Lignes"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__maximum_group
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__maximum_group
+msgid "Maximum of Group of Objects"
+msgstr "Limite Maximum du Groupe d'Objets"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#, fuzzy
+msgid "Merge Cities"
+msgstr "Assistant de fusion de villes"
+
+#. module: base_location_merge
+#: model:ir.model,name:base_location_merge.model_merge_res_city_wizard
+msgid "Merge City Wizard"
+msgstr "Assistant de fusion de villes"
+
+#. module: base_location_merge
+#: model:ir.model,name:base_location_merge.model_merge_res_city_zip_wizard
+msgid "Merge City Zip Wizard"
+msgstr "Assistant de fusion de codes postaux"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "Merge Locations"
+msgstr "Fusionner les localisations"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#, fuzzy
+msgid "Merge the following cities"
+msgstr "Fusionner les localisations suivantes"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "Merge the following locations"
+msgstr "Fusionner les localisations suivantes"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__group_by_name
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__group_by_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: base_location_merge
+#: selection:merge.res.city.wizard,state:0
+#: selection:merge.res.city.zip.wizard,state:0
+msgid "Option"
+msgstr "Option"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "Options"
+msgstr "Options"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "Search duplicates based on duplicated data in"
+msgstr "Recherche de doublons basés sur les données dupliquées dans"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid ""
+"Select the list of fields used to search for\n"
+"                        duplicated records. If you select several fields,\n"
+"                        Odoo will propose you to merge only those having\n"
+"                        all these fields in common. (not one of the fields)."
+msgstr ""
+"Sélectionnez la liste des champs utilisés pour chercher\n"
+"                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
+"                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
+"                        tous ces champs en commun (pas uniquement l'un des champs)."
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#, fuzzy
+msgid ""
+"Selected cities will be merged together.\n"
+"                            All documents linked to one of these cities\n"
+"                            will be redirected to the destination city.\n"
+"                            You can remove cities from this list to avoid merging them."
+msgstr ""
+"Les localisations sélectionnées seront fusionnées.\n"
+"                             Tous les documents liés à l'une de ces localisations\n"
+"                             sera redirigé vers la localisation de destination.\n"
+"                             Vous pouvez enlever des localisations de cette liste pour éviter de les fusionner."
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid ""
+"Selected locations will be merged together.\n"
+"                            All documents linked to one of these locations\n"
+"                            will be redirected to the destination location.\n"
+"                            You can remove locations from this list to avoid merging them."
+msgstr ""
+"Les localisations sélectionnées seront fusionnées.\n"
+"                             Tous les documents liés à l'une de ces localisations\n"
+"                             sera redirigé vers la localisation de destination.\n"
+"                             Vous pouvez enlever des localisations de cette liste pour éviter de les fusionner."
+
+#. module: base_location_merge
+#: selection:merge.res.city.wizard,state:0
+#: selection:merge.res.city.zip.wizard,state:0
+msgid "Selection"
+msgstr "Sélection"
+
+#. module: base_location_merge
+#: model:res.groups,name:base_location_merge.res_group_base_location_do_merge
+#: model:res.groups,name:base_location_merge.res_group_product_do_merge
+#: model:res.groups,name:base_location_merge.res_group_res_city_zip_do_merge
+msgid "Show Wizard City/Location Merge Action"
+msgstr "Afficher l'action d'assistance de fusion des localisations"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#, fuzzy
+msgid "Skip these cities"
+msgstr "Ignorer ces localisations"
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "Skip these locations"
+msgstr "Ignorer ces localisations"
+
+#. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__state
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__state
+msgid "State"
+msgstr "État"
+
+#. module: base_location_merge
+#: model:ir.actions.act_window,name:base_location_merge.action_res_city_merge
+#: model:ir.actions.act_window,name:base_location_merge.action_res_city_zip_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr "🧙‍♂️ Fusionner ..."
+
+#. module: base_location_merge
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
+#: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
+msgid "🧙‍♂️ Merge Wizard"
+msgstr "🧙‍♂️ Assistant de fusion"
