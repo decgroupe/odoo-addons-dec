@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-15 09:48+0000\n"
-"PO-Revision-Date: 2020-12-15 10:43+0100\n"
+"PO-Revision-Date: 2020-12-15 12:22+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -120,9 +120,8 @@ msgstr "Limite Maximum du Groupe d'Objets"
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
-#, fuzzy
 msgid "Merge Cities"
-msgstr "Assistant de fusion de villes"
+msgstr "Fusionner les villes"
 
 #. module: base_location_merge
 #: model:ir.model,name:base_location_merge.model_merge_res_city_wizard
@@ -141,9 +140,8 @@ msgstr "Fusionner les localisations"
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
-#, fuzzy
 msgid "Merge the following cities"
-msgstr "Fusionner les localisations suivantes"
+msgstr "Fusionner les villes suivantes"
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
@@ -190,16 +188,15 @@ msgstr ""
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
-#, fuzzy
 msgid ""
 "Selected cities will be merged together.\n"
 "                            All documents linked to one of these cities\n"
 "                            will be redirected to the destination city.\n"
 "                            You can remove cities from this list to avoid merging them."
 msgstr ""
-"Les localisations sélectionnées seront fusionnées.\n"
-"                             Tous les documents liés à l'une de ces localisations\n"
-"                             sera redirigé vers la localisation de destination.\n"
+"Les villes sélectionnées seront fusionnées.\n"
+"                             Tous les documents liés à l'une de ces villes\n"
+"                             seront redirigés vers la localisation de destination.\n"
 "                             Vous pouvez enlever des localisations de cette liste pour éviter de les fusionner."
 
 #. module: base_location_merge
@@ -230,9 +227,8 @@ msgstr "Afficher l'action d'assistance de fusion des localisations"
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
-#, fuzzy
 msgid "Skip these cities"
-msgstr "Ignorer ces localisations"
+msgstr "Ignorer ces villes"
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
