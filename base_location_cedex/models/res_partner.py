@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
+# Written by Yann Papouin <y.papouin at dec-industrie.com>, Dec 2020
+
+from odoo import api, models, _
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    @api.onchange('zip_id')
+    def _onchange_zip_id(self):
+        super()._onchange_zip_id()
+        if self.zip_id and self.zip_id.cedex:
+            vals = {
+                'city': self.zip_id.format_name()
+            }
+            self.update(vals)
