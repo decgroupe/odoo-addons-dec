@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="ref_category_form_view">
+        <field name="name">ref.category.form@product_reference_analytic</field>
+        <field name="model">ref.category</field>
+        <field name="inherit_id" ref="product_reference.ref_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_category_id" position="after">
+                <field name="income_analytic_account_id"/>
+                <button 
+                    class="btn-primary"
+                    string="Create Analytic Account"
+                    name="action_create_income_analytic_account"
+                    type="object"
+                    attrs="{'invisible': [
+                            ('income_analytic_account_id', '!=', False)
+                        ]}"
+                    context="{}">
+                </button>
+            </field>
+        </field>
+    </record>
+
+</odoo>
