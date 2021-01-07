@@ -51,7 +51,7 @@ class PurchaseOrderLine(models.Model):
                     # if subline already exists we update, if not we create
                     if existing_subline:
                         if do_not_expand:
-                            vals.pop('product_uom_qty')
+                            vals.pop('product_qty')
                         existing_subline.write(vals)
                     elif not do_not_expand:
                         self.create(vals)
@@ -67,7 +67,7 @@ class PurchaseOrderLine(models.Model):
     @api.multi
     def write(self, vals):
         res = super().write(vals)
-        if 'product_id' in vals or 'product_uom_qty' in vals:
+        if 'product_id' in vals or 'product_qty' in vals:
             for record in self:
                 record.expand_pack_line(write=True)
         return res
@@ -100,7 +100,7 @@ class PurchaseOrderLine(models.Model):
         return res
 
     @api.onchange(
-        'product_id', 'product_uom_qty', 'product_uom', 'price_unit', 'name',
+        'product_id', 'product_qty', 'product_uom', 'price_unit', 'name',
         'taxes_id'
     )
     def check_pack_line_modify(self):

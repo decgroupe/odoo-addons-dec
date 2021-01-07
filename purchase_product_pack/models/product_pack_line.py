@@ -13,7 +13,7 @@ class ProductPackLine(models.Model):
     @api.multi
     def get_purchase_order_line_vals(self, line, order):
         self.ensure_one()
-        quantity = self.quantity * line.product_uom_qty
+        uom_qty = self.quantity * line.product_uom_qty
         line_vals = {
             'order_id': order.id,
             'procurement_group_id': order.group_id.id,
@@ -23,11 +23,11 @@ class ProductPackLine(models.Model):
             'company_id': order.company_id.id,
             'pack_modifiable': line.product_id.pack_modifiable,
         }
-        sol = line.new(line_vals)
-        sol.onchange_product_id()
-        sol.product_uom_qty = quantity
-        sol._onchange_quantity()
-        vals = sol._convert_to_write(sol._cache)
+        pol = line.new(line_vals)
+        pol.onchange_product_id()
+        pol.product_qty = pol.product_uom._compute_quantity(uom_qty, pol.product_id.uom_id)
+        pol._onchange_quantity()
+        vals = pol._convert_to_write(pol._cache)
         pack_price_types = {'totalized', 'ignored'}
         if (
             line.product_id.pack_type == 'detailed' and
@@ -36,7 +36,7 @@ class ProductPackLine(models.Model):
             vals['price_unit'] = 0.0
         vals.update(
             {
-                'name': '%s%s' % ('> ' * (line.pack_depth + 1), sol.name),
+                'name': '%s%s' % ('🢖 ' * (line.pack_depth + 1), pol.name),
             }
         )
         return vals
