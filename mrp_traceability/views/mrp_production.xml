@@ -25,7 +25,6 @@
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree" position="attributes">
                 <attribute name="class">d_mrp_production</attribute>
-                <attribute name="limit">1000</attribute>
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='product_id']" position="before">
                 <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
