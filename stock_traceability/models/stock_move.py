@@ -3,6 +3,7 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
 import logging
+import random
 
 from odoo import _, api, fields, models
 from odoo.tools import html2plaintext, ormcache
@@ -11,6 +12,7 @@ from odoo.tools.float_utils import float_compare
 from odoo.addons.tools_miscellaneous.tools.html_helper import (
     div, ul, li, small, b, format_hd
 )
+from odoo.addons.tools_miscellaneous.tools.material_design_colors import *
 
 _logger = logging.getLogger(__name__)
 
@@ -33,6 +35,70 @@ def stockmove_state_to_emoji(state):
         res = '❌'
     return res
 
+
+INDEX_1 = '50'
+INDEX_2 = '100'
+INDEX_3 = '200'
+
+TREE_COLORS = [
+    RED[INDEX_1],
+    LIGHTBLUE[INDEX_1],
+    YELLOW[INDEX_1],
+    BLUEGREY[INDEX_1],
+    PINK[INDEX_1],
+    CYAN[INDEX_1],
+    AMBER[INDEX_1],
+    PURPLE[INDEX_1],
+    TEAL[INDEX_1],
+    ORANGE[INDEX_1],
+    DEEPPURPLE[INDEX_1],
+    GREEN[INDEX_1],
+    DEEPORANGE[INDEX_1],
+    INDIGO[INDEX_1],
+    LIGHTGREEN[INDEX_1],
+    BROWN[INDEX_1],
+    BLUE[INDEX_1],
+    LIME[INDEX_1],
+    GREY[INDEX_1],
+    RED[INDEX_2],
+    LIGHTBLUE[INDEX_2],
+    YELLOW[INDEX_2],
+    BLUEGREY[INDEX_2],
+    PINK[INDEX_2],
+    CYAN[INDEX_2],
+    AMBER[INDEX_2],
+    PURPLE[INDEX_2],
+    TEAL[INDEX_2],
+    ORANGE[INDEX_2],
+    DEEPPURPLE[INDEX_2],
+    GREEN[INDEX_2],
+    DEEPORANGE[INDEX_2],
+    INDIGO[INDEX_2],
+    LIGHTGREEN[INDEX_2],
+    BROWN[INDEX_2],
+    BLUE[INDEX_2],
+    LIME[INDEX_2],
+    GREY[INDEX_2],
+    RED[INDEX_3],
+    LIGHTBLUE[INDEX_3],
+    YELLOW[INDEX_3],
+    BLUEGREY[INDEX_3],
+    PINK[INDEX_3],
+    CYAN[INDEX_3],
+    AMBER[INDEX_3],
+    PURPLE[INDEX_3],
+    TEAL[INDEX_3],
+    ORANGE[INDEX_3],
+    DEEPPURPLE[INDEX_3],
+    GREEN[INDEX_3],
+    DEEPORANGE[INDEX_3],
+    INDIGO[INDEX_3],
+    LIGHTGREEN[INDEX_3],
+    BROWN[INDEX_3],
+    BLUE[INDEX_3],
+    LIME[INDEX_3],
+    GREY[INDEX_3],
+]
 
 class StockMove(models.Model):
     _inherit = "stock.move"
@@ -62,11 +128,32 @@ class StockMove(models.Model):
         compute='_compute_product_activity_id',
     )
     state_emoji = fields.Char(compute='_compute_state_emoji')
+    tree_fg_color = fields.Char(compute="_compute_colors", store=False)
+    tree_bg_color = fields.Char(compute="_compute_colors", store=False)
 
     @api.multi
     def _compute_state_emoji(self):
         for rec in self:
             rec.state_emoji = stockmove_state_to_emoji(rec.state)
+
+    @api.multi
+    @api.depends("group_id")
+    def _compute_colors(self):
+        move_group = self.read_group(
+            [('id', 'in', self.ids)], ['group_id'], ['group_id'], lazy=False
+        )
+        if len(move_group) > 1:
+            colors = {}
+            for i, group in enumerate(move_group):
+                group_id = group['group_id'][0]
+                if i < len(TREE_COLORS):
+                    colors[group_id] = TREE_COLORS[i]
+                else:
+                    colors[group_id] = '#FFFFFFFF'
+            # Apply group colors per record
+            for record in self:
+                record.tree_bg_color = colors[record.group_id.id][0]
+                record.tree_fg_color = colors[record.group_id.id][1]
 
     def _archive_purchase_line(self, values):
         if 'created_purchase_line_id' in values:

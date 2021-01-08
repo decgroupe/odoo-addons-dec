@@ -29,6 +29,11 @@
                 </field>
                 <field name="move_orig_ids"/>
                 <field name="move_dest_ids"/>
+                <field name="tree_fg_color" invisible="1"/>
+                <field name="tree_bg_color" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree" position="attributes">
+                <attribute name="colors">color_field: tree_fg_color; background_color_field: tree_bg_color</attribute>
             </xpath>
         </field>
     </record>
