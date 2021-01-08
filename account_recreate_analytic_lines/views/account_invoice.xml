@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="invoice_form_view">
+        <field name="name">account.invoice.form@account_recreate_analytic_lines</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_draft']" position="after">
+                <button
+                    name="action_set_default_analytic_account"
+                    string="Set Default Analytic Account"
+                    type="object"
+                    class="btn-primary">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
