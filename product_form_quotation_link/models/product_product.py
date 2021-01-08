@@ -12,13 +12,18 @@ class ProductProduct(models.Model):
     _name = 'product.product'
     _inherit = 'product.product'
 
-    in_quotation_product_qty = fields.Float(
-        compute='_compute_in_quotation_product_qty',
-        string='In Quotation',
+    qty_in_purchase_quotation = fields.Float(
+        compute='_compute_qty_in_purchase_quotation',
+        string='In Purchase Quotation',
+    )
+
+    qty_in_sale_quotation = fields.Float(
+        compute='_compute_qty_in_sale_quotation',
+        string='In Sale Quotation',
     )
 
     @api.multi
-    def _compute_in_quotation_product_qty(self):
+    def _compute_qty_in_purchase_quotation(self):
         date_from = fields.Datetime.to_string(
             fields.datetime.now() - timedelta(days=365)
         )
@@ -37,7 +42,28 @@ class ProductProduct(models.Model):
             ]
         )
         for product in self:
-            product.in_quotation_product_qty = float_round(
+            product.qty_in_purchase_quotation = float_round(
+                purchased_data.get(product.id, 0),
+                precision_rounding=product.uom_id.rounding
+            )
+
+    @api.multi
+    def _compute_qty_in_sale_quotation(self):
+        domain = [
+            ('state', 'in', ['draft', 'sent']),
+            ('product_id', 'in', self.mapped('id')),
+        ]
+        order_lines = self.env['sale.order.line'].read_group(
+            domain, ['product_id', 'product_uom_qty'], ['product_id']
+        )
+        purchased_data = dict(
+            [
+                (data['product_id'][0], data['product_uom_qty'])
+                for data in order_lines
+            ]
+        )
+        for product in self:
+            product.qty_in_sale_quotation = float_round(
                 purchased_data.get(product.id, 0),
                 precision_rounding=product.uom_id.rounding
             )

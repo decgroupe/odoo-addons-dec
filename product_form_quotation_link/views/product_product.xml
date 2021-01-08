@@ -6,13 +6,31 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="purchase.product_normal_form_view_inherit_purchase"/>
         <field name="arch" type="xml">
-            <button name="toggle_active" position="before">
+            <button name="%(product_form_purchase_link.action_purchase_line_product_product_tree)d" position="before">
                 <button 
                     class="oe_stat_button" 
                     name="%(product_form_quotation_link.action_purchase_line_product_product_tree)d" 
                     type="action" 
-                    solid_icon="fa-shopping-basket">
-                    <field string="Quotations" name="in_quotation_product_qty" widget="statinfo"/>
+                    solid_icon="fa-list-alt">
+                    <field string="Purchase Quotations" name="qty_in_purchase_quotation" widget="statinfo"/>
+                </button>
+            </button>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_product_form_view">
+        <field name="name">product.product.form@product_form_quotation_link</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_form_sale_link.product_template_form_view"/>
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+        <field name="arch" type="xml">
+            <button name="%(product_form_sale_link.action_product_product_sale_list)d" position="before">
+                <button
+                    class="oe_stat_button"
+                    name="%(product_form_quotation_link.action_product_product_sale_quotation_list)d"
+                    type="action" 
+                    solid_icon="fa-list-alt">
+                    <field string="Sale Quotations" name="qty_in_sale_quotation" widget="statinfo" />
                 </button>
             </button>
         </field>
