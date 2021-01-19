@@ -39,6 +39,8 @@ class AccountInvoice(models.Model):
                 ):
                     if ml.credit == 0.0:
                         continue
+                    if not self._context.get('override_existing_account') and ml.analytic_line_ids:
+                        continue
                     ml.analytic_line_ids.unlink()
                     analytic_account_id = False
                     try:

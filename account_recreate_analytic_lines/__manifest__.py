@@ -12,5 +12,7 @@
     'data': [
         'views/account_invoice.xml',
     ],
+    # 'force_post_init_hook': True,
+    'post_init_hook': 'post_init',
     'installable': True
 }
