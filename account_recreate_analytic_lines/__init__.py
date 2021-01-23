@@ -3,6 +3,7 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Jan 2021
 
 from . import models
+from . import wizard
 
 import logging
 
@@ -15,6 +16,9 @@ def post_init(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
 
     invoice_ids = env['account.invoice'].search(
-        [('state', 'not in', ['cancel'])]
+        [
+            ('state', 'not in', ['cancel']),
+            ('type', '=', 'out_invoice'),
+        ]
     )
     invoice_ids.action_set_default_analytic_account()

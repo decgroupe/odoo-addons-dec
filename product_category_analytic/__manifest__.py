@@ -4,7 +4,9 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': '''Ascendant analytic account search for categories''',
-    'depends': ['product_analytic', ],
+    'depends': [
+        'product_analytic',
+    ],
     'data': [],
     'installable': True
 }
