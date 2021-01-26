@@ -104,7 +104,7 @@ class ProductTemplate(models.Model):
                 product.standard_price,
                 product.uom_po_id,
             )
-            _logger.info('New standard_price_po_uom = {}'.format(price))
+            _logger.debug('New standard_price_po_uom = {}'.format(price))
             product.standard_price_po_uom = price
 
     @api.multi
@@ -115,7 +115,7 @@ class ProductTemplate(models.Model):
                 product.standard_price_po_uom,
                 product.uom_id,
             )
-            _logger.info('New standard_price = {}'.format(price))
+            _logger.debug('New standard_price = {}'.format(price))
             product.standard_price = price
 
     @api.multi
@@ -303,6 +303,7 @@ functionality'
         ]
         done_ids = []
         product_ids = self.search([('same_uom', '!=', True)])
+        product_ids = self.env['product.product'].search([('same_uom', '!=', True)])
         notification_ids = self.env['mail.message'].search(
             [
                 ('model', '=', self._name), ('res_id', 'in', product_ids.ids),
