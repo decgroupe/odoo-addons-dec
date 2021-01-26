@@ -4,9 +4,10 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': '''Reimplementation of picked_rate''',
-    'depends': [
-        'mrp',
+    'depends': ['mrp', ],
+    'data': [
+        'data/mrp_production_cron.xml',
+        'views/mrp_production.xml',
     ],
-    'data': ['views/mrp_production.xml', ],
     'installable': True
 }

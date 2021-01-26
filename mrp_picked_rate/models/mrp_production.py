@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <y.papouin at dec-industrie.com>, OCt 2020
+# Written by Yann Papouin <y.papouin at dec-industrie.com>, Oct 2020
 
+from datetime import timedelta
 from odoo import api, models, _, fields
 
 
@@ -15,13 +16,30 @@ class MrpProduction(models.Model):
     )
 
     @api.multi
-    @api.depends('move_raw_ids')
+    @api.depends('move_raw_ids', 'note')
     def _compute_picked_rate(self):
-        for production in self:
-            all_move_ids = production.move_raw_ids.filtered(
+        for rec in self:
+            all_move_ids = rec.move_raw_ids.filtered(
                 lambda x: x.state != 'cancel'
             )
             if all_move_ids:
                 received_move_ids = all_move_ids.filtered(lambda x: x.received)
-                production.picked_rate = \
+                rec.picked_rate = \
                     len(received_move_ids) * 100 / len(all_move_ids)
+
+    @api.multi
+    def action_update_picked_rate(self):
+        self._compute_picked_rate()
+
+    @api.multi
+    def run_picked_rate_update_scheduler(self):
+        date = fields.Datetime.to_string(
+            fields.datetime.now() - timedelta(days=365)
+        )
+        production_ids = self.search(
+            [
+                ('picked_rate', '<', 1),
+                ('write_date', '>=', date),
+            ]
+        )
+        production_ids._compute_picked_rate()

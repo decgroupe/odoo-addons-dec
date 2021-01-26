@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
+"POT-Creation-Date: 2021-01-26 22:38+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,6 +28,13 @@ msgid "Production Order"
 msgstr "Ordre de fabrication"
 
 #. module: mrp_picked_rate
+#: model:ir.actions.server,name:mrp_picked_rate.ir_cron_scheduler_picked_rate_ir_actions_server
+#: model:ir.cron,cron_name:mrp_picked_rate.ir_cron_scheduler_picked_rate
+#: model:ir.cron,name:mrp_picked_rate.ir_cron_scheduler_picked_rate
+msgid "Production: Compute Picked Rate"
+msgstr "Fabrication: Calculer les taux de réception"
+
+#. module: mrp_picked_rate
 #: model:ir.model.fields,help:mrp_picked_rate.field_mrp_production__picked_rate
 msgid "Rate of received raw products"
 msgstr "Taux de produits bruts réceptionnés"
@@ -36,3 +43,8 @@ msgstr "Taux de produits bruts réceptionnés"
 #: model:ir.model,name:mrp_picked_rate.model_stock_move
 msgid "Stock Move"
 msgstr "Mouvement de stock"
+
+#. module: mrp_picked_rate
+#: model:ir.actions.server,name:mrp_picked_rate.action_update_picked_rate
+msgid "Update picked rate"
+msgstr "Recalculer le taux de réception"
