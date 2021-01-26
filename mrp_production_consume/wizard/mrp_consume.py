@@ -5,6 +5,7 @@
 from datetime import datetime
 
 from odoo import api, fields, models
+from odoo.tools import float_compare, float_round
 
 
 class MrpConsume(models.TransientModel):
@@ -60,6 +61,10 @@ class MrpConsume(models.TransientModel):
         self.ensure_one()
         for pl in self.produce_line_ids:
             pl.qty_done = pl.qty_to_consume
+        return self._reopen()
+
+    @api.multi
+    def action_reopen(self):
         return self._reopen()
 
     @api.multi

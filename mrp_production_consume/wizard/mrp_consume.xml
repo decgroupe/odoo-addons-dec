@@ -50,7 +50,19 @@
                         </tree>
                     </field>
                 </group>
-                <group col="3">
+                <footer>
+                    <button 
+                        name="do_consume" 
+                        string="Consume" 
+                        confirm="Are you sure that you want to consume these lines?"
+                        type="object" 
+                        class="btn-primary">
+                    </button>
+                    <button 
+                        string="Cancel" 
+                        class="btn-secondary" 
+                        special="cancel" >
+                    </button>
                     <button 
                         name="action_minimize_qty_done" 
                         string="Minimize all" 
@@ -69,16 +81,6 @@
                         type="object"
                         icon="fa-fast-forward">
                     </button>
-                </group>
-                <footer>
-                    <button 
-                        name="do_consume" 
-                        string="Consume" 
-                        confirm="Are you sure that you want to consume these lines?"
-                        type="object" 
-                        class="btn-primary">
-                    </button>
-                    <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>
