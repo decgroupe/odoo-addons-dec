@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_calendar">
+        <field name="name">account.analytic.line.calendar</field>
+        <field name="model">account.analytic.line</field>
+        <field name="arch" type="xml">
+            <calendar string="Timesheet" date_start="date_time" date_delay="unit_amount" color="project_id">
+                <field name="name"/>
+                <field name="task_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_hr_timesheet_line_view_calendar">
+        <field name="view_mode">calendar</field>
+        <field name="sequence">3</field>
+        <field name="view_id" ref="hr_timesheet_line_calendar"/>
+        <field name="act_window_id" ref="hr_timesheet.act_hr_timesheet_line"/>
+    </record>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_calendar_all">
+        <field name="name">account.analytic.line.calendar</field>
+        <field name="model">account.analytic.line</field>
+        <field name="arch" type="xml">
+            <calendar string="Timesheet" date_start="date_time" date_delay="unit_amount" color="user_id">
+                <field name="name"/>
+                <field name="task_id"/>
+                <field name="project_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="act_hr_timesheet_line_view_all_calendar" model="ir.actions.act_window.view">
+        <field name="view_mode">calendar</field>
+        <field name="sequence">5</field>
+        <field name="view_id" ref="hr_timesheet_line_calendar_all"/>
+        <field name="act_window_id" ref="hr_timesheet.timesheet_action_all"/>
+    </record>
+
+</odoo>
