@@ -192,7 +192,9 @@
                                         <t t-esc="removed_lines[id]['product_id'][1]"/>
                                     </td>
                                     <td>
-                                        <t t-esc="removed_lines[id]['partner_id'][1]"/>
+                                        <t t-if="removed_lines[id]['partner_id']">
+                                            <t t-esc="removed_lines[id]['partner_id'][1]"/>
+                                        </t>
                                     </td>
                                     <td>
                                         <t t-if="removed_lines[id]['buy_consumable']">
