@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_change_uom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-25 15:57+0000\n"
+"PO-Revision-Date: 2021-01-25 15:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_change_uom
+#: model:res.groups,name:product_change_uom.group_product_uom_change
+msgid "Allow product UoM change with propagation (product_change_uom)"
+msgstr ""
+
+#. module: product_change_uom
+#: model:ir.model,name:product_change_uom.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: product_change_uom
+#: model:ir.model,name:product_change_uom.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_change_uom
+#: code:addons/product_change_uom/models/product_template.py:46
+#, python-format
+msgid "UoM conversion from %s to %s is not possible as they both belong to different Category!"
+msgstr ""
+
+#. module: product_change_uom
+#: code:addons/product_change_uom/models/product_template.py:31
+#, python-format
+msgid "You cannot change the unit of measure as there are active stock moves for this product. If you want to change the unit of measure, you should cancel/finish all of them or archive this product and create a new one."
+msgstr ""
+
