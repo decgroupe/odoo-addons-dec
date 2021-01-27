@@ -28,3 +28,12 @@ class Product(models.Model):
         ))
         ids = list(map(lambda x: x[0], self._cr.fetchall()))
         return ids
+
+    def _get_last_inventory_line(self, location_id):
+        self.ensure_one()
+        return self.env['stock.inventory.line'].search(
+            [
+                ('product_id', 'in', self.ids),
+                ('location_id', '=', location_id.id),
+            ], 0, 1, 'id DESC'
+        )
