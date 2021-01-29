@@ -8,7 +8,6 @@
         "redirection",
     'depends':
         [
-            'mail',
             'mrp',
             'stock',
             'purchase_stock',
@@ -16,12 +15,6 @@
             'sale_stock',
         ],
     #'force_migration':'12.0.0.0.0',
-    'data':
-        [
-            'security/ir.model.access.csv',
-            'data/business_exception.xml',
-            'views/business_exception.xml',
-            'views/res_config_settings.xml',
-        ],
+    'data': [],
     'installable': True
 }
