@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="hr_timesheet_line_calendar">
-        <field name="name">account.analytic.line.calendar</field>
+        <field name="name">account.analytic.line.calendar@hr_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
         <field name="arch" type="xml">
             <calendar string="Timesheet" date_start="date_time" date_delay="unit_amount" color="project_id">
@@ -20,7 +20,7 @@
     </record>
 
     <record model="ir.ui.view" id="hr_timesheet_line_calendar_all">
-        <field name="name">account.analytic.line.calendar</field>
+        <field name="name">account.analytic.line.calendar@hr_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
         <field name="arch" type="xml">
             <calendar string="Timesheet" date_start="date_time" date_delay="unit_amount" color="user_id">
