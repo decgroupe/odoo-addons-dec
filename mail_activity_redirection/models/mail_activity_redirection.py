@@ -10,9 +10,9 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class BusinessException(models.Model):
-    _name = 'business.exception'
-    _description = "Business Exception"
+class MailActivityRedirection(models.Model):
+    _name = 'mail.activity.redirection'
+    _description = "Mail Activity Redirection"
     _order = "sequence, id"
 
     active = fields.Boolean(
@@ -30,7 +30,7 @@ class BusinessException(models.Model):
     user_id = fields.Many2one(
         'res.users',
         string='User',
-        help="Exceptions will be redirected to this user",
+        help="Activities will be redirected to this user",
         ondelete='cascade',
         required=True,
     )
@@ -40,7 +40,7 @@ class BusinessException(models.Model):
         domain=['|', ('active', '=', True), ('active', '=', False)],
     )
     model_name = fields.Char(
-        help="Model name targeted by these exceptions "
+        help="Model name targeted by these activities"
         "like _name class attribute",
     )
     activity_template_xmlid = fields.Char(
@@ -50,12 +50,12 @@ class BusinessException(models.Model):
     regex_pattern = fields.Char(
         string='RegEx',
         default=lambda self: self._default_regex(),
-        help="Regular Expression used to parse business exception message",
+        help="Regular Expression used to parse activity note",
     )
     activity_ids = fields.Many2many(
         'mail.activity',
         string='Intercepted Activities',
-        help="History of latest intercepted activities",
+        help="History of latest intercepted and redirected activities",
     )
 
     @api.model
@@ -67,13 +67,13 @@ class BusinessException(models.Model):
     def _default_regex(self):
         return '.*'
 
-    def match(self, model_name, user_id, xmlid, message):
+    def match(self, model_name, user_id, xmlid, note):
         _logger.info(
             'Match test against %s, %s, %s, %s',
             model_name,
             user_id,
             xmlid,
-            message,
+            note,
         )
         self.ensure_one()
         res = True
@@ -91,7 +91,7 @@ class BusinessException(models.Model):
             res = True
         if res and self.regex_pattern:
             matches = re.search(
-                self.regex_pattern, message, re.MULTILINE | re.DOTALL
+                self.regex_pattern, note, re.MULTILINE | re.DOTALL
             )
             if matches and matches.group(0):
                 res = True

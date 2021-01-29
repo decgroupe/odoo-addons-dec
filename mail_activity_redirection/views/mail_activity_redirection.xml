@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="business_exception_tree_view" >
-        <field name="name">business.exception.tree@business_exception</field>
-        <field name="model">business.exception</field>
+    <record model="ir.ui.view" id="mail_activity_redirection_tree_view" >
+        <field name="name">mail.activity.redirection.tree@mail_activity_redirection</field>
+        <field name="model">mail.activity.redirection</field>
         <field name="arch" type="xml">
-            <tree string="Business Exceptions">
+            <tree string="Mail Activity Redirections">
                 <field name="sequence" widget='handle'/>
                 <field name="name"/>
                 <field name="user_id"/>
@@ -16,11 +16,11 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="business_exception_form_view" >
-        <field name="name">business.exception.form@business_exception</field>
-        <field name="model">business.exception</field>
+    <record model="ir.ui.view" id="mail_activity_redirection_form_view" >
+        <field name="name">mail.activity.redirection.form@mail_activity_redirection</field>
+        <field name="model">mail.activity.redirection</field>
         <field name="arch" type="xml">
-            <form string="Business Exception">
+            <form string="Mail Activity Redirection">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button 
@@ -68,11 +68,11 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="business_exception_search_view">
-        <field name="name">business.exception.search@business_exception</field>
-        <field name="model">business.exception</field>
+    <record model="ir.ui.view" id="mail_activity_redirection_search_view">
+        <field name="name">mail.activity.redirection.search@mail_activity_redirection</field>
+        <field name="model">mail.activity.redirection</field>
         <field name="arch" type="xml">
-            <search string="Business Exception">
+            <search string="Mail Activity Redirection">
                 <field name="user_id"/>
                 <field name="initial_user_ids"/>
                 <field name="model_name"/>
@@ -87,26 +87,26 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_business_exception" >
-        <field name="name">Business Exceptions Redirections</field>
-        <field name="res_model">business.exception</field>
+    <record model="ir.actions.act_window" id="act_window_mail_activity_redirection" >
+        <field name="name">Mail Activity Redirections Redirections</field>
+        <field name="res_model">mail.activity.redirection</field>
         <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="business_exception_tree_view"/>
-        <field name="search_view_id" ref="business_exception_search_view"/>
+        <field name="view_id" ref="mail_activity_redirection_tree_view"/>
+        <field name="search_view_id" ref="mail_activity_redirection_search_view"/>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_business_exception_tree" >
+    <record model="ir.actions.act_window.view" id="act_window_view_mail_activity_redirection_tree" >
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="business_exception_tree_view"/>
-        <field name="act_window_id" ref="act_window_business_exception"/>
+        <field name="view_id" ref="mail_activity_redirection_tree_view"/>
+        <field name="act_window_id" ref="act_window_mail_activity_redirection"/>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_business_exception_form" >
+    <record model="ir.actions.act_window.view" id="act_window_view_mail_activity_redirection_form" >
         <field name="sequence" eval="2"/>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="business_exception_form_view"/>
-        <field name="act_window_id" ref="act_window_business_exception"/>
+        <field name="view_id" ref="mail_activity_redirection_form_view"/>
+        <field name="act_window_id" ref="act_window_mail_activity_redirection"/>
     </record>
 
 </odoo>

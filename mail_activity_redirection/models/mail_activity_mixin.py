@@ -15,12 +15,12 @@ class MailActivityMixin(models.AbstractModel):
     def activity_schedule(self, act_type_xmlid='', date_deadline=None, \
         summary='', note='', **act_values):
         """ Compare values used to create a new activity with the ones in
-            business exceptions redirection rules. If a match is set then
-            assign a different user to this exception.
+            mail activity redirection rules. If a match is set then
+            assign a different user to this activity.
         """
         _logger.debug('activity_schedule')
-        business_exception = False
-        redirections = self.env['business.exception'].search([])
+        mail_activity_redirection = False
+        redirections = self.env['mail.activity.redirection'].search([])
         for redirection in redirections:
             if redirection.user_id and redirection.match(
                 self._name,
@@ -32,13 +32,13 @@ class MailActivityMixin(models.AbstractModel):
                 act_values['user_id'] = redirection.user_id.id
                 # Keep a reference on this redirection to assign created
                 # activities
-                business_exception = redirection
+                mail_activity_redirection = redirection
                 # Stop after first match
                 break
         activity_ids = super().activity_schedule(
             act_type_xmlid, date_deadline, summary, note, **act_values
         )
-        activity_ids._link_to_business_exception(business_exception)
+        activity_ids._link_to_mail_activity_redirection(mail_activity_redirection)
         return activity_ids
 
     def activity_schedule_with_view(self, act_type_xmlid='', \

@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mail_activity_redirection
+#	* mail_activity_redirection
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-28 22:15+0000\n"
-"PO-Revision-Date: 2021-01-28 23:15+0100\n"
+"PO-Revision-Date: 2021-01-28 22:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
 
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.res_config_settings_form_view
@@ -103,22 +101,22 @@ msgstr "Regrouper par"
 #. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__activity_ids
 msgid "History of latest intercepted activities"
-msgstr "Historique des dernières activités interceptées"
+msgstr ""
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_search_view
 msgid "Inactive"
-msgstr "Inactive"
+msgstr ""
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__activity_ids
 msgid "Intercepted Activities"
-msgstr "Activités interceptées"
+msgstr ""
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection____last_update
@@ -143,12 +141,12 @@ msgstr "Gérer les redirections"
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__model_name
 msgid "Model Name"
-msgstr "Nom du modèle"
+msgstr "Nom de Modèle"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__model_name
 msgid "Model name targeted by these exceptions like _name class attribute"
-msgstr "Nom du modèle ciblé par ces exceptions comme visible dans l'attribut de classe \"_name\""
+msgstr ""
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__name
@@ -158,7 +156,7 @@ msgstr "Nom"
 #. module: mail_activity_redirection
 #: model:ir.model,name:mail_activity_redirection.model_mrp_production
 msgid "Production Order"
-msgstr "Ordre de fabrication"
+msgstr ""
 
 #. module: mail_activity_redirection
 #: model:ir.model,name:mail_activity_redirection.model_purchase_order
@@ -173,7 +171,7 @@ msgstr "Redirige l'exception commerciale vers un utilisateur spécifique"
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__regex_pattern
 msgid "RegEx"
-msgstr "Regex"
+msgstr ""
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__regex_pattern
@@ -229,7 +227,5 @@ msgstr ""
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
 msgid "regex101.com"
-msgstr "regex101.com"
+msgstr ""
 
-#~ msgid "Show active rules"
-#~ msgstr "Afficher les règles actives"

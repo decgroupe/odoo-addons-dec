@@ -13,19 +13,19 @@ class MailActivity(models.Model):
     _inherit = 'mail.activity'
 
     @api.multi
-    def _link_to_business_exception(self, business_exception):
+    def _link_to_mail_activity_redirection(self, mail_activity_redirection):
         """ Keep only some references to activities redirected by this
-            `business_exception`.
+            `mail_activity_redirection`.
         """
         history_activity_ids = self.env['mail.activity']
-        if business_exception and self:
+        if mail_activity_redirection and self:
             history_activity_ids = self
-            existing_activity_ids = business_exception.activity_ids.sorted(
+            existing_activity_ids = mail_activity_redirection.activity_ids.sorted(
                 key=lambda r: r.id, reverse=True
             )
             for existing_activity_id in existing_activity_ids:
                 if len(history_activity_ids) >= 5:
                     break
                 history_activity_ids += existing_activity_id
-            business_exception.activity_ids = history_activity_ids
+            mail_activity_redirection.activity_ids = history_activity_ids
 
