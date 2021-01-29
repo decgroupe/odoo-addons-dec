@@ -6,6 +6,7 @@
     'summary': '''Product reference management''',
     'depends': [
         'base',
+        'base_xmlid',
         'uom',
         'product',
         'mrp',

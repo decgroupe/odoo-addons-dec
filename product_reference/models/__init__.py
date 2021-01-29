@@ -1,4 +1,3 @@
-from . import ir_model_data
 from . import product_template
 from . import ref_property
 from . import ref_attribute
