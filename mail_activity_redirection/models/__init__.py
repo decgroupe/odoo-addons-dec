@@ -1,2 +1,2 @@
 from . import mail_activity
-from . import business_exception
+from . import mail_activity_redirection

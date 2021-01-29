@@ -9,8 +9,8 @@
     'data':
         [
             'security/ir.model.access.csv',
-            'data/business_exception.xml',
-            'views/business_exception.xml',
+            'data/mail_activity_redirection.xml',
+            'views/mail_activity_redirection.xml',
             'views/res_config_settings.xml',
         ],
     'installable': True
