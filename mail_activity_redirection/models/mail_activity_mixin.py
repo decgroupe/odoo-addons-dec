@@ -24,6 +24,7 @@ class MailActivityMixin(models.AbstractModel):
         for redirection in redirections:
             if redirection.user_id and redirection.match(
                 self._name,
+                act_type_xmlid,
                 act_values.get('user_id'),
                 act_values.get('stored_act_type_xmlid'),
                 note.decode('utf-8'),

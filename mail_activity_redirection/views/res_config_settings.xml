@@ -7,31 +7,28 @@
         <field name="priority" eval="30"/>
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='general_settings']//div[@id='emails']" position="after" >
-                <div id="mail_activity_redirections">
-                    <h2>Mail Activity Redirections</h2>
-                    <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Activities Redirection</span>
-                                <div class="text-muted">
-                                    Redirect activities to specific Users
-                                </div>
-                                <div class="content-group">
-                                    <div class="mt16" attrs="">
-                                        <button 
-                                            name="%(mail_activity_redirection.act_window_mail_activity_redirection)d" 
-                                            icon="fa-arrow-right" 
-                                            type="action"
-                                            string="Manage redirections" 
-                                            class="btn-link">
-                                        </button>
-                                    </div>
-                                </div>
+            <xpath expr="//div[@data-key='general_settings']//div[@id='emails']" position="inside" >
+
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Activities Redirection</span>
+                        <div class="text-muted">
+                            Redirect activities to specific a user
+                        </div>
+                        <div class="content-group">
+                            <div class="mt16" attrs="">
+                                <button 
+                                    name="%(mail_activity_redirection.act_window_mail_activity_redirection)d" 
+                                    icon="fa-arrow-right" 
+                                    type="action"
+                                    string="Manage redirections" 
+                                    class="btn-link">
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </xpath>
         </field>
     </record>

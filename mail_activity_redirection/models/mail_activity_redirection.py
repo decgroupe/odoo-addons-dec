@@ -39,13 +39,21 @@ class MailActivityRedirection(models.Model):
         string='Users initially targeted',
         domain=['|', ('active', '=', True), ('active', '=', False)],
     )
-    model_name = fields.Char(
-        help="Model name targeted by these activities"
+    model_id = fields.Many2one(
+        'ir.model',
+        help="Model name targeted by these activities "
         "like _name class attribute",
     )
-    activity_template_xmlid = fields.Char(
-        string='Activity XML ID',
-        help="Exact XML ID name coded like module_name.template_name",
+    activity_type_id = fields.Many2one(
+        'mail.activity.type',
+        'Activity Type',
+    )
+    activity_type_xmlid = fields.Char(compute='_compute_activity_type_xmlid')
+    qweb_template = fields.Many2one(
+        'ir.ui.view',
+        string="QWeb Template",
+        domain=[('type', '=', 'qweb')],
+        help="Template used to render activity note",
     )
     regex_pattern = fields.Char(
         string='RegEx',
@@ -67,26 +75,43 @@ class MailActivityRedirection(models.Model):
     def _default_regex(self):
         return '.*'
 
-    def match(self, model_name, user_id, xmlid, note):
+    @api.multi
+    def _compute_activity_type_xmlid(self):
+        for rec in self.filtered('activity_type_id'):
+            rec.activity_type_xmlid = \
+                self.env['ir.model.data'].get_xmlid_as_string(
+                    rec.activity_type_id)
+
+    def match(self, model_name, type_xmlid, user_id, qweb_template_xmlid, note):
         _logger.info(
-            'Match test against %s, %s, %s, %s',
+            'Match test against %s, %s, %s, %s, %s',
             model_name,
+            type_xmlid,
             user_id,
-            xmlid,
+            qweb_template_xmlid,
             note,
         )
         self.ensure_one()
         res = True
-        if res and model_name and self.model_name:
-            res = (model_name == self.model_name)
+        if res and self.activity_type_xmlid:
+            res = (type_xmlid == self.activity_type_xmlid)
         else:
             res = True
-        if res and user_id and self.initial_user_ids:
+        if res and self.model_id:
+            res = (model_name == self.model_id._name)
+        else:
+            res = True
+        if res and self.initial_user_ids:
             res = (user_id in self.initial_user_ids.ids)
         else:
             res = True
-        if res and xmlid and self.xmlid:
-            res = (xmlid == self.xmlid)
+        if res and self.qweb_template:
+            if not qweb_template_xmlid and self.regex_pattern:
+                # If no `qweb_template_xmlid` is found then continue if a
+                # RegEx pattern is defined
+                res = True
+            else:
+                res = (qweb_template_xmlid == self.qweb_template.xml_id)
         else:
             res = True
         if res and self.regex_pattern:
@@ -95,4 +120,6 @@ class MailActivityRedirection(models.Model):
             )
             if matches and matches.group(0):
                 res = True
+            else:
+                res = False
         return res

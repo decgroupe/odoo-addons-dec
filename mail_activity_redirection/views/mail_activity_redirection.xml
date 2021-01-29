@@ -5,12 +5,13 @@
         <field name="name">mail.activity.redirection.tree@mail_activity_redirection</field>
         <field name="model">mail.activity.redirection</field>
         <field name="arch" type="xml">
-            <tree string="Mail Activity Redirections">
+            <tree string="Activities Redirections">
                 <field name="sequence" widget='handle'/>
                 <field name="name"/>
                 <field name="user_id"/>
-                <field name="model_name"/>
-                <field name="activity_template_xmlid"/>
+                <field name="model_id"/>
+                <field name="activity_type_id"/>
+                <field name="qweb_template"/>
                 <field name="regex_pattern"/>
             </tree>
         </field>
@@ -20,7 +21,7 @@
         <field name="name">mail.activity.redirection.form@mail_activity_redirection</field>
         <field name="model">mail.activity.redirection</field>
         <field name="arch" type="xml">
-            <form string="Mail Activity Redirection">
+            <form string="Activities Redirection">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button 
@@ -45,8 +46,9 @@
                     </group>
                     <group>
                         <field name="initial_user_ids"/>
-                        <field name="model_name"/>
-                        <field name="activity_template_xmlid"/>
+                        <field name="model_id"/>
+                        <field name="activity_type_id"/>
+                        <field name="qweb_template"/>
                         <field name="regex_pattern"/>
                     </group>
                     <div>
@@ -72,11 +74,12 @@
         <field name="name">mail.activity.redirection.search@mail_activity_redirection</field>
         <field name="model">mail.activity.redirection</field>
         <field name="arch" type="xml">
-            <search string="Mail Activity Redirection">
+            <search string="Activities Redirections">
                 <field name="user_id"/>
                 <field name="initial_user_ids"/>
-                <field name="model_name"/>
-                <field name="activity_template_xmlid"/>
+                <field name="model_id"/>
+                <field name="activity_type_id"/>
+                <field name="qweb_template"/>
                 <field name="regex_pattern"/>
                 <separator/>
                 <filter name="inactive" string="Inactive" domain="[('active', '=', False)]" help="Show inactive rules"/>
@@ -88,7 +91,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="act_window_mail_activity_redirection" >
-        <field name="name">Mail Activity Redirections Redirections</field>
+        <field name="name">Activities Redirections</field>
         <field name="res_model">mail.activity.redirection</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="mail_activity_redirection_tree_view"/>

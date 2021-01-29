@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-28 22:15+0000\n"
-"PO-Revision-Date: 2021-01-28 23:15+0100\n"
+"POT-Creation-Date: 2021-01-29 12:38+0000\n"
+"PO-Revision-Date: 2021-01-29 13:42+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -19,13 +19,30 @@ msgstr ""
 
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.res_config_settings_form_view
-msgid "<span class=\"o_form_label\">Exceptions Redirection</span>"
-msgstr "<span class=\"o_form_label\">Redirection des exceptions</span>"
+msgid "<span class=\"o_form_label\">Activities Redirection</span>"
+msgstr "<span class=\"o_form_label\">Redirection des activités</span>"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__active
 msgid "Active"
 msgstr "Actif"
+
+#. module: mail_activity_redirection
+#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
+msgid "Activities Redirection"
+msgstr "Redirection des activités"
+
+#. module: mail_activity_redirection
+#: model:ir.actions.act_window,name:mail_activity_redirection.act_window_mail_activity_redirection
+#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_search_view
+#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_tree_view
+msgid "Activities Redirections"
+msgstr "Redirections des activités"
+
+#. module: mail_activity_redirection
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__user_id
+msgid "Activities will be redirected to this user"
+msgstr "Les activités seront redirigées vers cet utilisateur"
 
 #. module: mail_activity_redirection
 #: model:ir.model,name:mail_activity_redirection.model_mail_activity
@@ -38,27 +55,14 @@ msgid "Activity Mixin"
 msgstr "Combinaison d'activités"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__activity_template_xmlid
-msgid "Activity XML ID"
-msgstr "Identification XML de l'activité"
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__activity_type_id
+msgid "Activity Type"
+msgstr "Type d'activité"
 
 #. module: mail_activity_redirection
-#: model:ir.model,name:mail_activity_redirection.model_mail_activity_redirection
-#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
-#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_search_view
-msgid "Business Exception"
-msgstr "Exception commerciale"
-
-#. module: mail_activity_redirection
-#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_tree_view
-#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.res_config_settings_form_view
-msgid "Business Exceptions"
-msgstr "Exceptions commerciales"
-
-#. module: mail_activity_redirection
-#: model:ir.actions.act_window,name:mail_activity_redirection.act_window_mail_activity_redirection
-msgid "Business Exceptions Redirections"
-msgstr "Redirections des exceptions commerciales"
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__activity_type_xmlid
+msgid "Activity Type Xmlid"
+msgstr "Type d'activité (xml-id)"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__active
@@ -81,19 +85,9 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__activity_template_xmlid
-msgid "Exact XML ID name coded like module_name.template_name"
-msgstr "Nom d’identification XML exact codé de la manière suivante module_name.template_name"
-
-#. module: mail_activity_redirection
-#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__user_id
-msgid "Exceptions will be redirected to this user"
-msgstr "Les exceptions seront redirigées vers cet utilisateur"
-
-#. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__sequence
 msgid "Gives the sequence order when displaying."
-msgstr "Donne l'ordre d'affichage"
+msgstr "Donne l'ordre d'affichage."
 
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_search_view
@@ -102,8 +96,8 @@ msgstr "Regrouper par"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__activity_ids
-msgid "History of latest intercepted activities"
-msgstr "Historique des dernières activités interceptées"
+msgid "History of latest intercepted and redirected activities"
+msgstr "Historique des dernières activités interceptées et redirigées"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__id
@@ -136,19 +130,24 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: mail_activity_redirection
+#: model:ir.model,name:mail_activity_redirection.model_mail_activity_redirection
+msgid "Mail Activity Redirection"
+msgstr "Redirection des activités"
+
+#. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.res_config_settings_form_view
 msgid "Manage redirections"
 msgstr "Gérer les redirections"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__model_name
-msgid "Model Name"
-msgstr "Nom du modèle"
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__model_id
+msgid "Model"
+msgstr "Modèle"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__model_name
-msgid "Model name targeted by these exceptions like _name class attribute"
-msgstr "Nom du modèle ciblé par ces exceptions comme visible dans l'attribut de classe \"_name\""
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__model_id
+msgid "Model name targeted by these activities like _name class attribute"
+msgstr "Nom du modèle ciblé par ces activités comme visible dans l'attribut de classe \"_name\""
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__name
@@ -156,19 +155,14 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: mail_activity_redirection
-#: model:ir.model,name:mail_activity_redirection.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
-
-#. module: mail_activity_redirection
-#: model:ir.model,name:mail_activity_redirection.model_purchase_order
-msgid "Purchase Order"
-msgstr "Commande fournisseur"
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__qweb_template
+msgid "QWeb Template"
+msgstr "Vue QWeb"
 
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.res_config_settings_form_view
-msgid "Redirect business exceptions to specific Users"
-msgstr "Redirige l'exception commerciale vers un utilisateur spécifique"
+msgid "Redirect activities to specific a user"
+msgstr "Redirige les activités vers un utilisateur spécifique"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__regex_pattern
@@ -177,18 +171,8 @@ msgstr "Regex"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__regex_pattern
-msgid "Regular Expression used to parse business exception message"
-msgstr "Expression régulière utilisée pour analyser le message de l'exception"
-
-#. module: mail_activity_redirection
-#: model:ir.model,name:mail_activity_redirection.model_sale_order
-msgid "Sale Order"
-msgstr "Bon de commande"
-
-#. module: mail_activity_redirection
-#: model:ir.model,name:mail_activity_redirection.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Ligne de bons de commande"
+msgid "Regular Expression used to parse activity note"
+msgstr "Expression régulière utilisée pour analyser le message de l'activité"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__sequence
@@ -201,14 +185,14 @@ msgid "Show inactive rules"
 msgstr "Afficher les règles inactives"
 
 #. module: mail_activity_redirection
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__qweb_template
+msgid "Template used to render activity note"
+msgstr "Vue utilisée pour faire le rendu du message de l'activité"
+
+#. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
 msgid "Test your expression on"
 msgstr "Tester votre expression sur"
-
-#. module: mail_activity_redirection
-#: model:ir.model,name:mail_activity_redirection.model_stock_picking
-msgid "Transfer"
-msgstr "Transfert"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__user_id
@@ -222,14 +206,40 @@ msgid "Users initially targeted"
 msgstr "Utilisateurs initialement visés"
 
 #. module: mail_activity_redirection
-#: model:ir.model,name:mail_activity_redirection.model_business_activity_interception_mixin
-msgid "business.activity.interception.mixin"
-msgstr ""
-
-#. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
 msgid "regex101.com"
 msgstr "regex101.com"
+
+#~ msgid "Activity XML ID"
+#~ msgstr "Identification XML de l'activité"
+
+#~ msgid "Exact XML ID name coded like module_name.template_name"
+#~ msgstr "Nom d’identification XML exact codé de la manière suivante module_name.template_name"
+
+#, fuzzy
+#~ msgid "Mail Activity Redirections Redirections"
+#~ msgstr "Redirections des exceptions commerciales"
+
+#~ msgid "Business Exception"
+#~ msgstr "Exception commerciale"
+
+#~ msgid "Business Exceptions"
+#~ msgstr "Exceptions commerciales"
+
+#~ msgid "Production Order"
+#~ msgstr "Ordre de fabrication"
+
+#~ msgid "Purchase Order"
+#~ msgstr "Commande fournisseur"
+
+#~ msgid "Sale Order"
+#~ msgstr "Bon de commande"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Ligne de bons de commande"
+
+#~ msgid "Transfer"
+#~ msgstr "Transfert"
 
 #~ msgid "Show active rules"
 #~ msgstr "Afficher les règles actives"

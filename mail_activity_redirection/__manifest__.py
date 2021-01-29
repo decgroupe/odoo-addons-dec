@@ -4,7 +4,10 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': "Customize activitiy targeted User with custom rules",
-    'depends': ['mail', ],
+    'depends': [
+        'mail',
+        'base_xmlid',
+    ],
     #'force_migration':'12.0.0.0.0',
     'data':
         [
