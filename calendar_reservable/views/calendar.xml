@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_calendar_event_search">
+        <field name="name">calendar.event.search@calendar_workflow_dec</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='mymeetings']" position="after">
+                <filter string="Reservable" help="Reservables like vehicles, rooms, etc." name="reservable" context='{"reservable": 1}'/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="calendar.action_calendar_event">
+        <field name="context">{'search_default_mymeetings': 1, 'search_default_reservable': 1}</field>
+    </record>
+
+</odoo>
