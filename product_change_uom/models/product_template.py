@@ -13,51 +13,65 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def write(self, vals):
-        if 'uom_id' in vals:
-            new_uom = self.env['uom.uom'].browse(vals['uom_id'])
-            updated = self.filtered(lambda template: template.uom_id != new_uom)
-            product_variant_ids = updated.with_context(
-                active_test=False
-            ).mapped('product_variant_ids')
-            active_moves = self.env['stock.move'].search(
-                [
-                    ('state', 'not in', ['cancel', 'done']),
-                    ('product_id', 'in', product_variant_ids.ids)
-                ],
-                limit=1
-            )
-            if active_moves:
-                raise UserError(
-                    _(
-                        "You cannot change the unit of measure as there "
-                        "are active stock moves for this product. If you "
-                        "want to change the unit of measure, you should "
-                        "cancel/finish all of them or archive this product "
-                        "and create a new one."
-                    )
-                )
-            else:
-                new_uom_id = self.env['uom.uom'].browse(vals['uom_id'])
-                invalid_uoms = self.filtered(
-                    lambda x: x.uom_id.category_id != new_uom.category_id
-                ).mapped('uom_id.name')
-                if invalid_uoms:
-                    raise UserError(
-                        _(
-                            "UoM conversion from %s to %s is not possible "
-                            "as they both belong to different Category!"
-                        ) % (
-                            ','.join(invalid_uoms),
-                            new_uom_id.name,
-                        )
-                    )
-                self._propagate_uom_change(new_uom_id)
-                uom_vals = {'uom_id': vals.pop('uom_id')}
-                # call super using original ProductTemplate to avoid built-in
-                # uom_id change check
-                super(product_template.ProductTemplate, self).write(uom_vals)
+        if self.env.ref(
+            'product_change_uom.group_product_uom_change'
+        ) in self.env.user.groups_id:
+            if 'uom_po_id' in vals:
+                self.change_uom_po(vals)
+            if 'uom_id' in vals:
+                self.change_uom(vals)
         res = super().write(vals)
         return res
+
+    @api.multi
+    def change_uom_po(self, vals):
+        new_uom_po_id = self.env['uom.uom'].browse(vals['uom_po_id'])
+        self._propagate_uom_po_change(new_uom_po_id)
+
+    @api.multi
+    def change_uom(self, vals):
+        new_uom = self.env['uom.uom'].browse(vals['uom_id'])
+        updated = self.filtered(lambda template: template.uom_id != new_uom)
+        product_variant_ids = updated.with_context(
+            active_test=False
+        ).mapped('product_variant_ids')
+        active_moves = self.env['stock.move'].search(
+            [
+                ('state', 'not in', ['cancel', 'done']),
+                ('product_id', 'in', product_variant_ids.ids)
+            ],
+            limit=1
+        )
+        if active_moves:
+            raise UserError(
+                _(
+                    "You cannot change the unit of measure as there "
+                    "are active stock moves for this product. If you "
+                    "want to change the unit of measure, you should "
+                    "cancel/finish all of them or archive this product "
+                    "and create a new one."
+                )
+            )
+        else:
+            new_uom_id = self.env['uom.uom'].browse(vals['uom_id'])
+            invalid_uoms = self.filtered(
+                lambda x: x.uom_id.category_id != new_uom.category_id
+            ).mapped('uom_id.name')
+            if invalid_uoms:
+                raise UserError(
+                    _(
+                        "UoM conversion from %s to %s is not possible "
+                        "as they both belong to different Category!"
+                    ) % (
+                        ','.join(invalid_uoms),
+                        new_uom_id.name,
+                    )
+                )
+            self._propagate_uom_change(new_uom_id)
+            uom_vals = {'uom_id': vals.pop('uom_id')}
+            # call super using original ProductTemplate to avoid built-in
+            # uom_id change check
+            super(product_template.ProductTemplate, self).write(uom_vals)
 
     @api.multi
     def _propagate_uom_change(self, uom_id):
@@ -136,4 +150,27 @@ class ProductTemplate(models.Model):
             current_uom_id = packaging.product_id.uom_id
             packaging.qty = current_uom_id._compute_quantity(
                 packaging.qty, uom_id
+            )
+
+    @api.multi
+    def _propagate_uom_po_change(self, uom_po_id):
+        product_ids = self.with_context(active_test=False)\
+            .mapped('product_variant_ids')
+        self._propagate_uom_po_change_to_supplierinfos(uom_po_id, product_ids)
+
+    @api.multi
+    def _propagate_uom_po_change_to_supplierinfos(self, uom_id, product_ids):
+        """Convert supplier infos minimum quantities
+
+        Args:
+            uom_id ([uom.uom]): Future UoM that will replace current one
+            product_ids ([product.product]): Source recordset
+        """
+        supplierinfo_ids = self.env['product.supplierinfo'].search(
+            [('product_tmpl_id', 'in', product_ids.ids)]
+        )
+        for supplierinfo in supplierinfo_ids:
+            current_uom_id = supplierinfo.product_uom
+            supplierinfo.min_qty = current_uom_id._compute_quantity(
+                supplierinfo.min_qty, uom_id
             )
