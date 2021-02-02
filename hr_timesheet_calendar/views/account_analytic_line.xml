@@ -5,9 +5,12 @@
         <field name="name">account.analytic.line.calendar@hr_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
         <field name="arch" type="xml">
-            <calendar string="Timesheet" date_start="date_time" date_delay="unit_amount" color="project_id">
-                <field name="name"/>
-                <field name="task_id"/>
+            <calendar string="Timesheet" quick_add="False" 
+                date_start="date_time" date_delay="unit_amount" color="project_id"
+                event_open_popup="true"
+                readonly_form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
+                    <field name="name"/>
+                    <field name="task_id"/>
             </calendar>
         </field>
     </record>
@@ -23,7 +26,7 @@
         <field name="name">account.analytic.line.calendar@hr_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
         <field name="arch" type="xml">
-            <calendar string="Timesheet" date_start="date_time" date_delay="unit_amount" color="user_id">
+            <calendar string="Timesheet" quick_add="False" date_start="date_time" date_delay="unit_amount" color="user_id">
                 <field name="name"/>
                 <field name="task_id"/>
                 <field name="project_id"/>
@@ -36,6 +39,10 @@
         <field name="sequence">5</field>
         <field name="view_id" ref="hr_timesheet_line_calendar_all"/>
         <field name="act_window_id" ref="hr_timesheet.timesheet_action_all"/>
+    </record>
+
+    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
+        <field name="view_id" ref="hr_timesheet.hr_timesheet_line_form"/>
     </record>
 
 </odoo>
