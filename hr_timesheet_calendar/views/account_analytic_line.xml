@@ -8,6 +8,7 @@
             <calendar string="Timesheet" quick_add="False" 
                 date_start="date_time" date_delay="unit_amount" color="project_id"
                 event_open_popup="true"
+                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
                 readonly_form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
                     <field name="name"/>
                     <field name="task_id"/>
@@ -26,7 +27,10 @@
         <field name="name">account.analytic.line.calendar@hr_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
         <field name="arch" type="xml">
-            <calendar string="Timesheet" quick_add="False" date_start="date_time" date_delay="unit_amount" color="user_id">
+            <calendar string="Timesheet" quick_add="False" date_start="date_time" date_delay="unit_amount" color="user_id"
+                event_open_popup="true"
+                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
+                readonly_form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
                 <field name="name"/>
                 <field name="task_id"/>
                 <field name="project_id"/>
