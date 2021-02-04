@@ -1,0 +1,15 @@
+{
+    'name': 'Project Identification',
+    'version': '12.0.1.0.0',
+    'author': 'DEC, Yann Papouin',
+    'website': 'http://www.dec-industrie.com',
+    'summary':
+        "Customize name_search and add project type information "
+        "on task",
+    'depends': ['project_category', ],
+    'data': [
+        'views/project_project.xml',
+        'views/project_task.xml',
+    ],
+    'installable': True
+}
