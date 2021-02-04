@@ -24,13 +24,9 @@ class ProductProduct(models.Model):
 
     @api.multi
     def _compute_qty_in_purchase_quotation(self):
-        date_from = fields.Datetime.to_string(
-            fields.datetime.now() - timedelta(days=365)
-        )
         domain = [
             ('state', 'in', ['draft', 'sent', 'to approve']),
             ('product_id', 'in', self.mapped('id')),
-            ('date_order', '>', date_from)
         ]
         order_lines = self.env['purchase.order.line'].read_group(
             domain, ['product_id', 'product_uom_qty'], ['product_id']
