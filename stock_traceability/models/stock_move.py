@@ -387,9 +387,11 @@ class StockMove(models.Model):
         head, desc = self.get_head_desc()
         res.append(format_hd(head, desc, html))
 
+        stock_location = self.env.ref('stock.stock_location_stock')
+
         # Print location only when destination moves are for stock
+        # or if this move is the final one to stock
         if self.move_dest_ids:
-            stock_location = self.env.ref('stock.stock_location_stock')
             same_destination = all(
                 x.id == stock_location.id
                 for x in self.move_dest_ids.mapped('location_dest_id')
@@ -398,9 +400,13 @@ class StockMove(models.Model):
                 x.id != self.product_id.id
                 for x in self.move_dest_ids.mapped('product_id')
             )
-            if same_destination or different_product:
-                head, desc = self._get_stock_location(html)
-                res.append(format_hd(head, desc, html=False))
+        else:
+            same_destination = self.location_dest_id.id == stock_location.id
+            different_product = False
+
+        if same_destination or different_product:
+            head, desc = self._get_stock_location(html)
+            res.append(format_hd(head, desc, html=False))
 
         pre = False
         if self.created_purchase_line_archive and not self.created_purchase_line_id:
