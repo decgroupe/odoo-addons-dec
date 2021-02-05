@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mrp_project
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-05 13:52+0000\n"
+"PO-Revision-Date: 2021-02-05 13:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_project
+#: model:ir.model.fields,help:mrp_project.field_project_project__label_productions
+#: model:ir.model.fields,help:mrp_project.field_project_task__label_productions
+msgid "Gives label to productions on project's kanban view."
+msgstr "Indique l'étiquette donnée aux fabrications dans la vue kanban du projet."
+
+#. module: mrp_project
+#: model_terms:ir.ui.view,arch_db:mrp_project.edit_project_form_view
+msgid "Name of productions :"
+msgstr ""
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__todo_production_count
+#: model:ir.model.fields,field_description:mrp_project.field_project_task__todo_production_count
+msgid "Number of productions"
+msgstr "Nombre de fabrications"
+
+#. module: mrp_project
+#: model_terms:ir.ui.view,arch_db:mrp_project.view_project_search
+#: model_terms:ir.ui.view,arch_db:mrp_project.view_task_search
+msgid "Open Productions"
+msgstr "Ouvrir les fabrications"
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__production_count
+#: model:ir.model.fields,field_description:mrp_project.field_project_task__production_count
+msgid "Production Count"
+msgstr "Nombre de fabrication"
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_project
+#: code:addons/mrp_project/models/project.py:23
+#: code:addons/mrp_project/models/project_task.py:23
+#: model:ir.actions.act_window,name:mrp_project.production_action_from_project
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__production_ids
+#: model:ir.model.fields,field_description:mrp_project.field_project_task__production_ids
+#: model_terms:ir.ui.view,arch_db:mrp_project.edit_project_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_project.view_task_form2
+#, python-format
+msgid "Productions"
+msgstr "Fabrications"
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_project_project
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__project_id
+msgid "Project"
+msgstr "Projet"
+
+#. module: mrp_project
+#: model:ir.model,name:mrp_project.model_project_task
+#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__task_id
+msgid "Task"
+msgstr "Tâche"
+
+#. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__label_productions
+#: model:ir.model.fields,field_description:mrp_project.field_project_task__label_productions
+msgid "Use Productions as"
+msgstr "Remplacer Fabrications par"
+

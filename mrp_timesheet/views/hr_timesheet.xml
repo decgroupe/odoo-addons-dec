@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_search">
+        <field name="name">account.analytic.line.search@mrp_timesheet</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+        <field name="groups_id" eval="[(4, ref('mrp.group_mrp_user'))]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="production_id"/>
+                <field name="production_partner_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='month']" position="before">
+                <filter name="production" string="With production" domain="[('production_id', '!=', False)]"/>
+                <separator/>
+            </xpath>
+            <xpath expr="//filter[@name='groupby_employee']" position="before">
+                <filter string="Production partner" name="groupby_production_partner" domain="[]"
+                        context="{'group_by':'production_partner_id'}"/>
+                <filter string="Production" name="groupby_production" domain="[]"
+                        context="{'group_by':'production_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_tree">
+        <field name="name">account.analytic.line.tree.hr_timesheet@mrp_timesheet</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="production_id" />
+                <field name="production_partner_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_form">
+        <field name="name">account.analytic.line.form@mrp_timesheet</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="arch" type="xml">
+            <field name="task_id" position="after">
+                <field name="production_id" required="context.get('production_required', False)" />
+                <field name="production_partner_id" attrs="{'invisible': [('production_id', '=', False)]}" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="mrp_timesheet_action">
+        <field name="name">Timesheets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">tree,kanban,form,pivot</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('production_id', '!=', False)]</field>
+        <field name="context">{
+            'production_required': True,
+            'search_default_groupby_production_partner': 1,
+            'search_default_groupby_production': 1,
+            }</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_hr_timesheet_line_view_form">
+        <field name="view_mode">form</field>
+        <field name="sequence" eval="5"/>
+        <field name="view_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="act_window_id" ref="mrp_timesheet_action"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_hr_timesheet_line_view_tree">
+        <field name="view_mode">tree</field>
+        <field name="sequence" eval="4"/>
+        <field name="view_id" ref="hr_timesheet.timesheet_view_tree_user"/>
+        <field name="act_window_id" ref="mrp_timesheet_action"/>
+    </record>
+
+    <menuitem
+        id="mrp_timesheet_menu"
+        name="Timesheets"
+        parent="mrp.menu_mrp_manufacturing"
+        action="mrp_timesheet_action"
+        groups="hr_timesheet.group_hr_timesheet_user"
+        sequence="15"/>
+
+</odoo>
