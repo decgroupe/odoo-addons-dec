@@ -8,11 +8,6 @@ from odoo import api, fields, models
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    partner_id = fields.Many2one(
-        'res.partner',
-        'Partner',
-    )
-
     @api.model
     def create(self, values):
         sale_order_id = self.env['sale.order']

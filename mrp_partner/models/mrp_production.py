@@ -8,7 +8,9 @@ from odoo import models, api, fields
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    # TODO: partner_id is currently defined in mrp_sale module
-    # it should be moved here and mrp_sale should depends on mrp_partner
-    
+    partner_id = fields.Many2one(
+        'res.partner',
+        'Partner',
+    )
+
     zip_id = fields.Many2one(related='partner_id.zip_id')

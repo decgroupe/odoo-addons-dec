@@ -5,8 +5,9 @@
     'website': 'http://www.dec-industrie.com',
     'summary': '''Get partner id from sale order shipping informations''',
     'depends': [
-        'mrp',
+        'mrp_partner',
         'sale_stock',
+        'sale_mrp_link',
     ],
     'data': [
         'views/mrp_production.xml',

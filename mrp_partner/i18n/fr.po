@@ -6,17 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:13+0000\n"
-"PO-Revision-Date: 2020-10-05 13:03+0000\n"
+"POT-Creation-Date: 2021-02-05 13:08+0000\n"
+"PO-Revision-Date: 2021-02-05 14:08+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
 
 #. module: mrp_partner
+#: model:ir.model.fields,field_description:mrp_partner.field_mrp_production__partner_id
 #: model_terms:ir.ui.view,arch_db:mrp_partner.mrp_production_filter_view
 msgid "Partner"
 msgstr "Partenaire"
@@ -24,7 +26,7 @@ msgstr "Partenaire"
 #. module: mrp_partner
 #: model:ir.model,name:mrp_partner.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Ordre de fabrication"
 
 #. module: mrp_partner
 #: model:ir.model.fields,field_description:mrp_partner.field_mrp_production__zip_id

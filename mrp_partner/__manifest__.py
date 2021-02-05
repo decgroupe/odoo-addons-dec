@@ -6,7 +6,6 @@
     'summary': '''Add fields related to partner like city''',
     'depends': [
         'mrp',
-        'mrp_sale',
         'base_location',
     ],
     'data': [
