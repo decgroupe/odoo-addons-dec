@@ -33,7 +33,18 @@ class HelpdeskTicketReference(models.Model):
 
     @api.model
     def _selection_model(self):
+
+        def _translate(src):
+            """ Custom translate function since we need to get
+                model._description translation but the default gettext _ alias
+                only search for `code` and `sql_constraint` translations
+            """
+            res = self.env['ir.translation'].sudo()._get_source(
+                None, ('model', 'model_terms'), self.env.lang, src
+            )
+            return res
+
         return [
-            (x, _(self.env[x]._description))
+            (x, _translate(self.env[x]._description))
             for x in APPLICABLE_MODELS if x in self.env
         ]
