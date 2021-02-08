@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="time_tracking_type" model="project.type">
+        <field name="name">⏱️</field>
+        <field name="description">Pour les projets génériques, et utilisé pour remplir les feuilles de temps</field>
+    </record>
+
+</odoo>

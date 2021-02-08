@@ -8,6 +8,7 @@
         "on task",
     'depends': ['project_category', ],
     'data': [
+        'data/project_category.xml',
         'views/project_project.xml',
         'views/project_task.xml',
     ],

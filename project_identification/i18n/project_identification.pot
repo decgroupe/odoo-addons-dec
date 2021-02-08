@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 14:24+0000\n"
-"PO-Revision-Date: 2021-02-04 14:24+0000\n"
+"POT-Creation-Date: 2021-02-08 09:34+0000\n"
+"PO-Revision-Date: 2021-02-08 09:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: project_identification
+#: model:project.type,description:project_identification.time_tracking_type
+msgid "For generic projects that are used to fill in timesheets"
+msgstr ""
 
 #. module: project_identification
 #: model:ir.model,name:project_identification.model_project_project
@@ -23,7 +28,7 @@ msgstr "Projet"
 #. module: project_identification
 #: model:ir.model.fields,field_description:project_identification.field_project_task__project_type_id
 msgid "Project Type"
-msgstr ""
+msgstr "Type de projet"
 
 #. module: project_identification
 #: model:ir.model,name:project_identification.model_project_task
