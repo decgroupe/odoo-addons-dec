@@ -81,7 +81,7 @@
     </record>
 
     <record model="ir.ui.view" id="mrp_production_form_view_project_required">
-        <field name="name">mrp.production.form#project_required@mrp_project</field>
+        <field name="name">mrp.production.form#project_required@mrp_timesheet</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp_project.mrp_production_form_view"/>

@@ -22,6 +22,14 @@ class AccountAnalyticLine(models.Model):
         compute_sudo=True,
         groups="mrp.group_mrp_user",
     )
+    production_product_id = fields.Many2one(
+        comodel_name='product.product',
+        related="production_id.product_id",
+        string="Production product",
+        store=True,
+        compute_sudo=True,
+        groups="mrp.group_mrp_user",
+    )
 
     @api.onchange("production_id")
     def onchange_production_id(self):
@@ -30,3 +38,4 @@ class AccountAnalyticLine(models.Model):
                 continue
             record.project_id = record.production_id.project_id
             record.task_id = record.production_id.task_id
+            record.product_id = record.production_id.product_id
