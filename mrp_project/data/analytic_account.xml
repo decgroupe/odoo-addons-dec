@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="analytic_production" model="account.analytic.account">
+        <field name="name">Production</field>
+        <field name="code">MO</field>
+    </record>
+
+</odoo>

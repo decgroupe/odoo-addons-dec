@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-05 13:52+0000\n"
-"PO-Revision-Date: 2021-02-05 13:52+0000\n"
+"POT-Creation-Date: 2021-02-08 09:34+0000\n"
+"PO-Revision-Date: 2021-02-08 09:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Indique l'étiquette donnée aux fabrications dans la vue kanban du proj
 #. module: mrp_project
 #: model_terms:ir.ui.view,arch_db:mrp_project.edit_project_form_view
 msgid "Name of productions :"
-msgstr ""
+msgstr "Nom de fabrication :"
 
 #. module: mrp_project
 #: model:ir.model.fields,field_description:mrp_project.field_project_project__todo_production_count

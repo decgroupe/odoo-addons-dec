@@ -38,7 +38,7 @@ msgstr "Nombre de fabrications"
 #: model_terms:ir.ui.view,arch_db:mrp_project.view_project_search
 #: model_terms:ir.ui.view,arch_db:mrp_project.view_task_search
 msgid "Open Productions"
-msgstr "Ouvrir les fabrications"
+msgstr "Avec fabrications en cours"
 
 #. module: mrp_project
 #: model:ir.model.fields,field_description:mrp_project.field_project_project__production_count
