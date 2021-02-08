@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 14:24+0000\n"
-"PO-Revision-Date: 2021-02-04 14:24+0000\n"
+"POT-Creation-Date: 2021-02-08 09:34+0000\n"
+"PO-Revision-Date: 2021-02-08 09:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,19 +19,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_analytic_line_levels.field_account_analytic_line__account_primary_id
 #: model:ir.model.fields,field_description:account_analytic_line_levels.field_hr_timesheet_switch__account_primary_id
 msgid "Analytic Account (Primary)"
-msgstr ""
+msgstr "Compte analytique (Primaire)"
 
 #. module: account_analytic_line_levels
 #: model:ir.model.fields,field_description:account_analytic_line_levels.field_account_analytic_line__account_secondary_id
 #: model:ir.model.fields,field_description:account_analytic_line_levels.field_hr_timesheet_switch__account_secondary_id
 msgid "Analytic Account (Secondary)"
-msgstr ""
+msgstr "Compte analytique (Secondaire)"
 
 #. module: account_analytic_line_levels
 #: model:ir.model.fields,field_description:account_analytic_line_levels.field_account_analytic_line__account_tertiary_id
 #: model:ir.model.fields,field_description:account_analytic_line_levels.field_hr_timesheet_switch__account_tertiary_id
 msgid "Analytic Account (Tertiary)"
-msgstr ""
+msgstr "Compte analytique (Tertiaire)"
 
 #. module: account_analytic_line_levels
 #: model:ir.model,name:account_analytic_line_levels.model_account_analytic_line
