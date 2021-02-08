@@ -45,8 +45,13 @@
         <field name="act_window_id" ref="hr_timesheet.timesheet_action_all"/>
     </record>
 
+    <record id="hr_timesheet.timesheet_action_all" model="ir.actions.act_window">
+        <field name="domain">[('project_id', '!=', False), ('project_id.active', '=', True)]</field>
+    </record>
+
     <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
         <field name="view_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="domain">[('project_id', '!=', False), ('project_id.active', '=', True), ('user_id', '=', uid)]</field>
     </record>
 
 </odoo>
