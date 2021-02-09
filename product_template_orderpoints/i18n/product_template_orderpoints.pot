@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_template_orderpoints
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-09 10:29+0000\n"
+"PO-Revision-Date: 2021-02-09 10:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_template_orderpoints
+#: model:ir.model,name:product_template_orderpoints.model_stock_warehouse_orderpoint
+msgid "Minimum Inventory Rule"
+msgstr "Règle de stock minimum."
+
+#. module: product_template_orderpoints
+#: model:ir.model.fields,field_description:product_template_orderpoints.field_product_template__orderpoint_ids
+msgid "Minimum Stock Rules"
+msgstr "Règles de stock minimum"
+
+#. module: product_template_orderpoints
+#: model:ir.model,name:product_template_orderpoints.model_product_template
+#: model:ir.model.fields,field_description:product_template_orderpoints.field_stock_warehouse_orderpoint__product_tmpl_id
+msgid "Product Template"
+msgstr "Modèle d'article"
+
