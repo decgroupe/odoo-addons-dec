@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_valuation_cache
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-10 15:34+0000\n"
+"PO-Revision-Date: 2021-02-10 15:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_valuation_cache
+#: model:ir.model,name:stock_valuation_cache.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: stock_valuation_cache
+#: model:ir.model,name:stock_valuation_cache.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: stock_valuation_cache
+#: model:ir.model.fields,field_description:stock_valuation_cache.field_product_product__qty_available_cache
+#: model:ir.model.fields,field_description:stock_valuation_cache.field_product_template__qty_available_cache
+msgid "Quantity On Hand (Cache)"
+msgstr ""
+
+#. module: stock_valuation_cache
+#: model:ir.actions.server,name:stock_valuation_cache.ir_cron_product_autoset_ok_ir_actions_server
+#: model:ir.cron,cron_name:stock_valuation_cache.ir_cron_product_autoset_ok
+#: model:ir.cron,name:stock_valuation_cache.ir_cron_product_autoset_ok
+msgid "Valuation caching: Store available quantity"
+msgstr ""
+
