@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Scheduler -->
+    <record model="ir.cron" id="ir_cron_product_autoset_ok">
+        <field name="name">💲 Prices History: Store sell/purchase prices</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">model.scheduler_update_default_prices()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="priority">100</field>
+    </record>
+
+</odoo>
