@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_recreate_analytic_lines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-12 10:32+0000\n"
+"PO-Revision-Date: 2021-02-12 11:34+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: account_recreate_analytic_lines
+#: code:addons/account_recreate_analytic_lines/models/account_invoice.py:38
+#, python-format
+msgid "Cannot match a single invoice line to move line %s (%d match)"
+msgstr "Impossible de faire correspondre une ligne de facture à l'écriture comptable %s (%d correspondances)"
+
+#. module: account_recreate_analytic_lines
+#: model:ir.model,name:account_recreate_analytic_lines.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: account_recreate_analytic_lines
+#: model:ir.model,name:account_recreate_analytic_lines.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Ligne de facture"
+
+#. module: account_recreate_analytic_lines
+#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_invoice_line_update__product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: account_recreate_analytic_lines
+#: model_terms:ir.ui.view,arch_db:account_recreate_analytic_lines.account_invoice_update_form
+msgid "Remove lines with a product assigned"
+msgstr "Supprimer les lignes avec un article"
+
+#. module: account_recreate_analytic_lines
+#: model_terms:ir.ui.view,arch_db:account_recreate_analytic_lines.invoice_form_view
+msgid "Set Default Analytic Account"
+msgstr "Définir le compte analytique par défaut"
+
+#. module: account_recreate_analytic_lines
+#: model:ir.model,name:account_recreate_analytic_lines.model_account_invoice_line_update
+msgid "Update non-legal fields of invoice lines"
+msgstr "Mettre à jour les champs non juridiques des lignes de facturation"
+
+#. module: account_recreate_analytic_lines
+#: model:ir.model,name:account_recreate_analytic_lines.model_account_invoice_update
+msgid "Wizard to update non-legal fields of invoice"
+msgstr "Assistant pour mettre à jour les champs non juridiques de facture"
