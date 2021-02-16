@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="timesheet_helpdesk_ticket_form_view">
+        <field name="name">timesheet.helpdesk.ticket.form.view@helpdesk_timesheet_time_control</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt_timesheet.timesheet_helpdesk_ticket_view_form" />
+        <field name="arch" type="xml">
+            <!-- Sub-tree view for timesheet_ids -->
+            <xpath expr="//field[@name='timesheet_ids']/tree//field[@name='date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree//field[@name='date']" position="after">
+                <field name="date_time" string="Date" required="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
