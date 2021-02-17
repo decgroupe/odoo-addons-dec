@@ -6,7 +6,7 @@
         <field name="name">Valuation caching: Store available quantity</field>
         <field name="model_id" ref="model_product_template"/>
         <field name="state">code</field>
-        <field name="code">model.update_qty_available_cache()</field>
+        <field name="code">model.scheduler_update_qty_available_cache()</field>
         <field name="user_id" ref="base.user_root"/>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
