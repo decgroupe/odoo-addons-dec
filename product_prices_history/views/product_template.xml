@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_template_form_view">
+        <field name="name">product.template.form@product_prices_history</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="groups_id" eval="[ (4, ref('base.group_erp_manager'))]" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='default_sell_price']//button[@name='open_price_graph']" position="after">
+                <button 
+                    name="show_product_prices_history" 
+                    class="oe_inline oe_link" 
+                    type="object" 
+                    string="Show History" 
+                    context="{'active_id': active_id, 'price_type': 'sell'}">
+                </button>
+            </xpath>
+
+            <xpath expr="//div[@name='default_purchase_price']//button[@name='open_price_graph']" position="after">
+                <button 
+                    name="show_product_prices_history" 
+                    class="oe_inline oe_link" 
+                    type="object" 
+                    string="Show History" 
+                    context="{'active_id': active_id, 'price_type': 'purchase'}">
+                </button>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

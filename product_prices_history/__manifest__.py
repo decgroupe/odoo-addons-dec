@@ -7,7 +7,9 @@
     'depends': ['product_prices', ],
     'data': [
         'data/ir_cron.xml',
-        'views/product_computed_price_history.xml',
+        'security/ir.model.access.csv',
+        'views/product_prices_history.xml',
+        'views/product_template.xml',
     ],
     'installable': True
 }

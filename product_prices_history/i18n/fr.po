@@ -6,83 +6,88 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-11 20:32+0000\n"
-"PO-Revision-Date: 2021-02-11 21:37+0100\n"
+"POT-Creation-Date: 2021-02-16 21:53+0000\n"
+"PO-Revision-Date: 2021-02-16 22:55+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
 "X-Generator: Poedit 2.3.1\n"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__company_id
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__company_id
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__company_id
 msgid "Company"
 msgstr "Société"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__create_uid
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__create_uid
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__company_currency_id
+msgid "Company Currency"
+msgstr "Devise de la société"
+
+#. module: product_prices_history
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__create_uid
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_search_view
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__create_date
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__create_date
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__datetime
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__datetime
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__datetime
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_search_view
 msgid "Date"
 msgstr "Date"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__display_name
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__display_name
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__id
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__id
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_search_view
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: product_prices_history
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__id
 msgid "ID"
 msgstr "ID"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history____last_update
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history____last_update
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__write_uid
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__write_uid
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__write_date
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__write_date
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__price
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__price
-msgid "Price"
-msgstr "Prix"
-
-#. module: product_prices_history
 #: model:ir.model,name:product_prices_history.model_product_product
-#: model:ir.model.fields,field_description:product_prices_history.field_product_purchase_price_history__product_id
-#: model:ir.model.fields,field_description:product_prices_history.field_product_sell_price_history__product_id
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__product_id
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_search_view
 msgid "Product"
 msgstr "Article"
+
+#. module: product_prices_history
+#: model:ir.actions.act_window,name:product_prices_history.product_prices_history_action
+#: model:ir.model,name:product_prices_history.model_product_prices_history
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_form_view
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_tree_view
+msgid "Product Prices History"
+msgstr "Historique des prix d'un produit"
 
 #. module: product_prices_history
 #: model:ir.model,name:product_prices_history.model_product_purchase_price_history
@@ -93,6 +98,46 @@ msgstr "Historique des prix d’achat d'un produit"
 #: model:ir.model,name:product_prices_history.model_product_sell_price_history
 msgid "Product Sell Price History"
 msgstr "Historique des prix de vente d'un produit"
+
+#. module: product_prices_history
+#: model:ir.model,name:product_prices_history.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_prices_history
+#: selection:product.prices.history,type:0
+msgid "Purchase"
+msgstr "Achat"
+
+#. module: product_prices_history
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__purchase_price
+msgid "Purchase Price"
+msgstr "Prix d'achat"
+
+#. module: product_prices_history
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_search_view
+msgid "Search Product Prices History"
+msgstr "Recherche dans l'historique des prix d'un produit"
+
+#. module: product_prices_history
+#: selection:product.prices.history,type:0
+msgid "Sell"
+msgstr "Vente"
+
+#. module: product_prices_history
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__sell_price
+msgid "Sell Price"
+msgstr "Prix de vente"
+
+#. module: product_prices_history
+#: model_terms:ir.ui.view,arch_db:product_prices_history.product_template_form_view
+msgid "Show History"
+msgstr "Afficher l’historique"
+
+#. module: product_prices_history
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__type
+msgid "Type"
+msgstr "Type"
 
 #. module: product_prices_history
 #: model:ir.actions.server,name:product_prices_history.ir_cron_product_autoset_ok_ir_actions_server
