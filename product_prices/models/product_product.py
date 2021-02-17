@@ -11,8 +11,11 @@ from odoo.addons import decimal_precision as dp
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    # Override digit field to increase precision
-    standard_price = fields.Float(digits=dp.get_precision('Purchase Price'), )
+    # Override digit field to increase precision and track changes
+    standard_price = fields.Float(
+        digits=dp.get_precision('Purchase Price'),
+        track_visibility='onchange',
+    )
 
     @api.multi
     def write(self, vals):

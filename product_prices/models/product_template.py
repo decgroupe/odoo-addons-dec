@@ -9,6 +9,7 @@ from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, float_round
+from odoo.tools.progressbar import progressbar as pb
 
 _logger = logging.getLogger(__name__)
 
@@ -16,8 +17,13 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    # Override digit field to increase precision
-    standard_price = fields.Float(digits=dp.get_precision('Purchase Price'))
+    # Override digit field to increase precision and track changes
+    standard_price = fields.Float(
+        digits=dp.get_precision('Purchase Price'), track_visibility='onchange'
+    )
+    # Override to track changes
+    list_price = fields.Float(track_visibility='onchange')
+
     standard_price_po_uom = fields.Float(
         'Cost (Purchase UoM)',
         compute='_compute_standard_price_po_uom',
@@ -166,7 +172,7 @@ class ProductTemplate(models.Model):
         'uom_po_id',
     )
     def _compute_default_purchase_price(self):
-        for p in self:
+        for p in pb(self):
             if isinstance(p.id, models.NewId):
                 continue
             if p.seller_id:
@@ -204,7 +210,7 @@ class ProductTemplate(models.Model):
         'uom_id',
     )
     def _compute_default_sell_price(self):
-        for p in self:
+        for p in pb(self):
             if isinstance(p.id, models.NewId):
                 continue
             if p.company_id and p.company_id.partner_id:
@@ -256,9 +262,9 @@ class ProductTemplate(models.Model):
                 if len(pricelist_items) > 1:
                     raise UserError(
                         _(
-                            'Too many pricelist items for this product!, only \
-one sale pricelist item must exist for this product to disable by-pass \
-functionality'
+                            'Too many pricelist items for this product!, only '
+                            'one sale pricelist item must exist for this '
+                            'product to disable by-pass functionality'
                         )
                     )
                 elif pricelist_items:
@@ -303,7 +309,9 @@ functionality'
         ]
         done_ids = []
         product_ids = self.search([('same_uom', '!=', True)])
-        product_ids = self.env['product.product'].search([('same_uom', '!=', True)])
+        product_ids = self.env['product.product'].search(
+            [('same_uom', '!=', True)]
+        )
         notification_ids = self.env['mail.message'].search(
             [
                 ('model', '=', self._name), ('res_id', 'in', product_ids.ids),
