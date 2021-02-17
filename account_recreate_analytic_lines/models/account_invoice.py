@@ -3,10 +3,10 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Jan 2021
 
 import logging
-import progressbar
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
+from odoo.tools.progressbar import progressbar as pb
 
 _logger = logging.getLogger(__name__)
 
@@ -43,11 +43,8 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_set_default_analytic_account(self):
-        with progressbar.ProgressBar(max_value=len(self)) as bar:
-            for rec in self:
-                bar.update(bar.value + 1)
-                rec._set_default_analytic_account()
-            bar.finish()
+        for rec in pb(self):
+            rec._set_default_analytic_account()
 
     @api.multi
     def _set_default_analytic_account(self):
