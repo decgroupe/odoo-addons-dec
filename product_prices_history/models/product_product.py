@@ -16,6 +16,42 @@ _logger = logging.getLogger(__name__)
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    last_default_sell_price = fields.Monetary(
+        compute='_compute_last_default_prices',
+        string='Last Sell Price',
+        digits=dp.get_precision('Product Price'),
+        help="Last sell price from history",
+    )
+
+    last_default_purchase_price = fields.Monetary(
+        compute='_compute_last_default_prices',
+        string='Last Purchase Price',
+        digits=dp.get_precision('Purchase Price'),
+        help="Last purchase price from history",
+    )
+
+    def _compute_last_default_prices(self):
+        prices_hist_ids = self.env['product.prices.history'].search(
+            [('product_id', 'in', self.ids)]
+        )
+        for rec in self:
+            domain = [
+                ('id', 'in', prices_hist_ids.ids),
+                ('product_id', '=', rec.id),
+            ]
+            price_hist_id = self.env['product.prices.history'].search(
+                domain + [('type', '=', 'purchase')], limit=1
+            )
+            if price_hist_id:
+                rec.last_default_purchase_price = price_hist_id.get_price(
+                    'purchase'
+                )
+            price_hist_id = self.env['product.prices.history'].search(
+                domain + [('type', '=', 'sell')], limit=1
+            )
+            if price_hist_id:
+                rec.last_default_sell_price = price_hist_id.get_price('sell')
+
     def _get_product_ids_with_moves(self):
         moves = self.env['stock.move'].search([])
         move_group = self.env['stock.move'].read_group(
@@ -35,58 +71,51 @@ class ProductProduct(models.Model):
         return [x['product_id'][0] for x in price_group]
 
     @api.model
-    def scheduler_update_default_prices(self):
-        # TODO: First search for the latest entry in history to get the most
-        # recent date, then filter stock move by this date to reduce the
-        # task charge
-        # TODO: Also call update prices when a stock move is done (like it
-        # is currently done for stock `real_time` valuation)
-
+    def _update_default_prices(self, product_ids):
         SPLIT = 500
-        ids_with_moves = self._get_product_ids_with_moves()
-
         search_domain = [
-            ('id', 'in', ids_with_moves),
+            ('id', 'in', product_ids),
             ('type', '=', 'product'),
-            ('purchase_ok', '=', True),
         ]
 
         products = self.search(
             search_domain + [
+                ('|'),
                 ('purchase_ok', '=', True),
-                # (
-                #     'id', 'not in',
-                #     self._get_product_ids_with_prices_history('purchase')
-                # ),
+                ('sale_ok', '=', True),
             ]
         )
         idx = 0
-        for ids in pb(split_every(SPLIT, products.ids)):
+        for ids in pb(list(split_every(SPLIT, products.ids))):
+            _logger.info(
+                'Processing (%d -> %d)/%d', idx,
+                min(idx + SPLIT, len(products.ids)), len(products.ids)
+            )
             idx += SPLIT
-            _logger.info('Processing %d/%d', idx, len(products.ids))
             self.browse(ids).update_default_purchase_price()
             self.env.cr.commit()
 
-        products = self.search(
-            search_domain + [
-                ('sale_ok', '=', True),
-                # (
-                #     'id', 'not in',
-                #     self._get_product_ids_with_prices_history('sell')
-                # ),
-            ]
-        )
+        products = self.search(search_domain + [
+            ('sale_ok', '=', True),
+        ])
         idx = 0
-        for ids in pb(split_every(SPLIT, products.ids)):
+        for ids in pb(list(split_every(SPLIT, products.ids))):
+            _logger.info(
+                'Processing (%d -> %d)/%d', idx,
+                min(idx + SPLIT, len(products.ids)), len(products.ids)
+            )
             idx += SPLIT
-            _logger.info('Processing %d/%d', idx, len(products.ids))
             self.browse(ids).update_default_sell_price()
             self.env.cr.commit()
 
     @api.multi
     def update_default_prices(self):
-        self.update_default_purchase_price()
-        self.update_default_sell_price()
+        self._update_default_prices(self.ids)
+
+    @api.model
+    def scheduler_update_default_prices(self):
+        ids_with_moves = self._get_product_ids_with_moves()
+        self._update_default_prices(ids_with_moves)
 
     @api.multi
     def update_default_purchase_price(self):
