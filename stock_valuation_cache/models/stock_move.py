@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
+# Written by Yann Papouin <y.papouin at dec-industrie.com>, Feb 2021
+
+from odoo import fields, models, api
+
+
+class StockMove(models.Model):
+    _inherit = "stock.move"
+
+    def _action_done(self):
+        res = super()._action_done()
+        self.mapped('product_tmpl_id').update_qty_available_cache()
+        return res

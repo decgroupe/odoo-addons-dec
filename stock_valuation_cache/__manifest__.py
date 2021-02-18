@@ -4,7 +4,7 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': "Store qty_available to speed up some valuations operations",
-    'depends': ['stock', ],
+    'depends': ['stock_account', ],
     'data': ['data/ir_cron.xml', ],
     'installable': True
 }

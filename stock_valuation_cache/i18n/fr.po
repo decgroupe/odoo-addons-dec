@@ -6,21 +6,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 15:34+0000\n"
-"PO-Revision-Date: 2021-02-10 16:36+0100\n"
+"POT-Creation-Date: 2021-02-17 17:25+0000\n"
+"PO-Revision-Date: 2021-02-17 18:37+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
 "X-Generator: Poedit 2.3.1\n"
+
+#. module: stock_valuation_cache
+#: model:ir.model.fields,field_description:stock_valuation_cache.field_product_product__last_move_id
+msgid "Last Stock Move"
+msgstr "Dernier mouvement de stock"
 
 #. module: stock_valuation_cache
 #: model:ir.model,name:stock_valuation_cache.model_product_product
 msgid "Product"
 msgstr "Article"
+
+#. module: stock_valuation_cache
+#: model:ir.model,name:stock_valuation_cache.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements d'articles (Ligne de mouvement de stock)"
 
 #. module: stock_valuation_cache
 #: model:ir.model,name:stock_valuation_cache.model_product_template
@@ -32,6 +42,11 @@ msgstr "Modèle d'article"
 #: model:ir.model.fields,field_description:stock_valuation_cache.field_product_template__qty_available_cache
 msgid "Quantity On Hand (Cache)"
 msgstr "Quantité en stock (Cache)"
+
+#. module: stock_valuation_cache
+#: model:ir.model,name:stock_valuation_cache.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
 
 #. module: stock_valuation_cache
 #: model:ir.actions.server,name:stock_valuation_cache.ir_cron_product_autoset_ok_ir_actions_server
