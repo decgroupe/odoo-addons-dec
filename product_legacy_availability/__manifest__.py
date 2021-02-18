@@ -6,7 +6,7 @@
     'summary': '''Forward port of legacy procure and supply methods''',
     'depends': [
         'product',
-        'stock',
+        'stock_account',
     ],
     'data':
         [

@@ -98,3 +98,10 @@ class ProductTemplate(models.Model):
             template.legacy_virtual_available = 0.0
             template.legacy_incoming_qty = 0.0
             template.legacy_outgoing_qty = 0.0
+
+    @api.multi
+    def action_update_stock_quant_availability(self):
+        product_variant_ids = self.with_context(active_test=False).\
+            mapped('product_variant_ids')
+        product_variant_ids.action_update_stock_quant_availability()
+        self.update_qty_available_cache()

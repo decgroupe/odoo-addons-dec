@@ -260,3 +260,17 @@ class Product(models.Model):
             amount = prod_uom_id._compute_quantity(amount, to_uom_id)
             res[prod_id] -= amount
         return res
+
+    @api.multi
+    def action_update_stock_quant_availability(self):
+        Quant = self.env['stock.quant']
+        stock_location_id = self.env.ref('stock.stock_location_stock')
+        # def _update_available_quantity(self, product_id, location_id, quantity, lot_id=None, package_id=None, owner_id=None, in_date=None):
+        for rec in self:
+            if rec.qty_available > 0:
+                Quant._update_available_quantity(
+                    rec, stock_location_id,
+                    rec.legacy_qty_available - rec.qty_available
+                )
+        Quant._merge_quants()
+        Quant._unlink_zero_quants()

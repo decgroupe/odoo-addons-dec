@@ -9,6 +9,16 @@
             <group name="group_lots_and_weight" position="after">
                 <group name="legacy_availability" string="Legacy Availability">
                     <field name="legacy_qty_available" string="Quantity On Hand" />
+                    <field name="qty_available" invisible="1" />
+                    <button 
+                        name="action_update_stock_quant_availability" 
+                        class="oe_inline oe_link" 
+                        type="object" 
+                        attrs="{'invisible': [('qty_available', '=', 0)]}"
+                        string="Update Quants" 
+                        groups="base.group_no_one"
+                        context="{}">
+                    </button>
                     <field name="legacy_virtual_available" string="Quantity Available" />
                     <field name="legacy_incoming_qty" string="Incoming" />
                     <field name="legacy_outgoing_qty" string="Outgoing" />
