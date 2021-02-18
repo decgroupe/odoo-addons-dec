@@ -57,18 +57,20 @@ class ProcurementGroup(models.Model):
             [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
         )
         # Select only valid moves
-        res = self._filter_picking_moves_to_reorder(picking_ids)
+        picking_res = self._filter_mts_picking_moves_to_reorder(picking_ids)
 
         # Search all active manufacturing orders
         production_ids = self.env['mrp.production'].search(
             [('state', 'not in', ('done', 'cancel'))]
         )
         # Select only valid moves
-        res += self._filter_production_moves_to_reorder(production_ids)
-        return res
+        production_res = self._filter_mts_production_moves_to_reorder(
+            production_ids
+        )
+        return picking_res + production_res
 
     @api.model
-    def _filter_picking_moves_to_reorder(self, picking_ids):
+    def _filter_mts_picking_moves_to_reorder(self, picking_ids):
         return picking_ids.mapped('move_lines').filtered(
             lambda x: \
             x.state in ('confirmed') and \
@@ -80,9 +82,9 @@ class ProcurementGroup(models.Model):
             x.orderpoint_created_production_ids.ids == [] and \
             x.orderpoint_created_purchase_line_ids.ids == []
         )
-        
+
     @api.model
-    def _filter_production_moves_to_reorder(self, production_ids):
+    def _filter_mts_production_moves_to_reorder(self, production_ids):
         return production_ids.mapped('move_raw_ids').filtered(
             lambda x: \
             x.state in ('confirmed') and \

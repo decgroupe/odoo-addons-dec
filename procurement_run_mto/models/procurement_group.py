@@ -58,7 +58,6 @@ class ProcurementGroup(models.Model):
         if use_new_cursor:
             self._cr.commit()
 
-
     @api.model
     def _get_mto_moves_to_confirm(self):
         # Search all active pickings
@@ -66,18 +65,20 @@ class ProcurementGroup(models.Model):
             [('state', 'in', ('waiting', 'confirmed', 'assigned'))]
         )
         # Select only valid moves
-        res = self._filter_picking_moves_to_confirm(picking_ids)
+        picking_res = self._filter_mto_picking_moves_to_confirm(picking_ids)
 
-        # # Search all active manufacturing orders
-        # production_ids = self.env['mrp.production'].search(
-        #     [('state', 'not in', ('done', 'cancel'))]
-        # )
-        # # Select only valid moves
-        # res += self._filter_production_moves_to_reorder(production_ids)
-        return res
+        # Search all active manufacturing orders
+        production_ids = self.env['mrp.production'].search(
+            [('state', 'not in', ('done', 'cancel'))]
+        )
+        # Select only valid moves
+        production_res = self._filter_mto_production_moves_to_confirm(
+            production_ids
+        )
+        return picking_res + production_res
 
     @api.model
-    def _filter_picking_moves_to_confirm(self, picking_ids):
+    def _filter_mto_picking_moves_to_confirm(self, picking_ids):
         return picking_ids.mapped('move_lines').filtered(
             lambda x: \
             x.state not in ('done', 'cancel') and \
@@ -90,10 +91,10 @@ class ProcurementGroup(models.Model):
         )
 
     @api.model
-    def _filter_production_moves_to_reorder(self, production_ids):
+    def _filter_mto_production_moves_to_confirm(self, production_ids):
         return production_ids.mapped('move_raw_ids').filtered(
             lambda x: \
-            x.state in ('waiting') and \
+            x.state not in ('done', 'cancel') and \
             x.procure_method == 'make_to_order' and \
             x.location_id == self.env.ref('stock.stock_location_stock') and \
             x.created_purchase_line_id.id == False and \
