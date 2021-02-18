@@ -119,11 +119,12 @@
             <form position="inside">
                 <div class="d_view_name" groups="base.group_erp_manager">stock.move.details.form#admin@mrp_traceability</div>
                 <footer>
+                    <button string="Save" special="save" class="oe_highlight oe_edit_only"/>
                     <button
                         name="action_open_stock_move_form"
                         string="Open Advanced Form View"
                         type="object"
-                        class="btn-primary">
+                        class="btn-secondary">
                     </button>
                     <a data-action="discard" data-dismiss="modal" href="#">Close</a>
                 </footer>

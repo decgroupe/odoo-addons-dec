@@ -176,6 +176,7 @@
             </xpath>
             <form position="inside">
                 <footer>
+                    <button string="Save" special="save" class="oe_highlight oe_edit_only"/>
                     <button
                         name="action_assign"
                         string="Check Assign"
