@@ -1,0 +1,25 @@
+.o_calendar_container {
+
+    .o_calendar_sidebar_container {
+
+        .o_calendar_options {
+            padding: 8px;
+            border-top: 1px solid lightgray;
+
+            .custom-control-select {
+                width: unset;
+                border: 0px;
+                outline: 0px;
+                font-size: x-small;
+                color: gray;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
+        }
+
+    }
+
+}
