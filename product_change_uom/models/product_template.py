@@ -2,10 +2,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Jan 2021
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.addons import decimal_precision as dp
 from odoo.addons.product.models import product_template
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 
 class ProductTemplate(models.Model):
@@ -94,6 +98,8 @@ class ProductTemplate(models.Model):
         self._propagate_uom_change_to_quants(uom_id, product_ids)
         self._propagate_uom_change_to_orderpoints(uom_id, product_ids)
         self._propagate_uom_change_to_packagings(uom_id, product_ids)
+        self._propagate_uom_change_to_stockmoves(uom_id, product_ids)
+        self._propagate_uom_change_to_pricehistories(uom_id, product_ids)
 
     @api.multi
     def _propagate_uom_change_to_quants(self, uom_id, product_ids):
@@ -151,6 +157,48 @@ class ProductTemplate(models.Model):
             packaging.qty = current_uom_id._compute_quantity(
                 packaging.qty, uom_id
             )
+
+    @api.multi
+    def _propagate_uom_change_to_stockmoves(self, uom_id, product_ids):
+        """Convert stock moves quantities and prices
+
+        Args:
+            uom_id ([uom.uom]): Future UoM that will replace current one
+            product_ids ([product.product]): Source recordset
+        """
+        move_ids = self.env['stock.move'].search(
+            [('product_id', 'in', product_ids.ids)]
+        )
+        for move in move_ids:
+            current_uom_id = move.product_id.uom_id
+            move.product_uom_qty = current_uom_id._compute_quantity(
+                move.product_uom_qty, uom_id
+            )
+            _logger.debug('Old price = %f', move.price_unit)
+            move.price_unit = current_uom_id._compute_price(
+                move.price_unit, uom_id
+            )
+            _logger.debug('New price = %f', move.price_unit)
+
+    @api.multi
+    def _propagate_uom_change_to_pricehistories(self, uom_id, product_ids):
+        """Convert prodcut price histories
+
+        Args:
+            uom_id ([uom.uom]): Future UoM that will replace current one
+            product_ids ([product.product]): Source recordset
+        """
+        price_ids = self.env['product.price.history'].search(
+            [('product_id', 'in', product_ids.ids)]
+        )
+        for price_id in price_ids:
+            current_uom_id = price_id.product_id.uom_id
+            price_id.product_uom_qty = current_uom_id._compute_quantity(
+                price_id.product_uom_qty, uom_id
+            )
+            _logger.debug('Old price = %f', price_id.cost)
+            price_id.cost = current_uom_id._compute_price(price_id.cost, uom_id)
+            _logger.debug('New price = %f', price_id.cost)
 
     @api.multi
     def _propagate_uom_po_change(self, uom_po_id):
