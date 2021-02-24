@@ -14,8 +14,10 @@ class Orderpoint(models.Model):
 
     qty_multiple = fields.Float(
         compute="_compute_qty_multiple",
-        help="This value is automatically computed from the product purchase UoM",
+        help="This value is automatically computed from the product "
+        "purchase UoM",
         required=False,
+        store=True,
     )
 
     @api.multi
