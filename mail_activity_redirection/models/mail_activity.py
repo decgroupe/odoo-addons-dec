@@ -27,5 +27,6 @@ class MailActivity(models.Model):
                 if len(history_activity_ids) >= 5:
                     break
                 history_activity_ids += existing_activity_id
-            mail_activity_redirection.activity_ids = history_activity_ids
+            # Use sudo since normal user don't have write access
+            mail_activity_redirection.sudo().activity_ids = history_activity_ids
 
