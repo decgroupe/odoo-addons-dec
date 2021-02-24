@@ -21,13 +21,15 @@ class MailActivityMixin(models.AbstractModel):
         _logger.debug('activity_schedule')
         mail_activity_redirection = False
         redirections = self.env['mail.activity.redirection'].search([])
+        if isinstance(note, bytes):
+            note = note.decode('utf-8')
         for redirection in redirections:
             if redirection.user_id and redirection.match(
                 self._name,
                 act_type_xmlid,
                 act_values.get('user_id'),
                 act_values.get('stored_act_type_xmlid'),
-                note.decode('utf-8'),
+                note,
             ):
                 # Replace User with the one set in redirection rule
                 act_values['user_id'] = redirection.user_id.id
