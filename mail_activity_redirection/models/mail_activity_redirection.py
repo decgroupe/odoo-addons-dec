@@ -92,29 +92,18 @@ class MailActivityRedirection(models.Model):
             note,
         )
         self.ensure_one()
+        if isinstance(note, bytes):
+            note = note.decode('utf-8')
         res = True
-        if res and self.activity_type_xmlid:
-            res = (type_xmlid == self.activity_type_xmlid)
-        else:
-            res = True
-        if res and self.model_id:
-            res = (model_name == self.model_id._name)
-        else:
-            res = True
-        if res and self.initial_user_ids:
+        if res and user_id and self.initial_user_ids:
             res = (user_id in self.initial_user_ids.ids)
-        else:
-            res = True
-        if res and self.qweb_template:
-            if not qweb_template_xmlid and self.regex_pattern:
-                # If no `qweb_template_xmlid` is found then continue if a
-                # RegEx pattern is defined
-                res = True
-            else:
-                res = (qweb_template_xmlid == self.qweb_template.xml_id)
-        else:
-            res = True
-        if res and self.regex_pattern:
+        if res and model_name and self.model_id:
+            res = (model_name == self.model_id._name)
+        if res and type_xmlid and self.activity_type_xmlid:
+            res = (type_xmlid == self.activity_type_xmlid)
+        if res and qweb_template_xmlid and self.qweb_template:
+            res = (qweb_template_xmlid == self.qweb_template.xml_id)
+        if res and note and self.regex_pattern:
             matches = re.search(
                 self.regex_pattern, note, re.MULTILINE | re.DOTALL
             )
