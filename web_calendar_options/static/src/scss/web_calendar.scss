@@ -22,4 +22,16 @@
 
     }
 
+    .o_calendar_view {
+        .o_calendar_widget {
+            .fc-business-container {
+                // Original web_calendar.scss set z-index=0 for
+                // everything. Since we don't want having a business container
+                // that blocks every interactions with events, we put it
+                // under the default index
+                z-index: -1;
+            }
+        }
+    }
+
 }
