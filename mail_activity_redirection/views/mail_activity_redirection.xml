@@ -9,9 +9,9 @@
                 <field name="sequence" widget='handle'/>
                 <field name="name"/>
                 <field name="user_id"/>
-                <field name="model_id"/>
-                <field name="activity_type_id"/>
-                <field name="qweb_template"/>
+                <field name="model_ids"/>
+                <field name="activity_type_ids"/>
+                <field name="qweb_templates"/>
                 <field name="regex_pattern"/>
             </tree>
         </field>
@@ -46,9 +46,9 @@
                     </group>
                     <group>
                         <field name="initial_user_ids"/>
-                        <field name="model_id"/>
-                        <field name="activity_type_id"/>
-                        <field name="qweb_template"/>
+                        <field name="model_ids"/>
+                        <field name="activity_type_ids"/>
+                        <field name="qweb_templates"/>
                         <field name="regex_pattern"/>
                     </group>
                     <div>
@@ -77,9 +77,9 @@
             <search string="Activities Redirections">
                 <field name="user_id"/>
                 <field name="initial_user_ids"/>
-                <field name="model_id"/>
-                <field name="activity_type_id"/>
-                <field name="qweb_template"/>
+                <field name="model_ids"/>
+                <field name="activity_type_ids"/>
+                <field name="qweb_templates"/>
                 <field name="regex_pattern"/>
                 <separator/>
                 <filter name="inactive" string="Inactive" domain="[('active', '=', False)]" help="Show inactive rules"/>

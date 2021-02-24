@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-29 12:38+0000\n"
-"PO-Revision-Date: 2021-01-29 13:42+0100\n"
+"POT-Creation-Date: 2021-02-24 21:27+0000\n"
+"PO-Revision-Date: 2021-02-24 22:30+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -55,14 +55,9 @@ msgid "Activity Mixin"
 msgstr "Combinaison d'activités"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__activity_type_id
-msgid "Activity Type"
-msgstr "Type d'activité"
-
-#. module: mail_activity_redirection
-#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__activity_type_xmlid
-msgid "Activity Type Xmlid"
-msgstr "Type d'activité (xml-id)"
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__activity_type_ids
+msgid "Activity Types"
+msgstr "Type d'activités"
 
 #. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__active
@@ -140,13 +135,13 @@ msgid "Manage redirections"
 msgstr "Gérer les redirections"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__model_id
-msgid "Model"
-msgstr "Modèle"
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__model_ids
+msgid "Models"
+msgstr "Modèles"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__model_id
-msgid "Model name targeted by these activities like _name class attribute"
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__model_ids
+msgid "Models targeted by these activities like _name class attribute"
 msgstr "Nom du modèle ciblé par ces activités comme visible dans l'attribut de classe \"_name\""
 
 #. module: mail_activity_redirection
@@ -155,9 +150,9 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__qweb_template
-msgid "QWeb Template"
-msgstr "Vue QWeb"
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__qweb_templates
+msgid "QWeb Templates"
+msgstr "Vues QWeb"
 
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.res_config_settings_form_view
@@ -185,9 +180,9 @@ msgid "Show inactive rules"
 msgstr "Afficher les règles inactives"
 
 #. module: mail_activity_redirection
-#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__qweb_template
-msgid "Template used to render activity note"
-msgstr "Vue utilisée pour faire le rendu du message de l'activité"
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__qweb_templates
+msgid "Templates used to render activity note"
+msgstr "Vues utilisées pour faire le rendu du message de l'activité"
 
 #. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
@@ -209,6 +204,9 @@ msgstr "Utilisateurs initialement visés"
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
 msgid "regex101.com"
 msgstr "regex101.com"
+
+#~ msgid "Activity Type Xmlid"
+#~ msgstr "Type d'activité (xml-id)"
 
 #~ msgid "Activity XML ID"
 #~ msgstr "Identification XML de l'activité"

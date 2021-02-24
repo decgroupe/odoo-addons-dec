@@ -39,21 +39,21 @@ class MailActivityRedirection(models.Model):
         string='Users initially targeted',
         domain=['|', ('active', '=', True), ('active', '=', False)],
     )
-    model_id = fields.Many2one(
+    model_ids = fields.Many2many(
         'ir.model',
-        help="Model name targeted by these activities "
+        string="Models",
+        help="Models targeted by these activities "
         "like _name class attribute",
     )
-    activity_type_id = fields.Many2one(
+    activity_type_ids = fields.Many2many(
         'mail.activity.type',
-        'Activity Type',
+        string='Activity Types',
     )
-    activity_type_xmlid = fields.Char(compute='_compute_activity_type_xmlid')
-    qweb_template = fields.Many2one(
+    qweb_templates = fields.Many2many(
         'ir.ui.view',
-        string="QWeb Template",
+        string="QWeb Templates",
         domain=[('type', '=', 'qweb')],
-        help="Template used to render activity note",
+        help="Templates used to render activity note",
     )
     regex_pattern = fields.Char(
         string='RegEx',
@@ -76,11 +76,31 @@ class MailActivityRedirection(models.Model):
         return '.*'
 
     @api.multi
-    def _compute_activity_type_xmlid(self):
-        for rec in self.filtered('activity_type_id'):
-            rec.activity_type_xmlid = \
-                self.env['ir.model.data'].get_xmlid_as_string(
-                    rec.activity_type_id)
+    def get_activity_type_xmlids(self):
+        res = []
+        for rec in self.filtered('activity_type_ids'):
+            for activity_type_id in rec.activity_type_ids:
+                xmlid = self.env['ir.model.data'].get_xmlid_as_string(
+                    activity_type_id
+                )
+                res.append(xmlid)
+        return res
+
+    @api.multi
+    def get_model_names(self):
+        res = []
+        for rec in self.filtered('model_ids'):
+            for model_id in rec.model_ids:
+                res.append(model_id.model)
+        return res
+        
+    @api.multi
+    def get_qweb_template_xmlids(self):
+        res = []
+        for rec in self.filtered('qweb_templates'):
+            for qweb_template in rec.qweb_templates:
+                res.append(qweb_template.xml_id)
+        return res
 
     def match(self, model_name, type_xmlid, user_id, qweb_template_xmlid, note):
         _logger.info(
@@ -95,14 +115,14 @@ class MailActivityRedirection(models.Model):
         if isinstance(note, bytes):
             note = note.decode('utf-8')
         res = True
-        if res and user_id and self.initial_user_ids:
+        if res and user_id and self.initial_user_ids.ids:
             res = (user_id in self.initial_user_ids.ids)
-        if res and model_name and self.model_id:
-            res = (model_name == self.model_id._name)
-        if res and type_xmlid and self.activity_type_xmlid:
-            res = (type_xmlid == self.activity_type_xmlid)
-        if res and qweb_template_xmlid and self.qweb_template:
-            res = (qweb_template_xmlid == self.qweb_template.xml_id)
+        if res and model_name and self.model_ids.ids:
+            res = (model_name in self.get_model_names())
+        if res and type_xmlid and self.activity_type_ids.ids:
+            res = (type_xmlid in self.get_activity_type_xmlids())
+        if res and qweb_template_xmlid and self.qweb_templates.ids:
+            res = (qweb_template_xmlid in self.get_qweb_template_xmlids())
         if res and note and self.regex_pattern:
             matches = re.search(
                 self.regex_pattern, note, re.MULTILINE | re.DOTALL
