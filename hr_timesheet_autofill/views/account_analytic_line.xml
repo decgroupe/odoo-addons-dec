@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_form">
+        <field name="name">account.analytic.line.form@hr_timesheet_autofill</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/*[1]" position="before">
+                <div class="d_autofill">
+                    <group name="autofill" attrs="{'invisible': [('id', '!=', False)]}">
+                        <field name="autofill_from_analytic_line_id"
+                            options="{'no_create_edit': True, 'no_quick_create': True, 'no_open': True}"
+                            domain="[('user_id','=',uid)]"
+                            context="{
+                                'autofill_search_order': 'create_date desc',
+                                'autofill_name_search': True,
+                            }"/>
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
