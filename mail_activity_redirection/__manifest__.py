@@ -3,12 +3,11 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
-    'summary': "Customize activitiy targeted User with custom rules",
+    'summary': "Customize activity targeted User with custom rules",
     'depends': [
         'mail',
         'base_xmlid',
     ],
-    #'force_migration':'12.0.0.0.0',
     'data':
         [
             'security/ir.model.access.csv',
