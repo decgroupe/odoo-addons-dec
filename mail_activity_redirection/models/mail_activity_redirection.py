@@ -21,7 +21,7 @@ class MailActivityRedirection(models.Model):
         help="By unchecking the active field, you may hide a "
         "rule you will not use."
     )
-    name = fields.Char()
+    name = fields.Char(translate=True)
     sequence = fields.Integer(
         'Sequence',
         default=lambda self: self._default_sequence(),
