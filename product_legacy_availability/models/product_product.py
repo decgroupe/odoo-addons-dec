@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
+from odoo.tools import float_compare, float_round, float_is_zero
 
 
 class Product(models.Model):
@@ -264,13 +265,20 @@ class Product(models.Model):
     @api.multi
     def action_update_stock_quant_availability(self):
         Quant = self.env['stock.quant']
-        stock_location_id = self.env.ref('stock.stock_location_stock')
-        # def _update_available_quantity(self, product_id, location_id, quantity, lot_id=None, package_id=None, owner_id=None, in_date=None):
+        if self.env.context.get('location', False):
+            location_ids = self.env['stock.location'].browse(
+                self.env.context['location']
+            )
+        else:
+            location_ids = self.env.ref('stock.stock_location_stock')
         for rec in self:
-            if rec.qty_available > 0:
-                Quant._update_available_quantity(
-                    rec, stock_location_id,
-                    rec.legacy_qty_available - rec.qty_available
-                )
+            pr = rec.uom_id.rounding
+            for location_id in location_ids:
+                r = rec.with_context(location=[location_id.id])
+                if not float_is_zero(r.qty_available, precision_rounding=pr):
+                    Quant._update_available_quantity(
+                        rec, location_id,
+                        r.legacy_qty_available - r.qty_available
+                    )
         Quant._merge_quants()
         Quant._unlink_zero_quants()
