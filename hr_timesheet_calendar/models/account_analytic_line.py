@@ -21,9 +21,9 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends('name', 'task_id.name')
     def _compute_same_task_name(self):
-        for rec in self.filtered('task_id'):
-            rec.same_task_name = (rec.name == rec.task_id.name)
-            if rec.same_task_name:
-                rec.calendar_name = ''
-            else:
-                rec.calendar_name = rec.name
+        for rec in self:
+            rec.calendar_name = rec.name
+            if rec.task_id:
+                rec.same_task_name = (rec.name == rec.task_id.name)
+                if rec.same_task_name:
+                    rec.calendar_name = ''
