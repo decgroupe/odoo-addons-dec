@@ -20,7 +20,6 @@ class ResPartner(models.Model):
             partner = self.browse(item[0])[0]
             # Don't reuse item[1] lazy result as it contains line feeds with address
             override_name_get = ('%s (%s %s)'
-                                ) % (partner.name, partner.zip, partner.city)
+                                ) % (item[1], partner.zip, partner.city)
             result.append((item[0], override_name_get))
-
         return result
