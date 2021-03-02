@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form/sheet/*[1]" position="before">
-                <div class="d_autofill">
-                    <group name="autofill" attrs="{'invisible': [('id', '!=', False)]}">
+                <div class="d_autofill" name="autofill" attrs="{'invisible': [('id', '!=', False)]}">
+                    <group>
                         <field name="autofill_from_analytic_line_id"
                             options="{'no_create_edit': True, 'no_quick_create': True, 'no_open': True}"
                             domain="[('user_id','=',uid)]"

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_distribute_timesheet_form_view" >
+        <field name="name">mrp.distribute.timesheet@mrp_timesheet</field>
+        <field name="model">mrp.distribute.timesheet</field>
+        <field name="arch" type="xml">
+            <form string="Select Options">
+                <p class="oe_grey">
+                    Select an existing reason or choose <i>Other ...</i> to enter a custom reason.
+                    It will be distributed on selected production orders. The distribution preview
+                    is visible on the timesheet lines table.
+                </p>
+                <group>
+                    <field name="production_ids" invisible="1" />
+                    <field name="reason_id"/>
+                    <field name="custom_reason" attrs="{
+                        'invisible': [('reason_id', '!=', %(mrp_timesheet_distribution.other)d)],
+                        'required': [('reason_id', '=', %(mrp_timesheet_distribution.other)d)]
+                    }"/>
+                    
+                </group>
+                <group>
+                    <group>
+                        <field name="date_time" string="Date"/>
+                    </group>
+                    <group>
+                        <field name="unit_amount" string="Duration (Hour(s))" widget="timesheet_uom"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="timesheet_line_ids"/>
+                </group>
+                <footer>
+                    <button 
+                        class="btn-primary"
+                        string="Reopen"
+                        name="action_reopen"
+                        type="object"
+                        invisible="1"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-primary"
+                        string="Confirm Distribution"
+                        confirm="Do you want to proceed distribution?"
+                        name="action_distribute"
+                        type="object"
+                        default_focus="1"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-primary"
+                        string="Confirm Distribution and Continue"
+                        confirm="Do you want to proceed distribution?"
+                        name="action_distribute_continue"
+                        type="object"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-secondary"
+                        string="Cancel"
+                        special="cancel"
+                        context="{}">
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_distribute_timesheet_line_tree_view" >
+        <field name="name">mrp.distribute.timesheet.line@mrp_timesheet</field>
+        <field name="model">mrp.distribute.timesheet.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="project_id"/>
+                <field name="production_id"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <act_window id="act_window_distribute_timesheet"
+        name="🧙‍♂️ Distribute timesheet ..."
+        src_model="mrp.production"
+        res_model="mrp.distribute.timesheet"
+        view_type="tree"
+        view_mode="form"
+        multi="True"
+        key2="client_action_multi" 
+        target="new"
+    />
+
+</odoo>

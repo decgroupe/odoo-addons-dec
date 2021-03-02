@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="mrp.distribute.timesheet.reason" id="electrical_diagram">
+        <field name="sequence">1</field>
+        <field name="name">Engineering: Electrical diagram</field>
+    </record>
+
+    <record model="mrp.distribute.timesheet.reason" id="plc_program">
+        <field name="sequence">2</field>
+        <field name="name">Engineering: PLC program</field>
+    </record>
+
+    <record model="mrp.distribute.timesheet.reason" id="document">
+        <field name="sequence">3</field>
+        <field name="name">Engineering: Document</field>
+    </record>
+
+    <record model="mrp.distribute.timesheet.reason" id="layout_and_wiring">
+        <field name="sequence">4</field>
+        <field name="name">Manufacturing: Layout and wiring</field>
+    </record>
+
+    <record model="mrp.distribute.timesheet.reason" id="packaging">
+        <field name="sequence">5</field>
+        <field name="name">Manufacturing: Packaging</field>
+    </record>
+
+    <record model="mrp.distribute.timesheet.reason" id="tests">
+        <field name="sequence">6</field>
+        <field name="name">Commissioning: Tests</field>
+    </record>
+
+    <record model="mrp.distribute.timesheet.reason" id="other">
+        <field name="sequence">1000</field>
+        <field name="name">Other ...</field>
+    </record>
+
+</odoo>

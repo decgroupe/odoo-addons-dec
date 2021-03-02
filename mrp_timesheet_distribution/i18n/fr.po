@@ -1,0 +1,253 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_timesheet_distribution
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-01 22:01+0000\n"
+"PO-Revision-Date: 2021-03-01 11:02+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mrp_timesheet_distribution
+#: model:mrp.distribute.timesheet.reason,name:mrp_timesheet_distribution.tests
+msgid "Commissioning: Tests"
+msgstr "Mise en service: Tests"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Confirm Distribution"
+msgstr "Confirmer la distribution"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Confirm Distribution and Continue"
+msgstr "Confirmer la distribution et continuer"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__create_uid
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__create_uid
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__create_date
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__create_date
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Date"
+msgstr "Date "
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__date_time
+msgid "Date Time"
+msgstr "Date Heure"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__display_name
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__display_name
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model,name:mrp_timesheet_distribution.model_mrp_distribute_timesheet
+msgid "Distribute working time along multiple production orders"
+msgstr "Répartir le temps de travail sur plusieurs fabrications"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Do you want to proceed distribution?"
+msgstr "Voulez-vous procéder à la distribution?"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Duration (Hour(s))"
+msgstr "Durée (Heure(s))"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__end_time
+msgid "End Time"
+msgstr "Heure de fin"
+
+#. module: mrp_timesheet_distribution
+#: model:mrp.distribute.timesheet.reason,name:mrp_timesheet_distribution.document
+msgid "Engineering: Document"
+msgstr "Etude: Documentation"
+
+#. module: mrp_timesheet_distribution
+#: model:mrp.distribute.timesheet.reason,name:mrp_timesheet_distribution.electrical_diagram
+msgid "Engineering: Electrical diagram"
+msgstr "Etude: Schéma électrique"
+
+#. module: mrp_timesheet_distribution
+#: model:mrp.distribute.timesheet.reason,name:mrp_timesheet_distribution.plc_program
+msgid "Engineering: PLC program"
+msgstr "Etude: Programme automate"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,help:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__sequence
+msgid "Gives the sequence order when displaying."
+msgstr "Donne l'ordre d'affichage"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__id
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__id
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet____last_update
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line____last_update
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__write_uid
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__write_uid
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__write_date
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__write_date
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mrp_timesheet_distribution
+#: model:mrp.distribute.timesheet.reason,name:mrp_timesheet_distribution.layout_and_wiring
+msgid "Manufacturing: Layout and wiring"
+msgstr "Fabrication: Implantation et câblage"
+
+#. module: mrp_timesheet_distribution
+#: model:mrp.distribute.timesheet.reason,name:mrp_timesheet_distribution.packaging
+msgid "Manufacturing: Packaging"
+msgstr "Fabrication: Emballage"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: mrp_timesheet_distribution
+#: model:mrp.distribute.timesheet.reason,name:mrp_timesheet_distribution.other
+msgid "Other ..."
+msgstr "Autre ..."
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__custom_reason
+msgid "Other Reason"
+msgstr "Autre raison"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__production_id
+msgid "Production"
+msgstr "Fabrication"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__production_ids
+msgid "Production Orders"
+msgstr "Ordres de fabrication"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__project_id
+msgid "Project"
+msgstr "Projet"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__unit_amount
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__reason_id
+msgid "Reason"
+msgstr "Motif"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Reopen"
+msgstr "Rouvrir"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model,name:mrp_timesheet_distribution.model_mrp_distribute_timesheet_line
+msgid "Represents a sample of the distribution"
+msgstr "Représente un échantillon de la distribution"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid "Select Options"
+msgstr "Choisir les options"
+
+#. module: mrp_timesheet_distribution
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
+msgid ""
+"Select an existing reason or choose <i>Other ...</i> to enter a custom reason.\n"
+"                    It will be distributed on selected production orders. The distribution preview\n"
+"                    is visible on the timesheet lines table."
+msgstr ""
+"Sélectionnez un motif existant ou choisissez <i>Autre ...</i> pour saisir un motif particulier.\n"
+"                    Il sera distribué sur les ordres de fabrication sélectionnés. L’aperçu de distribution\n"
+"                    est visible dans la table des lignes de feuilles de temps."
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model,name:mrp_timesheet_distribution.model_mrp_distribute_timesheet_reason
+msgid "Selectable reason used when distributing a timesheet"
+msgstr "Raison sélectionnable utilisée lors de la distribution d’une feuille de temps"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__start_time
+msgid "Start Time"
+msgstr "Heure de début"
+
+#. module: mrp_timesheet_distribution
+#: code:addons/mrp_timesheet_distribution/wizard/mrp_distribute_timesheet.py:138
+#, python-format
+msgid "The number of timesheet lines cannot be 0."
+msgstr "Le nombre de lignes de feuille de temps ne peut pas être 0."
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__timesheet_line_ids
+msgid "Timesheet Lines"
+msgstr "Lignes des feuilles de temps"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.actions.act_window,name:mrp_timesheet_distribution.act_window_distribute_timesheet
+msgid "🧙‍♂️ Distribute timesheet ..."
+msgstr "🧙‍♂️ Distribuer une feuille de temps ..."
+
+#~ msgid ""
+#~ "Select a product existing in at least one bill of materials\n"
+#~ "                    and choose a new product that will replace it in all\n"
+#~ "                    selected bill of materials."
+#~ msgstr ""
+#~ "Sélectionner un article existant dans au moins une des nomenclatures\n"
+#~ "                    et choisir un autre article qui le remplacera dans tous les\n"
+#~ "                    nomenclatures sélectionnées."

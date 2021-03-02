@@ -10,7 +10,12 @@
                 event_open_popup="true"
                 form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
                 readonly_form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
-                    <field name="name"/>
+                
+                    <!-- 'invisible' is broken since calendar view does not call _registerModifiers -->
+                    <!-- <field name="name" attrs="{'invisible': [('same_task_name', '=', True)]}"/> -->
+                    <!-- <field name="same_task_name" invisible="0"/> -->
+
+                    <field name="calendar_name"/>
                     <field name="task_id"/>
             </calendar>
         </field>
@@ -31,9 +36,10 @@
                 event_open_popup="true"
                 form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
                 readonly_form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
-                <field name="name"/>
-                <field name="task_id"/>
-                <field name="project_id"/>
+
+                    <field name="calendar_name"/>
+                    <field name="task_id"/>
+                    <field name="project_id"/>
             </calendar>
         </field>
     </record>
