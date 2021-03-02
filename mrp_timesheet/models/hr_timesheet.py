@@ -36,6 +36,8 @@ class AccountAnalyticLine(models.Model):
         for record in self:
             if not record.production_id:
                 continue
-            record.project_id = record.production_id.project_id
-            record.task_id = record.production_id.task_id
+            if record.production_id.project_id:
+                record.project_id = record.production_id.project_id
+            if record.production_id.task_id:
+                record.task_id = record.production_id.task_id
             record.product_id = record.production_id.product_id

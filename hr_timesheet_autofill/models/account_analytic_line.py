@@ -85,6 +85,7 @@ class AccountAnalyticLine(models.Model):
     def onchange_autofill_from_analytic_line_id(self):
         """ Copy fields from selected autofill_from_analytic_line_id
         """
-        for fname in self.get_autofill_fields():
-            fvalue = self.autofill_from_analytic_line_id[fname]
-            setattr(self, fname, fvalue)
+        if self.autofill_from_analytic_line_id:
+            for fname in self.get_autofill_fields():
+                fvalue = self.autofill_from_analytic_line_id[fname]
+                setattr(self, fname, fvalue)
