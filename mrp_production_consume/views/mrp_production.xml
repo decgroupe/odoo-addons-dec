@@ -14,6 +14,7 @@
                     attrs="{'invisible': [
                             ('move_raw_ids', '=', [])
                         ]}"
+                    icon="fa-utensils"
                     type="object">
                 </button>
             </button>
@@ -21,4 +22,3 @@
     </record>
 
 </odoo>
-

@@ -68,6 +68,16 @@ class MrpConsume(models.TransientModel):
         return self._reopen()
 
     @api.multi
+    def action_remove_make_to_order(self):
+        self.ensure_one()
+        line_ids = self.env['mrp.consume.line']
+        for pl in self.produce_line_ids:
+            if pl.move_id.procure_method != 'make_to_order':
+                line_ids += pl
+        self.produce_line_ids = line_ids
+        return self._reopen()
+
+    @api.multi
     def _reopen(self):
         return {
             'type': 'ir.actions.act_window',
