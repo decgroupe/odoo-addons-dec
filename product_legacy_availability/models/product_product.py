@@ -275,10 +275,10 @@ class Product(models.Model):
             pr = rec.uom_id.rounding
             for location_id in location_ids:
                 r = rec.with_context(location=[location_id.id])
-                if not float_is_zero(r.qty_available, precision_rounding=pr):
-                    Quant._update_available_quantity(
-                        rec, location_id,
-                        r.legacy_qty_available - r.qty_available
-                    )
+                diff = float_round(
+                    r.legacy_qty_available - r.qty_available,
+                    precision_rounding=pr
+                )
+                Quant._update_available_quantity(rec, location_id, diff)
         Quant._merge_quants()
         Quant._unlink_zero_quants()
