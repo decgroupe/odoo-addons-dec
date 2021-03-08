@@ -5,3 +5,7 @@
 *.odt#*
 *.bzr/*
 *__pycache__/*
+# Experimental modules
+project_dhx_gantt
+web_dhx_gantt
+product_stock_prices
