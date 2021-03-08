@@ -145,15 +145,17 @@ class StockMove(models.Model):
         if len(move_group) > 1:
             colors = {}
             for i, group in enumerate(move_group):
-                group_id = group['group_id'][0]
-                if i < len(TREE_COLORS):
-                    colors[group_id] = TREE_COLORS[i]
-                else:
-                    colors[group_id] = '#FFFFFFFF'
+                if group['group_id']:
+                    group_id = group['group_id'][0]
+                    if i < len(TREE_COLORS):
+                        colors[group_id] = TREE_COLORS[i]
+                    else:
+                        colors[group_id] = '#FFFFFFFF'
             # Apply group colors per record
             for record in self:
-                record.tree_bg_color = colors[record.group_id.id][0]
-                record.tree_fg_color = colors[record.group_id.id][1]
+                if record.group_id.id in colors:
+                    record.tree_bg_color = colors[record.group_id.id][0]
+                    record.tree_fg_color = colors[record.group_id.id][1]
 
     def _archive_purchase_line(self, values):
         if 'created_purchase_line_id' in values:
