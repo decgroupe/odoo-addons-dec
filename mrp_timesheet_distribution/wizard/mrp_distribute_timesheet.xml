@@ -23,6 +23,16 @@
                 <group>
                     <group>
                         <field name="date_time" string="Date"/>
+                        <field name="exclude_time"/>
+                        <field name="excluded_start_time" attrs="{
+                            'invisible': [('exclude_time', '=', False)],
+                            'required': [('exclude_time', '=', True)]
+                        }"/>
+                        <field name="excluded_end_time" attrs="{
+                            'invisible': [('exclude_time', '=', False)],
+                            'required': [('exclude_time', '=', True)]
+                        }"/>
+                        
                     </group>
                     <group>
                         <field name="unit_amount" string="Duration (Hour(s))" widget="timesheet_uom"/>

@@ -2,6 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Feb 2021
 
+import pytz
 import logging
 from datetime import datetime, timedelta
 
@@ -81,6 +82,10 @@ class MrpDistributeTimesheet(models.TransientModel):
         compute="_compute_timesheet_line_ids",
     )
 
+    exclude_time = fields.Boolean()
+    excluded_start_time = fields.Datetime()
+    excluded_end_time = fields.Datetime()
+
     @api.model
     def default_get(self, fields):
         rec = super().default_get(fields)
@@ -121,32 +126,87 @@ class MrpDistributeTimesheet(models.TransientModel):
             {
                 "date_time": self.timesheet_line_ids[-1].end_time,
                 "reason_id": self.reason_id.id,
+                "exclude_time": self.exclude_time,
                 "production_ids": [(6, 0, self.production_ids.ids)],
             }
         )
+        mrp_distribute_timesheet_id.onchange_date_time()
         return self._reopen(mrp_distribute_timesheet_id.id)
 
-    @api.depends('date_time', 'unit_amount')
+    @api.onchange('date_time')
+    def onchange_date_time(self):
+        # Convert datetime into user timezone to manipulate hours and minutes
+        tz = self.env.context.get('tz') or self.env.user.tz
+        date_time_tz = pytz.timezone(tz).normalize(
+            pytz.utc.localize(self.date_time)
+        )
+
+        resource_calendar_id = self.env.user.resource_calendar_id
+        attendance_ids = resource_calendar_id.attendance_ids.filtered(
+            lambda r: r.dayofweek == str(self.date_time.weekday())
+        )
+
+        st = et = False
+        for attendance_id in attendance_ids:
+            if attendance_id.day_period == 'morning':
+                hour, minute = divmod(float(attendance_id.hour_to) * 60, 60)
+                st = date_time_tz.replace(
+                    hour=round(hour), minute=round(minute), second=0
+                )
+            if attendance_id.day_period == 'afternoon':
+                hour, minute = divmod(float(attendance_id.hour_from) * 60, 60)
+                et = date_time_tz.replace(
+                    hour=round(hour), minute=round(minute), second=0
+                )
+
+        # Set start and end time in user timezone
+        if not st or not et:
+            st = date_time_tz.replace(hour=12, minute=0, second=0)
+            et = date_time_tz.replace(hour=13, minute=30, second=0)
+
+        # Convert back data to UTC since all datetime data must be
+        # stored without timezone info (means UTC)
+        self.excluded_start_time = pytz.utc.normalize(st).replace(tzinfo=None)
+        self.excluded_end_time = pytz.utc.normalize(et).replace(tzinfo=None)
+
+    @api.depends(
+        'date_time', 'unit_amount', 'exclude_time', 'excluded_start_time',
+        'excluded_end_time'
+    )
     def _compute_timesheet_line_ids(self):
         self.timesheet_line_ids.unlink()
         if self.production_ids and self.date_time and self.unit_amount:
             start = self.date_time
-            end = self.date_time + timedelta(hours=self.unit_amount)
-            diff = (end - start) / len(self.production_ids)
-            i = 0
-            line_ids = self.env['mrp.distribute.timesheet.line']
-            for production_id in self.production_ids:
-                vals = {
-                    'start_time': i * diff + start,
-                    'end_time': (i + 1) * diff + start,
-                    'project_id': production_id.project_id.id,
-                    'production_id': production_id.id,
-                }
-                line_ids += self.env['mrp.distribute.timesheet.line'].create(
-                    vals
+            end = start + timedelta(hours=self.unit_amount)
+
+            if self.exclude_time and self.excluded_end_time > start >= self.excluded_start_time:
+                start = self.excluded_end_time
+                end = start + timedelta(hours=self.unit_amount)
+                self._generate_timesheet_interval(start, end)
+            elif self.exclude_time and end > self.excluded_start_time and start < self.excluded_end_time:
+                start_delta = self.excluded_start_time - start
+                self._generate_timesheet_interval(start, start + start_delta)
+                self._generate_timesheet_interval(
+                    self.excluded_end_time, self.excluded_end_time +
+                    timedelta(hours=self.unit_amount) - start_delta
                 )
-                i += 1
-            self.timesheet_line_ids = line_ids
+            else:
+                self._generate_timesheet_interval(start, end)
+
+    def _generate_timesheet_interval(self, start, end):
+        diff = (end - start) / len(self.production_ids)
+        i = 0
+        line_ids = self.env['mrp.distribute.timesheet.line']
+        for production_id in self.production_ids:
+            vals = {
+                'start_time': i * diff + start,
+                'end_time': (i + 1) * diff + start,
+                'project_id': production_id.project_id.id,
+                'production_id': production_id.id,
+            }
+            line_ids += self.env['mrp.distribute.timesheet.line'].create(vals)
+            i += 1
+        self.timesheet_line_ids += line_ids
 
     def _get_or_create_task(self, project_id, name):
         task_id = self.env['project.task'].search(
@@ -180,37 +240,3 @@ class MrpDistributeTimesheet(models.TransientModel):
                 ).id
 
             self.env['account.analytic.line'].create(vals_line)
-        # previous_product_ids = self.replacement_ids.mapped(
-        #     'previous_product_id'
-        # )
-        # boms_data = self.env['mrp.bom.line'].read_group(
-        #     [
-        #         ('product_id', 'in', previous_product_ids.ids),
-        #         ('bom_id', 'in', self.bom_ids.ids),
-        #     ], ['bom_id'], ['bom_id']
-        # )
-        # bom_to_process_ids = [x['bom_id'][0] for x in boms_data]
-
-        # for bom_id in self.env['mrp.bom'].browse(bom_to_process_ids):
-        #     _logger.info('Processing BoM %s', bom_id.code)
-        #     values = {'lines': {}}
-        #     replace_count = 0
-        #     for bom_line in bom_id.bom_line_ids.filtered(
-        #         lambda x: x.product_id in previous_product_ids
-        #     ):
-        #         for replacement_id in self.replacement_ids:
-        #             if bom_line.product_id == replacement_id.previous_product_id:
-        #                 values['lines'][bom_line] = {
-        #                     'before': bom_line.product_id,
-        #                     'after': replacement_id.new_product_id,
-        #                 }
-        #                 bom_line.product_id = replacement_id.new_product_id
-        #                 replace_count += 1
-        #                 break
-
-        #     if replace_count > 0:
-        #         bom_id.message_post_with_view(
-        #             'mrp_bom_replace_components.track_bom_line_template',
-        #             values=values,
-        #             subtype_id=self.env.ref('mail.mt_note').id
-        #         )
