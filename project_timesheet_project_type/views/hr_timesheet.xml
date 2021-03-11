@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record model="ir.ui.view" id="timesheet_search_view">
+        <field name="name">account.analytic.line.search@hr_workflow_dec</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/filter[@name='groupby_project']" position="after">
+                <filter string="Project Type" name="groupby_project_type" domain="[]" context="{'group_by':'project_type_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
