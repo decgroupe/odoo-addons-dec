@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Oct 2020
 
-from odoo import models, api, fields
+from odoo import models, fields
 
 
 class MrpProduction(models.Model):
@@ -12,5 +12,3 @@ class MrpProduction(models.Model):
         'res.partner',
         'Partner',
     )
-
-    zip_id = fields.Many2one(related='partner_id.zip_id')

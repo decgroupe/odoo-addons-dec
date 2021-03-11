@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_case_oppor_tree_view">
+        <field name="name">crm.lead.tree.opportunity@crm_lead_partner_location</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='country_id']" position="after">
+                <field name="partner_zip_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_oppor_form_view">
+        <field name="name">crm.lead.form.opportunity@crm_lead_partner_location</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_zip_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_opportunities_filter_view" >
+        <field name="name">crm.lead.search.opportunity@crm_lead_partner_location</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_zip_id"/>
+            </field>
+            <filter name="country" position="after">
+                <filter string="ZIP Location" name="group_partner_zip" context="{'group_by':'partner_zip_id'}" />
+            </filter>
+        </field>
+    </record>
+
+</odoo>
