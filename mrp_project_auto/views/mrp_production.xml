@@ -16,7 +16,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='project_id']" position="after">
                 <div colspan="2" 
-                    class="alert alert-info"
+                    class="alert alert-info" role="alert" 
                     style="margin-right: 15px;"
                     attrs="{'invisible': [('|'), ('allow_timesheets', '=', True), ('project_id', '!=', False)]}">
                         <button 
