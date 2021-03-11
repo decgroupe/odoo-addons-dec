@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-
-    <record id="group_mrp_transition" model="res.groups">
-        <field name="name">Show extra fields on production order form</field>
-        <field name="category_id" ref="base.module_category_hidden"/>
-    </record>
-
-</odoo>

@@ -7,7 +7,6 @@
     'depends': [
         'mrp',
         'mrp_bom_supplier',
-        'mrp_workcenter',
         'web_timeline',
     ],
     "data": [
