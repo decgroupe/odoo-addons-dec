@@ -10,11 +10,13 @@ class MrpProduction(models.Model):
 
     project_id = fields.Many2one(
         string='Project',
-        comodel_name='project.project'
+        comodel_name='project.project',
+        copy=False,
     )
     task_id = fields.Many2one(
         string='Task',
-        comodel_name='project.task'
+        comodel_name='project.task',
+        copy=False,
     )
 
     @api.onchange('project_id')
