@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-25 15:57+0000\n"
-"PO-Revision-Date: 2021-01-25 15:57+0000\n"
+"POT-Creation-Date: 2021-03-11 17:25+0000\n"
+"PO-Revision-Date: 2021-03-11 17:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,12 +34,27 @@ msgid "Last Inventory Quantity"
 msgstr ""
 
 #. module: product_stock
+#: model:ir.model.fields,field_description:product_stock.field_product_product__last_move_id
+msgid "Last Stock Move"
+msgstr ""
+
+#. module: product_stock
+#: model:ir.model.fields,field_description:product_stock.field_product_product__last_move_date
+msgid "Last Stock Move Date"
+msgstr ""
+
+#. module: product_stock
+#: model:ir.model.fields,help:product_stock.field_product_product__last_move_date
+msgid "Move date: scheduled date until move is done, then date of actual move processing"
+msgstr ""
+
+#. module: product_stock
 #: model:ir.model,name:product_stock.model_product_product
 msgid "Product"
-msgstr "Article"
+msgstr ""
 
 #. module: product_stock
 #: model:ir.model,name:product_stock.model_product_template
 msgid "Product Template"
-msgstr "Modèle d'article"
+msgstr ""
 
