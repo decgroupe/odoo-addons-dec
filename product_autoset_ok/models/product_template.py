@@ -25,7 +25,7 @@ class Product(models.Model):
             if l and l['product_id']:
                 product_ids.append(l['product_id'][0])
 
-        self._set_ok_attribute('sale_ok', product_ids)
+        self._set_attribute_ok('sale_ok', product_ids)
 
     @api.model
     def _autoset_purchase_ok(self):
@@ -39,10 +39,10 @@ class Product(models.Model):
             if l and l['product_id']:
                 product_ids.append(l['product_id'][0])
 
-        self._set_ok_attribute('purchase_ok', product_ids)
+        self._set_attribute_ok('purchase_ok', product_ids)
 
     @api.model
-    def _set_ok_attribute(self, ok_attribute, product_ids):
+    def _set_attribute_ok(self, ok_attribute, product_ids):
         # Find product template
         product_tmpl_ids = self.env['product.template'].with_context(
             active_test=False
