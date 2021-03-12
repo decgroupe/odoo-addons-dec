@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_bom_form_view">
+        <field name="name">mrp.bom.form@mrp_bom_product_state</field>
+        <field name="model">mrp.bom</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="after">
+                <field name="product_state"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_bom_tree_view">
+        <field name="name">mrp.bom.tree@mrp_bom_product_state</field>
+        <field name="model">mrp.bom</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="after">
+                <field name="product_state"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_bom_filter_view">
+        <field name="name">mrp.bom.select@mrp_bom_product_state</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='routings']" position="after">
+                <filter string="Product State" name="group_product_state" context="{'group_by':'product_state'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
