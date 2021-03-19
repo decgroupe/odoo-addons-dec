@@ -13,6 +13,7 @@
     'data': [
         'data/account_analytic_account.xml',
         'views/ref_category.xml',
+        'views/res_config_settings.xml',
     ],
     # 'force_post_init_hook': True,
     'post_init_hook': 'post_init',

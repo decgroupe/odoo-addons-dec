@@ -40,6 +40,7 @@
             'views/ref_category_line.xml',
             'views/ref_version.xml',
             'views/menu.xml',
+            'views/res_config_settings.xml',
         ],
     'installable': True
 }

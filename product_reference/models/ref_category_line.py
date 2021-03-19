@@ -32,4 +32,5 @@ class RefCategoryLine(models.Model):
     sequence = fields.Integer(
         'Position',
         required=True,
+        default=1,
     )

@@ -30,3 +30,27 @@ class RefCategory(models.Model):
                         'group_id': product_analytic_group.id,
                     }
                 )
+
+    @api.model
+    def create(self, vals):
+        category_id = super().create(vals)
+        if self.env.user.company_id.auto_create_reference_category_analytic_account:
+            category_id.action_create_income_analytic_account()
+        return category_id
+
+    @api.multi
+    def write(self, vals):
+        name = vals.get('name')
+        if name:
+            for rec in self.filtered('income_analytic_account_id'):
+                if rec.income_analytic_account_id.name == self.name:
+                    rec.income_analytic_account_id.name = name
+
+        code = vals.get('code')
+        if code:
+            for rec in self.filtered('income_analytic_account_id'):
+                if rec.income_analytic_account_id.code == self.code:
+                    rec.income_analytic_account_id.code = code
+
+        res = super().write(vals)
+        return res

@@ -6,3 +6,5 @@ from . import ref_category_line
 from . import ref_reference
 from . import ref_reference_line
 from . import ref_version
+from . import res_company
+from . import res_config_settings

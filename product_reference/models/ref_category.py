@@ -47,6 +47,41 @@ class RefCategory(models.Model):
         ('code_uniq', 'unique(code)', 'Code category must be unique !'),
     ]
 
+    def _prepare_product_category_vals(self, cat_vals):
+        parent_categ_id = self.env.user.company_id.main_product_category_id
+        return {
+            'name': cat_vals.get('name'),
+            'parent_id': parent_categ_id.id,
+        }
+
+    @api.model
+    def create(self, vals):
+        product_category_id = vals.get('product_category_id')
+        if not product_category_id:
+            product_category_vals = self._prepare_product_category_vals(vals)
+            product_category = self.env['product.category'].create(
+                product_category_vals
+            )
+            vals['product_category_id'] = product_category.id
+        category_id = super().create(vals)
+        return category_id
+
+    @api.multi
+    def write(self, vals):
+        name = vals.get('name')
+        if name:
+            for rec in self.filtered('product_category_id'):
+                if rec.product_category_id.name == self.name:
+                    rec.product_category_id.name = name
+        res = super().write(vals)
+        return res
+
+    @api.onchange('code')
+    def onchange_code(self):
+        self.ensure_one()
+        if self.code:
+            self.code = self.code.upper()
+
     @api.multi
     @api.depends('name', 'code')
     def name_get(self):
