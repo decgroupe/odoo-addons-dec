@@ -6,11 +6,13 @@
         <field name="model">ref.reference</field>
         <field name="inherit_id" ref="product_reference.ref_reference_form_view"/>
         <field name="arch" type="xml">
-            <group name="versions" position="after">
-                <group name="prices">
-                    <field name="price_ids"/>
-                </group>
-            </group>
+            <notebook name="main_notebook" position="inside">
+                <page name="price_history" string="Pricelist">
+                    <group name="prices" attrs="{'invisible': [('product_id', '=', False)]}">
+                        <field name="price_ids"/>
+                    </group>
+                </page>
+            </notebook>
         </field>
     </record>
 

@@ -17,8 +17,10 @@
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
             <form string="Attributes">
-                <field name="value"/>
-                <field name="name"/>
+                <group>
+                    <field name="value"/>
+                    <field name="name"/>
+                </group>
             </form>
         </field>
     </record>

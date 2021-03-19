@@ -5,11 +5,18 @@
         <field name="name">ref.reference.line.tree@product_reference</field>
         <field name="model">ref.reference.line</field>
         <field name="arch" type="xml">
-            <tree string="Reference lines">
-                <field name="sequence"/>
+            <tree string="Reference lines" create="false" delete="false" editable="bottom">
+                <field name="sequence" readonly="1" force_save="1" string="#"/>
                 <field name="property_id"/>
-                <field name="attribute_id"/>
-                <field name="value"/>
+                <field name="property_fixed" invisible="1"/>
+                <field name="attribute_id" domain="[('property_id', '=', property_id)]" attrs="{
+                    'invisible': [('property_fixed', '!=', True)],
+                    'required': [('property_fixed', '=', True)],
+                }"/>
+                <field name="value" attrs="{
+                    'invisible': [('property_fixed', '=', True)],
+                    'required': [('property_fixed', '!=', True)],
+                }"/>
             </tree>
         </field>
     </record>
@@ -19,10 +26,22 @@
         <field name="model">ref.reference.line</field>
         <field name="arch" type="xml">
             <form string="Reference lines">
-                <field name="sequence"/>
-                <field name="property_id"/>
-                <field name="attribute_id"/>
-                <field name="value"/>
+                <div class="oe_title">
+                    <label for="property_id" class="oe_edit_only"/>
+                    <h1><field name="property_id" class="oe_inline"/></h1>
+                </div>
+                <group>
+                    <field name="sequence" invisible="1"/>
+                    <field name="property_fixed" invisible="1"/>
+                    <field name="attribute_id" domain="[('property_id', '=', property_id)]" attrs="{
+                        'invisible': [('property_fixed', '!=', True)],
+                        'required': [('property_fixed', '=', True)],
+                    }"/>
+                    <field name="value" attrs="{
+                        'invisible': [('property_fixed', '=', True)],
+                        'required': [('property_fixed', '!=', True)],
+                    }"/>
+                </group>
             </form>
         </field>
     </record>

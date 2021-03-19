@@ -6,7 +6,7 @@
         <field name="model">ref.category.line</field>
         <field name="arch" type="xml">
             <tree string="Category lines">
-                <field name="sequence"/>
+                <field name="sequence" widget="handle"/>
                 <field name="property_id"/>
                 <field name="description"/>
             </tree>
@@ -17,10 +17,15 @@
         <field name="name">ref.category.line.form@product_reference</field>
         <field name="model">ref.category.line</field>
         <field name="arch" type="xml">
-            <form string="Category lines">
-                <field name="sequence"/>
-                <field name="property_id"/>
-                <field name="description"/>
+            <form string="Category Lines">
+                <div class="oe_title">
+                    <label for="property_id" class="oe_edit_only"/>
+                    <h1><field name="property_id" class="oe_inline"/></h1>
+                </div>
+                <group>
+                    <field name="sequence" invisible="0"/>
+                    <field name="description" invisible="0"/>
+                </group>
             </form>
         </field>
     </record>

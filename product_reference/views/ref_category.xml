@@ -9,7 +9,6 @@
                 <field name="code"/>
                 <field name="name"/>
                 <field name="product_category_id"/>
-                <field name="description_template"/>
             </tree>
         </field>
     </record>
@@ -33,9 +32,8 @@
                             <field name="code"/>
                             <field name="product_category_id"/>
                         </group>
-                        <group>
-                            <field name="category_line_ids"/>
-                        </group>
+                        <label for="category_line_ids"/>
+                        <field name="category_line_ids"/>
                     </group>
                     <group>
                         <field name="description_template"/>
@@ -67,4 +65,3 @@
     </record>
 
 </odoo>
-
