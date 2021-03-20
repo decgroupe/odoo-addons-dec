@@ -11,20 +11,20 @@ class SoftwareLicense(models.Model):
     _rec_name = 'serial'
     _order = 'id desc'
 
-    serial = fields.Char(
-        size=64,
-        required=True,
-    )
+    serial = fields.Char(required=True, )
     application_id = fields.Many2one(
         'software.license.application',
         'Application',
         required=True,
     )
     dongle_id = fields.Integer('Dongle ID')
-    dongle_product_id = fields.Integer('Dongle Product ID')
-    dongle_id_encrypted = fields.Char(
-        'Dongle ID Encrypted',
-        size=64,
+    dongle_product_id = fields.Integer(
+        related='application_id.dongle_product_id',
+        string='Dongle Product ID',
+    )
+    hardware_id = fields.Char(
+        'Hardware ID',
+        oldname='dongle_id_encrypted',
     )
     classic = fields.Boolean('System Classic')
     cave = fields.Boolean('System Cave')
