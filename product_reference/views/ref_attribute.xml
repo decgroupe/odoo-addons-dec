@@ -6,7 +6,7 @@
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
             <tree string="Attributes">
-                <field name="value"/>
+                <field name="code"/>
                 <field name="name"/>
             </tree>
         </field>
@@ -18,7 +18,7 @@
         <field name="arch" type="xml">
             <form string="Attributes">
                 <group>
-                    <field name="value"/>
+                    <field name="code"/>
                     <field name="name"/>
                 </group>
             </form>

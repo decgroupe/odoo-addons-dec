@@ -82,7 +82,7 @@ class RefProperty(models.Model):
                 )
         return value
 
-    def format_int_value(self, int_value):
+    def format_int(self, value):
         self.ensure_one()
         if 'N' in self.format and not 'A' in self.format and not 'T' in self.format:
-            return '{0}'.format(str(int_value).zfill(len(self.format)))
+            return '{0}'.format(str(value).zfill(len(self.format)))

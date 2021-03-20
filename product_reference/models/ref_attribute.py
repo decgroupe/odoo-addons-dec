@@ -14,7 +14,7 @@ class RefAttribute(models.Model):
     _name = 'ref.attribute'
     _description = 'Attribute'
     _rec_name = 'name'
-    _order = 'value'
+    _order = 'code'
 
     property_id = fields.Many2one(
         'ref.property',
@@ -22,34 +22,36 @@ class RefAttribute(models.Model):
         required=True,
         oldname='owner',
     )
-    # TODO: Rename value to code
-    value = fields.Char(
-        'Value',
+    code = fields.Char(
+        'Code',
         required=True,
+        oldname='value',
     )
     name = fields.Char(
         'Name',
         required=True,
     )
+    auto_inc = fields.Boolean(
+        'Auto-increment',
+        default=False,
+    )
 
     @api.model
     def create(self, vals):
-        # property_id = self.env['ref.property'].browse(vals.get('property_id'))
-        # if property_id.
         attribute_id = super().create(vals)
         return attribute_id
 
-    @api.onchange('value')
-    def onchange_value(self):
+    @api.onchange('code')
+    def onchange_code(self):
         self.ensure_one()
-        self.value = self.property_id.validate_value(self.value)
+        self.code = self.property_id.validate_value(self.code)
 
     @api.multi
-    @api.depends('name', 'value')
+    @api.depends('name', 'code')
     def name_get(self):
         result = []
         for attribute in self:
-            name = ('[%s] %s') % (attribute.value, attribute.name)
+            name = ('[%s] %s') % (attribute.code, attribute.name)
             result.append((attribute.id, name))
         return result
 
@@ -64,7 +66,7 @@ class RefAttribute(models.Model):
             attribute_ids = []
             if operator in positive_operators:
                 attribute_ids = self._search(
-                    [('value', '=', name)] + args,
+                    [('code', '=', name)] + args,
                     limit=limit,
                     access_rights_uid=name_get_uid
                 )
@@ -77,7 +79,7 @@ class RefAttribute(models.Model):
                 # Performing a quick memory merge of ids in Python will give
                 # much better performance
                 attribute_ids = self._search(
-                    args + [('value', operator, name)], limit=limit
+                    args + [('code', operator, name)], limit=limit
                 )
                 if not limit or len(attribute_ids) < limit:
                     # we may underrun the limit because of dupes in the
@@ -97,12 +99,12 @@ class RefAttribute(models.Model):
                     [
                         [
                             '&',
-                            ('value', operator, name),
+                            ('code', operator, name),
                             ('name', operator, name),
                         ],
                         [
                             '&',
-                            ('value', '=', False),
+                            ('code', '=', False),
                             ('name', operator, name),
                         ],
                     ]
@@ -116,7 +118,7 @@ class RefAttribute(models.Model):
                 res = ptrn.search(name)
                 if res:
                     attribute_ids = self._search(
-                        [('value', '=', res.group(2))] + args,
+                        [('code', '=', res.group(2))] + args,
                         limit=limit,
                         access_rights_uid=name_get_uid
                     )

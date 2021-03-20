@@ -37,19 +37,6 @@ class RefReferenceLine(models.Model):
         required=True,
     )
     property_fixed = fields.Boolean(related='property_id.fixed', )
-    # attribute_or_value = fields.Char(
-    #     compute='_compute_attribute_or_value',
-    #     string="Value",
-    # )
-
-    # @api.multi
-    # @api.depends('attribute_id', 'value')
-    # def _compute_attribute_or_value(self):
-    #     for rec in self:
-    #         if rec.property_fixed:
-    #             rec.attribute_or_value = rec.attribute_id.name or '---'
-    #         else:
-    #             rec.attribute_or_value = rec.value or '---'
 
     @api.model
     def create(self, vals):

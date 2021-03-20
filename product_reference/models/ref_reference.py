@@ -311,7 +311,7 @@ class RefReference(models.Model):
         for line in self.reference_line_ids:
             default_value = '-' * len(line.property_id.format)
             if line.property_fixed:
-                current_value = line.attribute_id.value
+                current_value = line.attribute_id.code
             else:
                 current_value = line.value
             if current_value:
@@ -329,7 +329,7 @@ class RefReference(models.Model):
                 )
                 # Auto update only if AUTO_INC_CHAR still exists
                 if not line.value or AUTO_INC_CHAR in line.value:
-                    formatted_value = line.property_id.format_int_value(
+                    formatted_value = line.property_id.format_int(
                         last_max_value + 1
                     )
                     line.value = AUTO_INC_CHAR + formatted_value
