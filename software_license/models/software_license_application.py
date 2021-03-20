@@ -15,9 +15,6 @@ class SoftwareLicenseApplication(models.Model):
         required=True,
         default=0,
     )
-    dongle_product_id = fields.Integer(
-        'Dongle Product ID', help='Product ID to write into the dongle'
-    )
     name = fields.Text(
         'Application',
         required=True,

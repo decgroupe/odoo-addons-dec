@@ -7,7 +7,6 @@
         <field name="arch" type="xml">
             <tree string="Applications">
                 <field name="application_id"/>
-                <field name="dongle_product_id"/>
                 <field name="name"/>
                 <field name="info"/>
             </tree>
@@ -30,7 +29,6 @@
                     </group>
                     <group>
                         <field name="application_id"/>
-                        <field name="dongle_product_id"/>
                     </group>
                     <group>
                         <field name="info"/>
@@ -46,7 +44,6 @@
         <field name="arch" type="xml">
             <search string="Applications">
                 <field name="application_id"/>
-                <field name="dongle_product_id"/>
                 <field name="info"/>
             </search>
         </field>
