@@ -32,7 +32,7 @@ msgstr "Article"
 #: code:addons/stock_return_routes/models/product_product.py:23
 #, python-format
 msgid "Route <small><b>%s</b></small> replaced with route <small><b>%s</b></small> while processing %s."
-msgstr "La route <small><b>%s</b></small> a remplacé la route <small><b>%s</b></small> pendant l'opération de %s."
+msgstr "La route <small><b>%s</b></small> est remplacée par la route <small><b>%s</b></small> pendant l'opération %s."
 
 #. module: stock_return_routes
 #: model:ir.model,name:stock_return_routes.model_mrp_unbuild
