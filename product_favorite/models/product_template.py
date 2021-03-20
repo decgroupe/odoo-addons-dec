@@ -5,7 +5,7 @@
 from odoo import api, models, fields
 
 
-class Product(models.Model):
+class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     favorite_ok = fields.Boolean(
@@ -33,7 +33,7 @@ class Product(models.Model):
     @api.model
     def _autoset_favorite_ok(self):
         # Search among all existing BoMs
-        mrp_bom_line_ids = self.env['mrp.bome.line'].read_group(
+        mrp_bom_line_ids = self.env['mrp.bom.line'].read_group(
             [], ['product_id'], ['product_id']
         )
         # Assemble all products IDs
@@ -47,3 +47,22 @@ class Product(models.Model):
     @api.model
     def _set_favorite_ok(self, product_ids):
         self._set_attribute_ok('favorite_ok', product_ids)
+
+    def append_favorite_emoji(self, names):
+        # Add emoji to quickly identify a favorite
+        result = []
+        for item in names:
+            product = self.browse(item[0])[0]
+            name_get = item[1]
+            if product.favorite_ok:
+                name_get = '%s %s' % (name_get, '📌')
+            result.append((item[0], name_get))
+        return result
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        # Make a search with default criteria
+        names = super().name_search(
+            name=name, args=args, operator=operator, limit=limit
+        )
+        return self.append_favorite_emoji(names)
