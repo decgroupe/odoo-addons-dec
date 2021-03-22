@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_software_license_feature_user,Read and write access to software license feature for User,model_software_license_feature,software.group_software_user,1,1,0,0
+access_software_license_feature_manager,Full access to software license feature for Manager,model_software_license_feature,software.group_software_manager,1,1,1,1
+access_software_license_feature_property_user,Read and write access to software license property for User,model_software_license_feature_property,software.group_software_user,1,1,0,0
+access_software_license_feature_property_manager,Full access to software license property for Manager,model_software_license_feature_property,software.group_software_manager,1,1,1,1
+access_software_license_feature_value_user,Read and write access to software license value for User,model_software_license_feature_value,software.group_software_user,1,1,0,0
+access_software_license_feature_value_manager,Full access to software license value for Manager,model_software_license_feature_value,software.group_software_manager,1,1,1,1

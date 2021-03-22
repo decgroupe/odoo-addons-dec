@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_feature_property_tree_view" >
+        <field name="name">software.license.feature.property.tree@software_license_feature</field>
+        <field name="model">software.license.feature.property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties" create="true" delete="true" editable="bottom">
+                <field name="name"/>
+                <field name="customizable"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_feature_property_form_view" >
+        <field name="name">software.license.feature.property.form@software_license_feature</field>
+        <field name="model">software.license.feature.property</field>
+        <field name="arch" type="xml">
+            <form string="Properties">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" class="oe_inline"/></h1>
+                    </div>
+                    <group>
+                        <field name="customizable"/>
+                        <field name="value_ids" attrs="{'invisible': [('customizable', '=', True)]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_window_software_license_feature_property" >
+        <field name="name">Properties</field>
+        <field name="res_model">software.license.feature.property</field>
+        <field name="view_id" ref="software_license_feature_property_tree_view"/>
+    </record>
+
+</odoo>

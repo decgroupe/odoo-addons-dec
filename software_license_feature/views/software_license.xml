@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--
+    <record model="ir.ui.view" id="software_license_tree_view" >
+        <field name="name">software.license.tree@software_license_feature</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_tree_view"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>
+-->
+    <record model="ir.ui.view" id="software_license_form_view" >
+        <field name="name">software.license.form@software_license_feature</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="action_sync_features_with_template"
+                    string="Sync Features"
+                    help="Synchronize features defined as template in application"
+                    type="object"
+                    class="btn-primary">
+                </button>
+            </header>
+            <group name="main" position="after">
+                <group name="features">
+                    <field name="feature_ids"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+<!--
+    <record model="ir.ui.view" id="software_license_search_view">
+        <field name="name">software.license.search@software_license_feature</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_search_view"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>
+-->
+
+</odoo>

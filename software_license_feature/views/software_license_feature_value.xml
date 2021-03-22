@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_feature_value_tree_view" >
+        <field name="name">software.license.feature.value.tree@software_license_feature</field>
+        <field name="model">software.license.feature.value</field>
+        <field name="arch" type="xml">
+            <tree string="Values">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_feature_value_form_view" >
+        <field name="name">software.license.feature.value.form@software_license_feature</field>
+        <field name="model">software.license.feature.value</field>
+        <field name="arch" type="xml">
+            <form string="Values">
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_window_software_license_feature_value" >
+        <field name="name">Values</field>
+        <field name="res_model">software.license.feature.value</field>
+        <field name="view_id" ref="software_license_feature_value_tree_view"/>
+    </record>
+
+</odoo>
