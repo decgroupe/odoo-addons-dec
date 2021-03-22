@@ -11,6 +11,12 @@ class SoftwareLicense(models.Model):
     _rec_name = 'serial'
     _order = 'id desc'
 
+    active = fields.Boolean(
+        'Active',
+        default=True,
+        help="If unchecked, it will allow you to hide the license "
+        "without removing it.",
+    )
     serial = fields.Char(required=True, )
     application_id = fields.Many2one(
         'software.license.application',

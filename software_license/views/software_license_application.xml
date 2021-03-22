@@ -18,8 +18,18 @@
         <field name="model">software.license.application</field>
         <field name="arch" type="xml">
             <form string="Application">
+                <header>
+                    <button
+                        name="action_create_license_template"
+                        string="Create License Template"
+                        help="Create a new license and assign it as the template"
+                        type="object"
+                        attrs="{'invisible': [('template_id', '!=', False)]}"
+                        class="btn-primary">
+                    </button>
+                </header>
                 <sheet>
-                    <group>
+                    <group name="title">
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
                             <h1>
@@ -27,10 +37,11 @@
                             </h1>
                         </div>
                     </group>
-                    <group>
+                    <group name="main">
                         <field name="application_id"/>
+                        <field name="template_id" context="{'active_test': False}"/>
                     </group>
-                    <group>
+                    <group name="info">
                         <field name="info"/>
                     </group>
                 </sheet>
