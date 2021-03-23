@@ -47,3 +47,14 @@ class SoftwareLicense(models.Model):
             feature_ids.append(feature)
         vals['feature_ids'] = feature_ids
         self.update(vals)
+
+    @api.multi
+    def get_features_dict(self):
+        self.ensure_one()
+        res = {}
+        for feature_id in self.feature_ids:
+            if feature_id.customizable:
+                res[feature_id.name] = feature_id.value
+            else:
+                res[feature_id.name] = feature_id.value_id.name
+        return res

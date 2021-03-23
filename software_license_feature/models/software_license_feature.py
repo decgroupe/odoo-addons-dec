@@ -11,7 +11,7 @@ AUTO_INC_CHAR = '#'
 class SoftwareLicenseFeature(models.Model):
     _name = 'software.license.feature'
     _description = 'Feature for a software license'
-    _rec_name = 'value'
+    _rec_name = 'name'
     _order = 'sequence'
 
     sequence = fields.Integer(
@@ -22,6 +22,10 @@ class SoftwareLicenseFeature(models.Model):
         comodel_name='software.license',
         string='License',
         required=True,
+    )
+    name = fields.Char(
+        compute='_compute_name',
+        stored=True,
     )
     property_id = fields.Many2one(
         comodel_name='software.license.feature.property',
@@ -72,3 +76,8 @@ class SoftwareLicenseFeature(models.Model):
             'value_id': self.value_id.id,
             'value': self.value,
         }
+
+    @api.depends('property_id', 'property_id.name')
+    def _compute_name(self):
+        for rec in self:
+            rec.name = rec.property_id.name
