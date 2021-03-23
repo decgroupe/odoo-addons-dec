@@ -2,7 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2021
 
-from odoo import http
+from odoo import http, fields
 from odoo.http import request
 from odoo.tools.translate import _
 
@@ -21,6 +21,13 @@ SERIAL_ALREADY_ACTIVATED_ON_HARDWARE = {
     "message":
         "the serial key is already activated with this hardware identifier, "
         "use Validate endpoint to update a license.",
+}
+
+SERIAL_EXPIRED = {
+    "result": ERROR,
+    "message":
+        "the expiration date for this serial key is reached, "
+        "no activation or validation will be able to proceed.",
 }
 
 SERIAL_TOO_MANY_ACTIVATION = {
@@ -101,6 +108,9 @@ class SoftwareLicenseController(http.Controller):
         license_id = self._get_license_id(identifier, serial)
         if not license_id:
             return LICENSE_NOT_FOUND
+        elif license_id.expiration_date and \
+            fields.Datetime.now() > license_id.expiration_date:
+            return SERIAL_EXPIRED
         hardware_id = self._get_hardware_id(identifier, serial, hardware)
         if hardware_id:
             return SERIAL_ALREADY_ACTIVATED_ON_HARDWARE
@@ -146,6 +156,9 @@ class SoftwareLicenseController(http.Controller):
         license_id = self._get_license_id(identifier, serial)
         if not license_id:
             return LICENSE_NOT_FOUND
+        elif license_id.expiration_date and \
+            fields.Datetime.now() > license_id.expiration_date:
+            return SERIAL_EXPIRED
         hardware_id = self._get_hardware_id(identifier, serial, hardware)
         if not hardware_id:
             return SERIAL_NOT_ACTIVATED_ON_HARDWARE
