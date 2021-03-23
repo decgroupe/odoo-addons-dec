@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <record model="ir.ui.view" id="software_license_tree_view" >
+        <field name="name">software.license.tree@software_license_token</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_tree_view"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_form_view" >
+        <field name="name">software.license.form@software_license_token</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_form_view"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_search_view">
+        <field name="name">software.license.search@software_license_token</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_search_view"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record> -->
+
+</odoo>
