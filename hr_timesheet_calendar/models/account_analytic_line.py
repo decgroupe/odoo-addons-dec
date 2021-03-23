@@ -10,12 +10,12 @@ class AccountAnalyticLine(models.Model):
 
     same_task_name = fields.Boolean(
         compute='_compute_same_task_name',
-        help='Technical fields to apply a filter when the task name equals '
+        help='Technical field to apply a filter when the task name equals '
         'the analytic one',
     )
     calendar_name = fields.Char(
         compute='_compute_same_task_name',
-        help='Technical fields to hide the name from calendar view since '
+        help='Technical field to hide the name from calendar view since '
         'there is not support for invisible attrs in this kind of view',
     )
 
