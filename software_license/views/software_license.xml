@@ -53,6 +53,9 @@
                             <field name="partner_id"/>
                         </group>
                     </group>
+                    <group name="hardware">
+                        <field name="hardware_ids"/>
+                    </group>
                     <group name="info">
                         <field name="info"/>
                     </group>

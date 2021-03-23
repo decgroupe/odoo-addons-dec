@@ -3,3 +3,5 @@ access_software_license_user,Read and write access to software license for User,
 access_software_license_manager,Full access to software license for Manager,model_software_license,software.group_software_manager,1,1,1,1
 access_software_license_application_user,Read and write access to software license application for User,model_software_license_application,software.group_software_user,1,1,0,0
 access_software_license_application_manager,Full access to software license application for Manager,model_software_license_application,software.group_software_manager,1,1,1,1
+access_software_license_hardware_user,Read and write access to software license hardware for User,model_software_license_hardware,software.group_software_user,1,1,0,0
+access_software_license_hardware_manager,Full access to software license hardware for Manager,model_software_license_hardware,software.group_software_manager,1,1,1,1
