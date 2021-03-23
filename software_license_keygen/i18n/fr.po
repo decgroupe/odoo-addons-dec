@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-23 20:11+0000\n"
+"PO-Revision-Date: 2021-03-23 21:30+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: software_license_keygen
+#: model:ir.model.fields,field_description:software_license_keygen.field_software_license_application__auto_generate_serial
+msgid "Auto-generate Serial"
+msgstr "Génération automatique du numéro de série"
+
+#. module: software_license_keygen
+#: model:ir.model.fields,help:software_license_keygen.field_software_license_application__auto_generate_serial
+msgid "Automatically generate a random pref-formatted serial when creating a new license for this application"
+msgstr "Génère automatiquement un numéro de série aléatoire pré-formaté lors de la création d'une nouvelle licence pour cette application"
+
+#. module: software_license_keygen
+#: model_terms:ir.ui.view,arch_db:software_license_keygen.software_license_form_view
+msgid "Create a random pre-formatted serial"
+msgstr "Créer un numéro de série pré-formaté aléatoire"
+
+#. module: software_license_keygen
+#: model_terms:ir.ui.view,arch_db:software_license_keygen.software_license_form_view
+msgid "Generate Serial"
+msgstr "Générer un numéro de série"
+
+#. module: software_license_keygen
+#: model:ir.model,name:software_license_keygen.model_software_license
+msgid "License"
+msgstr "Licence"
+
+#. module: software_license_keygen
+#: model:ir.model,name:software_license_keygen.model_software_license_application
+msgid "License application"
+msgstr "Application"

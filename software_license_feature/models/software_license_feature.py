@@ -43,7 +43,7 @@ class SoftwareLicenseFeature(models.Model):
     )
     customizable = fields.Boolean(
         related='property_id.customizable',
-        help="Technical fields to indicate that the property is customizable",
+        help="Technical field to indicate that the property is customizable",
     )
 
     @api.model_create_multi

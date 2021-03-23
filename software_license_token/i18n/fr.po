@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-23 20:11+0000\n"
+"PO-Revision-Date: 2021-03-23 21:33+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+msgid "Create a new public/private key pair"
+msgstr "Créer une nouvelle paire de clés public/privé"
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license__expiration_date
+msgid "Expiration Date"
+msgstr "Date d'expiration"
+
+#. module: software_license_token
+#: code:addons/software_license_token/models/software_license.py:39
+#, python-format
+msgid "Expiration date reached"
+msgstr "Date d’expiration atteinte"
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+msgid "Generate Keys"
+msgstr "Générer les clés"
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_hardware_search_view
+msgid "Hardwares"
+msgstr "Matériels"
+
+#. module: software_license_token
+#: model:ir.model.fields,help:software_license_token.field_software_license__max_allowed_hardware
+msgid "If more than 1, then the number of registered hardware identifiers will not be allowed to be greater than this value."
+msgstr "Si plus de 1, alors le nombre d’identificateurs matériels enregistrés ne sera pas autorisé à être supérieur à cette valeur."
+
+#. module: software_license_token
+#: model:ir.model.fields,help:software_license_token.field_software_license__expiration_date
+msgid "If set, then after this date it will not be possible to proceed or renew any activation."
+msgstr "Si défini, alors il ne sera pas possible, après cette date, de procéder à une activation ou de la renouveler ."
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+msgid "Keys"
+msgstr "Clés"
+
+#. module: software_license_token
+#: model:ir.model,name:software_license_token.model_software_license
+msgid "License"
+msgstr "Licence"
+
+#. module: software_license_token
+#: model:ir.model,name:software_license_token.model_software_license_hardware
+msgid "License Hardware"
+msgstr "Matériel de licence"
+
+#. module: software_license_token
+#: model:ir.model,name:software_license_token.model_software_license_application
+msgid "License application"
+msgstr "Application"
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license__max_allowed_hardware
+msgid "Maximum Activation Count"
+msgstr "Nombre maximum d’activations"
+
+#. module: software_license_token
+#: code:addons/software_license_token/models/software_license.py:30
+#, python-format
+msgid "Maximum hardware identifier count reached"
+msgstr "Nombre maximal d’identificateurs matériels atteint"
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_application__private_key
+msgid "Private Key"
+msgstr "Clé privée"
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_application__public_key
+msgid "Public Key"
+msgstr "Clé publique"
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_hardware__validation_date
+msgid "Validation Date"
+msgstr "Date de validation"
