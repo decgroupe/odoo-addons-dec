@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_hardware_tree_view" >
+        <field name="name">software.license.hardware.tree@software_license_token</field>
+        <field name="model">software.license.hardware</field>
+        <field name="inherit_id" ref="software_license.software_license_hardware_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="info" position="after">
+                <field name="validation_date"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_hardware_form_view" >
+        <field name="name">software.license.hardware.form@software_license_token</field>
+        <field name="model">software.license.hardware</field>
+        <field name="inherit_id" ref="software_license.software_license_hardware_form_view"/>
+        <field name="arch" type="xml">
+            <group name="primary" position="inside">
+                <field name="validation_date"/>
+            </group>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="software_license_hardware_search_view">
+        <field name="name">software.license.hardware.search@software_license_token</field>
+        <field name="model">software.license.hardware</field>
+        <field name="inherit_id" ref="software_license.software_license_hardware_search_view"/>
+        <field name="arch" type="xml">
+            <search string="Hardwares">
+                <field name="name"/>
+                <field name="info"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

@@ -26,8 +26,8 @@
                     help="Create a new public/private key pair"
                     type="object"
                     attrs="{'invisible': [
-                        ('private_key', '!=', ''),
-                        ('public_key', '!=', ''),
+                        ('private_key', '!=', False),
+                        ('public_key', '!=', False),
                     ]}"
                     class="btn-primary">
                 </button>

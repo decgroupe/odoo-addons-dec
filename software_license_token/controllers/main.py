@@ -6,68 +6,152 @@ from odoo import http
 from odoo.http import request
 from odoo.tools.translate import _
 
-[
-    # html GET
-    '/software_license_api/v1/identifier/<int:identifier>/serial/<string:serial>',
-    # json POST
-    '/software_license_api/v1/identifier/<int:identifier>/serial/<string:serial>/hardware_id/<string:hardware_id>/activate',
-    '/software_license_api/v1/identifier/<int:identifier>/serial/<string:serial>/hardware_id/<string:hardware_id>/deactivate',
-    '/software_license_api/v1/identifier/<int:identifier>/serial/<string:serial>',
-    '/software_license_api/v1/identifier/<int:identifier>/serial/<string:serial>',
-]
+SUCCESS = 0
+ERROR = 1
+
+LICENSE_NOT_FOUND = {
+    "result": ERROR,
+    "message":
+        "unable to find an existing license for this "
+        "identifier and this serial key.",
+}
+
+SERIAL_ALREADY_ACTIVATED_ON_HARDWARE = {
+    "result": ERROR,
+    "message":
+        "the serial key is already activated with this hardware identifier, "
+        "use Validate endpoint to update a license.",
+}
+
+SERIAL_TOO_MANY_ACTIVATION = {
+    "result": ERROR,
+    "message":
+        "the serial key is already activated on all available hardware "
+        "identifier slots. Deactivate from the application or "
+        "from your account to free some slots.",
+}
+
+SERIAL_NOT_ACTIVATED_ON_HARDWARE = {
+    "result": ERROR,
+    "message":
+        "the serial key is not activated on a machine with the given "
+        "hardware identifier and therefore cannot be udpated or deactivated.",
+}
+
+SERIAL_ACTIVATED_ON_HARDWARE = {
+    "result": SUCCESS,
+    "message":
+        "the serial key has been successfully activated on the machine with "
+        "the given hardware identifier.",
+}
+
+SERIAL_DEACTIVATED_ON_HARDWARE = {
+    "result": SUCCESS,
+    "message":
+        "the serial key has been successfully deactivated on the machine with "
+        "the given hardware identifier.",
+}
+
+SERIAL_UPDATED_ON_HARDWARE = {
+    "result": SUCCESS,
+    "message":
+        "the serial key activation has been successfully updated on the "
+        "machine with the given hardware identifier.",
+}
+
+BASE_URL = "/software_licensing_api/v1/identifier/<int:identifier>/serial/<string:serial>/hardware/<string:hardware>"
 
 
 class SoftwareLicenseController(http.Controller):
-    # http://odessa.decindustrie.com:8008/software_license_api/identifier/1035/serial/DN7SW-HNKFU-SEIR8-82AA6
+    """ Http Controller for Software Licensing System
+    """
+
+    #######################################################################
+    # http://odessa.decindustrie.com:8008/software_licensing_api/v1/identifier/{identifier}/serial/{serial}/hardware/{hardware}
+
+    def _get_hardware_id(self, identifier, serial, hardware):
+        hardware_id = request.env['software.license.hardware']
+        if hardware:
+            domain = [
+                ('name', '=', hardware),
+                ('license_id.application_id.application_id', '=', identifier),
+                ('license_id.serial', '=', serial),
+            ]
+            hardware_id = hardware_id.sudo().search(domain, limit=1)
+        return hardware_id
+
+    def _get_license_id(self, identifier, serial):
+        license_id = request.env['software.license']
+        if identifier > 0:
+            domain = [
+                ('application_id.application_id', '=', identifier),
+                ('serial', '=', serial),
+            ]
+            license_id = license_id.sudo().search(domain, limit=1)
+        return license_id
+
     @http.route(
-        '/software_license_api/v1/identifier/<int:identifier>/serial/<string:serial>',
+        BASE_URL + '/Activate',
         type='json',
-        methods=['POST', 'GET'],
+        methods=['POST'],
         auth="public",
         csrf=False,
     )
-    def test(self, identifier, serial, **kwargs):
-        license_id = False
-        if identifier > 0:
-            license_id = request.env['software.license'].sudo().search(
-                [
-                    ('application_id.application_id', '=', identifier),
-                    ('serial', '=', serial),
-                ]
-            )
+    def activate(self, identifier, serial, hardware, **kwargs):
+        license_id = self._get_license_id(identifier, serial)
         if not license_id:
-            return False
-        return {
-            'datetime': license_id.datetime,
-        }
+            return LICENSE_NOT_FOUND
+        hardware_id = self._get_hardware_id(identifier, serial, hardware)
+        if hardware_id:
+            return SERIAL_ALREADY_ACTIVATED_ON_HARDWARE
+        elif license_id.max_allowed_hardware > 0 and \
+            len(license_id.hardware_ids) >= license_id.max_allowed_hardware:
+            return SERIAL_TOO_MANY_ACTIVATION
+        else:
+            hardware_id = license_id.activate(hardware)
+            hardware_id.info = request.httprequest.remote_addr
+            msg = SERIAL_ACTIVATED_ON_HARDWARE
+            msg['license_string'] = hardware_id.get_license_string()
+            msg['datetime'] = license_id.datetime
+            return msg
 
-    # @http.route('/rating/<string:token>/<int:rate>', type='http', auth="public")
-    # def open_rating(self, token, rate, **kwargs):
-    #     assert rate in (1, 5, 10), "Incorrect rating"
-    #     rating = request.env['rating.rating'].sudo().search([('access_token', '=', token)])
-    #     if not rating:
-    #         return request.not_found()
-    #     rate_names={
-    #         5: _("not satisfied"),
-    #         1: _("highly dissatisfied"),
-    #         10: _("satisfied")
-    #     }
-    #     rating.write({'rating': rate, 'consumed': True})
-    #     lang = rating.partner_id.lang or 'en_US'
-    #     return request.env['ir.ui.view'].with_context(lang=lang).render_template('rating.rating_external_page_submit', {
-    #         'rating': rating, 'token': token,
-    #         'rate_name': rate_names[rate], 'rate': rate
-    #     })
+    @http.route(
+        BASE_URL + '/Deactivate',
+        type='json',
+        methods=['POST'],
+        auth="public",
+        csrf=False,
+    )
+    def deactivate(self, identifier, serial, hardware, **kwargs):
+        license_id = self._get_license_id(identifier, serial)
+        if not license_id:
+            return LICENSE_NOT_FOUND
+        hardware_id = self._get_hardware_id(identifier, serial, hardware)
+        if not hardware_id:
+            return SERIAL_NOT_ACTIVATED_ON_HARDWARE
+        else:
+            hardware_id.unlink()
+            res = SERIAL_DEACTIVATED_ON_HARDWARE
+            res['datetime'] = license_id.datetime
+            return res
 
-    # @http.route(['/rating/<string:token>/<int:rate>/submit_feedback'], type="http", auth="public", methods=['post'])
-    # def submit_rating(self, token, rate, **kwargs):
-    #     rating = request.env['rating.rating'].sudo().search([('access_token', '=', token)])
-    #     if not rating:
-    #         return request.not_found()
-    #     record_sudo = request.env[rating.res_model].sudo().browse(rating.res_id)
-    #     record_sudo.rating_apply(rate, token=token, feedback=kwargs.get('feedback'))
-    #     lang = rating.partner_id.lang or 'en_US'
-    #     return request.env['ir.ui.view'].with_context(lang=lang).render_template('rating.rating_external_page_view', {
-    #         'web_base_url': request.env['ir.config_parameter'].sudo().get_param('web.base.url'),
-    #         'rating': rating,
-    #     })
+    @http.route(
+        BASE_URL + '/Validate',
+        type='json',
+        methods=['POST'],
+        auth="public",
+        csrf=False,
+    )
+    def validate(self, identifier, serial, hardware, **kwargs):
+        license_id = self._get_license_id(identifier, serial)
+        if not license_id:
+            return LICENSE_NOT_FOUND
+        hardware_id = self._get_hardware_id(identifier, serial, hardware)
+        if not hardware_id:
+            return SERIAL_NOT_ACTIVATED_ON_HARDWARE
+        else:
+            hardware_id.info = request.httprequest.remote_addr
+            msg = SERIAL_UPDATED_ON_HARDWARE
+            msg['license_string'] = hardware_id.get_license_string()
+            msg['datetime'] = license_id.datetime
+            return msg
