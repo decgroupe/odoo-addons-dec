@@ -38,12 +38,20 @@
                         </div>
                     </group>
                     <group name="main">
-                        <field name="application_id"/>
-                        <field name="template_id" context="{'active_test': False}"/>
+                        <group name="primary">
+                            <field name="application_id"/>
+                            <field name="template_id" context="{'active_test': False}"/>
+                        </group>
+                        <group name="secondary">
+                        </group>
                     </group>
-                    <group name="info">
-                        <field name="info"/>
-                    </group>
+                    <notebook>
+                        <page string="Informations" name="general">
+                            <group name="info">
+                                <field name="info"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

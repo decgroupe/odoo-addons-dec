@@ -42,12 +42,12 @@
                         </h1>
                     </div>
                     <group name="main">
-                        <group name="mapping">
+                        <group name="primary">
                             <field name="application_id"/>
                             <field name="hardware_id"/>
                             <field name="datetime"/>
                         </group>
-                        <group name="origin">
+                        <group name="secondary">
                             <field name="production_id"/>
                             <field name="product_id"/>
                             <field name="partner_id"/>

@@ -10,6 +10,7 @@ class SoftwareLicenseApplication(models.Model):
     _description = 'License application'
     _order = 'application_id asc, name'
 
+    # TODO: rename to identifier
     application_id = fields.Integer(
         'AppID',
         required=True,
