@@ -54,3 +54,12 @@ class SoftwareLicense(models.Model):
         default=fields.Datetime.now,
     )
     info = fields.Text('Informations')
+
+    @api.multi
+    @api.depends('serial', 'application_id.name')
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = ('[%s] %s') % (rec.application_id.name, rec.serial)
+            result.append((rec.id, name))
+        return result

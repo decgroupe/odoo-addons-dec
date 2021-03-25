@@ -29,6 +29,8 @@
                     </button>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
                     <group name="title">
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
@@ -48,7 +50,7 @@
                     <notebook>
                         <page string="Informations" name="general">
                             <group name="info">
-                                <field name="info"/>
+                                <field name="info" placeholder="Real name of the application, eg: Ubuntu 20.04"/>
                             </group>
                         </page>
                     </notebook>
