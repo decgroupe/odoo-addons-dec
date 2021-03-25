@@ -32,11 +32,22 @@
                     class="btn-primary">
                 </button>
             </header>
+            <div name="button_box" position="inside">
+                <button 
+                    name="action_portal_publish"
+                    type="object"
+                    class="oe_stat_button" 
+                    widget="toggle_button"
+                    icon="fa-globe">
+                        <label for="portal_published" />
+                        <field name="portal_published" widget="toggle_button"/>
+                </button>
+            </div>
             <page name="general" position="after">
                 <page name="token" string="Keys">
                     <group name="key_pair">
-                        <field name="private_key" class="d_view_key"/>
-                        <field name="public_key" class="d_view_key"/>
+                        <field name="private_key" class="d_view_key" placeholder="-----BEGIN RSA PRIVATE KEY-----"/>
+                        <field name="public_key" class="d_view_key" placeholder="-----BEGIN PUBLIC KEY-----"/>
                     </group>
                 </page>
             </page>

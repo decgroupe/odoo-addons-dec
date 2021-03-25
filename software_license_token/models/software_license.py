@@ -9,6 +9,11 @@ from odoo.exceptions import ValidationError
 class SoftwareLicense(models.Model):
     _inherit = 'software.license'
 
+    portal_published = fields.Boolean(
+        'In Portal',
+        related='application_id.portal_published',
+        store=True,
+    )
     expiration_date = fields.Datetime(
         string="Expiration Date",
         help="If set, then after this date it will not be possible to "

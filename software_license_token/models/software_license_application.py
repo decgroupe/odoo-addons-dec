@@ -9,6 +9,10 @@ from odoo import api, fields, models
 class SoftwareLicenseApplication(models.Model):
     _inherit = 'software.license.application'
 
+    portal_published = fields.Boolean(
+        'In Portal',
+        default=True,
+    )
     private_key = fields.Text()
     public_key = fields.Text()
 
@@ -18,3 +22,8 @@ class SoftwareLicenseApplication(models.Model):
             key = RSA.generate(2048)
             rec.private_key = key.export_key()
             rec.public_key = key.publickey().export_key()
+
+    @api.multi
+    def action_portal_publish(self):
+        self.ensure_one()
+        return self.write({'portal_published': not self.portal_published})

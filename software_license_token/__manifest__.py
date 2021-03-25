@@ -10,13 +10,19 @@
                 'Crypto',  # pip install pycryptodome
             ],
         },
-    'depends': ['software_license_feature', ],
+    'depends': [
+        'portal',
+        'software_license_feature',
+    ],
     'data':
         [
+            'security/ir.model.access.csv',
+            'security/software_license.xml',
             'views/assets.xml',
             'views/software_license.xml',
             'views/software_license_hardware.xml',
             'views/software_license_application.xml',
+            'templates/software_license.xml',
         ],
     'installable': True
 }
