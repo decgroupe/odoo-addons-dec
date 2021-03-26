@@ -14,6 +14,7 @@ class SoftwareLicenseHardware(models.Model):
         'software.license',
         'License',
         required=True,
+        ondelete='cascade',
     )
     name = fields.Char(
         required=True,

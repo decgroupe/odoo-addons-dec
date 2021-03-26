@@ -22,6 +22,7 @@ class SoftwareLicenseFeature(models.Model):
         comodel_name='software.license',
         string='License',
         required=True,
+        ondelete='cascade',
     )
     name = fields.Char(
         compute='_compute_name',
