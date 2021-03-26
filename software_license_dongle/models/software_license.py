@@ -18,9 +18,3 @@ class SoftwareLicense(models.Model):
     cave = fields.Boolean('System Cave')
     rift = fields.Boolean('System Rift')
     vive = fields.Boolean('System Vive')
-
-    @api.multi
-    def _get_aeroo_report_filename(self):
-        names = [x.serial or str(x.id) for x in self]
-        res = '-'.join(names)
-        return res
