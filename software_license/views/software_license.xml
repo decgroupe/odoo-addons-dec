@@ -8,8 +8,6 @@
             <tree string="Licenses">
                 <field name="application_id"/>
                 <field name="serial"/>
-                <field name="hardware_id"/>
-                <field name="datetime"/>
                 <field name="production_id"/>
                 <field name="product_id"/>
                 <field name="partner_id"/>
@@ -44,8 +42,6 @@
                     <group name="main">
                         <group name="primary">
                             <field name="application_id"/>
-                            <field name="hardware_id"/>
-                            <field name="datetime"/>
                         </group>
                         <group name="secondary">
                             <field name="production_id"/>
@@ -71,7 +67,6 @@
             <search string="License">
                 <field name="serial" filter_domain=""/>
                 <field name="application_id"/>
-                <field name="hardware_id"/>
                 <group string="Group By" name="groupby">
                     <filter string="Application" name="groupby_application_id" context="{'group_by':'application_id'}"/>
                     <filter string="Partner" name="groupby_partner_id" context="{'group_by':'partner_id'}"/>

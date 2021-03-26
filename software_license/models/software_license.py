@@ -26,12 +26,6 @@ class SoftwareLicense(models.Model):
         'Application',
         required=True,
     )
-    # Renamed to hardware_identifier, a computed field to get data from first
-    # hardware_ids
-    hardware_id = fields.Char(
-        'Hardware ID',
-        oldname='dongle_id_encrypted',
-    )
     hardware_ids = fields.One2many(
         comodel_name='software.license.hardware',
         inverse_name='license_id',
@@ -49,10 +43,6 @@ class SoftwareLicense(models.Model):
     )
     production_id = fields.Many2one('mrp.production', 'Production')
     partner_id = fields.Many2one('res.partner', 'Partner')
-    datetime = fields.Datetime(
-        'Modification Date',
-        default=fields.Datetime.now,
-    )
     info = fields.Text('Informations')
 
     @api.multi

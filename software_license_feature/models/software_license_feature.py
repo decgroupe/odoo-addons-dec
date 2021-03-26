@@ -31,6 +31,7 @@ class SoftwareLicenseFeature(models.Model):
         comodel_name='software.license.feature.property',
         string='Property',
         required=True,
+        ondelete='cascade',
     )
     value_id = fields.Many2one(
         'software.license.feature.value',

@@ -53,7 +53,7 @@ class SoftwareLicenseHardware(models.Model):
         lic_file = [
             '# {0} License (id: {1})'.format(
                 self.license_id.application_id.name,
-                self.license_id.application_id.application_id,
+                self.license_id.application_id.identifier,
             )
         ]
 

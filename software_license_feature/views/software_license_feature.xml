@@ -9,11 +9,11 @@
                 <field name="sequence" widget="handle"/>
                 <field name="property_id"/>
                 <field name="customizable" invisible="1"/>
-                <field name="value_id" domain="[('property_id', '=', property_id)]" attrs="{
+                <field name="value_id" string="Value (List)" domain="[('property_id', '=', property_id)]" attrs="{
                     'invisible': [('customizable', '=', True)],
                     'required': [('customizable', '!=', True)],
                 }"/>
-                <field name="value" attrs="{
+                <field name="value" string="Value (Input)" attrs="{
                     'invisible': [('customizable', '!=', True)],
                     'required': [('customizable', '=', True)],
                 }"/>

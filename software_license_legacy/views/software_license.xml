@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_tree_view" >
+        <field name="name">software.license.tree@software_license_legacy</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="system_classic"/>
+                <field name="system_cave"/>
+                <field name="system_rift"/>
+                <field name="system_vive"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_form_view" >
+        <field name="name">software.license.form@software_license_legacy</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_form_view"/>
+        <field name="arch" type="xml">
+            <field name="application_id" position="after">
+                <field name="main_hardware_id" invisible="1"/>
+                <field name="main_hardware_name" attrs="{
+                    'invisible': [('main_hardware_id', '=', False)],
+                }"/>
+                <field name="main_hardware_dongle_identifier" attrs="{
+                    'invisible': [('dongle_product_id', '=', 0)],
+                }"/>
+                <separator/>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="system_classic"/>
+                <field name="system_cave"/>
+                <field name="system_rift"/>
+                <field name="system_vive"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_search_view">
+        <field name="name">software.license.search@software_license_legacy</field>
+        <field name="model">software.license</field>
+        <field name="inherit_id" ref="software_license.software_license_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="groupby_partner_id" position="after">
+                <filter string="Dongle" name="groupby_dongle_identifier" context="{'group_by':'main_hardware_dongle_identifier'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

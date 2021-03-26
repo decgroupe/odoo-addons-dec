@@ -81,7 +81,7 @@ class SoftwareLicenseController(http.Controller):
         if hardware:
             domain = [
                 ('name', '=', hardware),
-                ('license_id.application_id.application_id', '=', identifier),
+                ('license_id.application_id.identifier', '=', identifier),
                 ('license_id.serial', '=', serial),
             ]
             hardware_id = hardware_id.sudo().search(domain, limit=1)
@@ -91,7 +91,7 @@ class SoftwareLicenseController(http.Controller):
         license_id = request.env['software.license']
         if identifier > 0:
             domain = [
-                ('application_id.application_id', '=', identifier),
+                ('application_id.identifier', '=', identifier),
                 ('serial', '=', serial),
             ]
             license_id = license_id.sudo().search(domain, limit=1)

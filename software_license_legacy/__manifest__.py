@@ -1,17 +1,17 @@
 {
-    'name': 'Software License (dongle)',
+    'name': 'Software License (legacy)',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
-    'summary': '''Manage software licenses (dongle)''',
+    'summary': '''Legacy fields''',
     'depends': [
-        'software_license',
+        'software_license_feature',
+        'software_license_dongle',
     ],
     'data':
         [
+            'data/software_license_feature.xml',
             'views/software_license.xml',
-            'views/software_license_application.xml',
-            'views/software_license_hardware.xml',
         ],
     'installable': True
 }

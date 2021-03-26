@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_tree_view" >
-        <field name="name">software.license.tree@software_license_dongle</field>
-        <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_tree_view"/>
-        <field name="arch" type="xml">
-            <field name="hardware_id" position="after">
-                <field name="dongle_id"/>
-            </field>
-            <field name="partner_id" position="after">
-                <field name="classic"/>
-                <field name="cave"/>
-                <field name="rift"/>
-                <field name="vive"/>
-            </field>
-        </field>
-    </record>
-
     <record model="ir.ui.view" id="software_license_form_view" >
         <field name="name">software.license.form@software_license_dongle</field>
         <field name="model">software.license</field>
         <field name="inherit_id" ref="software_license.software_license_form_view"/>
         <field name="arch" type="xml">
-            <field name="hardware_id" position="after">
-                <field name="dongle_id"/>
-                <field name="dongle_product_id"/>
-            </field>
-            <field name="partner_id" position="after">
-                <field name="classic"/>
-                <field name="cave"/>
-                <field name="rift"/>
-                <field name="vive"/>
+            <field name="application_id" position="after">
+                <field name="dongle_product_id" invisible="1"/>
             </field>
         </field>
     </record>
@@ -41,15 +17,11 @@
         <field name="model">software.license</field>
         <field name="inherit_id" ref="software_license.software_license_search_view"/>
         <field name="arch" type="xml">
-            <field name="hardware_id" position="after">
-                <field name="dongle_id"/>
-                <field name="dongle_product_id" invisible="1"/>
+            <field name="application_id" position="after">
+                <field name="dongle_product_id"/>
                 <separator/>
-                <filter string="With dongle" name="filter_with_dongle" domain="[('dongle_id','!=',False)]"/>
+                <filter string="With dongle" name="filter_with_dongle" domain="[('dongle_product_id', '>', 0)]"/>
             </field>
-            <filter name="groupby_partner_id" position="after">
-                <filter string="Dongle" name="groupby_dongle_id" context="{'group_by':'dongle_id'}"/>
-            </filter>
         </field>
     </record>
 

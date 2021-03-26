@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* software_license_legacy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-26 15:03+0000\n"
+"PO-Revision-Date: 2021-03-26 16:05+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: software_license_legacy
+#: model_terms:ir.ui.view,arch_db:software_license_legacy.software_license_search_view
+msgid "Dongle"
+msgstr "Dongle"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__main_hardware_dongle_identifier
+msgid "Dongle ID"
+msgstr "Dongle ID"
+
+#. module: software_license_legacy
+#: model:ir.model,name:software_license_legacy.model_software_license
+msgid "License"
+msgstr "Licence"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__main_hardware_id
+msgid "Main Hardware"
+msgstr "Matériel principal"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__main_hardware_name
+msgid "Main Hardware Identifier"
+msgstr "Identificateur matériel principal"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__system_cave
+msgid "System Cave"
+msgstr "Cave"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__system_classic
+msgid "System Classic"
+msgstr "Classic"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__system_rift
+msgid "System Rift"
+msgstr "Rift"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__system_vive
+msgid "System Vive"
+msgstr "Vive"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,help:software_license_legacy.field_software_license__main_hardware_dongle_identifier
+msgid "Unique device ID set and given by then dongle manufacturer"
+msgstr "ID de périphérique unique défini et donné par le fabricant du dongle"

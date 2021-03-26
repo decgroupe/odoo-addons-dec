@@ -17,10 +17,10 @@
         <field name="model">software.license</field>
         <field name="inherit_id" ref="software_license.software_license_form_view"/>
         <field name="arch" type="xml">
-            <field name="datetime" position="after">
+            <group name="primary" position="inside">
                 <field name="max_allowed_hardware"/>
                 <field name="expiration_date"/>
-            </field>
+            </group>
         </field>
     </record>
 

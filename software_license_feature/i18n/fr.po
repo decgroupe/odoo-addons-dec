@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 20:11+0000\n"
-"PO-Revision-Date: 2021-03-23 21:44+0100\n"
+"POT-Creation-Date: 2021-03-26 15:03+0000\n"
+"PO-Revision-Date: 2021-03-26 16:06+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -116,7 +116,7 @@ msgid "License application"
 msgstr "Application"
 
 #. module: software_license_feature
-#: code:addons/software_license_feature/models/software_license_feature.py:64
+#: code:addons/software_license_feature/models/software_license_feature.py:65
 #, python-format
 msgid "Missing value for property {} : {}"
 msgstr "Valeur manquante pour la propriété {} : {}"
@@ -148,7 +148,7 @@ msgstr "Propriété"
 #. module: software_license_feature
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_form_view
 msgid "Sync Features"
-msgstr "Synchronisation les fonctionnalités"
+msgstr "Synchroniser les fonctionnalités"
 
 #. module: software_license_feature
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_form_view
@@ -157,14 +157,24 @@ msgstr "Synchroniser les fonctionnalités définies comme modèle dans l’appli
 
 #. module: software_license_feature
 #: model:ir.model.fields,help:software_license_feature.field_software_license_feature__customizable
-msgid "Technical fields to indicate that the property is customizable"
-msgstr "Champs technique pour indiquer que la propriété est personnalisable"
+msgid "Technical field to indicate that the property is customizable"
+msgstr "Champ technique pour indiquer que la propriété est personnalisable"
 
 #. module: software_license_feature
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__value
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__value_id
 msgid "Value"
 msgstr "Valeur"
+
+#. module: software_license_feature
+#: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_tree_view
+msgid "Value (Input)"
+msgstr "Valeur (Saisie)"
+
+#. module: software_license_feature
+#: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_tree_view
+msgid "Value (List)"
+msgstr "Valeur (Liste)"
 
 #. module: software_license_feature
 #: model:ir.model,name:software_license_feature.model_software_license_feature_value

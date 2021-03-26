@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!--
-    <record model="ir.ui.view" id="software_license_application_tree_view" >
-        <field name="name">software.license.application.tree@software_license_keygen</field>
-        <field name="model">software.license.application</field>
-        <field name="inherit_id" ref="software_license.software_license_application_tree_view"/>
-        <field name="arch" type="xml">
-            <field name="application_id" position="after">
-                <field name="dongle_product_id"/>
-            </field>
-        </field>
-    </record>
--->
-
     <record model="ir.ui.view" id="software_license_application_form_view" >
         <field name="name">software.license.application.form@software_license_keygen</field>
         <field name="model">software.license.application</field>
@@ -24,18 +11,5 @@
             </xpath>
         </field>
     </record>
-
-<!--
-    <record model="ir.ui.view" id="software_license_application_search_view">
-        <field name="name">software.license.application.search@software_license_keygen</field>
-        <field name="model">software.license.application</field>
-        <field name="inherit_id" ref="software_license.software_license_application_search_view"/>
-        <field name="arch" type="xml">
-            <field name="application_id" position="after">
-                <field name="dongle_product_id"/>
-            </field>
-        </field>
-    </record>
--->
 
 </odoo>

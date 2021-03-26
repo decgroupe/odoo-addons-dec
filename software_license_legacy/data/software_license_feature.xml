@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="feature_property_system" model="software.license.feature.property">
+        <field name="name">system</field>
+    </record>
+
+    <record id="feature_value_system_classic" model="software.license.feature.value">
+        <field name="property_id" ref="feature_property_system"/>
+        <field name="name">classic</field>
+    </record>
+
+    <record id="feature_value_system_cave" model="software.license.feature.value">
+        <field name="property_id" ref="feature_property_system"/>
+        <field name="name">cave</field>
+    </record>
+
+    <record id="feature_value_system_rift" model="software.license.feature.value">
+        <field name="property_id" ref="feature_property_system"/>
+        <field name="name">rift</field>
+    </record>
+
+    <record id="feature_value_system_vive" model="software.license.feature.value">
+        <field name="property_id" ref="feature_property_system"/>
+        <field name="name">vive</field>
+    </record>
+
+</odoo>

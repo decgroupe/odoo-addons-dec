@@ -11,7 +11,6 @@
         [
             'security/ir.model.access.csv',
             'views/software_license.xml',
-            'views/software_license_application.xml',
             'views/software_license_feature.xml',
             'views/software_license_feature_property.xml',
             'views/software_license_feature_value.xml',

@@ -8,13 +8,19 @@ from odoo import _, api, fields, models
 class SoftwareLicenseApplication(models.Model):
     _name = 'software.license.application'
     _description = 'License application'
-    _order = 'application_id asc, name'
+    _order = 'identifier asc, name'
 
-    # TODO: rename to identifier
-    application_id = fields.Integer(
-        'AppID',
+    active = fields.Boolean(
+        'Active',
+        default=True,
+        help="If unchecked, it will allow you to hide the application "
+        "without removing it.",
+    )
+    identifier = fields.Integer(
+        'Identifier',
         required=True,
         default=0,
+        oldname='application_id',
     )
     name = fields.Text(
         'Application',

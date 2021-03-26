@@ -30,7 +30,7 @@
           <t t-set="title">Licenses</t>
       </t>
       <t t-if="not licenses">
-          <p>There are no licenses in your account.</p>
+          <p>There is no license linked to your account..</p>
       </t>
       <div t-if="licenses" class="panel panel-default">
         <div class="table-responsive"><table class="table table-hover o_portal_my_doc_table">

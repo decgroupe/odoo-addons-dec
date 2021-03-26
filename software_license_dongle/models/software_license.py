@@ -8,13 +8,9 @@ from odoo import api, fields, models
 class SoftwareLicense(models.Model):
     _inherit = 'software.license'
 
-    dongle_id = fields.Integer('Dongle ID')
     dongle_product_id = fields.Integer(
         related='application_id.dongle_product_id',
         string='Dongle Product ID',
+        store=True,
     )
 
-    classic = fields.Boolean('System Classic')
-    cave = fields.Boolean('System Cave')
-    rift = fields.Boolean('System Rift')
-    vive = fields.Boolean('System Vive')

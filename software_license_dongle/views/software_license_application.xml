@@ -6,7 +6,7 @@
         <field name="model">software.license.application</field>
         <field name="inherit_id" ref="software_license.software_license_application_tree_view"/>
         <field name="arch" type="xml">
-            <field name="application_id" position="after">
+            <field name="identifier" position="after">
                 <field name="dongle_product_id"/>
             </field>
         </field>
@@ -17,7 +17,7 @@
         <field name="model">software.license.application</field>
         <field name="inherit_id" ref="software_license.software_license_application_form_view"/>
         <field name="arch" type="xml">
-            <field name="application_id" position="after">
+            <field name="identifier" position="after">
                 <field name="dongle_product_id"/>
             </field>
         </field>
@@ -28,7 +28,7 @@
         <field name="model">software.license.application</field>
         <field name="inherit_id" ref="software_license.software_license_application_search_view"/>
         <field name="arch" type="xml">
-            <field name="application_id" position="after">
+            <field name="identifier" position="after">
                 <field name="dongle_product_id"/>
             </field>
         </field>

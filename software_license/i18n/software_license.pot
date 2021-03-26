@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 20:11+0000\n"
-"PO-Revision-Date: 2021-03-23 20:11+0000\n"
+"POT-Creation-Date: 2021-03-26 15:03+0000\n"
+"PO-Revision-Date: 2021-03-26 15:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Active"
 msgstr ""
 
 #. module: software_license
-#: model:ir.model.fields,field_description:software_license.field_software_license_application__application_id
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__identifier
 msgid "AppID"
 msgstr ""
 
@@ -80,11 +80,6 @@ msgstr ""
 #. module: software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_hardware_form_view
 msgid "Hardware"
-msgstr ""
-
-#. module: software_license
-#: model:ir.model.fields,field_description:software_license.field_software_license__hardware_id
-msgid "Hardware ID"
 msgstr ""
 
 #. module: software_license
@@ -182,11 +177,6 @@ msgid "Licensing"
 msgstr ""
 
 #. module: software_license
-#: model:ir.model.fields,field_description:software_license.field_software_license__datetime
-msgid "Modification Date"
-msgstr ""
-
-#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__partner_id
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "Partner"
@@ -202,6 +192,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license__production_id
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "Production"
+msgstr ""
+
+#. module: software_license
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_form_view
+msgid "Real name of the application, eg: Ubuntu 20.04"
 msgstr ""
 
 #. module: software_license
