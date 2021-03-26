@@ -14,6 +14,7 @@
             'views/software_license_feature.xml',
             'views/software_license_feature_property.xml',
             'views/software_license_feature_value.xml',
+            'views/menu.xml',
         ],
     'installable': True
 }
