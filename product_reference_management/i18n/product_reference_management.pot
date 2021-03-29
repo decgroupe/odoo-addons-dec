@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
+"POT-Creation-Date: 2021-03-28 20:54+0000\n"
+"PO-Revision-Date: 2021-03-28 20:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_reference_management
+#: model:ir.ui.menu,name:product_reference_management.menu_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_product_reference
 msgid "Products"
-msgstr "Articles"
+msgstr ""
 
 #. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_product_reference_manager
@@ -28,15 +33,20 @@ msgstr ""
 #. module: product_reference_management
 #: model:res.groups,name:product_reference_management.group_ref_manager
 msgid "Reference Manager"
-msgstr "Manager (REF)"
+msgstr ""
 
 #. module: product_reference_management
 #: model:res.groups,name:product_reference_management.group_ref_user
 msgid "Reference User"
-msgstr "Utilisateur (REF)"
+msgstr ""
 
 #. module: product_reference_management
 #: model:ir.module.category,name:product_reference_management.module_category_reference
 msgid "Reference management"
-msgstr "Gestion des références"
+msgstr ""
+
+#. module: product_reference_management
+#: model:ir.ui.menu,name:product_reference_management.menu_reporting
+msgid "Reporting"
+msgstr ""
 

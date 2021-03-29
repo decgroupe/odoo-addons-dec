@@ -9,8 +9,24 @@
 
     <record model="ir.ui.menu" id="menu_product_reference_manager">
         <field name="name">REF Manager</field>
-        <field name="sequence" eval="10"/>
-        <field name="parent_id" ref="menu_product_reference"/>
+        <field name="sequence" eval="1"/>
+        <field name="parent_id" eval="False"/>
+        <field name="groups_id" eval="[(6,0, [ref('product_reference_management.group_ref_user')])]"/>
+        <field name="web_icon">product_reference_management,static/description/icon.png</field>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_reporting">
+        <field name="name">Reporting</field>
+        <field name="sequence" eval="4000"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+        <field name="groups_id" eval="[(6,0, [ref('product_reference_management.group_ref_manager')])]"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_configuration">
+        <field name="name">Configuration</field>
+        <field name="sequence" eval="5000" />
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+        <field name="groups_id" eval="[(6,0, [ref('product_reference_management.group_ref_manager')])]"/>
     </record>
 
 </odoo>

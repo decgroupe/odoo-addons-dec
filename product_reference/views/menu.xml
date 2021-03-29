@@ -27,14 +27,14 @@
         <field name="name">Categories</field>
         <field name="sequence" eval="30"/>
         <field name="action" ref="act_window_ref_category"/>
-        <field name="parent_id" ref="product_reference_management.menu_product_reference_manager"/>
+        <field name="parent_id" ref="product_reference_management.menu_configuration"/>
     </record>
 
     <record model="ir.ui.menu" id="menu_ref_property">
         <field name="name">Category properties</field>
         <field name="sequence" eval="40"/>
         <field name="action" ref="act_window_ref_property"/>
-        <field name="parent_id" ref="product_reference_management.menu_product_reference_manager"/>
+        <field name="parent_id" ref="product_reference_management.menu_configuration"/>
     </record>
 
 

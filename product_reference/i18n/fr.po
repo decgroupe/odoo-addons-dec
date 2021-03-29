@@ -6,35 +6,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:11+0000\n"
-"PO-Revision-Date: 2020-11-14 12:42+0100\n"
-"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"POT-Creation-Date: 2021-03-28 20:55+0000\n"
+"PO-Revision-Date: 2021-03-28 22:58+0200\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
+"Language: fr\n"
 "X-Generator: Poedit 2.3.1\n"
 
 #. module: product_reference
+#: code:addons/product_reference/models/ref_reference.py:169
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (copie)"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
+msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_attribute
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__attribute_ids
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__attribute_id
 msgid "Attribute"
 msgstr "Attribut"
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_attribute
+#: model:ir.model.fields,field_description:product_reference.field_ref_property__attribute_ids
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_attribute_form_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_attribute_tree_view
 msgid "Attributes"
-msgstr "Attributs"
+msgstr "Caractéristiques"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__author_id
 msgid "Author"
 msgstr "Auteur"
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__auto_inc
+msgid "Auto-increment"
+msgstr "Incrémentation automatique"
 
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
@@ -58,8 +74,9 @@ msgstr "Catégorie"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__category_line_ids
-msgid "Category Line"
-msgstr "Ligne de catégorie"
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_category_line_form_view
+msgid "Category Lines"
+msgstr "Lignes de catégorie"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_category_line
@@ -68,7 +85,6 @@ msgstr "Ligne de catégorie"
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_category_line
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_category_line_form_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_category_line_tree_view
 msgid "Category lines"
 msgstr "Lignes de catégorie"
@@ -79,6 +95,7 @@ msgid "Category properties"
 msgstr "Propriétés de catégorie"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__code
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__code
 msgid "Code"
 msgstr "Code"
@@ -87,6 +104,16 @@ msgstr "Code"
 #: sql_constraint:ref.category:0
 msgid "Code category must be unique !"
 msgstr "Le code de la categorie doit être unique !"
+
+#. module: product_reference
+#: model:ir.model,name:product_reference.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: product_reference
+#: model:ir.model,name:product_reference.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramétrage"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__datetime
@@ -102,7 +129,7 @@ msgstr "Date de création"
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Créée par"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__create_date
@@ -113,7 +140,7 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Créée le"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__current_version
@@ -138,6 +165,7 @@ msgstr "Nom affiché"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_property__fixed
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__property_fixed
 msgid "Fixed values"
 msgstr "Valeurs fixes"
 
@@ -170,7 +198,25 @@ msgstr "ID"
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__description
 msgid "Internal Notes"
-msgstr "Notes internes"
+msgstr "Note interne"
+
+#. module: product_reference
+#: code:addons/product_reference/models/ref_property.py:80
+#, python-format
+msgid "Invalid char %s, an allowed char should be in %s"
+msgstr "Caractère non valide %s, un caractère autorisé doit être dans %s"
+
+#. module: product_reference
+#: code:addons/product_reference/models/ref_property.py:50
+#, python-format
+msgid "Invalid char %s, only allowed chars are %s"
+msgstr "Caractère non valide %s, les seuls caractères autorisés sont %s"
+
+#. module: product_reference
+#: code:addons/product_reference/models/ref_property.py:72
+#, python-format
+msgid "Invalid value length, the length must be %d"
+msgstr "Longueur de valeur non valide, la longueur doit être %d"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute____last_update
@@ -216,6 +262,12 @@ msgid "Log"
 msgstr "Historique"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_res_company__main_product_category_id
+#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__main_product_category_id
+msgid "Main Product Category"
+msgstr "Catégorie principale de l'article"
+
+#. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_market_bom
 msgid "Market BoM parent and children line"
 msgstr "À la fois parent et ligne de tarif"
@@ -224,6 +276,18 @@ msgstr "À la fois parent et ligne de tarif"
 #: model:ir.model,name:product_reference.model_ref_market_category
 msgid "Market Category"
 msgstr "Catégorie du tarif"
+
+#. module: product_reference
+#: code:addons/product_reference/models/ref_reference_line.py:47
+#, python-format
+msgid "Missing attribute for property {} : {}"
+msgstr "Attribut manquant pour la propriété {} : {}"
+
+#. module: product_reference
+#: code:addons/product_reference/models/ref_reference_line.py:54
+#, python-format
+msgid "Missing value for property {} : {}"
+msgstr "Valeur manquante pour la propriété {} : {}"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ir_model_data
@@ -249,6 +313,11 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
+msgid "Notes"
+msgstr "Notes"
+
+#. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_pack
 msgid "Pack"
 msgstr "Pack"
@@ -268,7 +337,7 @@ msgstr "Position"
 #: model:ir.model,name:product_reference.model_product_product
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_id
 msgid "Product"
-msgstr "Produits"
+msgstr "Article"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_product_template
@@ -323,7 +392,7 @@ msgstr "Propriété"
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__property_id
 msgid "Property (owner)"
-msgstr "Propriété (propriétaire)"
+msgstr "Propriétaire "
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__description
@@ -349,6 +418,11 @@ msgstr "Rayon"
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
 msgid "Reference"
 msgstr "Référence"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
+msgid "Reference Management"
+msgstr "Gestion des références"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_reference_line
@@ -389,7 +463,7 @@ msgstr "Rangée"
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de commande de vente"
+msgstr "Ligne de bons de commande"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__searchvalue
@@ -403,9 +477,14 @@ msgid "Services"
 msgstr "Prestations"
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
+msgid "Set default root product category used when creating a new reference category"
+msgstr "Définir la catégorie de produits racine par défaut utilisée lors de la création d’une nouvelle catégorie de référence"
+
+#. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__state
 msgid "Status"
-msgstr "État"
+msgstr "Statut"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__description_template
@@ -413,13 +492,11 @@ msgid "Template"
 msgstr "Modèle"
 
 #. module: product_reference
-#: code:addons/product_reference/models/ir_model_data.py:43
-#, python-format
-msgid "This record already owns an external ID: %s"
-msgstr "Cet enregistrement dispose déjà d'un ID externe: %s"
+#: model:ir.model.fields,help:product_reference.field_ref_category__description_template
+msgid "This text is used to automatically generate the product description based on its properties"
+msgstr "Ce texte est utilisé pour générer automatiquement la description du produit en fonction de ses propriétés"
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__value
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__value
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__value
 msgid "Value"
@@ -436,162 +513,3 @@ msgstr "Version"
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_version_tree_view
 msgid "Versions"
 msgstr "Versions"
-
-#~ msgid "BoM Lines"
-#~ msgstr "Lignes de nomenclature"
-
-#~ msgid "Company"
-#~ msgstr "Société"
-
-#~ msgid "Computer"
-#~ msgstr "PC"
-
-#~ msgid "Cost Price"
-#~ msgstr "Prix de revient"
-
-#~ msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
-#~ msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
-
-#~ msgid "Create Date"
-#~ msgstr "Date de création"
-
-#~ msgid "Creator"
-#~ msgstr "Créateur"
-
-#~ msgid "Description"
-#~ msgstr "Description"
-
-#~ msgid "External ID"
-#~ msgstr "Identifiant externe"
-
-#~ msgid "Has a Public Code"
-#~ msgstr "A une référence commerciale"
-
-#~ msgid "ID defined in xml file"
-#~ msgstr "ID de la vue définie dans le fichier XML"
-
-#~ msgid "IP Address"
-#~ msgstr "Adresse IP"
-
-#~ msgid "Is not a Pack"
-#~ msgstr "N'est pas un Pack"
-
-#~ msgid "Last Write Date"
-#~ msgstr "Date de dernière modification"
-
-#~ msgid "Last Writer"
-#~ msgstr "Modifié par"
-
-#~ msgid "Local Username"
-#~ msgstr "Nom utilisateur PC"
-
-#~ msgid "Locked price"
-#~ msgstr "Prix verrouillé"
-
-#~ msgid "Logs"
-#~ msgstr "Historiques"
-
-#~ msgid "Manufacturer"
-#~ msgstr "Fabriquant"
-
-#~ msgid "Market bill of materials and services"
-#~ msgstr "Nomenclatures et services du Tarif"
-
-#~ msgid "Markup rate"
-#~ msgstr "Taux de marque"
-
-#~ msgid "Material factor (PF)"
-#~ msgstr "Ratio petite fourniture (PF)"
-
-#~ msgid "Operation"
-#~ msgstr "Opération"
-
-#~ msgid "Pack Type"
-#~ msgstr "Type de pack"
-
-#~ msgid "Packs"
-#~ msgstr "Packs"
-
-#~ msgid "Parent BoM"
-#~ msgstr "Nomenclature mère"
-
-#~ msgid "Prefix"
-#~ msgstr "Préfixe"
-
-#~ msgid "Price"
-#~ msgstr "Prix"
-
-#~ msgid "Price at which the product is sold to customers."
-#~ msgstr "Prix auquel le produit est vendu aux clients."
-
-#~ msgid "Product Qty"
-#~ msgstr "Qté de produit"
-
-#~ msgid "Product UOM"
-#~ msgstr "UdM du produit"
-
-#~ msgid "REF Manager"
-#~ msgstr "REF Manager"
-
-#~ msgid "Reference Manager"
-#~ msgstr "Manager (REF)"
-
-#~ msgid "Reference User"
-#~ msgstr "Utilisateur (REF)"
-
-#~ msgid "Reference management"
-#~ msgstr "Gestion des références"
-
-#~ msgid "Sale Price"
-#~ msgstr "Prix de vente"
-
-#~ msgid "Supplier"
-#~ msgstr "Fournisseur"
-
-#~ msgid "UoM (Unit of Measure) is the unit of measurement for the inventory control"
-#~ msgstr "UdM (Unité de mesure) est l'unité utilisée pour le contrôle d'inventaire"
-
-#~ msgid "Used by REF manager Market"
-#~ msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
-
-#~ msgid "User"
-#~ msgstr "Utilisateur"
-
-#~ msgid "Compute Material Cost Manually"
-#~ msgstr "Calculez les coûts matériel manuellement"
-
-#~ msgid "Generate Material Cost Report"
-#~ msgstr "Générer le rapport sur les coûts matériel"
-
-#~ msgid "Ciel"
-#~ msgstr "Ciel"
-
-#~ msgid "Comments"
-#~ msgstr "Commentaires"
-
-#~ msgid "Date"
-#~ msgstr "Date"
-
-#~ msgid "Owner"
-#~ msgstr "Propriétaire"
-
-#~ msgid "Price Lines"
-#~ msgstr "Lignes de prix"
-
-#~ msgid "Price surcharge alert"
-#~ msgstr "Alert d'augmentation de prix"
-
-#~ msgid "Prices"
-#~ msgstr "Prix"
-
-#~ msgid "Reference Lines"
-#~ msgstr "Lignes de référence"
-
-#~ msgid "Version Lines"
-#~ msgstr "Lignes de version"
-
-#~ msgid "localcomputername"
-#~ msgstr "localcomputername"
-
-#~ msgid "username"
-#~ msgstr "username"

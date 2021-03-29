@@ -4,14 +4,14 @@
     <menuitem 
         action="action_reference_compute_material_cost" 
         id="menu_reference_compute_material_cost" 
-        parent="dec.menu_reporting" 
+        parent="product_reference_management.menu_reporting" 
         sequence="200">
     </menuitem>
 
     <menuitem 
         action="action_reference_generate_material_cost_report" 
         id="menu_reference_generate_material_cost_report" 
-        parent="dec.menu_reporting" 
+        parent="product_reference_management.menu_reporting" 
         sequence="210">
     </menuitem>
 
