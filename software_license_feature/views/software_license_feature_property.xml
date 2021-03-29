@@ -5,9 +5,21 @@
         <field name="name">software.license.feature.property.tree@software_license_feature</field>
         <field name="model">software.license.feature.property</field>
         <field name="arch" type="xml">
-            <tree string="Properties" create="true" delete="true" editable="bottom">
+            <tree string="Properties" create="true" delete="true">
                 <field name="name"/>
                 <field name="customizable"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_feature_property_editable_tree_view" >
+        <field name="name">software.license.feature.property.tree#editable@software_license_feature</field>
+        <field name="model">software.license.feature.property</field>
+        <field name="inherit_id" ref="software_license_feature.software_license_feature_property_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="editable">bottom</attribute>
             </tree>
         </field>
     </record>

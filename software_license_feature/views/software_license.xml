@@ -27,7 +27,10 @@
             </header>
             <group name="main" position="after">
                 <group name="features">
-                    <field name="feature_ids"/>
+                    <field name="feature_ids" context="{
+                        'tree_view_ref': 'software_license_feature.software_license_feature_editable_tree_view',
+                        'form_view_ref': 'software_license_feature.software_license_feature_form_view'
+                    }"/>
                 </group>
             </group>
         </field>

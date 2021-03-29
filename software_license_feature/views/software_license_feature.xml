@@ -5,7 +5,7 @@
         <field name="name">software.license.feature.tree@software_license_feature</field>
         <field name="model">software.license.feature</field>
         <field name="arch" type="xml">
-            <tree string="Features" create="true" delete="true" editable="bottom">
+            <tree string="Features" create="true" delete="true">
                 <field name="sequence" widget="handle"/>
                 <field name="property_id"/>
                 <field name="customizable" invisible="1"/>
@@ -20,6 +20,18 @@
             </tree>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="software_license_feature_editable_tree_view" >
+        <field name="name">software.license.feature.tree#editable@software_license_feature</field>
+        <field name="model">software.license.feature</field>
+        <field name="inherit_id" ref="software_license_feature.software_license_feature_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="editable">bottom</attribute>
+            </tree>
+        </field>
+    </record>
     
     <record model="ir.ui.view" id="software_license_feature_form_view" >
         <field name="name">software.license.feature.form@software_license_feature</field>
@@ -28,7 +40,9 @@
             <form string="Features">
                 <div class="oe_title">
                     <label for="property_id" class="oe_edit_only"/>
-                    <h1><field name="property_id" class="oe_inline"/></h1>
+                    <h1>
+                        <field name="property_id" class="oe_inline"/>
+                    </h1>
                 </div>
                 <group>
                     <field name="sequence" invisible="1"/>
