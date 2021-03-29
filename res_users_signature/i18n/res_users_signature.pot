@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
+"POT-Creation-Date: 2021-03-29 17:11+0000\n"
+"PO-Revision-Date: 2021-03-29 17:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,17 +16,246 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: res_users_signature
+#: model:res.users.signature.template,body_lightweight_html:res_users_signature.user_signature_template
+msgid "<div>\n"
+"    --<br/>\n"
+"    ${firstname} ${lastname}${', ' + user.employee_ids.job_title if user.employee_ids.job_title else ''} | ${company_name}\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: res_users_signature
+#: model:res.users.signature.template,body_html:res_users_signature.user_signature_template
+msgid "<table border=\"0\" style=\"border-spacing:0px;border-collapse:collapse;                         margin:0px;line-height:1em;font-family:Roboto,Arial,sans-serif;font-size:1em!important;width:520px\">\n"
+"    <tr>\n"
+"        <td style=\"vertical-align:top;background-color:#F1F0ED;width:60px;padding:20px!important;\">\n"
+"            <img alt=\"DEC\" src=\"https://files.dec-industrie.com/logoc.png\" style=\"min-width:60px;height:60px;border-radius: 50%\"/>\n"
+"        </td>\n"
+"\n"
+"        <td valign=\"top\" style=\"background-color:#343534;padding:8px!important;text-align:right\">\n"
+"            <div style=\"font-family:Roboto;line-height:1em;\">\n"
+"                <span id=\"sign_firstname\" style=\"font-size:16px!important;color:#FFFFFF\">${firstname}</span>\n"
+"                <span id=\"sign_lastname\" style=\"font-weight:700;font-size:16px!important;color:#FFFFFF\">${lastname}</span>\n"
+"                <br/>\n"
+"                <span id=\"sign_title\" style=\"font-style:italic;font-weight:100!important;font-size:16px!important;color:#FFFFFF\">${job_title}</span>\n"
+"                <br/>\n"
+"                % for email in emails:\n"
+"                <a style=\"font-size:14.4px!important;color:#F1F0ED;text-decoration:underline;\" href=\"mailto:${email}\">${email}</a>\n"
+"                <br/>\n"
+"                % endfor\n"
+"\n"
+"                <div id=\"sign_linebreak1\" style=\"line-height:0.75em;\">\n"
+"                    <br/>\n"
+"                </div>\n"
+"\n"
+"                <span id=\"sign_website\" style=\"line-height:12px;\">\n"
+"                    % for website in websites:\n"
+"                    <a style=\"color:#F1F0ED;font-size:9.6px!important;text-decoration:underline;\" href=\"${website}\">${website.lstrip('http://').lstrip('https://')}</a>\n"
+"                    <br/>\n"
+"                    % endfor\n"
+"                </span>\n"
+"            </div>\n"
+"        </td>\n"
+"        <td valign=\"top\" style=\"background-color:#343534;padding:8px!important;width:160px;\">\n"
+"            <div style=\"font-family:Roboto;min-width:160px;\">\n"
+"                <table border=\"0\" style=\"border-spacing:0px;border-collapse:collapse;margin:0px;line-height:1em;\">\n"
+"                    <tr>\n"
+"                        <td valign=\"top\" style=\"background-color:#343534;\">\n"
+"                            <img alt=\"🗺️\" src=\"https://files.dec-industrie.com/address.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
+"                        </td>\n"
+"                        <td valign=\"top\" style=\"background-color:#343534\">\n"
+"                            <div style=\"line-height:12px;\">\n"
+"                                <span id=\"sign_street\" style=\"color:#FFFFFF;font-size:12px!important\">${street1}<br/>\n"
+"${street2}</span>\n"
+"                                <br/>\n"
+"                                <span id=\"sign_city\" style=\"color:#FFFFFF;font-size:12px!important;font-weight:700\">${zip} ${city.upper()}</span>\n"
+"                                <div id=\"sign_linebreak2\" style=\"line-height:0.75em;\">\n"
+"                                    <span style=\"font-size:12px!important;\">\n"
+"                                        <br/>\n"
+"                                    </span>\n"
+"                                </div>\n"
+"                            </div>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                % if phone:\n"
+"                    <tr>\n"
+"                        <td style=\"background-color:#343534;\">\n"
+"                            <img alt=\"📱\" src=\"https://files.dec-industrie.com/mobile.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
+"                        </td>\n"
+"                        <td style=\"background-color:#343534\">\n"
+"                            <a style=\"color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700\" href=\"tel:${phone}\">${phone}</a>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                % endif\n"
+"                    <tr>\n"
+"                        <td style=\"background-color:#343534;\">\n"
+"                            <img alt=\"📞\" src=\"https://files.dec-industrie.com/phone.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
+"                        </td>\n"
+"                        <td style=\"background-color:#343534;\">\n"
+"                            <a style=\"color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700\" href=\"tel:${company_phone}\">${company_phone} \n"
+"                            % if phone_ext:\n"
+"                                <span style=\"font-size:10px!important;font-weight:400;\">poste <b>${phone_ext}</b>\n"
+"                                </span>\n"
+"                            % endif\n"
+"                            </a>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td style=\"background-color:#343534;\">\n"
+"                            <img alt=\"📠\" src=\"https://files.dec-industrie.com/print.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
+"                        </td>\n"
+"                        <td style=\"background-color:#343534;\">\n"
+"                            <a style=\"color:#D83445;text-decoration:none;font-size:13.6px!important;font-weight:700\" href=\"tel:+${company_fax}\">${company_fax}</a>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            </div>\n"
+"        </td>\n"
+"    </tr>\n"
+"</table>\n"
+"\n"
+"        "
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_answer
+msgid "Answer Signature"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model,name:res_users_signature.model_hr_employee
+msgid "Employee"
+msgstr ""
+
+#. module: res_users_signature
+#: code:addons/res_users_signature/models/res_users_signature_template.py:183
+#, python-format
+msgid "Failed to render template %r using values %r"
+msgstr ""
+
+#. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+msgid "Generate Signatures from Company Template"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__body_html
+msgid "Html Version"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__id
+msgid "ID"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__body_lightweight_html
+msgid "Lightweight Html Version"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_res_users__signature_answer
+msgid "Lightweight version of the HTML signature"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model,name:res_users_signature.model_res_users_signature_template
+msgid "Model used to store signature template and render "
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__name
+msgid "Name"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__other_websites
+msgid "Other Websites"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__other_work_emails
+msgid "Other Work Emails"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__work_phone_extension
+msgid "Phone Extension"
+msgstr ""
+
+#. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_text
 msgid "Text Signature"
-msgstr "Signature texte"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__body_text
+msgid "Text Version"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__body_text
+msgid "Text version for reports"
+msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_res_users__signature_text
 msgid "This field is only used on reports when the report engine does not support html rendering"
-msgstr "Ce champ est utilisé uniquement quand le générateur de rapport ne supporte pas le rendu html"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_hr_employee__other_work_emails
+msgid "Use one line per e-mail"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_hr_employee__other_websites
+msgid "Use one line per website"
+msgstr ""
+
+#. module: res_users_signature
+#: code:addons/res_users_signature/models/res_users_signature_template.py:105
+#, python-format
+msgid "User %s is not linked to an employee"
+msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model,name:res_users_signature.model_res_users
 msgid "Users"
-msgstr "Utilisateurs"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_hr_employee__work_phone_extension
+msgid "Work Phone Extension"
+msgstr ""
 

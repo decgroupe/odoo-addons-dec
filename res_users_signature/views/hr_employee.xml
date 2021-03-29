@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="employee_form_view">
+        <field name="name">hr.employee.form@res_users_signature</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="work_email" position="before">
+                <field name="other_websites"/>
+            </field>
+            <field name="work_email" position="after">
+                <field name="other_work_emails"/>
+            </field>
+            <field name="work_phone" position="after">
+                <field name="work_phone_extension"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -10,6 +10,9 @@
             <field name="signature" position="before">
                 <field name="signature_text" readonly="0"/>
             </field>
+            <field name="signature" position="after">
+                <field name="signature_answer" readonly="0"/>
+            </field>
         </field>
     </record>
 
@@ -21,6 +24,20 @@
         <field name="arch" type="xml">
             <field name="signature" position="before">
                 <field name="signature_text"/>
+            </field>
+            <field name="signature" position="after">
+                <field name="signature_answer" readonly="0"/>
+                <button
+                    name="action_generate_signatures"
+                    string="Generate Signatures from Company Template"
+                    type="object"
+                    class="btn-primary"
+                    attrs="{
+                        'invisible': [
+                            ('name', '=', False),
+                        ]
+                    }">
+                </button>
             </field>
         </field>
     </record>

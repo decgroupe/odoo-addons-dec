@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="res.users.signature.template" id="user_signature_template">
+        <field name="name">User Signature Template</field>
+        <field name="body_text">${firstname} ${lastname}
+${job_title}
+% if phone:
+Mobile: ${phone}
+% endif
+% for email in emails:
+${email}
+% endfor
+        </field>
+        <field name="body_html" type="html">
+
+<table border="0" style="border-spacing:0px;border-collapse:collapse;
+                        margin:0px;line-height:1em;font-family:Roboto,Arial,sans-serif;font-size:1em!important;width:520px">
+    <tr>
+        <td style="vertical-align:top;background-color:#F1F0ED;width:60px;padding:20px!important;">
+            <img alt="DEC" src="https://files.dec-industrie.com/logoc.png" style="min-width:60px;height:60px;border-radius: 50%"/>
+        </td>
+
+        <td valign="top" style="background-color:#343534;padding:8px!important;text-align:right">
+            <div style="font-family:Roboto;line-height:1em;">
+                <span id="sign_firstname" style="font-size:16px!important;color:#FFFFFF">${firstname}</span>
+                <span id="sign_lastname" style="font-weight:700;font-size:16px!important;color:#FFFFFF">${lastname}</span>
+                <br/>
+                <span id="sign_title" style="font-style:italic;font-weight:100!important;font-size:16px!important;color:#FFFFFF">${job_title}</span>
+                <br/>
+                % for email in emails:
+                <a style="font-size:14.4px!important;color:#F1F0ED;text-decoration:underline;" href="mailto:${email}">${email}</a>
+                <br/>
+                % endfor
+
+                <div id="sign_linebreak1" style="line-height:0.75em;">
+                    <br/>
+                </div>
+
+                <span id="sign_website" style="line-height:12px;">
+                    % for website in websites:
+                    <a style="color:#F1F0ED;font-size:9.6px!important;text-decoration:underline;" href="${website}">${website.lstrip('http://').lstrip('https://')}</a>
+                    <br/>
+                    % endfor
+                </span>
+            </div>
+        </td>
+        <td valign="top" style="background-color:#343534;padding:8px!important;width:160px;">
+            <div style="font-family:Roboto;min-width:160px;">
+                <table border="0" style="border-spacing:0px;border-collapse:collapse;margin:0px;line-height:1em;">
+                    <tr>
+                        <td valign="top" style="background-color:#343534;">
+                            <img alt="🗺️" src="https://files.dec-industrie.com/address.png" style="min-width:16px;min-height:16px;"/>
+                        </td>
+                        <td valign="top" style="background-color:#343534">
+                            <div style="line-height:12px;">
+                                <span id="sign_street" style="color:#FFFFFF;font-size:12px!important">${street1}<br/>
+${street2}</span>
+                                <br/>
+                                <span id="sign_city" style="color:#FFFFFF;font-size:12px!important;font-weight:700">${zip} ${city.upper()}</span>
+                                <div id="sign_linebreak2" style="line-height:0.75em;">
+                                    <span style="font-size:12px!important;">
+                                        <br/>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                % if phone:
+                    <tr>
+                        <td style="background-color:#343534;">
+                            <img alt="📱" src="https://files.dec-industrie.com/mobile.png" style="min-width:16px;min-height:16px;"/>
+                        </td>
+                        <td style="background-color:#343534">
+                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${phone}">${phone}</a>
+                        </td>
+                    </tr>
+                % endif
+                    <tr>
+                        <td style="background-color:#343534;">
+                            <img alt="📞" src="https://files.dec-industrie.com/phone.png" style="min-width:16px;min-height:16px;"/>
+                        </td>
+                        <td style="background-color:#343534;">
+                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${company_phone}">${company_phone} 
+                            % if phone_ext:
+                                <span style="font-size:10px!important;font-weight:400;">poste <b>${phone_ext}</b>
+                                </span>
+                            % endif
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#343534;">
+                            <img alt="📠" src="https://files.dec-industrie.com/print.png" style="min-width:16px;min-height:16px;"/>
+                        </td>
+                        <td style="background-color:#343534;">
+                            <a style="color:#D83445;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:+${company_fax}">${company_fax}</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+
+        </field>
+        <field name="body_lightweight_html" type="html">
+<div>
+    --<br/>
+    ${firstname} ${lastname}${', ' + user.employee_ids.job_title if user.employee_ids.job_title else ''} | ${company_name}
+</div>
+        </field>
+    </record>
+
+</odoo>

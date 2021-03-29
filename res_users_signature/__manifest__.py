@@ -7,10 +7,14 @@
     'summary': '''Text signature for reports''',
     'depends': [
         'base',
+        'hr',
     ],
     'data':
         [
             'views/res_users.xml',
+            'views/hr_employee.xml',
+            'data/signature_template.xml',
+            'security/ir.model.access.csv',
         ],
     'installable': True
 }
