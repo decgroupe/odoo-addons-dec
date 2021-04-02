@@ -54,7 +54,13 @@ class SoftwareLicense(models.Model):
         res = {}
         for feature_id in self.feature_ids:
             if feature_id.customizable:
-                res[feature_id.name] = feature_id.value
+                value = feature_id.value
             else:
-                res[feature_id.name] = feature_id.value_id.name
+                value = feature_id.value_id.name
+
+            if feature_id.name in res:
+                res[feature_id.name].append(value)
+            else:
+                res[feature_id.name] = [value]
+
         return res
