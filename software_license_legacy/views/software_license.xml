@@ -26,7 +26,11 @@
                     'invisible': [('main_hardware_id', '=', False)],
                 }"/>
                 <field name="main_hardware_dongle_identifier" attrs="{
-                    'invisible': [('dongle_product_id', '=', 0)],
+                    'invisible': [
+                        ('|'),
+                        ('dongle_product_id', '=', 0),
+                        ('main_hardware_dongle_identifier', '=', 0),
+                    ],
                 }"/>
                 <separator/>
             </field>
