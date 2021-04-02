@@ -6,6 +6,7 @@
         <field name="model">software.license.feature.value</field>
         <field name="arch" type="xml">
             <tree string="Values">
+                <field name="property_id" invisible="1"/>
                 <field name="name"/>
             </tree>
         </field>
@@ -17,6 +18,7 @@
         <field name="arch" type="xml">
             <form string="Values">
                 <group>
+                    <field name="property_id" invisible="1"/>
                     <field name="name"/>
                 </group>
             </form>

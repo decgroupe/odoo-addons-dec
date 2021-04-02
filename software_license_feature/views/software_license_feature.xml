@@ -9,7 +9,7 @@
                 <field name="sequence" widget="handle"/>
                 <field name="property_id"/>
                 <field name="customizable" invisible="1"/>
-                <field name="value_id" string="Value (List)" domain="[('property_id', '=', property_id)]" attrs="{
+                <field name="value_id" string="Value (List)" domain="[('property_id', '=', property_id)]" context="{'default_property_id': property_id}" attrs="{
                     'invisible': [('customizable', '=', True)],
                     'required': [('customizable', '!=', True)],
                 }"/>
