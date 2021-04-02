@@ -5,12 +5,15 @@
 import json
 import io
 import base64
+import logging
 
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
 
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareLicenseHardware(models.Model):
@@ -20,6 +23,14 @@ class SoftwareLicenseHardware(models.Model):
         string='Validation Date',
         default=fields.Datetime.now,
         required=True,
+    )
+    validity_days = fields.Integer(
+        string="Validity (Days)",
+        default=2,
+        required=True,
+        help="The license file data can be used to internally validate an "
+        "activation until this delay is reached. After this, a new validation "
+        "will be required to continue using the application.",
     )
 
     @api.model
@@ -38,10 +49,21 @@ class SoftwareLicenseHardware(models.Model):
         return res
 
     def _prepare_license_base_data(self):
-        return {
-            'date': fields.Datetime.to_string(self.validation_date),
-            'features': self.license_id.get_features_dict(),
+        res = {
+            'date':
+                fields.Datetime.to_string(self.validation_date),
+            'validity_days':
+                self.validity_days,
+            'expiration_date':
+                fields.Datetime.to_string(self.license_id.expiration_date),
+            'features':
+                self.license_id.get_features_dict(),
+            'partner':
+                self.license_id.partner_id.display_name,
+            'production':
+                self.license_id.production_id.display_name,
         }
+        return res
 
     @api.multi
     def get_license_string(self):
@@ -61,6 +83,9 @@ class SoftwareLicenseHardware(models.Model):
         base = self._prepare_license_base_data()
         # Convert python dict to json string
         base_string = json.dumps(base)
+        # Ensure padding of 16 byte boundary
+        while len(base_string) % 16 != 0:
+            base_string = base_string + '\n'
         # Convert json string to byte data
         data = base_string.encode("utf-8")
 
@@ -72,11 +97,11 @@ class SoftwareLicenseHardware(models.Model):
         enc_session_key = cipher_rsa.encrypt(session_key)
 
         # Encrypt the data with the AES session key
-        cipher_aes = AES.new(session_key, AES.MODE_EAX)
-        ciphertext, tag = cipher_aes.encrypt_and_digest(data)
+        cipher_aes = AES.new(session_key, AES.MODE_CFB)
+        ciphertext = cipher_aes.encrypt(data)
 
         f = io.BytesIO()
-        for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext):
+        for x in (enc_session_key, cipher_aes.iv, ciphertext):
             f.write(x)
         f.seek(0)
         stream_length = f.getbuffer().nbytes

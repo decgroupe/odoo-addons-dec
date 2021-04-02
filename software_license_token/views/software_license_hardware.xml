@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="info" position="after">
                 <field name="validation_date"/>
+                <field name="validity_days"/>
             </field>
         </field>
     </record>
@@ -19,6 +20,7 @@
         <field name="arch" type="xml">
             <group name="primary" position="inside">
                 <field name="validation_date"/>
+                <field name="validity_days"/>
             </group>
         </field>
     </record>
