@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="software_license.software_license_hardware_tree_view"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="dongle_identifier"/>
+                <field name="dongle_identifier" attrs="{'column_invisible': [('parent.dongle_product_id', '=', 0)]}"/>
             </field>
         </field>
     </record>
