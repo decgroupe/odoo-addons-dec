@@ -52,3 +52,10 @@ class SoftwareLicense(models.Model):
             'name': hardware,
         }
         return self.env['software.license.hardware'].create(vals)
+
+    def get_remaining_activation(self):
+        self.ensure_one()
+        if self.max_allowed_hardware <= 0:
+            return -1
+        else:
+            return self.max_allowed_hardware - len(self.hardware_ids)

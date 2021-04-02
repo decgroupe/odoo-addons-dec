@@ -66,7 +66,7 @@ SERIAL_UPDATED_ON_HARDWARE = {
         "machine with the given hardware identifier.",
 }
 
-BASE_URL = "/software_licensing_api/v1/identifier/<int:identifier>/serial/<string:serial>/hardware/<string:hardware>"
+BASE_URL = "/api/license/v1/identifier/<int:identifier>/serial/<string:serial>/hardware/<string:hardware>"
 
 
 class SoftwareLicenseController(http.Controller):
@@ -74,7 +74,7 @@ class SoftwareLicenseController(http.Controller):
     """
 
     #######################################################################
-    # http://odessa.decindustrie.com:8008/software_licensing_api/v1/identifier/{identifier}/serial/{serial}/hardware/{hardware}
+    # http://odessa.decindustrie.com:8008/api/license/v1/identifier/{identifier}/serial/{serial}/hardware/{hardware}
 
     def _get_hardware_id(self, identifier, serial, hardware):
         hardware_id = request.env['software.license.hardware']
@@ -121,8 +121,7 @@ class SoftwareLicenseController(http.Controller):
             hardware_id = license_id.activate(hardware)
             hardware_id.info = request.httprequest.remote_addr
             msg = SERIAL_ACTIVATED_ON_HARDWARE
-            msg['license_string'] = hardware_id.get_license_string()
-            msg['datetime'] = license_id.datetime
+            self.append_common_data(license_id, hardware_id, msg)
             return msg
 
     @http.route(
@@ -142,7 +141,6 @@ class SoftwareLicenseController(http.Controller):
         else:
             hardware_id.unlink()
             res = SERIAL_DEACTIVATED_ON_HARDWARE
-            res['datetime'] = license_id.datetime
             return res
 
     @http.route(
@@ -165,6 +163,10 @@ class SoftwareLicenseController(http.Controller):
         else:
             hardware_id.info = request.httprequest.remote_addr
             msg = SERIAL_UPDATED_ON_HARDWARE
-            msg['license_string'] = hardware_id.get_license_string()
-            msg['datetime'] = license_id.datetime
+            self.append_common_data(license_id, hardware_id, msg)
             return msg
+
+    def append_common_data(self, license_id, hardware_id, msg):
+        msg['license_string'] = hardware_id.get_license_string()
+        msg['remaining_activation'] = license_id.get_remaining_activation()
+
