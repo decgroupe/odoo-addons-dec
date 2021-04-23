@@ -50,6 +50,12 @@ class SoftwareLicenseHardware(models.Model):
 
     def _prepare_license_base_data(self):
         res = {
+            'serial':
+                self.license_id.serial,
+            'application_identifier':
+                self.license_id.application_id.identifier,
+            'application_name':
+                self.license_id.application_id.name,
             'date':
                 fields.Datetime.to_string(self.validation_date),
             'validity_days':
