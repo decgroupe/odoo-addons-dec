@@ -1,0 +1,13 @@
+{
+    'name': 'Healthchecks Support',
+    'version': '12.0.1.0.0',
+    'author': 'DEC, Yann Papouin',
+    'website': 'http://www.dec-industrie.com',
+    'summary': "Allow to ping an healthchecks server",
+    'depends': ['base', ],
+    'data': [
+        'data/ir_config_parameter.xml',
+        'data/ir_cron.xml',
+    ],
+    'installable': True
+}

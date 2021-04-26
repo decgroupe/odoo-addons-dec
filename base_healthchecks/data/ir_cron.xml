@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Scheduler -->
+    <record model="ir.cron" id="ir_cron_healthchecks">
+        <field name="name">🩹 Healthchecks: Ping server</field>
+        <field name="model_id" ref="model_healthchecks_ping"/>
+        <field name="state">code</field>
+        <field name="code">model.action_ping_config_url()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+</odoo>
