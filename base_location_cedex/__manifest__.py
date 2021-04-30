@@ -4,7 +4,9 @@
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
     'summary': '''Add Cedex to Zips''',
-    'depends': ['base_location', ],
+    'depends': [
+        'base_location_display',
+    ],
     'data': ['views/res_city_zip.xml', ],
     'installable': True
 }

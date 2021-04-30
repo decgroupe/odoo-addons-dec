@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.server" id="action_split" >
+        <field name="name">Split by zip prefix</field>
+        <field name="model_id" ref="base_address_city.model_res_city"/>
+        <field name="binding_model_id" ref="base_address_city.model_res_city"/>
+        <field name="state">code</field>
+        <field name="code">
+if not env.user.has_group('base.group_erp_manager'):
+    raise Warning("You do not have access to trigger this action")
+action = records.action_split_by_zip()
+        </field>
+    </record>
+
+</odoo>

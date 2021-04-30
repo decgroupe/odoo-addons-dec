@@ -6,6 +6,7 @@
     'summary': '''Customized display name for zips''',
     'depends': [
         'base_location',
+        'base_country_no_state',
     ],
     'data': [
     ],

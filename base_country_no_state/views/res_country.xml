@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="country_form_view">
+        <field name="model">res.country</field>
+        <field name="inherit_id" ref="base.view_country_form"/>
+        <field name="arch" type="xml">
+            <field name="name_position" position="after">
+                <field name="hide_state"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

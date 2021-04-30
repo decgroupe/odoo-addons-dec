@@ -20,7 +20,7 @@ class ResCityZip(models.Model):
 
     def format_name(self):
         self.ensure_one()
-        res = "{} {}".format(self.name, self.city_id.name)
+        res = super().format_name()
         if self.cedex:
             if self.cedex.lower() in ('cedex', '.', '-', '_'):
                 res = _("{} Cedex").format(res)
@@ -28,16 +28,18 @@ class ResCityZip(models.Model):
                 res = _("{} Cedex {}").format(res, self.cedex)
         return res
 
-    @api.multi
-    @api.depends(
-        'name', 'cedex', 'city_id', 'city_id.name', 'city_id.state_id',
-        'city_id.country_id'
-    )
-    def _compute_new_display_name(self):
-        for rec in self:
-            name = [rec.format_name()]
-            if rec.city_id.state_id:
-                name.append(rec.city_id.state_id.name)
-            if rec.city_id.country_id:
-                name.append(rec.city_id.country_id.name)
-            rec.display_name = ", ".join(name)
+    # @api.multi
+    # @api.depends(
+    #     'name', 'cedex', 'city_id', 'city_id.name', 'city_id.state_id',
+    #     'city_id.country_id'
+    # )
+    # def _compute_new_display_name(self):
+    #     for rec in self:
+    #         name = [rec.format_name()]
+    #         country_id = rec.city_id.country_id
+    #         if rec.city_id.state_id:
+    #             if not country_id or (country_id and not country_id.hide_state):
+    #                 name.append(rec.city_id.state_id.name)
+    #         if country_id:
+    #             name.append(country_id.name)
+    #         rec.display_name = ", ".join(name)

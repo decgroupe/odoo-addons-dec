@@ -2,7 +2,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Mar 2020
 
-
 from odoo import fields, models, api
 
 
@@ -15,13 +14,22 @@ class ResCityZip(models.Model):
         index=True,
     )
 
+    def format_name(self):
+        self.ensure_one()
+        return "{} {}".format(self.name, self.city_id.name)
+
     @api.multi
-    @api.depends('name', 'city_id')
+    @api.depends(
+        'name', 'city_id', 'city_id.name', 'city_id.state_id',
+        'city_id.country_id'
+    )
     def _compute_new_display_name(self):
         for rec in self:
-            name = ["{} {}".format(rec.name, rec.city_id.name)]
+            name = [rec.format_name()]
+            country_id = rec.city_id.country_id
             if rec.city_id.state_id:
-                name.append(rec.city_id.state_id.name)
-            if rec.city_id.country_id:
-                name.append(rec.city_id.country_id.name)
+                if not country_id or (country_id and not country_id.hide_state):
+                    name.append(rec.city_id.state_id.name)
+            if country_id:
+                name.append(country_id.name)
             rec.display_name = ", ".join(name)
