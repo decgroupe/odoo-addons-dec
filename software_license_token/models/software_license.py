@@ -40,9 +40,7 @@ class SoftwareLicense(models.Model):
         for rec in self.filtered('expiration_date'):
             for hardware_id in rec.hardware_ids:
                 if hardware_id.validation_date > rec.expiration_date:
-                    raise ValidationError(
-                        _('Expiration date reached')
-                    )
+                    raise ValidationError(_('Expiration date reached'))
 
     @api.multi
     def activate(self, hardware):
@@ -59,3 +57,30 @@ class SoftwareLicense(models.Model):
             return -1
         else:
             return self.max_allowed_hardware - len(self.hardware_ids)
+
+    @api.multi
+    def get_hardwares_dict(self):
+        self.ensure_one()
+        res = {}
+        for hardware_id in self.hardware_ids:
+            hardware_data = hardware_id._prepare(include_license_data=False)
+            hardware_data.update(
+                {
+                    'dongle_identifier': hardware_id.dongle_identifier,
+                }
+            )
+            res[hardware_id.name] = hardware_data
+        return res
+
+    def _prepare(self, include_serial=True):
+        res = {
+            'application_identifier': self.application_id.identifier,
+            'application_name': self.application_id.name,
+            'expiration_date': fields.Datetime.to_string(self.expiration_date),
+            'features': self.get_features_dict(),
+            'partner': self.partner_id.display_name,
+            'production': self.production_id.display_name,
+        }
+        if include_serial:
+            res['serial'] = self.serial
+        return res

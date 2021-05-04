@@ -48,27 +48,17 @@ class SoftwareLicenseHardware(models.Model):
             rec.license_id._check_expiration_date()
         return res
 
-    def _prepare_license_base_data(self):
-        res = {
-            'serial':
-                self.license_id.serial,
-            'application_identifier':
-                self.license_id.application_id.identifier,
-            'application_name':
-                self.license_id.application_id.name,
-            'date':
-                fields.Datetime.to_string(self.validation_date),
-            'validity_days':
-                self.validity_days,
-            'expiration_date':
-                fields.Datetime.to_string(self.license_id.expiration_date),
-            'features':
-                self.license_id.get_features_dict(),
-            'partner':
-                self.license_id.partner_id.display_name,
-            'production':
-                self.license_id.production_id.display_name,
-        }
+    def _prepare(self, include_license_data=True):
+        if include_license_data:
+            res = self.license_id._prepare()
+        else:
+            res = {}
+        res.update(
+            {
+                'date': fields.Datetime.to_string(self.validation_date),
+                'validity_days': self.validity_days,
+            }
+        )
         return res
 
     @api.multi
@@ -86,7 +76,7 @@ class SoftwareLicenseHardware(models.Model):
         ]
 
         # Base data
-        base = self._prepare_license_base_data()
+        base = self._prepare()
         # Convert python dict to json string
         base_string = json.dumps(base)
         # Ensure padding of 16 byte boundary

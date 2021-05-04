@@ -76,8 +76,10 @@ SERIAL_UPDATED_ON_HARDWARE = {
         "machine with the given hardware identifier.",
 }
 
-BASE_COMMAND_URL = "/api/license/v1/identifier/<int:identifier>/serial/<string:serial>/hardware/<string:hardware>"
-BASE_QUERY_URL = "/api/license/v1/identifier/<int:identifier>/hardware/<string:hardware>"
+URL_BASE = "/api/license/v1"
+URL_IDENTIFIER = URL_BASE + "/identifier/<int:identifier>"
+URL_IDENTIFIER_SERIAL_HARDWARE = URL_IDENTIFIER + "/serial/<string:serial>/hardware/<string:hardware>"
+URL_IDENTIFIER_HARDWARE = URL_IDENTIFIER + "/hardware/<string:hardware>"
 
 
 class SoftwareLicenseController(http.Controller):
@@ -103,7 +105,7 @@ class SoftwareLicenseController(http.Controller):
         return hardware_id
 
     @http.route(
-        BASE_QUERY_URL + '/GetSerial',
+        URL_IDENTIFIER_HARDWARE + '/Serial',
         type='json',
         methods=['POST'],
         auth="public",
@@ -124,7 +126,7 @@ class SoftwareLicenseController(http.Controller):
         return license_id
 
     @http.route(
-        BASE_COMMAND_URL + '/Activate',
+        URL_IDENTIFIER_SERIAL_HARDWARE + '/Activate',
         type='json',
         methods=['POST'],
         auth="public",
@@ -151,7 +153,7 @@ class SoftwareLicenseController(http.Controller):
             return msg
 
     @http.route(
-        BASE_COMMAND_URL + '/Deactivate',
+        URL_IDENTIFIER_SERIAL_HARDWARE + '/Deactivate',
         type='json',
         methods=['POST'],
         auth="public",
@@ -170,7 +172,7 @@ class SoftwareLicenseController(http.Controller):
             return res
 
     @http.route(
-        BASE_COMMAND_URL + '/Validate',
+        URL_IDENTIFIER_SERIAL_HARDWARE + '/Validate',
         type='json',
         methods=['POST'],
         auth="public",
@@ -211,3 +213,45 @@ class SoftwareLicenseController(http.Controller):
 
     def _append_remaining_activation(self, license_id, msg):
         msg['remaining_activation'] = license_id.get_remaining_activation()
+
+    #######################################################################
+
+    def _get_default_domain(self):
+        partner = request.env.user.partner_id
+        return [
+            # ('|'),
+            # ('partner_id', 'parent_of', partner.id),
+            ('partner_id', 'child_of', partner.id),
+            ('portal_published', '=', True),
+        ]
+
+    @http.route(
+        URL_IDENTIFIER + '/Licenses',
+        type='json',
+        methods=['POST'],
+        auth="user",
+        csrf=False,
+    )
+    def get_licenses(self, identifier, **kwargs):
+        SoftwareLicense = request.env['software.license']
+        domain = self._get_default_domain()
+        if identifier:
+            domain += [('application_id.identifier', '=', identifier)]
+        license_ids = SoftwareLicense.search(domain)
+        res = {}
+        for license_id in license_ids:
+            license_data = license_id.sudo()._prepare(include_serial=False)
+            license_data['hardwares'] = license_id.sudo().get_hardwares_dict()
+            self._append_remaining_activation(license_id, license_data)
+            res[license_id.serial] = license_data
+        return res
+
+    @http.route(
+        URL_BASE + '/Licenses',
+        type='json',
+        methods=['POST'],
+        auth="user",
+        csrf=False,
+    )
+    def get_all_licenses(self, **kwargs):
+        return self.get_licenses(identifier=False)

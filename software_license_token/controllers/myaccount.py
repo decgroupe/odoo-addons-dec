@@ -18,8 +18,8 @@ class CustomerPortal(CustomerPortal):
     def _get_default_domain(self):
         partner = request.env.user.partner_id
         return [
-            ('|'),
-            ('partner_id', 'parent_of', partner.id),
+            # ('|'),
+            # ('partner_id', 'parent_of', partner.id),
             ('partner_id', 'child_of', partner.id),
             ('portal_published', '=', True),
         ]
