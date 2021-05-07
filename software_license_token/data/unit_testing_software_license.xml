@@ -1,34 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="license_test_3" model="software.license">
+        <field name="application_id" ref="application_test"/>
+        <field name="serial">4CWZT-FSW6Y-WBW1S-E3855</field>
+        <field name="max_allowed_hardware">1</field>
+        <field name="expiration_date" eval="False"/>
+        <field name="hardware_ids" eval="[(5,)]"/>
+        <field name="feature_ids" eval="[(5,)]"/>
+        <field name="info">License avec un emplacement d'activation libre</field>
+    </record>
+
+    <record id="license_test_4" model="software.license">
+        <field name="application_id" ref="application_test"/>
+        <field name="serial">4CWZT-FSW6Y-WBW1S-E3855</field>
+        <field name="max_allowed_hardware">1</field>
+        <field name="expiration_date" eval="False"/>
+        <field name="hardware_ids" eval="[(5,)]"/>
+        <field name="feature_ids" eval="[(5,)]"/>
+        <field name="info">License avec un emplacement d'activation occupé avec notre identifiant matériel</field>
+    </record>
+    
+    <record id="license_test_4_hardware_valid" model="software.license.hardware">
+        <field name="license_id" ref="license_test_4"/>
+        <field name="validation_date" eval="datetime.now()-relativedelta(days=1)"/>
+        <field name="validity_days">2</field>
+        <field name="name" eval="same_hardware_identifier"/>
+    </record>
+
+    <record id="license_test_5" model="software.license">
+        <field name="application_id" ref="application_test"/>
+        <field name="serial">X9SY8-D9537-JLU8R-FF4C7</field>
+        <field name="max_allowed_hardware">1</field>
+        <field name="expiration_date" eval="False"/>
+        <field name="hardware_ids" eval="[(5,)]"/>
+        <field name="feature_ids" eval="[(5,)]"/>
+        <field name="info">License avec un emplacement d'activation occupé par un autre identifiant matériel</field>
+    </record>
+    
+    <record id="license_test_5_hardware_valid" model="software.license.hardware">
+        <field name="license_id" ref="license_test_5"/>
+        <field name="validation_date" eval="datetime.now()-relativedelta(days=1)"/>
+        <field name="validity_days">2</field>
+        <field name="name" eval="other_hardware_identifier"/>
+    </record>
+
     <record id="license_test_1" model="software.license">
         <field name="application_id" ref="application_test"/>
         <field name="serial">R0GV7-DM2EK-4L863-1A109</field>
         <field name="max_allowed_hardware">1</field>
-        <field name="expiration_date">01/10/2021 00:00:00</field>
+        <field name="expiration_date">01/10/2021</field>
+        <field name="hardware_ids" eval="[(5,)]"/>
+        <field name="feature_ids" eval="[(5,)]"/>
         <field name="info">License expirée depuis le 10/01/2021</field>
     </record>
 
     <record id="license_test_1_hardware_invalid" model="software.license.hardware">
         <field name="license_id" ref="license_test_1"/>
-        <field name="validation_date">01/05/2021 00:00:00</field>
+        <field name="validation_date">01/05/2021</field>
         <field name="validity_days">2</field>
-        <field name="name" eval="invalid_hardware_identifier"/>
+        <field name="name" eval="other_hardware_identifier"/>
     </record>
 
     <record id="license_test_2" model="software.license">
         <field name="application_id" ref="application_test"/>
         <field name="serial">1TK0F-BRM62-XVC9W-03CCF</field>
         <field name="max_allowed_hardware">1</field>
-        <field name="expiration_date">01/10/2021 00:00:00</field>
+        <field name="expiration_date">01/10/2021</field>
+        <field name="hardware_ids" eval="[(5,)]"/>
+        <field name="feature_ids" eval="[(5,)]"/>
         <field name="info">License expirée depuis le 10/01/2021</field>
     </record>
 
     <record id="license_test_2_hardware_valid" model="software.license.hardware">
         <field name="license_id" ref="license_test_2"/>
-        <field name="validation_date">01/05/2021 00:00:00</field>
+        <field name="validation_date">01/05/2021</field>
         <field name="validity_days">2</field>
-        <field name="name" eval="valid_hardware_identifier"/>
+        <field name="name" eval="same_hardware_identifier"/>
     </record>
+
+
 
 </odoo>

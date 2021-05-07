@@ -101,8 +101,8 @@ class SoftwareLicenseController(http.Controller):
         previous_safe_eval = odoo_convert.safe_eval
         # Define a local context and override default `safe_eval`
         local_ctx = {
-            'valid_hardware_identifier': 'INTEL',
-            'invalid_hardware_identifier': 'AMD',
+            'same_hardware_identifier': 'SAME',
+            'other_hardware_identifier': 'OTHER',
         }
         # Let the testing user update local context with data from json 
         local_ctx.update(request.params.copy())
