@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="application_test" model="software.license.application">
+        <field name="name">Testing</field>
+        <field name="identifier">65534</field>
+        <field name="private_key">-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAmRAji9upGJSp/kw6rRNkiCC3an8OhghFTJARORCtZ7uXchjG
+PieJrXO+EQKICAdYHVU/7/VmfVEnn647l0jlQ+/yoX9GLrBoRzAfftjYKiWiahYG
+FjiXgJer1NjQYW//ZWV3dHldyN7GNbdkgr03FrNssLyKa/8MEg/q9on3LIYbH01P
+dzxiL74MzkDntvHFGUBNQ7dBGFLllBxRyvuxFK9DG2yFnHVpVUkK7TvvXRnkQdxH
+ltN3xw5isDQtTv3PH465VuZcl6OO0vD3URVonMA3AqrvGFoFjnFJJMV4LyCNdeWN
+1uq1L6Tp1Myw8+ZkAQrDJ4UhNqXfwzCE+xTqYwIDAQABAoIBACa4LO3Lvt5feRNB
+sFQpBDTlZdCUXJWuUO15wkmXvO3xR/HOb5O4h7zvewSticDSLsmYz6hBgVAxL99W
+gW+XOpvxfoS5AAV+jZp4g3cgnqomxAunD5oebcDTXV3mDOyhGs/JF6tIql9Ob4CW
+KGBkQiPFdrjMsQ15wtFs4mjEZNkHnWp7kd/+CKKKXm2jMMklYgvkgRNn2AwANvIt
+MbLd2sb7egrVipELWkxJclCQsmZaHUALMZvhXYyNTTLJXCtKYWvUe1IzfIrnrhAz
+KcqRPC+Zrv4Hf2DALZiKXhWWdj/jLcrf1JRgDxbwKl+U0wOZY+vugtWbxYanWO54
+ZROOFA0CgYEAvnsyUROgmV4bovh0vP9PsJQRC8L2YEA2f4EbIcanK97xOvCaYoL8
+9htfxLOUgsCDCmlhrFyU08JBdxJ3kEOWW+8euiNzdBA28o462ZsFfI7GcQ34jb3S
+z4b6gFboQPTboqxhaokCs28Mk6egnYCwwXZtTr4Nuk2FETKsLDUAZNUCgYEAzbYW
+Zum0ntTwWxaWyUB9fPSyKcsrDGBvDxPUH3hfpNRNJSOH9O9sjgH2VCVNOtuZTfro
+M40HKOlDNSH2iTEilaDugh7YS29HGmHsbq0VG0kYn9O4orbmQ8TVbK/90M4j0Kqv
+WC5jPWFkpAmPguDgun6IcTS7PjMmW1tej2wzDlcCgYBwQmsFHWwo9y2SfptOR6nP
+h3QEWoKZdz6nJo+2+DzNvjatZd+W71vmL3vhkXSVGqAgIrtNucJ8ip/KbTfJ7gtP
+Yz3Ytcv1OxknGmvUk2hIYFzThEhYQOddJ0+7E30Ny0EmPjGrd9P/rBLdco1WReHm
+IsWJArlUcxtZZ2PRKetxgQKBgGRldt95NgbCpB/AkYzdJaGDhyRwnKzor6srIT7O
+r9cxKglzItp+s3tHJ+J/ZgbQwCxXxVXLgXANEBjxX3IrgdaG+YCV7zg5sfkFS6/k
+V0W+0f7HBPiczRrMCOGHrxdmVAJ2GyetVA/T5ZtNczYL7IH4WTzu4GeF7TVvDWJw
+Cyb3AoGAM+6ltLrLpEZdtP+7n3+d6XXtjWxoblWkL6u4cW0jWzpDS1en4+akjGwk
+2vcfURpmC4BI/Q7XoEJ7KRB+Cm8i81sEty+25cXF+s3wKNghr4VeQixZWL7RGGlX
+JohDyV0xJtG3pilc6SwjIp/XfH9EvTZS5G4hpIiR1NsalOvEyVk=
+-----END RSA PRIVATE KEY-----</field>
+        <field name="public_key">-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmRAji9upGJSp/kw6rRNk
+iCC3an8OhghFTJARORCtZ7uXchjGPieJrXO+EQKICAdYHVU/7/VmfVEnn647l0jl
+Q+/yoX9GLrBoRzAfftjYKiWiahYGFjiXgJer1NjQYW//ZWV3dHldyN7GNbdkgr03
+FrNssLyKa/8MEg/q9on3LIYbH01PdzxiL74MzkDntvHFGUBNQ7dBGFLllBxRyvux
+FK9DG2yFnHVpVUkK7TvvXRnkQdxHltN3xw5isDQtTv3PH465VuZcl6OO0vD3URVo
+nMA3AqrvGFoFjnFJJMV4LyCNdeWN1uq1L6Tp1Myw8+ZkAQrDJ4UhNqXfwzCE+xTq
+YwIDAQAB
+-----END PUBLIC KEY-----</field>
+        <field name="info">Utilisé pour tester le système de licence avec Unity</field>
+    </record>
+
+</odoo>

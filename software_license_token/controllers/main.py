@@ -7,6 +7,7 @@ import pprint
 from odoo import http, fields
 from odoo.http import request
 from odoo.tools.translate import _
+import odoo.tools.convert as odoo_convert
 
 SUCCESS = 0
 ERROR = 1
@@ -85,6 +86,44 @@ URL_IDENTIFIER_HARDWARE = URL_IDENTIFIER + "/hardware/<string:hardware>"
 class SoftwareLicenseController(http.Controller):
     """ Http Controller for Software Licensing System
     """
+
+    #######################################################################
+
+    @http.route(
+        URL_BASE + '/ResetUnitTesting',
+        type='json',
+        methods=['POST'],
+        auth="public",
+        csrf=False,
+    )
+    def reset_unit_testing(self, **kwargs):
+        # Keep a reference on the previous function
+        previous_safe_eval = odoo_convert.safe_eval
+        # Define a local context and override default `safe_eval`
+        local_ctx = {
+            'valid_hardware_identifier': 'INTEL',
+            'invalid_hardware_identifier': 'AMD',
+        }
+        # Let the testing user update local context with data from json 
+        local_ctx.update(request.params.copy())
+        odoo_convert.safe_eval = lambda expr, ctx={}: odoo_convert.s_eval(
+            expr, ctx, local_ctx, nocopy=True
+        )
+        try:
+            for file in [
+                'data/unit_testing_software_license_application.xml',
+                'data/unit_testing_software_license.xml',
+            ]:
+                odoo_convert.convert_file(
+                    request.env.cr,
+                    'software_license_token',
+                    file, {},
+                    mode='init',
+                    kind='data'
+                )
+        finally:
+            # Restore previous function
+            odoo_convert.safe_eval = previous_safe_eval
 
     #######################################################################
     # http://odessa.decindustrie.com:8008/api/license/v1/identifier/{identifier}/serial/{serial}/hardware/{hardware}
@@ -197,7 +236,7 @@ class SoftwareLicenseController(http.Controller):
     def _get_request_info(self, request):
         res = {}
         res['httprequest'] = {'remote_addr': request.httprequest.remote_addr}
-        res['jsonrequest'] = request.jsonrequest.copy()
+        res['params'] = request.params.copy()
         return pprint.pformat(res)
 
     def _append_common_data(self, license_id, hardware_id, msg):

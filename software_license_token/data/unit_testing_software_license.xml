@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="license_test_1" model="software.license">
+        <field name="application_id" ref="application_test"/>
+        <field name="serial">R0GV7-DM2EK-4L863-1A109</field>
+        <field name="max_allowed_hardware">1</field>
+        <field name="expiration_date">01/10/2021 00:00:00</field>
+        <field name="info">License expirée depuis le 10/01/2021</field>
+    </record>
+
+    <record id="license_test_1_hardware_invalid" model="software.license.hardware">
+        <field name="license_id" ref="license_test_1"/>
+        <field name="validation_date">01/05/2021 00:00:00</field>
+        <field name="validity_days">2</field>
+        <field name="name" eval="invalid_hardware_identifier"/>
+    </record>
+
+    <record id="license_test_2" model="software.license">
+        <field name="application_id" ref="application_test"/>
+        <field name="serial">1TK0F-BRM62-XVC9W-03CCF</field>
+        <field name="max_allowed_hardware">1</field>
+        <field name="expiration_date">01/10/2021 00:00:00</field>
+        <field name="info">License expirée depuis le 10/01/2021</field>
+    </record>
+
+    <record id="license_test_2_hardware_valid" model="software.license.hardware">
+        <field name="license_id" ref="license_test_2"/>
+        <field name="validation_date">01/05/2021 00:00:00</field>
+        <field name="validity_days">2</field>
+        <field name="name" eval="valid_hardware_identifier"/>
+    </record>
+
+</odoo>

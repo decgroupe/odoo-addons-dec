@@ -28,6 +28,9 @@ class SoftwareLicense(models.Model):
 
     @api.constrains('hardware_ids')
     def _check_max_allowed_hardware(self):
+        if self.env.context.get('install_mode'):
+            # Ignore constraint when loading XML data
+            return
         for rec in self:
             if rec.max_allowed_hardware > 0 and \
             len(rec.hardware_ids) > rec.max_allowed_hardware:
@@ -37,6 +40,9 @@ class SoftwareLicense(models.Model):
 
     @api.constrains('hardware_ids', 'expiration_date')
     def _check_expiration_date(self):
+        if self.env.context.get('install_mode'):
+            # Ignore constraint when loading XML data
+            return
         for rec in self.filtered('expiration_date'):
             for hardware_id in rec.hardware_ids:
                 if hardware_id.validation_date > rec.expiration_date:
