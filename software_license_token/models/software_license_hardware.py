@@ -55,6 +55,8 @@ class SoftwareLicenseHardware(models.Model):
             res = {}
         res.update(
             {
+                'hardware_identifier': self.name,
+                'dongle_identifier': self.dongle_identifier,
                 'date': fields.Datetime.to_string(self.validation_date),
                 'validity_days': self.validity_days,
             }
