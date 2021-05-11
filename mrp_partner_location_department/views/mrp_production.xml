@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_production_filter_view">
+        <field name="name">mrp.production.select@mrp_partner_location_department</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_zip_id" position="after">
+                <field name="partner_department_id"/>
+                <field name="partner_state_id"/>
+            </field>
+            <filter name="groupby_partner_zip_id" position="after">
+                <filter string="Department" name="group_partner_department" context="{'group_by':'partner_department_id'}" />
+                <filter string="State" name="group_partner_state" context="{'group_by':'partner_state_id'}" />
+            </filter>
+        </field>
+    </record>
+
+</odoo>

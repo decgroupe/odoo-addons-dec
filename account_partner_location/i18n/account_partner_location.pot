@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 11:28+0000\n"
-"PO-Revision-Date: 2021-02-10 11:28+0000\n"
+"POT-Creation-Date: 2021-05-11 19:11+0000\n"
+"PO-Revision-Date: 2021-05-11 19:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,17 +16,29 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_partner_location
-#: model:ir.model,name:account_partner_location.model_account_move_line
-msgid "Journal Item"
-msgstr "Écriture comptable"
-
-#. module: account_partner_location
-#: model:ir.model.fields,field_description:account_partner_location.field_account_move_line__partner_city_id
-msgid "Partner City"
+#: model:ir.model,name:account_partner_location.model_account_invoice
+msgid "Invoice"
 msgstr ""
 
 #. module: account_partner_location
+#: model:ir.model,name:account_partner_location.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: account_partner_location
+#: model:ir.model.fields,field_description:account_partner_location.field_account_invoice__partner_city_id
+#: model:ir.model.fields,field_description:account_partner_location.field_account_move_line__partner_city_id
+msgid "Partner's City"
+msgstr ""
+
+#. module: account_partner_location
+#: model:ir.model.fields,field_description:account_partner_location.field_account_invoice__partner_zip_id
 #: model:ir.model.fields,field_description:account_partner_location.field_account_move_line__partner_zip_id
-msgid "Partner ZIP Location"
+msgid "Partner's ZIP"
+msgstr ""
+
+#. module: account_partner_location
+#: model_terms:ir.ui.view,arch_db:account_partner_location.view_account_invoice_filter
+msgid "ZIP Location"
 msgstr ""
 

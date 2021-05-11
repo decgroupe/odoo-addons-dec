@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-11 19:11+0000\n"
+"PO-Revision-Date: 2021-05-11 21:21+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: crm_lead_partner_location_department
+#: model:ir.model.fields,field_description:crm_lead_partner_location_department.field_crm_lead__partner_department_id
+#: model_terms:ir.ui.view,arch_db:crm_lead_partner_location_department.crm_case_opportunities_filter_view
+msgid "Department"
+msgstr "Département"
+
+#. module: crm_lead_partner_location_department
+#: model:ir.model,name:crm_lead_partner_location_department.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Piste/Opportunité"
+
+#. module: crm_lead_partner_location_department
+#: model:ir.model.fields,field_description:crm_lead_partner_location_department.field_crm_lead__partner_state_id
+msgid "Partner's State"
+msgstr "Région du partenaire"
+
+#. module: crm_lead_partner_location_department
+#: model_terms:ir.ui.view,arch_db:crm_lead_partner_location_department.crm_case_opportunities_filter_view
+msgid "State"
+msgstr "Région"

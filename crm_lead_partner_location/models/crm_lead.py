@@ -17,6 +17,6 @@ class CrmLead(models.Model):
     partner_city_id = fields.Many2one(
         'res.city',
         related='partner_id.city_id',
-        string="City",
+        string="Partner's City",
         store=True,
     )

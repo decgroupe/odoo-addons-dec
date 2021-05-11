@@ -11,12 +11,12 @@ class AccountAnalyticLine(models.Model):
     partner_zip_id = fields.Many2one(
         'res.city.zip',
         related='partner_id.zip_id',
-        string="Partner ZIP Location",
+        string="Partner's ZIP",
         store=True,
     )
     partner_city_id = fields.Many2one(
         'res.city',
         related='partner_id.city_id',
-        string="Partner City",
+        string="Partner's City",
         store=True,
     )

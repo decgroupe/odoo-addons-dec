@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="quotation_tree_view">
+        <field name="name">sale.order.tree@sale_partner_location</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_shipping_id"/>
+                <field name="partner_shipping_zip_id" class="d_partner_shipping_zip_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="order_tree_view">
+        <field name="name">sale.order.tree@sale_partner_location</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_shipping_id"/>
+                <field name="partner_shipping_zip_id" class="d_partner_shipping_zip_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sales_order_filter_view">
+        <field name="name">sale.order.list.select@sale_partner_location</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_shipping_id"/>
+                <field name="partner_shipping_zip_id"/>
+            </field>
+            <xpath expr="//filter[@name='customer']" position="after">
+                <filter string="Shipping Partner's ZIP" name="group_ship_partner_zip" context="{'group_by':'partner_shipping_zip_id'}" />
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
