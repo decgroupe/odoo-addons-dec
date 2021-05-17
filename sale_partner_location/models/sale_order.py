@@ -15,3 +15,9 @@ class SaleOrder(models.Model):
         readonly=True,
         store=True,
     )
+    partner_shipping_country_id = fields.Many2one(
+        'res.country',
+        related='partner_shipping_id.country_id',
+        string="Shipping Partner's Country",
+        store=True,
+    )

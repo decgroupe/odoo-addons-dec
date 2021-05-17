@@ -36,6 +36,7 @@
             </field>
             <xpath expr="//filter[@name='customer']" position="after">
                 <filter string="Shipping Partner's ZIP" name="group_ship_partner_zip" context="{'group_by':'partner_shipping_zip_id'}" />
+                <filter string="Shipping Partner's Country" name="group_ship_partner_country" context="{'group_by':'partner_shipping_country_id'}" />
             </xpath>
         </field>
     </record>
