@@ -10,10 +10,9 @@ class HolidaysRequest(models.Model):
 
     def _get_employee_leave_manager(self, employee_id):
         parent_id = employee_id.parent_id
-        is_officer = parent_id.user_id.has_group('hr_holidays.group_hr_holidays_user')
         is_manager = parent_id.user_id.has_group('hr_holidays.group_hr_holidays_manager')
         if parent_id:
-            if (is_officer or is_manager):
+            if is_manager:
                 return parent_id
             else:
                 return self._get_employee_leave_manager(parent_id)
