@@ -13,6 +13,6 @@ class ResPartner(models.Model):
         super()._onchange_zip_id()
         if self.zip_id and self.zip_id.cedex:
             vals = {
-                'city': self.zip_id.format_name()
+                'city': self.zip_id.format_city_name_with_cedex()
             }
             self.update(vals)
