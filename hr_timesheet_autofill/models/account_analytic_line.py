@@ -3,6 +3,7 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Feb 2021
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class AccountAnalyticLine(models.Model):
@@ -46,13 +47,33 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
+        # Make a search for all autofill fields and clear default name arg to
+        # avoid `expression.AND` collision
+        if self.env.context.get("autofill_name_search"):
+            autofill_fields = self.get_autofill_fields()
+            if len(name) > 2:
+                extra_args = []
+                for value in name.split():
+                    if len(value) > 2:
+                        value_args = []
+                        for fname in autofill_fields:
+                            value_args = expression.OR([
+                                value_args,
+                                [(fname, 'ilike', value)]
+                            ])
+                        extra_args = expression.AND([extra_args, value_args])
+                if extra_args:
+                    args = expression.AND([args, extra_args])
+                    name = ''
+
         # Make a search with default criteria
         names = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
+
         if self.env.context.get("autofill_name_search"):
-            # Add line details to quickly identify its content
             autofill_fields = self.get_autofill_fields()
+            # Add line details to quickly identify its content
             autofill_fields.remove('name')
             result = []
             for item in names:

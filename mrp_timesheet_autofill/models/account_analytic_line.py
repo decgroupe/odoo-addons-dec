@@ -11,4 +11,4 @@ class AccountAnalyticLine(models.Model):
     @api.model
     def get_autofill_fields(self):
         res = super().get_autofill_fields()
-        return res + ['production_id']
+        return res + ['production_id', 'production_partner_id']
