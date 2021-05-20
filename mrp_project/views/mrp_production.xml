@@ -26,7 +26,6 @@
         <field name="arch" type="xml">
             <field name="routing_id" position="after">
                 <field name="project_id"/>
-                <field name="task_id"/>
             </field>
         </field>
     </record>
@@ -39,11 +38,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='routing_id']" position="after">
                 <field name="project_id"/>
-                <field name="task_id" 
-                    domain="[('project_id', '=', project_id)]"
-                    attrs="{'invisible': [('project_id', '=', False)]}"
-                    context="{'default_project_id': project_id}">
-                </field>
             </xpath>
         </field>
     </record>

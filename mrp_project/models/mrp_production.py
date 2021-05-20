@@ -13,12 +13,4 @@ class MrpProduction(models.Model):
         comodel_name='project.project',
         copy=False,
     )
-    task_id = fields.Many2one(
-        string='Task',
-        comodel_name='project.task',
-        copy=False,
-    )
 
-    @api.onchange('project_id')
-    def _onchange_project(self):
-        self.task_id = False

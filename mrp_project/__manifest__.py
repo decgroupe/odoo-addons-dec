@@ -13,7 +13,6 @@
             'data/analytic_account.xml',
             'views/mrp_production.xml',
             'views/project.xml',
-            'views/project_task.xml',
         ],
     'installable': True
 }
