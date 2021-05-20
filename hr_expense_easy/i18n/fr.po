@@ -1,0 +1,476 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_expense_easy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-17 15:53+0000\n"
+"PO-Revision-Date: 2021-05-17 18:48+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_administrative_supplies
+#: model:product.template,name:hr_expense_easy.product_product_expense_administrative_supplies_product_template
+msgid "Administrative supplies"
+msgstr "Fournitures administratives"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_advertising
+#: model:product.template,name:hr_expense_easy.product_product_expense_advertising_product_template
+msgid "Advertising"
+msgstr "Publicité"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_bus
+#: model:product.template,name:hr_expense_easy.product_product_expense_bus_product_template
+msgid "Bus"
+msgstr "Bus"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_car_park
+#: model:product.template,name:hr_expense_easy.product_product_expense_car_park_product_template
+msgid "Car park"
+msgstr "Parking"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_car_rent
+#: model:product.template,name:hr_expense_easy.product_product_expense_car_rent_product_template
+msgid "Car rent"
+msgstr "Location véhicule"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_carrier
+#: model:product.template,name:hr_expense_easy.product_product_expense_carrier_product_template
+msgid "Carrier"
+msgstr "Transporteur"
+
+#. module: hr_expense_easy
+#: model:product.category,name:hr_expense_easy.cat_catering
+msgid "Catering"
+msgstr "Restauration"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_consumption
+#: model:product.template,name:hr_expense_easy.product_product_expense_consumption_product_template
+msgid "Consumption"
+msgstr "Consommation"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_customer_gifts
+#: model:product.template,name:hr_expense_easy.product_product_expense_customer_gifts_product_template
+msgid "Customer gifts"
+msgstr "Cadeaux client"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_decoration
+#: model:product.template,name:hr_expense_easy.product_product_expense_decoration_product_template
+msgid "Decoration"
+msgstr "Décoration"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_documentation_book
+#: model:product.template,name:hr_expense_easy.product_product_expense_documentation_book_product_template
+msgid "Documentation / Book"
+msgstr "Documentation / Livre"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_equipment_rental
+#: model:product.template,name:hr_expense_easy.product_product_expense_equipment_rental_product_template
+msgid "Equipment rental"
+msgstr "Location matériel"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_exhibition_fair
+#: model:product.template,name:hr_expense_easy.product_product_expense_exhibition_fair_product_template
+msgid "Exhibition / Fair"
+msgstr "Exposition / Salon"
+
+#. module: hr_expense_easy
+#: model:ir.model,name:hr_expense_easy.model_hr_expense
+msgid "Expense"
+msgstr "Note de frais"
+
+#. module: hr_expense_easy
+#: model:ir.model,name:hr_expense_easy.model_hr_expense_sheet
+msgid "Expense Report"
+msgstr "Rapport de dépenses"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_food
+#: model:product.template,name:hr_expense_easy.product_product_expense_food_product_template
+msgid "Food"
+msgstr "Alimentation"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_foodstuffs
+#: model:product.template,name:hr_expense_easy.product_product_expense_foodstuffs_product_template
+msgid "Foodstuffs"
+msgstr "Produits alimentaires"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_fuel
+#: model:product.template,name:hr_expense_easy.product_product_expense_fuel_product_template
+msgid "Fuel"
+msgstr "Carburant"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_hotel
+#: model:product.template,name:hr_expense_easy.product_product_expense_hotel_product_template
+msgid "Hotel"
+msgstr "Hôtel"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_infraction
+#: model:product.template,name:hr_expense_easy.product_product_expense_infraction_product_template
+msgid "Infraction"
+msgstr "Amende"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_internet
+#: model:product.template,name:hr_expense_easy.product_product_expense_internet_product_template
+msgid "Internet"
+msgstr "Internet"
+
+#. module: hr_expense_easy
+#: model:product.category,name:hr_expense_easy.cat_lodging
+msgid "Lodging"
+msgstr "Hébergement"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_maintenance_repair_equipment
+#: model:product.template,name:hr_expense_easy.product_product_expense_maintenance_repair_equipment_product_template
+msgid "Maintenance / Repair equipment"
+msgstr "Entretien / Réparation matériel"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle
+#: model:product.template,name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle_product_template
+msgid "Maintenance / Repair vehicle"
+msgstr "Entretien / Réparation véhicule"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_maintenance_products
+#: model:product.template,name:hr_expense_easy.product_product_expense_maintenance_products_product_template
+msgid "Maintenance products"
+msgstr "Produits d'entretien"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_membership_fee
+#: model:product.template,name:hr_expense_easy.product_product_expense_membership_fee_product_template
+msgid "Membership fee"
+msgstr "Cotisation"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_car_metro
+#: model:product.template,name:hr_expense_easy.product_product_expense_car_metro_product_template
+msgid "Metro"
+msgstr "Métro"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_newspapers
+#: model:product.template,name:hr_expense_easy.product_product_expense_newspapers_product_template
+msgid "Newspapers"
+msgstr "Journaux"
+
+#. module: hr_expense_easy
+#: model:product.category,name:hr_expense_easy.cat_other
+msgid "Other"
+msgstr "Autre"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_other_insurance
+#: model:product.template,name:hr_expense_easy.product_product_expense_other_insurance_product_template
+msgid "Other insurance"
+msgstr "Autre assurance"
+
+#. module: hr_expense_easy
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_administrative_supplies
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_advertising
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_bus
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_car_metro
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_car_park
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_car_rent
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_carrier
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_consumption
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_customer_gifts
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_decoration
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_documentation_book
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_equipment_rental
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_exhibition_fair
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_food
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_foodstuffs
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_fuel
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_hotel
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_infraction
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_internet
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_maintenance_products
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_membership_fee
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_newspapers
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_other_insurance
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_pharmacy
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_phone
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_plane
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_postal_charges
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_publication_and_print
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_restaurant
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_room_rental
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_small_equipment
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_taxi
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_tips_usual_donations
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_toll
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_train
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_training
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_various
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_vehicle_insurance
+#: model:product.product,uom_name:hr_expense_easy.product_product_expense_work_clothes
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_administrative_supplies_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_advertising_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_bus_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_car_metro_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_car_park_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_car_rent_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_carrier_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_consumption_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_customer_gifts_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_decoration_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_documentation_book_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_equipment_rental_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_exhibition_fair_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_food_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_foodstuffs_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_fuel_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_hotel_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_infraction_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_internet_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_maintenance_products_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_membership_fee_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_newspapers_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_other_insurance_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_pharmacy_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_phone_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_plane_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_postal_charges_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_publication_and_print_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_restaurant_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_room_rental_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_small_equipment_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_taxi_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_tips_usual_donations_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_toll_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_train_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_training_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_various_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_vehicle_insurance_product_template
+#: model:product.template,uom_name:hr_expense_easy.product_product_expense_work_clothes_product_template
+msgid "PCE"
+msgstr "PCE"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_pharmacy
+#: model:product.template,name:hr_expense_easy.product_product_expense_pharmacy_product_template
+msgid "Pharmacy"
+msgstr "Pharmacie"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_phone
+#: model:product.template,name:hr_expense_easy.product_product_expense_phone_product_template
+msgid "Phone"
+msgstr "Téléphone"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_plane
+#: model:product.template,name:hr_expense_easy.product_product_expense_plane_product_template
+msgid "Plane"
+msgstr "Avion"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_postal_charges
+#: model:product.template,name:hr_expense_easy.product_product_expense_postal_charges_product_template
+msgid "Postal charges"
+msgstr "Frais postaux"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_publication_and_print
+#: model:product.template,name:hr_expense_easy.product_product_expense_publication_and_print_product_template
+msgid "Publication and print"
+msgstr "Publication et imprimés"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_restaurant
+#: model:product.template,name:hr_expense_easy.product_product_expense_restaurant_product_template
+msgid "Restaurant"
+msgstr "Restaurant"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_room_rental
+#: model:product.template,name:hr_expense_easy.product_product_expense_room_rental_product_template
+msgid "Room rental"
+msgstr "Location salle"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences
+#: model:product.template,name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences_product_template
+msgid "Seminars, colloquiums, conferences"
+msgstr "Séminaires, colloques, conférences"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_small_equipment
+#: model:product.template,name:hr_expense_easy.product_product_expense_small_equipment_product_template
+msgid "Small equipment"
+msgstr "Petit équipement"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_taxi
+#: model:product.template,name:hr_expense_easy.product_product_expense_taxi_product_template
+msgid "Taxi"
+msgstr "Taxi"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_tips_usual_donations
+#: model:product.template,name:hr_expense_easy.product_product_expense_tips_usual_donations_product_template
+msgid "Tips, usual donations"
+msgstr "Pourboires, dons courants"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_toll
+#: model:product.template,name:hr_expense_easy.product_product_expense_toll_product_template
+msgid "Toll"
+msgstr "Péage"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_train
+#: model:product.template,name:hr_expense_easy.product_product_expense_train_product_template
+msgid "Train"
+msgstr "Train"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_training
+#: model:product.template,name:hr_expense_easy.product_product_expense_training_product_template
+msgid "Training"
+msgstr "Formation"
+
+#. module: hr_expense_easy
+#: model:product.category,name:hr_expense_easy.cat_transport
+msgid "Transportation"
+msgstr "Transport"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_various
+#: model:product.template,name:hr_expense_easy.product_product_expense_various_product_template
+msgid "Various"
+msgstr "Autres frais"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_vehicle_insurance
+#: model:product.template,name:hr_expense_easy.product_product_expense_vehicle_insurance_product_template
+msgid "Vehicle insurance"
+msgstr "Assurance véhicule"
+
+#. module: hr_expense_easy
+#: model:product.product,name:hr_expense_easy.product_product_expense_work_clothes
+#: model:product.template,name:hr_expense_easy.product_product_expense_work_clothes_product_template
+msgid "Work clothes"
+msgstr "Vêtements de travail"
+
+#. module: hr_expense_easy
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_administrative_supplies
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_advertising
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_bus
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_car_metro
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_car_park
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_car_rent
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_carrier
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_consumption
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_customer_gifts
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_decoration
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_documentation_book
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_equipment_rental
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_exhibition_fair
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_food
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_foodstuffs
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_fuel
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_hotel
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_infraction
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_internet
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_products
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_membership_fee
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_newspapers
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_other_insurance
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_pharmacy
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_phone
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_plane
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_postal_charges
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_publication_and_print
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_restaurant
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_room_rental
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_small_equipment
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_taxi
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_tips_usual_donations
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_toll
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_train
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_training
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_various
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_vehicle_insurance
+#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_work_clothes
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_administrative_supplies_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_advertising_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_bus_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_car_metro_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_car_park_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_car_rent_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_carrier_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_consumption_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_customer_gifts_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_decoration_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_documentation_book_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_equipment_rental_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_exhibition_fair_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_food_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_foodstuffs_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_fuel_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_hotel_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_infraction_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_internet_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_products_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_membership_fee_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_newspapers_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_other_insurance_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_pharmacy_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_phone_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_plane_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_postal_charges_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_publication_and_print_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_restaurant_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_room_rental_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_small_equipment_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_taxi_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_tips_usual_donations_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_toll_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_train_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_training_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_various_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_vehicle_insurance_product_template
+#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_work_clothes_product_template
+msgid "kg"
+msgstr "kg"

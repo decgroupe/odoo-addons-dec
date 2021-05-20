@@ -10,6 +10,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_bus" model="product.product">
@@ -20,6 +22,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_fuel" model="product.product">
@@ -30,6 +34,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_car_rent" model="product.product">
@@ -40,6 +46,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_car_metro" model="product.product">
@@ -50,6 +58,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_car_park" model="product.product">
@@ -60,6 +70,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_toll" model="product.product">
@@ -70,6 +82,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_taxi" model="product.product">
@@ -80,6 +94,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_train" model="product.product">
@@ -90,6 +106,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_transport"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_consumption" model="product.product">
@@ -100,6 +118,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_catering"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_restaurant" model="product.product">
@@ -110,6 +130,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_catering"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_food" model="product.product">
@@ -120,6 +142,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_catering"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_hotel" model="product.product">
@@ -130,6 +154,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_lodging"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_infraction" model="product.product">
@@ -140,6 +166,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_vehicle_insurance" model="product.product">
@@ -150,6 +178,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_other_insurance" model="product.product">
@@ -160,6 +190,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_customer_gifts" model="product.product">
@@ -170,6 +202,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_membership_fee" model="product.product">
@@ -180,6 +214,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_decoration" model="product.product">
@@ -190,6 +226,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_various" model="product.product">
@@ -200,6 +238,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_documentation_book" model="product.product">
@@ -210,6 +250,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
 
@@ -221,6 +263,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_maintenance_repair_vehicle" model="product.product">
@@ -231,6 +275,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_exhibition_fair" model="product.product">
@@ -241,6 +287,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_training" model="product.product">
@@ -251,6 +299,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
 
@@ -262,6 +312,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_postal_charges" model="product.product">
@@ -272,6 +324,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_newspapers" model="product.product">
@@ -282,6 +336,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_equipment_rental" model="product.product">
@@ -292,6 +348,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_room_rental" model="product.product">
@@ -302,6 +360,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_small_equipment" model="product.product">
@@ -312,6 +372,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_pharmacy" model="product.product">
@@ -322,6 +384,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_tips_usual_donations" model="product.product">
@@ -332,6 +396,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_foodstuffs" model="product.product">
@@ -342,6 +408,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_maintenance_products" model="product.product">
@@ -352,6 +420,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_advertising" model="product.product">
@@ -362,6 +432,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_publication_and_print" model="product.product">
@@ -372,6 +444,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_seminars_colloquiums_conferences" model="product.product">
@@ -382,6 +456,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_phone" model="product.product">
@@ -392,6 +468,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_carrier" model="product.product">
@@ -402,6 +480,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_work_clothes" model="product.product">
@@ -412,6 +492,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
         <record id="product_product_expense_internet" model="product.product">
@@ -422,6 +504,8 @@
             <field name="type">service</field>
             <field name="categ_id" ref="hr_expense_easy.cat_other"/>
             <field name="can_be_expensed" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
         </record>
 
     </data>
