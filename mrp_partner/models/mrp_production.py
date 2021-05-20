@@ -8,6 +8,8 @@ from odoo import models, fields
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
+    # To replace with module `mrp_sale_info` ?
+
     partner_id = fields.Many2one(
         'res.partner',
         'Partner',
