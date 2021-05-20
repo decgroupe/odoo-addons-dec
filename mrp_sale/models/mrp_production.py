@@ -24,5 +24,6 @@ class MrpProduction(models.Model):
                         break
                 move_ids = move_ids.mapped('move_dest_ids')
         if sale_order_id:
+            production.sale_order_id = sale_order_id
             production.partner_id = sale_order_id.partner_shipping_id
         return production
