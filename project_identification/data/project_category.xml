@@ -3,7 +3,12 @@
 
     <record id="time_tracking_type" model="project.type">
         <field name="name">⏱️</field>
-        <field name="description">Pour les projets génériques, et utilisé pour remplir les feuilles de temps</field>
+        <field name="description">For generic projects that are used to fill in timesheets</field>
+    </record>
+
+    <record id="contract_type" model="project.type">
+        <field name="name">📝 Contract</field>
+        <field name="description">For sale orders</field>
     </record>
 
 </odoo>
