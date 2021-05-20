@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-# Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <y.papouin at dec-industrie.com>, Jan 2021
+# Copyright 2021 DEC SARL, Inc - All Rights Reserved.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, api, _
+from odoo import models, api
 
 import logging
 
@@ -13,14 +12,14 @@ class MailActivity(models.Model):
     _inherit = 'mail.activity'
 
     @api.multi
-    def _link_to_mail_activity_redirection(self, mail_activity_redirection):
+    def _link_to_mail_activity_redirection(self, redirection):
         """ Keep only some references to activities redirected by this
-            `mail_activity_redirection`.
+            `redirection`.
         """
         history_activity_ids = self.env['mail.activity']
-        if mail_activity_redirection and self:
+        if redirection and self:
             history_activity_ids = self
-            existing_activity_ids = mail_activity_redirection.activity_ids.sorted(
+            existing_activity_ids = redirection.activity_ids.sorted(
                 key=lambda r: r.id, reverse=True
             )
             for existing_activity_id in existing_activity_ids:
@@ -28,5 +27,4 @@ class MailActivity(models.Model):
                     break
                 history_activity_ids += existing_activity_id
             # Use sudo since normal user don't have write access
-            mail_activity_redirection.sudo().activity_ids = history_activity_ids
-
+            redirection.sudo().activity_ids = history_activity_ids

@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-# Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <y.papouin at dec-industrie.com>, Jul 2020
+# Copyright 2021 DEC SARL, Inc - All Rights Reserved.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import re
 import logging
@@ -79,11 +78,11 @@ class MailActivityRedirection(models.Model):
     def get_activity_type_xmlids(self):
         res = []
         for rec in self.filtered('activity_type_ids'):
-            for activity_type_id in rec.activity_type_ids:
-                xmlid = self.env['ir.model.data'].get_xmlid_as_string(
-                    activity_type_id
-                )
-                res.append(xmlid)
+            xml_ids = [
+                value for key, value in
+                rec.activity_type_ids.get_external_id().items() if value
+            ]
+            res += xml_ids
         return res
 
     @api.multi
@@ -93,7 +92,7 @@ class MailActivityRedirection(models.Model):
             for model_id in rec.model_ids:
                 res.append(model_id.model)
         return res
-        
+
     @api.multi
     def get_qweb_template_xmlids(self):
         res = []
@@ -102,8 +101,15 @@ class MailActivityRedirection(models.Model):
                 res.append(qweb_template.xml_id)
         return res
 
-    def match(self, model_name, type_xmlid, user_id, qweb_template_xmlid, note):
-        _logger.info(
+    def match(
+        self,
+        model_name,
+        type_xmlid,
+        user_id,
+        qweb_template_xmlid,
+        note,
+    ):
+        _logger.debug(
             'Match test against %s, %s, %s, %s, %s',
             model_name,
             type_xmlid,

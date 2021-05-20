@@ -1,13 +1,12 @@
 {
     'name': 'Mail Activity Redirection',
+    'summary': 'Redirect activities to specific users',
     'version': '12.0.1.0.0',
-    'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
-    'summary': "Customize activity targeted User with custom rules",
-    'depends': [
-        'mail',
-        'base_xmlid',
-    ],
+    'author': 'DEC, Odoo Community Association (OCA)',
+    'category': 'Social Network',
+    'website': 'https://github.com/OCA/social',
+    'license': 'AGPL-3',
+    'depends': ['mail', ],
     'data':
         [
             'security/ir.model.access.csv',
