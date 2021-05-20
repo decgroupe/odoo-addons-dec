@@ -9,7 +9,7 @@
     </record>
 
     <record model="ir.ui.view" id="mrp_production_form_view">
-        <field name="name">mrp.production.form@mrp_project</field>
+        <field name="name">mrp.production.form@mrp_project_auto</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>

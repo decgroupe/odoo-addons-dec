@@ -19,6 +19,8 @@ class MrpProduction(models.Model):
         time_tracking_type_id = self.env.ref(
             'project_identification.time_tracking_type'
         )
+        Project = self.env['project.project']
+        created_project_ids = self.env['project.project']
         for rec in self:
             if not rec.project_id or self.env.context.get(
                 'override_project_id'
@@ -36,25 +38,21 @@ class MrpProduction(models.Model):
                         'partner_id': rec.partner_id.id,
                     }
                 project_data['type_id'] = time_tracking_type_id.id
-                project_id = self.env['project.project'].search(
+                project_id = Project.search(
                     [
                         ('name', '=', project_data['name']),
                         ('partner_id', '=', project_data['partner_id']),
-                        ('type_id', '=', project_data['type_id']),
                     ],
                     limit=1
                 )
                 if not project_id:
                     # Create project as SUPER_USER
-                    project_id = self.env['project.project'].sudo(
-                    ).create(project_data)
+                    project_id = Project.sudo().create(project_data)
+                    created_project_ids += project_id
                 rec.project_id = project_id
-        self.update_project_analytic_account()
-
-    @api.multi
-    def update_project_analytic_account(self):
-        analytic_account_ids = self.filtered('project_id')\
-            .mapped('project_id').mapped('analytic_account_id')
+        # Set a default analytic parent account but only for projects created
+        # from this function
+        analytic_account_ids = created_project_ids.mapped('analytic_account_id')
         analytic_account_ids.write(
             {'parent_id': self.env.ref('mrp_project.analytic_production').id}
         )
