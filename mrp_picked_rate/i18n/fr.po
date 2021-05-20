@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-26 22:38+0000\n"
+"POT-Creation-Date: 2021-05-20 16:05+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr "Si réceptionné, le produit devrait être disponible pour être utilis�
 #. module: mrp_picked_rate
 #: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__picked_rate
 msgid "Picked Rate"
-msgstr "Réceptionné"
+msgstr "Taux réceptionné"
 
 #. module: mrp_picked_rate
 #: model:ir.model,name:mrp_picked_rate.model_mrp_production
@@ -38,6 +38,11 @@ msgstr "Fabrication: Calculer les taux de réception"
 #: model:ir.model.fields,help:mrp_picked_rate.field_mrp_production__picked_rate
 msgid "Rate of received raw products"
 msgstr "Taux de produits bruts réceptionnés"
+
+#. module: mrp_picked_rate
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_stock_move__received
+msgid "Received"
+msgstr "Réceptionné"
 
 #. module: mrp_picked_rate
 #: model:ir.model,name:mrp_picked_rate.model_stock_move

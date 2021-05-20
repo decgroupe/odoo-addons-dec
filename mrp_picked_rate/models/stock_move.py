@@ -9,7 +9,7 @@ class StockMove(models.Model):
     _inherit = 'stock.move'
 
     received = fields.Boolean(
-        string='✅',
+        string='Received',
         compute='_compute_received',
         help="If received, then the product should be available "
         "to be used on production",
