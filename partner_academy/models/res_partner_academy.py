@@ -35,3 +35,10 @@ class ResPartnerAcademy(models.Model):
         related="partner_id.country_id",
         string='Country',
     )
+    department_ids = fields.Many2many(
+        'res.country.department',
+        string='Departments',
+        help='Departments of this academy',
+        domain="[('country_id', '=', country_id), ('state_id', '=', state_id)]",
+    )
+

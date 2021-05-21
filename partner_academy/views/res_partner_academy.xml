@@ -36,6 +36,8 @@
                         <group name="secondary">
                             <field name="email_domain"/>
                         </group>
+                        <label for="department_ids"/>
+                        <field name="department_ids"/>
                     </group>
                 </sheet>
             </form>

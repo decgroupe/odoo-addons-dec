@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <field name="lang" position="after">
-                <field name="partner_academy" attrs="{'invisible':[('customer','=',False)]}"/>
+                <field name="academy_id" attrs="{'invisible':[('customer', '=', False)]}"/>
             </field>
         </field>
     </record>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 10:10+0000\n"
-"PO-Revision-Date: 2021-05-21 12:12+0200\n"
+"POT-Creation-Date: 2021-05-21 15:53+0000\n"
+"PO-Revision-Date: 2021-05-21 17:54+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -26,8 +26,8 @@ msgstr "Académies"
 #. module: partner_academy
 #: model:ir.actions.act_window,name:partner_academy.res_partner_academy_action
 #: model:ir.model,name:partner_academy.model_res_partner_academy
-#: model:ir.model.fields,field_description:partner_academy.field_res_partner__partner_academy
-#: model:ir.model.fields,field_description:partner_academy.field_res_users__partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner__academy_id
+#: model:ir.model.fields,field_description:partner_academy.field_res_users__academy_id
 #: model_terms:ir.ui.view,arch_db:partner_academy.res_partner_academy_form_view
 msgid "Academy"
 msgstr "Académie"
@@ -63,13 +63,23 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__department_ids
+msgid "Departments"
+msgstr "Départements"
+
+#. module: partner_academy
+#: model:ir.model.fields,help:partner_academy.field_res_partner_academy__department_ids
+msgid "Departments of this academy"
+msgstr "Départements de cette académie"
+
+#. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: partner_academy
-#: model:ir.model.fields,help:partner_academy.field_res_partner__partner_academy
-#: model:ir.model.fields,help:partner_academy.field_res_users__partner_academy
+#: model:ir.model.fields,help:partner_academy.field_res_partner__academy_id
+#: model:ir.model.fields,help:partner_academy.field_res_users__academy_id
 msgid "Educational academy of the current partner."
 msgstr "Académie (éducation) du partenaire actuel."
 
@@ -121,9 +131,9 @@ msgstr "Rectorat"
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__state_id
 msgid "State"
-msgstr "État"
+msgstr "Région"
 
 #. module: partner_academy
 #: model:ir.model.fields,help:partner_academy.field_res_partner_academy__logo
 msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
-msgstr "Ce champ contient l'image utilisée comme photo d'identité pour ce contact, limitée à 1024x1024px."
+msgstr "Ce champ contient l'image utilisée comme photo d'identité pour ce contact, limitée à 1024x1024px"
