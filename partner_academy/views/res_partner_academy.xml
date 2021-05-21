@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="res_partner_academy_tree_view">
+        <field name="name">res.partner.academy.tree@partner_academy</field>
+        <field name="model">res.partner.academy</field>
+        <field name="arch" type="xml">
+            <tree string="Academies">
+                <field name="name"/>
+                <field name="state_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="res_partner_academy_form_view">
+        <field name="name">res.partner.academy.form@partner_academy</field>
+        <field name="model">res.partner.academy</field>
+        <field name="arch" type="xml">
+            <form string="Academy">
+                <sheet>
+                    <field name="logo" widget="image" class="oe_avatar"/>
+                    <group name="title">
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group name="main">
+                        <group name="primary">
+                            <field name="partner_id"/>
+                            <field name="state_id"/>
+                            <field name="country_id"/>
+                        </group>
+                        <group name="secondary">
+                            <field name="email_domain"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="res_partner_academy_action">
+        <field name="name">Academy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner.academy</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new National Education Academy
+            </p>
+            <p>
+                Manage academies to better classify partners for tracking and analysis purposes.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="res_partner_academy_menu" name="Academies" action="res_partner_academy_action" parent="contacts.res_partner_menu_config" sequence="4" />
+
+</odoo>

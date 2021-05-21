@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
+"POT-Creation-Date: 2021-05-21 10:10+0000\n"
+"PO-Revision-Date: 2021-05-21 10:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: partner_academy
+#: model:ir.ui.menu,name:partner_academy.res_partner_academy_menu
+#: model_terms:ir.ui.view,arch_db:partner_academy.res_partner_academy_tree_view
+msgid "Academies"
+msgstr ""
+
+#. module: partner_academy
+#: model:ir.actions.act_window,name:partner_academy.res_partner_academy_action
 #: model:ir.model,name:partner_academy.model_res_partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner__partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_users__partner_academy
+#: model_terms:ir.ui.view,arch_db:partner_academy.res_partner_academy_form_view
 msgid "Academy"
-msgstr "Académie"
+msgstr ""
+
+#. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__logo
+msgid "Academy Logo"
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model,name:partner_academy.model_res_partner
@@ -28,25 +41,45 @@ msgid "Contact"
 msgstr ""
 
 #. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__country_id
+msgid "Country"
+msgstr ""
+
+#. module: partner_academy
+#: model_terms:ir.actions.act_window,help:partner_academy.res_partner_academy_action
+msgid "Create a new National Education Academy"
+msgstr ""
+
+#. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model.fields,help:partner_academy.field_res_partner__partner_academy
 #: model:ir.model.fields,help:partner_academy.field_res_users__partner_academy
 msgid "Educational academy of the current partner."
-msgstr "Académie (éducation) du partenaire actuel."
+msgstr ""
+
+#. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__email_domain
+msgid "Email Domain"
+msgstr ""
+
+#. module: partner_academy
+#: model:ir.model.fields,help:partner_academy.field_res_partner_academy__email_domain
+msgid "Filling this domain (part after the @) will help to quickly identify a partner academy using its e-mail suffix"
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__id
@@ -56,20 +89,40 @@ msgstr ""
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
+
+#. module: partner_academy
+#: model_terms:ir.actions.act_window,help:partner_academy.res_partner_academy_action
+msgid "Manage academies to better classify partners for tracking and analysis purposes."
+msgstr ""
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__name
 msgid "Name"
-msgstr "Nom"
+msgstr ""
+
+#. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__partner_id
+msgid "Rectorate"
+msgstr ""
+
+#. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__state_id
+msgid "State"
+msgstr ""
+
+#. module: partner_academy
+#: model:ir.model.fields,help:partner_academy.field_res_partner_academy__logo
+msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
+msgstr ""
 

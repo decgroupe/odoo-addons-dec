@@ -3,13 +3,18 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'http://www.dec-industrie.com',
-    'summary': '''Add an academy field to partner used to group educational partners''',
+    'summary':
+        "Add an academy field to partner used to group educational "
+        "partners",
     'depends': [
         'base',
+        'contacts',
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/partner_view.xml',
-    ],
+    'data':
+        [
+            'security/ir.model.access.csv',
+            'views/res_partner.xml',
+            'views/res_partner_academy.xml',
+        ],
     'installable': True
 }
