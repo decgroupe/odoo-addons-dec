@@ -23,6 +23,12 @@ class RefReference(models.Model):
     _rec_name = 'value'
     _order = 'value'
 
+    active = fields.Boolean(
+        'Active',
+        default=True,
+        help="If unchecked, it will allow you to hide the reference "
+        "without removing it.",
+    )
     category_id = fields.Many2one(
         'ref.category',
         'Category',
@@ -54,6 +60,7 @@ class RefReference(models.Model):
         readonly=False,
         default='quotation',
         oldname='product_state',
+        store=True,
     )
     description = fields.Text(
         related='product_id.description',
@@ -159,6 +166,13 @@ class RefReference(models.Model):
             product.mrp_production_request = True
         reference = super().create(vals)
         return reference
+
+    @api.multi
+    def write(self, vals):
+        res = super().write(vals)
+        if 'active' in vals:
+            self.mapped('product_id').write({'active': vals.get('active')})
+        return res
 
     @api.multi
     @api.returns('self', lambda value: value.id)

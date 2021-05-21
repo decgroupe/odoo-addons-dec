@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 20:55+0000\n"
-"PO-Revision-Date: 2021-03-28 20:55+0000\n"
+"POT-Creation-Date: 2021-05-21 07:38+0000\n"
+"PO-Revision-Date: 2021-05-21 07:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_reference.py:169
+#: code:addons/product_reference/models/ref_reference.py:183
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -24,6 +24,11 @@ msgstr ""
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
 msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__active
+msgid "Active"
 msgstr ""
 
 #. module: product_reference
@@ -67,6 +72,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__category_id
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__category_id
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_category_form_view
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
 msgid "Category"
 msgstr ""
 
@@ -174,6 +180,7 @@ msgstr ""
 
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
 msgid "Group By"
 msgstr ""
 
@@ -191,6 +198,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__id
 msgid "ID"
+msgstr ""
+
+#. module: product_reference
+#: model:ir.model.fields,help:product_reference.field_ref_reference__active
+msgid "If unchecked, it will allow you to hide the reference without removing it."
 msgstr ""
 
 #. module: product_reference
@@ -413,6 +425,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference.field_product_template__reference_id
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__reference_id
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__reference_id
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
 msgid "Reference"
 msgstr ""
@@ -464,6 +477,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
+msgid "Search References"
+msgstr ""
+
+#. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__searchvalue
 msgid "Search value"
 msgstr ""
@@ -477,6 +495,11 @@ msgstr ""
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
 msgid "Set default root product category used when creating a new reference category"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
+msgid "State"
 msgstr ""
 
 #. module: product_reference

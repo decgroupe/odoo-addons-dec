@@ -14,12 +14,41 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="ref_reference_color_tree_view">
+        <field name="name">ref.reference.tree#color@product_reference</field>
+        <field name="model">ref.reference</field>
+        <field name="inherit_id" ref="ref_reference_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-success">state == 'quotation'</attribute>
+                <attribute name="decoration-primary">state == 'review'</attribute>
+                <attribute name="decoration-info">state == 'draft'</attribute>
+                <!-- 
+                <attribute name="decoration-warning">state == ''</attribute>
+                <attribute name="decoration-bf">state == 'sellable'</attribute>
+                <attribute name="decoration-muted">state == 'done'</attribute>
+                -->
+                <attribute name="decoration-muted-strike">state == 'obsolete'</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="ref_reference_form_view" >
         <field name="name">ref.reference.form@product_reference</field>
         <field name="model">ref.reference</field>
         <field name="arch" type="xml">
             <form string="Reference" duplicate="0">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button 
+                            name="toggle_active" 
+                            type="object"
+                            class="oe_stat_button" 
+                            icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
                     <group name="head">
                         <div class="oe_title">
                             <label for="value" class="oe_edit_only"/>
@@ -70,6 +99,38 @@
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ref_reference_filter_view" >
+        <field name="name">ref.reference.select@product_reference</field>
+        <field name="model">ref.reference</field>
+        <field name="arch" type="xml">
+            <search string="Search References">
+                <field name="name" string="Reference" filter_domain="[
+                    '|', 
+                        '|', 
+                            '|', 
+                            ('value', 'ilike', self), 
+                            ('searchvalue', 'ilike', self),
+                        ('name', 'ilike', self),
+                    ('public_code', 'ilike', self)
+                ]"/>
+                <!-- <field name="product_id"/>
+                <field name="origin"/>
+                <field name="partner_id"/>
+                <filter string="Not attached" name="filter_not_attached" domain="[('purchase_line_id', '=', False), ('sale_line_ids', '=', [])]"/>
+                <filter string="Customer Invoice" name="filter_customer_invoice" domain="[('invoice_type', '=', 'out_invoice')]"/>
+                <filter string="Supplier Invoice" name="filter_supplier_invoice" domain="[('invoice_type', '=', 'in_invoice')]"/>
+                 -->
+                <group string="Group By" name="group_by">
+                    <filter string="Category" name="group_by_category_id" domain="[]" context="{'group_by':'category_id'}"/>
+                    <filter string="State" name="group_by_state" domain="[]" context="{'group_by':'state'}"/>
+                    <!-- <filter string="Origin" name="group_by_origin" domain="[]" context="{'group_by':'origin'}"/>
+                    <filter string="Product" name="group_by_product_id" domain="[]" context="{'group_by':'product_id'}"/>
+                    <filter string="Partner" name="group_by_product_id" domain="[]" context="{'group_by':'partner_id'}"/> -->
+                </group>
+            </search>
         </field>
     </record>
 
