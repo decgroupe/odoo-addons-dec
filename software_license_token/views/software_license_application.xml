@@ -19,18 +19,6 @@
                     class="btn-primary">
                 </button>
             </header>
-            <div name="button_box" position="inside">
-                <button 
-                    name="action_portal_publish"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-globe">
-                        <div class="o_field_widget o_stat_info">
-                            <field name="portal_published" widget="toggle_button"/>
-                        </div>
-                        <span class="o_stat_text">Portal</span>
-                </button>
-            </div>
             <page name="general" position="after">
                 <page name="token" string="Keys">
                     <group name="key_pair">

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-02 10:34+0000\n"
-"PO-Revision-Date: 2021-04-02 10:34+0000\n"
+"POT-Creation-Date: 2021-05-26 06:47+0000\n"
+"PO-Revision-Date: 2021-05-26 06:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,67 +26,12 @@ msgid "-----BEGIN RSA PRIVATE KEY-----"
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "<br/>\n"
-"                    <strong>Create Date:</strong>"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
-msgid "<span class=\"o_stat_text\">Portal</span>"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "<strong>Application:</strong>"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "<strong>Expiration Date:</strong>"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "<strong>Maximum Activation Count:</strong>"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "Action"
-msgstr ""
-
-#. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:90
-#, python-format
-msgid "All"
-msgstr ""
-
-#. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:57
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_licenses
-#, python-format
-msgid "Application"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_licenses
-msgid "Create Date"
-msgstr ""
-
-#. module: software_license_token
 #: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
 msgid "Create a new public/private key pair"
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "Deactivate"
-msgstr ""
-
-#. module: software_license_token
 #: model:ir.model.fields,field_description:software_license_token.field_software_license__expiration_date
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_licenses
 msgid "Expiration Date"
 msgstr ""
 
@@ -102,11 +47,6 @@ msgid "Generate Keys"
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "Hardware Identifiers"
-msgstr ""
-
-#. module: software_license_token
 #: model:ir.model.fields,help:software_license_token.field_software_license__max_allowed_hardware
 msgid "If more than 1, then the number of registered hardware identifiers will not be allowed to be greater than this value."
 msgstr ""
@@ -117,24 +57,8 @@ msgid "If set, then after this date it will not be possible to proceed or renew 
 msgstr ""
 
 #. module: software_license_token
-#: model:ir.model.fields,field_description:software_license_token.field_software_license__portal_published
-#: model:ir.model.fields,field_description:software_license_token.field_software_license_application__portal_published
-msgid "In Portal"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "Informations"
-msgstr ""
-
-#. module: software_license_token
 #: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
 msgid "Keys"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "Last activation"
 msgstr ""
 
 #. module: software_license_token
@@ -153,32 +77,14 @@ msgid "License application"
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_layout
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_home
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_licenses
-msgid "Licenses"
-msgstr ""
-
-#. module: software_license_token
 #: model:ir.model.fields,field_description:software_license_token.field_software_license__max_allowed_hardware
 msgid "Maximum Activation Count"
 msgstr ""
 
 #. module: software_license_token
-#: code:addons/software_license_token/models/software_license.py:35
+#: code:addons/software_license_token/models/software_license.py:33
 #, python-format
 msgid "Maximum hardware identifier count reached"
-msgstr ""
-
-#. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:48
-#, python-format
-msgid "Newest"
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_licenses
-msgid "Owner"
 msgstr ""
 
 #. module: software_license_token
@@ -192,54 +98,8 @@ msgid "Public Key"
 msgstr ""
 
 #. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:85
-#, python-format
-msgid "Search in All"
-msgstr ""
-
-#. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:72
-#, python-format
-msgid "Search in Applications"
-msgstr ""
-
-#. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:77
-#, python-format
-msgid "Search in Hardware identifiers"
-msgstr ""
-
-#. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:67
-#, python-format
-msgid "Search in Serials"
-msgstr ""
-
-#. module: software_license_token
-#: code:addons/software_license_token/controllers/myaccount.py:52
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_licenses
-#, python-format
-msgid "Serial"
-msgstr ""
-
-#. module: software_license_token
 #: model:ir.model.fields,help:software_license_token.field_software_license_hardware__validity_days
 msgid "The license file data can be used to internally validate an activation until this delay is reached. After this, a new validation will be required to continue using the application."
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "There is no activated hardware on this license."
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_my_licenses
-msgid "There is no license linked to your account.."
-msgstr ""
-
-#. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.portal_software_license_page
-msgid "Unique ID"
 msgstr ""
 
 #. module: software_license_token

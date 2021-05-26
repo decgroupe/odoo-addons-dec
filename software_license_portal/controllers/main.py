@@ -116,7 +116,7 @@ class SoftwareLicenseController(http.Controller):
             ]:
                 odoo_convert.convert_file(
                     request.env.cr,
-                    'software_license_token',
+                    'software_license_portal',
                     file, {},
                     mode='init',
                     kind='data'
