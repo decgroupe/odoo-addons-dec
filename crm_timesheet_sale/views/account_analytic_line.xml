@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_timesheet_line_form">
+        <field name="name">account.analytic.line.form@crm_timesheet_sale</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="crm_timesheet.hr_timesheet_line_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet//field[@name='lead_id']" position="after">
+                <field name="sale_id" 
+                    domain="[('opportunity_id', '=', lead_id)]"
+                    context="{'default_opportunity_id': lead_id}"
+                    attrs="{'invisible': [('lead_id', '=', False)]}">
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

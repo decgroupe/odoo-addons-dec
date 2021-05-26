@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="hr_timesheet_line_form">
-        <field name="name">account.analytic.line.form@hr_timesheet_task_context</field>
+        <field name="name">account.analytic.line.form@hr_timesheet_task_domain_override</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
         <field name="arch" type="xml">

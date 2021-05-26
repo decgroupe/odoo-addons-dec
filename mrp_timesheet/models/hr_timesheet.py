@@ -33,9 +33,18 @@ class AccountAnalyticLine(models.Model):
 
     @api.onchange("production_id")
     def onchange_production_id(self):
-        for record in self:
-            if not record.production_id:
-                continue
-            if record.production_id.project_id:
-                record.project_id = record.production_id.project_id
-            record.product_id = record.production_id.product_id
+        if not self.production_id:
+            return
+        self.product_id = self.production_id.product_id
+        if not self.project_id and self.production_id.project_id:
+            self.project_id = self.production_id.project_id
+
+    @api.onchange('project_id')
+    def onchange_project_id(self):
+        res = super().onchange_project_id()
+        if 'domain' in res:
+            filter = []
+            if self.project_id:
+                filter = [('project_id', '=', self.project_id.id)]
+            res['domain']['production_id'] = filter
+        return res
