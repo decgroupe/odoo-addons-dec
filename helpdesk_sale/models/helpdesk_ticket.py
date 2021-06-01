@@ -19,6 +19,10 @@ class HelpdeskTicket(models.Model):
     def action_create_quotation(self):
         ticket_action = self.env.ref('helpdesk_mgmt.helpdesk_ticket_action')
         quot_action = self.env.ref('sale.action_quotations_with_onboarding')
+        # Reset the context to avoid team_id collision when creating a new
+        # sale order
+        default_context = self.env.user.context_get()
+        Order = self.env['sale.order'].with_context(default_context)
         for ticket in self:
             data = {
                 'summary':
@@ -30,7 +34,7 @@ class HelpdeskTicket(models.Model):
                 'date_order':
                     fields.Date.today(),
             }
-            order = self.env['sale.order'].create(data)
+            order = Order.create(data)
 
             # Create a ref to sale_order to ticket references
             if order:
