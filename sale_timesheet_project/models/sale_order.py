@@ -18,9 +18,8 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_create_project(self):
-        contract_type_id = self.env.ref(
-            'project_identification.contract_type'
-        )
+        contract_type_id = self.env.ref('project_identification.contract_type')
+        Project = self.env['project.project'].with_context(active_test=False)
         for rec in self:
             if not rec.project_id or self.env.context.get(
                 'override_project_id'
@@ -29,18 +28,18 @@ class SaleOrder(models.Model):
                     'name': rec.name,
                     'partner_id': rec.partner_shipping_id.id,
                     'type_id': contract_type_id.id,
+                    'user_id': rec.user_id.id,
                 }
-                project_id = self.env['project.project'].search(
-                    [
-                        ('name', '=', project_data['name']),
-                        ('partner_id', '=', project_data['partner_id']),
-                    ],
-                    limit=1
-                )
+                domain = [
+                    ('name', '=', project_data['name']),
+                    ('partner_id', '=', project_data['partner_id']),
+                ]
+                if not self.env.context.get('ignore_partner_id'):
+                    domain += [('partner_id', '=', project_data['partner_id'])]
+                project_id = Project.search(domain, limit=1)
                 if not project_id:
                     # Create project as SUPER_USER
-                    project_id = self.env['project.project'].sudo(
-                    ).create(project_data)
+                    project_id = Project.sudo().create(project_data)
                 rec.project_id = project_id
             # Assign same analytic account
             rec.analytic_account_id = rec.project_id.analytic_account_id
