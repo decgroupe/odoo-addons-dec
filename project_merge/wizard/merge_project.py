@@ -16,4 +16,8 @@ class MergeProject(models.TransientModel):
     dst_object_id = fields.Many2one(_model_merge, string="Project")
 
     def _merge(self, object_ids, dst_object=None, extra_checks=True):
-        return super()._merge(object_ids, dst_object, extra_checks)
+        return super()._merge(
+            object_ids,
+            dst_object.with_context(mail_auto_subscribe_no_notify=True),
+            extra_checks
+        )
