@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-10 09:50+0000\n"
-"PO-Revision-Date: 2021-03-10 10:53+0100\n"
+"POT-Creation-Date: 2021-06-02 12:31+0000\n"
+"PO-Revision-Date: 2021-06-02 14:32+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: mrp_purchase
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_mrp_on_purchase_cancellation
@@ -47,11 +47,6 @@ msgstr "Exception(s):"
 #: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order_line__bom_line_id
 msgid "Line of the Bill of Material"
 msgstr "Ligne de la nomenclature"
-
-#. module: mrp_purchase
-#: model:ir.model,name:mrp_purchase.model_procurement_group
-msgid "Procurement Group"
-msgstr "Groupe d'approvisionnement"
 
 #. module: mrp_purchase
 #: model:ir.model,name:mrp_purchase.model_mrp_production
@@ -96,6 +91,12 @@ msgid "Subcontracted Services"
 msgstr "Services sous-traités"
 
 #. module: mrp_purchase
+#: code:addons/mrp_purchase/models/mrp_production.py:27
+#, python-format
+msgid "The procurement workflow for this line is not supported: <a href=# data-oe-model=mrp.bom.line data-oe-id=%d>%s</a>"
+msgstr "Le processus d’approvisionnement pour cette ligne n’est pas pris en charge : <a href=# data-oe-model=mrp.bom.line data-oe-id=%d>%s</a>"
+
+#. module: mrp_purchase
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_mrp_on_purchase_cancellation
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_purchase_on_mrp_cancellation
 msgid "cancelled"
@@ -106,3 +107,6 @@ msgstr "annulé"
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_purchase_on_mrp_cancellation
 msgid "of"
 msgstr "de"
+
+#~ msgid "Procurement Group"
+#~ msgstr "Groupe d'approvisionnement"
