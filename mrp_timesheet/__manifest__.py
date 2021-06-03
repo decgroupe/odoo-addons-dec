@@ -9,10 +9,12 @@
     'depends': [
         'mrp_project',
         'mrp_partner',
+        'hr_timesheet',
     ],
     'data': [
         'views/mrp_production.xml',
         'views/hr_timesheet.xml',
+        'views/project_task.xml',
     ],
     'installable': True
 }
