@@ -17,3 +17,5 @@ class ProjectTask(models.Model):
         'mrp.bom.line',
         string="Line of the Bill of Material",
     )
+    # To remove when manual reassigment is finished
+    origin = fields.Char(string="Legacy Origin")

@@ -17,7 +17,24 @@
                         'delete': False
                     }">
                 </field>
+                <field name="origin" groups="base.group_erp_manager"/>
             </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_task_kanban">
+        <field name="name">project.task.kanban@mrp_project_task</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='user_id']" position="after">
+                <field name="production_id"/>
+            </xpath>
+            <xpath expr="//small[hasclass('o_kanban_record_subtitle')]" position="inside">
+                <div t-if="record.production_id.raw_value">
+                    <i class="fa fa-gear"/> <t t-raw="record.production_id.value"/>
+                </div>
+            </xpath>
         </field>
     </record>
 

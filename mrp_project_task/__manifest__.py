@@ -9,6 +9,7 @@
         'mrp_purchase',
         'sale_timesheet_existing_project',
         'sale_timesheet_task_exclude',
+        'project_identification',
     ],
     'data': [
         'views/mrp_production.xml',
