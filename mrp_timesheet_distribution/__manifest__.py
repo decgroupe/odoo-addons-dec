@@ -6,7 +6,12 @@
     'summary':
         "Add a wizard to help distributing working time along selected "
         "production orders",
-    'depends': ['mrp_timesheet_time_control', ],
+    'depends':
+        [
+            'mrp_timesheet_time_control',
+            'mrp_project_task',
+            'project_identification',
+        ],
     'data':
         [
             'security/ir.model.access.csv',
