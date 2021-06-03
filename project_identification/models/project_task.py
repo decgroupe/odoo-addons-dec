@@ -12,6 +12,7 @@ class ProjectTask(models.Model):
         comodel_name='project.type',
         string='Project Type',
         related='project_id.type_id',
+        store=True,
     )
 
     @api.model
