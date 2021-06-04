@@ -19,3 +19,13 @@ class ProjectTask(models.Model):
     )
     # To remove when manual reassigment is finished
     origin = fields.Char(string="Legacy Origin")
+
+    @api.multi
+    def _get_name_identifications(self):
+        res = super()._get_name_identifications()
+        # Add production to quickly identify a task
+        production_id = self.production_id
+        if production_id:
+            production_name = '%s %s' % ('⚙️', production_id.name)
+            res.append(production_name)
+        return res

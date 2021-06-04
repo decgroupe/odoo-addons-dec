@@ -15,24 +15,34 @@ class ProjectTask(models.Model):
         store=True,
     )
 
+    @api.multi
+    def _get_name_identifications(self):
+        res = []
+        self.ensure_one()
+        # Add project to quickly identify a task
+        project_id = self.project_id
+        if project_id:
+            project_name = project_id.name
+            if project_id.type_id and not project_id.type_id.display_name[
+                0].isalpha():
+                emoji = project_id.type_id.display_name[0]
+                project_name = '%s %s' % (emoji, project_name)
+                res.append(project_name)
+        return res
+
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
         # Make a search with default criteria
         names = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        # Add project to quickly identify a task
         result = []
         for item in names:
             task = self.browse(item[0])[0]
             name = item[1]
-            project_id = task.project_id
-            if project_id:
-                project_name = project_id.name
-                if project_id.type_id and not project_id.type_id.display_name[0].isalpha():
-                    emoji = project_id.type_id.display_name[0]
-                    project_name = '%s %s' % (emoji, project_name)
-                name = '%s (%s)' % (name, project_name)
+            identifications = task._get_name_identifications()
+            if identifications:
+                name = '%s (%s)' % (name, ' '.join(identifications))
             if task.stage_id and not task.stage_id.name[0].isalpha():
                 emoji = task.stage_id.name[0]
                 name = '%s %s' % (emoji, name)
