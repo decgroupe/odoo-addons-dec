@@ -34,3 +34,10 @@ class RefCategoryLine(models.Model):
         required=True,
         default=1,
     )
+
+    _sql_constraints = [
+        (
+            'cat_seq_uniq', 'unique(category_id, sequence)',
+            'Position must be unique !'
+        ),
+    ]
