@@ -1,0 +1,180 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* partner_training
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-04 13:56+0000\n"
+"PO-Revision-Date: 2021-06-04 13:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__acronym
+msgid "Acronym"
+msgstr ""
+
+#. module: partner_training
+#: sql_constraint:res.partner.training.specialty:0
+msgid "Acronym must be unique !"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__active
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__active
+msgid "Active"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__complete_name
+msgid "Complete Name"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model,name:partner_training.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: partner_training
+#: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_action
+msgid "Create a new Educational Training"
+msgstr ""
+
+#. module: partner_training
+#: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_specialty_action
+msgid "Create a new Educational Training Specialty"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__create_uid
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__create_date
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__display_name
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model,name:partner_training.model_res_partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__training_id
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_form_view
+msgid "Educational Training"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.actions.act_window,name:partner_training.res_partner_training_specialty_action
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_tree_view
+msgid "Educational Training Specialties"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,help:partner_training.field_res_partner__training_specialty_ids
+#: model:ir.model.fields,help:partner_training.field_res_users__training_specialty_ids
+msgid "Educational Training Specialties of this partner."
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model,name:partner_training.model_res_partner_training_specialty
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
+msgid "Educational Training Specialty"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.actions.act_window,name:partner_training.res_partner_training_action
+#: model:ir.ui.menu,name:partner_training.res_partner_training_category
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_tree_view
+msgid "Educational Trainings"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__id
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__id
+msgid "ID"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training____last_update
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__write_uid
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__write_date
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: partner_training
+#: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_action
+#: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_specialty_action
+msgid "Manage educational trainings to better classify orders for tracking and analysis purposes."
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__name
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__name
+msgid "Name"
+msgstr ""
+
+#. module: partner_training
+#: sql_constraint:res.partner.training:0
+#: sql_constraint:res.partner.training.specialty:0
+msgid "Name must be unique !"
+msgstr ""
+
+#. module: partner_training
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_form_view
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
+msgid "PCSS"
+msgstr ""
+
+#. module: partner_training
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_form_view
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
+msgid "Personal Care and Services Support"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner__training_specialty_ids
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__specialty_ids
+#: model:ir.model.fields,field_description:partner_training.field_res_users__training_specialty_ids
+#: model:ir.ui.menu,name:partner_training.res_partner_training_specialty_menu
+msgid "Specialties"
+msgstr ""
+
+#. module: partner_training
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_tree_view
+msgid "Specialties or Sectors"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__title
+msgid "Title"
+msgstr ""
+
+#. module: partner_training
+#: model:ir.ui.menu,name:partner_training.res_partner_training_menu
+msgid "Trainings"
+msgstr ""
+

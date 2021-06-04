@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_training_user,Basic access to training for User,model_res_partner_training,base.group_user,1,1,1,0
+access_res_partner_training_manager,Full access to training for Manager,model_res_partner_training,base.group_erp_manager,1,1,1,1
+access_res_partner_training_specialty_user,Basic access to training's specialty for User,model_res_partner_training_specialty,base.group_user,1,1,1,0
+access_res_partner_training_specialty_manager,Full access to training's specialty for Manager,model_res_partner_training_specialty,base.group_erp_manager,1,1,1,1n
