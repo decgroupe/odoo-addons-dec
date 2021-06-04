@@ -11,6 +11,7 @@
             'mrp_timesheet_time_control',
             'mrp_project_task',
             'project_identification',
+            'project_task_default_stage',
         ],
     'data':
         [

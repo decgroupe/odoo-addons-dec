@@ -208,23 +208,26 @@ class MrpDistributeTimesheet(models.TransientModel):
             i += 1
         self.timesheet_line_ids += line_ids
 
-    def _get_or_create_task(self, line_id, name):
+    @api.model
+    def _get_or_create_task(self, project_id, name):
         time_tracking_type = self.env.ref(
             'project_identification.time_tracking_type'
         )
+        stage_done = self.env.ref(
+            'project_task_default_stage.project_tt_deployment'
+        )
         task_id = self.env['project.task'].search(
             [
-                ('project_id', '=', line_id.project_id.id),
-                ('production_id', '=', line_id.production_id.id),
+                ('project_id', '=', project_id.id),
                 ('name', '=', name),
             ],
             limit=1
         )
         if not task_id:
             vals = {
-                'project_id': line_id.project_id.id,
-                'production_id': line_id.production_id.id,
+                'project_id': project_id.id,
                 'type_id': time_tracking_type.id,
+                'stage_id': stage_done.id,
                 'name': name,
             }
             task_id = self.env['project.task'].create(vals)
@@ -246,7 +249,7 @@ class MrpDistributeTimesheet(models.TransientModel):
             vals_line = line_id._prepare_analytic_line(name)
             if not 'task_id' in vals_line:
                 vals_line['task_id'] = self._get_or_create_task(
-                    line_id, name
+                    line_id.project_id, name
                 ).id
 
             self.env['account.analytic.line'].create(vals_line)
