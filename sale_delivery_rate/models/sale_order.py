@@ -40,13 +40,20 @@ class SaleOrder(models.Model):
                     len(received_move_ids) * 100 / len(all_move_ids)
 
     @api.multi
-    @api.depends('tasks_ids', 'tasks_ids.progress')
+    @api.depends('tasks_ids', 'tasks_ids.progress', 'tasks_ids.stage_id')
     def _compute_task_rate(self):
         for sale in self:
             all_task_ids = sale.tasks_ids
+            total_progress = 0
             if all_task_ids:
-                sale.task_rate = sum(all_task_ids.mapped('progress')) \
-                    / len(all_task_ids)
+                for task_id in all_task_ids:
+                    # If the task stage is cancel or done, consider its
+                    # progress as 100%
+                    if task_id.stage_id.fold:
+                        total_progress += 100
+                    else:
+                        total_progress += task_id.progress
+                sale.task_rate = total_progress / len(all_task_ids)
 
     @api.multi
     @api.depends('sent_rate', 'task_rate')
