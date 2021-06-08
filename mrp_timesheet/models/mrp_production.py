@@ -49,10 +49,11 @@ class MrpProduction(models.Model):
 
     @api.constrains('project_id')
     def _constrains_project_timesheets(self):
-        for record in self:
-            record.timesheet_ids.update({
-                'project_id': record.project_id.id
-            })
+        if not self.env.context.get('ignore_constrains_project_timesheets'):
+            for record in self:
+                record.timesheet_ids.update({
+                    'project_id': record.project_id.id
+                })
 
     @api.depends('planned_hours', 'total_hours')
     def _compute_progress_hours(self):
