@@ -38,8 +38,9 @@ class MrpProduction(models.Model):
         )
         production_ids = self.search(
             [
-                ('picked_rate', '<', 1),
+                ('picked_rate', '<', 100),
                 ('write_date', '>=', date),
+                ('state', '!=', 'cancel'),
             ]
-        )
+        ).filtered('move_raw_ids')
         production_ids._compute_picked_rate()
