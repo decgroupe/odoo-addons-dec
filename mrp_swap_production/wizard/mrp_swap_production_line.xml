@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_swap_production_line_tree_view" >
+        <field name="name">mrp.swap.production.line@mrp_swap_production</field>
+        <field name="model">mrp.swap.production.line</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="product_id"/>
+                <field name="from_production_id"/>
+                <field name="to_production_id"/>
+                <field name="swap_final_moves"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

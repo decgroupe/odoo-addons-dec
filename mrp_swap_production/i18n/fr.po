@@ -1,0 +1,140 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_swap_production
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-08 08:56+0000\n"
+"PO-Revision-Date: 2021-06-08 10:57+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: mrp_swap_production
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:147
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:189
+#, python-format
+msgid "%s must be the same"
+msgstr "%s doivent être les mêmes"
+
+#. module: mrp_swap_production
+#: model_terms:ir.ui.view,arch_db:mrp_swap_production.mrp_swap_production_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mrp_swap_production
+#: model_terms:ir.ui.view,arch_db:mrp_swap_production.mrp_swap_production_form_view
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__create_uid
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__create_date
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__display_name
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_swap_production
+#: model:res.groups,name:mrp_swap_production.group_swap_production
+msgid "Display the swap manufacturing order action"
+msgstr "Afficher l’action de permutation de fabrications"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__from_production_id
+msgid "From"
+msgstr "De"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__id
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production____last_update
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__write_uid
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__write_date
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mrp_swap_production
+#: model:ir.model,name:mrp_swap_production.model_mrp_swap_production_line
+msgid "Line for swaping two manufacturing orders"
+msgstr "Ligne pour l’échange de deux fabrications"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__other_production_id
+msgid "Other"
+msgstr "L'autre"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__product_id
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__swap_final_moves
+msgid "Swap Final Moves"
+msgstr "Permuter les mouvements finaux"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__swap_line_ids
+msgid "Swap Lines"
+msgstr "Lignes à permuter"
+
+#. module: mrp_swap_production
+#: model:ir.model,name:mrp_swap_production.model_mrp_swap_production
+msgid "Swap two manufacturing orders"
+msgstr "Échanger deux fabrications"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__this_production_id
+msgid "This"
+msgstr "Celui-ci"
+
+#. module: mrp_swap_production
+#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__to_production_id
+msgid "To"
+msgstr "Vers"
+
+#. module: mrp_swap_production
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:221
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:223
+#, python-format
+msgid "🔄 Swapped with %s"
+msgstr "🔄 Permuté avec %s"
+
+#. module: mrp_swap_production
+#: model:ir.actions.act_window,name:mrp_swap_production.act_window_swap_production
+msgid "🧙‍♂️ Swap this manufacturing order ..."
+msgstr "🧙‍♂️ Échanger cette fabrication ..."
