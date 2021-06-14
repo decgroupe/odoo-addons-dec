@@ -2,8 +2,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Feb 2021
 
-from odoo import api, fields, models
+import psycopg2
+import logging
+
+from odoo import api, fields, models, registry, SUPERUSER_ID
 from odoo.osv import expression
+from odoo.addons.tools_miscellaneous.tools.bench import Bench
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountAnalyticLine(models.Model):
@@ -50,6 +56,14 @@ class AccountAnalyticLine(models.Model):
         # Make a search for all autofill fields and clear default name arg to
         # avoid `expression.AND` collision
         if self.env.context.get("autofill_name_search"):
+            bench = Bench().start()
+            # To avoid long-waiting query, we first search for all lines owned
+            # by this user. It has better performance than making a long AND
+            # query including user_id
+            domain = [('user_id', '=', self.env.uid)]
+            owned_ids = self.env['account.analytic.line'].search(domain)
+            args.append(('id', 'in', owned_ids.ids))
+            # Execute normal search
             autofill_fields = self.get_autofill_fields()
             if len(name) > 2:
                 extra_args = []
@@ -57,10 +71,9 @@ class AccountAnalyticLine(models.Model):
                     if len(value) > 2:
                         value_args = []
                         for fname in autofill_fields:
-                            value_args = expression.OR([
-                                value_args,
-                                [(fname, 'ilike', value)]
-                            ])
+                            value_args = expression.OR(
+                                [value_args, [(fname, 'ilike', value)]]
+                            )
                         extra_args = expression.AND([extra_args, value_args])
                 if extra_args:
                     args = expression.AND([args, extra_args])
@@ -70,6 +83,32 @@ class AccountAnalyticLine(models.Model):
         names = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
+
+        if _logger.isEnabledFor(logging.DEBUG):
+            if self.env.context.get("autofill_name_search"):
+                duration = bench.stop().duration()
+                msg = "Autofill query: {} in {}s".format(args, duration)
+                # Use a new cursor to avoid rollback that could be caused by
+                # an upper method
+                try:
+                    db_registry = registry(self._cr.dbname)
+                    with db_registry.cursor() as cr:
+                        env = api.Environment(cr, SUPERUSER_ID, {})
+                        IrLogging = env['ir.logging']
+                        IrLogging.sudo().create(
+                            {
+                                'name': self._name,
+                                'type': 'server',
+                                'dbname': self._cr.dbname,
+                                'level': 'DEBUG',
+                                'message': msg,
+                                'path': 'autofill_name_search',
+                                'func': 'name_search',
+                                'line': 1
+                            }
+                        )
+                except psycopg2.Error:
+                    pass
 
         if self.env.context.get("autofill_name_search"):
             autofill_fields = self.get_autofill_fields()
