@@ -23,6 +23,16 @@ class SoftwareLicense(models.Model):
     #         vals['serial'] = self._generate_serial()
     #     return vals
 
+    @api.multi
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        self.ensure_one()
+        if default is None:
+            default = {}
+        if not default.get('serial') and self.application_id.auto_generate_serial:
+            default.update(serial=self._generate_serial())
+        return super(SoftwareLicense, self).copy(default)
+
     @api.onchange('application_id')
     def onchange_application_id(self):
         self.ensure_one()

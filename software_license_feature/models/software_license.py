@@ -12,6 +12,7 @@ class SoftwareLicense(models.Model):
         comodel_name='software.license.feature',
         inverse_name='license_id',
         string='Features',
+        copy=True,
     )
 
     @api.multi
