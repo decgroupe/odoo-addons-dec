@@ -8,7 +8,7 @@
         "Show manufacturing production requests generated from sale "
         "orders and create activities when sale orders are cancelled",
     'depends': [
-        'sale',
+        'sale_mrp_link',
         'mrp_production_request',
     ],
     'data': [
