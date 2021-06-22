@@ -52,7 +52,8 @@ class MrpProduction(models.Model):
                 rec.project_id = project_id
         # Set a default analytic parent account but only for projects created
         # from this function
-        analytic_account_ids = created_project_ids.mapped('analytic_account_id')
-        analytic_account_ids.write(
-            {'parent_id': self.env.ref('mrp_project.analytic_production').id}
-        )
+        if created_project_ids:
+            analytic_account_ids = created_project_ids.mapped('analytic_account_id')
+            analytic_account_ids.write(
+                {'parent_id': self.env.ref('mrp_project.analytic_production').id}
+            )
