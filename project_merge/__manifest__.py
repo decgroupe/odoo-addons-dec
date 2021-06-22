@@ -10,6 +10,7 @@
     'data': [
         'security/res_groups.xml',
         'wizard/merge_project.xml',
+        'wizard/merge_task.xml',
     ],
     'installable': True
 }
