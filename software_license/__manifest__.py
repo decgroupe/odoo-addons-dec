@@ -6,6 +6,7 @@
     'summary': '''Manage software licenses''',
     'depends': [
         'base',
+        'mail',
         'product',
         'mrp',
         'software',
