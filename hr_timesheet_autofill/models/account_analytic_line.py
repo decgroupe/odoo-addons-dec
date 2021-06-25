@@ -53,6 +53,34 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
+        def log_query(msg, id=False):
+            # Use a new cursor to avoid rollback that could be caused by
+            # an upper method
+            try:
+                db_registry = registry(self._cr.dbname)
+                with db_registry.cursor() as cr:
+                    env = api.Environment(cr, SUPERUSER_ID, {})
+                    path = 'autofill_name_search by %s' % (self.env.user.name)
+                    data = {
+                        'name': self._name,
+                        'type': 'server',
+                        'dbname': self._cr.dbname,
+                        'level': 'DEBUG',
+                        'message': msg,
+                        'path': path,
+                        'func': 'name_search',
+                        'line': 1
+                    }
+                    if id:
+                        env['ir.logging'].browse(id).sudo().write(data)
+                        return id
+                    else:
+                        data['func'] += ' in progress ...'
+                        ir_logging = env['ir.logging'].sudo().create(data)
+                        return ir_logging.id
+            except psycopg2.Error:
+                pass
+
         # Make a search for all autofill fields and clear default name arg to
         # avoid `expression.AND` collision
         if self.env.context.get("autofill_name_search"):
@@ -60,7 +88,10 @@ class AccountAnalyticLine(models.Model):
             # To avoid long-waiting query, we first search for all lines owned
             # by this user. It has better performance than making a long AND
             # query including user_id
-            domain = [('user_id', '=', self.env.uid)]
+            domain = [
+                ('user_id', '=', self.env.uid),
+                ('project_id', '!=', False),
+            ]
             owned_ids = self.env['account.analytic.line'].search(domain)
             args.append(('id', 'in', owned_ids.ids))
             # Execute normal search
@@ -78,6 +109,7 @@ class AccountAnalyticLine(models.Model):
                 if extra_args:
                     args = expression.AND([args, extra_args])
                     name = ''
+            log_id = log_query("Autofill query: {} in progress".format(args))
 
         # Make a search with default criteria
         names = super().name_search(
@@ -87,28 +119,9 @@ class AccountAnalyticLine(models.Model):
         if _logger.isEnabledFor(logging.DEBUG):
             if self.env.context.get("autofill_name_search"):
                 duration = bench.stop().duration()
-                msg = "Autofill query: {} in {}s".format(args, duration)
-                # Use a new cursor to avoid rollback that could be caused by
-                # an upper method
-                try:
-                    db_registry = registry(self._cr.dbname)
-                    with db_registry.cursor() as cr:
-                        env = api.Environment(cr, SUPERUSER_ID, {})
-                        IrLogging = env['ir.logging']
-                        IrLogging.sudo().create(
-                            {
-                                'name': self._name,
-                                'type': 'server',
-                                'dbname': self._cr.dbname,
-                                'level': 'DEBUG',
-                                'message': msg,
-                                'path': 'autofill_name_search',
-                                'func': 'name_search',
-                                'line': 1
-                            }
-                        )
-                except psycopg2.Error:
-                    pass
+                log_query(
+                    "Autofill query: {} in {}s".format(args, duration), log_id
+                )
 
         if self.env.context.get("autofill_name_search"):
             autofill_fields = self.get_autofill_fields()
@@ -123,8 +136,10 @@ class AccountAnalyticLine(models.Model):
                     fvalue = rec[fname]
                     if hasattr(fvalue, 'display_name'):
                         val = fvalue.display_name or ''
-                    else:
+                    elif fvalue:
                         val = str(fvalue)
+                    else:
+                        val = False
                     if val and val not in extra_name:
                         extra_name.append(val)
                 name = '{}: {}'.format(' / '.join(extra_name), name)
