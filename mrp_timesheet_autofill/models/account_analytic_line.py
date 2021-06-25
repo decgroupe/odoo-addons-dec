@@ -13,6 +13,6 @@ class AccountAnalyticLine(models.Model):
         res = super().get_autofill_fields()
         return res + [
             'production_id',
-            'production_partner_id',
-            'production_product_id',
+            'production_partner_name',
+            'production_product_name',
         ]

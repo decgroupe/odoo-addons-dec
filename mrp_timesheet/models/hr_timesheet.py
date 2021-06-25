@@ -22,6 +22,10 @@ class AccountAnalyticLine(models.Model):
         compute_sudo=True,
         groups="mrp.group_mrp_user",
     )
+    production_partner_name = fields.Char(
+        related='production_partner_id.name',
+        store=True,
+    )
     production_product_id = fields.Many2one(
         comodel_name='product.product',
         related="production_id.product_id",
@@ -29,6 +33,10 @@ class AccountAnalyticLine(models.Model):
         store=True,
         compute_sudo=True,
         groups="mrp.group_mrp_user",
+    )
+    production_product_name = fields.Char(
+        related='production_product_id.name',
+        store=True,
     )
 
     @api.onchange("production_id")
