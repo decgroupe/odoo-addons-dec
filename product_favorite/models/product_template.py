@@ -48,11 +48,11 @@ class ProductTemplate(models.Model):
     def _set_favorite_ok(self, product_ids):
         self._set_attribute_ok('favorite_ok', product_ids)
 
-    def append_favorite_emoji(self, names):
+    def append_favorite_emoji(self, model, names):
         # Add emoji to quickly identify a favorite
         result = []
         for item in names:
-            product = self.browse(item[0])[0]
+            product = self.env[model].browse(item[0])[0]
             name_get = item[1]
             if product.favorite_ok:
                 name_get = '%s %s' % (name_get, '📌')
@@ -65,4 +65,4 @@ class ProductTemplate(models.Model):
         names = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        return self.append_favorite_emoji(names)
+        return self.append_favorite_emoji(self._name, names)

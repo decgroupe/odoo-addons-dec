@@ -28,13 +28,13 @@ class ProductTemplate(models.Model):
                 product.reference_id = product.reference_ids[0]
 
     @api.model
-    def append_extra_search(self, name, name_search_result, limit=100):
-        result = super().append_extra_search(name, name_search_result, limit)
-        result = self.append_reference_search(name, result, limit)
+    def append_extra_search(self, model, name, name_search_result, limit=100):
+        result = super().append_extra_search(model, name, name_search_result, limit)
+        result = self.append_reference_search(model, name, result, limit)
         return result
 
     @api.model
-    def append_reference_search(self, name, name_search_result, limit=100):
+    def append_reference_search(self, model, name, name_search_result, limit=100):
         result = name_search_result
         if name:
             # Make a specific search to find a product with version inside
@@ -42,7 +42,7 @@ class ProductTemplate(models.Model):
                 reference = name.upper().rpartition('V')
                 if reference[0]:
                     res = []
-                    products = self.search(
+                    products = self.env[model].search(
                         [('default_code', 'ilike', reference[0])], limit=limit
                     )
                     res = products.name_get()

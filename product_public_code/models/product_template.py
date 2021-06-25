@@ -26,23 +26,25 @@ class ProductTemplate(models.Model):
         result = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        result = self.append_extra_search(name, result, limit)
+        result = self.append_extra_search(self._name, name, result, limit)
         return result
 
     @api.model
-    def append_extra_search(self, name, name_search_result, limit=100):
-        result = self.append_public_code_search(name, name_search_result, limit)
+    def append_extra_search(self, model, name, name_search_result, limit=100):
+        result = self.append_public_code_search(model, name, name_search_result, limit)
         return result
 
     @api.model
-    def append_public_code_search(self, name, name_search_result, limit=100):
+    def append_public_code_search(
+        self, model, name, name_search_result, limit=100
+    ):
         result = name_search_result
         if name:
             # Make a specific search according to public code
             # Check for state field to see if 'product_state_review' module
             # is installed or not
-            if 'state' in self._fields:
-                products = self.search(
+            if 'state' in self.env[model]._fields:
+                products = self.env[model].search(
                     [
                         ('public_code', 'ilike', name + '%'),
                         '|',
@@ -52,7 +54,7 @@ class ProductTemplate(models.Model):
                     limit=limit
                 )
             else:
-                products = self.search(
+                products = self.env[model].search(
                     [('public_code', 'ilike', name + '%')], limit=limit
                 )
             if products:

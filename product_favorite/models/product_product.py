@@ -14,4 +14,4 @@ class Product(models.Model):
         names = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        return self.product_tmpl_id.append_favorite_emoji(names)
+        return self.product_tmpl_id.append_favorite_emoji(self._name, names)
