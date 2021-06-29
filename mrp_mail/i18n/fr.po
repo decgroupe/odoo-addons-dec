@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_mail
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-29 16:13+0000\n"
+"PO-Revision-Date: 2021-06-29 18:15+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: mrp_mail
+#: model_terms:ir.ui.view,arch_db:mrp_mail.mrp_production_form_view
+msgid "Accept Emails From"
+msgstr "Accepter les courriels de"
+
+#. module: mrp_mail
+#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_id
+msgid "Alias"
+msgstr "Alias"
+
+#. module: mrp_mail
+#: model_terms:ir.ui.view,arch_db:mrp_mail.mrp_production_form_view
+msgid "Email"
+msgstr "Courriel"
+
+#. module: mrp_mail
+#: model_terms:ir.ui.view,arch_db:mrp_mail.mrp_production_form_view
+msgid "Email Alias"
+msgstr "Alias de courriel"
+
+#. module: mrp_mail
+#: model:ir.model.fields,help:mrp_mail.field_mrp_production__alias_id
+msgid "Internal email associated with this production order. Incoming emails are automatically added as chat message."
+msgstr "E-mail interne associé à cette fabrication. Les e-mails entrants sont automatiquement ajoutés en tant que message de chat."
+
+#. module: mrp_mail
+#: model:ir.model,name:mrp_mail.model_mrp_production
+msgid "Production Order"
+msgstr "Fabrication"
