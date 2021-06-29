@@ -159,6 +159,7 @@ class ResUsersSignatureTemplate(models.Model):
             'job_title': job_title,
             'emails': emails,
             'phone': replace_space_thinspace(phone),
+            'phone_callable': phone.replace(" ", ""),
             'phone_ext': phone_ext,
             'street1': street1,
             'street2': street2,
@@ -166,7 +167,9 @@ class ResUsersSignatureTemplate(models.Model):
             'zip': zip,
             'company_name': company_name,
             'company_phone': replace_space_thinspace(company_phone),
+            'company_phone_callable': company_phone.replace(" ", ""),
             'company_fax': replace_space_thinspace(company_fax),
+            'company_fax_callable': company_fax.replace(" ", ""),
             'websites': websites,
             'ctx': self._context,  # context kw would clash with mako internals
         }

@@ -72,7 +72,7 @@ ${street2}</span>
                             <img alt="📱" src="https://files.dec-industrie.com/mobile.png" style="min-width:16px;min-height:16px;"/>
                         </td>
                         <td style="background-color:#343534">
-                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${phone}">${phone}</a>
+                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${phone_callable}">${phone}</a>
                         </td>
                     </tr>
                 % endif
@@ -81,7 +81,7 @@ ${street2}</span>
                             <img alt="📞" src="https://files.dec-industrie.com/phone.png" style="min-width:16px;min-height:16px;"/>
                         </td>
                         <td style="background-color:#343534;">
-                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${company_phone}">${company_phone} 
+                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${company_phone_callable}">${company_phone} 
                             % if phone_ext:
                                 <span style="font-size:10px!important;font-weight:400;">poste <b>${phone_ext}</b>
                                 </span>
@@ -94,7 +94,7 @@ ${street2}</span>
                             <img alt="📠" src="https://files.dec-industrie.com/print.png" style="min-width:16px;min-height:16px;"/>
                         </td>
                         <td style="background-color:#343534;">
-                            <a style="color:#D83445;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:+${company_fax}">${company_fax}</a>
+                            <a style="color:#D83445;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${company_fax_callable}">${company_fax}</a>
                         </td>
                     </tr>
                 </table>
