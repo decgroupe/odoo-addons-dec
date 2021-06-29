@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mail_channel_view_form">
+        <field name="name">mail.channel.form@mail_hide_channel</field>
+        <field name="model">mail.channel</field>
+        <field name="inherit_id" ref="mail.mail_channel_view_form"/>
+        <field name="arch" type="xml">
+            <field name="moderation" position="after">
+                <field name="hide_from_slot_list" attrs="{'invisible': []}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
