@@ -184,7 +184,7 @@ class CustomerPortal(CustomerPortal):
             }
         )
         return request.render(
-            "software_license_token.portal_my_licenses", values
+            "software_license_portal.portal_my_licenses", values
         )
 
     @http.route(['/my/license/<int:license_id>'], type='http', website=True)
@@ -195,7 +195,7 @@ class CustomerPortal(CustomerPortal):
             return request.redirect('/my')
         values = self._license_get_page_view_values(license_sudo, **kw)
         return request.render(
-            "software_license_token.portal_software_license_page", values
+            "software_license_portal.portal_software_license_page", values
         )
 
     def _license_get_page_view_values(self, license_sudo, **kwargs):
