@@ -41,3 +41,16 @@ class Project(models.Model):
                 )
                 if sale_id:
                     rec.partner_shipping_id = sale_id.partner_shipping_id
+
+    @api.multi
+    @api.depends('partner_shipping_id', 'partner_shipping_zip_id')
+    def _get_name_identifications(self):
+        res = super()._get_name_identifications()
+        # Add partner and its location to quickly identify a contract
+        if self.partner_shipping_id:
+            name = ('👷 %s') % (self.partner_shipping_id.display_name, )
+            res.append(name)
+        if self.partner_shipping_zip_id:
+            name = ('🗺️ %s') % (self.partner_shipping_zip_id.display_name, )
+            res.append(name)
+        return res

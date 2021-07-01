@@ -4,6 +4,8 @@
 
 from odoo import models, api, fields
 
+SEARCH_SEPARATOR = ' →'
+
 
 class Project(models.Model):
     _inherit = "project.project"
@@ -33,17 +35,42 @@ class Project(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
-        # Make a search with default criteria
-        names = super().name_search(
-            name=name, args=args, operator=operator, limit=limit
-        )
-        # Add type to quickly identify a project
-        result = []
-        for item in names:
-            project = self.browse(item[0])[0]
-            name = item[1]
-            type_id = project.type_id
-            if type_id:
-                name = '%s / %s' % (type_id.complete_name, project.name)
-            result.append((item[0], name))
-        return result
+        if SEARCH_SEPARATOR in name:
+            name = name.partition(SEARCH_SEPARATOR)[0]
+        names = super(Project, self.with_context(
+            name_search=True
+        )).name_search(name=name, args=args, operator=operator, limit=limit)
+        return names
+
+    @api.multi
+    def name_get(self):
+        if self.env.context.get('name_search'):
+            return self.name_get_from_search()
+        else:
+            return super().name_get()
+
+    @api.multi
+    @api.depends('name')
+    def name_get_from_search(self):
+        """ Custom naming with type to quickly identify a project
+        """
+        res = []
+        for rec in self:
+            name = rec.name
+            identifications = rec._get_name_identifications()
+            if identifications:
+                name = '%s%s %s' % (
+                    name, SEARCH_SEPARATOR, ' '.join(identifications)
+                )
+            res.append((rec.id, name))
+        return res
+
+    @api.multi
+    @api.depends('type_id', 'type_id.complete_name')
+    def _get_name_identifications(self):
+        res = []
+        self.ensure_one()
+        # Add type
+        if self.type_id:
+            res.append(self.type_id.complete_name)
+        return res

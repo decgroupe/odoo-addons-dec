@@ -4,6 +4,8 @@
 
 from odoo import models, api, fields
 
+SEARCH_SEPARATOR = ' →'
+
 
 class ProjectTask(models.Model):
     _inherit = "project.task"
@@ -14,6 +16,45 @@ class ProjectTask(models.Model):
         related='project_id.type_id',
         store=True,
     )
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        if SEARCH_SEPARATOR in name:
+            name = name.partition(SEARCH_SEPARATOR)[0]
+            # Remove 'stage' emoji
+            if name and not name[0].isalpha():
+                name = name[1:].strip()
+        names = super(ProjectTask, self.with_context(
+            name_search=True
+        )).name_search(name=name, args=args, operator=operator, limit=limit)
+        return names
+
+    @api.multi
+    def name_get(self):
+        if self.env.context.get('name_search'):
+            return self.name_get_from_search()
+        else:
+            return super().name_get()
+
+    @api.multi
+    @api.depends('name', 'stage_id')
+    def name_get_from_search(self):
+        """ Custom naming with multiple identification parts to quickly
+            identify a task
+        """
+        res = []
+        for rec in self:
+            name = rec.name
+            identifications = rec._get_name_identifications()
+            if identifications:
+                name = '%s%s %s' % (
+                    name, SEARCH_SEPARATOR, ' '.join(identifications)
+                )
+            if rec.stage_id and not rec.stage_id.name[0].isalpha():
+                emoji = rec.stage_id.name[0]
+                name = '%s %s' % (emoji, name)
+            res.append((rec.id, name))
+        return res
 
     @api.multi
     def _get_name_identifications(self):
@@ -29,22 +70,3 @@ class ProjectTask(models.Model):
                 project_name = '%s %s' % (emoji, project_name)
                 res.append(project_name)
         return res
-
-    @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
-        # Make a search with default criteria
-        names = super().name_search(
-            name=name, args=args, operator=operator, limit=limit
-        )
-        result = []
-        for item in names:
-            task = self.browse(item[0])[0]
-            name = item[1]
-            identifications = task._get_name_identifications()
-            if identifications:
-                name = '%s (%s)' % (name, ' '.join(identifications))
-            if task.stage_id and not task.stage_id.name[0].isalpha():
-                emoji = task.stage_id.name[0]
-                name = '%s %s' % (emoji, name)
-            result.append((item[0], name))
-        return result
