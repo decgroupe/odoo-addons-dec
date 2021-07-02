@@ -43,15 +43,6 @@ class SoftwareLicense(models.Model):
                 if hardware_id.validation_date > rec.expiration_date:
                     raise ValidationError(_('Expiration date reached'))
 
-    @api.multi
-    def activate(self, hardware):
-        self.ensure_one()
-        vals = {
-            'license_id': self.id,
-            'name': hardware,
-        }
-        return self.env['software.license.hardware'].create(vals)
-
     def get_remaining_activation(self):
         self.ensure_one()
         if self.max_allowed_hardware <= 0:

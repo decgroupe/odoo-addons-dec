@@ -104,11 +104,10 @@ class SoftwareLicenseController(http.Controller):
             'same_hardware_identifier': 'SAME',
             'other_hardware_identifier': 'OTHER',
         }
-        # Let the testing user update local context with data from json 
+        # Let the testing user update local context with data from json
         local_ctx.update(request.params.copy())
-        odoo_convert.safe_eval = lambda expr, ctx={}: odoo_convert.s_eval(
-            expr, ctx, local_ctx, nocopy=True
-        )
+        odoo_convert.safe_eval = lambda expr, ctx={
+        }: odoo_convert.s_eval(expr, ctx, local_ctx, nocopy=True)
         try:
             for file in [
                 'data/unit_testing_software_license_application.xml',
@@ -185,7 +184,7 @@ class SoftwareLicenseController(http.Controller):
             len(license_id.hardware_ids) >= license_id.max_allowed_hardware:
             return SERIAL_TOO_MANY_ACTIVATION
         else:
-            hardware_id = license_id.activate(hardware)
+            hardware_id = license_id.activate(hardware, request.params.copy())
             hardware_id.info = self._get_request_info(request)
             msg = SERIAL_ACTIVATED_ON_HARDWARE
             self._append_common_data(license_id, hardware_id, msg)

@@ -19,7 +19,7 @@ class SoftwareLicenseHardware(models.Model):
 
     dongle_identifier = fields.Integer(
         string='Dongle ID',
-        help="Unique device ID set and given by then dongle manufacturer",
+        help="Unique device ID set and given by the dongle manufacturer",
     )
 
     @api.onchange('dongle_identifier')
@@ -39,5 +39,24 @@ class SoftwareLicenseHardware(models.Model):
         for value in enc:
             public_dongle_id.append('{:02X}'.format(value & 0xffff))
             public_dongle_id.append('{:02X}'.format(value >> 16 & 0xffff))
-            
+
         return '-'.join(public_dongle_id)
+
+    @api.model
+    def get_dongle_identifier(self, public_dongle_identifier):
+        if not public_dongle_identifier:
+            return 0
+        parts = public_dongle_identifier.split('-')
+
+        if len(parts) != 4:
+            return 0
+
+        p1 = int(parts[0], 16) + (int(parts[1], 16) << 16)
+        p2 = int(parts[2], 16) + (int(parts[3], 16) << 16)
+
+        v = [p1, p2]
+        dec = tea.decipher(v, _key14.KEY)
+        if dec[0] == dec[1]:
+            return dec[0]
+        else:
+            return 0

@@ -72,3 +72,16 @@ class SoftwareLicense(models.Model):
             name = ('[%s] %s') % (rec.application_id.name, rec.serial)
             result.append((rec.id, name))
         return result
+
+    def _prepare_hardware_activation_vals(self, hardware):
+        res = {
+            'license_id': self.id,
+            'name': hardware,
+        }
+        return res
+
+    @api.multi
+    def activate(self, hardware, params=False):
+        self.ensure_one()
+        vals = self._prepare_hardware_activation_vals(hardware)
+        return self.env['software.license.hardware'].create(vals)

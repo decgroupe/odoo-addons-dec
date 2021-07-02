@@ -13,3 +13,9 @@ class SoftwareLicense(models.Model):
         related='application_id.portal_published',
         store=True,
     )
+
+    def _prepare_hardware_activation_vals(self, hardware):
+        res = super()._prepare_hardware_activation_vals(hardware)
+        if res.get('dongle_identifier') > 0:
+            res['validity_days'] = 365
+        return res
