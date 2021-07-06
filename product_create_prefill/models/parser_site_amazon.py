@@ -4,8 +4,6 @@
 
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 
@@ -141,7 +139,6 @@ def parse(content):
         image_url=image,
         other=result,
     )
-    print(pformat(result))
     return result
 
 

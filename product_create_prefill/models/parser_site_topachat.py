@@ -4,8 +4,6 @@
 
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 from . import parser_site_ldlc
@@ -52,7 +50,7 @@ def parse(content):
         image_url=result['images'] and result['images'][0] or '',
         other=result,
     )
-    print(pformat(result))
     return result
+
 
 reload()

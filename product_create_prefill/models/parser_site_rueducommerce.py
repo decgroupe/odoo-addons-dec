@@ -4,8 +4,6 @@
 
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 
@@ -67,9 +65,12 @@ def parse(content):
         ).strip()
         result.add_description(name, value)
 
-    result['seller'] = parser_helper.clean(tree.xpath('//a[@class="sellerName"]/text()'))
+    result['seller'] = parser_helper.clean(
+        tree.xpath('//a[@class="sellerName"]/text()')
+    )
     seller = 'Rue du Commerce'
-    if result['seller'] and not parser_helper.caseless_equal(seller, result['seller']):
+    if result['seller'
+             ] and not parser_helper.caseless_equal(seller, result['seller']):
         seller = '{} ({})'.format(seller, result['seller'])
 
     result['price_ttc'] = parser_helper_prices.to_float(
@@ -87,7 +88,7 @@ def parse(content):
         image_url=result['images'] and result['images'][0] or '',
         other=result,
     )
-    print(pformat(result))
     return result
+
 
 reload()

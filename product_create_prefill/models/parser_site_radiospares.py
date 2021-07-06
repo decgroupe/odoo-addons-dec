@@ -4,8 +4,6 @@
 
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 
@@ -54,9 +52,7 @@ def parse(content):
             value = tds[1].xpath('string(text())').strip()
             result.add_description(name, value)
 
-    result['price_ttc'] = parser_helper_prices.to_float(
-        result['price'] or '0'
-    )
+    result['price_ttc'] = parser_helper_prices.to_float(result['price'] or '0')
 
     result = parser_helper.fill_common_data(
         code=result['code'] or '',
@@ -70,7 +66,7 @@ def parse(content):
         other=result,
     )
 
-    print(pformat(result))
     return result
+
 
 reload()

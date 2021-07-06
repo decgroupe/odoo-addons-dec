@@ -4,8 +4,6 @@
 
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 
@@ -15,9 +13,8 @@ def reload():
     importlib.reload(parser_helper_prices)
 
 
-
 def _parse_group(tree):
-    
+
     result = parser_helper.ParserResultDict()
     jsons = tree.xpath('//script[@type="application/ld+json"]/text()')
 
@@ -63,6 +60,7 @@ def _parse_group(tree):
 
     return result
 
+
 def parse(content):
     print("Parsing with", __name__)
 
@@ -82,7 +80,7 @@ def parse(content):
         image_url=result['images'] and result['images'][0] or '',
         other=result,
     )
-    print(pformat(result))
     return result
+
 
 reload()

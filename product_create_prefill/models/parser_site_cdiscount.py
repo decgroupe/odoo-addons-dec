@@ -4,8 +4,6 @@
 
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 
@@ -36,7 +34,9 @@ def parse(content):
             '//span[@itemprop="price" and contains(@class, "hideFromPro")]/descendant-or-self::*/text()'
         )
     )
-    result['brand'] = parser_helper.clean(tree.xpath('//span[@itemprop="brand"]/text()'))
+    result['brand'] = parser_helper.clean(
+        tree.xpath('//span[@itemprop="brand"]/text()')
+    )
     if not result['brand']:
         result['marque'] = parser_helper.clean(
             tree.xpath(
@@ -51,6 +51,11 @@ def parse(content):
         tree.xpath('//div[@class="fpMainImg"]//a[@itemprop="image"]/@href')
     )
 
+    if not result['image']:
+        result['image'] = parser_helper.clean(
+            tree.xpath('/html/head/meta[@property="og:image"]/@content')
+        )
+
     # Get technical description
     rows = tree.xpath('//table[@class="fpDescTb fpDescTbPub"]//tr')
     print(len(rows))
@@ -62,7 +67,9 @@ def parse(content):
             value = tds[1].xpath('string(text())').strip()
             result.add_description(name, value)
 
-    result['seller'] = parser_helper.clean(tree.xpath('//a[@class="fpSellerName"]/text()'))
+    result['seller'] = parser_helper.clean(
+        tree.xpath('//a[@class="fpSellerName"]/text()')
+    )
 
     seller = 'CDiscount'
     if result['seller']:
@@ -83,7 +90,7 @@ def parse(content):
         image_url=result['image'] or '',
         other=result,
     )
-    print(pformat(result))
     return result
+
 
 reload()

@@ -5,8 +5,6 @@
 import re
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 
@@ -42,20 +40,17 @@ def parse(content):
     res = tree.xpath('//script/text()')
     for r in res:
         if 'dataLayer =' in r:
-            search = re.search(
-                r'dataLayer = (\[.*\])',
-                r, re.S
-            )
+            search = re.search(r'dataLayer = (\[.*\])', r, re.S)
             if search:
                 json_data = search.group(1)
                 data = parser_helper.load_json_string(json_data)
                 #print(pformat(data))
                 break
-                
+
     if data:
         if isinstance(data, list):
             data = data[0]
-            
+
         result['name'] = data.get('product_name')
         result['barcode'] = data.get('EAN')
         result['category'] = data.get('category_name')
@@ -66,20 +61,20 @@ def parse(content):
     seller = 'ManoMano'
     if result.get('seller'):
         seller = '{} ({})'.format(seller, result['seller'])
-        
+
     if not result.get('images'):
         result['images'] = tree.xpath('//ul[@id="thumbnails"]/li/@data-image')
-        
-    lis = tree.xpath('//div[@class="product-section"]//ul[@class="list-table"]/li')
+
+    lis = tree.xpath(
+        '//div[@class="product-section"]//ul[@class="list-table"]/li'
+    )
     for li in lis:
         spans = li.xpath('./span/text()')
         name = parser_helper.clean(spans[0])
         value = parser_helper.clean(spans[1])
         result.add_description(name, value)
 
-    result['price_ttc'] = parser_helper_prices.to_float(
-        result['price'] or '0'
-    )
+    result['price_ttc'] = parser_helper_prices.to_float(result['price'] or '0')
 
     result = parser_helper.fill_common_data(
         code=result['code'] or '',
@@ -92,7 +87,7 @@ def parse(content):
         image_url=result['images'] and result['images'][0] or '',
         other=result,
     )
-    print(pformat(result))
     return result
+
 
 reload()

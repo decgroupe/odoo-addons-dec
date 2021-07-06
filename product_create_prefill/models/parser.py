@@ -4,6 +4,8 @@
 
 import importlib
 
+from pprint import pformat
+
 from . import parser_helper_prices
 from . import parser_helper
 
@@ -69,6 +71,7 @@ def parse_html_product_page(url):
             other={},
         )
 
+    print(pformat(res))
     return parser_helper.dict_to_json(res)
 
 

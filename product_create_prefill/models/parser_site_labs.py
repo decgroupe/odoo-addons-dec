@@ -4,8 +4,6 @@
 
 import importlib
 
-from pprint import pformat
-
 from . import parser_helper
 from . import parser_helper_prices
 
@@ -33,7 +31,7 @@ def parse(content):
         '//img[@id="ctl00_MainPanel_FormViewArticle_imgMarque"]/@title'
     )
 
-    print(result)
-    return pformat(result)
+    return result
+
 
 reload()
