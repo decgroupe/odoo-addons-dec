@@ -16,6 +16,6 @@ class SoftwareLicense(models.Model):
 
     def _prepare_hardware_activation_vals(self, hardware):
         res = super()._prepare_hardware_activation_vals(hardware)
-        if res.get('dongle_identifier') > 0:
+        if res.get('dongle_identifier', 0) > 0:
             res['validity_days'] = 365
         return res
