@@ -599,7 +599,10 @@ class HTML(BaseParser):
                 await page._keyboard.up('PageDown')
 
             # Return the content of the page, JavaScript evaluated.
-            await page.waitForNavigation()
+            try:
+                await page.waitForNavigation(options={'timeout': 5})
+            except:
+                pass
             content = await page.content()
             if not keep_page:
                 await page.close()
