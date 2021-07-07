@@ -16,7 +16,7 @@ def reload():
 def parse(content):
     print("Parsing with", __name__)
 
-    tree = parser_helper.get_html_tree(content)
+    tree = parser_helper.get_html_tree(content, use_javascript=True)
     result = parser_helper.ParserResultDict()
 
     result['title'] = parser_helper.clean(

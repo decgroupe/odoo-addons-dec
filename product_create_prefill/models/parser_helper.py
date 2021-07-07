@@ -10,6 +10,7 @@ import json
 import requests
 import unicodedata
 import importlib
+import logging
 
 from lxml import html
 from collections import OrderedDict
@@ -18,6 +19,8 @@ from collections import OrderedDict
 from jsoncomment import JsonComment
 
 from . import requests_html
+
+_logger = logging.getLogger(__name__)
 
 
 def reload():
@@ -32,6 +35,84 @@ def dict_to_json(value):
     ))
 
 
+def remove_nonvisible_unicodes(text):
+    """ [summary]
+        https://stackoverflow.com/questions/17978720/invisible-characters-ascii
+    """
+    CHARLIST = [
+        # '\u2000',  #    En Quad                &#8192;      " "
+        # '\u2001',  #    Em Quad                &#8193;      " "
+        # '\u2002',  #    En Space               &#8194;      " "
+        # '\u2003',  #    Em Space               &#8195;      " "
+        # '\u2004',  #    Three-Per-Em Space     &#8196;      " "
+        # '\u2005',  #    Four-Per-Em Space      &#8197;      " "
+        # '\u2006',  #    Six-Per-Em Space       &#8198;      " "
+        # '\u2007',  #    Figure Space           &#8199;      " "
+        # '\u2008',  #    Punctuation Space      &#8200;      " "
+        # '\u2009',  #    Thin Space             &#8201;      " "
+        # '\u200a',  #    Hair Space             &#8202;      " "
+        '\u200b',  #    Zero-Width Space       &#8203;      "​"
+        '\u200c',  #    Zero Width Non-Joiner  &#8204;      "‌"
+        '\u200d',  #    Zero Width Joiner      &#8205;      "‍"
+        '\u200e',  #    Left-To-Right Mark     &#8206;      "‎"
+        '\u200f',  #    Right-To-Left Mark     &#8207;      "‏"
+        # '\u202f',  #    Narrow No-Break Space  &#8239;      " "
+        # '\u2800',  #    Braille blank pattern  &#10240;     "⠀"
+    ]
+    for char in CHARLIST:
+        text = text.replace(char, '')
+    return text
+
+
+def replace_unicode_spaces_with_standard_spaces(text):
+    """ Replace all whitespace
+
+        This includes all unicode whitespace, as described in the answer to
+        this question: https://stackoverflow.com/questions/37903317/is-there-a-python-constant-for-unicode-whitespace
+        From that answer, you can see that (at the time of writing), the
+        unicode constants recognized as whitespace (e.g. \s) in Python
+        regular expressions are these:
+
+        0x0009
+        0x000A
+        0x000B
+        0x000C
+        0x000D
+        0x001C
+        0x001D
+        0x001E
+        0x001F
+        0x0020
+        0x0085
+        0x00A0
+        0x1680
+        0x2000
+        0x2001
+        0x2002
+        0x2003
+        0x2004
+        0x2005
+        0x2006
+        0x2007
+        0x2008
+        0x2009
+        0x200A
+        0x2028
+        0x2029
+        0x202F
+        0x205F
+        0x3000
+    """
+    _logger.info(text)
+    return re.sub(r'\s', ' ', text)
+
+
+def clean_text(text):
+    text = replace_unicode_spaces_with_standard_spaces(text)
+    text = remove_nonvisible_unicodes(text)
+    return text
+
+
 def fill_common_data(
     code,
     name,
@@ -44,14 +125,14 @@ def fill_common_data(
     other={}
 ):
     res = {
-        'code': code,
-        'name': name,
-        'manufacturer': manufacturer,
-        'description': description,
+        'code': clean_text(code),
+        'name': clean_text(name),
+        'manufacturer': clean_text(manufacturer),
+        'description': clean_text(description),
         'public_price': public_price,
         'purchase_price': purchase_price,
-        'supplier': supplier,
-        'image_url': image_url,
+        'supplier': clean_text(supplier),
+        'image_url': clean_text(image_url),
         'other': other,
     }
     return res
