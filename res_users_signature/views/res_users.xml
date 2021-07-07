@@ -23,10 +23,12 @@
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
             <field name="signature" position="before">
+                <field name="signature_template"/>
                 <field name="signature_text"/>
             </field>
             <field name="signature" position="after">
                 <field name="signature_answer" readonly="0"/>
+                <field name="signature_social_buttons" readonly="0"/>
                 <button
                     name="action_generate_signatures"
                     string="Generate Signatures from Company Template"

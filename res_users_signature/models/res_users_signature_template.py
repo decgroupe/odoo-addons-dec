@@ -70,6 +70,16 @@ class ResUsersSignatureTemplate(models.Model):
     "html/text versions"
 
     name = fields.Char('Name')
+    logo_url = fields.Char(
+        'Logo URL',
+        help="Same logo URL as the one used to render this signature, "
+        "it will be used as a reference to replace with the department's one",
+    )
+    primary_color = fields.Char(
+        'Primary Color',
+        help="Same color as the one used to render this signature, "
+        "it will be used as a reference to replace with the department's one",
+    )
     body_text = fields.Text(
         string='Text Version',
         help="Text version for reports",
@@ -153,6 +163,7 @@ class ResUsersSignatureTemplate(models.Model):
 
         variables = {
             'user': user,
+            'company': user.company_id,
             'employee': employee,
             'firstname': firstname,
             'lastname': lastname,
@@ -176,6 +187,17 @@ class ResUsersSignatureTemplate(models.Model):
 
         try:
             render_result = template.render(variables)
+
+            if employee.department_id.signature_logo_url:
+                render_result = render_result.replace(
+                    self.logo_url, employee.department_id.signature_logo_url
+                )
+            if employee.department_id.signature_primary_color:
+                render_result = render_result.replace(
+                    self.primary_color,
+                    employee.department_id.signature_primary_color
+                )
+
         except Exception as e:
             _logger.info(
                 "Failed to render template %r using values %r" %
@@ -188,4 +210,3 @@ class ResUsersSignatureTemplate(models.Model):
                 (type(e).__name__, str(e))
             )
         return render_result
-

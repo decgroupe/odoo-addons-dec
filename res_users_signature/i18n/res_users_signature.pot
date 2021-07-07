@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-29 17:11+0000\n"
-"PO-Revision-Date: 2021-03-29 17:11+0000\n"
+"POT-Creation-Date: 2021-07-07 19:19+0000\n"
+"PO-Revision-Date: 2021-07-07 19:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,100 +26,108 @@ msgstr ""
 
 #. module: res_users_signature
 #: model:res.users.signature.template,body_html:res_users_signature.user_signature_template
-msgid "<table border=\"0\" style=\"border-spacing:0px;border-collapse:collapse;                         margin:0px;line-height:1em;font-family:Roboto,Arial,sans-serif;font-size:1em!important;width:520px\">\n"
-"    <tr>\n"
-"        <td style=\"vertical-align:top;background-color:#F1F0ED;width:60px;padding:20px!important;\">\n"
-"            <img alt=\"DEC\" src=\"https://files.dec-industrie.com/logoc.png\" style=\"min-width:60px;height:60px;border-radius: 50%\"/>\n"
-"        </td>\n"
-"\n"
-"        <td valign=\"top\" style=\"background-color:#343534;padding:8px!important;text-align:right\">\n"
-"            <div style=\"font-family:Roboto;line-height:1em;\">\n"
-"                <span id=\"sign_firstname\" style=\"font-size:16px!important;color:#FFFFFF\">${firstname}</span>\n"
-"                <span id=\"sign_lastname\" style=\"font-weight:700;font-size:16px!important;color:#FFFFFF\">${lastname}</span>\n"
-"                <br/>\n"
-"                <span id=\"sign_title\" style=\"font-style:italic;font-weight:100!important;font-size:16px!important;color:#FFFFFF\">${job_title}</span>\n"
-"                <br/>\n"
-"                % for email in emails:\n"
-"                <a style=\"font-size:14.4px!important;color:#F1F0ED;text-decoration:underline;\" href=\"mailto:${email}\">${email}</a>\n"
-"                <br/>\n"
-"                % endfor\n"
-"\n"
-"                <div id=\"sign_linebreak1\" style=\"line-height:0.75em;\">\n"
-"                    <br/>\n"
-"                </div>\n"
-"\n"
-"                <span id=\"sign_website\" style=\"line-height:12px;\">\n"
-"                    % for website in websites:\n"
-"                    <a style=\"color:#F1F0ED;font-size:9.6px!important;text-decoration:underline;\" href=\"${website}\">${website.lstrip('http://').lstrip('https://')}</a>\n"
-"                    <br/>\n"
-"                    % endfor\n"
-"                </span>\n"
-"            </div>\n"
-"        </td>\n"
-"        <td valign=\"top\" style=\"background-color:#343534;padding:8px!important;width:160px;\">\n"
-"            <div style=\"font-family:Roboto;min-width:160px;\">\n"
-"                <table border=\"0\" style=\"border-spacing:0px;border-collapse:collapse;margin:0px;line-height:1em;\">\n"
-"                    <tr>\n"
-"                        <td valign=\"top\" style=\"background-color:#343534;\">\n"
-"                            <img alt=\"🗺️\" src=\"https://files.dec-industrie.com/address.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
-"                        </td>\n"
-"                        <td valign=\"top\" style=\"background-color:#343534\">\n"
-"                            <div style=\"line-height:12px;\">\n"
-"                                <span id=\"sign_street\" style=\"color:#FFFFFF;font-size:12px!important\">${street1}<br/>\n"
-"${street2}</span>\n"
-"                                <br/>\n"
-"                                <span id=\"sign_city\" style=\"color:#FFFFFF;font-size:12px!important;font-weight:700\">${zip} ${city.upper()}</span>\n"
-"                                <div id=\"sign_linebreak2\" style=\"line-height:0.75em;\">\n"
-"                                    <span style=\"font-size:12px!important;\">\n"
-"                                        <br/>\n"
-"                                    </span>\n"
-"                                </div>\n"
-"                            </div>\n"
-"                        </td>\n"
-"                    </tr>\n"
-"                % if phone:\n"
-"                    <tr>\n"
-"                        <td style=\"background-color:#343534;\">\n"
-"                            <img alt=\"📱\" src=\"https://files.dec-industrie.com/mobile.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
-"                        </td>\n"
-"                        <td style=\"background-color:#343534\">\n"
-"                            <a style=\"color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700\" href=\"tel:${phone}\">${phone}</a>\n"
-"                        </td>\n"
-"                    </tr>\n"
-"                % endif\n"
-"                    <tr>\n"
-"                        <td style=\"background-color:#343534;\">\n"
-"                            <img alt=\"📞\" src=\"https://files.dec-industrie.com/phone.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
-"                        </td>\n"
-"                        <td style=\"background-color:#343534;\">\n"
-"                            <a style=\"color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700\" href=\"tel:${company_phone}\">${company_phone} \n"
-"                            % if phone_ext:\n"
-"                                <span style=\"font-size:10px!important;font-weight:400;\">poste <b>${phone_ext}</b>\n"
-"                                </span>\n"
+msgid "<table style=\"width: 510px;\" width=\"510\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                <tbody>\n"
+"                  <tr>\n"
+"                  <td style=\"vertical-align: top; padding-right: 12px; border-right: 5px solid #404040; width: 120.0px;\" width=\"120.0\" valign=\"top\">\n"
+"                    <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\n"
+"                    <tbody>\n"
+"                      <tr>\n"
+"                      <td style=\"width: 120.0px;\" width=\"120.0\"> <img src=\"https://files.decgroupe.com/logo.png\" style=\"width: 120.0px; height: 120.0px;border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%;\" width=\"120.0\" height=\"120.0\"/> </td>\n"
+"                      </tr>\n"
+"                    </tbody>\n"
+"                    </table>\n"
+"                  </td>\n"
+"                  <td style=\"vertical-align: top; padding-right: 7px; padding-left: 12px;\" valign=\"top\">\n"
+"                    <table style=\"width: 100%;\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                    <tbody>\n"
+"                      <tr>\n"
+"                      <td style=\"padding-bottom: 12px;\">\n"
+"                        <table style=\"padding-left: 2px; font-weight: normal; width: 100%;\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                        <tbody>\n"
+"                          <tr>\n"
+"                          <td style=\"font-size: 11px; line-height: 21px; color: #4e4b4c;\">\n"
+"                            <span style=\"color: #404040; padding: 0px; margin: 0px; font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;font-size:16px;\">${firstname} ${lastname}\n"
+"                            </span>\n"
+"                            <br/>\n"
+"                            <span style=\"font-family: Arial, Helvetica, sans-serif;font-size:14px;\">${job_title} | </span><span style=\"font-family: Arial, Helvetica, sans-serif;color:#404040;font-size:14px;\">DEC</span>\n"
+"                            <br/>\n"
+"                            <br/>\n"
+"                            <span style=\"color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;\">A </span><span style=\"text-decoration: none !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;\">${street1} ${street2} ${zip} ${city.upper()}</span>\n"
+"                            <br/>\n"
+"                            % if phone:\n"
+"                            <span style=\"color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;\">M </span><a href=\"tel:${phone_callable}\" style=\"text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;\" target=\"_blank\">${phone}</a> <i style=\"color: #FFF;\"> ­</i>\n"
 "                            % endif\n"
-"                            </a>\n"
+"                            <span style=\"color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;\">T </span><a href=\"tel:${company_phone_callable}\" style=\"text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;\" target=\"_blank\">${company_phone} ext ${phone_ext}</a> <i style=\"color: #FFF;\"> ­</i>\n"
+"                            <span style=\"color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;\">F </span><a href=\"tel:${company_fax_callable}\" style=\"text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;\" target=\"_blank\">${company_fax} ext ${phone_ext}</a> <i style=\"color: #FFF;\"> ­</i>\n"
+"                            \n"
+"                            % for email in emails:\n"
+"                            <span style=\"color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;\">E </span><a href=\"mailto:${email}\" style=\"text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;\" target=\"_blank\">${email}</a><i style=\"color: #FFF;\"> ­</i>\n"
+"                            % endfor\n"
+"                            % for website in websites:\n"
+"                            <span style=\"color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;\">W </span><a href=\"${website}\" style=\"text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;\" target=\"_blank\">${website.lstrip('http://').lstrip('https://')}</a><i style=\"color: #FFF;\"> ­</i>\n"
+"                            % endfor\n"
+"                          </td>\n"
+"                          </tr>\n"
+"                        </tbody>\n"
+"                        </table>\n"
+"                      </td>\n"
+"                      </tr>\n"
+"                      % if user.signature_social_buttons:\n"
+"                      <tr>\n"
+"                        <td style=\"padding-top: 12px\"> \n"
+"                          <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n"
+"                            <tbody>\n"
+"                              <tr>\n"
+"                                % if company.social_facebook:\n"
+"                                <td style=\"padding-right: 4px;\"><a href=\"${company.social_facebook}\" style=\"text-decoration:none;\" target=\"_blank\">\n"
+"                                  <img src=\"https://files.decgroupe.com/social_facebook.jpg\" alt=\"facebook\" style=\"height: 24px; width: 24px;\" width=\"24\" height=\"24\"/></a>\n"
+"                                </td>\n"
+"                                % endif\n"
+"                                % if company.social_linkedin:\n"
+"                                <td style=\"padding-right: 4px;\"><a href=\"${company.social_linkedin}\" style=\"text-decoration:none;\" target=\"_blank\">\n"
+"                                  <img src=\"https://files.decgroupe.com/social_linkedin.jpg\" alt=\"linkedin\" style=\"height: 24px; width: 24px;\" width=\"24\" height=\"24\"/></a>\n"
+"                                </td>\n"
+"                                % endif\n"
+"                                % if company.social_twitter:\n"
+"                                <td style=\"padding-right: 4px;\"><a href=\"${company.social_twitter}\" style=\"text-decoration:none;\" target=\"_blank\">\n"
+"                                  <img src=\"https://files.decgroupe.com/social_twitter.jpg\" alt=\"twitter\" style=\"height: 24px; width: 24px;\" width=\"24\" height=\"24\"/></a>\n"
+"                                </td>\n"
+"                                % endif\n"
+"                                % if company.social_youtube:\n"
+"                                <td style=\"padding-right: 4px;\"><a href=\"${company.social_youtube}\" style=\"text-decoration:none;\" target=\"_blank\">\n"
+"                                  <img src=\"https://files.decgroupe.com/social_youtube.jpg\" alt=\"youtube\" style=\"height: 24px; width: 24px;\" width=\"24\" height=\"24\"/></a>\n"
+"                                </td>\n"
+"                                % endif\n"
+"                              </tr>\n"
+"                            </tbody>\n"
+"                          </table>\n"
 "                        </td>\n"
-"                    </tr>\n"
-"                    <tr>\n"
-"                        <td style=\"background-color:#343534;\">\n"
-"                            <img alt=\"📠\" src=\"https://files.dec-industrie.com/print.png\" style=\"min-width:16px;min-height:16px;\"/>\n"
-"                        </td>\n"
-"                        <td style=\"background-color:#343534;\">\n"
-"                            <a style=\"color:#D83445;text-decoration:none;font-size:13.6px!important;font-weight:700\" href=\"tel:+${company_fax}\">${company_fax}</a>\n"
-"                        </td>\n"
-"                    </tr>\n"
-"                </table>\n"
-"            </div>\n"
-"        </td>\n"
-"    </tr>\n"
-"</table>\n"
+"                      </tr>\n"
+"                      % endif\n"
+"                    </tbody>\n"
+"                  </table>\n"
+"                </td>\n"
+"              </tr>\n"
+"            </tbody>\n"
+"          </table>\n"
 "\n"
 "        "
 msgstr ""
 
 #. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_res_users__signature_social_buttons
+msgid "Add company social links to the HTML signature"
+msgstr ""
+
+#. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_answer
 msgid "Answer Signature"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_hr_department__signature_primary_color
+msgid "Color used to replace the one used to render the user signature"
 msgstr ""
 
 #. module: res_users_signature
@@ -143,7 +151,7 @@ msgid "Employee"
 msgstr ""
 
 #. module: res_users_signature
-#: code:addons/res_users_signature/models/res_users_signature_template.py:183
+#: code:addons/res_users_signature/models/res_users_signature_template.py:208
 #, python-format
 msgid "Failed to render template %r using values %r"
 msgstr ""
@@ -151,6 +159,11 @@ msgstr ""
 #. module: res_users_signature
 #: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
 msgid "Generate Signatures from Company Template"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model,name:res_users_signature.model_hr_department
+msgid "HR Department"
 msgstr ""
 
 #. module: res_users_signature
@@ -189,6 +202,17 @@ msgid "Lightweight version of the HTML signature"
 msgstr ""
 
 #. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__signature_logo_url
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__logo_url
+msgid "Logo URL"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_hr_department__signature_logo_url
+msgid "Logo used to replace the one used to render the user signature"
+msgstr ""
+
+#. module: res_users_signature
 #: model:ir.model,name:res_users_signature.model_res_users_signature_template
 msgid "Model used to store signature template and render "
 msgstr ""
@@ -211,6 +235,32 @@ msgstr ""
 #. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__work_phone_extension
 msgid "Phone Extension"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__signature_primary_color
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__primary_color
+msgid "Primary Color"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__primary_color
+msgid "Same color as the one used to render this signature, it will be used as a reference to replace with the department's one"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__logo_url
+msgid "Same logo URL as the one used to render this signature, it will be used as a reference to replace with the department's one"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_template
+msgid "Signature Template"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_social_buttons
+msgid "Social Buttons on Signature"
 msgstr ""
 
 #. module: res_users_signature
@@ -244,7 +294,7 @@ msgid "Use one line per website"
 msgstr ""
 
 #. module: res_users_signature
-#: code:addons/res_users_signature/models/res_users_signature_template.py:105
+#: code:addons/res_users_signature/models/res_users_signature_template.py:115
 #, python-format
 msgid "User %s is not linked to an employee"
 msgstr ""

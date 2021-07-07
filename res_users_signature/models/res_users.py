@@ -17,6 +17,14 @@ class ResUsers(models.Model):
         string='Answer Signature',
         help="Lightweight version of the HTML signature",
     )
+    signature_template = fields.Many2one(
+        string='Signature Template',
+        comodel_name='res.users.signature.template',
+    )
+    signature_social_buttons = fields.Boolean(
+        string='Social Buttons on Signature',
+        help="Add company social links to the HTML signature",
+    )
 
     def __init__(self, pool, cr):
         """ Override of __init__ to add access rights on notification_email_send
@@ -45,6 +53,8 @@ class ResUsers(models.Model):
         )._render_template(template.body_text, user_id.id)
 
     def action_generate_signatures(self):
-        template = self.env.ref('res_users_signature.user_signature_template')
+        template = self.signature_template or self.env.ref(
+            'res_users_signature.user_signature_template'
+        )
         for rec in self:
             rec._generate_from_template(template, self)

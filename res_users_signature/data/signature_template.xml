@@ -12,96 +12,95 @@ Mobile: ${phone}
 ${email}
 % endfor
         </field>
+        <field name="logo_url">https://files.decgroupe.com/logo.png</field>
+        <field name="primary_color">#404040</field>
         <field name="body_html" type="html">
 
-<table border="0" style="border-spacing:0px;border-collapse:collapse;
-                        margin:0px;line-height:1em;font-family:Roboto,Arial,sans-serif;font-size:1em!important;width:520px">
-    <tr>
-        <td style="vertical-align:top;background-color:#F1F0ED;width:60px;padding:20px!important;">
-            <img alt="DEC" src="https://files.dec-industrie.com/logoc.png" style="min-width:60px;height:60px;border-radius: 50%"/>
-        </td>
-
-        <td valign="top" style="background-color:#343534;padding:8px!important;text-align:right">
-            <div style="font-family:Roboto;line-height:1em;">
-                <span id="sign_firstname" style="font-size:16px!important;color:#FFFFFF">${firstname}</span>
-                <span id="sign_lastname" style="font-weight:700;font-size:16px!important;color:#FFFFFF">${lastname}</span>
-                <br/>
-                <span id="sign_title" style="font-style:italic;font-weight:100!important;font-size:16px!important;color:#FFFFFF">${job_title}</span>
-                <br/>
-                % for email in emails:
-                <a style="font-size:14.4px!important;color:#F1F0ED;text-decoration:underline;" href="mailto:${email}">${email}</a>
-                <br/>
-                % endfor
-
-                <div id="sign_linebreak1" style="line-height:0.75em;">
-                    <br/>
-                </div>
-
-                <span id="sign_website" style="line-height:12px;">
-                    % for website in websites:
-                    <a style="color:#F1F0ED;font-size:9.6px!important;text-decoration:underline;" href="${website}">${website.lstrip('http://').lstrip('https://')}</a>
-                    <br/>
-                    % endfor
-                </span>
-            </div>
-        </td>
-        <td valign="top" style="background-color:#343534;padding:8px!important;width:160px;">
-            <div style="font-family:Roboto;min-width:160px;">
-                <table border="0" style="border-spacing:0px;border-collapse:collapse;margin:0px;line-height:1em;">
-                    <tr>
-                        <td valign="top" style="background-color:#343534;">
-                            <img alt="🗺️" src="https://files.dec-industrie.com/address.png" style="min-width:16px;min-height:16px;"/>
-                        </td>
-                        <td valign="top" style="background-color:#343534">
-                            <div style="line-height:12px;">
-                                <span id="sign_street" style="color:#FFFFFF;font-size:12px!important">${street1}<br/>
-${street2}</span>
-                                <br/>
-                                <span id="sign_city" style="color:#FFFFFF;font-size:12px!important;font-weight:700">${zip} ${city.upper()}</span>
-                                <div id="sign_linebreak2" style="line-height:0.75em;">
-                                    <span style="font-size:12px!important;">
-                                        <br/>
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                % if phone:
-                    <tr>
-                        <td style="background-color:#343534;">
-                            <img alt="📱" src="https://files.dec-industrie.com/mobile.png" style="min-width:16px;min-height:16px;"/>
-                        </td>
-                        <td style="background-color:#343534">
-                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${phone_callable}">${phone}</a>
-                        </td>
-                    </tr>
-                % endif
-                    <tr>
-                        <td style="background-color:#343534;">
-                            <img alt="📞" src="https://files.dec-industrie.com/phone.png" style="min-width:16px;min-height:16px;"/>
-                        </td>
-                        <td style="background-color:#343534;">
-                            <a style="color:#FFFFFF;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${company_phone_callable}">${company_phone} 
-                            % if phone_ext:
-                                <span style="font-size:10px!important;font-weight:400;">poste <b>${phone_ext}</b>
-                                </span>
+            <table style="width: 510px;" width="510" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                  <tr>
+                  <td style="vertical-align: top; padding-right: 12px; border-right: 5px solid #404040; width: 120.0px;" width="120.0" valign="top">
+                    <table cellspacing="0" cellpadding="0" border="0" align="center">
+                    <tbody>
+                      <tr>
+                      <td style="width: 120.0px;" width="120.0"> <img src="https://files.decgroupe.com/logo.png" style="width: 120.0px; height: 120.0px; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%;" width="120.0" height="120.0"/> </td>
+                      </tr>
+                    </tbody>
+                    </table>
+                  </td>
+                  <td style="vertical-align: top; padding-right: 7px; padding-left: 12px;" valign="top">
+                    <table style="width: 100%;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                      <tr>
+                      <td style="padding-bottom: 12px;">
+                        <table style="padding-left: 2px; font-weight: normal; width: 100%;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                          <tr>
+                          <td style="font-size: 11px; line-height: 21px; color: #4e4b4c;">
+                            <span style="color: #404040; padding: 0px; margin: 0px; font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;font-size:16px;">${firstname} ${lastname}
+                            </span>
+                            <br/>
+                            <span style="font-family: Arial, Helvetica, sans-serif;font-size:14px;">${job_title}&#160;&#124;&#160;</span><span style="font-family: Arial, Helvetica, sans-serif;color:#404040;font-size:14px;">DEC</span>
+                            <br/>
+                            <br/>
+                            <span style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;">A&#160;</span><span style="text-decoration: none !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;">${street1} ${street2} ${zip} ${city.upper()}</span>
+                            <br/>
+                            % if phone:
+                            <span style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;">M&#160;</span><a href="tel:${phone_callable}" style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;" target="_blank">${phone}</a>&#160;<i style="color: #FFF;"> ­</i>
                             % endif
-                            </a>
+                            <span style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;">T&#160;</span><a href="tel:${company_phone_callable}" style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;" target="_blank">${company_phone}&#160;ext&#160;${phone_ext}</a>&#160;<i style="color: #FFF;"> ­</i>
+                            <span style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;">F&#160;</span><a href="tel:${company_fax_callable}" style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;" target="_blank">${company_fax}</a>&#160;<i style="color: #FFF;"> ­</i>
+                            
+                            % for email in emails:
+                            <span style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;">E&#160;</span><a href="mailto:${email}" style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;" target="_blank">${email}</a><i style="color: #FFF;"> ­</i>
+                            % endfor
+                            % for website in websites:
+                            <span style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;">W&#160;</span><a href="${website}" style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;" target="_blank">${website.lstrip('http://').lstrip('https://')}</a><i style="color: #FFF;"> ­</i>
+                            % endfor
+                          </td>
+                          </tr>
+                        </tbody>
+                        </table>
+                      </td>
+                      </tr>
+                      % if user.signature_social_buttons:
+                      <tr>
+                        <td style="padding-top: 12px"> 
+                          <table cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                              <tr>
+                                % if company.social_facebook:
+                                <td style="padding-right: 4px;"><a href="${company.social_facebook}" style="text-decoration:none;" target="_blank">
+                                  <img src="https://files.decgroupe.com/social_facebook.jpg" alt="facebook" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                </td>
+                                % endif
+                                % if company.social_linkedin:
+                                <td style="padding-right: 4px;"><a href="${company.social_linkedin}" style="text-decoration:none;" target="_blank">
+                                  <img src="https://files.decgroupe.com/social_linkedin.jpg" alt="linkedin" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                </td>
+                                % endif
+                                % if company.social_twitter:
+                                <td style="padding-right: 4px;"><a href="${company.social_twitter}" style="text-decoration:none;" target="_blank">
+                                  <img src="https://files.decgroupe.com/social_twitter.jpg" alt="twitter" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                </td>
+                                % endif
+                                % if company.social_youtube:
+                                <td style="padding-right: 4px;"><a href="${company.social_youtube}" style="text-decoration:none;" target="_blank">
+                                  <img src="https://files.decgroupe.com/social_youtube.jpg" alt="youtube" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                </td>
+                                % endif
+                              </tr>
+                            </tbody>
+                          </table>
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="background-color:#343534;">
-                            <img alt="📠" src="https://files.dec-industrie.com/print.png" style="min-width:16px;min-height:16px;"/>
-                        </td>
-                        <td style="background-color:#343534;">
-                            <a style="color:#D83445;text-decoration:none;font-size:13.6px!important;font-weight:700" href="tel:${company_fax_callable}">${company_fax}</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </td>
-    </tr>
-</table>
+                      </tr>
+                      % endif
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
         </field>
         <field name="body_lightweight_html" type="html">

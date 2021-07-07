@@ -13,6 +13,7 @@
         [
             'views/res_users.xml',
             'views/hr_employee.xml',
+            'views/hr_department.xml',
             'data/signature_template.xml',
             'security/ir.model.access.csv',
         ],
