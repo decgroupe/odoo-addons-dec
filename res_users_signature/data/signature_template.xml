@@ -12,7 +12,7 @@ Mobile: ${phone}
 ${email}
 % endfor
         </field>
-        <field name="logo_url">https://files.decgroupe.com/logo.png</field>
+        <field name="logo_url">/logo.png</field>
         <field name="primary_color">#404040</field>
         <field name="body_html" type="html">
 
@@ -23,7 +23,7 @@ ${email}
                     <table cellspacing="0" cellpadding="0" border="0" align="center">
                     <tbody>
                       <tr>
-                      <td style="width: 120.0px;" width="120.0"> <img src="https://files.decgroupe.com/logo.png" style="width: 120.0px; height: 120.0px; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%;" width="120.0" height="120.0"/> </td>
+                      <td style="width: 120.0px;" width="120.0"> <img src="/logo.png?company=${company.id}" style="width: 120.0px; height: 120.0px; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%;" width="120.0" height="120.0"/> </td>
                       </tr>
                     </tbody>
                     </table>
@@ -71,22 +71,22 @@ ${email}
                               <tr>
                                 % if company.social_facebook:
                                 <td style="padding-right: 4px;"><a href="${company.social_facebook}" style="text-decoration:none;" target="_blank">
-                                  <img src="https://files.decgroupe.com/social_facebook.jpg" alt="facebook" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                  <img src="/res_users_signature/static/img/social_facebook.jpg" alt="facebook" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
                                 </td>
                                 % endif
                                 % if company.social_linkedin:
                                 <td style="padding-right: 4px;"><a href="${company.social_linkedin}" style="text-decoration:none;" target="_blank">
-                                  <img src="https://files.decgroupe.com/social_linkedin.jpg" alt="linkedin" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                  <img src="/res_users_signature/static/img/social_linkedin.jpg" alt="linkedin" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
                                 </td>
                                 % endif
                                 % if company.social_twitter:
                                 <td style="padding-right: 4px;"><a href="${company.social_twitter}" style="text-decoration:none;" target="_blank">
-                                  <img src="https://files.decgroupe.com/social_twitter.jpg" alt="twitter" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                  <img src="/res_users_signature/static/img/social_twitter.jpg" alt="twitter" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
                                 </td>
                                 % endif
                                 % if company.social_youtube:
                                 <td style="padding-right: 4px;"><a href="${company.social_youtube}" style="text-decoration:none;" target="_blank">
-                                  <img src="https://files.decgroupe.com/social_youtube.jpg" alt="youtube" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
+                                  <img src="/res_users_signature/static/img/social_youtube.jpg" alt="youtube" style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;" width="24" height="24"/></a>
                                 </td>
                                 % endif
                               </tr>
