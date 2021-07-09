@@ -69,7 +69,10 @@ class ResUsersSignatureTemplate(models.Model):
     _description = "Model used to store signature template and render "
     "html/text versions"
 
-    name = fields.Char('Name')
+    name = fields.Char(
+        'Name',
+        translate=True,
+    )
     logo_url = fields.Char(
         'Logo URL',
         help="Same logo URL as the one used to render this signature, "
@@ -86,12 +89,12 @@ class ResUsersSignatureTemplate(models.Model):
     )
     body_html = fields.Html(
         string='Html Version',
-        translate=True,
+        translate=False,
         sanitize=False,
     )
     body_lightweight_html = fields.Html(
         string='Lightweight Html Version',
-        translate=True,
+        translate=False,
         sanitize=False,
     )
 
