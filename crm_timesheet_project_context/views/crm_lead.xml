@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_case_leads_form_view">
+        <field name="name">crm.lead.form#leads@crm_timesheet_project_context</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm_timesheet.crm_case_form_view_leads" />
+        <field name="arch" type="xml">
+            <field name="project_id" position="attributes">
+                <attribute name="context">{'bypass_supermanager_check': True}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_oppor_form_view">
+        <field name="name">crm.lead.form#opportunities@crm_timesheet_project_context</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm_timesheet.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="project_id" position="attributes">
+                <attribute name="context">{'bypass_supermanager_check': True}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
