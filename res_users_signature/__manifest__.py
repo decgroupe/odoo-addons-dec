@@ -11,6 +11,7 @@
     ],
     'data':
         [
+            'views/res_users_signature_template.xml',
             'views/res_users.xml',
             'views/hr_employee.xml',
             'views/hr_department.xml',

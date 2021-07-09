@@ -40,21 +40,23 @@ class ResUsers(models.Model):
         )
         return init_res
 
-    def _generate_from_template(self, template, user_id):
+    def _generate_from_template(self, template):
         self.ensure_one()
         self.signature = template._render_template(
-            template.body_html, user_id.id
+            template.body_html, self.id
         )
         self.signature_answer = template._render_template(
-            template.body_lightweight_html, user_id.id
+            template.body_lightweight_html, self.id
         )
         self.signature_text = template.with_context(
             safe=True
-        )._render_template(template.body_text, user_id.id)
+        )._render_template(template.body_text, self.id)
 
+    @api.multi
     def action_generate_signatures(self):
-        template = self.signature_template or self.env.ref(
+        global_template = self.env.ref(
             'res_users_signature.user_signature_template'
         )
-        for rec in self:
-            rec._generate_from_template(template, self)
+        for user in self:
+            template = user.signature_template or global_template
+            user._generate_from_template(template)
