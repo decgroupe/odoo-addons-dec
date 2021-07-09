@@ -11,7 +11,7 @@
                 <div 
                     class="app_settings_block"
                     data-string="Reference"
-                    data-key="dec"
+                    data-key="product_reference_management"
                     groups="product_reference_management.group_ref_manager">
 
                     <h2>Reference Management</h2>
