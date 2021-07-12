@@ -16,4 +16,16 @@
         </field>
     </record>
 
+    <!-- <record model="ir.ui.view" id="email_message_tree_view">
+        <field name="name">mail.mail.form@mail_auto_copy</field>
+        <field name="model">mail.mail</field>
+        <field name="inherit_id" ref="mail.view_mail_form"/>
+        <field name="arch" type="xml">
+            <field name="email_cc" position="after">
+                <field name="email_bcc"/>
+            </field>
+        </field>
+    </record> -->
+
+
 </odoo>

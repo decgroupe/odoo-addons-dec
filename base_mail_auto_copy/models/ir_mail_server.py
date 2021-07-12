@@ -21,19 +21,7 @@ class IrMailServer(models.Model):
         help="Comma-separated list of auto Bcc addresses",
     )
 
-    @api.model
-    def send_email(
-        self,
-        message,
-        mail_server_id=None,
-        smtp_server=None,
-        smtp_port=None,
-        smtp_user=None,
-        smtp_password=None,
-        smtp_encryption=None,
-        smtp_debug=False,
-        smtp_session=None
-    ):
+    def get_mail_server(self, mail_server_id, smtp_server):
         # Get mail_server like it's done in
         # addons/base/models/ir_mail_server.py
         if mail_server_id:
@@ -43,14 +31,17 @@ class IrMailServer(models.Model):
         else:
             mail_server = False
 
-        if mail_server and mail_server.auto_cc_addresses:
+    def update_cc_addresses(self, mail_server, message):
+        if mail_server.auto_cc_addresses:
             if not message.get('Cc'):
                 message['Cc'] = mail_server.auto_cc_addresses
             else:
                 del message['Cc']  # avoid multiple Cc: headers!
                 message['Cc'] += "," + mail_server.auto_cc_addresses
 
+    def update_bcc_addresses(self, mail_server, message):
         auto_bcc_addresses = mail_server.auto_bcc_addresses
+
         if mail_server.auto_add_sender:
             ignore_auto_add_sender = False
             if self.env.context.get('channel_email_from'):
@@ -68,12 +59,30 @@ class IrMailServer(models.Model):
                 else:
                     auto_bcc_addresses += "," + message['From']
 
-        if mail_server and auto_bcc_addresses:
+        if auto_bcc_addresses:
             if not message.get('Bcc'):
                 message['Bcc'] = auto_bcc_addresses
             else:
                 del message['Bcc']  # avoid multiple Bcc: headers!
                 message['Bcc'] += "," + auto_bcc_addresses
+
+    @api.model
+    def send_email(
+        self,
+        message,
+        mail_server_id=None,
+        smtp_server=None,
+        smtp_port=None,
+        smtp_user=None,
+        smtp_password=None,
+        smtp_encryption=None,
+        smtp_debug=False,
+        smtp_session=None
+    ):
+        mail_server = self.get_mail_server(mail_server_id, smtp_server)
+        if mail_server:
+            self.update_cc_addresses(mail_server, message)
+            self.update_bcc_addresses(mail_server, message)
 
         message_id = super(IrMailServer, self).send_email(
             message,
