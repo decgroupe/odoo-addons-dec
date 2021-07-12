@@ -3,6 +3,7 @@
 # Written by Yann Papouin <y.papouin at dec-industrie.com>, Dec 2020
 
 from odoo import models, api, fields
+from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
 
 
 class IrMailServer(models.Model):
@@ -51,10 +52,21 @@ class IrMailServer(models.Model):
 
         auto_bcc_addresses = mail_server.auto_bcc_addresses
         if mail_server.auto_add_sender:
-            if not auto_bcc_addresses:
-                auto_bcc_addresses = message['From']
-            else:
-                auto_bcc_addresses += "," + message['From']
+            ignore_auto_add_sender = False
+            if self.env.context.get('channel_email_from'):
+                # Do not automatically add sender to bcc if the message comes
+                # from a channel
+                from_rfc2822 = extract_rfc2822_addresses(message['From'])
+                channel_email_from_rfc2822 = extract_rfc2822_addresses(
+                    self.env.context.get('channel_email_from')
+                )
+                if from_rfc2822 == channel_email_from_rfc2822:
+                    ignore_auto_add_sender = True
+            if not ignore_auto_add_sender:
+                if not auto_bcc_addresses:
+                    auto_bcc_addresses = message['From']
+                else:
+                    auto_bcc_addresses += "," + message['From']
 
         if mail_server and auto_bcc_addresses:
             if not message.get('Bcc'):
