@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record model="mail.template" id="email_template">
+        <field name="name">Nouvelle Piste</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="email_from">${'noreply@'+ object.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain")}</field>
+        <field name="email_to">${'crm@'+ object.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain")}</field>
+        <field name="subject">✨ Nouvelle Piste: ${object.name}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">${object.partner_id.lang or object.company_id.partner_id.lang}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Message de ${object.email_from}</p>
+                % if not object.partner_id:
+                <p><font style="color: rgb(231, 99, 99);">Aucune correspondance de contact n'a été trouvé pour cet e-mail.<br/>
+                Il est conseillé de créer un contact associé à cet e-mail pour activer la reconnaissance automatique des messages entrants.
+                </font></p>
+                % endif
+                <a href="${'/mail/view?model=%s\u0026res_id=%s' % ('crm.lead', object.id)}" target="_blank" style="color: rgb(0, 160, 157);">Ouvrir dans Odoo</a>
+            </div>
+        </field>
+    </record>
+
+
+</odoo>
