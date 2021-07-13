@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="project_search_view">
+        <field name="name">project.project.select@project_typefast</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">
+                [
+                    '|',
+                    ('name', 'ilike', self),
+                    ('typefast_name', 'ilike', self)
+                ]
+                </attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
