@@ -148,6 +148,8 @@ class ResUsersSignatureTemplate(models.Model):
                 if website not in websites:
                     websites.append(website)
 
+        website = employee.address_id.website or ''
+        email = employee.work_email or ''
         job_title = employee.job_title or ''
         phone = employee.mobile_phone or ''
         phone_ext = employee.work_phone_extension or ''
@@ -171,6 +173,7 @@ class ResUsersSignatureTemplate(models.Model):
             'firstname': firstname,
             'lastname': lastname,
             'job_title': job_title,
+            'email': email,
             'emails': emails,
             'phone': replace_space_thinspace(phone),
             'phone_callable': phone.replace(" ", ""),
@@ -184,6 +187,7 @@ class ResUsersSignatureTemplate(models.Model):
             'company_phone_callable': company_phone.replace(" ", ""),
             'company_fax': replace_space_thinspace(company_fax),
             'company_fax_callable': company_fax.replace(" ", ""),
+            'website': website,
             'websites': websites,
             'ctx': self._context,  # context kw would clash with mako internals
         }
