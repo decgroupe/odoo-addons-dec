@@ -8,10 +8,23 @@
         <field name="inherit_id" ref="base.view_users_form_simple_modif" />
         <field name="arch" type="xml">
             <field name="signature" position="before">
+                <field name="signature_template" readonly="0"/>
                 <field name="signature_text" readonly="0"/>
             </field>
             <field name="signature" position="after">
                 <field name="signature_answer" readonly="0"/>
+                <field name="signature_social_buttons" readonly="0"/>
+                <button
+                    name="action_generate_signatures"
+                    string="Generate Signatures from Company Template"
+                    type="object"
+                    class="btn-primary"
+                    attrs="{
+                        'invisible': [
+                            ('name', '=', False),
+                        ]
+                    }">
+                </button>
             </field>
         </field>
     </record>
