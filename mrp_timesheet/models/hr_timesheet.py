@@ -37,6 +37,7 @@ class AccountAnalyticLine(models.Model):
     production_product_name = fields.Char(
         related='production_product_id.name',
         store=True,
+        compute_sudo=True,
     )
 
     @api.onchange("production_id")
