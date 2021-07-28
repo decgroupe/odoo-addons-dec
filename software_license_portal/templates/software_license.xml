@@ -46,6 +46,12 @@
           <t t-foreach="licenses" t-as="license">
             <tr>
               <td>
+                <t t-if="license.partner_id.is_company">
+                  🏢
+                </t>
+                <t t-else="">
+                  👷
+                </t>
                 <t t-esc="license.partner_id.name"/>
               </td>
               <td>
@@ -160,7 +166,7 @@
                     </div>
                   </div>
                 </t>
-                <t t-else=''>
+                <t t-else="">
                   <div class="alert alert-warning text-center">
                     <p>There is no activated hardware on this license.</p>
                   </div>

@@ -15,20 +15,13 @@ class CustomerPortal(CustomerPortal):
 
     #########################################################################
 
-    def _get_default_domain(self):
-        partner = request.env.user.partner_id
-        return [
-            # ('|'),
-            # ('partner_id', 'parent_of', partner.id),
-            ('partner_id', 'child_of', partner.id),
-            ('portal_published', '=', True),
-        ]
-
     def _prepare_portal_layout_values(self):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
-        license_count = request.env['software.license'].search_count(
-            self._get_default_domain()
+        SoftwareLicense = request.env['software.license']
+        domain = SoftwareLicense._get_default_portal_domain(
+            request.env.user.partner_id
         )
+        license_count = SoftwareLicense.search_count(domain)
         values['license_count'] = license_count
         return values
 
@@ -71,7 +64,7 @@ class CustomerPortal(CustomerPortal):
                     'input': 'application',
                     'label': _('Search in Applications')
                 },
-            'hardware_id':
+            'hardware_ids':
                 {
                     'input': 'hardware',
                     'label': _('Search in Hardware identifiers')
@@ -108,7 +101,9 @@ class CustomerPortal(CustomerPortal):
     ):
         values = self._prepare_portal_layout_values()
         SoftwareLicense = request.env['software.license']
-        domain = self._get_default_domain()
+        domain = SoftwareLicense._get_default_portal_domain(
+            request.env.user.partner_id
+        )
 
         searchbar_sortings = self._get_searchbar_sortings()
         searchbar_inputs = self._get_searchbar_inputs()
