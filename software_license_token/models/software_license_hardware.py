@@ -95,7 +95,10 @@ class SoftwareLicenseHardware(models.Model):
         enc_session_key = cipher_rsa.encrypt(session_key)
 
         # Encrypt the data with the AES session key
-        cipher_aes = AES.new(session_key, AES.MODE_CFB)
+        # - EAX mode is not supported by .net 4
+        # - CFB mode is not supported by .netcore 2
+        # - ECB mode has known vulnerabilities
+        cipher_aes = AES.new(session_key, AES.MODE_CBC)
         ciphertext = cipher_aes.encrypt(data)
 
         f = io.BytesIO()
