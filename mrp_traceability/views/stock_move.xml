@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record model="ir.actions.act_window" id="action_mrp_production_stock_moves">
+        <field name="name">Stock Moves</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">
+            [
+                '|', 
+                ('raw_material_production_id', '=', active_id),
+                ('production_id', '=', active_id)
+            ]
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="stock_move_tree_view" >
         <field name="name">stock.move.tree.picking.button@mrp_traceability</field>
         <field name="model">stock.move</field>

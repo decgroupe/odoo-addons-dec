@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
+"POT-Creation-Date: 2021-09-01 11:29+0000\n"
+"PO-Revision-Date: 2021-09-01 11:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,28 +18,28 @@ msgstr ""
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
 msgid "Close"
-msgstr "Fermer"
+msgstr ""
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
 msgid "Details"
-msgstr "Détails"
+msgstr ""
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
 msgid "Done/Reserved"
-msgstr "Terminé/Réservé"
+msgstr ""
 
 #. module: mrp_traceability
 #: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__mrp_status
 msgid "Manufacturing Upstream Status"
-msgstr "État en amont de la fabrication"
+msgstr ""
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_tree_view
 msgid "Open"
-msgstr "Ouvert"
+msgstr ""
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
@@ -49,7 +49,7 @@ msgstr ""
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
 msgid "Procurement status"
-msgstr "État de l'appro."
+msgstr ""
 
 #. module: mrp_traceability
 #: model:ir.model,name:mrp_traceability.model_mrp_production
@@ -59,22 +59,29 @@ msgstr ""
 #. module: mrp_traceability
 #: model:ir.actions.act_window,name:mrp_traceability.stock_move_open_picking
 msgid "Receptions"
-msgstr "Réceptions"
+msgstr ""
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
 msgid "Reserved"
-msgstr "Réservé"
+msgstr ""
+
+#. module: mrp_traceability
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
+msgid "Save"
+msgstr ""
 
 #. module: mrp_traceability
 #: model:ir.model,name:mrp_traceability.model_stock_move
 msgid "Stock Move"
-msgstr "Mouvement de stock"
+msgstr ""
 
 #. module: mrp_traceability
+#: model:ir.actions.act_window,name:mrp_traceability.action_mrp_production_stock_moves
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_tree_view
 msgid "Stock Moves"
-msgstr "Mouvements de stocks"
+msgstr ""
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view

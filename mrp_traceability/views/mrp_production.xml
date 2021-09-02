@@ -10,6 +10,16 @@
             <field name="origin" position="after">
                 <field name="orderpoint_id" readonly="1" attrs="{'invisible': [('orderpoint_id', '=', False)]}"/>
             </field>
+            <button name="action_view_mo_delivery" position="before">
+                <button 
+                    name="%(action_mrp_production_stock_moves)d" 
+                    type="action" 
+                    string="Stock Moves" 
+                    class="oe_stat_button"
+                    icon="fa-arrows-v" 
+                    attrs="{'invisible': [('state', 'not in', ('progress', 'done'))]}">
+                </button>
+            </button>
             <xpath expr="//field[@name='move_raw_ids']" position="attributes">
                 <attribute name="context">
                 {
