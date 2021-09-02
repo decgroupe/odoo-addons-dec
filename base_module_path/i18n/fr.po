@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_module_path
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-30 11:57+0000\n"
+"PO-Revision-Date: 2021-08-30 11:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_module_path
+#: model:ir.model,name:base_module_path.model_ir_module_module
+msgid "Module"
+msgstr "Module"
+
+#. module: base_module_path
+#: model:ir.model.fields,field_description:base_module_path.field_ir_module_module__path
+msgid "Path"
+msgstr "Chemin"
+
