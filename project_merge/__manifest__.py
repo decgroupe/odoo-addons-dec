@@ -11,6 +11,8 @@
         'security/res_groups.xml',
         'wizard/merge_project.xml',
         'wizard/merge_task.xml',
+        'data/mail_template_project.xml',
+        'data/mail_template_task.xml',
     ],
     'installable': True
 }
