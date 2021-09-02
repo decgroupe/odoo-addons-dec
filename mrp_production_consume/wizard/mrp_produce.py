@@ -4,12 +4,21 @@
 
 from datetime import datetime
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import float_compare, float_round
+from odoo.exceptions import UserError
 
 
 class MrpProduce(models.TransientModel):
     _inherit = "mrp.product.produce"
+
+    @api.multi
+    def do_produce(self):
+        moves_to_finish = self.production_id.move_finished_ids.filtered(lambda x: x.state not in ('done','cancel'))
+        if any([m.product_uom_qty == 0 for m in moves_to_finish]):
+            raise UserError(_('You cannot produce a zero quantity, check finished products stock move quantities!'))
+        res = super().do_produce()
+        return res
 
     @api.onchange('product_qty')
     def _onchange_product_qty(self):
