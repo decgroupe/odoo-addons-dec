@@ -14,9 +14,15 @@ class MrpProduce(models.TransientModel):
 
     @api.multi
     def do_produce(self):
-        moves_to_finish = self.production_id.move_finished_ids.filtered(lambda x: x.state not in ('done','cancel'))
+        moves_to_finish = self.production_id.move_finished_ids.filtered(
+            lambda x: x.state not in ('done', 'cancel')
+        )
         if any([m.product_uom_qty == 0 for m in moves_to_finish]):
-            raise UserError(_('You cannot produce a zero quantity, check finished products stock move quantities!'))
+            raise UserError(
+                _(
+                    'You cannot produce a zero quantity, check finished products stock move quantities!'
+                )
+            )
         res = super().do_produce()
         return res
 
@@ -106,7 +112,11 @@ class MrpProduce(models.TransientModel):
         # order is done but some moves have been added after
         if qty_todo == 0 and not lines:
             for move in self.production_id.move_raw_ids.filtered(
-                lambda m: m.state not in ('done', 'cancel')
+                lambda m: m.state not in ('done', 'cancel') and float_compare(
+                    m.quantity_done,
+                    m.product_uom_qty,
+                    precision_rounding=m.product_uom.rounding
+                ) < 0
             ):
                 for move_line in move.move_line_ids:
                     lines.append(
