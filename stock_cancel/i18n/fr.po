@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 19:32+0000\n"
-"PO-Revision-Date: 2020-09-25 19:29+0200\n"
+"POT-Creation-Date: 2021-09-03 14:00+0000\n"
+"PO-Revision-Date: 2021-09-03 16:01+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: stock_cancel
+#: model_terms:ir.ui.view,arch_db:stock_cancel.picking_form_view
+msgid "Are you sure you want to cancel this move?"
+msgstr "Êtes-vous sûr de vouloir annuler ce mouvement ?"
+
+#. module: stock_cancel
+#: model_terms:ir.ui.view,arch_db:stock_cancel.picking_form_view
+msgid "Cancel"
+msgstr "Annuler"
 
 #. module: stock_cancel
 #: model:ir.model.fields,field_description:stock_cancel.field_stock_move__is_cancellable

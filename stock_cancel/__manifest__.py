@@ -6,6 +6,9 @@
     'summary': '''Action to cancel stock moves recursively''',
     'depends': ['stock'],
     #'force_migration':'12.0.0.0.0',
-    'data': ['views/stock_move.xml', ],
+    'data': [
+        'views/stock_move.xml',
+        'views/stock_picking.xml',
+    ],
     'installable': True
 }

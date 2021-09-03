@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="picking_form_view">
+        <field name="name">stock.picking.form@stock_assign</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="before">
+                <button 
+                    name="action_cancel" 
+                    string="Cancel" 
+                    type="object"
+                    confirm="Are you sure you want to cancel this move?"
+                    attrs="{
+                        'column_invisible': [
+                            ('parent.is_locked', '=', True)
+                        ],
+                        'invisible': [
+                            ('is_cancellable', '=', False)
+                        ]}"
+                    icon="fa-ban">
+                </button>
+                <field name="procure_method" invisible="1"/>
+                <field name="is_cancellable" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
