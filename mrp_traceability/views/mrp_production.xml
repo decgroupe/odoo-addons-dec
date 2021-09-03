@@ -6,6 +6,7 @@
         <field name="model">mrp.production</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="priority" eval="1000"/>
         <field name="arch" type="xml">
             <field name="origin" position="after">
                 <field name="orderpoint_id" readonly="1" attrs="{'invisible': [('orderpoint_id', '=', False)]}"/>

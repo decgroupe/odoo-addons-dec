@@ -5,8 +5,9 @@
         <field name="name">stock.picking.form@stock_mrp_traceability</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="priority" eval="1000"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
+            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="after">
                 <field name="action_view_created_item_visible" invisible="1"/>
                 <field name="group_id" string="🧩"/>
                 <field name="pick_status" string="Procurement status" class="d_move_procurement_status"/>

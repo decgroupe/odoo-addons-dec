@@ -5,6 +5,7 @@
         <field name="name">stock.picking.form@stock_picking_line_auto_fill</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="priority" eval="100"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
                 <field name="action_auto_operation_fill_visible" invisible="1"/>
