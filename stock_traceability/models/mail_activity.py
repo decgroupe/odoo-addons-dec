@@ -34,6 +34,6 @@ class MailActivity(models.Model):
         if product_id:
             product_name = product_id.product_tmpl_id.display_name
             activity_text = activity_text.replace(product_name, '')
-        head = '⚠️{0}'.format(activity_text)
+        head = '⚠️{0}:{1}'.format(self.date_deadline.strftime('%d/%m/%y'), activity_text)
         desc = '{0}{1}'.format(self.state_emoji, state)
         return head, desc
