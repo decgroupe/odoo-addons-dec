@@ -497,17 +497,3 @@ class StockMove(models.Model):
     @api.multi
     def action_close_dialog(self):
         return {'type': 'ir.actions.act_window_close'}
-
-    @api.multi
-    def action_assign(self):
-        for move in self:
-            move._action_assign()
-
-    @api.multi
-    def action_recompute_state(self):
-        self._recompute_state()
-
-    @api.multi
-    def action_force_state_confirmed_to_assigned(self):
-        for move in self.filtered(lambda m: m.state == 'confirmed'):
-            move.write({'state': 'assigned'})

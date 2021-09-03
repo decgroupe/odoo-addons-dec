@@ -177,6 +177,7 @@
             <form position="inside">
                 <footer>
                     <button string="Save" special="save" class="oe_highlight oe_edit_only"/>
+                    <!-- stock_assign module must be installed -->
                     <button
                         name="action_assign"
                         string="Check Assign"
@@ -188,6 +189,7 @@
                             ]
                         }">
                     </button>
+                    <!-- stock_assign module must be installed -->
                     <button 
                         name="action_recompute_state"
                         string="Recompute State"
@@ -199,6 +201,7 @@
                             ]
                         }">
                     </button>
+                    <!-- stock_assign module must be installed -->
                     <button 
                         name="action_force_state_confirmed_to_assigned" 
                         string="Force Assigned" 
