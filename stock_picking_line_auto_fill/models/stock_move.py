@@ -21,12 +21,13 @@ class StockMove(models.Model):
 
     # Copy logic from :
     # ./odoo-addons/oca/stock-logistics-workflow/stock_move_line_auto_fill/models/stock_picking.py
+    # except that we don't filter out if qty_done is already set
     def action_auto_operation_fill(self):
         for move in self:
             operations = move.mapped('move_line_ids')
             operations_to_auto_fill = operations.filtered(
                 lambda op: (
-                    op.product_id and not op.qty_done and (
+                    op.product_id and (
                         not op.lots_visible or not op.picking_id.picking_type_id
                         .avoid_lot_assignment
                     )
