@@ -2,7 +2,7 @@
     'name': 'Purchase cancel propagation',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary': '''Choose between simple delete or delete and propagate to cancel procurement''',
     'depends': [
         'purchase_stock',

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <y.papouin at dec-industrie.com>, Jul 2021
+# Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
 import re
 

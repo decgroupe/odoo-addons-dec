@@ -2,7 +2,7 @@
     'name': 'Manufacturing Swap Production',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'https://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary':
         'Swap two manufacturing orders. This case can happen when you need '
         'to set an higher priority to a specific order.',

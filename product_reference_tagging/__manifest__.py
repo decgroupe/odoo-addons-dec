@@ -2,7 +2,7 @@
     'name': 'Tagging (product_reference)',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary': '''Tagging references models''',
     'depends': [
         'tagging',

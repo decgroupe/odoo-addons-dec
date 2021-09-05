@@ -103,14 +103,14 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* `DEC <https://www.dec-industrie.com>`_:
+* `DEC <https://www.decgroupe.com>`_:
 
-  * Yann Papouin <y.papouin@dec-industrie.com>
+  * Yann Papouin <ypa@decgroupe.com>
 
 Maintainers
 ~~~~~~~~~~~
 
-This module is maintained by the OCA.
+This module is maintained by the 
 
 .. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association

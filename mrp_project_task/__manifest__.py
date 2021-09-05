@@ -2,7 +2,7 @@
     'name': 'Manufacturing Project Task',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary': "Service production tracking",
     'depends': [
         'mrp_project',

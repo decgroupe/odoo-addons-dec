@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <y.papouin at dec-industrie.com>, Feb 2021
+# Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
 from datetime import datetime, timedelta
 from odoo import models, api, fields

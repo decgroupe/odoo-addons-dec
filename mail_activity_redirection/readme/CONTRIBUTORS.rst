@@ -1,3 +1,3 @@
-* `DEC <https://www.dec-industrie.com>`_:
+* `DEC <https://www.decgroupe.com>`_:
 
-  * Yann Papouin <y.papouin@dec-industrie.com>
+  * Yann Papouin <ypa@decgroupe.com>

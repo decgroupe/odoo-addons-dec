@@ -2,7 +2,7 @@
     'name': 'Hide Country State',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary': "Base module that don't do anything by himself",
     'depends': ['base', ],
     'data': ['views/res_country.xml', ],

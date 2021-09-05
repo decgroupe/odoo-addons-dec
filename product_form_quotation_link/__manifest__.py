@@ -4,7 +4,7 @@
     'author':
         'DEC, Yann Papouin, ACSONE SA/NV, '
         'Odoo Community Association (OCA)',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary':
         'Add an option to display the draft purchases '
         'lines from product',

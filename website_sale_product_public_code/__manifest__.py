@@ -2,7 +2,7 @@
     'name': 'Website Product Public Code',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary': '''Display product public code in e-commerce''',
     'depends': [
         'website_sale_workflow_dec',

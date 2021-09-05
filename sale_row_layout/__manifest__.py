@@ -2,7 +2,7 @@
     'name': 'Sale Row Layout',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'category': 'Sales',
     'summary': '''Show line form product fields using a row''',
     'depends': [

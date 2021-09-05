@@ -2,7 +2,7 @@
     'name': 'Merge Projects',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin ',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'depends': [
         'project',
         'deltatech_merge',

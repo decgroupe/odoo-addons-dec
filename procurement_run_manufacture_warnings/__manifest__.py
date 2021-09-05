@@ -1,20 +1,16 @@
 {
-    'name':
-        'Procurement (warnings)',
-    'version':
-        '12.0.1.0.0',
-    'author':
-        'DEC, Yann Papouin',
-    'website':
-        'http://www.dec-industrie.com',
+    'name': 'Procurement (warnings)',
+    'version': '12.0.1.0.0',
+    'author': 'DEC, Yann Papouin',
+    'website': 'https://www.decgroupe.com',
     'summary':
-        '''Raise error when BoM is empty or product state is incompatible''',
+        "Raise error when BoM is empty or product state is "
+        "incompatible",
     'depends': [
         'mrp',
         'sale_stock',
         'product_state_review',
     ],
     'data': [],
-    'installable':
-        True
+    'installable': True
 }

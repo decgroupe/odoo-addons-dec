@@ -2,7 +2,7 @@
     'name': 'Partner Academy',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
-    'website': 'http://www.dec-industrie.com',
+    'website': 'https://www.decgroupe.com',
     'summary':
         "Add an academy field to partner used to group educational "
         "partners",
