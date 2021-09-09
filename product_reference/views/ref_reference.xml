@@ -88,7 +88,11 @@
                         <page name="general" string="Notes">
                             <group name="versions" attrs="{'invisible': [('id', '=', False)]}">
                                 <field name="current_version"/>
-                                <field name="version_ids"/>
+                                <field name="version_ids" context="{
+                                    'version_ids':version_ids, 
+                                    'active_id':active_id, 
+                                    'active_model':active_model,
+                                    }"/>
                             </group>
                             <group name="notes">
                                 <field name="description" attrs="{

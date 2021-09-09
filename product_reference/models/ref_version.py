@@ -12,14 +12,17 @@ class RefVersion(models.Model):
     @api.model
     def _default_version(self):
         res = 1
-        active_id = self._context.get('params', {}).get('id')
-        active_model = self._context.get('params', {}).get('model')
-        if not active_id or active_model != 'ref.reference':
-            return res
-        reference_id = self.env['ref.reference'].browse(active_id)
-        for version_id in reference_id.version_ids:
-            if version_id.version > res:
-                res = version_id.version
+        if 'version_ids' in self.env.context:
+            for o2m in self.env.context.get('version_ids'):
+                if isinstance(o2m[1], int):
+                    rec_id = o2m[1]
+                    version_id = self.browse(rec_id)
+                    if version_id.version > res:
+                        res = version_id.version
+                elif isinstance(o2m[1], str) and isinstance(o2m[2], dict):
+                    rec_data = o2m[2]
+                    if rec_data.get('version', 0) > res:
+                        res = rec_data.get('version')
         return res
 
     name = fields.Char(
