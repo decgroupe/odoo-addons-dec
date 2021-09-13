@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 07:38+0000\n"
-"PO-Revision-Date: 2021-05-21 10:05+0200\n"
+"POT-Creation-Date: 2021-09-13 13:34+0000\n"
+"PO-Revision-Date: 2021-09-13 15:35+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -34,6 +34,16 @@ msgid "Active"
 msgstr "Actif"
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__domain
+msgid "Apply on"
+msgstr "Appliqué sur"
+
+#. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_attribute
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__attribute_id
 msgid "Attribute"
@@ -58,6 +68,11 @@ msgid "Auto-increment"
 msgstr "Incrémentation automatique"
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
 msgid "Case"
 msgstr "Casier"
@@ -71,6 +86,7 @@ msgstr "Catégories"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_category
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__category_id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__category_id
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__category_id
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_category_form_view
@@ -127,6 +143,7 @@ msgid "Create date"
 msgstr "Date de création"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__create_uid
@@ -138,6 +155,7 @@ msgid "Created by"
 msgstr "Créée par"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__create_date
@@ -154,11 +172,17 @@ msgid "Current version"
 msgstr "Version actuelle"
 
 #. module: product_reference
+#: model:ir.model,name:product_reference.model_change_product_state_by_category
+msgid "Customize purchase report"
+msgstr "Rapport d'achat personnalisé"
+
+#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
 msgid "Default Code"
 msgstr "Référence interne"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__display_name
@@ -192,6 +216,7 @@ msgid "Has a Location"
 msgstr "Est repéré"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__id
@@ -231,6 +256,7 @@ msgid "Invalid value length, the length must be %d"
 msgstr "Longueur de valeur non valide, la longueur doit être %d"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line____last_update
@@ -242,6 +268,7 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__write_uid
@@ -253,6 +280,7 @@ msgid "Last Updated by"
 msgstr "Dernière modification par"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__write_date
@@ -325,6 +353,11 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__state
+msgid "New Status"
+msgstr "Nouveau statut"
+
+#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
 msgid "Notes"
 msgstr "Notes"
@@ -344,6 +377,16 @@ msgstr "Chemin vers l'image"
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__sequence
 msgid "Position"
 msgstr "Position"
+
+#. module: product_reference
+#: sql_constraint:ref.category.line:0
+msgid "Position must be unique !"
+msgstr "La position doit être unique !"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Price Graph"
+msgstr "Graphe de calcul du prix"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_product_product
@@ -489,6 +532,11 @@ msgid "Search value"
 msgstr "Valeur de recherche"
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Select a category to pre-fill domain filter."
+msgstr "Sélectionnez une catégorie pour pré-remplir le filtre de recherche."
+
+#. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_product_template_as_service
 #: model:ir.ui.menu,name:product_reference.menu_product_template_as_service
 msgid "Services"
@@ -536,3 +584,19 @@ msgstr "Version"
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_version_tree_view
 msgid "Versions"
 msgstr "Versions"
+
+#. module: product_reference
+#: model:ir.ui.menu,name:product_reference.menu_wizard
+msgid "Wizards"
+msgstr "Assistants"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "You can use this widget to customize the Product selection."
+msgstr "Vous pouvez utiliser ce widget pour personnaliser la sélection d'articles."
+
+#. module: product_reference
+#: model:ir.actions.act_window,name:product_reference.act_window_change_product_state_by_category
+#: model:ir.ui.menu,name:product_reference.menu_change_product_state_by_category
+msgid "🧙‍♂️ Change product state by category ..."
+msgstr "🧙 Modifier le statut de l'article par catégorie ..."

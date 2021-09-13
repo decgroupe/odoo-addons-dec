@@ -39,8 +39,9 @@
             'views/ref_category.xml',
             'views/ref_category_line.xml',
             'views/ref_version.xml',
-            'views/menu.xml',
             'views/res_config_settings.xml',
+            'wizard/change_product_state_by_category.xml',
+            'views/menu.xml',
         ],
     'installable': True
 }

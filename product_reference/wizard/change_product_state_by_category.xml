@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="change_product_state_by_category_form_view">
+        <field name="name">Change product state by category</field>
+        <field name="model">change.product.state.by.category</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Price Graph">
+                <group>
+                    <p class="text-muted">
+                        Select a category to pre-fill domain filter.
+                    </p>
+                    <field name="category_id"/>
+                    <p class="text-muted">
+                        You can use this widget to customize the Product selection.
+                    </p>
+                    <field name="domain" widget="domain" options="{'model': 'product.product', 'in_dialog': True}"/>
+                </group>
+                <group>
+                    <field name="state"/>
+                </group>
+                <footer>
+                    <button 
+                        string="Apply"
+                        name="action_update_state"
+                        type="object" 
+                        class="btn-primary">
+                    </button>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="act_window_change_product_state_by_category"
+        name="🧙‍♂️ Change product state by category ..."
+        res_model="change.product.state.by.category"
+        view_mode="form"
+        view_id="change_product_state_by_category_form_view"
+        target="new"
+        context="{}"
+    />
+
+    <!-- <act_window id="act_window_swap_production"
+        name="🧙‍♂️ Swap this manufacturing order ..."
+        src_model="mrp.production"
+        res_model="mrp.swap.production"
+        view_mode="form"
+        view_id="mrp_swap_production_form_view"
+        groups="group_swap_production"
+        target="new"
+        context="{
+            'default_this_production_id': active_id,
+        }">
+    </act_window> -->
+
+</odoo>

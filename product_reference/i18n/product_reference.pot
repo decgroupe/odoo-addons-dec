@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 07:38+0000\n"
-"PO-Revision-Date: 2021-05-21 07:38+0000\n"
+"POT-Creation-Date: 2021-09-13 13:34+0000\n"
+"PO-Revision-Date: 2021-09-13 13:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,16 @@ msgstr ""
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__active
 msgid "Active"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Apply"
+msgstr ""
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__domain
+msgid "Apply on"
 msgstr ""
 
 #. module: product_reference
@@ -56,6 +66,11 @@ msgid "Auto-increment"
 msgstr ""
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Cancel"
+msgstr ""
+
+#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
 msgid "Case"
 msgstr ""
@@ -69,6 +84,7 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_category
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__category_id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__category_id
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__category_id
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_category_form_view
@@ -125,6 +141,7 @@ msgid "Create date"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__create_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__create_uid
@@ -136,6 +153,7 @@ msgid "Created by"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__create_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__create_date
@@ -152,11 +170,17 @@ msgid "Current version"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model,name:product_reference.model_change_product_state_by_category
+msgid "Customize purchase report"
+msgstr ""
+
+#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
 msgid "Default Code"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__display_name
@@ -190,6 +214,7 @@ msgid "Has a Location"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__id
@@ -229,6 +254,7 @@ msgid "Invalid value length, the length must be %d"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line____last_update
@@ -240,6 +266,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__write_uid
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__write_uid
@@ -251,6 +278,7 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__write_date
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__write_date
@@ -323,6 +351,11 @@ msgid "Name"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__state
+msgid "New Status"
+msgstr ""
+
+#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
 msgid "Notes"
 msgstr ""
@@ -341,6 +374,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__sequence
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__sequence
 msgid "Position"
+msgstr ""
+
+#. module: product_reference
+#: sql_constraint:ref.category.line:0
+msgid "Position must be unique !"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Price Graph"
 msgstr ""
 
 #. module: product_reference
@@ -487,6 +530,11 @@ msgid "Search value"
 msgstr ""
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "Select a category to pre-fill domain filter."
+msgstr ""
+
+#. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_product_template_as_service
 #: model:ir.ui.menu,name:product_reference.menu_product_template_as_service
 msgid "Services"
@@ -533,5 +581,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__version_ids
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_version_tree_view
 msgid "Versions"
+msgstr ""
+
+#. module: product_reference
+#: model:ir.ui.menu,name:product_reference.menu_wizard
+msgid "Wizards"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
+msgid "You can use this widget to customize the Product selection."
+msgstr ""
+
+#. module: product_reference
+#: model:ir.actions.act_window,name:product_reference.act_window_change_product_state_by_category
+#: model:ir.ui.menu,name:product_reference.menu_change_product_state_by_category
+msgid "🧙‍♂️ Change product state by category ..."
 msgstr ""
 

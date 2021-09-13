@@ -37,5 +37,18 @@
         <field name="parent_id" ref="product_reference_management.menu_configuration"/>
     </record>
 
+    <record model="ir.ui.menu" id="menu_wizard">
+        <field name="name">Wizards</field>
+        <field name="sequence" eval="90"/>
+        <field name="parent_id" ref="dec.menu_dec"/>
+    </record>
+
+    <menuitem 
+        action="act_window_change_product_state_by_category" 
+        id="menu_change_product_state_by_category" 
+        groups="base.group_no_one"
+        parent="menu_wizard" 
+        sequence="10">
+    </menuitem>
 
 </odoo>
