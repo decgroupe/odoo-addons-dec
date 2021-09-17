@@ -33,33 +33,28 @@ class RefReference(models.Model):
         'ref.category',
         'Category',
         required=True,
-        oldname='category',
     )
     product_id = fields.Many2one(
         'product.template',
         'Product',
         required=True,
         copy=False,
-        oldname='product',
     )
     public_code = fields.Char(
         related='product_id.public_code',
         string='Public Code',
         readonly=False,
-        oldname='product_ciel_code',
     )
     name = fields.Char(
         related='product_id.name',
         string='Name',
         readonly=False,
-        oldname='product_name',
     )
     state = fields.Selection(
         related='product_id.state',
         string='Status',
         readonly=False,
         default='quotation',
-        oldname='product_state',
         store=True,
     )
     description = fields.Text(
@@ -114,14 +109,12 @@ class RefReference(models.Model):
         'ref.reference.line',
         'reference_id',
         string='Lines',
-        oldname='reference_lines',
     )
     version_ids = fields.One2many(
         'ref.version',
         'reference_id',
         string='Versions',
         copy=False,
-        oldname='version_lines',
     )
 
     _sql_constraints = [

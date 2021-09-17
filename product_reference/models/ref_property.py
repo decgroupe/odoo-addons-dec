@@ -33,7 +33,6 @@ class RefProperty(models.Model):
         'ref.attribute',
         'property_id',
         string="Attributes",
-        oldname='attributes',
     )
 
     @api.multi

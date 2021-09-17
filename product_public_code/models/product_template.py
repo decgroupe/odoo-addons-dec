@@ -11,7 +11,6 @@ class ProductTemplate(models.Model):
     public_code = fields.Char(
         'Public Code',
         size=24,
-        oldname="ciel_code",
     )
 
     @api.model

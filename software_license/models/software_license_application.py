@@ -20,7 +20,6 @@ class SoftwareLicenseApplication(models.Model):
         'Identifier',
         required=True,
         default=0,
-        oldname='application_id',
     )
     name = fields.Text(
         'Application',

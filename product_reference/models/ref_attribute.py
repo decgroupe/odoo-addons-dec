@@ -20,12 +20,10 @@ class RefAttribute(models.Model):
         'ref.property',
         'Property (owner)',
         required=True,
-        oldname='owner',
     )
     code = fields.Char(
         'Code',
         required=True,
-        oldname='value',
     )
     name = fields.Char(
         'Name',

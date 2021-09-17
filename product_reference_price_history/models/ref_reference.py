@@ -22,7 +22,6 @@ class RefReference(models.Model):
         'ref.price',
         'reference_id',
         string='Prices',
-        oldname='price_lines',
     )
 
     @api.multi

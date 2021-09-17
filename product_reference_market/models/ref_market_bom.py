@@ -31,7 +31,6 @@ class RefMarketBom(models.Model):
         required=True,
         help=
         "UoM (Unit of Measure) is the unit of measurement for the inventory control",
-        oldname='product_uom'
     )
     partner_id = fields.Many2one(
         'res.partner',

@@ -3,7 +3,7 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
-    'summary': '''Create and customize activitiy redirection''',
+    'summary': "Create and customize activity redirection",
     'depends': [
         'stock',
         'procurement_run_mto',

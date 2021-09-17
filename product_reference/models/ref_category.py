@@ -28,7 +28,6 @@ class RefCategory(models.Model):
     product_category_id = fields.Many2one(
         'product.category',
         'Product category',
-        oldname='product_category',
     )
     description_template = fields.Text(
         'Template',
@@ -40,7 +39,6 @@ class RefCategory(models.Model):
         'ref.category.line',
         'category_id',
         string="Category Lines",
-        oldname='category_lines',
     )
 
     _sql_constraints = [

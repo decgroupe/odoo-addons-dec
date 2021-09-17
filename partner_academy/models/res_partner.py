@@ -12,7 +12,6 @@ class ResPartner(models.Model):
         'res.partner.academy',
         'Academy',
         help="Educational academy of the current partner.",
-        oldname='partner_academy',
     )
 
     @api.onchange('email')

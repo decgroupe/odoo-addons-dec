@@ -14,7 +14,6 @@ class SaleOrder(models.Model):
         copy=False,
         default=False,
         help="Prevent changes by users other than the salesperson",
-        oldname="locked"
     )
 
     same_user = fields.Boolean(

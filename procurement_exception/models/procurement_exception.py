@@ -42,7 +42,6 @@ otherwise."
     regex_pattern = fields.Char(
         string='RegEx',
         help="Regular Expression used to parse procurement exception message",
-        oldname='message_regex'
     )
 
     @api.model

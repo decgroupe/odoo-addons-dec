@@ -21,5 +21,4 @@ class MrpBomLine(models.Model):
     buy_consumable = fields.Boolean(
         string='Buy',
         help="Used to force buying a consumable product.",
-        oldname='buy_consu',
     )

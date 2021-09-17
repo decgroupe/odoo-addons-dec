@@ -43,10 +43,8 @@ class RefVersion(models.Model):
         'res.users',
         'Author',
         default=lambda self: self.env.user,
-        oldname='author',
     )
     reference_id = fields.Many2one(
         'ref.reference',
         'Reference',
-        oldname='reference',
     )

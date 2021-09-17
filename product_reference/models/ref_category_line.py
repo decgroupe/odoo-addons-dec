@@ -17,13 +17,11 @@ class RefCategoryLine(models.Model):
         'ref.category',
         'Category',
         required=True,
-        oldname='category',
     )
     property_id = fields.Many2one(
         'ref.property',
         'Property',
         required=True,
-        oldname='property',
     )
     description = fields.Char(
         'Property description',

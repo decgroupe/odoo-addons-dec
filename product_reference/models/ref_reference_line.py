@@ -19,13 +19,11 @@ class RefReferenceLine(models.Model):
         'ref.reference',
         'Reference',
         required=True,
-        oldname='reference',
     )
     property_id = fields.Many2one(
         'ref.property',
         'Property',
         required=True,
-        oldname='property',
     )
     attribute_id = fields.Many2one(
         'ref.attribute',
