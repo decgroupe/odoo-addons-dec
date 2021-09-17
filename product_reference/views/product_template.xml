@@ -60,8 +60,8 @@
         </field>
     </record>
 
-    <record id="product_template_tree_view" model="ir.ui.view">
-        <field name="name">product.template.tree@product_reference</field>
+    <record id="product_template_as_service_tree_view" model="ir.ui.view">
+        <field name="name">product.template.tree#asservice@product_reference</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product_public_code.product_template_tree_view"/>
         <field name="mode">primary</field>
@@ -70,6 +70,33 @@
                 <!-- WARNING: the string character is a non-breakable space -->
                 <field name="image_small" string=" " widget="image"/>
             </field>
+            <tree position="attributes">
+                <attribute name="decoration-success">state == 'quotation'</attribute>
+                <attribute name="decoration-primary">state == 'review'</attribute>
+                <attribute name="decoration-info">state == 'draft'</attribute>
+                <attribute name="decoration-bf">state == 'sellable'</attribute>
+                <attribute name="decoration-muted">state == 'obsolete'</attribute>
+                <!-- 
+                <attribute name="decoration-warning">state == ''</attribute>
+                <attribute name="decoration-muted-strike">state == 'obsolete'</attribute>
+                -->
+                <attribute name="decoration-danger">False</attribute>
+            </tree>
+            <field name="qty_available" position="replace"/>
+            <field name="qty_available_not_res" position="replace"/>
+            <field name="virtual_available" position="replace"/>
+            <field name="categ_id" position="attributes">
+                <attribute name="class">d_categ_id</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_as_product_tree_view" model="ir.ui.view">
+        <field name="name">product.template.tree#asproduct@product_reference</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product_template_as_service_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="loc_rack"/>
                 <field name="loc_row"/>
@@ -93,9 +120,9 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_product_template_tree" >
+    <record model="ir.actions.act_window.view" id="act_window_product_template_as_product_tree" >
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="product_template_tree_view"/>
+        <field name="view_id" ref="product_template_as_product_tree_view"/>
         <field name="act_window_id" ref="act_window_product_template_as_product"/>
     </record>
 
@@ -110,6 +137,12 @@
             'search_default_services': 1, 
             'default_type': 'service'}
         </field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_window_product_template_as_service_tree" >
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_template_as_service_tree_view"/>
+        <field name="act_window_id" ref="act_window_product_template_as_service"/>
     </record>
 
 </odoo>

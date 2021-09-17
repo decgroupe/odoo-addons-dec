@@ -25,11 +25,13 @@
         'mrp_buy_consu',
         'sale_purchase',
         'sale_timesheet',
+        'stock_available_unreserved',
     ],
     'data':
         [
             'security/model_security.xml',
             'security/ir.model.access.csv',
+            'views/assets.xml',
             'views/product_template.xml',
             'views/product_product.xml',
             'views/ref_attribute.xml',
