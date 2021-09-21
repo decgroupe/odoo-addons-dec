@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- 
+    <delete model="ref.reference" search="[('searchvalue', '=', 'APSGMCLOTT')]"/>
+    <delete model="ref.reference" search="[('searchvalue', '=', 'APSPDCALCT')]"/>
+    <delete model="ref.reference" search="[('searchvalue', '=', 'CPKASAMO00')]"/>
+    -->
+
+    <record model="ref.reference" id="apsgmbblpp">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Bubble Pop</field>
+        <field name="value">APS GM BBLPP</field>
+        <field name="searchvalue">APSGMBBLPP</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=5)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="apsgmbblpp_line1">
+        <field name="reference_id" ref="apsgmbblpp"/>
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="attribute_id" ref="game"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="apsgmbblpp_line2">
+        <field name="reference_id" ref="apsgmbblpp"/>
+        <field name="property_id" ref="applicationname"/>
+        <field name="value">BBLPP</field>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record model="ref.reference" id="apsgmclott">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="state">quotation</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Clash Of Titans</field>
+        <field name="value">APS GM CLOTT</field>
+        <field name="searchvalue">APSGMCLOTT</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=1)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="apsgmclott_line1">
+        <field name="reference_id" ref="apsgmclott"/>
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="attribute_id" ref="game"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="apsgmclott_line2">
+        <field name="reference_id" ref="apsgmclott"/>
+        <field name="property_id" ref="applicationname"/>
+        <field name="value">CLOTT</field>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record model="ref.reference" id="apspdcalct">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Calculator</field>
+        <field name="value">APS PD CALCT</field>
+        <field name="searchvalue">APSPDCALCT</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=2)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="apspdcalct_line1">
+        <field name="reference_id" ref="apspdcalct"/>
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="attribute_id" ref="productivity"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="apspdcalct_line2">
+        <field name="reference_id" ref="apspdcalct"/>
+        <field name="property_id" ref="applicationname"/>
+        <field name="value">CALCT</field>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record model="ref.reference" id="apspdcaldr">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Calendar</field>
+        <field name="value">APS PD CALDR</field>
+        <field name="searchvalue">APSPDCALDR</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=2)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="apspdcaldr_line1">
+        <field name="reference_id" ref="apspdcaldr"/>
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="attribute_id" ref="productivity"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="apspdcaldr_line2">
+        <field name="reference_id" ref="apspdcaldr"/>
+        <field name="property_id" ref="applicationname"/>
+        <field name="value">CALDR</field>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record model="ref.reference" id="apspdnetbw">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="state">quotation</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Net Browser</field>
+        <field name="value">APS PD NETBW</field>
+        <field name="searchvalue">APSPDNETBW</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=21)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="apspdnetbw_line1">
+        <field name="reference_id" ref="apspdnetbw"/>
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="attribute_id" ref="productivity"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="apspdnetbw_line2">
+        <field name="reference_id" ref="apspdnetbw"/>
+        <field name="property_id" ref="applicationname"/>
+        <field name="value">NETBW</field>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record model="ref.reference" id="apspdwrter">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="state">draft</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Writer</field>
+        <field name="value">APS PD WRTER</field>
+        <field name="searchvalue">APSPDWRTER</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=3)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="apspdwrter_line1">
+        <field name="reference_id" ref="apspdwrter"/>
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="attribute_id" ref="productivity"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="apspdwrter_line2">
+        <field name="reference_id" ref="apspdwrter"/>
+        <field name="property_id" ref="applicationname"/>
+        <field name="value">WRTER</field>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record model="ref.reference" id="cpkasamo00">
+        <field name="category_id" ref="computerkit"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Desktop Computer &quot;Jupiter&quot;</field>
+        <field name="value">CPK AS AM O 00</field>
+        <field name="searchvalue">CPKASAMO00</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=5)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamo00_line1">
+        <field name="reference_id" ref="cpkasamo00"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="attribute_id" ref="assembled"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamo00_line2">
+        <field name="reference_id" ref="cpkasamo00"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="attribute_id" ref="amd"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamo00_line3">
+        <field name="reference_id" ref="cpkasamo00"/>
+        <field name="property_id" ref="line"/>
+        <field name="attribute_id" ref="pro"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamo00_line4">
+        <field name="reference_id" ref="cpkasamo00"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">00</field>
+        <field name="sequence" eval="4"/>
+    </record>
+
+    <record model="ref.reference" id="cpkasamp00">
+        <field name="category_id" ref="computerkit"/>
+        <field name="state">obsolete</field>
+        <field name="current_version" eval="2"/>
+        <field name="name">Desktop Computer &quot;Mars&quot;</field>
+        <field name="value">CPK AS AM P 00</field>
+        <field name="searchvalue">CPKASAMP00</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=8)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp00_line1">
+        <field name="reference_id" ref="cpkasamp00"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="attribute_id" ref="assembled"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp00_line2">
+        <field name="reference_id" ref="cpkasamp00"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="attribute_id" ref="amd"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp00_line3">
+        <field name="reference_id" ref="cpkasamp00"/>
+        <field name="property_id" ref="line"/>
+        <field name="attribute_id" ref="plus"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp00_line4">
+        <field name="reference_id" ref="cpkasamp00"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">00</field>
+        <field name="sequence" eval="4"/>
+    </record>
+    <record model="ref.version" id="cpkasamp00_version_line2">
+        <field name="name">DDRAM replaced with another brand</field>
+        <field name="version" eval="2"/>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=7)).strftime('%Y-%m-%d %H:%M')"/>
+        <field name="author_id" ref="base.user_admin"/>
+        <field name="reference_id" ref="cpkasamp00"/>
+    </record>
+    <record model="ref.version" id="cpkasamp00_version_line3">
+        <field name="name">Replaced with &quot;Mars 22&quot;</field>
+        <field name="version" eval="2"/>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=6)).strftime('%Y-%m-%d %H:%M')"/>
+        <field name="author_id" ref="base.user_admin"/>
+        <field name="reference_id" ref="cpkasamp00"/>
+    </record>
+
+    <record model="ref.reference" id="cpkasamp22">
+        <field name="category_id" ref="computerkit"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Desktop Computer &quot;Mars 22&quot;</field>
+        <field name="value">CPK AS AM P 22</field>
+        <field name="searchvalue">CPKASAMP22</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=8)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp22_line1">
+        <field name="reference_id" ref="cpkasamp22"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="attribute_id" ref="assembled"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp22_line2">
+        <field name="reference_id" ref="cpkasamp22"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="attribute_id" ref="amd"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp22_line3">
+        <field name="reference_id" ref="cpkasamp22"/>
+        <field name="property_id" ref="line"/>
+        <field name="attribute_id" ref="plus"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasamp22_line4">
+        <field name="reference_id" ref="cpkasamp22"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">22</field>
+        <field name="sequence" eval="4"/>
+    </record>
+
+
+    <record model="ref.reference" id="cpkasito00">
+        <field name="category_id" ref="computerkit"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Desktop Computer &quot;Osiris&quot;</field>
+        <field name="value">CPK AS IT O 00</field>
+        <field name="searchvalue">CPKASITO00</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=28)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasito00_line1">
+        <field name="reference_id" ref="cpkasito00"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="attribute_id" ref="assembled"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasito00_line2">
+        <field name="reference_id" ref="cpkasito00"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="attribute_id" ref="intel"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasito00_line3">
+        <field name="reference_id" ref="cpkasito00"/>
+        <field name="property_id" ref="line"/>
+        <field name="attribute_id" ref="pro"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasito00_line4">
+        <field name="reference_id" ref="cpkasito00"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">00</field>
+        <field name="sequence" eval="4"/>
+    </record>
+
+    
+    <record model="ref.reference" id="cpkasits00">
+        <field name="category_id" ref="computerkit"/>
+        <field name="state">end</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Desktop Computer &quot;Râ&quot;</field>
+        <field name="value">CPK AS IT S 00</field>
+        <field name="searchvalue">CPKASITS00</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=121)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits00_line1">
+        <field name="reference_id" ref="cpkasits00"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="attribute_id" ref="assembled"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits00_line2">
+        <field name="reference_id" ref="cpkasits00"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="attribute_id" ref="intel"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits00_line3">
+        <field name="reference_id" ref="cpkasits00"/>
+        <field name="property_id" ref="line"/>
+        <field name="attribute_id" ref="standard"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits00_line4">
+        <field name="reference_id" ref="cpkasits00"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">00</field>
+        <field name="sequence" eval="4"/>
+    </record>
+    
+    <record model="ref.reference" id="cpkasits23">
+        <field name="category_id" ref="computerkit"/>
+        <field name="state">draft</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Desktop Computer &quot;Râ 23&quot;</field>
+        <field name="value">CPK AS IT S 23</field>
+        <field name="searchvalue">CPKASITS23</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=21)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits23_line1">
+        <field name="reference_id" ref="cpkasits23"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="attribute_id" ref="assembled"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits23_line2">
+        <field name="reference_id" ref="cpkasits23"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="attribute_id" ref="intel"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits23_line3">
+        <field name="reference_id" ref="cpkasits23"/>
+        <field name="property_id" ref="line"/>
+        <field name="attribute_id" ref="standard"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.reference.line" id="cpkasits23_line4">
+        <field name="reference_id" ref="cpkasits23"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">23</field>
+        <field name="sequence" eval="4"/>
+    </record>
+
+
+    <record model="ref.reference" id="cpkunits23">
+        <field name="category_id" ref="computerkit"/>
+        <field name="state">quotation</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Self-mounted &quot;Râ 23&quot;</field>
+        <field name="value">CPK UN IT S 23</field>
+        <field name="searchvalue">CPKUNITS23</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=20)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="cpkunits23_line1">
+        <field name="reference_id" ref="cpkunits23"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="attribute_id" ref="unassembled"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.reference.line" id="cpkunits23_line2">
+        <field name="reference_id" ref="cpkunits23"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="attribute_id" ref="intel"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.reference.line" id="cpkunits23_line3">
+        <field name="reference_id" ref="cpkunits23"/>
+        <field name="property_id" ref="line"/>
+        <field name="attribute_id" ref="standard"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.reference.line" id="cpkunits23_line4">
+        <field name="reference_id" ref="cpkunits23"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">23</field>
+        <field name="sequence" eval="4"/>
+    </record>
+
+    <record model="ref.reference" id="flc00">
+        <field name="category_id" ref="flightcase"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Guitar Vault Touring Grade Flight Case</field>
+        <field name="value">FLC 00</field>
+        <field name="searchvalue">FLC00</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="flc00_line1">
+        <field name="reference_id" ref="flc00"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">00</field>
+        <field name="sequence" eval="1"/>
+    </record>
+
+    <record model="ref.reference" id="flc01">
+        <field name="category_id" ref="flightcase"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Universal Bass Guitar Flight Case</field>
+        <field name="value">FLC 01</field>
+        <field name="searchvalue">FLC01</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="flc01_line2">
+        <field name="reference_id" ref="flc01"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">01</field>
+        <field name="sequence" eval="1"/>
+    </record>
+   
+    <record model="ref.reference" id="flc03">
+        <field name="category_id" ref="flightcase"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Pioneer DDJ-1000 Flight Case</field>
+        <field name="value">FLC 03</field>
+        <field name="searchvalue">FLC03</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="flc03_line1">
+        <field name="reference_id" ref="flc03"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">03</field>
+        <field name="sequence" eval="1"/>
+    </record>
+    
+    <record model="ref.reference" id="flc04">
+        <field name="category_id" ref="flightcase"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">NovoPro NPC-NXS2 DJM Flight Case</field>
+        <field name="value">FLC 04</field>
+        <field name="searchvalue">FLC04</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=9)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="flc04_line1">
+        <field name="reference_id" ref="flc04"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">04</field>
+        <field name="sequence" eval="1"/>
+    </record>
+    
+    <record model="ref.reference" id="flc05">
+        <field name="category_id" ref="flightcase"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Drum Hardware Touring Flight Case with Wheels</field>
+        <field name="value">FLC 05</field>
+        <field name="searchvalue">FLC05</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=8)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="flc05_line1">
+        <field name="reference_id" ref="flc05"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">05</field>
+        <field name="sequence" eval="1"/>
+    </record>
+
+    <record model="ref.reference" id="flc06">
+        <field name="category_id" ref="flightcase"/>
+        <field name="state">sellable</field>
+        <field name="current_version" eval="1"/>
+        <field name="name">Boss GT-1000 Pedal Board Flight Case</field>
+        <field name="value">FLC 06</field>
+        <field name="searchvalue">FLC06</field>
+        <field name="datetime" eval="(DateTime.today() - relativedelta(days=6)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+    <record model="ref.reference.line" id="flc06_line1">
+        <field name="reference_id" ref="flc06"/>
+        <field name="property_id" ref="index"/>
+        <field name="value">06</field>
+        <field name="sequence" eval="1"/>
+    </record>
+
+</odoo>

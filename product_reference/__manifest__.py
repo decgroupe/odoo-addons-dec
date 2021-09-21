@@ -45,5 +45,10 @@
             'wizard/change_product_state_by_category.xml',
             'views/menu.xml',
         ],
+    'demo':
+        [
+            'demo/ref_categories.xml',
+            'demo/ref_references.xml',
+        ],
     'installable': True
 }

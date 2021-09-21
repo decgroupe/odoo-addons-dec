@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- 
+    <delete model="ref.reference" search="[('searchvalue', '=ilike', 'APS%')]"/>
+    <delete model="ref.category" search="[('code', '=', 'APS')]"/>
+
+    <delete model="ref.reference" search="[('searchvalue', '=ilike', 'CPK%')]"/>
+    <delete model="ref.category" search="[('code', '=', 'CPK')]"/>
+
+    <delete model="ref.reference" search="[('searchvalue', '=ilike', 'FLC%')]"/>
+    <delete model="ref.category" search="[('code', '=', 'FLC')]"/>
+    -->
+
+    <!-- Common properties -->
+
+    <record model="ref.property" id="index">
+        <field name="name">Index</field>
+        <field name="format">NN</field>
+        <field name="fixed" eval="0"/>
+    </record>
+
+    <!-- [APS] Application - Software -->
+
+    <record model="ref.property" id="applicationcategory">
+        <field name="name">Application Category</field>
+        <field name="format">TT</field>
+        <field name="fixed" eval="1"/>
+    </record>
+    <record model="ref.attribute" id="game">
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="code">GM</field>
+        <field name="name">Game</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    <record model="ref.attribute" id="productivity">
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="code">PD</field>
+        <field name="name">Productivity</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    <record model="ref.property" id="applicationname">
+        <field name="name">Application Name</field>
+        <field name="format">TTTTT</field>
+        <field name="fixed" eval="0"/>
+    </record>
+
+    <record model="ref.category" id="applicationsoftware">
+        <field name="code">APS</field>
+        <field name="name">Application - Software</field>
+        <!-- <field name="product_category_id" ref="applicationsoftware"/> -->
+    </record>
+    <record model="ref.category.line" id="applicationsoftware_line1">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="property_id" ref="applicationcategory"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.category.line" id="applicationsoftware_line2">
+        <field name="category_id" ref="applicationsoftware"/>
+        <field name="property_id" ref="applicationname"/>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <!-- CPK: Computer  -->
+
+    <record model="ref.property" id="mountingtype">
+        <field name="name">Mounting Type</field>
+        <field name="format">TT</field>
+        <field name="fixed" eval="1"/>
+    </record>
+    <record model="ref.attribute" id="assembled">
+        <field name="property_id" ref="mountingtype"/>
+        <field name="code">AS</field>
+        <field name="name">Assembled</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    <record model="ref.attribute" id="unassembled">
+        <field name="property_id" ref="mountingtype"/>
+        <field name="code">UN</field>
+        <field name="name">Unassembled</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    
+    <record model="ref.property" id="cpu">
+        <field name="name">CPU</field>
+        <field name="format">TT</field>
+        <field name="fixed" eval="1"/>
+    </record>
+    <record model="ref.attribute" id="amd">
+        <field name="property_id" ref="cpu"/>
+        <field name="code">AM</field>
+        <field name="name">AMD</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    <record model="ref.attribute" id="intel">
+        <field name="property_id" ref="cpu"/>
+        <field name="code">IT</field>
+        <field name="name">Intel</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+
+    <record model="ref.property" id="line">
+        <field name="name">Line</field>
+        <field name="format">T</field>
+        <field name="fixed" eval="1"/>
+    </record>
+    <record model="ref.attribute" id="premium">
+        <field name="property_id" ref="line"/>
+        <field name="code">M</field>
+        <field name="name">Premium</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    <record model="ref.attribute" id="pro">
+        <field name="property_id" ref="line"/>
+        <field name="code">O</field>
+        <field name="name">Pro</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    <record model="ref.attribute" id="plus">
+        <field name="property_id" ref="line"/>
+        <field name="code">P</field>
+        <field name="name">Plus</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    <record model="ref.attribute" id="standard">
+        <field name="property_id" ref="line"/>
+        <field name="code">S</field>
+        <field name="name">Standard</field>
+        <field name="auto_inc" eval="0"/>
+    </record>
+    
+    <record model="ref.category" id="computerkit">
+        <field name="code">CPK</field>
+        <field name="name">Computer Kit</field>
+        <!-- <field name="product_category_id" ref="computerkit"/> -->
+    </record>
+    <record model="ref.category.line" id="computerkit_line1">
+        <field name="category_id" ref="computerkit"/>
+        <field name="property_id" ref="mountingtype"/>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record model="ref.category.line" id="computerkit_line2">
+        <field name="category_id" ref="computerkit"/>
+        <field name="property_id" ref="cpu"/>
+        <field name="sequence" eval="2"/>
+    </record>
+    <record model="ref.category.line" id="computerkit_line3">
+        <field name="category_id" ref="computerkit"/>
+        <field name="property_id" ref="line"/>
+        <field name="sequence" eval="3"/>
+    </record>
+    <record model="ref.category.line" id="computerkit_line4">
+        <field name="category_id" ref="computerkit"/>
+        <field name="property_id" ref="index"/>
+        <field name="sequence" eval="4"/>
+    </record>
+
+    <!-- FLC: Flight Case  -->
+
+    <record model="ref.category" id="flightcase">
+        <field name="code">FLC</field>
+        <field name="name">Flight Case</field>
+        <!-- <field name="product_category_id" ref="flightcase"/> -->
+    </record>
+    <record model="ref.category.line" id="flightcase_line1">
+        <field name="category_id" ref="flightcase"/>
+        <field name="property_id" ref="index"/>
+        <field name="sequence" eval="1"/>
+    </record>
+
+</odoo>
