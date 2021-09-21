@@ -15,7 +15,8 @@ class ReferenceComputeMaterialCost(models.TransientModel):
     _name = 'reference.compute_material_cost'
     _description = 'Compute Material Cost Manually'
 
+    def pre_execute(self):
+        pass
+
     def execute(self):
-        self.env['ref.reference'].run_material_cost_scheduler(
-            # use_new_cursor=self._cr.dbname, company_id=company.id
-        )
+        self.env['ref.reference'].run_material_cost_scheduler()

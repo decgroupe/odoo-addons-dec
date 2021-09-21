@@ -8,13 +8,33 @@
             <p name="title" position="inside">
                 Generate a report for last price changes and send it as a mail.
             </p>
+            <p name="title" position="after">
+                <group>
+                    <field name="use_custom_date_range" />
+                </group>
+                <group attrs="{'invisible': [('use_custom_date_range', '=', False)]}">
+                    <p name="custom_dates_help">
+                        The wizard will try, for each reference, to find the most
+                        recent price between <b>Before</b> and <b>After</b> and the
+                        most recent price before <b>After</b>. If no price exists in
+                        the first range or the second one, then the reference is
+                        ignored.
+                    </p>
+                    <field name="date_before"  />
+                    <field name="date_after" />
+                </group>
+                <group>
+                    <field name="email_to" />
+                    <field name="format_prices" />
+                </group>
+            </p>
             <button name="run" position="attributes">
                 <attribute name="context">{'ignore_date':True}</attribute>
             </button>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_reference_generate_material_cost_report" >
+    <record model="ir.actions.act_window" id="action_reference_generate_material_cost_report">
         <field name="name">Generate Material Cost Report</field>
         <field name="res_model">reference.generate_material_cost_report</field>
         <field name="view_id" ref="reference_generate_material_cost_report_wizard_view"/>

@@ -46,7 +46,7 @@
                         <table width="100%" cellspacing="0" cellpadding="0" class="inner" border="0"
                             style="margin: 0px;border-collapse: collapse;">
                             <tr style="height: 17px;">
-                                <td colspan="9" 
+                                <td colspan="10" 
                                     style="border-style: solid; border-color:#a7a9ac; border-width: 1px 1px 0 1px;height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;">
                                     <span>${ctx.get('today')}</span></td>
                             </tr>
@@ -65,7 +65,7 @@
                                     style="width:85px;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;">
                                     ${ctx.get('total_references')}</td>
 
-                                <td rowspan="3" colspan="5"
+                                <td rowspan="3" colspan="6"
                                     style="border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 10px;vertical-align: top;">
                                 </td>
                             </tr>
@@ -102,7 +102,7 @@
 
                             </tr>
                             <tr style="height: 17px;">
-                                <td colspan="9" nowrap=""
+                                <td colspan="10" nowrap=""
                                     style="height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;border: 1px solid #a7a9ac;">
                                     Details
                                 </td>
@@ -144,6 +144,10 @@
                                 <td nowrap=""
                                     style="background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;">
                                     <b>Diff</b>
+                                </td>
+                                <td nowrap=""
+                                    style="background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;">
+                                    <b>Diff (%)</b>
                                 </td>
                             </tr>
                             % for line in ctx.get('report_lines'):
@@ -187,6 +191,10 @@
                                 <td nowrap=""
                                     style="text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;">
                                     <b>+${line['diff']}</b>
+                                </td>
+                                <td nowrap=""
+                                    style="text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;">
+                                    <b>+${line['diff_percent']}</b>
                                 </td>
                             </tr>
                             % endfor

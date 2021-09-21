@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:11+0000\n"
-"PO-Revision-Date: 2020-11-14 11:11+0000\n"
+"POT-Creation-Date: 2021-09-21 07:13+0000\n"
+"PO-Revision-Date: 2021-09-21 07:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid "<table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" st
 "                    <td colspan=\"2\" style=\"border: none; padding: 0px;font-family: Tahoma;font-size: 12px;\">\n"
 "                        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" class=\"inner\" border=\"0\" style=\"margin: 0px;border-collapse: collapse;\">\n"
 "                            <tr style=\"height: 17px;\">\n"
-"                                <td colspan=\"9\" style=\"border-style: solid; border-color:#a7a9ac; border-width: 1px 1px 0 1px;height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;\">\n"
+"                                <td colspan=\"10\" style=\"border-style: solid; border-color:#a7a9ac; border-width: 1px 1px 0 1px;height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;\">\n"
 "                                    <span>${ctx.get('today')}</span></td>\n"
 "                            </tr>\n"
 "                            <tr style=\"height: 17px;\">\n"
@@ -63,7 +63,7 @@ msgid "<table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" st
 "                                <td nowrap=\"\" style=\"width:85px;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
 "                                    ${ctx.get('total_references')}</td>\n"
 "\n"
-"                                <td rowspan=\"3\" colspan=\"5\" style=\"border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 10px;vertical-align: top;\">\n"
+"                                <td rowspan=\"3\" colspan=\"6\" style=\"border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 10px;vertical-align: top;\">\n"
 "                                </td>\n"
 "                            </tr>\n"
 "                            <tr style=\"height: 17px;\">\n"
@@ -91,7 +91,7 @@ msgid "<table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" st
 "\n"
 "                            </tr>\n"
 "                            <tr style=\"height: 17px;\">\n"
-"                                <td colspan=\"9\" nowrap=\"\" style=\"height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;border: 1px solid #a7a9ac;\">\n"
+"                                <td colspan=\"10\" nowrap=\"\" style=\"height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;border: 1px solid #a7a9ac;\">\n"
 "                                    Details\n"
 "                                </td>\n"
 "                            </tr>\n"
@@ -122,6 +122,9 @@ msgid "<table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" st
 "                                </td>\n"
 "                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
 "                                    <b>Diff</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Diff (%)</b>\n"
 "                                </td>\n"
 "                            </tr>\n"
 "                            % for line in ctx.get('report_lines'):\n"
@@ -157,6 +160,9 @@ msgid "<table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" st
 "                                <td nowrap=\"\" style=\"text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
 "                                    <b>+${line['diff']}</b>\n"
 "                                </td>\n"
+"                                <td nowrap=\"\" style=\"text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>+${line['diff_percent']}</b>\n"
+"                                </td>\n"
 "                            </tr>\n"
 "                            % endfor\n"
 "                        </table>\n"
@@ -179,58 +185,83 @@ msgid "<table cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" border=\"0\" st
 msgstr ""
 
 #. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__date_after
+msgid "After"
+msgstr ""
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__date_before
+msgid "Before"
+msgstr ""
+
+#. module: product_reference_price_history
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_compute_material_cost_wizard_view
 msgid "Check all references for price changes and send a mail with results."
-msgstr "Vérifie un changement de prix sur toutes les références et envoi le résultat par e-mail."
+msgstr ""
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,help:product_reference_price_history.field_reference_generate_material_cost_report__email_to
+msgid "Comma-separated recipient addresses)"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.action_reference_compute_material_cost
 #: model:ir.ui.menu,name:product_reference_price_history.menu_reference_compute_material_cost
 msgid "Compute Material Cost"
-msgstr "Calculer les coûts matériels"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model,name:product_reference_price_history.model_reference_compute_material_cost
 msgid "Compute Material Cost Manually"
-msgstr "Calculer les coûts matériels manuellement"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__create_uid
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__create_uid
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__create_date
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__create_date
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__use_custom_date_range
+msgid "Custom Dates"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__date
 msgid "Date"
-msgstr "Date "
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__display_name
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__display_name
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__format_prices
+msgid "Format Prices"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.action_reference_generate_material_cost_report
 #: model:ir.model,name:product_reference_price_history.model_reference_generate_material_cost_report
 #: model:ir.ui.menu,name:product_reference_price_history.menu_reference_generate_material_cost_report
 msgid "Generate Material Cost Report"
-msgstr "Générer un rapport des coûts matériels"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_generate_material_cost_report_wizard_view
 msgid "Generate a report for last price changes and send it as a mail."
-msgstr "Génère un rapport pour les derniers changements de prix et l'envoi par e-mail."
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__id
@@ -244,32 +275,37 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost____last_update
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__write_uid
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__write_uid
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__write_date
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_compute_material_cost__write_date
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:mail.template,subject:product_reference_price_history.material_cost_report_email_template
 msgid "Material Cost Report"
-msgstr "Rapport des coûts matériels"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model,name:product_reference_price_history.model_ref_price
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__value
 msgid "Price"
-msgstr "Prix"
+msgstr ""
+
+#. module: product_reference_price_history
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.ref_reference_form_view
+msgid "Pricelist"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.act_window_ref_price
@@ -277,23 +313,37 @@ msgstr "Prix"
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.ref_price_form_view
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.ref_price_tree_view
 msgid "Prices"
-msgstr "Prix"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__product_count
 msgid "Products"
-msgstr "Articles"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.model,name:product_reference_price_history.model_ref_reference
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__reference_id
 msgid "Reference"
-msgstr "Référence"
+msgstr ""
 
 #. module: product_reference_price_history
 #: model:ir.actions.server,name:product_reference_price_history.ir_cron_scheduler_material_cost_ir_actions_server
 #: model:ir.cron,cron_name:product_reference_price_history.ir_cron_scheduler_material_cost
 #: model:ir.cron,name:product_reference_price_history.ir_cron_scheduler_material_cost
 msgid "Reference: Compute Material Cost"
-msgstr "Référence: Calculer les coûts matériels"
+msgstr ""
+
+#. module: product_reference_price_history
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_generate_material_cost_report_wizard_view
+msgid "The wizard will try, for each reference, to find the most\n"
+"                        recent price between <b>Before</b> and <b>After</b> and the\n"
+"                        most recent price before <b>After</b>. If no price exists in\n"
+"                        the first range or the second one, then the reference is\n"
+"                        ignored."
+msgstr ""
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__email_to
+msgid "To (Emails)"
+msgstr ""
 

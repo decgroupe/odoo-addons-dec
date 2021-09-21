@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:02+0000\n"
-"PO-Revision-Date: 2020-07-29 15:06+0200\n"
+"POT-Creation-Date: 2021-09-21 07:13+0000\n"
+"PO-Revision-Date: 2021-09-21 09:15+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -52,7 +52,7 @@ msgid ""
 "                    <td colspan=\"2\" style=\"border: none; padding: 0px;font-family: Tahoma;font-size: 12px;\">\n"
 "                        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" class=\"inner\" border=\"0\" style=\"margin: 0px;border-collapse: collapse;\">\n"
 "                            <tr style=\"height: 17px;\">\n"
-"                                <td colspan=\"9\" style=\"border-style: solid; border-color:#a7a9ac; border-width: 1px 1px 0 1px;height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;\">\n"
+"                                <td colspan=\"10\" style=\"border-style: solid; border-color:#a7a9ac; border-width: 1px 1px 0 1px;height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;\">\n"
 "                                    <span>${ctx.get('today')}</span></td>\n"
 "                            </tr>\n"
 "                            <tr style=\"height: 17px;\">\n"
@@ -66,7 +66,7 @@ msgid ""
 "                                <td nowrap=\"\" style=\"width:85px;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
 "                                    ${ctx.get('total_references')}</td>\n"
 "\n"
-"                                <td rowspan=\"3\" colspan=\"5\" style=\"border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 10px;vertical-align: top;\">\n"
+"                                <td rowspan=\"3\" colspan=\"6\" style=\"border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 10px;vertical-align: top;\">\n"
 "                                </td>\n"
 "                            </tr>\n"
 "                            <tr style=\"height: 17px;\">\n"
@@ -94,7 +94,7 @@ msgid ""
 "\n"
 "                            </tr>\n"
 "                            <tr style=\"height: 17px;\">\n"
-"                                <td colspan=\"9\" nowrap=\"\" style=\"height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;border: 1px solid #a7a9ac;\">\n"
+"                                <td colspan=\"10\" nowrap=\"\" style=\"height: 35px;background-color: #f3f4f4;font-size: 16px;vertical-align: middle;padding: 5px 0 0 15px;color: #626365; font-family: Tahoma;border: 1px solid #a7a9ac;\">\n"
 "                                    Details\n"
 "                                </td>\n"
 "                            </tr>\n"
@@ -125,6 +125,9 @@ msgid ""
 "                                </td>\n"
 "                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
 "                                    <b>Diff</b>\n"
+"                                </td>\n"
+"                                <td nowrap=\"\" style=\"background-color: #e3e3e3;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;border-top: none;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>Diff (%)</b>\n"
 "                                </td>\n"
 "                            </tr>\n"
 "                            % for line in ctx.get('report_lines'):\n"
@@ -160,6 +163,9 @@ msgid ""
 "                                <td nowrap=\"\" style=\"text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
 "                                    <b>+${line['diff']}</b>\n"
 "                                </td>\n"
+"                                <td nowrap=\"\" style=\"text-align: right;padding: 2px 3px 2px 3px;vertical-align: top;border: 1px solid #a7a9ac;font-family: Tahoma;font-size: 12px;\">\n"
+"                                    <b>+${line['diff_percent']}</b>\n"
+"                                </td>\n"
 "                            </tr>\n"
 "                            % endfor\n"
 "                        </table>\n"
@@ -182,9 +188,24 @@ msgid ""
 msgstr ""
 
 #. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__date_after
+msgid "After"
+msgstr "Après"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__date_before
+msgid "Before"
+msgstr "Avant"
+
+#. module: product_reference_price_history
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_compute_material_cost_wizard_view
 msgid "Check all references for price changes and send a mail with results."
 msgstr "Vérifie un changement de prix sur toutes les références et envoi le résultat par e-mail."
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,help:product_reference_price_history.field_reference_generate_material_cost_report__email_to
+msgid "Comma-separated recipient addresses)"
+msgstr "Adresses des destinataires, séparées par des virgules"
 
 #. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.action_reference_compute_material_cost
@@ -212,6 +233,11 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__use_custom_date_range
+msgid "Custom Dates"
+msgstr "Dates personnalisées"
+
+#. module: product_reference_price_history
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_price__date
 msgid "Date"
 msgstr "Date"
@@ -222,6 +248,11 @@ msgstr "Date"
 #: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__format_prices
+msgid "Format Prices"
+msgstr "Formatter les prix"
 
 #. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.action_reference_generate_material_cost_report
@@ -275,6 +306,11 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: product_reference_price_history
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.ref_reference_form_view
+msgid "Pricelist"
+msgstr "Liste de prix"
+
+#. module: product_reference_price_history
 #: model:ir.actions.act_window,name:product_reference_price_history.act_window_ref_price
 #: model:ir.model.fields,field_description:product_reference_price_history.field_ref_reference__price_ids
 #: model_terms:ir.ui.view,arch_db:product_reference_price_history.ref_price_form_view
@@ -299,3 +335,23 @@ msgstr "Référence"
 #: model:ir.cron,name:product_reference_price_history.ir_cron_scheduler_material_cost
 msgid "Reference: Compute Material Cost"
 msgstr "Référence: Calculer les coûts matériels"
+
+#. module: product_reference_price_history
+#: model_terms:ir.ui.view,arch_db:product_reference_price_history.reference_generate_material_cost_report_wizard_view
+msgid ""
+"The wizard will try, for each reference, to find the most\n"
+"                        recent price between <b>Before</b> and <b>After</b> and the\n"
+"                        most recent price before <b>After</b>. If no price exists in\n"
+"                        the first range or the second one, then the reference is\n"
+"                        ignored."
+msgstr ""
+"L’assistant essaiera, pour chaque référence, de trouver le prix\n"
+"                        le plus récent entre <b>Avant</b> et <b>Après</b> et le\n"
+"                        prix le plus récent avant <b>Après</b>. Si aucun prix n’existe\n"
+"                        dans la première plage ou la seconde, alors la référence est\n"
+"                        ignorée."
+
+#. module: product_reference_price_history
+#: model:ir.model.fields,field_description:product_reference_price_history.field_reference_generate_material_cost_report__email_to
+msgid "To (Emails)"
+msgstr "Pour (courriels)"

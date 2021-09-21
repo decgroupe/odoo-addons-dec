@@ -41,6 +41,7 @@ class WizardRun(models.TransientModel):
             return {}
 
     def run(self):
+        self.pre_execute()
         thread = threading.Thread(
             target=self._threaded_run,
             # Try to get xml id from context, that way it can be set
@@ -51,6 +52,9 @@ class WizardRun(models.TransientModel):
         return {
             'type': 'ir.actions.act_window_close',
         }
+
+    def pre_execute(self):
+        raise NotImplementedError("Inherit this model but override this method")
 
     def execute(self):
         raise NotImplementedError("Inherit this model but override this method")
