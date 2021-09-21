@@ -19,6 +19,7 @@ class RefReferenceLine(models.Model):
         'ref.reference',
         'Reference',
         required=True,
+        ondelete='cascade',
     )
     property_id = fields.Many2one(
         'ref.property',

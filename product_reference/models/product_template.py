@@ -13,6 +13,7 @@ class ProductTemplate(models.Model):
         'Reference',
         compute='_compute_reference_id',
         readonly=True,
+        ondelete='set null',
     )
     reference_ids = fields.One2many(
         'ref.reference',

@@ -4,7 +4,7 @@
 
 import re
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.osv import expression
 
 
@@ -18,7 +18,6 @@ class RefCategory(models.Model):
 
     code = fields.Char(
         'Code',
-        size=3,
         required=True,
     )
     name = fields.Char(
@@ -73,6 +72,16 @@ class RefCategory(models.Model):
                     rec.product_category_id.name = name
         res = super().write(vals)
         return res
+
+    @api.multi
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if not default.get('code'):
+            default['code'] = _("%s (copy)") % (self.code)
+        reference_id = super().copy(default)
+        return reference_id
 
     @api.onchange('code')
     def onchange_code(self):

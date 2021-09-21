@@ -20,6 +20,7 @@ class RefAttribute(models.Model):
         'ref.property',
         'Property (owner)',
         required=True,
+        ondelete='cascade',
     )
     code = fields.Char(
         'Code',

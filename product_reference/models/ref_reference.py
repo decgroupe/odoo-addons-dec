@@ -157,6 +157,17 @@ class RefReference(models.Model):
         else:
             product = self.env['product.product'].browse(product_id)
             product.mrp_production_request = True
+        if not vals.get('version_ids'):
+            vals['version_ids'] = [
+                (
+                    0, 0, {
+                        'name': _('Initial Version'),
+                        'version': 1,
+                        'author_id': self.env.user.id,
+                        'datetime': vals.get('datetime')
+                    }
+                )
+            ]
         reference = super().create(vals)
         return reference
 

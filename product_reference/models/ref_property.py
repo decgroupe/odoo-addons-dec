@@ -43,12 +43,13 @@ class RefProperty(models.Model):
     @api.onchange('format')
     def onchange_format(self):
         self.ensure_one()
-        for c in self.format:
-            if c.upper() not in FMT_CHARSET:
-                raise UserError(
-                    _('Invalid char %s, only allowed chars are %s') %
-                    (c, FMT_CHARSET)
-                )
+        if self.format:
+            for c in self.format:
+                if c.upper() not in FMT_CHARSET:
+                    raise UserError(
+                        _('Invalid char %s, only allowed chars are %s') %
+                        (c, FMT_CHARSET)
+                    )
 
     def _get_charset(self, index):
         if self.format[index] == 'T':

@@ -17,11 +17,13 @@ class RefCategoryLine(models.Model):
         'ref.category',
         'Category',
         required=True,
+        ondelete='cascade',
     )
     property_id = fields.Many2one(
         'ref.property',
         'Property',
         required=True,
+        ondelete='cascade',
     )
     description = fields.Char(
         'Property description',
