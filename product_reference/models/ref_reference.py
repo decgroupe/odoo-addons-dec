@@ -34,8 +34,16 @@ class RefReference(models.Model):
         'Category',
         required=True,
     )
+    # TODO: Step 1 : Rename to product_tmpl_id
     product_id = fields.Many2one(
         'product.template',
+        'Product Template',
+        required=True,
+        copy=False,
+    )
+    # TODO: Step 2 : Rename to product_id
+    product_product_id = fields.Many2one(
+        'product.product',
         'Product',
         required=True,
         copy=False,
@@ -155,7 +163,7 @@ class RefReference(models.Model):
             product = self.env['product.template'].create(product_vals)
             vals['product_id'] = product.id
         else:
-            product = self.env['product.product'].browse(product_id)
+            product = self.env['product.template'].browse(product_id)
             product.mrp_production_request = True
         if not vals.get('version_ids'):
             vals['version_ids'] = [
