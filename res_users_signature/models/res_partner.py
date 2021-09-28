@@ -27,9 +27,10 @@ class ResPartner(models.Model):
             model_description,
             mail_auto_delete,
         )
-        if res.get('signature') and message.email_to != False:
-            if message.author_id and message.author_id.user_ids:
-                user = message.author_id.user_ids[0]
-                if message.add_sign and user.signature_answer:
-                    res['signature'] = user.signature_answer
+        if res.get('signature') and message.subject:
+            if ('Re:' in message.subject or 'Re :' in message.subject):
+                if message.author_id and message.author_id.user_ids:
+                    user = message.author_id.user_ids[0]
+                    if message.add_sign and user.signature_answer:
+                        res['signature'] = user.signature_answer
         return res
