@@ -20,27 +20,31 @@ class TaggingTag(models.Model):
     _inherit = "tagging.tags"
     _name = _inherit
 
-    product_ids = fields.Many2many(
+    product_tmpl_ids = fields.Many2many(
         comodel_name='product.template',
-        relation='tagging_product',
+        relation='tagging_product_tmpl',
         column1='tag_id',
-        column2='product_id',
+        column2='product_tmpl_id',
         string='Products',
     )
 
     @api.model
     def search_tagproduct(self):
-        self.env.cr.execute('SELECT '\
-                        'tagging_tags.name, '\
-                        'COUNT(tagging_tags.name) as tagscount '\
-                    'FROM '\
-                        'tagging_tags, '\
-                        'tagging_product '\
-                    'WHERE '\
-                        'tagging_product.tag_id = tagging_tags.id '\
-                    'GROUP BY '\
-                        'tagging_tags.name, '\
-                        'tagging_tags.id '\
-                    'ORDER BY tagscount ')
+        self.env.cr.execute(
+            """
+            SELECT
+                tagging_tags.name,
+                COUNT(tagging_tags.name) as tagscount
+            FROM
+                tagging_tags,
+                tagging_product_tmpl
+            WHERE
+                tagging_product_tmpl.tag_id = tagging_tags.id
+            GROUP BY
+                tagging_tags.name,
+                tagging_tags.id
+            ORDER BY tagscount
+            """
+        )
 
         return self.env.cr.fetchall()

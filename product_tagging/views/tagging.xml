@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Products">
-                    <field name="product_ids" colspan="4" nolabel="1" />
+                    <field name="product_tmpl_ids" colspan="4" nolabel="1" />
                 </page>
             </notebook>
         </field>

@@ -10,8 +10,8 @@ class Product(models.Model):
 
     tagging_ids = fields.Many2many(
         comodel_name='tagging.tags',
-        relation='tagging_product',
-        column1='product_id',
+        relation='tagging_product_tmpl',
+        column1='product_tmpl_id',
         column2='tag_id',
         string='Tags',
     )
