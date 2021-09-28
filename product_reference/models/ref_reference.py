@@ -42,11 +42,12 @@ class RefReference(models.Model):
         copy=False,
     )
     # TODO: Step 2 : Rename to product_id
-    product_product_id = fields.Many2one(
+    product_variant_id = fields.Many2one(
         'product.product',
         'Product',
-        required=True,
         copy=False,
+        compute='_compute_product_variant_id',
+        inverse='_inverse_product_variant_id',
     )
     public_code = fields.Char(
         related='product_id.public_code',
@@ -157,21 +158,37 @@ class RefReference(models.Model):
     def create(self, vals):
         if not vals.get('state'):
             vals['state'] = 'quotation'
-        product_id = vals.get('product_id')
-        if not product_id:
+        product_variant_id = vals.get('product_variant_id')
+        if not product_variant_id:
             product_vals = self._prepare_product_vals(vals)
-            product = self.env['product.template'].create(product_vals)
-            vals['product_id'] = product.id
+            product = self.env['product.product'].create(product_vals)
+            vals['product_variant_id'] = product.id
         else:
-            product = self.env['product.template'].browse(product_id)
+            product = self.env['product.product'].browse(product_variant_id)
             product.mrp_production_request = True
+        # Retrieve product template for variant
+        if vals.get('product_id'):
+            product_tmpl_id = self.env['product.template'].browse(
+                vals.get('product_id')
+            )
+        elif vals.get('product_variant_id'):
+            product_variant_id = vals.get('product_variant_id')
+            product_tmpl_id = self.env['product.product'].browse(
+                product_variant_id
+            ).product_tmpl_id
+        else:
+            product_tmpl_id = False
+        # Set product template since it is a required field
+        if product_tmpl_id:
+            vals['product_id'] = product_tmpl_id.id
         if not vals.get('version_ids'):
+            author_id = self.env.context.get('author_id') or self.env.user.id
             vals['version_ids'] = [
                 (
                     0, 0, {
                         'name': _('Initial Version'),
                         'version': 1,
-                        'author_id': self.env.user.id,
+                        'author_id': author_id,
                         'datetime': vals.get('datetime')
                     }
                 )
@@ -195,6 +212,15 @@ class RefReference(models.Model):
             default['name'] = _("%s (copy)") % (self.name)
         reference_id = super().copy(default)
         return reference_id
+
+    @api.depends('product_id')
+    def _compute_product_variant_id(self):
+        for rec in self:
+            rec.product_variant_id = rec.product_id.product_variant_id
+
+    def _inverse_product_variant_id(self):
+        for rec in self:
+            rec.product_id = rec.product_variant_id.product_tmpl_id
 
     @api.model
     def search_custom(self, keywords):
