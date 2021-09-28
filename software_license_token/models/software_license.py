@@ -56,6 +56,7 @@ class SoftwareLicense(models.Model):
         res = {}
         for hardware_id in self.hardware_ids:
             hardware_data = hardware_id._prepare(include_license_data=False)
+            # FIXME: dongle_identifier is already included in hardware_data ?
             hardware_data.update(
                 {
                     'dongle_identifier': hardware_id.dongle_identifier,

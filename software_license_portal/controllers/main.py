@@ -245,12 +245,25 @@ class SoftwareLicenseController(http.Controller):
         )
         self._append_license_string(hardware_id, msg)
         self._append_remaining_activation(license_id, msg)
+        self._append_expiration_dates(license_id, hardware_id, msg)
 
     def _append_license_string(self, hardware_id, msg):
         msg['license_string'] = hardware_id.get_license_string()
 
     def _append_remaining_activation(self, license_id, msg):
         msg['remaining_activation'] = license_id.get_remaining_activation()
+
+    def _append_expiration_dates(self, license_id, hardware_id, msg):
+        license_exp_date = license_id.expiration_date
+        validation_exp_date = hardware_id._get_validation_expiration_date()
+        min_date = validation_exp_date
+        if license_exp_date and license_exp_date < min_date:
+            min_date = license_exp_date
+        msg['expiration_date'] = {
+            'license': fields.Datetime.to_string(license_exp_date),
+            'validation': fields.Datetime.to_string(validation_exp_date),
+            'min': fields.Datetime.to_string(min_date),
+        }
 
     #######################################################################
 

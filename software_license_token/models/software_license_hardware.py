@@ -7,6 +7,8 @@ import io
 import base64
 import logging
 
+from dateutil.relativedelta import relativedelta
+
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
@@ -55,13 +57,26 @@ class SoftwareLicenseHardware(models.Model):
             res = {}
         res.update(
             {
-                'hardware_identifier': self.name,
-                'dongle_identifier': self.dongle_identifier,
-                'date': fields.Datetime.to_string(self.validation_date),
-                'validity_days': self.validity_days,
+                'hardware_identifier':
+                    self.name,
+                'dongle_identifier':
+                    self.dongle_identifier,
+                'date':
+                    fields.Datetime.to_string(self.validation_date),
+                'validity_days':
+                    self.validity_days,
+                'validation_expiration_date':
+                    fields.Datetime.to_string(
+                        self._get_validation_expiration_date()
+                    ),
             }
         )
         return res
+
+    @api.multi
+    def _get_validation_expiration_date(self):
+        self.ensure_one()
+        return self.validation_date + relativedelta(days=self.validity_days)
 
     @api.multi
     def get_license_string(self):
