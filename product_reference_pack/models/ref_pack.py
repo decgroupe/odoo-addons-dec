@@ -12,10 +12,20 @@ class RefPack(models.Model):
     _description = 'Pack'
     _rec_name = 'name'
 
+    # TODO: Step 1 : Rename to product_tmpl_id
     product_id = fields.Many2one(
         'product.template',
-        'Product',
+        'Product Template',
         required=True,
+        copy=False,
+    )
+    # TODO: Step 2 : Rename to product_id
+    product_variant_id = fields.Many2one(
+        'product.product',
+        'Product',
+        copy=False,
+        compute='_compute_product_variant_id',
+        inverse='_inverse_product_variant_id',
     )
     name = fields.Char(
         related='product_id.name',
@@ -44,19 +54,44 @@ class RefPack(models.Model):
     )
 
     @api.model
-    def create(self, values):
-        product_id = values.get('product_id')
-        if product_id:
-            product = self.env['product.template'].browse(product_id)
-            product.pack_ok = True
-            product.pack_type = 'detailed'
-            product.pack_component_price = 'ignored'
-            product.pack_modifiable = False
-            if product.sale_ok and product.purchase_ok:
-                product.pack_order_type = 'all'
-            elif product.sale_ok:
-                product.pack_order_type = 'sale'
-            elif product.purchase_ok:
-                product.pack_order_type = 'purchase'
-        ref_pack = super().create(values)
+    def create(self, vals):
+        if vals.get('product_id'):
+            product_tmpl_id = self.env['product.template'].browse(
+                vals.get('product_id')
+            )
+        elif vals.get('product_variant_id'):
+            product_variant_id = vals.get('product_variant_id')
+            product_tmpl_id = self.env['product.product'].browse(
+                product_variant_id
+            ).product_tmpl_id
+        else:
+            product_tmpl_id = False
+
+        if product_tmpl_id:
+            vals['product_id'] = product_tmpl_id.id
+        ref_pack = super().create(vals)
+        ref_pack._set_product_tmpl_default_values()
         return ref_pack
+
+    @api.multi
+    def _set_product_tmpl_default_values(self):
+        for rec in self:
+            rec.product_id.pack_ok = True
+            rec.product_id.pack_type = 'detailed'
+            rec.product_id.pack_component_price = 'ignored'
+            rec.product_id.pack_modifiable = False
+            if rec.product_id.sale_ok and rec.product_id.purchase_ok:
+                rec.product_id.pack_order_type = 'all'
+            elif rec.product_id.sale_ok:
+                rec.product_id.pack_order_type = 'sale'
+            elif rec.product_id.purchase_ok:
+                rec.product_id.pack_order_type = 'purchase'
+
+    @api.depends('product_id')
+    def _compute_product_variant_id(self):
+        for rec in self:
+            rec.product_variant_id = rec.product_id.product_variant_id
+
+    def _inverse_product_variant_id(self):
+        for rec in self:
+            rec.product_id = rec.product_variant_id.product_tmpl_id
