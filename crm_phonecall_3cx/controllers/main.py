@@ -27,14 +27,17 @@ class CRM3CXController(http.Controller):
         csrf=False,
     )
     def SearchPartner(self, **kw):
+        res = {}
+        partner_id = request.env['res.partner']
         session_ani = kw.get('session_ani')
-        number = session_ani.lstrip("0").replace(" ", "%")
-        domain = [
-            '|',
-            ('phone', 'ilike', number),
-            ('mobile', 'ilike', number),
-        ]
-        partner_id = request.env['res.partner'].sudo().search(domain, limit=1)
+        if session_ani:
+            number = session_ani.lstrip("0").replace(" ", "%")
+            domain = [
+                '|',
+                ('phone', 'ilike', number),
+                ('mobile', 'ilike', number),
+            ]
+            partner_id = partner_id.sudo().search(domain, limit=1)
         if partner_id:
             # Get firstname and lastname from name
             name = partner_id.name.split(" ", 1)
@@ -77,7 +80,5 @@ class CRM3CXController(http.Controller):
                 # ---
                 'pv_an9': '',
             }
-        else:
-            res = {}
         _logger.info("{} match for {}".format(session_ani, res))
         return res
