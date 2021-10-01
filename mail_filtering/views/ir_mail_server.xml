@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="ir_mail_server_form_view">
+        <field name="name">ir.mail_server.form@mail_filtering</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_form"/>
+        <field name="arch" type="xml">
+            <field name="smtp_debug" position="after">
+                <field name="allowed_databases"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
