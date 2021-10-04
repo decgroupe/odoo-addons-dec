@@ -38,5 +38,5 @@ class MergeTask(models.TransientModel):
                     [(6, 0, src_object.user_id.mapped('partner_id').ids)],
             }
             template_id.with_context(src_object=src_object).send_mail(
-                self.id, force_send=True, email_values=values
+                self.id, force_send=False, email_values=values
             )
