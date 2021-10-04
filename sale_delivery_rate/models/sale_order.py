@@ -43,9 +43,7 @@ class SaleOrder(models.Model):
     @api.depends('tasks_ids', 'tasks_ids.progress', 'tasks_ids.stage_id')
     def _compute_task_rate(self):
         for sale in self:
-            # Use `tasks` instead of `task_ids` because this last one has a
-            # domain locked on not folded tasks
-            all_task_ids = sale.tasks
+            all_task_ids = sale.tasks_ids
             total_progress = 0
             if all_task_ids:
                 for task_id in all_task_ids:
