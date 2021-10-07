@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_software_license_pass_user,Read and write access to software license pass for User,model_software_license_pass,software.group_software_user,1,1,0,0
+access_software_license_pass_manager,Full access to software license pass for Manager,model_software_license_pass,software.group_software_manager,1,1,1,1
+access_software_license_pack_user,Read and write access to software license pack for User,model_software_license_pack,software.group_software_user,1,1,0,0
+access_software_license_pack_manager,Read and write access to software license pack for Manager,model_software_license_pack,software.group_software_manager,1,1,1,1
+access_software_license_pack_line_user,Read and write access to software license pack line for User,model_software_license_pack_line,software.group_software_user,1,1,0,0
+access_software_license_pack_line_manager,Read and write access to software license pack line for Manager,model_software_license_pack_line,software.group_software_manager,1,1,1,1

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_software_license_pass">
+        <field name="name">Pass</field>
+        <field name="sequence" eval="6"/>
+        <field name="action" ref="act_window_software_license_pass"/>
+        <field name="parent_id" ref="software_license.menu_software_licensing"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_software_license_pack">
+        <field name="name">Packs</field>
+        <field name="sequence" eval="20"/>
+        <field name="action" ref="act_window_software_license_pack"/>
+        <field name="parent_id" ref="software.menu_configuration"/>
+    </record>
+
+</odoo>

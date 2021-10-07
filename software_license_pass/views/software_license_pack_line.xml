@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_pack_line_form_view">
+        <field name="name">software.license.pack.line.form@software_license_pass</field>
+        <field name="model">software.license.pack.line</field>
+        <field name="arch" type="xml">
+            <form string="Software License Pack Line">
+                <group>
+                    <field name="application_id"/>
+                    <field name="license_id" context="{'default_type': 'template', 'default_application_id': application_id}"/>
+                    <field name="feature_ids" attrs="{'invisible': [('license_id', '=', False)]}"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_license_pack_line_tree_view">
+        <field name="name">software.license.pack.line.tree@software_license_pass</field>
+        <field name="model">software.license.pack.line</field>
+        <field name="arch" type="xml">
+            <tree string="Software License Pack Lines" editable="bottom">
+                <field name="application_id"/>
+                <field name="license_id" context="{'default_type': 'template', 'default_application_id': application_id}" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>
