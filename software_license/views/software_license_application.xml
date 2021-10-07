@@ -50,7 +50,7 @@
                     <group name="main">
                         <group name="primary">
                             <field name="identifier"/>
-                            <field name="template_id" context="{'active_test': False}"/>
+                            <field name="template_id" context="{'default_type': 'template', 'default_application_id': id}"/>
                         </group>
                         <group name="secondary">
                         </group>

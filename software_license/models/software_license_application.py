@@ -30,13 +30,14 @@ class SoftwareLicenseApplication(models.Model):
         string='License Template',
         help="Select a license that will be used as a template when creating "
         "a new license",
+        domain="[('application_id', '=', id), ('type', '=', 'template')]",
     )
     info = fields.Text('Informations')
 
     def _prepare_licence_template_vals(self):
         self.ensure_one()
         return {
-            'active': False,
+            'type': 'template',
             'application_id': self.id,
             'serial': _('Template'),
         }

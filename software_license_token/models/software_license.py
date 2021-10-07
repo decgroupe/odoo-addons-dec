@@ -17,8 +17,8 @@ class SoftwareLicense(models.Model):
     max_allowed_hardware = fields.Integer(
         string="Maximum Activation Count",
         default=1,
-        help="If more than 1, then the number of registered hardware identifiers "
-        "will not be allowed to be greater than this value.",
+        help="If more than 0, then the number of registered hardware "
+        "identifiers will not be allowed to be greater than this value.",
     )
 
     @api.constrains('hardware_ids')

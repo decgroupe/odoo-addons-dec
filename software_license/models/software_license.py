@@ -12,6 +12,13 @@ class SoftwareLicense(models.Model):
     _rec_name = 'serial'
     _order = 'id desc'
 
+    def _get_default_serial(self):
+        if self.env.context.get('default_type') == 'template':
+            new_id = self.search([], order='id desc', limit=1).id + 1
+            return _('✳️ Template %d') % (new_id)
+        else:
+            return _('New')
+
     active = fields.Boolean(
         'Active',
         default=True,
@@ -21,6 +28,7 @@ class SoftwareLicense(models.Model):
     serial = fields.Char(
         required=True,
         copy=False,
+        default=_get_default_serial,
         help="Unique serial used as an authorization identifier",
     )
     application_id = fields.Many2one(
@@ -46,6 +54,15 @@ class SoftwareLicense(models.Model):
     production_id = fields.Many2one('mrp.production', 'Production')
     partner_id = fields.Many2one('res.partner', 'Partner')
     info = fields.Text('Informations')
+    type = fields.Selection(
+        selection=[
+            ('normal', _('Normal')),
+            ('template', _('Template')),
+        ],
+        string='Type',
+        default='normal',
+        required=True
+    )
 
     _sql_constraints = [
         (
@@ -64,12 +81,19 @@ class SoftwareLicense(models.Model):
             default.update(serial=_('%s (copy)') % (self.serial))
         return super(SoftwareLicense, self).copy(default)
 
+    def _name_get(self):
+        self.ensure_one()
+        if self.type == 'normal':
+            return ('[%s] %s') % (self.application_id.name, self.serial)
+        else:
+            return self.application_id.name
+
     @api.multi
     @api.depends('serial', 'application_id.name')
     def name_get(self):
         result = []
         for rec in self:
-            name = ('[%s] %s') % (rec.application_id.name, rec.serial)
+            name = rec._name_get()
             result.append((rec.id, name))
         return result
 

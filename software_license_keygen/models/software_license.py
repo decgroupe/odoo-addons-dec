@@ -29,7 +29,9 @@ class SoftwareLicense(models.Model):
         self.ensure_one()
         if default is None:
             default = {}
-        if not default.get('serial') and self.application_id.auto_generate_serial:
+        if not default.get(
+            'serial'
+        ) and self.application_id.auto_generate_serial:
             default.update(serial=self._generate_serial())
         return super(SoftwareLicense, self).copy(default)
 
@@ -37,10 +39,8 @@ class SoftwareLicense(models.Model):
     def onchange_application_id(self):
         self.ensure_one()
         vals = {}
-        if self.application_id.auto_generate_serial:
+        if self.application_id.auto_generate_serial and self.type == 'standard':
             vals['serial'] = self._generate_serial()
-        else:
-            vals['serial'] = False
         self.update(vals)
 
     @api.multi
@@ -48,6 +48,7 @@ class SoftwareLicense(models.Model):
         for rec in self:
             rec.serial = rec._generate_serial()
 
+    @api.model
     def _generate_serial(self):
         timestamp = time.time()
         # List of characters that will be excluded from the generator
@@ -76,4 +77,3 @@ class SoftwareLicense(models.Model):
         # The checksum is added at the end of the key
         serial = '{}{}{}'.format(key_custom, SEPARATOR, key_checksum)
         return serial
-
