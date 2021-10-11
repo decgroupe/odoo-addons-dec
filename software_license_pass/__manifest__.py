@@ -5,7 +5,6 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Manage software licenses (pass)",
     'depends': [
-        'base_location',
         'software_license_feature',
     ],
     'data':

@@ -113,18 +113,6 @@ class SoftwareLicensePass(models.Model):
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', copy=False
     )
-    partner_zip_id = fields.Many2one(
-        'res.city.zip',
-        related='partner_id.zip_id',
-        string="Partner's ZIP",
-        store=True,
-    )
-    partner_city_id = fields.Many2one(
-        'res.city',
-        related='partner_id.city_id',
-        string="Partner's City",
-        store=True,
-    )
     license_ids = fields.One2many(
         comodel_name='software.license',
         inverse_name='pass_id',

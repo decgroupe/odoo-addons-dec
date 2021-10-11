@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_pass_form_view" >
+        <field name="name">software.license.pass.form@software_license_pass_location</field>
+        <field name="model">software.license.pass</field>
+        <field name="inherit_id" ref="software_license_pass.software_license_pass_form_view"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_zip_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
