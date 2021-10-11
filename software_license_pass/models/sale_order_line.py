@@ -9,6 +9,25 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    license_pass_ids = fields.One2many(
+        comodel_name='software.license.pass',
+        inverse_name='sale_order_line_id',
+        string="License Passes",
+    )
+
+    @api.multi
+    def write(self, vals):
+        result = super(SaleOrderLine, self).write(vals)
+        # Changing the ordered quantity should change the maximum allowed of
+        # hardware, whatever the SO state. It will be blocked by the super in
+        # case of a locked sale order.
+        if 'product_uom_qty' in vals:
+            for line in self.filtered('license_pass_ids'):
+                line.license_pass_ids.write(
+                    {'max_allowed_hardware': vals.get('product_uom_qty')}
+                )
+        return result
+
     def _prepare_pass_values(self, pack_id):
         return {
             'origin': self.order_id.name,
@@ -23,8 +42,9 @@ class SaleOrderLine(models.Model):
     def _create_application_pass(self):
         vals = self._prepare_pass_values(self.product_id.license_pack_id)
         pass_id = self.env['software.license.pass'].create(vals)
-        pass_id.sync_with_pack()
-        # Post-write pass data to propagate values to all licences
+        pass_id.action_resync_with_pack()
+        # Post-write pass data to propagate values to all licences created
+        # during the `action_resync_with_pack`
         today = fields.Date.from_string(fields.Date.context_today(self))
         pass_id.write(
             {
@@ -33,9 +53,10 @@ class SaleOrderLine(models.Model):
                 'expiration_date': today + timedelta(days=365),
             }
         )
+        return pass_id
 
     def _timesheet_service_generation(self):
-        """Handle task creation with sales order's project."""
+        """Handle pass creation."""
         line_ids = self.filtered(
             lambda sol: (
                 sol.is_service and sol.product_id.service_tracking ==

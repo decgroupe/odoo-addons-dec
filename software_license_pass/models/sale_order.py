@@ -16,7 +16,6 @@ class SaleOrder(models.Model):
     license_pass_count = fields.Integer(
         compute='_compute_license_pass_count',
         string="Number of License Passes",
-        store=True,
     )
 
     @api.depends("license_pass_ids")
@@ -26,18 +25,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_view_application_pass(self):
-        action = self.env.ref(
-            'software_license_pass.act_window_software_license_pass'
-        ).read()[0]
-        form = self.env.ref(
-            'software_license_pass.act_window_view_software_license_pass_form'
-        )
-        if self.license_pass_count > 1:
-            action['domain'] = [('id', 'in', self.license_pass_ids.ids)]
-        else:
-            action['views'] = [(form.id, 'form')]
-            action['res_id'] = self.license_pass_ids.id
-        return action
+        return self.license_pass_ids.action_view()
 
     @api.multi
     def action_cancel(self):

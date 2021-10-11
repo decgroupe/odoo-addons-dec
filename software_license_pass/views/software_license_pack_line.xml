@@ -8,8 +8,8 @@
             <form string="Software License Pack Line">
                 <group>
                     <field name="application_id"/>
-                    <field name="license_id" context="{'default_type': 'template', 'default_application_id': application_id}"/>
-                    <field name="feature_ids" attrs="{'invisible': [('license_id', '=', False)]}"/>
+                    <field name="license_template_id" context="{'default_type': 'template', 'default_application_id': application_id}"/>
+                    <field name="feature_ids" attrs="{'invisible': [('license_template_id', '=', False)]}"/>
                 </group>
             </form>
         </field>
@@ -21,7 +21,7 @@
         <field name="arch" type="xml">
             <tree string="Software License Pack Lines" editable="bottom">
                 <field name="application_id"/>
-                <field name="license_id" context="{'default_type': 'template', 'default_application_id': application_id}" />
+                <field name="license_template_id" context="{'default_type': 'template', 'default_application_id': application_id}" />
             </tree>
         </field>
     </record>

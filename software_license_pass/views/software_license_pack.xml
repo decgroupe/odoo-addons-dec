@@ -17,9 +17,23 @@
         <field name="arch" type="xml">
             <form string="License pack">
                 <header>
+                    <button 
+                        name="action_resync" 
+                        string="Resynchronize Passes" 
+                        type="object" 
+                        class="btn-primary">
+                    </button>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button 
+                            type="object"
+                            name="action_view_pass"
+                            class="oe_stat_button"
+                            icon="fa-spinner"
+                            attrs="{'invisible': [('pass_count', '=', 0)]}">
+                            <field name="pass_count" widget="statinfo" string="Passes"/>
+                        </button>
                     </div>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>

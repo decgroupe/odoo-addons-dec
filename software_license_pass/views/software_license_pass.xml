@@ -22,24 +22,30 @@
         <field name="arch" type="xml">
             <form string="License Pass">
                 <header>
-                    <button 
-                        name="action_send" 
-                        string="Send by Email" 
-                        type="object" 
-                        states="draft" 
+                    <button
+                        name="action_send"
+                        string="Send by Email"
+                        type="object"
+                        states="draft"
                         class="btn-primary">
                     </button>
-                    <button 
+                    <button
                         name="action_send"
-                        string="Send by Email" 
-                        type="object" 
+                        string="Send by Email"
+                        type="object"
                         states="sent">
                     </button>
-                    <button 
+                    <button
                         name="action_cancel"
                         states="sent"
                         string="Cancel"
                         confirm="Are you sure you want to cancel this pass?"
+                        type="object">
+                    </button>
+                    <button
+                        name="action_resync_with_pack"
+                        states="draft,sent"
+                        string="Resynchronize"
                         type="object">
                     </button>
                     <field name="state" widget="statusbar" statusbar_visible="draft,sent"/>
@@ -86,6 +92,7 @@
                             <tree>
                                 <field name="application_id"/>
                                 <field name="serial"/>
+                                <field name="pack_line_id"/>
                             </tree>
                         </field>
                     </group>
@@ -106,12 +113,11 @@
             <search string="License">
                 <field name="serial" filter_domain=""/>
                 <field name="partner_id"/>
-                <!-- <group string="Group By" name="groupby">
-                    <filter string="Application" name="groupby_application_id" context="{'group_by':'application_id'}"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                <group string="Group By" name="groupby">
                     <filter string="Partner" name="groupby_partner_id" context="{'group_by':'partner_id'}"/>
                     <filter string="Product" name="groupby_product_id" context="{'group_by':'product_id'}"/>
-                    <filter string="Production" name="groupby_production_id" context="{'group_by':'production_id'}"/> 
-                </group> -->
+                </group>
             </search>
         </field>
     </record>

@@ -24,7 +24,7 @@ class SoftwareLicensePackLine(models.Model):
         required=True,
         ondelete='cascade',
     )
-    license_id = fields.Many2one(
+    license_template_id = fields.Many2one(
         comodel_name='software.license',
         string='License Template',
         index=True,
@@ -32,10 +32,12 @@ class SoftwareLicensePackLine(models.Model):
         ondelete='cascade',
         domain="[('application_id', '=', application_id), \
                 ('type', '=', 'template'),]",
+        oldname="license_id",
     )
     feature_ids = fields.One2many(
         comodel_name='software.license.feature',
-        related='license_id.feature_ids',
+        related='license_template_id.feature_ids',
+        readonly=False,
     )
 
     _sql_constraints = [
