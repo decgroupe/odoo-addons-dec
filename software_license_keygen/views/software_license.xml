@@ -23,7 +23,7 @@
                     string="Generate Serial"
                     help="Create a random pre-formatted serial"
                     type="object"
-                    attrs="{'invisible': [('id', '=', False)]}"
+                    attrs="{'invisible': ['|', ('id', '=', False), ('type', '!=', 'normal')]}"
                     class="btn-primary oe_edit_only">
                 </button>
             </field>

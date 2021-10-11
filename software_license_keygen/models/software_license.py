@@ -16,12 +16,15 @@ LENGTH = 5
 class SoftwareLicense(models.Model):
     _inherit = 'software.license'
 
-    # @api.model
-    # def default_get(self, fields_list):
-    #     vals = super().default_get(fields_list)
-    #     if not vals.get('serial'):
-    #         vals['serial'] = self._generate_serial()
-    #     return vals
+    @api.model
+    def create(self, vals):
+        if self.env.context.get('force_generate_serial'):
+            if vals.get('type') == 'normal' and not vals.get('serial'):
+                vals['serial'] = self._generate_serial()
+        license_id = super().create(vals)
+        if license_id.serial == self._get_default_serial():
+            license_id.onchange_application_id()
+        return license_id
 
     @api.multi
     @api.returns('self', lambda value: value.id)
@@ -39,7 +42,7 @@ class SoftwareLicense(models.Model):
     def onchange_application_id(self):
         self.ensure_one()
         vals = {}
-        if self.application_id.auto_generate_serial and self.type == 'standard':
+        if self.application_id.auto_generate_serial and self.type == 'normal':
             vals['serial'] = self._generate_serial()
         self.update(vals)
 
