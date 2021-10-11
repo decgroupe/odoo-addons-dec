@@ -12,6 +12,7 @@ class SoftwareLicense(models.Model):
     _rec_name = 'serial'
     _order = 'id desc'
 
+    @api.model
     def _get_default_serial(self):
         if self.env.context.get('default_type') == 'template':
             new_id = self.search([], order='id desc', limit=1).id + 1
@@ -29,6 +30,7 @@ class SoftwareLicense(models.Model):
         required=True,
         copy=False,
         default=_get_default_serial,
+        track_visibility='onchange',
         help="Unique serial used as an authorization identifier",
     )
     application_id = fields.Many2one(
@@ -83,10 +85,7 @@ class SoftwareLicense(models.Model):
 
     def _name_get(self):
         self.ensure_one()
-        if self.type == 'normal':
-            return ('[%s] %s') % (self.application_id.name, self.serial)
-        else:
-            return self.application_id.name
+        return ('[%s] %s') % (self.application_id.name, self.serial)
 
     @api.multi
     @api.depends('serial', 'application_id.name')

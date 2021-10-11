@@ -39,11 +39,12 @@ class SoftwareLicenseApplication(models.Model):
         return {
             'type': 'template',
             'application_id': self.id,
-            'serial': _('Template'),
         }
 
     @api.multi
     def action_create_license_template(self):
         for rec in self:
             vals = rec._prepare_licence_template_vals()
-            rec.template_id = self.env['software.license'].create(vals)
+            rec.template_id = self.env['software.license'].with_context(
+                default_type='template'
+            ).create(vals)
