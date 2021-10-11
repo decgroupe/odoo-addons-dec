@@ -2,8 +2,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
+import logging
+
 from odoo import api, fields, models
 from odoo.osv import expression
+
+_logger = logging.getLogger(__name__)
 
 SYSTEM = 'software_license_legacy.feature_property_system'
 
@@ -78,6 +82,10 @@ class SoftwareLicense(models.Model):
                         rec.system_rift = True
                     elif feature.value_id == value_system_vive:
                         rec.system_vive = True
+                    else:
+                        _logger.info(
+                            'Unknown system: %s', feature.value_id.name,
+                        )
 
     @api.model
     def create(self, vals):
