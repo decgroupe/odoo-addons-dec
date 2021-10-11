@@ -68,6 +68,9 @@ class SaleOrderLine(models.Model):
         return super()._timesheet_service_generation()
 
     @api.multi
+    @api.depends(
+        'license_pass_ids.state', 'license_pass_ids.max_allowed_hardware'
+    )
     def _compute_qty_delivered(self):
         super(SaleOrderLine, self)._compute_qty_delivered()
 
@@ -76,4 +79,9 @@ class SaleOrderLine(models.Model):
             'create_application_pass'
         )
         for line_id in line_ids:
-            line_id.qty_delivered = line_id.product_uom_qty
+            pass_ids = line_id.license_pass_ids.filtered(
+                lambda x: x.state == 'sent'
+            )
+            line_id.qty_delivered = sum(
+                pass_id.max_allowed_hardware for pass_id in pass_ids
+            )
