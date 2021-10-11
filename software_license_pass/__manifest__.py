@@ -6,24 +6,20 @@
     'summary': "Manage software licenses (pass)",
     'depends': [
         'base_location',
-        'sale_timesheet',
         'software_license_feature',
     ],
     'data':
         [
             'security/ir.model.access.csv',
             'views/software_license_pass.xml',
-            'views/product_template.xml',
             'views/software_license.xml',
             # 'views/software_license_application.xml',
             # 'views/software_license_hardware.xml',
             'views/software_license_pack.xml',
             'views/software_license_pack_line.xml',
-            'views/sale_order.xml',
             'views/menu.xml',
             'data/sequence.xml',
             'data/mail_jinja.xml',
-            'data/mail_template.xml',
         ],
     'installable': True
 }

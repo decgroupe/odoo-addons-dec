@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_software_license_pass
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-11 11:51+0000\n"
+"PO-Revision-Date: 2021-10-11 13:55+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: sale_software_license_pass
+#: model_terms:ir.ui.view,arch_db:sale_software_license_pass.exception_application_pass_sale_cancellation
+msgid ""
+".\n"
+"        <br/>\n"
+"        Manual actions may be needed."
+msgstr ""
+".\n"
+"        <br/>\n"
+"        Des actions manuelles peuvent être nécessaires."
+
+#. module: sale_software_license_pass
+#: model:ir.model,name:sale_software_license_pass.model_software_license_pack
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_product_product__license_pack_id
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_product_template__license_pack_id
+msgid "Application Pack"
+msgstr "Pack d'applications"
+
+#. module: sale_software_license_pass
+#: model:ir.model,name:sale_software_license_pass.model_software_license_pass
+msgid "Application Pass"
+msgstr "« Pass » d'applications"
+
+#. module: sale_software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a new project but no task"
+msgstr "Créer un nouveau projet sans tâche"
+
+#. module: sale_software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a task in a new project"
+msgstr "Créer une tâche dans un nouveau projet"
+
+#. module: sale_software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a task in an existing project"
+msgstr "Créer une tâche dans un projet existant"
+
+#. module: sale_software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a task in sale order's project"
+msgstr "Créer une tâche dans le projet de la commande client"
+
+#. module: sale_software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create an application pass"
+msgstr "Créer un « pass » d'applications"
+
+#. module: sale_software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Don't create task"
+msgstr "Ne pas créer la tâche"
+
+#. module: sale_software_license_pass
+#: model_terms:ir.ui.view,arch_db:sale_software_license_pass.exception_application_pass_sale_cancellation
+msgid "Exception(s) occurred on the sale order(s):"
+msgstr "Des exceptions sont survenues sur le(s) bon(s) de commande:"
+
+#. module: sale_software_license_pass
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_sale_order__license_pass_count
+msgid "Number of Passes"
+msgstr "Nombre de « Pass »"
+
+#. module: sale_software_license_pass
+#: model:ir.model.fields,help:sale_software_license_pass.field_product_product__service_tracking
+#: model:ir.model.fields,help:sale_software_license_pass.field_product_template__service_tracking
+msgid "On Sales order confirmation, this product can generate a project and/or task. From those, you can track the service you are selling."
+msgstr "Lors de la confirmation de la commande client, ce produit peut générer un projet ou une tâche. Cela vous permet ainsi de suivre le service que vous vendez."
+
+#. module: sale_software_license_pass
+#: model:ir.model.fields,help:sale_software_license_pass.field_product_product__license_pack_id
+#: model:ir.model.fields,help:sale_software_license_pass.field_product_template__license_pack_id
+msgid "Pack used to generate a new Application Pass."
+msgstr "Pack utilisé pour générer un nouveau « pass » d'applications."
+
+#. module: sale_software_license_pass
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_sale_order__license_pass_ids
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_sale_order_line__license_pass_ids
+#: model_terms:ir.ui.view,arch_db:sale_software_license_pass.view_order_form
+msgid "Passes"
+msgstr "« Pass »"
+
+#. module: sale_software_license_pass
+#: model:ir.model,name:sale_software_license_pass.model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: sale_software_license_pass
+#: model:ir.model,name:sale_software_license_pass.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: sale_software_license_pass
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_software_license_pack__product_ids
+msgid "Products"
+msgstr "Articles"
+
+#. module: sale_software_license_pass
+#: model:ir.model,name:sale_software_license_pass.model_sale_order
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_software_license_pass__sale_order_id
+msgid "Sale Order"
+msgstr "Commande client"
+
+#. module: sale_software_license_pass
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_software_license_pass__sale_order_line_id
+msgid "Sale Order Line"
+msgstr "Ligne de commande"
+
+#. module: sale_software_license_pass
+#: model:ir.model,name:sale_software_license_pass.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_software_license_pass
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_product_product__service_tracking
+#: model:ir.model.fields,field_description:sale_software_license_pass.field_product_template__service_tracking
+msgid "Service Tracking"
+msgstr "Suivi du service"

@@ -41,7 +41,9 @@ class SaleOrderLine(models.Model):
 
     def _create_application_pass(self):
         vals = self._prepare_pass_values(self.product_id.license_pack_id)
-        pass_id = self.env['software.license.pass'].create(vals)
+        pass_id = self.env['software.license.pass'].with_context(
+            tracking_disable=True
+        ).create(vals)
         pass_id.action_resync_with_pack()
         # Post-write pass data to propagate values to all licences created
         # during the `action_resync_with_pack`

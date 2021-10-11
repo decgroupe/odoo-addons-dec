@@ -70,12 +70,8 @@
                     <group name="main">
                         <group name="primary">
                             <field name="serial"/>
-                            <field name="product_id" attrs="{
-                                'readonly': [('sale_order_id', '!=', False)],
-                            }"/>
-                            <field name="pack_id" attrs="{
-                                'readonly': [('sale_order_id', '!=', False)],
-                            }"/>
+                            <field name="product_id"/>
+                            <field name="pack_id"/>
                             <field name="max_allowed_hardware"/>
                             <field name="expiration_date"/>
                         </group>
@@ -84,7 +80,6 @@
                             <field name="origin"/>
                             <field name="partner_id"/>
                             <field name="partner_zip_id"/>
-                            <field name="sale_order_id"/>
                         </group>
                     </group>
                     <group name="licenses">

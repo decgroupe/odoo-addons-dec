@@ -14,12 +14,6 @@ class SoftwareLicensePack(models.Model):
     _name = 'software.license.pack'
     _description = 'Application Pack'
 
-    product_ids = fields.One2many(
-        comodel_name='product.product',
-        inverse_name='license_pack_id',
-        string='Products',
-        readonly=True,
-    )
     name = fields.Char(
         string='Name',
         translate=True,

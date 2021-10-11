@@ -49,7 +49,7 @@ class SaleOrder(models.Model):
                 license_pass_id.activity_schedule_with_view(
                     'mail.mail_activity_data_warning',
                     user_id=license_pass_id.user_id.id or self.env.uid,
-                    views_or_xmlid='software_license_pass.'
+                    views_or_xmlid='sale_software_license_pass.'
                     'exception_application_pass_sale_cancellation',
                     render_context={
                         'sale_orders': self,

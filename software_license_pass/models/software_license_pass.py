@@ -89,20 +89,6 @@ class SoftwareLicensePass(models.Model):
         help="If more than 0, then the number of registered hardware "
         "identifiers will not be allowed to be greater than this value.",
     )
-    sale_order_id = fields.Many2one(
-        comodel_name='sale.order',
-        string='Sale Order',
-        domain="[('partner_id', '=', partner_id)]",
-        readonly=True,
-        copy=False
-    )
-    sale_order_line_id = fields.Many2one(
-        comodel_name='sale.order.line',
-        string='Sale Order Line',
-        domain="[('order_id', '=', sale_order_id)]",
-        readonly=True,
-        copy=False
-    )
     company_id = fields.Many2one(
         comodel_name='res.company',
         string='Company',
@@ -237,10 +223,6 @@ class SoftwareLicensePass(models.Model):
             'software_license_pass.email_template', False
         )
         form_id = self.env.ref('mail.email_compose_message_wizard_form', False)
-        # if template_id and template_id.lang:
-        #     lang = template_id._render_template(
-        #         template_id.lang, 'sale.order', self.id
-        #     )
         ctx = {
             'default_model': 'software.license.pass',
             'default_res_id': self.id,
@@ -249,7 +231,6 @@ class SoftwareLicensePass(models.Model):
             'default_composition_mode': 'comment',
             'mark_as_sent': True,
             'model_description': _('Application Pass'),
-            # 'custom_layout': "mail.mail_notification_paynow",
             'custom_layout': "mail.mail_notification_light",
             'force_email': True
         }
@@ -263,10 +244,6 @@ class SoftwareLicensePass(models.Model):
             'target': 'new',
             'context': ctx,
         }
-
-    @api.onchange('product_id')
-    def _onchange_product_id(self):
-        self.pack_id = self.product_id.license_pack_id
 
     def _prepare_license_vals(self, pack_line_id):
         self.ensure_one()

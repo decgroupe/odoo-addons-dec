@@ -1,7 +1,3 @@
-from . import product_template
-from . import product_product
-from . import sale_order_line
-from . import sale_order
 from . import software_license_application
 from . import software_license_hardware
 from . import software_license_pass

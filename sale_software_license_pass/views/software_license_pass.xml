@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_pass_form_view" >
+        <field name="name">software.license.pass.form@sale_software_license_pass</field>
+        <field name="model">software.license.pass</field>
+        <field name="inherit_id" ref="software_license_pass.software_license_pass_form_view"/>
+        <field name="arch" type="xml">
+            <group name="secondary" position="inside">
+                <field name="sale_order_id"/>
+            </group>
+            <field name="product_id" attrs="attributes">
+                <attribute name="readonly">[('sale_order_id', '!=', False)]</attribute>
+            </field>
+            <field name="pack_id" attrs="attributes">
+                <attribute name="readonly">[('sale_order_id', '!=', False)]</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
