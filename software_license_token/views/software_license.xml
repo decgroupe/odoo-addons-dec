@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="software_license.software_license_form_view"/>
         <field name="arch" type="xml">
             <group name="primary" position="inside">
-                <field name="max_allowed_hardware"/>
+                <field name="max_allowed_hardware" attrs="{'invisible': [('type', '!=', 'normal')]}"/>
                 <field name="expiration_date" attrs="{'invisible': [('type', '!=', 'normal')]}"/>
             </group>
         </field>

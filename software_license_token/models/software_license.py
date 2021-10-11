@@ -11,12 +11,14 @@ class SoftwareLicense(models.Model):
 
     expiration_date = fields.Datetime(
         string="Expiration Date",
+        track_visibility='onchange',
         help="If set, then after this date it will not be possible to "
         "proceed or renew any activation.",
     )
     max_allowed_hardware = fields.Integer(
         string="Maximum Activation Count",
         default=1,
+        track_visibility='onchange',
         help="If more than 0, then the number of registered hardware "
         "identifiers will not be allowed to be greater than this value.",
     )
