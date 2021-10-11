@@ -83,3 +83,8 @@ class SoftwareLicenseFeature(models.Model):
     def _compute_name(self):
         for rec in self:
             rec.name = rec.property_id.name
+
+    @api.onchange('property_id')
+    def onchange_property_id(self):
+        self.ensure_one()
+        self.value_id = False

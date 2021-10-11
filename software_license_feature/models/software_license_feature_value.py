@@ -26,3 +26,19 @@ class SoftwareLicenseFeatureValue(models.Model):
     def create(self, vals):
         record = super().create(vals)
         return record
+
+    def _name_get(self):
+        self.ensure_one()
+        res = self.name
+        if self.user_has_groups('base.group_no_one'):
+            res = ('%s (%s)') % (res, self.property_id.name)
+        return res
+
+    @api.multi
+    @api.depends('name', 'property_id.name')
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = rec._name_get()
+            result.append((rec.id, name))
+        return result

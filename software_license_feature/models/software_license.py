@@ -16,20 +16,23 @@ class SoftwareLicense(models.Model):
     )
 
     @api.multi
+    def _get_template_id(self):
+        self.ensure_one()
+        return self.application_id.template_id
+
+    @api.multi
     def action_sync_features_with_template(self):
         vals_list = []
         for rec in self:
-            template_id = rec.application_id.template_id
-            for tmpl_feature_id in template_id.feature_ids:
-                need_sync = True
-                for feature_id in rec.feature_ids:
-                    if feature_id.property_id == tmpl_feature_id.property_id:
-                        need_sync = False
-                if need_sync:
-                    vals = tmpl_feature_id._prepare_template_vals()
+            template_id = rec._get_template_id()
+            if template_id:
+                rec.feature_ids.unlink()
+                for feature_id in template_id.feature_ids:
+                    vals = feature_id._prepare_template_vals()
                     vals['license_id'] = rec.id
                     vals_list.append(vals)
-        self.env['software.license.feature'].create(vals_list)
+        if vals_list:
+            self.env['software.license.feature'].create(vals_list)
 
     @api.onchange('application_id')
     def onchange_application_id(self):
