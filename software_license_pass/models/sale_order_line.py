@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
     license_pass_ids = fields.One2many(
         comodel_name='software.license.pass',
         inverse_name='sale_order_line_id',
-        string="License Passes",
+        string="Passes",
     )
 
     @api.multi

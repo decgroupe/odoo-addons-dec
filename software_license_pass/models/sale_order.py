@@ -11,11 +11,11 @@ class SaleOrder(models.Model):
     license_pass_ids = fields.One2many(
         comodel_name='software.license.pass',
         inverse_name='sale_order_id',
-        string="License Passes",
+        string="Passes",
     )
     license_pass_count = fields.Integer(
         compute='_compute_license_pass_count',
-        string="Number of License Passes",
+        string="Number of Passes",
     )
 
     @api.depends("license_pass_ids")

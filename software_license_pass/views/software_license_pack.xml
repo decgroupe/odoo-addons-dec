@@ -5,7 +5,7 @@
         <field name="name">software.license.pack.tree_pack@software_license_pass</field>
         <field name="model">software.license.pack</field>
         <field name="arch" type="xml">
-            <tree string="License packs">
+            <tree string="Application Packs">
                 <field name="name"/>
             </tree>
         </field>
@@ -15,7 +15,7 @@
         <field name="name">software.license.pack.form@software_license_pass</field>
         <field name="model">software.license.pack</field>
         <field name="arch" type="xml">
-            <form string="License pack">
+            <form string="Application Pack">
                 <header>
                     <button 
                         name="action_resync" 
@@ -61,14 +61,14 @@
         <field name="name">software.license.pack.search@software_license_pass</field>
         <field name="model">software.license.pack</field>
         <field name="arch" type="xml">
-            <search string="License">
+            <search string="Pack">
                 <field name="name"/>
             </search>
         </field>
     </record>
 
     <record model="ir.actions.act_window" id="act_window_software_license_pack" >
-        <field name="name">License packs</field>
+        <field name="name">Application Packs</field>
         <field name="res_model">software.license.pack</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="software_license_pack_tree_view"/>

@@ -19,7 +19,7 @@ class SoftwareLicense(models.Model):
     @api.model
     def create(self, vals):
         if self.env.context.get('force_generate_serial'):
-            if vals.get('type') == 'normal' and not vals.get('serial'):
+            if vals.get('type') == 'standard' and not vals.get('serial'):
                 vals['serial'] = self._generate_serial()
         license_id = super().create(vals)
         if license_id.serial == self._get_default_serial():
@@ -42,7 +42,7 @@ class SoftwareLicense(models.Model):
     def onchange_application_id(self):
         self.ensure_one()
         vals = {}
-        if self.application_id.auto_generate_serial and self.type == 'normal':
+        if self.application_id.auto_generate_serial and self.type == 'standard':
             vals['serial'] = self._generate_serial()
         self.update(vals)
 

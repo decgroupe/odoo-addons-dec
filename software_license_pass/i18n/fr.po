@@ -1,0 +1,730 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* software_license_pass
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-11 08:19+0000\n"
+"PO-Revision-Date: 2021-10-11 11:36+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: software_license_pass
+#: code:addons/software_license_pass/models/software_license.py:64
+#, python-format
+msgid "%s (%s for %s)"
+msgstr "%s (%s pour %s)"
+
+#. module: software_license_pass
+#: code:addons/software_license_pass/models/software_license_pass.py:180
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (copie)"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.exception_application_pass_sale_cancellation
+msgid ""
+".\n"
+"        <br/>\n"
+"        Manual actions may be needed."
+msgstr ""
+".\n"
+"        <br/>\n"
+"        Des actions manuelles peuvent être nécessaires."
+
+#. module: software_license_pass
+#: model:mail.template,body_html:software_license_pass.email_template
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Dear ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Here is your ${ctx['model_description']} <strong>${object.name}</strong>\n"
+"        % if object.origin:\n"
+"            (with reference: ${object.origin})\n"
+"        % endif\n"
+"        from ${object.company_id.name}.\n"
+"        <br/><br/>\n"
+"        Do not hesitate to contact us if you have any question.\n"
+"    </p>\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_needaction
+msgid "Action Needed"
+msgstr "Nécessite une action"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_state
+msgid "Activity State"
+msgstr "Status de l'Activité"
+
+#. module: software_license_pass
+#: sql_constraint:software.license.pack.line:0
+msgid "An application must appear only once in a pack!"
+msgstr "Une application ne doit être apparaître qu’une seule fois dans un pack !"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__application_id
+msgid "Application"
+msgstr "Application"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_software_license_pack
+#: model:ir.model.fields,field_description:software_license_pass.field_product_product__license_pack_id
+#: model:ir.model.fields,field_description:software_license_pass.field_product_template__license_pack_id
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_form_view
+msgid "Application Pack"
+msgstr "Pack d'applications"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_software_license_pack_line
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_line_form_view
+msgid "Application Pack Line"
+msgstr "Ligne de pack d'applications"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_line_tree_view
+msgid "Application Pack Lines"
+msgstr "Lignes de pack d'applications"
+
+#. module: software_license_pass
+#: model:ir.actions.act_window,name:software_license_pass.act_window_software_license_pack
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_tree_view
+msgid "Application Packs"
+msgstr "Pack d'applications"
+
+#. module: software_license_pass
+#: code:addons/software_license_pass/models/software_license_pass.py:251
+#: model:ir.model,name:software_license_pass.model_software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
+#, python-format
+msgid "Application Pass"
+msgstr "« Pass » d'applications"
+
+#. module: software_license_pass
+#: model:ir.actions.act_window,name:software_license_pass.act_window_software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_tree_view
+msgid "Application Passes"
+msgstr "« Pass » d'applications"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pack__line_ids
+msgid "Applications that are part of this pack."
+msgstr "Applications qui font partie de ce pack."
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
+msgid "Are you sure you want to cancel this pass?"
+msgstr "Êtes-vous certain de vouloir annuler ce « pass » ?"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: software_license_pass
+#: selection:software.license.pass,state:0
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a new project but no task"
+msgstr "Créer un nouveau projet sans tâche"
+
+#. module: software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a task in a new project"
+msgstr "Créer une tâche dans un nouveau projet"
+
+#. module: software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a task in an existing project"
+msgstr "Créer une tâche dans un projet existant"
+
+#. module: software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create a task in sale order's project"
+msgstr "Créer une tâche dans le projet de la commande client"
+
+#. module: software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Create an application pass"
+msgstr "Créer un « pass » d'applications"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__create_uid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__create_uid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__create_date
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__create_date
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__display_name
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__display_name
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: software_license_pass
+#: selection:product.template,service_tracking:0
+msgid "Don't create task"
+msgstr "Ne pas créer la tâche"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.exception_application_pass_sale_cancellation
+msgid "Exception(s) occurred on the sale order(s):"
+msgstr "Des exceptions sont survenues sur le(s) bon(s) de commande:"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__expiration_date
+msgid "Expiration Date"
+msgstr "Date d'échéance"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__failed_message_ids
+msgid "Failed Messages"
+msgstr "Messages échoués"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__feature_ids
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (Canaux)"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__id
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__id
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__id
+msgid "ID"
+msgstr "ID"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si actif, certains messages ont une erreur de livraison."
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__max_allowed_hardware
+msgid "If more than 0, then the number of registered hardware identifiers will not be allowed to be greater than this value."
+msgstr "Si plus de 0, alors le nombre d’identificateurs matériels enregistrés ne sera pas autorisé à être supérieur à cette valeur."
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__expiration_date
+msgid "If set, then after this date it will not be possible to proceed or renew any activation."
+msgstr "Si défini, alors il ne sera pas possible, après cette date, de procéder à une activation ou de la renouveler ."
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__active
+msgid "If unchecked, it will allow you to hide the application pass without removing it."
+msgstr "Si non coché, permet de masquer le « pass » d'applications sans le supprimer."
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_is_follower
+msgid "Is Follower"
+msgstr "Est un abonné"
+
+#. module: software_license_pass
+#: code:addons/software_license_pass/models/software_license.py:55
+#, python-format
+msgid ""
+"It is forbidden to delete a license own by a pass:\n"
+"{}"
+msgstr ""
+"Il est interdit de supprimer une licence détenue par un « pass » :\n"
+"{}"
+
+#. module: software_license_pass
+#: code:addons/software_license_pass/models/software_license.py:41
+#, python-format
+msgid ""
+"It is forbidden to update these license's fields when owned by a pass:\n"
+"{}"
+msgstr ""
+"Il est interdit de mettre à jour ces champs de licences lorsqu'elles sont détenues par un « pass » :\n"
+"{}"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack____last_update
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line____last_update
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__write_uid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__write_uid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__write_date
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__write_date
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__license_ids
+msgid "Licences"
+msgstr "Licenses"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_software_license
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
+msgid "License"
+msgstr "Licence"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_software_license_hardware
+msgid "License Hardware"
+msgstr "Matériel"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__license_template_id
+msgid "License Template"
+msgstr "Modèle de licence"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_software_license_application
+msgid "License application"
+msgstr "Application"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__license_ids
+msgid "Licenses dynamically generated by this pass to match pack content"
+msgstr "Licences générées dynamiquement par ce « pass » pour correspondre au contenu du pack"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license__pack_line_id
+msgid "Line of the pack used to generate this license"
+msgstr "Ligne du pack utilisée pour générer cette licence"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Pièce jointe principale"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__max_allowed_hardware
+msgid "Maximum Activation Count"
+msgstr "Nombre maximum d’activations"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur d'envoi du message"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: software_license_pass
+#: code:addons/software_license_pass/models/software_license_pass.py:56
+#: code:addons/software_license_pass/models/software_license_pass.py:161
+#: code:addons/software_license_pass/models/software_license_pass.py:164
+#, python-format
+msgid "New"
+msgstr "Nouveau"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Date limite de l'Activité à Venir"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé d'activité suivant"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type d'Activités à Venir"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_sale_order__license_pass_count
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__pass_count
+msgid "Number of Passes"
+msgstr "Nombre de « Pass »"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_has_error_counter
+msgid "Number of error"
+msgstr "Nombre d'erreurs"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages exigeant une action"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec des erreurs d'envoi"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non lus"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_product_product__service_tracking
+#: model:ir.model.fields,help:software_license_pass.field_product_template__service_tracking
+msgid "On Sales order confirmation, this product can generate a project and/or task. From those, you can track the service you are selling."
+msgstr "Lors de la confirmation de la commande client, ce produit peut générer un projet ou une tâche. Cela vous permet ainsi de suivre le service que vous vendez."
+
+#. module: software_license_pass
+#: selection:software.license.pass,activity_state:0
+msgid "Overdue"
+msgstr "Retard"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license__pack_id
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__pack_id
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__pack_id
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_search_view
+msgid "Pack"
+msgstr "Pack"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__line_ids
+msgid "Pack Content"
+msgstr "Contenu du pack"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license__pack_line_id
+msgid "Pack Line"
+msgstr "Ligne de pack"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license__pack_id
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__pack_id
+msgid "Pack of applications linked to the product at the origin of the pass"
+msgstr "Pack d'applications liés à l'article à l'origine du « pass »"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_product_product__license_pack_id
+#: model:ir.model.fields,help:software_license_pass.field_product_template__license_pack_id
+msgid "Pack used to generate a new Application Pass."
+msgstr "Pack utilisé pour générer un nouveau « pass » d'applications."
+
+#. module: software_license_pass
+#: model:ir.ui.menu,name:software_license_pass.menu_software_license_pack
+msgid "Packs"
+msgstr "Packs"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_id
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_city_id
+msgid "Partner's City"
+msgstr "Ville du partenaire"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_zip_id
+msgid "Partner's ZIP"
+msgstr "Code postal du partenaire"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license__pass_id
+#: model:ir.ui.menu,name:software_license_pass.menu_software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_search_view
+msgid "Pass"
+msgstr "« Pass »"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_sale_order__license_pass_ids
+#: model:ir.model.fields,field_description:software_license_pass.field_sale_order_line__license_pass_ids
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__pass_ids
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_form_view
+#: model_terms:ir.ui.view,arch_db:software_license_pass.view_order_form
+msgid "Passes"
+msgstr "« Pass »"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pack__pass_ids
+msgid "Passes generated from this pack."
+msgstr "« Pass » générés à partir de ce pack."
+
+#. module: software_license_pass
+#: selection:software.license.pass,activity_state:0
+msgid "Planned"
+msgstr "Planifié"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_product_product
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__product_id
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
+msgid "Product"
+msgstr "Article"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__product_id
+msgid "Product at the origin of the pass"
+msgstr "Article à l'origine de ce « pass »"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__product_ids
+msgid "Products"
+msgstr "Articles"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__name
+msgid "Reference"
+msgstr "Référence"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__origin
+msgid "Reference of the document that generated this pass."
+msgstr "Référence du document qui a généré ce « pass »."
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__user_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_user_id
+msgid "Responsible User"
+msgstr "Responsable"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
+msgid "Resynchronize"
+msgstr "Resynchroniser"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_form_view
+msgid "Resynchronize Passes"
+msgstr "Resynchroniser les « pass »"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_sale_order
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__sale_order_id
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__sale_order_line_id
+msgid "Sale Order Line"
+msgstr "Ligne de commande"
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
+msgid "Send by Email"
+msgstr "Envoyer par email"
+
+#. module: software_license_pass
+#: selection:software.license.pass,state:0
+msgid "Sent"
+msgstr "Envoyé"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__serial
+msgid "Serial"
+msgstr "Numéro de série"
+
+#. module: software_license_pass
+#: sql_constraint:software.license.pass:0
+msgid "Serial Pass Activation Code must be unique!"
+msgstr "Le numéro de série (code d’activation) du « pass » doit être unique par application!"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_product_product__service_tracking
+#: model:ir.model.fields,field_description:software_license_pass.field_product_template__service_tracking
+msgid "Service Tracking"
+msgstr "Suivi du service"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__origin
+msgid "Source"
+msgstr "Origine"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__state
+msgid "Status"
+msgstr "État"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard : la date d'échéance est déjà dépassée\n"
+"Aujourd'hui : la date d'activité est aujourd'hui\n"
+"Planifiée : activités futures."
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_stock_rule
+msgid "Stock Rule"
+msgstr "Règle de stock minimum"
+
+#. module: software_license_pass
+#: selection:software.license.pass,state:0
+msgid "To Send"
+msgstr "À Envoyer"
+
+#. module: software_license_pass
+#: selection:software.license.pass,activity_state:0
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__serial
+msgid "Unique serial used as an authorization identifier"
+msgstr "Numéro de série unique utilisé comme identifiant d'autorisation"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_unread
+msgid "Unread Messages"
+msgstr "Messages non lus"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Compteur de messages non lus"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__website_message_ids
+msgid "Website communication history"
+msgstr "Historique de communication du site web"
+
+#. module: software_license_pass
+#: model:mail.template,subject:software_license_pass.email_template
+msgid "e-space ${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or 'n/a' })"
+msgstr ""
+
+#~ msgid "License Pack"
+#~ msgstr "Pack de licence"
+
+#~ msgid "License Pack Line"
+#~ msgstr "Ligne de pack de licence"
+
+#~ msgid "License Packs"
+#~ msgstr "Packs de licence"
+
+#~ msgid "License Pass"
+#~ msgstr "« Pass » de licence"
+
+#~ msgid "License Passes"
+#~ msgstr "« Pass » de licence"
+
+#~ msgid "Software License Pack Line"
+#~ msgstr "Ligne de packs de licences logicielles"
+
+#~ msgid "Software License Pack Lines"
+#~ msgstr "Lignes de packs de licences logicielles"
+
+#~ msgid "Number of License Passes"
+#~ msgstr "Nombre de « Pass »"

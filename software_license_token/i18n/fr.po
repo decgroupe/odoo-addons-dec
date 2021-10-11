@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 06:47+0000\n"
-"PO-Revision-Date: 2021-05-26 08:49+0200\n"
+"POT-Creation-Date: 2021-10-11 07:16+0000\n"
+"PO-Revision-Date: 2021-10-11 09:59+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: software_license_token
 #: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
@@ -37,7 +37,7 @@ msgid "Expiration Date"
 msgstr "Date d'expiration"
 
 #. module: software_license_token
-#: code:addons/software_license_token/models/software_license.py:44
+#: code:addons/software_license_token/models/software_license.py:46
 #, python-format
 msgid "Expiration date reached"
 msgstr "Date d’expiration atteinte"
@@ -49,8 +49,8 @@ msgstr "Générer les clés"
 
 #. module: software_license_token
 #: model:ir.model.fields,help:software_license_token.field_software_license__max_allowed_hardware
-msgid "If more than 1, then the number of registered hardware identifiers will not be allowed to be greater than this value."
-msgstr "Si plus de 1, alors le nombre d’identificateurs matériels enregistrés ne sera pas autorisé à être supérieur à cette valeur."
+msgid "If more than 0, then the number of registered hardware identifiers will not be allowed to be greater than this value."
+msgstr "Si plus de 0, alors le nombre d’identificateurs matériels enregistrés ne sera pas autorisé à être supérieur à cette valeur."
 
 #. module: software_license_token
 #: model:ir.model.fields,help:software_license_token.field_software_license__expiration_date
@@ -83,7 +83,7 @@ msgid "Maximum Activation Count"
 msgstr "Nombre maximum d’activations"
 
 #. module: software_license_token
-#: code:addons/software_license_token/models/software_license.py:33
+#: code:addons/software_license_token/models/software_license.py:35
 #, python-format
 msgid "Maximum hardware identifier count reached"
 msgstr "Nombre maximal d’identificateurs matériels atteint"

@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 
 class SoftwareLicensePackLine(models.Model):
     _name = 'software.license.pack.line'
-    _description = 'License Pack Line'
+    _description = 'Application Pack Line'
 
     pack_id = fields.Many2one(
         'software.license.pack',

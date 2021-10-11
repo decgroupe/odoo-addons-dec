@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-21 09:53+0000\n"
-"PO-Revision-Date: 2021-06-21 09:53+0000\n"
+"POT-Creation-Date: 2021-10-11 07:15+0000\n"
+"PO-Revision-Date: 2021-10-11 07:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:64
+#: code:addons/software_license/models/software_license.py:83
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -260,6 +260,12 @@ msgid "Messages"
 msgstr ""
 
 #. module: software_license
+#: code:addons/software_license/models/software_license.py:21
+#, python-format
+msgid "New"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
@@ -353,6 +359,13 @@ msgid "Serial Activation Code must be unique per Application!"
 msgstr ""
 
 #. module: software_license
+#: code:addons/software_license/models/software_license.py:61
+#: selection:software.license,type:0
+#, python-format
+msgid "Standard"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license__activity_state
 msgid "Status based on activities\n"
 "Overdue: Due date is already passed\n"
@@ -361,7 +374,8 @@ msgid "Status based on activities\n"
 msgstr ""
 
 #. module: software_license
-#: code:addons/software_license/models/software_license_application.py:42
+#: code:addons/software_license/models/software_license.py:62
+#: selection:software.license,type:0
 #, python-format
 msgid "Template"
 msgstr ""
@@ -369,6 +383,11 @@ msgstr ""
 #. module: software_license
 #: selection:software.license,activity_state:0
 msgid "Today"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license__type
+msgid "Type"
 msgstr ""
 
 #. module: software_license
@@ -399,5 +418,11 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license.py:19
+#, python-format
+msgid "✳️ Template %d"
 msgstr ""
 

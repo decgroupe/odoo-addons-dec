@@ -44,16 +44,16 @@
                             <field name="application_id"/>
                             <field name="type" groups="base.group_no_one"/>
                         </group>
-                        <group name="secondary" attrs="{'invisible': [('type', '!=', 'normal')]}">
+                        <group name="secondary" attrs="{'invisible': [('type', '!=', 'standard')]}">
                             <field name="product_id"/>
                             <field name="production_id"/>
                             <field name="partner_id"/>
                         </group>
                     </group>
-                    <group name="hardware" attrs="{'invisible': [('type', '!=', 'normal')]}">
+                    <group name="hardware" attrs="{'invisible': [('type', '!=', 'standard')]}">
                         <field name="hardware_ids"/>
                     </group>
-                    <group name="info" attrs="{'invisible': [('type', '!=', 'normal')]}">
+                    <group name="info" attrs="{'invisible': [('type', '!=', 'standard')]}">
                         <field name="info"/>
                     </group>
                 </sheet>
@@ -89,7 +89,7 @@
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="software_license_tree_view"/>
         <field name="search_view_id" ref="software_license_search_view"/>
-        <field name="domain">[('type', '=', 'normal')]</field>
+        <field name="domain">[('type', '=', 'standard')]</field>
     </record>
 
     <record model="ir.actions.act_window.view" id="act_window_view_software_license_tree" >

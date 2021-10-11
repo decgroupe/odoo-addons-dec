@@ -58,11 +58,11 @@ class SoftwareLicense(models.Model):
     info = fields.Text('Informations')
     type = fields.Selection(
         selection=[
-            ('normal', _('Normal')),
+            ('standard', _('Standard')),
             ('template', _('Template')),
         ],
         string='Type',
-        default='normal',
+        default='standard',
         required=True
     )
 

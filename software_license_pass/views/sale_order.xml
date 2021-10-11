@@ -12,7 +12,7 @@
                     class="oe_stat_button"  
                     icon="fa-spinner"
                     attrs="{'invisible': [('license_pass_count', '=', 0)]}">
-                    <field name="license_pass_count" widget="statinfo" string="Application Passes"/>
+                    <field name="license_pass_count" widget="statinfo" string="Passes"/>
                 </button>
             </xpath>
         </field>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-26 06:47+0000\n"
-"PO-Revision-Date: 2021-05-26 06:47+0000\n"
+"POT-Creation-Date: 2021-10-11 07:16+0000\n"
+"PO-Revision-Date: 2021-10-11 07:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "Expiration Date"
 msgstr ""
 
 #. module: software_license_token
-#: code:addons/software_license_token/models/software_license.py:44
+#: code:addons/software_license_token/models/software_license.py:46
 #, python-format
 msgid "Expiration date reached"
 msgstr ""
@@ -48,7 +48,7 @@ msgstr ""
 
 #. module: software_license_token
 #: model:ir.model.fields,help:software_license_token.field_software_license__max_allowed_hardware
-msgid "If more than 1, then the number of registered hardware identifiers will not be allowed to be greater than this value."
+msgid "If more than 0, then the number of registered hardware identifiers will not be allowed to be greater than this value."
 msgstr ""
 
 #. module: software_license_token
@@ -82,7 +82,7 @@ msgid "Maximum Activation Count"
 msgstr ""
 
 #. module: software_license_token
-#: code:addons/software_license_token/models/software_license.py:33
+#: code:addons/software_license_token/models/software_license.py:35
 #, python-format
 msgid "Maximum hardware identifier count reached"
 msgstr ""

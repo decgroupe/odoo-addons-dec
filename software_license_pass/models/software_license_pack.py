@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 
 class SoftwareLicensePack(models.Model):
     _name = 'software.license.pack'
-    _description = 'License Pack'
+    _description = 'Application Pack'
 
     product_ids = fields.One2many(
         comodel_name='product.product',

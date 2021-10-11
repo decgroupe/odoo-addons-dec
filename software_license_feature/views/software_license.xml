@@ -22,7 +22,7 @@
                     string="Sync Features"
                     help="Synchronize features defined as template in application"
                     type="object"
-                    attrs="{'invisible': [('type', '!=', 'normal')]}"
+                    attrs="{'invisible': [('type', '!=', 'standard')]}"
                     class="btn-primary">
                 </button>
             </header>

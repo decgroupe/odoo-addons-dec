@@ -5,7 +5,7 @@
         <field name="name">software.license.pass.tree_pass@software_license_pass</field>
         <field name="model">software.license.pass</field>
         <field name="arch" type="xml">
-            <tree string="License passes">
+            <tree string="Application Passes">
                 <field name="name"/>
                 <field name="serial"/>
                 <field name="partner_id"/>
@@ -20,7 +20,7 @@
         <field name="name">software.license.pass.form@software_license_pass</field>
         <field name="model">software.license.pass</field>
         <field name="arch" type="xml">
-            <form string="License Pass">
+            <form string="Application Pass">
                 <header>
                     <button
                         name="action_send"
@@ -123,7 +123,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="act_window_software_license_pass" >
-        <field name="name">License Passes</field>
+        <field name="name">Application Passes</field>
         <field name="res_model">software.license.pass</field>
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="software_license_pass_tree_view"/>

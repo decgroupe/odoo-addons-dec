@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class SoftwareLicensePass(models.Model):
     _name = 'software.license.pass'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = 'License Pass'
+    _description = 'Application Pass'
 
     @api.model
     def _get_default_serial(self):
@@ -30,7 +30,7 @@ class SoftwareLicensePass(models.Model):
     active = fields.Boolean(
         'Active',
         default=True,
-        help="If unchecked, it will allow you to hide the license pass "
+        help="If unchecked, it will allow you to hide the application pass "
         "without removing it.",
     )
     product_id = fields.Many2one(
@@ -248,7 +248,7 @@ class SoftwareLicensePass(models.Model):
             'default_template_id': template_id.id,
             'default_composition_mode': 'comment',
             'mark_as_sent': True,
-            'model_description': _('License Pass'),
+            'model_description': _('Application Pass'),
             # 'custom_layout': "mail.mail_notification_paynow",
             'custom_layout': "mail.mail_notification_light",
             'force_email': True
@@ -271,7 +271,7 @@ class SoftwareLicensePass(models.Model):
     def _prepare_license_vals(self, pack_line_id):
         self.ensure_one()
         return {
-            'type': 'normal',
+            'type': 'standard',
             'application_id': pack_line_id.application_id.id,
             'pass_id': self.id,
             'pack_line_id': pack_line_id.id,
