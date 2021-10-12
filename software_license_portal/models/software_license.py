@@ -30,4 +30,5 @@ class SoftwareLicense(models.Model):
         return [
             ('partner_id', 'child_of', partner_id.id),
             ('portal_published', '=', True),
+            ('pass_id', '=', False),
         ]

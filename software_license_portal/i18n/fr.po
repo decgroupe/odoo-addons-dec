@@ -120,7 +120,7 @@ msgstr "Application"
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_home
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_licenses
 msgid "Licenses"
-msgstr "Licence"
+msgstr "Licences"
 
 #. module: software_license_portal
 #: code:addons/software_license_portal/controllers/myaccount.py:41

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
+# Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
 from odoo import http, _
 from odoo.http import request
@@ -11,30 +11,30 @@ from odoo.exceptions import AccessError
 from odoo.osv.expression import OR
 
 
-class LicenseCustomerPortal(CustomerPortal):
+class LicensePassCustomerPortal(CustomerPortal):
 
     #########################################################################
 
     def _prepare_portal_layout_values(self):
-        values = super(LicenseCustomerPortal, self)\
+        values = super(LicensePassCustomerPortal, self)\
             ._prepare_portal_layout_values()
-        SoftwareLicense = request.env['software.license']
-        domain = SoftwareLicense._get_default_portal_domain(
+        SoftwarePass = request.env['software.license.pass']
+        domain = SoftwarePass._get_default_portal_domain(
             request.env.user.partner_id
         )
-        license_count = SoftwareLicense.search_count(domain)
-        values['license_count'] = license_count
+        pass_count = SoftwarePass.search_count(domain)
+        values['license_pass_count'] = pass_count
         return values
 
-    def _software_license_check_access(self, lic_id):
-        license_id = request.env['software.license'].browse([lic_id])
-        #license_id = license_id.sudo()
+    def _software_pass_check_access(self, pass_id):
+        pass_id = request.env['software.license.pass'].browse([pass_id])
+        #pass_id = pass_id.sudo()
         try:
-            license_id.check_access_rights('read')
-            license_id.check_access_rule('read')
+            pass_id.check_access_rights('read')
+            pass_id.check_access_rule('read')
         except AccessError:
             raise
-        return license_id
+        return pass_id
 
     def _get_searchbar_sortings(self):
         return {
@@ -46,11 +46,10 @@ class LicenseCustomerPortal(CustomerPortal):
                 'label': _('Serial'),
                 'order': 'serial'
             },
-            'application':
-                {
-                    'label': _('Application'),
-                    'order': 'application_id'
-                },
+            'pack': {
+                'label': _('Pack'),
+                'order': 'pack_id'
+            },
         }
 
     def _get_searchbar_inputs(self):
@@ -60,11 +59,10 @@ class LicenseCustomerPortal(CustomerPortal):
                 'input': 'serial',
                 'label': _('Search in Serials')
             },
-            'application_id':
-                {
-                    'input': 'application',
-                    'label': _('Search in Applications')
-                },
+            'pack_id': {
+                'input': 'pack',
+                'label': _('Search in Packs')
+            },
             'hardware_ids':
                 {
                     'input': 'hardware',
@@ -84,12 +82,12 @@ class LicenseCustomerPortal(CustomerPortal):
         return {'all': {'label': _('All'), 'domain': []}}
 
     @http.route(
-        ['/my/licenses', '/my/licenses/page/<int:page>'],
+        ['/my/license_passes', '/my/license_passes/page/<int:page>'],
         type='http',
         auth="user",
         website=True,
     )
-    def portal_my_licenses(
+    def portal_my_passes(
         self,
         page=1,
         date_begin=None,
@@ -101,8 +99,8 @@ class LicenseCustomerPortal(CustomerPortal):
         **kw
     ):
         values = self._prepare_portal_layout_values()
-        SoftwareLicense = request.env['software.license']
-        domain = SoftwareLicense._get_default_portal_domain(
+        SoftwarePass = request.env['software.license.pass']
+        domain = SoftwarePass._get_default_portal_domain(
             request.env.user.partner_id
         )
 
@@ -123,19 +121,6 @@ class LicenseCustomerPortal(CustomerPortal):
         searchbar_inputs.update(searchbar_meta_inputs)
 
         searchbar_filters = self._get_searchbar_filters()
-        # search filters (by application)
-        # for app in request.env['software.license.application'].search(
-        #     [('portal_published', '=', True)]
-        # ):
-        #     searchbar_filters.update(
-        #         {
-        #             str(app.id):
-        #                 {
-        #                     'label': app.name,
-        #                     'domain': [('application_id', '=', app.id)]
-        #                 }
-        #         }
-        #     )
 
         # default sort by order
         if not sortby:
@@ -148,17 +133,17 @@ class LicenseCustomerPortal(CustomerPortal):
         domain += searchbar_filters[filterby]['domain']
 
         # count for pager
-        license_count = SoftwareLicense.search_count(domain)
+        pass_count = SoftwarePass.search_count(domain)
         # pager
         pager = portal_pager(
-            url="/my/licenses",
+            url="/my/license_passes",
             url_args={},
-            total=license_count,
+            total=pass_count,
             page=page,
             step=self._items_per_page
         )
         # content according to pager and archive selected
-        licenses = SoftwareLicense.search(
+        passes = SoftwarePass.search(
             domain,
             order=order,
             limit=self._items_per_page,
@@ -167,10 +152,10 @@ class LicenseCustomerPortal(CustomerPortal):
         values.update(
             {
                 'date': date_begin,
-                'licenses': licenses,
-                'page_name': 'license',
+                'passes': passes,
+                'page_name': 'license_pass',
                 'pager': pager,
-                'default_url': '/my/licenses',
+                'default_url': '/my/license_passes',
                 'searchbar_sortings': searchbar_sortings,
                 'searchbar_inputs': searchbar_inputs,
                 'search_in': search_in,
@@ -180,30 +165,30 @@ class LicenseCustomerPortal(CustomerPortal):
             }
         )
         return request.render(
-            "software_license_portal.portal_my_licenses", values
+            "software_license_portal.portal_my_passes", values
         )
 
-    @http.route(['/my/license/<int:license_id>'], type='http', website=True)
-    def portal_my_license(self, license_id=None, **kw):
+    @http.route(['/my/license_pass/<int:pass_id>'], type='http', website=True)
+    def portal_my_pass(self, pass_id=None, **kw):
         try:
-            license_sudo = self._software_license_check_access(license_id)
+            pass_sudo = self._software_pass_check_access(pass_id)
         except AccessError:
             return request.redirect('/my')
-        values = self._license_get_page_view_values(license_sudo, **kw)
+        values = self._pass_get_page_view_values(pass_sudo, **kw)
         return request.render(
-            "software_license_portal.portal_software_license_page", values
+            "software_license_portal.portal_software_pass_page", values
         )
 
-    def _license_get_page_view_values(self, license_sudo, **kwargs):
+    def _pass_get_page_view_values(self, pass_sudo, **kwargs):
         files = request.env['ir.attachment'].search(
             [
-                ('res_model', '=', 'software.license'),
-                ('res_id', '=', license_sudo.id)
+                ('res_model', '=', 'software.license.pass'),
+                ('res_id', '=', pass_sudo.id)
             ]
         )
         values = {
-            'page_name': 'license',
-            'license': license_sudo,
+            'page_name': 'license_pass',
+            'license_pass': pass_sudo,
             "files": files,
         }
 

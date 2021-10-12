@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
+# Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
+
+from odoo import _, api, fields, models
+
+
+class SoftwareLicensePass(models.Model):
+    _inherit = 'software.license.pass'
+
+    @api.model
+    def _get_default_portal_domain(self, request_partner_id):
+        partner_id = request_partner_id
+        while partner_id and not partner_id.is_company:
+            partner_id = partner_id.parent_id
+        if not partner_id:
+            partner_id = request_partner_id
+        return [
+            ('partner_id', 'child_of', partner_id.id),
+            # ('portal_published', '=', True),
+            # ('pass_id', '=', False),
+        ]

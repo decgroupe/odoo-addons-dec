@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-  <template id="portal_software_license_layout" name="Portal layout: license menu entry" inherit_id="portal.portal_breadcrumbs" priority="50">
+  <template id="portal_software_pass_layout" name="Portal layout: pass menu entry" inherit_id="portal.portal_breadcrumbs" priority="50">
       <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
-          <li t-if="page_name == 'license' or license" t-attf-class="breadcrumb-item #{'active ' if not license else ''}">
-              <a t-if="license" t-attf-href="/my/licenses?{{ keep_query() }}">Licenses</a>
-              <t t-else="">Licenses</t>
+          <li t-if="page_name == 'license_pass' or license_pass" t-attf-class="breadcrumb-item #{'active ' if not license_pass else ''}">
+              <a t-if="license_pass" t-attf-href="/my/license_passes?{{ keep_query() }}">Passes</a>
+              <t t-else="">Passes</t>
           </li>
-          <li t-if="license" class="breadcrumb-item active">
-              <t t-esc="license.serial"/>
+          <li t-if="license_pass" class="breadcrumb-item active">
+              <t t-esc="license_pass.serial"/>
           </li>
       </xpath>
   </template>
 
-  <template id="portal_software_license_my_home" name="Portal My Home : license entries" inherit_id="portal.portal_my_home" priority="40">
+  <template id="portal_software_pass_my_home" name="Portal My Home : pass entries" inherit_id="portal.portal_my_home" priority="40">
       <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-          <t t-if="license_count" t-call="portal.portal_docs_entry">
-            <t t-set="title">Licenses</t>
-            <t t-set="url" t-value="'/my/licenses'"/>
-            <t t-set="count" t-value="license_count"/>
+          <t t-if="license_pass_count" t-call="portal.portal_docs_entry">
+            <t t-set="title">Passes</t>
+            <t t-set="url" t-value="'/my/license_passes'"/>
+            <t t-set="count" t-value="license_pass_count"/>
           </t>
       </xpath>
   </template>
 
-  <template id="portal_my_licenses" name="My licenses">
+  <template id="portal_my_passes" name="My passes">
     <t t-call="portal.portal_layout">
       <t t-set="breadcrumbs_searchbar" t-value="True"/>
       <t t-call="portal.portal_searchbar">
-          <t t-set="title">Licenses</t>
+          <t t-set="title">Passes</t>
       </t>
-      <t t-if="not licenses">
-          <p>There is no license linked to your account..</p>
+      <t t-if="not passes">
+          <p>There is no pass linked to your account..</p>
       </t>
-      <div t-if="licenses" class="panel panel-default">
+      <div t-if="passes" class="panel panel-default">
         <div class="table-responsive"><table class="table table-hover o_portal_my_doc_table">
           <thead>
             <tr class="active">
               <th>Owner</th>
               <th>Serial</th>
-              <th>Application</th>
+              <th>Pack</th>
               <th>Create Date</th>
               <th>Expiration Date</th>
             </tr>
           </thead>
-          <t t-foreach="licenses" t-as="license">
+          <t t-foreach="passes" t-as="license_pass">
             <tr>
               <td>
-                <t t-if="license.partner_id.is_company">
+                <t t-if="license_pass.partner_id.is_company">
                   🏢
                 </t>
                 <t t-else="">
                   👷
                 </t>
-                <t t-esc="license.partner_id.name"/>
+                <t t-esc="license_pass.partner_id.name"/>
               </td>
               <td>
-                <a t-attf-href="/my/license/#{license.id}">
-                  <t t-esc="license.serial"/>
+                <a t-attf-href="/my/license_pass/#{license_pass.id}">
+                  <t t-esc="license_pass.serial"/>
                 </a>
               </td>
               <td>
                 <small>
                   <b>
-                    <t t-esc="license.application_id.name"/>
+                    <t t-esc="license_pass.pack_id.name"/>
                   </b>
-                  <t t-esc="license.application_id.info"/>
+                  <t t-esc="license_pass.product_id.display_name"/>
                 </small>
               </td>
               <td>
-                <span t-field="license.create_date"/>
+                <span t-field="license_pass.create_date"/>
               </td>
               <td>
-                <span t-field="license.expiration_date" />
+                <span t-field="license_pass.expiration_date" />
               </td>
             </tr>
           </t>
@@ -83,7 +83,7 @@
     </t>
   </template>
 
-  <template id="portal_software_license_page" name="License Portal Template">
+  <template id="portal_software_pass_page" name="Pass Portal Template">
     <t t-call="portal.portal_layout">
       <div class="container">
           <div class="panel panel-default">
@@ -92,7 +92,7 @@
                 <div class="col-md-6">
                   <h4>
                     <t t-call='portal.record_pager'/>
-                    <span t-field="license.serial"/>
+                    <span t-field="license_pass.serial"/>
                   </h4>
                 </div>
               </div>
@@ -102,19 +102,19 @@
               <div class="mb8">
                 <div class="row">
                   <div class="col-md-6">
-                    <strong>Application:</strong> <t t-esc="license.application_id.name"/> <t t-esc="license.application_id.info"/><br/>
-                    <strong>Create Date:</strong> <span t-field="license.create_date" /><br/>
+                    <strong>Pack:</strong> <t t-esc="license_pass.pack_id.name"/> <t t-esc="license_pass.product_id.display_name"/><br/>
+                    <strong>Create Date:</strong> <span t-field="license_pass.create_date" /><br/>
                   </div>
                   <div class="col-md-6">
-                    <t t-if="license.expiration_date">
-                      <strong>Expiration Date:</strong> <span t-field="license.expiration_date" /><br/>
+                    <t t-if="license_pass.expiration_date">
+                      <strong>Expiration Date:</strong> <span t-field="license_pass.expiration_date" /><br/>
                     </t>
-                    <t t-if="license.max_allowed_hardware">
-                      <strong>Maximum Activation Count:</strong> <span t-field="license.max_allowed_hardware" /><br/>
+                    <t t-if="license_pass.max_allowed_hardware">
+                      <strong>Maximum Activation Count:</strong> <span t-field="license_pass.max_allowed_hardware" /><br/>
                     </t>
                   </div>
                   <div class="col-md-6">
-                    <!-- <strong>Last Stage Update:</strong> <span t-field="license.last_stage_update" /><br/> -->
+                    <!-- <strong>Last Stage Update:</strong> <span t-field="license_pass.last_stage_update" /><br/> -->
                     <!-- <strong>Attachments:</strong><br />
                     <t t-foreach="files" t-as="f">
                         <a t-att-href="'/web/content/%i?download=true' % f.id">
@@ -125,7 +125,8 @@
                     </t> -->
                   </div>
                 </div>
-                <t t-if="license.hardware_ids">
+                <!--
+                <t t-if="license_pass.hardware_ids">
                   <div class="row mt8">
                     <div class="col-md-12">
                       <h4 class="page-header">Hardware Identifiers</h4>
@@ -139,7 +140,7 @@
                               <th>Action</th>
                             </tr>
                           </thead>
-                          <t t-foreach="license.hardware_ids" t-as="hardware_id">
+                          <t t-foreach="license_pass.hardware_ids" t-as="hardware_id">
                             <tr>
                               <td>
                                 <span t-esc="hardware_id.name" />
@@ -151,9 +152,9 @@
                                 <span t-field="hardware_id.validation_date" />
                               </td>
                               <td>
-                                <form method="GET" t-if="True" t-attf-action="/license/deactivate" style="display:inline;">
+                                <form method="GET" t-if="True" t-attf-action="/pass/deactivate" style="display:inline;">
                                   <input type="hidden" name="hardware_id" t-attf-value="#{hardware_id.id}"/>
-                                  <input type="hidden" name="license_id" t-attf-value="#{license.id}"/>
+                                  <input type="hidden" name="pass_id" t-attf-value="#{license_pass.id}"/>
                                   <button class="btn btn-success pull-right" style="margin-right:15px;margin-top:3px;">
                                     Deactivate
                                   </button>
@@ -168,9 +169,10 @@
                 </t>
                 <t t-else="">
                   <div class="alert alert-warning text-center">
-                    <p>There is no activated hardware on this license.</p>
+                    <p>There is no activated hardware on this pass.</p>
                   </div>
                 </t>
+                -->
               </div>
             </div>
           </div>

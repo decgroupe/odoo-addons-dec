@@ -13,4 +13,16 @@
         <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
     </record>
 
+    <!-- Portal for software license pass -->
+    <record id="software_license_pass_rule_portal" model="ir.rule">
+        <field name="name">Portal Personal License Pass</field>
+        <field name="model_id" ref="model_software_license_pass"/>
+        <field name="domain_force">[
+            ('|'),
+            ('partner_id', 'parent_of', user.partner_id.id),
+            ('partner_id', 'child_of', user.partner_id.id),
+        ]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
 </odoo>

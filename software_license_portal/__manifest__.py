@@ -16,6 +16,7 @@
             'security/software_license.xml',
             'views/software_license_application.xml',
             'templates/software_license.xml',
+            'templates/software_license_pass.xml',
         ],
     'installable': True
 }
