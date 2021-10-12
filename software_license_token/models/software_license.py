@@ -45,12 +45,26 @@ class SoftwareLicense(models.Model):
                 if hardware_id.validation_date > rec.expiration_date:
                     raise ValidationError(_('Expiration date reached'))
 
+    def check_expired(self):
+        self.ensure_one()
+        now = fields.Datetime.now()
+        if self.expiration_date and now > self.expiration_date:
+            return True
+        return False
+
     def get_remaining_activation(self):
         self.ensure_one()
         if self.max_allowed_hardware <= 0:
             return -1
         else:
             return self.max_allowed_hardware - len(self.hardware_ids)
+
+    def check_max_activation_reached(self):
+        res = super().check_max_activation_reached()
+        if self.max_allowed_hardware > 0 and \
+            len(self.hardware_ids) >= self.max_allowed_hardware:
+            res = True
+        return res
 
     @api.multi
     def get_hardwares_dict(self):

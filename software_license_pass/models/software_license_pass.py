@@ -171,6 +171,27 @@ class SoftwareLicensePass(models.Model):
             )
             license_ids.write(licenses_vals)
 
+    def _get_unique_hardware_names(self):
+        self.ensure_one()
+        return set(self.license_ids.mapped('hardware_ids').mapped('name'))
+
+    def check_max_activation_reached(self):
+        self.ensure_one()
+        res = False
+        if self.max_allowed_hardware > 0:
+            hardware_names = self._get_unique_hardware_names()
+            if len(hardware_names) >= self.max_allowed_hardware:
+                res = True
+        return res
+
+    def get_remaining_activation(self):
+        self.ensure_one()
+        if self.max_allowed_hardware <= 0:
+            return -1
+        else:
+            hardware_names = self._get_unique_hardware_names()
+            return self.max_allowed_hardware - len(hardware_names)
+
     @api.multi
     def action_view(self):
         action = self.env.ref(

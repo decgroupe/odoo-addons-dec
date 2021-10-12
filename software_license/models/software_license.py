@@ -119,6 +119,10 @@ class SoftwareLicense(models.Model):
         }
         return res
 
+    def check_max_activation_reached(self):
+        self.ensure_one()
+        return False
+
     @api.multi
     def activate(self, hardware, params=False):
         self.ensure_one()

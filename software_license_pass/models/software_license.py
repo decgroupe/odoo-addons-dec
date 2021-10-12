@@ -87,3 +87,9 @@ class SoftwareLicense(models.Model):
             'pass': self.pass_id.name,
         })
         return res
+
+    def check_max_activation_reached(self):
+        res = super().check_max_activation_reached()
+        if not res and self.pass_id:
+            res = self.pass_id.check_max_activation_reached()
+        return res

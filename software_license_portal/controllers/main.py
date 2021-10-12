@@ -175,14 +175,12 @@ class SoftwareLicenseController(http.Controller):
         license_id = self._get_license_id(identifier, serial)
         if not license_id:
             return LICENSE_NOT_FOUND
-        elif license_id.expiration_date and \
-            fields.Datetime.now() > license_id.expiration_date:
+        elif license_id.check_expired():
             return SERIAL_EXPIRED
         hardware_id = self._get_hardware_id(identifier, hardware, serial)
         if hardware_id:
             return SERIAL_ALREADY_ACTIVATED_ON_HARDWARE
-        elif license_id.max_allowed_hardware > 0 and \
-            len(license_id.hardware_ids) >= license_id.max_allowed_hardware:
+        elif license_id.check_max_activation_reached():
             return SERIAL_TOO_MANY_ACTIVATION
         else:
             hardware_id = license_id.activate(hardware, request.params.copy())
@@ -221,8 +219,7 @@ class SoftwareLicenseController(http.Controller):
         license_id = self._get_license_id(identifier, serial)
         if not license_id:
             return LICENSE_NOT_FOUND
-        elif license_id.expiration_date and \
-            fields.Datetime.now() > license_id.expiration_date:
+        elif license_id.check_expired():
             return SERIAL_EXPIRED
         hardware_id = self._get_hardware_id(identifier, hardware, serial)
         if not hardware_id:
@@ -253,6 +250,11 @@ class SoftwareLicenseController(http.Controller):
 
     def _append_remaining_activation(self, license_id, msg):
         msg['remaining_activation'] = license_id.get_remaining_activation()
+        pass_remaining_activation = 0
+        if license_id.pass_id:
+            pass_remaining_activation = license_id.pass_id.\
+                get_remaining_activation()
+        msg['pass_remaining_activation'] = pass_remaining_activation
 
     def _append_expiration_dates(self, license_id, hardware_id, msg):
         license_exp_date = license_id.expiration_date
@@ -304,4 +306,3 @@ class SoftwareLicenseController(http.Controller):
     )
     def get_all_licenses(self, **kwargs):
         return self.get_licenses(identifier=False)
-
