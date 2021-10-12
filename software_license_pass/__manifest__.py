@@ -18,7 +18,7 @@
             'views/software_license_pack_line.xml',
             'views/menu.xml',
             'data/sequence.xml',
-            'data/mail_jinja.xml',
+            'data/mail_template.xml',
         ],
     'installable': True
 }
