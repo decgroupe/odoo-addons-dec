@@ -82,7 +82,7 @@ class LicensePassCustomerPortal(CustomerPortal):
         return {'all': {'label': _('All'), 'domain': []}}
 
     @http.route(
-        ['/my/license_passes', '/my/license_passes/page/<int:page>'],
+        ['/my/passes', '/my/passes/page/<int:page>'],
         type='http',
         auth="user",
         website=True,
@@ -136,7 +136,7 @@ class LicensePassCustomerPortal(CustomerPortal):
         pass_count = SoftwarePass.search_count(domain)
         # pager
         pager = portal_pager(
-            url="/my/license_passes",
+            url="/my/passes",
             url_args={},
             total=pass_count,
             page=page,
@@ -155,7 +155,7 @@ class LicensePassCustomerPortal(CustomerPortal):
                 'passes': passes,
                 'page_name': 'license_pass',
                 'pager': pager,
-                'default_url': '/my/license_passes',
+                'default_url': '/my/passes',
                 'searchbar_sortings': searchbar_sortings,
                 'searchbar_inputs': searchbar_inputs,
                 'search_in': search_in,
@@ -168,7 +168,7 @@ class LicensePassCustomerPortal(CustomerPortal):
             "software_license_portal.portal_my_passes", values
         )
 
-    @http.route(['/my/license_pass/<int:pass_id>'], type='http', website=True)
+    @http.route(['/my/pass/<int:pass_id>'], type='http', website=True)
     def portal_my_pass(self, pass_id=None, **kw):
         try:
             pass_sudo = self._software_pass_check_access(pass_id)
@@ -200,3 +200,16 @@ class LicensePassCustomerPortal(CustomerPortal):
             values['success'] = kwargs['success']
 
         return values
+
+    @http.route(
+        ["/my/pass/deactivate"],
+        type="http",
+        auth="user",
+        methods=["POST"],
+        website=True,
+    )
+    def deactivate_hardware(self, pass_id, hardware_name, **kw):
+        pass_id = int(pass_id)
+        SoftwareLicensePass = request.env['software.license.pass'].sudo()
+        SoftwareLicensePass.browse(pass_id).deactivate(hardware_name)
+        return request.redirect('/my/pass/%d' % (pass_id))

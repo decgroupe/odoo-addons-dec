@@ -215,3 +215,17 @@ class LicenseCustomerPortal(CustomerPortal):
             values['success'] = kwargs['success']
 
         return values
+
+    @http.route(
+        ["/my/license/deactivate"],
+        type="http",
+        auth="user",
+        methods=["POST"],
+        website=True,
+    )
+    def deactivate_hardware(self, hardware_id, license_id, **kw):
+        license_id = int(license_id)
+        hardware_id = int(hardware_id)
+        SoftwareLicense = request.env['software.license'].sudo()
+        SoftwareLicense.browse(license_id).deactivate(hardware_id)
+        return request.redirect('/my/license/%d' % (license_id))

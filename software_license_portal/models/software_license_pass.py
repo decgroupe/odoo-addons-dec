@@ -20,3 +20,10 @@ class SoftwareLicensePass(models.Model):
             # ('portal_published', '=', True),
             # ('pass_id', '=', False),
         ]
+
+    def deactivate(self, hardware_name):
+        self.ensure_one()
+        hardware_ids = self.license_ids.mapped('hardware_ids').filtered(
+            lambda x: x.name == hardware_name
+        )
+        hardware_ids.unlink()

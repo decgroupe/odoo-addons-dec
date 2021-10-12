@@ -32,3 +32,8 @@ class SoftwareLicense(models.Model):
             ('portal_published', '=', True),
             ('pass_id', '=', False),
         ]
+
+    def deactivate(self, hardware_id):
+        self.ensure_one()
+        hardware_id = self.env['software.license.hardware'].browse(hardware_id)
+        hardware_id.unlink()

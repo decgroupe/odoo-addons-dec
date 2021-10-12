@@ -30,7 +30,7 @@
           <t t-set="title">Licenses</t>
       </t>
       <t t-if="not licenses">
-          <p>There is no license linked to your account..</p>
+          <p>There is no license linked to your account.</p>
       </t>
       <div t-if="licenses" class="panel panel-default">
         <div class="table-responsive"><table class="table table-hover o_portal_my_doc_table">
@@ -112,6 +112,9 @@
                     <t t-if="license.max_allowed_hardware">
                       <strong>Maximum Activation Count:</strong> <span t-field="license.max_allowed_hardware" /><br/>
                     </t>
+                    <t t-if="license.max_allowed_hardware > 0">
+                      <strong>Remaining Activations:</strong> <span t-esc="license.get_remaining_activation()" /><br/>
+                    </t>
                   </div>
                   <div class="col-md-6">
                     <!-- <strong>Last Stage Update:</strong> <span t-field="license.last_stage_update" /><br/> -->
@@ -151,7 +154,8 @@
                                 <span t-field="hardware_id.validation_date" />
                               </td>
                               <td>
-                                <form method="GET" t-if="True" t-attf-action="/license/deactivate" style="display:inline;">
+                                <form method="post" t-if="True" t-attf-action="/my/license/deactivate" style="display:inline;">
+                                  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                   <input type="hidden" name="hardware_id" t-attf-value="#{hardware_id.id}"/>
                                   <input type="hidden" name="license_id" t-attf-value="#{license.id}"/>
                                   <button class="btn btn-success pull-right" style="margin-right:15px;margin-top:3px;">

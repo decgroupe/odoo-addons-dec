@@ -4,7 +4,7 @@
   <template id="portal_software_pass_layout" name="Portal layout: pass menu entry" inherit_id="portal.portal_breadcrumbs" priority="50">
       <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
           <li t-if="page_name == 'license_pass' or license_pass" t-attf-class="breadcrumb-item #{'active ' if not license_pass else ''}">
-              <a t-if="license_pass" t-attf-href="/my/license_passes?{{ keep_query() }}">Passes</a>
+              <a t-if="license_pass" t-attf-href="/my/passes?{{ keep_query() }}">Passes</a>
               <t t-else="">Passes</t>
           </li>
           <li t-if="license_pass" class="breadcrumb-item active">
@@ -17,7 +17,7 @@
       <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
           <t t-if="license_pass_count" t-call="portal.portal_docs_entry">
             <t t-set="title">Passes</t>
-            <t t-set="url" t-value="'/my/license_passes'"/>
+            <t t-set="url" t-value="'/my/passes'"/>
             <t t-set="count" t-value="license_pass_count"/>
           </t>
       </xpath>
@@ -30,7 +30,7 @@
           <t t-set="title">Passes</t>
       </t>
       <t t-if="not passes">
-          <p>There is no pass linked to your account..</p>
+          <p>There is no pass linked to your account.</p>
       </t>
       <div t-if="passes" class="panel panel-default">
         <div class="table-responsive"><table class="table table-hover o_portal_my_doc_table">
@@ -55,7 +55,7 @@
                 <t t-esc="license_pass.partner_id.name"/>
               </td>
               <td>
-                <a t-attf-href="/my/license_pass/#{license_pass.id}">
+                <a t-attf-href="/my/pass/#{license_pass.id}">
                   <t t-esc="license_pass.serial"/>
                 </a>
               </td>
@@ -102,7 +102,9 @@
               <div class="mb8">
                 <div class="row">
                   <div class="col-md-6">
-                    <strong>Pack:</strong> <t t-esc="license_pass.pack_id.name"/> <t t-esc="license_pass.product_id.display_name"/><br/>
+                    <t t-if="license_pass.pack_id">
+                      <strong>Pack:</strong> <t t-esc="license_pass.pack_id.name"/> <t t-esc="license_pass.product_id.display_name"/><br/>
+                    </t>
                     <strong>Create Date:</strong> <span t-field="license_pass.create_date" /><br/>
                   </div>
                   <div class="col-md-6">
@@ -111,6 +113,9 @@
                     </t>
                     <t t-if="license_pass.max_allowed_hardware">
                       <strong>Maximum Activation Count:</strong> <span t-field="license_pass.max_allowed_hardware" /><br/>
+                    </t>
+                    <t t-if="license_pass.max_allowed_hardware > 0">
+                      <strong>Remaining Activations:</strong> <span t-esc="license_pass.get_remaining_activation()" /><br/>
                     </t>
                   </div>
                   <div class="col-md-6">
@@ -125,8 +130,8 @@
                     </t> -->
                   </div>
                 </div>
-                <!--
-                <t t-if="license_pass.hardware_ids">
+                
+                <t t-if="license_pass._get_unique_hardware_names()">
                   <div class="row mt8">
                     <div class="col-md-12">
                       <h4 class="page-header">Hardware Identifiers</h4>
@@ -135,26 +140,19 @@
                           <thead>
                             <tr class="active">
                               <th>Unique ID</th>
-                              <th>Informations</th>
-                              <th>Last activation</th>
                               <th>Action</th>
                             </tr>
                           </thead>
-                          <t t-foreach="license_pass.hardware_ids" t-as="hardware_id">
+                          <t t-foreach="license_pass._get_unique_hardware_names()" t-as="hardware_name">
                             <tr>
                               <td>
-                                <span t-esc="hardware_id.name" />
+                                <span t-esc="hardware_name" />
                               </td>
                               <td>
-                                <span t-esc="hardware_id.info" />
-                              </td>
-                              <td>
-                                <span t-field="hardware_id.validation_date" />
-                              </td>
-                              <td>
-                                <form method="GET" t-if="True" t-attf-action="/pass/deactivate" style="display:inline;">
-                                  <input type="hidden" name="hardware_id" t-attf-value="#{hardware_id.id}"/>
+                                <form method="post" t-if="True" t-attf-action="/my/pass/deactivate" style="display:inline;">
+                                  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                   <input type="hidden" name="pass_id" t-attf-value="#{license_pass.id}"/>
+                                  <input type="hidden" name="hardware_name" t-attf-value="#{hardware_name}"/>
                                   <button class="btn btn-success pull-right" style="margin-right:15px;margin-top:3px;">
                                     Deactivate
                                   </button>
@@ -172,7 +170,6 @@
                     <p>There is no activated hardware on this pass.</p>
                   </div>
                 </t>
-                -->
               </div>
             </div>
           </div>
