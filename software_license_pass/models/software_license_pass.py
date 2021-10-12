@@ -14,6 +14,7 @@ class SoftwareLicensePass(models.Model):
     _name = 'software.license.pass'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Application Pass'
+    _order = 'name desc'
 
     @api.model
     def _get_default_serial(self):

@@ -72,3 +72,18 @@ class SoftwareLicense(models.Model):
         if self.pack_line_id:
             return self.pack_line_id.license_template_id
         return template_id
+
+    @api.multi
+    @api.depends('pass_id', 'pass_id.serial')
+    def _compute_activation_identifier(self):
+        super()._compute_activation_identifier()
+        for rec in self.filtered('pass_id'):
+            rec.activation_identifier = rec.pass_id.serial
+
+    def _prepare_export_vals(self, include_activation_identifier=True):
+        res = super()._prepare_export_vals(include_activation_identifier)
+        res.update({
+            'pack': self.pack_id.name,
+            'pass': self.pass_id.name,
+        })
+        return res

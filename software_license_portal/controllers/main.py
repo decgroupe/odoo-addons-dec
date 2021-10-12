@@ -77,8 +77,9 @@ SERIAL_UPDATED_ON_HARDWARE = {
         "machine with the given hardware identifier.",
 }
 
-URL_BASE = "/api/license/v1"
-URL_IDENTIFIER = URL_BASE + "/identifier/<int:identifier>"
+URL_BASE_V1 = "/api/license/v1"
+URL_BASE_V2 = "/api/license/v2"
+URL_IDENTIFIER = URL_BASE_V1 + "/identifier/<int:identifier>"
 URL_IDENTIFIER_SERIAL_HARDWARE = URL_IDENTIFIER + "/serial/<string:serial>/hardware/<string:hardware>"
 URL_IDENTIFIER_HARDWARE = URL_IDENTIFIER + "/hardware/<string:hardware>"
 
@@ -90,7 +91,7 @@ class SoftwareLicenseController(http.Controller):
     #######################################################################
 
     @http.route(
-        URL_BASE + '/ResetUnitTesting',
+        URL_BASE_V1 + '/ResetUnitTesting',
         type='json',
         methods=['POST'],
         auth="public",
@@ -136,7 +137,7 @@ class SoftwareLicenseController(http.Controller):
             ]
             if serial:
                 domain += [
-                    ('license_id.serial', '=', serial),
+                    ('license_id.activation_identifier', '=', serial),
                 ]
 
             hardware_id = hardware_id.sudo().search(domain, limit=1)
@@ -158,7 +159,7 @@ class SoftwareLicenseController(http.Controller):
         if identifier > 0:
             domain = [
                 ('application_id.identifier', '=', identifier),
-                ('serial', '=', serial),
+                ('activation_identifier', '=', serial),
             ]
             license_id = license_id.sudo().search(domain, limit=1)
         return license_id
@@ -284,14 +285,18 @@ class SoftwareLicenseController(http.Controller):
         license_ids = SoftwareLicense.search(domain)
         res = {}
         for license_id in license_ids:
-            license_data = license_id.sudo()._prepare(include_serial=False)
+            license_data = license_id.sudo()._prepare_export_vals(
+                include_activation_identifier=True
+            )
             license_data['hardwares'] = license_id.sudo().get_hardwares_dict()
             self._append_remaining_activation(license_id, license_data)
+            # Warning, the key used there is `serial`, not the
+            # `activation_identifier`
             res[license_id.serial] = license_data
         return res
 
     @http.route(
-        URL_BASE + '/Licenses',
+        URL_BASE_V1 + '/Licenses',
         type='json',
         methods=['POST'],
         auth="user",
@@ -299,3 +304,4 @@ class SoftwareLicenseController(http.Controller):
     )
     def get_all_licenses(self, **kwargs):
         return self.get_licenses(identifier=False)
+

@@ -33,6 +33,11 @@ class SoftwareLicense(models.Model):
         track_visibility='onchange',
         help="Unique serial used as an authorization identifier",
     )
+    activation_identifier = fields.Char(
+        compute="_compute_activation_identifier",
+        help="Unique identifier used for activation",
+        store=True,
+    )
     application_id = fields.Many2one(
         'software.license.application',
         'Application',
@@ -96,6 +101,17 @@ class SoftwareLicense(models.Model):
             result.append((rec.id, name))
         return result
 
+    def _prepare_export_vals(self, include_activation_identifier=True):
+        res = {
+            'application_identifier': self.application_id.identifier,
+            'application_name': self.application_id.name,
+            'partner': self.partner_id.display_name,
+            'production': self.production_id.display_name,
+        }
+        if include_activation_identifier:
+            res['serial'] = self.activation_identifier
+        return res
+
     def _prepare_hardware_activation_vals(self, hardware):
         res = {
             'license_id': self.id,
@@ -108,3 +124,9 @@ class SoftwareLicense(models.Model):
         self.ensure_one()
         vals = self._prepare_hardware_activation_vals(hardware)
         return self.env['software.license.hardware'].create(vals)
+
+    @api.multi
+    @api.depends('serial')
+    def _compute_activation_identifier(self):
+        for rec in self:
+            rec.activation_identifier = rec.serial

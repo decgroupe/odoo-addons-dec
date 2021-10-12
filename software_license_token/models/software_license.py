@@ -57,25 +57,13 @@ class SoftwareLicense(models.Model):
         self.ensure_one()
         res = {}
         for hardware_id in self.hardware_ids:
-            hardware_data = hardware_id._prepare(include_license_data=False)
-            # FIXME: dongle_identifier is already included in hardware_data ?
-            hardware_data.update(
-                {
-                    'dongle_identifier': hardware_id.dongle_identifier,
-                }
+            hardware_data = hardware_id._prepare_export_vals(
+                include_license_data=False
             )
             res[hardware_id.name] = hardware_data
         return res
 
-    def _prepare(self, include_serial=True):
-        res = {
-            'application_identifier': self.application_id.identifier,
-            'application_name': self.application_id.name,
-            'expiration_date': fields.Datetime.to_string(self.expiration_date),
-            'features': self.get_features_dict(),
-            'partner': self.partner_id.display_name,
-            'production': self.production_id.display_name,
-        }
-        if include_serial:
-            res['serial'] = self.serial
+    def _prepare_export_vals(self, include_activation_identifier=True):
+        res = super()._prepare_export_vals(include_activation_identifier)
+        res['expiration_date'] = fields.Datetime.to_string(self.expiration_date)
         return res

@@ -68,3 +68,8 @@ class SoftwareLicense(models.Model):
                 res[feature_id.name] = [value]
 
         return res
+
+    def _prepare_export_vals(self, include_activation_identifier=True):
+        res = super()._prepare_export_vals(include_activation_identifier)
+        res['features'] = self.get_features_dict()
+        return res

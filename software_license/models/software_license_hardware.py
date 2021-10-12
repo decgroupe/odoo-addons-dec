@@ -21,3 +21,11 @@ class SoftwareLicenseHardware(models.Model):
         string="Identifier",
     )
     info = fields.Text('Informations')
+
+    def _prepare_export_vals(self, include_license_data=True):
+        if include_license_data:
+            res = self.license_id._prepare_export_vals()
+        else:
+            res = {}
+        res['hardware_identifier'] = self.name
+        return res

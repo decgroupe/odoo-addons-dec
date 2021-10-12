@@ -8,6 +8,7 @@
         'portal',
         'software_license_token',
         'software_license_dongle',
+        'software_license_pass',
     ],
     'data':
         [

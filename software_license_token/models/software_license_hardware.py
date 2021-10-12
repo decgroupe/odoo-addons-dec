@@ -50,17 +50,10 @@ class SoftwareLicenseHardware(models.Model):
             rec.license_id._check_expiration_date()
         return res
 
-    def _prepare(self, include_license_data=True):
-        if include_license_data:
-            res = self.license_id._prepare()
-        else:
-            res = {}
+    def _prepare_export_vals(self, include_license_data=True):
+        res = super()._prepare_export_vals(include_license_data)
         res.update(
             {
-                'hardware_identifier':
-                    self.name,
-                'dongle_identifier':
-                    self.dongle_identifier,
                 'date':
                     fields.Datetime.to_string(self.validation_date),
                 'validity_days':
@@ -93,7 +86,7 @@ class SoftwareLicenseHardware(models.Model):
         ]
 
         # Base data
-        base = self._prepare()
+        base = self._prepare_export_vals()
         # Convert python dict to json string
         base_string = json.dumps(base)
         # Ensure padding of 16 byte boundary

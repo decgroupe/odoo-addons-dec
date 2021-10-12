@@ -60,3 +60,8 @@ class SoftwareLicenseHardware(models.Model):
             return dec[0]
         else:
             return 0
+
+    def _prepare_export_vals(self, include_license_data=True):
+        res = super()._prepare_export_vals(include_license_data)
+        res['dongle_identifier'] = self.dongle_identifier
+        return res
