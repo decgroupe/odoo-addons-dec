@@ -5,6 +5,6 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Hard-coded database filtering",
     'depends': ['mail', ],
-    'data': [],
+    'data': ['views/ir_mail_server.xml', ],
     'installable': True
 }
