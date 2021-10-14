@@ -46,7 +46,7 @@ class MailMail(models.AbstractModel):
         raise_exception=False,
         smtp_session=None,
     ):
-        mail_server_id = self.env["ir.mail_server"]
+        mail_server_id = self.env["ir.mail_server"].sudo()
         # Get the mail server used to create the `smtp_session`
         if hasattr(smtp_session, 'mail_server_id'):
             mail_server_id = mail_server_id.browse(smtp_session.mail_server_id)
