@@ -9,6 +9,7 @@ import logging
 from datetime import datetime
 
 from odoo import _, api, models, fields
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -20,6 +21,7 @@ PROVIDER = 'odoo'
 
 class GitlabService(models.AbstractModel):
     _name = 'gitlab.service'
+    _description = 'GitLab Service'
 
     def _get_token_preuri(self):
         ICP = self.env['ir.config_parameter'].sudo()
@@ -57,7 +59,7 @@ class GitlabService(models.AbstractModel):
     def _get_username_from_email(self, email):
         return email.replace('@', '-').replace('+', '-')
 
-    def create_user(self, odoo_id, email, password):
+    def create_user(self, odoo_id, email, name, password):
         username = self._get_username_from_email(email)
         params = {
             'extern_uid': str(odoo_id),
@@ -69,7 +71,7 @@ class GitlabService(models.AbstractModel):
             'skip_confirmation': True,
             'external': True,
             'projects_limit': 0,
-            'name': email,
+            'name': name,
         }
         status, response, headers, ask_time = self._do_request(
             '/api/v4/users', params, self._get_common_headers(), 'POST'
@@ -78,22 +80,31 @@ class GitlabService(models.AbstractModel):
             return response.get('id')
         return 0
 
-    def update_user(self, odoo_id, email, password):
+    def create_or_update_user(self, odoo_id, email, name, password=False):
         id = self._get_user_id(odoo_id, email)
         if id:
             username = self._get_username_from_email(email)
+            # We also update the extern_uid for users previoulsy created
+            # (manually) in GitLab
             params = {
                 'extern_uid': str(odoo_id),
                 'provider': PROVIDER,
                 'email': email,
                 'username': username,
-                'password': password,
-                'name': email,
+                'name': name,
             }
+            if password:
+                params.update({
+                    'password': password,
+                })
             status, response, headers, ask_time = self._do_request(
-                '/api/v4/users/%d' % (id), params, self._get_common_headers(), 'PUT'
+                '/api/v4/users/%d' % (id), params, self._get_common_headers(),
+                'PUT'
             )
-        return status, response, headers, ask_time
+            if status == 200:
+                return response.get('id')
+        else:
+            return self.create_user(odoo_id, email, name, password)
 
     def _do_request(
         self,
@@ -153,9 +164,26 @@ class GitlabService(models.AbstractModel):
             "Uri: %s - method : %s - Headers: %s - Params : %s !", uri, method,
             headers, params
         )
+        ask_time = fields.Datetime.now()
+
+        def res_to_tuple(response, ask_time):
+            status = response.status_code
+            headers = response.headers
+            response = response.json() if response.content else {}
+            print(headers)
+            try:
+                ask_time = datetime.strptime(
+                    headers.get('Date'), "%a, %d %b %Y %H:%M:%S %Z"
+                )
+            except Exception as e:
+                _logger.exception("GitLab date: %s" % str(e))
+
+            res = (status, response, headers, ask_time)
+            _logger.debug(res)
+            return res
+
         token, preuri = self._get_token_preuri()
         headers.update({'PRIVATE-TOKEN': token})
-        ask_time = fields.Datetime.now()
         try:
             uri = preuri + uri
             if method.upper() in PARAMS_METHODS:
@@ -181,25 +209,20 @@ class GitlabService(models.AbstractModel):
                     (method, PARAMS_METHODS + DATA_METHODS)
                 )
             res.raise_for_status()
-            # print(status, res, res.content, res.headers,  dir(res))
-            status = res.status_code
-            headers = res.headers
-            response = res.json() if res.content else {}
+            result = res_to_tuple(res, ask_time)
 
-            try:
-                ask_time = datetime.strptime(
-                    res.headers.get('date'), "%a, %d %b %Y %H:%M:%S %Z"
-                )
-            except Exception as e:
-                _logger.exception("GitLab date: %s" % str(e))
         except requests.HTTPError as error:
             _logger.exception(
                 "Bad GitLab request with params %s : %s !", params,
                 error.response.content
             )
-            if error.response.status_code in (400, 401, 410):
-                raise error
-            raise self.env['res.config.settings'].get_config_warning(
-                _("Something went wrong with your request to GitLab")
+            result = res_to_tuple(error.response, ask_time)
+            if result[1] and result[1].get('message'):
+                message = str(result[1].get('message'))
+            else:
+                message = str(result[0])
+            raise UserError(
+                _("Something went wrong with a request to GitLab: %s") %
+                (message)
             )
-        return (status, response, headers, ask_time)
+        return result

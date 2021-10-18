@@ -5,6 +5,10 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Create and map gitlab users when giving portal access",
     'depends': ['base', ],
-    'data': [],
+    'data': [
+        'security/model_security.xml',
+        'security/ir.model.access.csv',
+        'views/gitlab_resource.xml',
+    ],
     'installable': True
 }
