@@ -45,7 +45,7 @@ class SaleOrderLine(models.Model):
             tracking_disable=True
         ).create(vals)
         pass_id.action_resync_with_pack()
-        # Post-write pass data to propagate values to all licences created
+        # Post-write pass data to propagate values to all licenses created
         # during the `action_resync_with_pack`
         today = fields.Date.from_string(fields.Date.context_today(self))
         pass_id.write(

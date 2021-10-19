@@ -34,7 +34,7 @@ class SoftwareLicenseApplication(models.Model):
     )
     info = fields.Text('Informations')
 
-    def _prepare_licence_template_vals(self):
+    def _prepare_license_template_vals(self):
         self.ensure_one()
         return {
             'type': 'template',
@@ -44,7 +44,7 @@ class SoftwareLicenseApplication(models.Model):
     @api.multi
     def action_create_license_template(self):
         for rec in self:
-            vals = rec._prepare_licence_template_vals()
+            vals = rec._prepare_license_template_vals()
             rec.template_id = self.env['software.license'].with_context(
                 default_type='template'
             ).create(vals)
