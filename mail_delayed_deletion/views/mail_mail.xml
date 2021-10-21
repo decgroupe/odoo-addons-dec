@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="email_message_tree_view">
+        <field name="name">mail.mail.form@mail_delayed_deletion</field>
+        <field name="model">mail.mail</field>
+        <field name="inherit_id" ref="mail.view_mail_form"/>
+        <field name="arch" type="xml">
+            <field name="auto_delete" position="after">
+                <field name="delayed_deletion"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

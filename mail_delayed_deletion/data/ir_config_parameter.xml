@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="delayed_deletion_days" model="ir.config_parameter">
+        <field name="key">mail_delayed_deletion.days</field>
+        <field name="value">7</field>
+    </record>
+
+</odoo>
