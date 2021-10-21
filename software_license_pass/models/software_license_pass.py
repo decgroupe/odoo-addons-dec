@@ -229,6 +229,7 @@ class SoftwareLicensePass(models.Model):
         """
         self.ensure_one()
         self.user_id = self._get_current_user()
+        self.partner_id.delegate_signup_prepare()
         template_id = self.env.ref(
             'software_license_pass.email_template', False
         )

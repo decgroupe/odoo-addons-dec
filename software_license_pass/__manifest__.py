@@ -6,6 +6,7 @@
     'summary': "Manage software licenses (pass)",
     'depends': [
         'software_license_feature',
+        'auth_signup_delegate',
     ],
     'data':
         [

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="create_contact" name="Create Contact">
+    <t t-call="web.login_layout">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 pt-4">
+            <h3 class="text-center">
+              <t t-esc="partner_id.name"/>
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto form p-4">
+        <h1 class="display-4 py-2 text-truncate text-center">New Contact</h1>
+        <div class="px-2">
+          <form action="/signup/delegate/create" method="POST" class="justify-content-center">
+
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <input type="hidden" name="partner_id" t-att-value="partner_id.id"/>
+            <input type="hidden" name="token" t-att-value="token"/>
+
+            <div class="form-group">
+              <label class="control-label">Name</label>
+              <input type="text" class="form-control" name="name" t-attf-value="#{name}" required="True" placeholder="Jane Doe"/>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Email</label>
+              <input type="text" class="form-control" name="email" t-attf-value="#{email}" required="True" placeholder="jane.doe@example.com"/>
+            </div>
+            <div class="alert alert-primary" role="alert">
+                  Please note that an e-mail will be sent to this address with a specific link to create a password!
+            </div>
+            <div class="form-group">
+              <label class="control-label">Function</label>
+              <input type="text" class="form-control" name="function" t-attf-value="#{function}" required="False" placeholder="Assistant"/>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-block">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </t>
+  </template>
+
+</odoo>
