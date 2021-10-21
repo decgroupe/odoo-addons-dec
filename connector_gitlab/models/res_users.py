@@ -17,23 +17,25 @@ class ResUsers(models.Model):
 
     def _create_or_update_gitlab_user(self, password):
         self.ensure_one()
+        user_uid = 0
         in_portal = self.env.ref('base.group_portal') in self.groups_id
         if in_portal:
             GitLab = self.env['gitlab.service']
-            id = GitLab.create_or_update_user(
+            user_uid = GitLab.create_or_update_user(
                 self.id, self.email, self.name, password=password
             )
-            if id:
+            if user_uid:
                 if self.user_gitlab_resource_id:
-                    if self.user_gitlab_resource_id.backend_id != id:
-                        self.user_gitlab_resource_id.backend_id = id
+                    if self.user_gitlab_resource_id.uid != user_uid:
+                        self.user_gitlab_resource_id.uid = user_uid
                 else:
                     self.user_gitlab_resource_id = self.user_gitlab_resource_id.create(
                         {
                             'type': 'user',
-                            'backend_id': id,
+                            'uid': user_uid,
                         }
                     )
+        return user_uid
 
     @api.multi
     def write(self, vals):

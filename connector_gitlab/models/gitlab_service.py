@@ -106,6 +106,60 @@ class GitlabService(models.AbstractModel):
         else:
             return self.create_user(odoo_id, email, name, password)
 
+    def add_project_member(self, project_id, user_id, access_level=10):
+        """ Adds a member to a group or project. 
+
+        Args:
+            project_id ([int]): GitLab project database identifier
+            user_id ([int]): GitLab user database identifier
+            access_level ([int]): GitLab access level
+                Possible values:
+                    0:  No access
+                    5:  Minimal access (Introduced in GitLab 13.5.)
+                    10: Guest
+                    20: Reporter
+                    30: Developer
+                    40: Maintainer
+                    50: Owner - Only valid to set for groups 
+
+        Returns:
+            [type]: [description]
+        """
+
+        params = {
+            'user_id': user_id,
+            'access_level': access_level,
+        }
+        status, response, headers, ask_time = self._do_request(
+            '/api/v4/projects/%d/members' % (project_id), params,
+            self._get_common_headers(), 'POST'
+        )
+        return status == 201
+
+    def remove_project_member(self, project_id, user_id):
+        params = {}
+        status, response, headers, ask_time = self._do_request(
+            '/api/v4/projects/%d/members/%d' % (project_id, user_id), params,
+            self._get_common_headers(), 'DELETE'
+        )
+        return status == 204
+
+    def get_project_members(self, project_id):
+        params = {}
+        status, response, headers, ask_time = self._do_request(
+            '/api/v4/projects/%d/members' % (project_id), params,
+            self._get_common_headers(), 'GET'
+        )
+        return response
+
+    def get_user_memberships(self, user_id):
+        params = {}
+        status, response, headers, ask_time = self._do_request(
+            '/api/v4/users/%d/memberships' % (user_id), params,
+            self._get_common_headers(), 'GET'
+        )
+        return response
+
     def _do_request(
         self,
         uri,
@@ -170,7 +224,6 @@ class GitlabService(models.AbstractModel):
             status = response.status_code
             headers = response.headers
             response = response.json() if response.content else {}
-            print(headers)
             try:
                 ask_time = datetime.strptime(
                     headers.get('Date'), "%a, %d %b %Y %H:%M:%S %Z"

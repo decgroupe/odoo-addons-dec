@@ -8,7 +8,7 @@ from odoo import api, models, fields
 class GitlabResource(models.Model):
     _name = 'gitlab.resource'
     _description = 'GitLab Resource'
-    _rec_name = 'backend_id'
+    _rec_name = 'uid'
 
     type = fields.Selection(
         [
@@ -19,16 +19,17 @@ class GitlabResource(models.Model):
         string='Type',
         required=True,
     )
-    backend_id = fields.Integer(
+    uid = fields.Integer(
         string='Backend ID',
         required=True,
+        oldname="backend_id",
     )
     display_name = fields.Char(compute="_compute_display_name")
 
     _sql_constraints = [
         (
-            'type_backend_uniq', 'unique(type, backend_id)',
-            'Backend must be unique !'
+            'type_uid_uniq', 'unique(type, uid)',
+            'Backend ID must be unique !'
         ),
     ]
 
@@ -39,7 +40,7 @@ class GitlabResource(models.Model):
             result.append((rec.id, rec.display_name))
         return result
 
-    @api.depends("type", "backend_id")
+    @api.depends("type", "uid")
     def _compute_display_name(self):
         for rec in self:
-            rec.display_name = "%s ID: %d" % (rec.type, rec.backend_id)
+            rec.display_name = "%s ID: %d" % (rec.type, rec.uid)

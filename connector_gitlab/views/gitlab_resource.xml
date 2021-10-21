@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Resources" create="true" delete="true">
                 <field name="type"/>
-                <field name="backend_id"/>
+                <field name="uid"/>
             </tree>
         </field>
     </record>
@@ -25,7 +25,7 @@
                     <group name="main">
                         <group name="primary">
                             <field name="type"/>
-                            <field name="backend_id"/>
+                            <field name="uid"/>
                         </group>
                         <group name="secondary">
                         </group>
@@ -41,7 +41,7 @@
         <field name="arch" type="xml">
             <search string="Resources">
                 <field name="type"/>
-                <field name="backend_id"/>
+                <field name="uid"/>
             </search>
         </field>
     </record>
