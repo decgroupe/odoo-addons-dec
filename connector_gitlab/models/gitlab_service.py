@@ -35,7 +35,7 @@ class GitlabService(models.AbstractModel):
             'Content-encoding': 'utf-8',
         }
 
-    def _get_user_id(self, odoo_id, search_email=False):
+    def _get_user_uid(self, odoo_id, search_email=False):
         params = {
             'extern_uid': str(odoo_id),
             'provider': PROVIDER,
@@ -81,8 +81,8 @@ class GitlabService(models.AbstractModel):
         return 0
 
     def create_or_update_user(self, odoo_id, email, name, password=False):
-        id = self._get_user_id(odoo_id, email)
-        if id:
+        user_uid = self._get_user_uid(odoo_id, email)
+        if user_uid:
             username = self._get_username_from_email(email)
             # We also update the extern_uid for users previoulsy created
             # (manually) in GitLab
@@ -98,7 +98,7 @@ class GitlabService(models.AbstractModel):
                     'password': password,
                 })
             status, response, headers, ask_time = self._do_request(
-                '/api/v4/users/%d' % (id), params, self._get_common_headers(),
+                '/api/v4/users/%d' % (user_uid), params, self._get_common_headers(),
                 'PUT'
             )
             if status == 200:
@@ -106,12 +106,12 @@ class GitlabService(models.AbstractModel):
         else:
             return self.create_user(odoo_id, email, name, password)
 
-    def add_project_member(self, project_id, user_id, access_level=10):
+    def add_project_member(self, project_uid, user_uid, access_level=10):
         """ Adds a member to a group or project. 
 
         Args:
-            project_id ([int]): GitLab project database identifier
-            user_id ([int]): GitLab user database identifier
+            project_uid ([int]): GitLab project database identifier
+            user_uid ([int]): GitLab user database identifier
             access_level ([int]): GitLab access level
                 Possible values:
                     0:  No access
@@ -127,35 +127,35 @@ class GitlabService(models.AbstractModel):
         """
 
         params = {
-            'user_id': user_id,
+            'user_id': user_uid,
             'access_level': access_level,
         }
         status, response, headers, ask_time = self._do_request(
-            '/api/v4/projects/%d/members' % (project_id), params,
+            '/api/v4/projects/%d/members' % (project_uid), params,
             self._get_common_headers(), 'POST'
         )
         return status == 201
 
-    def remove_project_member(self, project_id, user_id):
+    def remove_project_member(self, project_uid, user_uid):
         params = {}
         status, response, headers, ask_time = self._do_request(
-            '/api/v4/projects/%d/members/%d' % (project_id, user_id), params,
+            '/api/v4/projects/%d/members/%d' % (project_uid, user_uid), params,
             self._get_common_headers(), 'DELETE'
         )
         return status == 204
 
-    def get_project_members(self, project_id):
+    def get_project_members(self, project_uid):
         params = {}
         status, response, headers, ask_time = self._do_request(
-            '/api/v4/projects/%d/members' % (project_id), params,
+            '/api/v4/projects/%d/members' % (project_uid), params,
             self._get_common_headers(), 'GET'
         )
         return response
 
-    def get_user_memberships(self, user_id):
+    def get_user_memberships(self, user_uid):
         params = {}
         status, response, headers, ask_time = self._do_request(
-            '/api/v4/users/%d/memberships' % (user_id), params,
+            '/api/v4/users/%d/memberships' % (user_uid), params,
             self._get_common_headers(), 'GET'
         )
         return response
