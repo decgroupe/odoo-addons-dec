@@ -33,11 +33,9 @@ class MailMail(models.AbstractModel):
 
     @api.model
     def process_email_queue(self, ids=None):
-        if self.env.cr.dbname in self._get_db_process_email_allowedlist():
-            return super().process_email_queue(ids)
-        else:
-            _logger.info('process_email_queue disabled')
-            return None
+        return super(
+            MailMail, self.with_context(raise_if_send_not_allowed=True)
+        ).process_email_queue(ids)
 
     @api.multi
     def _send(
@@ -77,5 +75,9 @@ class MailMail(models.AbstractModel):
         if send_allowed:
             return super()._send(auto_commit, raise_exception, smtp_session)
         else:
-            _logger.info('_send disabled')
+            _logger.info('_send disabled for %s', mail_server_id.name)
+            if self.env.context.get('raise_if_send_not_allowed'):
+                raise Exception(
+                    'Sending with %s is not allowed' % (mail_server_id.name)
+                )
             return False
