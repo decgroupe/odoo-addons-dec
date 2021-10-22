@@ -32,7 +32,21 @@ class SoftwareLicenseApplication(models.Model):
         "a new license",
         domain="[('application_id', '=', id), ('type', '=', 'template')]",
     )
-    info = fields.Text('Informations')
+    info = fields.Text(
+        string='Informations',
+        help="This field is deprecated, use the chatter now.",
+    )
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        string="Related Product",
+        help="By linking this application to a product, sales informations "
+        "like description will be used in communications to customers",
+    )
+    release_ids = fields.One2many(
+        comodel_name='software.license.application.release',
+        inverse_name='application_id',
+        string="Releases",
+    )
 
     def _prepare_license_template_vals(self):
         self.ensure_one()

@@ -50,12 +50,18 @@
                     <group name="main">
                         <group name="primary">
                             <field name="identifier"/>
+                            <field name="product_id"/>
                             <field name="template_id" context="{'default_type': 'template', 'default_application_id': id}"/>
                         </group>
                         <group name="secondary">
                         </group>
                     </group>
                     <notebook>
+                        <page string="Releases" name="releases">
+                            <group name="releases">
+                                <field name="release_ids"/>
+                            </group>
+                        </page>
                         <page string="Informations" name="general">
                             <group name="info">
                                 <field name="info" placeholder="Real name of the application, eg: Ubuntu 20.04"/>

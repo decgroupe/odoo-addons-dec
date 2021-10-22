@@ -11,11 +11,15 @@
         'mrp',
         'software',
     ],
+    "external_dependencies": {
+        "python": ['semver'],
+    },
     'data':
         [
             'security/ir.model.access.csv',
             'views/software_license.xml',
             'views/software_license_application.xml',
+            'views/software_license_application_release.xml',
             'views/software_license_hardware.xml',
             'views/menu.xml',
         ],
