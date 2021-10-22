@@ -137,18 +137,15 @@
                           <thead>
                             <tr class="active">
                               <th>Unique ID</th>
-                              <th>Informations</th>
                               <th>Last activation</th>
                               <th>Action</th>
+                              <th>Informations</th>
                             </tr>
                           </thead>
                           <t t-foreach="license.hardware_ids" t-as="hardware_id">
                             <tr>
                               <td>
                                 <span t-esc="hardware_id.name" />
-                              </td>
-                              <td style="white-space:break-spaces;font-size: x-small;font-family: monospace;">
-                                <span t-esc="hardware_id.info" />
                               </td>
                               <td>
                                 <span t-field="hardware_id.validation_date" />
@@ -162,6 +159,9 @@
                                     Deactivate
                                   </button>
                                 </form>
+                              </td>
+                              <td style="font-size: x-small;font-family: monospace;">
+                                <span t-esc="hardware_id.info" />
                               </td>
                             </tr>
                           </t>
