@@ -17,8 +17,6 @@ class SoftwareLicensePass(models.Model):
             partner_id = request_partner_id
         return [
             ('partner_id', 'child_of', partner_id.id),
-            # ('portal_published', '=', True),
-            # ('pass_id', '=', False),
         ]
 
     def deactivate(self, hardware_name):
