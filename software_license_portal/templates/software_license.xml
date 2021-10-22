@@ -147,14 +147,14 @@
                               <td>
                                 <span t-esc="hardware_id.name" />
                               </td>
-                              <td>
+                              <td style="white-space:break-spaces;font-size: x-small;font-family: monospace;">
                                 <span t-esc="hardware_id.info" />
                               </td>
                               <td>
                                 <span t-field="hardware_id.validation_date" />
                               </td>
                               <td>
-                                <form method="post" t-if="True" t-attf-action="/my/license/deactivate" style="display:inline;">
+                                <form method="POST" t-if="True" t-attf-action="/my/license/deactivate" style="display:inline;">
                                   <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                   <input type="hidden" name="hardware_id" t-attf-value="#{hardware_id.id}"/>
                                   <input type="hidden" name="license_id" t-attf-value="#{license.id}"/>
