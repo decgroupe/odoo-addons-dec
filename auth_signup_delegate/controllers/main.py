@@ -7,6 +7,7 @@ from odoo import http, _
 # from odoo.addons.web_settings_dashboard.controllers.main import WebSettingsDashboard as Dashboard
 from odoo.exceptions import UserError
 from odoo.http import request
+from odoo.tools import plaintext2html
 
 _logger = logging.getLogger(__name__)
 
@@ -27,43 +28,45 @@ class DelegateAuthSignup(http.Controller):
         '/signup/delegate/<string:token>',
         type="http",
         auth="public",
-        website=True
-    )
-    def delegate_new_contact(self, token, message=False, **kw):
-        return http.request.render(
-            'auth_signup_delegate.create_contact', {
-                'partner_id': self._get_partner_from_token(token),
-                'token': token,
-                'message': message,
-            }
-        )
-
-    @http.route(
-        '/signup/delegate/create',
-        type="http",
-        auth="public",
         website=True,
         csrf=True
     )
-    def delegate_create_contact(self, **kw):
-        message = False
-        token = kw.get('token')
-        if http.request.httprequest.method == 'POST':
+    def delegate_create_contact(self, token, message=False, **kw):
+        error = False
+        partner_id = False
+        try:
             partner_id = self._get_partner_from_token(token)
-            vals = {
-                'parent_id': partner_id.id,
-                'name': kw.get('name'),
-                'email': kw.get('email'),
-                'function': kw.get('function'),
-                # 'company_id': http.request.env.user.company_id.id,
+            if http.request.httprequest.method == 'POST':
+                vals = {
+                    'parent_id': partner_id.id,
+                    'company_id': partner_id.company_id.id,
+                    'name': kw.get('name'),
+                    'email': kw.get('email'),
+                    'function': kw.get('function'),
+                }
+                contact_id = request.env['res.partner'].sudo().create(vals)
+                contact_id.give_portal_access()
+                message = _(
+                    "Contact %s has been created and a "
+                    "confirmation e-mail has been sent to %s"
+                ) % (contact_id.name, contact_id.email)
+                kw['name'] = False
+                kw['email'] = ''.join(kw.get('email').partition('@')[1:])
+        except UserError as e:
+            error = plaintext2html(e.name)
+        except werkzeug.exceptions.NotFound:
+            error = _('Invalid Token')
+        except Exception as e:
+            error = str(e)
+
+        return http.request.render(
+            'auth_signup_delegate.create_contact', {
+                'partner_id': partner_id,
+                'name': kw.get('name', False),
+                'email': kw.get('email', False),
+                'function': kw.get('function', False),
+                'token': token,
+                'message': message,
+                'error': error,
             }
-            partner_id = request.env['res.partner'].sudo().create(vals)
-            partner_id.give_portal_access()
-            message = _(
-                "Contact %s has been created and a "
-                "confirmation e-mail has been sent to %s"
-            ) % (partner_id.name, partner_id.email)
-        # res =  werkzeug.utils.redirect(
-        #     "/signup/delegate/%s" % (kw.get('token'))
-        # )
-        return self.delegate_new_contact(token, message)
+        )
