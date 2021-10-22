@@ -38,3 +38,24 @@ class ResPartner(models.Model):
             self.env['ir.config_parameter'].get_param('web.base.url'),
             self.delegate_signup_token
         )
+
+    @api.multi
+    def give_portal_access(self):
+        PortalWizard = self.env['portal.wizard']
+        PortalWizardUser = self.env['portal.wizard.user']
+        wizard_id = PortalWizard.sudo().create({})
+        for partner_id in self:
+            already_in_portal = False
+            if partner_id.user_ids:
+                already_in_portal = self.env.ref(
+                    'base.group_portal'
+                ) in partner_id.user_ids[0].groups_id
+            if not already_in_portal:
+                vals = {
+                    'wizard_id': wizard_id.id,
+                    'partner_id': partner_id.id,
+                    'email': partner_id.email,
+                    'in_portal': True,
+                }
+                wizard_user_id = PortalWizardUser.sudo().create(vals)
+        return wizard_id.action_apply()

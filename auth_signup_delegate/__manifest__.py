@@ -4,7 +4,10 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "",
-    'depends': ['base', ],
+    'depends': [
+        'base',
+        'portal',
+    ],
     'data': ['templates/delegate_signup.xml', ],
     'installable': True
 }
