@@ -166,9 +166,7 @@
                   </div>
                 </t>
                 <t t-else="">
-                  <div class="alert alert-warning text-center">
-                    <p>There is no activated hardware on this pass.</p>
-                  </div>
+                  <div class="alert alert-warning text-center">There is no activated hardware on this pass.</div>
                 </t>
               </div>
             </div>
