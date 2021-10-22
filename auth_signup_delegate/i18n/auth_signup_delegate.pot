@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* auth_signup_delegate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-22 13:55+0000\n"
+"PO-Revision-Date: 2021-10-22 13:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "Assistant"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model:ir.model,name:auth_signup_delegate.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:49
+#, python-format
+msgid "Contact %s has been created and a confirmation e-mail has been sent to %s"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "Create"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__delegate_signup_token
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_users__delegate_signup_token
+msgid "Delegate Signup Token"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "Email"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "Function"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:58
+#, python-format
+msgid "Invalid Token"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "Jane Doe"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "Name"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "New Contact"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "Please note that an e-mail will be sent to this address with a specific link to create a password!"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
+msgid "jane.doe@example.com"
+msgstr ""
+
