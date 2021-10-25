@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_software_license_application_image_user,Read and write access to software license application image for User,model_software_license_application_image,software.group_software_user,1,1,0,0
+access_software_license_application_image_manager,Full access to software license application image for Manager,model_software_license_application_image,software.group_software_manager,1,1,1,1
