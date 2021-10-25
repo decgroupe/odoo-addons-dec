@@ -29,6 +29,11 @@
                     <group name="main">
                         <group name="primary">
                             <field name="version"/>
+                            <field name="version_major"/>
+                            <field name="version_minor"/>
+                            <field name="version_patch"/>
+                            <field name="version_prerelease"/>
+                            <field name="version_build"/>
                         </group>
                         <group name="secondary">
                             <field name="date"/>

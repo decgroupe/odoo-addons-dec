@@ -39,14 +39,13 @@
                                     options='{"terminology": "archive"}'/>
                         </button>
                     </div>
-                    <group name="title">
-                        <div class="oe_title">
-                            <label for="name" class="oe_edit_only"/>
-                            <h1>
-                                <field name="name"/>
-                            </h1>
-                        </div>
-                    </group>
+                    <field name="image" widget="image" nolabel="1" class="oe_avatar"/>
+                    <div name="title" class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
                     <group name="main">
                         <group name="primary">
                             <field name="identifier"/>
@@ -58,9 +57,7 @@
                     </group>
                     <notebook>
                         <page string="Releases" name="releases">
-                            <group name="releases">
-                                <field name="release_ids"/>
-                            </group>
+                            <field name="release_ids"/>
                         </page>
                         <page string="Informations" name="general">
                             <group name="info">

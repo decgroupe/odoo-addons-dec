@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 07:15+0000\n"
-"PO-Revision-Date: 2021-10-11 07:15+0000\n"
+"POT-Creation-Date: 2021-10-25 10:22+0000\n"
+"PO-Revision-Date: 2021-10-25 10:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,30 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:83
+#: code:addons/software_license/models/software_license.py:88
 #, python-format
 msgid "%s (copy)"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application_release__version_prerelease
+msgid "A pre-release version MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch version.\n"
+"Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
+"Identifiers MUST NOT be empty.\n"
+"Numeric identifiers MUST NOT include leading zeroes.\n"
+"Pre-release versions have a lower precedence than the associated normal version.\n"
+"A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version.\n"
+"Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.–."
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__message_needaction
 msgid "Action Needed"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license__activation_identifier
+msgid "Activation Identifier"
 msgstr ""
 
 #. module: software_license
@@ -45,6 +61,7 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__application_id
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__name
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__application_id
 #: model:ir.ui.menu,name:software_license.menu_software_license_application
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_application_form_view
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
@@ -64,6 +81,31 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__version_build
+msgid "Build"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application_release__version_build
+msgid "Build metadata MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch or pre-release version.\n"
+"Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
+"Identifiers MUST NOT be empty.\n"
+"Build metadata MUST be ignored when determining version precedence.\n"
+"Thus two versions that differ only in the build metadata, have the same precedence.\n"
+"Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3—-117B344092BD."
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application__product_id
+msgid "By linking this application to a product, sales informations like description will be used in communications to customers"
+msgstr ""
+
+#. module: software_license
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_release_form_view
+msgid "Content"
+msgstr ""
+
+#. module: software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_application_form_view
 msgid "Create License Template"
 msgstr ""
@@ -76,6 +118,7 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__create_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__create_uid
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__create_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__create_uid
 msgid "Created by"
 msgstr ""
@@ -83,20 +126,38 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__create_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__create_date
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__create_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__date
+msgid "Date"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__display_name
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__display_name
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__display_name
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__url
+msgid "Download URL"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__failed_message_ids
 msgid "Failed Messages"
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license_application_release.py:36
+#, python-format
+msgid "Fixes"
 msgstr ""
 
 #. module: software_license
@@ -139,6 +200,7 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__id
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__id
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__id
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__id
 msgid "ID"
 msgstr ""
@@ -175,6 +237,16 @@ msgid "If unchecked, it will allow you to hide the license without removing it."
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__image
+msgid "Image"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application__image
+msgid "Image of the application (automatically resized to 300 x 200)."
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__info
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__info
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__info
@@ -189,8 +261,15 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: software_license
+#: code:addons/software_license/models/software_license_application_release.py:37
+#, python-format
+msgid "Known Issues"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license____last_update
 #: model:ir.model.fields,field_description:software_license.field_software_license_application____last_update
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release____last_update
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -198,6 +277,7 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__write_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__write_uid
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__write_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -205,8 +285,14 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__write_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__write_date
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__write_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__attachment_image
+msgid "Launcher Image"
 msgstr ""
 
 #. module: software_license
@@ -216,6 +302,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_form_view
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "License"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model,name:software_license.model_software_license_application_release
+msgid "License Application Release"
 msgstr ""
 
 #. module: software_license
@@ -250,6 +341,18 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__version_major
+msgid "Major"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application_release__version_major
+msgid "Major version X (X.y.z | X > 0) MUST be incremented if any backwards incompatible changes are introduced to the public API.\n"
+"It MAY also include minor and patch level changes.\n"
+"Patch and minor versions MUST be reset to 0 when major version is incremented."
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__message_has_error
 msgid "Message Delivery error"
 msgstr ""
@@ -257,6 +360,20 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__message_ids
 msgid "Messages"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__version_minor
+msgid "Minor"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application_release__version_minor
+msgid "Minor version Y (x.Y.z | x > 0) MUST be incremented if new, backwards compatible functionality is introduced to the public API.\n"
+"It MUST be incremented if any public API functionality is marked as deprecated.\n"
+"It MAY be incremented if substantial new functionality or improvements are introduced within the private code.\n"
+"It MAY include patch level changes.\n"
+"Patch version MUST be reset to 0 when minor version is incremented."
 msgstr ""
 
 #. module: software_license
@@ -317,8 +434,24 @@ msgid "Partner"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__version_patch
+msgid "Patch"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application_release__version_patch
+msgid "Patch version Z (x.y.Z | x > 0) MUST be incremented if only backwards compatible bug fixes are introduced.\n"
+"A bug fix is defined as an internal change that fixes incorrect behavior."
+msgstr ""
+
+#. module: software_license
 #: selection:software.license,activity_state:0
 msgid "Planned"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__version_prerelease
+msgid "Pre-release"
 msgstr ""
 
 #. module: software_license
@@ -336,6 +469,35 @@ msgstr ""
 #. module: software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_application_form_view
 msgid "Real name of the application, eg: Ubuntu 20.04"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__product_id
+msgid "Related Product"
+msgstr ""
+
+#. module: software_license
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_release_form_view
+msgid "Release"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__content
+msgid "Release Notes"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application_release__date
+msgid "Release's Date"
+msgstr ""
+
+#. module: software_license
+#: model:ir.actions.act_window,name:software_license.act_window_software_license_application_release
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__release_ids
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_release_search_view
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_release_tree_view
+msgid "Releases"
 msgstr ""
 
 #. module: software_license
@@ -359,7 +521,7 @@ msgid "Serial Activation Code must be unique per Application!"
 msgstr ""
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:61
+#: code:addons/software_license/models/software_license.py:66
 #: selection:software.license,type:0
 #, python-format
 msgid "Standard"
@@ -374,10 +536,25 @@ msgid "Status based on activities\n"
 msgstr ""
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:62
+#: code:addons/software_license/models/software_license.py:67
 #: selection:software.license,type:0
 #, python-format
 msgid "Template"
+msgstr ""
+
+#. module: software_license
+#: sql_constraint:software.license.application.release:0
+msgid "The release url must be unique per application !"
+msgstr ""
+
+#. module: software_license
+#: sql_constraint:software.license.application.release:0
+msgid "The release version must be unique per application !"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application__info
+msgid "This field is deprecated, use the chatter now."
 msgstr ""
 
 #. module: software_license
@@ -396,6 +573,11 @@ msgid "Unique hardware identifiers sent by client application made to identify a
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license__activation_identifier
+msgid "Unique identifier used for activation"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license__serial
 msgid "Unique serial used as an authorization identifier"
 msgstr ""
@@ -411,6 +593,21 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application_release__version
+msgid "Version"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application_release__version
+msgid "Version numbering using semver https://semver.org.\n"
+"A normal version number MUST take the form X.Y.Z where X, Y, and Z are non-negative integers, and MUST NOT contain leading zeroes.\n"
+"X is the major version, Y is the minor version, and Z is the patch version.\n"
+"Each element MUST increase numerically. For instance: 1.9.0 -> 1.10.0 -> 1.11.0.\n"
+"Once a versioned package has been released, the contents of that version MUST NOT be modified.\n"
+"Any modifications MUST be released as a new version."
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__website_message_ids
 msgid "Website Messages"
 msgstr ""
@@ -418,6 +615,30 @@ msgstr ""
 #. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license_application_release.py:35
+#, python-format
+msgid "What's New"
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license_application_release.py:36
+#, python-format
+msgid "fix"
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license_application_release.py:37
+#, python-format
+msgid "issue"
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license_application_release.py:35
+#, python-format
+msgid "new"
 msgstr ""
 
 #. module: software_license

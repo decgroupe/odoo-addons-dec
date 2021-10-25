@@ -2,7 +2,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
+from odoo.tools import pycompat
 
 
 class SoftwareLicenseApplication(models.Model):
@@ -47,6 +48,16 @@ class SoftwareLicenseApplication(models.Model):
         inverse_name='application_id',
         string="Releases",
     )
+    image = fields.Binary(
+        "Image",
+        compute='_compute_image',
+        inverse='_inverse_image',
+        help="Image of the application (automatically resized to 300 x 200)."
+    )
+    attachment_image = fields.Binary(
+        "Launcher Image",
+        attachment=True,
+    )
 
     def _prepare_license_template_vals(self):
         self.ensure_one()
@@ -62,3 +73,20 @@ class SoftwareLicenseApplication(models.Model):
             rec.template_id = self.env['software.license'].with_context(
                 default_type='template'
             ).create(vals)
+
+    @api.depends('attachment_image')
+    def _compute_image(self):
+        self.ensure_one()
+        if self._context.get('bin_size'):
+            self.image = self.attachment_image
+        else:
+            self.image = tools.image_resize_image(
+                self.attachment_image, size=(300, 200)
+            )
+
+    def _inverse_image(self):
+        self.ensure_one()
+        value = self.image
+        if isinstance(value, pycompat.text_type):
+            value = value.encode('ascii')
+        self.attachment_image = tools.image_resize_image(value, size=(300, 200))
