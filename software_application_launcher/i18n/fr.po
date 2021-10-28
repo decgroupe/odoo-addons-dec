@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 14:45+0000\n"
-"PO-Revision-Date: 2021-10-28 16:48+0200\n"
+"POT-Creation-Date: 2021-10-28 21:10+0000\n"
+"PO-Revision-Date: 2021-10-28 23:10+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,6 +18,7 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 
 #. module: software_application_launcher
+#: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
 #: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_image_form_view
 msgid "Application Images"
 msgstr "Images d'application"
@@ -73,6 +74,11 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: software_application_launcher
+#: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
+msgid "Launcher"
+msgstr "Lanceur"
+
+#. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__name
 msgid "Name"
 msgstr "Nom"
@@ -98,15 +104,14 @@ msgid "Software Application Image"
 msgstr "Image d'application"
 
 #. module: software_application_launcher
+#: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
+msgid "Tooltip Images"
+msgstr "Images Info-bulle"
+
+#. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application__image_ids
 msgid "Tooltips"
 msgstr "Infobulles"
 
-#~ msgid "Launcher"
-#~ msgstr "Lanceur"
-
 #~ msgid "License application"
 #~ msgstr "Application"
-
-#~ msgid "Tooltip Images"
-#~ msgstr "Images Info-bulle"
