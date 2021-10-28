@@ -6,7 +6,7 @@
         <field name="model">software.license.application</field>
         <field name="inherit_id" ref="software_license.software_license_application_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='main']/group[@name='secondary']" position="inside">
+            <xpath expr="//page[@name='licensing']/group[@name='main']/group[@name='secondary']" position="inside">
                 <field name="auto_generate_serial"/>
             </xpath>
         </field>

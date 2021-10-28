@@ -6,9 +6,15 @@
         <field name="model">software.license.application</field>
         <field name="inherit_id" ref="software_license.software_license_application_form_view"/>
         <field name="arch" type="xml">
-            <field name="identifier" position="after">
-                <field name="documentation_gitlab_resource_id" context="{'default_type': 'project'}" />
-            </field>
+            <xpath expr="//page[@name='licensing']/group[@name='main']" position="after">
+                <group name="gitlab">
+                    <group name="primary">
+                        <field name="documentation_gitlab_resource_id" context="{'default_type': 'project'}" />
+                    </group>
+                    <group name="secondary">
+                    </group>
+                </group>
+            </xpath>
         </field>
     </record>
 

@@ -7,7 +7,7 @@ from odoo import fields, models
 
 class SoftwareLicenseApplicationImage(models.Model):
     _name = 'software.license.application.image'
-    _description = 'Software License Appication Image'
+    _description = 'Software License Application Image'
 
     name = fields.Char('Name')
     image = fields.Binary('Image', attachment=True)

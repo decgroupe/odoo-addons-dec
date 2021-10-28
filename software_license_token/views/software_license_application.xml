@@ -19,7 +19,7 @@
                     class="btn-primary">
                 </button>
             </header>
-            <page name="general" position="after">
+            <page name="licensing" position="after">
                 <page name="token" string="Keys">
                     <group name="key_pair">
                         <field name="private_key" class="d_view_key" placeholder="-----BEGIN RSA PRIVATE KEY-----"/>
