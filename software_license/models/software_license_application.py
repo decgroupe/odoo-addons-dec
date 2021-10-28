@@ -35,13 +35,21 @@ class SoftwareLicenseApplication(models.Model):
     )
     info = fields.Text(
         string='Informations',
-        help="This field is deprecated, use the chatter now.",
+        help="Add details or missing informations",
     )
     product_id = fields.Many2one(
         comodel_name='product.product',
         string="Related Product",
         help="By linking this application to a product, sales informations "
         "like description will be used in communications to customers",
+    )
+    product_name = fields.Char(
+        related='product_id.name',
+        readonly=False,
+    )
+    product_description = fields.Text(
+        related='product_id.description_sale',
+        readonly=False,
     )
     release_ids = fields.One2many(
         comodel_name='software.license.application.release',
@@ -57,6 +65,10 @@ class SoftwareLicenseApplication(models.Model):
     attachment_image = fields.Binary(
         "Launcher Image",
         attachment=True,
+    )
+    tag_ids = fields.Many2many(
+        comodel_name='software.tag',
+        string='Tags',
     )
 
     def _prepare_license_template_vals(self):

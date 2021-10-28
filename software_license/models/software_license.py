@@ -60,7 +60,10 @@ class SoftwareLicense(models.Model):
     )
     production_id = fields.Many2one('mrp.production', 'Production')
     partner_id = fields.Many2one('res.partner', 'Partner')
-    info = fields.Text('Informations')
+    info = fields.Text(
+        'Informations',
+        help="This field is deprecated, use the chatter now.",
+    )
     type = fields.Selection(
         selection=[
             ('standard', _('Standard')),

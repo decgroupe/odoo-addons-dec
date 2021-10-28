@@ -48,16 +48,32 @@
                     </div>
                     <group name="main">
                         <group name="primary">
-                            <field name="identifier"/>
                             <field name="product_id"/>
-                            <field name="template_id" context="{'default_type': 'template', 'default_application_id': id}"/>
+                            <field name="product_name" attrs="{'invisible':[('product_id','=',False)]}"/>
+                            <field name="product_description" attrs="{'invisible':[('product_id','=',False)]}"/>
                         </group>
                         <group name="secondary">
+                            <field 
+                                name="tag_ids"
+                                placeholder="Tags..."
+                                widget="many2many_tags"
+                                options="{'color_field': 'color'}">
+                            </field>
                         </group>
                     </group>
                     <notebook>
                         <page string="Releases" name="releases">
-                            <field name="release_ids"/>
+                            <field name="release_ids" context="{'default_application_id': id}"/>
+                        </page>
+                        <page string="Licensing" name="licensing">
+                            <group name="main">
+                                <group name="primary">
+                                    <field name="identifier"/>
+                                    <field name="template_id" context="{'default_type': 'template', 'default_application_id': id}"/>
+                                </group>
+                                <group name="secondary">
+                                </group>
+                            </group>
                         </page>
                         <page string="Informations" name="general">
                             <group name="info">

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 10:22+0000\n"
-"PO-Revision-Date: 2021-10-25 10:22+0000\n"
+"POT-Creation-Date: 2021-10-28 11:47+0000\n"
+"PO-Revision-Date: 2021-10-28 11:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:88
+#: code:addons/software_license/models/software_license.py:91
 #, python-format
 msgid "%s (copy)"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application__product_description
+msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
 msgstr ""
 
 #. module: software_license
@@ -59,6 +64,11 @@ msgid "Activity State"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license_application__info
+msgid "Add details or missing informations"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__application_id
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__name
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release__application_id
@@ -70,6 +80,7 @@ msgstr ""
 
 #. module: software_license
 #: model:ir.actions.act_window,name:software_license.act_window_software_license_application
+#: model:ir.actions.act_window,name:software_license.act_window_software_tag
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_application_search_view
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_application_tree_view
 msgid "Applications"
@@ -101,6 +112,11 @@ msgid "By linking this application to a product, sales informations like descrip
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_tag__color
+msgid "Color Index"
+msgstr ""
+
+#. module: software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_application_release_form_view
 msgid "Content"
 msgstr ""
@@ -116,10 +132,16 @@ msgid "Create a new license and assign it as the template"
 msgstr ""
 
 #. module: software_license
+#: model_terms:ir.actions.act_window,help:software_license.act_window_software_tag
+msgid "Create a new tag"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__create_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__create_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release__create_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__create_uid
+#: model:ir.model.fields,field_description:software_license.field_software_tag__create_uid
 msgid "Created by"
 msgstr ""
 
@@ -128,6 +150,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__create_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release__create_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__create_date
+#: model:ir.model.fields,field_description:software_license.field_software_tag__create_date
 msgid "Created on"
 msgstr ""
 
@@ -141,6 +164,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__display_name
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release__display_name
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__display_name
+#: model:ir.model.fields,field_description:software_license.field_software_tag__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -202,6 +226,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__id
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release__id
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__id
+#: model:ir.model.fields,field_description:software_license.field_software_tag__id
 msgid "ID"
 msgstr ""
 
@@ -271,6 +296,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license_application____last_update
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release____last_update
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware____last_update
+#: model:ir.model.fields,field_description:software_license.field_software_tag____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -279,6 +305,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__write_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release__write_uid
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__write_uid
+#: model:ir.model.fields,field_description:software_license.field_software_tag__write_uid
 msgid "Last Updated by"
 msgstr ""
 
@@ -287,6 +314,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license_application__write_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_application_release__write_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__write_date
+#: model:ir.model.fields,field_description:software_license.field_software_tag__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -332,6 +360,7 @@ msgstr ""
 
 #. module: software_license
 #: model:ir.ui.menu,name:software_license.menu_software_licensing
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_form_view
 msgid "Licensing"
 msgstr ""
 
@@ -374,6 +403,12 @@ msgid "Minor version Y (x.Y.z | x > 0) MUST be incremented if new, backwards com
 "It MAY be incremented if substantial new functionality or improvements are introduced within the private code.\n"
 "It MAY include patch level changes.\n"
 "Patch version MUST be reset to 0 when minor version is incremented."
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__product_name
+#: model:ir.model.fields,field_description:software_license.field_software_tag__name
+msgid "Name"
 msgstr ""
 
 #. module: software_license
@@ -506,6 +541,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__product_description
+msgid "Sale Description"
+msgstr ""
+
+#. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license_application__template_id
 msgid "Select a license that will be used as a template when creating a new license"
 msgstr ""
@@ -521,7 +561,12 @@ msgid "Serial Activation Code must be unique per Application!"
 msgstr ""
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:66
+#: model:ir.model,name:software_license.model_software_tag
+msgid "Software Tag"
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license.py:69
 #: selection:software.license,type:0
 #, python-format
 msgid "Standard"
@@ -536,7 +581,30 @@ msgid "Status based on activities\n"
 msgstr ""
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:67
+#: model_terms:ir.ui.view,arch_db:software_license.software_tag_form_view
+msgid "Tag"
+msgstr ""
+
+#. module: software_license
+#: sql_constraint:software.tag:0
+msgid "Tag name already exists!"
+msgstr ""
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license_application__tag_ids
+#: model:ir.ui.menu,name:software_license.menu_software_tag
+#: model_terms:ir.ui.view,arch_db:software_license.software_tag_search_view
+#: model_terms:ir.ui.view,arch_db:software_license.software_tag_tree_view
+msgid "Tags"
+msgstr ""
+
+#. module: software_license
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_application_form_view
+msgid "Tags..."
+msgstr ""
+
+#. module: software_license
+#: code:addons/software_license/models/software_license.py:70
 #: selection:software.license,type:0
 #, python-format
 msgid "Template"
@@ -553,7 +621,7 @@ msgid "The release version must be unique per application !"
 msgstr ""
 
 #. module: software_license
-#: model:ir.model.fields,help:software_license.field_software_license_application__info
+#: model:ir.model.fields,help:software_license.field_software_license__info
 msgid "This field is deprecated, use the chatter now."
 msgstr ""
 

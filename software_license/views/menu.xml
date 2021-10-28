@@ -20,4 +20,11 @@
         <field name="parent_id" ref="menu_software_licensing"/>
     </record>
 
+    <record model="ir.ui.menu" id="menu_software_tag">
+        <field name="name">Tags</field>
+        <field name="sequence" eval="5"/>
+        <field name="action" ref="act_window_software_tag"/>
+        <field name="parent_id" ref="software.menu_configuration"/>
+    </record>
+
 </odoo>

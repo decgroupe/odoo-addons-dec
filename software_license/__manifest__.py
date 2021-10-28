@@ -17,6 +17,7 @@
     'data':
         [
             'security/ir.model.access.csv',
+            'views/software_tag.xml',
             'views/software_license.xml',
             'views/software_license_application.xml',
             'views/software_license_application_release.xml',
