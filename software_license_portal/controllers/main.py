@@ -111,7 +111,7 @@ class SoftwareLicenseController(http.Controller):
         }: odoo_convert.s_eval(expr, ctx, local_ctx, nocopy=True)
         try:
             for file in [
-                'data/unit_testing_software_license_application.xml',
+                'data/unit_testing_software_application.xml',
                 'data/unit_testing_software_license.xml',
             ]:
                 odoo_convert.convert_file(

@@ -17,7 +17,7 @@
         [
             'security/ir.model.access.csv',
             'views/software_tag.xml',
-            'views/software_license_application.xml',
+            'views/software_application.xml',
             'views/software_application_release.xml',
             'views/menu.xml',
         ],

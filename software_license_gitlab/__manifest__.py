@@ -10,7 +10,7 @@
     ],
     'data':
         [
-            'views/software_license_application.xml',
+            'views/software_application.xml',
         ],
     'installable': True
 }
