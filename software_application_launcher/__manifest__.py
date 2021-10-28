@@ -1,11 +1,11 @@
 {
-    'name': 'Software License (launcher)',
+    'name': 'Software Application (launcher)',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Launcher extra fields",
     'depends': [
-        'software_license',
+        'software_application',
         'website_sale', # for css styles
     ],
     'data':
