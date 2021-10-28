@@ -39,8 +39,8 @@ class SoftwareLicense(models.Model):
         store=True,
     )
     application_id = fields.Many2one(
-        'software.license.application',
-        'Application',
+        comodel_name='software.application',
+        string='Application',
         required=True,
     )
     hardware_ids = fields.One2many(

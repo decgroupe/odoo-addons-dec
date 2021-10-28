@@ -5,8 +5,8 @@
 from odoo import fields, models
 
 
-class SoftwareLicenseApplication(models.Model):
-    _inherit = 'software.license.application'
+class SoftwareApplication(models.Model):
+    _inherit = 'software.application'
 
     dongle_product_id = fields.Integer(
         string='Dongle Product ID',

@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_software_license_portal,Read access to software license for Portal,model_software_license,base.group_portal,1,0,0,0
-access_software_license_application_portal,Read access to software license application for Portal,model_software_license_application,base.group_portal,1,0,0,0
+access_software_application_portal,Read access to software application for Portal,model_software_application,base.group_portal,1,0,0,0
 access_software_license_hardware_portal,Read access to software license hardware for Portal,model_software_license_hardware,base.group_portal,1,0,0,0
 access_software_license_pass_portal,Read access to software license pass for Portal,model_software_license_pass,base.group_portal,1,0,0,0
 access_software_license_pack_portal,Read access to software license pack for Portal,software_license_pass.model_software_license_pack,base.group_portal,1,0,0,0

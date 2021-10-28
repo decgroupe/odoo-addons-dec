@@ -9,8 +9,8 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class SoftwareLicenseApplication(models.Model):
-    _inherit = 'software.license.application'
+class SoftwareApplication(models.Model):
+    _inherit = 'software.application'
 
     corner_image = fields.Binary(
         "Corner Image",

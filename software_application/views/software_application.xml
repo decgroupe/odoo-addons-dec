@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_application_tree_view" >
-        <field name="name">software.license.application.tree@software_application</field>
-        <field name="model">software.license.application</field>
+    <record model="ir.ui.view" id="software_application_tree_view" >
+        <field name="name">software.application.tree@software_application</field>
+        <field name="model">software.application</field>
         <field name="arch" type="xml">
             <tree string="Applications">
                 <field name="name"/>
@@ -12,9 +12,9 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_license_application_form_view" >
-        <field name="name">software.license.application.form@software_application</field>
-        <field name="model">software.license.application</field>
+    <record model="ir.ui.view" id="software_application_form_view" >
+        <field name="name">software.application.form@software_application</field>
+        <field name="model">software.application</field>
         <field name="arch" type="xml">
             <form string="Application">
                 <header>
@@ -67,9 +67,9 @@
         </field>
     </record>
     
-    <record model="ir.ui.view" id="software_license_application_search_view">
-        <field name="name">software.license.application.search@software_application</field>
-        <field name="model">software.license.application</field>
+    <record model="ir.ui.view" id="software_application_search_view">
+        <field name="name">software.application.search@software_application</field>
+        <field name="model">software.application</field>
         <field name="arch" type="xml">
             <search string="Applications">
                 <field name="info"/>
@@ -77,26 +77,26 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_software_license_application" >
+    <record model="ir.actions.act_window" id="act_window_software_application" >
         <field name="name">Applications</field>
-        <field name="res_model">software.license.application</field>
+        <field name="res_model">software.application</field>
         <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="software_license_application_tree_view"/>
-        <field name="search_view_id" ref="software_license_application_search_view"/>
+        <field name="view_id" ref="software_application_tree_view"/>
+        <field name="search_view_id" ref="software_application_search_view"/>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_license_application_tree" >
+    <record model="ir.actions.act_window.view" id="act_window_view_software_application_tree" >
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="software_license_application_tree_view"/>
-        <field name="act_window_id" ref="act_window_software_license_application"/>
+        <field name="view_id" ref="software_application_tree_view"/>
+        <field name="act_window_id" ref="act_window_software_application"/>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_license_application_form" >
+    <record model="ir.actions.act_window.view" id="act_window_view_software_application_form" >
         <field name="sequence" eval="2"/>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="software_license_application_form_view"/>
-        <field name="act_window_id" ref="act_window_software_license_application"/>
+        <field name="view_id" ref="software_application_form_view"/>
+        <field name="act_window_id" ref="act_window_software_application"/>
     </record>
 
 </odoo>

@@ -5,8 +5,8 @@
 from odoo import api, fields, models
 
 
-class SoftwareLicenseApplication(models.Model):
-    _inherit = 'software.license.application'
+class SoftwareApplication(models.Model):
+    _inherit = 'software.application'
 
     documentation_gitlab_resource_id = fields.Many2one(
         comodel_name='gitlab.resource',

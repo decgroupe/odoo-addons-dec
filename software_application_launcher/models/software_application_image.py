@@ -12,7 +12,7 @@ class SoftwareApplicationImage(models.Model):
     name = fields.Char('Name')
     image = fields.Binary('Image', attachment=True)
     application_id = fields.Many2one(
-        'software.license.application',
-        'Related Application',
+        comodel_name='software.application',
+        string='Related Application',
         copy=True,
     )

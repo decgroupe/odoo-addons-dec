@@ -6,8 +6,8 @@ from Crypto.PublicKey import RSA
 from odoo import api, fields, models
 
 
-class SoftwareLicenseApplication(models.Model):
-    _inherit = 'software.license.application'
+class SoftwareApplication(models.Model):
+    _inherit = 'software.application'
 
     auto_generate_serial = fields.Boolean(
         string="Auto-generate Serial",

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="application_test" model="software.license.application">
+    <record id="application_test" model="software.application">
         <field name="name">Testing</field>
         <field name="identifier">65534</field>
         <field name="private_key">-----BEGIN RSA PRIVATE KEY-----

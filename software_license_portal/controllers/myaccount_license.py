@@ -124,7 +124,7 @@ class LicenseCustomerPortal(CustomerPortal):
 
         searchbar_filters = self._get_searchbar_filters()
         # search filters (by application)
-        # for app in request.env['software.license.application'].search(
+        # for app in request.env['software.application'].search(
         #     [('portal_published', '=', True)]
         # ):
         #     searchbar_filters.update(

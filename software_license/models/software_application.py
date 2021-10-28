@@ -6,8 +6,8 @@ from odoo import _, api, fields, models, tools
 from odoo.tools import pycompat
 
 
-class SoftwareLicenseApplication(models.Model):
-    _inherit = 'software.license.application'
+class SoftwareApplication(models.Model):
+    _inherit = 'software.application'
 
     identifier = fields.Integer(
         'Identifier',

@@ -18,7 +18,7 @@ class SoftwareLicensePackLine(models.Model):
         required=True,
     )
     application_id = fields.Many2one(
-        comodel_name='software.license.application',
+        comodel_name='software.application',
         string='Application',
         index=True,
         required=True,

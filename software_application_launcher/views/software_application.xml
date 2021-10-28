@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_application_form_view">
-        <field name="name">software.license.application.form@software_license_launcher</field>
-        <field name="model">software.license.application</field>
-        <field name="inherit_id" ref="software_license.software_license_application_form_view"/>
+    <record model="ir.ui.view" id="software_application_form_view">
+        <field name="name">software.application.form@software_license_launcher</field>
+        <field name="model">software.application</field>
+        <field name="inherit_id" ref="software_application.software_application_form_view"/>
         <field name="arch" type="xml">
 
             <page name="releases" position="after">

@@ -6,9 +6,9 @@ from odoo import _, api, fields, models, tools
 from odoo.tools import pycompat
 
 
-class SoftwareLicenseApplication(models.Model):
-    _name = 'software.license.application'
-    _description = 'License application'
+class SoftwareApplication(models.Model):
+    _name = 'software.application'
+    _description = 'Software Application'
     _order = 'identifier asc, name'
 
     active = fields.Boolean(

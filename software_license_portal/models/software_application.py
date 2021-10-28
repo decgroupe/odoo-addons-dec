@@ -5,8 +5,8 @@
 from odoo import api, fields, models
 
 
-class SoftwareLicenseApplication(models.Model):
-    _inherit = 'software.license.application'
+class SoftwareApplication(models.Model):
+    _inherit = 'software.application'
 
     portal_published = fields.Boolean(
         'In Portal',

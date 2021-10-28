@@ -51,7 +51,7 @@ class SoftwareApplicationRelease(models.Model):
         return ''
 
     application_id = fields.Many2one(
-        comodel_name='software.license.application',
+        comodel_name='software.application',
         string="Application",
         required=True,
     )
