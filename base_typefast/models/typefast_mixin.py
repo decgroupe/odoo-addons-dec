@@ -7,7 +7,7 @@ import re
 from odoo import api, fields, models
 
 
-class TypefastMixin(models.Model):
+class TypefastMixin(models.AbstractModel):
     _name = 'typefast.mixin'
     _description = "Typefast Mixin"
 
