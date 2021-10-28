@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 11:51+0000\n"
-"PO-Revision-Date: 2021-10-11 11:51+0000\n"
+"POT-Creation-Date: 2021-10-28 14:45+0000\n"
+"PO-Revision-Date: 2021-10-28 14:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: software_license_pass
+#: model:mail.template,report_name:software_license_pass.email_template
+msgid "${(object.name or '').replace('/','_')}"
+msgstr ""
+
+#. module: software_license_pass
 #: code:addons/software_license_pass/models/software_license.py:64
 #, python-format
 msgid "%s (%s for %s)"
 msgstr ""
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:166
+#: code:addons/software_license_pass/models/software_license_pass.py:155
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -41,6 +46,21 @@ msgid "<div style=\"margin: 0px; padding: 0px;\">\n"
 "            (with reference: ${object.origin})\n"
 "        % endif\n"
 "        from ${object.company_id.name}.\n"
+"        <br/>\n"
+"        <p>\n"
+"            This pass allows you to activate up to ${object.max_allowed_hardware} devices and to access following applications:\n"
+"            <ul>\n"
+"            % for license_id in object.license_ids:\n"
+"                <li>\n"
+"                    <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${'white'};\"> </div>\n"
+"                    <span style=\"margin-left:5px\">${license_id.application_id.name}</span>\n"
+"                </li>\n"
+"            % endfor\n"
+"            </ul>\n"
+"            <i>This access will be valid until ${format_date(object.expiration_date)}.</i>\n"
+"            <br/><br/>\n"
+"            <b>Please read carefully the accompanying documentation which explains how to manage your activations and where you can download your digital content.</b>\n"
+"        </p>\n"
 "        <br/><br/>\n"
 "        Do not hesitate to contact us if you have any question.\n"
 "    </p>\n"
@@ -102,7 +122,7 @@ msgid "Application Packs"
 msgstr ""
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:233
+#: code:addons/software_license_pass/models/software_license_pass.py:245
 #: model:ir.model,name:software_license_pass.model_software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 #, python-format
@@ -284,11 +304,6 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__license_ids
-msgid "Licences"
-msgstr ""
-
-#. module: software_license_pass
 #: model:ir.model,name:software_license_pass.model_software_license
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "License"
@@ -305,8 +320,8 @@ msgid "License Template"
 msgstr ""
 
 #. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_software_license_application
-msgid "License application"
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__license_ids
+msgid "Licenses"
 msgstr ""
 
 #. module: software_license_pass
@@ -345,9 +360,9 @@ msgid "Name"
 msgstr ""
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:56
-#: code:addons/software_license_pass/models/software_license_pass.py:147
-#: code:addons/software_license_pass/models/software_license_pass.py:150
+#: code:addons/software_license_pass/models/software_license_pass.py:57
+#: code:addons/software_license_pass/models/software_license_pass.py:136
+#: code:addons/software_license_pass/models/software_license_pass.py:139
 #, python-format
 msgid "New"
 msgstr ""
@@ -435,16 +450,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_id
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Partner"
-msgstr ""
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_city_id
-msgid "Partner's City"
-msgstr ""
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_zip_id
-msgid "Partner's ZIP"
 msgstr ""
 
 #. module: software_license_pass
@@ -545,6 +550,11 @@ msgstr ""
 #. module: software_license_pass
 #: sql_constraint:software.license.pass:0
 msgid "Serial Pass Activation Code must be unique!"
+msgstr ""
+
+#. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_software_application
+msgid "Software Application"
 msgstr ""
 
 #. module: software_license_pass

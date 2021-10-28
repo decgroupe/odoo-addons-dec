@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 11:47+0000\n"
-"PO-Revision-Date: 2021-10-28 11:47+0000\n"
+"POT-Creation-Date: 2021-10-28 14:45+0000\n"
+"PO-Revision-Date: 2021-10-28 14:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,17 +16,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
 msgid "-----BEGIN PUBLIC KEY-----"
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
 msgid "-----BEGIN RSA PRIVATE KEY-----"
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
 msgid "Create a new public/private key pair"
 msgstr ""
 
@@ -42,7 +42,7 @@ msgid "Expiration date reached"
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
 msgid "Generate Keys"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgid "If set, then after this date it will not be possible to proceed or renew 
 msgstr ""
 
 #. module: software_license_token
-#: model_terms:ir.ui.view,arch_db:software_license_token.software_license_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
 msgid "Keys"
 msgstr ""
 
@@ -72,11 +72,6 @@ msgid "License Hardware"
 msgstr ""
 
 #. module: software_license_token
-#: model:ir.model,name:software_license_token.model_software_license_application
-msgid "License application"
-msgstr ""
-
-#. module: software_license_token
 #: model:ir.model.fields,field_description:software_license_token.field_software_license__max_allowed_hardware
 msgid "Maximum Activation Count"
 msgstr ""
@@ -88,13 +83,18 @@ msgid "Maximum hardware identifier count reached"
 msgstr ""
 
 #. module: software_license_token
-#: model:ir.model.fields,field_description:software_license_token.field_software_license_application__private_key
+#: model:ir.model.fields,field_description:software_license_token.field_software_application__private_key
 msgid "Private Key"
 msgstr ""
 
 #. module: software_license_token
-#: model:ir.model.fields,field_description:software_license_token.field_software_license_application__public_key
+#: model:ir.model.fields,field_description:software_license_token.field_software_application__public_key
 msgid "Public Key"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model,name:software_license_token.model_software_application
+msgid "Software Application"
 msgstr ""
 
 #. module: software_license_token

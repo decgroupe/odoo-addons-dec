@@ -1,0 +1,401 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* software_application
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-28 14:45+0000\n"
+"PO-Revision-Date: 2021-10-28 16:48+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__product_description
+msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
+msgstr "Une description du produit que vous souhaitez communiquer à vos clients. Cette description sera copiée sur chaque bon de commande, bon de livraison et note de crédit/facture client"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_prerelease
+msgid ""
+"A pre-release version MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch version.\n"
+"Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
+"Identifiers MUST NOT be empty.\n"
+"Numeric identifiers MUST NOT include leading zeroes.\n"
+"Pre-release versions have a lower precedence than the associated normal version.\n"
+"A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version.\n"
+"Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.–."
+msgstr ""
+"Une version de pré-livraison PEUT être notée par l’ajout d’un trait d’union et d’une série d’identifiants séparés par des points suivant immédiatement l’identifiant de version de correction.\n"
+"Les identifiants DOIVENT être composés uniquement de caractères alphanumériques ASCII et de traits d’union [0-9A-Za-z-].\n"
+"Les identifiants NE DOIVENT PAS être vides.\n"
+"Les identifiants numériques NE DOIVENT PAS être préfixés par des zéros.\n"
+"Les versions de pré-livraison précèdent la version normale associée (version de pré-livraison < version normale).\n"
+"Une version de pré-livraison indique que la version n’est pas stable et ne satisfait pas forcément les exigences de compatibilité associées à une version normale.\n"
+"Exemples : 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92."
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__info
+msgid "Add details or missing informations"
+msgstr "Ajouter des détails ou des informations manquantes"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__name
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__application_id
+#: model:ir.ui.menu,name:software_application.menu_software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Application"
+msgstr "Application"
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_tag
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_search_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_tree_view
+msgid "Applications"
+msgstr "Applications"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_build
+msgid "Build"
+msgstr "Build"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_build
+msgid ""
+"Build metadata MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch or pre-release version.\n"
+"Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
+"Identifiers MUST NOT be empty.\n"
+"Build metadata MUST be ignored when determining version precedence.\n"
+"Thus two versions that differ only in the build metadata, have the same precedence.\n"
+"Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3—-117B344092BD."
+msgstr ""
+"Les méta-données de construction PEUVENT être notées par l’ajout d’un signe « plus » et d’une série d’identifiants séparés par des points suivant immédiatement l’identifiant de version de correction ou de pré-livraison.\n"
+"Les identifiants DOIVENT être composés uniquement de caractères alphanumériques ASCII et de traits d’union [0-9A-Za-z-].\n"
+"Les identifiants NE DOIVENT PAS être vides.\n"
+"Les méta-données de construction DEVRAIENT être ignorées dans l’ordre des versions.\n"
+"Autrement dit, deux versions qui diffèrent seulement par leurs informations de construction ont la même priorité.\n"
+"Exemples : 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85."
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__product_id
+msgid "By linking this application to a product, sales informations like description will be used in communications to customers"
+msgstr "En liant cette application à un article, les informations de vente comme la description seront utilisées dans les communications aux clients"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_tag__color
+msgid "Color Index"
+msgstr "Couleur"
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_form_view
+msgid "Content"
+msgstr "Contenu"
+
+#. module: software_application
+#: model_terms:ir.actions.act_window,help:software_application.act_window_software_tag
+msgid "Create a new tag"
+msgstr "Créer une nouvelle étiquette"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__create_uid
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__create_uid
+#: model:ir.model.fields,field_description:software_application.field_software_tag__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__create_date
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__create_date
+#: model:ir.model.fields,field_description:software_application.field_software_tag__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__date
+msgid "Date"
+msgstr "Date"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__display_name
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__display_name
+#: model:ir.model.fields,field_description:software_application.field_software_tag__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__url
+msgid "Download URL"
+msgstr "Lien de téléchargement"
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:36
+#, python-format
+msgid "Fixes"
+msgstr "Correctifs"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__id
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__id
+#: model:ir.model.fields,field_description:software_application.field_software_tag__id
+msgid "ID"
+msgstr "ID"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__active
+msgid "If unchecked, it will allow you to hide the application without removing it."
+msgstr "Si non coché, permet de masquer l'application sans la supprimer."
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__image
+msgid "Image"
+msgstr "Image"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__image
+msgid "Image of the application (automatically resized to 300 x 200)."
+msgstr "Image de l'application (redimensionnée automatiquement à 300 x 200)."
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__info
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Informations"
+msgstr "Informations"
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:37
+#, python-format
+msgid "Known Issues"
+msgstr "Problèmes connus"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application____last_update
+#: model:ir.model.fields,field_description:software_application.field_software_application_release____last_update
+#: model:ir.model.fields,field_description:software_application.field_software_tag____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__write_uid
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__write_uid
+#: model:ir.model.fields,field_description:software_application.field_software_tag__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__write_date
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__write_date
+#: model:ir.model.fields,field_description:software_application.field_software_tag__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__attachment_image
+msgid "Launcher Image"
+msgstr "Image du lanceur"
+
+#. module: software_application
+#: model:ir.model,name:software_application.model_software_application_release
+msgid "License Application Release"
+msgstr "Publication d'une application sous licence"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_major
+msgid "Major"
+msgstr "Majeur"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_major
+msgid ""
+"Major version X (X.y.z | X > 0) MUST be incremented if any backwards incompatible changes are introduced to the public API.\n"
+"It MAY also include minor and patch level changes.\n"
+"Patch and minor versions MUST be reset to 0 when major version is incremented."
+msgstr ""
+"L’identifiant de version majeur X (X.y.z | X > 0) DOIT être incrémenté si des changements non rétrocompatibles sont introduits dans l’API publique.\n"
+"Cela PEUT inclure dans le même temps des changements mineurs et des corrections.\n"
+"Les identifiants de version mineure et de correction DOIVENT être remis à zéro quand l’identifiant de version majeure est incrémenté."
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_minor
+msgid "Minor"
+msgstr "Mineur"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_minor
+msgid ""
+"Minor version Y (x.Y.z | x > 0) MUST be incremented if new, backwards compatible functionality is introduced to the public API.\n"
+"It MUST be incremented if any public API functionality is marked as deprecated.\n"
+"It MAY be incremented if substantial new functionality or improvements are introduced within the private code.\n"
+"It MAY include patch level changes.\n"
+"Patch version MUST be reset to 0 when minor version is incremented."
+msgstr ""
+"L’identifiant de version mineure Y (x.Y.z | x > 0) DOIT être incrémenté si de nouvelles fonctionnalités rétrocompatibles sont introduites dans l’API publique.\n"
+"Il DOIT être incrémenté si une fonctionnalité de l’API publique est marquée comme obsolète.\n"
+"Il PEUT être incrémenté si de nouvelles fonctionnalités ou améliorations substantielles sont introduites dans le code privé.\n"
+"Il PEUT inclure dans le même temps des corrections.\n"
+"L’identifiant de version de correction DOIT être remis à zéro lorsque l’identifiant de version mineure est incrémenté."
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__product_name
+#: model:ir.model.fields,field_description:software_application.field_software_tag__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_patch
+msgid "Patch"
+msgstr "Patch"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_patch
+msgid ""
+"Patch version Z (x.y.Z | x > 0) MUST be incremented if only backwards compatible bug fixes are introduced.\n"
+"A bug fix is defined as an internal change that fixes incorrect behavior."
+msgstr ""
+"L’identifiant de version de correction Z (x.y.Z | x > 0) DOIT être incrémenté si seules des corrections rétrocompatibles sont introduites.\n"
+"Une correction est définie comme un changement interne qui corrige un comportement incorrect."
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_prerelease
+msgid "Pre-release"
+msgstr "Pré-version"
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Real name of the application, eg: Ubuntu 20.04"
+msgstr "Nom complet de l’application, par exemple: Ubuntu 20.04"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__product_id
+msgid "Related Product"
+msgstr "Produit lié"
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_form_view
+msgid "Release"
+msgstr "Publication"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__content
+msgid "Release Notes"
+msgstr "Notes de publications"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__date
+msgid "Release's Date"
+msgstr "Date de publication"
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_release
+#: model:ir.model.fields,field_description:software_application.field_software_application__release_ids
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_search_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_tree_view
+msgid "Releases"
+msgstr "Publications"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__product_description
+msgid "Sale Description"
+msgstr "Description vente"
+
+#. module: software_application
+#: model:ir.model,name:software_application.model_software_application
+msgid "Software Application"
+msgstr "Application"
+
+#. module: software_application
+#: model:ir.model,name:software_application.model_software_tag
+msgid "Software Tag"
+msgstr "Étiquette Logicielle"
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_tag_form_view
+msgid "Tag"
+msgstr "Étiquette"
+
+#. module: software_application
+#: sql_constraint:software.tag:0
+msgid "Tag name already exists!"
+msgstr "Ce nom d'étiquette existe déjà !"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__tag_ids
+#: model:ir.ui.menu,name:software_application.menu_software_tag
+#: model_terms:ir.ui.view,arch_db:software_application.software_tag_search_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_tag_tree_view
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Tags..."
+msgstr "Étiquettes..."
+
+#. module: software_application
+#: sql_constraint:software.application.release:0
+msgid "The release url must be unique per application !"
+msgstr "Le lien doit être unique par application !"
+
+#. module: software_application
+#: sql_constraint:software.application.release:0
+msgid "The release version must be unique per application !"
+msgstr "La version doit être unique par application!"
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version
+msgid "Version"
+msgstr "Version"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version
+msgid ""
+"Version numbering using semver https://semver.org.\n"
+"A normal version number MUST take the form X.Y.Z where X, Y, and Z are non-negative integers, and MUST NOT contain leading zeroes.\n"
+"X is the major version, Y is the minor version, and Z is the patch version.\n"
+"Each element MUST increase numerically. For instance: 1.9.0 -> 1.10.0 -> 1.11.0.\n"
+"Once a versioned package has been released, the contents of that version MUST NOT be modified.\n"
+"Any modifications MUST be released as a new version."
+msgstr ""
+"Gestion sémantique de version utilisant semver https://semver.org.\n"
+"Un numéro de version standard DOIT prendre la forme X.Y.Z où X, Y et Z sont des entiers non négatifs et NE DOIVENT PAS être préfixés par des zéros.\n"
+"X représente l’identifiant de version majeure, Y représente l’identifiant de version mineure et Z l’identifiant de version de correction.\n"
+"Chaque élément DOIT s’incrémenter numériquement. Exemple : 1.9.0 -> 1.10.0 -> 1.11.0.\n"
+"Une fois qu’un composant est publié, le contenu de sa version NE DOIT PAS être modifié.\n"
+"Toute modification DOIT être publiée dans une nouvelle version."
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:35
+#, python-format
+msgid "What's New"
+msgstr "Quoi de neuf"
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:36
+#, python-format
+msgid "fix"
+msgstr "correctif"
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:37
+#, python-format
+msgid "issue"
+msgstr "problème"
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:35
+#, python-format
+msgid "new"
+msgstr "nouveau"

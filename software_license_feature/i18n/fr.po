@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 07:15+0000\n"
-"PO-Revision-Date: 2021-10-11 10:05+0200\n"
+"POT-Creation-Date: 2021-10-28 14:45+0000\n"
+"PO-Revision-Date: 2021-10-28 16:49+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -116,11 +116,6 @@ msgid "License"
 msgstr "Licence"
 
 #. module: software_license_feature
-#: model:ir.model,name:software_license_feature.model_software_license_application
-msgid "License application"
-msgstr "Application"
-
-#. module: software_license_feature
 #: code:addons/software_license_feature/models/software_license_feature.py:66
 #, python-format
 msgid "Missing value for property {} : {}"
@@ -149,6 +144,11 @@ msgstr "Propriétés"
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__property_id
 msgid "Property"
 msgstr "Propriété"
+
+#. module: software_license_feature
+#: model:ir.model,name:software_license_feature.model_software_application
+msgid "Software Application"
+msgstr "Application"
 
 #. module: software_license_feature
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_form_view

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 11:51+0000\n"
-"PO-Revision-Date: 2021-10-13 14:40+0200\n"
+"POT-Creation-Date: 2021-10-28 14:45+0000\n"
+"PO-Revision-Date: 2021-10-28 16:50+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: software_license_pass
+#: model:mail.template,report_name:software_license_pass.email_template
+msgid "${(object.name or '').replace('/','_')}"
+msgstr ""
 
 #. module: software_license_pass
 #: code:addons/software_license_pass/models/software_license.py:64
@@ -24,7 +29,7 @@ msgid "%s (%s for %s)"
 msgstr "%s (%s pour %s)"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:166
+#: code:addons/software_license_pass/models/software_license_pass.py:155
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copie)"
@@ -44,6 +49,21 @@ msgid ""
 "            (with reference: ${object.origin})\n"
 "        % endif\n"
 "        from ${object.company_id.name}.\n"
+"        <br/>\n"
+"        <p>\n"
+"            This pass allows you to activate up to ${object.max_allowed_hardware} devices and to access following applications:\n"
+"            <ul>\n"
+"            % for license_id in object.license_ids:\n"
+"                <li>\n"
+"                    <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${'white'};\"> </div>\n"
+"                    <span style=\"margin-left:5px\">${license_id.application_id.name}</span>\n"
+"                </li>\n"
+"            % endfor\n"
+"            </ul>\n"
+"            <i>This access will be valid until ${format_date(object.expiration_date)}.</i>\n"
+"            <br/><br/>\n"
+"            <b>Please read carefully the accompanying documentation which explains how to manage your activations and where you can download your digital content.</b>\n"
+"        </p>\n"
 "        <br/><br/>\n"
 "        Do not hesitate to contact us if you have any question.\n"
 "    </p>\n"
@@ -105,7 +125,7 @@ msgid "Application Packs"
 msgstr "Pack d'applications"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:233
+#: code:addons/software_license_pass/models/software_license_pass.py:245
 #: model:ir.model,name:software_license_pass.model_software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 #, python-format
@@ -293,11 +313,6 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__license_ids
-msgid "Licences"
-msgstr "Licenses"
-
-#. module: software_license_pass
 #: model:ir.model,name:software_license_pass.model_software_license
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "License"
@@ -314,9 +329,9 @@ msgid "License Template"
 msgstr "Modèle de licence"
 
 #. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_software_license_application
-msgid "License application"
-msgstr "Application"
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__license_ids
+msgid "Licenses"
+msgstr "Licences"
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__license_ids
@@ -354,9 +369,9 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:56
-#: code:addons/software_license_pass/models/software_license_pass.py:147
-#: code:addons/software_license_pass/models/software_license_pass.py:150
+#: code:addons/software_license_pass/models/software_license_pass.py:57
+#: code:addons/software_license_pass/models/software_license_pass.py:136
+#: code:addons/software_license_pass/models/software_license_pass.py:139
 #, python-format
 msgid "New"
 msgstr "Nouveau"
@@ -445,16 +460,6 @@ msgstr "Packs"
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Partner"
 msgstr "Partenaire"
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_city_id
-msgid "Partner's City"
-msgstr "Ville du partenaire"
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_zip_id
-msgid "Partner's ZIP"
-msgstr "Code postal du partenaire"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license__pass_id
@@ -557,6 +562,11 @@ msgid "Serial Pass Activation Code must be unique!"
 msgstr "Le numéro de série (code d’activation) du « pass » doit être unique par application!"
 
 #. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_software_application
+msgid "Software Application"
+msgstr "Application"
+
+#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__origin
 msgid "Source"
 msgstr "Origine"
@@ -623,6 +633,18 @@ msgstr "Historique de communication du site web"
 #: model:mail.template,subject:software_license_pass.email_template
 msgid "e-space ${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or 'n/a' })"
 msgstr ""
+
+#~ msgid "Licences"
+#~ msgstr "Licenses"
+
+#~ msgid "License application"
+#~ msgstr "Application"
+
+#~ msgid "Partner's City"
+#~ msgstr "Ville du partenaire"
+
+#~ msgid "Partner's ZIP"
+#~ msgstr "Code postal du partenaire"
 
 #~ msgid ""
 #~ ".\n"
