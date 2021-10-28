@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="software_tag_tree_view">
-        <field name="name">software.tag.tree@software_license</field>
+        <field name="name">software.tag.tree@software_application</field>
         <field name="model">software.tag</field>
         <field name="arch" type="xml">
             <tree string="Tags">
@@ -12,7 +12,7 @@
     </record>
 
     <record model="ir.ui.view" id="software_tag_form_view">
-        <field name="name">software.tag.form@software_license</field>
+        <field name="name">software.tag.form@software_application</field>
         <field name="model">software.tag</field>
         <field name="arch" type="xml">
             <form string="Tag">
@@ -24,7 +24,7 @@
     </record>
 
     <record model="ir.ui.view" id="software_tag_search_view">
-        <field name="name">software.tag.search@software_license</field>
+        <field name="name">software.tag.search@software_application</field>
         <field name="model">software.tag</field>
         <field name="arch" type="xml">
             <search string="Tags">

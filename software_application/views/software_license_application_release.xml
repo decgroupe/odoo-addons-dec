@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="software_license_application_release_tree_view">
-        <field name="name">software.license.application.release.tree@software_license</field>
+        <field name="name">software.license.application.release.tree@software_application</field>
         <field name="model">software.license.application.release</field>
         <field name="arch" type="xml">
             <tree string="Releases" create="true" delete="true">
@@ -14,7 +14,7 @@
     </record>
 
     <record model="ir.ui.view" id="software_license_application_release_form_view">
-        <field name="name">software.license.application.release.form@software_license</field>
+        <field name="name">software.license.application.release.form@software_application</field>
         <field name="model">software.license.application.release</field>
         <field name="arch" type="xml">
             <form string="Release">
@@ -53,7 +53,7 @@
     </record>
 
     <record model="ir.ui.view" id="software_license_application_release_search_view">
-        <field name="name">software.license.application.release.search@software_license</field>
+        <field name="name">software.license.application.release.search@software_application</field>
         <field name="model">software.license.application.release</field>
         <field name="arch" type="xml">
             <search string="Releases">
