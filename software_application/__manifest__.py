@@ -21,5 +21,6 @@
             'views/software_application_release.xml',
             'views/menu.xml',
         ],
+    'force_migration': '12.0.2.0.1',
     'installable': True
-}
+} 
