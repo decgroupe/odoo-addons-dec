@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_application_image_form_view">
-        <field name="name">software.license.application.image.form</field>
-        <field name="model">software.license.application.image</field>
+    <record model="ir.ui.view" id="software_application_image_form_view">
+        <field name="name">software.application.image.form</field>
+        <field name="model">software.application.image</field>
         <field name="arch" type="xml">
             <form string="Application Images">
                 <div class="row o_website_sale_image_modal">

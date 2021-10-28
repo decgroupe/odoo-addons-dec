@@ -12,7 +12,7 @@
         [
             'security/ir.model.access.csv',
             'views/software_license_application.xml',
-            'views/software_license_application_image.xml',
+            'views/software_application_image.xml',
         ],
     'installable': True
 }

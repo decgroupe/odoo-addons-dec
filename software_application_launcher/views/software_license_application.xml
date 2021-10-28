@@ -28,7 +28,7 @@
                                         <div class="o_attachment oe_kanban_global_click o_website_sale_image_card">
                                             <div class="o_attachment_wrap">
                                                 <div class="o_image_box">
-                                                    <div class="o_attachment_image" t-attf-style="background-image:url({{kanban_image('software.license.application.image', 'image', record.id.raw_value)}});"/>
+                                                    <div class="o_attachment_image" t-attf-style="background-image:url({{kanban_image('software.application.image', 'image', record.id.raw_value)}});"/>
                                                     <div t-attf-class="o_image_overlay" t-att-title="record.name.value"/>
                                                     <div class="o_website_sale_image_card_title" t-att-title="record.name.value">
                                                         <field name="name"/>

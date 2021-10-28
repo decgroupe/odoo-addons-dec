@@ -21,7 +21,7 @@ class SoftwareLicenseApplication(models.Model):
         attachment=True,
     )
     image_ids = fields.One2many(
-        'software.license.application.image',
+        'software.application.image',
         'application_id',
         string='Tooltips',
     )
