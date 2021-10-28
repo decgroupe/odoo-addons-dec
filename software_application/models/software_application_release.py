@@ -7,8 +7,8 @@ import semver
 from odoo import _, api, fields, models
 
 
-class SoftwareLicenseApplicationRelease(models.Model):
-    _name = 'software.license.application.release'
+class SoftwareApplicationRelease(models.Model):
+    _name = 'software.application.release'
     _description = 'License Application Release'
     # _order = 'version_major, version_minor, version_patch'
     _order = 'version_major desc, version_minor desc, version_patch desc'

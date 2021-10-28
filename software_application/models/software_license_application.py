@@ -40,7 +40,7 @@ class SoftwareLicenseApplication(models.Model):
         readonly=False,
     )
     release_ids = fields.One2many(
-        comodel_name='software.license.application.release',
+        comodel_name='software.application.release',
         inverse_name='application_id',
         string="Releases",
     )
