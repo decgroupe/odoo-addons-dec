@@ -18,7 +18,11 @@
                         </group>
                     </group>
                     <group name="tooltip_images" string="Tooltip Images">
-                        <field name="image_ids" class="o_website_sale_image_list" context="{'default_name': name, 'default_application_id': active_id}" nolabel="1">
+                        <field name="image_ids" nolabel="1" class="o_website_sale_image_list"
+                            context="{
+                                'default_application_id': active_id,
+                                'image_ids': image_ids,
+                            }">
                             <kanban string="Application Images" class="o_attachments_previews">
                                 <field name="id"/>
                                 <field name="name"/>
