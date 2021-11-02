@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 14:45+0000\n"
-"PO-Revision-Date: 2021-10-28 14:45+0000\n"
+"POT-Creation-Date: 2021-11-02 13:33+0000\n"
+"PO-Revision-Date: 2021-11-02 13:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -77,6 +77,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license.field_software_license__create_date
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__create_date
 msgid "Created on"
+msgstr ""
+
+#. module: software_license
+#: model_terms:ir.actions.act_window,help:software_license.act_window_software_license
+msgid "Créer un nouveau document"
 msgstr ""
 
 #. module: software_license
@@ -199,18 +204,19 @@ msgid "License"
 msgstr ""
 
 #. module: software_license
-#: model:ir.model,name:software_license.model_software_application_release
-msgid "License Application Release"
-msgstr ""
-
-#. module: software_license
 #: model:ir.model,name:software_license.model_software_license_hardware
 msgid "License Hardware"
 msgstr ""
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_application__template_id
+#: model:ir.ui.menu,name:software_license.menu_software_license_template
 msgid "License Template"
+msgstr ""
+
+#. module: software_license
+#: model:ir.actions.act_window,name:software_license.act_window_software_license_template
+msgid "License Templates"
 msgstr ""
 
 #. module: software_license
@@ -337,11 +343,6 @@ msgstr ""
 #. module: software_license
 #: model:ir.model,name:software_license.model_software_application
 msgid "Software Application"
-msgstr ""
-
-#. module: software_license
-#: model:ir.model,name:software_license.model_software_tag
-msgid "Software Tag"
 msgstr ""
 
 #. module: software_license

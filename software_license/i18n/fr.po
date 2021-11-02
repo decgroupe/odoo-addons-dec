@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 14:45+0000\n"
-"PO-Revision-Date: 2021-10-28 16:49+0200\n"
+"POT-Creation-Date: 2021-11-02 13:33+0000\n"
+"PO-Revision-Date: 2021-11-02 14:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -80,6 +80,11 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__create_date
 msgid "Created on"
 msgstr "Créé le"
+
+#. module: software_license
+#: model_terms:ir.actions.act_window,help:software_license.act_window_software_license
+msgid "Créer un nouveau document"
+msgstr ""
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__display_name
@@ -201,19 +206,20 @@ msgid "License"
 msgstr "Licence"
 
 #. module: software_license
-#: model:ir.model,name:software_license.model_software_application_release
-msgid "License Application Release"
-msgstr "Publication d'une application sous licence"
-
-#. module: software_license
 #: model:ir.model,name:software_license.model_software_license_hardware
 msgid "License Hardware"
 msgstr "Matériel"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_application__template_id
+#: model:ir.ui.menu,name:software_license.menu_software_license_template
 msgid "License Template"
 msgstr "Modèle de licence"
+
+#. module: software_license
+#: model:ir.actions.act_window,name:software_license.act_window_software_license_template
+msgid "License Templates"
+msgstr "Modèles de licence"
 
 #. module: software_license
 #: model:ir.actions.act_window,name:software_license.act_window_software_license
@@ -342,11 +348,6 @@ msgid "Software Application"
 msgstr "Application"
 
 #. module: software_license
-#: model:ir.model,name:software_license.model_software_tag
-msgid "Software Tag"
-msgstr "Étiquette Logicielle"
-
-#. module: software_license
 #: code:addons/software_license/models/software_license.py:69
 #: selection:software.license,type:0
 #, python-format
@@ -428,6 +429,12 @@ msgstr "Historique de communication du site web"
 #, python-format
 msgid "✳️ Template %d"
 msgstr "✳️ Modèle %d"
+
+#~ msgid "License Application Release"
+#~ msgstr "Publication d'une application sous licence"
+
+#~ msgid "Software Tag"
+#~ msgstr "Étiquette Logicielle"
 
 #~ msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
 #~ msgstr "Une description du produit que vous souhaitez communiquer à vos clients. Cette description sera copiée sur chaque bon de commande, bon de livraison et note de crédit/facture client"
