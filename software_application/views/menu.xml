@@ -7,10 +7,24 @@
         <field name="parent_id" ref="software.menu_software"/>
     </record>
 
-    <record model="ir.ui.menu" id="menu_software_application">
-        <field name="name">Applications</field>
+    <record model="ir.ui.menu" id="menu_software_application_inhouse">
+        <field name="name">In-House Apps</field>
         <field name="sequence" eval="10"/>
-        <field name="action" ref="act_window_software_application"/>
+        <field name="action" ref="act_window_software_application_inhouse"/>
+        <field name="parent_id" ref="menu_software_asset"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_software_application_resource">
+        <field name="name">Resources</field>
+        <field name="sequence" eval="15"/>
+        <field name="action" ref="act_window_software_application_resource"/>
+        <field name="parent_id" ref="menu_software_asset"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_software_application_other">
+        <field name="name">Other Apps</field>
+        <field name="sequence" eval="20"/>
+        <field name="action" ref="act_window_software_application_other"/>
         <field name="parent_id" ref="menu_software_asset"/>
     </record>
 
