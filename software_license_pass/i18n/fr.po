@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 14:45+0000\n"
-"PO-Revision-Date: 2021-10-28 16:50+0200\n"
+"POT-Creation-Date: 2021-11-02 11:40+0000\n"
+"PO-Revision-Date: 2021-11-02 12:46+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -55,13 +55,18 @@ msgid ""
 "            <ul>\n"
 "            % for license_id in object.license_ids:\n"
 "                <li>\n"
-"                    <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${'white'};\"> </div>\n"
 "                    <span style=\"margin-left:5px\">${license_id.application_id.name}</span>\n"
+"                    % if license_id.application_id.product_name:\n"
+"                        <span style=\"margin-left:5px\">${license_id.application_id.product_name}</span>\n"
+"                    % endif\n"
 "                </li>\n"
 "            % endfor\n"
 "            </ul>\n"
+"            % if object.expiration_date:\n"
 "            <i>This access will be valid until ${format_date(object.expiration_date)}.</i>\n"
-"            <br/><br/>\n"
+"            <br/>\n"
+"            % endif\n"
+"            <br/>\n"
 "            <b>Please read carefully the accompanying documentation which explains how to manage your activations and where you can download your digital content.</b>\n"
 "        </p>\n"
 "        <br/><br/>\n"
@@ -70,6 +75,43 @@ msgid ""
 "</div>\n"
 "        "
 msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"        Bonjour ${object.partner_id.name}\n"
+"        % if object.partner_id.parent_id:\n"
+"            (${object.partner_id.parent_id.name})\n"
+"        % endif\n"
+"        <br/><br/>\n"
+"        Voici votre ${ctx['model_description']} <strong>${object.name}</strong>\n"
+"        % if object.origin:\n"
+"            (avec comme référence: ${object.origin})\n"
+"        % endif\n"
+"        de ${object.company_id.name}.\n"
+"        <br/>\n"
+"        <p>\n"
+"            Ce « pass » permet d'activer jusqu'à ${object.max_allowed_hardware} appareils et d'accéder aux applications suivantes:\n"
+"            <ul>\n"
+"            % for license_id in object.license_ids:\n"
+"                <li>\n"
+"                    <span style=\"margin-left:5px\">${license_id.application_id.name}</span>\n"
+"                    % if license_id.application_id.product_name:\n"
+"                        <span style=\"margin-left:5px\">${license_id.application_id.product_name}</span>\n"
+"                    % endif\n"
+"                </li>\n"
+"            % endfor\n"
+"            </ul>\n"
+"            % if object.expiration_date:\n"
+"            <i>Cet accès sera valide jusqu'au ${format_date(object.expiration_date)}.</i>\n"
+"            <br/>\n"
+"            % endif\n"
+"            <br/>\n"
+"            <b>Veuillez lire attentivement la documentation d'accompagnement qui explique comment gérer vos activations et où vous pouvez télécharger votre contenu numérique.</b>\n"
+"        </p>\n"
+"        <br/><br/>\n"
+"        N'hésitez pas à nous contacter si vous avez des questions.\n"
+"    </p>\n"
+"</div>\n"
+"        "
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_needaction
@@ -485,16 +527,10 @@ msgid "Planned"
 msgstr "Planifié"
 
 #. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_product_product
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__product_id
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Product"
 msgstr "Article"
-
-#. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_product_template
-msgid "Product Template"
-msgstr "Modèle d'article"
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__product_id
@@ -532,16 +568,6 @@ msgid "Resynchronize Passes"
 msgstr "Resynchroniser les « pass »"
 
 #. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_sale_order
-msgid "Sale Order"
-msgstr "Bon de commande"
-
-#. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Ligne de bons de commande"
-
-#. module: software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 msgid "Send by Email"
 msgstr "Envoyer par email"
@@ -560,11 +586,6 @@ msgstr "Numéro de série"
 #: sql_constraint:software.license.pass:0
 msgid "Serial Pass Activation Code must be unique!"
 msgstr "Le numéro de série (code d’activation) du « pass » doit être unique par application!"
-
-#. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_software_application
-msgid "Software Application"
-msgstr "Application"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__origin
@@ -588,11 +609,6 @@ msgstr ""
 "En retard : la date d'échéance est déjà dépassée\n"
 "Aujourd'hui : la date d'activité est aujourd'hui\n"
 "Planifiée : activités futures."
-
-#. module: software_license_pass
-#: model:ir.model,name:software_license_pass.model_stock_rule
-msgid "Stock Rule"
-msgstr "Règle de stock minimum"
 
 #. module: software_license_pass
 #: selection:software.license.pass,state:0
@@ -633,6 +649,21 @@ msgstr "Historique de communication du site web"
 #: model:mail.template,subject:software_license_pass.email_template
 msgid "e-space ${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or 'n/a' })"
 msgstr ""
+
+#~ msgid "Product Template"
+#~ msgstr "Modèle d'article"
+
+#~ msgid "Sale Order"
+#~ msgstr "Bon de commande"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Ligne de bons de commande"
+
+#~ msgid "Software Application"
+#~ msgstr "Application"
+
+#~ msgid "Stock Rule"
+#~ msgstr "Règle de stock minimum"
 
 #~ msgid "Licences"
 #~ msgstr "Licenses"

@@ -26,13 +26,18 @@
             <ul>
             % for license_id in object.license_ids:
                 <li>
-                    <div style="display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${'white'};"> </div>
                     <span style="margin-left:5px">${license_id.application_id.name}</span>
+                    % if license_id.application_id.product_name:
+                        <span style="margin-left:5px">${license_id.application_id.product_name}</span>
+                    % endif
                 </li>
             % endfor
             </ul>
+            % if object.expiration_date:
             <i>This access will be valid until ${format_date(object.expiration_date)}.</i>
-            <br /><br />
+            <br />
+            % endif
+            <br />
             <b>Please read carefully the accompanying documentation which explains how to manage your activations and where you can download your digital content.</b>
         </p>
         <br /><br />
