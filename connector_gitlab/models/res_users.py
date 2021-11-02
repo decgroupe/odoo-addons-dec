@@ -15,7 +15,7 @@ class ResUsers(models.Model):
         readonly=False,
     )
 
-    def _create_or_update_gitlab_user(self, password):
+    def _create_or_update_gitlab_user(self, password=False):
         self.ensure_one()
         user_uid = 0
         in_portal = self.env.ref('base.group_portal') in self.groups_id

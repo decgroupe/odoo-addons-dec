@@ -68,7 +68,7 @@ class ResUsers(models.Model):
                     self.user_gitlab_resource_id.uid,
                 )
 
-    def _create_or_update_gitlab_user(self, password):
+    def _create_or_update_gitlab_user(self, password=False):
         user_uid = super()._create_or_update_gitlab_user(password)
         if user_uid:
             self._set_access_to_gitlab_projects()
