@@ -14,3 +14,10 @@ class SoftwareApplication(models.Model):
         help="Automatically generate a random pref-formatted serial when "
         "creating a new license for this application",
     )
+
+    def write(self, vals):
+        if vals.get('type') == 'other':
+            vals.update({
+                'auto_generate_serial': False,
+            })
+        return super().write(vals)

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.menu" id="menu_software_application">
-        <field name="name">Application</field>
+    <record model="ir.ui.menu" id="menu_software_asset">
+        <field name="name">Assets</field>
         <field name="sequence" eval="20"/>
-        <field name="action" ref="act_window_software_application"/>
         <field name="parent_id" ref="software.menu_software"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_software_application">
+        <field name="name">Applications</field>
+        <field name="sequence" eval="10"/>
+        <field name="action" ref="act_window_software_application"/>
+        <field name="parent_id" ref="menu_software_asset"/>
     </record>
 
     <record model="ir.ui.menu" id="menu_software_tag">

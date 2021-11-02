@@ -18,3 +18,11 @@ class SoftwareApplication(models.Model):
             key = RSA.generate(2048)
             rec.private_key = key.export_key()
             rec.public_key = key.publickey().export_key()
+
+    def write(self, vals):
+        if vals.get('type') == 'other':
+            vals.update({
+                'private_key': False,
+                'public_key': False,
+            })
+        return super().write(vals)

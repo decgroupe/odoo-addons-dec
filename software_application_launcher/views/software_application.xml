@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
 
             <page name="releases" position="after">
-                <page string="Launcher" name="launcher">
+                <page string="Launcher" name="launcher" attrs="{'invisible': [('type', '=', 'other')]}">
                     <group name="images">
                         <group>
                             <field name="corner_image" widget="image"/>

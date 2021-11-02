@@ -6,8 +6,11 @@
         <field name="model">software.application</field>
         <field name="arch" type="xml">
             <tree string="Applications">
+                <field name="image" string=" " widget="image"/>
                 <field name="name"/>
+                <field name="product_name"/>
                 <field name="info"/>
+                <field name="tag_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
@@ -39,21 +42,23 @@
                     </div>
                     <group name="main">
                         <group name="primary">
-                            <field name="product_id"/>
+                            <field name="product_id" attrs="{'invisible': [('type', '=', 'other')]}"/>
                             <field name="product_name" attrs="{'invisible':[('product_id','=',False)]}"/>
                             <field name="product_description" attrs="{'invisible':[('product_id','=',False)]}"/>
                         </group>
                         <group name="secondary">
+                            <field name="type"/>
                             <field 
                                 name="tag_ids"
                                 placeholder="Tags..."
                                 widget="many2many_tags"
+                                attrs="{'invisible': [('type', '=', 'other')]}"
                                 options="{'color_field': 'color'}">
                             </field>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Releases" name="releases">
+                        <page string="Releases" name="releases" attrs="{'invisible': [('type', '=', 'other')]}">
                             <field name="release_ids" context="{'default_application_id': id}"/>
                         </page>
                         <page string="Informations" name="general">

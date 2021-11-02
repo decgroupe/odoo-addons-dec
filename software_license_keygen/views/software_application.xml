@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="software_license.software_application_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='licensing']/group[@name='main']/group[@name='secondary']" position="inside">
-                <field name="auto_generate_serial"/>
+                <field name="auto_generate_serial" attrs="{'invisible': [('type', '!=', 'inhouse')]}"/>
             </xpath>
         </field>
     </record>

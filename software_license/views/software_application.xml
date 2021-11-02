@@ -23,12 +23,16 @@
                     string="Create License Template"
                     help="Create a new license and assign it as the template"
                     type="object"
-                    attrs="{'invisible': [('template_id', '!=', False)]}"
+                    attrs="{'invisible': [
+                        '|',
+                        ('type', '!=', 'inhouse'),
+                        ('template_id', '!=', False),
+                    ]}"
                     class="btn-primary">
                 </button>
             </header>
             <page name="releases" position="after">
-                <page string="Licensing" name="licensing">
+                <page string="Licensing" name="licensing" attrs="{'invisible': [('type', '=', 'other')]}">
                     <group name="main">
                         <group name="primary">
                             <field name="identifier"/>

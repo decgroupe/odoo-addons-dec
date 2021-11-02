@@ -13,14 +13,17 @@
                     help="Create a new public/private key pair"
                     type="object"
                     attrs="{'invisible': [
-                        ('private_key', '!=', False),
-                        ('public_key', '!=', False),
+                        '|',
+                            ('type', '!=', 'inhouse'),
+                            '&amp;',
+                                ('private_key', '!=', False),
+                                ('public_key', '!=', False),
                     ]}"
                     class="btn-primary">
                 </button>
             </header>
             <page name="licensing" position="after">
-                <page name="token" string="Keys">
+                <page name="token" string="Keys" attrs="{'invisible': [('type', '!=', 'inhouse')]}">
                     <group name="key_pair">
                         <field name="private_key" class="d_view_key" placeholder="-----BEGIN RSA PRIVATE KEY-----"/>
                         <field name="public_key" class="d_view_key" placeholder="-----BEGIN PUBLIC KEY-----"/>

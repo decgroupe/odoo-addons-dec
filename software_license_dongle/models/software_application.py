@@ -12,3 +12,10 @@ class SoftwareApplication(models.Model):
         string='Dongle Product ID',
         help='Product ID to write into the dongle',
     )
+
+    def write(self, vals):
+        if vals.get('type') == 'other':
+            vals.update({
+                'dongle_product_id': 0,
+            })
+        return super().write(vals)

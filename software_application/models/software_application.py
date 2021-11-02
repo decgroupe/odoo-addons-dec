@@ -58,16 +58,26 @@ class SoftwareApplication(models.Model):
         comodel_name='software.tag',
         string='Tags',
     )
+    type = fields.Selection(
+        selection=[
+            ('inhouse', _('In-House Application')),
+            ('other', _('Other Application')),
+            ('resource', _('Resource')),
+        ],
+        string='Type',
+        default='inhouse',
+        required=True
+    )
 
     @api.depends('attachment_image')
     def _compute_image(self):
-        self.ensure_one()
-        if self._context.get('bin_size'):
-            self.image = self.attachment_image
-        else:
-            self.image = tools.image_resize_image(
-                self.attachment_image, size=(300, 200)
-            )
+        for rec in self:
+            if rec.env.context.get('bin_size'):
+                rec.image = rec.attachment_image
+            else:
+                rec.image = tools.image_resize_image(
+                    rec.attachment_image, size=(300, 200)
+                )
 
     def _inverse_image(self):
         self.ensure_one()
@@ -75,3 +85,15 @@ class SoftwareApplication(models.Model):
         if isinstance(value, pycompat.text_type):
             value = value.encode('ascii')
         self.attachment_image = tools.image_resize_image(value, size=(300, 200))
+
+    def write(self, vals):
+        if vals.get('type') == 'other':
+            vals.update(
+                {
+                    'identifier': 0,
+                    'product_id': False,
+                    'template_id': False,
+                    'tag_ids': [(6, 0, [])],
+                }
+            )
+        return super().write(vals)

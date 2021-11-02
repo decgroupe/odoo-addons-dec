@@ -25,3 +25,14 @@ class SoftwareApplication(models.Model):
         'application_id',
         string='Tooltips',
     )
+
+    def write(self, vals):
+        if vals.get('type') == 'other':
+            vals.update(
+                {
+                    'corner_image': False,
+                    'pictogram_image': False,
+                    'image_ids': [(6, 0, [])],
+                }
+            )
+        return super().write(vals)

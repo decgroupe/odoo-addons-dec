@@ -36,3 +36,10 @@ class SoftwareApplication(models.Model):
             rec.template_id = self.env['software.license'].with_context(
                 default_type='template'
             ).create(vals)
+
+    def write(self, vals):
+        if vals.get('type') == 'other':
+            vals.update({
+                'template_id': False,
+            })
+        return super().write(vals)
