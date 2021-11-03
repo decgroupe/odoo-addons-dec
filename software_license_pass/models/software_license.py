@@ -30,8 +30,10 @@ class SoftwareLicense(models.Model):
     ]
 
     @api.multi
-    def write(self, vals):
-        if not self.env.context.get('override_from_pass'):
+    def _check_pass_editing(self, vals):
+        if self.env.context.get('override_from_pass'):
+            return
+        for rec in self.filtered('pass_id'):
             locked_fields = []
             for key in list(vals):
                 if (key in self.PASS_LOCKED_FIELDS):
@@ -42,6 +44,10 @@ class SoftwareLicense(models.Model):
                         "It is forbidden to update these license's fields when owned by a pass:\n{}"
                     ).format('\n'.join(locked_fields))
                 )
+
+    @api.multi
+    def write(self, vals):
+        self._check_pass_editing(vals)
         return super().write(vals)
 
     @api.multi
