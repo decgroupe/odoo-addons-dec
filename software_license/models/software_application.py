@@ -38,8 +38,9 @@ class SoftwareApplication(models.Model):
             ).create(vals)
 
     def write(self, vals):
-        if vals.get('type') == 'other':
-            vals.update({
-                'template_id': False,
-            })
+        if 'type' in vals:
+            if vals.get('type') == 'other':
+                vals.update({
+                    'template_id': False,
+                })
         return super().write(vals)

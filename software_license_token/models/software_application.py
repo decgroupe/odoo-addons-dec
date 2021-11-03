@@ -20,7 +20,7 @@ class SoftwareApplication(models.Model):
             rec.public_key = key.publickey().export_key()
 
     def write(self, vals):
-        if vals.get('type') == 'other':
+        if vals.get('type') != 'inhouse':
             vals.update({
                 'private_key': False,
                 'public_key': False,

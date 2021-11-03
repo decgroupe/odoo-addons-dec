@@ -68,6 +68,14 @@ class SoftwareApplication(models.Model):
         default='inhouse',
         required=True
     )
+    resource_ids = fields.Many2many(
+        comodel_name='software.application',
+        relation='software_application_resource_rel',
+        column1='app_id',
+        column2='res_id',
+        string='Resources',
+        domain=[('type', '=', 'resource')],
+    )
 
     @api.depends('attachment_image')
     def _compute_image(self):
@@ -86,14 +94,20 @@ class SoftwareApplication(models.Model):
             value = value.encode('ascii')
         self.attachment_image = tools.image_resize_image(value, size=(300, 200))
 
+    @api.multi
     def write(self, vals):
-        if vals.get('type') == 'other':
-            vals.update(
-                {
-                    'identifier': 0,
-                    'product_id': False,
-                    'template_id': False,
-                    'tag_ids': [(6, 0, [])],
-                }
-            )
+        if 'type' in vals:
+            if vals.get('type') == 'other':
+                vals.update(
+                    {
+                        'identifier': 0,
+                        'product_id': False,
+                        'template_id': False,
+                        'tag_ids': [(6, 0, [])],
+                    }
+                )
+            if vals.get('type') != 'inhouse':
+                vals.update({
+                    'resource_ids': [(6, 0, [])],
+                })
         return super().write(vals)

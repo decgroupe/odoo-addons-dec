@@ -6,7 +6,7 @@
         <field name="model">software.application</field>
         <field name="inherit_id" ref="software_license.software_application_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='licensing']/group[@name='main']" position="after">
+            <xpath expr="//page[@name='resources']/group[@name='main']" position="after">
                 <group name="gitlab" string="GitLab">
                     <group name="primary">
                         <field name="documentation_gitlab_resource_id" context="{'default_type': 'project'}" />

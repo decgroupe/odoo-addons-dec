@@ -14,8 +14,9 @@ class SoftwareApplication(models.Model):
     )
 
     def write(self, vals):
-        if vals.get('type') == 'other':
-            vals.update({
-                'dongle_product_id': 0,
-            })
+        if 'type' in vals:
+            if vals.get('type') == 'other':
+                vals.update({
+                    'dongle_product_id': 0,
+                })
         return super().write(vals)

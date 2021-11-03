@@ -6,11 +6,37 @@
         <field name="model">software.application</field>
         <field name="arch" type="xml">
             <tree string="Applications">
-                <field name="image" string=" " widget="image"/>
+                <field name="image" string=" " widget="image" class="d_tree_image"/>
                 <field name="name"/>
                 <field name="product_name"/>
                 <field name="info"/>
                 <field name="tag_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="software_application_resource_tree_view" >
+        <field name="name">software.application.tree#resource@software_application</field>
+        <field name="model">software.application</field>
+        <field name="arch" type="xml">
+            <tree string="Resources">
+                <field name="image" string=" " widget="image" class="d_tree_image"/>
+                <field name="name" string="Name"/>
+                <field name="product_name"/>
+                <field name="info"/>
+                <field name="tag_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="software_application_other_tree_view" >
+        <field name="name">software.application.tree#other@software_application</field>
+        <field name="model">software.application</field>
+        <field name="arch" type="xml">
+            <tree string="Other Applications">
+                <field name="image" string=" " widget="image" class="d_tree_image"/>
+                <field name="name" string="Name"/>
+                <field name="info"/>
             </tree>
         </field>
     </record>
@@ -35,7 +61,8 @@
                     </div>
                     <field name="image" widget="image" nolabel="1" class="oe_avatar"/>
                     <div name="title" class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
+                        <label for="name" class="oe_edit_only" attrs="{'invisible': [('type', '=', 'resource')]}"/>
+                        <label for="name" class="oe_edit_only" attrs="{'invisible': [('type', '!=', 'resource')]}" string="Name" />
                         <h1>
                             <field name="name"/>
                         </h1>
@@ -60,6 +87,11 @@
                     <notebook>
                         <page string="Releases" name="releases" attrs="{'invisible': [('type', '=', 'other')]}">
                             <field name="release_ids" context="{'default_application_id': id}"/>
+                        </page>
+                        <page string="Resources" name="resources" attrs="{'invisible': [('type', '!=', 'inhouse')]}">
+                            <group name="main">
+                                <field name="resource_ids" context="{'default_type': 'resource'}"/>
+                            </group>
                         </page>
                         <page string="Informations" name="general">
                             <group name="info">
@@ -89,6 +121,7 @@
         <field name="view_id" ref="software_application_tree_view"/>
         <field name="search_view_id" ref="software_application_search_view"/>
         <field name="domain">[('type', '=', 'inhouse')]</field>
+        <field name="context">{'default_type': 'inhouse'}</field>
     </record>
 
     <record model="ir.actions.act_window.view" id="act_window_view_software_application_inhouse_tree" >
@@ -109,15 +142,16 @@
         <field name="name">Resources</field>
         <field name="res_model">software.application</field>
         <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="software_application_tree_view"/>
+        <field name="view_id" ref="software_application_resource_tree_view"/>
         <field name="search_view_id" ref="software_application_search_view"/>
         <field name="domain">[('type', '=', 'resource')]</field>
+        <field name="context">{'default_type': 'resource'}</field>
     </record>
 
     <record model="ir.actions.act_window.view" id="act_window_view_software_application_resource_tree" >
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="software_application_tree_view"/>
+        <field name="view_id" ref="software_application_resource_tree_view"/>
         <field name="act_window_id" ref="act_window_software_application_resource"/>
     </record>
 
@@ -132,15 +166,16 @@
         <field name="name">Other Apps</field>
         <field name="res_model">software.application</field>
         <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="software_application_tree_view"/>
+        <field name="view_id" ref="software_application_other_tree_view"/>
         <field name="search_view_id" ref="software_application_search_view"/>
         <field name="domain">[('type', '=', 'other')]</field>
+        <field name="context">{'default_type': 'other'}</field>
     </record>
 
     <record model="ir.actions.act_window.view" id="act_window_view_software_application_other_tree" >
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="software_application_tree_view"/>
+        <field name="view_id" ref="software_application_other_tree_view"/>
         <field name="act_window_id" ref="act_window_software_application_other"/>
     </record>
 
