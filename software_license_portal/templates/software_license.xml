@@ -171,7 +171,7 @@
                   </div>
                 </t>
                 <t t-else="">
-                  <div class="alert alert-warning text-center">There is no activated hardware on this license.</div>
+                  <div class="alert alert-warning text-center mt-4">There is no activated hardware on this license.</div>
                 </t>
               </div>
             </div>

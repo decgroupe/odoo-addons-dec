@@ -37,6 +37,7 @@
           <thead>
             <tr class="active">
               <th>Owner</th>
+              <th>Ref.</th>
               <th>Serial</th>
               <th>Pack</th>
               <th>Create Date</th>
@@ -53,6 +54,9 @@
                   👷
                 </t>
                 <t t-esc="license_pass.partner_id.name"/>
+              </td>
+              <td>
+                <span t-field="license_pass.name"/>
               </td>
               <td>
                 <a t-attf-href="/my/pass/#{license_pass.id}">
@@ -166,8 +170,19 @@
                   </div>
                 </t>
                 <t t-else="">
-                  <div class="alert alert-warning text-center">There is no activated hardware on this pass.</div>
+                  <div class="alert alert-warning text-center mt-4">There is no activated hardware on this pass.</div>
                 </t>
+                <h4 class="page-header">List of available applications</h4>
+                <ul>
+                <t t-foreach="license_pass.license_ids" t-as="license_id">
+                  <t t-if="license_id.application_id.product_id">
+                    <li>
+                      <img t-attf-src="/web/image?model=software.application&amp;field=image&amp;id=#{license_id.application_id.id}" width="30" height="20"/>
+                      <span t-field="license_id.application_id.product_id" />
+                    </li>
+                  </t>
+                </t>
+                </ul>
               </div>
             </div>
           </div>
