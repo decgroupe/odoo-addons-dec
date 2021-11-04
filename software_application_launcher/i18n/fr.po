@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 21:10+0000\n"
-"PO-Revision-Date: 2021-10-28 23:10+0200\n"
+"POT-Creation-Date: 2021-11-04 14:58+0000\n"
+"PO-Revision-Date: 2021-11-04 16:01+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -44,12 +44,23 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__is_free
+msgid "Display as « Free »"
+msgstr "Afficher comme « Gratuit »"
+
+#. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__is_soon
+msgid "Display as « Soon »"
+msgstr "Afficher comme « À venir »"
+
+#. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__id
 msgid "ID"
 msgstr "ID"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__image
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__resized_image
 msgid "Image"
 msgstr "Image"
 
@@ -57,6 +68,11 @@ msgstr "Image"
 #: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_image_form_view
 msgid "Image Name"
 msgstr "Nom de l'image"
+
+#. module: software_application_launcher
+#: model:ir.model.fields,help:software_application_launcher.field_software_application_image__resized_image
+msgid "Image of the application (automatically resized)."
+msgstr "Image de l’application (redimensionnée automatiquement)."
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image____last_update
@@ -84,6 +100,11 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__need_license
+msgid "Only visible with a valid license"
+msgstr "Visible uniquement avec une licence valide"
+
+#. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application__pictogram_image
 msgid "Pictogram Image"
 msgstr "Pictogramme"
@@ -94,6 +115,16 @@ msgid "Related Application"
 msgstr "Application associée"
 
 #. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__resize_y
+msgid "Resize Height"
+msgstr "Redimensionnement de la hauteur"
+
+#. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__resize_x
+msgid "Resize Width"
+msgstr "Redimensionnement de la largeur"
+
+#. module: software_application_launcher
 #: model:ir.model,name:software_application_launcher.model_software_application
 msgid "Software Application"
 msgstr "Application"
@@ -102,6 +133,11 @@ msgstr "Application"
 #: model:ir.model,name:software_application_launcher.model_software_application_image
 msgid "Software Application Image"
 msgstr "Image d'application"
+
+#. module: software_application_launcher
+#: model:ir.model.fields,help:software_application_launcher.field_software_application__need_license
+msgid "Sometimes, an application is specifically developped for a customer and should not be shared with others. This is the purpose of this setting: Hide this application until the customer is logged in with an account with a valid license."
+msgstr "Parfois, une application est spécifiquement développée pour un client et ne doit pas être partagée avec d'autres. C'est le but de ce paramètre : Masquer cette application jusqu'à ce que le client soit connecté avec un compte avec une licence valide."
 
 #. module: software_application_launcher
 #: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view

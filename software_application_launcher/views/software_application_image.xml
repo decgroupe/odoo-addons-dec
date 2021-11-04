@@ -10,12 +10,19 @@
                     <div class="col-md-6 col-xl-5">
                         <div class="oe_title">
                             <label class="small text-muted" for="name" string="Image Name"/>
-                            <h2><field name="name" placeholder="Image Name" required="True"/></h2>
+                            <h2>
+                                <field name="name" placeholder="Image Name" required="True"/>
+                            </h2>
                             <field name="application_id" invisible="1"/>
+                            <group>
+                                <field name="resize_x"/>
+                                <field name="resize_y"/>
+                            </group>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-7 text-center o_website_sale_image_modal_container">
-                        <field name="image" widget="image"/>
+                        <field name="resized_image" widget="image"/>
+                        <field name="image" widget="image" groups="base.group_no_one"/>
                     </div>
                 </div>
             </form>

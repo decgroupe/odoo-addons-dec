@@ -70,7 +70,7 @@ class SoftwareApplication(models.Model):
     )
     resource_ids = fields.Many2many(
         comodel_name='software.application',
-        relation='software_application_resource_rel',
+        relation='software_asset_resource_rel',
         column1='app_id',
         column2='res_id',
         string='Resources',
@@ -98,14 +98,10 @@ class SoftwareApplication(models.Model):
     def write(self, vals):
         if 'type' in vals:
             if vals.get('type') == 'other':
-                vals.update(
-                    {
-                        'identifier': 0,
-                        'product_id': False,
-                        'template_id': False,
-                        'tag_ids': [(6, 0, [])],
-                    }
-                )
+                vals.update({
+                    'product_id': False,
+                    'tag_ids': [(6, 0, [])],
+                })
             if vals.get('type') != 'inhouse':
                 vals.update({
                     'resource_ids': [(6, 0, [])],

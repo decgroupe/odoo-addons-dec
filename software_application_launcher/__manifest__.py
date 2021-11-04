@@ -6,6 +6,7 @@
     'summary': "Launcher extra fields",
     'depends': [
         'software_application',
+        'software_license',
         'website_sale', # for css styles
     ],
     'data':

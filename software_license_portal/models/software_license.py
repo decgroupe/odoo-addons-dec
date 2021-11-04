@@ -31,6 +31,7 @@ class SoftwareLicense(models.Model):
             ('partner_id', 'child_of', partner_id.id),
             ('portal_published', '=', True),
             ('pass_id', '=', False),
+            ('application_id.type', '=', 'inhouse'),
         ]
 
     def deactivate(self, hardware_id):

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 14:45+0000\n"
-"PO-Revision-Date: 2021-10-28 14:45+0000\n"
+"POT-Creation-Date: 2021-11-04 14:09+0000\n"
+"PO-Revision-Date: 2021-11-04 14:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,17 +44,20 @@ msgstr ""
 #. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__name
 #: model:ir.model.fields,field_description:software_application.field_software_application_release__application_id
-#: model:ir.ui.menu,name:software_application.menu_software_application
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
 msgid "Application"
 msgstr ""
 
 #. module: software_application
-#: model:ir.actions.act_window,name:software_application.act_window_software_application
 #: model:ir.actions.act_window,name:software_application.act_window_software_tag
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_search_view
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_tree_view
 msgid "Applications"
+msgstr ""
+
+#. module: software_application
+#: model:ir.ui.menu,name:software_application.menu_software_asset
+msgid "Assets"
 msgstr ""
 
 #. module: software_application
@@ -152,6 +155,19 @@ msgid "Image of the application (automatically resized to 300 x 200)."
 msgstr ""
 
 #. module: software_application
+#: code:addons/software_application/models/software_application.py:63
+#: selection:software.application,type:0
+#, python-format
+msgid "In-House Application"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_inhouse
+#: model:ir.ui.menu,name:software_application.menu_software_application_inhouse
+msgid "In-House Apps"
+msgstr ""
+
+#. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__info
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
 msgid "Informations"
@@ -223,7 +239,28 @@ msgstr ""
 #. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__product_name
 #: model:ir.model.fields,field_description:software_application.field_software_tag__name
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_other_tree_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_resource_tree_view
 msgid "Name"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application.py:64
+#: selection:software.application,type:0
+#, python-format
+msgid "Other Application"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_other_tree_view
+msgid "Other Applications"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_other
+#: model:ir.ui.menu,name:software_application.menu_software_application_other
+msgid "Other Apps"
 msgstr ""
 
 #. module: software_application
@@ -277,6 +314,22 @@ msgid "Releases"
 msgstr ""
 
 #. module: software_application
+#: code:addons/software_application/models/software_application.py:65
+#: selection:software.application,type:0
+#, python-format
+msgid "Resource"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_resource
+#: model:ir.model.fields,field_description:software_application.field_software_application__resource_ids
+#: model:ir.ui.menu,name:software_application.menu_software_application_resource
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_resource_tree_view
+msgid "Resources"
+msgstr ""
+
+#. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__product_description
 msgid "Sale Description"
 msgstr ""
@@ -322,6 +375,11 @@ msgstr ""
 #. module: software_application
 #: sql_constraint:software.application.release:0
 msgid "The release version must be unique per application !"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__type
+msgid "Type"
 msgstr ""
 
 #. module: software_application

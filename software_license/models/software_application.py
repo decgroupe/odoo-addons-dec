@@ -22,6 +22,13 @@ class SoftwareApplication(models.Model):
         domain="[('application_id', '=', id), ('type', '=', 'template')]",
     )
 
+    _sql_constraints = [
+        (
+            'identifier_uniq', 'unique(identifier, name)',
+            'Identifier/Name must be unique!'
+        ),
+    ]
+
     def _prepare_license_template_vals(self):
         self.ensure_one()
         return {
@@ -41,6 +48,7 @@ class SoftwareApplication(models.Model):
         if 'type' in vals:
             if vals.get('type') == 'other':
                 vals.update({
+                    'identifier': 0,
                     'template_id': False,
                 })
         return super().write(vals)
