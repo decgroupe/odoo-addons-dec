@@ -2,7 +2,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
+import logging
+
 from odoo import api, models, fields
+
+_logger = logging.getLogger(__name__)
 
 
 class ResUsers(models.Model):
@@ -45,6 +49,11 @@ class ResUsers(models.Model):
         GitLab = self.env['gitlab.service']
         if not project_uids:
             project_uids = self._get_gitlab_project_uids()
+        _logger.info(
+            "Give an access to GitLab projects %s for %s",
+            project_uids,
+            self.name,
+        )
         joined_project_uids = self._get_joined_gitlab_projects()
         # Give a 'guest' access to all linked documentation projects
         for project_uid in project_uids:
@@ -59,6 +68,11 @@ class ResUsers(models.Model):
         GitLab = self.env['gitlab.service']
         if not project_uids:
             project_uids = self._get_gitlab_project_uids()
+        _logger.info(
+            "Remove all access to GitLab projects %s for %s",
+            project_uids,
+            self.name,
+        )
         joined_project_uids = self._get_joined_gitlab_projects()
         # Remove existing access
         for project_uid in project_uids:

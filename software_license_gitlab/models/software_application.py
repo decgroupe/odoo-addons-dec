@@ -2,8 +2,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
+import logging
+
 from odoo import api, fields, models
 
+_logger = logging.getLogger(__name__)
 
 class SoftwareApplication(models.Model):
     _inherit = 'software.application'
@@ -12,13 +15,17 @@ class SoftwareApplication(models.Model):
         comodel_name='gitlab.resource',
         domain=[('type', '=', 'project')],
         string='Documentation',
-        help="Userguide GitLab Pages mapped to this application",
+        help="Userguide GitLab Pages mapped to this asset",
         ondelete='restrict'
     )
 
     @api.multi
     def _get_gitlab_project_uids(self):
         return self.\
+            mapped('documentation_gitlab_resource_id').\
+            mapped('uid') + \
+            self.\
+            mapped('resource_ids').\
             mapped('documentation_gitlab_resource_id').\
             mapped('uid')
 
@@ -59,14 +66,22 @@ class SoftwareApplication(models.Model):
 
     @api.multi
     def write(self, vals):
-        if 'documentation_gitlab_resource_id' in vals:
-            if not vals.get('documentation_gitlab_resource_id'):
-                project_uids = self._get_gitlab_project_uids()
+        need_access_update = 'documentation_gitlab_resource_id' in vals \
+            or 'resource_ids' in vals
+        if need_access_update:
+            pre_project_uids = self._get_gitlab_project_uids()
 
         res = super().write(vals)
-        if 'documentation_gitlab_resource_id' in vals:
-            if vals.get('documentation_gitlab_resource_id'):
+        if need_access_update:
+            post_project_uids = self._get_gitlab_project_uids()
+            if post_project_uids:
+                # We don't need the `post_project_uids` since the list
+                # of accessible projects will be recomputed according to
+                # each user licenses
                 self._set_access_to_gitlab_projects()
-            else:
-                self._remove_access_to_gitlab_projects(project_uids)
+            if pre_project_uids - post_project_uids:
+                self._remove_access_to_gitlab_projects(
+                    pre_project_uids - post_project_uids
+                )
+
         return res

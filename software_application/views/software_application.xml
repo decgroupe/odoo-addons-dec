@@ -88,9 +88,9 @@
                         <page string="Releases" name="releases" attrs="{'invisible': [('type', '=', 'other')]}">
                             <field name="release_ids" context="{'default_application_id': id}"/>
                         </page>
-                        <page string="Resources" name="resources" attrs="{'invisible': [('type', '!=', 'inhouse')]}">
+                        <page string="Resources" name="resources">
                             <group name="main">
-                                <field name="resource_ids" context="{'default_type': 'resource'}"/>
+                                <field name="resource_ids" context="{'default_type': 'resource'}" attrs="{'invisible': [('type', '!=', 'inhouse')]}"/>
                             </group>
                         </page>
                         <page string="Informations" name="general">
