@@ -18,6 +18,7 @@
             'views/menu.xml',
             'data/sequence.xml',
             'data/mail_template.xml',
+            'data/uom.xml',
         ],
     'installable': True
 }

@@ -198,7 +198,7 @@ class SoftwareLicensePass(models.Model):
             'software_license_pass.act_window_software_license_pass'
         ).read()[0]
         form = self.env.ref(
-            'software_license_pass.act_window_view_software_license_pass_form'
+            'software_license_pass.software_license_pass_form_view'
         )
         if len(self.ids) > 1:
             action['domain'] = [('id', 'in', self.ids)]

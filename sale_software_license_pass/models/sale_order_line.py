@@ -50,9 +50,12 @@ class SaleOrderLine(models.Model):
         today = fields.Date.from_string(fields.Date.context_today(self))
         pass_id.write(
             {
-                'partner_id': self.order_id.partner_shipping_id.id,
-                'max_allowed_hardware': self.product_uom_qty,
-                'expiration_date': today + timedelta(days=365),
+                'partner_id':
+                    self.order_id.partner_shipping_id.id,
+                'max_allowed_hardware':
+                    self.product_uom_qty,
+                'expiration_date':
+                    today + timedelta(days=365 * self.product_uom.factor_inv),
             }
         )
         return pass_id

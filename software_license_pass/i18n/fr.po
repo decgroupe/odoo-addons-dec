@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 11:40+0000\n"
-"PO-Revision-Date: 2021-11-02 12:46+0100\n"
+"POT-Creation-Date: 2021-11-04 16:12+0000\n"
+"PO-Revision-Date: 2021-11-04 17:14+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -23,7 +23,7 @@ msgid "${(object.name or '').replace('/','_')}"
 msgstr ""
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:64
+#: code:addons/software_license_pass/models/software_license.py:70
 #, python-format
 msgid "%s (%s for %s)"
 msgstr "%s (%s pour %s)"
@@ -314,7 +314,7 @@ msgid "Is Follower"
 msgstr "Est un abonné"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:55
+#: code:addons/software_license_pass/models/software_license.py:61
 #, python-format
 msgid ""
 "It is forbidden to delete a license own by a pass:\n"
@@ -324,7 +324,7 @@ msgstr ""
 "{}"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:41
+#: code:addons/software_license_pass/models/software_license.py:43
 #, python-format
 msgid ""
 "It is forbidden to update these license's fields when owned by a pass:\n"
@@ -566,6 +566,121 @@ msgstr "Resynchroniser"
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_form_view
 msgid "Resynchronize Passes"
 msgstr "Resynchroniser les « pass »"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year1
+msgid "Seat(s) for 1 year"
+msgstr "Poste(s) pour 1 an"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year10
+msgid "Seat(s) for 10 years"
+msgstr "Poste(s) pour 10 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year11
+msgid "Seat(s) for 11 years"
+msgstr "Poste(s) pour 11 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year12
+msgid "Seat(s) for 12 years"
+msgstr "Poste(s) pour 12 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year13
+msgid "Seat(s) for 13 years"
+msgstr "Poste(s) pour 13 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year14
+msgid "Seat(s) for 14 years"
+msgstr "Poste(s) pour 14 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year15
+msgid "Seat(s) for 15 years"
+msgstr "Poste(s) pour 15 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year16
+msgid "Seat(s) for 16 years"
+msgstr "Poste(s) pour 16 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year17
+msgid "Seat(s) for 17 years"
+msgstr "Poste(s) pour 17 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year18
+msgid "Seat(s) for 18 years"
+msgstr "Poste(s) pour 18 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year19
+msgid "Seat(s) for 19 years"
+msgstr "Poste(s) pour 19 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year2
+msgid "Seat(s) for 2 years"
+msgstr "Poste(s) pour 2 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year20
+msgid "Seat(s) for 20 years"
+msgstr "Poste(s) pour 20 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year25
+msgid "Seat(s) for 25 years"
+msgstr "Poste(s) pour 25 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year3
+msgid "Seat(s) for 3 years"
+msgstr "Poste(s) pour 3 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year30
+msgid "Seat(s) for 30 years"
+msgstr "Poste(s) pour 30 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year4
+msgid "Seat(s) for 4 years"
+msgstr "Poste(s) pour 4 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year5
+msgid "Seat(s) for 5 years"
+msgstr "Poste(s) pour 5 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year6
+msgid "Seat(s) for 6 years"
+msgstr "Poste(s) pour 6 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year7
+msgid "Seat(s) for 7 years"
+msgstr "Poste(s) pour 7 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year8
+msgid "Seat(s) for 8 years"
+msgstr "Poste(s) pour 8 ans"
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_seat_year9
+msgid "Seat(s) for 9 years"
+msgstr "Poste(s) pour 9 ans"
+
+#. module: software_license_pass
+#: model:uom.category,name:software_license_pass.product_uom_categ_seat
+msgid "Seat/Year"
+msgstr "Poste/Année"
 
 #. module: software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
