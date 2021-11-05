@@ -16,12 +16,24 @@ class SoftwareApplicationRelease(models.Model):
 
     @api.model
     def _get_default_version(self):
-        latest_release_ids = self.search([], order=self._order, limit=1)
-        if latest_release_ids:
-            ver = semver.VersionInfo.parse(latest_release_ids.version)
-            return str(ver.bump_major())
-        else:
-            return "1.0.0"
+        res = "1.0.0"
+        if 'release_ids' in self.env.context:
+            sem_ver = False
+            for o2m in self.env.context.get('release_ids'):
+                version = False
+                if isinstance(o2m[1], int):
+                    rec_id = o2m[1]
+                    version = self.browse(rec_id).version
+                elif isinstance(o2m[1], str) and isinstance(o2m[2], dict):
+                    rec_data = o2m[2]
+                    version = rec_data.get('version', False)
+                if version:
+                    cur_sem_ver = semver.VersionInfo.parse(version)
+                    if not sem_ver or cur_sem_ver > sem_ver:
+                        sem_ver = cur_sem_ver
+            if sem_ver:
+                res = str(sem_ver.bump_major())
+        return res
 
     def _get_default_content_items(self, name="item", count=1):
         items = []

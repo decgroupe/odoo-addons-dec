@@ -86,7 +86,7 @@
                     </group>
                     <notebook>
                         <page string="Releases" name="releases" attrs="{'invisible': [('type', '=', 'other')]}">
-                            <field name="release_ids" context="{'default_application_id': id}"/>
+                            <field name="release_ids" context="{'default_application_id': id, 'release_ids': release_ids,}"/>
                         </page>
                         <page string="Resources" name="resources">
                             <group name="main">
