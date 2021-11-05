@@ -16,8 +16,9 @@ class SoftwareApplication(models.Model):
     )
 
     def write(self, vals):
-        if vals.get('type') != 'inhouse':
-            vals.update({
-                'auto_generate_serial': False,
-            })
+        if 'type' in vals:
+            if vals.get('type') != 'inhouse':
+                vals.update({
+                    'auto_generate_serial': False,
+                })
         return super().write(vals)
