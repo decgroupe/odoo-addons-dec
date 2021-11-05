@@ -8,6 +8,7 @@ from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
+
 class SoftwareApplication(models.Model):
     _inherit = 'software.application'
 
@@ -79,9 +80,12 @@ class SoftwareApplication(models.Model):
                 # of accessible projects will be recomputed according to
                 # each user licenses
                 self._set_access_to_gitlab_projects()
-            if pre_project_uids - post_project_uids:
+            diff_project_uids = list(
+                set(pre_project_uids) - set(post_project_uids)
+            )
+            if diff_project_uids:
                 self._remove_access_to_gitlab_projects(
-                    pre_project_uids - post_project_uids
+                    diff_project_uids
                 )
 
         return res
