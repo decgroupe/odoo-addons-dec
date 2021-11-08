@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="project_project_form">
+        <field name="name">project.project.form@hr_timesheet_exclude</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options_active']" position="inside">
+                <div name="exclude_from_timesheet" groups="base.group_no_one">
+                    <field name="exclude_from_timesheet" class="oe_inline" string="Exclude from Timesheet Accounting"/>
+                    <label for="exclude_from_timesheet"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
