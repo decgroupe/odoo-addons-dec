@@ -20,7 +20,7 @@
         <field name="res_model">project.project</field>
         <field name="view_type">form</field>
         <field name="domain">[]</field>
-        <field name="context">{'search_default_is_contract': 1, 'search_default_task_todo': 1}</field>
+        <field name="context">{'search_default_is_contract': 1, 'search_default_filter_task_todo': 1}</field>
         <field name="view_mode">kanban,form</field>
         <field name="view_id" ref="project.view_project_kanban"/>
         <field name="search_view_id" ref="project.view_project_project_filter"/>

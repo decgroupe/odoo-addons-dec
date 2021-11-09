@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="project.view_project_project_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='followed_by_me']/following-sibling::separator" position="after">
-                <filter string="With Task To-Do" name="task_todo" domain="[('todo_task_count', '>', 0)]"/>
+                <filter string="With Task To-Do" name="filter_task_todo" domain="[('todo_task_count', '>', 0)]"/>
                 <separator/>
             </xpath>
         </field>
