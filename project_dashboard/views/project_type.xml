@@ -46,7 +46,7 @@
 
                   <div class="row">
                     <div class="col-4 o_kanban_primary_left" style="padding-top:20px;">
-                      <button class="btn btn-primary" name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_task_todo': 1}">
+                      <button class="btn btn-primary" name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}">
                         <t t-esc="record.todo_project_count.value"/>
                           To Do
                       </button>
@@ -55,7 +55,7 @@
                       <div class="row">
 
                         <div class="col-9">
-                          <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_unassigned': 1, 'search_default_filter_task_todo': 1}">
+                          <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_unassigned': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}">
                             Unassigned
                           </a>
                         </div>
@@ -65,7 +65,7 @@
         
                         <t t-if="record.todo_project_count_year_nm0.value > 0">
                           <div class="col-9">
-                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_current': 1, 'search_default_filter_task_todo': 1}">
+                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_current': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}">
                               Current Year
                             </a>
                           </div>
@@ -76,7 +76,7 @@
 
                         <t t-if="record.todo_project_count_year_nm1.value > 0">
                           <div class="col-9">
-                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_previous': 1, 'search_default_filter_task_todo': 1}">
+                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_previous': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}">
                               Previous Year
                             </a>
                           </div>
@@ -87,7 +87,7 @@
 
                         <t t-if="record.todo_project_count_year_nm2.value > 0">
                           <div class="col-9">
-                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_older': 1, 'search_default_filter_task_todo': 1}">
+                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_older': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}">
                               More Older
                             </a>
                           </div>
