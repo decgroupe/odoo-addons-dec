@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-05 13:52+0000\n"
-"PO-Revision-Date: 2021-02-05 14:52+0100\n"
+"POT-Creation-Date: 2021-11-09 14:28+0000\n"
+"PO-Revision-Date: 2021-11-09 15:29+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,11 +15,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: mrp_project
 #: model:ir.model.fields,help:mrp_project.field_project_project__label_productions
-#: model:ir.model.fields,help:mrp_project.field_project_task__label_productions
 msgid "Gives label to productions on project's kanban view."
 msgstr "Indique l'étiquette donnée aux fabrications dans la vue kanban du projet."
 
@@ -29,22 +28,14 @@ msgid "Name of productions :"
 msgstr "Nom de fabrication :"
 
 #. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_project_project__todo_production_count
-#: model:ir.model.fields,field_description:mrp_project.field_project_task__todo_production_count
-msgid "Number of productions"
-msgstr "Nombre de fabrications"
-
-#. module: mrp_project
 #: model_terms:ir.ui.view,arch_db:mrp_project.view_project_search
-#: model_terms:ir.ui.view,arch_db:mrp_project.view_task_search
 msgid "Open Productions"
 msgstr "Avec fabrications en cours"
 
 #. module: mrp_project
 #: model:ir.model.fields,field_description:mrp_project.field_project_project__production_count
-#: model:ir.model.fields,field_description:mrp_project.field_project_task__production_count
 msgid "Production Count"
-msgstr "Nombre de fabrications"
+msgstr "Nombre de fabrication"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_mrp_production
@@ -53,12 +44,9 @@ msgstr "Ordre de fabrication"
 
 #. module: mrp_project
 #: code:addons/mrp_project/models/project.py:23
-#: code:addons/mrp_project/models/project_task.py:23
 #: model:ir.actions.act_window,name:mrp_project.production_action_from_project
 #: model:ir.model.fields,field_description:mrp_project.field_project_project__production_ids
-#: model:ir.model.fields,field_description:mrp_project.field_project_task__production_ids
 #: model_terms:ir.ui.view,arch_db:mrp_project.edit_project_form_view
-#: model_terms:ir.ui.view,arch_db:mrp_project.view_task_form2
 #, python-format
 msgid "Productions"
 msgstr "Fabrications"
@@ -71,12 +59,18 @@ msgstr "Projet"
 
 #. module: mrp_project
 #: model:ir.model,name:mrp_project.model_project_task
-#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__task_id
 msgid "Task"
 msgstr "Tâche"
 
 #. module: mrp_project
+#: model:ir.model.fields,field_description:mrp_project.field_project_project__todo_production_count
+msgid "To-do Production Count"
+msgstr "Nombre de fabrication à faire"
+
+#. module: mrp_project
 #: model:ir.model.fields,field_description:mrp_project.field_project_project__label_productions
-#: model:ir.model.fields,field_description:mrp_project.field_project_task__label_productions
 msgid "Use Productions as"
 msgstr "Remplacer Fabrications par"
+
+#~ msgid "Number of productions"
+#~ msgstr "Nombre de fabrications"

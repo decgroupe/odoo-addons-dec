@@ -25,7 +25,7 @@ class ProjectProject(models.Model):
         help="Gives label to productions on project's kanban view.",
     )
     todo_production_count = fields.Integer(
-        string="Number of productions",
+        string="To-do Production Count",
         compute='_compute_production_count',
         store=True,
     )
