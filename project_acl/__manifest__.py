@@ -7,8 +7,6 @@
     'depends': ['project', ],
     'data': [
         'security/project_security.xml',
-        'views/project_project.xml',
-        'views/project_task.xml',
     ],
     'installable': True
 }
