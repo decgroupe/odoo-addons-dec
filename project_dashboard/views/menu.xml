@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record model="ir.ui.menu" id="menu_dashboard">
+        <field name="name">Dashboard</field>
+        <field name="sequence" eval="1"/>
+        <field name="action" ref="project_type_dashboard_action"/>
+        <field name="parent_id" ref="project.menu_main_pm"/>
+    </record>
+
+  <!--
+    <record model="ir.ui.menu" id="project.menu_projects">
+        <field name="parent_id" ref="menu_contracts_and_projects"/>
+        <field name="sequence" eval="20"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_contracts">
+        <field name="name">Contracts</field>
+        <field name="sequence" eval="10"/>
+        <field name="action" ref="open_view_contract_all"/>
+        <field name="parent_id" ref="menu_contracts_and_projects"/>
+    </record> -->
+
+</odoo>

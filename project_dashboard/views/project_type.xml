@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="project_type_form">
+    <field name="model">project.type</field>
+    <field name="inherit_id" ref="project_category.project_type_form" />
+    <field name="arch" type="xml">
+      <div class="oe_title" position="inside">
+        <div>
+          <field name="dashboard_ok"/>
+          <label for="dashboard_ok"/>
+        </div>
+      </div>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="project_type_kanban_view">
+    <field name="model">project.type.kanban</field>
+    <field name="model">project.type</field>
+    <field name="arch" type="xml">
+      <kanban class="oe_background_grey o_kanban_dashboard" create="0">
+        <field name="name"/>
+        <field name="color"/>
+        <field name="todo_project_count"/>
+        <field name="todo_project_count_unassigned"/>
+        <field name="todo_project_count_year_nm0"/>
+        <field name="todo_project_count_year_nm1"/>
+        <field name="todo_project_count_year_nm2"/>
+        <templates>
+          <t t-name="kanban-box">
+            <div t-attf-class="#{kanban_color(record.color.raw_value)}">
+              <div t-attf-class="o_kanban_card_header">
+                <div class="o_kanban_card_header_title">
+                  <div class="o_primary">
+                    <a name="%(action_project_kanban_from_dashboard)d" type="action">
+                      <field name="name"/>
+                    </a>
+                  </div>
+                </div>
+                <div class="o_kanban_manage_button_section">
+                  <a class="o_kanban_manage_toggle_button" href="#">
+                    <i class="fa fa-ellipsis-v" />
+                  </a>
+                </div>
+                <div class="container o_kanban_card_content">
+
+                  <div class="row">
+                    <div class="col-4 o_kanban_primary_left" style="padding-top:20px;">
+                      <button class="btn btn-primary" name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_task_todo': 1}">
+                        <t t-esc="record.todo_project_count.value"/>
+                          To Do
+                      </button>
+                    </div>
+                    <div class="col-8 o_kanban_primary_right">
+                      <div class="row">
+
+                        <div class="col-9">
+                          <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_unassigned': 1, 'search_default_filter_task_todo': 1}">
+                            Unassigned
+                          </a>
+                        </div>
+                        <div class="col-3">
+                          <t t-esc="record.todo_project_count_unassigned.value"/>
+                        </div>
+        
+                        <t t-if="record.todo_project_count_year_nm0.value > 0">
+                          <div class="col-9">
+                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_current': 1, 'search_default_filter_task_todo': 1}">
+                              Current Year
+                            </a>
+                          </div>
+                          <div class="col-3">
+                            <t t-esc="record.todo_project_count_year_nm0.value"/>
+                          </div>
+                        </t>
+
+                        <t t-if="record.todo_project_count_year_nm1.value > 0">
+                          <div class="col-9">
+                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_previous': 1, 'search_default_filter_task_todo': 1}">
+                              Previous Year
+                            </a>
+                          </div>
+                          <div class="col-3">
+                            <t t-esc="record.todo_project_count_year_nm1.value"/>
+                          </div>
+                        </t>
+
+                        <t t-if="record.todo_project_count_year_nm2.value > 0">
+                          <div class="col-9">
+                            <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_older': 1, 'search_default_filter_task_todo': 1}">
+                              More Older
+                            </a>
+                          </div>
+                          <div class="col-3">
+                            <t t-esc="record.todo_project_count_year_nm2.value"/>
+                          </div>
+                        </t>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                  <div class="row">
+                    <div class="col-6 o_kanban_card_manage_section o_kanban_manage_view">
+                      <div class="o_kanban_card_manage_title">
+                        <span>View</span>
+                      </div>
+                      <div>
+                        <a name="%(action_project_kanban_from_dashboard)d" type="action">
+                          All
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                    <div class="col-8">
+                      <ul class="oe_kanban_colorpicker" data-field="color"/>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="project_type_dashboard_action">
+    <field name="name">Dashboard</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">project.type</field>
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="view_type">form</field>
+    <field name="domain">[('dashboard_ok', '=', True)]</field>
+  </record>
+
+</odoo>
