@@ -48,6 +48,7 @@
     </record>
 
     <record id="view_project_search" model="ir.ui.view">
+        <field name="name">project.project.select@mrp_project</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project_project_filter"/>
         <field name="arch" type="xml">
@@ -57,4 +58,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>
