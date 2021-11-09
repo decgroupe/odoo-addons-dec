@@ -3,8 +3,12 @@
 
     <record model="ir.ui.menu" id="menu_contracts_and_projects">
         <field name="name">Contracts &amp; Projects</field>
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="5"/>
         <field name="parent_id" ref="project.menu_main_pm"/>
+    </record>
+
+    <record model="ir.ui.menu" id="project.menu_project_management">
+        <field name="sequence" eval="10"/>
     </record>
 
     <record model="ir.ui.menu" id="project.menu_projects">

@@ -15,7 +15,6 @@ class Project(models.Model):
         compute="_compute_from_type",
         store=True,
     )
-
     is_time_tracking = fields.Boolean(
         string="Is for time tracking",
         compute="_compute_from_type",
