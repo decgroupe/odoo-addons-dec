@@ -17,11 +17,11 @@
                     solid_icon="fa-thumbs-up"
                     attrs="{
                         'column_invisible': [
-                            ('parent.picking_type_code', '!=', 'incoming')
+                            ('parent.picking_type_code', 'not in', ['incoming', 'outgoing'])
                         ],
                         'invisible': [
                             '|',
-                            ('picking_code', '!=', 'incoming'),
+                            ('picking_code', 'not in', ['incoming', 'outgoing']),
                             '|',
                             ('action_auto_operation_fill_visible', '=', False),
                             '|',
