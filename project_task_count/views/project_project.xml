@@ -6,9 +6,8 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project_project_filter"/>
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='followed_by_me']/following-sibling::separator" position="after">
+            <xpath expr="//filter[@name='inactive']" position="after">
                 <filter string="With Task To-Do" name="filter_task_todo" domain="[('todo_task_count', '>', 0)]"/>
-                <separator/>
             </xpath>
         </field>
     </record>
