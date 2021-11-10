@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 08:52+0000\n"
-"PO-Revision-Date: 2021-11-04 08:52+0000\n"
+"POT-Creation-Date: 2021-11-10 12:45+0000\n"
+"PO-Revision-Date: 2021-11-10 12:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgid "Manager"
 msgstr ""
 
 #. module: connector_gitlab
-#: code:addons/connector_gitlab/models/gitlab_service.py:261
+#: code:addons/connector_gitlab/models/gitlab_service.py:271
 #, python-format
 msgid "Method not supported [%s] not in %s!"
 msgstr ""
@@ -123,9 +123,17 @@ msgid "Resources"
 msgstr ""
 
 #. module: connector_gitlab
-#: code:addons/connector_gitlab/models/gitlab_service.py:278
+#: code:addons/connector_gitlab/models/gitlab_service.py:288
 #, python-format
 msgid "Something went wrong with a request to GitLab: %s"
+msgstr ""
+
+#. module: connector_gitlab
+#: code:addons/connector_gitlab/models/gitlab_service.py:111
+#, python-format
+msgid "This User exists in the Odoo portal but not in GitLab.\n"
+"To fix this error, please create an external User in GitLab with this email and retry:\n"
+"%s"
 msgstr ""
 
 #. module: connector_gitlab

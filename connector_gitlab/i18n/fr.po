@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 08:52+0000\n"
-"PO-Revision-Date: 2021-11-04 10:02+0100\n"
+"POT-Creation-Date: 2021-11-10 12:45+0000\n"
+"PO-Revision-Date: 2021-11-10 13:47+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. module: connector_gitlab
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_resource__uid
@@ -103,7 +103,7 @@ msgid "Manager"
 msgstr "Gestionnaire"
 
 #. module: connector_gitlab
-#: code:addons/connector_gitlab/models/gitlab_service.py:261
+#: code:addons/connector_gitlab/models/gitlab_service.py:271
 #, python-format
 msgid "Method not supported [%s] not in %s!"
 msgstr "Méthode non prise en charge [%s] n'est pas dans %s!"
@@ -125,10 +125,22 @@ msgid "Resources"
 msgstr "Ressources"
 
 #. module: connector_gitlab
-#: code:addons/connector_gitlab/models/gitlab_service.py:278
+#: code:addons/connector_gitlab/models/gitlab_service.py:288
 #, python-format
 msgid "Something went wrong with a request to GitLab: %s"
 msgstr "Quelque chose ne s'est pas passé comme prévu avec votre demande à GitLab: %s"
+
+#. module: connector_gitlab
+#: code:addons/connector_gitlab/models/gitlab_service.py:111
+#, python-format
+msgid ""
+"This User exists in the Odoo portal but not in GitLab.\n"
+"To fix this error, please create an external User in GitLab with this email and retry:\n"
+"%s"
+msgstr ""
+"Cet utilisateur existe dans le portail Odoo mais pas dans GitLab.\n"
+"Pour corriger cette erreur, veuillez créer un utilisateur externe dans GitLab avec cet e-mail et réessayer:\n"
+"%s"
 
 #. module: connector_gitlab
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_resource__type

@@ -81,7 +81,8 @@ class GitlabService(models.AbstractModel):
         return 0
 
     def create_or_update_user(self, odoo_id, email, name, password=False):
-        user_uid = self._get_user_uid(odoo_id, email)
+        search_email = self.env.context.get('search_email', email)
+        user_uid = self._get_user_uid(odoo_id, search_email)
         if user_uid:
             username = self._get_username_from_email(email)
             # We also update the extern_uid for users previoulsy created
@@ -92,19 +93,30 @@ class GitlabService(models.AbstractModel):
                 'email': email,
                 'username': username,
                 'name': name,
+                'skip_confirmation': True,
+                'skip_reconfirmation': True,
             }
             if password:
                 params.update({
                     'password': password,
                 })
             status, response, headers, ask_time = self._do_request(
-                '/api/v4/users/%d' % (user_uid), params, self._get_common_headers(),
-                'PUT'
+                '/api/v4/users/%d' % (user_uid), params,
+                self._get_common_headers(), 'PUT'
             )
             if status == 200:
                 return response.get('id')
-        else:
+        elif password:
             return self.create_user(odoo_id, email, name, password)
+        else:
+            raise UserError(
+                _(
+                    "This User exists in the Odoo portal but not in GitLab.\n"
+                    "To fix this error, please create an external User in "
+                    "GitLab with this email and retry:\n"
+                    "%s"
+                ) % (search_email)
+            )
 
     def add_project_member(self, project_uid, user_uid, access_level=10):
         """ Adds a member to a group or project. 

@@ -12,7 +12,11 @@
             <field name="category_id" ref="module_category_gitlab"/>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         </record>
-        
+
+        <record model="res.groups" id="base.group_user">
+            <field name="implied_ids" eval="[(4, ref('group_gitlab_resource_user'))]"/>
+        </record>
+
         <record model="res.groups" id="group_gitlab_resource_manager">
             <field name="name">Manager</field>
             <field name="category_id" ref="module_category_gitlab"/>
