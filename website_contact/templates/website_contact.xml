@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="create_contact_message" name="Contact">
+    <t t-call="portal.portal_layout">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 pt-2">
+            <h3 class="text-center">Contact Us</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-8 col-sm-10 mx-auto form p-2">
+        <div class="px-2">
+          <t t-if="True">
+            <form id="form_create_ticket" t-att-action="form_action if form_action else '#'" method="POST" enctype="multipart/form-data" class="justify-content-center">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+              <div class="form-group required">
+                <label class="control-label">You Are</label>
+                <div class="">
+                  <t t-foreach="origin" t-as="o">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" t-att-id="o" type="radio" name="origin" required="True"/>
+                      <label class="form-check-label" t-att-for="o" t-esc="origin[o]"/>
+                    </div>
+                  </t>
+                </div>
+              </div>
+
+              <div class="form-group required">
+                <label class="control-label" for="name">Your Name</label>
+                <input type="text" class="form-control" name="name" t-attf-value="#{name}" required="True" placeholder="Jane Doe"/>
+              </div>
+
+              <div class="form-group required">
+                <label class="control-label" for="email">Your Email Adresss</label>
+                <input type="text" class="form-control" name="email" t-attf-value="#{email}" required="True" placeholder="jane.doe@example.com"/>
+                <div class="small">
+                  Please note that an e-mail will be sent to this address with a link to this ticket.
+                </div>
+              </div>
+
+              <t t-if="categories">
+                <div class="form-group">
+                  <label class="control-label">Category</label>
+                  <div class="">
+                    <select class="form-control" id="category" name="category" required="True">
+                      <t t-foreach="categories" t-as="cat">
+                        <option t-attf-value="#{cat.id}">
+                          <t t-esc="cat.name"/>
+                        </option>
+                      </t>
+                    </select>
+                  </div>
+                </div>
+              </t>
+
+              <div class="form-group required">
+                <label class="control-label" for="subject">Subject</label>
+                <input type="text" class="form-control" name="subject" required="True"/>
+              </div>
+
+              <div class="form-group required">
+                <label class="control-label" for="description">Your Message</label>
+                <textarea class="form-control" name="description" style="min-height: 180px" required="True" t-esc="description"/>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label" for="attachment">Add Attachments</label>
+                <div class="alert alert-danger mt-2" role="alert" id="validation" style="display: none;"/>
+                <input class="form-control o_website_form_input" name="attachment" id="attachment" type="file" multiple="multiple"/>
+                <div class="small">
+                  There is a limit of 5 files and a total of 10MB.
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+              </div>
+            </form>
+          </t>
+
+        </div>
+      </div>
+
+    </t>
+  </template>
+
+</odoo>
