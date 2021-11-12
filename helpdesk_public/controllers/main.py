@@ -71,5 +71,7 @@ class HelpdeskTicketPublicController(http.Controller):
             'name': kw.get('subject'),
             'description': kw.get('description'),
         }
-        new_ticket = request.env['helpdesk.ticket'].sudo().create(vals)
+        new_ticket = request.env['helpdesk.ticket'].sudo().with_context(
+            public_ticket=True
+        ).create(vals)
         return {'ticket': new_ticket.number}

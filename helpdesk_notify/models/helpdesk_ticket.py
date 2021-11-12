@@ -11,7 +11,7 @@ class HelpdeskTicket(models.Model):
     @api.model
     def create(self, vals):
         res = super().create(vals)
-        if self.env.context.get('fetchmail_cron_running'):
+        if self._should_notify_new_ticket():
             if vals.get('team_id') and not vals.get('user_id'):
                 team_id = self.env['helpdesk.ticket.team'].browse(
                     vals.get('team_id')
@@ -27,3 +27,6 @@ class HelpdeskTicket(models.Model):
     def send_user_internal_mail(self):
         self.env.ref('helpdesk_notify.created_ticket_internal_template'). \
             send_mail(self.id, force_send=True)
+
+    def _should_notify_new_ticket(self):
+        return self.env.context.get('fetchmail_cron_running', False)

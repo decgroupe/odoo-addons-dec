@@ -29,3 +29,9 @@ class HelpdeskTicket(models.Model):
         self._retrieve_partner_from_email(vals)
         self._retrieve_user_from_project(vals)
         return super().create(vals)
+
+    def _should_notify_new_ticket(self):
+        res = super()._should_notify_new_ticket()
+        if not res:
+            res = self.env.context.get('public_ticket', False)
+        return res
