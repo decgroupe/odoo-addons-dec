@@ -18,17 +18,19 @@
             <form id="form_create_ticket" t-att-action="form_action if form_action else '#'" method="POST" enctype="multipart/form-data" class="justify-content-center">
               <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
-              <div class="form-group required">
-                <label class="control-label">You Are</label>
-                <div class="">
-                  <t t-foreach="origin" t-as="o">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" t-att-id="o" type="radio" name="origin" required="True"/>
-                      <label class="form-check-label" t-att-for="o" t-esc="origin[o]"/>
-                    </div>
-                  </t>
+              <t t-if="step == 1">
+                <div class="form-group required">
+                  <label class="control-label" for="origin">You Are</label>
+                  <div class="">
+                    <t t-foreach="origin" t-as="o">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" t-att-id="o" type="radio" name="origin" required="True" t-attf-value="#{origin[o]}"/>
+                        <label class="form-check-label" t-att-for="o" t-esc="origin[o]"/>
+                      </div>
+                    </t>
+                  </div>
                 </div>
-              </div>
+              </t>
 
               <div class="form-group required">
                 <label class="control-label" for="name">Your Name</label>

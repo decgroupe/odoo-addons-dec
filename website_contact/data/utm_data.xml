@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- UTM Source -->
+    <record model="utm.source" id="utm_source_contact_form">
+        <field name="name">Contact Form</field>
+    </record>
+
+    <!-- UTM Medium -->
+    <!-- <record model="utm.medium" id="utm_medium_website">
+        <field name="name">Website</field>
+    </record> -->
+
+</odoo>
