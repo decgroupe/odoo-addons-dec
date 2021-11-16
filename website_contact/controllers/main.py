@@ -60,7 +60,7 @@ class WebsiteContactController(http.Controller):
                 )
 
     def _default_return(self):
-        return werkzeug.utils.redirect("/")
+        return werkzeug.utils.redirect("/contactus-thank-you")
 
     #######################################################################
 
