@@ -21,7 +21,7 @@ class ResPartner(models.Model):
                 previous_emails[rec.id] = rec.email
         res = super().write(vals)
         if 'email' in vals or 'name' in vals:
-            for rec in self:
+            for rec in self.filtered('user_ids'):
                 user_id = rec.user_ids
                 user_id.ensure_one()
                 previous_email = previous_emails.get(rec.id, False)
