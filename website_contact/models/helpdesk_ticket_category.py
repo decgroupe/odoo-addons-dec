@@ -15,8 +15,8 @@ class HelpdeskCategory(models.Model):
         help="The sequence field is used to define order in which categories "
         "are displayed.",
     )
-    public_ok = fields.Boolean(
-        string="Public",
-        help="Selectable on the public contact form",
+    public_filter = fields.Char(
+        string="Public Filter",
+        help="Selectable on a public contact form with a predefined filter",
         default=True,
     )

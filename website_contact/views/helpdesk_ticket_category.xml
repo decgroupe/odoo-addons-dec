@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <group name="main" position="inside">
                 <field name="sequence" />
-                <field name="public_ok" />
+                <field name="public_filter" />
             </group>
         </field>
     </record>

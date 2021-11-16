@@ -2,7 +2,7 @@
 <odoo>
 
   <template id="create_contact_message" name="Contact">
-    <t t-call="portal.portal_layout">
+    <t t-call="website.layout">
 
       <div class="container">
         <div class="row">
@@ -12,19 +12,20 @@
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-8 col-sm-10 mx-auto form p-2">
+      <div class="col-lg-6 col-md-8 col-sm-10 mx-auto form p-2 mb-5">
         <div class="px-2">
           <t t-if="True">
-            <form id="form_create_ticket" t-att-action="form_action if form_action else '#'" method="POST" enctype="multipart/form-data" class="justify-content-center">
+            <form id="form_create_message" t-att-action="form_action if form_action else '#'" method="POST" enctype="multipart/form-data" class="justify-content-center">
               <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+              <input type="hidden" name="partner_id" t-att-value="partner_id"/>
 
-              <t t-if="step == 1">
+              <t t-if="show_origin_form_group">
                 <div class="form-group required">
                   <label class="control-label" for="origin">You Are</label>
                   <div class="">
                     <t t-foreach="origin" t-as="o">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" t-att-id="o" type="radio" name="origin" required="True" t-attf-value="#{origin[o]}"/>
+                        <input class="form-check-input" t-att-id="o" type="radio" name="origin" required="True" t-attf-value="#{o}"/>
                         <label class="form-check-label" t-att-for="o" t-esc="origin[o]"/>
                       </div>
                     </t>
@@ -32,55 +33,134 @@
                 </div>
               </t>
 
-              <div class="form-group required">
+              <div class="form-group required" t-if="show_company_form_group">
+                <label class="control-label" for="company" t-esc="company_label"/>
+                <input type="text" class="form-control" name="company" t-attf-value="#{company}" required="True" placeholder=""/>
+              </div>
+              <div class="form-group required" t-if="show_name_form_group">
                 <label class="control-label" for="name">Your Name</label>
                 <input type="text" class="form-control" name="name" t-attf-value="#{name}" required="True" placeholder="Jane Doe"/>
               </div>
-
-              <div class="form-group required">
-                <label class="control-label" for="email">Your Email Adresss</label>
-                <input type="text" class="form-control" name="email" t-attf-value="#{email}" required="True" placeholder="jane.doe@example.com"/>
-                <div class="small">
-                  Please note that an e-mail will be sent to this address with a link to this ticket.
+              <div class="form-group" t-if="show_function_form_group">
+                <label class="control-label" for="function">Function</label>
+                <input type="text" class="form-control" name="function" t-attf-value="#{function}" placeholder="Teacher"/>
+              </div>
+              <div class="row" t-if="show_phone_mobile_form_group">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="control-label" for="phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" t-attf-value="#{phone}" placeholder="0243302732"/>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label class="control-label" for="mobile">Mobile</label>
+                    <input type="text" class="form-control" name="mobile" t-attf-value="#{mobile}" placeholder="0675308813"/>
+                  </div>
                 </div>
               </div>
-
-              <t t-if="categories">
-                <div class="form-group">
-                  <label class="control-label">Category</label>
-                  <div class="">
-                    <select class="form-control" id="category" name="category" required="True">
-                      <t t-foreach="categories" t-as="cat">
-                        <option t-attf-value="#{cat.id}">
-                          <t t-esc="cat.name"/>
-                        </option>
-                      </t>
-                    </select>
+              <t t-if="show_address_form_group">
+                <div class="form-group required">
+                  <label class="control-label" for="street">Street</label>
+                  <input type="text" class="form-control" name="street" t-attf-value="#{street}" required="True" placeholder="3 place d'Italie"/>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group required">
+                      <label class="control-label" for="city">City</label>
+                      <input type="text" class="form-control" name="city" t-attf-value="#{city}" required="True" placeholder="Paris"/>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group required">
+                      <label class="control-label" for="zip">Zip Code</label>
+                      <input type="text" class="form-control" name="zip" t-attf-value="#{zipcode}" required="True" t-translation="off" placeholder="75013"/>
+                    </div>
                   </div>
                 </div>
               </t>
 
-              <div class="form-group required">
-                <label class="control-label" for="subject">Subject</label>
-                <input type="text" class="form-control" name="subject" required="True"/>
-              </div>
-
-              <div class="form-group required">
-                <label class="control-label" for="description">Your Message</label>
-                <textarea class="form-control" name="description" style="min-height: 180px" required="True" t-esc="description"/>
-              </div>
-
-              <div class="form-group">
-                <label class="control-label" for="attachment">Add Attachments</label>
-                <div class="alert alert-danger mt-2" role="alert" id="validation" style="display: none;"/>
-                <input class="form-control o_website_form_input" name="attachment" id="attachment" type="file" multiple="multiple"/>
-                <div class="small">
-                  There is a limit of 5 files and a total of 10MB.
+              <t t-if="show_email_form_group">
+                <div class="form-group required">
+                  <label class="control-label" for="email">Your Email Address</label>
+                  <input type="text" class="form-control" name="email" t-attf-value="#{email}" required="True" placeholder="jane.doe@example.com"/>
+                  <div class="small">
+                    Please note that an e-mail will be sent to this address with a link to this request.
+                  </div>
                 </div>
-              </div>
+              </t>
+              <t t-else="">
+                <t t-if="email">
+                  <input type="hidden" name="email" t-att-value="email"/>
+                </t>
+              </t>
+
+              <t t-if="show_category_form_group">
+                <t t-if="categories">
+                  <div class="form-group">
+                    <label class="control-label">Category</label>
+                    <div class="">
+                      <select class="form-control" id="category" name="category" required="True">
+                        <t t-foreach="categories" t-as="cat">
+                          <option t-attf-value="#{cat.id}">
+                            <t t-esc="cat.name"/>
+                          </option>
+                        </t>
+                      </select>
+                    </div>
+                  </div>
+                </t>
+              </t>
+
+              <t t-if="partner_name">
+                <label class="control-label" for="partner_name">From</label>
+                <span t-esc="partner_name"/>
+              </t>
+
+              <t t-if="show_subject_form_group">
+                <div class="form-group required">
+                  <label class="control-label" for="subject">Subject</label>
+                  <input type="text" class="form-control" name="subject" required="True"/>
+                </div>
+              </t>
+
+              <t t-if="show_references_form_group">
+                <div class="form-group">
+                  <label class="control-label" for="subject">References</label>
+                  <input type="text" class="form-control" name="references" placeholder="MO/210433 SO210155"/>
+                  <div class="small">
+                    Please indicate the reference(s) of the products concerned for a service request (references generally start with three letters) or the serial number (MO).
+                  </div>
+                </div>
+              </t>
+
+              <t t-if="show_description_form_group">
+                <div class="form-group required">
+                  <label class="control-label" for="description">Your Message</label>
+                  <textarea class="form-control" name="description" style="min-height: 180px" required="True" t-esc="description"/>
+                </div>
+              </t>
+
+              <t t-if="show_attachment_form_group">
+                <div class="form-group">
+                  <label class="control-label" for="attachment">Add Attachments</label>
+                  <div class="alert alert-danger mt-2" role="alert" id="validation" style="display: none;"/>
+                  <input class="form-control o_website_form_input" name="attachment" id="attachment" type="file" multiple="multiple"/>
+                  <div class="small">
+                    There is a limit of 5 files and a total of 10MB.
+                  </div>
+                </div>
+              </t>
+
+              <t t-if="show_recaptcha_form_group">
+                <div class="form-group required">
+                  <label class="control-label" for="recaptcha">Anti-Spam Security</label>
+                  <div class="form-group g-recaptcha" id="google_recaptcha" name="recaptcha" data-sitekey="6LfIMDcdAAAAAKyH2BOSry-YYw5FW85aaFuiZgzp" data-callback="gcaptcha_callback" data-expired-callback="gcaptcha_expired_callback"></div>
+                </div>
+              </t>
 
               <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <button id="submit_button" type="submit" class="btn btn-primary btn-block" t-esc="submit_text"/>
               </div>
             </form>
           </t>

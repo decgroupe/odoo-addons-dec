@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!--
+    <template id="assets_backend" name="assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+        </xpath>
+    </template>
+    -->
+
     <template id="assets_frontend" name="assets" inherit_id="web.assets_frontend">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/website_contact/static/src/js/validator.js"></script>
+            <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+        </xpath>
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/website_contact/static/src/css/style.scss"/>
         </xpath>
     </template>
 

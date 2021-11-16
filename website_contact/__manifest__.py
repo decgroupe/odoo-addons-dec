@@ -6,7 +6,8 @@
     'summary': "Allow helpdesk data manipulation without user account",
     'depends': [
         'helpdesk_notify',
-        'crm'
+        'crm',
+        'website',
     ],
     'data':
         [
@@ -14,6 +15,7 @@
             'views/assets.xml',
             'views/helpdesk_ticket_category.xml',
             'templates/website_contact.xml',
+            'templates/website_page_contactus.xml',
         ],
     'installable': True
 }

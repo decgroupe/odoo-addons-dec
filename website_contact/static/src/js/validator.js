@@ -1,3 +1,14 @@
+
+function gcaptcha_callback() {
+    var $button = document.getElementById("submit_button");
+    $button.disabled = false;
+}
+
+function gcaptcha_expired_callback() {
+    var $button = document.getElementById("submit_button");
+    $button.disabled = true;
+}
+
 odoo.define('website_contact.validate', function (require) {
     "use strict";
 
@@ -45,7 +56,14 @@ odoo.define('website_contact.validate', function (require) {
         }
     }
 
-    var $el = document.getElementById("form_create_ticket");
-    $el.onsubmit = validateForm;
+    var $form = document.getElementById("form_create_message");
+    $form.onsubmit = validateForm;
+
+    var $recaptcha = document.getElementById("google_recaptcha");
+    if ($recaptcha) {
+        gcaptcha_expired_callback();
+    }
+
 
 });
+
