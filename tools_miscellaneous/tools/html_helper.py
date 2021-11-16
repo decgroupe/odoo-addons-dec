@@ -35,6 +35,10 @@ def b(content):
     return '<b>{}</b>'.format(content)
 
 
+def p(content):
+    return '<p>{}</p>'.format(content)
+
+
 def format_hd(head, desc, html):
     if html:
         return '{0} {1}'.format(head, small(lf2html(desc)))
