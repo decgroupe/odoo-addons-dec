@@ -26,7 +26,10 @@ class SaleOrder(models.Model):
             ):
                 project_data = {
                     'name': rec.name,
-                    'partner_id': rec.partner_shipping_id.id,
+                    # Use the same partner than the sale order. The shipping
+                    # partner is retrieved using `project_partner_location`
+                    # module and the `partner_shipping_id` field.
+                    'partner_id': rec.partner_id.id,
                     'type_id': contract_type_id.id,
                     'user_id': rec.user_id.id,
                 }

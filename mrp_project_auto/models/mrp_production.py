@@ -30,7 +30,10 @@ class MrpProduction(models.Model):
                 if sale_order_id:
                     project_data = {
                         'name': sale_order_id.name,
-                        'partner_id': sale_order_id.partner_shipping_id.id,
+                        # Use the same partner than the sale order. The shipping
+                        # partner is retrieved using `project_partner_location`
+                        # module and the `partner_shipping_id` field.
+                        'partner_id': sale_order_id.partner_id.id,
                     }
                 else:
                     project_data = {

@@ -13,6 +13,18 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_project">
+        <field name="name">project.project.tree.select@project_partner_location</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_shipping_id"/>
+                <field name="partner_shipping_zip_id"/>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="view_project_kanban">
         <field name="name">project.project.kanban@project_partner_location</field>
         <field name="model">project.project</field>
@@ -44,9 +56,22 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project_project_filter"/>
         <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="filter_domain">
+                [
+                    '|',
+                    ('partner_id', 'child_of', self),
+                    ('partner_shipping_id', 'child_of', self),
+                ]
+                </attribute>
+            </field>
             <field name="partner_id" position="after">
                 <field name="partner_shipping_zip_id"/>
             </field>
+            <filter name="Partner" position="after">
+                <filter string="Shipping Partner" name="filter_partner_shipping" context="{'group_by': 'partner_shipping_id'}"/>
+                <filter string="Shipping Partner's ZIP" name="filter_partner_shipping_zip" context="{'group_by': 'partner_shipping_zip_id'}"/>
+            </filter>
         </field>
     </record>
 

@@ -14,6 +14,8 @@ class Project(models.Model):
         string="Shipping Partner",
         readonly=True,
         store=True,
+        help="Retrieved from `sale_order_id` if set, otherwise search "
+        "for a sale/project name match."
     )
     partner_shipping_zip_id = fields.Many2one(
         'res.city.zip',
@@ -54,3 +56,20 @@ class Project(models.Model):
             name = ('🗺️ %s') % (self.partner_shipping_zip_id.display_name, )
             res.append(name)
         return res
+
+    @api.multi
+    def assign_partner_from_sale_order(self):
+        # This is intended to be a one-call fix after a paradigm change
+        # Note that no `onchange` will be called for a such editing
+        for rec in self:
+            partner_id = False
+            if rec.sale_order_id:
+                partner_id = rec.sale_order_id.partner_id
+            elif rec.name:
+                sale_id = self.env['sale.order'].search(
+                    [('name', '=', rec.name)], limit=1
+                )
+                if sale_id:
+                    partner_id = sale_id.partner_id
+            if partner_id and partner_id != rec.partner_id:
+                rec.partner_id = partner_id
