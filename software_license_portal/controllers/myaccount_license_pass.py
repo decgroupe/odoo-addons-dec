@@ -208,7 +208,7 @@ class LicensePassCustomerPortal(CustomerPortal):
         methods=["POST"],
         website=True,
     )
-    def deactivate_hardware(self, pass_id, hardware_name, **kw):
+    def _pass_deactivate_hardware(self, pass_id, hardware_name, **kw):
         pass_id = int(pass_id)
         SoftwareLicensePass = request.env['software.license.pass'].sudo()
         SoftwareLicensePass.browse(pass_id).deactivate(hardware_name)

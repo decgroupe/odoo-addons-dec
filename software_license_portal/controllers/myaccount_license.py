@@ -223,7 +223,7 @@ class LicenseCustomerPortal(CustomerPortal):
         methods=["POST"],
         website=True,
     )
-    def deactivate_hardware(self, hardware_id, license_id, **kw):
+    def _license_deactivate_hardware(self, hardware_id, license_id, **kw):
         license_id = int(license_id)
         hardware_id = int(hardware_id)
         SoftwareLicense = request.env['software.license'].sudo()
