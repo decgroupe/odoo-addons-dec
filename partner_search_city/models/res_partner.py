@@ -18,8 +18,21 @@ class ResPartner(models.Model):
         result = []
         for item in names:
             partner = self.browse(item[0])[0]
+            if partner.is_company:
+                pre = "🏢"
+            else:
+                pre = "👷"
             # Don't reuse item[1] lazy result as it contains line feeds with address
-            override_name_get = ('%s (%s %s)'
-                                ) % (item[1], partner.zip, partner.city)
+            override_name_get = ('%s %s') % (
+                pre,
+                partner.display_name,
+            )
+            if partner.zip or partner.city:
+                override_name_get += (' (%s %s)') % (
+                    partner.zip,
+                    partner.city,
+                )
+            if partner.email:
+                override_name_get += " 📧 %s" % (partner.email, )
             result.append((item[0], override_name_get))
         return result
