@@ -26,15 +26,28 @@
             <xpath expr="//div[hasclass('o_primary')]" position="inside">
                 <small name="partner_shipping_id">
                     <div t-if="record.partner_shipping_id.raw_value">
-                        <i class="fa fa-truck"/> <t t-raw="record.partner_shipping_id.value"/>
+                        <i class="fa fa-truck"/>
+                        <t t-raw="record.partner_shipping_id.value"/>
                     </div>
                     <div t-if="record.partner_shipping_zip_id.raw_value">
-                        <i class="fa fa-map-marker"/> <t t-raw="record.partner_shipping_zip_id.value"/>
+                        <i class="fa fa-map-marker"/>
+                        <t t-raw="record.partner_shipping_zip_id.value"/>
                     </div>
                 </small>
             </xpath>
 
         </field>
     </record>
-    
+
+    <record model="ir.ui.view" id="project_project_filter_view">
+        <field name="name">project.project.select@project_partner_location</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_shipping_zip_id"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>
