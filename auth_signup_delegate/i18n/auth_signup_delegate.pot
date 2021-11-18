@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-22 13:55+0000\n"
-"PO-Revision-Date: 2021-10-22 13:55+0000\n"
+"POT-Creation-Date: 2021-11-18 09:34+0000\n"
+"PO-Revision-Date: 2021-11-18 09:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,13 @@ msgid "Contact"
 msgstr ""
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:49
+#: code:addons/auth_signup_delegate/controllers/main.py:75
+#, python-format
+msgid "Contact %s (%s) already have an access to the Portal."
+msgstr ""
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:90
 #, python-format
 msgid "Contact %s has been created and a confirmation e-mail has been sent to %s"
 msgstr ""
@@ -53,7 +59,7 @@ msgid "Function"
 msgstr ""
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:58
+#: code:addons/auth_signup_delegate/controllers/main.py:99
 #, python-format
 msgid "Invalid Token"
 msgstr ""
@@ -61,6 +67,12 @@ msgstr ""
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
 msgid "Jane Doe"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:48
+#, python-format
+msgid "Multiple contacts already exists with this email, please contact us."
 msgstr ""
 
 #. module: auth_signup_delegate
@@ -76,6 +88,12 @@ msgstr ""
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
 msgid "Please note that an e-mail will be sent to this address with a specific link to create a password!"
+msgstr ""
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:64
+#, python-format
+msgid "This email already exists for a contact that is not a member of your company. You cannot grant him a portal access."
 msgstr ""
 
 #. module: auth_signup_delegate

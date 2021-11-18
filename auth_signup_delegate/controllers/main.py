@@ -34,17 +34,58 @@ class DelegateAuthSignup(http.Controller):
     def delegate_create_contact(self, token, message=False, **kw):
         error = False
         partner_id = False
+        Partner = request.env['res.partner'].sudo()
         try:
             partner_id = self._get_partner_from_token(token)
             if http.request.httprequest.method == 'POST':
-                vals = {
-                    'parent_id': partner_id.id,
-                    'company_id': partner_id.company_id.id,
-                    'name': kw.get('name'),
-                    'email': kw.get('email'),
-                    'function': kw.get('function'),
-                }
-                contact_id = request.env['res.partner'].sudo().create(vals)
+                contact_id = Partner.search([('email', '=', kw.get('email'))])
+                if contact_id:
+                    # Having two or more contacts with the same email is
+                    # forbidden for a portal access has it it used as a
+                    # login identifier.
+                    if len(contact_id) > 1:
+                        raise UserError(
+                            _(
+                                "Multiple contacts already exists with "
+                                "this email, please contact us."
+                            )
+                        )
+                    # Before giving a portal access, ensure that this existing
+                    # contact is a child of our partner.
+                    else:
+                        contact_id = Partner.search(
+                            [
+                                ('id', '=', contact_id.id),
+                                ('id', 'child_of', partner_id.id)
+                            ]
+                        )
+                        if not contact_id:
+                            raise UserError(
+                                _(
+                                    "This email already exists for a contact "
+                                    "that is not a member of your company. "
+                                    "You cannot grant him a portal access."
+                                )
+                            )
+                    already_in_portal = request.env.ref(
+                        'base.group_portal'
+                    ) in contact_id.user_ids[0].groups_id
+                    if already_in_portal:
+                        raise UserError(
+                            _(
+                                "Contact %s (%s) already have an access "
+                                "to the Portal."
+                            ) % (contact_id.name, contact_id.email)
+                        )
+                else:
+                    vals = {
+                        'parent_id': partner_id.id,
+                        'company_id': partner_id.company_id.id,
+                        'name': kw.get('name'),
+                        'email': kw.get('email'),
+                        'function': kw.get('function'),
+                    }
+                    contact_id = request.env['res.partner'].sudo().create(vals)
                 contact_id.give_portal_access()
                 message = _(
                     "Contact %s has been created and a "
