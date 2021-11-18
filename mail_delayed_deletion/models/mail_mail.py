@@ -42,10 +42,19 @@ class MailMail(models.AbstractModel):
                             False,
                         'delayed_deletion':
                             datetime.today() +
-                            timedelta(days=delayed_deletion_days)
+                            timedelta(days=delayed_deletion_days),
                     }
                 )
-        return super()._send(auto_commit, raise_exception, smtp_session)
+        res = super()._send(auto_commit, raise_exception, smtp_session)
+        # Alter message-id of mails with a delayed deletion to avoid collision
+        # with a loopback catchall (eg.: A message is sent to an alias managed
+        # in Odoo)
+        mail_ids = self.browse(self.ids).filtered('delayed_deletion')
+        for mail_id in mail_ids:
+            message_id = list(mail_id.message_id.rpartition('@'))
+            message_id[0] += '-2del'
+            mail_id.message_id = ''.join(message_id)
+        return res
 
     @api.model
     def action_delayed_deletion(self):
