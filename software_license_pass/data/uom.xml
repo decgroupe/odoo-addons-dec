@@ -2,163 +2,1498 @@
 <odoo>
     <data noupdate="1">
 
-        <record id="product_uom_categ_seat" model="uom.category">
+        <record id="product_uom_categ_seatyear" model="uom.category">
             <field name="name">Seat/Year</field>
         </record>
 
         <record id="product_uom_seat_year1" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 1 year</field>
             <field name="factor" eval="1.0"/>
             <field name="rounding" eval="1"/>
         </record>
         <record id="product_uom_seat_year2" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 2 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="2"/>
         </record>
         <record id="product_uom_seat_year3" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 3 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="3"/>
         </record>
         <record id="product_uom_seat_year4" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 4 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="4"/>
         </record>
         <record id="product_uom_seat_year5" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 5 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="5"/>
         </record>
         <record id="product_uom_seat_year6" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 6 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="6"/>
         </record>
         <record id="product_uom_seat_year7" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 7 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="7"/>
         </record>
         <record id="product_uom_seat_year8" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 8 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="8"/>
         </record>
         <record id="product_uom_seat_year9" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 9 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="9"/>
         </record>
         <record id="product_uom_seat_year10" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 10 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="10"/>
         </record>
         <record id="product_uom_seat_year11" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 11 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="11"/>
         </record>
         <record id="product_uom_seat_year12" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 12 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="12"/>
         </record>
         <record id="product_uom_seat_year13" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 13 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="13"/>
         </record>
         <record id="product_uom_seat_year14" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 14 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="14"/>
         </record>
         <record id="product_uom_seat_year15" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 15 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="15"/>
         </record>
         <record id="product_uom_seat_year16" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 16 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="16"/>
         </record>
         <record id="product_uom_seat_year17" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 17 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="17"/>
         </record>
         <record id="product_uom_seat_year18" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 18 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="18"/>
         </record>
         <record id="product_uom_seat_year19" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 19 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="19"/>
         </record>
         <record id="product_uom_seat_year20" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 20 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="20"/>
         </record>
         <record id="product_uom_seat_year25" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 25 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="25"/>
         </record>
         <record id="product_uom_seat_year30" model="uom.uom">
-            <field name="category_id" ref="product_uom_categ_seat"/>
+            <field name="category_id" ref="product_uom_categ_seatyear"/>
             <field name="name">Seat(s) for 30 years</field>
             <field name="rounding" eval="1"/>
             <field name="uom_type">bigger</field>
             <field name="factor_inv" eval="30"/>
         </record>
 
+        <!-- 
+
+Mass data generated with python:
+################################
+        """
+<record id="product_uom_year_seat%d" model="uom.uom">
+    <field name="category_id" ref="product_uom_categ_yearseat"/>
+    <field name="name">Year(s) for %d seats</field>
+    <field name="rounding" eval="1"/>
+    <field name="uom_type">bigger</field>
+    <field name="factor_inv" eval="%d"/>
+</record>
+"""
+
+for i in range(500,1001, 100):
+    print(template % (i,i,i))
+
+for i in range(100,501, 10):
+    print(template % (i,i,i))
+
+for i in range(0,101):
+    print(template % (i,i,i))
+
+Mass translate with vscode:
+###########################
+msgid "Year\(s\) for (.*) seats"\nmsgstr ""
+msgid "Year(s) for $1 seats"\nmsgstr "Année(s) pour $1 postes"
+
+        -->
+
+        <record id="product_uom_categ_yearseat" model="uom.category">
+            <field name="name">Year/Seat</field>
+        </record>
+
+        <record id="product_uom_year_seat1" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 1 seat</field>
+            <field name="factor" eval="1.0"/>
+            <field name="rounding" eval="1"/>
+        </record>
+
+        <record id="product_uom_year_seat2" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 2 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="2"/>
+        </record>
+
+
+        <record id="product_uom_year_seat3" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 3 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="3"/>
+        </record>
+
+
+        <record id="product_uom_year_seat4" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 4 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="4"/>
+        </record>
+
+
+        <record id="product_uom_year_seat5" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 5 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="5"/>
+        </record>
+
+
+        <record id="product_uom_year_seat6" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 6 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="6"/>
+        </record>
+
+
+        <record id="product_uom_year_seat7" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 7 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="7"/>
+        </record>
+
+
+        <record id="product_uom_year_seat8" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 8 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="8"/>
+        </record>
+
+
+        <record id="product_uom_year_seat9" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 9 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="9"/>
+        </record>
+
+
+        <record id="product_uom_year_seat10" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 10 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="10"/>
+        </record>
+
+
+        <record id="product_uom_year_seat11" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 11 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="11"/>
+        </record>
+
+
+        <record id="product_uom_year_seat12" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 12 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="12"/>
+        </record>
+
+
+        <record id="product_uom_year_seat13" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 13 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="13"/>
+        </record>
+
+
+        <record id="product_uom_year_seat14" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 14 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="14"/>
+        </record>
+
+
+        <record id="product_uom_year_seat15" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 15 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="15"/>
+        </record>
+
+
+        <record id="product_uom_year_seat16" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 16 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="16"/>
+        </record>
+
+
+        <record id="product_uom_year_seat17" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 17 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="17"/>
+        </record>
+
+
+        <record id="product_uom_year_seat18" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 18 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="18"/>
+        </record>
+
+
+        <record id="product_uom_year_seat19" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 19 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="19"/>
+        </record>
+
+
+        <record id="product_uom_year_seat20" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 20 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="20"/>
+        </record>
+
+
+        <record id="product_uom_year_seat21" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 21 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="21"/>
+        </record>
+
+
+        <record id="product_uom_year_seat22" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 22 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="22"/>
+        </record>
+
+
+        <record id="product_uom_year_seat23" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 23 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="23"/>
+        </record>
+
+
+        <record id="product_uom_year_seat24" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 24 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="24"/>
+        </record>
+
+
+        <record id="product_uom_year_seat25" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 25 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="25"/>
+        </record>
+
+
+        <record id="product_uom_year_seat26" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 26 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="26"/>
+        </record>
+
+
+        <record id="product_uom_year_seat27" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 27 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="27"/>
+        </record>
+
+
+        <record id="product_uom_year_seat28" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 28 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="28"/>
+        </record>
+
+
+        <record id="product_uom_year_seat29" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 29 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="29"/>
+        </record>
+
+
+        <record id="product_uom_year_seat30" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 30 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="30"/>
+        </record>
+
+
+        <record id="product_uom_year_seat31" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 31 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="31"/>
+        </record>
+
+
+        <record id="product_uom_year_seat32" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 32 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="32"/>
+        </record>
+
+
+        <record id="product_uom_year_seat33" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 33 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="33"/>
+        </record>
+
+
+        <record id="product_uom_year_seat34" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 34 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="34"/>
+        </record>
+
+
+        <record id="product_uom_year_seat35" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 35 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="35"/>
+        </record>
+
+
+        <record id="product_uom_year_seat36" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 36 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="36"/>
+        </record>
+
+
+        <record id="product_uom_year_seat37" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 37 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="37"/>
+        </record>
+
+
+        <record id="product_uom_year_seat38" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 38 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="38"/>
+        </record>
+
+
+        <record id="product_uom_year_seat39" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 39 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="39"/>
+        </record>
+
+
+        <record id="product_uom_year_seat40" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 40 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="40"/>
+        </record>
+
+
+        <record id="product_uom_year_seat41" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 41 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="41"/>
+        </record>
+
+
+        <record id="product_uom_year_seat42" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 42 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="42"/>
+        </record>
+
+
+        <record id="product_uom_year_seat43" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 43 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="43"/>
+        </record>
+
+
+        <record id="product_uom_year_seat44" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 44 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="44"/>
+        </record>
+
+
+        <record id="product_uom_year_seat45" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 45 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="45"/>
+        </record>
+
+
+        <record id="product_uom_year_seat46" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 46 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="46"/>
+        </record>
+
+
+        <record id="product_uom_year_seat47" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 47 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="47"/>
+        </record>
+
+
+        <record id="product_uom_year_seat48" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 48 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="48"/>
+        </record>
+
+
+        <record id="product_uom_year_seat49" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 49 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="49"/>
+        </record>
+
+
+        <record id="product_uom_year_seat50" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 50 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="50"/>
+        </record>
+
+
+        <record id="product_uom_year_seat51" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 51 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="51"/>
+        </record>
+
+
+        <record id="product_uom_year_seat52" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 52 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="52"/>
+        </record>
+
+
+        <record id="product_uom_year_seat53" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 53 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="53"/>
+        </record>
+
+
+        <record id="product_uom_year_seat54" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 54 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="54"/>
+        </record>
+
+
+        <record id="product_uom_year_seat55" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 55 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="55"/>
+        </record>
+
+
+        <record id="product_uom_year_seat56" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 56 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="56"/>
+        </record>
+
+
+        <record id="product_uom_year_seat57" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 57 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="57"/>
+        </record>
+
+
+        <record id="product_uom_year_seat58" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 58 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="58"/>
+        </record>
+
+
+        <record id="product_uom_year_seat59" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 59 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="59"/>
+        </record>
+
+
+        <record id="product_uom_year_seat60" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 60 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="60"/>
+        </record>
+
+
+        <record id="product_uom_year_seat61" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 61 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="61"/>
+        </record>
+
+
+        <record id="product_uom_year_seat62" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 62 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="62"/>
+        </record>
+
+
+        <record id="product_uom_year_seat63" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 63 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="63"/>
+        </record>
+
+
+        <record id="product_uom_year_seat64" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 64 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="64"/>
+        </record>
+
+
+        <record id="product_uom_year_seat65" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 65 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="65"/>
+        </record>
+
+
+        <record id="product_uom_year_seat66" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 66 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="66"/>
+        </record>
+
+
+        <record id="product_uom_year_seat67" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 67 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="67"/>
+        </record>
+
+
+        <record id="product_uom_year_seat68" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 68 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="68"/>
+        </record>
+
+
+        <record id="product_uom_year_seat69" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 69 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="69"/>
+        </record>
+
+
+        <record id="product_uom_year_seat70" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 70 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="70"/>
+        </record>
+
+
+        <record id="product_uom_year_seat71" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 71 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="71"/>
+        </record>
+
+
+        <record id="product_uom_year_seat72" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 72 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="72"/>
+        </record>
+
+
+        <record id="product_uom_year_seat73" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 73 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="73"/>
+        </record>
+
+
+        <record id="product_uom_year_seat74" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 74 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="74"/>
+        </record>
+
+
+        <record id="product_uom_year_seat75" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 75 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="75"/>
+        </record>
+
+
+        <record id="product_uom_year_seat76" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 76 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="76"/>
+        </record>
+
+
+        <record id="product_uom_year_seat77" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 77 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="77"/>
+        </record>
+
+
+        <record id="product_uom_year_seat78" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 78 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="78"/>
+        </record>
+
+
+        <record id="product_uom_year_seat79" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 79 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="79"/>
+        </record>
+
+
+        <record id="product_uom_year_seat80" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 80 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="80"/>
+        </record>
+
+
+        <record id="product_uom_year_seat81" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 81 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="81"/>
+        </record>
+
+
+        <record id="product_uom_year_seat82" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 82 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="82"/>
+        </record>
+
+
+        <record id="product_uom_year_seat83" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 83 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="83"/>
+        </record>
+
+
+        <record id="product_uom_year_seat84" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 84 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="84"/>
+        </record>
+
+
+        <record id="product_uom_year_seat85" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 85 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="85"/>
+        </record>
+
+
+        <record id="product_uom_year_seat86" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 86 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="86"/>
+        </record>
+
+
+        <record id="product_uom_year_seat87" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 87 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="87"/>
+        </record>
+
+
+        <record id="product_uom_year_seat88" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 88 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="88"/>
+        </record>
+
+
+        <record id="product_uom_year_seat89" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 89 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="89"/>
+        </record>
+
+
+        <record id="product_uom_year_seat90" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 90 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="90"/>
+        </record>
+
+
+        <record id="product_uom_year_seat91" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 91 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="91"/>
+        </record>
+
+
+        <record id="product_uom_year_seat92" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 92 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="92"/>
+        </record>
+
+
+        <record id="product_uom_year_seat93" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 93 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="93"/>
+        </record>
+
+
+        <record id="product_uom_year_seat94" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 94 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="94"/>
+        </record>
+
+
+        <record id="product_uom_year_seat95" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 95 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="95"/>
+        </record>
+
+
+        <record id="product_uom_year_seat96" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 96 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="96"/>
+        </record>
+
+
+        <record id="product_uom_year_seat97" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 97 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="97"/>
+        </record>
+
+
+        <record id="product_uom_year_seat98" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 98 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="98"/>
+        </record>
+
+
+        <record id="product_uom_year_seat99" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 99 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="99"/>
+        </record>
+
+
+        <record id="product_uom_year_seat100" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 100 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="100"/>
+        </record>
+
+
+        <record id="product_uom_year_seat110" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 110 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="110"/>
+        </record>
+
+
+        <record id="product_uom_year_seat120" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 120 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="120"/>
+        </record>
+
+
+        <record id="product_uom_year_seat130" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 130 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="130"/>
+        </record>
+
+
+        <record id="product_uom_year_seat140" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 140 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="140"/>
+        </record>
+
+
+        <record id="product_uom_year_seat150" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 150 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="150"/>
+        </record>
+
+
+        <record id="product_uom_year_seat160" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 160 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="160"/>
+        </record>
+
+
+        <record id="product_uom_year_seat170" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 170 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="170"/>
+        </record>
+
+
+        <record id="product_uom_year_seat180" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 180 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="180"/>
+        </record>
+
+
+        <record id="product_uom_year_seat190" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 190 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="190"/>
+        </record>
+
+
+        <record id="product_uom_year_seat200" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 200 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="200"/>
+        </record>
+
+
+        <record id="product_uom_year_seat210" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 210 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="210"/>
+        </record>
+
+
+        <record id="product_uom_year_seat220" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 220 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="220"/>
+        </record>
+
+
+        <record id="product_uom_year_seat230" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 230 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="230"/>
+        </record>
+
+
+        <record id="product_uom_year_seat240" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 240 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="240"/>
+        </record>
+
+
+        <record id="product_uom_year_seat250" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 250 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="250"/>
+        </record>
+
+
+        <record id="product_uom_year_seat260" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 260 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="260"/>
+        </record>
+
+
+        <record id="product_uom_year_seat270" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 270 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="270"/>
+        </record>
+
+
+        <record id="product_uom_year_seat280" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 280 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="280"/>
+        </record>
+
+
+        <record id="product_uom_year_seat290" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 290 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="290"/>
+        </record>
+
+
+        <record id="product_uom_year_seat300" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 300 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="300"/>
+        </record>
+
+
+        <record id="product_uom_year_seat310" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 310 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="310"/>
+        </record>
+
+
+        <record id="product_uom_year_seat320" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 320 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="320"/>
+        </record>
+
+
+        <record id="product_uom_year_seat330" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 330 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="330"/>
+        </record>
+
+
+        <record id="product_uom_year_seat340" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 340 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="340"/>
+        </record>
+
+
+        <record id="product_uom_year_seat350" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 350 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="350"/>
+        </record>
+
+
+        <record id="product_uom_year_seat360" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 360 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="360"/>
+        </record>
+
+
+        <record id="product_uom_year_seat370" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 370 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="370"/>
+        </record>
+
+
+        <record id="product_uom_year_seat380" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 380 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="380"/>
+        </record>
+
+
+        <record id="product_uom_year_seat390" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 390 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="390"/>
+        </record>
+
+
+        <record id="product_uom_year_seat400" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 400 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="400"/>
+        </record>
+
+
+        <record id="product_uom_year_seat410" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 410 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="410"/>
+        </record>
+
+
+        <record id="product_uom_year_seat420" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 420 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="420"/>
+        </record>
+
+
+        <record id="product_uom_year_seat430" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 430 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="430"/>
+        </record>
+
+
+        <record id="product_uom_year_seat440" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 440 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="440"/>
+        </record>
+
+
+        <record id="product_uom_year_seat450" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 450 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="450"/>
+        </record>
+
+
+        <record id="product_uom_year_seat460" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 460 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="460"/>
+        </record>
+
+
+        <record id="product_uom_year_seat470" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 470 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="470"/>
+        </record>
+
+
+        <record id="product_uom_year_seat480" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 480 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="480"/>
+        </record>
+
+
+        <record id="product_uom_year_seat490" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 490 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="490"/>
+        </record>
+
+
+        <record id="product_uom_year_seat500" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 500 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="500"/>
+        </record>
+
+
+        <record id="product_uom_year_seat600" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 600 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="600"/>
+        </record>
+
+
+        <record id="product_uom_year_seat700" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 700 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="700"/>
+        </record>
+
+
+        <record id="product_uom_year_seat800" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 800 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="800"/>
+        </record>
+
+
+        <record id="product_uom_year_seat900" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 900 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="900"/>
+        </record>
+
+
+        <record id="product_uom_year_seat1000" model="uom.uom">
+            <field name="category_id" ref="product_uom_categ_yearseat"/>
+            <field name="name">Year(s) for 1000 seats</field>
+            <field name="rounding" eval="1"/>
+            <field name="uom_type">bigger</field>
+            <field name="factor_inv" eval="1000"/>
+        </record>
     </data>
 </odoo>

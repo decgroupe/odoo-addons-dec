@@ -40,6 +40,7 @@ class SaleOrderLine(models.Model):
         }
 
     def _create_application_pass(self):
+        self.ensure_one()
         vals = self._prepare_pass_values(self.product_id.license_pack_id)
         pass_id = self.env['software.license.pass'].with_context(
             tracking_disable=True
@@ -48,16 +49,27 @@ class SaleOrderLine(models.Model):
         # Post-write pass data to propagate values to all licenses created
         # during the `action_resync_with_pack`
         today = fields.Date.from_string(fields.Date.context_today(self))
-        pass_id.write(
-            {
-                'partner_id':
-                    self.order_id.partner_shipping_id.id,
-                'max_allowed_hardware':
-                    self.product_uom_qty,
-                'expiration_date':
-                    today + timedelta(days=365 * self.product_uom.factor_inv),
-            }
-        )
+        vals = {
+            'partner_id': self.order_id.partner_shipping_id.id,
+        }
+        if self.product_uom.category_id == self.env.ref(
+            'software_license_pass.product_uom_categ_seatyear'
+        ):
+            qty = self.product_uom_qty
+            years = self.product_uom.factor_inv
+        elif self.product_uom.category_id == self.env.ref(
+            'software_license_pass.product_uom_categ_yearseat'
+        ):
+            qty = self.product_uom.factor_inv
+            years = self.product_uom_qty
+        else:
+            qty = 0
+            years = False
+        if qty:
+            vals['max_allowed_hardware'] = qty
+        if years:
+            vals['expiration_date'] = today + timedelta(days=365 * years)
+        pass_id.write(vals)
         return pass_id
 
     def _timesheet_service_generation(self):

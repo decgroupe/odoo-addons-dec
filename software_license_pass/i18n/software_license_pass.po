@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 16:12+0000\n"
-"PO-Revision-Date: 2021-11-04 16:12+0000\n"
+"POT-Creation-Date: 2021-11-18 10:35+0000\n"
+"PO-Revision-Date: 2021-11-18 10:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -707,6 +707,736 @@ msgstr ""
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat1
+msgid "Year(s) for 1 seat"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat10
+msgid "Year(s) for 10 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat100
+msgid "Year(s) for 100 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat1000
+msgid "Year(s) for 1000 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat11
+msgid "Year(s) for 11 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat110
+msgid "Year(s) for 110 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat12
+msgid "Year(s) for 12 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat120
+msgid "Year(s) for 120 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat13
+msgid "Year(s) for 13 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat130
+msgid "Year(s) for 130 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat14
+msgid "Year(s) for 14 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat140
+msgid "Year(s) for 140 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat15
+msgid "Year(s) for 15 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat150
+msgid "Year(s) for 150 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat16
+msgid "Year(s) for 16 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat160
+msgid "Year(s) for 160 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat17
+msgid "Year(s) for 17 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat170
+msgid "Year(s) for 170 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat18
+msgid "Year(s) for 18 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat180
+msgid "Year(s) for 180 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat19
+msgid "Year(s) for 19 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat190
+msgid "Year(s) for 190 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat2
+msgid "Year(s) for 2 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat20
+msgid "Year(s) for 20 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat200
+msgid "Year(s) for 200 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat21
+msgid "Year(s) for 21 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat210
+msgid "Year(s) for 210 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat22
+msgid "Year(s) for 22 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat220
+msgid "Year(s) for 220 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat23
+msgid "Year(s) for 23 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat230
+msgid "Year(s) for 230 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat24
+msgid "Year(s) for 24 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat240
+msgid "Year(s) for 240 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat25
+msgid "Year(s) for 25 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat250
+msgid "Year(s) for 250 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat26
+msgid "Year(s) for 26 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat260
+msgid "Year(s) for 260 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat27
+msgid "Year(s) for 27 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat270
+msgid "Year(s) for 270 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat28
+msgid "Year(s) for 28 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat280
+msgid "Year(s) for 280 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat29
+msgid "Year(s) for 29 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat290
+msgid "Year(s) for 290 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat3
+msgid "Year(s) for 3 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat30
+msgid "Year(s) for 30 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat300
+msgid "Year(s) for 300 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat31
+msgid "Year(s) for 31 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat310
+msgid "Year(s) for 310 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat32
+msgid "Year(s) for 32 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat320
+msgid "Year(s) for 320 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat33
+msgid "Year(s) for 33 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat330
+msgid "Year(s) for 330 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat34
+msgid "Year(s) for 34 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat340
+msgid "Year(s) for 340 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat35
+msgid "Year(s) for 35 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat350
+msgid "Year(s) for 350 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat36
+msgid "Year(s) for 36 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat360
+msgid "Year(s) for 360 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat37
+msgid "Year(s) for 37 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat370
+msgid "Year(s) for 370 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat38
+msgid "Year(s) for 38 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat380
+msgid "Year(s) for 380 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat39
+msgid "Year(s) for 39 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat390
+msgid "Year(s) for 390 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat4
+msgid "Year(s) for 4 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat40
+msgid "Year(s) for 40 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat400
+msgid "Year(s) for 400 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat41
+msgid "Year(s) for 41 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat410
+msgid "Year(s) for 410 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat42
+msgid "Year(s) for 42 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat420
+msgid "Year(s) for 420 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat43
+msgid "Year(s) for 43 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat430
+msgid "Year(s) for 430 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat44
+msgid "Year(s) for 44 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat440
+msgid "Year(s) for 440 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat45
+msgid "Year(s) for 45 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat450
+msgid "Year(s) for 450 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat46
+msgid "Year(s) for 46 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat460
+msgid "Year(s) for 460 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat47
+msgid "Year(s) for 47 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat470
+msgid "Year(s) for 470 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat48
+msgid "Year(s) for 48 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat480
+msgid "Year(s) for 480 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat49
+msgid "Year(s) for 49 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat490
+msgid "Year(s) for 490 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat5
+msgid "Year(s) for 5 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat50
+msgid "Year(s) for 50 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat500
+msgid "Year(s) for 500 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat51
+msgid "Year(s) for 51 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat52
+msgid "Year(s) for 52 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat53
+msgid "Year(s) for 53 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat54
+msgid "Year(s) for 54 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat55
+msgid "Year(s) for 55 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat56
+msgid "Year(s) for 56 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat57
+msgid "Year(s) for 57 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat58
+msgid "Year(s) for 58 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat59
+msgid "Year(s) for 59 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat6
+msgid "Year(s) for 6 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat60
+msgid "Year(s) for 60 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat600
+msgid "Year(s) for 600 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat61
+msgid "Year(s) for 61 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat62
+msgid "Year(s) for 62 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat63
+msgid "Year(s) for 63 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat64
+msgid "Year(s) for 64 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat65
+msgid "Year(s) for 65 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat66
+msgid "Year(s) for 66 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat67
+msgid "Year(s) for 67 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat68
+msgid "Year(s) for 68 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat69
+msgid "Year(s) for 69 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat7
+msgid "Year(s) for 7 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat70
+msgid "Year(s) for 70 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat700
+msgid "Year(s) for 700 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat71
+msgid "Year(s) for 71 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat72
+msgid "Year(s) for 72 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat73
+msgid "Year(s) for 73 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat74
+msgid "Year(s) for 74 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat75
+msgid "Year(s) for 75 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat76
+msgid "Year(s) for 76 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat77
+msgid "Year(s) for 77 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat78
+msgid "Year(s) for 78 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat79
+msgid "Year(s) for 79 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat8
+msgid "Year(s) for 8 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat80
+msgid "Year(s) for 80 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat800
+msgid "Year(s) for 800 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat81
+msgid "Year(s) for 81 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat82
+msgid "Year(s) for 82 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat83
+msgid "Year(s) for 83 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat84
+msgid "Year(s) for 84 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat85
+msgid "Year(s) for 85 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat86
+msgid "Year(s) for 86 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat87
+msgid "Year(s) for 87 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat88
+msgid "Year(s) for 88 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat89
+msgid "Year(s) for 89 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat9
+msgid "Year(s) for 9 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat90
+msgid "Year(s) for 90 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat900
+msgid "Year(s) for 900 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat91
+msgid "Year(s) for 91 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat92
+msgid "Year(s) for 92 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat93
+msgid "Year(s) for 93 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat94
+msgid "Year(s) for 94 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat95
+msgid "Year(s) for 95 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat96
+msgid "Year(s) for 96 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat97
+msgid "Year(s) for 97 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat98
+msgid "Year(s) for 98 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.uom,name:software_license_pass.product_uom_year_seat99
+msgid "Year(s) for 99 seats"
+msgstr ""
+
+#. module: software_license_pass
+#: model:uom.category,name:software_license_pass.product_uom_categ_yearseat
+msgid "Year/Seat"
 msgstr ""
 
 #. module: software_license_pass
