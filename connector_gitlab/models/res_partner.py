@@ -15,8 +15,8 @@ class ResPartner(models.Model):
 
     @api.multi
     def write(self, vals):
+        previous_emails = {}
         if 'email' in vals:
-            previous_emails = {}
             for rec in self:
                 previous_emails[rec.id] = rec.email
         res = super().write(vals)
