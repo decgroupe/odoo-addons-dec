@@ -8,6 +8,7 @@ from odoo import fields, models, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    # Field defined in `sale_timesheet_existing_project` module
     project_id = fields.Many2one(copy=False, )
 
     @api.multi

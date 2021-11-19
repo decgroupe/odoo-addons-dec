@@ -11,6 +11,9 @@
         'project_identification',
         'sale_timesheet_existing_project',
     ],
-    'data': ['views/sale_order.xml', ],
+    'data': [
+        'views/sale_order.xml',
+        'views/project_project.xml',
+    ],
     'installable': True
 }
