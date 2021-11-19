@@ -8,6 +8,7 @@
     'depends': [
         'sale_traceability',
         'sale_row_layout',
+        'sale_force_invoiced',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':

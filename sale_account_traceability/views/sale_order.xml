@@ -20,6 +20,15 @@
             </xpath>
             <xpath expr="//div[@name='traceability_container']" position="inside">
                 <xpath expr="//div[@name='invoice_lines']" position="move"/>
+                <field name="force_invoiced"/>
+                <button type="object" 
+                    name="action_force_invoiced" 
+                    icon=""
+                    string="Consider this line as fully invoiced" 
+                    class="oe_inline oe_link" 
+                    context="{}"
+                    attrs="{'invisible': [('state', 'not in', ('sale', 'done'))]}">
+                </button>
             </xpath>
         </field>
     </record>
