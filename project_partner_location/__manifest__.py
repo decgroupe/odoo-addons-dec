@@ -7,7 +7,7 @@
     'depends':
         [
             'project',
-            'sale_timesheet',
+            'sale_timesheet_project',
             'sale_partner_location',
             'mrp_project_task',
             'mrp_partner_location',

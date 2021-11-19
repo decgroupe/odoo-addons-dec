@@ -35,4 +35,24 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="project_task_search">
+        <field name="name">project.task.search.form@project_partner_location</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="filter_domain">
+                [
+                    '|',
+                    ('partner_id', 'child_of', self),
+                    ('partner_shipping_id', 'child_of', self),
+                ]
+                </attribute>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="partner_shipping_zip_id"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>

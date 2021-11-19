@@ -32,10 +32,16 @@ class Project(models.Model):
     )
 
     @api.multi
-    @api.depends('sale_order_id', 'name')
+    @api.depends(
+        'contract_ids', 'contract_ids.partner_shipping_id', 'sale_order_id',
+        'name'
+    )
     def _compute_partner_shipping_id(self):
         for rec in self:
-            if rec.sale_order_id:
+            if rec.contract_ids:
+                contract_id = rec.contract_ids[0]
+                rec.partner_shipping_id = contract_id.partner_shipping_id
+            elif rec.sale_order_id:
                 rec.partner_shipping_id = rec.sale_order_id.partner_shipping_id
             elif rec.name:
                 sale_id = self.env['sale.order'].search(

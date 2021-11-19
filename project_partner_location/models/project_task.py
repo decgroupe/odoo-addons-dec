@@ -31,8 +31,12 @@ class ProjectTask(models.Model):
     )
 
     @api.multi
-    @api.depends('sale_order_id', 'production_id')
+    @api.depends(
+        'sale_order_id', 'sale_order_id.partner_shipping_id', 'production_id'
+    )
     def _compute_partner_shipping_id(self):
+        # Note that we don't need to depends on `sale_line_id` as the
+        # `sale_order_id` is already computed from it
         for rec in self:
             if rec.sale_order_id:
                 rec.partner_shipping_id = rec.sale_order_id.partner_shipping_id
