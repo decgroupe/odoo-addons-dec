@@ -14,6 +14,7 @@
     'data': [
         'views/sale_order.xml',
         'views/project_project.xml',
+        'views/project_task.xml',
     ],
     'installable': True
 }
