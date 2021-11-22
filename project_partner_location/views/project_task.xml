@@ -13,6 +13,18 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="project_task_tree">
+        <field name="name">project.task.tree.inherited@project_partner_location</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="partner_shipping_id"/>
+                <field name="partner_shipping_zip_id"/>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="view_task_kanban">
         <field name="name">project.task.kanban@project_partner_location</field>
         <field name="model">project.task</field>
