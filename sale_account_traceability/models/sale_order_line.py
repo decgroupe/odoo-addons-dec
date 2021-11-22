@@ -10,8 +10,12 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     invoice_lines = fields.Many2many(
-        domain=
-        "[('invoice_type', '=', 'out_invoice'), ('product_id', '=', product_id),]"
+        domain= """[
+            ('invoice_type', '=', 'out_invoice'),
+            '|',
+            ('product_id', '=', product_id),
+            ('product_id', '=', False),
+        ]"""
     )
 
     force_invoiced = fields.Boolean(
