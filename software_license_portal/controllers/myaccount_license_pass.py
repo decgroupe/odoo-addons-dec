@@ -19,8 +19,8 @@ class LicensePassCustomerPortal(CustomerPortal):
         values = super(LicensePassCustomerPortal, self)\
             ._prepare_portal_layout_values()
         SoftwarePass = request.env['software.license.pass']
-        domain = SoftwarePass._get_default_portal_domain(
-            request.env.user.partner_id
+        domain = SoftwarePass._get_pass_default_portal_domain(
+            request_partner_id=request.env.user.partner_id,
         )
         pass_count = SoftwarePass.search_count(domain)
         values['license_pass_count'] = pass_count
@@ -100,8 +100,8 @@ class LicensePassCustomerPortal(CustomerPortal):
     ):
         values = self._prepare_portal_layout_values()
         SoftwarePass = request.env['software.license.pass']
-        domain = SoftwarePass._get_default_portal_domain(
-            request.env.user.partner_id
+        domain = SoftwarePass._get_pass_default_portal_domain(
+            request_partner_id=request.env.user.partner_id,
         )
 
         searchbar_sortings = self._get_searchbar_sortings()

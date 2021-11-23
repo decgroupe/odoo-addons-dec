@@ -9,7 +9,7 @@ class SoftwareLicensePass(models.Model):
     _inherit = 'software.license.pass'
 
     @api.model
-    def _get_default_portal_domain(self, request_partner_id):
+    def _get_pass_default_portal_domain(self, request_partner_id):
         partner_id = request_partner_id
         while partner_id and not partner_id.is_company:
             partner_id = partner_id.parent_id

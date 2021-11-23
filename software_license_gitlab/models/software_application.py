@@ -55,7 +55,10 @@ class SoftwareApplication(models.Model):
         partner_ids = self._get_all_partners_with_gitlab_access()
         for partner_id in partner_ids:
             # Search all existing licenses
-            domain = SoftwareLicense._get_default_portal_domain(partner_id)
+            domain = SoftwareLicense._get_license_default_portal_domain(
+                request_partner_id=partner_id,
+                include_pass_licenses=True,
+            )
             domain.append(('application_id', 'in', self.ids))
             application_ids = SoftwareLicense.search(domain).\
                 mapped('application_id')
@@ -84,8 +87,6 @@ class SoftwareApplication(models.Model):
                 set(pre_project_uids) - set(post_project_uids)
             )
             if diff_project_uids:
-                self._remove_access_to_gitlab_projects(
-                    diff_project_uids
-                )
+                self._remove_access_to_gitlab_projects(diff_project_uids)
 
         return res

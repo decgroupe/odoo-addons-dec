@@ -279,8 +279,9 @@ class SoftwareLicenseController(http.Controller):
     )
     def get_licenses(self, identifier, **kwargs):
         SoftwareLicense = request.env['software.license']
-        domain = SoftwareLicense._get_default_portal_domain(
-            request.env.user.partner_id
+        domain = SoftwareLicense._get_license_default_portal_domain(
+            request_partner_id=request.env.user.partner_id,
+            include_pass_licenses=True,
         )
         if identifier:
             domain += [('application_id.identifier', '=', identifier)]

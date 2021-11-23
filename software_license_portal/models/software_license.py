@@ -21,18 +21,22 @@ class SoftwareLicense(models.Model):
         return res
 
     @api.model
-    def _get_default_portal_domain(self, request_partner_id):
+    def _get_license_default_portal_domain(
+        self, request_partner_id, include_pass_licenses
+    ):
         partner_id = request_partner_id
         while partner_id and not partner_id.is_company:
             partner_id = partner_id.parent_id
         if not partner_id:
             partner_id = request_partner_id
-        return [
+        res = [
             ('partner_id', 'child_of', partner_id.id),
             ('portal_published', '=', True),
-            ('pass_id', '=', False),
             ('application_id.type', '=', 'inhouse'),
         ]
+        if not include_pass_licenses:
+            res.append(('pass_id', '=', False))
+        return res
 
     def deactivate(self, hardware_id):
         self.ensure_one()

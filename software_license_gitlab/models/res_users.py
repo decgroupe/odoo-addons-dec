@@ -24,7 +24,10 @@ class ResUsers(models.Model):
         self.ensure_one()
         SoftwareLicense = self.env['software.license']
         # Search all applications currently owned by this partner
-        domain = SoftwareLicense._get_default_portal_domain(self.partner_id)
+        domain = SoftwareLicense._get_license_default_portal_domain(
+            request_partner_id=self.partner_id,
+            include_pass_licenses=True,
+        )
         application_ids = SoftwareLicense.search(domain).\
             mapped('application_id')
         # Keep only GitLab resources

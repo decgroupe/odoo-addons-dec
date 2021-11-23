@@ -19,8 +19,9 @@ class LicenseCustomerPortal(CustomerPortal):
         values = super(LicenseCustomerPortal, self)\
             ._prepare_portal_layout_values()
         SoftwareLicense = request.env['software.license']
-        domain = SoftwareLicense._get_default_portal_domain(
-            request.env.user.partner_id
+        domain = SoftwareLicense._get_license_default_portal_domain(
+            request_partner_id=request.env.user.partner_id,
+            include_pass_licenses=False,
         )
         license_count = SoftwareLicense.search_count(domain)
         values['license_count'] = license_count
@@ -102,8 +103,9 @@ class LicenseCustomerPortal(CustomerPortal):
     ):
         values = self._prepare_portal_layout_values()
         SoftwareLicense = request.env['software.license']
-        domain = SoftwareLicense._get_default_portal_domain(
-            request.env.user.partner_id
+        domain = SoftwareLicense._get_license_default_portal_domain(
+            request_partner_id=request.env.user.partner_id,
+            include_pass_licenses=False,
         )
 
         searchbar_sortings = self._get_searchbar_sortings()
