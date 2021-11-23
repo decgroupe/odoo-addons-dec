@@ -263,8 +263,11 @@ class SoftwareLicensePass(models.Model):
             'type': 'standard',
             'application_id': pack_line_id.application_id.id,
             'pass_id': self.id,
+            'partner_id': self.partner_id.id,
             'pack_line_id': pack_line_id.id,
             'product_id': self.product_id.id,
+            'expiration_date': self.expiration_date,
+            'max_allowed_hardware': self.max_allowed_hardware,
             'feature_ids': False,
         }
 
