@@ -59,8 +59,8 @@ class SoftwareLicense(models.Model):
         else:
             return self.max_allowed_hardware - len(self.hardware_ids)
 
-    def check_max_activation_reached(self):
-        res = super().check_max_activation_reached()
+    def check_max_activation_reached(self, hardware_name):
+        res = super().check_max_activation_reached(hardware_name)
         if self.max_allowed_hardware > 0 and \
             len(self.hardware_ids) >= self.max_allowed_hardware:
             res = True

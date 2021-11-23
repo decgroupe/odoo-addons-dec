@@ -94,8 +94,8 @@ class SoftwareLicense(models.Model):
         })
         return res
 
-    def check_max_activation_reached(self):
-        res = super().check_max_activation_reached()
+    def check_max_activation_reached(self, hardware_name):
+        res = super().check_max_activation_reached(hardware_name)
         if not res and self.pass_id:
-            res = self.pass_id.check_max_activation_reached()
+            res = self.pass_id.check_max_activation_reached(hardware_name)
         return res

@@ -175,13 +175,19 @@ class SoftwareLicensePass(models.Model):
         self.ensure_one()
         return set(self.license_ids.mapped('hardware_ids').mapped('name'))
 
-    def check_max_activation_reached(self):
+    def check_max_activation_reached(self, hardware_name):
         self.ensure_one()
         res = False
         if self.max_allowed_hardware > 0:
             hardware_names = self._get_unique_hardware_names()
-            if len(hardware_names) >= self.max_allowed_hardware:
-                res = True
+            if hardware_name not in hardware_names:
+                # If an hardware is already in our pass list, that means that
+                # we don't care about max activation. Otherwise check for
+                # already used slots count
+                if len(hardware_names) >= self.max_allowed_hardware:
+                    # We have already reached the maximum hardwares, we cannot
+                    # accept new ones anymore.
+                    res = True
         return res
 
     def get_remaining_activation(self):

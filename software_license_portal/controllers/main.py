@@ -180,7 +180,7 @@ class SoftwareLicenseController(http.Controller):
         hardware_id = self._get_hardware_id(identifier, hardware, serial)
         if hardware_id:
             return SERIAL_ALREADY_ACTIVATED_ON_HARDWARE
-        elif license_id.check_max_activation_reached():
+        elif license_id.check_max_activation_reached(hardware_name=hardware):
             return SERIAL_TOO_MANY_ACTIVATION
         else:
             hardware_id = license_id.activate(hardware, request.params.copy())

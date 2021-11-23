@@ -5,6 +5,7 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Manage software licenses (pass)",
     'depends': [
+        'software_license_token',
         'software_license_feature',
         'auth_signup_delegate',
     ],

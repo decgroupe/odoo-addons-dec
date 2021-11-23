@@ -122,7 +122,7 @@ class SoftwareLicense(models.Model):
         }
         return res
 
-    def check_max_activation_reached(self):
+    def check_max_activation_reached(self, hardware_name):
         self.ensure_one()
         return False
 
