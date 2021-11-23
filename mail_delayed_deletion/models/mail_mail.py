@@ -32,6 +32,11 @@ class MailMail(models.AbstractModel):
         raise_exception=False,
         smtp_session=None,
     ):
+        res = super()._send(auto_commit, raise_exception, smtp_session)
+        return res
+
+    @api.multi
+    def _delay_auto_delete(self):
         delayed_deletion_days = self._get_delayed_deletion_days()
         if delayed_deletion_days:
             mail_ids = self.browse(self.ids).filtered('auto_delete')
@@ -45,16 +50,19 @@ class MailMail(models.AbstractModel):
                             timedelta(days=delayed_deletion_days),
                     }
                 )
-        res = super()._send(auto_commit, raise_exception, smtp_session)
-        # Alter message-id of mails with a delayed deletion to avoid collision
-        # with a loopback catchall (eg.: A message is sent to an alias managed
-        # in Odoo)
-        mail_ids = self.browse(self.ids).filtered('delayed_deletion')
-        for mail_id in mail_ids:
-            message_id = list(mail_id.message_id.rpartition('@'))
-            message_id[0] += '-2del'
-            mail_id.message_id = ''.join(message_id)
-        return res
+
+    def _postprocess_sent_message(
+        self, success_pids, failure_reason=False, failure_type=None
+    ):
+        """Convert auto-delete to delayed deletion."""
+        # If we have another error, we want to keep the mail.
+        if not failure_type or failure_type == 'RECIPIENT':
+            self._delay_auto_delete()
+        return super()._postprocess_sent_message(
+            success_pids=success_pids,
+            failure_reason=failure_reason,
+            failure_type=failure_type,
+        )
 
     @api.model
     def action_delayed_deletion(self):
@@ -64,3 +72,8 @@ class MailMail(models.AbstractModel):
         mail_ids = self.search(domain)
         if mail_ids:
             mail_ids.unlink()
+
+    def unlink(self):
+        for rec in self:
+            _logger.info("Deleting %s", rec.message_id)
+        return super().unlink()
