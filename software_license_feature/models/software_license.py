@@ -23,14 +23,19 @@ class SoftwareLicense(models.Model):
     @api.multi
     def action_sync_features_with_template(self):
         vals_list = []
+        deleted_feature_ids = self.env['software.license.feature']
         for rec in self:
             template_id = rec._get_template_id()
             if template_id:
-                rec.feature_ids.unlink()
+                deleted_feature_ids += rec.feature_ids
                 for feature_id in template_id.feature_ids:
                     vals = feature_id._prepare_template_vals()
                     vals['license_id'] = rec.id
                     vals_list.append(vals)
+        # Delete previous features
+        if deleted_feature_ids:
+            deleted_feature_ids.unlink()
+        # Recreate features from scratch
         if vals_list:
             self.env['software.license.feature'].create(vals_list)
 
