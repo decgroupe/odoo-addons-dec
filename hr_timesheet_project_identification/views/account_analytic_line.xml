@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
 
-    <record model="ir.ui.view" id="hr_timesheet_project_identification">
+    <record model="ir.ui.view" id="hr_timesheet_line_form">
         <field name="name">account.analytic.line.form@hr_timesheet_project_identification</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
