@@ -43,7 +43,7 @@
         <field name="arch" type="xml">
             <field name="task_id" position="after">
                 <field name="production_id" required="context.get('production_required', False)" />
-                <field name="production_partner_id" attrs="{'invisible': [('production_id', '=', False)]}" />
+                <field name="production_partner_id" attrs="{'invisible': [('production_id', '=', False)]}" string="" />
             </field>
         </field>
     </record>
