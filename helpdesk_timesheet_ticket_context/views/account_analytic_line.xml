@@ -14,18 +14,6 @@
                 }
                 </attribute>
             </xpath>
-            <xpath expr="//form/sheet//field[@name='ticket_partner_id']" position="attributes">
-                <attribute name="string"> </attribute>
-                <attribute name="attrs">
-                {
-                    'invisible': [
-                        ('|'),
-                        ('ticket_id', '=', False),
-                        ('ticket_partner_id', '=', False),
-                    ]
-                }
-                </attribute>
-            </xpath>
         </field>
     </record>
 
