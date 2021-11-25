@@ -37,7 +37,11 @@ class MrpProduction(models.Model):
                 rec.name, SEARCH_SEPARATOR, rec.bom_id.display_name
             )
             if rec.partner_id:
-                name = ('%s 👷 %s') % (name, rec.partner_id.display_name)
+                if rec.partner_id.is_company:
+                    pre = "🏢"
+                else:
+                    pre = "👷"
+                name = ('%s %s %s') % (name, pre, rec.partner_id.display_name)
             if rec.partner_zip_id:
                 name = ('%s 🗺️ %s') % (name, rec.partner_zip_id.display_name)
             res.append((rec.id, name))

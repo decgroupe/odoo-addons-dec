@@ -9,7 +9,7 @@ class Project(models.Model):
     _inherit = "project.project"
 
     partner_shipping_id = fields.Many2one(
-        'res.partner',
+        comodel_name='res.partner',
         compute='_compute_partner_shipping_id',
         string="Shipping Partner",
         readonly=True,
@@ -18,7 +18,7 @@ class Project(models.Model):
         "for a sale/project name match."
     )
     partner_shipping_zip_id = fields.Many2one(
-        'res.city.zip',
+        comodel_name='res.city.zip',
         related='partner_shipping_id.zip_id',
         string="Shipping Partner's ZIP",
         readonly=True,
@@ -56,7 +56,11 @@ class Project(models.Model):
         res = super()._get_name_identifications()
         # Add partner and its location to quickly identify a contract
         if self.partner_shipping_id:
-            name = ('👷 %s') % (self.partner_shipping_id.display_name, )
+            if self.partner_shipping_id.is_company:
+                pre = "🏢"
+            else:
+                pre = "👷"
+            name = ('%s %s') % (pre, self.partner_shipping_id.display_name, )
             res.append(name)
         if self.partner_shipping_zip_id:
             name = ('🗺️ %s') % (self.partner_shipping_zip_id.display_name, )
