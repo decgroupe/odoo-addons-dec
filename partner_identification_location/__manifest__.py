@@ -1,11 +1,11 @@
 {
-    'name': 'Partner Search City',
+    'name': 'Partner Identification (base_location)',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
-    'summary': "Add a search field to help finding all partners from a city",
+    'summary': "Use base_location when customizing name search",
     'depends': [
-        'base',
+        'partner_identification_base',
         'base_location',
     ],
     'data': [

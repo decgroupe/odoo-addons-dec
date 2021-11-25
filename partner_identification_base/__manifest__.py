@@ -1,12 +1,11 @@
 {
-    'name': 'Partner Search City',
+    'name': 'Partner Identification',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
-    'summary': "Add a search field to help finding all partners from a city",
+    'summary': "Customize name search to help partner identification",
     'depends': [
         'base',
-        'base_location',
     ],
     'data': [
         'views/partner_view.xml',

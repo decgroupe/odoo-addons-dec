@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* partner_search_city
+#	* partner_identification_location
 #
 msgid ""
 msgstr ""
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: partner_search_city
-#: model:ir.model,name:partner_search_city.model_res_partner
+#. module: partner_identification_location
+#: model:ir.model,name:partner_identification_location.model_res_partner
 msgid "Contact"
 msgstr ""
 
