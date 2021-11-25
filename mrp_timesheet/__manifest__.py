@@ -9,6 +9,7 @@
     'depends': [
         'mrp_project',
         'mrp_partner',
+        'mrp_identification',
         'hr_timesheet',
     ],
     'data': [

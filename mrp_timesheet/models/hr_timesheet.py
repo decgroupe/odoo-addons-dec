@@ -39,6 +39,18 @@ class AccountAnalyticLine(models.Model):
         store=True,
         compute_sudo=True,
     )
+    production_identification = fields.Char(
+        string="Production Identification",
+        compute="_compute_production_identification",
+    )
+
+    @api.multi
+    @api.depends('production_id')
+    def _compute_production_identification(self):
+        for rec in self.filtered('production_id'):
+            identifications = rec.production_id._get_name_identifications()
+            rec.production_identification = ' / '.join(identifications)
+
 
     @api.onchange("production_id")
     def onchange_production_id(self):
