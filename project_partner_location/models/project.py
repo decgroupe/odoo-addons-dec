@@ -56,10 +56,7 @@ class Project(models.Model):
         res = super()._get_name_identifications()
         # Add partner and its location to quickly identify a contract
         if self.partner_shipping_id:
-            if self.partner_shipping_id.is_company:
-                pre = "🏢"
-            else:
-                pre = "👷"
+            pre = self.partner_shipping_id._get_contact_type_emoji()
             name = ('%s %s') % (pre, self.partner_shipping_id.display_name, )
             res.append(name)
         if self.partner_shipping_zip_id:

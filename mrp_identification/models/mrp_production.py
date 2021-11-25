@@ -27,22 +27,31 @@ class MrpProduction(models.Model):
             return super().name_get()
 
     @api.multi
-    @api.depends('name', 'bom_id', 'partner_id', 'partner_zip_id')
+    @api.depends('name')
     def name_get_from_search(self):
         """ Custom naming to quickly identify a production order
         """
         res = []
         for rec in self:
-            name = '%s%s ⚙️ %s' % (
-                rec.name, SEARCH_SEPARATOR, rec.bom_id.display_name
-            )
-            if rec.partner_id:
-                if rec.partner_id.is_company:
-                    pre = "🏢"
-                else:
-                    pre = "👷"
-                name = ('%s %s %s') % (name, pre, rec.partner_id.display_name)
-            if rec.partner_zip_id:
-                name = ('%s 🗺️ %s') % (name, rec.partner_zip_id.display_name)
+            identification = ' '.join(rec._get_name_identifications())
+            name = '%s%s %s' % (rec.name, SEARCH_SEPARATOR, identification)
             res.append((rec.id, name))
+        return res
+
+    @api.multi
+    @api.depends('bom_id', 'partner_id', 'partner_zip_id')
+    def _get_name_identifications(self):
+        self.ensure_one()
+        res = []
+        if self.bom_id:
+            res.append('⚙️ %s' % (self.bom_id.display_name))
+        if self.partner_id:
+            res.append(
+                '%s %s' % (
+                    self.partner_id._get_contact_type_emoji(),
+                    self.partner_id.display_name
+                )
+            )
+        if self.partner_zip_id:
+            res.append('🗺️ %s' % (self.partner_zip_id.display_name))
         return res

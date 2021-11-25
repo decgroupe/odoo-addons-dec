@@ -6,7 +6,10 @@
     'summary':
         "Customize name_search and add partner informations "
         "on production",
-    'depends': ['mrp_partner_location', ],
+    'depends': [
+        'partner_identification_base',
+        'mrp_partner_location',
+    ],
     'data': [],
     'installable': True
 }
