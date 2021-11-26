@@ -7,7 +7,7 @@ from odoo import models, api, fields
 
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
-    _order = "sequence desc"
+    _order = "code asc, sequence desc"
 
     # Override default search order:
     @api.model
