@@ -6,6 +6,7 @@ import json
 import requests
 import logging
 
+from lxml import html
 from datetime import datetime
 
 from odoo import _, api, models, fields
@@ -291,3 +292,36 @@ class GitlabService(models.AbstractModel):
                 (message)
             )
         return result
+
+    def _get_session(self, login, password):
+        """ The `session` api endpoint has been removed since GitLab 10.2, so
+            we use this hack to get a session token
+        """
+        res = False
+        crsf_token = False
+        token, preuri = self._get_token_preuri()
+        session = requests.Session()
+        sign_in_page = session.get(preuri + '/users/sign_in').content
+        sign_in_page_tree = html.fromstring(sign_in_page)
+
+        crsf_input = sign_in_page_tree.xpath(
+            "//div[@id='login-pane']//form/input[@name='authenticity_token']"
+        )
+        if crsf_input:
+            crsf_token = crsf_input[0].value
+        if not crsf_token:
+            raise UserError(_("Unable to find the authenticity token"))
+        data = {
+            'user[login]': login,
+            'user[password]': password,
+            'authenticity_token': crsf_token,
+        }
+        r = session.post(preuri + '/users/sign_in', data=data)
+        if r.status_code == 200:
+            # We need to check if the `known_sign_in` cookie is there, as it
+            # is the only way to know if the sign in was successfull.
+            if 'known_sign_in' in session.cookies:
+                res = session.cookies.get('_gitlab_session', res)
+        else:
+            raise UserError(_("Failed to sign in, error %d") % (r.status_code))
+        return res
