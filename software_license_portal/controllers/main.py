@@ -79,9 +79,10 @@ SERIAL_UPDATED_ON_HARDWARE = {
 
 URL_BASE_V1 = "/api/license/v1"
 URL_BASE_V2 = "/api/license/v2"
-URL_IDENTIFIER = URL_BASE_V1 + "/identifier/<int:identifier>"
-URL_IDENTIFIER_SERIAL_HARDWARE = URL_IDENTIFIER + "/serial/<string:serial>/hardware/<string:hardware>"
-URL_IDENTIFIER_HARDWARE = URL_IDENTIFIER + "/hardware/<string:hardware>"
+
+URL_VAR_IDENTIFIER = "/identifier/<int:identifier>"
+URL_VAR_SERIAL = "/serial/<string:serial>"
+URL_VAR_HARDWARE = "/hardware/<string:hardware>"
 
 
 class SoftwareLicenseController(http.Controller):
@@ -144,7 +145,7 @@ class SoftwareLicenseController(http.Controller):
         return hardware_id
 
     @http.route(
-        URL_IDENTIFIER_HARDWARE + '/Serial',
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_HARDWARE + '/Serial',
         type='json',
         methods=['POST'],
         auth="public",
@@ -165,7 +166,8 @@ class SoftwareLicenseController(http.Controller):
         return license_id
 
     @http.route(
-        URL_IDENTIFIER_SERIAL_HARDWARE + '/Activate',
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_SERIAL + URL_VAR_HARDWARE +
+        '/Activate',
         type='json',
         methods=['POST'],
         auth="public",
@@ -190,7 +192,8 @@ class SoftwareLicenseController(http.Controller):
             return msg
 
     @http.route(
-        URL_IDENTIFIER_SERIAL_HARDWARE + '/Deactivate',
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_SERIAL + URL_VAR_HARDWARE +
+        '/Deactivate',
         type='json',
         methods=['POST'],
         auth="public",
@@ -209,7 +212,8 @@ class SoftwareLicenseController(http.Controller):
             return res
 
     @http.route(
-        URL_IDENTIFIER_SERIAL_HARDWARE + '/Validate',
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_SERIAL + URL_VAR_HARDWARE +
+        '/Validate',
         type='json',
         methods=['POST'],
         auth="public",
@@ -271,7 +275,7 @@ class SoftwareLicenseController(http.Controller):
     #######################################################################
 
     @http.route(
-        URL_IDENTIFIER + '/Licenses',
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + '/Licenses',
         type='json',
         methods=['POST'],
         auth="user",
@@ -307,3 +311,13 @@ class SoftwareLicenseController(http.Controller):
     )
     def get_all_licenses(self, **kwargs):
         return self.get_licenses(identifier=False)
+
+    @http.route(
+        URL_BASE_V1 + URL_VAR_HARDWARE + '/Deactivate',
+        type='json',
+        methods=['POST'],
+        auth="user",
+        csrf=False,
+    )
+    def deactivate_all_licenses(self, **kwargs):
+        return None
