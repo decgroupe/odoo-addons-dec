@@ -35,3 +35,14 @@
     }
 
 }
+
+.fc-agenda-view {
+    .fc-day-grid {
+        .fc-row {
+            .fc-content-skeleton {
+                // Fix non-clickable header meetings (all-day)
+                z-index: 1;
+            }
+        }
+    }
+}
