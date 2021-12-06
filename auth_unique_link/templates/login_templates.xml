@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="login" inherit_id="web.login" name="OAuth Login buttons">
+    <xpath expr="//form" position="attributes">
+      <attribute name="id">login-form</attribute>
+    </xpath>
+    <xpath expr="//form" position="replace">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-container">
+            <form id="magic-link-form" class="oe_login_form" t-attf-action="/web/login_link{{ '?debug' if debug else '' }}" method="post">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+              <div class="form-group field-login">
+                <label for="email">Email</label>
+                <input type="text" placeholder="johndoe@example.com" name="email" t-att-value="email" id="email" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autofocus="autofocus" autocapitalize="off"/>
+              </div>
+
+              <p id="link-instruction" class="small">
+              We will email you a magic sign in link.
+              </p>
+              <p class="alert alert-danger" t-if="link_error" role="alert">
+                <t t-esc="link_error"/>
+                <t t-if="show_create_account">
+                  <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">Create Account?</a>
+                </t>
+              </p>
+              <p class="alert alert-success" t-if="link_success" role="alert">
+                <t t-esc="link_success"/>
+              </p>
+              <button type="submit" class="btn btn-primary btn-block">
+              Email Me a Link
+              </button>
+
+              <input type="hidden" name="redirect" t-att-value="redirect"/>
+
+            </form>
+          </div>
+          <div id="login-sep" class="d-none d-sm-block">
+            <div>or</div>
+          </div>
+        </div>
+        <div class="col d-block d-sm-none">
+          <div id="xs-login-sep">
+            <div>or</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-container">
+            <t>$0</t>
+          </div>
+        </div>
+      </div>
+    </xpath>
+
+  </template>
+
+</odoo>
