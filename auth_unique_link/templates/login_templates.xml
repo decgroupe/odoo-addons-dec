@@ -29,6 +29,16 @@
               <p class="alert alert-success" t-if="link_success" role="alert">
                 <t t-esc="link_success"/>
               </p>
+
+              <t t-if="request.debug">
+                <div class="form-group checkbox">
+                  <label>
+                    <input type="checkbox" name="basic" id="basic"/>
+                    <span>Simple Code (6-digits)</span>
+                  </label>
+                </div>
+              </t>
+
               <button type="submit" class="btn btn-primary btn-block">
               Email Me a Link
               </button>

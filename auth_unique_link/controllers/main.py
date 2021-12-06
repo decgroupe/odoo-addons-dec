@@ -74,7 +74,8 @@ class AuthUniqueLink(Home):
         domain = [('email', '=', request.params['email'])]
         user_id = request.env['res.users'].sudo().search(domain, limit=1)
         if user_id:
-            user_id._send_signin_link_email()
+            basic = request.params.get('basic', False)
+            user_id._send_signin_link_email(basic=basic)
             query.update(
                 {
                     'link_success':

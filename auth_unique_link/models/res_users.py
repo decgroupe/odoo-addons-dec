@@ -21,6 +21,10 @@ def random_token(n=20):
     chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     return ''.join(random.SystemRandom().choice(chars) for _ in range(n))
 
+def random_digit_token(n=6):
+    # The token has an entropy of: 6 bits/char * n chars
+    chars = '0123456789'
+    return ''.join(random.SystemRandom().choice(chars) for _ in range(n))
 
 # Use same implementation from odoo.addons.auth_signup.models.res_partner
 def now(**kwargs):
@@ -80,7 +84,7 @@ class ResUsers(models.Model):
         )
 
     @api.multi
-    def signin_link_prepare(self, expiration=False):
+    def signin_link_prepare(self, expiration=False, basic=False):
         """ generate a new token for the partners with the given validity, if
             necessary.
 
@@ -89,11 +93,15 @@ class ResUsers(models.Model):
         """
         for rec in self:
             if expiration or not rec.signin_link_valid:
-                token = random_token()
-                # In case of random has generated an already existing token
-                # check for it and and regenerate a new one
-                while self._signin_link_retrieve_user(token):
-                    token = random_token()
+                while True:
+                    if basic:
+                        token = random_digit_token(6)
+                    else:
+                        token = random_token(32)
+                    # In case of random has generated an already existing
+                    # token check for it and and regenerate a new one
+                    if not self._signin_link_retrieve_user(token):
+                        break
                 rec.write(
                     {
                         'signin_link_token': token,
@@ -143,7 +151,7 @@ class ResUsers(models.Model):
         return expiration_minutes
 
     @api.multi
-    def _send_signin_link_email(self):
+    def _send_signin_link_email(self, basic=False):
         """ Send notification email to a new portal user """
         if not self.env.user.email:
             raise UserError(
@@ -156,11 +164,22 @@ class ResUsers(models.Model):
         if expiration:
             expiration = now(minutes=+expiration)
 
-        # determine subject and body in the portal user's language
-        template = self.env.ref('auth_unique_link.mail_template_signin_link')
+        # Determine subject and body in the portal user's language
+        if basic:
+            template = self.env.ref(
+                'auth_unique_link.mail_template_signin_link_basic'
+            )
+        else:
+            template = self.env.ref(
+                'auth_unique_link.mail_template_signin_link'
+            )
+
         for rec in self:
             lang = rec.lang
-            rec.signin_link_prepare(expiration=expiration)
+            rec.signin_link_prepare(
+                expiration=expiration,
+                basic=basic,
+            )
 
             if template:
                 template = template.with_context(
