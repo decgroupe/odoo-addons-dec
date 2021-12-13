@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 15:41+0000\n"
-"PO-Revision-Date: 2021-12-13 11:31+0100\n"
+"POT-Creation-Date: 2021-12-13 17:51+0000\n"
+"PO-Revision-Date: 2021-12-13 18:52+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -363,7 +363,7 @@ msgid "Impersonate Portal User"
 msgstr "Usurper l'identité d'un utilisateur du portail"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/controllers/main.py:61
+#: code:addons/auth_unique_link/controllers/main.py:63
 #, python-format
 msgid "Invalid/expired token or invalid login"
 msgstr "Jeton invalide/expiré ou identifiants incorrects"
@@ -442,16 +442,15 @@ msgstr "Le lien du jeton de connexion « %s » n'est pas valide"
 
 #. module: auth_unique_link
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
-#, fuzzy
 msgid ""
 "This partner is <b>not</b> in the <b>Portal</b> group.<br/>\n"
 "                    <b>Give him a portal access first.</b>"
 msgstr ""
-"Ce partenaire ne se trouve <b>pas</b> dans le <b>portail</b>.<br/>\n"
-"                    <b>Donnez d’abord accès au portail.</b>"
+"Ce partenaire n'est <b>pas</b> dans le groupe <b>portail</b>.<br/>\n"
+"                    <b>Donnez lui d’abord accès au portail.</b>"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/controllers/main.py:91
+#: code:addons/auth_unique_link/controllers/main.py:86
 #, python-format
 msgid "Unknown email address."
 msgstr "Adresse e-mail inconnue."
@@ -477,7 +476,7 @@ msgid "We will email you a magic sign in link."
 msgstr "Nous vous enverrons un lien de connexion magique."
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/controllers/main.py:82
+#: code:addons/auth_unique_link/controllers/main.py:79
 #, python-format
 msgid "We've sent you an email with login instructions. Please check your inbox!"
 msgstr "Nous vous avons envoyé un e-mail avec les instructions de connexion. Vérifiez votre boîte de réception !"
