@@ -23,6 +23,14 @@
                 <field name="unit_amount"/>
                 <field name="quantity"/> 
             </xpath>
+            <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='total_amount']" position="after">
+                <button 
+                    name="action_duplicate" 
+                    string="Duplicate" 
+                    type="object"
+                    icon="fa-copy">
+                </button>
+            </xpath>
         </field>
     </record>
 
