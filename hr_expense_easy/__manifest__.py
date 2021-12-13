@@ -6,6 +6,7 @@
     'summary':
         "Fill expense sheet with an inline mode",
     'depends': [
+        'base_view_inheritance_extension',
         'hr_expense',
     ],
     'data': [
