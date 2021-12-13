@@ -21,10 +21,12 @@ def random_token(n=20):
     chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     return ''.join(random.SystemRandom().choice(chars) for _ in range(n))
 
+
 def random_digit_token(n=6):
     # The token has an entropy of: 6 bits/char * n chars
     chars = '0123456789'
     return ''.join(random.SystemRandom().choice(chars) for _ in range(n))
+
 
 # Use same implementation from odoo.addons.auth_signup.models.res_partner
 def now(**kwargs):
@@ -150,6 +152,13 @@ class ResUsers(models.Model):
         )
         return expiration_minutes
 
+    @api.model
+    def _get_signin_link_expiration_datetime(self):
+        expiration = self._get_signin_link_expiration_minutes() or False
+        if expiration:
+            expiration = now(minutes=+expiration)
+        return expiration
+
     @api.multi
     def _send_signin_link_email(self, basic=False):
         """ Send notification email to a new portal user """
@@ -159,10 +168,6 @@ class ResUsers(models.Model):
                     'You must have an email address in your User Preferences to send emails.'
                 )
             )
-
-        expiration = self._get_signin_link_expiration_minutes() or False
-        if expiration:
-            expiration = now(minutes=+expiration)
 
         # Determine subject and body in the portal user's language
         if basic:
@@ -177,7 +182,7 @@ class ResUsers(models.Model):
         for rec in self:
             lang = rec.lang
             rec.signin_link_prepare(
-                expiration=expiration,
+                expiration=self._get_signin_link_expiration_datetime(),
                 basic=basic,
             )
 

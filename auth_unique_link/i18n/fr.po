@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-06 15:00+0000\n"
-"PO-Revision-Date: 2021-12-06 16:07+0100\n"
+"POT-Creation-Date: 2021-12-13 10:41+0000\n"
+"PO-Revision-Date: 2021-12-13 11:31+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -303,9 +303,29 @@ msgstr ""
 "    "
 
 #. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
+msgid "Close"
+msgstr "Fermer"
+
+#. module: auth_unique_link
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.login
 msgid "Create Account?"
 msgstr "Créer un compte ?"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: auth_unique_link
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.login
@@ -318,10 +338,50 @@ msgid "Email Me a Link"
 msgstr "Envoyez-moi un lien par e-mail"
 
 #. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__expiration
+msgid "Expiration"
+msgstr "Expiration"
+
+#. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
+msgid "Generate New Sign-In Code"
+msgstr "Générer un nouveau code de connexion"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__id
+msgid "ID"
+msgstr "ID"
+
+#. module: auth_unique_link
+#: model:ir.actions.act_window,name:auth_unique_link.action_res_partner_impersonate
+msgid "Impersonate Partner"
+msgstr "Usurper l'identité d'un partenaire"
+
+#. module: auth_unique_link
+#: model:ir.model,name:auth_unique_link.model_res_partner_impersonate
+msgid "Impersonate Portal User"
+msgstr "Usurper l'identité d'un utilisateur du portail"
+
+#. module: auth_unique_link
 #: code:addons/auth_unique_link/controllers/main.py:61
 #, python-format
 msgid "Invalid/expired token or invalid login"
 msgstr "Jeton invalide/expiré ou identifiants incorrects"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
 
 #. module: auth_unique_link
 #: model:mail.template,subject:auth_unique_link.mail_template_signin_link
@@ -332,6 +392,21 @@ msgstr "Se connecter à ${object.company_id.name}"
 #: model:mail.template,subject:auth_unique_link.mail_template_signin_link_basic
 msgid "Log in to ${object.company_id.name} [${object.sudo().signin_link_token}]"
 msgstr "Se connecter à ${object.company_id.name} [${object.sudo().signin_link_token}]"
+
+#. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
+msgid "Select Options"
+msgstr "Choisir les options"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__token
+msgid "Sign-In Code"
+msgstr "Code de connexion"
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__email
+msgid "Sign-In Login"
+msgstr "URL de connexion"
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_users__signin_link_expiration
@@ -354,22 +429,42 @@ msgid "Signin URL"
 msgstr "URL de connexion"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:140
+#: code:addons/auth_unique_link/models/res_users.py:142
 #, python-format
 msgid "Signin link token '%s' is no longer valid"
 msgstr "Le lien du jeton de connexion « %s » n'est plus valide"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:134
+#: code:addons/auth_unique_link/models/res_users.py:136
 #, python-format
 msgid "Signin link token '%s' is not valid"
 msgstr "Le lien du jeton de connexion « %s » n'est pas valide"
+
+#. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
+#, fuzzy
+msgid ""
+"This partner is <b>not</b> in the <b>Portal</b> group.<br/>\n"
+"                    <b>Give him a portal access first.</b>"
+msgstr ""
+"Ce partenaire ne se trouve <b>pas</b> dans le <b>portail</b>.<br/>\n"
+"                    <b>Donnez d’abord accès au portail.</b>"
 
 #. module: auth_unique_link
 #: code:addons/auth_unique_link/controllers/main.py:91
 #, python-format
 msgid "Unknown email address."
 msgstr "Adresse e-mail inconnue."
+
+#. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
+msgid "Use these <b>credentials</b> for a maintenance login."
+msgstr "Utilisez ces <b>informations d’identification</b> pour une connexion de maintenance."
+
+#. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__user_id
+msgid "User"
+msgstr "Utilisateur"
 
 #. module: auth_unique_link
 #: model:ir.model,name:auth_unique_link.model_res_users
@@ -388,7 +483,7 @@ msgid "We've sent you an email with login instructions. Please check your inbox!
 msgstr "Nous vous avons envoyé un e-mail avec les instructions de connexion. Vérifiez votre boîte de réception !"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:158
+#: code:addons/auth_unique_link/models/res_users.py:167
 #, python-format
 msgid "You must have an email address in your User Preferences to send emails."
 msgstr "Vous devez avoir une adresse de courriel définie dans vos préférences utilisateur pour envoyer des courriels."
@@ -402,3 +497,10 @@ msgstr "michelblanc@exemple.com"
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.login
 msgid "or"
 msgstr "ou"
+
+#. module: auth_unique_link
+#: code:addons/auth_unique_link/wizard/res_partner_impersonate.py:75
+#: model:ir.actions.act_window,name:auth_unique_link.act_window_res_partner_impersonate
+#, python-format
+msgid "🧙‍♂️ Impersonate ..."
+msgstr "🧙‍♂️ Usurper l’identité ..."

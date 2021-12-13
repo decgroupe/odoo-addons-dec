@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="res_partner_impersonate_form_view" >
+        <field name="name">res.partner.impersonate@auth_unique_link</field>
+        <field name="model">res.partner.impersonate</field>
+        <field name="arch" type="xml">
+            <form string="Select Options">
+                <p name="tooltip_unavailable" class="oe_grey" attrs="{'invisible': [('user_id', '!=', False)]}">
+                    This partner is <b>not</b> in the <b>Portal</b> group.<br/>
+                    <b>Give him a portal access first.</b>
+                </p>
+                <p name="tooltip_available" class="oe_grey" attrs="{'invisible': [('user_id', '=', False)]}">
+                    Use these <b>credentials</b> for a maintenance login.
+                </p>
+                <group name="main" attrs="{'invisible': [('user_id', '=', False)]}">
+                    <field name="user_id" invisible="1"/>
+                    <field name="email"/>
+                    <field name="token"/>
+                    <field name="expiration"/>
+                </group>
+                <footer>
+                    <button 
+                        class="btn-primary"
+                        string="Generate New Sign-In Code"
+                        name="action_generate_new_signin_link"
+                        type="object"
+                        default_focus="1"
+                        attrs="{'invisible': [('user_id', '=', False)]}"
+                        context="{}">
+                    </button>
+                    <button 
+                        class="btn-secondary"
+                        string="Close"
+                        special="cancel"
+                        context="{}">
+                    </button>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_res_partner_impersonate">
+        <field name="name">Impersonate Partner</field>
+        <field name="res_model">res.partner.impersonate</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <act_window id="act_window_res_partner_impersonate"
+        name="🧙‍♂️ Impersonate ..."
+        src_model="res.partner"
+        res_model="res.partner.impersonate"
+        view_type="form"
+        view_mode="form"
+        multi="False"
+        key2="client_action_multi" 
+        target="new"
+    />
+    
+</odoo>
