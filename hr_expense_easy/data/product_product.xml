@@ -50,7 +50,7 @@
             <field name="purchase_ok" eval="False"/>
         </record>
 
-        <record id="product_product_expense_car_metro" model="product.product">
+        <record id="product_product_expense_metro" model="product.product">
             <field name="name">Metro</field>
             <field name="default_code"></field>
             <field name="list_price">0.0</field>
