@@ -16,6 +16,8 @@ from odoo.addons.web.controllers.main import Home
 
 _logger = logging.getLogger(__name__)
 
+URL_BASE = "/api/auth_unique_link/v1"
+
 
 class AuthUniqueLink(Home):
 
@@ -66,35 +68,50 @@ class AuthUniqueLink(Home):
 
         return self.web_login()
 
+    def _send_signin_link(self, email):
+        domain = [('email', '=', email)]
+        user_id = request.env['res.users'].sudo().search(domain, limit=1)
+        if user_id:
+            basic = request.params.get('basic', False)
+            user_id._send_signin_link_email(basic=basic)
+            return {
+                'link_success':
+                    _(
+                        "We've sent you an email with login instructions. "
+                        "Please check your inbox!"
+                    ),
+            }
+        else:
+            return {
+                'link_error': _("Unknown email address."),
+                'show_create_account': True,
+            }
+
     @http.route('/web/login_link', type='http', auth="none", methods=['POST'])
     def web_login_link_request(self, **kw):
         query = {
             'redirect': request.params.get('redirect'),
         }
-        domain = [('email', '=', request.params['email'])]
-        user_id = request.env['res.users'].sudo().search(domain, limit=1)
-        if user_id:
-            basic = request.params.get('basic', False)
-            user_id._send_signin_link_email(basic=basic)
-            query.update(
-                {
-                    'link_success':
-                        _(
-                            "We've sent you an email with login instructions. "
-                            "Please check your inbox!"
-                        ),
-                }
-            )
-        else:
-            query.update(
-                {
-                    'link_error': _("Unknown email address."),
-                    'show_create_account': True,
-                }
-            )
-
+        res = self._send_signin_link(request.params['email'])
+        query.update(res)
         return http.local_redirect(
             path='/web/login',
             query=query,
             keep_hash=True,
         )
+
+    @http.route(
+        URL_BASE + '/SendLink',
+        type='json',
+        methods=['POST'],
+        auth="api_key",
+        csrf=False,
+    )
+    def api_auth_unique_link_send_link(self, email, **kwargs):
+        res = self._send_signin_link(email)
+        if 'link_success' in res:
+            return res['link_success']
+        elif 'link_error' in res:
+            return res['link_error']
+        else:
+            return False
