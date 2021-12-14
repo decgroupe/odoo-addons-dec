@@ -74,6 +74,9 @@ class AuthUniqueLink(Home):
         if user_id:
             basic = request.params.get('basic', False)
             user_id._send_signin_link_email(basic=basic)
+            # Create a context dictionary on a function level that will be
+            # used by the translate function
+            context = {'lang': user_id.lang}
             return {
                 'link_success':
                     _(
@@ -87,7 +90,7 @@ class AuthUniqueLink(Home):
                 'show_create_account': True,
             }
 
-    @http.route('/web/login_link', type='http', auth="none", methods=['POST'])
+    @http.route('/web/login_link', type='http', auth="public", methods=['POST'])
     def web_login_link_request(self, **kw):
         query = {
             'redirect': request.params.get('redirect'),
