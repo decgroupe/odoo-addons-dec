@@ -18,6 +18,7 @@
                 <field name="employee_id" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='message_unread']" position="before">
+                <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='name']" position="move"/>
                 <field name="product_id"/>
                 <field name="product_uom_id" invisible="1"/>
                 <field name="unit_amount"/>
@@ -30,6 +31,7 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='total_amount']" position="after">
+                <field name="comments"/> 
                 <button 
                     name="action_duplicate" 
                     string="Duplicate" 

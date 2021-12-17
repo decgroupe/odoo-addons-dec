@@ -4,21 +4,30 @@
 
 from odoo import _, api, models, fields
 from odoo.addons import decimal_precision as dp
+from odoo.exceptions import UserError
 
 
 class HrExpense(models.Model):
     _inherit = "hr.expense"
 
     tax_amount = fields.Float(
-        string="Tax", store=True, digits=dp.get_precision('Account')
+        string="Taxes",
+        digits=dp.get_precision('Account'),
     )
+    comments = fields.Char(string="Comments", )
+
+    @api.onchange('tax_amount')
+    def onchange_tax_amount(self):
+        for expense in self:
+            if expense.tax_amount > expense.total_amount:
+                raise UserError(_("Invalid tax amount"))
 
     # yapf: disable
     @api.onchange('quantity', 'unit_amount', 'tax_ids', 'currency_id')
     def rebuild_tax_amount(self):
         # Use the same code from `_compute_amount` in
         # `odoo/addons/hr_expense/models/hr_expense.py` but store the tax
-        # amount in its own field, allosing employee to edit it.
+        # amount in its own field, allowing employee to edit it.
         for expense in self:
             expense.untaxed_amount = expense.unit_amount * expense.quantity
             taxes = expense.tax_ids.compute_all(
@@ -51,11 +60,11 @@ class HrExpense(models.Model):
             partner_id = expense.employee_id.address_home_id.commercial_partner_id.id
 
             # source move line
-            amount = taxes['total_excluded']
+            amount = taxes['total_included'] - expense.tax_amount  # taxes['total_excluded']
             amount_currency = False
             if different_currency:
+                amount_currency = amount
                 amount = expense.currency_id._convert(amount, company_currency, expense.company_id, account_date)
-                amount_currency = taxes['total_excluded']
             move_line_src = {
                 'name': move_line_name,
                 'quantity': expense.quantity or 1,
@@ -78,11 +87,11 @@ class HrExpense(models.Model):
 
             # taxes move lines
             for tax in taxes['taxes']:
-                amount = tax['amount']
+                amount = expense.tax_amount # tax['amount']
                 amount_currency = False
                 if different_currency:
+                    amount_currency = amount
                     amount = expense.currency_id._convert(amount, company_currency, expense.company_id, account_date)
-                    amount_currency = tax['amount']
                 move_line_tax_values = {
                     'name': tax['name'],
                     'quantity': 1,
