@@ -23,6 +23,12 @@
                 <field name="unit_amount"/>
                 <field name="quantity"/> 
             </xpath>
+            <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='tax_ids']" position="after">
+                <field name="tax_amount"/> 
+            </xpath>
+            <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='tax_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
             <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='total_amount']" position="after">
                 <button 
                     name="action_duplicate" 
