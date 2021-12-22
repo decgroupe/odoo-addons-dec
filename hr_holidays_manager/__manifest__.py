@@ -5,7 +5,6 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Get employee manager if has specific group",
     'depends': ['hr_holidays', ],
-    'data': [
-    ],
+    'data': ['security/hr_holidays_security.xml', ],
     'installable': True
 }
