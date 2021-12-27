@@ -19,7 +19,7 @@ class HolidaysRequest(models.Model):
             else:
                 return self._get_employee_leave_manager(parent_id)
         else:
-            return False
+            return self.env['hr.employee']
 
     @api.multi
     def _sync_employee_details(self):
