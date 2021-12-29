@@ -40,6 +40,18 @@ def fix(res):
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
+    @api.multi
+    def write(self, vals):
+        states = {}
+        if 'bom_line_ids' in vals:
+            for rec in self:
+                states[rec.id] = rec.get_track_state()
+        super().write(vals)
+        if 'bom_line_ids' in vals:
+            for rec in self:
+                if rec.id in states:
+                    rec.set_track_state(states[rec.id])
+
     def get_track_state(self):
         self.ensure_one()
         vals = self.bom_line_ids.read(fields=TRACKED_FIELDS)
@@ -51,6 +63,7 @@ class MrpBom(models.Model):
         return res
 
     def set_track_state(self, previous_state):
+        self.ensure_one()
         BomLine = self.env['mrp.bom.line']
         IrTranslation = self.env['ir.translation']
 
