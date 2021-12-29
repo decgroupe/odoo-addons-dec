@@ -57,6 +57,7 @@ class ProductPricesHistory(models.Model):
     )
 
     def get_price(self, price_type):
+        self.ensure_one()
         if price_type == 'purchase':
             assert(self.type == price_type)
             return self.purchase_price

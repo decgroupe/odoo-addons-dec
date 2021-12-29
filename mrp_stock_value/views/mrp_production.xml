@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production.form@mrp_stock_value</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="priority">14</field>
+        <field name="arch" type="xml">
+            <field name="routing_id" position="after">
+                <field name="company_currency_id" invisible="1" groups="base.group_no_one"/>
+                <field name="consumed_value" widget="monetary" options="{'currency_field': 'company_currency_id'}" groups="base.group_no_one"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
