@@ -66,3 +66,6 @@ class StockMove(models.Model):
             if move.procure_method == 'make_to_order':
                 if move.state in ('draft'):
                     move.is_cancellable = True
+                elif move.state in ('confirmed') and not move.move_orig_ids:
+                    move.is_cancellable = True
+
