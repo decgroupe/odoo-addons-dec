@@ -73,6 +73,5 @@ class MrpProduction(models.Model):
             currency_obj=self.company_currency_id,
         )
         message = _('Consumed value = %s') % (formatted_price)
-        self.message_post(
-            body=message, subtype_id=self.env.ref('mail.mt_note').id
-        )
+        # Use message log to post a message without notifications
+        self._message_log(body=message)
