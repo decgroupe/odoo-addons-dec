@@ -73,8 +73,13 @@ class WebsiteContactController(http.Controller):
     def create_new_ticket_from_contactform(self, filter, **kw):
         categories = http.request.env['helpdesk.ticket.category']. \
             search([('active', '=', True), ('public_filter', '=', filter)])
+        recaptcha_model = request.env['website.form.recaptcha'].sudo()
+        creds = recaptcha_model._get_api_credentials(
+            request.website,
+        )
         return http.request.render(
             'website_contact.create_contact_message', {
+                'recaptcha_sitekey': creds['site_key'],
                 'origin': self._get_origins(),
                 'categories': categories,
                 'description': self._get_description(),
@@ -104,6 +109,8 @@ class WebsiteContactController(http.Controller):
         csrf=True
     )
     def submit_ticket_from_contactform(self, **kw):
+        recaptcha_model = request.env['website.form.recaptcha'].sudo()
+        recaptcha_model.validate_request(request, dict(kw))
         channel_id = request.env['helpdesk.ticket.channel'].sudo().search(
             [('name', '=', 'Web')]
         )
@@ -157,11 +164,16 @@ class WebsiteContactController(http.Controller):
         URL_BASE + '/lead/new', type="http", auth="public", website=True
     )
     def create_new_lead_from_contactform1(self, **kw):
+        recaptcha_model = request.env['website.form.recaptcha'].sudo()
+        creds = recaptcha_model._get_api_credentials(
+            request.website,
+        )
         return http.request.render(
             'website_contact.create_contact_message', {
                 'show_origin_form_group': True,
                 'show_email_form_group': True,
                 'show_recaptcha_form_group': True,
+                'recaptcha_sitekey': creds['site_key'],
                 'origin': self._get_origins(),
                 'submit_text': _('Next'),
                 'form_action': URL_BASE + '/lead/next',
@@ -172,6 +184,8 @@ class WebsiteContactController(http.Controller):
         URL_BASE + '/lead/next', type="http", auth="public", website=True
     )
     def create_new_lead_from_contactform2(self, **kw):
+        recaptcha_model = request.env['website.form.recaptcha'].sudo()
+        recaptcha_model.validate_request(request, dict(kw))
         partner_id = request.env['res.partner'].sudo().search(
             [('email', 'ilike', kw.get('email'))], limit=1
         )

@@ -8,6 +8,7 @@
         'helpdesk_notify',
         'crm',
         'website',
+        'website_form_recaptcha',
     ],
     'data':
         [
