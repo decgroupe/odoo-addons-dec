@@ -81,9 +81,9 @@ class ResUsersSignatureTemplate(models.Model):
         help="Same logo URL as the one used to render this signature, "
         "it will be used as a reference to replace with the department's one",
     )
-    overlay_url = fields.Char(
-        'Overlay URL',
-        help="Same overlay URL as the one used to render this signature, "
+    color_suffix = fields.Char(
+        'Color Suffix',
+        help="Same text pattern as the one used to render this signature, "
         "it will be used as a reference to replace with the department's one",
     )
     primary_color = fields.Char(
@@ -203,7 +203,7 @@ class ResUsersSignatureTemplate(models.Model):
         try:
             render_result = template.render(variables)
 
-            if employee.user_id.signature_logo:
+            if self.logo_url and employee.user_id.signature_logo:
                 base = main.URL_BASE
                 if base[-1] != '/':
                     base += '/'
@@ -213,16 +213,16 @@ class ResUsersSignatureTemplate(models.Model):
                 render_result = render_result.replace(
                     self.logo_url, signature_logo_url
                 )
-            elif employee.department_id.signature_logo_url:
+            elif self.logo_url and employee.department_id.signature_logo_url:
                 render_result = render_result.replace(
                     self.logo_url, employee.department_id.signature_logo_url
                 )
-            if employee.department_id.signature_overlay_url:
+            if self.color_suffix and employee.department_id.signature_color_suffix:
                 render_result = render_result.replace(
-                    self.overlay_url,
-                    employee.department_id.signature_overlay_url
+                    self.color_suffix,
+                    employee.department_id.signature_color_suffix
                 )
-            if employee.department_id.signature_primary_color:
+            if self.primary_color and employee.department_id.signature_primary_color:
                 render_result = render_result.replace(
                     self.primary_color,
                     employee.department_id.signature_primary_color

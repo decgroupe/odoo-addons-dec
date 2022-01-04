@@ -37,6 +37,7 @@ class ResUsers(models.Model):
     )
     signature_social_buttons = fields.Boolean(
         string='Social Buttons on Signature',
+        default=True,
         help="Add company social links to the HTML signature",
     )
     signature_logo = fields.Binary(
