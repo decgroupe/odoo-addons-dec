@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 14:58+0000\n"
-"PO-Revision-Date: 2021-11-04 16:01+0100\n"
+"POT-Creation-Date: 2022-01-04 14:42+0000\n"
+"PO-Revision-Date: 2022-01-04 15:43+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. module: software_application_launcher
 #: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
@@ -24,22 +24,30 @@ msgid "Application Images"
 msgstr "Images d'application"
 
 #. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__color
+msgid "Color Index"
+msgstr "Couleur"
+
+#. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application__corner_image
 msgid "Corner Image"
 msgstr "Image d'angle"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__create_uid
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__create_date
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__display_name
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -55,6 +63,7 @@ msgstr "Afficher comme « À venir »"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__id
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__id
 msgid "ID"
 msgstr "ID"
 
@@ -76,16 +85,19 @@ msgstr "Image de l’application (redimensionnée automatiquement)."
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image____last_update
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__write_uid
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__write_date
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
@@ -96,6 +108,7 @@ msgstr "Lanceur"
 
 #. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__name
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__name
 msgid "Name"
 msgstr "Nom"
 
@@ -135,9 +148,25 @@ msgid "Software Application Image"
 msgstr "Image d'application"
 
 #. module: software_application_launcher
+#: model:ir.model,name:software_application_launcher.model_software_tag
+msgid "Software Tag"
+msgstr "Étiquette Logicielle"
+
+#. module: software_application_launcher
 #: model:ir.model.fields,help:software_application_launcher.field_software_application__need_license
 msgid "Sometimes, an application is specifically developped for a customer and should not be shared with others. This is the purpose of this setting: Hide this application until the customer is logged in with an account with a valid license."
 msgstr "Parfois, une application est spécifiquement développée pour un client et ne doit pas être partagée avec d'autres. C'est le but de ce paramètre : Masquer cette application jusqu'à ce que le client soit connecté avec un compte avec une licence valide."
+
+#. module: software_application_launcher
+#: sql_constraint:software.tag:0
+msgid "Tag name already exists!"
+msgstr "Ce nom d'étiquette existe déjà!"
+
+#. module: software_application_launcher
+#: code:addons/software_application_launcher/models/software_tag.py:24
+#, python-format
+msgid "This tag cannot be removed"
+msgstr "Cette étiquette ne peut pas être supprimée"
 
 #. module: software_application_launcher
 #: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view

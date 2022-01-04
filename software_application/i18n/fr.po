@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 14:09+0000\n"
-"PO-Revision-Date: 2021-11-04 15:11+0100\n"
+"POT-Creation-Date: 2022-01-04 14:23+0000\n"
+"PO-Revision-Date: 2022-01-04 15:23+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. module: software_application
 #: model:ir.model.fields,help:software_application.field_software_application__product_description
@@ -144,7 +144,7 @@ msgid "Download URL"
 msgstr "Lien de téléchargement"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:36
+#: code:addons/software_application/models/software_application_release.py:48
 #, python-format
 msgid "Fixes"
 msgstr "Correctifs"
@@ -172,7 +172,7 @@ msgid "Image of the application (automatically resized to 300 x 200)."
 msgstr "Image de l'application (redimensionnée automatiquement à 300 x 200)."
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:63
+#: code:addons/software_application/models/software_application.py:67
 #: selection:software.application,type:0
 #, python-format
 msgid "In-House Application"
@@ -191,7 +191,7 @@ msgid "Informations"
 msgstr "Informations"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:37
+#: code:addons/software_application/models/software_application_release.py:49
 #, python-format
 msgid "Known Issues"
 msgstr "Problèmes connus"
@@ -273,7 +273,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:64
+#: code:addons/software_application/models/software_application.py:68
 #: selection:software.application,type:0
 #, python-format
 msgid "Other Application"
@@ -344,7 +344,7 @@ msgid "Releases"
 msgstr "Publications"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:65
+#: code:addons/software_application/models/software_application.py:69
 #: selection:software.application,type:0
 #, python-format
 msgid "Resource"
@@ -378,11 +378,6 @@ msgstr "Étiquette Logicielle"
 #: model_terms:ir.ui.view,arch_db:software_application.software_tag_form_view
 msgid "Tag"
 msgstr "Étiquette"
-
-#. module: software_application
-#: sql_constraint:software.tag:0
-msgid "Tag name already exists!"
-msgstr "Ce nom d'étiquette existe déjà !"
 
 #. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__tag_ids
@@ -435,25 +430,38 @@ msgstr ""
 "Toute modification DOIT être publiée dans une nouvelle version."
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:35
+#: model:ir.model.fields,field_description:software_application.field_software_application__website
+msgid "Website"
+msgstr "Site Web"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__website
+msgid "Website of the application"
+msgstr "Site web de l’application"
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:47
 #, python-format
 msgid "What's New"
 msgstr "Quoi de neuf"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:36
+#: code:addons/software_application/models/software_application_release.py:48
 #, python-format
 msgid "fix"
 msgstr "correctif"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:37
+#: code:addons/software_application/models/software_application_release.py:49
 #, python-format
 msgid "issue"
 msgstr "problème"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:35
+#: code:addons/software_application/models/software_application_release.py:47
 #, python-format
 msgid "new"
 msgstr "nouveau"
+
+#~ msgid "Tag name already exists!"
+#~ msgstr "Ce nom d'étiquette existe déjà !"

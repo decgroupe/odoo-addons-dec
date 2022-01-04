@@ -25,6 +25,10 @@ class SoftwareApplication(models.Model):
         string='Informations',
         help="Add details or missing informations",
     )
+    website = fields.Char(
+        string="Website",
+        help="Website of the application",
+    )
     product_id = fields.Many2one(
         comodel_name='product.product',
         string="Related Product",

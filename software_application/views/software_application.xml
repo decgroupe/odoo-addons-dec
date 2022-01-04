@@ -72,6 +72,7 @@
                             <field name="product_id" attrs="{'invisible': [('type', '=', 'other')]}"/>
                             <field name="product_name" attrs="{'invisible':[('product_id','=',False)]}"/>
                             <field name="product_description" attrs="{'invisible':[('product_id','=',False)]}"/>
+                            <field name="website" widget="url" attrs="{'invisible':[('product_id','=',False)]}"/>
                         </group>
                         <group name="secondary">
                             <field name="type"/>

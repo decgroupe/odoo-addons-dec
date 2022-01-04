@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 14:09+0000\n"
-"PO-Revision-Date: 2021-11-04 14:09+0000\n"
+"POT-Creation-Date: 2022-01-04 14:42+0000\n"
+"PO-Revision-Date: 2022-01-04 14:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -127,7 +127,7 @@ msgid "Download URL"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:36
+#: code:addons/software_application/models/software_application_release.py:48
 #, python-format
 msgid "Fixes"
 msgstr ""
@@ -155,7 +155,7 @@ msgid "Image of the application (automatically resized to 300 x 200)."
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:63
+#: code:addons/software_application/models/software_application.py:67
 #: selection:software.application,type:0
 #, python-format
 msgid "In-House Application"
@@ -174,7 +174,7 @@ msgid "Informations"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:37
+#: code:addons/software_application/models/software_application_release.py:49
 #, python-format
 msgid "Known Issues"
 msgstr ""
@@ -246,7 +246,7 @@ msgid "Name"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:64
+#: code:addons/software_application/models/software_application.py:68
 #: selection:software.application,type:0
 #, python-format
 msgid "Other Application"
@@ -314,7 +314,7 @@ msgid "Releases"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:65
+#: code:addons/software_application/models/software_application.py:69
 #: selection:software.application,type:0
 #, python-format
 msgid "Resource"
@@ -347,11 +347,6 @@ msgstr ""
 #. module: software_application
 #: model_terms:ir.ui.view,arch_db:software_application.software_tag_form_view
 msgid "Tag"
-msgstr ""
-
-#. module: software_application
-#: sql_constraint:software.tag:0
-msgid "Tag name already exists!"
 msgstr ""
 
 #. module: software_application
@@ -398,25 +393,35 @@ msgid "Version numbering using semver https://semver.org.\n"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:35
+#: model:ir.model.fields,field_description:software_application.field_software_application__website
+msgid "Website"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__website
+msgid "Website of the application"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:47
 #, python-format
 msgid "What's New"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:36
+#: code:addons/software_application/models/software_application_release.py:48
 #, python-format
 msgid "fix"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:37
+#: code:addons/software_application/models/software_application_release.py:49
 #, python-format
 msgid "issue"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:35
+#: code:addons/software_application/models/software_application_release.py:47
 #, python-format
 msgid "new"
 msgstr ""

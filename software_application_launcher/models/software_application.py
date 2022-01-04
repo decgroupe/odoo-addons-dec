@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 _logger = logging.getLogger(__name__)
 
@@ -63,8 +63,12 @@ class SoftwareApplication(models.Model):
     @api.multi
     def _get_launcher_manifest_entry(self, with_tooltips=False):
         self.ensure_one()
+        is_tool = False
+        tag_tool = self.env.ref("software_application_launcher.tag_tool")
         tags = []
         for tag_id in self.tag_ids:
+            if tag_tool and tag_id.id == tag_tool.id:
+                is_tool = True
             tags.append(
                 {
                     "tag": tag_id.name,
@@ -107,11 +111,14 @@ class SoftwareApplication(models.Model):
                 )
         return {
             "name": self.name,
+            "productName": self.product_name,
+            "productDescription": self.product_description,
             "identifier": self.identifier,
             "image": self.image,
             "isSoon": self.is_soon,
             "isFree": self.is_free,
-            "shopLink": False,
+            "isTool": is_tool,
+            "shopLink": self.website,
             "needLicense": self.need_license,
             "resources": resources,
             "releases": releases,

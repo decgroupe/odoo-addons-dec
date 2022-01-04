@@ -14,6 +14,7 @@
             'security/ir.model.access.csv',
             'views/software_application.xml',
             'views/software_application_image.xml',
+            'data/software_tag.xml',
         ],
     'installable': True
 }
