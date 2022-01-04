@@ -88,8 +88,6 @@ class SignatureController(http.Controller):
             image_base64 = base64.b64decode(logo)
             image_data = io.BytesIO(image_base64)
             mimetype = guess_mimetype(image_base64, default='image/png')
-            # imgext = '.' + mimetype.split('/')[1]
-            # imgname = "%d" % (user_id.id)
             mtime = user_id.write_date
             response = http.send_file(
                 image_data,

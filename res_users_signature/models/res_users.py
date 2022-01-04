@@ -60,22 +60,29 @@ class ResUsers(models.Model):
         type(self).SELF_WRITEABLE_FIELDS = list(
             set(
                 self.SELF_WRITEABLE_FIELDS + [
-                    'signature_text', 'signature_answer', 'signature_logo',
+                    'signature_text', 'signature_answer', 'signature_template',
+                    'signature_social_buttons', 'signature_logo',
                     'signature_logo_filename'
                 ]
             )
         )
         return init_res
 
-    def _generate_from_template(self, template):
+    def _generate_from_template(self, template, origin_user_id=False):
         self.ensure_one()
-        self.signature = template._render_template(template.body_html, self.id)
+        if not template:
+            return
+        if not origin_user_id:
+            origin_user_id = self
+        self.signature = template._render_template(
+            template.body_html, origin_user_id.id
+        )
         self.signature_answer = template._render_template(
-            template.body_lightweight_html, self.id
+            template.body_lightweight_html, origin_user_id.id
         )
         self.signature_text = template.with_context(
             safe=True
-        )._render_template(template.body_text, self.id)
+        )._render_template(template.body_text, origin_user_id.id)
 
     @api.multi
     def action_generate_signatures(self):
@@ -85,6 +92,10 @@ class ResUsers(models.Model):
         for user in self:
             template = user.signature_template or global_template
             user._generate_from_template(template)
+
+    @api.onchange("signature_template")
+    def onchange_signature_template(self):
+        self._generate_from_template(self.signature_template, self._origin)
 
     @api.multi
     def write(self, vals):
