@@ -89,41 +89,15 @@ class ResUsers(models.Model):
     def write(self, vals):
         res = super().write(vals)
         if 'signature_logo' in vals:
-            fname = self.write_signature_logo_to_fs(
-                vals.get('signature_logo'),
-                vals.get('signature_logo_filename'),
-            )
             # Update the filename with the one given on the filesystem
-            self.signature_logo_filename = fname
+            self.signature_logo_filename = self._get_signature_logo_filename(
+                vals.get('signature_logo_filename')
+            )
         return res
 
-    def _get_signature_logo_path(self, logo_filename=None):
-        path = Path(os.path.dirname(__file__))
-        root_path = str(path.parent.parent)
-        path = os.path.join(path.parent, 'static', 'img', 'sig')
-        if not os.path.exists(path):
-            os.makedirs(path)
-
+    def _get_signature_logo_filename(self, logo_filename=None):
         fname = '%d' % (self.id)
         if logo_filename:
             logo_name, logo_ext = os.path.splitext(logo_filename)
             fname += logo_ext.lower()
-        full_path = os.path.join(path, fname)
-        module_fname = removeprefix(full_path, root_path)
-        return module_fname, full_path
-
-    def write_signature_logo_to_fs(self, value, filename):
-        module_fname, full_path = self._get_signature_logo_path(filename)
-        if not value and os.path.exists(full_path):
-            os.remove(full_path)
-        elif value:
-            if isinstance(value, tools.pycompat.text_type):
-                value = value.encode('ascii')
-            value = tools.image_resize_image(value, size=(87, 87))
-            bin_value = base64.b64decode(value)
-            try:
-                with open(full_path, 'wb') as fp:
-                    fp.write(bin_value)
-            except IOError:
-                _logger.info("_file_write writing %s", full_path, exc_info=True)
-        return module_fname
+        return fname

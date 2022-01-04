@@ -7,11 +7,14 @@ import functools
 import datetime
 import logging
 
+from urllib.parse import urljoin
 from dateutil.relativedelta import relativedelta
 from werkzeug import urls
 
 from odoo import _, fields, models, api, tools
 from odoo.exceptions import UserError
+
+from ..controllers import main
 
 _logger = logging.getLogger(__name__)
 
@@ -201,8 +204,15 @@ class ResUsersSignatureTemplate(models.Model):
             render_result = template.render(variables)
 
             if employee.user_id.signature_logo:
-                fname = employee.user_id.signature_logo_filename
-                render_result = render_result.replace(self.logo_url, fname)
+                base = main.URL_BASE
+                if base[-1] != '/':
+                    base += '/'
+                signature_logo_url = urljoin(
+                    base, employee.user_id.signature_logo_filename
+                )
+                render_result = render_result.replace(
+                    self.logo_url, signature_logo_url
+                )
             elif employee.department_id.signature_logo_url:
                 render_result = render_result.replace(
                     self.logo_url, employee.department_id.signature_logo_url
