@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 11:11+0000\n"
-"PO-Revision-Date: 2021-07-08 11:11+0000\n"
+"POT-Creation-Date: 2022-01-04 12:13+0000\n"
+"PO-Revision-Date: 2022-01-04 12:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,23 @@ msgid "Answer Signature"
 msgstr ""
 
 #. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__color_suffix
+msgid "Color Suffix"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__signature_color_suffix
+msgid "Color suffix"
+msgstr ""
+
+#. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_hr_department__signature_primary_color
 msgid "Color used to replace the one used to render the user signature"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model,name:res_users_signature.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: res_users_signature
@@ -51,13 +66,14 @@ msgid "Employee"
 msgstr ""
 
 #. module: res_users_signature
-#: code:addons/res_users_signature/models/res_users_signature_template.py:211
+#: code:addons/res_users_signature/models/res_users_signature_template.py:238
 #, python-format
 msgid "Failed to render template %r using values %r"
 msgstr ""
 
 #. module: res_users_signature
 #: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
 msgid "Generate Signatures from Company Template"
 msgstr ""
 
@@ -109,6 +125,7 @@ msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_hr_department__signature_logo_url
+#: model:ir.model.fields,help:res_users_signature.field_res_users__signature_logo
 msgid "Logo used to replace the one used to render the user signature"
 msgstr ""
 
@@ -154,13 +171,39 @@ msgid "Same logo URL as the one used to render this signature, it will be used a
 msgstr ""
 
 #. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__color_suffix
+msgid "Same text pattern as the one used to render this signature, it will be used as a reference to replace with the department's one"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_logo
+msgid "Signature Logo"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_logo_filename
+msgid "Signature Logo Filename"
+msgstr ""
+
+#. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_template
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_signature_template_form_view
 msgid "Signature Template"
 msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_social_buttons
 msgid "Social Buttons on Signature"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_hr_department__signature_color_suffix
+msgid "Suffix used to replace the one used to render the user signature"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_res_users__signature_logo_filename
+msgid "Technical field only used to get the original file name and extension"
 msgstr ""
 
 #. module: res_users_signature
@@ -194,7 +237,7 @@ msgid "Use one line per website"
 msgstr ""
 
 #. module: res_users_signature
-#: code:addons/res_users_signature/models/res_users_signature_template.py:118
+#: code:addons/res_users_signature/models/res_users_signature_template.py:126
 #, python-format
 msgid "User %s is not linked to an employee"
 msgstr ""
