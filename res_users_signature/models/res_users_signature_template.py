@@ -78,6 +78,11 @@ class ResUsersSignatureTemplate(models.Model):
         help="Same logo URL as the one used to render this signature, "
         "it will be used as a reference to replace with the department's one",
     )
+    overlay_url = fields.Char(
+        'Overlay URL',
+        help="Same overlay URL as the one used to render this signature, "
+        "it will be used as a reference to replace with the department's one",
+    )
     primary_color = fields.Char(
         'Primary Color',
         help="Same color as the one used to render this signature, "
@@ -195,9 +200,17 @@ class ResUsersSignatureTemplate(models.Model):
         try:
             render_result = template.render(variables)
 
-            if employee.department_id.signature_logo_url:
+            if employee.user_id.signature_logo:
+                fname = employee.user_id.signature_logo_filename
+                render_result = render_result.replace(self.logo_url, fname)
+            elif employee.department_id.signature_logo_url:
                 render_result = render_result.replace(
                     self.logo_url, employee.department_id.signature_logo_url
+                )
+            if employee.department_id.signature_overlay_url:
+                render_result = render_result.replace(
+                    self.overlay_url,
+                    employee.department_id.signature_overlay_url
                 )
             if employee.department_id.signature_primary_color:
                 render_result = render_result.replace(

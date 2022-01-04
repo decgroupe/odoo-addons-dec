@@ -10,6 +10,8 @@
             <field name="signature" position="before">
                 <field name="signature_template" readonly="0"/>
                 <field name="signature_text" readonly="0"/>
+                <field name="signature_logo" widget="image" class="oe_avatar" readonly="0" filename="signature_logo_filename"/>
+                <field name="signature_logo_filename" invisible="1"/>
             </field>
             <field name="signature" position="after">
                 <field name="signature_answer" readonly="0"/>
@@ -38,6 +40,8 @@
             <field name="signature" position="before">
                 <field name="signature_template"/>
                 <field name="signature_text"/>
+                <field name="signature_logo" widget="image" class="oe_avatar" readonly="0" filename="signature_logo_filename"/>
+                <field name="signature_logo_filename" invisible="1"/>
             </field>
             <field name="signature" position="after">
                 <field name="signature_answer" readonly="0"/>

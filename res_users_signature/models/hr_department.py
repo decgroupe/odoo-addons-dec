@@ -12,6 +12,10 @@ class Department(models.Model):
         string='Logo URL',
         help="Logo used to replace the one used to render the user signature",
     )
+    signature_overlay_url = fields.Char(
+        string='Overlay URL',
+        help="Overlay used to replace the one used to render the user signature",
+    )
     signature_primary_color = fields.Char(
         string='Primary Color',
         help="Color used to replace the one used to render the user signature",
