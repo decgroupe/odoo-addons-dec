@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- 
+    <record model="ir.ui.view" id="view_wiki_form_view">
+        <field name="name">document.page.form@document_page_image_to_attachment</field>
+        <field name="model">document.page</field>
+        <field name="inherit_id" ref="document_page.view_wiki_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="action_convert_content_images_to_attachments"
+                    string="Convert inline images"
+                    help="Convert images to attachments"
+                    type="object"
+                    attrs="{'invisible': [('content', '=', False)]}"
+                    class="btn-primary">
+                </button>
+            </header>
+        </field>
+    </record> 
+    -->
+
+    <record model="ir.actions.server" id="action_convert_content_images_to_attachments" >
+        <field name="name">Convert images to attachments</field>
+        <field name="model_id" ref="document_page.model_document_page"/>
+        <field name="binding_model_id" ref="document_page.model_document_page"/>
+        <field name="state">code</field>
+        <field name="code">records.action_convert_content_images_to_attachments()</field>
+    </record>
+
+</odoo>
