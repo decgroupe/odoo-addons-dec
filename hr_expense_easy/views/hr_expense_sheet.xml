@@ -24,7 +24,9 @@
                 <field name="unit_amount"/>
                 <field name="quantity"/> 
             </xpath>
-            
+            <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='unit_amount']" position="before">
+                <field name="account_id" invisible="1"/>
+            </xpath>
             <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='unit_amount']" position="attributes">
                 <attribute name="string">Amount (Tax incl.)</attribute>
             </xpath>
