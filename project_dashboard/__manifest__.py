@@ -5,6 +5,7 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Configure types to be displayed in a dashboard",
     'depends': [
+        'web_one2many_kanban',
         'project_category',
         'project_task_count',
         'mrp_project',

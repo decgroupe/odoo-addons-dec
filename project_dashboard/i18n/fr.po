@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 17:49+0000\n"
-"PO-Revision-Date: 2021-11-09 18:50+0100\n"
+"POT-Creation-Date: 2022-01-07 15:25+0000\n"
+"PO-Revision-Date: 2022-01-07 16:26+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
 "X-Generator: Poedit 2.4.3\n"
 
 #. module: project_dashboard
@@ -43,6 +43,21 @@ msgstr "Année en cours"
 #: model:ir.ui.menu,name:project_dashboard.menu_dashboard
 msgid "Dashboard"
 msgstr "Tableau de bord"
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project__dashboard_sequence
+msgid "Dashboard Position"
+msgstr "Position dans le tableau de bord"
+
+#. module: project_dashboard
+#: model:ir.model.fields,help:project_dashboard.field_project_project__dashboard_sequence
+msgid "If set, then this project will be displayed on the dashboard. A higher value indicats an higher priority."
+msgstr "S’il est défini, ce projet sera affiché sur le tableau de bord. Une valeur élevée indique une priorité plus élevée."
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project__kanban_description
+msgid "Kanban Description"
+msgstr "Description sur le kanban"
 
 #. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
@@ -76,13 +91,20 @@ msgid "Number of projects unassigned"
 msgstr "Nombre de projets non attribués"
 
 #. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "Open project form"
+msgstr "Ouvrir la ficher du projet"
+
+#. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "Previous Year"
 msgstr "Année précédente"
 
 #. module: project_dashboard
+#: model:ir.actions.act_window,name:project_dashboard.action_open_view_project
 #: model:ir.actions.act_window,name:project_dashboard.action_project_kanban_from_dashboard
+#: model:ir.model,name:project_dashboard.model_project_project
 msgid "Project"
 msgstr "Projet"
 
@@ -92,6 +114,7 @@ msgid "Project Type"
 msgstr "Type de projet"
 
 #. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type__dashboard_project_ids
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__project_ids
 msgid "Projects"
 msgstr "Projets"
@@ -111,3 +134,8 @@ msgstr "À faire"
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "Unassigned"
 msgstr "Non assigné"
+
+#. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "View tasks"
+msgstr "Voir les tâches"

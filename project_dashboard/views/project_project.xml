@@ -9,28 +9,46 @@
     <field name="domain">[('type_id', 'child_of', active_id)]</field>
   </record>
 
+  <record model="ir.actions.act_window" id="action_open_view_project">
+    <field name="name">Project</field>
+    <field name="res_model">project.project</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="domain">[]</field>
+  </record>
 
   <record model="ir.ui.view" id="project_project_filter_view">
     <field name="name">project.project.select@project_dashboard</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.view_project_project_filter"/>
     <field name="arch" type="xml">
-        <xpath expr="//filter[@name='followed_by_me']" position="after">
-            <filter string="Unassigned" name="filter_unassigned" domain="[('user_id','=',False)]"/>
-        </xpath>
-        <xpath expr="//field[@name='partner_id']" position="after">
-          <separator/>
-          <filter string="Current Year" name="filter_year_current" domain="[
-            ('contract_confirmation_date', '&gt;=', datetime.date.today().strftime('%Y-01-01'))
-          ]"/>
-          <filter string="Previous Year" name="filter_year_previous" domain="[
-            ('contract_confirmation_date', '&gt;=', (datetime.date.today() - relativedelta(years=1)).strftime('%Y-01-01')),
-            ('contract_confirmation_date', '&lt;', datetime.date.today().strftime('%Y-01-01')),
-          ]"/>
-          <filter string="More Older" name="filter_year_older" domain="[
-            ('contract_confirmation_date', '&lt;=', (datetime.date.today() - relativedelta(years=2)).strftime('%Y-12-31')),
-          ]"/>
-        </xpath>
+      <xpath expr="//filter[@name='followed_by_me']" position="after">
+        <filter string="Unassigned" name="filter_unassigned" domain="[('user_id','=',False)]"/>
+      </xpath>
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <separator/>
+        <filter string="Current Year" name="filter_year_current" domain="[
+          ('contract_confirmation_date', '&gt;=', datetime.date.today().strftime('%Y-01-01'))
+        ]"/>
+        <filter string="Previous Year" name="filter_year_previous" domain="[
+          ('contract_confirmation_date', '&gt;=', (datetime.date.today() - relativedelta(years=1)).strftime('%Y-01-01')),
+          ('contract_confirmation_date', '&lt;', datetime.date.today().strftime('%Y-01-01')),
+        ]"/>
+        <filter string="More Older" name="filter_year_older" domain="[
+          ('contract_confirmation_date', '&lt;=', (datetime.date.today() - relativedelta(years=2)).strftime('%Y-12-31')),
+        ]"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="edit_project_form_view">
+    <field name="name">project.project.form@project_dashboard</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='sequence']" position="after">
+        <field name="dashboard_sequence" groups="base.group_no_one"/>
+      </xpath>
     </field>
   </record>
 

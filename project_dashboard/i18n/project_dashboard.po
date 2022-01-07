@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 17:49+0000\n"
-"PO-Revision-Date: 2021-11-09 17:49+0000\n"
+"POT-Creation-Date: 2022-01-07 15:25+0000\n"
+"PO-Revision-Date: 2022-01-07 15:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,6 +43,21 @@ msgid "Dashboard"
 msgstr ""
 
 #. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project__dashboard_sequence
+msgid "Dashboard Position"
+msgstr ""
+
+#. module: project_dashboard
+#: model:ir.model.fields,help:project_dashboard.field_project_project__dashboard_sequence
+msgid "If set, then this project will be displayed on the dashboard. A higher value indicats an higher priority."
+msgstr ""
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project__kanban_description
+msgid "Kanban Description"
+msgstr ""
+
+#. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "More Older"
@@ -74,13 +89,20 @@ msgid "Number of projects unassigned"
 msgstr ""
 
 #. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "Open project form"
+msgstr ""
+
+#. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "Previous Year"
 msgstr ""
 
 #. module: project_dashboard
+#: model:ir.actions.act_window,name:project_dashboard.action_open_view_project
 #: model:ir.actions.act_window,name:project_dashboard.action_project_kanban_from_dashboard
+#: model:ir.model,name:project_dashboard.model_project_project
 msgid "Project"
 msgstr ""
 
@@ -90,6 +112,7 @@ msgid "Project Type"
 msgstr ""
 
 #. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type__dashboard_project_ids
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__project_ids
 msgid "Projects"
 msgstr ""
@@ -108,5 +131,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "Unassigned"
+msgstr ""
+
+#. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "View tasks"
 msgstr ""
 

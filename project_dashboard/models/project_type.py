@@ -43,6 +43,29 @@ class ProjectType(models.Model):
         string="Number of projects from year-2 and older",
         compute='_compute_todo_projects',
     )
+    dashboard_project_ids = fields.One2many(
+        comodel_name='project.project',
+        inverse_name='type_id',
+        string="Projects",
+        domain=lambda self: [
+            '|',
+            '&',
+            ('todo_task_count', '>', 0),
+            '|',
+            ('favorite_user_ids', '=', self.env.uid),
+            ('message_is_follower', '=', True),
+            ('dashboard_sequence', '>', 0),
+        ],
+        # We put the field context in the model definition because odoo 12
+        # does not evaluate the field context in kanban view definition
+        context={
+            'kanban_fields':
+                [
+                    'name', 'display_name', 'dashboard_sequence',
+                    'kanban_description'
+                ]
+        }
+    )
 
     @api.depends(
         'project_ids', 'project_ids.todo_task_count',
@@ -113,3 +136,24 @@ class ProjectType(models.Model):
                     r[COL_DATE] and r[COL_DATE] <= current_year - 2
                 ]
             )
+
+    def action_open_project(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form,tree',
+            'res_model': 'project.project',
+            'target': 'current',
+            'context': self.env.context,
+            'res_id': self.env.context.get('project_id'),
+        }
+
+    def action_open_project_tasks(self):
+        active_id = self.env.context.get('project_id')
+        act = self.env.ref("project.act_project_project_2_project_task_all")
+        action = act.read()[0]
+        action['context'] = {
+            'search_default_project_id': [active_id],
+            'default_project_id': active_id,
+        }
+        return action

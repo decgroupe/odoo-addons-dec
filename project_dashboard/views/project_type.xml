@@ -26,6 +26,7 @@
         <field name="todo_project_count_year_nm0"/>
         <field name="todo_project_count_year_nm1"/>
         <field name="todo_project_count_year_nm2"/>
+        <field name="dashboard_project_ids"/>
         <templates>
           <t t-name="kanban-box">
             <div t-attf-class="#{kanban_color(record.color.raw_value)}">
@@ -62,7 +63,7 @@
                         <div class="col-3">
                           <t t-esc="record.todo_project_count_unassigned.value"/>
                         </div>
-        
+
                         <t t-if="record.todo_project_count_year_nm0.value > 0">
                           <div class="col-9">
                             <a name="%(action_project_kanban_from_dashboard)d" type="action" context="{'search_default_filter_year_current': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}">
@@ -98,6 +99,31 @@
 
                       </div>
                     </div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                      <t t-foreach="record.dashboard_project_ids.raw_value" t-as="project_id">
+                        <li class="list-group-item flex-grow-1" style="padding: 0rem 0rem;">
+                          <a type="object" name="action_open_project" t-attf-data-context="{'project_id': #{project_id.id}}" title="Open project form">
+                            <t t-if="project_id.dashboard_sequence > 0">
+                              <i class="fa fa-star" />
+                            </t>
+                            <t t-else="">
+                              <i class="fa fa-external-link-square" />
+                            </t>
+                          </a>
+                          <a name="action_open_project_tasks" type="object" t-attf-data-context="{'project_id': #{project_id.id}}" title="View tasks">
+                            <t t-esc="project_id.display_name"/>
+                            <t t-if="project_id.kanban_description">
+                              <t t-esc="project_id.kanban_description"/>
+                            </t>
+                          </a>
+                        </li>
+                      </t>
+                    </ul>
+                  </span>
                   </div>
 
                 </div>
