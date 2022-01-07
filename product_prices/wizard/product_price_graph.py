@@ -23,8 +23,8 @@ class ProductPriceGraph(models.TransientModel):
     def default_get(self, fields):
         res = super().default_get(fields)
         active_ids = self.env.context.get('active_ids')
-        if self.env.context.get('active_model') in (
-            'product.template', 'product.product'
-        ) and active_ids:
+        if self.env.context.get(
+            'active_model'
+        ) == 'product.product' and active_ids:
             res['product_id'] = active_ids[0]
         return res

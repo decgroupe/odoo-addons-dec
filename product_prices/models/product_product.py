@@ -2,6 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2020
 
+import json
 from datetime import datetime
 
 from odoo import api, fields, models
@@ -35,6 +36,18 @@ class ProductProduct(models.Model):
     @api.multi
     def open_price_graph(self):
         self.ensure_one()
-        action = self.env.ref('product_prices.act_window_product_price_graph'
-                             ).read()[0]
+        act = self.env.ref('product_prices.act_window_product_price_graph')
+        action = act.read()[0]
+        context = json.loads(action['context'])
+        context.update(
+            {
+                'active_model': self._name,
+                'active_id': self.id,
+                'active_ids': self.ids,
+            }
+        )
+        action['context'] = json.dumps(context)
+
+        # action = self.env.ref('product_prices.act_window_product_price_graph'
+        #                      ).read()[0]
         return action

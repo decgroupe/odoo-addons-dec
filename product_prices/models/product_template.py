@@ -233,14 +233,16 @@ class ProductTemplate(models.Model):
     def update_bypass(self, state):
         Pricelist = self.env['product.pricelist']
         PricelistItem = self.env['product.pricelist.item']
-        for product in self:
+        for product_tmpl_id in self:
+            # Currently, we just assert that there is only one variant.
+            product_id = product_tmpl_id.product_variant_id
             pricelists = Pricelist.search([('type', '=', 'sale')])
             pricelist_items = PricelistItem.search(
                 [
                     ('pricelist_id', 'in', pricelists.ids),
                     '|',
-                    ('product_tmpl_id', '=', product.id),
-                    ('product_id', '=', product.id),
+                    ('product_tmpl_id', '=', product_tmpl_id.id),
+                    ('product_id', '=', product_id.id),
                 ]
             )
 
@@ -248,16 +250,19 @@ class ProductTemplate(models.Model):
                 if not pricelist_items:
                     data = {
                         'sequence': 2,
-                        'note': _('By-pass {}').format(product.default_code),
+                        'note': _('By-pass {}').format(product_tmpl_id.\
+                            default_code),
                         'pricelist_id': pricelists.ids[0],
-                        'product_tmpl_id': product.id,
-                        'product_id': product.id,
+                        'product_tmpl_id': product_tmpl_id.id,
+                        'product_id': product_id.id,
                         'compute_price': 'formula',
                         'applied_on': '1_product',
                         'base': 'list_price',
-                        'company_id': product.company_id.id,
+                        'company_id': product_tmpl_id.company_id.id,
                     }
-                    product.pricelist_bypass_item = PricelistItem.create(data)
+                    product_tmpl_id.pricelist_bypass_item = PricelistItem.create(
+                        data
+                    )
             else:
                 if len(pricelist_items) > 1:
                     raise UserError(
@@ -290,8 +295,10 @@ class ProductTemplate(models.Model):
     @api.multi
     def open_price_graph(self):
         self.ensure_one()
-        action = self.env.ref('product_prices.act_window_product_price_graph'
-                             ).read()[0]
+        # TODO: Open a wizard, first, to select the variant that will be used
+        # to compute the graph.
+        # Currently, we just assert that there is only one variant.
+        action = self.product_variant_id.open_price_graph()
         return action
 
     @api.model
