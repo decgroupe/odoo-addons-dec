@@ -5,6 +5,9 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Add UI settings to disable auto-subscribe with @-mention",
     'depends': ['mail', ],
-    'data': ['views/mail_message_subtype.xml', ],
+    'data': [
+        'views/mail_message_subtype.xml',
+        'views/res_users.xml',
+    ],
     'installable': True
 }

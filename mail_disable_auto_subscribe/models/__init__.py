@@ -1,2 +1,3 @@
-from . import mail_message
+from . import res_partner
+from . import mail_thread
 from . import mail_message_subtype
