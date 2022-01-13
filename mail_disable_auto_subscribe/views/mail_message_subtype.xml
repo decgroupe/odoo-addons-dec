@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- 
+    <record model="ir.ui.view" id="message_subtype_tree_view">
+        <field name="name">mail.message.subtype.tree@mail_disable_auto_subscribe</field>
+        <field name="model">mail.message.subtype</field>
+        <field name="inherit_id" ref="mail.view_message_subtype_tree"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>
+    -->
+
+    <record model="ir.ui.view" id="mail_message_subtype_form_view">
+        <field name="name">mail.message.subtype.form@mail_disable_auto_subscribe</field>
+        <field name="model">mail.message.subtype</field>
+        <field name="inherit_id" ref="mail.view_mail_message_subtype_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group string='Default exclusion' attrs="{'invisible': [('default', '=', False)]}">
+                    <field name="excluded_res_model_ids">
+                        <tree>
+                            <field name="model" />
+                            <field name="name" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
