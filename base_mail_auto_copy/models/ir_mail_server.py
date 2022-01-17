@@ -30,6 +30,7 @@ class IrMailServer(models.Model):
             mail_server = self.sudo().search([], order='sequence', limit=1)
         else:
             mail_server = False
+        return mail_server
 
     def update_cc_addresses(self, mail_server, message):
         if mail_server.auto_cc_addresses:
