@@ -47,13 +47,7 @@
           <t t-foreach="passes" t-as="license_pass">
             <tr>
               <td>
-                <t t-if="license_pass.partner_id.is_company">
-                  🏢
-                </t>
-                <t t-else="">
-                  👷
-                </t>
-                <t t-esc="license_pass.partner_id.name"/>
+                <t t-esc="license_pass.sudo().partner_id._get_contact_type_emoji()"/>
               </td>
               <td>
                 <span t-field="license_pass.name"/>

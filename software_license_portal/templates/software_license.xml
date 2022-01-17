@@ -46,13 +46,7 @@
           <t t-foreach="licenses" t-as="license">
             <tr>
               <td>
-                <t t-if="license.partner_id.is_company">
-                  🏢
-                </t>
-                <t t-else="">
-                  👷
-                </t>
-                <t t-esc="license.partner_id.name"/>
+                <t t-esc="license_pass.sudo().partner_id._get_contact_type_emoji()"/>
               </td>
               <td>
                 <a t-attf-href="/my/license/#{license.id}">
