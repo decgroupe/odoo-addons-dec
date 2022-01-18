@@ -85,7 +85,7 @@ class DelegateAuthSignup(http.Controller):
                         'email': kw.get('email'),
                         'function': kw.get('function'),
                     }
-                    contact_id = request.env['res.partner'].sudo().create(vals)
+                    contact_id = Partner.delegate_create_contact(vals)
                 contact_id.give_portal_access()
                 message = _(
                     "Contact %s has been created and a "

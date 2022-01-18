@@ -16,6 +16,13 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="commercial_partner_id" groups="base.group_no_one" class="oe_read_only"/>
             </xpath>
+            <xpath expr="//sheet/notebook//field[@name='child_ids']/form//field[@name='type']" position="after">
+                <hr/>
+                <div name="inherit_commercial_partner">
+                    <field name="inherit_commercial_partner" class="o_light_label"/>
+                    <label for="inherit_commercial_partner"/>
+                </div>
+            </xpath>
         </field>
     </record>
 

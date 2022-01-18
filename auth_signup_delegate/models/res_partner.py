@@ -31,6 +31,9 @@ class ResPartner(models.Model):
                 })
         return True
 
+    def delegate_create_contact(self, vals):
+        return self.create(vals)
+
     @api.multi
     def get_delegate_signup_url(self):
         self.ensure_one()
