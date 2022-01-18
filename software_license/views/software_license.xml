@@ -71,6 +71,7 @@
         <field name="model">software.license</field>
         <field name="arch" type="xml">
             <search string="License">
+                <field name="partner_id"/>
                 <field name="serial" filter_domain=""/>
                 <field name="application_id"/>
                 <group string="Group By" name="groupby">
