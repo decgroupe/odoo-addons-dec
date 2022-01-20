@@ -2,6 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2021
 
+import socket
 import requests
 import logging
 
@@ -33,5 +34,6 @@ class HealthchecksPing(models.Model):
     @api.model
     def _get_ping_data(self):
         return {
+            "hostname": socket.gethostname(),
             "database": self.env.cr.dbname,
         }
