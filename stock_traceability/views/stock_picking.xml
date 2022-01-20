@@ -33,7 +33,7 @@
                 <field name="tree_bg_color" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='move_ids_without_package']/tree" position="attributes">
-                <attribute name="colors">color_field: tree_fg_color; background_color_field: tree_bg_color</attribute>
+                <attribute name="colors">color_field: tree_fg_color; bg_color_field: tree_bg_color</attribute>
             </xpath>
         </field>
     </record>
