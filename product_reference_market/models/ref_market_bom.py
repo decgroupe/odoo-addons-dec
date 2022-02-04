@@ -81,3 +81,13 @@ class RefMarketBom(models.Model):
         res = self.get_external_id()
         for record in self:
             record.xml_id = res.get(record.id)
+
+    def _convert_qty_to_hours(self):
+        uom_hour = self.env.ref('uom.product_uom_hour')
+        if uom_hour and self.product_uom_id.id != uom_hour.id and self.product_uom_id.category_id.id == uom_hour.category_id.id:
+            planned_hours = self.product_uom_id._compute_quantity(
+                self.product_qty, uom_hour
+            )
+        else:
+            planned_hours = self.product_qty
+        return planned_hours

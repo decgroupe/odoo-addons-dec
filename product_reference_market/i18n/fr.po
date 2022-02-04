@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-18 16:12+0000\n"
-"PO-Revision-Date: 2020-10-18 18:14+0200\n"
+"POT-Creation-Date: 2022-02-04 13:41+0000\n"
+"PO-Revision-Date: 2022-02-04 14:42+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__bom_lines
@@ -68,6 +68,18 @@ msgstr "ID"
 #: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__xml_id
 msgid "ID defined in xml file"
 msgstr "ID de la vue définie dans le fichier XML"
+
+#. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_product_product__market_bom_labortime
+#: model:ir.model.fields,field_description:product_reference_market.field_product_template__market_bom_labortime
+msgid "Labor Time"
+msgstr "Temps de main d'oeuvre"
+
+#. module: product_reference_market
+#: model:ir.model.fields,help:product_reference_market.field_product_product__market_bom_labortime
+#: model:ir.model.fields,help:product_reference_market.field_product_template__market_bom_labortime
+msgid "Labor hour(s) computed from market BoM"
+msgstr "Heure(s) de main d'oeuvre calculée(s) à partir de la nomenclature du tarif"
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom____last_update
@@ -159,6 +171,7 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: product_reference_market
+#: model:ir.model,name:product_reference_market.model_product_product
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__product_id
 msgid "Product"
 msgstr "Produits"
