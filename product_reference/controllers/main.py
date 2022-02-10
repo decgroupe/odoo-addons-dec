@@ -6,6 +6,7 @@ import json
 
 from odoo import http
 from odoo.http import request
+from odoo.addons.web.controllers.main import ensure_db
 
 URL_BASE_V1 = "/api/ref/v1"
 
@@ -22,6 +23,7 @@ class ProductReferenceController(http.Controller):
         URL_USERS, type='json', methods=['POST'], auth="api_key", csrf=False
     )
     def get_ref_users(self, **kwargs):
+        ensure_db()
         res = {}
         group_id = request.env.ref(
             "product_reference_management.group_ref_user"

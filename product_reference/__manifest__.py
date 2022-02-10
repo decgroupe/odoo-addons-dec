@@ -5,6 +5,7 @@
     'website': 'https://www.decgroupe.com',
     'summary': '''Product reference management''',
     'depends': [
+        'auth_api_key',
         'base',
         'base_xmlid',
         'uom',
