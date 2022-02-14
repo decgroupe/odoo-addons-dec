@@ -9,7 +9,7 @@
                 <field name="version"/>
                 <field name="datetime"/>
                 <field name="name"/>
-                <field name="author_id"/>
+                <field name="author_id" domain="[('share', '=', False)]"/>
             </tree>
         </field>
     </record>
