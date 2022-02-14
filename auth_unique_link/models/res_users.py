@@ -68,7 +68,7 @@ class ResUsers(models.Model):
             base_url = rec.partner_id.get_base_url()
             query = {
                 "db": self.env.cr.dbname,
-                "login": self.login,
+                "login": rec.login,
                 "token": rec.sudo().signin_link_token,
             }
             rec.signin_link_url = werkzeug.urls.url_join(
