@@ -5,6 +5,7 @@
 from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
+from odoo.tools.safe_eval import safe_eval
 
 
 class ProjectType(models.Model):
@@ -152,8 +153,20 @@ class ProjectType(models.Model):
         active_id = self.env.context.get('project_id')
         act = self.env.ref("project.act_project_project_2_project_task_all")
         action = act.read()[0]
-        action['context'] = {
-            'search_default_project_id': [active_id],
-            'default_project_id': active_id,
-        }
-        return action
+        # Set active_id and active_ids to allow safe evaluation
+        eval_ctx = dict(self.env.context)
+        eval_ctx.update({
+            'active_id': active_id,
+            'active_ids': [active_id],
+        })
+        try:
+            ctx = safe_eval(action.get('context', '{}'), eval_ctx)
+        except:
+            ctx = {}
+        # Add or override `active_id` and `active_ids` otherwise the web
+        # client keeps the `id` from the `project.type`
+        ctx.update({
+            'active_id': active_id,
+            'active_ids': [active_id],
+        })
+        return dict(action, context=ctx)
