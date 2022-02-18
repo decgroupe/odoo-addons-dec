@@ -2,6 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2022
 
+from datetime import date, timedelta
 from odoo import api, models, fields
 
 import logging
@@ -136,3 +137,16 @@ class MailActivityMyMixin(models.AbstractModel):
     @api.model
     def _search_activity_my_summary(self, operator, operand):
         return [('activity_my_ids.summary', operator, operand)]
+
+    def action_snooze(self):
+        self.ensure_one()
+        today = date.today()
+        my_next_activity = self.activity_my_ids[:1]
+        if my_next_activity:
+            delta = timedelta(days=7)
+            if my_next_activity.date_deadline < today:
+                date_deadline = today + delta
+            else:
+                date_deadline = my_next_activity.date_deadline + delta
+            my_next_activity.write({'date_deadline': date_deadline})
+        return True

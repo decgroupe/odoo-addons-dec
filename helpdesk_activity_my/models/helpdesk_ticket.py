@@ -4,11 +4,13 @@
 
 import logging
 
+from datetime import date, datetime, timedelta
+
 from odoo import api, models
 
 _logger = logging.getLogger(__name__)
 
 
-class CrmLead(models.Model):
-    _name = 'crm.lead'
-    _inherit = ['crm.lead', 'mail.activity.my.mixin']
+class HelpdeskTicket(models.Model):
+    _name = 'helpdesk.ticket'
+    _inherit = ['helpdesk.ticket', 'mail.activity.my.mixin']
