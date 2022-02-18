@@ -1,0 +1,1 @@
+from . import mail_activity_my_mixin

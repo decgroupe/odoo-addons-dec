@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="purchase_order_tree_view" >
+        <field name="name">purchase.order.tree@purchase_activity_my</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="decoration-bf">1</attribute>
+            </field>
+            <field name="date_order" position="attributes">
+                <attribute name="widget">remaining_days</attribute>
+            </field>
+            <field name="origin" position="before">
+                <field name="activity_my_ids" widget="list_activity_my"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_order_kanban_view">
+        <field name="name">purchase.order.kanban@purchase_activity_my</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/templates" position="before">
+                <field name="activity_my_ids"/>
+                <field name="activity_my_state"/>
+                <progressbar field="activity_my_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
+                <field name="activity_my_ids" widget="kanban_activity_my"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

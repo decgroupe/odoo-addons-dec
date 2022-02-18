@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mail_activity_my_backend" name="mail_activity_my" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/mail_activity_my/static/src/js/mail_activity_my.js"/>
+            <link rel="stylesheet" type="text/scss" href="/mail_activity_my/static/src/scss/mail_activity_my.scss"/>
+        </xpath>
+    </template>
+</odoo>

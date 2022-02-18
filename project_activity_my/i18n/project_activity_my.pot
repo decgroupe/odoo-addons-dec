@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* project_activity_my
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-18 09:57+0000\n"
+"PO-Revision-Date: 2022-02-18 09:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__id
+msgid "ID"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__activity_my_ids
+msgid "My Activities"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__activity_my_state
+msgid "My Activity State"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__activity_my_type_icon
+msgid "My Activity Type Icon"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__activity_my_date_deadline
+msgid "My Deadline"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__activity_my_summary
+msgid "My Next Activity Summary"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__activity_my_type_id
+msgid "My Next Activity Type"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,field_description:project_activity_my.field_project_task__activity_my_user_id
+msgid "My Next Activity User"
+msgstr ""
+
+#. module: project_activity_my
+#: selection:project.task,activity_my_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: project_activity_my
+#: selection:project.task,activity_my_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model.fields,help:project_activity_my.field_project_task__activity_my_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: project_activity_my
+#: model:ir.model,name:project_activity_my.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: project_activity_my
+#: selection:project.task,activity_my_state:0
+msgid "Today"
+msgstr ""
+

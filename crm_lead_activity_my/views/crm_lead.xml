@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_case_oppor_tree_view">
+        <field name="name">crm.lead.tree.opportunity@crm_lead_activity_my</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="attributes">
+                <attribute name="decoration-bf">1</attribute>
+            </field>
+            <xpath expr="//tree/field[@name='activity_date_deadline']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//tree/field[@name='activity_summary']" position="replace">
+                <field name="activity_my_ids" widget="list_activity_my"/>
+                <field name="activity_my_date_deadline" widget="remaining_days"/>
+                <button 
+                    name="action_snooze" 
+                    class="text-warning" 
+                    attrs="{'invisible': [('activity_my_ids', '=', [])]}"
+                    type="object" 
+                    string="Snooze 7d" 
+                    icon="fa-bell-slash">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_kanban_view_leads">
+        <field name="name">crm.lead.kanban.lead@crm_lead_activity_my</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='activity_state']" position="replace">
+                <field name="activity_my_state"/>
+            </xpath>
+            <xpath expr="//kanban/field[@name='activity_ids']" position="replace">
+                <field name="activity_my_ids"/>
+            </xpath>
+            <xpath expr="//kanban/progressbar" position="replace">
+                <progressbar field="activity_my_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}' sum_field="planned_revenue" help="This bar allows to filter the opportunities based on scheduled activities."/>
+            </xpath>
+            <xpath expr="//kanban//templates//field[@name='activity_ids']" position="replace">
+                <field name="activity_my_ids" widget="kanban_activity_my"/>
+                <t t-if="record.activity_my_state.raw_value !== 'planned' and record.activity_my_state.raw_value !== false ">
+                    <a name="action_snooze" type="object" title="Snooze 7d">
+                        <i class="text-warning fa fa-fw fa-bell-slash" role="img"/>
+                    </a>
+                </t>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

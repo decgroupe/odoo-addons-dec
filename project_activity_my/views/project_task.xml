@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_task_tree2">
+        <field name="name">project.task.tree.inherited@project_activity_my</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="activity_my_ids" widget="list_activity_my"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

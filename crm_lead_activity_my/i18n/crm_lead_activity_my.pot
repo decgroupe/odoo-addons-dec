@@ -1,0 +1,106 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* crm_lead_activity_my
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-18 09:57+0000\n"
+"PO-Revision-Date: 2022-02-18 09:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__id
+msgid "ID"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model,name:crm_lead_activity_my.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__activity_my_ids
+msgid "My Activities"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__activity_my_state
+msgid "My Activity State"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__activity_my_type_icon
+msgid "My Activity Type Icon"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__activity_my_date_deadline
+msgid "My Deadline"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__activity_my_summary
+msgid "My Next Activity Summary"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__activity_my_type_id
+msgid "My Next Activity Type"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__activity_my_user_id
+msgid "My Next Activity User"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: selection:crm.lead,activity_my_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: selection:crm.lead,activity_my_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model_terms:ir.ui.view,arch_db:crm_lead_activity_my.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_lead_activity_my.crm_case_oppor_tree_view
+msgid "Snooze 7d"
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,help:crm_lead_activity_my.field_crm_lead__activity_my_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: model_terms:ir.ui.view,arch_db:crm_lead_activity_my.crm_case_kanban_view_leads
+msgid "This bar allows to filter the opportunities based on scheduled activities."
+msgstr ""
+
+#. module: crm_lead_activity_my
+#: selection:crm.lead,activity_my_state:0
+msgid "Today"
+msgstr ""
+
