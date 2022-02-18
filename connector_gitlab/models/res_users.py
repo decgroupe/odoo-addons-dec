@@ -29,11 +29,12 @@ class ResUsers(models.Model):
                     if self.user_gitlab_resource_id.uid != user_uid:
                         self.user_gitlab_resource_id.uid = user_uid
                 else:
-                    self.user_gitlab_resource_id = self.user_gitlab_resource_id.create(
-                        {
-                            'type': 'user',
-                            'uid': user_uid,
-                        }
+                    self.user_gitlab_resource_id = self.\
+                        user_gitlab_resource_id.sudo().create(
+                            {
+                                'type': 'user',
+                                'uid': user_uid,
+                            }
                     )
         return user_uid
 
