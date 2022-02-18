@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_module_migration_group_user,ir_module_migration group_user,model_ir_module_migration,base.group_system,1,1,1,1

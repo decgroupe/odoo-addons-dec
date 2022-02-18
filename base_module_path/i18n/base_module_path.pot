@@ -6,14 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-30 11:57+0000\n"
-"PO-Revision-Date: 2021-08-30 11:57+0000\n"
+"POT-Creation-Date: 2022-02-18 16:56+0000\n"
+"PO-Revision-Date: 2022-02-18 16:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: base_module_path
+#: model:ir.model.fields,field_description:base_module_path.field_ir_module_module__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_module_path
+#: model:ir.model.fields,field_description:base_module_path.field_ir_module_module__id
+msgid "ID"
+msgstr ""
+
+#. module: base_module_path
+#: model:ir.model.fields,field_description:base_module_path.field_ir_module_module____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: base_module_path
 #: model:ir.model,name:base_module_path.model_ir_module_module
@@ -23,5 +38,10 @@ msgstr ""
 #. module: base_module_path
 #: model:ir.model.fields,field_description:base_module_path.field_ir_module_module__path
 msgid "Path"
+msgstr ""
+
+#. module: base_module_path
+#: model:ir.actions.server,name:base_module_path.action_recompute_path
+msgid "Recompute path"
 msgstr ""
 

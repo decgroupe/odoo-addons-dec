@@ -9,9 +9,16 @@ from odoo.modules.module import get_module_path
 class IrModule(models.Model):
     _inherit = "ir.module.module"
 
-    path = fields.Char(compute="compute_path")
+    path = fields.Char(
+        compute="_compute_path",
+        store=True,
+    )
 
     @api.multi
-    def compute_path(self):
+    def _compute_path(self):
         for rec in self:
             rec.path = get_module_path(rec.name)
+
+    @api.multi
+    def action_recompute_path(self):
+        self._compute_path()

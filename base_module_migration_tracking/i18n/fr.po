@@ -1,0 +1,172 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_module_migration_tracking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-18 16:56+0000\n"
+"PO-Revision-Date: 2022-02-18 16:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_12_status
+msgid "12"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_13_status
+msgid "13"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_14_status
+msgid "14"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_15_status
+msgid "15"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_12_color
+msgid "Color (12)"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_13_color
+msgid "Color (13)"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_14_color
+msgid "Color (14)"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_15_color
+msgid "Color (15)"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__display_name
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__id
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__id
+msgid "ID"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: selection:ir.module.migration,state:0
+msgid "Installed"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration____last_update
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: base_module_migration_tracking
+#: selection:ir.module.migration,state:0
+msgid "Migrated"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model_terms:ir.ui.view,arch_db:base_module_migration_tracking.ir_module_module_form_view
+msgid "Migration"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__migration_ids
+#: model_terms:ir.ui.view,arch_db:base_module_migration_tracking.ir_module_module_form_view
+msgid "Migrations"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model,name:base_module_migration_tracking.model_ir_module_module
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__module_id
+msgid "Module"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model,name:base_module_migration_tracking.model_ir_module_migration
+msgid "Module Migration"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__note
+msgid "Note"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: selection:ir.module.migration,state:0
+msgid "Obsolete"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__pr_address
+msgid "PR"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,help:base_module_migration_tracking.field_ir_module_migration__pr_address
+msgid "Pull-request address"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__repo_address
+msgid "Repo."
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,help:base_module_migration_tracking.field_ir_module_migration__repo_address
+msgid "Repository address"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__state
+msgid "State"
+msgstr "État"
+
+#. module: base_module_migration_tracking
+#: selection:ir.module.migration,state:0
+msgid "To-do"
+msgstr ""
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__version
+msgid "Version"
+msgstr ""

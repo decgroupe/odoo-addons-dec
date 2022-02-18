@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="ir_module_module_form_view">
+        <field name="name">ir.module.module.fom@base_module_migration_tracking</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="edit">1</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Migration" name="migration_tracking">
+                    <field name="migration_ids">
+                        <tree editable="bottom" string="Migrations">
+                            <field name="version"/>
+                            <field name="state"/>
+                            <field name="note"/>
+                            <field name="pr_address" widget="url"/>
+                            <field name="repo_address" widget="url"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ir_module_module_tree_view">
+        <field name="name">ir.module.module.tree@base_module_migration_tracking</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="mig_12_status" options='{"bg_color": "mig_12_color;"}' class="d_mig_status"/>
+                <field name="mig_12_color" invisible="1"/>
+                <field name="mig_13_status" options='{"bg_color": "mig_13_color;"}' class="d_mig_status"/>
+                <field name="mig_13_color" invisible="1"/>
+                <field name="mig_14_status" options='{"bg_color": "mig_14_color;"}' class="d_mig_status"/>
+                <field name="mig_14_color" invisible="1"/>
+                <field name="mig_15_status" options='{"bg_color": "mig_15_color;"}' class="d_mig_status"/>
+                <field name="mig_15_color" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
