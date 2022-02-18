@@ -75,3 +75,14 @@ class IrModule(models.Model):
                         else:
                             rec[color_field] = LIGHTGREEN['500'][0]
 
+    @api.multi
+    def action_init_migration_status(self):
+        for rec in self:
+            if rec.state == 'installed' and not rec.migration_ids.ids:
+                self.env["ir.module.migration"].create(
+                    {
+                        "module_id": rec.id,
+                        "version": 12,
+                        "state": "installed",
+                    }
+                )

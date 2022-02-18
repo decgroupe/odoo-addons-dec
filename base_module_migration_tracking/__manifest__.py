@@ -6,6 +6,7 @@
     'summary': "Add fields to track individual migration status",
     'depends': [
         'base',
+        'mail',
         'web_tree_dynamic_colored_field',
     ],
     'data': [

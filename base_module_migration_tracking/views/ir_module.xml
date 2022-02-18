@@ -11,7 +11,11 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Migration" name="migration_tracking">
-                    <field name="migration_ids">
+                    <field name="migration_ids" context="{
+                        'migration_ids':migration_ids, 
+                        'active_id':active_id, 
+                        'active_model':active_model,
+                        }">
                         <tree editable="bottom" string="Migrations">
                             <field name="version"/>
                             <field name="state"/>
@@ -41,6 +45,16 @@
                 <field name="mig_15_color" invisible="1"/>
             </xpath>
         </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_init_migration_status" >
+        <field name="name">Init Migration Status</field>
+        <field name="model_id" ref="base.model_ir_module_module"/>
+        <field name="binding_model_id" ref="base.model_ir_module_module"/>
+        <field name="state">code</field>
+        <field name="activity_user_type">specific</field>
+        <field name="code">action = records.action_init_migration_status()</field>
+        
     </record>
 
 </odoo>
