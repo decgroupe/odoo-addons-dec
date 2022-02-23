@@ -4,6 +4,7 @@
 
 from datetime import datetime, timedelta, date
 from odoo import api, fields, models
+from odoo.tools import float_compare
 
 
 class SaleOrderLine(models.Model):
@@ -22,16 +23,23 @@ class SaleOrderLine(models.Model):
         # hardware, whatever the SO state. It will be blocked by the super in
         # case of a locked sale order.
         if 'product_uom_qty' in vals:
-            for line in self.filtered('license_pass_ids'):
-                sale_pass_data = line._get_sale_application_pass_data(
-                    line.order_id.confirmation_date
-                )
-                # We keep only the expiration date because line UoM is not
-                # editable after order confirmation and because the partner
-                # could be changed manually directly in the application pass
-                line.license_pass_ids.write(
-                    {'expiration_date': sale_pass_data.get('expiration_date')}
-                )
+            for line_id in self:
+                if line_id.license_pass_ids:
+                    sale_pass_data = line_id._get_sale_application_pass_data(
+                        line_id.order_id.confirmation_date
+                    )
+                    # We keep only the expiration date because line UoM is not
+                    # editable after order confirmation and because the partner
+                    # could be changed manually directly in the application
+                    # pass
+                    line_id.license_pass_ids.write(
+                        {
+                            'expiration_date':
+                                sale_pass_data.get('expiration_date')
+                        }
+                    )
+                else:
+                    line_id._create_application_pass()
         return result
 
     def _get_sale_application_pass_data(self, start_date):
@@ -69,6 +77,13 @@ class SaleOrderLine(models.Model):
 
     def _create_application_pass(self):
         self.ensure_one()
+        # Check if quantity is positive before creating a new pass
+        if float_compare(
+            self.product_uom_qty,
+            0.0,
+            precision_rounding=self.product_uom.rounding
+        ) <= 0:
+            return False
         vals = self._prepare_pass_values(self.product_id.license_pack_id)
         pass_id = self.env['software.license.pass'].with_context(
             tracking_disable=True
