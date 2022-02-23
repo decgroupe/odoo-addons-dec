@@ -53,14 +53,27 @@ class MailThread(models.AbstractModel):
                 ]
             )
             if existing_msg_ids:
-                _logger.info(
-                    "Deleting mail, scheduled to be deleted, with duplicated "
-                    "Message-Id %s before processing.",
-                    msg.get('message_id'),
-                )
-                existing_msg_ids.unlink()
+                try:
+                    # Like the super method, find possible routes for the
+                    # message. If a ValueError exception is raised then no
+                    # route exists and the message will not be re-created, in
+                    # that case we don't delete it
+                    routes = self.message_route(
+                        msg_txt, msg, model, thread_id, custom_values
+                    )
+                    _logger.info(
+                        "Deleting mail, scheduled to be deleted, with "
+                        "duplicated Message-Id %s before processing.",
+                        msg.get('message_id'),
+                    )
+                    existing_msg_ids.unlink()
+                except ValueError:
+                    _logger.info(
+                        "No route found, keep existing mail with "
+                        "Message-Id %s", msg.get('message_id')
+                    )
 
-        return super().message_process(
+        thread_id = super().message_process(
             model=model,
             message=message,
             custom_values=custom_values,
@@ -68,3 +81,4 @@ class MailThread(models.AbstractModel):
             strip_attachments=strip_attachments,
             thread_id=thread_id,
         )
+        return thread_id

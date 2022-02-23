@@ -12,6 +12,12 @@ _logger = logging.getLogger(__name__)
 class MailMessage(models.AbstractModel):
     _inherit = 'mail.message'
 
+    @api.model
+    def create(self, vals):
+        res = super(MailMessage, self).create(vals)
+        _logger.info("Creating %s", res)
+        return res
+
     def unlink(self):
         for rec in self:
             _logger.info("Deleting %s", rec.message_id)
