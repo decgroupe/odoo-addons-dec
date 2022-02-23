@@ -23,10 +23,38 @@ class SaleOrderLine(models.Model):
         # case of a locked sale order.
         if 'product_uom_qty' in vals:
             for line in self.filtered('license_pass_ids'):
+                sale_pass_data = line._get_sale_application_pass_data(
+                    line.order_id.confirmation_date
+                )
+                # We keep only the expiration date because line UoM is not
+                # editable after order confirmation and because the partner
+                # could be changed manually directly in the application pass
                 line.license_pass_ids.write(
-                    {'max_allowed_hardware': vals.get('product_uom_qty')}
+                    {'expiration_date': sale_pass_data.get('expiration_date')}
                 )
         return result
+
+    def _get_sale_application_pass_data(self, start_date):
+        self.ensure_one()
+        res = {}
+        if self.product_uom.category_id == self.env.ref(
+            'software_license_pass.product_uom_categ_seatyear'
+        ):
+            qty = self.product_uom_qty
+            years = self.product_uom.factor_inv
+        elif self.product_uom.category_id == self.env.ref(
+            'software_license_pass.product_uom_categ_yearseat'
+        ):
+            qty = self.product_uom.factor_inv
+            years = self.product_uom_qty
+        else:
+            qty = 0
+            years = False
+        if qty:
+            res['max_allowed_hardware'] = qty
+        if years:
+            res['expiration_date'] = start_date + timedelta(days=365 * years)
+        return res
 
     def _prepare_pass_values(self, pack_id):
         return {
@@ -52,23 +80,8 @@ class SaleOrderLine(models.Model):
         vals = {
             'partner_id': self.order_id.partner_shipping_id.id,
         }
-        if self.product_uom.category_id == self.env.ref(
-            'software_license_pass.product_uom_categ_seatyear'
-        ):
-            qty = self.product_uom_qty
-            years = self.product_uom.factor_inv
-        elif self.product_uom.category_id == self.env.ref(
-            'software_license_pass.product_uom_categ_yearseat'
-        ):
-            qty = self.product_uom.factor_inv
-            years = self.product_uom_qty
-        else:
-            qty = 0
-            years = False
-        if qty:
-            vals['max_allowed_hardware'] = qty
-        if years:
-            vals['expiration_date'] = today + timedelta(days=365 * years)
+        sale_pass_data = self._get_sale_application_pass_data(today)
+        vals.update(sale_pass_data)
         pass_id.write(vals)
         return pass_id
 
