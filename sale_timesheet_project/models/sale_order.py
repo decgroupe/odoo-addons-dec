@@ -20,7 +20,14 @@ class SaleOrder(models.Model):
     @api.multi
     def action_create_project(self):
         contract_type_id = self.env.ref('project_identification.contract_type')
-        Project = self.env['project.project'].with_context(active_test=False)
+        Project = self.env['project.project'].with_context(
+            active_test=False,
+            # Do not subscribe assigned user
+            mail_create_nosubscribe=True,
+            # Do not notify the subscribed user (not needed if
+            # `mail_create_nosubscribe=True`)
+            mail_auto_subscribe_no_notify=True,
+        )
         for rec in self:
             if not rec.project_id or self.env.context.get(
                 'override_project_id'
