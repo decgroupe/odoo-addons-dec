@@ -38,8 +38,6 @@ class SaleOrderLine(models.Model):
                                 sale_pass_data.get('expiration_date')
                         }
                     )
-                else:
-                    line_id._create_application_pass()
         return result
 
     def _get_sale_application_pass_data(self, start_date):
