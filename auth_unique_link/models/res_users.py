@@ -38,11 +38,11 @@ class ResUsers(models.Model):
 
     signin_link_token = fields.Char(
         copy=False,
-        groups="base.group_erp_manager",
+        groups="auth_unique_link.group_impersonate",
     )
     signin_link_expiration = fields.Datetime(
         copy=False,
-        groups="base.group_erp_manager",
+        groups="auth_unique_link.group_impersonate",
     )
     signin_link_valid = fields.Boolean(
         compute='_compute_signin_link_valid',
@@ -104,7 +104,9 @@ class ResUsers(models.Model):
                     # token check for it and and regenerate a new one
                     if not self._signin_link_retrieve_user(token):
                         break
-                rec.write(
+                # We need to sudo since only admin user is allowed to write
+                # other user fields
+                rec.sudo().write(
                     {
                         'signin_link_token': token,
                         'signin_link_expiration': expiration

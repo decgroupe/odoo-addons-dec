@@ -46,6 +46,7 @@
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <field name="groups_id" eval="[(4,ref('auth_unique_link.group_impersonate'))]"/>
     </record>
 
     <act_window id="act_window_res_partner_impersonate"
@@ -57,6 +58,7 @@
         multi="False"
         key2="client_action_multi" 
         target="new"
+        groups="auth_unique_link.group_impersonate"
     />
     
 </odoo>

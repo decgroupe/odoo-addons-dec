@@ -11,6 +11,7 @@
     ],
     'data':
         [
+            'security/res_groups.xml',
             'data/ir_config_parameter.xml',
             'data/mail_template.xml',
             'templates/login_templates.xml',
