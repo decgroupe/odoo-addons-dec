@@ -236,7 +236,12 @@ class SoftwareLicenseController(http.Controller):
 
     def _get_request_info(self, request):
         res = {}
-        res['httprequest'] = {'remote_addr': request.httprequest.remote_addr}
+        ip_addr = request.httprequest.environ.get('HTTP_X_FORWARDED_FOR')
+        if ip_addr:
+            ip_addr = ip_addr.split(',')[0]
+        else:
+            ip_addr = request.httprequest.remote_addr
+        res['httprequest'] = {'remote_addr': ip_addr}
         res['params'] = request.params.copy()
         return pprint.pformat(res)
 
@@ -311,6 +316,15 @@ class SoftwareLicenseController(http.Controller):
     )
     def get_all_licenses(self, **kwargs):
         return self.get_licenses(identifier=False)
+
+    @http.route(
+        URL_BASE_V1 + '/Infos',
+        methods=['GET'],
+        auth="none",
+        csrf=False,
+    )
+    def get_request_info(self, **kwargs):
+        return self._get_request_info(request)
 
     @http.route(
         URL_BASE_V1 + URL_VAR_HARDWARE + '/Deactivate',
