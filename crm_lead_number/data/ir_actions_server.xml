@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+
+    <record id="crm_set_default_number" model="ir.actions.server">
+        <field name="name">Set default number</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="binding_model_id" ref="crm.model_crm_lead" />
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">
+if not env.user.has_group('base.group_erp_manager'):
+    raise Warning("You do not have access to trigger this action")
+for rec in records:
+    rec._init_number()
+        </field>
+    </record>
+
+</data>

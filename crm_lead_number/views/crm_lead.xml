@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_case_oppor_tree_view">
+        <field name="name">crm.lead.tree.opportunity@crm_lead_number</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="create_date" position="before">
+                <field name="number" string="Reference" decoration-bf="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_oppor_form_view">
+        <field name="name">crm.lead.form.opportunity@crm_lead_number</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <div>
+                    <field name="number"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_kanban_view_leads">
+        <field name="name">crm.lead.kanban.lead@crm_lead_number</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_kanban_content']//field[@name='name']" position="before">
+                <small>
+                    <field name="number"/>
+                </small>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
