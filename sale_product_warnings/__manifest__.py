@@ -11,6 +11,9 @@
         'product_state_review',
     ],
     #'force_migration':'12.0.0.0.0',
-    'data': [],
+    'data': [
+        'data/mail_activity.xml',
+        'data/mail_activity_template.xml',
+    ],
     'installable': True
 }

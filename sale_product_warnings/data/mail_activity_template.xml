@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="exception_product_review" name="Message: Alert when a reviewable product is used">
+        <div>
+            <p>
+                Please review the following product:
+                <a href="#" data-oe-model="product.product" t-att-data-oe-id="product_id.id">
+                    <t t-esc="product_id.display_name"/></a>
+            </p>
+        </div>
+    </template>
+
+</odoo>
