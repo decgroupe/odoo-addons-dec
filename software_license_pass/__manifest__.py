@@ -8,6 +8,7 @@
         'software_license_token',
         'software_license_feature',
         'auth_signup_delegate',
+        'sequence_reset_period',
     ],
     'data':
         [
