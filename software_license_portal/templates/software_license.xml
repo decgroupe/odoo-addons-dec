@@ -46,7 +46,7 @@
           <t t-foreach="licenses" t-as="license">
             <tr>
               <td>
-                <t t-esc="license_pass.sudo().partner_id._get_contact_type_emoji()"/>
+                <t t-esc="license.sudo().partner_id._get_contact_type_emoji()"/>
               </td>
               <td>
                 <a t-attf-href="/my/license/#{license.id}">
