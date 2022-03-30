@@ -125,6 +125,14 @@ class SaleOrderLine(models.Model):
             pass_ids = line_id.license_pass_ids.filtered(
                 lambda x: x.state == 'sent'
             )
-            line_id.qty_delivered = sum(
-                pass_id.max_allowed_hardware for pass_id in pass_ids
-            )
+            if self.product_uom.category_id == self.env.ref(
+                'software_license_pass.product_uom_categ_seatyear'
+            ):
+                line_id.qty_delivered = sum(
+                    pass_id.max_allowed_hardware for pass_id in pass_ids
+                )
+            elif self.product_uom.category_id == self.env.ref(
+                'software_license_pass.product_uom_categ_yearseat'
+            ):
+                if pass_ids.ids:
+                    line_id.qty_delivered = line_id.product_uom_qty
