@@ -157,13 +157,15 @@ class SoftwareLicensePass(models.Model):
 
     def _batch_license_write(self, vals):
         licenses_vals = {}
-        if vals.get('partner_id'):
+        if 'active' in vals:
+            licenses_vals['active'] = vals.get('active')
+        if 'partner_id' in vals:
             licenses_vals['partner_id'] = vals.get('partner_id')
-        if vals.get('max_allowed_hardware'):
+        if 'max_allowed_hardware' in vals:
             licenses_vals['max_allowed_hardware'] = vals.get(
                 'max_allowed_hardware'
             )
-        if vals.get('expiration_date'):
+        if 'expiration_date' in vals:
             licenses_vals['expiration_date'] = vals.get('expiration_date')
         if licenses_vals:
             license_ids = self.mapped('license_ids').with_context(
