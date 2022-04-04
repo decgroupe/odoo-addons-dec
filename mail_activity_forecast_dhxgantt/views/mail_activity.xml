@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="mail_activity_view_gantt">
+        <field name="name">mail.activity.view.gantt@mail_activity_forecast_dhxgantt</field>
+        <field name="model">mail.activity</field>
+        <field name="type">dhxgantt</field>
+        <field name="arch" type="xml">
+            <dhxgantt
+                drag_progress="false"
+                identifier="id"
+                default_group_by="res_model_id"
+                parent="res_model_id"
+                column_title="summary"
+                task_text="res_name"
+                date_start="date_start"
+                date_stop="date_stop"
+                date_deadline="date_deadline"
+                duration="duration"
+                assigned_text="gantt_assigned_resource"
+                css_class="gantt_class"
+            />
+        </field>
+    </record>
+
+    <!-- Note that we set a sequence fo this view but original `open_boards_activities`
+            action does not set them (and the default is null < 0)  -->
+    <record id="action_open_boards_activities_gantt" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">dhxgantt</field>
+        <field name="view_id" ref="mail_activity_forecast_dhxgantt.mail_activity_view_gantt"/>
+        <field name="act_window_id" ref="mail_activity_board.open_boards_activities"/>
+    </record>
+
+</odoo>
