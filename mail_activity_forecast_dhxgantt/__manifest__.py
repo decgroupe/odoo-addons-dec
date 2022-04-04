@@ -1,0 +1,18 @@
+{
+    'name': 'Mail Activity Forecast (Gantt)',
+    'summary': "Forecast",
+    'version': '12.0.1.0.0',
+    'author': 'DEC, Yann Papouin',
+    'category': 'Social Network',
+    'website': 'https://github.com/OCA/social',
+    'license': 'AGPL-3',
+    'depends': [
+        'mail_activity_forecast',
+        'web_dhxgantt',
+    ],
+    "data": ['views/mail_activity.xml', ],
+    'qweb': [],
+    'installable': True,
+    # 'force_post_init_hook': True,
+    # 'post_init_hook': 'post_init_hook',
+}
