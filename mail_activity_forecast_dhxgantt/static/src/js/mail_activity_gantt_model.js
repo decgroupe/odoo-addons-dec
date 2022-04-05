@@ -9,12 +9,16 @@ odoo.define('mail_activity_forecast_dhxgantt.MailActivityGanttModel', function (
             values.push("res_id");
             values.push("res_model");
             values.push("activity_type_id");
+            values.push("icon");
             return values;
         },
         create_task: function (rec, ganttGroups, groupBy, links, css_classes) {
             var task = this._super(rec, ganttGroups, groupBy, links, css_classes);
             task.overrideModelName = rec["res_model"];
             task.overrideModelId = rec["res_id"];
+
+            task.columnTitle = rec["activity_type_id"][1] + ": " + task.columnTitle;
+            task.columnTitle = `<i class="fa ${rec["icon"]}"></i>${task.columnTitle}`
             return task;
         }
     });
