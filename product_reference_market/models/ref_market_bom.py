@@ -75,6 +75,7 @@ class RefMarketBom(models.Model):
         'Last Writer',
         readonly=True,
     )
+    note = fields.Char(string='Note', )
 
     @api.multi
     def _compute_xml_id(self):
