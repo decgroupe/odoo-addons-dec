@@ -10,7 +10,10 @@
         'mail_activity_forecast',
         'web_dhxgantt',
     ],
-    "data": ['views/mail_activity.xml', ],
+    "data": [
+        'views/assets.xml',
+        'views/mail_activity.xml',
+    ],
     'qweb': [],
     'installable': True,
     # 'force_post_init_hook': True,
