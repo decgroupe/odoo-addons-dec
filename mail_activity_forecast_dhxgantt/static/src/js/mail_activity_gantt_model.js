@@ -17,8 +17,8 @@ odoo.define('mail_activity_forecast_dhxgantt.MailActivityGanttModel', function (
             task.overrideModelName = rec["res_model"];
             task.overrideModelId = rec["res_id"];
 
-            task.columnTitle = rec["activity_type_id"][1] + ": " + task.columnTitle;
-            task.columnTitle = `<i class="fa ${rec["icon"]}"></i>${task.columnTitle}`
+            task.columnTitle = rec["activity_type_id"][1] + ": " + `<b>${task.columnTitle}</b>`;
+            task.columnTitle = `<i class="fa ${rec["icon"]}"></i> ${task.columnTitle}`;
             return task;
         }
     });
