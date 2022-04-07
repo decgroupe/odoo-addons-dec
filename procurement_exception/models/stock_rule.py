@@ -22,10 +22,10 @@ class StockRule(models.Model):
         cr = registry(self._cr.dbname).cursor()
         # Assign this cursor to self and all arguments to ensure consistent
         # data in all method
-        self = self.with_env(self.env(cr=cr))
+        self_cr = self.with_env(self.env(cr=cr))
         product_id = product_id.with_env(product_id.env(cr=cr))
         # Call super method
-        super()._log_next_activity(product_id, note)
+        super(StockRule, self_cr)._log_next_activity(product_id, note)
         # Commit this created activity to keep it even after a rollback
         cr.commit()
         cr.close()
