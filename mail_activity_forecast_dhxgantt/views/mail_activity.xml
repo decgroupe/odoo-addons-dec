@@ -11,14 +11,15 @@
                 drag_progress="false"
                 identifier="id"
                 default_group_by="res_model_id"
-                parent="res_model_id"
+                parent="project_id"
                 column_title="summary"
-                task_text="res_name"
+                task_text_leftside="res_name"
+                task_text="note"
+                task_text_rightside="gantt_assigned_resource"
                 date_start="date_start"
                 date_stop="date_stop"
                 date_deadline="date_deadline"
                 duration="duration"
-                assigned_text="gantt_assigned_resource"
                 css_class="gantt_class"
             />
         </field>

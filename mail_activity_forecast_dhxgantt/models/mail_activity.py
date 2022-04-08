@@ -18,3 +18,8 @@ class MailActivity(models.Model):
         super()._compute_gantt_assigned_resource()
         for rec in self:
             rec.gantt_assigned_resource = rec.user_id.name
+            # Support for 'mail_activity_team' module with hard dependency
+            if 'team_id' in self._fields:
+                rec.gantt_assigned_resource = (
+                    rec.gantt_assigned_resource or rec.team_id.name
+                )

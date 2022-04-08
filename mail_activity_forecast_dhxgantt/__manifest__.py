@@ -8,6 +8,8 @@
     'license': 'AGPL-3',
     'depends': [
         'mail_activity_forecast',
+        'mail_activity_partner',
+        'mail_activity_project',
         'web_dhxgantt',
     ],
     "data": [
