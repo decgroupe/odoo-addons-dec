@@ -6,7 +6,10 @@
     'category': 'Social Network',
     'website': 'https://github.com/OCA/social',
     'license': 'AGPL-3',
-    'depends': ['mail_activity_board', ],
+    'depends': [
+        'project',
+        'mail_activity_board',
+    ],
     "data": ['views/mail_activity.xml', ],
     'qweb': [],
     'installable': True

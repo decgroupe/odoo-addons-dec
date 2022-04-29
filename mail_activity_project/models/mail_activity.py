@@ -18,14 +18,6 @@ class MailActivity(models.Model):
         store=True,
     )
 
-    commercial_partner_id = fields.Many2one(
-        related='partner_id.commercial_partner_id',
-        string='Commercial Entity',
-        store=True,
-        related_sudo=True,
-        readonly=True
-    )
-
     @api.depends('res_model', 'res_id')
     def _compute_project_id(self):
         for obj in self:
