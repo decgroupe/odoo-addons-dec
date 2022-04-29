@@ -9,7 +9,6 @@
             <dhxgantt
                 js_class="mail_activity_gantt"
                 drag_progress="false"
-                identifier="id"
                 default_group_by="res_model_id"
                 parent="project_id"
                 column_title="summary"
@@ -21,6 +20,7 @@
                 date_deadline="date_deadline"
                 duration="duration"
                 css_class="gantt_class"
+                assigned_resource="gantt_assigned_resource"
             >
                 <field name="user_id"/>
                 <!-- <field name="team_id"/> -->
