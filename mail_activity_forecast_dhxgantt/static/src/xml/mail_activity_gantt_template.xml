@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+
+    <t t-name="mail.activity.title">
+        <span t-if="icon" t-att-class="'fa ' + icon"/>
+        <t t-esc="type"/>:<small><b> <t t-esc="columnTitle"/></b></small>
+    </t>
+
+</templates>

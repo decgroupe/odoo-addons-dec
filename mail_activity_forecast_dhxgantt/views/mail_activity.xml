@@ -21,7 +21,20 @@
                 date_deadline="date_deadline"
                 duration="duration"
                 css_class="gantt_class"
-            />
+            >
+                <field name="user_id"/>
+                <!-- <field name="team_id"/> -->
+                <field name="res_id"/>
+                <field name="res_name"/>
+                <field name="res_model"/>
+                <field name="state"/>
+                <field name="icon"/>
+                <field name="activity_type_id"/>
+                <field name="activity_category"/>
+                <!-- <field name="partner_id"/> -->
+                <!-- TODO: use the calendar_event_id as a hook for date_start and date_stop -->
+                <field name="calendar_event_id_start"/>
+            </dhxgantt>
         </field>
     </record>
 
