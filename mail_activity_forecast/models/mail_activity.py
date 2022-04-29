@@ -25,3 +25,31 @@ class MailActivity(models.Model):
         related='activity_type_id.plannable',
         readonly=True,
     )
+
+    def write(self, vals):
+        res = super().write(vals)
+        if res:
+            self._sync_with_event(vals)
+        return res
+
+
+    def _sync_with_event(self, vals):
+        if self.calendar_event_id and not self.env.context.get(
+            'syncing_mail_activity', False
+        ):
+            rec = self.with_context(syncing_calendar_event=True)
+            if 'date_start' in vals or 'date_stop' in vals:
+                if rec.calendar_event_id.allday:
+                    rec.calendar_event_id.write(
+                        {
+                            'start': rec.date_start,
+                            'stop': rec.date_stop,
+                        }
+                    )
+                else:
+                    rec.calendar_event_id.write(
+                        {
+                            'start_datetime': rec.date_start,
+                            'stop_datetime': rec.date_stop,
+                        }
+                    )
