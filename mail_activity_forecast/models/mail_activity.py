@@ -25,13 +25,16 @@ class MailActivity(models.Model):
         related='activity_type_id.plannable',
         readonly=True,
     )
+    assigned_resource = fields.Char(
+        compute="_compute_assigned_resource",
+        help="Get the name of the resource assigned to this activity",
+    )
 
     def write(self, vals):
         res = super().write(vals)
         if res:
             self._sync_with_event(vals)
         return res
-
 
     def _sync_with_event(self, vals):
         if self.calendar_event_id and not self.env.context.get(
@@ -53,3 +56,8 @@ class MailActivity(models.Model):
                             'stop_datetime': rec.date_stop,
                         }
                     )
+
+    @api.multi
+    def _compute_assigned_resource(self):
+        for rec in self.filtered('user_id'):
+            rec.assigned_resource = rec.user_id.name
