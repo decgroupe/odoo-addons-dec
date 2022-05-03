@@ -6,13 +6,10 @@
     'category': 'Social Network',
     'website': 'https://github.com/OCA/social',
     'license': 'AGPL-3',
-    'depends':
-        [
-            'mail_activity_forecast',
-            'mail_activity_partner',
-            'mail_activity_project',
-            'web_dhxgantt',
-        ],
+    'depends': [
+        'mail_activity_forecast',
+        'web_dhxgantt',
+    ],
     "data": [
         'views/assets.xml',
         'views/mail_activity.xml',

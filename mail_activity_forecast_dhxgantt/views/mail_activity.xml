@@ -10,7 +10,6 @@
                 js_class="mail_activity_gantt"
                 drag_progress="false"
                 default_group_by="res_model_id"
-                parent="project_id"
                 column_title="summary"
                 task_text_leftside="res_name"
                 task_text="note"
@@ -23,7 +22,6 @@
                 assigned_resource="gantt_assigned_resource"
             >
                 <field name="user_id"/>
-                <!-- <field name="team_id"/> -->
                 <field name="res_id"/>
                 <field name="res_name"/>
                 <field name="res_model"/>
