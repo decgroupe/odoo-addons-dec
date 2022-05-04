@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo noupdate="1">
+
+    <record id="mail_activity_schedule" model="mail.activity.type">
+        <field name="name">Schedule</field>
+        <field name="plannable" eval="True"/>
+        <field name="icon">fa-calendar</field>
+        <field name="sequence">200</field>
+    </record>
+
+</odoo>
