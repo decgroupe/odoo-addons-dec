@@ -9,12 +9,13 @@ class MrpProduction(models.Model):
     _inherit = ['mrp.production', 'mail.activity.forecast.mixin']
     _name = 'mrp.production'
 
-    def _get_scheduling_activity_deadline(self):
-        res = super()._get_scheduling_activity_deadline()
-        # FIXME: This date should be taken from the picking or the initial
-        # sale order
-        res = self.date_planned_finished
-        return res
-
     def _get_forecast_date_fields(self):
-        return "date_planned_start", "date_planned_finished"
+        res = super()._get_forecast_date_fields()
+        res.update(
+            {
+                'start': 'date_planned_start',
+                'stop': 'date_planned_finished',
+                'deadline': 'date_planned_finished',
+            }
+        )
+        return res
