@@ -38,25 +38,28 @@ class MailActivity(models.Model):
         return res
 
     def _sync_with_related_object(self, vals):
-        if 'date_start' in vals or 'date_stop' in vals and not self.env.context.get(
+        if 'date_start' in vals or 'date_stop' in vals \
+        or 'date_deadline' in vals and not self.env.context.get(
             'syncing_mail_activity', False
         ):
             for rec in self:
-                rec = rec.with_context({
-                    'syncing_' + rec.res_model: True,
-                })
+                context_name = 'syncing_' + rec.res_model.replace('.', '_')
+                rec = rec.with_context({context_name: True})
                 model = rec.env[rec.res_model]
                 if hasattr(model, "_get_forecast_date_fields"):
-                    start, stop = model._get_forecast_date_fields()
-                    related_object_id = rec.env[rec.res_model].browse(
-                        rec.res_id
-                    )
-                    related_object_id.write(
-                        {
-                            start: rec.date_start,
-                            stop: rec.date_stop,
-                        }
-                    )
+                    data = {}
+                    date_fields = model._get_forecast_date_fields()
+                    if date_fields.get('start') and 'date_start' in vals:
+                        data[date_fields['start']] = rec.date_start
+                    if date_fields.get('stop') and 'date_stop' in vals:
+                        data[date_fields['stop']] = rec.date_stop
+                    if date_fields.get('deadline') and 'date_deadline' in vals:
+                        data[date_fields['deadline']] = rec.date_deadline
+                    if data:
+                        related_object_id = rec.env[rec.res_model].browse(
+                            rec.res_id
+                        )
+                        related_object_id.write(data)
 
     def _sync_with_event(self, vals):
         if 'date_start' in vals or 'date_stop' in vals and not self.env.context.get(

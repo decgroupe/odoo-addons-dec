@@ -32,7 +32,11 @@ class MailActivityForecastMixin(models.AbstractModel):
     @api.multi
     def _get_scheduling_activity_deadline(self):
         self.ensure_one()
-        return fields.Date.context_today(self)
+        res = fields.Date.context_today(self)
+        date_fields = self._get_forecast_date_fields()
+        if date_fields.get('deadline'):
+            res = self[date_fields['deadline']] or res
+        return res
 
     @api.multi
     def _prepare_scheduling_activity_data(self):
@@ -53,24 +57,30 @@ class MailActivityForecastMixin(models.AbstractModel):
                         '', rec._get_scheduling_activity_deadline(),
                         **activity_data
                     )
+                    rec._sync_with_scheduling_activity(vals=False)
 
     @api.multi
-    def _sync_with_scheduling_activity(self, vals):
+    def _sync_with_scheduling_activity(self, vals=False):
         for rec in self.filtered("scheduling_activity_id").with_context(
             syncing_mail_activity=True
         ):
-            if not rec.env.context.get('syncing_' + rec._name, False):
-                start, stop = rec._get_forecast_date_fields()
-                if start in vals or stop in vals:
-                    rec.scheduling_activity_id.write(
-                        {
-                            'date_start': rec[start],
-                            'date_stop': rec[stop],
-                        }
-                    )
+            context_name = 'syncing_' + rec._name.replace('.', '_')
+            if not rec.env.context.get(context_name, False):
+                data = {}
+                date_fields = rec._get_forecast_date_fields()
+                if not vals or date_fields['start'] in vals:
+                    data['date_start'] = rec[date_fields['start']]
+                if not vals or date_fields['stop'] in vals:
+                    data['date_stop'] = rec[date_fields['stop']]
+                if not vals or date_fields['deadline'] in vals:
+                    data['date_deadline'
+                        ] = rec._get_scheduling_activity_deadline()
+                if data:
+                    rec.scheduling_activity_id.write(data)
 
     def _get_forecast_date_fields(self):
-        raise NotImplementedError(
-            "This method must return a tuple with the names of the `start` "
-            "and `stop` fields"
-        )
+        return {
+            'start': False,
+            'stop': False,
+            'deadline': False,
+        }
