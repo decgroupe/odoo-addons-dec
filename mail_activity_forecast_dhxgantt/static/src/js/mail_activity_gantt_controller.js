@@ -5,8 +5,8 @@ odoo.define('mail_activity_forecast_dhxgantt.MailActivityGanttController', funct
 
     var MailActivityGanttController = GanttController.extend({
 
-        _getGanttItemDatabaseModelAndID: function (ganttItem, dataPoint, parentDataPoint, options) {
-            var res = this._super(ganttItem, dataPoint, parentDataPoint);
+        _getGanttItemDialogActionParams: function (ganttItem, dataPoint, parentDataPoint, options) {
+            var params = this._super(ganttItem, dataPoint, parentDataPoint);
 
             if (!ganttItem.isGroup) {
                 // Record data
@@ -15,12 +15,13 @@ odoo.define('mail_activity_forecast_dhxgantt.MailActivityGanttController', funct
                 // Override model and id to directly open the target object
                 // of the `mail.activity`
                 if (!options || (options && !options.noOverride)) {
-                    res.model = rec["res_model"];
-                    res.id = rec["res_id"];
+                    params.res_model = rec["res_model"];
+                    params.res_id = rec["res_id"];
+                    params.view_id = false;
                 }
             }
 
-            return res;
+            return params;
         },
 
     });
