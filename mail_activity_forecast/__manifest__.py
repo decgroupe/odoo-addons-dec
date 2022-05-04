@@ -6,11 +6,15 @@
     'category': 'Social Network',
     'website': 'https://github.com/OCA/social',
     'license': 'AGPL-3',
-    'depends': ['mail_activity_board', ],
-    "data": [
-        'views/mail_activity.xml',
-        'views/mail_activity_type.xml',
+    'depends': [
+        'mail_activity_board',  # `calendar` is a hard dependency
     ],
+    "data":
+        [
+            'data/mail_activity_type.xml',
+            'views/mail_activity.xml',
+            'views/mail_activity_type.xml',
+        ],
     'qweb': [],
     'installable': True
 }
