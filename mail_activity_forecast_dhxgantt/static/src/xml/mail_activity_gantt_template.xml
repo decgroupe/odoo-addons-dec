@@ -5,7 +5,17 @@
         <t t-jquery=".o_gantt_row_title" t-operation="replace">
             <span class="o_gantt_row_title">
                 <span t-if="rec.icon" t-att-class="'fa ' + rec.icon"/>
-                <t t-esc="rec.activity_type_id.data.display_name"/>:<small><b> <t t-esc="item.columnTitle"/></b></small>
+                <t t-esc="rec.activity_type_id.data.display_name"/>:
+                <small>
+                    <b>
+                        <t t-if="item.columnTitle">
+                            <t t-esc="item.columnTitle"/>
+                        </t>
+                        <t t-else="">
+                            <t t-esc="rec.res_name"/>
+                        </t>
+                    </b>
+                </small>
             </span>
         </t>
     </t>
