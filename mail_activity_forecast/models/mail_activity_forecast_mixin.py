@@ -16,10 +16,10 @@ class MailActivityForecastMixin(models.AbstractModel):
 
     @api.model
     def create(self, vals):
-        production = super(MailActivityForecastMixin, self).create(vals)
-        production._ensure_scheduling_activity()
-        production._sync_with_scheduling_activity(vals)
-        return production
+        rec = super(MailActivityForecastMixin, self).create(vals)
+        rec._ensure_scheduling_activity()
+        rec._sync_with_scheduling_activity(vals)
+        return rec
 
     @api.multi
     def write(self, vals):
@@ -49,6 +49,8 @@ class MailActivityForecastMixin(models.AbstractModel):
 
     @api.multi
     def _ensure_scheduling_activity(self):
+        if 'mail.activity.mixin' not in self._inherit_module:
+            return
         for rec in self:
             if not rec.scheduling_activity_id:
                 activity_data = rec._prepare_scheduling_activity_data()
@@ -61,6 +63,8 @@ class MailActivityForecastMixin(models.AbstractModel):
 
     @api.multi
     def _sync_with_scheduling_activity(self, vals=False):
+        if 'mail.activity.mixin' not in self._inherit_module:
+            return
         for rec in self.filtered("scheduling_activity_id").with_context(
             syncing_mail_activity=True
         ):
