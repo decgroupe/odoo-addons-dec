@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-04 13:56+0000\n"
-"PO-Revision-Date: 2021-06-04 16:24+0200\n"
+"POT-Creation-Date: 2022-05-09 13:03+0000\n"
+"PO-Revision-Date: 2022-05-09 15:04+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -66,6 +66,7 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner__display_name
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__display_name
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__display_name
 msgid "Display Name"
@@ -74,6 +75,7 @@ msgstr "Nom affiché"
 #. module: partner_training
 #: model:ir.model,name:partner_training.model_res_partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__training_id
+#: model_terms:ir.ui.view,arch_db:partner_training.partner_training_search_view
 #: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_form_view
 msgid "Educational Training"
 msgstr "Formation pédagogique"
@@ -92,6 +94,7 @@ msgstr "Spécialités de formation pédagogique de ce partenaire."
 
 #. module: partner_training
 #: model:ir.model,name:partner_training.model_res_partner_training_specialty
+#: model_terms:ir.ui.view,arch_db:partner_training.partner_training_search_view
 #: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
 msgid "Educational Training Specialty"
 msgstr "Spécialité de formation pédagogique"
@@ -104,12 +107,24 @@ msgid "Educational Trainings"
 msgstr "Formations pédagogiques"
 
 #. module: partner_training
+#: model_terms:ir.ui.view,arch_db:partner_training.partner_training_search_view
+msgid "Full Name"
+msgstr "Nom complet"
+
+#. module: partner_training
+#: model_terms:ir.ui.view,arch_db:partner_training.partner_training_search_view
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner__id
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__id
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__id
 msgid "ID"
 msgstr "ID"
 
 #. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner____last_update
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training____last_update
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty____last_update
 msgid "Last Modified on"
@@ -156,6 +171,11 @@ msgstr "ASSP"
 #: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
 msgid "Personal Care and Services Support"
 msgstr "Accompagnement Soins et Services à la Personne"
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__search_name
+msgid "Search Name"
+msgstr "Nom de Recherche"
 
 #. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner__training_specialty_ids

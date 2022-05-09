@@ -50,6 +50,20 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="partner_training_search_view">
+        <field name="name">res.partner.training.specialty.search@partner_training</field>
+        <field name="model">res.partner.training.specialty</field>
+        <field name="arch" type="xml">
+            <search string="Educational Training Specialty">
+                <field name="search_name" string="Full Name"/>
+                <separator/>
+                <group string="Group By" name="groupby">
+                    <filter string="Educational Training" name="groupby_training_id" context="{'group_by':'training_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="res_partner_training_specialty_action">
         <field name="name">Educational Training Specialties</field>
         <field name="type">ir.actions.act_window</field>

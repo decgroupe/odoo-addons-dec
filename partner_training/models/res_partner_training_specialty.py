@@ -22,7 +22,12 @@ class ResPartnerTrainingSpecialty(models.Model):
     )
     complete_name = fields.Char(
         'Complete Name',
-        compute='_compute_complete_name',
+        compute='_compute_names',
+        store=True,
+    )
+    search_name = fields.Char(
+        'Search Name',
+        compute='_compute_names',
         store=True,
     )
     acronym = fields.Char(
@@ -46,11 +51,24 @@ class ResPartnerTrainingSpecialty(models.Model):
         ),
     ]
 
-    @api.depends('name', 'acronym', 'training_id')
-    def _compute_complete_name(self):
+    @api.depends('name', 'acronym', 'training_id', 'training_id.name')
+    def _compute_names(self):
         for rec in self:
             if rec.acronym:
                 suffix = rec.acronym
             else:
                 suffix = rec.name
             rec.complete_name = "{} {}".format(rec.training_id.name, suffix)
+            rec.search_name = "{} {} {}".format(
+                rec.training_id.name, rec.acronym, rec.name
+            )
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        original_rec_name = self._rec_name
+        self._rec_name = "search_name"
+        result = super().name_search(
+            name=name, args=args, operator=operator, limit=limit
+        )
+        self._rec_name = original_rec_name
+        return result
