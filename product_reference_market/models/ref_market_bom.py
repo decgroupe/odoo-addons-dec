@@ -75,7 +75,11 @@ class RefMarketBom(models.Model):
         'Last Writer',
         readonly=True,
     )
-    note = fields.Char(string='Note', )
+    activity_name = fields.Char(
+        string='Activity Name',
+        help="Name of the activity that will be generated",
+        oldname="note",
+    )
 
     @api.multi
     def _compute_xml_id(self):
