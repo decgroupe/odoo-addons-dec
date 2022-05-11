@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_ref_market_category_user,Full access to market categories for User,model_ref_market_category,group_ref_market_user,1,1,1,1
-access_ref_market_bom,Full access to market bom lines for User,model_ref_market_bom,group_ref_market_user,1,1,1,1
+access_ref_market_bom,Full access to market bom for User,model_ref_market_bom,group_ref_market_user,1,1,1,1
+access_ref_market_bom_line,Full access to market bom lines for User,model_ref_market_bom_line,group_ref_market_user,1,1,1,1

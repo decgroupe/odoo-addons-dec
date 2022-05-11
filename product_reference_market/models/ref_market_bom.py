@@ -8,91 +8,69 @@ from odoo import fields, models, api
 
 class RefMarketBom(models.Model):
     _name = 'ref.market.bom'
-    _description = 'Market BoM parent and children line'
+    _description = 'Market BoM'
+    _rec_name = 'product_id'
 
-    name = fields.Char(
-        'Name',
-        size=64,
-        required=True,
-    )
     product_id = fields.Many2one(
-        'product.product',
-        'Product',
+        comodel_name='product.product',
+        string='Product',
         required=True,
     )
-    product_qty = fields.Float(
-        'Product Qty',
-        required=True,
-        digits=dp.get_precision('Product UoM'),
+    product_tmpl_id = fields.Many2one(
+        comodel_name='product.template',
+        string='Product Template',
+        related='product_id.product_tmpl_id',
+        store=True,
     )
-    product_uom_id = fields.Many2one(
-        'uom.uom',
-        'Product UOM',
-        required=True,
-        help=
-        "UoM (Unit of Measure) is the unit of measurement for the inventory control",
+    line_ids = fields.One2many(
+        comodel_name='ref.market.bom.line',
+        inverse_name='market_bom_id',
+        string='BoM Lines',
     )
-    partner_id = fields.Many2one(
-        'res.partner',
-        'Supplier',
+    markup_rate = fields.Float(
+        string='Markup rate',
+        help='Used by REF manager Market',
     )
-    locked_price = fields.Boolean('Locked price')
-    price = fields.Float(
-        'Price',
-        digits=dp.get_precision('Sale Price'),
+    material_cost_factor = fields.Float(
+        string='Material factor (PF)',
+        help='Used by REF manager Market',
     )
-    bom_lines = fields.One2many(
-        'ref.market.bom',
-        'bom_id',
-        'BoM Lines',
-    )
-    bom_id = fields.Many2one(
-        'ref.market.bom',
-        'Parent BoM',
-        ondelete='cascade',
-    )
-    xml_id = fields.Char(
-        compute='_compute_xml_id',
-        size=128,
-        string="External ID",
-        help="ID defined in xml file"
-    )
-    create_date = fields.Datetime(
-        'Create Date',
-        readonly=True,
-    )
-    create_uid = fields.Many2one(
-        'res.users',
-        'Creator',
-        readonly=True,
-    )
-    write_date = fields.Datetime(
-        'Last Write Date',
-        readonly=True,
-    )
-    write_uid = fields.Many2one(
-        'res.users',
-        'Last Writer',
-        readonly=True,
-    )
-    activity_name = fields.Char(
-        string='Activity Name',
-        help="Name of the activity that will be generated",
-        oldname="note",
+    labortime = fields.Float(
+        string='Labor Time',
+        compute='_compute_labortime',
+        help='Labor hour(s) computed from BoM',
+        digits=(16, 2),
     )
 
     @api.multi
-    def _compute_xml_id(self):
-        res = self.get_external_id()
-        for record in self:
-            record.xml_id = res.get(record.id)
+    def _compute_labortime(self):
+        labor_service_ids = self.get_labortime_services()
+        for rec in self:
+            rec.labortime = 0
+            for line_id in rec.line_ids:
+                if line_id.product_id in labor_service_ids:
+                    rec.labortime += line_id._convert_qty_to_hours()
 
-    def _convert_qty_to_hours(self):
-        uom_hour = self.env.ref('uom.product_uom_hour')
-        if uom_hour and self.product_uom_id.id != uom_hour.id and self.product_uom_id.category_id.id == uom_hour.category_id.id:
-            planned_hours = self.product_uom_id._compute_quantity(
-                self.product_qty, uom_hour
-            )
-        else:
-            planned_hours = self.product_qty
-        return planned_hours
+    @api.model
+    def get_default_products(self):
+        """ Return a list of products/services used in the reference price
+            computing window (REFManager).
+        """
+        return self.env['product.product']
+
+    @api.model
+    def get_default_products_as_ids(self):
+        """ Convert list the RPC parsable data
+        """
+        return [x.id for x in self.get_default_products()]
+
+    @api.model
+    def get_labortime_services(self):
+        """ Return a list of services used to compute the labor time """
+        return self.env['product.product']
+
+    @api.model
+    def get_labortime_services_as_ids(self):
+        """ Convert list the RPC parsable data
+        """
+        return [x.id for x in self.get_labortime_services()]

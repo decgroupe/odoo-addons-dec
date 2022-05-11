@@ -8,26 +8,20 @@ from odoo import api, fields, models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    @api.model
-    def get_default_market_bom_products(self):
-        """ Return a list of products/services used in the reference price
-            computing window (REFManager).
-        """
-        return self.env['product.product']
+    market_bom_ids = fields.One2many(
+        comodel_name='ref.market.bom',
+        inverse_name='product_id',
+        string='Market bill of materials and services',
+    )
+    # performance: market_bom_id provides prefetching on the first market
+    # bom only
+    market_bom_id = fields.Many2one(
+        comodel_name='ref.market.bom',
+        string='Market bill of materials and services',
+        compute='_compute_market_bom_id',
+    )
 
-    @api.model
-    def get_default_market_bom_products_as_ids(self):
-        """ Convert list the RPC parsable data
-        """
-        return [x.id for x in self.get_default_market_bom_products()]
-
-    @api.model
-    def get_market_bom_labortime_services(self):
-        """ Return a list of services use to compute the labor time """
-        return self.env['product.product']
-
-    @api.model
-    def get_market_bom_labortime_services_as_ids(self):
-        """ Convert list the RPC parsable data
-        """
-        return [x.id for x in self.get_market_bom_labortime_services()]
+    @api.depends('market_bom_ids')
+    def _compute_market_bom_id(self):
+        for p in self:
+            p.market_bom_id = p.market_bom_ids[:1].id
