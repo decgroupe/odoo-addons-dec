@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 13:41+0000\n"
-"PO-Revision-Date: 2022-02-04 13:41+0000\n"
+"POT-Creation-Date: 2022-05-11 18:25+0000\n"
+"PO-Revision-Date: 2022-05-11 18:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,28 +16,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__bom_lines
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__activity_name
+msgid "Activity Name"
+msgstr ""
+
+#. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__line_ids
 msgid "BoM Lines"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__create_date
-msgid "Create Date"
-msgstr ""
-
-#. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__create_uid
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__create_uid
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__create_date
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__create_date
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__create_date
 msgid "Created on"
-msgstr ""
-
-#. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__create_uid
-msgid "Creator"
 msgstr ""
 
 #. module: product_reference_market
@@ -46,73 +45,79 @@ msgid "Description"
 msgstr ""
 
 #. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_reference_market.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__display_name
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__display_name
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__xml_id
-msgid "External ID"
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__sequence
+msgid "Gives the sequence order when displaying."
 msgstr ""
 
 #. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_product_product__id
+#: model:ir.model.fields,field_description:product_reference_market.field_product_template__id
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__id
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__id
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__id
 msgid "ID"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__xml_id
-msgid "ID defined in xml file"
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__locked_price
+msgid "If set, then the price field will be used instead of the computed price based on supplier pricelist"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_product_product__market_bom_labortime
-#: model:ir.model.fields,field_description:product_reference_market.field_product_template__market_bom_labortime
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__labortime
 msgid "Labor Time"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,help:product_reference_market.field_product_product__market_bom_labortime
-#: model:ir.model.fields,help:product_reference_market.field_product_template__market_bom_labortime
-msgid "Labor hour(s) computed from market BoM"
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__labortime
+msgid "Labor hour(s) computed from BoM"
 msgstr ""
 
 #. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_reference_market.field_product_template____last_update
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom____last_update
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line____last_update
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__write_uid
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__write_uid
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__write_date
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__write_date
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__write_date
-msgid "Last Write Date"
-msgstr ""
-
-#. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__write_uid
-msgid "Last Writer"
-msgstr ""
-
-#. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__locked_price
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__locked_price
 msgid "Locked price"
 msgstr ""
 
 #. module: product_reference_market
 #: model:ir.model,name:product_reference_market.model_ref_market_bom
-msgid "Market BoM parent and children line"
+msgid "Market BoM"
+msgstr ""
+
+#. module: product_reference_market
+#: model:ir.model,name:product_reference_market.model_ref_market_bom_line
+msgid "Market BoM line"
 msgstr ""
 
 #. module: product_reference_market
@@ -127,29 +132,29 @@ msgstr ""
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_product_product__market_bom_id
+#: model:ir.model.fields,field_description:product_reference_market.field_product_product__market_bom_ids
 #: model:ir.model.fields,field_description:product_reference_market.field_product_template__market_bom_id
+#: model:ir.model.fields,field_description:product_reference_market.field_product_template__market_bom_ids
 msgid "Market bill of materials and services"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_product_product__market_markup_rate
-#: model:ir.model.fields,field_description:product_reference_market.field_product_template__market_markup_rate
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__markup_rate
 msgid "Markup rate"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_product_product__market_material_cost_factor
-#: model:ir.model.fields,field_description:product_reference_market.field_product_template__market_material_cost_factor
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__material_cost_factor
 msgid "Material factor (PF)"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__name
-msgid "Name"
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__activity_name
+msgid "Name of the activity that will be generated"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__bom_id
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__market_bom_id
 msgid "Parent BoM"
 msgstr ""
 
@@ -164,46 +169,52 @@ msgid "Prefix"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__price
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__price
 msgid "Price"
 msgstr ""
 
 #. module: product_reference_market
 #: model:ir.model,name:product_reference_market.model_product_product
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__product_id
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__product_id
 msgid "Product"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__product_qty
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__product_qty
 msgid "Product Qty"
 msgstr ""
 
 #. module: product_reference_market
 #: model:ir.model,name:product_reference_market.model_product_template
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__product_tmpl_id
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__product_tmpl_id
 msgid "Product Template"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__product_uom_id
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__product_uom_id
 msgid "Product UOM"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__partner_id
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__partner_id
 msgid "Supplier"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__product_uom_id
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__product_uom_id
 msgid "UoM (Unit of Measure) is the unit of measurement for the inventory control"
 msgstr ""
 
 #. module: product_reference_market
-#: model:ir.model.fields,help:product_reference_market.field_product_product__market_markup_rate
-#: model:ir.model.fields,help:product_reference_market.field_product_product__market_material_cost_factor
-#: model:ir.model.fields,help:product_reference_market.field_product_template__market_markup_rate
-#: model:ir.model.fields,help:product_reference_market.field_product_template__market_material_cost_factor
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__markup_rate
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__material_cost_factor
 msgid "Used by REF manager Market"
 msgstr ""
 
