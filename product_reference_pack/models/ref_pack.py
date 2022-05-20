@@ -2,7 +2,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
+import logging
+
 from odoo import fields, models, api
+
+_logger = logging.getLogger(__name__)
 
 
 class RefPack(models.Model):
@@ -14,18 +18,20 @@ class RefPack(models.Model):
 
     # TODO: Step 1 : Rename to product_tmpl_id
     product_id = fields.Many2one(
-        'product.template',
-        'Product Template',
+        comodel_name='product.template',
+        string='Product Template',
         required=True,
         copy=False,
     )
     # TODO: Step 2 : Rename to product_id
     product_variant_id = fields.Many2one(
-        'product.product',
-        'Product',
+        comodel_name='product.product',
+        string='Product',
         copy=False,
         compute='_compute_product_variant_id',
         inverse='_inverse_product_variant_id',
+        compute_sudo=True,
+        store=False,
     )
     name = fields.Char(
         related='product_id.name',
@@ -87,11 +93,20 @@ class RefPack(models.Model):
             elif rec.product_id.purchase_ok:
                 rec.product_id.pack_order_type = 'purchase'
 
-    @api.depends('product_id')
+    @api.multi
+    @api.depends('product_id', 'product_id.product_variant_id')
     def _compute_product_variant_id(self):
         for rec in self:
-            rec.product_variant_id = rec.product_id.product_variant_id
+            rec.product_variant_id = rec.with_context(
+                active_test=False
+            ).product_id.product_variant_id.id
+            _logger.debug(
+                "%d  %d  %d", rec.id, rec.product_id.id,
+                rec.product_variant_id.id
+            )
 
     def _inverse_product_variant_id(self):
         for rec in self:
-            rec.product_id = rec.product_variant_id.product_tmpl_id
+            rec.product_id = rec.with_context(
+                active_test=False
+            ).product_variant_id.product_tmpl_id
