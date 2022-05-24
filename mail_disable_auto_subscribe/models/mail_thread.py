@@ -24,6 +24,10 @@ class MailThread(models.AbstractModel):
             partner_ids = self.env['res.partner'].browse(partner_ids).filtered(
                 'auto_subscribe_on_tag'
             ).ids
+        if self.env.context.get('mail_activity_autofollow') and partner_ids:
+            partner_ids = self.env['res.partner'].browse(partner_ids).filtered(
+                'auto_subscribe_on_activity'
+            ).ids
         return super(MailThread, self)._message_subscribe(
             partner_ids=partner_ids,
             channel_ids=channel_ids,

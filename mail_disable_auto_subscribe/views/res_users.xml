@@ -10,6 +10,7 @@
             <field name="notification_type" position="after">
                 <field name="auto_subscribe_on_tag" readonly="0"/>
                 <field name="auto_subscribe_on_message" readonly="0"/>
+                <field name="auto_subscribe_on_activity" readonly="0"/>
             </field>
         </field>
     </record>
@@ -23,6 +24,7 @@
             <field name="notification_type" position="after">
                 <field name="auto_subscribe_on_tag" readonly="0"/>
                 <field name="auto_subscribe_on_message" readonly="0"/>
+                <field name="auto_subscribe_on_activity" readonly="0"/>
             </field>
         </field>
     </record>

@@ -20,6 +20,7 @@ class ResUsers(models.Model):
                 self.SELF_WRITEABLE_FIELDS + [
                     'auto_subscribe_on_tag',
                     'auto_subscribe_on_message',
+                    'auto_subscribe_on_activity',
                 ]
             )
         )

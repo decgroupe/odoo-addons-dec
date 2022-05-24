@@ -27,3 +27,10 @@ class ResPartner(models.Model):
         "of any model with chatter support when a new message is posted or "
         "answered in the chat.",
     )
+    auto_subscribe_on_activity = fields.Boolean(
+        string='Auto subscribe on activity',
+        default=True,
+        help="If checked, will be automatically added as a follower "
+        "of any model with activity support when an activity is assigned "
+        "to you.",
+    )
