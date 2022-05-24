@@ -10,8 +10,7 @@
         'purchase_stock',
         'mrp',
         'mail',
-        # 'stock_cancel',
-        # 'stock_assign',
+        'product_supplierinfo_picking',
         'web_tree_dynamic_colored_field',
     ],
     'data': [

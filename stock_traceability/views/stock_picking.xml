@@ -27,8 +27,10 @@
                     }"
                     force_save="1">
                 </field>
-                <field name="move_orig_ids"/>
-                <field name="move_dest_ids"/>
+                <field name="move_orig_ids" groups="base.group_no_one"/>
+                <field name="move_dest_ids" groups="base.group_no_one"/>
+                <field name="product_supplier_code" attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                <field name="product_supplier_name" attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
                 <field name="tree_fg_color" invisible="1"/>
                 <field name="tree_bg_color" invisible="1"/>
             </xpath>
