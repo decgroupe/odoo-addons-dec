@@ -51,7 +51,9 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         rec = super().create(vals)
         if rec.product_id.state == 'review':
-            rec.order_id.activity_schedule_with_view(
+            rec.order_id.with_context(
+                mail_activity_noautofollow=True
+            ).activity_schedule_with_view(
                 'sale_product_warnings.mail_activity_data_review',
                 user_id=rec.product_id.responsible_id.id or
                 rec.order_id.user_id.id or self.env.uid,

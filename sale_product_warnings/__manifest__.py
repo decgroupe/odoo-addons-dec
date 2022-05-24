@@ -6,6 +6,7 @@
     'category': 'Sales',
     'summary': '''Warnings on adding obsolete products to quotation''',
     'depends': [
+        'mail',
         'sale',
         'product',
         'product_state_review',
