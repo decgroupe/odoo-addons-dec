@@ -45,14 +45,25 @@ class IrMailServer(models.Model):
 
         if mail_server.auto_add_sender:
             ignore_auto_add_sender = False
+            from_rfc2822 = extract_rfc2822_addresses(message['From'])
             if self.env.context.get('channel_email_from'):
                 # Do not automatically add sender to bcc if the message comes
                 # from a channel
-                from_rfc2822 = extract_rfc2822_addresses(message['From'])
                 channel_email_from_rfc2822 = extract_rfc2822_addresses(
                     self.env.context.get('channel_email_from')
                 )
                 if from_rfc2822 == channel_email_from_rfc2822:
+                    ignore_auto_add_sender = True
+            if not ignore_auto_add_sender:
+                if self.env.context.get('mail_author_id'):
+                    partner_id = self.env['res.partner'].browse(
+                        self.env.context.get('mail_author_id')
+                    )
+                else:
+                    partner_id = self.env['res.partner'].search(
+                        [('email', '=', from_rfc2822[0])], limit=1
+                    )
+                if partner_id and not partner_id.copy_sent_email:
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 if not auto_bcc_addresses:

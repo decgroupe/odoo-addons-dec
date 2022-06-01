@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Update preferences form !-->
+    <record model="ir.ui.view" id="res_users_preferences_form_view">
+        <field name="name">res.users.preferences.form@base_mail_auto_copy</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <field name="notification_type" position="after">
+                <field name="copy_sent_email" readonly="0"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Update user form !-->
+    <record model="ir.ui.view" id="res_users_form_view">
+        <field name="name">res.users.form@base_mail_auto_copy</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="notification_type" position="after">
+                <field name="copy_sent_email" readonly="0"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

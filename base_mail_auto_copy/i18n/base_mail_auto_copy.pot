@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_mail_auto_copy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-01 11:29+0000\n"
+"PO-Revision-Date: 2022-06-01 11:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_add_sender
+msgid "Auto Add Sender"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_bcc_addresses
+msgid "Auto BCC addresses"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_cc_addresses
+msgid "Auto CC addresses"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model_terms:ir.ui.view,arch_db:base_mail_auto_copy.ir_mail_server_form_view
+msgid "Auto Copy"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__auto_add_sender
+msgid "Automatically add sender to the list of hidden recipients"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__auto_bcc_addresses
+msgid "Comma-separated list of auto Bcc addresses"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__auto_cc_addresses
+msgid "Comma-separated list of auto Cc addresses"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model,name:base_mail_auto_copy.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model,name:base_mail_auto_copy.model_mail_channel
+msgid "Discussion Channel"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__display_name
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel__display_name
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail__display_name
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__display_name
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__id
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel__id
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail__id
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__id
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,help:base_mail_auto_copy.field_res_partner__copy_sent_email
+#: model:ir.model.fields,help:base_mail_auto_copy.field_res_users__copy_sent_email
+msgid "If checked, will receive a copy of all sent e-mails"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server____last_update
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel____last_update
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail____last_update
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner____last_update
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model,name:base_mail_auto_copy.model_ir_mail_server
+msgid "Mail Server"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model,name:base_mail_auto_copy.model_mail_mail
+msgid "Outgoing Mails"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__copy_sent_email
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__copy_sent_email
+msgid "Receive a copy of all my e-mails"
+msgstr ""
+
+#. module: base_mail_auto_copy
+#: model:ir.model,name:base_mail_auto_copy.model_res_users
+msgid "Users"
+msgstr ""
+

@@ -8,6 +8,9 @@
         'base',
         'mail',
     ],
-    'data': ['views/ir_mail_server.xml', ],
+    'data': [
+        'views/ir_mail_server.xml',
+        'views/res_users.xml',
+    ],
     'installable': True
 }
