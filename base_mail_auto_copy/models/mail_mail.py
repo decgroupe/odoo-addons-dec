@@ -12,8 +12,13 @@ class MailMail(models.Model):
     def _send(
         self, auto_commit=False, raise_exception=False, smtp_session=None
     ):
+        mail_authors = {}
+        for rec in self:
+            # Use Message-Id as the `mail.mail` record ID will not be
+            # available in the `send_email` method from the `ir.mail.server`
+            mail_authors[rec.message_id] = rec.author_id.id
         return super(
-            MailMail, self.with_context(mail_author_id=self.author_id.id)
+            MailMail, self.with_context(mail_authors=mail_authors)
         )._send(
             auto_commit=auto_commit,
             raise_exception=raise_exception,

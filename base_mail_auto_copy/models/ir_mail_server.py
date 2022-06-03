@@ -55,10 +55,12 @@ class IrMailServer(models.Model):
                 if from_rfc2822 == channel_email_from_rfc2822:
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
-                if self.env.context.get('mail_author_id'):
-                    partner_id = self.env['res.partner'].browse(
-                        self.env.context.get('mail_author_id')
-                    )
+                message_id = message.get('Message-Id')
+                mail_authors = self.env.context.get('mail_authors', {})
+                author_id = mail_authors.get(message_id, False)
+                if author_id:
+                    message.get('Message-Id')
+                    partner_id = self.env['res.partner'].browse(author_id)
                 else:
                     partner_id = self.env['res.partner'].search(
                         [('email', '=', from_rfc2822[0])], limit=1
