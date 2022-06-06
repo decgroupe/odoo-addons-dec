@@ -20,12 +20,6 @@ class SaleOrder(models.Model):
         compute='_compute_delivery_rate',
         help='Rate of delivery',
     )
-    effective_last_date = fields.Date(
-        "Effective Last Date",
-        compute='_compute_effective_last_date',
-        store=True,
-        help="Completion date of the last delivery order."
-    )
 
     @api.multi
     @api.depends(
@@ -69,15 +63,3 @@ class SaleOrder(models.Model):
                 sale.delivery_rate = sale.sent_rate
             elif sale.tasks_ids:
                 sale.delivery_rate = sale.task_rate
-
-    @api.depends('picking_ids.date_done')
-    def _compute_effective_last_date(self):
-        for order in self:
-            pickings = order.picking_ids.filtered(
-                lambda x: x.state == 'done' and x.location_dest_id.usage ==
-                'customer'
-            )
-            dates_list = [date for date in pickings.mapped('date_done') if date]
-            order.effective_last_date = dates_list and fields.Date.context_today(
-                order, max(dates_list)
-            )
