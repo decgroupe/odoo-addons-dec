@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-22 15:28+0000\n"
-"PO-Revision-Date: 2021-12-22 16:28+0100\n"
+"POT-Creation-Date: 2022-06-07 08:56+0000\n"
+"PO-Revision-Date: 2022-06-07 10:58+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. module: hr_expense_easy
 #: model:product.product,name:hr_expense_easy.product_product_expense_administrative_supplies
@@ -53,6 +53,12 @@ msgid "Bus"
 msgstr "Bus"
 
 #. module: hr_expense_easy
+#: model:ir.model.fields,field_description:hr_expense_easy.field_product_product__can_be_expensed
+#: model:ir.model.fields,field_description:hr_expense_easy.field_product_template__can_be_expensed
+msgid "Can be Expensed"
+msgstr "Peut être inséré dans une note de frais"
+
+#. module: hr_expense_easy
 #: model:product.product,name:hr_expense_easy.product_product_expense_car_park
 #: model:product.template,name:hr_expense_easy.product_product_expense_car_park_product_template
 msgid "Car park"
@@ -87,7 +93,7 @@ msgid "Consumption"
 msgstr "Consommation"
 
 #. module: hr_expense_easy
-#: code:addons/hr_expense_easy/models/hr_expense.py:153
+#: code:addons/hr_expense_easy/models/hr_expense.py:157
 #, python-format
 msgid "Create attachment"
 msgstr "Créer une pièce jointe"
@@ -491,6 +497,11 @@ msgid "Postal charges"
 msgstr "Frais postaux"
 
 #. module: hr_expense_easy
+#: model:ir.model,name:hr_expense_easy.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: hr_expense_easy
 #: model:product.product,name:hr_expense_easy.product_product_expense_publication_and_print
 #: model:product.template,name:hr_expense_easy.product_product_expense_publication_and_print_product_template
 msgid "Publication and print"
@@ -525,6 +536,12 @@ msgstr "Septembre"
 #: model:product.template,name:hr_expense_easy.product_product_expense_small_equipment_product_template
 msgid "Small equipment"
 msgstr "Petit équipement"
+
+#. module: hr_expense_easy
+#: model:ir.model.fields,help:hr_expense_easy.field_product_product__can_be_expensed
+#: model:ir.model.fields,help:hr_expense_easy.field_product_template__can_be_expensed
+msgid "Specify whether the product can be selected in an expense."
+msgstr "Indiquez si le produit peut être sélectionné dans une dépense."
 
 #. module: hr_expense_easy
 #: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__tax_amount
@@ -588,6 +605,12 @@ msgstr "Assurance véhicule"
 #: model:product.template,name:hr_expense_easy.product_product_expense_work_clothes_product_template
 msgid "Work clothes"
 msgstr "Vêtements de travail"
+
+#. module: hr_expense_easy
+#: code:addons/hr_expense_easy/models/hr_expense.py:136
+#, python-format
+msgid "You cannot duplicate a posted or approved expense."
+msgstr "Vous ne pouvez pas dupliquer une note de frais postée ou approuvée."
 
 #. module: hr_expense_easy
 #: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_administrative_supplies

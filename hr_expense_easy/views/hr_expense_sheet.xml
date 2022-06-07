@@ -45,7 +45,8 @@
                     name="action_duplicate" 
                     string="Duplicate" 
                     type="object"
-                    icon="fa-copy">
+                    icon="fa-copy"
+                    attrs="{'invisible': [('state', 'in', ('done', 'approved'))]}" >
                 </button>
             </xpath>
         </field>

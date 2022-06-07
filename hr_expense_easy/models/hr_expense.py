@@ -131,6 +131,10 @@ class HrExpense(models.Model):
     @api.multi
     def action_duplicate(self):
         self.ensure_one()
+        if self.state in ['done', 'approved']:
+            raise UserError(
+                _('You cannot duplicate a posted or approved expense.')
+            )
         self.copy(default={
             'sheet_id': self.sheet_id.id,
         })
