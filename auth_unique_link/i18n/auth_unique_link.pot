@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 17:51+0000\n"
-"PO-Revision-Date: 2021-12-13 17:51+0000\n"
+"POT-Creation-Date: 2022-06-08 12:49+0000\n"
+"PO-Revision-Date: 2022-06-08 12:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -164,6 +164,11 @@ msgid "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-t
 msgstr ""
 
 #. module: auth_unique_link
+#: model:res.groups,name:auth_unique_link.group_impersonate
+msgid "Allow to impersonate any portal User"
+msgstr ""
+
+#. module: auth_unique_link
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
 msgid "Close"
 msgstr ""
@@ -185,6 +190,7 @@ msgstr ""
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__display_name
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -210,6 +216,7 @@ msgstr ""
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__id
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__id
 msgid "ID"
 msgstr ""
 
@@ -231,6 +238,7 @@ msgstr ""
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate____last_update
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -290,13 +298,13 @@ msgid "Signin URL"
 msgstr ""
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:142
+#: code:addons/auth_unique_link/models/res_users.py:144
 #, python-format
 msgid "Signin link token '%s' is no longer valid"
 msgstr ""
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:136
+#: code:addons/auth_unique_link/models/res_users.py:138
 #, python-format
 msgid "Signin link token '%s' is not valid"
 msgstr ""
@@ -308,7 +316,7 @@ msgid "This partner is <b>not</b> in the <b>Portal</b> group.<br/>\n"
 msgstr ""
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/controllers/main.py:86
+#: code:addons/auth_unique_link/controllers/main.py:89
 #, python-format
 msgid "Unknown email address."
 msgstr ""
@@ -334,13 +342,13 @@ msgid "We will email you a magic sign in link."
 msgstr ""
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/controllers/main.py:79
+#: code:addons/auth_unique_link/controllers/main.py:82
 #, python-format
 msgid "We've sent you an email with login instructions. Please check your inbox!"
 msgstr ""
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:167
+#: code:addons/auth_unique_link/models/res_users.py:169
 #, python-format
 msgid "You must have an email address in your User Preferences to send emails."
 msgstr ""

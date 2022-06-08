@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 17:51+0000\n"
-"PO-Revision-Date: 2021-12-14 09:53+0100\n"
+"POT-Creation-Date: 2022-06-08 12:49+0000\n"
+"PO-Revision-Date: 2022-06-08 14:50+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -303,6 +303,11 @@ msgstr ""
 "    "
 
 #. module: auth_unique_link
+#: model:res.groups,name:auth_unique_link.group_impersonate
+msgid "Allow to impersonate any portal User"
+msgstr "Autoriser l'usurpation d'identité de tout utilisateur du portail"
+
+#. module: auth_unique_link
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
 msgid "Close"
 msgstr "Fermer"
@@ -324,6 +329,7 @@ msgstr "Créé le"
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__display_name
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -349,6 +355,7 @@ msgstr "Générer un nouveau code de connexion"
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__id
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__id
 msgid "ID"
 msgstr "ID"
 
@@ -370,6 +377,7 @@ msgstr "Jeton invalide/expiré ou identifiants incorrects"
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate____last_update
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -429,13 +437,13 @@ msgid "Signin URL"
 msgstr "URL de connexion"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:142
+#: code:addons/auth_unique_link/models/res_users.py:144
 #, python-format
 msgid "Signin link token '%s' is no longer valid"
 msgstr "Le lien du jeton de connexion « %s » n'est plus valide"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:136
+#: code:addons/auth_unique_link/models/res_users.py:138
 #, python-format
 msgid "Signin link token '%s' is not valid"
 msgstr "Le lien du jeton de connexion « %s » n'est pas valide"
@@ -450,7 +458,7 @@ msgstr ""
 "                    <b>Donnez lui d’abord accès au portail.</b>"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/controllers/main.py:86
+#: code:addons/auth_unique_link/controllers/main.py:89
 #, python-format
 msgid "Unknown email address."
 msgstr "Adresse e-mail inconnue."
@@ -476,13 +484,13 @@ msgid "We will email you a magic sign in link."
 msgstr "Nous vous enverrons un lien de connexion magique."
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/controllers/main.py:79
+#: code:addons/auth_unique_link/controllers/main.py:82
 #, python-format
 msgid "We've sent you an email with login instructions. Please check your inbox!"
 msgstr "Nous vous avons envoyé un e-mail avec les instructions de connexion. Vérifiez votre boîte de réception !"
 
 #. module: auth_unique_link
-#: code:addons/auth_unique_link/models/res_users.py:167
+#: code:addons/auth_unique_link/models/res_users.py:169
 #, python-format
 msgid "You must have an email address in your User Preferences to send emails."
 msgstr "Vous devez avoir une adresse de courriel définie dans vos préférences utilisateur pour envoyer des courriels."
