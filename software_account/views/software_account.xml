@@ -53,6 +53,9 @@
                         <field name="production_id"/>
                         <field name="partner_id"/>
                     </group>
+                    <group>
+                        <field name="info"/>
+                    </group>
                 </sheet>
             </form>
         </field>
