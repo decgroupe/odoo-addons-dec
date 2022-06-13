@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mass_editing_chat
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-13 12:37+0000\n"
+"PO-Revision-Date: 2022-06-13 14:38+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard__chat_enabled
+msgid "Chat Enabled"
+msgstr "Chat activé"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,help:mass_editing_chat.field_mass_editing_wizard__chat_message
+msgid "Message that will be posted on the chat of each record"
+msgstr "Message qui sera posté sur le chat de chaque enregistrement"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard__chat_message
+msgid "Note"
+msgstr "Note"
+
+#. module: mass_editing_chat
+#: model:ir.model,name:mass_editing_chat.model_mass_editing_wizard
+msgid "Wizard for mass edition"
+msgstr "Assistant pour l'édition en lot"
