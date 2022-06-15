@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Update preferences form !-->
+    <record model="ir.ui.view" id="res_users_preferences_form_view">
+        <field name="name">res.users.preferences.form@auth_local_password</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="groups_id" eval="[(4,ref('auth_local_password.group_local_password'))]"/>
+        <field name="arch" type="xml">
+            <group name="preferences" position="inside">
+                <field name="local_password" readonly="0"/>
+            </group>
+        </field>
+    </record>
+
+    <!-- Update user form !-->
+    <record model="ir.ui.view" id="res_users_form_view">
+        <field name="name">res.users.form@auth_local_password</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <group name="preferences" position="inside">
+                <field name="local_password" readonly="0"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
