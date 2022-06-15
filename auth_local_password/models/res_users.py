@@ -4,6 +4,7 @@
 
 import logging
 import re
+import ipaddress
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, AccessDenied
@@ -89,7 +90,7 @@ class ResUsers(models.Model):
 
     def _check_credentials(self, password):
         try:
-            is_local = is_ip_private(self._get_ip_address())
+            is_local = ipaddress.ip_address(self._get_ip_address()).is_private
             return super(ResUsers, self.with_context(bypass_mfa=is_local)).\
                 _check_credentials(password)
         except AccessDenied as e:
