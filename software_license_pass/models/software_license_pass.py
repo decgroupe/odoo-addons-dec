@@ -226,7 +226,12 @@ class SoftwareLicensePass(models.Model):
             self.filtered(lambda o: o.state == 'draft').with_context(
                 tracking_disable=True
             ).write({'state': 'sent'})
-            self.mapped('partner_id').give_portal_access()
+            partner_ids = kwargs.get('partner_ids', False)
+            if partner_ids:
+                partner_ids = self.env['res.partner'].browse(partner_ids)
+            else:
+                partner_ids = self.mapped('partner_id')
+            partner_ids.give_portal_access()
         return super(
             SoftwareLicensePass, self.with_context(mail_post_autofollow=True)
         ).message_post(**kwargs)
