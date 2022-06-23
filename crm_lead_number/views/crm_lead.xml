@@ -38,4 +38,27 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_crm_case_opportunities_filter">
+        <field name="name">crm.lead.search.opportunity@crm_lead_number</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <separator/>
+                <field 
+                    string="Number" 
+                    name="number" 
+                    filter_domain="[
+                        ('|'),
+                        ('number', 'ilike', self),
+                        ('name', 'ilike', self)
+                    ]"
+                    >
+                </field>
+                <separator/>
+            </field>
+        </field>
+    </record>
+
+
 </odoo>
