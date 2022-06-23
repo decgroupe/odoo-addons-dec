@@ -24,7 +24,7 @@ class VCardController(http.Controller):
         if employee:
             vcard = employee._generate_vcard()
             headers = [
-                ('Content-Type', 'text/x-vcard; charset=utf-8'),
+                ('Content-Type', 'text/x-vcard; charset=iso-8859-1'),
                 ('Content-Length', len(vcard)),
                 (
                     'Content-Disposition',
