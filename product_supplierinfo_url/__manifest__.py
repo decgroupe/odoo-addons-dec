@@ -1,9 +1,9 @@
 {
-    'name': 'Product Supplier Infos',
+    'name': 'Product Supplier Infos URL',
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
-    'summary': "Cosmetic Improvements",
+    'summary': "URL field to help purchase",
     'depends': [
         'product',
     ],
