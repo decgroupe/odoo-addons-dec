@@ -36,7 +36,9 @@ odoo.define('kanban_draggable.kanban_renderer', function (require) {
             this._super.apply(this, arguments);
 
             if (this.columnOptions.sortable == false) {
-                this.$el.sortable("disable");
+                if (this.$el.sortable('instance') !== undefined) {
+                    this.$el.sortable("disable");
+                }
             }
 
         },
