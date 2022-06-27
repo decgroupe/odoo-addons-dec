@@ -24,3 +24,14 @@ class ProjectProject(models.Model):
     def _compute_kanban_description(self):
         for rec in self:
             rec.kanban_description = rec.partner_shipping_id.display_name
+
+    def action_open_all_tasks(self):
+        act = self.with_context(
+            active_id=False,
+            active_ids=False,
+            active_model=False,
+        ).env.ref("project.act_project_project_2_project_task_all").read()[0]
+
+        act['context'] = {}
+        act['domain'] = [('project_id', 'in', self.ids)]
+        return act

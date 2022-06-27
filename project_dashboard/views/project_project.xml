@@ -52,4 +52,26 @@
     </field>
   </record>
 
+  <record model="ir.ui.view" id="view_project">
+    <field name="name">project.project.tree.select@project_dashboard</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project"/>
+    <field name="arch" type="xml">
+      <xpath expr="//tree" position="attributes">
+        <attribute name="js_class">project_dashboard_list</attribute>
+      </xpath>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="view_project_kanban">
+    <field name="name">project.project.kanban@project_dashboard</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project_kanban"/>
+    <field name="arch" type="xml">
+      <xpath expr="//kanban" position="attributes">
+        <attribute name="js_class">project_dashboard_kanban</attribute>
+      </xpath>
+    </field>
+  </record>
+
 </odoo>

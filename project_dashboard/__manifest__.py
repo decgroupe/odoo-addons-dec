@@ -13,9 +13,12 @@
     ],
     'data':
         [
+            'views/assets.xml',
             'views/project_project.xml',
             'views/project_type.xml',
             'views/menu.xml',
         ],
+    'qweb': ["static/src/xml/dashboard_actions.xml", ],
+
     'installable': True
 }
