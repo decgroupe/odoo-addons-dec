@@ -7,6 +7,12 @@ from datetime import datetime, timedelta
 from odoo import _, api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
+from odoo.addons.tools_miscellaneous.tools.context import (
+    safe_eval_action_context_string_to_dict,
+    safe_eval_active_context_string_to_dict,
+    safe_eval_active_context_dict_to_string,
+)
+
 
 class ProjectType(models.Model):
     _inherit = 'project.type'
@@ -14,6 +20,11 @@ class ProjectType(models.Model):
     dashboard_ok = fields.Boolean(
         string='Show in Dashboard',
         default=False,
+    )
+    open_default_groupby = fields.Char(
+        string="Default Group By",
+        help="Name of the field to use as default group by when "
+        "opening projects of this type",
     )
     color = fields.Integer(
         string="Color Index",
@@ -137,6 +148,20 @@ class ProjectType(models.Model):
                     r[COL_DATE] and r[COL_DATE] <= current_year - 2
                 ]
             )
+
+    def action_open_project_from_dashboard(self):
+        action = self.env.ref(
+            "project_dashboard.action_project_kanban_from_dashboard"
+        ).read()[0]
+        if self.open_default_groupby:
+            context = safe_eval_action_context_string_to_dict(action)
+            context.update({
+                'group_by': self.open_default_groupby,
+            })
+            ctx_as_string = safe_eval_active_context_dict_to_string(context)
+            return dict(action, context=ctx_as_string)
+        else:
+            return action
 
     def action_open_project(self):
         return {
