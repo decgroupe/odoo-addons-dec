@@ -25,19 +25,6 @@
       <xpath expr="//filter[@name='followed_by_me']" position="after">
         <filter string="Unassigned" name="filter_unassigned" domain="[('user_id','=',False)]"/>
       </xpath>
-      <xpath expr="//field[@name='partner_id']" position="after">
-        <separator/>
-        <filter string="Current Year" name="filter_year_current" domain="[
-          ('contract_confirmation_date', '&gt;=', datetime.date.today().strftime('%Y-01-01'))
-        ]"/>
-        <filter string="Previous Year" name="filter_year_previous" domain="[
-          ('contract_confirmation_date', '&gt;=', (datetime.date.today() - relativedelta(years=1)).strftime('%Y-01-01')),
-          ('contract_confirmation_date', '&lt;', datetime.date.today().strftime('%Y-01-01')),
-        ]"/>
-        <filter string="More Older" name="filter_year_older" domain="[
-          ('contract_confirmation_date', '&lt;=', (datetime.date.today() - relativedelta(years=2)).strftime('%Y-12-31')),
-        ]"/>
-      </xpath>
     </field>
   </record>
 

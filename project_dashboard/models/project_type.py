@@ -26,6 +26,11 @@ class ProjectType(models.Model):
         help="Name of the field to use as default group by when "
         "opening projects of this type",
     )
+    date_field = fields.Char(
+        string="Date Reference",
+        help="Name of the field to use as reference when computing "
+        "projects count per year",
+    )
     color = fields.Integer(
         string="Color Index",
         default=0,
@@ -84,38 +89,45 @@ class ProjectType(models.Model):
         'project_ids.todo_production_count'
     )
     def _compute_todo_projects(self):
-        project_model = self.env["project.project"]
-        child_ids = self.env["project.type"].search(
-            [('id', 'child_of', self.ids)]
-        )
-        fields = ["type_id", "user_id", "contract_confirmation_date"]
-        groupby = ["type_id", "user_id", "contract_confirmation_date:year"]
-        fetch_data = project_model.read_group(
-            [
-                ("type_id", "child_of", self.ids),
-                ('|'),
-                ("todo_task_count", ">", 0),
-                ("todo_production_count", ">", 0),
-            ],
-            fields=fields,
-            groupby=groupby,
-            lazy=False,
-        )
+        Project = self.env["project.project"]
+        type_ids = self.filtered('date_field')
+        dashboard_dates = type_ids.mapped('date_field')
+        result_per_date_reference = {}
+        for date_field in dashboard_dates:
+            date_field_year = date_field + ":year"
+            child_ids = self.env["project.type"].search(
+                [('id', 'child_of', self.ids)]
+            )
+            fields = ["type_id", "user_id", date_field]
+            groupby = ["type_id", "user_id", date_field_year]
+            fetch_data = Project.read_group(
+                [
+                    ("type_id", "child_of", self.ids),
+                    ('|'),
+                    ("todo_task_count", ">", 0),
+                    ("todo_production_count", ">", 0),
+                ],
+                fields=fields,
+                groupby=groupby,
+                lazy=False,
+            )
+            result_per_date_reference[date_field] = [
+                [
+                    data["type_id"][0],
+                    data["user_id"] and data["user_id"][0],
+                    data["__count"],
+                    int(data[date_field_year]),
+                ] for data in fetch_data
+            ]
 
         COL_TYPE = 0
         COL_USER = 1
         COL_COUNT = 2
         COL_DATE = 3
-        result = [
-            [
-                data["type_id"][0],
-                data["user_id"] and data["user_id"][0],
-                data["__count"],
-                int(data["contract_confirmation_date:year"]),
-            ] for data in fetch_data
-        ]
+
         current_year = datetime.today().year
-        for rec in self:
+        for rec in type_ids:
+            result = result_per_date_reference[rec.date_field]
             child_ids = self.env["project.type"].search(
                 [('id', 'child_of', rec.id)]
             )
@@ -153,15 +165,21 @@ class ProjectType(models.Model):
         action = self.env.ref(
             "project_dashboard.action_project_kanban_from_dashboard"
         ).read()[0]
-        if self.open_default_groupby:
-            context = safe_eval_action_context_string_to_dict(action)
-            context.update({
-                'group_by': self.open_default_groupby,
-            })
+        context = safe_eval_action_context_string_to_dict(action)
+        if len(self.ids) == 1:
+            if self.date_field:
+                context.update({
+                    'date_field': self.date_field,
+                })
+            if self.open_default_groupby:
+                context.update({
+                    'group_by': self.open_default_groupby,
+                })
             ctx_as_string = safe_eval_active_context_dict_to_string(context)
             return dict(action, context=ctx_as_string)
         else:
             return action
+
 
     def action_open_project(self):
         return {

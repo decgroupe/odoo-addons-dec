@@ -16,6 +16,7 @@
           <group name="main">
             <group name="primary">
               <field name="open_default_groupby"/>
+              <field name="date_field"/>
             </group>
             <group name="secondary">
             </group>

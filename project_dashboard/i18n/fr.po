@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-07 15:25+0000\n"
-"PO-Revision-Date: 2022-01-07 16:26+0100\n"
+"POT-Creation-Date: 2022-06-28 14:27+0000\n"
+"PO-Revision-Date: 2022-06-28 16:28+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
@@ -33,14 +33,16 @@ msgid "Color Index"
 msgstr "Couleur"
 
 #. module: project_dashboard
-#: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
+#: code:addons/project_dashboard/models/project_project.py:67
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+#, python-format
 msgid "Current Year"
 msgstr "Année en cours"
 
 #. module: project_dashboard
 #: model:ir.actions.act_window,name:project_dashboard.project_type_dashboard_action
 #: model:ir.ui.menu,name:project_dashboard.menu_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_form
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
@@ -48,6 +50,28 @@ msgstr "Tableau de bord"
 #: model:ir.model.fields,field_description:project_dashboard.field_project_project__dashboard_sequence
 msgid "Dashboard Position"
 msgstr "Position dans le tableau de bord"
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type__date_field
+msgid "Date Reference"
+msgstr "Date de référence"
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type__open_default_groupby
+msgid "Default Group By"
+msgstr "Regrouper par défaut par"
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project__display_name
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project__id
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type__id
+msgid "ID"
+msgstr "ID"
 
 #. module: project_dashboard
 #: model:ir.model.fields,help:project_dashboard.field_project_project__dashboard_sequence
@@ -60,10 +84,27 @@ msgid "Kanban Description"
 msgstr "Description sur le kanban"
 
 #. module: project_dashboard
-#: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project____last_update
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: project_dashboard
+#: code:addons/project_dashboard/models/project_project.py:63
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+#, python-format
 msgid "More Older"
 msgstr "Plus anciens"
+
+#. module: project_dashboard
+#: model:ir.model.fields,help:project_dashboard.field_project_type__open_default_groupby
+msgid "Name of the field to use as default group by when opening projects of this type"
+msgstr "Nom du champ à utiliser pour le regroupement par défaut lors de l'ouverture de projets de ce type"
+
+#. module: project_dashboard
+#: model:ir.model.fields,help:project_dashboard.field_project_type__date_field
+msgid "Name of the field to use as reference when computing projects count per year"
+msgstr "Nom du champ à utiliser comme référence lors du calcul du nombre de projets par an"
 
 #. module: project_dashboard
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__todo_project_count
@@ -96,8 +137,9 @@ msgid "Open project form"
 msgstr "Ouvrir la ficher du projet"
 
 #. module: project_dashboard
-#: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
+#: code:addons/project_dashboard/models/project_project.py:65
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+#, python-format
 msgid "Previous Year"
 msgstr "Année précédente"
 
@@ -123,6 +165,13 @@ msgstr "Projets"
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__dashboard_ok
 msgid "Show in Dashboard"
 msgstr "Afficher sur le tableau de bord"
+
+#. module: project_dashboard
+#. openerp-web
+#: code:addons/project_dashboard/static/src/xml/dashboard_actions.xml:6
+#, python-format
+msgid "Tasks"
+msgstr "Tâches"
 
 #. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
