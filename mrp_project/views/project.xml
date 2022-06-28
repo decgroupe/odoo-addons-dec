@@ -54,7 +54,7 @@
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='inactive']" position="after">
                 <filter string="Open Productions" name="filter_open_productions" 
-                    domain="[('todo_production_count', '&lt;', 0)]"/>
+                    domain="[('todo_production_count', '&gt;', 0)]"/>
             </xpath>
         </field>
     </record>
