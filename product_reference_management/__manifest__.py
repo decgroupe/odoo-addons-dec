@@ -3,10 +3,9 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
-    'summary': '''Root module for reference management (menu/security)''',
+    'summary': "Root module for reference management (menu/security)",
     'depends': [
         'product',
-        'dec',
     ],
     'data':
         [

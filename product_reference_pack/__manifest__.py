@@ -3,9 +3,8 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
-    'summary': '''Pack reference management''',
+    'summary': "Pack reference management",
     'depends': [
-        'dec',
         'product_public_code',
         'product_reference_management',
         'product_pack_order_type',

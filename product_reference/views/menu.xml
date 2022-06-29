@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
     <record model="ir.ui.menu" id="menu_product_template_as_product">
         <field name="name">Products</field>
         <field name="sequence" eval="5"/>
@@ -40,7 +39,15 @@
     <record model="ir.ui.menu" id="menu_wizard">
         <field name="name">Wizards</field>
         <field name="sequence" eval="90"/>
-        <field name="parent_id" ref="dec.menu_dec"/>
+        <field name="parent_id" ref="product_reference_management.menu_product_reference_manager"/>
+    </record>
+    
+    <record model="ir.ui.menu" id="menu_tagging_tags">
+        <field name="name">Tags</field>
+        <field name="sequence" eval="10"/>
+        <field name="action" ref="tagging.act_open_tags_tree"/>
+        <field name="parent_id" ref="product_reference_management.menu_configuration"/>
+        <field name="groups_id" eval="[(6,0, [ref('base.group_user')])]"/>
     </record>
 
     <menuitem 
