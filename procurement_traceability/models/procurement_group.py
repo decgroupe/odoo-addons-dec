@@ -43,8 +43,8 @@ class ProcurementGroup(models.Model):
     )
     # addons/stock/models/stock_move.py
     stock_move_ids = fields.One2many(
-        'stock.move',
-        'group_id',
+        comodel_name='stock.move',
+        inverse_name='group_id',
     )
     stock_move_count = fields.Integer(
         compute='_compute_stock_move',
@@ -54,8 +54,8 @@ class ProcurementGroup(models.Model):
     )
     # addons/sale_stock/models/sale_order.py
     sale_order_ids = fields.One2many(
-        'sale.order',
-        'procurement_group_id',
+        comodel_name='sale.order',
+        inverse_name='procurement_group_id',
         string='Sale Orders',
     )
     sale_order_count = fields.Integer(
@@ -66,8 +66,8 @@ class ProcurementGroup(models.Model):
     )
     # addons/purchase_stock/models/purchase.py
     purchase_order_ids = fields.One2many(
-        'purchase.order',
-        'group_id',
+        comodel_name='purchase.order',
+        inverse_name='group_id',
     )
     purchase_order_count = fields.Integer(
         compute='_compute_purchase_order',
@@ -77,8 +77,8 @@ class ProcurementGroup(models.Model):
     )
     # addons/mrp/models/mrp_production.py
     mrp_production_ids = fields.One2many(
-        'mrp.production',
-        'procurement_group_id',
+        comodel_name='mrp.production',
+        inverse_name='procurement_group_id',
     )
     mrp_production_count = fields.Integer(
         compute='_compute_mrp_production_order',
@@ -88,8 +88,8 @@ class ProcurementGroup(models.Model):
     )
     # odoo-addons/oca/purchase-workflow/purchase_line_procurement_group/models/purchase.py
     purchase_order_line_ids = fields.One2many(
-        'purchase.order.line',
-        'procurement_group_id',
+        comodel_name='purchase.order.line',
+        inverse_name='procurement_group_id',
     )
     purchase_order_line_count = fields.Integer(
         compute='_compute_purchase_order_line',
@@ -188,7 +188,9 @@ class ProcurementGroup(models.Model):
 
     def action_view_purchase_order_lines(self):
         self.ensure_one()
-        action = self.env.ref('procurement_traceability.action_purchase_order_line_tree').read()[0]
+        action = self.env.ref(
+            'procurement_traceability.action_purchase_order_line_tree'
+        ).read()[0]
         action['domain'] = [('procurement_group_id', '=', self.id)]
         action['context'] = {}
         return action
