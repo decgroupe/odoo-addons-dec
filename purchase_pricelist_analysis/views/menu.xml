@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_pricelist_items">
+        <field name="name">Pricelist items</field>
+        <field name="sequence" eval="18"/>
+        <field name="action" ref="product_pricelist_analysis.act_window_product_pricelist_item"/>
+        <field name="parent_id" ref="purchase.menu_procurement_management"/>
+        <field name="groups_id" eval="[(6,0, [ref('purchase_pricelist.group_purchase_pricelist')])]"/>
+    </record>
+
+</odoo>
