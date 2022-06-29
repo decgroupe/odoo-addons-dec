@@ -4,15 +4,8 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'category': 'Sales',
-    'summary': '''Lock a sale order to avoid modification or validation''',
-    'depends': [
-        'dec',
-        'sale_margin'
-    ],
-    #'force_migration':'12.0.0.0.0',
-    'data':
-        [
-            'views/sale_order.xml',
-        ],
+    'summary': "Lock a sale order to avoid modification or validation",
+    'depends': ['sale_margin', ],
+    'data': ['views/sale_order.xml', ],
     'installable': True
 }
