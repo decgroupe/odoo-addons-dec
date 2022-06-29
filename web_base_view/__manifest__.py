@@ -4,14 +4,8 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'category': 'Base',
-    'summary': '''Common styles for view display''',
-    'depends': [
-        'dec',
-        'sale_margin'
-    ],
-    'data':
-        [
-            'views/assets.xml',
-        ],
+    'summary': "Common styles for view display",
+    'depends': ['web', ],
+    'data': ['views/assets.xml', ],
     'installable': True
 }

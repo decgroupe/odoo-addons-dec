@@ -9,6 +9,7 @@
         'mrp_bom_supplier',
         'mrp_buy_consu',
         'queue_job',
+        'web_base_view',
     ],
     'data': [
         'views/bom_template.xml',

@@ -12,6 +12,7 @@
         'mail',
         'product_supplierinfo_picking',
         'web_tree_dynamic_colored_field',
+        'web_base_view',
     ],
     'data': [
         'views/assets.xml',

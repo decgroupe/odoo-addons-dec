@@ -12,6 +12,7 @@
         'stock_traceability',
         'stock_orderpoint_traceability',
         'stock_mrp_traceability',
+        'web_base_view',
     ],
     'data': [
         'views/assets.xml',
