@@ -4,11 +4,16 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Create and map gitlab users when giving portal access",
-    'depends': ['base', ],
-    'data': [
-        'security/model_security.xml',
-        'security/ir.model.access.csv',
-        'views/gitlab_resource.xml',
+    'depends': [
+        'base',
+        'auth_signup',
     ],
+    'data':
+        [
+            'security/model_security.xml',
+            'security/ir.model.access.csv',
+            'views/gitlab_resource.xml',
+            'views/res_users.xml',
+        ],
     'installable': True
 }

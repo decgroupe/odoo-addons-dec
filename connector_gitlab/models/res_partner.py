@@ -26,8 +26,12 @@ class ResPartner(models.Model):
                 user_id.ensure_one()
                 previous_email = previous_emails.get(rec.id, False)
                 if previous_email:
-                    user_id = user_id.with_context(
-                        search_email=previous_email
-                    )
+                    user_id = user_id.with_context(search_email=previous_email)
                 user_id._create_or_update_gitlab_user()
+        return res
+
+    def _signup_done(self):
+        self.ensure_one()
+        partner_sudo = self.sudo()
+        res = not bool(partner_sudo.signup_token)
         return res

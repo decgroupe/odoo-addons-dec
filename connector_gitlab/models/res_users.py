@@ -19,7 +19,10 @@ class ResUsers(models.Model):
         self.ensure_one()
         user_uid = 0
         in_portal = self.env.ref('base.group_portal') in self.groups_id
-        if in_portal:
+        # We need to be sure that the GitLab user exists before trying to
+        # edit it. Because a user can be in the portal but never having
+        # been logged in.
+        if in_portal and self.partner_id._signup_done():
             GitLab = self.env['gitlab.service']
             user_uid = GitLab.create_or_update_user(
                 self.id, self.email, self.name, password=password
