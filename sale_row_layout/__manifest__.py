@@ -4,9 +4,8 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'category': 'Sales',
-    'summary': '''Show line form product fields using a row''',
+    'summary': "Show line form product fields using a row",
     'depends': [
-        'dec',
         'sale_margin'
     ],
     #'force_migration':'12.0.0.0.0',
