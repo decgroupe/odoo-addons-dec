@@ -9,7 +9,7 @@
         <field name="groups_id" eval="[(4,ref('auth_local_password.group_local_password'))]"/>
         <field name="arch" type="xml">
             <group name="preferences" position="inside">
-                <field name="local_password" readonly="0"/>
+                <field name="local_password" readonly="0" password="True"/>
             </group>
         </field>
     </record>
@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
             <group name="preferences" position="inside">
-                <field name="local_password" readonly="0"/>
+                <field name="local_password" readonly="0" password="True"/>
             </group>
         </field>
     </record>

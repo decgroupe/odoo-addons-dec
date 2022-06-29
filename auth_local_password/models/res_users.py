@@ -14,8 +14,6 @@ _logger = logging.getLogger(__name__)
 
 from odoo.addons import base
 
-base.models.res_users.USER_PRIVATE_FIELDS.append('local_password')
-
 
 def is_ip_private(ip):
     # https://en.wikipedia.org/wiki/Private_network
@@ -35,9 +33,7 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
 
     local_password = fields.Char(
-        compute='_compute_local_password',
         inverse='_set_local_password',
-        invisible=True,
         copy=False,
         help="This password can only be used from a private IP address",
     )
@@ -68,8 +64,14 @@ class ResUsers(models.Model):
         )
         self.invalidate_cache(['local_password'], [uid])
 
+    def _clear_local_password(self, uid):
+        self.env.cr.execute(
+            'UPDATE res_users SET local_password=NULL WHERE id=%s', (uid, )
+        )
+        self.invalidate_cache(['local_password'], [uid])
+
     def _check_local_password(self, pw):
-        if len(pw) > 0 and len(pw) < 4:
+        if pw and len(pw) < 4:
             raise UserError(
                 _(
                     "Your local password does not meet the minimum "
@@ -80,13 +82,12 @@ class ResUsers(models.Model):
     def _set_local_password(self):
         ctx = self._crypt_context()
         for user in self:
-            pw = user.local_password.strip()
-            self._check_local_password(pw)
-            self._set_encrypted_local_password(user.id, ctx.encrypt(pw))
-
-    def _compute_local_password(self):
-        for user in self:
-            user.local_password = ''
+            pw = user.local_password and user.local_password.strip()
+            if pw is False:
+                self._clear_local_password(user.id)
+            else:
+                self._check_local_password(pw)
+                self._set_encrypted_local_password(user.id, ctx.encrypt(pw))
 
     def _check_credentials(self, password):
         try:
