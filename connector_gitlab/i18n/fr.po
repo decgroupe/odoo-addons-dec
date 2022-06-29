@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-10 12:45+0000\n"
-"PO-Revision-Date: 2021-11-10 13:47+0100\n"
+"POT-Creation-Date: 2022-06-29 14:48+0000\n"
+"PO-Revision-Date: 2022-06-29 16:49+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: connector_gitlab
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_resource__uid
@@ -45,8 +45,21 @@ msgstr "Créé le"
 #. module: connector_gitlab
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_resource__display_name
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_service__display_name
+#: model:ir.model.fields,field_description:connector_gitlab.field_res_partner__display_name
+#: model:ir.model.fields,field_description:connector_gitlab.field_res_users__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
+
+#. module: connector_gitlab
+#: code:addons/connector_gitlab/models/gitlab_service.py:326
+#, python-format
+msgid "Failed to sign in, error %d"
+msgstr "Impossible de se connecter, erreur %d"
+
+#. module: connector_gitlab
+#: model_terms:ir.ui.view,arch_db:connector_gitlab.res_users_form_view
+msgid "GitLab"
+msgstr "GitLab"
 
 #. module: connector_gitlab
 #: model:ir.model,name:connector_gitlab.model_gitlab_resource
@@ -78,12 +91,16 @@ msgstr "Groupe"
 #. module: connector_gitlab
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_resource__id
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_service__id
+#: model:ir.model.fields,field_description:connector_gitlab.field_res_partner__id
+#: model:ir.model.fields,field_description:connector_gitlab.field_res_users__id
 msgid "ID"
 msgstr "ID"
 
 #. module: connector_gitlab
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_resource____last_update
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_service____last_update
+#: model:ir.model.fields,field_description:connector_gitlab.field_res_partner____last_update
+#: model:ir.model.fields,field_description:connector_gitlab.field_res_users____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -103,7 +120,7 @@ msgid "Manager"
 msgstr "Gestionnaire"
 
 #. module: connector_gitlab
-#: code:addons/connector_gitlab/models/gitlab_service.py:271
+#: code:addons/connector_gitlab/models/gitlab_service.py:274
 #, python-format
 msgid "Method not supported [%s] not in %s!"
 msgstr "Méthode non prise en charge [%s] n'est pas dans %s!"
@@ -125,13 +142,13 @@ msgid "Resources"
 msgstr "Ressources"
 
 #. module: connector_gitlab
-#: code:addons/connector_gitlab/models/gitlab_service.py:288
+#: code:addons/connector_gitlab/models/gitlab_service.py:291
 #, python-format
 msgid "Something went wrong with a request to GitLab: %s"
 msgstr "Quelque chose ne s'est pas passé comme prévu avec votre demande à GitLab: %s"
 
 #. module: connector_gitlab
-#: code:addons/connector_gitlab/models/gitlab_service.py:111
+#: code:addons/connector_gitlab/models/gitlab_service.py:114
 #, python-format
 msgid ""
 "This User exists in the Odoo portal but not in GitLab.\n"
@@ -146,6 +163,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:connector_gitlab.field_gitlab_resource__type
 msgid "Type"
 msgstr "Type"
+
+#. module: connector_gitlab
+#: code:addons/connector_gitlab/models/gitlab_service.py:313
+#, python-format
+msgid "Unable to find the authenticity token"
+msgstr "Impossible de trouver le jeton d'authenticité"
 
 #. module: connector_gitlab
 #: selection:gitlab.resource,type:0
