@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 14:27+0000\n"
+"POT-Creation-Date: 2022-06-30 12:05+0000\n"
 "PO-Revision-Date: 2022-06-28 16:28+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -167,13 +167,6 @@ msgid "Show in Dashboard"
 msgstr "Afficher sur le tableau de bord"
 
 #. module: project_dashboard
-#. openerp-web
-#: code:addons/project_dashboard/static/src/xml/dashboard_actions.xml:6
-#, python-format
-msgid "Tasks"
-msgstr "Tâches"
-
-#. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "To Do"
 msgstr "À faire"
@@ -188,3 +181,6 @@ msgstr "Non assigné"
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "View tasks"
 msgstr "Voir les tâches"
+
+#~ msgid "Tasks"
+#~ msgstr "Tâches"

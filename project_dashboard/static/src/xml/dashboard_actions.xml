@@ -3,7 +3,7 @@
 <templates>
 
     <t t-name="ProjectDashboard.all_tasks_button">
-        <button type="button" class="btn btn-secondary o_header_button_view_all_tasks">Tasks</button>
+        <button type="button" class="btn btn-secondary o_header_button_view_all_tasks"><t t-esc="_t('Tasks')"/></button>
     </t>
 
     <t t-extend="ListView.buttons" t-name="ProjectDashboardListView.buttons">

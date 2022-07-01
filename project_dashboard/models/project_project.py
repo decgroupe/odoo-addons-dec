@@ -5,6 +5,8 @@
 from lxml import etree
 
 from odoo import _, api, fields, models
+from odoo.addons.web.controllers.main import clean_action
+from odoo.addons.tools_miscellaneous.tools.webclient import set_view_mode_first
 
 
 class ProjectProject(models.Model):
@@ -25,15 +27,22 @@ class ProjectProject(models.Model):
         for rec in self:
             rec.kanban_description = rec.partner_shipping_id.display_name
 
-    def action_open_all_tasks(self):
-        act = self.with_context(
-            active_id=False,
-            active_ids=False,
-            active_model=False,
-        ).env.ref("project.act_project_project_2_project_task_all").read()[0]
+    def action_open_all_tasks(self, view_domain=False, view_type=False):
+        act = clean_action(self.env.ref("project.action_view_task").read()[0])
+
+        project_ids = self.ids
+        # We cannot rely on `self.ids` as it depends of loaded data in the
+        # web client (Expand Group or Load More UI actions), so we get back
+        # the original domain copied in context and we make our own search
+        # view_domain = self.env.context.get('view_domain')
+        if view_domain:
+            project_ids = self.search(view_domain).ids
 
         act['context'] = {}
-        act['domain'] = [('project_id', 'in', self.ids)]
+        act['domain'] = [('project_id', 'in', project_ids)]
+        if view_type:
+            act['views'] = set_view_mode_first(act['views'], view_type)
+
         return act
 
     @api.model
