@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 12:05+0000\n"
-"PO-Revision-Date: 2022-06-28 16:28+0200\n"
+"POT-Creation-Date: 2022-07-01 10:17+0000\n"
+"PO-Revision-Date: 2022-07-01 12:17+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
@@ -28,12 +28,19 @@ msgid "All"
 msgstr "Tous"
 
 #. module: project_dashboard
+#. openerp-web
+#: code:addons/project_dashboard/static/src/xml/dashboard_actions.xml:6
+#, python-format
+msgid "All Tasks"
+msgstr "Toutes les tâches"
+
+#. module: project_dashboard
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__color
 msgid "Color Index"
 msgstr "Couleur"
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:67
+#: code:addons/project_dashboard/models/project_project.py:76
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "Current Year"
@@ -90,7 +97,7 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:63
+#: code:addons/project_dashboard/models/project_project.py:72
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "More Older"
@@ -137,7 +144,7 @@ msgid "Open project form"
 msgstr "Ouvrir la ficher du projet"
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:65
+#: code:addons/project_dashboard/models/project_project.py:74
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "Previous Year"
@@ -181,6 +188,3 @@ msgstr "Non assigné"
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "View tasks"
 msgstr "Voir les tâches"
-
-#~ msgid "Tasks"
-#~ msgstr "Tâches"

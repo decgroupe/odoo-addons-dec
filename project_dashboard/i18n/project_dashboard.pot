@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-30 12:05+0000\n"
-"PO-Revision-Date: 2022-06-30 12:05+0000\n"
+"POT-Creation-Date: 2022-07-01 10:17+0000\n"
+"PO-Revision-Date: 2022-07-01 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,12 +26,19 @@ msgid "All"
 msgstr ""
 
 #. module: project_dashboard
+#. openerp-web
+#: code:addons/project_dashboard/static/src/xml/dashboard_actions.xml:6
+#, python-format
+msgid "All Tasks"
+msgstr ""
+
+#. module: project_dashboard
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__color
 msgid "Color Index"
 msgstr ""
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:67
+#: code:addons/project_dashboard/models/project_project.py:76
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "Current Year"
@@ -88,7 +95,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:63
+#: code:addons/project_dashboard/models/project_project.py:72
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "More Older"
@@ -135,7 +142,7 @@ msgid "Open project form"
 msgstr ""
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:65
+#: code:addons/project_dashboard/models/project_project.py:74
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "Previous Year"
