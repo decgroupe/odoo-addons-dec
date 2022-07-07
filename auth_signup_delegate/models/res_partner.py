@@ -38,7 +38,7 @@ class ResPartner(models.Model):
     def get_delegate_signup_url(self):
         self.ensure_one()
         return "%s/signup/delegate/%s" % (
-            self.env['ir.config_parameter'].get_param('web.base.url'),
+            self.env['ir.config_parameter'].sudo().get_param('web.base.url'),
             self.sudo().delegate_signup_token
         )
 
