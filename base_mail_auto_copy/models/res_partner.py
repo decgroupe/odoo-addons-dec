@@ -14,6 +14,6 @@ class ResPartner(models.Model):
 
     copy_sent_email = fields.Boolean(
         string='Receive a copy of all my e-mails',
-        default=True,
+        default=False,
         help="If checked, will receive a copy of all sent e-mails",
     )
