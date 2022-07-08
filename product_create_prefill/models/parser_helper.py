@@ -103,8 +103,41 @@ def replace_unicode_spaces_with_standard_spaces(text):
         0x205F
         0x3000
     """
-    _logger.info(text)
-    return re.sub(r'\s', ' ', text)
+
+    CHARLIST = [
+        '\u0009',
+        # '\u000A', # newline
+        '\u000B',
+        '\u000C',
+        '\u000D',
+        '\u001C',
+        '\u001D',
+        '\u001E',
+        '\u001F',
+        '\u0020',
+        '\u0085',
+        '\u00A0',
+        '\u1680',
+        '\u2000',
+        '\u2001',
+        '\u2002',
+        '\u2003',
+        '\u2004',
+        '\u2005',
+        '\u2006',
+        '\u2007',
+        '\u2008',
+        '\u2009',
+        '\u200A',
+        '\u2028',
+        '\u2029',
+        '\u202F',
+        '\u205F',
+        '\u3000',
+    ]
+    for char in CHARLIST:
+        text = text.replace(char, ' ')
+    return text
 
 
 def clean_text(text):
@@ -210,11 +243,14 @@ def load_json_string(string, create_file=False, output_filename='./out.json'):
     return res
 
 
-def clean(xpath_res):
+def clean(xpath_res, first=False):
     if isinstance(xpath_res, list):
         if not xpath_res:
             return ''
-        xpath_res = ' '.join(xpath_res)
+        if first and len(xpath_res) >1 :
+            xpath_res = xpath_res[0]
+        else:
+            xpath_res = ' '.join(xpath_res)
     # We could use span[normalize-space(translate(text(),"\n", ""))
     xpath_res = os.linesep.join(
         [s for s in xpath_res.splitlines() if s.strip()]
