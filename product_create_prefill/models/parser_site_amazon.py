@@ -26,58 +26,74 @@ def parse(content):
         tree.xpath('//span[@id="priceblock_dealprice"]/text()')
     )
     result['price_our'] = parser_helper.clean(
-        tree.xpath('//span[@id="priceblock_ourprice"]/text()')
+        tree.xpath(
+            '//span[contains(@class, "priceToPay") ' +
+            'or contains(@class, "apexPriceToPay")]' +
+            '//span[@class="a-offscreen"]/text()'
+        ), first=True
     )
     result['price_sale'] = parser_helper.clean(
         tree.xpath('//span[@id="priceblock_saleprice"]/text()')
     )
     result['price_strike'] = parser_helper.clean(
-        tree.
-        xpath('//span[contains(@class, "priceBlockStrikePriceString")]/text()')
+        tree.xpath(
+            '//span[@data-a-strike="true" and contains(@class, "a-price")]' +
+            '//span[@class="a-offscreen"]/text()'
+        )
     )
 
     ## MODEL
     result['model'] = parser_helper.clean(
         tree.xpath(
-            '//table//tr[@class="item-model-number"]//td[@class="value"]/text()'
+            '//table//tr[@class="item-model-number"]' +
+            '//td[@class="value"]/text()'
         )
     )
     if not result['model']:
         result['model'] = parser_helper.clean(
             tree.xpath(
-                '//table//th[contains(@class, "prodDetSectionEntry") and contains(text(),"Référence")]/following-sibling::node()/text()'
+                '//table//th[contains(@class, "prodDetSectionEntry")' +
+                ' and contains(text(),"Référence")]' +
+                '/following-sibling::node()/text()'
             )
         )
 
     ## MARQUE
     result['marque'] = parser_helper.clean(
         tree.xpath(
-            '//td[@class="label" and text()="Marque"]/following-sibling::node()/text()'
+            '//td[@class="label" and text()="Marque"]' +
+            '/following-sibling::node()/text()'
         )
     )
     if not result['marque']:
         result['marque'] = parser_helper.clean(
             tree.xpath(
-                '//table//th[contains(@class, "prodDetSectionEntry") and (contains(text(),"Marque") or contains(text(),"Fabricant"))]/following-sibling::node()/text()'
+                '//table//th[contains(@class, "prodDetSectionEntry")' +
+                ' and (contains(text(),"Marque")' +
+                ' or contains(text(),"Fabricant"))]' +
+                '/following-sibling::node()/text()'
             )
         )
 
     ## ASIN
     result['asin'] = parser_helper.clean(
         tree.xpath(
-            '//td[@class="label" and contains(text(),"ASIN")]/following-sibling::node()/text()'
+            '//td[@class="label" and contains(text(),"ASIN")]'
+            '/following-sibling::node()/text()'
         )
     )
     if not result['asin']:
         result['asin'] = parser_helper.clean(
             tree.xpath(
-                '//table//th[contains(@class, "prodDetSectionEntry") and contains(text(),"ASIN")]/following-sibling::node()/text()'
+                '//table//th[contains(@class, "prodDetSectionEntry") ' +
+                'and contains(text(),"ASIN")]/following-sibling::node()/text()'
             )
         )
 
     ## SELLER
     result['seller'] = parser_helper.clean(
-        tree.xpath('//a[@id="sellerProfileTriggerId"]/text()')
+        tree.xpath('//a[@id="sellerProfileTriggerId"]/text()'),
+        first=True,
     )
     ## IMAGES
     result['images'] = parser_helper.clean(
