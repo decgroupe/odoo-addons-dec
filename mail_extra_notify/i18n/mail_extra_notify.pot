@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mail_extra_notify
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-11 09:10+0000\n"
+"PO-Revision-Date: 2022-07-11 09:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mail_extra_notify
+#: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mail_extra_notify
+#: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view__id
+msgid "ID"
+msgstr ""
+
+#. module: mail_extra_notify
+#: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mail_extra_notify
+#: model_terms:ir.ui.view,arch_db:mail_extra_notify.message_user_assigned
+msgid "More informations:"
+msgstr ""
+
+#. module: mail_extra_notify
+#: model:ir.model,name:mail_extra_notify.model_ir_ui_view
+msgid "View"
+msgstr ""
+

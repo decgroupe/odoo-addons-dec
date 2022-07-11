@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Discuss utility templates for notifications -->
+    <template id="message_user_assigned" inherit_id="mail.message_user_assigned">
+        <xpath expr="//p[1]" position="after">
+            <t t-if="extra_values">
+                <p>
+                    More informations:
+                    <ul>
+                        <li t-foreach="extra_values" t-as="extra">
+                            <small>
+                                <t t-esc="extra"/>
+                            </small>:
+                            <b>
+                                <t t-esc="extra_value"/>
+                            </b>
+                        </li>
+                    </ul>
+                </p>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
