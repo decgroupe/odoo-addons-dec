@@ -5,28 +5,34 @@
 from odoo import models, api, fields
 
 
-class ProjectTask(models.Model):
-    _inherit = "project.task"
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
 
     def _get_user_assigned_extra_values(self):
         self.ensure_one()
         res = {}
 
-        if self.sale_line_id:
+        if self.origin:
             key, value = self._get_user_assigned_extra_field_value(
                 self,
-                'sale_line_id',
+                'origin',
             )
             res[key] = value
+        if self.partner_shipping_id:
             key, value = self._get_user_assigned_extra_field_value(
-                self.sale_line_id.order_id,
+                self,
                 'partner_shipping_id',
             )
             res[key] = value
-        # Zip
+        # State
         key, value = self._get_user_assigned_extra_field_value(
             self,
-            'partner_shipping_zip_id',
+            'state',
+        )
+        # Total
+        key, value = self._get_user_assigned_extra_field_value(
+            self,
+            'amount_total',
         )
         res[key] = value
         return res
@@ -38,4 +44,3 @@ class ProjectTask(models.Model):
         if isinstance(value, models.Model):
             value = value.name_get()[0][1]
         return key, value
-
