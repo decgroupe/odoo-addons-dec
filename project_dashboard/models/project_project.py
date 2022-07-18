@@ -45,6 +45,16 @@ class ProjectProject(models.Model):
 
         return act
 
+    @api.multi
+    def open_tasks(self):
+        # Override active_id and active_ids because they are probably project
+        # types
+        self_active = self.with_context(
+            active_id=self.id,
+            active_ids=self.ids,
+        )
+        return super(ProjectProject, self_active).open_tasks()
+
     @api.model
     def fields_view_get(
         self, view_id=None, view_type='form', toolbar=False, submenu=False
