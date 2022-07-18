@@ -29,6 +29,7 @@ class AccountInvoice(models.Model):
             self,
             'state',
         )
+        res[key] = value
         # Total
         key, value = self._get_user_assigned_extra_field_value(
             self,
