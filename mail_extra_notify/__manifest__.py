@@ -4,7 +4,10 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Add extra data in assignation message",
-    'depends': ['mail'],
+    'depends': [
+        'base',
+        'mail',
+    ],
     'data': ['data/mail.xml', ],
     'installable': True
 }
