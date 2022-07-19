@@ -202,16 +202,20 @@ class StockMove(models.Model):
     @api.depends('move_dest_ids', 'location_dest_id', 'product_id')
     def _compute_final_location(self):
         admin = self.user_has_groups('base.group_system')
-        for move in self:
-            move.final_location = move.location_dest_id.name
-            move_dest_id = move.move_dest_ids and move.move_dest_ids[0] or False
-            if move_dest_id and move.product_id.id == move_dest_id.product_id.id:
+        for rec in self:
+            rec.final_location = rec.location_dest_id.name
+            move_dest_id = rec.move_dest_ids and rec.move_dest_ids[0] or False
+            if move_dest_id and rec.product_id.id == move_dest_id.product_id.id:
+                if not move_dest_id.final_location:
+                    # Force recompute since Odoo framework does not
+                    # seems to do it properly ...
+                    move_dest_id._compute_final_location()
                 final_location = move_dest_id.final_location
                 if final_location:
                     if admin:
-                        move.final_location += ' > ' + final_location
+                        rec.final_location += ' > ' + final_location
                     else:
-                        move.final_location = final_location
+                        rec.final_location = final_location
 
     @api.model
     @ormcache()
