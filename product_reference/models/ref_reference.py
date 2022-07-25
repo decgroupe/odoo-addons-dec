@@ -36,15 +36,15 @@ class RefReference(models.Model):
     )
     # TODO: Step 1 : Rename to product_tmpl_id
     product_id = fields.Many2one(
-        'product.template',
-        'Product Template',
+        comodel_name='product.template',
+        string='Product Template',
         required=True,
         copy=False,
     )
     # TODO: Step 2 : Rename to product_id
     product_variant_id = fields.Many2one(
-        'product.product',
-        'Product',
+        comodel_name='product.product',
+        string='Product',
         copy=False,
         compute='_compute_product_variant_id',
         inverse='_inverse_product_variant_id',

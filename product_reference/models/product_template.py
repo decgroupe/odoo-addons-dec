@@ -9,15 +9,15 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     reference_id = fields.Many2one(
-        'ref.reference',
-        'Reference',
+        comodel_name='ref.reference',
+        string='Reference',
         compute='_compute_reference_id',
         readonly=True,
         ondelete='set null',
     )
     reference_ids = fields.One2many(
-        'ref.reference',
-        'product_id',
+        comodel_name='ref.reference',
+        inverse_name='product_id',
         string='References',
     )
 
