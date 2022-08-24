@@ -32,10 +32,22 @@ class MailActivityForecastMixin(models.AbstractModel):
     @api.multi
     def _get_scheduling_activity_deadline(self):
         self.ensure_one()
-        res = fields.Date.context_today(self)
+        res = False
         date_fields = self._get_forecast_date_fields()
-        if date_fields.get('deadline'):
-            res = self[date_fields['deadline']] or res
+        if not res:
+            if date_fields.get('deadline'):
+                res = self[date_fields['deadline']]
+        if not res:
+            # If no deadline is  set then use the stop date as deadline
+            if date_fields.get('stop'):
+                res = self[date_fields['stop']]
+        if not res:
+            # If no stop date is set then use the start date as deadline
+            if date_fields.get('start'):
+                res = self[date_fields['start']]
+        if not res:
+            # Finally, if no date at all is set, then use the current day
+            res = fields.Date.context_today(self)
         return res
 
     @api.multi
@@ -45,6 +57,7 @@ class MailActivityForecastMixin(models.AbstractModel):
         return {
             'activity_type_id': act_type.id,
             'user_id': self.user_id.id,
+            'automated': True,
         }
 
     @api.multi
