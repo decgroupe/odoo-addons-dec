@@ -59,7 +59,8 @@ class MailActivity(models.Model):
                         related_object_id = rec.env[rec.res_model].browse(
                             rec.res_id
                         )
-                        related_object_id.write(data)
+                        related_object_id.with_context(tracking_disable=True,
+                                                      ).write(data)
 
     def _sync_with_event(self, vals):
         if 'date_start' in vals or 'date_stop' in vals and not self.env.context.get(
