@@ -28,6 +28,7 @@ class RefMarketCategory(models.Model):
         selection=[
             ('normal', 'Normal'),
             ('obsolete', 'Obsolete'),
+            ('title', 'Title'),
         ],
         string='Status',
         default='normal',
