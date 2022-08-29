@@ -10,6 +10,7 @@
     'depends': [
         'project_identification',
         'sale_timesheet_existing_project',
+        'sale_delivery_date',
     ],
     'data': [
         'views/sale_order.xml',

@@ -15,7 +15,14 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         self.action_create_project()
         res = super(SaleOrder, self)._action_confirm()
+        self._sync_project_dates()
         return res
+
+    @api.multi
+    def _sync_project_dates(self):
+        for rec in self.filtered('project_id'):
+            rec.project_id.date_start = rec.confirmation_date
+            rec.project_id.date = rec.expected_last_date
 
     @api.multi
     def action_create_project(self):
