@@ -21,14 +21,13 @@ class SaleOrder(models.Model):
     @api.multi
     def _sync_project_dates(self):
         for rec in self.filtered('project_id'):
-            rec.project_id.date_start = rec.confirmation_date
-            rec.project_id.date = rec.expected_last_date
+            rec.project_id.date_start = rec.confirmation_date.date()
+            rec.project_id.date = rec.expected_last_date.date()
 
     @api.multi
     def action_create_project(self):
         contract_type_id = self.env.ref('project_identification.contract_type')
         Project = self.env['project.project'].with_context(
-            active_test=False,
             # Do not subscribe assigned user
             mail_create_nosubscribe=True,
             # Do not notify the subscribed user (not needed if
@@ -54,7 +53,9 @@ class SaleOrder(models.Model):
                 ]
                 if not self.env.context.get('ignore_partner_id'):
                     domain += [('partner_id', '=', project_data['partner_id'])]
-                project_id = Project.search(domain, limit=1)
+                project_id = Project.with_context(active_test=False, ).search(
+                    domain, limit=1
+                )
                 if not project_id:
                     # Create project as SUPER_USER
                     project_id = Project.sudo().create(project_data)
