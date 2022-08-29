@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-06 10:45+0000\n"
-"PO-Revision-Date: 2022-06-06 12:46+0200\n"
+"POT-Creation-Date: 2022-08-29 08:42+0000\n"
+"PO-Revision-Date: 2022-08-29 10:43+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
 "X-Generator: Poedit 2.4.3\n"
 
 #. module: sale_delivery_date
@@ -28,11 +28,6 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: sale_delivery_date
-#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__effective_last_date
-msgid "Effective Last Date"
-msgstr "Dernière date effective"
-
-#. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__id
 msgid "ID"
 msgstr "ID"
@@ -41,6 +36,21 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
+
+#. module: sale_delivery_date
+#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__effective_last_date
+msgid "Latest Effective Date"
+msgstr "Dernière date effective"
+
+#. module: sale_delivery_date
+#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__expected_last_date
+msgid "Latest Expected Date"
+msgstr "Dernière date prévue"
+
+#. module: sale_delivery_date
+#: model:ir.model.fields,help:sale_delivery_date.field_sale_order__expected_last_date
+msgid "Latest delivery date that you can tell your customer, computed from product lead times."
+msgstr "Date de livraison la plus éloignée que vous pouvez communiquer à votre client, calculée à partir des délais de livraison des produits."
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_sale_order
