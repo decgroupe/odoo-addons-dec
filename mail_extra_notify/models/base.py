@@ -13,5 +13,8 @@ class Base(models.AbstractModel):
         key = IrTranslation.get_field_string(model._name)[field_name]
         value = model[field_name]
         if isinstance(value, models.Model):
-            value = value.name_get()[0][1]
+            if value:
+                value = value.name_get()[0][1]
+            else:
+                value = False
         return key, value
