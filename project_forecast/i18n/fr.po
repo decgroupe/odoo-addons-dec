@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_forecast
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-30 13:12+0000\n"
+"PO-Revision-Date: 2022-08-30 15:13+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: project_forecast
+#: model:ir.model.fields,help:project_forecast.field_project_project__schedulable
+#: model:ir.model.fields,help:project_forecast.field_project_task__schedulable
+msgid "A scheduling activity will be automatically created and synced while schedulable is set"
+msgstr "Une activité de planification sera automatiquement créée et synchronisée lorsque l'option \"Planifiable\" est activée"
+
+#. module: project_forecast
+#: model:ir.model.fields,field_description:project_forecast.field_project_project__display_name
+#: model:ir.model.fields,field_description:project_forecast.field_project_task__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: project_forecast
+#: model:ir.model.fields,field_description:project_forecast.field_project_project__id
+#: model:ir.model.fields,field_description:project_forecast.field_project_task__id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_forecast
+#: model:ir.model.fields,field_description:project_forecast.field_project_project____last_update
+#: model:ir.model.fields,field_description:project_forecast.field_project_task____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: project_forecast
+#: model:ir.model,name:project_forecast.model_project_project
+msgid "Project"
+msgstr "Projet"
+
+#. module: project_forecast
+#: model:ir.model.fields,field_description:project_forecast.field_project_project__schedulable
+#: model:ir.model.fields,field_description:project_forecast.field_project_task__schedulable
+msgid "Schedulable"
+msgstr "Planifiable"
+
+#. module: project_forecast
+#: model:ir.model.fields,field_description:project_forecast.field_project_project__scheduling_activity_id
+#: model:ir.model.fields,field_description:project_forecast.field_project_task__scheduling_activity_id
+msgid "Scheduling Activity"
+msgstr "Activité de planification"
+
+#. module: project_forecast
+#: model:ir.model,name:project_forecast.model_project_task
+msgid "Task"
+msgstr "Tâche"
