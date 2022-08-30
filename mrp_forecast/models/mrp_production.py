@@ -19,3 +19,15 @@ class MrpProduction(models.Model):
             }
         )
         return res
+
+    @api.multi
+    @api.depends("state")
+    def _compute_schedulable(self):
+        super()._compute_schedulable()
+
+    @api.multi
+    def _is_schedulable(self):
+        res = super()._is_schedulable()
+        if res and self.state in ['done', 'cancel']:
+            res = False
+        return res
