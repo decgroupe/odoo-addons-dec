@@ -15,10 +15,10 @@ def post_init_hook(cr, registry):
     project_ids.with_context(
         mail_activity_quick_update=True,
         tracking_disable=True,
-    )._ensure_scheduling_activity()
+    ).filtered('schedulable')._ensure_scheduling_activity()
 
     task_ids = env['project.project'].search([])
     task_ids.with_context(
         mail_activity_quick_update=True,
         tracking_disable=True,
-    )._ensure_scheduling_activity()
+    ).filtered('schedulable')._ensure_scheduling_activity()

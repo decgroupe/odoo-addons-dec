@@ -19,3 +19,16 @@ class Project(models.Model):
             }
         )
         return res
+
+    @api.multi
+    @api.depends("active")
+    def _compute_schedulable(self):
+        super()._compute_schedulable()
+
+    @api.multi
+    def _is_schedulable(self):
+        res = super()._is_schedulable()
+        if res:
+            if not self.active:
+                res = False
+        return res
