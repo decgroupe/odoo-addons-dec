@@ -3,6 +3,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2022
 
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class MailActivityForecastMixin(models.AbstractModel):
@@ -13,20 +14,35 @@ class MailActivityForecastMixin(models.AbstractModel):
         comodel_name="mail.activity",
         string="Scheduling Activity",
     )
+    schedulable = fields.Boolean(
+        string="Schedulable",
+        compute="_compute_schedulable",
+        help="A scheduling activity will be automatically created and synced "
+        "while schedulable is set",
+        store=True
+    )
 
     @api.model
     def create(self, vals):
         rec = super(MailActivityForecastMixin, self).create(vals)
-        rec._ensure_scheduling_activity()
-        rec._sync_with_scheduling_activity(vals)
+        if rec.schedulable:
+            rec._ensure_scheduling_activity()
+            rec._sync_with_scheduling_activity(vals)
         return rec
 
     @api.multi
     def write(self, vals):
         res = super().write(vals)
         if res:
-            self._ensure_scheduling_activity()
-            self._sync_with_scheduling_activity(vals)
+            self_schedulable = self.filtered('schedulable')
+            if self_schedulable:
+                self_schedulable._ensure_scheduling_activity()
+                self_schedulable._sync_with_scheduling_activity(vals)
+            else:
+                self_scheduled = self.filtered('scheduling_activity_id')
+                if self_scheduled:
+                    self_scheduled._close_scheduling_activity()
+
         return res
 
     @api.multi
@@ -65,6 +81,9 @@ class MailActivityForecastMixin(models.AbstractModel):
         if 'mail.activity.mixin' not in self._inherit_module:
             return
         for rec in self:
+            if not rec.schedulable:
+                raise UserError("You cannot ensure a scheduling activity")
+
             if not rec.scheduling_activity_id:
                 activity_data = rec._prepare_scheduling_activity_data()
                 if activity_data:
@@ -101,3 +120,19 @@ class MailActivityForecastMixin(models.AbstractModel):
             'stop': False,
             'deadline': False,
         }
+
+    @api.multi
+    def _compute_schedulable(self):
+        for rec in self:
+            rec.schedulable = rec._is_schedulable()
+
+    @api.multi
+    def _is_schedulable(self):
+        self.ensure_one()
+        return True
+
+    @api.multi
+    def _close_scheduling_activity(self):
+        for rec in self:
+            rec.scheduling_activity_id.action_done()
+            rec.scheduling_activity_id = False

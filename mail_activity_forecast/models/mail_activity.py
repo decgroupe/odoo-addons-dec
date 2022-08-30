@@ -37,6 +37,10 @@ class MailActivity(models.Model):
             self._sync_with_event(vals)
         return res
 
+    def unlink(self):
+        _logger.info("🗑️ Deleting %s", self)
+        return super().unlink()
+
     def _sync_with_related_object(self, vals):
         if 'date_start' in vals or 'date_stop' in vals \
         or 'date_deadline' in vals and not self.env.context.get(
