@@ -32,6 +32,7 @@ class MailActivityMixin(models.AbstractModel):
             if redirection.user_id and redirection.match(
                 self._name,
                 act_type_xmlid,
+                act_values.get('activity_type_id'),
                 act_values.get('user_id'),
                 act_values.get('stored_views_or_xmlid'),
                 note,

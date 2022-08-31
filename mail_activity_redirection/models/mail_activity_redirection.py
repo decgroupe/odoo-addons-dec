@@ -105,14 +105,16 @@ class MailActivityRedirection(models.Model):
         self,
         model_name,
         type_xmlid,
+        type_id,
         user_id,
         qweb_template_xmlid,
         note,
     ):
         _logger.debug(
-            'Match test against %s, %s, %s, %s, %s',
+            'Match test against %s, %s, %s, %s, %s, %s',
             model_name,
             type_xmlid,
+            type_id,
             user_id,
             qweb_template_xmlid,
             note,
@@ -127,6 +129,8 @@ class MailActivityRedirection(models.Model):
             res = (model_name in self.get_model_names())
         if res and type_xmlid and self.activity_type_ids.ids:
             res = (type_xmlid in self.get_activity_type_xmlids())
+        if res and type_id and self.activity_type_ids.ids:
+            res = (type_id in self.activity_type_ids.ids)
         if res and qweb_template_xmlid and self.qweb_templates.ids:
             res = (qweb_template_xmlid in self.get_qweb_template_xmlids())
         if res and note and self.regex_pattern:
