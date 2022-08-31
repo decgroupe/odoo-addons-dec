@@ -9,8 +9,8 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     partner_academy_id = fields.Many2one(
-        'res.partner.academy',
-        related='partner_id.academy_id',
+        comodel_name='res.partner.academy',
+        related='commercial_partner_id.academy_id',
         string="Partner's Academy",
         store=True,
     )
