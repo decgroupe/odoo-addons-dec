@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="stage_confirmed" model="mrp.production.stage">
+        <field name="name">Confirmed</field>
+        <field name="sequence" eval="10" />
+        <field name="fold" eval="False" />
+    </record>
+    <record id="stage_planned" model="mrp.production.stage">
+        <field name="name">Planned</field>
+        <field name="sequence" eval="20" />
+        <field name="fold" eval="False" />
+    </record>
+    <record id="stage_supplying" model="mrp.production.stage">
+        <field name="name">Supplying</field>
+        <field name="sequence" eval="30" />
+        <field name="fold" eval="False" />
+    </record>
+    <record id="stage_progress" model="mrp.production.stage">
+        <field name="name">In Progress</field>
+        <field name="sequence" eval="40" />
+        <field name="fold" eval="False" />
+    </record>
+    <record id="stage_issue" model="mrp.production.stage">
+        <field name="name">Issue</field>
+        <field name="sequence" eval="50" />
+        <field name="fold" eval="False" />
+    </record>
+    <record id="stage_done" model="mrp.production.stage">
+        <field name="name">Done</field>
+        <field name="sequence" eval="60" />
+        <field name="fold" eval="True" />
+    </record>
+    <record id="stage_cancel" model="mrp.production.stage">
+        <field name="name">Cancel</field>
+        <field name="sequence" eval="70" />
+        <field name="fold" eval="True" />
+    </record>
+
+</odoo>

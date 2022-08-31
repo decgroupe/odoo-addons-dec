@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_production_stage_user,production.stage.user,model_mrp_production_stage,base.group_user,1,0,0,0
+access_production_stage_project_user,production.stage.project.user,model_mrp_production_stage,mrp.group_mrp_user,1,0,0,0
+access_production_stage_manager,production.stage manager,model_mrp_production_stage,mrp.group_mrp_manager,1,1,1,1
+access_production_stage_portal,production.stage portal,model_mrp_production_stage,base.group_portal,1,0,0,0

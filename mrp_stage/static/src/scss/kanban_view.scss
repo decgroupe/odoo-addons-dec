@@ -1,0 +1,30 @@
+.o_kanban_view {
+
+    .o_kanban_record {
+
+        .o_kanban_record_top {
+
+            .oe_kanban_top_left,
+            .oe_kanban_top_right {
+                display: flex;
+                align-items: center;
+                min-height: 20px;
+            }
+
+            .oe_kanban_top_left {
+                flex: 1 1 auto;
+
+                >* {
+                    margin-right: 6px;
+                    line-height: 1;
+                }
+            }
+
+            .oe_kanban_top_right {
+                flex: 0 1 auto;
+            }
+        }
+    }
+
+
+}

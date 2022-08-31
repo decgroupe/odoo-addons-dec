@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="mail_activity_production_issue" model="mail.activity.type">
+        <field name="name">Issue</field>
+        <field name="icon">fa-warning</field>
+        <field name="delay_count">0</field>
+        <field name="decoration_type">warning</field>
+        <field name="res_model_id" ref="mrp.model_mrp_production"></field>
+    </record>
+
+</odoo>
