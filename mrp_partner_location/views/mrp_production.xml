@@ -24,7 +24,6 @@
         </field>
     </record>
 
-
     <record model="ir.ui.view" id="mrp_production_filter_view">
         <field name="name">mrp.production.select@mrp_partner_location</field>
         <field name="model">mrp.production</field>
@@ -36,6 +35,23 @@
             <filter name="groupby_partner_id" position="after">
                 <filter string="ZIP Location" name="groupby_partner_zip_id" domain="[]" context="{'group_by':'partner_zip_id'}"/>
             </filter>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
+        <field name="name">mrp.production.kanban@mrp_partner</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='name']" position="after">
+                <field name="partner_zip_id" />
+            </xpath>
+            <xpath expr="//kanban//templates//div[@name='body']/small[@name='partner']" position="inside">
+                <div t-if="record.partner_zip_id.raw_value">
+                    <i class="fa fa-map-marker"/>
+                    <t t-raw="record.partner_zip_id.value"/>
+                </div>
+            </xpath>
         </field>
     </record>
 

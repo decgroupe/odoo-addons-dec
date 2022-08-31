@@ -11,6 +11,15 @@ class MrpProduction(models.Model):
     # To replace with module `mrp_sale_info` ?
 
     partner_id = fields.Many2one(
-        'res.partner',
-        'Partner',
+        comodel_name='res.partner',
+        string='Partner',
+    )
+    commercial_partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Customer',
+        compute_sudo=True,
+        related='partner_id.commercial_partner_id',
+        store=True,
+        readonly=True,
+        help="The commercial entity that will receive this order"
     )
