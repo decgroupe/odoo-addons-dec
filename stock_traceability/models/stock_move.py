@@ -5,9 +5,13 @@
 import logging
 import random
 
+from datetime import datetime
+
 from odoo import _, api, fields, models
 from odoo.tools import html2plaintext, ormcache
 from odoo.tools.float_utils import float_compare
+
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 from odoo.addons.tools_miscellaneous.tools.html_helper import (
     div, ul, li, small, b, format_hd
@@ -99,6 +103,7 @@ TREE_COLORS = [
     LIME[INDEX_3],
     GREY[INDEX_3],
 ]
+
 
 class StockMove(models.Model):
     _inherit = "stock.move"
@@ -385,6 +390,17 @@ class StockMove(models.Model):
             # Since the current status is unknown, fallback using mts status
             # to print archive when exists
             res.extend(self._get_mts_status(html))
+
+        # Add parent picking informations
+        if len(self.move_orig_ids.ids) == 1:
+            picking_id = self.move_orig_ids.picking_id
+            if picking_id:
+                head = '🚚 {0}'.format(self.move_orig_ids.picking_id.name)
+                desc = datetime.strftime(
+                    picking_id.scheduled_date, DEFAULT_SERVER_DATE_FORMAT
+                )
+                res.append(format_hd(head, desc, html))
+
         return res
 
     def _get_mts_status(self, html=False):
