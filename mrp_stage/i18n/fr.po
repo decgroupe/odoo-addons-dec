@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 09:25+0000\n"
-"PO-Revision-Date: 2022-09-01 11:27+0200\n"
+"POT-Creation-Date: 2022-09-01 12:44+0000\n"
+"PO-Revision-Date: 2022-09-01 15:13+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -19,8 +19,18 @@ msgstr ""
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "<i class=\"fa fa-caret-right\"/> Start"
+msgstr "<i class=\"fa fa-caret-right\"/> Démarrer"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
 msgstr "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
+
+#. module: mrp_stage
+#: model:ir.model,name:mrp_stage.model_mail_activity
+msgid "Activity"
+msgstr "Activité"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
@@ -73,6 +83,7 @@ msgid "Description"
 msgstr "Description"
 
 #. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__display_name
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__display_name
 msgid "Display Name"
@@ -90,8 +101,8 @@ msgstr "Menu déroulant"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
-msgid "Edit Production Order"
-msgstr "Modifier la fabrication"
+msgid "Edit"
+msgstr "Modifier"
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__fold
@@ -99,6 +110,7 @@ msgid "Folded in Kanban"
 msgstr "Repliée dans la vue Kanban"
 
 #. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__id
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__id
 msgid "ID"
@@ -121,6 +133,7 @@ msgid "Issue"
 msgstr "Incident"
 
 #. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity____last_update
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage____last_update
 msgid "Last Modified on"
@@ -180,6 +193,11 @@ msgstr "Nom de l'étape"
 #: model:ir.ui.menu,name:mrp_stage.menu_mrp_production_action_staged
 msgid "Staged Manufacturing Orders"
 msgstr "Ordres de fabrication échelonnés"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_form_view
+msgid "Start Production"
+msgstr "Démarrer la fabrication"
 
 #. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__fold
