@@ -44,6 +44,7 @@
         <field name="inherit_id" ref="mrp_stage.mrp_production_staged_kanban_view"/>
         <field name="arch" type="xml">
             <xpath expr="//kanban/field[@name='name']" position="after">
+                <field name="partner_id" />
                 <field name="commercial_partner_id" />
             </xpath>
             <xpath expr="//kanban//templates//div[@name='body']" position="inside">
