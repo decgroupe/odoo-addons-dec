@@ -31,8 +31,25 @@ class Production(models.Model):
             rec.state_emoji = production_state_to_emoji(rec.state)
 
     def get_head_desc(self):
-        state = dict(self._fields['state']._description_selection(self.env)
-                    ).get(self.state)
+        # Soft dependency to `mrp_stage` module
+        if hasattr(self, 'stage_id'):
+            state = self.stage_id.name
+            code = self.stage_id.code
+            emoji = self.stage_id.emoji
+        else:
+            state = dict(
+                self._fields['state']._description_selection(self.env)
+            ).get(self.state)
+            code = self.state
+            emoji = self.state_emoji
+
+        # Soft dependency to `mrp_timesheet` module
+        if hasattr(self, 'progress') and code == 'progress':
+            state = "{0} {1:.0f}%".format(state, self.progress)
+        # Soft dependency to `mrp_picked_rate` module
+        elif hasattr(self, 'picked_rate') and code == 'supplying':
+            state = "{0} {1:.0f}%".format(state, self.picked_rate)
+
         head = '⚙️{0}'.format(self.name)
-        desc = '{0}{1}'.format(self.state_emoji, state)
+        desc = '{0}{1}'.format(emoji, state)
         return head, desc
