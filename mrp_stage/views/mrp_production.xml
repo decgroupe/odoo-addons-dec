@@ -15,16 +15,25 @@
         </field>
     </record>
 
-    <!-- 
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_stage</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-
+            <button name="open_produce_product" position="before">
+                <button 
+                    name="action_start" 
+                    string="Start Production" 
+                    attrs="{'invisible': [
+                            ('state', 'not in', ('confirmed','planned'))
+                        ]}"
+                    icon="fa-caret-right"
+                    class="btn-success"
+                    type="object">
+                </button>
+            </button>
         </field>
     </record>
-    -->
 
     <!-- Production Order Kanban View -->
     <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
@@ -32,8 +41,9 @@
         <field name="model">mrp.production</field>
         <field name="arch" type="xml">
             <kanban default_group_by="stage_id" class="_kanban_small_column o_opportunity_kanban" create="0" _order="date_deadline" group_create="false" group_edit="false" group_delete="false" disable_sort_column="true" disable_drag_drop_record="true">
+                <field name="state"/>
                 <field name="stage_id"/>
-                <field name="color"/>
+                <field name="kanban_color"/>
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="bom_id"/>
@@ -43,13 +53,12 @@
                 <field name="message_needaction_counter"/>
                 <field name="activity_ids"/>
                 <field name="activity_state"/>
-                <field name="sale_order_id"/>
                 <!-- 
                 <progressbar field="kanban_state" colors='{"done": "success", "blocked": "danger"}'/>
                 -->
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.kanban_color.raw_value)} oe_kanban_card oe_kanban_global_click">
                             <div class="oe_kanban_content">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_record_headings">
@@ -84,20 +93,20 @@
                                             <span class="fa fa-ellipsis-v"/>
                                         </a>
                                         <div class="dropdown-menu" role="menu">
+                                            <t t-if="record.state.raw_value == 'confirmed' or record.state.raw_value == 'planned'">
+                                                <a name="action_start" role="menuitem" type="object" class="dropdown-item"><i class="fa fa-caret-right"/> Start</a>
+                                            </t>
                                             <a name="action_assign_to_me" role="menuitem" type="object" class="dropdown-item">Assign to Me</a>
-                                            <a t-if="widget.editable" role="menuitem" type="edit" class="dropdown-item">Edit Production Order</a>
+                                            <a t-if="widget.editable" role="menuitem" type="edit" class="dropdown-item">Edit</a>
                                             <div role="separator" class="dropdown-divider"></div>
-                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                            <ul class="oe_kanban_colorpicker" data-field="kanban_color"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="o_kanban_record_body" name="body">
-                                    <div name="origin">
-                                        <span class="text-muted">
-                                            <field name="sale_order_id"/>
-                                        </span>
-                                    </div>
                                     <!-- <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/> -->
+                                </div>
+                                <div class="o_kanban_record_progress" name="progress">
                                 </div>
                                 <div class="o_kanban_record_bottom">
                                     <div class="oe_kanban_bottom_left">

@@ -1,0 +1,202 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_stage
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-01 09:25+0000\n"
+"PO-Revision-Date: 2022-09-01 11:27+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
+msgstr "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "Assign to Me"
+msgstr "Me l'assigner"
+
+#. module: mrp_stage
+#: model:mrp.production.stage,name:mrp_stage.stage_cancel
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__code
+msgid "Code"
+msgstr "Code"
+
+#. module: mrp_stage
+#: sql_constraint:mrp.production.stage:0
+msgid "Code must be unique !"
+msgstr "`code` doit être unique."
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__kanban_color
+msgid "Color Index"
+msgstr "Couleur"
+
+#. module: mrp_stage
+#: model:mrp.production.stage,name:mrp_stage.stage_confirmed
+msgid "Confirmed"
+msgstr "Confirmée"
+
+#. module: mrp_stage
+#: model_terms:ir.actions.act_window,help:mrp_stage.act_mrp_production_staged
+msgid "Create a new manufacturing order"
+msgstr "Créer un nouvel ordre de fabrication"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__description
+msgid "Description"
+msgstr "Description"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_stage
+#: model:mrp.production.stage,name:mrp_stage.stage_done
+msgid "Done"
+msgstr "Terminé"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "Dropdown menu"
+msgstr "Menu déroulant"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "Edit Production Order"
+msgstr "Modifier la fabrication"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__fold
+msgid "Folded in Kanban"
+msgstr "Repliée dans la vue Kanban"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__emoji
+msgid "Icon"
+msgstr "Icône"
+
+#. module: mrp_stage
+#: model:mrp.production.stage,name:mrp_stage.stage_progress
+msgid "In Progress"
+msgstr "En cours"
+
+#. module: mrp_stage
+#: model:mail.activity.type,name:mrp_stage.mail_activity_production_issue
+#: model:mrp.production.stage,name:mrp_stage.stage_issue
+msgid "Issue"
+msgstr "Incident"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: mrp_stage
+#: model:ir.actions.act_window,name:mrp_stage.act_mrp_production_staged
+msgid "Manufacturing Orders"
+msgstr "Fabrications"
+
+#. module: mrp_stage
+#: model:mrp.production.stage,name:mrp_stage.stage_planned
+msgid "Planned"
+msgstr "Planifiée"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "Product"
+msgstr "Article"
+
+#. module: mrp_stage
+#: model:ir.model,name:mrp_stage.model_mrp_production
+msgid "Production Order"
+msgstr "Fabrication"
+
+#. module: mrp_stage
+#: model:ir.model,name:mrp_stage.model_mrp_production_stage
+msgid "Production Stage"
+msgstr "Phase de production"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__stage_id
+msgid "Stage"
+msgstr "Étape"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__name
+msgid "Stage Name"
+msgstr "Nom de l'étape"
+
+#. module: mrp_stage
+#: model:ir.ui.menu,name:mrp_stage.menu_mrp_production_action_staged
+msgid "Staged Manufacturing Orders"
+msgstr "Ordres de fabrication échelonnés"
+
+#. module: mrp_stage
+#: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__fold
+msgid "This stage is folded in the kanban view when there are no records in that stage to display."
+msgstr "Cette étape est repliée dans la vue Kanban quand il n'y a pas de dossier à afficher dans cette étape."
+
+#. module: mrp_stage
+#: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__code
+msgid "Unique lowercase string identifier"
+msgstr "Identifiant unique de chaîne de caractères minuscules"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "Unread Messages"
+msgstr "Messages non lus"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "oe_kanban_text_red"
+msgstr "oe_kanban_text_red"

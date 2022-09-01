@@ -25,6 +25,31 @@
             }
         }
     }
+}
 
+.kanban_progress {
+    width: 100%;
+    display: inline-block;
+    font-size: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
 
+.kanban_progress .kanban_progress_bar {
+    width: 85%;
+    display: inline-block;
+    margin-bottom: 0px;
+    height: 10px;
+}
+
+.kanban_progress .kanban_progress_bar_done {
+    max-width: 100%;
+    min-width: 3%;
+    height: 100%;
+}
+
+.kanban_progress .kanban_completion {
+    width: 10%;
+    display: inline-block;
+    height: 13px;
 }

@@ -6,8 +6,9 @@
     'summary': "Computed stage based on existing state and other data",
     'depends': [
         'mrp',
-        'mrp_picked_rate',
         'web_kanban_draggable',
+        'web_ir_actions_act_multi',
+        'web_ir_actions_act_view_reload',
     ],
     'data':
         [
