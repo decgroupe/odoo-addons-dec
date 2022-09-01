@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="stage_supplying" model="mrp.production.stage">
+        <field name="name">Supplying</field>
+        <field name="code">supplying</field>
+        <field name="emoji">🛒</field>
+        <field name="sequence" eval="25" />
+        <field name="fold" eval="False" />
+    </record>
+
+</odoo>

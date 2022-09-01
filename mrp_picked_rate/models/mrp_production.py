@@ -15,17 +15,27 @@ class MrpProduction(models.Model):
         store=True,
     )
 
+    kanban_show_picked_rate = fields.Boolean(
+        string="Show Picked Rate",
+        compute="_compute_kanban_show_picked_rate",
+    )
+
     @api.multi
     @api.depends('move_raw_ids', 'note')
     def _compute_picked_rate(self):
         for rec in self:
-            all_move_ids = rec.move_raw_ids.filtered(
-                lambda x: x.state != 'cancel'
-            )
-            if all_move_ids:
-                received_move_ids = all_move_ids.filtered(lambda x: x.received)
-                rec.picked_rate = \
-                    len(received_move_ids) * 100 / len(all_move_ids)
+            if not rec.move_raw_ids:
+                rec.picked_rate = 100
+            else:
+                all_move_ids = rec.move_raw_ids.filtered(
+                    lambda x: x.state != 'cancel'
+                )
+                if all_move_ids:
+                    received_move_ids = all_move_ids.filtered(
+                        lambda x: x.received
+                    )
+                    rec.picked_rate = \
+                        len(received_move_ids) * 100 / len(all_move_ids)
 
     @api.multi
     def action_update_picked_rate(self):
@@ -44,3 +54,29 @@ class MrpProduction(models.Model):
             ]
         ).filtered('move_raw_ids')
         production_ids._compute_picked_rate()
+
+    def _get_stages_ref(self):
+        res = super()._get_stages_ref()
+        res['supplying'] = self.env.ref('mrp_picked_rate.stage_supplying')
+        return res
+
+    @api.multi
+    @api.depends('picked_rate')
+    def _compute_stage_id(self):
+        super()._compute_stage_id()
+        stages = self._get_stages_ref()
+        for rec in self:
+            if rec.stage_id == stages['confirmed'] and rec.picked_rate > 0:
+                rec.stage_id = stages['supplying']
+
+    @api.multi
+    @api.depends('stage_id', 'picked_rate')
+    def _compute_kanban_show_picked_rate(self):
+        stages = self._get_stages_ref()
+        for rec in self:
+            if rec.stage_id.id == stages['supplying'].id:
+                rec.kanban_show_picked_rate = True
+            elif rec.picked_rate < 100 and rec.stage_id.id in (
+                stages['progress'].id, stages['issue'].id
+            ):
+                rec.kanban_show_picked_rate = True

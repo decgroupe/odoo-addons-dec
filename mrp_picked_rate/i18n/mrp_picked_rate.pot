@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-20 16:05+0000\n"
-"PO-Revision-Date: 2021-05-20 16:05+0000\n"
+"POT-Creation-Date: 2022-09-01 09:25+0000\n"
+"PO-Revision-Date: 2022-09-01 09:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,31 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_picked_rate
+#: model_terms:ir.ui.view,arch_db:mrp_picked_rate.mrp_production_staged_kanban_view
+msgid "<i class=\"fa fa-shopping-cart\"/> <span>Picked Rate</span>"
+msgstr ""
+
+#. module: mrp_picked_rate
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_stock_move__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_picked_rate
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_stock_move__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_picked_rate
 #: model:ir.model.fields,help:mrp_picked_rate.field_stock_move__received
 msgid "If received, then the product should be available to be used on production"
+msgstr ""
+
+#. module: mrp_picked_rate
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_stock_move____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: mrp_picked_rate
@@ -48,8 +71,18 @@ msgid "Received"
 msgstr ""
 
 #. module: mrp_picked_rate
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__kanban_show_picked_rate
+msgid "Show Picked Rate"
+msgstr ""
+
+#. module: mrp_picked_rate
 #: model:ir.model,name:mrp_picked_rate.model_stock_move
 msgid "Stock Move"
+msgstr ""
+
+#. module: mrp_picked_rate
+#: model:mrp.production.stage,name:mrp_picked_rate.stage_supplying
+msgid "Supplying"
 msgstr ""
 
 #. module: mrp_picked_rate

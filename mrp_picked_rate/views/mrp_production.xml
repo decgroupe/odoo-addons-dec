@@ -34,4 +34,31 @@
         <field name="code">action = records.action_update_picked_rate()</field>
     </record>
 
+    <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
+        <field name="name">mrp.production.kanban@mrp_picked_rate</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='name']" position="after">
+                <field name="kanban_show_picked_rate"/>
+                <field name="picked_rate"/>
+            </xpath>
+            <xpath expr="//kanban//templates//div[@name='progress']" position="inside">
+                <t t-if="record.kanban_show_picked_rate.raw_value">
+                    <t t-set="p" t-value="record.picked_rate.raw_value"/>
+                    <div class="kanban_progress">
+                        <div class="progress_info">
+                            <i class="fa fa-shopping-cart"/> <span>Picked Rate</span>
+                        </div>
+                        <div class ="o_kanban_counter_progress progress kanban_progress_bar">
+                            <div class ="progress-bar o_bar_has_records kanban_progress_bar_done" t-attf-style="width: #{p}%; background-color: #0ea657">
+                            </div>
+                        </div>
+                        <div class="kanban_completion"> <t t-esc="record.picked_rate.value"/>% </div>
+                    </div>
+                </t>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
