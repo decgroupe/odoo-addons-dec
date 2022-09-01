@@ -85,7 +85,7 @@ odoo.define('mail_activity_my', function (require) {
                 this.$('.o_activity_my_summary').addClass('o_activity_color_' + (this.activityState || 'default'));
             }
             if (this.recordData.activity_my_type_icon) {
-                this.el.querySelector('.o_activity_btn > span').classList.replace('fa-clock-o', this.recordData.activity_my_type_icon);
+                this.el.querySelector('.o_activity_btn > span').classList.replace('fa-clock', this.recordData.activity_my_type_icon);
             }
         },
 
