@@ -10,7 +10,20 @@ class ProductionStage(models.Model):
     _description = 'Production Stage'
     _order = 'sequence, id'
 
-    name = fields.Char(string='Stage Name', required=True, translate=True)
+    name = fields.Char(
+        string='Stage Name',
+        required=True,
+        translate=True,
+    )
+    code = fields.Char(
+        string='Code',
+        required=True,
+        help="Unique lowercase string identifier",
+    )
+    emoji = fields.Char(
+        string='Icon',
+        translate=False,
+    )
     description = fields.Text(translate=True)
     sequence = fields.Integer(default=1)
     fold = fields.Boolean(
@@ -18,3 +31,19 @@ class ProductionStage(models.Model):
         help='This stage is folded in the kanban view when there are no '
         'records in that stage to display.'
     )
+
+    _sql_constraints = [
+        ('code_uniq', 'unique (code)', "Code must be unique !"),
+    ]
+
+    @api.multi
+    @api.depends('name', 'emoji')
+    def name_get(self):
+        res = []
+        for rec in self:
+            if rec.emoji:
+                name = '%s %s' % (rec.emoji, rec.name)
+            else:
+                name = rec.name
+            res.append((rec.id, name))
+        return res
