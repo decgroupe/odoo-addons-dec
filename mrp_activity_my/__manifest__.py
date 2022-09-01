@@ -9,6 +9,7 @@
     'depends':
         [
             'mrp',
+            'mrp_stage',
             'web_widget_mail_list_activity',
             'web_widget_remaining_days',
             'mail_activity_my',

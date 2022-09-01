@@ -35,4 +35,21 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
+        <field name="name">mrp.production.kanban@mrp_activity_my</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp_stage.mrp_production_staged_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/templates" position="before">
+                <field name="activity_my_ids"/>
+                <field name="activity_my_state"/>
+                <progressbar field="activity_my_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
+                <field name="activity_my_ids" widget="kanban_activity_my"/>
+            </xpath>
+        </field>
+    </record>
+
+
 </odoo>
