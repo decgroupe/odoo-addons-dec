@@ -10,6 +10,7 @@
         'mrp_project',
         'mrp_partner',
         'mrp_identification',
+        'mrp_stage',
         'hr_timesheet',
     ],
     'data': [

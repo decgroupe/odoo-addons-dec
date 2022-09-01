@@ -40,31 +40,51 @@ class MrpProduction(models.Model):
         string='Total Hours'
     )
 
+    def write(self, vals):
+        res = super().write(vals)
+        if 'planned_hours' in vals:
+            self.onchange_planned_hours()
+        return res
+
     @api.depends('timesheet_ids.unit_amount')
     def _compute_total_hours(self):
-        for record in self:
-            record.total_hours = sum(
-                record.timesheet_ids.mapped('unit_amount')
-            )
+        for rec in self:
+            rec.total_hours = sum(rec.timesheet_ids.mapped('unit_amount'))
+            # Automatically set state to "In Progress" if a timesheet input
+            # is added to this production order
+            if rec.total_hours > 0 and (rec.state in ('planned', 'confirmed')):
+                rec.action_start()
 
     @api.constrains('project_id')
     def _constrains_project_timesheets(self):
         if not self.env.context.get('ignore_constrains_project_timesheets'):
-            for record in self:
-                record.timesheet_ids.update({
-                    'project_id': record.project_id.id
-                })
+            for rec in self:
+                rec.timesheet_ids.update({'project_id': rec.project_id.id})
 
     @api.depends('planned_hours', 'total_hours')
     def _compute_progress_hours(self):
-        for record in self:
-            record.progress = 0.0
-            if (record.planned_hours > 0.0):
-                if record.total_hours > record.planned_hours:
-                    record.progress = 100
+        for rec in self:
+            rec.progress = 0.0
+            if (rec.planned_hours > 0.0):
+                if rec.total_hours > rec.planned_hours:
+                    rec.progress = 100
                 else:
-                    record.progress = round(
-                        100.0 * record.total_hours / record.planned_hours,
-                        2
+                    rec.progress = round(
+                        100.0 * rec.total_hours / rec.planned_hours, 2
                     )
-            record.remaining_hours = record.planned_hours - record.total_hours
+            rec.remaining_hours = rec.planned_hours - rec.total_hours
+
+    def onchange_planned_hours(self):
+        # Change confirmed -> planned
+        confirmed_orders = self.filtered(
+            lambda x: x.state == 'confirmed' and x.planned_hours > 0
+        )
+        if confirmed_orders:
+            confirmed_orders.write({'state': 'planned'})
+
+        # Change planned -> confirmed
+        planned_orders = self.filtered(
+            lambda x: x.state == 'planned' and x.planned_hours == 0
+        )
+        if planned_orders:
+            planned_orders.write({'state': 'confirmed'})

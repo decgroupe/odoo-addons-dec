@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-25 15:30+0000\n"
-"PO-Revision-Date: 2021-11-25 16:30+0100\n"
+"POT-Creation-Date: 2022-09-01 09:49+0000\n"
+"PO-Revision-Date: 2022-09-01 11:49+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_timesheet
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet.mrp_production_staged_kanban_view
+msgid "<i class=\"fa fa-cog\"/> <span>Building Progress</span>"
+msgstr "<i class=\"fa fa-cog\"/> <span>Avancement de fabrication</span>"
+
+#. module: mrp_timesheet
+#: model_terms:ir.ui.view,arch_db:mrp_timesheet.mrp_production_staged_kanban_view
+msgid ""
+"<i>Building progress unavailable, no planned hours.</i>\n"
+"                            Number of hours entered:"
+msgstr ""
+"<i>Avancement de la construction indisponible, pas d'heures planifiées.</i>\n"
+"                              Nombre d'heures saisies :"
 
 #. module: mrp_timesheet
 #: model:ir.model.fields,field_description:mrp_timesheet.field_mrp_production__allow_timesheets
@@ -28,13 +42,33 @@ msgid "Analytic Line"
 msgstr "Ligne analytique"
 
 #. module: mrp_timesheet
+#: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:mrp_timesheet.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_timesheet
 #: model_terms:ir.ui.view,arch_db:mrp_timesheet.mrp_production_form_view
 msgid "Duration (Hour(s))"
 msgstr "Durée (Heure(s))"
 
 #. module: mrp_timesheet
+#: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:mrp_timesheet.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_timesheet
+#: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line____last_update
+#: model:ir.model.fields,field_description:mrp_timesheet.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mrp_timesheet
 #: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__production_partner_name
 #: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__production_product_name
+#: model:ir.model.fields,field_description:mrp_timesheet.field_hr_timesheet_switch__production_partner_name
+#: model:ir.model.fields,field_description:mrp_timesheet.field_hr_timesheet_switch__production_product_name
 msgid "Name"
 msgstr "Nom"
 
@@ -45,12 +79,14 @@ msgstr "Heures planifiées"
 
 #. module: mrp_timesheet
 #: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__production_id
+#: model:ir.model.fields,field_description:mrp_timesheet.field_hr_timesheet_switch__production_id
 #: model_terms:ir.ui.view,arch_db:mrp_timesheet.hr_timesheet_line_search
 msgid "Production"
 msgstr "Fabrication"
 
 #. module: mrp_timesheet
 #: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__production_identification
+#: model:ir.model.fields,field_description:mrp_timesheet.field_hr_timesheet_switch__production_identification
 msgid "Production Identification"
 msgstr "Identification de la fabrication"
 
@@ -61,12 +97,14 @@ msgstr "Ordre de fabrication"
 
 #. module: mrp_timesheet
 #: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__production_partner_id
+#: model:ir.model.fields,field_description:mrp_timesheet.field_hr_timesheet_switch__production_partner_id
 #: model_terms:ir.ui.view,arch_db:mrp_timesheet.hr_timesheet_line_search
 msgid "Production partner"
 msgstr "Partenaire de la fabrication"
 
 #. module: mrp_timesheet
 #: model:ir.model.fields,field_description:mrp_timesheet.field_account_analytic_line__production_product_id
+#: model:ir.model.fields,field_description:mrp_timesheet.field_hr_timesheet_switch__production_product_id
 msgid "Production product"
 msgstr "Article de la fabrication"
 

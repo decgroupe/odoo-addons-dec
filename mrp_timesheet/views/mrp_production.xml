@@ -92,4 +92,40 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
+        <field name="name">mrp.production.kanban@mrp_timesheet</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='name']" position="after">
+                <field name="planned_hours"/>
+                <field name="total_hours"/>
+                <field name="progress"/>
+            </xpath>
+            <xpath expr="//kanban//templates//div[@name='progress']" position="inside">
+                <t t-if="record.planned_hours.raw_value == 0">
+                    <t t-if="record.total_hours.raw_value &gt; 0">
+                        <div class="alert alert-warning small" role="status">
+                            <i>Building progress unavailable, no planned hours.</i>
+                            Number of hours entered: <t t-esc="record.total_hours.value"/>
+                        </div>
+                    </t>
+                </t>
+                <t t-if="record.progress.raw_value &gt; 0">
+                    <t t-set="p" t-value="record.progress.raw_value"/>
+                    <div class="kanban_progress">
+                        <div class="progress_info">
+                            <i class="fa fa-cog"/> <span>Building Progress</span>
+                        </div>
+                        <div class ="o_kanban_counter_progress progress kanban_progress_bar">
+                            <div  class ="progress-bar o_bar_has_records kanban_progress_bar_done" t-attf-style="width: #{p}%;">
+                            </div>
+                        </div>
+                        <div class="kanban_completion"> <t t-esc="record.progress.value"/>% </div>
+                    </div>
+                </t>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
