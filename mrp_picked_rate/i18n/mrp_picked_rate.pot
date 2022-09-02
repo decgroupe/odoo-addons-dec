@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 09:25+0000\n"
-"PO-Revision-Date: 2022-09-01 09:25+0000\n"
+"POT-Creation-Date: 2022-09-02 13:16+0000\n"
+"PO-Revision-Date: 2022-09-02 13:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #. module: mrp_picked_rate
 #: model_terms:ir.ui.view,arch_db:mrp_picked_rate.mrp_production_staged_kanban_view
-msgid "<i class=\"fa fa-shopping-cart\"/> <span>Picked Rate</span>"
+msgid "<i class=\"fa fa-barcode\"/> <span>Supply Progress</span>"
 msgstr ""
 
 #. module: mrp_picked_rate
@@ -44,11 +44,6 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: mrp_picked_rate
-#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__picked_rate
-msgid "Picked Rate"
-msgstr ""
-
-#. module: mrp_picked_rate
 #: model:ir.model,name:mrp_picked_rate.model_mrp_production
 msgid "Production Order"
 msgstr ""
@@ -61,8 +56,13 @@ msgid "Production: Compute Picked Rate"
 msgstr ""
 
 #. module: mrp_picked_rate
-#: model:ir.model.fields,help:mrp_picked_rate.field_mrp_production__picked_rate
+#: model:ir.model.fields,help:mrp_picked_rate.field_mrp_production__supply_progress
 msgid "Rate of received raw products"
+msgstr ""
+
+#. module: mrp_picked_rate
+#: model:mrp.production.stage,name:mrp_picked_rate.stage_build_ready
+msgid "Ready to Build"
 msgstr ""
 
 #. module: mrp_picked_rate
@@ -71,8 +71,8 @@ msgid "Received"
 msgstr ""
 
 #. module: mrp_picked_rate
-#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__kanban_show_picked_rate
-msgid "Show Picked Rate"
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__kanban_show_supply_progress
+msgid "Show Supply Progress"
 msgstr ""
 
 #. module: mrp_picked_rate
@@ -81,12 +81,24 @@ msgid "Stock Move"
 msgstr ""
 
 #. module: mrp_picked_rate
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__supply_progress
+msgid "Supply Progress"
+msgstr ""
+
+#. module: mrp_picked_rate
 #: model:mrp.production.stage,name:mrp_picked_rate.stage_supplying
 msgid "Supplying"
 msgstr ""
 
 #. module: mrp_picked_rate
-#: model:ir.actions.server,name:mrp_picked_rate.action_update_picked_rate
-msgid "Update picked rate"
+#: model:ir.actions.server,name:mrp_picked_rate.action_update_supply_progress
+msgid "⚡️ Update Supply Progress"
+msgstr ""
+
+#. module: mrp_picked_rate
+#: model:ir.actions.server,name:mrp_picked_rate.ir_cron_scheduler_supply_progress_ir_actions_server
+#: model:ir.cron,cron_name:mrp_picked_rate.ir_cron_scheduler_supply_progress
+#: model:ir.cron,name:mrp_picked_rate.ir_cron_scheduler_supply_progress
+msgid "🚧 Production: Compute Supply Progress"
 msgstr ""
 

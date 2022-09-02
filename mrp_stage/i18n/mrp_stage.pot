@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 12:44+0000\n"
-"PO-Revision-Date: 2022-09-01 12:44+0000\n"
+"POT-Creation-Date: 2022-09-02 13:58+0000\n"
+"PO-Revision-Date: 2022-09-02 13:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,16 @@ msgstr ""
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "Assign to Me"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__bom_id
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.model.fields,help:mrp_stage.field_mrp_production__bom_id
+msgid "Bill of Materials allow you to define the list of required raw materials to make a finished product."
 msgstr ""
 
 #. module: mrp_stage
@@ -153,6 +163,11 @@ msgid "Manufacturing Orders"
 msgstr ""
 
 #. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
+msgid "My Orders"
+msgstr ""
+
+#. module: mrp_stage
 #: model:mrp.production.stage,name:mrp_stage.stage_planned
 msgid "Planned"
 msgstr ""
@@ -173,12 +188,18 @@ msgid "Production Stage"
 msgstr ""
 
 #. module: mrp_stage
+#: model:mrp.production.stage,name:mrp_stage.stage_dispatch_ready
+msgid "Ready to Dispatch"
+msgstr ""
+
+#. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__sequence
 msgid "Sequence"
 msgstr ""
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__stage_id
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
 msgid "Stage"
 msgstr ""
 
@@ -198,8 +219,24 @@ msgid "Start Production"
 msgstr ""
 
 #. module: mrp_stage
+#: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__todo
+msgid "This stage is considered to have actions needed"
+msgstr ""
+
+#. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__fold
 msgid "This stage is folded in the kanban view when there are no records in that stage to display."
+msgstr ""
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
+msgid "To Do"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__stage_todo
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__todo
+msgid "To-do"
 msgstr ""
 
 #. module: mrp_stage
@@ -210,6 +247,11 @@ msgstr ""
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "Unread Messages"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.model.fields,help:mrp_stage.field_mrp_production__stage_todo
+msgid "Used as a filter to only display production order linked to stages with to-do actions"
 msgstr ""
 
 #. module: mrp_stage

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 09:24+0000\n"
+"POT-Creation-Date: 2022-09-02 13:16+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,12 +10,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: mrp_picked_rate
 #: model_terms:ir.ui.view,arch_db:mrp_picked_rate.mrp_production_staged_kanban_view
-msgid "<i class=\"fa fa-shopping-cart\"/> <span>Picked Rate</span>"
-msgstr "<i class=\"fa fa-shopping-cart\"/> <span>Taux réceptionné</span>"
+msgid "<i class=\"fa fa-barcode\"/> <span>Supply Progress</span>"
+msgstr "<i class=\"fa fa-barcode\"/> <span>Avancements des approvisionnements</span>"
 
 #. module: mrp_picked_rate
 #: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__display_name
@@ -41,11 +41,6 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: mrp_picked_rate
-#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__picked_rate
-msgid "Picked Rate"
-msgstr "Taux réceptionné"
-
-#. module: mrp_picked_rate
 #: model:ir.model,name:mrp_picked_rate.model_mrp_production
 msgid "Production Order"
 msgstr "Ordre de fabrication"
@@ -58,9 +53,14 @@ msgid "Production: Compute Picked Rate"
 msgstr "Fabrication: Calculer les taux de réception"
 
 #. module: mrp_picked_rate
-#: model:ir.model.fields,help:mrp_picked_rate.field_mrp_production__picked_rate
+#: model:ir.model.fields,help:mrp_picked_rate.field_mrp_production__supply_progress
 msgid "Rate of received raw products"
 msgstr "Taux de produits bruts réceptionnés"
+
+#. module: mrp_picked_rate
+#: model:mrp.production.stage,name:mrp_picked_rate.stage_build_ready
+msgid "Ready to Build"
+msgstr "Prêt à fabriquer"
 
 #. module: mrp_picked_rate
 #: model:ir.model.fields,field_description:mrp_picked_rate.field_stock_move__received
@@ -68,9 +68,9 @@ msgid "Received"
 msgstr "Réceptionné"
 
 #. module: mrp_picked_rate
-#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__kanban_show_picked_rate
-msgid "Show Picked Rate"
-msgstr "Affiche le taux de réception"
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__kanban_show_supply_progress
+msgid "Show Supply Progress"
+msgstr "Montrer l'avancement de l'approvisionnement"
 
 #. module: mrp_picked_rate
 #: model:ir.model,name:mrp_picked_rate.model_stock_move
@@ -78,11 +78,32 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: mrp_picked_rate
+#: model:ir.model.fields,field_description:mrp_picked_rate.field_mrp_production__supply_progress
+msgid "Supply Progress"
+msgstr "Avancements des approvisionnements"
+
+#. module: mrp_picked_rate
 #: model:mrp.production.stage,name:mrp_picked_rate.stage_supplying
 msgid "Supplying"
 msgstr "Approvisionnement"
 
 #. module: mrp_picked_rate
-#: model:ir.actions.server,name:mrp_picked_rate.action_update_picked_rate
-msgid "Update picked rate"
-msgstr "Recalculer le taux de réception"
+#: model:ir.actions.server,name:mrp_picked_rate.action_update_supply_progress
+msgid "⚡️ Update Supply Progress"
+msgstr "⚡️ Mettre à jour la progression de l'approvisionnement"
+
+#. module: mrp_picked_rate
+#: model:ir.actions.server,name:mrp_picked_rate.ir_cron_scheduler_supply_progress_ir_actions_server
+#: model:ir.cron,cron_name:mrp_picked_rate.ir_cron_scheduler_supply_progress
+#: model:ir.cron,name:mrp_picked_rate.ir_cron_scheduler_supply_progress
+msgid "🚧 Production: Compute Supply Progress"
+msgstr "🚧 Fabrication: Calculer l'avancement des approvisionnements"
+
+#~ msgid "Picked Rate"
+#~ msgstr "Taux réceptionné"
+
+#~ msgid "Show Picked Rate"
+#~ msgstr "Affiche le taux de réception"
+
+#~ msgid "Update picked rate"
+#~ msgstr "Recalculer le taux de réception"

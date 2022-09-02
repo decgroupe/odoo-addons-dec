@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_purchase_progress
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-02 13:58+0000\n"
+"PO-Revision-Date: 2022-09-02 15:29+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: mrp_purchase_progress
+#: model_terms:ir.ui.view,arch_db:mrp_purchase_progress.mrp_production_staged_kanban_view
+msgid "<i class=\"fa fa-shopping-cart\"/> <span>Purchase Progress</span>"
+msgstr "<i class=\"fa fa-shopping-cart\"/> <span>Avancements des achats</span>"
+
+#. module: mrp_purchase_progress
+#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_purchase_progress
+#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_purchase_progress
+#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mrp_purchase_progress
+#: model:ir.model,name:mrp_purchase_progress.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_purchase_progress
+#: model:ir.actions.server,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress_ir_actions_server
+#: model:ir.cron,cron_name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
+#: model:ir.cron,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
+msgid "Production: Compute Purchase Progress"
+msgstr "🚧 Fabrication: Calculer l'avancement des achats"
+
+#. module: mrp_purchase_progress
+#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__purchase_progress
+msgid "Purchase Progress"
+msgstr "Avancements des achats"
+
+#. module: mrp_purchase_progress
+#: model:ir.model.fields,help:mrp_purchase_progress.field_mrp_production__purchase_progress
+msgid "Rate of products already purchased"
+msgstr "Taux de produits en cours d'achat"
+
+#. module: mrp_purchase_progress
+#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__kanban_show_purchase_progress
+msgid "Show Purchase Progress"
+msgstr "Afficher la progression des achats"
+
+#. module: mrp_purchase_progress
+#: model:ir.actions.server,name:mrp_purchase_progress.action_update_purchase_progress
+msgid "⚡️ Update Purchase Progress"
+msgstr "⚡️ Mettre à jour la progression des achats"
