@@ -9,7 +9,7 @@
     'depends': [
         'mrp',
         'mrp_stage',
-        'mrp_picked_rate',
+        'mrp_supply_progress',
         'purchase_stock',
     ],
     'data': [

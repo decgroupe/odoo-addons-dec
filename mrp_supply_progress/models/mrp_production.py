@@ -61,9 +61,9 @@ class MrpProduction(models.Model):
         res.update(
             {
                 'supplying':
-                    self.env.ref('mrp_picked_rate.stage_supplying'),
+                    self.env.ref('mrp_supply_progress.stage_supplying'),
                 'build_ready':
-                    self.env.ref('mrp_picked_rate.stage_build_ready'),
+                    self.env.ref('mrp_supply_progress.stage_build_ready'),
             }
         )
         return res

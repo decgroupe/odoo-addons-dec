@@ -46,7 +46,7 @@ class Production(models.Model):
         # Soft dependency to `mrp_timesheet` module
         if hasattr(self, 'progress') and code == 'progress':
             state = "{0} {1:.0f}%".format(state, self.progress)
-        # Soft dependency to `mrp_picked_rate` module
+        # Soft dependency to `mrp_supply_progress` module
         elif hasattr(self, 'supply_progress') and code == 'supplying':
             state = "{0} {1:.0f}%".format(state, self.supply_progress)
 

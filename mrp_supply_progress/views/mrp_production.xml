@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_tree_view">
-        <field name="name">mrp.production.tree@mrp_picked_rate</field>
+        <field name="name">mrp.production.tree@mrp_supply_progress</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
         <field name="arch" type="xml">
@@ -13,7 +13,7 @@
     </record>
 
     <record model="ir.ui.view" id="mrp_production_form_view">
-        <field name="name">mrp.production.form@mrp_picked_rate</field>
+        <field name="name">mrp.production.form@mrp_supply_progress</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="priority" eval="50"/>
@@ -36,7 +36,7 @@
     </record>
 
     <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
-        <field name="name">mrp.production.kanban@mrp_picked_rate</field>
+        <field name="name">mrp.production.kanban@mrp_supply_progress</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view"/>
         <field name="arch" type="xml">
