@@ -47,8 +47,8 @@ class Production(models.Model):
         if hasattr(self, 'progress') and code == 'progress':
             state = "{0} {1:.0f}%".format(state, self.progress)
         # Soft dependency to `mrp_picked_rate` module
-        elif hasattr(self, 'picked_rate') and code == 'supplying':
-            state = "{0} {1:.0f}%".format(state, self.picked_rate)
+        elif hasattr(self, 'supply_progress') and code == 'supplying':
+            state = "{0} {1:.0f}%".format(state, self.supply_progress)
 
         head = '⚙️{0}'.format(self.name)
         desc = '{0}{1}'.format(emoji, state)

@@ -9,23 +9,24 @@ from odoo import api, models, _, fields
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    picked_rate = fields.Float(
-        compute='_compute_picked_rate',
+    supply_progress = fields.Float(
+        compute='_compute_supply_progress',
+        oldname='picked_rate',
         help='Rate of received raw products',
         store=True,
     )
 
-    kanban_show_picked_rate = fields.Boolean(
-        string="Show Picked Rate",
-        compute="_compute_kanban_show_picked_rate",
+    kanban_show_supply_progress = fields.Boolean(
+        string="Show Supply Progress",
+        compute="_compute_kanban_show_supply_progress",
     )
 
     @api.multi
     @api.depends('move_raw_ids', 'note')
-    def _compute_picked_rate(self):
+    def _compute_supply_progress(self):
         for rec in self:
             if not rec.move_raw_ids:
-                rec.picked_rate = 100
+                rec.supply_progress = 100
             else:
                 all_move_ids = rec.move_raw_ids.filtered(
                     lambda x: x.state != 'cancel'
@@ -34,26 +35,26 @@ class MrpProduction(models.Model):
                     received_move_ids = all_move_ids.filtered(
                         lambda x: x.received
                     )
-                    rec.picked_rate = \
+                    rec.supply_progress = \
                         len(received_move_ids) * 100 / len(all_move_ids)
 
     @api.multi
-    def action_update_picked_rate(self):
-        self._compute_picked_rate()
+    def action_update_supply_progress(self):
+        self._compute_supply_progress()
 
     @api.multi
-    def run_picked_rate_update_scheduler(self):
+    def run_supply_progress_update_scheduler(self):
         date = fields.Datetime.to_string(
             fields.datetime.now() - timedelta(days=365)
         )
         production_ids = self.search(
             [
-                ('picked_rate', '<', 100),
+                ('supply_progress', '<', 100),
                 ('write_date', '>=', date),
                 ('state', '!=', 'cancel'),
             ]
         ).filtered('move_raw_ids')
-        production_ids._compute_picked_rate()
+        production_ids._compute_supply_progress()
 
     def _get_stages_ref(self):
         res = super()._get_stages_ref()
@@ -61,22 +62,24 @@ class MrpProduction(models.Model):
         return res
 
     @api.multi
-    @api.depends('picked_rate')
+    @api.depends('supply_progress')
     def _compute_stage_id(self):
         super()._compute_stage_id()
         stages = self._get_stages_ref()
         for rec in self:
-            if rec.stage_id == stages['confirmed'] and rec.picked_rate > 0:
+            if rec.stage_id == stages['confirmed'] and rec.supply_progress > 0:
                 rec.stage_id = stages['supplying']
 
     @api.multi
-    @api.depends('stage_id', 'picked_rate')
-    def _compute_kanban_show_picked_rate(self):
+    @api.depends('stage_id', 'supply_progress')
+    def _compute_kanban_show_supply_progress(self):
         stages = self._get_stages_ref()
         for rec in self:
-            if rec.stage_id.id == stages['supplying'].id:
-                rec.kanban_show_picked_rate = True
-            elif rec.picked_rate < 100 and rec.stage_id.id in (
+            if not rec.move_raw_ids:
+                rec.kanban_show_purchase_progress = False
+            elif rec.stage_id.id == stages['supplying'].id:
+                rec.kanban_show_supply_progress = True
+            elif rec.supply_progress < 100 and rec.stage_id.id in (
                 stages['progress'].id, stages['issue'].id
             ):
-                rec.kanban_show_picked_rate = True
+                rec.kanban_show_supply_progress = True
