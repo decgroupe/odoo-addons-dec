@@ -1,20 +1,24 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <record id="stage_supplying" model="mrp.production.stage">
+    <!-- <delete model="mrp.production.stage" search="[('code', '=', 'build_ready')]"/> -->
+
+    <record model="mrp.production.stage" id="stage_supplying">
         <field name="name">Supplying</field>
         <field name="code">supplying</field>
         <field name="emoji">🛒</field>
-        <field name="sequence" eval="25" />
+        <field name="sequence" eval="60" />
         <field name="fold" eval="False" />
+        <field name="todo" eval="True" />
     </record>
 
-    <record id="stage_ready" model="mrp.production.stage">
-        <field name="name">Ready to Produce</field>
-        <field name="code">ready</field>
+    <record model="mrp.production.stage" id="stage_build_ready">
+        <field name="name">Ready to Build</field>
+        <field name="code">build_ready</field>
         <field name="emoji">👍</field>
-        <field name="sequence" eval="28" />
+        <field name="sequence" eval="70" />
         <field name="fold" eval="False" />
+        <field name="todo" eval="True" />
     </record>
 
 </odoo>

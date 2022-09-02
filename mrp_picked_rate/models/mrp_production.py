@@ -60,8 +60,10 @@ class MrpProduction(models.Model):
         res = super()._get_stages_ref()
         res.update(
             {
-                'supplying': self.env.ref('mrp_picked_rate.stage_supplying'),
-                'ready': self.env.ref('mrp_picked_rate.stage_ready'),
+                'supplying':
+                    self.env.ref('mrp_picked_rate.stage_supplying'),
+                'build_ready':
+                    self.env.ref('mrp_picked_rate.stage_build_ready'),
             }
         )
         return res
@@ -77,9 +79,9 @@ class MrpProduction(models.Model):
         super()._compute_stage_id()
         stages = self._get_stages_ref()
         for rec in self:
-            if rec.stage_id == stages['confirmed']:
+            if rec.stage_id in (stages['planned'], stages['confirmed']):
                 if not rec.move_raw_ids or rec.supply_progress == 100:
-                    rec.stage_id = stages['ready']
+                    rec.stage_id = stages['build_ready']
                 elif rec._is_supply_active():
                     rec.stage_id = stages['supplying']
 
