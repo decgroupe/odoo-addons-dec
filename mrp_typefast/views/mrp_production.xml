@@ -12,8 +12,10 @@
                     '|',
                         ('typefast_name', 'ilike', self),
                         '|',
-                            ('name', 'ilike', self),
-                            ('origin', 'ilike', self)
+                            ('bom_id', 'ilike', self),
+                            '|',
+                                ('name', 'ilike', self),
+                                ('origin', 'ilike', self)
                 ]
                 </attribute>
             </field>
