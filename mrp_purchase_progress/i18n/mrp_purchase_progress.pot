@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-02 13:58+0000\n"
-"PO-Revision-Date: 2022-09-02 13:58+0000\n"
+"POT-Creation-Date: 2022-09-05 07:00+0000\n"
+"PO-Revision-Date: 2022-09-05 07:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,13 +41,6 @@ msgid "Production Order"
 msgstr ""
 
 #. module: mrp_purchase_progress
-#: model:ir.actions.server,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress_ir_actions_server
-#: model:ir.cron,cron_name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
-#: model:ir.cron,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
-msgid "Production: Compute Purchase Progress"
-msgstr ""
-
-#. module: mrp_purchase_progress
 #: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__purchase_progress
 msgid "Purchase Progress"
 msgstr ""
@@ -65,5 +58,12 @@ msgstr ""
 #. module: mrp_purchase_progress
 #: model:ir.actions.server,name:mrp_purchase_progress.action_update_purchase_progress
 msgid "⚡️ Update Purchase Progress"
+msgstr ""
+
+#. module: mrp_purchase_progress
+#: model:ir.actions.server,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress_ir_actions_server
+#: model:ir.cron,cron_name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
+#: model:ir.cron,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
+msgid "🚧 Production: Compute Purchase Progress"
 msgstr ""
 
