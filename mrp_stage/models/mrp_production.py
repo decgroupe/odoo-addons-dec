@@ -10,6 +10,9 @@ from odoo import api, models, _, fields, SUPERUSER_ID
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
+    # Add index to speed-up search
+    bom_id = fields.Many2one(index=True)
+
     def _get_default_stage_id(self):
         """ Gives default stage_id """
         return self.env.ref(
@@ -19,12 +22,21 @@ class MrpProduction(models.Model):
     stage_id = fields.Many2one(
         comodel_name='mrp.production.stage',
         string='Stage',
-        ondelete='restrict',
+        ondelete='set null',
+        default=_get_default_stage_id,
+        compute='_compute_stage_id',
         track_visibility='onchange',
         index=True,
-        default=_get_default_stage_id,
+        store=True,
         copy=False,
-        compute='_compute_stage_id',
+    )
+
+    stage_todo = fields.Boolean(
+        string="To-do",
+        related='stage_id.todo',
+        help="Used as a filter to only display production order linked to "
+        "stages with to-do actions",
+        index=True,
         store=True,
     )
 
@@ -38,6 +50,7 @@ class MrpProduction(models.Model):
             'planned': self.env.ref('mrp_stage.stage_planned'),
             'progress': self.env.ref('mrp_stage.stage_progress'),
             'issue': self.env.ref('mrp_stage.stage_issue'),
+            'dispatch_ready': self.env.ref('mrp_stage.stage_dispatch_ready'),
             'done': self.env.ref('mrp_stage.stage_done'),
             'cancel': self.env.ref('mrp_stage.stage_cancel'),
         }
@@ -59,6 +72,15 @@ class MrpProduction(models.Model):
                     lambda x: x.activity_type_id.id == activity_type_issue.id
                 ):
                     rec.stage_id = stages['issue']
+            elif rec.state == 'done':
+                move_finished_ids = self.move_finished_ids.filtered(
+                    lambda x: x.state in ('done', 'cancel')
+                )
+                picking_move_ids = move_finished_ids.mapped('move_dest_ids')
+                if not all(
+                    m.state in ('done', 'cancel') for m in picking_move_ids
+                ):
+                    rec.stage_id = stages['dispatch_ready']
 
     def action_assign_to_me(self):
         self.write({
@@ -70,12 +92,10 @@ class MrpProduction(models.Model):
         self.ensure_one()
         if self.state in ('done', 'cancel'):
             return True
-        self.write(
-            {
-                'state': 'progress',
-                'date_start': datetime.now(),
-            }
-        )
+        self.write({
+            'state': 'progress',
+            'date_start': datetime.now(),
+        })
         # OCA module needed: web_ir_actions_act_view_reload
         return {
             'type': 'ir.actions.act_view_reload',

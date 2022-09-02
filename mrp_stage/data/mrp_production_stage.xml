@@ -7,41 +7,55 @@
         <field name="emoji">🏳️</field>
         <field name="sequence" eval="10" />
         <field name="fold" eval="False" />
+        <field name="todo" eval="True" />
     </record>
     <record id="stage_planned" model="mrp.production.stage">
         <field name="name">Planned</field>
         <field name="code">planned</field>
         <field name="emoji">📅</field>
-        <field name="sequence" eval="20" />
-        <field name="fold" eval="False" />
+        <field name="sequence" eval="50" />
+        <field name="fold" eval="True" />
+        <field name="todo" eval="True" />
     </record>
     <record id="stage_progress" model="mrp.production.stage">
         <field name="name">In Progress</field>
         <field name="code">progress</field>
         <field name="emoji">🚧</field>
-        <field name="sequence" eval="30" />
+        <field name="sequence" eval="100" />
         <field name="fold" eval="False" />
+        <field name="todo" eval="True" />
     </record>
     <record id="stage_issue" model="mrp.production.stage">
         <field name="name">Issue</field>
         <field name="code">issue</field>
         <field name="emoji">⚠️</field>
-        <field name="sequence" eval="40" />
+        <field name="sequence" eval="150" />
         <field name="fold" eval="False" />
+        <field name="todo" eval="True" />
+    </record>
+    <record id="stage_dispatch_ready" model="mrp.production.stage">
+        <field name="name">Ready to Dispatch</field>
+        <field name="code">dispatch_ready</field>
+        <field name="emoji">🚚</field>
+        <field name="sequence" eval="200" />
+        <field name="fold" eval="False" />
+        <field name="todo" eval="True" />
     </record>
     <record id="stage_done" model="mrp.production.stage">
         <field name="name">Done</field>
         <field name="code">done</field>
         <field name="emoji">✅</field>
-        <field name="sequence" eval="50" />
+        <field name="sequence" eval="250" />
         <field name="fold" eval="True" />
+        <field name="todo" eval="False" />
     </record>
     <record id="stage_cancel" model="mrp.production.stage">
         <field name="name">Cancel</field>
         <field name="code">cancel</field>
         <field name="emoji">❌</field>
-        <field name="sequence" eval="60" />
+        <field name="sequence" eval="300" />
         <field name="fold" eval="True" />
+        <field name="todo" eval="False" />
     </record>
 
 </odoo>

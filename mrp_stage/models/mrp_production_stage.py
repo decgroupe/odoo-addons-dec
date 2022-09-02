@@ -31,6 +31,10 @@ class ProductionStage(models.Model):
         help='This stage is folded in the kanban view when there are no '
         'records in that stage to display.'
     )
+    todo = fields.Boolean(
+        string="To-do",
+        help="This stage is considered to have actions needed",
+    )
 
     _sql_constraints = [
         ('code_uniq', 'unique (code)', "Code must be unique !"),
