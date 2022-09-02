@@ -13,5 +13,6 @@
         'data/mrp_production_stage.xml',
         'views/mrp_production.xml',
     ],
+    "pre_init_hook": "rename_module",
     'installable': True
 }
