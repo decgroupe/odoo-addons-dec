@@ -58,8 +58,18 @@ class MrpProduction(models.Model):
 
     def _get_stages_ref(self):
         res = super()._get_stages_ref()
-        res['supplying'] = self.env.ref('mrp_picked_rate.stage_supplying')
+        res.update(
+            {
+                'supplying': self.env.ref('mrp_picked_rate.stage_supplying'),
+                'ready': self.env.ref('mrp_picked_rate.stage_ready'),
+            }
+        )
         return res
+
+    @api.multi
+    def _is_supply_active(self):
+        self.ensure_one()
+        return self.supply_progress > 0
 
     @api.multi
     @api.depends('supply_progress')
@@ -67,8 +77,11 @@ class MrpProduction(models.Model):
         super()._compute_stage_id()
         stages = self._get_stages_ref()
         for rec in self:
-            if rec.stage_id == stages['confirmed'] and rec.supply_progress > 0:
-                rec.stage_id = stages['supplying']
+            if rec.stage_id == stages['confirmed']:
+                if not rec.move_raw_ids or rec.supply_progress == 100:
+                    rec.stage_id = stages['ready']
+                elif rec._is_supply_active():
+                    rec.stage_id = stages['supplying']
 
     @api.multi
     @api.depends('stage_id', 'supply_progress')

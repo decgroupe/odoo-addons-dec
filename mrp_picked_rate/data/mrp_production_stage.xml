@@ -9,4 +9,12 @@
         <field name="fold" eval="False" />
     </record>
 
+    <record id="stage_ready" model="mrp.production.stage">
+        <field name="name">Ready to Produce</field>
+        <field name="code">ready</field>
+        <field name="emoji">👍</field>
+        <field name="sequence" eval="28" />
+        <field name="fold" eval="False" />
+    </record>
+
 </odoo>
