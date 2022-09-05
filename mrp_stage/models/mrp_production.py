@@ -114,7 +114,7 @@ class MrpProduction(models.Model):
         return action
 
     @api.model
-    def action_view_staged(self, product_ids):
+    def action_view_staged_with_products(self, product_ids):
         action = self.env.ref('mrp_stage.act_mrp_production_staged').read()[0]
         action["domain"] = [("product_id", "in", product_ids)]
         action["context"] = {}

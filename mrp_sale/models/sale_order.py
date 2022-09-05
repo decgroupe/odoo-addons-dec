@@ -13,4 +13,6 @@ class SaleOrder(models.Model):
         """ Override `action_view_production` from `sale_mrp_link` to use the
             kanban view from `mrp_stage`
         """
-        return self.production_ids.action_staged_view()
+        action = self.production_ids.action_view_staged()
+        action["context"] = {}
+        return action
