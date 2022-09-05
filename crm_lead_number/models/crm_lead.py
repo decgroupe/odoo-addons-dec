@@ -18,6 +18,7 @@ class CrmLead(models.Model):
         string='Opportunity Number',
         default="/",
         readonly=True,
+        copy=False,
     )
     complete_name = fields.Char(
         string='Complete Name',
