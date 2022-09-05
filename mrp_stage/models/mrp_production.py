@@ -73,7 +73,7 @@ class MrpProduction(models.Model):
                 ):
                     rec.stage_id = stages['issue']
             elif rec.state == 'done':
-                move_finished_ids = self.move_finished_ids.filtered(
+                move_finished_ids = rec.move_finished_ids.filtered(
                     lambda x: x.state in ('done', 'cancel')
                 )
                 picking_move_ids = move_finished_ids.mapped('move_dest_ids')
