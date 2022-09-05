@@ -100,3 +100,22 @@ class MrpProduction(models.Model):
         return {
             'type': 'ir.actions.act_view_reload',
         }
+
+    @api.multi
+    def action_view_staged(self):
+        action = self.env.ref('mrp_stage.act_mrp_production_staged').read()[0]
+        if len(self.ids) > 1:
+            action['domain'] = [('id', 'in', self.ids)]
+        else:
+            action['views'] = [
+                (self.env.ref('mrp.mrp_production_form_view').id, 'form')
+            ]
+            action['res_id'] = self.id
+        return action
+
+    @api.model
+    def action_view_staged(self, product_ids):
+        action = self.env.ref('mrp_stage.act_mrp_production_staged').read()[0]
+        action["domain"] = [("product_id", "in", product_ids)]
+        action["context"] = {}
+        return action
