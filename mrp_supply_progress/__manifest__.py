@@ -6,6 +6,7 @@
     'summary': "Reimplementation of picked_rate",
     'depends': [
         'mrp',
+        'mrp_partner',
         'mrp_stage',
     ],
     'data': [
