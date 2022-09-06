@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:12+0000\n"
-"PO-Revision-Date: 2020-10-13 22:16+0200\n"
+"POT-Creation-Date: 2022-09-06 13:29+0000\n"
+"PO-Revision-Date: 2022-09-06 15:29+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: procurement_traceability
+#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "General"
 msgstr "Général"
+
+#. module: procurement_traceability
+#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__id
+msgid "ID"
+msgstr "ID"
+
+#. module: procurement_traceability
+#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__mrp_production_ids
@@ -59,7 +74,7 @@ msgstr "Groupe d'approvisionnement"
 
 #. module: procurement_traceability
 #: model:ir.actions.act_window,name:procurement_traceability.act_window_procurement_group
-#: model:ir.ui.menu,name:procurement_traceability.menu_ref_log
+#: model:ir.ui.menu,name:procurement_traceability.menu_procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_tree_view
 msgid "Procurements"
 msgstr "Approvisionnements"
@@ -95,7 +110,6 @@ msgid "Purchase Order Line"
 msgstr "Ligne de commande d'achat"
 
 #. module: procurement_traceability
-#: model:ir.actions.act_window,name:procurement_traceability.action_purchase_order_line_tree
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Purchase Order Lines"
 msgstr "Lignes d'achats"

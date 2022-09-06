@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:11+0000\n"
-"PO-Revision-Date: 2020-11-14 11:11+0000\n"
+"POT-Creation-Date: 2022-09-06 13:29+0000\n"
+"PO-Revision-Date: 2022-09-06 13:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,61 +16,76 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: procurement_traceability
+#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "General"
-msgstr "Général"
+msgstr ""
+
+#. module: procurement_traceability
+#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__id
+msgid "ID"
+msgstr ""
+
+#. module: procurement_traceability
+#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__mrp_production_ids
 msgid "Mrp Production"
-msgstr "Production"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__orderpoint_ids
 msgid "Orderpoint"
-msgstr "Réapprovisionnement"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__picking_ids
 msgid "Picking"
-msgstr "Opération de manutention"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__picking_count
 msgid "Picking count"
-msgstr "Nombre des préparations"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Pickings"
-msgstr "Préparations"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model,name:procurement_traceability.model_procurement_group
 msgid "Procurement Group"
-msgstr "Groupe d'approvisionnement"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Procurement group"
-msgstr "Groupe d'approvisionnement"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.actions.act_window,name:procurement_traceability.act_window_procurement_group
-#: model:ir.ui.menu,name:procurement_traceability.menu_ref_log
+#: model:ir.ui.menu,name:procurement_traceability.menu_procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_tree_view
 msgid "Procurements"
-msgstr "Approvisionnements"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Production Orders"
-msgstr "Ordre de production"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__mrp_production_count
 msgid "Production count"
-msgstr "Nombre de fabrication"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
@@ -80,58 +95,57 @@ msgstr ""
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Purchase Lines"
-msgstr "Lignes d'achat"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_ids
 msgid "Purchase Order"
-msgstr "Commande fournisseur"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_line_ids
 msgid "Purchase Order Line"
-msgstr "Ligne de commande d'achat"
+msgstr ""
 
 #. module: procurement_traceability
-#: model:ir.actions.act_window,name:procurement_traceability.action_purchase_order_line_tree
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Purchase Order Lines"
-msgstr "Lignes d'achats"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Purchase Orders"
-msgstr "Bons de commande"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_count
 msgid "Purchase count"
-msgstr "Nombre d'achats"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_line_count
 msgid "Purchase lines count"
-msgstr "Nombre de lignes d'achats"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Purchases"
-msgstr "Achats"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Reordering Rules"
-msgstr "Règles de réapprovisionnement"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__orderpoint_count
 msgid "Reordering rules count"
-msgstr "Nombre de règles de réappro."
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__stock_rule_count
 msgid "Route count"
-msgstr "Nombre de routes"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
@@ -142,40 +156,40 @@ msgstr ""
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__sale_order_ids
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Sale Orders"
-msgstr "Ventes"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__sale_order_count
 msgid "Sale count"
-msgstr "Nombre de ventes"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Sales"
-msgstr "Vente"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__stock_move_ids
 msgid "Stock Move"
-msgstr "Mouvement de stock"
+msgstr ""
 
 #. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Stock Moves"
-msgstr "Mouvements de stocks"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__stock_rule_ids
 msgid "Stock Rule"
-msgstr "Règle de stock minimum"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__stock_move_count
 msgid "Stock move count"
-msgstr "Nombre de règles de stock"
+msgstr ""
 
 #. module: procurement_traceability
 #: model:ir.ui.menu,name:procurement_traceability.menu_traceability
 msgid "Traceability"
-msgstr "Traçabilité"
+msgstr ""
 
