@@ -11,8 +11,15 @@ class MrpProduction(models.Model):
     @api.model
     def create(self, values):
         production_id = super(MrpProduction, self).create(values)
-        production_id.action_create_project()
+        # Do not call `action_create_project` here since it will be probably
+        # too late, instead, we override `_generate_moves` to call it befrore
+        # generating any moves
         return production_id
+
+    @api.multi
+    def _generate_moves(self):
+        self.action_create_project()
+        return super()._generate_moves()
 
     @api.multi
     def action_create_project(self):
