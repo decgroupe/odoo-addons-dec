@@ -32,7 +32,7 @@
             </xpath>
             <xpath expr="//small[hasclass('o_kanban_record_subtitle')]" position="inside">
                 <div t-if="record.production_id.raw_value">
-                    <i class="fa fa-gear"/> <t t-raw="record.production_id.value"/>
+                    <i class="fa fa-wrench"/> <t t-raw="record.production_id.value"/>
                 </div>
             </xpath>
         </field>

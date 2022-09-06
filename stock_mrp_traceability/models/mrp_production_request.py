@@ -35,6 +35,6 @@ class ProductionRequest(models.Model):
         state = dict(p._fields['state']._description_selection(self.env)).get(
             p.state
         )
-        head = '🗃️{0}'.format(p.name)
+        head = '⚙️{0}'.format(p.name)
         desc = '{0}{1}'.format(p.state_emoji, state)
         return head, desc

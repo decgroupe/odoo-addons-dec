@@ -26,6 +26,6 @@ class ProjectTask(models.Model):
         # Add production to quickly identify a task
         production_id = self.production_id
         if production_id:
-            production_name = '%s %s' % ('⚙️', production_id.name)
+            production_name = '%s %s' % ('🔧', production_id.name)
             res.append(production_name)
         return res

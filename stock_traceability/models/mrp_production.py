@@ -50,6 +50,6 @@ class Production(models.Model):
         elif hasattr(self, 'supply_progress') and code == 'supplying':
             state = "{0} {1:.0f}%".format(state, self.supply_progress)
 
-        head = '⚙️{0}'.format(self.name)
+        head = '🔧{0}'.format(self.name)
         desc = '{0}{1}'.format(emoji, state)
         return head, desc

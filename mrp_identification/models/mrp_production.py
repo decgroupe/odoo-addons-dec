@@ -44,7 +44,7 @@ class MrpProduction(models.Model):
         self.ensure_one()
         res = []
         if self.bom_id:
-            res.append('⚙️ %s' % (self.bom_id.display_name))
+            res.append('🔧 %s' % (self.bom_id.display_name))
         if self.partner_id:
             res.append(
                 '%s %s' % (
