@@ -52,7 +52,7 @@ class MrpProduction(models.Model):
             rec.total_hours = sum(rec.timesheet_ids.mapped('unit_amount'))
             # Automatically set state to "In Progress" if a timesheet input
             # is added to this production order
-            if rec.total_hours > 0 and (rec.state in ('planned', 'confirmed')):
+            if rec.total_hours > 0 and rec._allow_auto_start():
                 rec.action_start()
 
     @api.constrains('project_id')

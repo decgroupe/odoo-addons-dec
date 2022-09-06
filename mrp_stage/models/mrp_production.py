@@ -102,6 +102,11 @@ class MrpProduction(models.Model):
         }
 
     @api.multi
+    def _allow_auto_start(self):
+        self.ensure_one()
+        return self.state in ('planned', 'confirmed')
+
+    @api.multi
     def action_view_staged(self):
         action = self.env.ref('mrp_stage.act_mrp_production_staged').read()[0]
         if not self.ids:

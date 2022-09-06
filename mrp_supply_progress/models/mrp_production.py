@@ -21,6 +21,12 @@ class MrpProduction(models.Model):
         compute="_compute_kanban_show_supply_progress",
     )
 
+    def _allow_auto_start(self):
+        res = super()._allow_auto_start()
+        if self.stage_id:
+            res = res and (self.stage_id.code == 'build_ready')
+        return res
+
     @api.multi
     @api.depends('move_raw_ids', 'note')
     def _compute_supply_progress(self):
