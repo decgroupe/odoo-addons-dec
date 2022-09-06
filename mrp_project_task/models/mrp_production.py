@@ -37,13 +37,8 @@ class MrpProduction(models.Model):
 
     @api.multi
     def action_view_task(self):
-        action = self.env.ref('project.action_view_task').read()[0]
-        form = self.env.ref('project.view_task_form2')
-        if self.task_count > 1:
-            action['domain'] = [('id', 'in', self.task_ids.ids)]
-        else:
-            action['views'] = [(form.id, 'form')]
-            action['res_id'] = self.task_ids.id
+        action = self.mapped('task_ids').action_view()
+        action['context'] = {}
         return action
 
     def _create_task_prepare_values(self, bom_line, dict):

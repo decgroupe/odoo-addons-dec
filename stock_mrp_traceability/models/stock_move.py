@@ -96,15 +96,13 @@ class StockMove(models.Model):
     def action_view_created_item(self):
         if self.created_mrp_production_request_id:
             if self.created_mrp_production_request_id.mrp_production_ids:
-                view = self.created_mrp_production_request_id.\
+                action = self.created_mrp_production_request_id.\
                     action_view_mrp_productions()
             else:
-                view = self.action_view_production_request(
-                    self.created_mrp_production_request_id.id
-                )
+                action = self.created_mrp_production_request_id.action_view()
         else:
-            view = super().action_view_created_item()
-        return view
+            action = super().action_view_created_item()
+        return action
 
     def is_action_view_created_item_visible(self):
         self.ensure_one()
@@ -112,14 +110,3 @@ class StockMove(models.Model):
         if not res:
             res = super().is_action_view_created_item_visible()
         return res
-
-    def action_view_production_request(self, id):
-        action = self.env.ref(
-            'mrp_production_request.mrp_production_request_action'
-        ).read()[0]
-        form = self.env.ref(
-            'mrp_production_request.view_mrp_production_request_form'
-        )
-        action['views'] = [(form.id, 'form')]
-        action['res_id'] = id
-        return action

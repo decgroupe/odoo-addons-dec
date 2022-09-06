@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.actions.server" id="action_open_production_as_product" >
-        <field name="name">Open As Product</field>
+        <field name="name">⚡️ Open As Product</field>
         <field name="model_id" ref="mrp.model_mrp_production"/>
         <field name="binding_model_id" ref="mrp.model_mrp_production"/>
         <field name="state">code</field>
@@ -10,4 +10,3 @@
     </record>
 
 </odoo>
-

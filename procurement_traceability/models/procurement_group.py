@@ -138,59 +138,56 @@ class ProcurementGroup(models.Model):
 
     def action_view_pickings(self):
         self.ensure_one()
-        action = self.env.ref('stock.stock_picking_action_picking_type'
-                             ).read()[0]
+        action = self.env['stock.picking'].action_view()
         action['domain'] = [('group_id', '=', self.id)]
         action['context'] = {}
         return action
 
     def action_view_orderpoints(self):
         self.ensure_one()
-        action = self.env.ref('stock.product_open_orderpoint').read()[0]
+        action = self.env['stock.warehouse.orderpoint'].action_view()
         action['domain'] = [('group_id', '=', self.id)]
         action['context'] = {}
         return action
 
     def action_view_stock_rules(self):
         self.ensure_one()
-        action = self.env.ref('stock.action_rules_form').read()[0]
+        action = self.env['stock.rule'].action_view()
         action['domain'] = [('group_id', '=', self.id)]
         action['context'] = {}
         return action
 
     def action_view_stock_moves(self):
         self.ensure_one()
-        action = self.env.ref('stock.stock_move_action').read()[0]
+        action = self.env['stock.move'].action_view()
         action['domain'] = [('group_id', '=', self.id)]
         action['context'] = {'group_by': 'origin'}
         return action
 
     def action_view_sale_orders(self):
         self.ensure_one()
-        action = self.env.ref('sale.action_orders').read()[0]
+        action = self.env['sale.order'].action_view()
         action['domain'] = [('procurement_group_id', '=', self.id)]
         action['context'] = {}
         return action
 
     def action_view_purchase_orders(self):
         self.ensure_one()
-        action = self.env.ref('purchase.purchase_form_action').read()[0]
+        action = self.env['purchase.order'].action_view()
         action['domain'] = [('group_id', '=', self.id)]
         action['context'] = {}
         return action
 
     def action_view_mrp_productions(self):
         self.ensure_one()
-        action = self.env.ref('mrp.mrp_production_action').read()[0]
+        action = self.env['mrp.production'].action_view()
         action['domain'] = [('procurement_group_id', '=', self.id)]
         action['context'] = {}
         return action
 
     def action_view_purchase_order_lines(self):
         self.ensure_one()
-        action = self.env.ref(
-            'procurement_traceability.action_purchase_order_line_tree'
-        ).read()[0]
+        action = self.env['purchase.order.line'].action_view()
         action['domain'] = [('procurement_group_id', '=', self.id)]
         action['context'] = {}
         return action

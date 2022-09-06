@@ -41,26 +41,8 @@ class Project(models.Model):
             else:
                 rec.contract_confirmation_date = False
 
-
     @api.multi
     def action_view_contracts(self):
-        action = self.env.ref('sale.action_orders')
-        result = action.read()[0]
-        # override the context to get ride of the default filtering
-        result['context'] = {}
-        sale_order_ids = self.mapped('contract_ids')
-        # choose the view_mode accordingly
-        if not sale_order_ids or len(sale_order_ids) > 1:
-            result['domain'] = "[('id', 'in', %s)]" % (sale_order_ids.ids)
-        elif len(sale_order_ids) == 1:
-            res = self.env.ref('sale.view_order_form', False)
-            form_view = [(res and res.id or False, 'form')]
-            if 'views' in result:
-                result['views'] = form_view + [
-                    (state, view)
-                    for state, view in result['views'] if view != 'form'
-                ]
-            else:
-                result['views'] = form_view
-            result['res_id'] = sale_order_ids.id
-        return result
+        action = self.mapped('contract_ids').action_view()
+        action['context'] = {}
+        return action

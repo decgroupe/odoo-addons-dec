@@ -4,15 +4,20 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Add procurement view to track moves",
-    'depends': [
-        'sale',
-        'purchase',
-        'stock',
-        'sale_stock',
-        'purchase_stock',
-        'purchase_line_procurement_group',
-        'mrp',
-    ],
+    'depends':
+        [
+            'sale',
+            'sale_action_view',
+            'purchase',
+            'purchase_action_view',
+            'stock',
+            'stock_action_view',
+            'sale_stock',
+            'purchase_stock',
+            'purchase_line_procurement_group',
+            'mrp',
+            'mrp_action_view',
+        ],
     'data':
         [
             'views/procurement.xml',

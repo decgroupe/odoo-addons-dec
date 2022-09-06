@@ -26,17 +26,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_view_production_request(self):
-        action = self.env.ref(
-            'mrp_production_request.mrp_production_request_action'
-        ).read()[0]
-        form = self.env.ref(
-            'mrp_production_request.view_mrp_production_request_form'
-        )
-        if self.production_request_count > 1:
-            action['domain'] = [('id', 'in', self.production_request_ids.ids)]
-        else:
-            action['views'] = [(form.id, 'form')]
-            action['res_id'] = self.production_request_ids.id
+        action = self.mapped('production_request_ids').action_view()
         return action
 
     @api.multi

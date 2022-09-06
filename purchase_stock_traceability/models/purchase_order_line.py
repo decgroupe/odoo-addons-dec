@@ -18,7 +18,7 @@ class PurchaseOrderLine(models.Model):
         store=False,
     )
     action_view_origin_item_visible = fields.Boolean(
-        "Show Link to Origin Item",
+        string="Show Link to Origin Item",
         compute='_compute_origin',
         readonly=True,
     )
@@ -42,6 +42,7 @@ class PurchaseOrderLine(models.Model):
             'orderpoint_ids': False,
             'production_ids': False,
             'sale_line_ids': False,
+            'sale_order_ids': False,
             'picking_ids': False,
             'procurement_group_id': False,
         }
@@ -59,6 +60,7 @@ class PurchaseOrderLine(models.Model):
         sale_line_ids = self.move_dest_ids.mapped('sale_line_id')
         if sale_line_ids:
             res['sale_line_ids'] = sale_line_ids
+            res['sale_order_ids'] = sale_line_ids.mapped('order_id')
 
         picking_ids = self.move_dest_ids.mapped('picking_id')
         if picking_ids:
@@ -104,85 +106,13 @@ class PurchaseOrderLine(models.Model):
         self.ensure_one()
         origins = self._get_origins_dict()
         if origins.get('orderpoint_ids'):
-            view = self.action_view_orderpoint(
-                origins.get('orderpoint_ids').ids
-            )
+            action = origins.get('orderpoint_ids').action_view()
         elif origins.get('production_ids'):
-            view = self.action_view_production(
-                origins.get('production_ids').ids
-            )
-        elif origins.get('sale_line_ids'):
-            view = self.action_view_sale_order(
-                origins.get('sale_line_ids').mapped('order_id').ids
-            )
+            action = origins.get('production_ids').action_view()
+        elif origins.get('sale_order_ids'):
+            action = origins.get('sale_order_ids').action_view()
         elif origins.get('procurement_group_id'):
-            view = self.action_view_procurement_group(
-                origins.get('procurement_group_id').ids
-            )
+            action = origins.get('procurement_group_id').action_view()
         else:
-            view = False
-        return view
-
-    @api.multi
-    def action_view_orderpoint(self, ids):
-        action = self.env.ref('stock.product_open_orderpoint').read()[0]
-        action['domain'] = [('id', 'in', ids)]
-        if len(ids) == 1:
-            action['res_id'] = ids[0]
-            action['views'] = [
-                (self.env.ref('stock.view_warehouse_orderpoint_form').id, 'form')
-            ]
-            action['view_mode'] = 'form'
-        else:
-            action['view_mode'] = 'tree,form'
-            action['domain'] = [('id', 'in', ids)]
-        return action
-
-    @api.multi
-    def action_view_production(self, ids):
-        action = self.env.ref('mrp.mrp_production_action').read()[0]
-        if len(ids) > 1:
-            action['domain'] = [('id', 'in', ids)]
-        else:
-            action['views'] = [
-                (self.env.ref('mrp.mrp_production_form_view').id, 'form')
-            ]
-            action['res_id'] = ids[0]
-        return action
-
-    @api.multi
-    def action_view_sale_order(self, ids):
-        action = self.env.ref('sale.action_orders').read()[0]
-        # override the context to get ride of the default filtering
-        action['context'] = {}
-        # choose the view_mode accordingly
-        if len(ids) > 1:
-            action['domain'] = "[('id', 'in', %s)]" % (ids)
-        else:
-            res = self.env.ref('sale.view_order_form', False)
-            form_view = [(res and res.id or False, 'form')]
-            if 'views' in action:
-                action['views'] = form_view + [
-                    (state, view)
-                    for state, view in action['views'] if view != 'form'
-                ]
-            else:
-                action['views'] = form_view
-            action['res_id'] = ids[0]
-        return action
-
-    @api.multi
-    def action_view_procurement_group(self, ids):
-        action = {
-            'name': _('Procurement Group(s)'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'procurement.group',
-            'target': 'current',
-        }
-        if len(ids) == 1:
-            action['res_id'] = ids[0]
-            action['view_mode'] = 'form'
-        else:
-            action['view_mode'] = 'tree,form'
-            action['domain'] = [('id', 'in', ids)]
+            action = False
         return action

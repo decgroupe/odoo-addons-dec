@@ -31,23 +31,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_view_purchase_order(self):
-        action = self.env.ref('purchase.purchase_form_action')
-        result = action.read()[0]
+        action = self.mapped('purchase_order_ids').action_view()
         # override the context to get ride of the default filtering
-        result['context'] = {}
-        purchase_order_ids = self.mapped('purchase_order_ids')
-        # choose the view_mode accordingly
-        if not purchase_order_ids or len(purchase_order_ids) > 1:
-            result['domain'] = "[('id', 'in', %s)]" % (purchase_order_ids.ids)
-        elif len(purchase_order_ids) == 1:
-            res = self.env.ref('purchase.purchase_order_form', False)
-            form_view = [(res and res.id or False, 'form')]
-            if 'views' in result:
-                result['views'] = form_view + [
-                    (state, view)
-                    for state, view in result['views'] if view != 'form'
-                ]
-            else:
-                result['views'] = form_view
-            result['res_id'] = purchase_order_ids.id
-        return result
+        action['context'] = {}
+        return action

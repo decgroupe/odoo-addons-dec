@@ -263,20 +263,18 @@ class StockMove(models.Model):
         to this move. It is used to open a Purchase, Sale, etc.
         """
         self.ensure_one()
-        view = False
+        action = False
         if self.created_purchase_line_id:
-            view = self.action_view_purchase(
-                self.created_purchase_line_id.order_id.id
-            )
+            action = self.created_purchase_line_id.order_id.action_view()
         elif self.purchase_line_id:
-            view = self.action_view_purchase(self.purchase_line_id.order_id.id)
-        elif self.created_production_id:
-            view = self.action_view_production(self.created_production_id.id)
+            action = self.purchase_line_id.order_id.action_view()
+        elif action.created_production_id:
+            action = self.created_production_id.action_view()
         elif self.production_id:
-            view = self.action_view_production(self.production_id.id)
+            action = self.production_id.action_view()
         elif self.product_activity_id:
-            view = self.action_view_activity(self.product_activity_id.id)
-        return view
+            action = self.product_activity_id.action_view()
+        return action
 
     def _compute_action_view_created_item_visible(self):
         for move in self:
@@ -291,41 +289,7 @@ class StockMove(models.Model):
             or self.production_id \
             or self.product_activity_id
 
-    def action_view_purchase(self, id):
-        action = self.env.ref('purchase.purchase_form_action').read()[0]
-        form = self.env.ref('purchase.purchase_order_form')
-        action['views'] = [(form.id, 'form')]
-        action['res_id'] = id
-        return action
-
-    def action_view_production(self, id):
-        action = self.env.ref('mrp.mrp_production_action').read()[0]
-        form = self.env.ref('mrp.mrp_production_form_view')
-        action['views'] = [(form.id, 'form')]
-        action['res_id'] = id
-        return action
-
-    def action_view_activity(self, id):
-        #action = self.env.ref('mail.mail_activity_action').read()[0]
-        action = {
-            'type': 'ir.actions.act_window',
-            'name': 'My Action Name',
-            'display_name': 'Activities',
-            'res_model': 'mail.activity',
-            'context': '{}',
-            'domain': '[]',
-            'filter': False,
-            'target': 'current',
-            'view_mode': 'form',
-            'view_type': 'form',
-        }
-        form = self.env.ref('mail.mail_activity_view_form_popup')
-        action['views'] = [(form.id, 'form')]
-        action['res_id'] = id
-        return action
-
     def action_open_stock_move_form(self):
-        #action = self.env.ref('mail.mail_activity_action').read()[0]
         action = {
             'type': 'ir.actions.act_window',
             'name': 'Open Advanced Stock Move Form View',

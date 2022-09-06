@@ -8,6 +8,7 @@
         "production order",
     'depends': [
         'product',
+        'product_action_view',
         'mrp',
     ],
     'data': [

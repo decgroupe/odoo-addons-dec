@@ -18,12 +18,12 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     orderpoint_created_production_ids = fields.Many2many(
-        'mrp.production',
+        comodel_name='mrp.production',
         compute='_compute_orderpoint_created_orders',
         string='Created Production Orders by Orderpoint',
     )
     orderpoint_created_purchase_line_ids = fields.Many2many(
-        'purchase.order.line',
+        comodel_name='purchase.order.line',
         compute='_compute_orderpoint_created_orders',
         string='Created Purchase Order Lines by Orderpoint',
     )
@@ -89,17 +89,15 @@ class StockMove(models.Model):
 
     def action_view_created_item(self):
         self.ensure_one()
-        view = super().action_view_created_item()
-        if not view:
+        action = super().action_view_created_item()
+        if not action:
             if self.orderpoint_created_purchase_line_ids:
-                view = self.action_view_purchase(
+                action = self.action_view_purchase(
                     self.orderpoint_created_purchase_line_ids[0].order_id.id
                 )
             elif self.orderpoint_created_production_ids:
-                view = self.action_view_production(
-                    self.orderpoint_created_production_ids.ids[0]
-                )
-        return view
+                action = self.orderpoint_created_production_ids.action_view()
+        return action
 
     def is_action_view_created_item_visible(self):
         res = super().is_action_view_created_item_visible()
