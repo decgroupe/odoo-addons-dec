@@ -200,17 +200,23 @@ class SoftwareLicensePass(models.Model):
             hardware_names = self._get_unique_hardware_names()
             return self.max_allowed_hardware - len(hardware_names)
 
-    @api.multi
-    def action_view(self):
-        action = self.env.ref(
+    @api.model
+    def action_view_base(self):
+        return self.env.ref(
             'software_license_pass.act_window_software_license_pass'
         ).read()[0]
-        form = self.env.ref(
-            'software_license_pass.software_license_pass_form_view'
-        )
-        if len(self.ids) > 1:
+
+    @api.multi
+    def action_view(self):
+        action = self.action_view_base()
+        if not self.ids:
+            pass
+        elif len(self.ids) > 1:
             action['domain'] = [('id', 'in', self.ids)]
         else:
+            form = self.env.ref(
+                'software_license_pass.software_license_pass_form_view'
+            )
             action['views'] = [(form.id, 'form')]
             action['res_id'] = self.id
         return action

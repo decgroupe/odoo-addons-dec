@@ -104,7 +104,9 @@ class MrpProduction(models.Model):
     @api.multi
     def action_view_staged(self):
         action = self.env.ref('mrp_stage.act_mrp_production_staged').read()[0]
-        if len(self.ids) > 1:
+        if not self.ids:
+            pass
+        elif len(self.ids) > 1:
             action['domain'] = [('id', 'in', self.ids)]
         else:
             action['views'] = [
