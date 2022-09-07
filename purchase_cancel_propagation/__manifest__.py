@@ -6,7 +6,7 @@
     'summary': '''Choose between simple delete or delete and propagate to cancel procurement''',
     'depends': [
         'purchase_stock',
-        'stock_cancel',
+        'stock_actions',
         'web_ir_actions_act_view_reload',
     ],
     'data': [

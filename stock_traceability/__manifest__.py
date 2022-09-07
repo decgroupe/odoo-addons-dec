@@ -7,6 +7,7 @@
     'depends':
         [
             'stock',
+            'stock_actions',
             'purchase',
             'purchase_action_view',
             'purchase_stock',

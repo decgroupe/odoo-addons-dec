@@ -7,7 +7,7 @@
     'depends': [
         'mrp',
         'sale_stock',
-        'stock_assign',
+        'stock_actions',
     ],
     'data': ['views/mrp_production.xml', ],
     'installable': True

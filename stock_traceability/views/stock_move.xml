@@ -201,7 +201,7 @@
                             ]
                         }">
                     </button>
-                    <!-- stock_assign module must be installed -->
+                    <!-- stock_actions module must be installed -->
                     <button 
                         name="action_force_state_confirmed_to_assigned" 
                         string="Force Assigned" 
@@ -214,7 +214,7 @@
                             ]
                         }">
                     </button>
-                    <!-- stock_cancel module must be installed -->
+                    <!-- stock_actions module must be installed -->
                     <button 
                         name="action_cancel" 
                         string="Cancel" 
