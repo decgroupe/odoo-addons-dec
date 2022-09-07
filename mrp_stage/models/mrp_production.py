@@ -60,7 +60,10 @@ class MrpProduction(models.Model):
         return self.env.ref('mrp_stage.mail_activity_production_issue')
 
     @api.multi
-    @api.depends('state', 'activity_ids', 'activity_ids.state')
+    @api.depends(
+        'state', 'activity_ids', 'activity_ids.state',
+        'move_finished_ids.move_dest_ids.state'
+    )
     def _compute_stage_id(self):
         activity_type_issue = self._get_issue_activity()
         stages = self._get_stages_ref()
@@ -81,6 +84,10 @@ class MrpProduction(models.Model):
                     m.state in ('done', 'cancel') for m in picking_move_ids
                 ):
                     rec.stage_id = stages['dispatch_ready']
+
+    @api.multi
+    def action_recompute_stage_id(self):
+        self._compute_stage_id()
 
     def action_assign_to_me(self):
         self.write({

@@ -186,4 +186,12 @@
 
     <!-- <menuitem action="act_mrp_production_staged" id="menu_mrp_production_action_staged" parent="mrp.menu_mrp_manufacturing" sequence="3"/> -->
 
+    <record model="ir.actions.server" id="action_recompute_stage" >
+        <field name="name">⚡️ Recompute Stage Assignment</field>
+        <field name="model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_recompute_stage_id()</field>
+    </record>
+
 </odoo>
