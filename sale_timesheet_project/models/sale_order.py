@@ -21,8 +21,10 @@ class SaleOrder(models.Model):
     @api.multi
     def _sync_project_dates(self):
         for rec in self.filtered('project_id'):
-            rec.project_id.date_start = rec.confirmation_date.date()
-            rec.project_id.date = rec.expected_last_date.date()
+            rec.project_id.sudo().write({
+                'date_start': rec.confirmation_date.date(),
+                'date': rec.expected_last_date.date(),
+            })
 
     @api.multi
     def action_create_project(self):
