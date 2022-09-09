@@ -4,7 +4,10 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Add self-assign actions",
-    'depends': ['project', ],
+    'depends': [
+        'project',
+        'project_activity',
+    ],
     'data': [
         'views/project_project.xml',
         'views/project_task.xml',
