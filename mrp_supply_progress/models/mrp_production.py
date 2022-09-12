@@ -28,7 +28,7 @@ class MrpProduction(models.Model):
         return res
 
     @api.multi
-    @api.depends('move_raw_ids', 'note')
+    @api.depends('move_raw_ids')
     def _compute_supply_progress(self):
         for rec in self:
             if not rec.move_raw_ids:
