@@ -21,7 +21,7 @@ class MrpProduction(models.Model):
     )
 
     @api.multi
-    @api.depends('move_raw_ids')
+    @api.depends('move_raw_ids', 'move_raw_ids.state')
     def _compute_purchase_progress(self):
         for rec in self:
             if not rec.move_raw_ids:
