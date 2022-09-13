@@ -14,10 +14,12 @@ class MrpBom(models.Model):
         """ Custom naming to remove bom name / product name duplication
         """
         res = []
-        for rec in self:
+        for rec in self.filtered('code'):
             if rec.product_id.code in rec.code:
                 name = '[%s] %s' % (rec.code, rec.product_id.name)
             else:
                 name = '[%s] %s' % (rec.code, rec.product_id.display_name)
             res.append((rec.id, name))
+        if not res:
+            res = super().name_get()
         return res
