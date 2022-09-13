@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
             dates_list = []
             confirm_date = fields.Datetime.from_string(
                 (order.confirmation_date or order.write_date
-                ) if order.state == 'sale' else fields.Datetime.now()
+                ) if order.state in ('sale', 'done') else fields.Datetime.now()
             )
             for line in order.order_line.filtered(
                 lambda x: x.state != 'cancel' and not x._is_delivery()
