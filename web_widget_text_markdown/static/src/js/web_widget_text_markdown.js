@@ -41,7 +41,6 @@ odoo.define("web_widget_text_markdown.FieldTextMarkDown", function (require) {
         },
 
         start: function () {
-            this._super();
             this.shw_render_html = new showdown.Converter({
                 extensions: ["table", "footnotes", "toc"],
                 emoji: true,
@@ -76,6 +75,7 @@ odoo.define("web_widget_text_markdown.FieldTextMarkDown", function (require) {
                 metadata: true,
                 splitAdjacentBlockquotes: true,
             });
+            this._super();
         },
 
         _prepareInput: function () {
