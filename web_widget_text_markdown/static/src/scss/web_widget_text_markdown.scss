@@ -6,3 +6,22 @@
     }
 
 }
+
+.o_field_text_markdown.o_field_text {
+
+    .md-fullscreen-mode {
+
+        >textarea.md-input {
+            /* Forced because Odoo uses inline style */
+            overflow-y: auto !important;
+        }
+    }
+
+    .md-editor.active {
+        border-color: #ccc;
+        outline: 0;
+        -webkit-box-shadow: revert;
+        box-shadow: revert;
+    }
+
+}
