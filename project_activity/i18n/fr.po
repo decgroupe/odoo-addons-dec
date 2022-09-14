@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_activity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-14 08:11+0000\n"
+"PO-Revision-Date: 2022-09-14 10:13+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_state
+msgid "Activity State"
+msgstr "Statut de l'activité"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d’activité"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: project_activity
+#: model:ir.model.fields,help:project_activity.field_project_project__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome ex: fa-tasks"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Échéance de la prochaine activité"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé de la prochaine activité"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type de la prochaine activité"
+
+#. module: project_activity
+#: selection:project.project,activity_state:0
+msgid "Overdue"
+msgstr "Retard"
+
+#. module: project_activity
+#: selection:project.project,activity_state:0
+msgid "Planned"
+msgstr "Planifié"
+
+#. module: project_activity
+#: model:ir.model,name:project_activity.model_project_project
+msgid "Project"
+msgstr "Projet"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_user_id
+msgid "Responsible User"
+msgstr "Responsable"
+
+#. module: project_activity
+#: model:ir.model.fields,help:project_activity.field_project_project__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard : la date d'échéance est déjà dépassée\n"
+"Aujourd'hui : la date d'activité est aujourd'hui\n"
+"Planifiée : activités futures"
+
+#. module: project_activity
+#: selection:project.project,activity_state:0
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_team_user_ids
+msgid "test field"
+msgstr "champ de test"
