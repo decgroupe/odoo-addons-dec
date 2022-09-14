@@ -11,26 +11,26 @@ class PurchaseOrderMerge(models.TransientModel):
     _description = 'Merge Purchase Order'
 
     partner_id = fields.Many2one(
-        'res.partner',
+        comodel_name='res.partner',
         string='Vendor',
     )
     order_id = fields.Many2one(
-        'purchase.order',
-        'Purchase Order',
+        comodel_name='purchase.order',
+        string='Purchase Order',
     )
     origin_order_ids = fields.Many2many(
-        'purchase.order',
+        comodel_name='purchase.order',
         string='Origin Orders',
         readonly=True,
     )
     group_id = fields.Many2one(
-        'procurement.group',
+        comodel_name='procurement.group',
         string="Procurement Group",
         help="Multiple orders means multiple procurement groups. You need to "
         "select which group will be used in the newly created order.",
     )
     pre_process = fields.Selection(
-        [
+        selection=[
             ('create', 'Create new order'),
             ('merge', 'Merge orders on selected order'),
         ],
@@ -38,7 +38,7 @@ class PurchaseOrderMerge(models.TransientModel):
         default='create'
     )
     post_process = fields.Selection(
-        [
+        selection=[
             ('cancel', 'Cancel'),
             ('delete', 'Delete'),
         ],
@@ -46,7 +46,7 @@ class PurchaseOrderMerge(models.TransientModel):
         default='cancel'
     )
     merge_quantities = fields.Boolean(
-        'Merge Quantities',
+        string='Merge Quantities',
         help="If checked, all lines with the same product will be merged "
         "and their quantities will be added",
     )
@@ -151,6 +151,7 @@ class PurchaseOrderMerge(models.TransientModel):
             }
         ).create({
             'partner_id': self.partner_id.id,
+            'date_order': min(self.origin_order_ids.mapped('date_order')),
         })
         self._pre_process_merge()
 
