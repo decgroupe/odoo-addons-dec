@@ -268,7 +268,7 @@ class StockMove(models.Model):
             action = self.created_purchase_line_id.order_id.action_view()
         elif self.purchase_line_id:
             action = self.purchase_line_id.order_id.action_view()
-        elif action.created_production_id:
+        elif self.created_production_id:
             action = self.created_production_id.action_view()
         elif self.production_id:
             action = self.production_id.action_view()
