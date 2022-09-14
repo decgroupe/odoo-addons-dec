@@ -23,7 +23,6 @@ odoo.define("web_widget_text_markdown.FieldTextMarkDown", function (require) {
             LIBS_PATH + "bootstrap-markdown.js",
             LIBS_PATH + "showdown.js",
             LIBS_PATH + "showdown-footnotes.js",
-            LIBS_PATH + "showdown-table.js",
             LIBS_PATH + "showdown-toc.js",
         ],
         cssLibs: [
@@ -42,7 +41,7 @@ odoo.define("web_widget_text_markdown.FieldTextMarkDown", function (require) {
 
         start: function () {
             this.shw_render_html = new showdown.Converter({
-                extensions: ["table", "footnotes", "toc"],
+                extensions: ["footnotes", "toc"],
                 emoji: true,
                 underline: true,
                 tablesHeaderId: true,

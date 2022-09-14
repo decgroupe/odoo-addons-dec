@@ -22,3 +22,11 @@
     "auto_install": False,
     "application": False,
 }
+
+# https://github.com/showdownjs/showdown
+# Extension list: https://github.com/showdownjs/showdown/wiki
+
+# Extensions:
+# - https://github.com/showdownjs/table-extension (deprecated)
+# - https://github.com/ravisorg/showdown-toc
+# - https://github.com/halbgut/showdown-footnotes
