@@ -61,7 +61,7 @@ odoo.define("web_widget_text_markdown.FieldTextMarkDown", function (require) {
                 ghCodeBlocks: true,
                 tasklists: true,
                 smoothLivePreview: true,
-                smartIndentationFix: true,
+                smartIndentationFix: false,
                 disableForced4SpacesIndentedSublists: true,
                 simpleLineBreaks: true,
                 requireSpaceBeforeHeadingText: true,
@@ -124,7 +124,7 @@ odoo.define("web_widget_text_markdown.FieldTextMarkDown", function (require) {
                                 {
                                     name: "cmdTranslate",
                                     title: _t("Translate"),
-                                    icon: {fa: "fa fa-flag"},
+                                    icon: { fa: "fa fa-flag" },
                                     // eslint-disable-next-line max-len
                                     callback: this._markdownTranslate.bind(self),
                                 },
