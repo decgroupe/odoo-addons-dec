@@ -92,9 +92,7 @@ class StockMove(models.Model):
         action = super().action_view_created_item()
         if not action:
             if self.orderpoint_created_purchase_line_ids:
-                action = self.action_view_purchase(
-                    self.orderpoint_created_purchase_line_ids[0].order_id.id
-                )
+                action = self.orderpoint_created_purchase_line_ids.action_view()
             elif self.orderpoint_created_production_ids:
                 action = self.orderpoint_created_production_ids.action_view()
         return action
