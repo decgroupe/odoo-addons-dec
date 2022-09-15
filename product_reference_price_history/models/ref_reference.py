@@ -238,7 +238,7 @@ class RefReference(models.Model):
                 return round(value, 2)
 
         raw_diff = prices[0].value - prices[1].value
-        if prices[0].value:
+        if prices[0].value and (prices[1].value != 0):
             diff_percent = (prices[0].value -
                             prices[1].value) * 100 / prices[1].value
         else:
