@@ -3,6 +3,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
 from odoo import _, api, models, fields
+from odoo.tools import html2plaintext
 
 
 class MassEditingWizard(models.TransientModel):
@@ -34,9 +35,12 @@ class MassEditingWizard(models.TransientModel):
         # empty dict so nothing is saved during a create. That's why we must
         # use our vals to check for wizard data
         chat_message = vals.get('chat_message', False)
+        # Convert to plain text to check text only content.
+        # A security of 6 characters minimum is also added.
+        post_chat_message = len(html2plaintext(chat_message).strip()) >= 6
         if active_ids:
             TargetModel = self.env[mass_editing.model_id.model]
-            if chat_message:
+            if post_chat_message:
                 for target in TargetModel.browse(active_ids):
                     target.message_post(
                         body=chat_message, subtype="mail.mt_note"
