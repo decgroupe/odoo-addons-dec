@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 08:56+0000\n"
-"PO-Revision-Date: 2022-03-24 09:59+0100\n"
+"POT-Creation-Date: 2022-09-15 09:50+0000\n"
+"PO-Revision-Date: 2022-09-15 11:51+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,37 +15,64 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_product_warnings
+#: selection:product.template,sale_line_warn:0
+msgid "Block Confirmation Message"
+msgstr "Message bloquant de confirmation"
+
+#. module: sale_product_warnings
+#: selection:product.template,sale_line_warn:0
+msgid "Blocking Message"
+msgstr "Message Bloquant"
+
+#. module: sale_product_warnings
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/product_product.py:17
+#, python-format
+msgid "Following products are blocking!"
+msgstr "Les articles suivants sont bloquants !"
+
+#. module: sale_product_warnings
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__id
+#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_warnings
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: sale_product_warnings
-#: code:addons/sale_product_warnings/models/sale_order.py:21
+#: selection:product.template,sale_line_warn:0
+msgid "No Message"
+msgstr "Aucun Message"
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order_line.py:21
 #, python-format
 msgid "No internal notes"
 msgstr "Pas de notes internes"
 
 #. module: sale_product_warnings
-#: code:addons/sale_product_warnings/models/sale_order.py:25
+#: code:addons/sale_product_warnings/models/sale_order_line.py:25
 #, python-format
 msgid "No responsible for this product"
 msgstr "Pas de responsable assigné pour cet article"
 
 #. module: sale_product_warnings
-#: code:addons/sale_product_warnings/models/sale_order.py:29
+#: code:addons/sale_product_warnings/models/sale_order_line.py:29
 #, python-format
 msgid ""
 "Obsolete product!\n"
@@ -69,17 +96,30 @@ msgid "Product Review"
 msgstr "Révision d'article"
 
 #. module: sale_product_warnings
+#: model:ir.model,name:sale_product_warnings.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: sale_product_warnings
 #: model:ir.model,name:sale_product_warnings.model_sale_order
 msgid "Sale Order"
 msgstr "Commande client"
 
 #. module: sale_product_warnings
 #: model:ir.model,name:sale_product_warnings.model_sale_order_line
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__sale_line_warn
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__sale_line_warn
 msgid "Sales Order Line"
 msgstr "Ligne de commandes de vente"
 
 #. module: sale_product_warnings
-#: code:addons/sale_product_warnings/models/sale_order.py:39
+#: model:ir.model.fields,help:sale_product_warnings.field_product_product__sale_line_warn
+#: model:ir.model.fields,help:sale_product_warnings.field_product_template__sale_line_warn
+msgid "Selecting the \"Warning\" option will notify user with the message, Selecting \"Blocking Message\" will throw an exception with the message and block the flow. The Message has to be written in the next field."
+msgstr "Sélectionner l'option 'Avertissement' notifiera l'utilisateur avec le Message. Sélectionner 'Message Bloquant' lancera une exception avec le message et bloquera le flux. Le Message doit être encodé dans le champ suivant."
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order_line.py:39
 #, python-format
 msgid ""
 "This product is currently in quotation, prices may not be correct:\n"
@@ -95,7 +135,7 @@ msgstr ""
 " - Vous pouvez prendre contact avec \"%s\""
 
 #. module: sale_product_warnings
-#: code:addons/sale_product_warnings/models/sale_order.py:34
+#: code:addons/sale_product_warnings/models/sale_order_line.py:34
 #, python-format
 msgid ""
 "This product needs to be reviewed:\n"
@@ -111,7 +151,12 @@ msgstr ""
 " - Merci de contacter \"%s\""
 
 #. module: sale_product_warnings
-#: code:addons/sale_product_warnings/models/sale_order.py:18
+#: selection:product.template,sale_line_warn:0
+msgid "Warning"
+msgstr "Avertissement"
+
+#. module: sale_product_warnings
+#: code:addons/sale_product_warnings/models/sale_order_line.py:18
 #, python-format
 msgid "Warning for %s"
 msgstr "Avertissement pour %s"

@@ -63,3 +63,13 @@ class SaleOrderLine(models.Model):
                 }
             )
         return rec
+
+    @api.multi
+    def _write(self, vals):
+        # Note that we need to override internal `_write` since related
+        # fields bypass the common `write` function
+        check_warn = (vals.get('state') == 'sale')
+        res = super()._write(vals)
+        if check_warn:
+            self.mapped('product_id')._check_warn('block_confirm')
+        return res
