@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='bom_line_ids']/tree//field[@name='product_qty']" position="before">
                 <field name="partner_id"/>
+                <field name="delay"/>
                 <field name="landmark"/>
             </xpath>
         </field>
@@ -22,6 +23,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group/group[1]" position="inside">
                 <field name="partner_id"/>
+                <field name="delay"/>
                 <field name="landmark"/>
             </xpath>
         </field>

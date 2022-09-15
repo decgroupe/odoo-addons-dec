@@ -12,7 +12,7 @@ class MrpBom(models.Model):
     def name_search(self, name, args=None, operator="ilike", limit=100):
         if args is None:
             args = []
-        
+
         bom_ids = []
         if name:
             positive_operators = ['=', 'ilike', '=ilike', 'like', '=like']
