@@ -40,6 +40,18 @@ class MrpProduction(models.Model):
         string='Total Hours'
     )
 
+    @api.model
+    def create(self, values):
+        if not values.get('allow_timesheets') is True:
+            self_ctx = self.with_context(mrp_project_auto_disable=True)
+        else:
+            self_ctx = self
+        production_id = super(MrpProduction, self_ctx).create(values)
+        # Do not call `action_create_project` here since it will be probably
+        # too late, instead, we override `_generate_moves` to call it befrore
+        # generating any moves
+        return production_id
+
     def write(self, vals):
         res = super().write(vals)
         if 'planned_hours' in vals:

@@ -12,14 +12,18 @@ class MrpProduction(models.Model):
     def create(self, values):
         production_id = super(MrpProduction, self).create(values)
         # Do not call `action_create_project` here since it will be probably
-        # too late, instead, we override `_generate_moves` to call it befrore
+        # too late, instead, we override `_generate_moves` to call it before
         # generating any moves
         return production_id
 
     @api.multi
     def _generate_moves(self):
-        self.action_create_project()
-        return super()._generate_moves()
+        if not self.env.context.get("mrp_project_auto_disable"):
+            # Project must be created before any moves to be propagated
+            # to sub-production.
+            self.action_create_project()
+        res = super()._generate_moves()
+        return res
 
     @api.multi
     def action_create_project(self):
