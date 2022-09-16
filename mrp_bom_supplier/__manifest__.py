@@ -4,12 +4,12 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': '''Add extra fields on BoM''',
-    'depends': [
-        'mrp',
-    ],
+    'depends':
+        [
+            'mrp',
+            'product_legacy_routes',  # Needed for `supply_method` depends
+        ],
     #'force_migration':'12.0.0.0.0',
-    'data': [
-        'views/mrp_bom.xml',
-    ],
+    'data': ['views/mrp_bom.xml', ],
     'installable': True
 }

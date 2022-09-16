@@ -22,10 +22,8 @@ class MrpBomLine(models.Model):
         string='Delay',
         compute="_compute_delay",
         inverse="_inverse_delay",
-        help="Lead time in days between the confirmation of the purchase "
-        "order and the receipt of the products in your warehouse. Used by "
-        "the scheduler for automatic computation of the purchase order "
-        "planning."
+        help="Produce lead time in days if the product have to be manufactured"
+        "or delivery lead time in days if the product have to be purchased."
     )
 
     @api.multi
@@ -55,12 +53,18 @@ class MrpBomLine(models.Model):
         for rec in self:
             rec.supplier_id = rec._get_supplierinfo()
 
-    @api.depends("supplier_id")
+    @api.depends("product_id.supply_method", "supplier_id")
     def _compute_delay(self):
         for rec in self:
-            rec.delay = rec.supplier_id.delay
+            if rec.product_id.supply_method == 'buy':
+                rec.delay = rec.supplier_id.delay
+            elif rec.product_id.supply_method == 'produce':
+                rec.delay = rec.product_id.produce_delay
 
     def _inverse_delay(self):
         for rec in self:
-            if rec.supplier_id:
-                rec.supplier_id.delay = rec.delay
+            if rec.product_id.supply_method == 'buy':
+                if rec.supplier_id:
+                    rec.supplier_id.delay = rec.delay
+            elif rec.product_id.supply_method == 'produce':
+                rec.product_id.produce_delay = rec.delay
