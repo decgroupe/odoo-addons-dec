@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- History Form view  -->
+    <record model="ir.ui.view" id="wiki_history_form">
+        <field name="name">document.page.history.form</field>
+        <field name="model">document.page.history</field>
+        <field name="inherit_id" ref="document_page.wiki_history_form"/>
+        <field name="arch" type="xml">
+            <field name="content" position="after">
+                <field name="content_markdown" widget="bootstrap_markdown"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
