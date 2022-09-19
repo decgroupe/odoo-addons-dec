@@ -30,7 +30,24 @@ class MrpProduction(models.Model):
         string="Number of Tasks",
     )
 
-    @api.depends("task_ids", "task_ids.type_id")
+    task_progress = fields.Float(
+        compute='_compute_task_progress',
+        group_operator='avg',
+        store=True,
+        string='Progress',
+    )
+
+    @api.depends('task_ids', 'task_ids.progress', 'task_ids.stage_id')
+    def _compute_task_progress(self):
+        for rec in self.filtered('task_ids'):
+            active_task_ids = rec.task_ids.filtered(
+                lambda x: x.stage_id.fold is False
+            )
+            value = sum(active_task_ids.mapped("progress")
+                       ) / len(active_task_ids)
+            rec.task_progress = value
+
+    @api.depends("task_ids")
     def _compute_task_count(self):
         for rec in self:
             rec.task_count = len(rec.task_ids)

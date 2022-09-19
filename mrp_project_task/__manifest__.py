@@ -8,6 +8,7 @@
         [
             'mrp_project',
             'mrp_purchase',
+            'mrp_stage',
             'sale_timesheet_existing_project',
             'sale_timesheet_task_exclude',
             'project_action_view',
