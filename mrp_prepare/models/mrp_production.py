@@ -32,7 +32,7 @@ class MrpProduction(models.Model):
             The purpose of this method is to be overriden.
         """
         if values.get('date_planned_start'):
-            res = values.get('date_planned_start')
+            res = fields.Datetime.from_string(values.get('date_planned_start'))
         else:
             res = fields.Date.context_today(self)
         return res

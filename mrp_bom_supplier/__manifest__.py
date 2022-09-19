@@ -7,6 +7,7 @@
     'depends':
         [
             'mrp',
+            "mrp_prepare",
             'product_legacy_routes',  # Needed for `supply_method` depends
         ],
     #'force_migration':'12.0.0.0.0',

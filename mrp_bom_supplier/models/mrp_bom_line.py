@@ -22,8 +22,9 @@ class MrpBomLine(models.Model):
         string='Delay',
         compute="_compute_delay",
         inverse="_inverse_delay",
-        help="Produce lead time in days if the product have to be manufactured"
-        "or delivery lead time in days if the product have to be purchased."
+        help="Produce lead time in days if the product have to be "
+        "manufactured or delivery lead time in days if the product have to "
+        "be purchased."
     )
 
     @api.multi

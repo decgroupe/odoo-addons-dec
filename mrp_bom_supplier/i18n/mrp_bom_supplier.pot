@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
+"POT-Creation-Date: 2022-09-19 13:32+0000\n"
+"PO-Revision-Date: 2022-09-19 13:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,20 +18,57 @@ msgstr ""
 #. module: mrp_bom_supplier
 #: model:ir.model,name:mrp_bom_supplier.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Nomenclature"
+msgstr ""
 
 #. module: mrp_bom_supplier
 #: model:ir.model,name:mrp_bom_supplier.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr "Ligne de nomenclature"
+msgstr ""
+
+#. module: mrp_bom_supplier
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__delay
+msgid "Delay"
+msgstr ""
+
+#. module: mrp_bom_supplier
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__display_name
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_bom_supplier
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom__id
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__id
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production__id
+msgid "ID"
+msgstr ""
 
 #. module: mrp_bom_supplier
 #: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__landmark
 msgid "Landmark"
-msgstr "Repère"
+msgstr ""
+
+#. module: mrp_bom_supplier
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom____last_update
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line____last_update
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_bom_supplier
+#: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_bom_line__delay
+msgid "Produce lead time in days if the product have to be manufactured or delivery lead time in days if the product have to be purchased."
+msgstr ""
+
+#. module: mrp_bom_supplier
+#: model:ir.model,name:mrp_bom_supplier.model_mrp_production
+msgid "Production Order"
+msgstr ""
 
 #. module: mrp_bom_supplier
 #: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__partner_id
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__supplier_id
 msgid "Supplier"
-msgstr "Fournisseur"
+msgstr ""
 
