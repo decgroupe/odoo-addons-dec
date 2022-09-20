@@ -28,3 +28,8 @@ class ProductTemplate(models.Model):
             action['view_mode'] = 'form'
             action['res_id'] = self.ids[0]
         return action
+
+    @api.multi
+    def action_view_variants(self):
+        action = self.mapped('product_variant_ids').action_view()
+        return action

@@ -5,6 +5,9 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Code shortcuts to open base views",
     'depends': ['product', ],
-    'data': [],
+    'data': [
+        'views/product_template.xml',
+        'views/product_product.xml',
+    ],
     'installable': True
 }
