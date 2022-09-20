@@ -54,18 +54,24 @@ class MrpBomLine(models.Model):
         for rec in self:
             rec.supplier_id = rec._get_supplierinfo()
 
-    @api.depends("product_id.supply_method", "supplier_id")
+    @api.depends(
+        "product_id.supply_method", "product_id.procure_method", "supplier_id"
+    )
     def _compute_delay(self):
         for rec in self:
-            if rec.product_id.supply_method == 'buy':
-                rec.delay = rec.supplier_id.delay
-            elif rec.product_id.supply_method == 'produce':
-                rec.delay = rec.product_id.produce_delay
+            if rec.product_id.procure_method == 'make_to_order':
+                if rec.product_id.supply_method == 'buy':
+                    rec.delay = rec.supplier_id.delay
+                elif rec.product_id.supply_method == 'produce':
+                    rec.delay = rec.product_id.produce_delay
+            elif rec.product_id.procure_method == 'make_to_stock':
+                rec.delay = 0
 
     def _inverse_delay(self):
         for rec in self:
-            if rec.product_id.supply_method == 'buy':
-                if rec.supplier_id:
-                    rec.supplier_id.delay = rec.delay
-            elif rec.product_id.supply_method == 'produce':
-                rec.product_id.produce_delay = rec.delay
+            if rec.product_id.procure_method == 'make_to_order':
+                if rec.product_id.supply_method == 'buy':
+                    if rec.supplier_id:
+                        rec.supplier_id.delay = rec.delay
+                elif rec.product_id.supply_method == 'produce':
+                    rec.product_id.produce_delay = rec.delay
