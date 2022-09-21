@@ -2,7 +2,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from attr import field
 from odoo import api, fields, models
 
 
