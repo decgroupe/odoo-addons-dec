@@ -15,10 +15,10 @@ class MailMessage(models.AbstractModel):
     @api.model
     def create(self, vals):
         res = super(MailMessage, self).create(vals)
-        _logger.info("Creating %s", res)
+        _logger.info("✉️ Creating %s", res)
         return res
 
     def unlink(self):
         for rec in self:
-            _logger.info("Deleting %s", rec.message_id)
+            _logger.info("✉️ Deleting %s", rec.message_id)
         return super().unlink()
