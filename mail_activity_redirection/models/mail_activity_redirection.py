@@ -15,41 +15,41 @@ class MailActivityRedirection(models.Model):
     _order = "sequence, id"
 
     active = fields.Boolean(
-        'Active',
+        string='Active',
         default=True,
         help="By unchecking the active field, you may hide a "
         "rule you will not use."
     )
     name = fields.Char(translate=True)
     sequence = fields.Integer(
-        'Sequence',
+        string='Sequence',
         default=lambda self: self._default_sequence(),
         help="Gives the sequence order when displaying."
     )
     user_id = fields.Many2one(
-        'res.users',
+        comodel_name='res.users',
         string='User',
         help="Activities will be redirected to this user",
         ondelete='cascade',
         required=True,
     )
     initial_user_ids = fields.Many2many(
-        'res.users',
+        comodel_name='res.users',
         string='Users initially targeted',
         domain=['|', ('active', '=', True), ('active', '=', False)],
     )
     model_ids = fields.Many2many(
-        'ir.model',
+        comodel_name='ir.model',
         string="Models",
         help="Models targeted by these activities "
         "like _name class attribute",
     )
     activity_type_ids = fields.Many2many(
-        'mail.activity.type',
+        comodel_name='mail.activity.type',
         string='Activity Types',
     )
     qweb_templates = fields.Many2many(
-        'ir.ui.view',
+        comodel_name='ir.ui.view',
         string="QWeb Templates",
         domain=[('type', '=', 'qweb')],
         help="Templates used to render activity note",
@@ -60,7 +60,8 @@ class MailActivityRedirection(models.Model):
         help="Regular Expression used to parse activity note",
     )
     activity_ids = fields.Many2many(
-        'mail.activity',
+        comodel_name='mail.activity',
+        copy=False,
         string='Intercepted Activities',
         help="History of latest intercepted and redirected activities",
     )
