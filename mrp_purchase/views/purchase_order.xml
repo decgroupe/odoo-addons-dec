@@ -6,7 +6,7 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']//field[@name='sale_line_id']" position="after">
+            <xpath expr="//field[@name='order_line']/form//field[@name='account_analytic_id']" position="before">
                 <field name="production_id"/>
                 <field name="bom_line_id" attrs="{'invisible': [('production_id', '=', False)]}"/>
             </xpath>
