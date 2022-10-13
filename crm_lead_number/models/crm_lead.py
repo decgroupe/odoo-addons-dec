@@ -42,11 +42,13 @@ class CrmLead(models.Model):
             if self.number == '/':
                 self.number = self._prepare_number(vals)
 
+    @api.model
     def create(self, vals):
         record = super().create(vals)
         record._init_number(vals)
         return record
 
+    @api.multi
     def write(self, vals):
         res = super().write(vals)
         self._init_number(vals)
