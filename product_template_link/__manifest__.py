@@ -11,5 +11,5 @@
         'views/assets.xml',
         'views/product_product.xml',
     ],
-    'installable': True
+    'installable': False # deprecated via "product_action_view"
 }
