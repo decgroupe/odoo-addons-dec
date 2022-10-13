@@ -43,8 +43,11 @@ class MrpProduction(models.Model):
             active_task_ids = rec.task_ids.filtered(
                 lambda x: x.stage_id.fold is False
             )
-            value = sum(active_task_ids.mapped("progress")
-                       ) / len(active_task_ids)
+            if active_task_ids:
+                value = sum(active_task_ids.mapped("progress")
+                        ) / len(active_task_ids)
+            else:
+                value = 100
             rec.task_progress = value
 
     @api.depends("task_ids")
