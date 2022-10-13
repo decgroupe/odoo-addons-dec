@@ -48,6 +48,7 @@ class SaleOrderLine(models.Model):
                 res = {'warning': warning}
         return res
 
+    @api.model
     def create(self, vals):
         rec = super().create(vals)
         if rec.product_id.state == 'review':
