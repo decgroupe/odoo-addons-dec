@@ -60,7 +60,20 @@ class SaleOrderLine(models.Model):
                 rec.order_id.user_id.id or self.env.uid,
                 views_or_xmlid='sale_product_warnings.exception_product_review',
                 render_context={
-                    'product_id': rec.product_id,
+                    'product_id':
+                        rec.product_id,
+                    'product_state':
+                        dict(
+                            rec.product_id._fields['state'].
+                            _description_selection(self.env)
+                        ).get(rec.product_id.state),
+                    'order_id':
+                        rec.order_id,
+                    'order_state':
+                        dict(
+                            rec.order_id._fields['state'].
+                            _description_selection(self.env)
+                        ).get(rec.order_id.state),
                 }
             )
         return rec

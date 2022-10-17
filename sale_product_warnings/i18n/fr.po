@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-15 09:50+0000\n"
-"PO-Revision-Date: 2022-09-15 11:51+0200\n"
+"POT-Creation-Date: 2022-10-17 07:57+0000\n"
+"PO-Revision-Date: 2022-10-17 09:59+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 2.4.3\n"
+
+#. module: sale_product_warnings
+#: model_terms:ir.ui.view,arch_db:sale_product_warnings.exception_product_review
+msgid ") while was in «"
+msgstr ") alors qu'il était en «"
 
 #. module: sale_product_warnings
 #: selection:product.template,sale_line_warn:0
@@ -28,6 +33,7 @@ msgid "Blocking Message"
 msgstr "Message Bloquant"
 
 #. module: sale_product_warnings
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__display_name
 #: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__display_name
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__display_name
@@ -41,6 +47,7 @@ msgid "Following products are blocking!"
 msgstr "Les articles suivants sont bloquants !"
 
 #. module: sale_product_warnings
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__id
 #: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__id
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__id
@@ -48,6 +55,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_warnings
+#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product____last_update
 #: model:ir.model.fields,field_description:sale_product_warnings.field_product_template____last_update
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line____last_update
@@ -87,8 +95,13 @@ msgstr ""
 
 #. module: sale_product_warnings
 #: model_terms:ir.ui.view,arch_db:sale_product_warnings.exception_product_review
-msgid "Please review the following product:"
-msgstr "Merci de réviser l'article suivant :"
+msgid "Please review the following product that was added to"
+msgstr "Merci de réviser l'article suivant qui a été ajouté à"
+
+#. module: sale_product_warnings
+#: model:ir.model,name:sale_product_warnings.model_product_product
+msgid "Product"
+msgstr "Article"
 
 #. module: sale_product_warnings
 #: model:mail.activity.type,name:sale_product_warnings.mail_activity_data_review
