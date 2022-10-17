@@ -67,8 +67,8 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <!-- WARNING: the string character is a non-breakable space -->
-                <field name="image_small" string=" " widget="image"/>
+                <!-- WARNING: the string character is a non-breaking space (NBSP) space -->
+                <field name="image_small" string=" " widget="image"/>
             </field>
             <tree position="attributes">
                 <attribute name="decoration-success">state == 'quotation'</attribute>
