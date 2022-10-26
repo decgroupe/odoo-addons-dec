@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_case_oppor_form_view" >
+        <field name="name">crm.lead.oppor.inherited.crm@project_crm_link</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <page name="lead" position="before">
+                <page name="projects" string="Related Projects">
+                    <field name="related_project_ids" widget="many2many" 
+                        domain="[('linked_lead_id', '=', False)]" 
+                        context="{
+                            'default_partner_id': partner_id,
+                            'bypass_supermanager_check': True,
+                        }"/>
+                </page>
+            </page>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object"
+                    name="action_view_related_projects"
+                    class="oe_stat_button"
+                    icon="fa-puzzle-piece"
+                    attrs="{'invisible': [('related_project_count', '=', 0)]}">
+                    <field name="related_project_count" widget="statinfo" string="Related Projects"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
