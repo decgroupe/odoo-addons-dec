@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-29 14:48+0000\n"
-"PO-Revision-Date: 2022-06-29 14:48+0000\n"
+"POT-Creation-Date: 2022-10-28 13:15+0000\n"
+"PO-Revision-Date: 2022-10-28 13:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,22 +16,76 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
+msgid "(replacing"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
+msgid "<strong>⚠️ User login not in sync with contact e-mail.</strong>\n"
+"                The contact email is now"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
+msgid "Ask your odoo administrator to make this change or ask him to give you the permission to synchronize contact e-mail with user login"
+msgstr ""
+
+#. module: res_users_login_sync
 #: model:ir.model,name:res_users_login_sync.model_res_partner
 msgid "Contact"
 msgstr ""
 
 #. module: res_users_login_sync
 #: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner__display_name
+#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
+msgid "Go to My Account"
+msgstr ""
+
+#. module: res_users_login_sync
 #: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner__id
+#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users__id
 msgid "ID"
 msgstr ""
 
 #. module: res_users_login_sync
 #: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner____last_update
+#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model:mail.template,subject:res_users_login_sync.email_template_login_edit
+msgid "Login Edit Notification"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model:res.groups,name:res_users_login_sync.group_user_login_sync
+msgid "Manually keep contact e-mail in sync with user login"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
+msgid "Note that for security reason, a copy of this notification has been sent to your old and your new login"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model:ir.model,name:res_users_login_sync.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
+msgid "Your login is now set to"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
+msgid "but its login is still"
 msgstr ""
 

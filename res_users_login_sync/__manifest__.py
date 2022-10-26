@@ -7,7 +7,14 @@
     'summary': "Keep user login in sync with contact e-mail",
     'depends': [
         'base',
+        'mail_qweb',
     ],
-    'data': [],
+    'data':
+        [
+            'security/res_groups.xml',
+            'views/res_partner_template.xml',
+            'data/ir_ui_view.xml',
+            'data/mail_template.xml',
+        ],
     'installable': True
 }
