@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="view_email_template_part_avatar">
+        <style>
+            .table_avatar {
+                margin-top:8px;
+            }
+            .img_avatar {
+                width:20px;
+                height:20px;
+                vertical-align:sub;
+                border-radius:50%;
+            }
+            .table_avatar a {
+                font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                color:rgba(0,0,0,0.87);
+                font-size:14px;
+                line-height:20px;
+            }
+        </style>
+        <table class="table_avatar" align="center" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr style="line-height:normal">
+                    <td style="padding-right:8px" align="right">
+                        <img class="img_avatar" t-attf-src="/web/image/res.users/{{object.id}}/image_small" width="20" height="20"/>
+                    </td>
+                    <td>
+                        <a t-if="object.login">
+                            <t t-esc="object.login"></t>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="view_email_template_part_footer">
+        <style>
+            .div_footer {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.54);
+                font-size:11px;
+                line-height:18px;
+                padding-top:12px;
+                text-align:center;
+            }
+            .div_footer a {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.54);
+                font-size:11px;
+                line-height:18px;
+                padding-top:12px;
+                text-align:center;
+            }
+        </style>
+        <div class="div_footer">
+            <div>
+                You have received this email to notify you of important changes to your account and services
+            </div>
+            <!-- <div>Cet e-mail vous a été envoyé pour vous informer de modifications importantes apportées à votre compte (DEC-ID) et aux services DEC que vous utilisez.</div> -->
+            <div>
+                <t t-esc="'%s %d' % ('©', datetime.datetime.now().year)"></t>
+                <t t-esc="env.user.company_id.name"></t>
+                <t t-esc="env.user.company_id.partner_id.partner_company_type_id.shortcut"></t>
+,                <a>
+                    <t t-if="env.user.company_id.partner_id.street" t-esc="env.user.company_id.partner_id.street"/>
+                    <t t-if="env.user.company_id.partner_id.street2" t-esc="env.user.company_id.partner_id.street2"/>
+                    <t t-if="env.user.company_id.partner_id.zip" t-esc="env.user.company_id.partner_id.zip"/>
+                    <t t-if="env.user.company_id.partner_id.city" t-esc="env.user.company_id.partner_id.city"/>
+                    <t t-if="env.user.company_id.partner_id.country_id" t-esc="env.user.company_id.partner_id.country_id.code"/>
+                </a>
+            </div>
+        </div>
+    </template>
+
+    <template id="view_email_template_notification">
+        <html>
+            <head>
+                <style>
+                    .div_root {
+                        margin:0;
+                        padding:0;
+                    }
+                    .table_root {
+                        min-width:348px;
+                    }
+                    .table_content {
+                        padding-bottom:20px;
+                        max-width:516px;
+                        min-width:220px;
+                    }
+                    .table_footer {}
+
+                    .div_content_border {
+                        border-style:solid;
+                        border-width:thin;
+                        border-color:#dadce0;
+                        border-radius:8px;
+                        padding:40px 20px;
+                    }
+                    .img_logo {
+                        margin-bottom:16px;
+                    }
+                    
+                    .div_content_subject_container {
+                        font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                        border-bottom:thin solid #dadce0;
+                        color:rgba(0,0,0,0.87);
+                        line-height:32px;
+                        padding-bottom:24px;
+                        text-align:center;
+                        word-break:break-word;
+                    }
+                    .div_content_subject {
+                        font-size:24px;
+                    }
+
+                    .div_content_message {
+                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                        font-size:14px;
+                        color:rgba(0,0,0,0.87);
+                        line-height:20px;
+                        padding-top:20px;
+                        text-align:center;
+                    }
+                    .div_content_message_bottom {
+                        padding-top:32px;
+                        text-align:center;
+                    }
+                    .div_content_message_bottom a {
+                        font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                        line-height:16px;
+                        color:#ffffff;
+                        font-weight:400;
+                        text-decoration:none;
+                        font-size:14px;
+                        display:inline-block;
+                        padding:10px 24px;
+                        background-color:#875a7b;
+                        border-radius:5px;
+                        min-width:90px;
+                    }
+                    .div_content_footer {
+                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                        padding-top:20px;
+                        font-size:12px;
+                        line-height:16px;
+                        color:#5f6368;
+                        letter-spacing:0.3px;
+                        text-align:center;
+                    }
+                    .div_content_footer a {
+                        color:rgba(0,0,0,0.87);
+                        text-decoration:inherit;
+                    }
+
+                </style>
+            </head>
+            <body>
+
+                <div class="div_root" bgcolor="#FFFFFF">
+                    <table class="table_root" width="100%" lang="en" height="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr style="height:32px" height="32">
+                                <td></td>
+                            </tr>
+                            <tr align="center">
+                                <td>
+                                    <div>
+                                        <table class="table_content" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width:8px" width="8"></td>
+                                                    <td>
+                                                        <div class="div_content_border" align="center">
+                                                            <img t-attf-src="/web/image/website/{{env.user.company_id.id}}/logo" class="img_logo" t-attf-alt="{{env.user.company_id.name}}" height="24"/>
+                                                            <div class="div_content_subject_container">
+                                                                <div class="div_content_subject">
+                                                                    <t t-esc="email_template.subject" />
+                                                                </div>
+                                                                <t t-call="mail_qweb.view_email_template_part_avatar"/>
+                                                            </div>
+
+                                                            <div t-if="content_message" class="div_content_message">
+                                                                <t t-raw="content_message"/>
+                                                            </div>
+                                                            <div t-if="content_footer" class="div_content_footer">
+                                                                <t t-raw="content_footer"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <t t-call="mail_qweb.view_email_template_part_footer"/>
+                                                    </td>
+                                                    <td style="width:8px" width="8"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="height:32px" height="32">
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 
+                <img style="float: right" t-attf-src="data:image;base64,{{env.user.company_id.logo}}" />
+                <!~~ if some template calling us sets this variable, we print a h1 tag /~~>
+                <h1 t-if="email_heading">
+                    <t t-esc="email_heading" />
+                </h1>
+                <t t-raw="0" />
+                <!~~ use some standard footer if the user doesn't have a signature /~~>
+                <footer t-if="not email_use_user_signature">
+                    <p>
+                        <a t-att-href="env.user.company_id.website">
+                            <t t-esc="env.user.company_id.name" />
+                        </a>
+                    </p>
+                    <p>
+                        <t t-esc="env.user.company_id.phone" />
+                    </p>
+                </footer>
+                <footer t-if="email_use_user_signature">
+                    <t t-raw="env.user.signature" />
+                </footer>
+                 -->
+            </body>
+        </html>
+    </template>
+
+</odoo>
