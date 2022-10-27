@@ -3,12 +3,13 @@
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
-    'summary': '''Scheduler task extended to re-create PO/MO''',
+    'summary': "Scheduler task extended to re-create PO/MO",
     'depends': [
         'stock',
         'mrp',
         'purchase_stock',
         'mrp_production_request',
+        'stock_orderpoint_traceability',
     ],
     'data':
         [
