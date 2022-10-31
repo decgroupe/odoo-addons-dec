@@ -26,9 +26,21 @@ class SaleOrder(models.Model):
                 'date': rec.expected_last_date.date(),
             })
 
+    def _get_create_project_data(self):
+        self.ensure_one()
+        contract_type_id = self.env.ref('project_identification.contract_type')
+        return {
+            'name': self.name,
+            # Use the same partner than the sale order. The shipping
+            # partner is retrieved using `project_partner_location`
+            # module and the `partner_shipping_id` field.
+            'partner_id': self.partner_id.id,
+            'type_id': contract_type_id.id,
+            'user_id': self.user_id.id,
+        }
+
     @api.multi
     def action_create_project(self):
-        contract_type_id = self.env.ref('project_identification.contract_type')
         Project = self.env['project.project'].with_context(
             # Do not subscribe assigned user
             mail_create_nosubscribe=True,
@@ -40,15 +52,7 @@ class SaleOrder(models.Model):
             if not rec.project_id or self.env.context.get(
                 'override_project_id'
             ):
-                project_data = {
-                    'name': rec.name,
-                    # Use the same partner than the sale order. The shipping
-                    # partner is retrieved using `project_partner_location`
-                    # module and the `partner_shipping_id` field.
-                    'partner_id': rec.partner_id.id,
-                    'type_id': contract_type_id.id,
-                    'user_id': rec.user_id.id,
-                }
+                project_data = rec._get_create_project_data()
                 domain = [
                     ('name', '=', project_data['name']),
                     ('partner_id', '=', project_data['partner_id']),
