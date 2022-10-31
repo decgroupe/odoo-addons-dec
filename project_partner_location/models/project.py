@@ -51,16 +51,25 @@ class Project(models.Model):
                     rec.partner_shipping_id = sale_id.partner_shipping_id
 
     @api.multi
-    @api.depends('partner_shipping_id', 'partner_shipping_zip_id')
+    @api.depends(
+        'partner_shipping_id',
+        'partner_shipping_zip_id',
+        'partner_id',
+    )
     def _get_name_identifications(self):
         res = super()._get_name_identifications()
         # Add partner and its location to quickly identify a contract
         if self.partner_shipping_id:
             pre = self.partner_shipping_id._get_contact_type_emoji()
-            name = ('%s %s') % (pre, self.partner_shipping_id.display_name, )
+            name = ('%s %s') % (pre, self.partner_shipping_id.display_name)
             res.append(name)
         if self.partner_shipping_zip_id:
             name = ('🗺️ %s') % (self.partner_shipping_zip_id.display_name, )
+            res.append(name)
+        # Fallback to default `partner_id`
+        if not self.partner_shipping_id and self.partner_id:
+            pre = self.partner_id._get_contact_type_emoji()
+            name = ('%s %s') % (pre, self.partner_id.display_name)
             res.append(name)
         return res
 
