@@ -13,7 +13,7 @@ class ProjectProject(models.Model):
         view_kanban_id = self.env.ref('project.view_project_kanban').id
         action = {
             'type': 'ir.actions.act_window',
-            'domain': [('id', 'in', self.project_ids.ids)],
+            'domain': [('id', 'in', self.ids)],
             'views': [(view_kanban_id, 'kanban')],
             'view_mode': 'kanban,form',
             'name': _('Projects'),
