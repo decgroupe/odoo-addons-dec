@@ -7,6 +7,7 @@
     'depends': [
         'crm_timesheet',
         'hr_timesheet_calendar',
+        'project_crm_link',
     ],
     'data': ['views/account_analytic_line.xml', ],
     'installable': True
