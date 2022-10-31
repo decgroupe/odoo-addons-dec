@@ -5,6 +5,7 @@
 import re
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class TypefastMixin(models.AbstractModel):
@@ -15,20 +16,27 @@ class TypefastMixin(models.AbstractModel):
         compute="_compute_typefast",
         store=True,
     )
-    
-    @api.depends(lambda self: (self._rec_name,) if self._rec_name else ())
+
+    @api.depends(lambda self: (self._rec_name, ) if self._rec_name else ())
     def _compute_typefast(self):
         for rec in self:
             # Strip everything but alphanumeric chars from the name
             rec.typefast_name = re.sub(r'\W+', '', rec[self._rec_name])
 
+    def _get_typefast_domain(self, name, operator):
+        return [
+            ('|'),
+            ('name', operator, name),
+            ('typefast_name', operator, name),
+        ]
+
     def _prepare_typefast_search(self, name, args=None, operator='ilike'):
-        if name and not args and operator == 'ilike':
-            args = [
-                ('|'),
-                ('name', operator, name),
-                ('typefast_name', operator, name),
-            ]
+        if name and operator == 'ilike':
+            typefast_args = self._get_typefast_domain(name, operator)
+            if args:
+                args = expression.AND([args, typefast_args])
+            else:
+                args = typefast_args
             name = ''
         return name, args
 
