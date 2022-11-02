@@ -12,14 +12,16 @@ class ProjectProject(models.Model):
     def action_view_base(self):
         view_kanban_id = self.env.ref('project.view_project_kanban')
         view_form_id = self.env.ref('project.edit_project')
+        view_list_id = self.env.ref('project.view_project')
         action = {
             'type': 'ir.actions.act_window',
             'domain': [('id', 'in', self.ids)],
             'views': [
                 (view_kanban_id.id, 'kanban'),
+                (view_list_id.id, 'tree'),
                 (view_form_id.id, 'form'),
             ],
-            'view_mode': 'kanban,form',
+            'view_mode': 'kanban,tree,form',
             'name': _('Projects'),
             'res_model': 'project.project',
         }
