@@ -10,11 +10,15 @@ class ProjectProject(models.Model):
 
     @api.model
     def action_view_base(self):
-        view_kanban_id = self.env.ref('project.view_project_kanban').id
+        view_kanban_id = self.env.ref('project.view_project_kanban')
+        view_form_id = self.env.ref('project.edit_project')
         action = {
             'type': 'ir.actions.act_window',
             'domain': [('id', 'in', self.ids)],
-            'views': [(view_kanban_id, 'kanban')],
+            'views': [
+                (view_kanban_id.id, 'kanban'),
+                (view_form_id.id, 'form'),
+            ],
             'view_mode': 'kanban,form',
             'name': _('Projects'),
             'res_model': 'project.project',
@@ -29,8 +33,6 @@ class ProjectProject(models.Model):
         elif len(self.ids) > 1:
             action['domain'] = [('id', 'in', self.ids)]
         else:
-            form = self.env.ref('project.edit_project')
-            action['views'].append((form.id, 'form'))
             action['res_id'] = self.ids[0]
         return action
 
