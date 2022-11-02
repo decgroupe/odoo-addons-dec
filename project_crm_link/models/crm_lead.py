@@ -27,6 +27,8 @@ class CrmLead(models.Model):
                 "group_by": "linked_lead_id",
                 "bypass_supermanager_check": True,
             }
+            if len(self.ids) == 1:
+                action["context"]["default_partner_id"] = self.partner_id.id
         return action
 
     def _compute_related_project_count(self):
