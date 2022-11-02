@@ -22,6 +22,7 @@ class CrmLead(models.Model):
     @api.multi
     def action_view_related_projects(self):
         action = self.mapped('related_project_ids').action_view()
+        action["domain"] = [("linked_lead_id", "in", self.ids)]
         if "context" not in action:
             action["context"] = {
                 "group_by": "linked_lead_id",
