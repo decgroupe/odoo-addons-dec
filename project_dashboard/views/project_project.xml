@@ -50,6 +50,21 @@
     </field>
   </record>
 
+  <record model="ir.ui.view" id="quick_create_project_form">
+    <field name="name">project.project.form.quick_create@project_dashboard</field>
+    <field name="model">project.project</field>
+    <field name="priority">1000</field>
+    <field name="arch" type="xml">
+      <form>
+        <group>
+          <field name="name"/>
+          <field name="type_id"/>
+          <field name="user_id" domain="[('share', '=', False)]"/>
+        </group>
+      </form>
+    </field>
+  </record>
+
   <record model="ir.ui.view" id="view_project_kanban">
     <field name="name">project.project.kanban@project_dashboard</field>
     <field name="model">project.project</field>
@@ -57,6 +72,7 @@
     <field name="arch" type="xml">
       <xpath expr="//kanban" position="attributes">
         <attribute name="js_class">project_dashboard_kanban</attribute>
+        <attribute name="quick_create_view">project_dashboard.quick_create_project_form</attribute>
       </xpath>
     </field>
   </record>
