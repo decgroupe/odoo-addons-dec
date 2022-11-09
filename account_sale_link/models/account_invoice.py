@@ -23,8 +23,13 @@ class AccountInvoice(models.Model):
     def _compute_sale_order(self):
         for invoice in self.filtered('origin'):
             if invoice.type == 'out_invoice':
+                # Also support comma separator
+                if invoice.origin and "," in invoice.origin:
+                    origins = [x.strip() for x in invoice.origin.split(',')]
+                else:
+                    origins = invoice.origin.split()
                 orders = self.env['sale.order'].search(
-                    [('name', 'in', invoice.origin.split())]
+                    [('name', 'in', origins)]
                 )
                 invoice.sale_order_ids = orders
                 invoice.sale_order_count = len(orders)
