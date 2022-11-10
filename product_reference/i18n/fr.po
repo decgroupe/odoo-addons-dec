@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 13:34+0000\n"
-"PO-Revision-Date: 2021-09-13 15:35+0200\n"
+"POT-Creation-Date: 2022-11-10 13:36+0000\n"
+"PO-Revision-Date: 2022-11-10 14:37+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,10 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_reference.py:183
+#: code:addons/product_reference/models/ref_category.py:82
+#: code:addons/product_reference/models/ref_reference.py:212
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copie)"
@@ -183,6 +184,7 @@ msgstr "Référence interne"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__display_name
+#: model:ir.model.fields,field_description:product_reference.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__display_name
@@ -190,6 +192,8 @@ msgstr "Référence interne"
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__display_name
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__display_name
+#: model:ir.model.fields,field_description:product_reference.field_res_company__display_name
+#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -206,6 +210,7 @@ msgstr "Format"
 
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_service_search_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
 msgid "Group By"
 msgstr "Regrouper par"
@@ -217,6 +222,7 @@ msgstr "Est repéré"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__id
+#: model:ir.model.fields,field_description:product_reference.field_product_template__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line__id
@@ -224,6 +230,8 @@ msgstr "Est repéré"
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__id
 #: model:ir.model.fields,field_description:product_reference.field_ref_version__id
+#: model:ir.model.fields,field_description:product_reference.field_res_company__id
+#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
@@ -231,6 +239,12 @@ msgstr "ID"
 #: model:ir.model.fields,help:product_reference.field_ref_reference__active
 msgid "If unchecked, it will allow you to hide the reference without removing it."
 msgstr "En décochant cette case, il est possible de masquer la référence sans le supprimer."
+
+#. module: product_reference
+#: code:addons/product_reference/models/ref_reference.py:189
+#, python-format
+msgid "Initial Version"
+msgstr "Version initiale"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__description
@@ -257,6 +271,7 @@ msgstr "Longueur de valeur non valide, la longueur doit être %d"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category____last_update
+#: model:ir.model.fields,field_description:product_reference.field_product_template____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_attribute____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_category_line____last_update
@@ -264,6 +279,8 @@ msgstr "Longueur de valeur non valide, la longueur doit être %d"
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference_line____last_update
 #: model:ir.model.fields,field_description:product_reference.field_ref_version____last_update
+#: model:ir.model.fields,field_description:product_reference.field_res_company____last_update
+#: model:ir.model.fields,field_description:product_reference.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -309,8 +326,8 @@ msgstr "Catégorie principale de l'article"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_market_bom
-msgid "Market BoM parent and children line"
-msgstr "À la fois parent et ligne de tarif"
+msgid "Market BoM"
+msgstr "Nomenclature du tarif"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_market_category
@@ -318,13 +335,13 @@ msgid "Market Category"
 msgstr "Catégorie du tarif"
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_reference_line.py:47
+#: code:addons/product_reference/models/ref_reference_line.py:46
 #, python-format
 msgid "Missing attribute for property {} : {}"
 msgstr "Attribut manquant pour la propriété {} : {}"
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_reference_line.py:54
+#: code:addons/product_reference/models/ref_reference_line.py:53
 #, python-format
 msgid "Missing value for property {} : {}"
 msgstr "Valeur manquante pour la propriété {} : {}"
@@ -390,12 +407,13 @@ msgstr "Graphe de calcul du prix"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_product_product
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_id
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_variant_id
 msgid "Product"
 msgstr "Article"
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_product_template
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_id
 msgid "Product Template"
 msgstr "Modèle de produit"
 
@@ -537,6 +555,16 @@ msgid "Select a category to pre-fill domain filter."
 msgstr "Sélectionnez une catégorie pour pré-remplir le filtre de recherche."
 
 #. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_service_search_view
+msgid "Service Tracking"
+msgstr "Suivi du service"
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.product_template_service_search_view
+msgid "Service Type"
+msgstr "Type de service"
+
+#. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_product_template_as_service
 #: model:ir.ui.menu,name:product_reference.menu_product_template_as_service
 msgid "Services"
@@ -556,6 +584,11 @@ msgstr "État"
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__state
 msgid "Status"
 msgstr "Statut"
+
+#. module: product_reference
+#: model:ir.ui.menu,name:product_reference.menu_tagging_tags
+msgid "Tags"
+msgstr "Étiquettes"
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_category__description_template
@@ -600,3 +633,6 @@ msgstr "Vous pouvez utiliser ce widget pour personnaliser la sélection d'articl
 #: model:ir.ui.menu,name:product_reference.menu_change_product_state_by_category
 msgid "🧙‍♂️ Change product state by category ..."
 msgstr "🧙 Modifier le statut de l'article par catégorie ..."
+
+#~ msgid "Market BoM parent and children line"
+#~ msgstr "À la fois parent et ligne de tarif"

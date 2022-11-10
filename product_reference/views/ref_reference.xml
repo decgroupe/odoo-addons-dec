@@ -120,19 +120,9 @@
                         ('name', 'ilike', self),
                     ('public_code', 'ilike', self)
                 ]"/>
-                <!-- <field name="product_id"/>
-                <field name="origin"/>
-                <field name="partner_id"/>
-                <filter string="Not attached" name="filter_not_attached" domain="[('purchase_line_id', '=', False), ('sale_line_ids', '=', [])]"/>
-                <filter string="Customer Invoice" name="filter_customer_invoice" domain="[('invoice_type', '=', 'out_invoice')]"/>
-                <filter string="Supplier Invoice" name="filter_supplier_invoice" domain="[('invoice_type', '=', 'in_invoice')]"/>
-                 -->
                 <group string="Group By" name="group_by">
                     <filter string="Category" name="group_by_category_id" domain="[]" context="{'group_by':'category_id'}"/>
                     <filter string="State" name="group_by_state" domain="[]" context="{'group_by':'state'}"/>
-                    <!-- <filter string="Origin" name="group_by_origin" domain="[]" context="{'group_by':'origin'}"/>
-                    <filter string="Product" name="group_by_product_id" domain="[]" context="{'group_by':'product_id'}"/>
-                    <filter string="Partner" name="group_by_product_id" domain="[]" context="{'group_by':'partner_id'}"/> -->
                 </group>
             </search>
         </field>
