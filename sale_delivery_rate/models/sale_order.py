@@ -3,6 +3,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
 from odoo import models, api, fields
+from odoo.tools import float_compare
 
 
 class SaleOrder(models.Model):
@@ -23,19 +24,30 @@ class SaleOrder(models.Model):
 
     @api.multi
     @api.depends(
-        'picking_ids', 'picking_ids.move_lines', 'picking_ids.move_lines.state'
+        'state', 'order_line.qty_delivered', 'order_line.product_uom_qty'
     )
     def _compute_sent_rate(self):
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure'
+        )
         for sale in self:
-            all_move_ids = sale.picking_ids.mapped('move_lines').filtered(
-                lambda x: x.state != 'cancel'
-            )
-            if all_move_ids:
-                received_move_ids = all_move_ids.filtered(
-                    lambda x: x.state == 'done'
-                )
+            sent_count = 0
+            line_count = 0
+            sale.sent_rate = 0
+            for line in sale.order_line:
+                if line.product_id.type in (
+                    'consu', 'product'
+                ) and line.product_uom_qty > 0:
+                    line_count += 1
+                    if float_compare(
+                        line.qty_delivered,
+                        line.product_uom_qty,
+                        precision_digits=precision
+                    ) >= 0:
+                        sent_count += 1
+            if line_count > 0:
                 sale.sent_rate = \
-                    len(received_move_ids) * 100 / len(all_move_ids)
+                    sent_count * 100 / line_count
 
     @api.multi
     @api.depends('tasks_ids', 'tasks_ids.progress', 'tasks_ids.stage_id')
