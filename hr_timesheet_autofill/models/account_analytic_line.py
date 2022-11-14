@@ -109,7 +109,10 @@ class AccountAnalyticLine(models.Model):
                 if extra_args:
                     args = expression.AND([args, extra_args])
                     name = ''
-            log_id = log_query("Autofill query: {} in progress".format(args))
+            if _logger.isEnabledFor(logging.DEBUG):
+                log_id = log_query(
+                    "Autofill query: {} in progress".format(args)
+                )
 
         # Make a search with default criteria
         names = super().name_search(
