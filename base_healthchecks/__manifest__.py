@@ -5,9 +5,11 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Allow to ping an healthchecks server",
     'depends': ['base', ],
-    'data': [
-        'data/ir_config_parameter.xml',
-        'data/ir_cron.xml',
-    ],
+    'data':
+        [
+            'data/ir_config_parameter.xml',
+            'data/ir_cron.xml',
+            'security/ir.model.access.csv',
+        ],
     'installable': True
 }
