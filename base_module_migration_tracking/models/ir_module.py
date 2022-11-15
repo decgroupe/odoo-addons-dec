@@ -51,6 +51,33 @@ class IrModule(models.Model):
         compute="_compute_mig_x",
     )
 
+    mig_16_status = fields.Char(
+        string="16",
+        compute="_compute_mig_x",
+    )
+    mig_16_color = fields.Char(
+        string="Color (16)",
+        compute="_compute_mig_x",
+    )
+
+    mig_17_status = fields.Char(
+        string="17",
+        compute="_compute_mig_x",
+    )
+    mig_17_color = fields.Char(
+        string="Color (17)",
+        compute="_compute_mig_x",
+    )
+
+    mig_18_status = fields.Char(
+        string="18",
+        compute="_compute_mig_x",
+    )
+    mig_18_color = fields.Char(
+        string="Color (18)",
+        compute="_compute_mig_x",
+    )
+
     @api.multi
     @api.depends(
         "migration_ids", "migration_ids.state", "migration_ids.pr_address"
@@ -72,6 +99,8 @@ class IrModule(models.Model):
                         rec[status_field] = state
                         if migration_id.state == 'todo':
                             rec[color_field] = YELLOW['A400'][0]
+                        elif migration_id.state == 'adopted':
+                            rec[color_field] = TEAL['A400'][0]
                         else:
                             rec[color_field] = LIGHTGREEN['500'][0]
 

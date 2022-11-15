@@ -46,6 +46,7 @@ class IrModuleMigration(models.Model):
         [
             ('installed', 'Installed'),
             ('migrated', 'Migrated'),
+            ('adopted', 'Adopted'),
             ('removed', '🗑️'),
             ('todo', 'To-do'),
             ('ready', '---'),

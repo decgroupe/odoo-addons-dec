@@ -43,6 +43,12 @@
                 <field name="mig_14_color" invisible="1"/>
                 <field name="mig_15_status" options='{"bg_color": "mig_15_color;"}' class="d_mig_status"/>
                 <field name="mig_15_color" invisible="1"/>
+                <field name="mig_16_status" options='{"bg_color": "mig_16_color;"}' class="d_mig_status"/>
+                <field name="mig_16_color" invisible="1"/>
+                <field name="mig_17_status" options='{"bg_color": "mig_17_color;"}' class="d_mig_status"/>
+                <field name="mig_17_color" invisible="1"/>
+                <field name="mig_18_status" options='{"bg_color": "mig_18_color;"}' class="d_mig_status"/>
+                <field name="mig_18_color" invisible="1"/>
             </xpath>
         </field>
     </record>
