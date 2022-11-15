@@ -5,7 +5,7 @@
 import logging
 
 from odoo import api, fields, models, _
-from odoo.tools import float_compare
+from odoo.tools import float_compare, safe_eval
 from odoo.tools.misc import split_every
 from odoo.tools.progressbar import progressbar as pb
 from odoo.addons import decimal_precision as dp
@@ -206,18 +206,26 @@ class ProductProduct(models.Model):
         return history
 
     def show_product_prices_history(self):
-        self.ensure_one()
+        product_ids = self
         action = self.env.ref(
             'product_prices_history.product_prices_history_action'
         ).read()[0]
         action['domain'] = [
-            ('product_id', '=', self.id),
+            ('product_id', 'in', product_ids.ids),
             ('type', '=', self._context.get('price_type')),
         ]
-        action['context'] = {
-            'default_product_id': self.id,
-            'default_type': self._context.get('price_type'),
+        eval_ctx = {
+            'active_id': product_ids.ids[0],
+            'active_ids': product_ids.ids,
         }
+        action['context'] = dict(safe_eval(action.get('context'), eval_ctx))
+        action['context'].update(
+            {
+                'default_product_id': product_ids.ids[0],
+                'default_type': self._context.get('price_type'),
+                'product_prices_history_multi_view': len(product_ids.ids) > 1,
+            }
+        )
         return action
 
     @api.multi

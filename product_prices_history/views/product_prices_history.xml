@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <form string="Product Prices History">
                 <group name="main">
-                    <field name="product_id" invisible="not context.get('product_prices_history_main_view')"/>
+                    <field name="product_id" invisible="context.get('product_prices_history_multi_view', False) is False"/>
                     <field name="datetime"/>
                     <field name="purchase_price" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                     <field name="sell_price" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
@@ -26,7 +26,7 @@
         <field name="model">product.prices.history</field>
         <field name="arch" type="xml">
             <tree string="Product Prices History" editable="top">
-                <field name="product_id" invisible="not context.get('product_prices_history_main_view')"/>
+                <field name="product_id" invisible="context.get('product_prices_history_multi_view', False) is False"/>
                 <field name="datetime"/>
                 <field name="purchase_price" 
                     widget="monetary" 
@@ -63,7 +63,7 @@
         <field name="name">Product Prices History</field>
         <field name="res_model">product.prices.history</field>
         <field name="view_mode">tree,form</field>
-        <field name="context">{'product_prices_history_main_view': True}</field>
+        <field name="context">{'product_prices_history_multi_view': False}</field>
     </record>
 
 </odoo>

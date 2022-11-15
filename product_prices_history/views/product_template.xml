@@ -31,4 +31,38 @@
         </field>
     </record>
 
+    <!-- <record id="act_product_template_sell_prices_history_open" model="ir.actions.act_window">
+        <field name="name">Prices History (Purchase)</field>
+        <field name="res_model">product.prices.history</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+        <field name="context">{'active_id': active_id, 'price_type': 'sell'}</field>
+    </record>
+
+    <record id="act_product_template_purchase_prices_history_open" model="ir.actions.act_window">
+        <field name="name">Prices History (Sell)</field>
+        <field name="res_model">product.prices.history</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+        <field name="context">{'active_id': active_id, 'price_type': 'purchase'}</field>
+    </record> -->
+
+    <record model="ir.actions.server" id="action_open_act_product_template_sell_prices_history" >
+        <field name="name">🧾 Prices History (Sell)</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.with_context(price_type="sell").show_product_prices_history()</field>
+    </record>
+
+    <record model="ir.actions.server" id="action_open_act_product_template_purchase_prices_history" >
+        <field name="name">🧾 Prices History (Purchase)</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">action = records.with_context(price_type="purchase").show_product_prices_history()</field>
+    </record>
+
 </odoo>

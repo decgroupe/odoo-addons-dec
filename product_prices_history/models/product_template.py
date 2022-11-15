@@ -36,21 +36,9 @@ class ProductTemplate(models.Model):
             rec.update_sell_price(rec.default_sell_price, fields.Datetime.now())
 
     def show_product_prices_history(self):
-        self.ensure_one()
         product_ids = self.with_context(active_test=False)\
             .mapped('product_variant_ids')
-        action = self.env.ref(
-            'product_prices_history.product_prices_history_action'
-        ).read()[0]
-        action['domain'] = [
-            ('product_id', 'in', product_ids.ids),
-            ('type', '=', self._context.get('price_type')),
-        ]
-        action['context'] = {
-            'default_product_id': product_ids.ids[0],
-            'default_type': self._context.get('price_type'),
-        }
-        return action
+        return product_ids.show_product_prices_history()
 
     @api.multi
     def write(self, vals):
