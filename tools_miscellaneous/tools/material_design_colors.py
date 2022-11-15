@@ -2,6 +2,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 # Source: https://github.com/zavoloklom/material-design-color-palette/blob/master/less/variables/colors.less
+# https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
 
 FG_BLACK = 'black'
 FG_WHITE = 'white'
