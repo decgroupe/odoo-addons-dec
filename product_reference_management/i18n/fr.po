@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 20:54+0000\n"
-"PO-Revision-Date: 2021-03-28 22:54+0200\n"
+"POT-Creation-Date: 2022-11-15 13:52+0000\n"
+"PO-Revision-Date: 2022-11-15 14:53+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_configuration
@@ -46,6 +46,11 @@ msgstr "Utilisateur des références"
 #: model:ir.module.category,name:product_reference_management.module_category_reference
 msgid "Reference management"
 msgstr "Gestion des références"
+
+#. module: product_reference_management
+#: model:ir.ui.menu,name:product_reference_management.menu_reference
+msgid "References"
+msgstr "Références"
 
 #. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_reporting

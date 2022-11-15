@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 20:54+0000\n"
-"PO-Revision-Date: 2021-03-28 20:54+0000\n"
+"POT-Creation-Date: 2022-11-15 13:52+0000\n"
+"PO-Revision-Date: 2022-11-15 13:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,6 +43,11 @@ msgstr ""
 #. module: product_reference_management
 #: model:ir.module.category,name:product_reference_management.module_category_reference
 msgid "Reference management"
+msgstr ""
+
+#. module: product_reference_management
+#: model:ir.ui.menu,name:product_reference_management.menu_reference
+msgid "References"
 msgstr ""
 
 #. module: product_reference_management

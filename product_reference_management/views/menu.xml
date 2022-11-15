@@ -9,6 +9,13 @@
         <field name="web_icon">product_reference_management,static/description/icon.png</field>
     </record>
 
+
+    <record model="ir.ui.menu" id="menu_reference">
+        <field name="name">References</field>
+        <field name="sequence" eval="5"/>
+        <field name="parent_id" ref="menu_product_reference_manager"/>
+    </record>
+
     <record model="ir.ui.menu" id="menu_product_reference">
         <field name="name">Products</field>
         <field name="sequence" eval="10"/>
