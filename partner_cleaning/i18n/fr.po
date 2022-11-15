@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* partner_cleaning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-15 08:47+0000\n"
+"PO-Revision-Date: 2022-11-15 09:47+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: partner_cleaning
+#: model:ir.model,name:partner_cleaning.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: partner_cleaning
+#: model:ir.model.fields,field_description:partner_cleaning.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: partner_cleaning
+#: model:ir.model.fields,field_description:partner_cleaning.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: partner_cleaning
+#: model:ir.model.fields,field_description:partner_cleaning.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: partner_cleaning
+#: model:ir.actions.server,name:partner_cleaning.ir_cron_partner_autocleaning_ir_actions_server
+#: model:ir.cron,cron_name:partner_cleaning.ir_cron_partner_autocleaning
+#: model:ir.cron,name:partner_cleaning.ir_cron_partner_autocleaning
+msgid "Users Cleaning"
+msgstr "Nettoyage des utilisateurs"
