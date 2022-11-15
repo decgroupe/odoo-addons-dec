@@ -10,7 +10,7 @@
 
     <record model="ir.ui.menu" id="menu_product_template_as_service">
         <field name="name">Services</field>
-        <field name="sequence" eval="6"/>
+        <field name="sequence" eval="7"/>
         <field name="action" ref="act_window_product_template_as_service"/>
         <field name="parent_id" ref="product_reference_management.menu_product_reference"/>
     </record>
@@ -19,7 +19,14 @@
         <field name="name">References</field>
         <field name="sequence" eval="10"/>
         <field name="action" ref="act_window_ref_reference"/>
-        <field name="parent_id" ref="product_reference_management.menu_product_reference_manager"/>
+        <field name="parent_id" ref="product_reference_management.menu_reference"/>
+    </record>
+
+    <record model="ir.ui.menu" id="menu_product_template_as_refmanager_product">
+        <field name="name">Products</field>
+        <field name="sequence" eval="20"/>
+        <field name="action" ref="act_window_product_template_as_refmanager_product"/>
+        <field name="parent_id" ref="product_reference_management.menu_reference"/>
     </record>
 
     <record model="ir.ui.menu" id="menu_ref_category">

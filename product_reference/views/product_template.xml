@@ -30,10 +30,28 @@
                     ]">
                 </filter>
                 <separator/>
+                <filter 
+                    string="Not obsolete" 
+                    name="filter_not_obsolete" 
+                    domain="[('state', '!=', 'obsolete'),]">
+                </filter>
+                <separator/>
+                <filter 
+                    string="REFManager" 
+                    name="filter_refmanager" 
+                    domain="[('reference_ids', '!=', False),]">
+                </filter>
+                <separator/>
             </filter>
             <xpath expr="//search" position="inside">
                 <separator/>
                 <group string="Group By" name="groupby">
+                    <filter 
+                        string="Category" 
+                        name="groupby_category" 
+                        context="{'group_by':'categ_id'}">
+                    </filter>
+                    <separator/>
                     <filter 
                         string="Rack" 
                         name="groupby_loc_rack" 
@@ -114,6 +132,7 @@
         <field name="search_view_id" ref="product.product_template_search_view"/>
         <field name="context">{
             'search_default_consumable': 1, 
+            'search_default_filter_not_obsolete': 1, 
             'search_default_filter_has_public_code': 1,
             'search_default_filter_has_location': 1,
             'default_type': 'product'}
@@ -161,6 +180,26 @@
         <field name="view_mode">tree</field>
         <field name="view_id" ref="product_template_as_service_tree_view"/>
         <field name="act_window_id" ref="act_window_product_template_as_service"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_window_product_template_as_refmanager_product">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="limit">20</field>
+        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="context">{
+            'search_default_filter_refmanager': 1,
+            'search_default_filter_not_obsolete': 1, 
+        }
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_window_product_template_as_refmanager_product_tree" >
+        <field name="act_window_id" ref="act_window_product_template_as_refmanager_product"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_template_as_product_tree_view"/>
     </record>
 
 </odoo>
