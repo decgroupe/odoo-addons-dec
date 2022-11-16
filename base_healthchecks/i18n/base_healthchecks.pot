@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-26 07:38+0000\n"
-"PO-Revision-Date: 2021-04-26 07:38+0000\n"
+"POT-Creation-Date: 2022-11-16 14:12+0000\n"
+"PO-Revision-Date: 2022-11-16 14:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,14 @@ msgstr ""
 
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping__display_name
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_actions_server__display_name
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_cron__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: base_healthchecks
+#: model_terms:ir.ui.view,arch_db:base_healthchecks.ir_cron_view_form
+msgid "Healthchecks"
 msgstr ""
 
 #. module: base_healthchecks
@@ -37,11 +44,15 @@ msgstr ""
 
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping__id
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_actions_server__id
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_cron__id
 msgid "ID"
 msgstr ""
 
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping____last_update
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_actions_server____last_update
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_cron____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -53,6 +64,22 @@ msgstr ""
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: base_healthchecks
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_actions_server__ping_url
+#: model:ir.model.fields,field_description:base_healthchecks.field_ir_cron__ping_url
+msgid "Ping URL"
+msgstr ""
+
+#. module: base_healthchecks
+#: model:ir.model,name:base_healthchecks.model_ir_cron
+msgid "Scheduled Actions"
+msgstr ""
+
+#. module: base_healthchecks
+#: model:ir.model,name:base_healthchecks.model_ir_actions_server
+msgid "Server Action"
 msgstr ""
 
 #. module: base_healthchecks

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="ir_cron_view_form">
+        <field name="name">ir.cron.view.form</field>
+        <field name="model">ir.cron</field>
+        <field name="inherit_id" ref="base.ir_cron_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[last()]" position="inside">
+                <page string="Healthchecks" name="healthchecks">
+                    <group name="main">
+                        <group name="primary">
+                            <field name="ping_url"></field>
+                        </group>
+                        <group name="secondary">
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
