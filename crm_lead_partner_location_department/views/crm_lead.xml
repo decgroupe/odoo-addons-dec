@@ -6,13 +6,13 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
         <field name="arch" type="xml">
-            <field name="partner_zip_id" position="after">
-                <field name="partner_department_id"/>
-                <field name="partner_state_id"/>
+            <field name="partner_shipping_zip_id" position="after">
+                <field name="partner_shipping_department_id"/>
+                <field name="partner_shipping_state_id"/>
             </field>
-            <filter name="group_partner_zip" position="after">
-                <filter string="Department" name="group_partner_department" context="{'group_by':'partner_department_id'}" />
-                <filter string="State" name="group_partner_state" context="{'group_by':'partner_state_id'}" />
+            <filter name="group_partner_shipping_zip" position="after">
+                <filter string="Department" name="group_partner_shipping_department" context="{'group_by':'partner_shipping_department_id'}" />
+                <filter string="State" name="group_partner_shipping_state" context="{'group_by':'partner_shipping_state_id'}" />
             </filter>
         </field>
     </record>
