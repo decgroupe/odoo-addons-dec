@@ -6,8 +6,12 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='country_id']" position="after">
-                <field name="partner_zip_id"/>
+            <xpath expr="//tree/field[@name='partner_id']" position="after">
+                <field name="partner_shipping_id"/>
+                <field name="partner_shipping_zip_id" string="ZIP Location"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='country_id']" position="replace">
+                <field name="partner_shipping_country_id" string="Country"/>
             </xpath>
         </field>
     </record>
@@ -18,22 +22,51 @@
         <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="partner_zip_id"/>
+                <field name="partner_shipping_id"/>
+                <field name="partner_shipping_zip_id" string="ZIP Location"/>
             </xpath>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="crm_case_opportunities_filter_view" >
+    <record model="ir.ui.view" id="crm_case_opportunities_filter_view">
         <field name="name">crm.lead.search.opportunity@crm_lead_partner_location</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_zip_id"/>
+                <field name="partner_shipping_id" operator="child_of" string="Delivery Address"/>
+                <field name="partner_shipping_zip_id"/>
             </field>
             <filter name="country" position="after">
-                <filter string="ZIP Location" name="group_partner_zip" context="{'group_by':'partner_zip_id'}" />
+                <filter string="ZIP Location" name="group_partner_shipping_zip" context="{'group_by':'partner_shipping_zip_id'}" />
+                <filter string="Delivery Country" name="delivery_country" context="{'group_by':'partner_shipping_country_id'}"/>
             </filter>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_leads_kanban_view">
+        <field name="name">crm.lead.kanban.lead@crm_lead_partner_location</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='partner_id']" position="after">
+                <field name="partner_shipping_id" />
+                <field name="partner_shipping_zip_id"/>
+            </xpath>
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div class="my-1">
+                    <small name="partner_shipping_id">
+                        <div t-if="record.partner_shipping_id.raw_value">
+                            <i class="fa fa-truck"/>
+                            <t t-raw="record.partner_shipping_id.value"/>
+                        </div>
+                        <div t-if="record.partner_shipping_zip_id.raw_value">
+                            <i class="fa fa-map-marker"/>
+                            <t t-raw="record.partner_shipping_zip_id.value"/>
+                        </div>
+                    </small>
+                </div>
+            </xpath>
         </field>
     </record>
 
