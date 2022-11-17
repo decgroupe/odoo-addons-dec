@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Scheduler -->
-    <record model="ir.cron" id="ir_cron_product_autoset_ok">
+    <record model="ir.cron" id="ir_cron_update_default_prices">
         <field name="name">💲 Prices History: Store sell/purchase prices</field>
         <field name="model_id" ref="model_product_product"/>
         <field name="state">code</field>
