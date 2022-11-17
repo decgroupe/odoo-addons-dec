@@ -5,7 +5,6 @@
 import logging
 
 from odoo import fields, models, api, _
-from odoo.addons.queue_job.job import job
 
 _logger = logging.getLogger(__name__)
 
@@ -73,7 +72,6 @@ class ReplaceBomComponents(models.TransientModel):
     def action_replace(self):
         self.with_delay()._do_replace()
 
-    @job
     def _do_replace(self):
         previous_product_ids = self.replacement_ids.mapped(
             'previous_product_id'
