@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -13,7 +12,6 @@ class StockMove(models.Model):
         "when this move becomes assigned",
     )
 
-    @api.multi
     def write(self, vals):
         if vals.get('state') == 'assigned':
             for rec in self.filtered('notify_assigned').filtered('picking_id'):
