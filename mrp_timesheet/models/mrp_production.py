@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -14,7 +13,7 @@ class MrpProduction(models.Model):
     )
     planned_hours = fields.Float(
         string='Planned Hours',
-        track_visibility='onchange',
+        tracking=True,
     )
     progress = fields.Float(
         compute='_compute_progress_hours',

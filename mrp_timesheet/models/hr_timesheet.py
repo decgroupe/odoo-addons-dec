@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -44,7 +43,6 @@ class AccountAnalyticLine(models.Model):
         compute="_compute_production_identification",
     )
 
-    @api.multi
     @api.depends('production_id')
     def _compute_production_identification(self):
         for rec in self.filtered('production_id'):
