@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2022
 
@@ -48,13 +47,11 @@ class CrmLead(models.Model):
         record._init_number(vals)
         return record
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         self._init_number(vals)
         return res
 
-    @api.multi
     @api.depends(
         'name', 'number', 'email_from', 'partner_id', 'partner_id.name'
     )
@@ -71,7 +68,6 @@ class CrmLead(models.Model):
                     rec.search_name, rec.partner_id.display_name
                 )
 
-    @api.multi
     def name_get(self):
         original_rec_name = self._rec_name
         self._rec_name = self._rec_name_get
