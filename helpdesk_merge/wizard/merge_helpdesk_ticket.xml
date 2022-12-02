@@ -86,11 +86,10 @@
     <act_window id="action_helpdesk_ticket_merge"
         name="🧙‍♂️ Merge ..."
         binding_model="helpdesk.ticket"
+        binding_view_types="list"
         res_model="merge.helpdesk.ticket.wizard"
-        view_type="tree"
         view_mode="form"
-        multi="True"
-        key2="client_action_multi"
+        binding_type="action"
         groups='res_group_do_merge'
         target="new"
     />

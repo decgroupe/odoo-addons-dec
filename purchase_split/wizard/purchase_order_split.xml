@@ -54,7 +54,7 @@
         binding_view_types="form"
         res_model="purchase.order.split"
         view_mode="form"
-        key2="client_action_multi" 
+        binding_type="action"
         target="new"
     />
 

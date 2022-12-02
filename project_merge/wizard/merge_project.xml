@@ -86,11 +86,10 @@
     <act_window id="action_project_project_merge"
         name="🧙‍♂️ Merge ..."
         binding_model="project.project"
+        binding_view_types="list"
         res_model="merge.project.project.wizard"
-        view_type="tree"
         view_mode="form"
-        multi="True"
-        key2="client_action_multi"
+        binding_type="action"
         groups='res_group_do_merge'
         target="new"
     />

@@ -87,11 +87,10 @@
     <act_window id="action_res_city_zip_merge"
         name="🧙‍♂️ Merge ..."
         binding_model="res.city.zip"
+        binding_view_types="list"
         res_model="merge.res.city.zip.wizard"
-        view_type="tree"
         view_mode="form"
-        multi="True"
-        key2="client_action_multi"
+        binding_type="action"
         groups='res_group_base_location_do_merge'
         target="new"
     />

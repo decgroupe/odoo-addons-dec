@@ -51,9 +51,9 @@
     <act_window id="act_window_res_partner_impersonate"
         name="🧙‍♂️ Impersonate ..."
         binding_model="res.partner"
+        binding_views="form"
         res_model="res.partner.impersonate"
         view_mode="form"
-        binding_views="form"
         target="new"
         groups="auth_unique_link.group_impersonate"
     />

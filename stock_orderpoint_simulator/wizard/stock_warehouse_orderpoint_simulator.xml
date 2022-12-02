@@ -55,11 +55,10 @@
     <act_window id="act_window_stock_warehouse_orderpoint_simulator"
         name="🧙‍♂️ Simulator ..."
         binding_model="stock.warehouse.orderpoint"
+        binding_view_types="form"
         res_model="stock.warehouse.orderpoint.simulator"
-        view_type="form"
         view_mode="form"
-        multi="False"
-        key2="client_action_multi" 
+        binding_type="action"
         target="new"
     />
     
