@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2021
 
@@ -53,7 +52,6 @@ class ResUsers(models.Model):
         string='Signin URL',
     )
 
-    @api.multi
     @api.depends('signin_link_token', 'signin_link_expiration')
     def _compute_signin_link_valid(self):
         dt = now()
@@ -61,7 +59,6 @@ class ResUsers(models.Model):
             rec.signin_link_valid = bool(rec_sudo.signin_link_token) and \
             (not rec_sudo.signin_link_expiration or dt <= rec_sudo.signin_link_expiration)
 
-    @api.multi
     def _compute_signin_link_url(self):
         route = "login_link"
         for rec in self:
@@ -76,7 +73,6 @@ class ResUsers(models.Model):
                 "/web/%s?%s" % (route, werkzeug.urls.url_encode(query))
             )
 
-    @api.multi
     def signin_link_cancel(self):
         return self.write(
             {
@@ -85,7 +81,6 @@ class ResUsers(models.Model):
             }
         )
 
-    @api.multi
     def signin_link_prepare(self, expiration=False, basic=False):
         """ generate a new token for the partners with the given validity, if
             necessary.
@@ -161,7 +156,6 @@ class ResUsers(models.Model):
             expiration = now(minutes=+expiration)
         return expiration
 
-    @api.multi
     def _send_signin_link_email(self, basic=False):
         """ Send notification email to a new portal user """
         if not self.env.user.email:

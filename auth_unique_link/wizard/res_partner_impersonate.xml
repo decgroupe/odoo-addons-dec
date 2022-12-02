@@ -43,7 +43,6 @@
     <record model="ir.actions.act_window" id="action_res_partner_impersonate">
         <field name="name">Impersonate Partner</field>
         <field name="res_model">res.partner.impersonate</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
         <field name="groups_id" eval="[(4,ref('auth_unique_link.group_impersonate'))]"/>
@@ -51,7 +50,7 @@
 
     <act_window id="act_window_res_partner_impersonate"
         name="🧙‍♂️ Impersonate ..."
-        src_model="res.partner"
+        binding_model="res.partner"
         res_model="res.partner.impersonate"
         view_type="form"
         view_mode="form"
