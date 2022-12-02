@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
@@ -23,7 +22,6 @@ class MailMail(models.AbstractModel):
             res = to_list(allowedlist)
         return res
 
-    # @api.multi
     # def _split_by_server(self):
     #     self.env.context = {}
     #     for server_id, mail_batch in super()._split_by_server():
@@ -37,7 +35,6 @@ class MailMail(models.AbstractModel):
             MailMail, self.with_context(raise_if_send_not_allowed=True)
         ).process_email_queue(ids)
 
-    @api.multi
     def _send(
         self,
         auto_commit=False,
