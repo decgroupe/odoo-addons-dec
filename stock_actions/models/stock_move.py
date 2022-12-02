@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
@@ -43,7 +42,6 @@ class StockMove(models.Model):
                 elif move.state in ('confirmed') and not move.move_orig_ids:
                     move.is_cancellable = True
 
-    @api.multi
     def action_confirm(self):
         """ Inputs:
                 - 'draft'
@@ -54,7 +52,6 @@ class StockMove(models.Model):
         for move in self.filtered(lambda m: m.state in ['draft']):
             move._action_confirm()
 
-    @api.multi
     def action_assign(self):
         """ Inputs:
                 - 'confirmed'
@@ -67,7 +64,6 @@ class StockMove(models.Model):
         for move in self:
             move._action_assign()
 
-    @api.multi
     def action_reassign(self):
         """ Inputs:
                 - 'assigned' --> unreserve --> 'confirmed'
@@ -83,16 +79,13 @@ class StockMove(models.Model):
             move._do_unreserve()
             move._action_assign()
 
-    @api.multi
     def action_recompute_state(self):
         self._recompute_state()
 
-    @api.multi
     def action_force_state_confirmed_to_assigned(self):
         for move in self.filtered(lambda m: m.state == 'confirmed'):
             move.write({'state': 'assigned'})
 
-    @api.multi
     def _action_cancel_stream(self, downstream=False, upstream=False):
         def get_downstream_moves(move):
             res = move
@@ -124,7 +117,6 @@ class StockMove(models.Model):
         if moves_to_cancel:
             moves_to_cancel._action_cancel()
 
-    @api.multi
     def action_cancel(self):
         """ Inputs:
                 - 'assigned' --> unreserve --> 'confirmed'
@@ -135,15 +127,12 @@ class StockMove(models.Model):
         """
         self._action_cancel_stream()
 
-    @api.multi
     def action_cancel_downstream(self):
         self._action_cancel_stream(downstream=True)
 
-    @api.multi
     def action_cancel_upstream(self):
         self._action_cancel_stream(upstream=True)
 
-    @api.multi
     def action_done(self):
         """ Inputs:
                 - 'draft' --> confirm --> 'confirmed'
