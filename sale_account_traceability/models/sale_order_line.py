@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
@@ -43,7 +42,6 @@ class SaleOrderLine(models.Model):
             line.invoice_status = 'invoiced'
         return res
 
-    @api.multi
     def action_force_invoiced(self):
         for rec in self:
             rec.force_invoiced = not rec.force_invoiced
