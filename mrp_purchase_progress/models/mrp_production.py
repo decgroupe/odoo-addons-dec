@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -20,7 +19,6 @@ class MrpProduction(models.Model):
         compute="_compute_kanban_show_purchase_progress",
     )
 
-    @api.multi
     @api.depends('move_raw_ids', 'move_raw_ids.state')
     def _compute_purchase_progress(self):
         for rec in self:
@@ -41,11 +39,9 @@ class MrpProduction(models.Model):
                     rec.purchase_progress = \
                         len(ready_move_ids) * 100 / len(all_move_ids)
 
-    @api.multi
     def action_update_purchase_progress(self):
         self._compute_purchase_progress()
 
-    @api.multi
     def run_purchase_progress_update_scheduler(self):
         date = fields.Datetime.to_string(
             fields.datetime.now() - timedelta(days=365)
@@ -59,18 +55,15 @@ class MrpProduction(models.Model):
         ).filtered('move_raw_ids')
         production_ids._compute_purchase_progress()
 
-    @api.multi
     def _is_supply_active(self):
         res = super()._is_supply_active()
         res = res or self.purchase_progress > 0
         return res
 
-    @api.multi
     @api.depends('purchase_progress')
     def _compute_stage_id(self):
         return super()._compute_stage_id()
 
-    @api.multi
     @api.depends('stage_id', 'purchase_progress')
     def _compute_kanban_show_purchase_progress(self):
         stages = self._get_stages_ref()
