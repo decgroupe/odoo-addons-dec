@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -8,7 +7,6 @@ from odoo import api, fields, models, _
 from odoo.tools import float_compare, safe_eval
 from odoo.tools.misc import split_every
 from odoo.tools.progressbar import progressbar as pb
-from odoo.addons import decimal_precision as dp
 
 _logger = logging.getLogger(__name__)
 
@@ -19,14 +17,14 @@ class ProductProduct(models.Model):
     last_default_sell_price = fields.Monetary(
         compute='_compute_last_default_prices',
         string='Last Sell Price',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help="Last sell price from history",
     )
 
     last_default_purchase_price = fields.Monetary(
         compute='_compute_last_default_prices',
         string='Last Purchase Price',
-        digits=dp.get_precision('Purchase Price'),
+        digits='Purchase Price',
         help="Last purchase price from history",
     )
 
@@ -108,7 +106,6 @@ class ProductProduct(models.Model):
             self.browse(ids).update_default_sell_price()
             self.env.cr.commit()
 
-    @api.multi
     def update_default_prices(self):
         self._update_default_prices(self.ids)
 
@@ -117,7 +114,6 @@ class ProductProduct(models.Model):
         ids_with_moves = self._get_product_ids_with_moves()
         self._update_default_prices(ids_with_moves)
 
-    @api.multi
     def update_default_purchase_price(self):
         ''' Store default purchase prices which can be computed
             using different pricelist rules
@@ -127,7 +123,6 @@ class ProductProduct(models.Model):
                 rec.default_purchase_price, fields.Datetime.now()
             )
 
-    @api.multi
     def update_default_sell_price(self):
         ''' Store default sell prices which can be computed
             using different pricelist rules
@@ -135,7 +130,6 @@ class ProductProduct(models.Model):
         for rec in pb(self):
             rec.update_sell_price(rec.default_sell_price, fields.Datetime.now())
 
-    @api.multi
     def update_purchase_price(self, price, date):
         precision = self.env['decimal.precision'].precision_get(
             'Purchase Price'
@@ -148,7 +142,6 @@ class ProductProduct(models.Model):
                 'purchase',
             )
 
-    @api.multi
     def update_sell_price(self, price, date):
         precision = self.env['decimal.precision'].precision_get('Product Price')
         for rec in self.with_context(prefetch_fields=False):
@@ -159,7 +152,6 @@ class ProductProduct(models.Model):
                 'sell',
             )
 
-    @api.multi
     def _update_price(self, price, precision, date, price_type):
         ''' Store prices which can be computed using different pricelist rules
         '''
@@ -228,7 +220,6 @@ class ProductProduct(models.Model):
         )
         return action
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if 'list_price' in vals or 'standard_price' in vals:

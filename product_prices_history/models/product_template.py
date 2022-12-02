@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -13,7 +12,6 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    @api.multi
     def update_default_purchase_price(self):
         ''' Store default purchase prices which can be computed
             using different pricelist rules
@@ -25,7 +23,6 @@ class ProductTemplate(models.Model):
                 rec.default_purchase_price, fields.Datetime.now()
             )
 
-    @api.multi
     def update_default_sell_price(self):
         ''' Store default sell prices which can be computed
             using different pricelist rules
@@ -40,7 +37,6 @@ class ProductTemplate(models.Model):
             .mapped('product_variant_ids')
         return product_ids.show_product_prices_history()
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if 'list_price' in vals or 'standard_price' in vals:

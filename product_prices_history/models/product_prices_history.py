@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
 from datetime import datetime
 
 from odoo import api, fields, models
-from odoo.addons import decimal_precision as dp
 
 
 class ProductPricesHistory(models.Model):
@@ -49,11 +47,11 @@ class ProductPricesHistory(models.Model):
     )
     purchase_price = fields.Float(
         'Purchase Price',
-        digits=dp.get_precision('Purchase Price'),
+        digits='Purchase Price',
     )
     sell_price = fields.Float(
         'Sell Price',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
     )
 
     def get_price(self, price_type):
