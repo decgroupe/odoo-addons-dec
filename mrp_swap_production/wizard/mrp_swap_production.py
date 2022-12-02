@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
@@ -223,7 +222,6 @@ class MrpSwapProduction(models.TransientModel):
         message = _('🔄 Swapped with %s') % (_get_link(obja_id))
         objb_id.message_post(body=message)
 
-    @api.multi
     def do_swap(self):
         self.ensure_one()
         for line in self.swap_line_ids:
