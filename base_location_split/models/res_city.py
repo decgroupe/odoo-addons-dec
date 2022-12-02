@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2021
 
@@ -9,7 +8,6 @@ from odoo.tools.progressbar import progressbar as pb
 class ResCity(models.Model):
     _inherit = "res.city"
 
-    @api.multi
     def action_split_by_zip(self):
         for rec in pb(self):
             if len(rec.zip_ids) <= 1:
