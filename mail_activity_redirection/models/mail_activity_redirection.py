@@ -75,7 +75,6 @@ class MailActivityRedirection(models.Model):
     def _default_regex(self):
         return '.*'
 
-    @api.multi
     def get_activity_type_xmlids(self):
         res = []
         for rec in self.filtered('activity_type_ids'):
@@ -86,7 +85,6 @@ class MailActivityRedirection(models.Model):
             res += xml_ids
         return res
 
-    @api.multi
     def get_model_names(self):
         res = []
         for rec in self.filtered('model_ids'):
@@ -94,7 +92,6 @@ class MailActivityRedirection(models.Model):
                 res.append(model_id.model)
         return res
 
-    @api.multi
     def get_qweb_template_xmlids(self):
         res = []
         for rec in self.filtered('qweb_templates'):

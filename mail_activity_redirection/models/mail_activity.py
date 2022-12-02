@@ -11,7 +11,6 @@ _logger = logging.getLogger(__name__)
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
 
-    @api.multi
     def _link_to_mail_activity_redirection(self, redirection):
         """ Keep only some references to activities redirected by this
             `redirection`.
