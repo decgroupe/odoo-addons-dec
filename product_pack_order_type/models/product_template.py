@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sept 2020
 
@@ -24,7 +23,6 @@ class ProductTemplate(models.Model):
         "* Purchase: Only when added in a Purchase Order"
     )
 
-    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()

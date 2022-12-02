@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
@@ -12,7 +11,6 @@ class SaleOrderLine(models.Model):
         related='product_id.pack_order_type',
     )
 
-    @api.multi
     def expand_pack_line(self, write=False):
         self.ensure_one()
         if self.product_id.pack_ok:
