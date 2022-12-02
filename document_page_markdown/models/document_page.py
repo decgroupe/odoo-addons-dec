@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -20,7 +19,6 @@ class DocumentPage(models.Model):
         copy=True,
     )
 
-    @api.multi
     def write(self, vals):
         res = super(DocumentPage, self).write(vals)
         if res:
@@ -36,7 +34,6 @@ class DocumentPage(models.Model):
                     )
         return res
 
-    @api.multi
     def _create_history(self, vals):
         self.ensure_one()
         if 'content_markdown' not in vals:
