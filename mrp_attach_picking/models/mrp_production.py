@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -18,7 +17,6 @@ class MrpProduction(models.Model):
         "production order is already linked to picking"
     )
 
-    @api.multi
     def _allow_attach_picking(self):
         for production in self:
             move_dest_ids = production.move_finished_ids.mapped(
