@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -18,7 +17,6 @@ class ResCityZip(models.Model):
         self.ensure_one()
         return "{} {}".format(self.name, self.city_id.name)
 
-    @api.multi
     @api.depends(
         'name', 'city_id', 'city_id.name', 'city_id.state_id',
         'city_id.country_id'
