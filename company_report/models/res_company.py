@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -15,7 +14,6 @@ class ResCompany(models.Model):
 defined, having the display on footer checkbox set.",
     )
 
-    @api.multi
     @api.depends('bank_ids')
     def _compute_bank_footer(self):
         for company in self:
