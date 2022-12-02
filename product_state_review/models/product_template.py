@@ -20,10 +20,9 @@ class ProductTemplate(models.Model):
         default='sellable',
         index=True,
         oldname='openupgrade_legacy_10_0_state',
-        track_visibility='onchange',
+        tracking=True,
     )
 
-    @api.multi
     def write(self, vals):
         # Auto set state to obsolete when archiving a product
         if 'active' in vals and not vals.get('active'):
