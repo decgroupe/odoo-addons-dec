@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -8,7 +7,6 @@ from odoo import api, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
     def write(self, vals):
         previous_emails = self._previous_emails_mapping(vals)
         res = super().write(vals)
@@ -24,7 +22,6 @@ class ResPartner(models.Model):
                 res[rec.id] = rec.email
         return res
 
-    @api.multi
     def _sync_login(self, previous_emails):
         sync_allowed = self.user_has_groups(
             'res_users_login_sync.group_user_login_sync'

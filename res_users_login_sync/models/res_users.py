@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2022
 
@@ -8,7 +7,6 @@ from odoo import api, models
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    @api.multi
     def _notify_login_sync(self, previous_login, new_login):
         self.ensure_one()
         template_id = self.env.ref(
