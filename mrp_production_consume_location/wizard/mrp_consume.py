@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -28,7 +27,6 @@ class MrpConsumeLine(models.TransientModel):
             try_append_loc(location, line.product_id.loc_case)
             line.product_location = ' . '.join(location)
 
-    @api.multi
     def action_create_inventory_activity(self):
         self.ensure_one()
         # If the user deleted todo activity type.
