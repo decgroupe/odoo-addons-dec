@@ -85,7 +85,7 @@
 
     <act_window id="action_stock_move_merge"
         name="🧙‍♂️ Merge ..."
-        src_model="stock.move"
+        binding_model="stock.move"
         res_model="merge.stock.move.wizard"
         view_type="tree"
         view_mode="form"
