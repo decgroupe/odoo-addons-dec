@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
@@ -10,7 +9,6 @@ from odoo.exceptions import UserError
 class StockRule(models.Model):
     _inherit = "stock.rule"
 
-    @api.multi
     def _run_manufacture(
         self, product_id, product_qty, product_uom, location_id, name, origin,
         values
