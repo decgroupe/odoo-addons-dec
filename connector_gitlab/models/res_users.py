@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -41,7 +40,6 @@ class ResUsers(models.Model):
                     )
         return user_uid
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if 'password' in vals:

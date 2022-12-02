@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -13,7 +12,6 @@ class ResPartner(models.Model):
         string='GitLab User',
     )
 
-    @api.multi
     def write(self, vals):
         previous_emails = {}
         if 'email' in vals:
