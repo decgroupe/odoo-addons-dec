@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
 from odoo import api, fields, models, _
-from odoo.addons import decimal_precision as dp
 
 
 class ProductTemplate(models.Model):
@@ -11,7 +9,7 @@ class ProductTemplate(models.Model):
 
     legacy_qty_available = fields.Float(
         compute='_compute_product_template_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Quantity On Hand (legacy)',
         help="Current quantity of products.\n"
         "In a context with a single Stock Location, this includes "
@@ -28,7 +26,7 @@ class ProductTemplate(models.Model):
 
     legacy_virtual_available = fields.Float(
         compute='_compute_product_template_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Quantity Available (legacy)',
         help="Forecast quantity (computed as Quantity On Hand "
         "- Outgoing + Incoming)\n"
@@ -46,7 +44,7 @@ class ProductTemplate(models.Model):
 
     legacy_incoming_qty = fields.Float(
         compute='_compute_product_template_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Incoming (legacy)',
         help="Quantity of products that are planned to arrive.\n"
         "In a context with a single Stock Location, this includes "
@@ -63,7 +61,7 @@ class ProductTemplate(models.Model):
 
     legacy_outgoing_qty = fields.Float(
         compute='_compute_product_template_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Outgoing (legacy)',
         help="Quantity of products that are planned to leave.\n"
         "In a context with a single Stock Location, this includes "
@@ -99,7 +97,6 @@ class ProductTemplate(models.Model):
             template.legacy_incoming_qty = 0.0
             template.legacy_outgoing_qty = 0.0
 
-    @api.multi
     def action_update_stock_quant_availability(self):
         product_variant_ids = self.with_context(active_test=False).\
             mapped('product_variant_ids')
