@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -21,7 +20,6 @@ class Project(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends('type_id')
     def _compute_from_type(self):
         contract_type = self.env.ref('project_identification.contract_type')
@@ -41,14 +39,12 @@ class Project(models.Model):
         )).name_search(name=name, args=args, operator=operator, limit=limit)
         return names
 
-    @api.multi
     def name_get(self):
         if self.env.context.get('name_search'):
             return self.name_get_from_search()
         else:
             return super().name_get()
 
-    @api.multi
     @api.depends('name')
     def name_get_from_search(self):
         """ Custom naming with type to quickly identify a project
@@ -64,7 +60,6 @@ class Project(models.Model):
             res.append((rec.id, name))
         return res
 
-    @api.multi
     @api.depends('type_id', 'type_id.complete_name')
     def _get_name_identifications(self):
         res = []

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -29,14 +28,12 @@ class ProjectTask(models.Model):
         )).name_search(name=name, args=args, operator=operator, limit=limit)
         return names
 
-    @api.multi
     def name_get(self):
         if self.env.context.get('name_search'):
             return self.name_get_from_search()
         else:
             return super().name_get()
 
-    @api.multi
     @api.depends('name', 'stage_id')
     def name_get_from_search(self):
         """ Custom naming with multiple identification parts to quickly
@@ -56,7 +53,6 @@ class ProjectTask(models.Model):
             res.append((rec.id, name))
         return res
 
-    @api.multi
     def _get_name_identifications(self):
         res = []
         self.ensure_one()
