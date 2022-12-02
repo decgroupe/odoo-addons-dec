@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -22,7 +21,6 @@ class AccountInvoiceLine(models.Model):
             res = ana_account.id
         return res
 
-    @api.multi
     def set_default_analytic_account(self):
         # Copycat from oca product_analytic module:
         # - oca/account-analytic/product_analytic/models/account_invoice.py

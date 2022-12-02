@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -14,7 +13,6 @@ _logger = logging.getLogger(__name__)
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    @api.multi
     def _get_matching_inv_line(self, move_line):
         self.ensure_one()
         move_line.ensure_one()
@@ -41,12 +39,10 @@ class AccountInvoice(models.Model):
             )
         return inv_line
 
-    @api.multi
     def action_set_default_analytic_account(self):
         for rec in pb(self):
             rec._set_default_analytic_account()
 
-    @api.multi
     def _set_default_analytic_account(self):
         self.ensure_one()
         self.invoice_line_ids.set_default_analytic_account()

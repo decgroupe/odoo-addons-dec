@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -9,7 +8,6 @@ from odoo.exceptions import UserError
 class AccountInvoiceUpdate(models.TransientModel):
     _inherit = 'account.invoice.update'
 
-    @api.multi
     def _reopen(self):
         return {
             'type': 'ir.actions.act_window',
@@ -23,14 +21,12 @@ class AccountInvoiceUpdate(models.TransientModel):
             },
         }
 
-    @api.multi
     def remove_lines_with_product_id(self):
         for rec in self:
             lines_with_product = rec.line_ids.filtered(lambda x: x.product_id)
             lines_with_product.unlink()
         return self._reopen()
 
-    @api.multi
     def _get_matching_inv_line(self, move_line):
         try:
             inv_line = super()._get_matching_inv_line(move_line)
@@ -39,7 +35,6 @@ class AccountInvoiceUpdate(models.TransientModel):
         inv_line = self.invoice_id._get_matching_inv_line(move_line)
         return inv_line
 
-    @api.multi
     def _get_move_lines(self, move_id):
         move_lines = super()._get_move_lines(move_id)
         # Override default lines and select all
