@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -16,7 +15,6 @@ class MrpProduction(models.Model):
         # generating any moves
         return production_id
 
-    @api.multi
     def _generate_moves(self):
         if not self.env.context.get("mrp_project_auto_disable"):
             # Project must be created before any moves to be propagated
@@ -25,7 +23,6 @@ class MrpProduction(models.Model):
         res = super()._generate_moves()
         return res
 
-    @api.multi
     def action_create_project(self):
         time_tracking_type_id = self.env.ref(
             'project_identification.time_tracking_type'
