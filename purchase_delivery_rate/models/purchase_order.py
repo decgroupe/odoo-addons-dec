@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
@@ -15,7 +14,6 @@ class PurchaseOrder(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends('state', 'order_line.qty_received', 'order_line.product_qty')
     def _compute_picked_rate(self):
         precision = self.env['decimal.precision'].precision_get(
