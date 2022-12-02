@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -10,7 +9,6 @@ class ProductTemplate(models.Model):
 
     website_public_code = fields.Char(compute='_compute_website_public_code')
 
-    @api.multi
     @api.depends('default_code', 'public_code')
     def _compute_website_public_code(self):
         for rec in self:
