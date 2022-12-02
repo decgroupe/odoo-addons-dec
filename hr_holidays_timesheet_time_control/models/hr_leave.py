@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
@@ -32,7 +31,6 @@ class Holidays(models.Model):
             'company_id': task_id.company_id.id or project_id.company_id.id,
         }
 
-    @api.multi
     def _create_timesheet_with_time(self):
         self.ensure_one()
 
