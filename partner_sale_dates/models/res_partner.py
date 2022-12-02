@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -103,7 +102,6 @@ class ResPartner(models.Model):
             )
             partner.last_sale_delivery_date = order.effective_last_date
 
-    @api.multi
     def action_open_shipping_sale_orders(self):
         action = self.env.ref('sale.act_res_partner_2_sale_order').read()[0]
         action['domain'] = [
