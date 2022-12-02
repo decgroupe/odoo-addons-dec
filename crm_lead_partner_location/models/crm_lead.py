@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -25,7 +24,7 @@ class CrmLead(models.Model):
         comodel_name='res.partner',
         string='Delivery Address',
         help="Delivery address for created sales order.",
-        track_visibility='onchange',
+        tracking=True,
         track_sequence=2,
     )
     partner_shipping_country_id = fields.Many2one(
@@ -56,7 +55,6 @@ class CrmLead(models.Model):
             result["partner_shipping_id"] = addr['delivery']
         return result
 
-    @api.multi
     def _convert_opportunity_data(self, customer, team_id=False):
         values = super()._convert_opportunity_data(customer, team_id)
         if customer:

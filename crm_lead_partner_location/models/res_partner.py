@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2022
 
@@ -8,7 +7,6 @@ from odoo import api, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
     def address_get(self, adr_pref=None):
         res = super().address_get(adr_pref)
         if "delivery" in adr_pref and "default_opportunity_id" in self.env.context:
