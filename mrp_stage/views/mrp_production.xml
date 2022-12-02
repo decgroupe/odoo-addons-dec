@@ -157,7 +157,6 @@
         <field name="name">Manufacturing Orders</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mrp.production</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
         <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'kanban', 'view_id': ref('mrp_production_staged_kanban_view')}),

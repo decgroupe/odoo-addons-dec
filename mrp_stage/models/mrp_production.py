@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2022
 
@@ -25,7 +24,7 @@ class MrpProduction(models.Model):
         ondelete='set null',
         default=_get_default_stage_id,
         compute='_compute_stage_id',
-        track_visibility='onchange',
+        tracking=True,
         index=True,
         store=True,
         copy=False,
@@ -88,7 +87,6 @@ class MrpProduction(models.Model):
                 stage_id = stages['dispatch_ready']
         return stage_id
 
-    @api.multi
     @api.depends(
         'state', 'activity_ids', 'activity_ids.state',
         'move_finished_ids.move_dest_ids.state'
@@ -100,7 +98,6 @@ class MrpProduction(models.Model):
             if stage_id:
                 rec.stage_id = stage_id
 
-    @api.multi
     def action_recompute_stage_id(self):
         self._compute_stage_id()
 
@@ -109,7 +106,6 @@ class MrpProduction(models.Model):
             'user_id': self.env.user.id,
         })
 
-    @api.multi
     def action_start(self):
         self.ensure_one()
         if self.state in ('done', 'cancel'):
@@ -123,12 +119,10 @@ class MrpProduction(models.Model):
             'type': 'ir.actions.act_view_reload',
         }
 
-    @api.multi
     def _allow_auto_start(self):
         self.ensure_one()
         return self.state in ('planned', 'confirmed')
 
-    @api.multi
     def action_view_staged(self):
         action = self.env.ref('mrp_stage.act_mrp_production_staged').read()[0]
         if not self.ids:

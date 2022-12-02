@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2022
 
@@ -44,7 +43,6 @@ class ProductionStage(models.Model):
         ('code_uniq', 'unique (code)', "Code must be unique !"),
     ]
 
-    @api.multi
     @api.depends('name', 'emoji')
     def name_get(self):
         res = []

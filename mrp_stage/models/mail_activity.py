@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -9,7 +8,6 @@ from odoo import models, api
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
 
-    @api.multi
     def action_done(self):
         super().action_done()
         # OCA modules needed:
@@ -29,7 +27,6 @@ class MailActivity(models.Model):
                 ]
         }
 
-    @api.multi
     def action_close_dialog(self):
         super().action_close_dialog()
         # OCA modules needed:
@@ -49,7 +46,6 @@ class MailActivity(models.Model):
                 ]
         }
 
-    # @api.multi
     # def unlink(self):
     #     ids = []
     #     ProductionModel = self.env.ref("mrp.model_mrp_production")
