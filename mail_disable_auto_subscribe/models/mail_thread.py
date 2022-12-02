@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2022
 
@@ -12,7 +11,6 @@ _logger = logging.getLogger(__name__)
 class MailThread(models.AbstractModel):
     _inherit = 'mail.thread'
 
-    @api.multi
     def _message_subscribe(
         self,
         partner_ids=None,
