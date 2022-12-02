@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -19,7 +18,6 @@ class PurchaseOrder(models.Model):
         _logger.debug('_log_decrease_ordered_quantity')
         super()._log_decrease_ordered_quantity(purchase_order_lines_quantities)
 
-    @api.multi
     def _activity_cancel_on_sale(self):
         """ Override `_activity_cancel_on_sale` from sale_purchase
             Internal use of the sale_purchase.exception_sale_on_purchase_cancellation
