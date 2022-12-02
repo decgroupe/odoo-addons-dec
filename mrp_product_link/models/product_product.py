@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -32,7 +31,6 @@ class ProductProduct(models.Model):
                 precision_rounding=product.uom_id.rounding
             )
 
-    @api.multi
     def action_view_mos(self):
         action = super().action_view_mos()
         action['context'] = {
