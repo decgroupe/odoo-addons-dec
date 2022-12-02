@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -23,11 +22,9 @@ class SaleOrder(models.Model):
         for sale in self:
             sale.license_pass_count = len(sale.license_pass_ids)
 
-    @api.multi
     def action_view_application_pass(self):
         return self.license_pass_ids.action_view()
 
-    @api.multi
     def action_cancel(self):
         result = super(SaleOrder, self).action_cancel()
         # When a sale person cancel a SO, he might not have the rights to write
@@ -36,7 +33,6 @@ class SaleOrder(models.Model):
         self.sudo()._activity_cancel_on_application_pass()
         return result
 
-    @api.multi
     def _activity_cancel_on_application_pass(self):
         """ If some SO are cancelled, we need to put an activity on their
             generated application passes. We only want one activity to

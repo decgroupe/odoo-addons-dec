@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -16,7 +15,6 @@ class SaleOrderLine(models.Model):
         string="Passes",
     )
 
-    @api.multi
     def write(self, vals):
         result = super(SaleOrderLine, self).write(vals)
         # Changing the ordered quantity should change the maximum allowed of
@@ -110,7 +108,6 @@ class SaleOrderLine(models.Model):
             line_id._create_application_pass()
         return super()._timesheet_service_generation()
 
-    @api.multi
     @api.depends(
         'license_pass_ids.state', 'license_pass_ids.max_allowed_hardware'
     )

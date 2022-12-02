@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -18,7 +17,6 @@ class ProductTemplate(models.Model):
         readonly=False,
     )
 
-    @api.multi
     def write(self, vals):
         """We remove from product.product to avoid error."""
         _vals = vals.copy()
