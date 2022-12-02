@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -12,7 +11,6 @@ from odoo.tools import float_compare, float_is_zero
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    @api.multi
     def _adjust_procure_method(self):
         super()._adjust_procure_method()
         precision = self.env['decimal.precision']\
