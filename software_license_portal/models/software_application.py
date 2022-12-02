@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
@@ -13,7 +12,6 @@ class SoftwareApplication(models.Model):
         default=True,
     )
 
-    @api.multi
     def action_portal_publish(self):
         self.ensure_one()
         return self.write({'portal_published': not self.portal_published})
