@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
@@ -8,7 +7,6 @@ from odoo import api, models
 class HolidaysAllocation(models.Model):
     _inherit = 'hr.leave.allocation'
 
-    @api.multi
     def _get_responsible_for_approval(self):
         """ Override built-in method to use the same supermanager
         """

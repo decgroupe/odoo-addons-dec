@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
@@ -21,7 +20,6 @@ class HolidaysRequest(models.Model):
         else:
             return self.env['hr.employee']
 
-    @api.multi
     def _sync_employee_details(self):
         super()._sync_employee_details()
         for holiday in self:
