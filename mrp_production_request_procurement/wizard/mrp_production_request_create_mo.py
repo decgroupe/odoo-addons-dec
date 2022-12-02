@@ -1,16 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
 from odoo import api, fields, models, _
-import odoo.addons.decimal_precision as dp
 from odoo.exceptions import UserError
 
 
 class MrpProductionRequestCreateMo(models.TransientModel):
     _inherit = "mrp.production.request.create.mo"
 
-    @api.multi
     def _prepare_manufacturing_order(self):
         self.ensure_one()
         res = super()._prepare_manufacturing_order()
@@ -36,7 +33,6 @@ class MrpProductionRequestCreateMo(models.TransientModel):
             res['name'] = request_id.production_name
         return res
 
-    @api.multi
     def create_mo(self):
         self.ensure_one()
         action = super().create_mo()

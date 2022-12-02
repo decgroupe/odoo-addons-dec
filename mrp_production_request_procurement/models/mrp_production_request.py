@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
@@ -48,7 +47,6 @@ class MrpProductionRequest(models.Model):
         vals = super()._create_sequence(vals)
         return vals
 
-    @api.multi
     def button_approved(self):
         res = super().button_approved()
         for mr in self:
