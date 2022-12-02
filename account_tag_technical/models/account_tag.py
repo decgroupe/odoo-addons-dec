@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
@@ -8,7 +7,6 @@ from odoo import api, models
 class AccountAccountTag(models.Model):
     _inherit = 'account.account.tag'
 
-    @api.multi
     @api.depends('name')
     def name_get(self):
         """
