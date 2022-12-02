@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -68,7 +67,6 @@ class ReplaceBomComponents(models.TransientModel):
             )
         return rec
 
-    @api.multi
     def action_replace(self):
         self.with_delay()._do_replace()
 

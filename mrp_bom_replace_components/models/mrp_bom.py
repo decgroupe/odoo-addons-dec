@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
 from inspect import getargvalues
 from odoo import fields, models, api
-from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_compare
 
 TRACKED_FIELDS = [
@@ -40,7 +38,6 @@ def fix(res):
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    @api.multi
     def write(self, vals):
         states = {}
         if 'bom_line_ids' in vals:
