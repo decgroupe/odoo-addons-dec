@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -15,7 +14,6 @@ class StockMove(models.Model):
         "to be used on production",
     )
 
-    @api.multi
     @api.depends(
         'state', 'reserved_availability', 'product_uom_qty', 'procure_method',
         'move_orig_ids'

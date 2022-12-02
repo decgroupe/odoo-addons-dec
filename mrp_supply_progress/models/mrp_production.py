@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -27,7 +26,6 @@ class MrpProduction(models.Model):
             res = res and (self.stage_id.code == 'build_ready')
         return res
 
-    @api.multi
     @api.depends('move_raw_ids', 'move_raw_ids.state')
     def _compute_supply_progress(self):
         for rec in self:
@@ -44,11 +42,9 @@ class MrpProduction(models.Model):
                     rec.supply_progress = \
                         len(received_move_ids) * 100 / len(all_move_ids)
 
-    @api.multi
     def action_update_supply_progress(self):
         self._compute_supply_progress()
 
-    @api.multi
     def run_supply_progress_update_scheduler(self):
         date = fields.Datetime.to_string(
             fields.datetime.now() - timedelta(days=365)
@@ -74,7 +70,6 @@ class MrpProduction(models.Model):
         )
         return res
 
-    @api.multi
     def _is_supply_active(self):
         self.ensure_one()
         return self.supply_progress > 0
@@ -88,12 +83,10 @@ class MrpProduction(models.Model):
                 stage_id = stages['supplying']
         return stage_id
 
-    @api.multi
     @api.depends('supply_progress')
     def _compute_stage_id(self):
         return super()._compute_stage_id()
 
-    @api.multi
     @api.depends('stage_id', 'supply_progress')
     def _compute_kanban_show_supply_progress(self):
         stages = self._get_stages_ref()
