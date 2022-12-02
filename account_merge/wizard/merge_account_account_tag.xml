@@ -85,7 +85,7 @@
 
     <act_window id="action_account_account_tag_merge"
         name="🧙‍♂️ Merge ..."
-        src_model="account.account.tag"
+        binding_model="account.account.tag"
         res_model="merge.account.account.tag.wizard"
         view_type="tree"
         view_mode="form"
