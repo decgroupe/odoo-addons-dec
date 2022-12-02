@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2020
 
@@ -8,7 +7,6 @@ from odoo import models, api
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    @api.multi
     def action_propagate_cancel(self):
         if self.env.context.get('propagate'):
             moves_to_cancel = self.env['stock.move']
@@ -32,7 +30,6 @@ class PurchaseOrderLine(models.Model):
         # Close current form and reload
         return self.action_close_dialog()
 
-    @api.multi
     def action_close_dialog(self):
         self.ensure_one()
         # OCA module needed: web_ir_actions_act_view_reload
