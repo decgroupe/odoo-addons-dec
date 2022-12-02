@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
@@ -25,7 +24,6 @@ class MrpProduction(models.Model):
         values = super(MrpProduction, self).get_alias_values()
         return values
 
-    @api.multi
     def autocreate_mail_alias(self):
         for rec in self:
             if not rec.alias_name:
@@ -41,7 +39,6 @@ class MrpProduction(models.Model):
             production.alias_name = production.name
         return production
 
-    @api.multi
     def write(self, vals):
         if vals.get('alias_name'):
             vals['alias_name'] = self._clean_alias_name(vals['alias_name'])
