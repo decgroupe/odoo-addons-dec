@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
@@ -19,14 +18,12 @@ class MrpProduction(models.Model):
         )).name_search(name=name, args=args, operator=operator, limit=limit)
         return names
 
-    @api.multi
     def name_get(self):
         if self.env.context.get('name_search'):
             return self.name_get_from_search()
         else:
             return super().name_get()
 
-    @api.multi
     @api.depends('name')
     def name_get_from_search(self):
         """ Custom naming to quickly identify a production order
@@ -38,7 +35,6 @@ class MrpProduction(models.Model):
             res.append((rec.id, name))
         return res
 
-    @api.multi
     @api.depends('bom_id', 'partner_id', 'partner_zip_id')
     def _get_name_identifications(self):
         self.ensure_one()
