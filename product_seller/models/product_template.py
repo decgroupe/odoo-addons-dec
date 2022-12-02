@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -27,7 +26,6 @@ class ProductTemplate(models.Model):
         res = sellers and sellers[0][1] or False
         return res
 
-    @api.multi
     def _calc_seller(self):
         for product in self:
             main_supplier = product._get_main_product_supplier()
