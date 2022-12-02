@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -28,7 +27,6 @@ class StockMove(models.Model):
         string='Created Purchase Order Lines by Orderpoint',
     )
 
-    @api.multi
     def _compute_orderpoint_created_orders(self):
         Orderpoint = self.env['stock.warehouse.orderpoint']
         Production = self.env['mrp.production']
