@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
 from odoo import _, api, models, fields
-from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 
 
@@ -12,7 +10,7 @@ class HrExpense(models.Model):
 
     tax_amount = fields.Float(
         string="Taxes",
-        digits=dp.get_precision('Account'),
+        digits='Account',
     )
     comments = fields.Char(string="Comments", )
 
@@ -36,7 +34,6 @@ class HrExpense(models.Model):
             )
             expense.tax_amount = taxes.get('total_included') - taxes.get('total_excluded')
 
-    @api.multi
     def _get_account_move_line_values(self):
         # Call super but drop the result as this method is a full copy/paste
         # of `_get_account_move_line_values` from
@@ -128,7 +125,6 @@ class HrExpense(models.Model):
         return move_line_values_by_expense
     # yapf: enable
 
-    @api.multi
     def action_duplicate(self):
         self.ensure_one()
         if self.state in ['done', 'approved']:
@@ -139,7 +135,6 @@ class HrExpense(models.Model):
             'sheet_id': self.sheet_id.id,
         })
 
-    @api.multi
     def action_get_attachment_view(self):
         self.ensure_one()
         if self.attachment_number == 0:
@@ -148,7 +143,6 @@ class HrExpense(models.Model):
             res = super().action_get_attachment_view()
         return res
 
-    @api.multi
     def action_create_attachment_view(self):
         self.ensure_one()
         context = {'default_res_model': self._name, 'default_res_id': self.id}
