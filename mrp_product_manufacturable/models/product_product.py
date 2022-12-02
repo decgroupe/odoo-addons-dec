@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -13,7 +12,6 @@ class ProductProduct(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends('bom_ids', 'bom_ids.active', 'bom_ids.type')
     def _compute_manufacturable(self):
         product_ids = self.search(
