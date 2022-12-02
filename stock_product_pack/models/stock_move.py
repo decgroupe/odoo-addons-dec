@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -19,14 +18,12 @@ class StockMove(models.Model):
     )
     pack_level = fields.Integer(compute='_compute_pack_level')
 
-    @api.multi
     def _compute_pack_level(self):
         for move in self:
             move.pack_level = 0
             if move.pack_parent_move_id:
                 move.pack_level = move.pack_parent_move_id.pack_level + 1
 
-    @api.multi
     def _update_sequence(self, sequence=0, updated_ids=None):
         if updated_ids is None:
             updated_ids = []
