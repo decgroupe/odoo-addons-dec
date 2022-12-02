@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
@@ -20,7 +19,6 @@ class Orderpoint(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends('product_id.uom_po_id')
     def _compute_qty_multiple(self):
         for op in self:
