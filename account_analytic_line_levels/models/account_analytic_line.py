@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -29,7 +28,6 @@ class AccountAnalyticLine(models.Model):
         store=True
     )
 
-    @api.multi
     @api.depends('account_id', 'account_id.parent_id')
     def _compute_analytic_account_level(self):
         for rec in self:
