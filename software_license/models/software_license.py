@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -30,7 +29,7 @@ class SoftwareLicense(models.Model):
         required=True,
         copy=False,
         default=_get_default_serial,
-        track_visibility='onchange',
+        tracking=True,
         help="Unique serial used as an authorization identifier",
     )
     activation_identifier = fields.Char(
@@ -81,7 +80,6 @@ class SoftwareLicense(models.Model):
         ),
     ]
 
-    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()
@@ -95,7 +93,6 @@ class SoftwareLicense(models.Model):
         self.ensure_one()
         return ('[%s] %s') % (self.application_id.name, self.serial)
 
-    @api.multi
     @api.depends('serial', 'application_id.name')
     def name_get(self):
         result = []
@@ -126,13 +123,11 @@ class SoftwareLicense(models.Model):
         self.ensure_one()
         return False
 
-    @api.multi
     def activate(self, hardware):
         self.ensure_one()
         vals = self._prepare_hardware_activation_vals(hardware)
         return self.env['software.license.hardware'].create(vals)
 
-    @api.multi
     @api.depends('serial')
     def _compute_activation_identifier(self):
         for rec in self:

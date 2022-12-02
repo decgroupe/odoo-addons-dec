@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -36,7 +35,6 @@ class SoftwareApplication(models.Model):
             'application_id': self.id,
         }
 
-    @api.multi
     def action_create_license_template(self):
         for rec in self:
             vals = rec._prepare_license_template_vals()
