@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -14,7 +13,6 @@ class PurchaseOrderLine(models.Model):
             'purchase_action_view.action_purchase_order_line_tree'
         ).read()[0]
 
-    @api.multi
     def action_view(self):
         action = self.action_view_base()
         if not self.ids:
