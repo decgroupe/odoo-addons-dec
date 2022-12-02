@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
@@ -30,7 +29,6 @@ class FetchmailServer(models.AbstractModel):
             res = to_list(allowedlist)
         return res
 
-    @api.multi
     def fetch_mail(self):
         # We use `fetch_mail` instead of `_fetch_mails`
         fetchmail_server_ids = self.env['fetchmail.server']
