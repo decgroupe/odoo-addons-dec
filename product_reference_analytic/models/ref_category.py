@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
@@ -14,7 +13,6 @@ class RefCategory(models.Model):
         readonly=False,
     )
 
-    @api.multi
     def action_create_income_analytic_account(self):
         product_analytic_group = self.env.ref(
             'product_reference_analytic.product_analytic_group'
@@ -38,7 +36,6 @@ class RefCategory(models.Model):
             category_id.action_create_income_analytic_account()
         return category_id
 
-    @api.multi
     def write(self, vals):
         name = vals.get('name')
         if name:
