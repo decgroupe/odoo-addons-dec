@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
@@ -19,7 +18,6 @@ class PurchaseOrder(models.Model):
         store=False,
     )
 
-    @api.multi
     def _compute_outgoing_picking(self):
         for order in self:
             order.outgoing_picking_ids = order.order_line.mapped(
@@ -28,7 +26,6 @@ class PurchaseOrder(models.Model):
             order.outgoing_picking_ids -= order.picking_ids
             order.outgoing_picking_count = len(order.outgoing_picking_ids)
 
-    @api.multi
     def action_view_outgoing_picking(self):
         """ This function returns an action that display existing outgoing
         picking of given purchase order ids. When only one found, show the 
