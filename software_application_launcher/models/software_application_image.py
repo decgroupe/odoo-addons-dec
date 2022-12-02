@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -80,7 +79,6 @@ class SoftwareApplicationImage(models.Model):
             else:
                 rec.resized_image = rec.image
 
-    @api.multi
     @api.depends('resize_x', 'resize_y')
     def _inverse_image(self):
         self.ensure_one()

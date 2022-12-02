@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -60,7 +59,6 @@ class SoftwareApplication(models.Model):
             ('type', 'in', ['inhouse', 'resource']),
         ]
 
-    @api.multi
     def _get_launcher_manifest_entry(self, with_tooltips=False):
         self.ensure_one()
         is_tool = False
