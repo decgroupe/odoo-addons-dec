@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
@@ -55,7 +54,6 @@ class MrpProduction(models.Model):
         for rec in self:
             rec.task_count = len(rec.task_ids)
 
-    @api.multi
     def action_view_task(self):
         action = self.mapped('task_ids').action_view()
         action['context'] = {}
@@ -80,7 +78,6 @@ class MrpProduction(models.Model):
             'user_id': False,  # force non assigned task, as created as sudo()
         }
 
-    @api.multi
     def _create_task(self, bom_line, dict):
         """ Generate task for the given so line, and link it.
             :param project: record of project.project in which the task should be created
@@ -96,7 +93,6 @@ class MrpProduction(models.Model):
         task.message_post(body=task_msg)
         return task
 
-    @api.multi
     def _action_launch_procurement_rule(self, bom_line, dict):
         self.ensure_one()
         if self.project_id \
@@ -108,13 +104,11 @@ class MrpProduction(models.Model):
             res = super()._action_launch_procurement_rule(bom_line, dict)
         return res
 
-    @api.multi
     def action_cancel(self):
         result = super().action_cancel()
         self.sudo()._activity_cancel_on_task()
         return result
 
-    @api.multi
     def _activity_cancel_on_task(self):
         """ If some MO are cancelled, we need to put an activity on their
             generated task.

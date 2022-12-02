@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
@@ -20,7 +19,6 @@ class ProjectTask(models.Model):
     # To remove when manual reassigment is finished
     origin = fields.Char(string="Legacy Origin")
 
-    @api.multi
     def _get_name_identifications(self):
         res = super()._get_name_identifications()
         # Add production to quickly identify a task
