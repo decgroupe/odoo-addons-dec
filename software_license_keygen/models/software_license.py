@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -26,7 +25,6 @@ class SoftwareLicense(models.Model):
             license_id.onchange_application_id()
         return license_id
 
-    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()
@@ -46,7 +44,6 @@ class SoftwareLicense(models.Model):
             vals['serial'] = self._generate_serial()
         self.update(vals)
 
-    @api.multi
     def action_generate_serial(self):
         for rec in self:
             rec.serial = rec._generate_serial()
