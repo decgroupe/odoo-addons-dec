@@ -85,7 +85,7 @@
 
     <act_window id="action_res_city_merge"
         name="🧙‍♂️ Merge ..."
-        src_model="res.city"
+        binding_model="res.city"
         res_model="merge.res.city.wizard"
         view_type="tree"
         view_mode="form"
