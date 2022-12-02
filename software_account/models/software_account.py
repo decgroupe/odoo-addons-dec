@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -30,7 +29,6 @@ class SoftwareAccount(models.Model):
     datetime = fields.Datetime('Modification date', default=fields.Datetime.now)
     info = fields.Text('Informations')
 
-    @api.multi
     def _get_aeroo_report_filename(self):
         names = [x.login or str(x.id) for x in self]
         res = '-'.join(names)
