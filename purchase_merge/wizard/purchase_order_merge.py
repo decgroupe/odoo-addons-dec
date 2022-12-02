@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -211,7 +210,6 @@ class PurchaseOrderMerge(models.TransientModel):
         for order_id in self.origin_order_ids:
             order_id.sudo().unlink()
 
-    @api.multi
     def action_merge(self):
         if self.pre_process == 'create':
             self._pre_process_create()
