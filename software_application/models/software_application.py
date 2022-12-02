@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -98,7 +97,6 @@ class SoftwareApplication(models.Model):
             value = value.encode('ascii')
         self.attachment_image = tools.image_resize_image(value, size=(300, 200))
 
-    @api.multi
     def write(self, vals):
         if 'type' in vals:
             if vals.get('type') == 'other':
