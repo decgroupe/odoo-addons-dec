@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2022
 
-import odoo.addons.decimal_precision as dp
 from odoo import fields, models, api
 
 
@@ -30,7 +28,7 @@ class RefMarketBomLine(models.Model):
     product_qty = fields.Float(
         string='Product Qty',
         required=True,
-        digits=dp.get_precision('Product UoM'),
+        digits='Product UoM',
     )
     product_uom_id = fields.Many2one(
         comodel_name='uom.uom',
@@ -50,7 +48,7 @@ class RefMarketBomLine(models.Model):
     )
     price = fields.Float(
         string='Price',
-        digits=dp.get_precision('Sale Price'),
+        digits='Sale Price',
     )
     market_bom_id = fields.Many2one(
         comodel_name='ref.market.bom',

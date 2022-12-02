@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-import odoo.addons.decimal_precision as dp
 from odoo import fields, models, api
 
 
@@ -42,7 +40,6 @@ class RefMarketBom(models.Model):
         digits=(16, 2),
     )
 
-    @api.multi
     def _compute_labortime(self):
         labor_service_ids = self.get_labortime_services()
         for rec in self:
