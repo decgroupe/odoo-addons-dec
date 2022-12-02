@@ -52,10 +52,8 @@
         name="🧙‍♂️ Impersonate ..."
         binding_model="res.partner"
         res_model="res.partner.impersonate"
-        view_type="form"
         view_mode="form"
-        multi="False"
-        key2="client_action_multi" 
+        binding_views="form"
         target="new"
         groups="auth_unique_link.group_impersonate"
     />
