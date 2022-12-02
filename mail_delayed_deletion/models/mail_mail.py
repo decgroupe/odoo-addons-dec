@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -25,7 +24,6 @@ class MailMail(models.AbstractModel):
         delayed_deletion_days = int(ICP.get_param('mail_delayed_deletion.days'))
         return delayed_deletion_days
 
-    @api.multi
     def _send(
         self,
         auto_commit=False,
@@ -35,7 +33,6 @@ class MailMail(models.AbstractModel):
         res = super()._send(auto_commit, raise_exception, smtp_session)
         return res
 
-    @api.multi
     def _delay_auto_delete(self):
         delayed_deletion_days = self._get_delayed_deletion_days()
         if delayed_deletion_days:
