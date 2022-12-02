@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
@@ -29,7 +28,6 @@ class PurchaseOrderLine(models.Model):
     )
     pack_modifiable = fields.Boolean(help='The parent pack is modifiable')
 
-    @api.multi
     def expand_pack_line(self, write=False):
         self.ensure_one()
         # if we are using update_pricelist or checking out on ecommerce we
@@ -64,7 +62,6 @@ class PurchaseOrderLine(models.Model):
         record.expand_pack_line()
         return record
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if 'product_id' in vals or 'product_qty' in vals:
@@ -114,7 +111,6 @@ class PurchaseOrderLine(models.Model):
                 )
             )
 
-    @api.multi
     def action_open_parent_pack_product_view(self):
         domain = [
             (
@@ -165,7 +161,6 @@ class PurchaseOrderLine(models.Model):
         }
         return res
 
-    @api.multi
     def _create_pack_stock_moves(self):
         moves = self.env['stock.move']
         for line in self:
@@ -176,7 +171,6 @@ class PurchaseOrderLine(models.Model):
                 moves += child_move
         return moves
 
-    @api.multi
     def _get_parent_pack_stock_moves(self):
         moves = self.env['stock.move']
         for line in self:

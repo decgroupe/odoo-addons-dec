@@ -1,16 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
 from odoo import api, fields, models
-import odoo.addons.decimal_precision as dp
 
 
 class ProductPackLine(models.Model):
     _inherit = 'product.pack.line'
 
 
-    @api.multi
     def get_purchase_order_line_vals(self, line, order):
         self.ensure_one()
         uom_qty = self.quantity * line.product_uom_qty

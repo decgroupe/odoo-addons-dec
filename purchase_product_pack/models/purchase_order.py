@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
@@ -9,7 +8,6 @@ from odoo.exceptions import UserError
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
-    @api.multi
     def copy(self, default=None):
         purchase_copy = super().copy(default)
         # we unlink pack lines that should not be copied
@@ -37,14 +35,12 @@ class PurchaseOrder(models.Model):
                 )
             )
 
-    @api.multi
     def _create_picking(self):
         self._create_pack_stock_moves()
         res = super()._create_picking()
         self._force_parent_pack_stock_moves()
         return res
 
-    @api.multi
     def _create_pack_stock_moves(self):
         production_ids = self.env['mrp.production']
         for order in self:
@@ -60,7 +56,6 @@ class PurchaseOrder(models.Model):
             production_ids.update_move_raw_sequences()
         return True
 
-    @api.multi
     def _force_parent_pack_stock_moves(self):
         for order in self:
             if any(
