@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
@@ -18,7 +17,6 @@ class AccountAnalyticLine(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends(
         'task_id', 'task_id.exclude_from_timesheet', 'project_id',
         'project_id.exclude_from_timesheet'
