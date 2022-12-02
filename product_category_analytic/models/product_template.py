@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -19,7 +18,6 @@ class ProductTemplate(models.Model):
         compute='_compute_default_analytic_accounts',
     )
 
-    @api.multi
     def _get_product_analytic_accounts(self):
         self.ensure_one()
         res = super()._get_product_analytic_accounts()
@@ -31,7 +29,6 @@ class ProductTemplate(models.Model):
                 res['expense'] = categ_res['expense']
         return res
 
-    @api.multi
     @api.depends(
         'income_analytic_account_id', 'expense_analytic_account_id', 'categ_id',
         'categ_id.income_analytic_account_id',
