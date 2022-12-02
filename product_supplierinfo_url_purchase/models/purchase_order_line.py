@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -31,7 +30,6 @@ class PurchaseOrderLine(models.Model):
                 url = supplier_info[0].url or ''
                 rec.product_supplier_url = url
 
-    # @api.multi
     # @api.onchange(
     #     'partner_id',
     #     'product_id',
