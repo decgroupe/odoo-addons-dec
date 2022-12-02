@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -12,7 +11,6 @@ _logger = logging.getLogger(__name__)
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
-    @api.multi
     def write(self, vals):
         if vals.get('stage_id') and not 'set_stage' in self._context:
             lost_stage_id = self._stage_find(domain=[('probability', '<=', 0)])
