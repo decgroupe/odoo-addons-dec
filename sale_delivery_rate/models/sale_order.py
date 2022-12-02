@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
@@ -22,7 +21,6 @@ class SaleOrder(models.Model):
         help='Rate of delivery',
     )
 
-    @api.multi
     @api.depends(
         'state', 'order_line.qty_delivered', 'order_line.product_uom_qty'
     )
@@ -49,7 +47,6 @@ class SaleOrder(models.Model):
                 sale.sent_rate = \
                     sent_count * 100 / line_count
 
-    @api.multi
     @api.depends('tasks_ids', 'tasks_ids.progress', 'tasks_ids.stage_id')
     def _compute_task_rate(self):
         for sale in self:
@@ -65,7 +62,6 @@ class SaleOrder(models.Model):
                         total_progress += task_id.progress
                 sale.task_rate = total_progress / len(all_task_ids)
 
-    @api.multi
     @api.depends('sent_rate', 'task_rate')
     def _compute_delivery_rate(self):
         for sale in self:

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2022
 
@@ -21,7 +20,6 @@ class SaleOrderLine(models.Model):
         readonly=True
     )
 
-    @api.multi
     @api.depends(
         'state', 'qty_delivered', 'product_uom_qty', 'display_type',
         'invoice_status'
