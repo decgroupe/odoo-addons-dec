@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -23,14 +22,12 @@ class CrmLead(models.Model):
         )).name_search(name=name, args=args, operator=operator, limit=limit)
         return names
 
-    @api.multi
     def name_get(self):
         if self.env.context.get('name_search'):
             return self.name_get_from_search()
         else:
             return super().name_get()
 
-    @api.multi
     @api.depends('number', 'name')
     def name_get_from_search(self):
         """ Custom naming to quickly identify a lead
@@ -47,7 +44,6 @@ class CrmLead(models.Model):
             res.append((rec.id, name))
         return res
 
-    @api.multi
     @api.depends('partner_id.name', 'partner_zip_id')
     def _get_name_identifications(self):
         self.ensure_one()
@@ -63,7 +59,6 @@ class CrmLead(models.Model):
             res.append('🗺️ %s' % (self.partner_zip_id.display_name))
         return res
 
-    @api.multi
     @api.depends('partner_zip_id', 'partner_zip_id.name')
     def _compute_names(self):
         super()._compute_names()
