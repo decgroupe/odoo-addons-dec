@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -15,14 +14,12 @@ class ProductTemplate(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends('public_categ_ids')
     def _compute_public_categ_id(self):
         for record in self:
             record.public_categ_id = record.public_categ_ids \
                 and record.public_categ_ids[0] or False
 
-    @api.multi
     def set_main_public_category(self, categ_id):
         for rec in self:
             if not rec.public_categ_ids:
