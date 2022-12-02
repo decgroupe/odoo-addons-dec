@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -9,7 +8,6 @@ class StockRule(models.Model):
     _inherit = 'stock.rule'
 
     # Inherit addons/purchase_stock/models/stock_rule.py
-    @api.multi
     def _prepare_purchase_order_line(
         self, product_id, product_qty, product_uom, values, po, partner
     ):

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -8,13 +7,11 @@ from odoo import api, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    @api.multi
     def button_cancel(self):
         result = super(PurchaseOrder, self).button_cancel()
         self.sudo()._activity_cancel_on_production()
         return result
 
-    @api.multi
     def _activity_cancel_on_production(self):
         """ If some PO are cancelled, we need to put an activity on their
             origin MO (only the open ones). Since a PO can have been modified

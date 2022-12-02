@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -28,7 +27,6 @@ class MrpProduction(models.Model):
             ) % (bom_line.id, bom_line.display_name)
             self.message_post(body=message)
 
-    @api.multi
     def _action_launch_procurement_rule(self, bom_line, dict):
         self.ensure_one()
         if bom_line.product_id.purchase_ok:
@@ -38,13 +36,11 @@ class MrpProduction(models.Model):
             res = False
         return res
 
-    @api.multi
     def action_cancel(self):
         result = super().action_cancel()
         self.sudo()._activity_cancel_on_purchase()
         return result
 
-    @api.multi
     def _activity_cancel_on_purchase(self):
         """ If some MO are cancelled, we need to put an activity on their
             generated purchase. If sale lines of differents production orders
