@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -17,7 +16,6 @@ class Product(models.Model):
         search='_search_parent_pack_website_published',
     )
 
-    @api.multi
     @api.depends('used_in_pack_line_ids')
     def _compute_parent_pack_website_published(self):
         for rec in self:
