@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
@@ -19,7 +18,6 @@ class ProductTemplate(models.Model):
         string='In Sale Quotation',
     )
     
-    @api.multi
     def _compute_qty_in_purchase_quotation(self):
         for template in self:
             template.qty_in_purchase_quotation = float_round(
@@ -32,7 +30,6 @@ class ProductTemplate(models.Model):
                 precision_rounding=template.uom_id.rounding
             )
 
-    @api.multi
     def _compute_qty_in_sale_quotation(self):
         domain = [
             ('state', 'in', ['draft', 'sent']),
