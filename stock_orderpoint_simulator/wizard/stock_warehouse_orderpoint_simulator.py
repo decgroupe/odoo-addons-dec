@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
 from odoo import fields, models, api, _
-from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 
 
@@ -23,7 +21,7 @@ class PurchaseOrderMerge(models.TransientModel):
     )
     product_min_qty = fields.Float(
         'Minimum Quantity',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         required=True,
         help="When the virtual stock goes below the Min Quantity specified for "
         "this field, Odoo generates a procurement to bring the forecasted "
@@ -31,7 +29,7 @@ class PurchaseOrderMerge(models.TransientModel):
     )
     product_max_qty = fields.Float(
         'Maximum Quantity',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         required=True,
         help="When the virtual stock goes below the Min Quantity, Odoo "
         "generates a procurement to bring the forecasted quantity to the "
@@ -39,26 +37,26 @@ class PurchaseOrderMerge(models.TransientModel):
     )
     qty_multiple = fields.Float(
         'Qty Multiple',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         default=1,
         required=True,
         help="The procurement quantity will be rounded up to this multiple. "
     )
     available_qty = fields.Float(
         'Available Quantity',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
     )
     needed_qty = fields.Float(
         'Needed Quantity',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
     )
     remaining_qty = fields.Float(
         'Remaining Quantity',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
     )
     qty_to_order = fields.Float(
         'Quantity to Order',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
     )
 
     @api.model
@@ -120,7 +118,6 @@ class PurchaseOrderMerge(models.TransientModel):
         else:
             self.qty_to_order = 0
 
-    @api.multi
     def action_apply(self):
         for rec in self:
             rec.origin_orderpoint_id.product_min_qty = rec.product_min_qty

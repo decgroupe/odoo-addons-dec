@@ -48,14 +48,13 @@
     <record model="ir.actions.act_window" id="action_orderpoint_simulator">
         <field name="name">Minimum Stock Rule Simulator</field>
         <field name="res_model">stock.warehouse.orderpoint.simulator</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
 
     <act_window id="act_window_stock_warehouse_orderpoint_simulator"
         name="🧙‍♂️ Simulator ..."
-        src_model="stock.warehouse.orderpoint"
+        binding_model="stock.warehouse.orderpoint"
         res_model="stock.warehouse.orderpoint.simulator"
         view_type="form"
         view_mode="form"
