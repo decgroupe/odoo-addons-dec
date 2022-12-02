@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -27,7 +26,6 @@ class MrpBomLine(models.Model):
         "be purchased."
     )
 
-    @api.multi
     def _get_supplierinfo(self):
         """Given a BoM line, return the supplierinfo that matches
         with product and partner, if exist"""
