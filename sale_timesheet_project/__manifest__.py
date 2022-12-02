@@ -10,7 +10,7 @@
     'depends':
         [
             'project_identification',
-            'sale_timesheet_existing_project',
+            'sale_timesheet',
             'sale_delivery_date',
             'sale_action_view',
         ],

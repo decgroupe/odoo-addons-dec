@@ -5,7 +5,7 @@
     'website': 'https://www.decgroupe.com',
     'summary': "Show technical XML IDs",
     'depends': [
-        'account_tag_menu',
+        'account_menu',
         'base_xmlid',
     ],
     'data': [],
