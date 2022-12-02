@@ -1,15 +1,12 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
 from odoo import api, fields, models
-from odoo.addons import decimal_precision as dp
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         # When we toggle active state of a 'product.template', the new state
