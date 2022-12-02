@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2022
 
@@ -20,7 +19,6 @@ class HolidaysType(models.Model):
         "even when not valid",
     )
 
-    @api.multi
     @api.depends("requestable_from", "validity_stop")
     def _compute_requestable_from_valid(self):
         dt = self._context.get('default_date_from'
