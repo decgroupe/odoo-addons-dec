@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -26,7 +25,7 @@ class MailThread(models.AbstractModel):
             )
             email_from = parseaddr(email_from)[1]
             email_domain = email_from.partition('@')[2]
-            catchall_domain = self.env['ir.config_parameter'].sudo(
+            catchall_domain = self.env['ir.config_parameter'].with_user(
             ).get_param("mail.catchall.domain")
             if email_domain == catchall_domain:
                 body = self._remove_gmail_signatures(body)
