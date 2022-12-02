@@ -85,7 +85,7 @@
 
     <act_window id="action_project_project_merge"
         name="🧙‍♂️ Merge ..."
-        src_model="project.project"
+        binding_model="project.project"
         res_model="merge.project.project.wizard"
         view_type="tree"
         view_mode="form"

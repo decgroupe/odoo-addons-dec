@@ -85,7 +85,7 @@
 
     <act_window id="action_project_task_merge"
         name="🧙‍♂️ Merge ..."
-        src_model="project.task"
+        binding_model="project.task"
         res_model="merge.project.task.wizard"
         view_type="tree"
         view_mode="form"
