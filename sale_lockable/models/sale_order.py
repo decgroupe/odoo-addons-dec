@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
@@ -21,17 +20,14 @@ class SaleOrder(models.Model):
         readonly=True,
     )
 
-    @api.multi
     def action_draft_lock(self):
         for order in self:
             order.locked_draft = True
 
-    @api.multi
     def action_draft_unlock(self):
         for order in self:
             order.locked_draft = False
 
-    @api.multi
     def write(self, vals):
         inter_fields = list(set(self._get_locked_fields()).intersection(vals))
         if inter_fields:
@@ -92,7 +88,6 @@ class SaleOrder(models.Model):
                     (self.user_id.name)
                 )
 
-    @api.multi
     def _compute_same_user(self):
         for order in self:
             order.same_user = (order.user_id == self.env.user)
