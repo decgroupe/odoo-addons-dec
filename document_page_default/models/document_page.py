@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -22,7 +21,6 @@ class DocumentPage(models.Model):
     draft_name = fields.Char(default=_default_draft_name)
     draft_summary = fields.Char(default=_default_draft_summary)
 
-    @api.multi
     def write(self, vals):
         if not 'draft_name' in vals:
             vals['draft_name'] = "Rev {:02d}".format(len(self.history_ids) + 1)
