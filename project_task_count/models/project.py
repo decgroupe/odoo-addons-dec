@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
@@ -15,7 +14,6 @@ class Project(models.Model):
         help="Number of currently open tasks",
     )
 
-    @api.multi
     @api.depends('task_ids', 'task_ids.stage_id', 'task_ids.type_id')
     def _compute_todo_task_count(self):
         time_tracking_type = self.env.ref(
