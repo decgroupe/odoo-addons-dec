@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -19,7 +18,6 @@ class AccountInvoice(models.Model):
         store=False,
     )
 
-    @api.multi
     def _compute_sale_order(self):
         for invoice in self.filtered('origin'):
             if invoice.type == 'out_invoice':
@@ -34,7 +32,6 @@ class AccountInvoice(models.Model):
                 invoice.sale_order_ids = orders
                 invoice.sale_order_count = len(orders)
 
-    @api.multi
     def action_view_sale_order(self):
         action = self.mapped('sale_order_ids').action_view()
         # override the context to get ride of the default filtering
