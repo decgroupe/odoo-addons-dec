@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2022
 
@@ -78,7 +77,6 @@ class IrModule(models.Model):
         compute="_compute_mig_x",
     )
 
-    @api.multi
     @api.depends(
         "migration_ids", "migration_ids.state", "migration_ids.pr_address"
     )
@@ -104,7 +102,6 @@ class IrModule(models.Model):
                         else:
                             rec[color_field] = LIGHTGREEN['500'][0]
 
-    @api.multi
     def action_init_migration_status(self):
         for rec in self:
             if rec.state == 'installed' and not rec.migration_ids.ids:
