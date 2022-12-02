@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
@@ -8,7 +7,6 @@ from odoo import api, models, _
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    @api.multi
     def _get_contact_type_emoji(self):
         self.ensure_one()
         if self.is_company:
