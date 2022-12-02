@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -36,7 +35,6 @@ class Partner(models.Model):
         "This pricelist will be used, instead of the default one, for purchases from the current partner"
     )
 
-    @api.multi
     def _compute_product_pricelist_purchase(self):
         Pricelist = self.env['product.pricelist']
         company = self.env.context.get('force_company', False)
@@ -46,7 +44,6 @@ class Partner(models.Model):
         for p in self:
             p.property_product_pricelist_purchase = res.get(p.id)
 
-    @api.one
     def _inverse_product_pricelist_purchase(self):
         Property = self.env['ir.property']
         actual = Property.get(
