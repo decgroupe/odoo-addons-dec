@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -11,14 +10,14 @@ class SoftwareLicense(models.Model):
 
     expiration_date = fields.Datetime(
         string="Expiration Date",
-        track_visibility='onchange',
+        tracking=True,
         help="If set, then after this date it will not be possible to "
         "proceed or renew any activation.",
     )
     max_allowed_hardware = fields.Integer(
         string="Maximum Activation Count",
         default=1,
-        track_visibility='onchange',
+        tracking=True,
         help="If more than 0, then the number of registered hardware "
         "identifiers will not be allowed to be greater than this value.",
     )
@@ -66,7 +65,6 @@ class SoftwareLicense(models.Model):
             res = True
         return res
 
-    @api.multi
     def get_hardwares_dict(self, filter_names):
         self.ensure_one()
         res = {}

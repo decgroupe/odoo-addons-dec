@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -12,7 +11,6 @@ class SoftwareApplication(models.Model):
     private_key = fields.Text()
     public_key = fields.Text()
 
-    @api.multi
     def action_generate_rsa_keypair(self):
         for rec in self:
             key = RSA.generate(2048)

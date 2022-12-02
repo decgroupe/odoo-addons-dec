@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -42,7 +41,6 @@ class SoftwareLicenseHardware(models.Model):
         record.license_id._check_expiration_date()
         return record
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         for rec in self:
@@ -66,12 +64,10 @@ class SoftwareLicenseHardware(models.Model):
         )
         return res
 
-    @api.multi
     def _get_validation_expiration_date(self):
         self.ensure_one()
         return self.validation_date + relativedelta(days=self.validity_days)
 
-    @api.multi
     def get_license_string(self):
         self.ensure_one()
         self.validation_date = fields.datetime.now()
