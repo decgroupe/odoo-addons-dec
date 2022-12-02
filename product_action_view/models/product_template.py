@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -12,7 +11,6 @@ class ProductTemplate(models.Model):
     def action_view_base(self):
         return self.env.ref('product.product_template_action').read()[0]
 
-    @api.multi
     def action_view(self):
         action = self.action_view_base()
         form = self.env.ref('product.product_template_only_form_view')
@@ -29,7 +27,6 @@ class ProductTemplate(models.Model):
             action['res_id'] = self.ids[0]
         return action
 
-    @api.multi
     def action_view_variants(self):
         action = self.mapped('product_variant_ids').action_view()
         return action
