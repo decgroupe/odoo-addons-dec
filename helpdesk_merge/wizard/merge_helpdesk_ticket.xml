@@ -85,7 +85,7 @@
 
     <act_window id="action_helpdesk_ticket_merge"
         name="🧙‍♂️ Merge ..."
-        src_model="helpdesk.ticket"
+        binding_model="helpdesk.ticket"
         res_model="merge.helpdesk.ticket.wizard"
         view_type="tree"
         view_mode="form"
