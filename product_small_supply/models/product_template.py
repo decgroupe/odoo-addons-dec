@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -54,7 +53,6 @@ class ProductTemplate(models.Model):
             move_ids._action_assign()
         return res
 
-    @api.multi
     def _convert_consu_to_small_supply(
         self,
         stock_location_ids=False,
@@ -66,7 +64,6 @@ class ProductTemplate(models.Model):
             stock_location_ids, merge_quants, raise_exception
         )
 
-    @api.multi
     def action_convert_consu_to_small_supply(self):
         stock_location_ids = self.env.ref('stock.stock_location_stock')
         self._convert_consu_to_small_supply(stock_location_ids)

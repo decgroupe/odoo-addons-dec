@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -6,7 +5,6 @@ import logging
 from pprint import pformat
 
 from odoo import api, fields, models, _
-from odoo.addons import decimal_precision as dp
 
 _logger = logging.getLogger(__name__)
 
@@ -14,7 +12,6 @@ _logger = logging.getLogger(__name__)
 class Product(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
     def _convert_consu_to_small_supply(
         self,
         stock_location_ids=False,
@@ -73,7 +70,6 @@ class Product(models.Model):
 
         return res
 
-    @api.multi
     def action_convert_consu_to_small_supply(self):
         stock_location_ids = self.env.ref('stock.stock_location_stock')
         self._convert_consu_to_small_supply(stock_location_ids)
