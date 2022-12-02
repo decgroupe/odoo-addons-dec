@@ -1,6 +1,6 @@
 {
     'name': 'Partner Search City',
-    'version': '12.0.1.0.0',
+    'version': "13.0.1.0.0",
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Add a search field to help finding all partners from a city",
