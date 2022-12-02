@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -97,11 +96,9 @@ class MrpDistributeTimesheet(models.TransientModel):
             rec.update({'production_ids': production_ids.ids})
         return rec
 
-    @api.multi
     def action_reopen(self):
         return self._reopen()
 
-    @api.multi
     def _reopen(self, id=False):
         return {
             'type': 'ir.actions.act_window',
@@ -115,11 +112,9 @@ class MrpDistributeTimesheet(models.TransientModel):
             },
         }
 
-    @api.multi
     def action_distribute(self):
         self._do_distribute()
 
-    @api.multi
     def action_distribute_continue(self):
         self._do_distribute()
         mrp_distribute_timesheet_id = self.create(
