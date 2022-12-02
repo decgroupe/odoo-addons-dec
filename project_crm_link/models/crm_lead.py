@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2022
 
@@ -19,7 +18,6 @@ class CrmLead(models.Model):
         string="Related Project Count",
     )
 
-    @api.multi
     def action_view_related_projects(self):
         action = self.mapped('related_project_ids').action_view()
         action["domain"] = [("linked_lead_id", "in", self.ids)]

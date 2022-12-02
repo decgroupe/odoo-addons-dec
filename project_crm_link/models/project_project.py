@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2022
 
@@ -31,7 +30,6 @@ class Project(models.Model):
         )
         return domain
 
-    @api.multi
     @api.depends('linked_lead_id', 'linked_lead_id.complete_name')
     def _get_name_identifications(self):
         res = super()._get_name_identifications()
