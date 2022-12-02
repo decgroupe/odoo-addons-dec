@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -12,7 +11,6 @@ _logger = logging.getLogger(__name__)
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
     def _notify(
         self,
         message,
@@ -38,7 +36,6 @@ class ResPartner(models.Model):
                 mail_auto_delete=mail_auto_delete
             )
 
-    @api.multi
     def _notify_by_chat(self, message):
         if self.env.context.get('mail_partner_notify_disable') \
           or self.env.context.get('mail_partner_notify_disable_chat'):
