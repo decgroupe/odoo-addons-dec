@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -37,7 +36,6 @@ class SaleOrder(models.Model):
                 order, max(dates_list)
             )
 
-    @api.multi
     @api.depends(
         'order_line.customer_lead', 'confirmation_date', 'order_line.state'
     )
