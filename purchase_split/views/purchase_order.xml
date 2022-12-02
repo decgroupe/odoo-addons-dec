@@ -35,7 +35,7 @@
 
     <!-- <act_window id="action_id"
         name="Your menu name"
-        src_model="menu will display on this model"
+        binding_model="menu will display on this model"
         res_model="wizard model"
         view_type="form" view_mode="form"
         key2="client_action_multi" target="new"

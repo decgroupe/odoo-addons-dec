@@ -50,7 +50,7 @@
 
     <act_window id="act_window_purchase_order_split"
         name="🧙‍♂️ Split ..."
-        src_model="purchase.order.line"
+        binding_model="purchase.order.line"
         res_model="purchase.order.split"
         view_type="form"
         view_mode="form"
@@ -61,7 +61,7 @@
 
     <!-- <act_window id="act_window_stock_picking_custom_report"
         name="🧙‍♂️ Wizard ..."
-        src_model="stock.picking"
+        binding_model="stock.picking"
         res_model="stock.picking.custom.report"
         key2="client_print_multi"
         view_mode="form"
