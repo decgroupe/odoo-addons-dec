@@ -292,7 +292,6 @@
         <field name="name">Moves</field>
         <field name="res_model">stock.move</field>
         <field name="binding_model_id" ref="product.model_product_template"/>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="stock_traceability.tmpl_move_tree_view"/>
         <field name="search_view_id" ref="stock_traceability.tmpl_move_search_view"/>

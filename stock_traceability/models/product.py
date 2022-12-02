@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -21,7 +20,6 @@ class Product(models.Model):
 
     type_emoji = fields.Char(compute='_compute_type_emoji')
 
-    @api.multi
     def _compute_type_emoji(self):
         for rec in self:
             rec.type_emoji = product_type_to_emoji(rec.type)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -136,12 +135,10 @@ class StockMove(models.Model):
     tree_fg_color = fields.Char(compute="_compute_colors", store=False)
     tree_bg_color = fields.Char(compute="_compute_colors", store=False)
 
-    @api.multi
     def _compute_state_emoji(self):
         for rec in self:
             rec.state_emoji = stockmove_state_to_emoji(rec.state)
 
-    @api.multi
     @api.depends("group_id")
     def _compute_colors(self):
         move_group = self.read_group(
@@ -181,7 +178,6 @@ class StockMove(models.Model):
         stock_move = super().create(values)
         return stock_move
 
-    @api.multi
     def write(self, values):
         self._archive_purchase_line(values)
         self._archive_production(values)
@@ -238,7 +234,6 @@ class StockMove(models.Model):
         activity_type_id = self.env.ref('mail.mail_activity_data_warning')
         return activity_type_id.id
 
-    @api.multi
     @api.depends('product_id')
     def _compute_product_activity_id(self):
         for move in self:
@@ -478,6 +473,5 @@ class StockMove(models.Model):
         else:
             return '\n'.join(status)
 
-    @api.multi
     def action_close_dialog(self):
         return {'type': 'ir.actions.act_window_close'}
