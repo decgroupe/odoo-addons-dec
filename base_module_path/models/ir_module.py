@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
@@ -14,11 +13,9 @@ class IrModule(models.Model):
         store=True,
     )
 
-    @api.multi
     def _compute_path(self):
         for rec in self:
             rec.path = get_module_path(rec.name)
 
-    @api.multi
     def action_recompute_path(self):
         self._compute_path()
