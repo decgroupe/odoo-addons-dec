@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
@@ -12,7 +11,6 @@ _logger = logging.getLogger(__name__)
 class MailChannel(models.AbstractModel):
     _inherit = 'mail.channel'
 
-    @api.multi
     @api.returns('mail.message', lambda value: value.id)
     def message_post(self, message_type='notification', **kwargs):
         if 'from' in kwargs:

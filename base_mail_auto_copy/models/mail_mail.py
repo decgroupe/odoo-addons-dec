@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -8,7 +7,6 @@ from odoo import models, api
 class MailMail(models.Model):
     _inherit = "mail.mail"
 
-    @api.multi
     def _send(
         self, auto_commit=False, raise_exception=False, smtp_session=None
     ):
