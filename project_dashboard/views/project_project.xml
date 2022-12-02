@@ -12,7 +12,6 @@
   <record model="ir.actions.act_window" id="action_open_view_project">
     <field name="name">Project</field>
     <field name="res_model">project.project</field>
-    <field name="view_type">form</field>
     <field name="view_mode">form</field>
     <field name="domain">[]</field>
   </record>

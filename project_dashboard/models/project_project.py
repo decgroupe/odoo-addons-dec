@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2021
 
@@ -22,7 +21,6 @@ class ProjectProject(models.Model):
 
     kanban_description = fields.Char(compute="_compute_kanban_description")
 
-    @api.multi
     def _compute_kanban_description(self):
         for rec in self:
             rec.kanban_description = rec.partner_shipping_id.display_name
@@ -45,7 +43,6 @@ class ProjectProject(models.Model):
 
         return act
 
-    @api.multi
     def open_tasks(self):
         # Override active_id and active_ids because they are probably project
         # types
