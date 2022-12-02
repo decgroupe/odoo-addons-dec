@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -36,7 +35,6 @@ class SoftwareLicensePack(models.Model):
         string="Number of Passes",
     )
 
-    @api.multi
     def write(self, vals):
         _logger.info("Writing pack data")
         return super().write(vals)
@@ -46,10 +44,8 @@ class SoftwareLicensePack(models.Model):
         for rec in self:
             rec.pass_count = len(rec.pass_ids)
 
-    @api.multi
     def action_view_pass(self):
         return self.pass_ids.action_view()
 
-    @api.multi
     def action_resync(self):
         self.mapped('pass_ids').action_resync_with_pack()

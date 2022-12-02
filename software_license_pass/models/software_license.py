@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -38,7 +37,6 @@ class SoftwareLicense(models.Model):
         'expiration_date',
     ]
 
-    @api.multi
     def _check_pass_editing(self, vals):
         if self.env.context.get('override_from_pass'):
             return
@@ -54,12 +52,10 @@ class SoftwareLicense(models.Model):
                     ).format('\n'.join(locked_fields))
                 )
 
-    @api.multi
     def write(self, vals):
         self._check_pass_editing(vals)
         return super().write(vals)
 
-    @api.multi
     def unlink(self):
         license_id_from_pass = self.filtered('pass_id')
         if license_id_from_pass:
@@ -79,7 +75,6 @@ class SoftwareLicense(models.Model):
             res = _('%s (%s for %s)') % (res, self.serial, pack_name)
         return res
 
-    @api.multi
     def _get_template_id(self):
         template_id = super()._get_template_id()
         # If this license is own by a pass, then use the original license
@@ -88,7 +83,6 @@ class SoftwareLicense(models.Model):
             return self.pack_line_id.license_template_id
         return template_id
 
-    @api.multi
     @api.depends('pass_id', 'pass_id.serial')
     def _compute_activation_identifier(self):
         super()._compute_activation_identifier()

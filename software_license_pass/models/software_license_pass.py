@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -66,7 +65,7 @@ class SoftwareLicensePass(models.Model):
         readonly=True,
         copy=False,
         index=True,
-        track_visibility='onchange',
+        tracking=True,
         track_sequence=3,
         default='draft',
     )
@@ -74,19 +73,19 @@ class SoftwareLicensePass(models.Model):
         required=True,
         copy=False,
         default=_get_default_serial,
-        track_visibility='onchange',
+        tracking=True,
         help="Unique serial used as an authorization identifier",
     )
     expiration_date = fields.Datetime(
         string="Expiration Date",
-        track_visibility='onchange',
+        tracking=True,
         help="If set, then after this date it will not be possible to "
         "proceed or renew any activation.",
     )
     max_allowed_hardware = fields.Integer(
         string="Maximum Activation Count",
         default=1,
-        track_visibility='onchange',
+        tracking=True,
         help="If more than 0, then the number of registered hardware "
         "identifiers will not be allowed to be greater than this value.",
     )
@@ -103,7 +102,7 @@ class SoftwareLicensePass(models.Model):
         domain="[('share', '=', False)]",
         required=False,
         default=_get_current_user,
-        track_visibility='onchange',
+        tracking=True,
         copy=False
     )
     origin = fields.Char(
@@ -140,12 +139,10 @@ class SoftwareLicensePass(models.Model):
         app_pass = super(SoftwareLicensePass, self).create(values)
         return app_pass
 
-    @api.multi
     def write(self, vals):
         self._batch_license_write(vals)
         return super().write(vals)
 
-    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()
@@ -206,7 +203,6 @@ class SoftwareLicensePass(models.Model):
             'software_license_pass.act_window_software_license_pass'
         ).read()[0]
 
-    @api.multi
     def action_view(self):
         action = self.action_view_base()
         if not self.ids:
@@ -221,11 +217,9 @@ class SoftwareLicensePass(models.Model):
             action['res_id'] = self.id
         return action
 
-    @api.multi
     def action_cancel(self):
         self.write({'state': 'cancel'})
 
-    @api.multi
     @api.returns('mail.message', lambda value: value.id)
     def message_post(self, **kwargs):
         if self.env.context.get('mark_as_sent'):
@@ -242,7 +236,6 @@ class SoftwareLicensePass(models.Model):
             SoftwareLicensePass, self.with_context(mail_post_autofollow=True)
         ).message_post(**kwargs)
 
-    @api.multi
     def action_send(self):
         """ This function opens a window to compose an email, with the pass
         template message loaded by default
@@ -290,7 +283,6 @@ class SoftwareLicensePass(models.Model):
             'feature_ids': False,
         }
 
-    @api.multi
     def action_resync_with_pack(self):
         for rec in self:
             for line in rec.pack_id.line_ids:
