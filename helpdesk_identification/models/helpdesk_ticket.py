@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
@@ -25,7 +24,6 @@ class HelpdeskTicket(models.Model):
             result.append((item[0], identification))
         return result
 
-    @api.multi
     @api.depends('team_id', 'stage_id')
     def _get_name_identifications(self):
         self.ensure_one()
