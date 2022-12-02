@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2020
 
@@ -31,7 +30,6 @@ class StockMove(models.Model):
         status += self._get_assignable_status(html)
         return self._format_status_header(status, html)
 
-    @api.multi
     @api.depends(
         'procure_method',
         'product_type',
