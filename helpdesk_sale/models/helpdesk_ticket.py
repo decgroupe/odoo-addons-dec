@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
@@ -9,13 +8,11 @@ from werkzeug import url_encode
 class HelpdeskTicket(models.Model):
     _inherit = 'helpdesk.ticket'
 
-    @api.multi
     def close(self):
         stage_done = self.env.ref('helpdesk_mgmt.helpdesk_ticket_stage_done')
         for ticket in self:
             ticket.stage_id = stage_done
 
-    @api.multi
     def action_create_quotation(self):
         ticket_action = self.env.ref('helpdesk_mgmt.helpdesk_ticket_action')
         quot_action = self.env.ref('sale.action_quotations_with_onboarding')
