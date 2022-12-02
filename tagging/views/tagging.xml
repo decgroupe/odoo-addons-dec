@@ -52,7 +52,6 @@
     <record model="ir.actions.act_window" id="act_open_tags_tree">
         <field name="name">Tags</field>
         <field name="res_model">tagging.tags</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="tags_tree" />
         <field name="search_view_id" ref="tags_search" />

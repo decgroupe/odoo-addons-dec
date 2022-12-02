@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 
 from odoo import api, fields, models, _
