@@ -48,7 +48,6 @@
         <field name="name">Academy</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner.academy</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
