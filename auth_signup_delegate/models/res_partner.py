@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -14,13 +13,11 @@ class ResPartner(models.Model):
         groups="base.group_erp_manager",
     )
 
-    @api.multi
     def delegate_signup_cancel(self):
         return self.write({
             'delegate_signup_token': False,
         })
 
-    @api.multi
     def delegate_signup_prepare(self):
         """ Generate a new token for the partners if necessary
         """
@@ -34,7 +31,6 @@ class ResPartner(models.Model):
     def delegate_create_contact(self, vals):
         return self.create(vals)
 
-    @api.multi
     def get_delegate_signup_url(self):
         self.ensure_one()
         return "%s/signup/delegate/%s" % (
@@ -42,7 +38,6 @@ class ResPartner(models.Model):
             self.sudo().delegate_signup_token
         )
 
-    @api.multi
     def give_portal_access(self):
         PortalWizard = self.env['portal.wizard']
         PortalWizardUser = self.env['portal.wizard.user']
