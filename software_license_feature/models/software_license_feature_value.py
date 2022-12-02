@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -34,7 +33,6 @@ class SoftwareLicenseFeatureValue(models.Model):
             res = ('%s (%s)') % (res, self.property_id.name)
         return res
 
-    @api.multi
     @api.depends('name', 'property_id.name')
     def name_get(self):
         result = []

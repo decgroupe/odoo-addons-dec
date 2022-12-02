@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -15,12 +14,10 @@ class SoftwareLicense(models.Model):
         copy=True,
     )
 
-    @api.multi
     def _get_template_id(self):
         self.ensure_one()
         return self.application_id.template_id
 
-    @api.multi
     def action_sync_features_with_template(self):
         vals_list = []
         deleted_feature_ids = self.env['software.license.feature']
@@ -57,7 +54,6 @@ class SoftwareLicense(models.Model):
         vals['feature_ids'] = feature_ids
         self.update(vals)
 
-    @api.multi
     def get_features_dict(self):
         self.ensure_one()
         res = {}
