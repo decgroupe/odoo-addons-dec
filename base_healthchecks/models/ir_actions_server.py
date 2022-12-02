@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2022
 
@@ -14,7 +13,6 @@ class IrActionsServer(models.Model):
 
     ping_url = fields.Char('Ping URL')
 
-    @api.multi
     def run(self):
         hc = self.env['healthchecks.ping']
         res = False
