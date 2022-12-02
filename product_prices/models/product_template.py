@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2020
 
@@ -6,7 +5,6 @@ import logging
 from datetime import datetime
 
 from odoo import api, fields, models, _
-from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, float_round
 from odoo.tools.progressbar import progressbar as pb
@@ -19,16 +17,16 @@ class ProductTemplate(models.Model):
 
     # Override digit field to increase precision and track changes
     standard_price = fields.Float(
-        digits=dp.get_precision('Purchase Price'), track_visibility='onchange'
+        digits='Purchase Price', tracking=True
     )
     # Override to track changes
-    list_price = fields.Float(track_visibility='onchange')
+    list_price = fields.Float(tracking=True)
 
     standard_price_po_uom = fields.Float(
         'Cost (Purchase UoM)',
         compute='_compute_standard_price_po_uom',
         inverse='_set_standard_price_po_uom',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         groups="base.group_user",
         help='Same field than standard_price but expressed in "Purchase Unit '
         'of Measure".',
@@ -44,7 +42,7 @@ class ProductTemplate(models.Model):
     default_purchase_price = fields.Monetary(
         compute='_compute_default_purchase_price',
         string='Purchase Price (Default UoM)',
-        digits=dp.get_precision('Purchase Price'),
+        digits='Purchase Price',
         help='Purchase price based on default seller pricelist computed with '
         '"Default Unit of Measure"',
     )
@@ -55,7 +53,7 @@ class ProductTemplate(models.Model):
     default_purchase_price_po_uom = fields.Monetary(
         compute='_compute_default_purchase_price',
         string='Purchase Price',
-        digits=dp.get_precision('Purchase Price'),
+        digits='Purchase Price',
         help='Purchase price based on default seller pricelist computed with '
         '"Purchase Unit of Measure"',
     )
@@ -66,7 +64,7 @@ class ProductTemplate(models.Model):
     default_sell_price = fields.Monetary(
         compute='_compute_default_sell_price',
         string='Sell Price',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help="Sell price based on default sell pricelist",
     )
     default_sell_price_graph = fields.Char(
@@ -101,7 +99,6 @@ class ProductTemplate(models.Model):
     def onchange_standard_price_po_uom(self):
         self._set_standard_price_po_uom()
 
-    @api.multi
     @api.depends('standard_price', 'uom_id', 'uom_po_id')
     def _compute_standard_price_po_uom(self):
         # Check that uom_id is not False (possibility in editing mode)
@@ -113,7 +110,6 @@ class ProductTemplate(models.Model):
             _logger.debug('New standard_price_po_uom = {}'.format(price))
             product.standard_price_po_uom = price
 
-    @api.multi
     def _set_standard_price_po_uom(self):
         # Check that uoms are not False (possibility in editing mode)
         for product in self.filtered('uom_po_id').filtered('uom_id'):
@@ -124,7 +120,6 @@ class ProductTemplate(models.Model):
             _logger.debug('New standard_price = {}'.format(price))
             product.standard_price = price
 
-    @api.multi
     @api.depends('uom_id', 'uom_po_id')
     def _compute_same_uom(self):
         for product in self:
@@ -164,7 +159,6 @@ class ProductTemplate(models.Model):
             res = self.standard_price
         return res
 
-    @api.multi
     @api.depends(
         'seller_id',
         'standard_price',
@@ -202,7 +196,6 @@ class ProductTemplate(models.Model):
                 p.default_purchase_price_po_uom = p.standard_price_po_uom
                 p.default_purchase_price_graph_po_uom = False
 
-    @api.multi
     @api.depends(
         'company_id',
         'list_price',
@@ -229,7 +222,6 @@ class ProductTemplate(models.Model):
                 p.default_sell_price = p.list_price
                 p.default_sell_price_graph = False
 
-    @api.multi
     def update_bypass(self, state):
         Pricelist = self.env['product.pricelist']
         PricelistItem = self.env['product.pricelist.item']
@@ -275,7 +267,6 @@ class ProductTemplate(models.Model):
                 elif pricelist_items:
                     pricelist_items.unlink()
 
-    @api.multi
     def write(self, vals):
         if 'list_price' in vals:
             vals['price_write_date'] = fields.Datetime.to_string(
@@ -292,7 +283,6 @@ class ProductTemplate(models.Model):
         res = super().write(vals)
         return res
 
-    @api.multi
     def open_price_graph(self):
         self.ensure_one()
         # TODO: Open a wizard, first, to select the variant that will be used
