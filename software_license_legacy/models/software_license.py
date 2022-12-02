@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
@@ -56,14 +55,12 @@ class SoftwareLicense(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends('hardware_ids')
     def _compute_main_hardware(self):
         for rec in self:
             if rec.hardware_ids:
                 rec.main_hardware_id = rec.hardware_ids[0]
 
-    @api.multi
     @api.depends('feature_ids')
     def _compute_system(self):
         property_system = self.env.ref(SYSTEM)
@@ -120,7 +117,6 @@ class SoftwareLicense(models.Model):
 
         return record
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         for rec in self:
