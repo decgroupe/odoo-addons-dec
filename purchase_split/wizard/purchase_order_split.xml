@@ -51,22 +51,11 @@
     <act_window id="act_window_purchase_order_split"
         name="🧙‍♂️ Split ..."
         binding_model="purchase.order.line"
+        binding_view_types="form"
         res_model="purchase.order.split"
-        view_type="form"
         view_mode="form"
-        multi="True"
         key2="client_action_multi" 
         target="new"
     />
-
-    <!-- <act_window id="act_window_stock_picking_custom_report"
-        name="🧙‍♂️ Wizard ..."
-        binding_model="stock.picking"
-        res_model="stock.picking.custom.report"
-        key2="client_print_multi"
-        view_mode="form"
-        target="new"
-        view_id="stock_picking_custom_report_view"
-    /> -->
 
 </odoo>
