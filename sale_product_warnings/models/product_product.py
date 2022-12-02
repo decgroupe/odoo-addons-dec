@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -9,7 +8,6 @@ from odoo.exceptions import ValidationError
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
     def _check_warn(self, warn_type):
         msg = False
         for rec in self.filtered(lambda x: x.sale_line_warn == warn_type):
