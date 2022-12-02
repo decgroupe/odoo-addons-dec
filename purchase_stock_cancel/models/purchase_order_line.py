@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2020
 
@@ -43,14 +42,12 @@ has been set to "<b>%s</b>" after cancellation from <b>%s</b>'
             body += '<ul>{}</ul>'.format(msg_list)
             picking_id.message_post(body=body)
 
-    @api.multi
     def write(self, vals):
         if vals.get('move_dest_ids') and vals['move_dest_ids'][0][0] == 5:
             self._notify_pickings_before_unlink()
         res = super().write(vals)
         return res
 
-    @api.multi
     def unlink(self):
         for line in self:
             if line.move_dest_ids:
