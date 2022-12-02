@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -36,7 +35,6 @@ class MrpProductionRequest(models.Model):
 
         return super().create(values)
 
-    @api.multi
     def button_approved(self):
         self.write({'assigned_to': self.env.uid})
         return super().button_approved()

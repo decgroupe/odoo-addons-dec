@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
@@ -24,12 +23,10 @@ class SaleOrder(models.Model):
         for sale in self:
             sale.production_request_count = len(sale.production_request_ids)
 
-    @api.multi
     def action_view_production_request(self):
         action = self.mapped('production_request_ids').action_view()
         return action
 
-    @api.multi
     def action_cancel(self):
         result = super(SaleOrder, self).action_cancel()
         # When a sale person cancel a SO, he might not have the rights to write
@@ -38,7 +35,6 @@ class SaleOrder(models.Model):
         self.sudo()._activity_cancel_on_production_request()
         return result
 
-    @api.multi
     def _activity_cancel_on_production_request(self):
         """ If some SO are cancelled, we need to put an activity on their
             generated production requests. We only want one activity to
