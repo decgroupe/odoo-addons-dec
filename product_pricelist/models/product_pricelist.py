@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2020
 
@@ -16,7 +15,6 @@ class ProductPricelist(models.Model):
     # except that the SQL query is hooked to add sequence in ORDER BY.
     # DO NOT SAVE this file with auto-format, keep original format to
     # follow modifications from original method.
-    @api.multi
     def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
         """ Low-level method - Mono pricelist, multi products
         Returns: dict{product_id: (price, suitable_rule) for the given pricelist}
@@ -264,7 +262,6 @@ class ProductPricelist(models.Model):
         return results
 
 
-    @api.multi
     def price_get_multi_history(self, raw_products_by_qty_by_partner):
         """ Multi pricelist, multi product  - return tuple """
         history = {}

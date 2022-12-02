@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2020
 
@@ -25,7 +24,6 @@ class ProductPricelistItem(models.Model):
 The evaluation gives highest priority to lowest sequence."
     )
 
-    @api.one
     @api.depends('categ_id', 'product_tmpl_id', 'product_id', 'compute_price', \
         'fixed_price', 'pricelist_id', 'percent_price', 'price_discount', \
         'price_surcharge', 'note')
