@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -25,7 +24,6 @@ class ProductionRequest(models.Model):
 
     state_emoji = fields.Char(compute='_compute_state_emoji')
 
-    @api.multi
     def _compute_state_emoji(self):
         for rec in self:
             rec.state_emoji = production_request_state_to_emoji(rec.state)
