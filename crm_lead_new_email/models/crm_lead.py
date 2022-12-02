@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2022
 
@@ -18,7 +17,6 @@ class CrmLead(models.Model):
         compute="_compute_original_message_id",
     )
 
-    @api.multi
     @api.depends('message_ids')
     def _compute_original_message_id(self):
         for rec in self:
