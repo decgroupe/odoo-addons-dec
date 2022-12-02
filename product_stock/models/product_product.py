@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -19,7 +18,6 @@ class Product(models.Model):
         string='Last Stock Move Date',
     )
 
-    @api.multi
     def _compute_last_stock_move(self):
         for rec in self:
             move_id = self.env['stock.move'].search(
