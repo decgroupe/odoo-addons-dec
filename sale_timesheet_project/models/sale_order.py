@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
@@ -11,14 +10,12 @@ class SaleOrder(models.Model):
     # Field defined in `sale_timesheet_existing_project` module
     project_id = fields.Many2one(copy=False, )
 
-    @api.multi
     def _action_confirm(self):
         self.action_create_project()
         res = super(SaleOrder, self)._action_confirm()
         self._sync_project_dates()
         return res
 
-    @api.multi
     def _sync_project_dates(self):
         for rec in self.filtered('project_id'):
             rec.project_id.sudo().write({
@@ -39,7 +36,6 @@ class SaleOrder(models.Model):
             'user_id': self.user_id.id,
         }
 
-    @api.multi
     def action_create_project(self):
         Project = self.env['project.project'].with_context(
             # Do not subscribe assigned user

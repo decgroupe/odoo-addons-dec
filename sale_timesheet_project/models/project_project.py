@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
@@ -26,12 +25,10 @@ class Project(models.Model):
         store=False,
     )
 
-    @api.multi
     def _compute_contract_count(self):
         for rec in self:
             rec.contract_count = len(rec.contract_ids)
 
-    @api.multi
     @api.depends("contract_ids", "contract_ids.confirmation_date")
     def _compute_contract_confirmation_date(self):
         for rec in self:
@@ -41,7 +38,6 @@ class Project(models.Model):
             else:
                 rec.contract_confirmation_date = False
 
-    @api.multi
     def action_view_contracts(self):
         action = self.mapped('contract_ids').action_view()
         action['context'] = {}
