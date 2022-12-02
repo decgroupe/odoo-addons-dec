@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -79,7 +78,6 @@ class RefPack(models.Model):
         ref_pack._set_product_tmpl_default_values()
         return ref_pack
 
-    @api.multi
     def _set_product_tmpl_default_values(self):
         for rec in self:
             rec.product_id.pack_ok = True
@@ -93,7 +91,6 @@ class RefPack(models.Model):
             elif rec.product_id.purchase_ok:
                 rec.product_id.pack_order_type = 'purchase'
 
-    @api.multi
     @api.depends('product_id', 'product_id.product_variant_id')
     def _compute_product_variant_id(self):
         for rec in self:
