@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -23,7 +22,6 @@ class PurchaseOrderLine(models.Model):
         readonly=True,
     )
 
-    @api.multi
     @api.depends('move_dest_ids')
     def _compute_origin(self):
         for line in self:

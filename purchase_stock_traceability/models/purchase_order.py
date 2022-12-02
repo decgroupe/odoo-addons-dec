@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
@@ -29,7 +28,7 @@ class PurchaseOrder(models.Model):
     def _buy_postprocess(self):
         for rec in self:
             if self.env.context.get('buyer'):
-                rec = rec.sudo(user=self.env.context.get('buyer'))
+                rec = rec.with_user(user=self.env.context.get('buyer'))
             if self.env.context.get('message_post_to_po'):
                 rec.message_post(
                     body=self.env.context.get('message_post_to_po')
