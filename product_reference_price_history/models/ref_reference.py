@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -24,7 +23,6 @@ class RefReference(models.Model):
         string='Prices',
     )
 
-    @api.multi
     def run_material_cost_scheduler(self):
         if not self.ids:
             domain = []
@@ -34,7 +32,6 @@ class RefReference(models.Model):
 
         references._run_material_cost_scheduler()
 
-    @api.multi
     def _run_material_cost_scheduler(self):
         MrpBom = self.env['mrp.bom']
         RefPrice = self.env['ref.price']
@@ -115,7 +112,6 @@ class RefReference(models.Model):
 
         self.with_context(ctx).generate_material_cost_report()
 
-    @api.multi
     def generate_material_cost_report(
         self,
         date_before=False,
@@ -133,7 +129,6 @@ class RefReference(models.Model):
             date_before, date_after, format_prices, email_to
         )
 
-    @api.multi
     def _get_price_from_range(self, date_before=False, date_after=False):
         self.ensure_one()
         domain = [('reference_id', '=', self.id)]
@@ -143,7 +138,6 @@ class RefReference(models.Model):
             domain.append(('date', '>=', date_after))
         return self.env['ref.price'].search(domain, limit=1)
 
-    @api.multi
     def _get_last_prices(self):
         self.ensure_one()
         domain = [('reference_id', '=', self.id)]

@@ -38,7 +38,6 @@
         <field name="name">Generate Material Cost Report</field>
         <field name="res_model">reference.generate_material_cost_report</field>
         <field name="view_id" ref="reference_generate_material_cost_report_wizard_view"/>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>

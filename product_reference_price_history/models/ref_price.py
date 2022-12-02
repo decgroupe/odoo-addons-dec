@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -26,7 +25,6 @@ class RefPrice(models.Model):
     value = fields.Float('Price')
     product_count = fields.Integer('Products')
 
-    @api.multi
     def name_get(self):
         result = []
         for price in self:
