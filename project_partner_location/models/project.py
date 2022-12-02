@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
@@ -31,7 +30,6 @@ class Project(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends(
         'contract_ids', 'contract_ids.partner_shipping_id', 'sale_order_id',
         'name'
@@ -50,7 +48,6 @@ class Project(models.Model):
                 if sale_id:
                     rec.partner_shipping_id = sale_id.partner_shipping_id
 
-    @api.multi
     @api.depends(
         'partner_shipping_id',
         'partner_shipping_zip_id',
@@ -73,7 +70,6 @@ class Project(models.Model):
             res.append(name)
         return res
 
-    @api.multi
     def assign_partner_from_sale_order(self):
         # This is intended to be a one-call fix after a paradigm change
         # Note that no `onchange` will be called for a such editing

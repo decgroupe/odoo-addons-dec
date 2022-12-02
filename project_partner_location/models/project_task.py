@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
@@ -30,7 +29,6 @@ class ProjectTask(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends(
         'sale_order_id', 'sale_order_id.partner_shipping_id', 'production_id'
     )
