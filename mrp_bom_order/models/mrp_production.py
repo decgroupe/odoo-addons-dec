@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
@@ -18,7 +17,6 @@ class MrpProduction(models.Model):
         compute='_compute_newer_bom_id',
     )
 
-    @api.multi
     @api.depends('bom_id', 'product_id')
     def _compute_newer_bom_id(self):
         for production in self:
