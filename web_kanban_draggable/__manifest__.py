@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2018 NavyBits (<http://navybits.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
@@ -29,7 +28,7 @@ Disable DragDrop/Sorting In Specific Kanban View
   </kanban>
     """,
 
-    'version': '12.0.1.0.0',
+    'version': "13.0.1.0.0",
     'category': 'Extra Tools',
     'summary': 'Provides the ability to control drag drop and sorting behavior in kanban views.',
     'author': 'Mahmoud Fakhreddine,'
