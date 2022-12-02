@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -27,7 +26,6 @@ class ProjectProject(models.Model):
         }
         return action
 
-    @api.multi
     def action_view(self):
         action = self.action_view_base()
         if not self.ids:
@@ -38,7 +36,6 @@ class ProjectProject(models.Model):
             action['res_id'] = self.ids[0]
         return action
 
-    @api.multi
     def action_view_tasks(self):
         action = self.mapped('task_ids').action_view()
         action['context'] = {}
