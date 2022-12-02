@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
@@ -19,7 +18,6 @@ class MrpConsume(models.TransientModel):
         string='Product to Track',
     )
 
-    @api.multi
     def do_consume(self):
         # Check finished move where consumed move lines should be generated
         self.check_finished_move_lots()
@@ -42,32 +40,27 @@ class MrpConsume(models.TransientModel):
         for pl in self.produce_line_ids:
             pl.qty_done = 0
 
-    @api.multi
     def action_minimize_qty_done(self):
         self.ensure_one()
         for pl in self.produce_line_ids:
             pl.qty_done = 0
         return self._reopen()
 
-    @api.multi
     def action_maximize_qty_done_reserved(self):
         self.ensure_one()
         for pl in self.produce_line_ids:
             pl.qty_done = pl.qty_reserved
         return self._reopen()
 
-    @api.multi
     def action_maximize_qty_done_to_consume(self):
         self.ensure_one()
         for pl in self.produce_line_ids:
             pl.qty_done = pl.qty_to_consume
         return self._reopen()
 
-    @api.multi
     def action_reopen(self):
         return self._reopen()
 
-    @api.multi
     def action_remove_make_to_order(self):
         self.ensure_one()
         line_ids = self.env['mrp.consume.line']
@@ -77,7 +70,6 @@ class MrpConsume(models.TransientModel):
         self.produce_line_ids = line_ids
         return self._reopen()
 
-    @api.multi
     def _reopen(self):
         return {
             'type': 'ir.actions.act_window',
@@ -108,13 +100,11 @@ class MrpConsumeLine(models.TransientModel):
             line.is_maximized = (line.qty_done == line.qty_reserved) \
                                 or (line.qty_done == line.qty_to_consume)
 
-    @api.multi
     def action_minimize_qty_done(self):
         self.ensure_one()
         self.qty_done = 0
         return self.product_produce_id._reopen()
 
-    @api.multi
     def action_maximize_qty_done_reserved(self):
         self.ensure_one()
         self.qty_done = self.qty_reserved

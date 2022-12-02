@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
@@ -12,7 +11,6 @@ from odoo.exceptions import UserError
 class MrpProduce(models.TransientModel):
     _inherit = "mrp.product.produce"
 
-    @api.multi
     def do_produce(self):
         moves_to_finish = self.production_id.move_finished_ids.filtered(
             lambda x: x.state not in ('done', 'cancel')
