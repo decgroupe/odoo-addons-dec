@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
 import logging
 
 from odoo import _, api, fields, models
-from odoo.addons import decimal_precision as dp
 from odoo.addons.product.models import product_template
 from odoo.exceptions import UserError
 
@@ -15,7 +13,6 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    @api.multi
     def write(self, vals):
         if self.env.ref(
             'product_change_uom.group_product_uom_change'
@@ -27,12 +24,10 @@ class ProductTemplate(models.Model):
         res = super().write(vals)
         return res
 
-    @api.multi
     def change_uom_po(self, vals):
         new_uom_po_id = self.env['uom.uom'].browse(vals['uom_po_id'])
         self._propagate_uom_po_change(new_uom_po_id)
 
-    @api.multi
     def change_uom(self, vals):
         new_uom = self.env['uom.uom'].browse(vals['uom_id'])
         updated = self.filtered(lambda template: template.uom_id != new_uom)
@@ -77,7 +72,6 @@ class ProductTemplate(models.Model):
             # uom_id change check
             super(product_template.ProductTemplate, self).write(uom_vals)
 
-    @api.multi
     def _propagate_uom_change(self, uom_id):
         """ We need to update quantity for all records with UoM related to
         the product one. Use regEx: related='.*.uom_id'
@@ -101,7 +95,6 @@ class ProductTemplate(models.Model):
         self._propagate_uom_change_to_stockmoves(uom_id, product_ids)
         self._propagate_uom_change_to_pricehistories(uom_id, product_ids)
 
-    @api.multi
     def _propagate_uom_change_to_quants(self, uom_id, product_ids):
         """Convert quants quantities
 
@@ -121,7 +114,6 @@ class ProductTemplate(models.Model):
                 quant.reserved_quantity, uom_id
             )
 
-    @api.multi
     def _propagate_uom_change_to_orderpoints(self, uom_id, product_ids):
         """Convert orderpoints quantities
 
@@ -141,7 +133,6 @@ class ProductTemplate(models.Model):
                 orderpoint.product_max_qty, uom_id
             )
 
-    @api.multi
     def _propagate_uom_change_to_packagings(self, uom_id, product_ids):
         """Convert packaging quantities
 
@@ -158,7 +149,6 @@ class ProductTemplate(models.Model):
                 packaging.qty, uom_id
             )
 
-    @api.multi
     def _propagate_uom_change_to_stockmoves(self, uom_id, product_ids):
         """Convert stock moves quantities and prices
 
@@ -180,7 +170,6 @@ class ProductTemplate(models.Model):
             )
             _logger.debug('New price = %f', move.price_unit)
 
-    @api.multi
     def _propagate_uom_change_to_pricehistories(self, uom_id, product_ids):
         """Convert prodcut price histories
 
@@ -200,13 +189,11 @@ class ProductTemplate(models.Model):
             price_id.cost = current_uom_id._compute_price(price_id.cost, uom_id)
             _logger.debug('New price = %f', price_id.cost)
 
-    @api.multi
     def _propagate_uom_po_change(self, uom_po_id):
         product_ids = self.with_context(active_test=False)\
             .mapped('product_variant_ids')
         self._propagate_uom_po_change_to_supplierinfos(uom_po_id, product_ids)
 
-    @api.multi
     def _propagate_uom_po_change_to_supplierinfos(self, uom_id, product_ids):
         """Convert supplier infos minimum quantities
 
