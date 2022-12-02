@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
@@ -10,7 +9,6 @@ class MrpProduction(models.Model):
 
     note = fields.Text('Internal Notes')
 
-    @api.multi
     def write(self, vals):
         if vals.get('note'):
             self.message_post(
