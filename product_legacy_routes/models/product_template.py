@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2020
 
@@ -70,7 +69,6 @@ procurement request.",
         )
         return mto_mts_route
 
-    @api.multi
     @api.depends('route_ids')
     def _compute_supply_method(self):
         buy_route = self._get_buy_route()
@@ -83,7 +81,6 @@ procurement request.",
                 not produce_route in product.route_ids:
                 product.supply_method = 'buy'
 
-    @api.multi
     def _inverse_supply_method(self):
         buy_route = self._get_buy_route()
         produce_route = self._get_produce_route()
@@ -95,7 +92,6 @@ procurement request.",
                 product.route_ids += buy_route
                 product.route_ids -= produce_route
 
-    @api.multi
     @api.depends('route_ids')
     def _compute_procure_method(self):
         mto_route = self._get_mto_route()
@@ -107,7 +103,6 @@ procurement request.",
             else:
                 product.procure_method = 'make_to_stock'
 
-    @api.multi
     def _inverse_procure_method(self):
         mto_route = self._get_mto_route()
         mto_mts_route = self._get_mto_mts_route()
