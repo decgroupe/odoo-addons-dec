@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -20,7 +19,6 @@ class SoftwareApplication(models.Model):
         ondelete='restrict'
     )
 
-    @api.multi
     def _get_gitlab_project_uids(self):
         return self.\
             mapped('documentation_gitlab_resource_id').\
@@ -36,7 +34,6 @@ class SoftwareApplication(models.Model):
         partner_ids = self.env['res.partner'].search(domain)
         return partner_ids
 
-    @api.multi
     def _remove_access_to_gitlab_projects(self, project_uids=False):
         # TODO: Optimize by getting a list of all members for each project
         if not project_uids:
@@ -46,7 +43,6 @@ class SoftwareApplication(models.Model):
             for user_id in partner_id.user_ids:
                 user_id._remove_access_to_gitlab_projects(project_uids)
 
-    @api.multi
     def _set_access_to_gitlab_projects(self):
         """ [summary]
             - Find all partners that already have a gitlab access
@@ -68,7 +64,6 @@ class SoftwareApplication(models.Model):
                 for user_id in partner_id.user_ids:
                     user_id._set_access_to_gitlab_projects(project_uids)
 
-    @api.multi
     def write(self, vals):
         need_access_update = 'documentation_gitlab_resource_id' in vals \
             or 'resource_ids' in vals

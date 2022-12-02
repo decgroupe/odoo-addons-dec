@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
@@ -19,7 +18,6 @@ class ResUsers(models.Model):
         readonly=False,
     )
 
-    @api.multi
     def _get_gitlab_project_uids(self):
         self.ensure_one()
         SoftwareLicense = self.env['software.license']
@@ -90,7 +88,6 @@ class ResUsers(models.Model):
         if user_uid:
             self._set_access_to_gitlab_projects()
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if 'password' in vals:
