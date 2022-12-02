@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
 from odoo import fields, models, api
-from odoo.addons import decimal_precision as dp
 
 
 class MrpBom(models.Model):
@@ -11,10 +9,9 @@ class MrpBom(models.Model):
 
     cost_price = fields.Float(
         compute='_compute_cost_price',
-        digits=dp.get_precision('Purchase Price'),
+        digits='Purchase Price',
     )
 
-    @api.multi
     @api.depends('bom_line_ids.cost_price')
     def _compute_cost_price(self):
         for bom in self:
