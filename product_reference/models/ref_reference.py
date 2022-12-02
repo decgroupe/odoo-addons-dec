@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -196,14 +195,12 @@ class RefReference(models.Model):
         reference = super().create(vals)
         return reference
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if 'active' in vals:
             self.mapped('product_id').write({'active': vals.get('active')})
         return res
 
-    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:

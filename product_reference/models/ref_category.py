@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -63,7 +62,6 @@ class RefCategory(models.Model):
         category_id = super().create(vals)
         return category_id
 
-    @api.multi
     def write(self, vals):
         name = vals.get('name')
         if name:
@@ -73,7 +71,6 @@ class RefCategory(models.Model):
         res = super().write(vals)
         return res
 
-    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:
@@ -89,7 +86,6 @@ class RefCategory(models.Model):
         if self.code:
             self.code = self.code.upper()
 
-    @api.multi
     @api.depends('name', 'code')
     def name_get(self):
         result = []

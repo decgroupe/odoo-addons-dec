@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -35,7 +34,6 @@ class RefProperty(models.Model):
         string="Attributes",
     )
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         return res

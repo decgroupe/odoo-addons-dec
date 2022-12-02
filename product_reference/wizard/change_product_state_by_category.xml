@@ -44,7 +44,7 @@
 
     <!-- <act_window id="act_window_swap_production"
         name="🧙‍♂️ Swap this manufacturing order ..."
-        src_model="mrp.production"
+        binding_model="mrp.production"
         res_model="mrp.swap.production"
         view_mode="form"
         view_id="mrp_swap_production_form_view"

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2021
 
@@ -33,7 +32,6 @@ class ChangeProductStateByCategory(models.TransientModel):
         # active_ids = self.env.context.get('active_ids')
         return res
 
-    @api.multi
     def action_update_state(self):
         self.ensure_one()
         ProductProduct = self.env['product.product']

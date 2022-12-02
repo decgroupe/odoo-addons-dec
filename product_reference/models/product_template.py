@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -21,7 +20,6 @@ class ProductTemplate(models.Model):
         string='References',
     )
 
-    @api.multi
     @api.depends('reference_ids')
     def _compute_reference_id(self):
         for product in self:

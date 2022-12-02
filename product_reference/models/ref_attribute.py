@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
@@ -45,7 +44,6 @@ class RefAttribute(models.Model):
         self.ensure_one()
         self.code = self.property_id.validate_value(self.code)
 
-    @api.multi
     @api.depends('name', 'code')
     def name_get(self):
         result = []
