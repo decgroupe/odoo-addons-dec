@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
@@ -8,7 +7,6 @@ from odoo import fields, models, api
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
     def action_generate_signatures(self):
         global_template = self.env.ref(
             'res_users_signature.user_signature_template'

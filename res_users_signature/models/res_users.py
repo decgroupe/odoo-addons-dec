@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
@@ -84,7 +83,6 @@ class ResUsers(models.Model):
             safe=True
         )._render_template(template.body_text, origin_user_id.id)
 
-    @api.multi
     def action_generate_signatures(self):
         global_template = self.env.ref(
             'res_users_signature.user_signature_template'
@@ -97,7 +95,6 @@ class ResUsers(models.Model):
     def onchange_signature_template(self):
         self._generate_from_template(self.signature_template, self._origin)
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if 'signature_logo' in vals:
