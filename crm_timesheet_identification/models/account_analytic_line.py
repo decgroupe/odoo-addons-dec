@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -13,7 +12,6 @@ class AccountAnalyticLine(models.Model):
         compute="_compute_lead_identification",
     )
 
-    @api.multi
     @api.depends('lead_id')
     def _compute_lead_identification(self):
         for rec in self.filtered('lead_id'):
