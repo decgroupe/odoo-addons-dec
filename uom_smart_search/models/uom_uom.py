@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 #
 # CONFIDENTIAL NOTICE: Unauthorized copying and/or use of this file,
