@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2021
 
@@ -22,7 +21,6 @@ class MrpProduction(models.Model):
         store=False,
     )
 
-    @api.multi
     @api.depends('move_raw_ids')
     def _compute_consumed_value(self):
         PricesHistory = self.env['product.prices.history']
@@ -49,7 +47,6 @@ class MrpProduction(models.Model):
                 else:
                     print(move_id)
 
-    @api.multi
     def post_inventory(self):
         moves_done = {}
         for rec in self:
