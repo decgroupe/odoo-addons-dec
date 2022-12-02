@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
@@ -12,7 +11,6 @@ class SaleOrder(models.Model):
     def action_view_base(self):
         return self.env.ref('sale.action_orders').read()[0]
 
-    @api.multi
     def action_view(self):
         action = self.action_view_base()
         if not self.ids:
