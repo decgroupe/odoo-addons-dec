@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
@@ -8,7 +7,6 @@ from odoo import api, models, _
 class HolidaysRequest(models.Model):
     _inherit = "hr.leave"
 
-    @api.multi
     def _prepare_holidays_meeting_values(self):
         self.ensure_one()
         meeting_values = super()._prepare_holidays_meeting_values()
