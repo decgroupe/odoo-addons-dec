@@ -27,7 +27,8 @@ class RefReference(models.Model):
     @api.multi
     def run_material_cost_scheduler(self):
         if not self.ids:
-            references = self.search([])
+            domain = []
+            references = self.search(domain)
         else:
             references = self
 
@@ -123,7 +124,8 @@ class RefReference(models.Model):
         email_to=False,
     ):
         if not self.ids:
-            references = self.search([])
+            domain = [('state', '!=', 'obsolete')]
+            references = self.search(domain)
         else:
             references = self
 
