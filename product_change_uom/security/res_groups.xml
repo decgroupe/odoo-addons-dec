@@ -3,7 +3,7 @@
 
     <record id="group_product_uom_change" model="res.groups">
         <field name="name">Allow product UoM change with propagation (product_change_uom)</field>
-        <field name="category_id" ref="base.module_category_warehouse_management"/>
+        <field name="category_id" ref="base.module_category_operations_inventory"/>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
 

@@ -3,7 +3,7 @@
 
     <record id="group_project_supermanager" model="res.groups">
         <field name="name">Super-Manager</field>
-        <field name="category_id" ref="base.module_category_project_management"/>
+        <field name="category_id" ref="base.module_category_operations_project"/>
         <field name="implied_ids" eval="[
             (4, ref('project.group_project_manager'))
         ]"/>

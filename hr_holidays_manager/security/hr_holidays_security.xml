@@ -3,7 +3,7 @@
 
     <record id="group_hr_holidays_supermanager" model="res.groups">
         <field name="name">Super-Manager</field>
-        <field name="category_id" ref="base.module_category_hr_holidays"/>
+        <field name="category_id" ref="base.module_category_human_resources_time_off"/>
         <field name="implied_ids" eval="[
             (4, ref('hr_holidays.group_hr_holidays_manager'))
         ]"/>
