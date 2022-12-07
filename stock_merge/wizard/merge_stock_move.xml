@@ -86,7 +86,7 @@
     <act_window id="action_stock_move_merge"
         name="🧙‍♂️ Merge ..."
         binding_model="stock.move"
-        binding_view_types="list"
+        binding_views="list"
         res_model="merge.stock.move.wizard"
         view_mode="form"
         binding_type="action"

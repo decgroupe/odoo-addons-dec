@@ -87,7 +87,7 @@
     <act_window id="action_res_city_zip_merge"
         name="🧙‍♂️ Merge ..."
         binding_model="res.city.zip"
-        binding_view_types="list"
+        binding_views="list"
         res_model="merge.res.city.zip.wizard"
         view_mode="form"
         binding_type="action"

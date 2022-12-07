@@ -51,7 +51,7 @@
     <act_window id="act_window_purchase_order_split"
         name="🧙‍♂️ Split ..."
         binding_model="purchase.order.line"
-        binding_view_types="form"
+        binding_views="form"
         res_model="purchase.order.split"
         view_mode="form"
         binding_type="action"

@@ -94,7 +94,7 @@
     <act_window id="act_window_distribute_timesheet"
         name="🧙‍♂️ Distribute timesheet ..."
         binding_model="mrp.production"
-        binding_view_types="list"
+        binding_views="list"
         res_model="mrp.distribute.timesheet"
         view_mode="form"
         binding_type="action"

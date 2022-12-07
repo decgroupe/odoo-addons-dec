@@ -73,7 +73,7 @@
     <act_window id="act_window_purchase_order_merge"
         name="🧙‍♂️ Merge ..."
         binding_model="purchase.order"
-        binding_view_types="list"
+        binding_views="list"
         res_model="purchase.order.merge"
         view_mode="form"
         binding_type="action"

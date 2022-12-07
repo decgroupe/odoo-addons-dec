@@ -86,7 +86,7 @@
     <act_window id="action_account_tax_merge"
         name="🧙‍♂️ Merge ..."
         binding_model="account.tax"
-        binding_view_types="list"
+        binding_views="list"
         res_model="merge.account.tax.wizard"
         view_mode="form"
         binding_type="action"

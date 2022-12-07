@@ -54,7 +54,7 @@
     <act_window id="act_window_replace_bom_components"
         name="🧙‍♂️ Replace components ..."
         binding_model="mrp.bom"
-        binding_view_types="list"
+        binding_views="list"
         res_model="replace.bom.components"
         view_mode="form"
         binding_type="action"
