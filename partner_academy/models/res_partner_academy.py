@@ -19,7 +19,7 @@ class ResPartnerAcademy(models.Model):
         "quickly identify a partner academy using its e-mail suffix"
     )
     logo = fields.Binary(
-        related='partner_id.image',
+        related='partner_id.image_1920',
         string="Academy Logo",
         readonly=False,
     )
