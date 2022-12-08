@@ -8,6 +8,15 @@
         'product',
         'sale',
     ],
+    "external_dependencies": {
+        "python": [
+            'jsoncomment',
+            'fake-useragent',
+            'pyquery',
+            'parse',
+            'w3lib',
+        ],
+    },
     'data': [],
     'installable': True
 }
