@@ -8,8 +8,8 @@ from odoo.addons.product_analytic.models.account_invoice import INV_TYPE_MAP
 
 _logger = logging.getLogger(__name__)
 
-class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
 
     @api.model
     def _get_product_analytic_account(self, product_id, invoice_type):

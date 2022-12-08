@@ -5,5 +5,5 @@ from odoo import models, api, fields
 
 
 class AccountInvoice(models.Model):
-    _name = 'account.invoice'
-    _inherit = ['account.invoice', 'mail.activity.my.mixin']
+    _name = 'account.move'
+    _inherit = ['account.move', 'mail.activity.my.mixin']

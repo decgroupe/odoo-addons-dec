@@ -10,13 +10,13 @@ from odoo.tools.progressbar import progressbar as pb
 _logger = logging.getLogger(__name__)
 
 
-class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     def _get_matching_inv_line(self, move_line):
         self.ensure_one()
         move_line.ensure_one()
-        inv_line = self.env['account.invoice.line']
+        inv_line = self.env['account.move.line']
         if move_line.product_id:
             """ Find matching invoice line by product """
             # TODO make it accept more case as lines won't
@@ -68,7 +68,7 @@ class AccountInvoice(models.Model):
                     # to raw way by directly finding analytic account from
                     # account.move product_id
                     analytic_account_id = self.env[
-                        'account.invoice.line']._get_product_analytic_account(
+                        'account.move.line']._get_product_analytic_account(
                             ml.product_id, self.type
                         )
                 if analytic_account_id:

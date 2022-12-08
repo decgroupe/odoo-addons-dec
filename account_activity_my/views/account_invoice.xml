@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+<!-- TODO: [MIG] 13.0
     <record model="ir.ui.view" id="invoice_tree">
         <field name="name">account.invoice.tree@account_activity_my</field>
         <field name="model">account.invoice</field>
@@ -41,5 +41,5 @@
             </field>
         </field>
     </record>
-
+-->
 </odoo>

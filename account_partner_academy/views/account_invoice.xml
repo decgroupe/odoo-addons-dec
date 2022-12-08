@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
+<!-- TODO: [MIG] 13.0
     <record model="ir.ui.view" id="view_account_invoice_filter">
         <field name="name">account.invoice.select@account_partner_academy</field>
         <field name="model">account.invoice</field>
@@ -14,5 +14,5 @@
             </xpath>
         </field>
     </record>
-
+-->
 </odoo>

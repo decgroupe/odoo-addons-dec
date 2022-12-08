@@ -4,8 +4,8 @@
 from odoo import models, api, fields
 
 
-class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     def _get_user_assigned_extra_values(self):
         self.ensure_one()

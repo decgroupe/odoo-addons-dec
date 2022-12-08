@@ -4,8 +4,8 @@
 from odoo import api, fields, models
 
 
-class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     partner_zip_id = fields.Many2one(
         'res.city.zip',

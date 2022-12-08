@@ -2,8 +2,8 @@
 <odoo>
 
     <record model="ir.ui.view" id="invoice_line_form_view">
-        <field name="name">account.invoice.line.form@account_traceability</field>
-        <field name="model">account.invoice.line</field>
+        <field name="name">account.move.line.form@account_traceability</field>
+        <field name="model">account.move.line</field>
         <field name="inherit_id" ref="account.view_invoice_line_form"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
@@ -14,8 +14,8 @@
     </record>
 
     <record model="ir.ui.view" id="invoice_line_tree_view">
-        <field name="name">account.invoice.line.tree@account_traceability</field>
-        <field name="model">account.invoice.line</field>
+        <field name="name">account.move.line.tree@account_traceability</field>
+        <field name="model">account.move.line</field>
         <field name="inherit_id" ref="account.view_invoice_line_tree"/>
         <field name="arch" type="xml">
             <field name="name" position="before">
@@ -29,8 +29,8 @@
     </record>
 
     <record model="ir.ui.view" id="invoice_line_tree_filter_view" >
-        <field name="name">account.invoice.line.select@account_traceability</field>
-        <field name="model">account.invoice.line</field>
+        <field name="name">account.move.line.select@account_traceability</field>
+        <field name="model">account.move.line</field>
         <field name="arch" type="xml">
             <search string="Search Invoice Lines">
                 <field name="name"/>
