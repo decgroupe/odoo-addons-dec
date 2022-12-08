@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
     def _sync_project_dates(self):
         for rec in self.filtered('project_id'):
             rec.project_id.sudo().write({
-                'date_start': rec.confirmation_date.date(),
+                'date_start': rec.date_order.date(),
                 'date': rec.expected_last_date.date(),
             })
 

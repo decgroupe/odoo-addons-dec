@@ -37,13 +37,13 @@ class SaleOrder(models.Model):
             )
 
     @api.depends(
-        'order_line.customer_lead', 'confirmation_date', 'order_line.state'
+        'order_line.customer_lead', 'date_order', 'order_line.state'
     )
     def _compute_expected_last_date(self):
         for order in self:
             dates_list = []
             confirm_date = fields.Datetime.from_string(
-                (order.confirmation_date or order.write_date
+                (order.date_order or order.write_date
                 ) if order.state in ('sale', 'done') else fields.Datetime.now()
             )
             for line in order.order_line.filtered(

@@ -24,7 +24,7 @@ class SaleOrderLine(models.Model):
             for line_id in self:
                 if line_id.license_pass_ids:
                     sale_pass_data = line_id._get_sale_application_pass_data(
-                        line_id.order_id.confirmation_date
+                        line_id.order_id.date_order
                     )
                     # We keep only the expiration date because line UoM is not
                     # editable after order confirmation and because the partner
