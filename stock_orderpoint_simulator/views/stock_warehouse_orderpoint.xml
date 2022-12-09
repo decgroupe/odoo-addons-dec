@@ -6,7 +6,7 @@
         <field name="model">stock.warehouse.orderpoint</field>
         <field name="inherit_id" ref="stock.view_warehouse_orderpoint_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//form/sheet/group[3]/group[1]" position="inside">
+            <xpath expr="//form/sheet/group[1]/group[1]" position="inside">
                 <button 
                     name="%(action_orderpoint_simulator)d"
                     string="Open Simulator"
