@@ -26,7 +26,6 @@
             <button name="%(sale.act_res_partner_2_sale_order)d" position="after">
                 <button class="oe_stat_button" type="object" name="action_open_shipping_sale_orders" 
                     groups="sales_team.group_sale_salesman"
-                    attrs="{'invisible': [('customer', '=', False)]}"
                     icon="fa-truck">
                     <field string="Shipping (Sales)" name="shipping_sale_order_count" widget="statinfo"/>
                 </button>

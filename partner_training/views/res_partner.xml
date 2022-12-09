@@ -10,7 +10,6 @@
             <field name="category_id" position="before">
                 <field name="training_specialty_ids"
                     widget="many2many_tags" 
-                    attrs="{'invisible':[('customer', '=', False)]}"
                 />
             </field>
         </field>
