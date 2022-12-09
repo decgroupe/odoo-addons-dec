@@ -10,7 +10,7 @@
             <field name="bom_id" position="attributes">
                 <attribute name="attrs">{'readonly': [
                     ('is_locked', '=', True),
-                    ('has_moves', '=', True),
+                    ('state', '!=', 'draft'),
                 ]}</attribute>
             </field>
         </field>
