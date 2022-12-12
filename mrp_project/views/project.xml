@@ -6,7 +6,7 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='toggle_active']" position="before">
+            <xpath expr="//button[@name='action_view_all_rating']" position="before">
                 <button class="oe_stat_button" type="action"
                         icon="fa-wrench" name="%(production_action_from_project)d"
                         context="{'search_default_project_id': active_id, 'default_project_id': active_id}">
