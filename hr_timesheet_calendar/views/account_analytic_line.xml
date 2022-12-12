@@ -8,8 +8,7 @@
             <calendar string="Timesheet" quick_add="False" 
                 date_start="date_time" date_delay="unit_amount" color="project_id"
                 event_open_popup="true"
-                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
-                readonly_form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
+                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
                 
                     <!-- 'invisible' is broken since calendar view does not call _registerModifiers -->
                     <!-- <field name="name" attrs="{'invisible': [('same_task_name', '=', True)]}"/> -->
@@ -34,8 +33,7 @@
         <field name="arch" type="xml">
             <calendar string="Timesheet" quick_add="False" date_start="date_time" date_delay="unit_amount" color="user_id"
                 event_open_popup="true"
-                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
-                readonly_form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
+                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s">
 
                     <field name="calendar_name"/>
                     <field name="task_id"/>
