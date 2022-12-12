@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+<!-- FIXME: [MIG] 13.0: DEL
     <record model="ir.ui.view" id="invoice_line_form_view">
         <field name="name">account.move.line.form@account_traceability</field>
         <field name="model">account.move.line</field>
@@ -27,6 +28,7 @@
             </field>
         </field>
     </record>
+-->
 
     <record model="ir.ui.view" id="invoice_line_tree_filter_view" >
         <field name="name">account.move.line.select@account_traceability</field>
@@ -35,14 +37,18 @@
             <search string="Search Invoice Lines">
                 <field name="name"/>
                 <field name="product_id"/>
+                <!-- FIXME: [MIG] 13.0: Missing field
                 <field name="origin"/>
+                -->
                 <field name="partner_id"/>
                 <filter string="Not attached" name="filter_not_attached" domain="[('purchase_line_id', '=', False), ('sale_line_ids', '=', False)]"/>
                 <filter string="Customer Invoice" name="filter_customer_invoice" domain="[('invoice_type', '=', 'out_invoice')]"/>
                 <filter string="Supplier Invoice" name="filter_supplier_invoice" domain="[('invoice_type', '=', 'in_invoice')]"/>
                 <group string="Group By" name="group_by">
                     <filter string="Invoice" name="group_by_invoice_id" domain="[]" context="{'group_by':'invoice_id'}"/>
+                    <!-- FIXME: [MIG] 13.0: Missing field
                     <filter string="Origin" name="group_by_origin" domain="[]" context="{'group_by':'origin'}"/>
+                    -->
                     <filter string="Product" name="group_by_product_id" domain="[]" context="{'group_by':'product_id'}"/>
                     <filter string="Partner" name="group_by_product_id" domain="[]" context="{'group_by':'partner_id'}"/>
                 </group>
