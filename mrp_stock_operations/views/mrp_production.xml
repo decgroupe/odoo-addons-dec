@@ -8,7 +8,17 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="priority" eval="100"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
+            <data/>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_raw_tree_view">
+        <field name="name">stock.move.raw.tree@mrp_stock_operations</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="mrp.view_stock_move_raw_tree" />
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
                 <button 
                     name="action_assign" 
                     string="Check availability" 

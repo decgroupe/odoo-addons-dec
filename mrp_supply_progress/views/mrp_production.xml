@@ -21,7 +21,15 @@
             <field name="routing_id" position="after">
                 <field name="supply_progress" widget="progressbar"/>
             </field>
-            <xpath expr="//field[@name='move_raw_ids']/tree//field[@name='quantity_done']" position="after">
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_raw_tree_view">
+        <field name="name">stock.move.raw.tree@mrp_supply_progress</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="mrp.view_stock_move_raw_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quantity_done']" position="after">
                 <field name="received"/>
             </xpath>
         </field>

@@ -34,16 +34,34 @@
                 }
                 </attribute>
             </xpath>
-            <xpath expr="//field[@name='move_raw_ids']/tree" position="attributes">
+            <xpath expr="//field[@name='finished_move_line_ids']" position="before">
+                <field name="move_finished_ids" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='finished_move_line_ids']/tree" position="inside">
+                <field name="state">
+                    <attribute name="attrs">{'invisible': False}</attribute>
+                </field>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_move_raw_tree_view">
+        <field name="name">stock.move.raw.tree@mrp_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="mrp.view_stock_move_raw_tree" />
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
                 <attribute name="class">d_mrp_production</attribute>
             </xpath>
-            <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='product_id']" position="before">
+            <xpath expr="//field[@name='product_id']" position="before">
                 <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
             </xpath>
-            <xpath expr="//field[@name='move_raw_ids']/tree/field[@name='name']" position="attributes">
+            <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="invisible">False</attribute>
             </xpath>
-            <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
+            <xpath expr="//tree" position="inside">
                 <field name="action_view_created_item_visible" invisible="1"/>
                 <field name="mrp_status" string="Procurement status" class="d_move_procurement_status"/>
                 <button 
@@ -55,15 +73,6 @@
                 </button>
                 <field name="state" invisible="1"/>
             </xpath>
-            <xpath expr="//field[@name='finished_move_line_ids']" position="before">
-                <field name="move_finished_ids" attrs="{'readonly': [('is_locked', '=', True)]}"/>
-            </xpath>
-            <xpath expr="//field[@name='finished_move_line_ids']/tree" position="inside">
-                <field name="state">
-                    <attribute name="attrs">{'invisible': False}</attribute>
-                </field>
-            </xpath>
-            
         </field>
     </record>
 
