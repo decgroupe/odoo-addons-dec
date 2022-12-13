@@ -18,6 +18,8 @@
         <field name="inherit_id" ref="mrp.view_stock_move_raw_tree" />
         <field name="priority" eval="100"/>
         <field name="arch" type="xml">
+            <data></data>
+            <!-- FIXME: [MIG] Invalid view %s definition 
             <xpath expr="//tree" position="inside">
                 <button 
                     name="action_assign" 
@@ -37,6 +39,7 @@
                     options='{"warn": true}'>
                 </button>
             </xpath>
+            -->
         </field>
     </record>
 
