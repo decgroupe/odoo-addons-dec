@@ -38,7 +38,6 @@ class SoftwareApplicationImage(models.Model):
     image = fields.Binary(
         'Image',
         attachment=True,
-        oldname="attachment_image",
     )
     resized_image = fields.Binary(
         "Image",

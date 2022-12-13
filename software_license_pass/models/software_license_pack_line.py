@@ -31,7 +31,6 @@ class SoftwareLicensePackLine(models.Model):
         ondelete='cascade',
         domain="[('application_id', '=', application_id), \
                 ('type', '=', 'template'),]",
-        oldname="license_id",
     )
     feature_ids = fields.One2many(
         comodel_name='software.license.feature',

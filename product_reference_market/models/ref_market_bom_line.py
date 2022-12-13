@@ -59,7 +59,6 @@ class RefMarketBomLine(models.Model):
     activity_name = fields.Char(
         string='Activity Name',
         help="Name of the activity that will be generated",
-        oldname="note",
     )
 
     def _convert_qty_to_hours(self):

@@ -11,7 +11,6 @@ class ProductPricelistItem(models.Model):
 
     note = fields.Char(
         'Rule Name',
-        oldname='name',
         help="Explicit rule name for this pricelist line.",
     )
 

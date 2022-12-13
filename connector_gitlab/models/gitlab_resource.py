@@ -21,7 +21,6 @@ class GitlabResource(models.Model):
     uid = fields.Integer(
         string='Backend ID',
         required=True,
-        oldname="backend_id",
     )
     display_name = fields.Char(compute="_compute_display_name")
 

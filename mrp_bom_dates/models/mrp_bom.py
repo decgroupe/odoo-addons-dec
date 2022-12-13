@@ -14,6 +14,5 @@ class MrpBom(models.Model):
     
     date_stop = fields.Date(
         'Valid Until',
-        oldname='openupgrade_legacy_10_0_date_stop',
         copy=False,
     )

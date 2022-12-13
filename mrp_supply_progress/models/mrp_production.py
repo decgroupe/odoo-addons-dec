@@ -10,7 +10,6 @@ class MrpProduction(models.Model):
 
     supply_progress = fields.Float(
         compute='_compute_supply_progress',
-        oldname='picked_rate',
         help='Rate of received raw products',
         store=True,
     )
