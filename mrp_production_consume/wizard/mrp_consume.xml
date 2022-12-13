@@ -5,19 +5,26 @@
         <field name="name">MRP Consume</field>
         <field name="model">mrp.consume</field>
         <field name="arch" type="xml">
+            <data/>
+            <!-- TODO: [MIG] 13.0: To remake from scratch
             <form string="Consume">
                 <group>
                     <group>
                         <field name="serial" invisible="1"/>
+                        <field name="company_id" invisible="1"/>
                         <field name="production_id" invisible="1"/>
                         <field name="product_id" readonly="1"/>
-                        <label for="product_qty"/>
+                        <label for="qty_producing" string="Quantity"/>
                         <div class="o_row">
-                            <field name="product_qty" readonly="1" attrs="{'readonly': [('serial', '=', True)]}"/>
+                            <field name="qty_producing" readonly="1" attrs="{'readonly': [('serial', '=', True)]}"/>
                             <field name="product_uom_id" readonly="1" groups="uom.group_uom"/>
                         </div>
                         <field name="product_tracking" invisible="1"/>
-                        <field name="lot_id" attrs="{'invisible': [('product_tracking', '=', 'none')], 'required': [('product_tracking', '!=', 'none')]}" domain="[('product_id', '=', product_id)]" context="{'default_product_id': product_id}"/>
+                        <label for="finished_lot_id" attrs="{'invisible': [('product_tracking', '=', 'none')]}"/>
+                        <div class="o_row">
+                            <field name="finished_lot_id" attrs="{'invisible': [('product_tracking', '=', 'none')], 'required': [('product_tracking', '!=', 'none'), ('finished_lot_id', '!=', False)]}" context="{'default_product_id': product_id, 'default_company_id': company_id}"/>
+                            <button name="action_generate_serial" type="object" class="btn btn-primary fa fa-plus-square-o" aria-label="Creates a new serial/lot number" title="Creates a new serial/lot number" role="img" attrs="{'invisible': ['|', ('product_tracking', '=', 'none'), ('finished_lot_id', '!=', False)]}"/>
+                        </div>
                     </group>
                     <group>
                         <button 
@@ -91,6 +98,7 @@
                     </button>
                 </footer>
             </form>
+            -->
         </field>
     </record>
 

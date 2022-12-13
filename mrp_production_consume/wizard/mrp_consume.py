@@ -32,9 +32,10 @@ class MrpConsume(models.TransientModel):
             )
         return {'type': 'ir.actions.act_window_close'}
 
-    @api.onchange('product_qty')
-    def _onchange_product_qty(self):
-        super()._onchange_product_qty()
+    # Override default method
+    @api.onchange('qty_producing')
+    def _onchange_qty_producing(self):
+        super()._onchange_qty_producing()
         # Override qty_done to 0 to allow the user to choose which
         # line he wants to validate and comsume
         for pl in self.produce_line_ids:

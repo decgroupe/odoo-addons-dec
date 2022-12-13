@@ -24,11 +24,12 @@ class MrpProduce(models.TransientModel):
         res = super().do_produce()
         return res
 
-    @api.onchange('product_qty')
-    def _onchange_product_qty(self):
+    # Override default method
+    @api.onchange('qty_producing')
+    def _onchange_qty_producing(self):
         lines = []
         qty_todo = self.product_uom_id._compute_quantity(
-            self.product_qty, self.production_id.product_uom_id, round=False
+            self.qty_producing, self.production_id.product_uom_id, round=False
         )
         # Do not filter out moves not linked to a bom_line_id like it is done in
         # addons/mrp/wizard/mrp_product_produce.py

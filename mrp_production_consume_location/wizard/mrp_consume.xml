@@ -6,6 +6,8 @@
         <field name="model">mrp.consume</field>
         <field name="inherit_id" ref="mrp_production_consume.mrp_consume_wizard_view"/>
         <field name="arch" type="xml">
+            <data></data>
+            <!-- TODO: [MIG] 13.0: Wait for `mrp_production_consume` fixes
             <xpath expr="//field[@name='produce_line_ids']/tree/field[@name='product_id']" position="after">
                 <field name="product_location" string="Location" class="d_product_location"/>
             </xpath>
@@ -27,7 +29,7 @@
                     help="This button will create an activity requesting an inventory for this product.">
                 </button>
             </xpath>
-
+            -->
         </field>
     </record>
 
