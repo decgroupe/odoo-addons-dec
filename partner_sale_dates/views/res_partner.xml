@@ -5,7 +5,6 @@
         <field name="name">res.partner.tree@partner_folder</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_tree" />
-        <field name="groups_id" eval="[(4, ref('sale.group_sale_order_dates'))]"/>
         <field name="arch" type="xml">
             <field name="email" position="after">
                 <field name="last_quotation_date" widget="remaining_days"/>
@@ -20,7 +19,6 @@
         <field name="model">res.partner</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="groups_id" eval="[(4, ref('sale.group_sale_order_dates'))]"/>
         <field name="arch" type="xml">
 
             <button name="%(sale.act_res_partner_2_sale_order)d" position="after">
