@@ -21,7 +21,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
 
-            <button name="%(sale.act_res_partner_2_sale_order)d" position="after">
+            <!-- Button name was "%(sale.act_res_partner_2_sale_order)d" in 12.0 
+                    and changed to "action_view_sale_order" in 13.0 -->
+            <button name="action_view_sale_order" position="after">
                 <button class="oe_stat_button" type="object" name="action_open_shipping_sale_orders" 
                     groups="sales_team.group_sale_salesman"
                     icon="fa-truck">
