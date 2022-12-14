@@ -25,3 +25,5 @@ class CrmLead(models.Model):
             )
             if message_ids:
                 rec.original_message_id = message_ids[0]
+            else:
+                rec.original_message_id = False

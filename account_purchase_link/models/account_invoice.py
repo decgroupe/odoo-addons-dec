@@ -19,6 +19,8 @@ class AccountMove(models.Model):
     )
 
     def _compute_purchase_order(self):
+        self.purchase_order_ids = False
+        self.purchase_order_count = 0
         for invoice in self.filtered('origin'):
             if invoice.type == 'in_invoice':
                 orders = self.env['purchase.order'].search(

@@ -19,11 +19,11 @@ class PurchaseOrder(models.Model):
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure'
         )
-        for purchase in self:
+        for rec in self:
             received_count = 0
             line_count = 0
-            purchase.picked_rate = 0
-            for line in purchase.order_line:
+            rec.picked_rate = 0
+            for line in rec.order_line:
                 if line.product_type in (
                     'consu', 'product'
                 ) and line.product_qty > 0:
@@ -35,7 +35,7 @@ class PurchaseOrder(models.Model):
                     ) >= 0:
                         received_count += 1
             if line_count > 0:
-                purchase.picked_rate = \
+                rec.picked_rate = \
                     received_count * 100 / line_count
 
     def action_update_picked_rate(self):

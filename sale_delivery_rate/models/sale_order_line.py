@@ -28,6 +28,7 @@ class SaleOrderLine(models.Model):
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure'
         )
+        self.delivery_status = False
         for rec in self.filtered(lambda x: not x.display_type):
             if float_is_zero(
                 rec.product_uom_qty, precision

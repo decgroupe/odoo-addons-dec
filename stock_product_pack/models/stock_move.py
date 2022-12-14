@@ -19,8 +19,8 @@ class StockMove(models.Model):
     pack_level = fields.Integer(compute='_compute_pack_level')
 
     def _compute_pack_level(self):
+        self.pack_level = 0
         for move in self:
-            move.pack_level = 0
             if move.pack_parent_move_id:
                 move.pack_level = move.pack_parent_move_id.pack_level + 1
 

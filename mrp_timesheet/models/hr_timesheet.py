@@ -45,10 +45,10 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends('production_id')
     def _compute_production_identification(self):
+        self.production_identification = False
         for rec in self.filtered('production_id'):
             identifications = rec.production_id._get_name_identifications()
             rec.production_identification = ' / '.join(identifications)
-
 
     @api.onchange("production_id")
     def onchange_production_id(self):

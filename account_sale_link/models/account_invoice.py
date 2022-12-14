@@ -19,6 +19,8 @@ class AccountMove(models.Model):
     )
 
     def _compute_sale_order(self):
+        self.sale_order_ids = False
+        self.sale_order_count = 0
         for invoice in self.filtered('origin'):
             if invoice.type == 'out_invoice':
                 # Also support comma separator

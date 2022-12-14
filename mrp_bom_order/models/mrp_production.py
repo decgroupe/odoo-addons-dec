@@ -25,3 +25,5 @@ class MrpProduction(models.Model):
             )
             if bom_id and production.bom_id != bom_id:
                 production.newer_bom_id = bom_id
+            else:
+                production.newer_bom_id = False

@@ -14,6 +14,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends('ticket_id')
     def _compute_ticket_identification(self):
+        self.ticket_identification = False
         for rec in self.filtered('ticket_id'):
             identifications = rec.ticket_id._get_name_identifications()
             rec.ticket_identification = ' / '.join(identifications)

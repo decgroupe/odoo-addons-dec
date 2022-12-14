@@ -86,6 +86,12 @@ class ProductTemplate(models.Model):
         unique_variants = self.filtered(
             lambda template: len(template.product_variant_ids) == 1
         )
+        self.write({
+            "legacy_qty_available": 0.0,
+            "legacy_virtual_available": 0.0,
+            "legacy_incoming_qty": 0.0,
+            "legacy_outgoing_qty": 0.0,
+        })
         for template in unique_variants:
             template.legacy_qty_available = template.product_variant_ids.legacy_qty_available
             template.legacy_virtual_available = template.product_variant_ids.legacy_virtual_available

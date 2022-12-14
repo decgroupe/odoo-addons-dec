@@ -14,6 +14,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends('lead_id')
     def _compute_lead_identification(self):
+        self.lead_identification = False
         for rec in self.filtered('lead_id'):
             identifications = rec.lead_id._get_name_identifications()
             rec.lead_identification = ' / '.join(identifications)

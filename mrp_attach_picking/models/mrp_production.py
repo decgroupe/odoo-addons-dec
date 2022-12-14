@@ -24,3 +24,5 @@ class MrpProduction(models.Model):
             )
             if not move_dest_ids:
                 production.allow_attach_picking = True
+            else:
+                production.allow_attach_picking = False

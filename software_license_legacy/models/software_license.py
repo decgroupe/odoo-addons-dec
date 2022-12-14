@@ -60,6 +60,8 @@ class SoftwareLicense(models.Model):
         for rec in self:
             if rec.hardware_ids:
                 rec.main_hardware_id = rec.hardware_ids[0]
+            else:
+                rec.main_hardware_id = False
 
     @api.depends('feature_ids')
     def _compute_system(self):
@@ -68,6 +70,12 @@ class SoftwareLicense(models.Model):
         value_system_cave = self.env.ref(CAVE)
         value_system_rift = self.env.ref(RIFT)
         value_system_vive = self.env.ref(VIVE)
+        self.write({
+            "system_classic": False,
+            "system_cave": False,
+            "system_rift": False,
+            "system_vive": False,
+        })
         for rec in self:
             for feature in rec.feature_ids:
                 if feature.property_id == property_system:

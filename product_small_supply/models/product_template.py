@@ -21,6 +21,8 @@ class ProductTemplate(models.Model):
                 product.is_consumable = True
             elif product.type == 'product' and product.small_supply:
                 product.is_consumable = True
+            else:
+                product.is_consumable = False
 
     def write(self, vals):
         move_ids = self.env['stock.move']

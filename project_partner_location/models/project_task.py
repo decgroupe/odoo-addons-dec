@@ -40,3 +40,5 @@ class ProjectTask(models.Model):
                 rec.partner_shipping_id = rec.sale_order_id.partner_shipping_id
             elif rec.production_id:
                 rec.partner_shipping_id = rec.production_id.partner_id
+            else:
+                rec.partner_shipping_id = False

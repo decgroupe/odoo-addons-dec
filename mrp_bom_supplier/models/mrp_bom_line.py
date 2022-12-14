@@ -64,6 +64,8 @@ class MrpBomLine(models.Model):
                     rec.delay = rec.product_id.produce_delay
             elif rec.product_id.procure_method == 'make_to_stock':
                 rec.delay = 0
+            else:
+                rec.delay = 0
 
     def _inverse_delay(self):
         for rec in self:

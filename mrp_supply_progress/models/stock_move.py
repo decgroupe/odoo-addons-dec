@@ -19,8 +19,8 @@ class StockMove(models.Model):
         'move_orig_ids'
     )
     def _compute_received(self):
+        self.received = False
         for move in self:
-            move.received = False
             if move.state == 'done':
                 move.received = True
             elif move.procure_method == 'make_to_order':

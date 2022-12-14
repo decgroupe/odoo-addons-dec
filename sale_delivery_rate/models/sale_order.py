@@ -28,10 +28,10 @@ class SaleOrder(models.Model):
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure'
         )
+        self.sent_rate = 100
         for sale in self:
             sent_count = 0
             line_count = 0
-            sale.sent_rate = 0
             for line in sale.order_line:
                 if line.product_id.type in (
                     'consu', 'product'
@@ -49,6 +49,7 @@ class SaleOrder(models.Model):
 
     @api.depends('tasks_ids', 'tasks_ids.progress', 'tasks_ids.stage_id')
     def _compute_task_rate(self):
+        self.task_rate = 100
         for sale in self:
             all_task_ids = sale.tasks_ids
             total_progress = 0
@@ -64,6 +65,7 @@ class SaleOrder(models.Model):
 
     @api.depends('sent_rate', 'task_rate')
     def _compute_delivery_rate(self):
+        self.delivery_rate = 100
         for sale in self:
             if sale.picking_ids and sale.tasks_ids:
                 sale.delivery_rate = sale.sent_rate + sale.task_rate / 2.0

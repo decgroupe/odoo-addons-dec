@@ -32,6 +32,7 @@ class StockMove(models.Model):
 
     @api.depends('procure_method', 'state')
     def _compute_is_cancellable(self):
+        self.is_cancellable = False
         for move in self:
             if move.procure_method == 'make_to_stock':
                 if move.state not in ('done', 'cancel'):

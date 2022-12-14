@@ -93,6 +93,7 @@ class MrpProduction(models.Model):
     )
     def _compute_stage_id(self):
         stages = self._get_stages_ref()
+        self.stage_id = False
         for rec in self:
             stage_id = rec._get_stage_from_state(stages)
             if stage_id:

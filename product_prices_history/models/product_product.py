@@ -37,6 +37,7 @@ class ProductProduct(models.Model):
                 ('id', 'in', prices_hist_ids.ids),
                 ('product_id', '=', rec.id),
             ]
+
             price_hist_id = self.env['product.prices.history'].search(
                 domain + [('type', '=', 'purchase')], limit=1
             )
@@ -44,11 +45,16 @@ class ProductProduct(models.Model):
                 rec.last_default_purchase_price = price_hist_id.get_price(
                     'purchase'
                 )
+            else:
+                rec.last_default_purchase_price = False
+
             price_hist_id = self.env['product.prices.history'].search(
                 domain + [('type', '=', 'sell')], limit=1
             )
             if price_hist_id:
                 rec.last_default_sell_price = price_hist_id.get_price('sell')
+            else:
+                rec.last_default_sell_price = False
 
     def _get_product_ids_with_moves(self):
         moves = self.env['stock.move'].search([])

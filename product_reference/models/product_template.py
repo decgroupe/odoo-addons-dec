@@ -25,6 +25,8 @@ class ProductTemplate(models.Model):
         for product in self:
             if len(product.reference_ids) > 0:
                 product.reference_id = product.reference_ids[0]
+            else:
+                product.reference_id = False
 
     @api.model
     def append_extra_search(self, model, name, name_search_result, limit=100):

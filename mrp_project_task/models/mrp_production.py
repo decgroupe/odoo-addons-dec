@@ -38,6 +38,7 @@ class MrpProduction(models.Model):
 
     @api.depends('task_ids', 'task_ids.progress', 'task_ids.stage_id')
     def _compute_task_progress(self):
+        self.task_progress = 100
         for rec in self.filtered('task_ids'):
             active_task_ids = rec.task_ids.filtered(
                 lambda x: x.stage_id.fold is False
@@ -51,6 +52,7 @@ class MrpProduction(models.Model):
 
     @api.depends("task_ids")
     def _compute_task_count(self):
+        self.task_count = 0
         for rec in self:
             rec.task_count = len(rec.task_ids)
 

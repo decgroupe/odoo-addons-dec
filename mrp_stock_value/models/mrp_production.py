@@ -25,8 +25,8 @@ class MrpProduction(models.Model):
     def _compute_consumed_value(self):
         PricesHistory = self.env['product.prices.history']
         price_type = 'purchase'
+        self.consumed_value = 0
         for rec in self:
-            rec.consumed_value = 0
             all_move_ids = rec.move_raw_ids.filtered(
                 lambda x: x.state == 'done'
             )

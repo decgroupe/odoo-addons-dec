@@ -102,6 +102,7 @@ class ProductTemplate(models.Model):
     @api.depends('standard_price', 'uom_id', 'uom_po_id')
     def _compute_standard_price_po_uom(self):
         # Check that uom_id is not False (possibility in editing mode)
+        self.standard_price_po_uom = 0.0
         for product in self.filtered('uom_id'):
             price = product.uom_id._compute_price(
                 product.standard_price,

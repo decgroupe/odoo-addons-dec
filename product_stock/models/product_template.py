@@ -51,6 +51,7 @@ class ProductTemplate(models.Model):
     def _compute_last_inventory(self):
         stock_location = self.env.ref('stock.stock_location_stock')
         for rec in self:
+            rec.last_inventory_date = False
             rec.last_inventory_line = rec._get_last_inventory_line(
                 stock_location
             )
@@ -67,5 +68,3 @@ class ProductTemplate(models.Model):
                 )
                 if last_inventory:
                     rec.last_inventory_date = last_inventory.date
-                else:
-                    rec.last_inventory_date = False

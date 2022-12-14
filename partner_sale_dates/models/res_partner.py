@@ -45,6 +45,7 @@ class ResPartner(models.Model):
             fields=['partner_shipping_id'],
             groupby=['partner_shipping_id']
         )
+        self.shipping_sale_order_count = 0
         for group in pb(sale_order_groups):
             partner = self.browse(group['partner_shipping_id'][0])
             while partner:

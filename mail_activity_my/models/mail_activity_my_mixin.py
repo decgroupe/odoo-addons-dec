@@ -89,6 +89,8 @@ class MailActivityMyMixin(models.AbstractModel):
                 record.activity_my_state = 'today'
             elif 'planned' in states:
                 record.activity_my_state = 'planned'
+            else:
+                record.activity_my_state = False
 
     @api.depends('activity_my_ids.user_id')
     def _compute_activity_my_user_id(self):

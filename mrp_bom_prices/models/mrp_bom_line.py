@@ -38,3 +38,7 @@ class MrpBomLine(models.Model):
                 )
                 line.cost_price = line.unit_price * line.product_qty
                 line.public_price = line.product_id.lst_price / line.product_uom_id.factor
+            else:
+                line.unit_price = 0
+                line.cost_price = 0
+                line.public_price = 0

@@ -26,3 +26,5 @@ class AccountAnalyticLine(models.Model):
                 rec.same_task_name = (rec.name == rec.task_id.name)
                 if rec.same_task_name:
                     rec.calendar_name = ''
+            else:
+                rec.same_task_name = False

@@ -21,23 +21,21 @@ class MrpProduction(models.Model):
 
     @api.depends('move_raw_ids', 'move_raw_ids.state')
     def _compute_purchase_progress(self):
-        for rec in self:
-            if not rec.move_raw_ids:
-                rec.purchase_progress = 100
-            else:
-                all_move_ids = rec.move_raw_ids.filtered(
-                    lambda x: \
-                        x.state != 'cancel' \
-                        and x.procure_method == 'make_to_order' \
-                        and x.created_purchase_line_id.id
-                )
-                if all_move_ids:
-                    purchased_move_ids = all_move_ids.mapped(
-                        'move_orig_ids'
-                    ).filtered(lambda x: x.state in ('assigned', 'done'))
-                    ready_move_ids = purchased_move_ids.mapped('move_dest_ids')
-                    rec.purchase_progress = \
-                        len(ready_move_ids) * 100 / len(all_move_ids)
+        self.purchase_progress = 100
+        for rec in self.filtered("move_raw_ids"):
+            all_move_ids = rec.move_raw_ids.filtered(
+                lambda x: \
+                    x.state != 'cancel' \
+                    and x.procure_method == 'make_to_order' \
+                    and x.created_purchase_line_id.id
+            )
+            if all_move_ids:
+                purchased_move_ids = all_move_ids.mapped(
+                    'move_orig_ids'
+                ).filtered(lambda x: x.state in ('assigned', 'done'))
+                ready_move_ids = purchased_move_ids.mapped('move_dest_ids')
+                rec.purchase_progress = \
+                    len(ready_move_ids) * 100 / len(all_move_ids)
 
     def action_update_purchase_progress(self):
         self._compute_purchase_progress()
@@ -76,3 +74,5 @@ class MrpProduction(models.Model):
                 stages['progress'].id, stages['issue'].id
             ):
                 rec.kanban_show_purchase_progress = True
+            else:
+                rec.kanban_show_purchase_progress = False

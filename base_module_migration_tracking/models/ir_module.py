@@ -81,6 +81,22 @@ class IrModule(models.Model):
         "migration_ids", "migration_ids.state", "migration_ids.pr_address"
     )
     def _compute_mig_x(self):
+        self.write({
+            "mig_12_status": False,
+            "mig_12_color": False,
+            "mig_13_status": False,
+            "mig_13_color": False,
+            "mig_14_status": False,
+            "mig_14_color": False,
+            "mig_15_status": False,
+            "mig_15_color": False,
+            "mig_16_status": False,
+            "mig_16_color": False,
+            "mig_17_status": False,
+            "mig_17_color": False,
+            "mig_18_status": False,
+            "mig_18_color": False,
+        })
         for rec in self:
             for migration_id in rec.migration_ids:
                 status_field = "mig_%d_status" % (migration_id.version)

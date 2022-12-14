@@ -29,6 +29,8 @@ class PurchaseOrderLine(models.Model):
             if supplier_info:
                 url = supplier_info[0].url or ''
                 rec.product_supplier_url = url
+            else:
+                rec.product_supplier_url = False
 
     # @api.onchange(
     #     'partner_id',

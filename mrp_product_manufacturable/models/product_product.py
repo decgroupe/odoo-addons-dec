@@ -14,6 +14,7 @@ class ProductProduct(models.Model):
 
     @api.depends('bom_ids', 'bom_ids.active', 'bom_ids.type')
     def _compute_manufacturable(self):
+        self.manufacturable = False
         product_ids = self.search(
             [('id', 'in', self.ids), ('bom_ids', '!=', False)]
         )

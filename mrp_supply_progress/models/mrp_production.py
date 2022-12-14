@@ -27,19 +27,17 @@ class MrpProduction(models.Model):
 
     @api.depends('move_raw_ids', 'move_raw_ids.state')
     def _compute_supply_progress(self):
-        for rec in self:
-            if not rec.move_raw_ids:
-                rec.supply_progress = 100
-            else:
-                all_move_ids = rec.move_raw_ids.filtered(
-                    lambda x: x.state != 'cancel'
+        self.supply_progress = 100
+        for rec in self.filtered("move_raw_ids"):
+            all_move_ids = rec.move_raw_ids.filtered(
+                lambda x: x.state != 'cancel'
+            )
+            if all_move_ids:
+                received_move_ids = all_move_ids.filtered(
+                    lambda x: x.received
                 )
-                if all_move_ids:
-                    received_move_ids = all_move_ids.filtered(
-                        lambda x: x.received
-                    )
-                    rec.supply_progress = \
-                        len(received_move_ids) * 100 / len(all_move_ids)
+                rec.supply_progress = \
+                    len(received_move_ids) * 100 / len(all_move_ids)
 
     def action_update_supply_progress(self):
         self._compute_supply_progress()
@@ -98,3 +96,5 @@ class MrpProduction(models.Model):
                 stages['progress'].id, stages['issue'].id
             ):
                 rec.kanban_show_supply_progress = True
+            else:
+                rec.kanban_show_supply_progress = False

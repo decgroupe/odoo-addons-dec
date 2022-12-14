@@ -47,6 +47,10 @@ class Project(models.Model):
                 )
                 if sale_id:
                     rec.partner_shipping_id = sale_id.partner_shipping_id
+                else:
+                    rec.partner_shipping_id = False
+            else:
+                rec.partner_shipping_id = False
 
     @api.depends(
         'partner_shipping_id',
