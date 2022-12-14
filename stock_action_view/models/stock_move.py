@@ -18,7 +18,6 @@ class StockMove(models.Model):
         elif len(self.ids) > 1:
             action['domain'] = [('id', 'in', self.ids)]
         else:
-            # form = self.env.ref('stock.view_move_picking_form')
             form = self.env.ref('stock.view_move_form')
             action['views'] = [(form.id, 'form')]
             action['res_id'] = self.ids[0]

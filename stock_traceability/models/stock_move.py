@@ -141,6 +141,8 @@ class StockMove(models.Model):
 
     @api.depends("group_id")
     def _compute_colors(self):
+        self.tree_bg_color = '#FFFFFFFF'
+        self.tree_fg_color = '#00000000'
         move_group = self.read_group(
             [('id', 'in', self.ids)], ['group_id'], ['group_id'], lazy=False
         )
