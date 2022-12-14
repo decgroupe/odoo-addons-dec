@@ -23,7 +23,7 @@
             <tbody>
                 <tr style="line-height:normal">
                     <td style="padding-right:8px" align="right">
-                        <img class="img_avatar" t-attf-src="/web/image/res.users/{{object.id}}/image_small" width="20" height="20"/>
+                        <img class="img_avatar" t-attf-src="/web/image/res.users/{{object.id}}/image_128" width="20" height="20"/>
                     </td>
                     <td>
                         <a t-if="object.login">
