@@ -30,7 +30,7 @@
             <xpath expr="//kanban/field[@name='user_id']" position="after">
                 <field name="production_id"/>
             </xpath>
-            <xpath expr="//small[hasclass('o_kanban_record_subtitle')]" position="inside">
+            <xpath expr="//strong[hasclass('o_kanban_record_title')]" position="after">
                 <div t-if="record.production_id.raw_value">
                     <i class="fa fa-wrench"/> <t t-raw="record.production_id.value"/>
                 </div>
