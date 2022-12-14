@@ -30,7 +30,7 @@
                 <t t-esc="link_success"/>
               </p>
 
-              <t t-if="request.debug">
+              <t t-if="request.session.debug">
                 <div class="form-group checkbox">
                   <label>
                     <input type="checkbox" name="basic" id="basic"/>
