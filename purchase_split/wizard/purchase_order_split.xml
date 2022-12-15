@@ -48,14 +48,14 @@
         </field>
     </record>
 
-    <act_window id="act_window_purchase_order_split"
-        name="🧙‍♂️ Split ..."
-        binding_model="purchase.order.line"
-        binding_views="form"
-        res_model="purchase.order.split"
-        view_mode="form"
-        binding_type="action"
-        target="new"
-    />
+    <record id="act_window_purchase_order_split" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Split ...</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order_line"/>
+        <field name="binding_view_types">form</field>
+        <field name="res_model">purchase.order.split</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
