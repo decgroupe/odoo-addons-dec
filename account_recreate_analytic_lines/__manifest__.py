@@ -1,6 +1,6 @@
 {
     'name': 'Account Recreate Analytic Lines',
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': '''Recreate analytic lines from product/category accounts''',
@@ -17,5 +17,5 @@
     ],
     # 'force_post_init_hook': True,
     'post_init_hook': 'post_init',
-    'installable': False
+    'installable': True
 }
