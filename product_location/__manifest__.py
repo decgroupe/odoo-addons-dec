@@ -1,6 +1,6 @@
 {
     'name': 'Product Location',
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': '''Add (Rack,Row,Case) fields to help locating a product in Warehouse''',
