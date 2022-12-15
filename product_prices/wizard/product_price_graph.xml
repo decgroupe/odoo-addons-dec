@@ -19,12 +19,12 @@
         </field>
     </record>
 
-    <act_window id="act_window_product_price_graph"
-        name="Price Graph"
-        res_model="product.price.graph"
-        view_mode="form"
-        view_id="product_price_graph_view"
-        target="new"
-    />
+    <record model="ir.actions.act_window" id="act_window_product_price_graph">
+        <field name="name">Price Graph</field>
+        <field name="res_model">product.price.graph</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_prices.product_price_graph_view"/>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
