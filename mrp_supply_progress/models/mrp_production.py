@@ -89,7 +89,7 @@ class MrpProduction(models.Model):
         stages = self._get_stages_ref()
         for rec in self:
             if not rec.move_raw_ids:
-                rec.kanban_show_purchase_progress = False
+                rec.kanban_show_supply_progress = False
             elif rec.stage_id.id == stages['supplying'].id:
                 rec.kanban_show_supply_progress = True
             elif rec.supply_progress < 100 and rec.stage_id.id in (
