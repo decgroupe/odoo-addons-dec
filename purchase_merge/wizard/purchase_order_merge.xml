@@ -70,14 +70,14 @@
         </field>
     </record>
 
-    <act_window id="act_window_purchase_order_merge"
-        name="🧙‍♂️ Merge ..."
-        binding_model="purchase.order"
-        binding_views="list"
-        res_model="purchase.order.merge"
-        view_mode="form"
-        binding_type="action"
-        target="new"
-    />
+    <record id="act_window_purchase_order_merge" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Merge ...</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="res_model">purchase.order.merge</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
