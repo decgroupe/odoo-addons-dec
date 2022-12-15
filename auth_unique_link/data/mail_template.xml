@@ -8,7 +8,6 @@
     <field name="email_to">${object.email_formatted | safe}</field>
     <field name="lang">${object.partner_id.lang}</field>
     <field name="auto_delete" eval="False"/>
-    <field name="user_signature" eval="False"/>
     <field name="body_html" type="html">
       <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
         <tr>
@@ -82,7 +81,6 @@
     <field name="email_to">${object.email_formatted | safe}</field>
     <field name="lang">${object.partner_id.lang}</field>
     <field name="auto_delete" eval="False"/>
-    <field name="user_signature" eval="False"/>
     <field name="body_html" type="html">
       <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
         <tr>
