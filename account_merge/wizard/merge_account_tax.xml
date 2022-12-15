@@ -83,15 +83,15 @@
         </field>
     </record>
 
-    <act_window id="action_account_tax_merge"
-        name="🧙‍♂️ Merge ..."
-        binding_model="account.tax"
-        binding_views="list"
-        res_model="merge.account.tax.wizard"
-        view_mode="form"
-        binding_type="action"
-        groups='res_group_do_merge'
-        target="new"
-    />
+    <record id="action_account_tax_merge" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Merge ...</field>
+        <field name="binding_model_id" ref="account.model_account_tax"/>
+        <field name="binding_view_types">list</field>
+        <field name="res_model">merge.account.tax.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="groups_id" eval="[(4, ref('account_merge.res_group_do_merge'))]"/>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
