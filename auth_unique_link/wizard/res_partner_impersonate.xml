@@ -48,14 +48,14 @@
         <field name="groups_id" eval="[(4,ref('auth_unique_link.group_impersonate'))]"/>
     </record>
 
-    <act_window id="act_window_res_partner_impersonate"
-        name="🧙‍♂️ Impersonate ..."
-        binding_model="res.partner"
-        binding_views="form"
-        res_model="res.partner.impersonate"
-        view_mode="form"
-        target="new"
-        groups="auth_unique_link.group_impersonate"
-    />
+    <record id="act_window_res_partner_impersonate" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Impersonate ...</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form</field>
+        <field name="res_model">res.partner.impersonate</field>
+        <field name="view_mode">form</field>
+        <field name="groups_id" eval="[(4, ref('auth_unique_link.group_impersonate'))]"/>
+        <field name="target">new</field>
+    </record>
     
 </odoo>
