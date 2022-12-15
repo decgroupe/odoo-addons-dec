@@ -1,7 +1,7 @@
 {
     'name': 'Mail Activity Redirection',
     'summary': 'Redirect activities to specific users',
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'author': 'DEC, Odoo Community Association (OCA)',
     'category': 'Social Network',
     'website': 'https://github.com/OCA/social',
