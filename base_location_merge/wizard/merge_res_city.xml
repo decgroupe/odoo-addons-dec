@@ -83,15 +83,15 @@
         </field>
     </record>
 
-    <act_window id="action_res_city_merge"
-        name="🧙‍♂️ Merge ..."
-        binding_model="res.city"
-        binding_views="list"
-        res_model="merge.res.city.wizard"
-        view_mode="form"
-        binding_type="action"
-        groups='res_group_base_location_do_merge'
-        target="new"
-    />
+    <record id="action_res_city_merge" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Merge ...</field>
+        <field name="binding_model_id" ref="base_location.model_res_city"/>
+        <field name="binding_view_types">list</field>
+        <field name="res_model">merge.res.city.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="groups_id" eval="[(4, ref('base_location_merge.res_group_base_location_do_merge'))]"/>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
