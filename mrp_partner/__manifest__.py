@@ -1,6 +1,6 @@
 {
     'name': 'Production Partner Info',
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Help to add fields related to partner like city",
