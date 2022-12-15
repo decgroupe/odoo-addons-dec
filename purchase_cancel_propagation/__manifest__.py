@@ -1,6 +1,6 @@
 {
     'name': 'Purchase cancel propagation',
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': '''Choose between simple delete or delete and propagate to cancel procurement''',
