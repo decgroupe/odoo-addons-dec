@@ -52,14 +52,14 @@
         <field name="target">new</field>
     </record>
 
-    <act_window id="act_window_stock_warehouse_orderpoint_simulator"
-        name="🧙‍♂️ Simulator ..."
-        binding_model="stock.warehouse.orderpoint"
-        binding_views="form"
-        res_model="stock.warehouse.orderpoint.simulator"
-        view_mode="form"
-        binding_type="action"
-        target="new"
-    />
+    <record id="act_window_stock_warehouse_orderpoint_simulator" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Simulator ...</field>
+        <field name="binding_model_id" ref="stock.model_stock_warehouse_orderpoint"/>
+        <field name="binding_view_types">form</field>
+        <field name="res_model">stock.warehouse.orderpoint.simulator</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="target">new</field>
+    </record>
     
 </odoo>
