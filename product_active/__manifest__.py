@@ -1,6 +1,6 @@
 {
     'name': 'Product active', # Duplicated of OCA product_active_propagate ?
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': '''Active state change propagation to template''',
