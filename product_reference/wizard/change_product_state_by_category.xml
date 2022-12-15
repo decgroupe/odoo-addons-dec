@@ -33,14 +33,14 @@
         </field>
     </record>
 
-    <act_window id="act_window_change_product_state_by_category"
-        name="🧙‍♂️ Change product state by category ..."
-        res_model="change.product.state.by.category"
-        view_mode="form"
-        view_id="change_product_state_by_category_form_view"
-        target="new"
-        context="{}"
-    />
+    <record id="act_window_change_product_state_by_category" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Change product state by category ...</field>
+        <field name="res_model">change.product.state.by.category</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_reference.change_product_state_by_category_form_view"/>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
 
     <!-- <act_window id="act_window_swap_production"
         name="🧙‍♂️ Swap this manufacturing order ..."
