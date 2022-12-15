@@ -51,14 +51,14 @@
         </field>
     </record>
 
-    <act_window id="act_window_replace_bom_components"
-        name="🧙‍♂️ Replace components ..."
-        binding_model="mrp.bom"
-        binding_views="list"
-        res_model="replace.bom.components"
-        view_mode="form"
-        binding_type="action"
-        target="new"
-    />
+    <record id="act_window_replace_bom_components" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Replace components ...</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom"/>
+        <field name="binding_view_types">list</field>
+        <field name="res_model">replace.bom.components</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
