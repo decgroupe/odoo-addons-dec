@@ -1,6 +1,6 @@
 {
     'name': 'Product Form Quotation Link',
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'author':
         'DEC, Yann Papouin, ACSONE SA/NV, '
         'Odoo Community Association (OCA)',
