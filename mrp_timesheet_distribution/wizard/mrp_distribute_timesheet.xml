@@ -91,14 +91,14 @@
         </field>
     </record>
 
-    <act_window id="act_window_distribute_timesheet"
-        name="🧙‍♂️ Distribute timesheet ..."
-        binding_model="mrp.production"
-        binding_views="list"
-        res_model="mrp.distribute.timesheet"
-        view_mode="form"
-        binding_type="action"
-        target="new"
-    />
+    <record id="act_window_distribute_timesheet" model="ir.actions.act_window">
+        <field name="name">🧙‍♂️ Distribute timesheet ...</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_view_types">list</field>
+        <field name="res_model">mrp.distribute.timesheet</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
