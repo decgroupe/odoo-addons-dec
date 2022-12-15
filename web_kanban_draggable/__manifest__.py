@@ -28,7 +28,7 @@ Disable DragDrop/Sorting In Specific Kanban View
   </kanban>
     """,
 
-    'version': "13.0.1.0.0",
+    'version': "14.0.1.0.0",
     'category': 'Extra Tools',
     'summary': 'Provides the ability to control drag drop and sorting behavior in kanban views.',
     'author': 'Mahmoud Fakhreddine,'
