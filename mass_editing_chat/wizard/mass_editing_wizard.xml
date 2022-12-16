@@ -6,7 +6,7 @@
         <field name="model">mass.editing.wizard</field>
         <field name="inherit_id" ref="mass_editing.view_mass_editing_wizard_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='custom_info']" position="after">
+            <xpath expr="//group[1]" position="after">
                 <group name="group_chat" attrs="{'invisible': [('chat_enabled', '=', False)]}">
                     <field name="chat_enabled" invisible="1"/>
                     <field name="chat_message" />
