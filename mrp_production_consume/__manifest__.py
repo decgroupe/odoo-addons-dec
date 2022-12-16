@@ -12,5 +12,5 @@
         'views/mrp_production.xml',
         'wizard/mrp_consume.xml',
     ],
-    'installable': True
+    'installable': False
 }
