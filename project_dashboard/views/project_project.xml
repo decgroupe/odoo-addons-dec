@@ -32,7 +32,7 @@
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
-      <xpath expr="//group[@name='misc']" position="inside">
+      <xpath expr="//group[@name='extra_settings']" position="inside">
         <group string="Dashboard" groups="base.group_no_one">
           <field name="dashboard_sequence" groups="base.group_no_one"/>
         </group>
