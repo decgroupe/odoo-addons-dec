@@ -11,5 +11,6 @@ class ProductTemplate(models.Model):
         selection_add=[(
             'block_confirm',
             'Block Confirmation Message',
-        )]
+        )],
+        ondelete={'block_confirm': 'set default'},
     )
