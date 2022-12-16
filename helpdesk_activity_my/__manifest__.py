@@ -10,7 +10,7 @@
         [
             'helpdesk_mgmt',
             'web_widget_mail_list_activity',
-            'web_widget_remaining_days',
+            'web',
             'mail_activity_my',
         ],
     'data': ['views/helpdesk_ticket.xml', ],

@@ -8,7 +8,7 @@
         'sale',
         'sale_stock',
         'sale_delivery_date',
-        'web_widget_remaining_days',
+        'web',
     ],
     'data': ['views/res_partner.xml', ],
     'installable': True
