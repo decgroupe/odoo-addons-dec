@@ -11,6 +11,7 @@ class ProductTemplate(models.Model):
         selection_add=[
             ("create_application_pass", "Create an application pass")
         ],
+        ondelete={'block_confirm': 'set default'},
     )
     license_pack_id = fields.Many2one(
         related='product_variant_ids.license_pack_id',
