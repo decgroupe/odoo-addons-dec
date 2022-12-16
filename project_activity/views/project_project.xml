@@ -4,7 +4,7 @@
     <record model="ir.ui.view" id="project_project_form">
         <field name="name">project.project.form@project_activity</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="inherit_id" ref="project_mail_chatter.project_form"/>
         <field name="arch" type="xml">
             <field name="message_ids" position="before">
                 <field name="activity_ids" widget="mail_activity"/>
