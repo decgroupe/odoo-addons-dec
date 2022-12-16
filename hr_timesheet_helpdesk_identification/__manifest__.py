@@ -6,6 +6,7 @@
     'summary': "Add identification data from helpdesk",
     'depends': [
         'hr_timesheet',
+        'helpdesk_mgmt_timesheet',
         'helpdesk_identification',
     ],
     'data': ['views/account_analytic_line.xml', ],
