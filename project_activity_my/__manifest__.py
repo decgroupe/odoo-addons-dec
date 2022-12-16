@@ -11,7 +11,6 @@
             'project',
             'project_activity',
             'project_user',
-            'web_widget_mail_list_activity',
             'web',
             'mail_activity_my',
         ],

@@ -9,7 +9,6 @@
     'depends':
         [
             'helpdesk_mgmt',
-            'web_widget_mail_list_activity',
             'web',
             'mail_activity_my',
         ],
