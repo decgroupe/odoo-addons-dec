@@ -6,6 +6,7 @@
     'summary': "Manage software licenses (pass)",
     'depends': [
         'sale_timesheet',
+        'sale_project',
         'software_license_pass',
     ],
     'data':

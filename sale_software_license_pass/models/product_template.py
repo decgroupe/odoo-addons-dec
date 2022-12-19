@@ -13,23 +13,6 @@ class ProductTemplate(models.Model):
         ],
         ondelete={'block_confirm': 'set default'},
     )
-    license_pack_id = fields.Many2one(
-        related='product_variant_ids.license_pack_id',
-        readonly=False,
-    )
-
-    def write(self, vals):
-        """We remove from product.product to avoid error."""
-        _vals = vals.copy()
-        if vals.get('license_pack_id', False):
-            self.product_variant_ids.write(
-                {
-                    'license_pack_id':
-                        vals.get('license_pack_id')
-                }
-            )
-            _vals.pop('license_pack_id')
-        return super().write(_vals)
 
     @api.onchange('service_tracking')
     def _onchange_service_tracking(self):

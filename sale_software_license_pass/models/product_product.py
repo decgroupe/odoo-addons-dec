@@ -7,12 +7,6 @@ from odoo import fields, models, api
 class Product(models.Model):
     _inherit = "product.product"
 
-    license_pack_id = fields.Many2one(
-        comodel_name='software.license.pack',
-        string='Application Pack',
-        help='Pack used to generate a new Application Pass.'
-    )
-
     @api.onchange('service_tracking')
     def _onchange_service_tracking(self):
         """This mimicks upstream core that duplicates this code."""
