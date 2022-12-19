@@ -7,6 +7,7 @@
     'depends': [
         'product',
         'product_pricelist',
+        'purchase_pricelist', # Needed for type sale/purchase
     ],
     'data':
         [
