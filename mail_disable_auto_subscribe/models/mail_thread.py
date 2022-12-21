@@ -37,8 +37,6 @@ class MailThread(models.AbstractModel):
         self,
         message,
         msg_vals,
-        model_description=False,
-        mail_auto_delete=True
     ):
         if msg_vals['author_id'] and msg_vals['model'] and self.ids:
             partner_id = self.env['res.partner'].browse(msg_vals['author_id'])
@@ -47,9 +45,7 @@ class MailThread(models.AbstractModel):
 
         return super(MailThread, self)._message_post_after_hook(
             message,
-            msg_vals,
-            model_description=model_description,
-            mail_auto_delete=mail_auto_delete
+            msg_vals
         )
 
     def _notify_classify_recipients(self, message, recipient_data):
