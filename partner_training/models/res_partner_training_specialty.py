@@ -64,10 +64,11 @@ class ResPartnerTrainingSpecialty(models.Model):
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
-        original_rec_name = self._rec_name
-        self._rec_name = "search_name"
+        cls = type(self)
+        original_rec_name = cls._rec_name
+        cls._rec_name = "search_name"
         result = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        self._rec_name = original_rec_name
+        cls._rec_name = original_rec_name
         return result
