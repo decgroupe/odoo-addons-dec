@@ -56,3 +56,6 @@ class SaleOrder(models.Model):
                 order.expected_last_date = fields.Datetime.to_string(
                     expected_date
                 )
+            else:
+                order.expected_last_date = False
+
