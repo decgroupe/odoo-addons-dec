@@ -30,3 +30,6 @@ class ProductProduct(models.Model):
     def action_view_template(self):
         action = self.mapped('product_tmpl_id').action_view()
         return action
+
+    def action_view_variants(self):
+        return self.action_view()
