@@ -105,11 +105,11 @@ class RefCategory(models.Model):
             positive_operators = ['=', 'ilike', '=ilike', 'like', '=like']
             category_ids = []
             if operator in positive_operators:
-                category_ids = self._search(
+                category_ids = list(self._search(
                     [('code', '=', name)] + args,
                     limit=limit,
                     access_rights_uid=name_get_uid
-                )
+                ))
             if not category_ids and operator not in expression.NEGATIVE_TERM_OPERATORS:
                 # Do not merge the 2 next lines into one single search, SQL
                 # search performance would be abysmal on a database with
@@ -118,21 +118,21 @@ class RefCategory(models.Model):
                 # 'name' lookup results come from the ir.translation table
                 # Performing a quick memory merge of ids in Python will give
                 # much better performance
-                category_ids = self._search(
+                category_ids = list(self._search(
                     args + [('code', operator, name)], limit=limit
-                )
+                ))
                 if not limit or len(category_ids) < limit:
                     # we may underrun the limit because of dupes in the
                     # results, that's fine
                     limit2 = (limit - len(category_ids)) if limit else False
-                    product2_ids = self._search(
+                    product2_ids = list(self._search(
                         args + [
                             ('name', operator, name),
                             ('id', 'not in', category_ids)
                         ],
                         limit=limit2,
                         access_rights_uid=name_get_uid
-                    )
+                    ))
                     category_ids.extend(product2_ids)
             elif not category_ids and operator in expression.NEGATIVE_TERM_OPERATORS:
                 domain = expression.OR(
@@ -150,20 +150,20 @@ class RefCategory(models.Model):
                     ]
                 )
                 domain = expression.AND([args, domain])
-                category_ids = self._search(
+                category_ids = list(self._search(
                     domain, limit=limit, access_rights_uid=name_get_uid
-                )
+                ))
             if not category_ids and operator in positive_operators:
                 ptrn = re.compile('(\[(.*?)\])')
                 res = ptrn.search(name)
                 if res:
-                    category_ids = self._search(
+                    category_ids = list(self._search(
                         [('code', '=', res.group(2))] + args,
                         limit=limit,
                         access_rights_uid=name_get_uid
-                    )
+                    ))
         else:
-            category_ids = self._search(
+            category_ids = list(self._search(
                 args, limit=limit, access_rights_uid=name_get_uid
-            )
+            ))
         return self.browse(category_ids).name_get()
