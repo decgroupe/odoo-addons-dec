@@ -23,10 +23,9 @@ class AuthUniqueLink(Home):
     # #########################################################################
 
     @http.route()
-    def web_login(self, redirect=None, *args, **kw):
+    def web_login(self, *args, **kw):
         login_success = request.params.get('login_success', False)
-        response = super(AuthUniqueLink,
-                         self).web_login(redirect=redirect, *args, **kw)
+        response = super(AuthUniqueLink, self).web_login(*args, **kw)
         request.params['login_success'] = login_success
         return response
 
