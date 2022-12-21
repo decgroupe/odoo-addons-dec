@@ -15,33 +15,26 @@ class MrpBom(models.Model):
         product_tmpl=None,
         product=None,
         picking_type=None,
-        company_id=False
+        company_id=False,
+        bom_type=False
     ):
-        """ Finds BoM for particular product, picking and company """
-        if product:
-            if not product_tmpl:
-                product_tmpl = product.product_tmpl_id
-            domain = [
-                '|', ('product_id', '=', product.id), '&',
-                ('product_id', '=', False),
-                ('product_tmpl_id', '=', product_tmpl.id)
-            ]
-        elif product_tmpl:
-            domain = [('product_tmpl_id', '=', product_tmpl.id)]
-        else:
-            # neither product nor template, makes no sense to search
-            return False
-        if picking_type:
-            domain += [
-                '|', ('picking_type_id', '=', picking_type.id),
-                ('picking_type_id', '=', False)
-            ]
-        if company_id or self.env.context.get('company_id'):
-            domain = domain + [
-                (
-                    'company_id', '=', company_id or
-                    self.env.context.get('company_id')
-                )
-            ]
-        # order to prioritize bom with product_id over the one without
-        return self.search(domain, order='sequence desc, product_id', limit=1)
+        return super(
+            MrpBom, self.with_context(mrp_bom_order_override_search_order=True)
+        )._bom_find(
+            product_tmpl=product_tmpl,
+            product=product,
+            picking_type=picking_type,
+            company_id=company_id,
+            bom_type=bom_type
+        )
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        if self.env.context.get(
+            'mrp_bom_order_override_search_order', False
+        ) is True:
+            order = "sequence desc, product_id"
+        res = super(MrpBom, self).search(
+            args, offset=offset, limit=limit, order=order, count=count
+        )
+        return res
