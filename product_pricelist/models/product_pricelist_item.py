@@ -1,7 +1,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2020
 
-
 from odoo import api, fields, models
 
 
@@ -18,8 +17,7 @@ class ProductPricelistItem(models.Model):
         'Sequence',
         required=True,
         default=5,
-        help=
-        "Gives the order in which the pricelist items will be checked. \
+        help="Gives the order in which the pricelist items will be checked. \
 The evaluation gives highest priority to lowest sequence."
     )
 
@@ -28,5 +26,6 @@ The evaluation gives highest priority to lowest sequence."
         'price_surcharge', 'note')
     def _get_pricelist_item_name_price(self):
         super()._get_pricelist_item_name_price()
-        if self.note:
-            self.name = ('%s 🢒 %s') % (self.note, self.name)
+        for rec in self:
+            if rec.note:
+                rec.name = ('%s 🢒 %s') % (rec.note, rec.name)
