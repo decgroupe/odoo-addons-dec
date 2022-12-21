@@ -88,11 +88,11 @@ class ResUsers(models.Model):
                 self._check_local_password(pw)
                 self._set_encrypted_local_password(user.id, ctx.encrypt(pw))
 
-    def _check_credentials(self, password):
+    def _check_credentials(self, password, env):
         try:
             is_local = ipaddress.ip_address(self._get_ip_address()).is_private
             return super(ResUsers, self.with_context(bypass_mfa=is_local)).\
-                _check_credentials(password)
+                _check_credentials(password, env)
         except AccessDenied as e:
             valid = False
             if self.user_has_groups('auth_local_password.group_local_password'):
