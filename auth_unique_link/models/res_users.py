@@ -195,9 +195,9 @@ class ResUsers(models.Model):
 
         return True
 
-    def _check_credentials(self, password):
+    def _check_credentials(self, password, env):
         try:
-            return super(ResUsers, self)._check_credentials(password)
+            return super(ResUsers, self)._check_credentials(password, env)
         except AccessDenied:
             res = self._signin_link_retrieve_user(
                 token=password, uid=self.env.uid, check_validity=True
