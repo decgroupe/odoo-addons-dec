@@ -69,18 +69,20 @@ class CrmLead(models.Model):
                 )
 
     def name_get(self):
-        original_rec_name = self._rec_name
-        self._rec_name = self._rec_name_get
+        cls = type(self)
+        original_rec_name = cls._rec_name
+        cls._rec_name = cls._rec_name_get
         result = super(CrmLead, self).name_get()
-        self._rec_name = original_rec_name
+        cls._rec_name = original_rec_name
         return result
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
-        original_rec_name = self._rec_name
-        self._rec_name = self._rec_name_search
+        cls = type(self)
+        original_rec_name = cls._rec_name
+        cls._rec_name = self._rec_name_search
         result = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        self._rec_name = original_rec_name
+        cls._rec_name = original_rec_name
         return result
