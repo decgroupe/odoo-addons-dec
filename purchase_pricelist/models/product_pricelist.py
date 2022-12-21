@@ -47,7 +47,7 @@ class ProductPricelist(models.Model):
             force_company=company_id or self.env.user.company_id.id
         )
         # if no specific property, try to find a fitting pricelist
-        result = Property.get_multi(
+        result = Property._get_multi(
             'property_product_pricelist_purchase', Partner._name, partner_ids
         )
         return result
