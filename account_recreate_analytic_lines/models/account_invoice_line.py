@@ -4,7 +4,7 @@
 import logging
 
 from odoo import api, models
-from odoo.addons.product_analytic.models.account_invoice import INV_TYPE_MAP
+from odoo.addons.product_analytic.models.account_move import INV_TYPE_MAP
 
 _logger = logging.getLogger(__name__)
 
@@ -12,12 +12,12 @@ class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
     @api.model
-    def _get_product_analytic_account(self, product_id, invoice_type):
+    def _get_product_analytic_account(self, product_id, move_type):
         res = False
-        if product_id and invoice_type:
+        if product_id and move_type:
             ana_accounts = product_id.product_tmpl_id.\
                 _get_product_analytic_accounts()
-            ana_account = ana_accounts[INV_TYPE_MAP[invoice_type]]
+            ana_account = ana_accounts[INV_TYPE_MAP[move_type]]
             res = ana_account.id
         return res
 
@@ -32,5 +32,5 @@ class AccountMoveLine(models.Model):
                 continue
             line.account_analytic_id = self._get_product_analytic_account(
                 line.product_id,
-                line.invoice_id.type,
+                line.move_type,
             )

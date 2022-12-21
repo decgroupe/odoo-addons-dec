@@ -6,7 +6,7 @@ from odoo.exceptions import UserError
 
 
 class AccountInvoiceUpdate(models.TransientModel):
-    _inherit = 'account.invoice.update'
+    _inherit = 'account.move.update'
 
     def _reopen(self):
         return {
@@ -49,7 +49,7 @@ class AccountInvoiceUpdate(models.TransientModel):
         return move_lines
 
 class AccountInvoiceLineUpdate(models.TransientModel):
-    _inherit = 'account.invoice.line.update'
+    _inherit = 'account.move.line.update'
 
     product_id = fields.Many2one(
         'product.product',
