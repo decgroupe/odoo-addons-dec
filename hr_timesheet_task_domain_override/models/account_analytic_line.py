@@ -8,8 +8,8 @@ class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
     @api.onchange('project_id')
-    def onchange_project_id(self):
-        res = super().onchange_project_id()
+    def _onchange_project_id(self):
+        res = super()._onchange_project_id()
         # Force domain reset to allow selection of any task because
         # hr_timesheet_task_domain do not allow selecting closed tasks
         if 'domain' in res and 'task_id' in res['domain']:

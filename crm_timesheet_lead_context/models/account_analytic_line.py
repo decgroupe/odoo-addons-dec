@@ -21,8 +21,8 @@ class AccountAnalyticLine(models.Model):
             super()._onchange_lead_id()
 
     @api.onchange('project_id')
-    def onchange_project_id(self):
-        res = super().onchange_project_id()
+    def _onchange_project_id(self):
+        res = super()._onchange_project_id()
         if 'domain' in res:
             filter = []
             if self.project_id:
