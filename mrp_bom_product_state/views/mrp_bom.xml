@@ -30,7 +30,7 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.view_mrp_bom_filter"/>
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='routings']" position="after">
+            <xpath expr="//filter[@name='default_unit_of_measure']" position="after">
                 <filter string="Product State" name="group_product_state" context="{'group_by':'product_state'}"/>
             </xpath>
         </field>
