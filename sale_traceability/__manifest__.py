@@ -6,6 +6,9 @@
     'category': 'Hidden',
     'summary': '''Base module for sale traceability''',
     'depends': ['sale'],
-    'data': ['security/ir_module_category.xml', ],
+    'data': [
+        'security/ir_module_category.xml',
+        'views/sale_order.xml',
+    ],
     'installable': True
 }
