@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="sale.view_quotation_tree"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_shipping_id"/>
-                <field name="partner_shipping_zip_id" class="d_partner_shipping_zip_id"/>
+                <field name="partner_shipping_id" optional="hide"/>
+                <field name="partner_shipping_zip_id" optional="show" class="d_partner_shipping_zip_id"/>
             </field>
         </field>
     </record>
@@ -19,8 +19,8 @@
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_shipping_id"/>
-                <field name="partner_shipping_zip_id" class="d_partner_shipping_zip_id"/>
+                <field name="partner_shipping_id" optional="hide"/>
+                <field name="partner_shipping_zip_id" optional="show" class="d_partner_shipping_zip_id"/>
             </field>
         </field>
     </record>
