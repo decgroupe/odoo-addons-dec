@@ -20,9 +20,9 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="priority" eval="40"/>
         <field name="arch" type="xml">
-            <field name="routing_id" position="after">
+            <xpath expr="//page[@name='miscellaneous']//field[@name='picking_type_id']" position="after">
                 <field name="purchase_progress" widget="progressbar"/>
-            </field>
+            </xpath>
         </field>
     </record>
 
