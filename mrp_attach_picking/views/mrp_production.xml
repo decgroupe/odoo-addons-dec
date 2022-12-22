@@ -7,7 +7,7 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='finished_move_line_ids']" position="after">
+            <xpath expr="//page[@name='miscellaneous']//field[@name='picking_type_id']" position="after">
                 <field name="allow_attach_picking" invisible="1"/>
                 <button 
                     name="%(mrp_attach_picking.act_mrp_attach_picking)d"
