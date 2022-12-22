@@ -7,7 +7,7 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
         <field name="arch" type="xml">
-            <field name="routing_id" position="after">
+            <field name="state" position="after">
                 <field name="planned_hours" widget="float_time" groups="hr_timesheet.group_hr_timesheet_user" />
                 <field name="total_hours" widget="float_time" groups="hr_timesheet.group_hr_timesheet_user" />
                 <field name="remaining_hours" widget="float_time" groups="hr_timesheet.group_hr_timesheet_user" />
@@ -20,7 +20,7 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
         <field name="arch" type="xml">
-            <filter name="late" position="before">
+            <filter name="planning_issues" position="before">
                 <filter name="filter_timesheet_allowed" string="Timesheet allowed"
                         groups="hr_timesheet.group_hr_timesheet_user"
                         domain="[('project_id', '!=', False)]"/>
@@ -40,7 +40,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="priority" eval="20" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='picking_type_id']" position="before">
+            <xpath expr="//page[@name='miscellaneous']//field[@name='picking_type_id']" position="before">
                 <field name="allow_timesheets"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
