@@ -9,8 +9,8 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     invoice_lines = fields.Many2many(
-        domain= """[
-            ('invoice_type', '=', 'out_invoice'),
+        domain="""[
+            ('move_type', '=', 'out_invoice'),
             '|',
             ('product_id', '=', product_id),
             ('product_id', '=', False),
