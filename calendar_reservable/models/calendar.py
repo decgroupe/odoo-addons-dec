@@ -8,32 +8,30 @@ class Meeting(models.Model):
     _inherit = 'calendar.event'
 
     @api.model
-    def _search(
-        self,
-        args,
-        offset=0,
-        limit=None,
-        order=None,
-        count=False,
-        access_rights_uid=None
-    ):
-        instance = self
-        if self._context.get('reservable'):
-            if self._context.get('mymeetings'):
-                args += [
-                    ('|'),
-                    ('partner_ids', 'in', self.env.user.partner_id.ids),
-                    ('partner_ids.function', 'ilike', "reservable"),
-                ]
-                instance = self.with_context(mymeetings=False)
-            else:
-                args += [('partner_ids.function', 'ilike', "reservable")]
-
-        return super(Meeting, instance)._search(
-            args,
-            offset=offset,
-            limit=limit,
-            order=order,
-            count=count,
-            access_rights_uid=access_rights_uid
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        res = super(Meeting, self).search(
+            args, offset=offset, limit=limit, order=order, count=count
         )
+        if self._context.get('reservable') and not limit and not count:
+            start_arg = False
+            stop_arg = False
+            for arg in args:
+                if arg and len(arg) == 3:
+                    if arg[0] == 'start':
+                        start_arg = arg
+                    if arg[0] == 'stop':
+                        stop_arg = arg
+
+            if start_arg and stop_arg:
+                reservable_args = [
+                    start_arg, stop_arg,
+                    ('partner_ids.function', 'ilike', "reservable")
+                ]
+                res |= super(Meeting, self).search(
+                    reservable_args,
+                    offset=offset,
+                    limit=limit,
+                    order=order,
+                    count=count
+                )
+        return res

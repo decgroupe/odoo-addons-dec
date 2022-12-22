@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="view_calendar_event_search">
-        <field name="name">calendar.event.search@calendar_workflow_dec</field>
+        <field name="name">calendar.event.search@calendar_reservable</field>
         <field name="model">calendar.event</field>
         <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
         <field name="arch" type="xml">
