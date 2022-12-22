@@ -7,7 +7,6 @@
     'summary': '''Show related tasks on sale order line form''',
     'depends': [
         'sale_traceability',
-        'sale_row_layout',
         'sale_timesheet',
     ],
     #'force_migration':'12.0.0.0.0',
