@@ -15,8 +15,8 @@ class StockMove(models.Model):
         copy=False,
     )
 
-    def _action_done(self):
-        res = super()._action_done()
+    def _action_done(self, cancel_backorder=False):
+        res = super()._action_done(cancel_backorder=cancel_backorder)
         for move in res:
             move._action_auto_validate()
         return res
