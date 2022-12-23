@@ -14,8 +14,7 @@ class ProcurementGroup(models.Model):
     _inherit = 'procurement.group'
 
     @api.model
-    def run(self, product_id, product_qty, product_uom, location_id, \
-        name, origin, values):
+    def run(self, procurements, raise_user_error=True):
         """ This method override existing one to catch UserError and call
         a custom implementation of _log_next_activity to redirect the error
         according to settings of this module.
@@ -24,8 +23,9 @@ class ProcurementGroup(models.Model):
         res = False
         try:
             with self._cr.savepoint():
-                res = super().run(product_id, product_qty, product_uom, \
-                    location_id, name, origin, values)
+                res = super().run(
+                    procurements, raise_user_error=raise_user_error
+                )
         except UserError as user_error:
             # Try to intercept and then re-raise exception
             self._try_intercept_exception(user_error, product_id)
