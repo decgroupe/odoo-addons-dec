@@ -121,7 +121,7 @@ class Product(models.Model):
                     'what': ('in', )
                 }
             )
-            rec.incoming_qty = self.with_context(c) \
+            rec.legacy_incoming_qty = self.with_context(c) \
                 .get_product_available().get(rec.id, 0.0)
 
         return res
