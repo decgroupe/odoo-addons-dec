@@ -1,5 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_software_license_internal_user,Read access to software license for Internal User,model_software_license,base.group_user,1,0,0,0
 access_software_license_user,Read and write access to software license for User,model_software_license,software.group_software_user,1,1,0,0
 access_software_license_manager,Full access to software license for Manager,model_software_license,software.group_software_manager,1,1,1,1
+access_software_license_hardware_internal_user,Read access to software license hardwarefor Internal User,model_software_license_hardware,base.group_user,1,0,0,0
 access_software_license_hardware_user,Read and write access to software license hardware for User,model_software_license_hardware,software.group_software_user,1,1,0,0
 access_software_license_hardware_manager,Full access to software license hardware for Manager,model_software_license_hardware,software.group_software_manager,1,1,1,1
