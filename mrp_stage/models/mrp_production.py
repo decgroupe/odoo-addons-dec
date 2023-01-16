@@ -55,9 +55,18 @@ class MrpProduction(models.Model):
             'cancel': self.env.ref('mrp_stage.stage_cancel'),
         }
 
-    @api.model
-    def _get_issue_activity(self):
-        return self.env.ref('mrp_stage.mail_activity_production_issue')
+    def _get_stage_from_activity(self):
+        self.ensure_one()
+        activity_ids = self.activity_ids
+        res = False
+        for activity_id in activity_ids:
+            if activity_id.activity_type_id.production_stage_id:
+                seq = activity_id.activity_type_id.production_stage_id.sequence
+                if not res or seq > res.sequence:
+                    res = activity_id.activity_type_id
+        if res:
+            res = res.production_stage_id
+        return res
 
     @api.multi
     @api.depends(
@@ -65,16 +74,12 @@ class MrpProduction(models.Model):
         'move_finished_ids.move_dest_ids.state'
     )
     def _compute_stage_id(self):
-        activity_type_issue = self._get_issue_activity()
         stages = self._get_stages_ref()
         for rec in self:
             if rec.state in stages:
                 rec.stage_id = stages[rec.state]
             if rec.state in ('confirmed', 'planned', 'progress'):
-                if rec.activity_ids.filtered(
-                    lambda x: x.activity_type_id.id == activity_type_issue.id
-                ):
-                    rec.stage_id = stages['issue']
+                rec.stage_id = rec._get_stage_from_activity()
             elif rec.state == 'done':
                 move_finished_ids = rec.move_finished_ids.filtered(
                     lambda x: x.state in ('done', 'cancel')
