@@ -35,6 +35,10 @@ class ProductionStage(models.Model):
         string="To-do",
         help="This stage is considered to have actions needed",
     )
+    activity_type_id = fields.Many2one(
+        comodel_name="mail.activity.type",
+        string="Activity Type",
+    )
 
     _sql_constraints = [
         ('code_uniq', 'unique (code)', "Code must be unique !"),

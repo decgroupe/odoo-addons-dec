@@ -17,6 +17,8 @@
             'data/mrp_production_stage.xml',
             'views/assets.xml',
             'views/mrp_production.xml',
+            'views/mail_activity_type.xml',
+            'views/mrp_production_stage.xml',
         ],
     'installable': True
 }
