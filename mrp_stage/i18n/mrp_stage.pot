@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-07 15:16+0000\n"
-"PO-Revision-Date: 2022-09-07 15:16+0000\n"
+"POT-Creation-Date: 2023-01-16 15:32+0000\n"
+"PO-Revision-Date: 2023-01-16 15:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,23 @@ msgstr ""
 #. module: mrp_stage
 #: model:ir.model,name:mrp_stage.model_mail_activity
 msgid "Activity"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.model,name:mrp_stage.model_mail_activity_type
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__activity_type_id
+msgid "Activity Type"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.actions.act_window,name:mrp_stage.mail_activity_type_action_config_mrp
+#: model:ir.ui.menu,name:mrp_stage.menu_mrp_config_activity_type
+msgid "Activity Types"
+msgstr ""
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+msgid "Add a description..."
 msgstr ""
 
 #. module: mrp_stage
@@ -92,6 +109,7 @@ msgstr ""
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__display_name
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__display_name
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__display_name
 msgid "Display Name"
@@ -119,6 +137,7 @@ msgstr ""
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__id
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__id
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__id
 msgid "ID"
@@ -142,6 +161,7 @@ msgstr ""
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mail_activity____last_update
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type____last_update
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage____last_update
 msgid "Last Modified on"
@@ -160,6 +180,11 @@ msgstr ""
 #. module: mrp_stage
 #: model:ir.actions.act_window,name:mrp_stage.act_mrp_production_staged
 msgid "Manufacturing Orders"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__res_model_model
+msgid "Model Technical Name"
 msgstr ""
 
 #. module: mrp_stage
@@ -184,7 +209,17 @@ msgstr ""
 
 #. module: mrp_stage
 #: model:ir.model,name:mrp_stage.model_mrp_production_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__production_stage_id
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_tree_view
 msgid "Production Stage"
+msgstr ""
+
+#. module: mrp_stage
+#: model:ir.actions.act_window,name:mrp_stage.action_mrp_production_stage_config
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__production_stage_ids
+#: model:ir.ui.menu,name:mrp_stage.menu_mrp_production_stage_config
+msgid "Production Stages"
 msgstr ""
 
 #. module: mrp_stage
@@ -201,6 +236,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__stage_id
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
 msgid "Stage"
+msgstr ""
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+msgid "Stage Description"
 msgstr ""
 
 #. module: mrp_stage
@@ -252,6 +292,11 @@ msgstr ""
 #. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production__stage_todo
 msgid "Used as a filter to only display production order linked to stages with to-do actions"
+msgstr ""
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+msgid "You can also add a description to help your coworkers understand the meaning and purpose of the stage."
 msgstr ""
 
 #. module: mrp_stage

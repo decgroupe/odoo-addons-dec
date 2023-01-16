@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-07 15:16+0000\n"
-"PO-Revision-Date: 2022-09-07 17:17+0200\n"
+"POT-Creation-Date: 2023-01-16 15:32+0000\n"
+"PO-Revision-Date: 2023-01-16 16:32+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -31,6 +31,23 @@ msgstr "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/
 #: model:ir.model,name:mrp_stage.model_mail_activity
 msgid "Activity"
 msgstr "Activité"
+
+#. module: mrp_stage
+#: model:ir.model,name:mrp_stage.model_mail_activity_type
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__activity_type_id
+msgid "Activity Type"
+msgstr "Type d'activité"
+
+#. module: mrp_stage
+#: model:ir.actions.act_window,name:mrp_stage.mail_activity_type_action_config_mrp
+#: model:ir.ui.menu,name:mrp_stage.menu_mrp_config_activity_type
+msgid "Activity Types"
+msgstr "Type d'activités"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+msgid "Add a description..."
+msgstr "Ajoutez une description..."
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
@@ -94,6 +111,7 @@ msgstr "Description"
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__display_name
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__display_name
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__display_name
 msgid "Display Name"
@@ -121,6 +139,7 @@ msgstr "Repliée dans la vue Kanban"
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__id
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__id
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__id
 msgid "ID"
@@ -144,6 +163,7 @@ msgstr "Incident"
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mail_activity____last_update
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type____last_update
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production____last_update
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage____last_update
 msgid "Last Modified on"
@@ -165,9 +185,14 @@ msgid "Manufacturing Orders"
 msgstr "Fabrications"
 
 #. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__res_model_model
+msgid "Model Technical Name"
+msgstr "Nom technique du modèle"
+
+#. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
 msgid "My Orders"
-msgstr "Mes productions"
+msgstr "Mes fabrications"
 
 #. module: mrp_stage
 #: model:mrp.production.stage,name:mrp_stage.stage_planned
@@ -186,8 +211,18 @@ msgstr "Fabrication"
 
 #. module: mrp_stage
 #: model:ir.model,name:mrp_stage.model_mrp_production_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__production_stage_id
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_tree_view
 msgid "Production Stage"
-msgstr "Phase de production"
+msgstr "Étape de fabrication"
+
+#. module: mrp_stage
+#: model:ir.actions.act_window,name:mrp_stage.action_mrp_production_stage_config
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__production_stage_ids
+#: model:ir.ui.menu,name:mrp_stage.menu_mrp_production_stage_config
+msgid "Production Stages"
+msgstr "Étapes de fabrication"
 
 #. module: mrp_stage
 #: model:mrp.production.stage,name:mrp_stage.stage_dispatch_ready
@@ -204,6 +239,11 @@ msgstr "Séquence"
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
 msgid "Stage"
 msgstr "Étape"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+msgid "Stage Description"
+msgstr "Description de l'étape"
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__name
@@ -257,6 +297,11 @@ msgid "Used as a filter to only display production order linked to stages with t
 msgstr "Utilisé comme un filtre pour afficher uniquement les ordres de production liés aux étapes avec des actions à faire"
 
 #. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
+msgid "You can also add a description to help your coworkers understand the meaning and purpose of the stage."
+msgstr "Vous pouvez aussi ajouter une description pour aider vos co-équipiers à comprendre la signification et le but de cette étape."
+
+#. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "oe_kanban_text_red"
 msgstr "oe_kanban_text_red"
@@ -265,3 +310,11 @@ msgstr "oe_kanban_text_red"
 #: model:ir.actions.server,name:mrp_stage.action_recompute_stage
 msgid "⚡️ Recompute Stage Assignment"
 msgstr "⚡️ Recalculer l'affectation d'étape"
+
+#, fuzzy
+#~ msgid "Production State"
+#~ msgstr "Phase de production"
+
+#, fuzzy
+#~ msgid "Production States"
+#~ msgstr "Phase de production"

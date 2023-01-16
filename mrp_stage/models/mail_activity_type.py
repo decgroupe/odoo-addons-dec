@@ -17,12 +17,12 @@ class MailActivityType(models.Model):
     production_stage_ids = fields.One2many(
         comodel_name="mrp.production.stage",
         inverse_name="activity_type_id",
-        string="Production States",
+        string="Production Stages",
     )
 
     production_stage_id = fields.Many2one(
         comodel_name="mrp.production.stage",
-        string="Production State",
+        string="Production Stage",
         compute="_compute_production_stage_id"
     )
 
