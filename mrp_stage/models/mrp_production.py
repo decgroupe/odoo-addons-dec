@@ -79,7 +79,9 @@ class MrpProduction(models.Model):
             if rec.state in stages:
                 rec.stage_id = stages[rec.state]
             if rec.state in ('confirmed', 'planned', 'progress'):
-                rec.stage_id = rec._get_stage_from_activity()
+                activity_stage_id = rec._get_stage_from_activity()
+                if activity_stage_id:
+                    rec.stage_id = activity_stage_id
             elif rec.state == 'done':
                 move_finished_ids = rec.move_finished_ids.filtered(
                     lambda x: x.state in ('done', 'cancel')
