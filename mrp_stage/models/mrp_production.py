@@ -68,6 +68,26 @@ class MrpProduction(models.Model):
             res = res.production_stage_id
         return res
 
+    def _get_stage_from_state(self, stages):
+        self.ensure_one()
+        stage_id = False
+        if self.state in stages:
+            stage_id = stages[self.state]
+        if self.state in ('confirmed', 'planned', 'progress'):
+            activity_stage_id = self._get_stage_from_activity()
+            if activity_stage_id:
+                stage_id = activity_stage_id
+        elif self.state == 'done':
+            move_finished_ids = self.move_finished_ids.filtered(
+                lambda x: x.state in ('done', 'cancel')
+            )
+            picking_move_ids = move_finished_ids.mapped('move_dest_ids')
+            if not all(
+                m.state in ('done', 'cancel') for m in picking_move_ids
+            ):
+                stage_id = stages['dispatch_ready']
+        return stage_id
+
     @api.multi
     @api.depends(
         'state', 'activity_ids', 'activity_ids.state',
@@ -76,21 +96,9 @@ class MrpProduction(models.Model):
     def _compute_stage_id(self):
         stages = self._get_stages_ref()
         for rec in self:
-            if rec.state in stages:
-                rec.stage_id = stages[rec.state]
-            if rec.state in ('confirmed', 'planned', 'progress'):
-                activity_stage_id = rec._get_stage_from_activity()
-                if activity_stage_id:
-                    rec.stage_id = activity_stage_id
-            elif rec.state == 'done':
-                move_finished_ids = rec.move_finished_ids.filtered(
-                    lambda x: x.state in ('done', 'cancel')
-                )
-                picking_move_ids = move_finished_ids.mapped('move_dest_ids')
-                if not all(
-                    m.state in ('done', 'cancel') for m in picking_move_ids
-                ):
-                    rec.stage_id = stages['dispatch_ready']
+            stage_id = rec._get_stage_from_state(stages)
+            if stage_id:
+                rec.stage_id = stage_id
 
     @api.multi
     def action_recompute_stage_id(self):

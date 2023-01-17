@@ -68,7 +68,7 @@ class MrpProduction(models.Model):
     @api.multi
     @api.depends('purchase_progress')
     def _compute_stage_id(self):
-        super()._compute_stage_id()
+        return super()._compute_stage_id()
 
     @api.multi
     @api.depends('stage_id', 'purchase_progress')

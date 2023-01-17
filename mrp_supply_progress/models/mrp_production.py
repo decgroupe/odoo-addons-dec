@@ -79,17 +79,19 @@ class MrpProduction(models.Model):
         self.ensure_one()
         return self.supply_progress > 0
 
+    def _get_stage_from_state(self, stages):
+        stage_id = super()._get_stage_from_state(stages)
+        if stage_id in (stages['planned'], stages['confirmed']):
+            if not self.move_raw_ids or self.supply_progress == 100:
+                stage_id = stages['build_ready']
+            elif self._is_supply_active():
+                stage_id = stages['supplying']
+        return stage_id
+
     @api.multi
     @api.depends('supply_progress')
     def _compute_stage_id(self):
-        super()._compute_stage_id()
-        stages = self._get_stages_ref()
-        for rec in self:
-            if rec.stage_id in (stages['planned'], stages['confirmed']):
-                if not rec.move_raw_ids or rec.supply_progress == 100:
-                    rec.stage_id = stages['build_ready']
-                elif rec._is_supply_active():
-                    rec.stage_id = stages['supplying']
+        return super()._compute_stage_id()
 
     @api.multi
     @api.depends('stage_id', 'supply_progress')
