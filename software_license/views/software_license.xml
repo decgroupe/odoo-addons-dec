@@ -8,8 +8,8 @@
             <tree string="Licenses">
                 <field name="application_id"/>
                 <field name="serial"/>
-                <field name="production_id"/>
                 <field name="product_id"/>
+                <field name="production_id"/>
                 <field name="partner_id"/>
             </tree>
         </field>
