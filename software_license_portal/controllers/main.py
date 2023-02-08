@@ -359,7 +359,7 @@ class SoftwareLicenseController(http.Controller):
         csrf=False,
     )
     def get_all_licenses(self, **kwargs):
-        return self._get_licenses(identifier=False, hardware="*")
+        return self._get_licenses(identifier=False, hardware=False)
 
     @http.route(
         URL_BASE_V1 + '/Infos',
