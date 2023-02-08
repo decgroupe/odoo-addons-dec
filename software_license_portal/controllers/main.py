@@ -187,7 +187,7 @@ class SoftwareLicenseController(http.Controller):
         else:
             hardware_id = license_id.activate(hardware, request.params.copy())
             hardware_id.info = self._get_request_info(request)
-            msg = SERIAL_ACTIVATED_ON_HARDWARE
+            msg = SERIAL_ACTIVATED_ON_HARDWARE.copy()
             self._append_common_data(license_id, hardware_id, msg)
             return msg
 
@@ -208,8 +208,7 @@ class SoftwareLicenseController(http.Controller):
             return SERIAL_NOT_ACTIVATED_ON_HARDWARE
         else:
             hardware_id.unlink()
-            res = SERIAL_DEACTIVATED_ON_HARDWARE
-            return res
+            return SERIAL_DEACTIVATED_ON_HARDWARE
 
     @http.route(
         URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_SERIAL + URL_VAR_HARDWARE +
@@ -230,7 +229,7 @@ class SoftwareLicenseController(http.Controller):
             return SERIAL_NOT_ACTIVATED_ON_HARDWARE
         else:
             hardware_id.info = self._get_request_info(request)
-            msg = SERIAL_UPDATED_ON_HARDWARE
+            msg = SERIAL_UPDATED_ON_HARDWARE.copy()
             self._append_common_data(license_id, hardware_id, msg)
             return msg
 
