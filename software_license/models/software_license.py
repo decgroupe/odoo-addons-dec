@@ -127,7 +127,7 @@ class SoftwareLicense(models.Model):
         return False
 
     @api.multi
-    def activate(self, hardware, params=False):
+    def activate(self, hardware):
         self.ensure_one()
         vals = self._prepare_hardware_activation_vals(hardware)
         return self.env['software.license.hardware'].create(vals)

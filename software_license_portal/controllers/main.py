@@ -20,6 +20,14 @@ LICENSE_NOT_FOUND = {
         "identifier and this serial key.",
 }
 
+HARDWARE_NOT_FOUND = {
+    "result": ERROR,
+    "message_id": "HARDWARE_NOT_FOUND",
+    "message":
+        "this hardware identifier is not used to activate/validate any "
+        "serial key on our system.",
+}
+
 SERIAL_ALREADY_ACTIVATED_ON_HARDWARE = {
     "result": ERROR,
     "message_id": "SERIAL_ALREADY_ACTIVATED_ON_HARDWARE",
@@ -51,6 +59,14 @@ SERIAL_NOT_ACTIVATED_ON_HARDWARE = {
     "message":
         "the serial key is not activated on a machine with the given "
         "hardware identifier and therefore cannot be updated or deactivated.",
+}
+
+ALL_SERIALS_DEACTIVATED_ON_HARDWARE = {
+    "result": SUCCESS,
+    "message_id": "ALL_SERIALS_DEACTIVATED_ON_HARDWARE",
+    "message":
+        "all serial keys have been successfully deactivated on the machine "
+        "with the given hardware identifier.",
 }
 
 SERIAL_ACTIVATED_ON_HARDWARE = {
@@ -185,7 +201,7 @@ class SoftwareLicenseController(http.Controller):
         elif license_id.check_max_activation_reached(hardware_name=hardware):
             return SERIAL_TOO_MANY_ACTIVATION
         else:
-            hardware_id = license_id.activate(hardware, request.params.copy())
+            hardware_id = license_id.activate(hardware)
             hardware_id.info = self._get_request_info(request)
             msg = SERIAL_ACTIVATED_ON_HARDWARE.copy()
             self._append_common_data(license_id, hardware_id, msg)
@@ -233,15 +249,21 @@ class SoftwareLicenseController(http.Controller):
             self._append_common_data(license_id, hardware_id, msg)
             return msg
 
-    def _get_request_info(self, request):
+    def _get_request_info(self, req):
         res = {}
-        ip_addr = request.httprequest.environ.get('HTTP_X_FORWARDED_FOR')
+        ip_addr = req.httprequest.environ.get('HTTP_X_FORWARDED_FOR')
         if ip_addr:
             ip_addr = ip_addr.split(',')[0]
         else:
-            ip_addr = request.httprequest.remote_addr
+            ip_addr = req.httprequest.remote_addr
         res['httprequest'] = {'remote_addr': ip_addr}
-        res['params'] = request.params.copy()
+        if 'telemetry' in req.params:
+            res['telemetry'] = req.params['telemetry'].copy()
+        else:
+            # Fallback to pre 2023 implementation where telemetry
+            # (aka sysinfos) data were directly put into the main params
+            # json object
+            res['telemetry'] = req.params.copy()
         return pprint.pformat(res)
 
     def _append_common_data(self, license_id, hardware_id, msg):
@@ -278,14 +300,7 @@ class SoftwareLicenseController(http.Controller):
 
     #######################################################################
 
-    @http.route(
-        URL_BASE_V1 + URL_VAR_IDENTIFIER + '/Licenses',
-        type='json',
-        methods=['POST'],
-        auth="user",
-        csrf=False,
-    )
-    def get_licenses(self, identifier, **kwargs):
+    def _get_licenses(self, identifier, hardware, **kwargs):
         SoftwareLicense = request.env['software.license']
         domain = SoftwareLicense._get_license_default_portal_domain(
             request_partner_id=request.env.user.partner_id,
@@ -299,12 +314,42 @@ class SoftwareLicenseController(http.Controller):
             license_data = license_id.sudo()._prepare_export_vals(
                 include_activation_identifier=True
             )
-            license_data['hardwares'] = license_id.sudo().get_hardwares_dict()
+            if hardware:
+                if hardware == "*":
+                    # if a wildcard character is used, then include all
+                    # hardwares
+                    hw_names = False
+                else:
+                    # Allow multiple hardware identifiers separated with
+                    # a `:` character
+                    hw_names = hardware.split(":")
+                license_data['hardwares'] = license_id.sudo().\
+                    get_hardwares_dict(filter_names=hw_names)
             self._append_remaining_activation(license_id, license_data)
             # Warning, the key used there is `serial`, not the
-            # `activation_identifier`
+            # `activation_identifier`, don't rely on it
             res[license_id.serial] = license_data
         return res
+
+    @http.route(
+        URL_BASE_V1 + URL_VAR_HARDWARE + '/Licenses',
+        type='json',
+        methods=['POST'],
+        auth="user",
+        csrf=False,
+    )
+    def get_all_licenses_per_hardware(self, hardware, **kwargs):
+        return self._get_licenses(identifier=False, hardware=hardware)
+
+    @http.route(
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + '/Licenses',
+        type='json',
+        methods=['POST'],
+        auth="user",
+        csrf=False,
+    )
+    def get_all_licenses_per_identifier(self, identifier, **kwargs):
+        return self._get_licenses(identifier=identifier, hardware=False)
 
     @http.route(
         URL_BASE_V1 + '/Licenses',
@@ -314,7 +359,7 @@ class SoftwareLicenseController(http.Controller):
         csrf=False,
     )
     def get_all_licenses(self, **kwargs):
-        return self.get_licenses(identifier=False)
+        return self._get_licenses(identifier=False, hardware="*")
 
     @http.route(
         URL_BASE_V1 + '/Infos',
@@ -326,11 +371,64 @@ class SoftwareLicenseController(http.Controller):
         return self._get_request_info(request)
 
     @http.route(
+        URL_BASE_V1 + URL_VAR_HARDWARE + '/Activate',
+        type='json',
+        methods=['POST'],
+        auth="public",
+        csrf=False,
+    )
+    def activate_multiple(self, hardware, **kwargs):
+        res = {}
+        if "data" in request.params:
+            for identifier, serial in request.params["data"].items():
+                msg = self.activate(int(identifier), serial, hardware)
+                if serial not in res:
+                    res[serial] = {}
+                res[serial][identifier] = msg
+        return res
+
+    @http.route(
+        URL_BASE_V1 + URL_VAR_HARDWARE + '/Validate',
+        type='json',
+        methods=['POST'],
+        auth="public",
+        csrf=False,
+    )
+    def validate_multiple(self, hardware, **kwargs):
+        res = {}
+        if "data" in request.params:
+            for identifier, serial in request.params["data"].items():
+                msg = self.validate(int(identifier), serial, hardware)
+                if serial not in res:
+                    res[serial] = {}
+                res[serial][identifier] = msg
+        return res
+
+    def _get_hardware_ids(self, hardware, identifier=False, serial=False):
+        hardware_id = request.env['software.license.hardware']
+        if hardware:
+            domain = [('name', '=', hardware)]
+            if identifier:
+                domain += [
+                    ('license_id.application_id.identifier', '=', identifier),
+                ]
+            if serial:
+                domain += [('license_id.activation_identifier', '=', serial)]
+            hardware_ids = hardware_id.sudo().search(domain)
+        return hardware_ids
+
+    @http.route(
         URL_BASE_V1 + URL_VAR_HARDWARE + '/Deactivate',
         type='json',
         methods=['POST'],
         auth="user",
         csrf=False,
     )
-    def deactivate_all_licenses(self, **kwargs):
-        return None
+    def deactivate_all(self, hardware, **kwargs):
+        hardware_ids = self._get_hardware_ids(hardware)
+        if not hardware_ids:
+            return HARDWARE_NOT_FOUND
+        else:
+            hardware_ids.unlink()
+            res = ALL_SERIALS_DEACTIVATED_ON_HARDWARE
+            return res
