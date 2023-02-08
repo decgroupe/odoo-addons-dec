@@ -168,9 +168,9 @@ class SoftwareLicensePass(models.Model):
         if 'expiration_date' in vals:
             licenses_vals['expiration_date'] = vals.get('expiration_date')
         if licenses_vals:
-            license_ids = self.mapped('license_ids').with_context(
-                override_from_pass=True
-            )
+            license_ids = self.with_context(
+                active_test=False
+            ).mapped('license_ids').with_context(override_from_pass=True)
             license_ids.write(licenses_vals)
 
     def _get_unique_hardware_names(self):

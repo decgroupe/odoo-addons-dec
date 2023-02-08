@@ -82,7 +82,7 @@
                         </group>
                     </group>
                     <group name="licenses">
-                        <field name="license_ids">
+                        <field name="license_ids" attrs="{'invisible': [('active', '=', False)]}">
                             <tree>
                                 <field name="application_id"/>
                                 <field name="serial"/>

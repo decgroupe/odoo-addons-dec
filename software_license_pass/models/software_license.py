@@ -24,6 +24,7 @@ class SoftwareLicense(models.Model):
     )
 
     PASS_LOCKED_FIELDS = [
+        'active',
         'partner_id',
         'max_allowed_hardware',
         'expiration_date',
