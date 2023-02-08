@@ -33,6 +33,7 @@ class SoftwareLicense(models.Model):
             ('partner_id', 'child_of', partner_id.id),
             ('portal_published', '=', True),
             ('application_id.type', '=', 'inhouse'),
+            ('pass_state', 'in', ('none', 'sent')),
         ]
         if not include_pass_licenses:
             res.append(('pass_id', '=', False))

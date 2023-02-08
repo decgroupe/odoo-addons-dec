@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-18 10:35+0000\n"
+"POT-Creation-Date: 2023-02-08 14:44+0000\n"
 "PO-Revision-Date: 2021-11-18 14:13+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -23,7 +23,7 @@ msgid "${(object.name or '').replace('/','_')}"
 msgstr ""
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:70
+#: code:addons/software_license_pass/models/software_license.py:77
 #, python-format
 msgid "%s (%s for %s)"
 msgstr "%s (%s pour %s)"
@@ -134,6 +134,12 @@ msgid "Activity State"
 msgstr "Status de l'Activité"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_type_icon
+#, fuzzy
+msgid "Activity Type Icon"
+msgstr "Type d'Activités à Venir"
+
+#. module: software_license_pass
 #: sql_constraint:software.license.pack.line:0
 msgid "An application must appear only once in a pack!"
 msgstr "Une application ne doit être apparaître qu’une seule fois dans un pack !"
@@ -167,7 +173,7 @@ msgid "Application Packs"
 msgstr "Pack d'applications"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:245
+#: code:addons/software_license_pass/models/software_license_pass.py:264
 #: model:ir.model,name:software_license_pass.model_software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 #, python-format
@@ -230,6 +236,8 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license__display_name
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__display_name
@@ -267,11 +275,18 @@ msgid "Followers (Partners)"
 msgstr "Abonnés (Partenaires)"
 
 #. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome e.g. fa-tasks"
+
+#. module: software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Group By"
 msgstr "Regrouper par"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license__id
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__id
@@ -314,7 +329,7 @@ msgid "Is Follower"
 msgstr "Est un abonné"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:61
+#: code:addons/software_license_pass/models/software_license.py:68
 #, python-format
 msgid ""
 "It is forbidden to delete a license own by a pass:\n"
@@ -324,7 +339,7 @@ msgstr ""
 "{}"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:43
+#: code:addons/software_license_pass/models/software_license.py:50
 #, python-format
 msgid ""
 "It is forbidden to update these license's fields when owned by a pass:\n"
@@ -334,6 +349,8 @@ msgstr ""
 "{}"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license____last_update
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass____last_update
@@ -678,7 +695,7 @@ msgid "Seat(s) for 9 years"
 msgstr "Poste(s) pour 9 ans"
 
 #. module: software_license_pass
-#: model:uom.category,name:software_license_pass.product_uom_categ_seat
+#: model:uom.category,name:software_license_pass.product_uom_categ_seatyear
 msgid "Seat/Year"
 msgstr "Poste/Année"
 
@@ -1493,6 +1510,11 @@ msgstr "Année/Poste"
 #. module: software_license_pass
 #: model:mail.template,subject:software_license_pass.email_template
 msgid "e-space ${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or 'n/a' })"
+msgstr ""
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_team_user_ids
+msgid "test field"
 msgstr ""
 
 #~ msgid "Product Template"

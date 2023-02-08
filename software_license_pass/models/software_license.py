@@ -12,6 +12,7 @@ class SoftwareLicense(models.Model):
     pass_id = fields.Many2one(
         comodel_name='software.license.pass',
         string='Pass',
+        readonly=True,
     )
     pack_id = fields.Many2one(
         comodel_name='software.license.pack',
@@ -22,8 +23,15 @@ class SoftwareLicense(models.Model):
         string="Pack Line",
         help="Line of the pack used to generate this license",
     )
+    pass_state = fields.Char(
+        string="Pass State",
+        compute="_compute_pass_state",
+        default="none",
+        store=True,
+    )
 
     PASS_LOCKED_FIELDS = [
+        'pass_id',
         'active',
         'partner_id',
         'max_allowed_hardware',
@@ -86,6 +94,15 @@ class SoftwareLicense(models.Model):
         super()._compute_activation_identifier()
         for rec in self.filtered('pass_id'):
             rec.activation_identifier = rec.pass_id.serial
+
+    @api.multi
+    @api.depends('pass_id', 'pass_id.state')
+    def _compute_pass_state(self):
+        for rec in self:
+            if rec.pass_id:
+                rec.pass_state = rec.pass_id.state
+            else:
+                rec.pass_state = "none"
 
     def _prepare_export_vals(self, include_activation_identifier=True):
         res = super()._prepare_export_vals(include_activation_identifier)

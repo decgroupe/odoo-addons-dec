@@ -86,7 +86,7 @@
                             <tree>
                                 <field name="application_id"/>
                                 <field name="serial"/>
-                                <field name="pack_line_id"/>
+                                <field name="pack_line_id" groups="base.group_no_one"/>
                             </tree>
                         </field>
                     </group>
