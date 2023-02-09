@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-08 14:44+0000\n"
-"PO-Revision-Date: 2021-11-18 14:13+0100\n"
+"POT-Creation-Date: 2023-02-09 13:27+0000\n"
+"PO-Revision-Date: 2023-02-09 14:27+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: software_license_pass
 #: model:mail.template,report_name:software_license_pass.email_template
@@ -23,7 +23,7 @@ msgid "${(object.name or '').replace('/','_')}"
 msgstr ""
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:77
+#: code:addons/software_license_pass/models/software_license.py:79
 #, python-format
 msgid "%s (%s for %s)"
 msgstr "%s (%s pour %s)"
@@ -135,9 +135,8 @@ msgstr "Status de l'Activité"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_type_icon
-#, fuzzy
 msgid "Activity Type Icon"
-msgstr "Type d'Activités à Venir"
+msgstr "Icône de type d’activité"
 
 #. module: software_license_pass
 #: sql_constraint:software.license.pack.line:0
@@ -329,7 +328,7 @@ msgid "Is Follower"
 msgstr "Est un abonné"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:68
+#: code:addons/software_license_pass/models/software_license.py:70
 #, python-format
 msgid ""
 "It is forbidden to delete a license own by a pass:\n"
@@ -339,7 +338,7 @@ msgstr ""
 "{}"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:50
+#: code:addons/software_license_pass/models/software_license.py:52
 #, python-format
 msgid ""
 "It is forbidden to update these license's fields when owned by a pass:\n"
@@ -526,6 +525,11 @@ msgstr "Partenaire"
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_search_view
 msgid "Pass"
 msgstr "« Pass »"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license__pass_state
+msgid "Pass State"
+msgstr "État du « Pass »"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__pass_ids
