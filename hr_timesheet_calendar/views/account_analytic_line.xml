@@ -52,12 +52,13 @@
     </record>
 
     <record id="hr_timesheet.timesheet_action_all" model="ir.actions.act_window">
-        <field name="domain">[('project_id', '!=', False), ('project_id.active', '=', True)]</field>
+        <field name="domain">[('employee_id', '!=', False), ('employee_id.active', '=', True)]</field>
+        <field name="domain">[]</field>
     </record>
 
     <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
         <field name="view_id" ref="hr_timesheet.hr_timesheet_line_form"/>
-        <field name="domain">[('project_id', '!=', False), ('project_id.active', '=', True), ('user_id', '=', uid)]</field>
+        <field name="domain">[('employee_id', '!=', False), ('user_id', '=', uid)]</field>
     </record>
 
 </odoo>
