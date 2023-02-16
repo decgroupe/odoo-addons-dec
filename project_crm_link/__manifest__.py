@@ -10,6 +10,7 @@
         'project_typefast',
         'project_acl',
         'crm',
+        'crm_timesheet',
         'crm_lead_number',
         'web_m2x_options',
     ],

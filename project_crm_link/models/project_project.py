@@ -9,6 +9,14 @@ from odoo.osv import expression
 class Project(models.Model):
     _inherit = "project.project"
 
+    opportunity_ids = fields.One2many(
+        comodel_name='crm.lead',
+        inverse_name='project_id',
+        string='Opportunities',
+        help="The same project can be used to store timesheets of "
+        "multiple opportunities"
+    )
+
     linked_lead_id = fields.Many2one(
         comodel_name="crm.lead",
         string="Opportunity Link",
