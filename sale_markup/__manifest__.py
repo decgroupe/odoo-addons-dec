@@ -9,6 +9,8 @@
         'sale_row_layout',
         'sale_margin',
     ],
-    'data': ['views/sale_order.xml', ],
+    'data': [
+        'views/sale_order.xml', 
+    ],
     'installable': True
 }

@@ -6,6 +6,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_row_layout.row_layout_sale_order_form_view"/>
         <field name="arch" type="xml">
+            <data></data>
+            <!-- # FIXME: [MIG] 14.0: Disabled because issue with View name: sale.order.line.tree.sale.stock.qty
             <xpath expr="//th[@name='row_label_60']" position="inside">
                 <label for="markup_percent" class="row_label"/>
             </xpath>
@@ -15,6 +17,7 @@
             <xpath expr="//field[@name='order_line']/tree//field[@name='discount']" position="after">
                 <field name="markup_percent"/>
             </xpath>
+            -->
         </field>
     </record>
 
