@@ -6,13 +6,15 @@
     'category': 'Sales',
     'summary': "Show line form product fields using a row",
     'depends': [
-        'sale_margin'
+        'sale_margin',
+        'sale_stock',
     ],
     #'force_migration':'12.0.0.0.0',
     'data':
         [
             'views/assets.xml',
-            'views/sale_order.xml',
+            # FIXME: [MIG] 14.0: Disabled because issue with View name: sale.order.line.tree.sale.stock.qty
+            'views/sale_order.xml', 
         ],
     'installable': True
 }
