@@ -8,7 +8,7 @@
         [
             'hr_timesheet',
             'sale_timesheet_line_exclude',
-            'sale_timesheet_task_exclude',
+            # 'sale_timesheet_task_exclude', [MIG] 14.0: Not needed anymore acoording to https://github.com/OCA/timesheet/pull/440#issuecomment-1235611830
         ],
     'data':
         [
