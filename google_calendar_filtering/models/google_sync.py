@@ -9,6 +9,7 @@ from odoo.tools.config import config, to_list
 
 from odoo.addons.google_calendar.utils.google_event import GoogleEvent
 from odoo.addons.google_calendar.utils.google_calendar import GoogleCalendarService
+from odoo.addons.google_account.models.google_service import TIMEOUT
 
 _logger = logging.getLogger(__name__)
 
@@ -40,4 +41,13 @@ class GoogleSync(models.AbstractModel):
             return super()._sync_odoo2google(google_events, default_reminders)
         else:
             _logger.info('_sync_odoo2google disabled')
+            return None
+
+    def _google_insert(
+        self, google_service: GoogleCalendarService, values, timeout=TIMEOUT
+    ):
+        if self.env.cr.dbname in self._get_db_allowedlist():
+            return super()._google_insert(google_service, values, timeout)
+        else:
+            _logger.info('_google_insert disabled')
             return None
