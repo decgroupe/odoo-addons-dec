@@ -49,7 +49,6 @@
     <record id="action_mrp_production_stage_config" model="ir.actions.act_window">
         <field name="name">Production Stages</field>
         <field name="res_model">mrp.production.stage</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
