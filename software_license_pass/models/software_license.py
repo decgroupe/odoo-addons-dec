@@ -89,7 +89,6 @@ class SoftwareLicense(models.Model):
         for rec in self.filtered('pass_id'):
             rec.activation_identifier = rec.pass_id.serial
 
-    @api.multi
     @api.depends('pass_id', 'pass_id.state')
     def _compute_pass_state(self):
         for rec in self:
