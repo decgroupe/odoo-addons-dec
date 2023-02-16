@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- TODO: [MIG] 14.0: View `mrp.view_stock_move_lots` has been deleted
     <record model="ir.ui.view" id="stock_move_lots_form_view" >
         <field name="name">stock.move.lots.form@procurement_traceability</field>
         <field name="model">stock.move</field>
@@ -11,5 +12,6 @@
             </field>
         </field>
     </record>
+    -->
 
 </odoo>
