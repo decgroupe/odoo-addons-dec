@@ -63,7 +63,7 @@
                         </div>
                         <label for="quantity_done" string="Done/Reserved"/>
                         <div class="o_row">
-                            <span><field name="quantity_done" attrs="{'readonly': ['|', ('is_locked', '=', True), '|', ('finished_lots_exist', '=', True), ('has_tracking', '!=', 'none')]}" nolabel="1"/></span>
+                            <span><field name="quantity_done" attrs="{'readonly': [('is_locked', '=', True)]}" nolabel="1"/></span>
                             <span> / </span>
                             <span><field name="reserved_availability" nolabel="1"/></span>
                             <span><field name="product_uom" readonly="1" nolabel="1"/></span>
@@ -75,7 +75,6 @@
                         <field name="is_locked" invisible="1"/>
                         <field name="has_tracking" invisible="1"/>
                         <field name="order_finished_lot_ids" invisible="1"/>
-                        <field name="finished_lots_exist" invisible="1"/>
                         <field name="picking_type_id" invisible="1"/>
                     </group>
                     <group>
@@ -101,9 +100,9 @@
                     <tree editable="bottom" decoration-success="product_uom_qty==qty_done" decoration-danger="(product_uom_qty &gt; 0) and (qty_done&gt;product_uom_qty)">
                         <field name="date"/>
                         <field name="lot_id" attrs="{'column_invisible': [('parent.has_tracking', '=', 'none')]}" context="{'default_product_id': parent.product_id}"/>
-                        <field name="lot_produced_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}" domain="[('id', 'in', parent.order_finished_lot_ids)]" invisible="not context.get('final_lots')"/>
                         <field name="owner_id" groups="stock.group_tracking_owner" options="{'no_open': True, 'no_create': True}" optional="hide"/>
                         <field name="package_id" groups="stock.group_tracking_lot" options="{'no_open': True, 'no_create': True}" optional="hide"/>
+                        <field name="product_uom_category_id" invisible="1"/>
                         <field name="product_uom_qty" string="Reserved" readonly="1" optional="show"/>
                         <field name="qty_done"/>
                         <field name="workorder_id" invisible="1"/>
