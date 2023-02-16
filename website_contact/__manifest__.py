@@ -8,7 +8,11 @@
         'helpdesk_notify',
         'crm',
         'website',
-        'website_form_recaptcha',
+        # According to https://github.com/OCA/website/issues/781,
+        # can be replaced with built-in module https://github.com/odoo/odoo/tree/14.0/addons/google_recaptcha
+        # 'website_form_recaptcha',
+        'website_form',
+        'google_recaptcha',
     ],
     'data':
         [

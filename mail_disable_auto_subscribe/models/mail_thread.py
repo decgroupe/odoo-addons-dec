@@ -48,12 +48,14 @@ class MailThread(models.AbstractModel):
             msg_vals
         )
 
-    def _notify_classify_recipients(self, message, recipient_data):
+    #TODO: [MIG] 14.0: Check if this hook is still necessary
+    def _notify_classify_recipients(self, recipient_data, model_name, msg_vals=None):
         """ This hook is made to convert internal user/partner recipient to
             type `user` because when odoo convert channel to partners in
             `_notify_recipients`, they are all set with default type
             `customer`.
             That way, the « See » Action will be available.
+            
         """
         is_internal = lambda p: (
             p.user_ids and
@@ -63,4 +65,4 @@ class MailThread(models.AbstractModel):
             partner_id = self.env['res.partner'].browse(recipient['id'])
             if is_internal(partner_id):
                 recipient['type'] = 'user'
-        return super()._notify_classify_recipients(message, recipient_data)
+        return super()._notify_classify_recipients(recipient_data=recipient_data, model_name=model_name,msg_vals=msg_vals)

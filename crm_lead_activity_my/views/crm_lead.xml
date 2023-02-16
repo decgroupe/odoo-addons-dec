@@ -12,9 +12,12 @@
             <field name="stage_id" position="attributes">
                 <attribute name="decoration-bf">1</attribute>
             </field>
+            <!-- FIXME: [MIG] 14.0: This field does not exist anymore
             <xpath expr="//tree/field[@name='activity_date_deadline']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
+            -->
+            <!-- FIXME: [MIG] 14.0: This field does not exist anymore
             <xpath expr="//tree/field[@name='activity_summary']" position="replace">
                 <field name="activity_my_ids" widget="list_activity_my"/>
                 <field name="activity_my_date_deadline" widget="remaining_days"/>
@@ -27,6 +30,7 @@
                     icon="fa-bell-slash">
                 </button>
             </xpath>
+            -->
         </field>
     </record>
 

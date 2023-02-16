@@ -129,7 +129,8 @@ odoo.define('web_calendar_options.CalendarRenderer', function (require) {
         },
 
         get_option(name) {
-            var option = this.$calendar.fullCalendar('option', name);
+            // var option = this.calendar.fullCalendar('option', name);
+            var option = undefined;
             if (option === undefined) {
                 console.warn('get_option', name, option);
             }
