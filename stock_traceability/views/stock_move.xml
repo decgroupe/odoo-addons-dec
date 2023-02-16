@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- This view was a copy/paste from the one existing `view_move_picking_form` in 12.0 -->
+    <!-- Its purpose weas to be a base for inheriting -->
     <record id="view_move_picking_form" model="ir.ui.view">
         <field name="name">stock.move.form</field>
         <field name="model">stock.move</field>
@@ -35,11 +37,13 @@
                 <group string="Conditions">
                     <field name="procure_method" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="stock.group_adv_location"/>
                     <field name="create_date" invisible="1"/>
-                    <field name="date_expected"/>
+                    <field name="date_deadline"/>
                     <field name="move_dest_ids" groups="base.group_no_one" readonly="1"/>
                 </group>
                 <group name="quants_grp" string="Reserved" attrs="{'invisible': [('state', '=', 'draft')]}">
+                    <!-- [MIG] 14.0: Missing field
                     <field name="string_availability_info"/>
+                    -->
                 </group>
             </group>
             </form>
@@ -122,7 +126,7 @@
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_move_tree_receipt_picking"/>
         <field name="arch" type="xml">
-            <field name="date_expected" position="before">
+            <field name="date_deadline" position="before">
                 <field name="id" widget="widget_id" groups="base.group_erp_manager"/>
                 <field name="name"/>
                 <field name="picking_id"/>
