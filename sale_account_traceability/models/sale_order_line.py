@@ -10,7 +10,7 @@ class SaleOrderLine(models.Model):
 
     invoice_lines = fields.Many2many(
         domain="""[
-            ('move_type', '=', 'out_invoice'),
+            ('move_id.move_type', '=', 'out_invoice'),
             '|',
             ('product_id', '=', product_id),
             ('product_id', '=', False),
