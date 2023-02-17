@@ -10,7 +10,6 @@ class StockMove(models.Model):
 
     auto_validate = fields.Boolean(
         'Auto Validate',
-        old_name="openupgrade_legacy_8_0_auto_validate",
         help="Also validate linked moves when this move is validated.",
         copy=False,
     )
