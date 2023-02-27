@@ -20,7 +20,8 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <field name="date_planned_start" position="before">
+            <!-- We cannot use `date_planned_start` as it is manual split label/value -->
+            <field name="user_id" position="before">
                 <field name="stage_id" groups="base.group_no_one"/>
             </field>
             <button name="button_plan" position="before">
