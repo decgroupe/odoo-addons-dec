@@ -11,8 +11,8 @@ _logger = logging.getLogger(__name__)
 class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
-    def action_set_lost(self):
-        res = super().action_set_lost()
+    def action_set_lost(self, **additional_values):
+        res = super().action_set_lost(**additional_values)
         for lead in self:
             # Set lost stage when probability is set to 0
             stage_id = lead._stage_find(domain=[('probability', '<=', 0)])
