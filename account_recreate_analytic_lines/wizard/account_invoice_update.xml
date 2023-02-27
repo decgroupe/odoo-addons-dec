@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- TODO: [MIG] 14.0
     <record model="ir.ui.view" id="account_move_update_form">
         <field name="name">account.move.update.form@account_recreate_analytic_lines</field>
         <field name="model">account.move.update</field>
@@ -22,5 +23,6 @@
             </xpath>
         </field>
     </record>
+     -->
 
 </odoo>

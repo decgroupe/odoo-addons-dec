@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <!-- TODO: [MIG] 14.0
     <record model="ir.ui.view" id="invoice_form_view">
         <field name="name">account.invoice.form@account_recreate_analytic_lines</field>
         <field name="model">account.invoice</field>
@@ -16,5 +17,6 @@
             </xpath>
         </field>
     </record>
+     -->
 
 </odoo>
