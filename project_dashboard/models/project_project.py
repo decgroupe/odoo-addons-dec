@@ -26,7 +26,9 @@ class ProjectProject(models.Model):
             rec.kanban_description = rec.partner_shipping_id.display_name
 
     def action_open_all_tasks(self, view_domain=False, view_type=False):
-        act = clean_action(self.env.ref("project.action_view_task").read()[0])
+        act = clean_action(
+            self.env.ref("project.action_view_task").read()[0], self.env
+        )
 
         project_ids = self.ids
         # We cannot rely on `self.ids` as it depends of loaded data in the
