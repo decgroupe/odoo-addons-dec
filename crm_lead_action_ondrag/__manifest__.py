@@ -6,7 +6,10 @@
     'summary':
         "Call lost or won actions when dragging card in columns "
         "with matching probabilities",
-    'depends': ['crm', ],
+    'depends': [
+        'crm',
+        'crm_stage_probability',
+    ],
     'data': ['views/crm_lead.xml', ],
     'installable': True
 }
