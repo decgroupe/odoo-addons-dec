@@ -1,0 +1,54 @@
+.o_input {
+    color: #353535;
+}
+
+// Buttons
+.btn {
+    border-radius: 0px;
+}
+
+.btn-primary {
+    // color: #fff;
+    background-color: $brand-secondary;
+    border-color: $brand-secondary;
+}
+
+.btn-secondary {
+    border-color: $brand-secondary;
+}
+
+.btn-primary:hover {
+    // color: #fff;
+    background-color: $brand-secondary-dark;
+    border-color: $brand-secondary-dark;
+}
+
+.btn:active,
+.btn.active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #eee !important;
+}
+
+.btn-group.open .dropdown-toggle {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #eee !important;
+}
+
+.btn-link {
+    color: $brand-secondary;
+}
+
+.o_dropdown_toggler_btn,
+.o_dropdown_toggler_btn:hover,
+.o_dropdown_toggler_btn:focus,
+.o_dropdown_toggler_btn:hover,
+.o_dropdown_toggler_btn:focus,
+.btn-icon,
+.o_graph_button {
+    text-transform: none !important;
+    color: $gray-dark !important;
+    background-color: transparent !important;
+    border: none !important;
+}

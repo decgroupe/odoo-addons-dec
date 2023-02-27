@@ -1,0 +1,17 @@
+.o_web_client {
+    .o_mobile_search {
+        .o_mobile_search_header {
+            background-color: $o-brand-odoo;
+
+            span:active {
+                background-color: darken($o-brand-primary, 10%);
+            }
+        }
+
+        .o_searchview_input_container {
+            .o_searchview_input {
+                border-bottom: 1px solid $o-brand-secondary;
+            }
+        }
+    }
+}

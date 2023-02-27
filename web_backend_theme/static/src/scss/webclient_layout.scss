@@ -1,0 +1,25 @@
+.o_main_navbar {
+    background-color: $brand-primary;
+
+    > a,
+    > button {
+        &:hover,
+        &:focus {
+            background-color: $brand-primary-dark;
+            color: inherit;
+        }
+    }
+
+    > ul > li > {
+        a:hover,
+        label:hover {
+            background-color: $brand-primary-dark;
+        }
+    }
+
+    .show {
+        .dropdown-toggle {
+            background-color: $brand-primary-dark;
+        }
+    }
+}

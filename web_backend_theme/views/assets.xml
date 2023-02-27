@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="assets_backend" name="assets" inherit_id="web.assets_backend">
+        <xpath expr=".">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/bootstrap_review.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/style.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/style_inputs.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/fonts.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/control_panel.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/dropdown.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/navbar.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/modal.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/progress_bar.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/form_view.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/form_view_extra.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/list_view.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/list_view_extra.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/kanban_view.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/fields_extra.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/webclient_layout.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/webclient_extra.scss"
+            />
+            <!-- <link rel="stylesheet" type="text/scss" href="/web_backend_theme/static/src/scss/search_view_mobile.scss"/> -->
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/chatter.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/search_view.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/systray.scss"
+            />
+            <!-- <link rel="stylesheet" type="text/scss" href="/web_backend_theme/static/src/scss/section_and_note_backend.scss"/> -->
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/web_responsive.scss"
+            /> 
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/tooltip.scss"
+            /> 
+        </xpath>
+        <xpath expr="link[last()]" position="after">
+            <!-- Override the loading -->
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/layout.scss"
+            />
+        </xpath>
+        <xpath expr="//script[last()]" position="after">
+            <!-- <script type="text/javascript" src="/web_backend_theme/static/src/js/views/form_renderer.js" /> -->
+        </xpath>
+    </template>
+
+    <template id="_assets_primary_variables" inherit_id="web._assets_primary_variables">
+        <xpath expr="//link[last()]" position="after">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/primary_variables.scss"
+            />
+        </xpath>
+    </template>
+
+    <template
+        id="_assets_secondary_variables"
+        inherit_id="web._assets_secondary_variables"
+    >
+        <xpath expr="//link[last()]" position="after">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_backend_theme/static/src/scss/secondary_variables.scss"
+            />
+        </xpath>
+    </template>
+
+</odoo>

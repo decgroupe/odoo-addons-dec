@@ -1,0 +1,121 @@
+.o_form_view {
+    .o_form_uri {
+        text-decoration: underline;
+    }
+
+    .o_group {
+        .o_td_label .o_form_label {
+            margin-bottom: 10px;
+        }
+
+        .o_td_label {
+            // Use lighter style for read-only fields
+            .o_readonly_modifier:not(.o_stat_info):not(.o_field_x2many_list):not(
+                    .oe_form_field_html_text
+                ) {
+                opacity: 0.75;
+            }
+        }
+    }
+
+    .o_form_label {
+        &.o_form_label_empty,
+        &.o_form_label_false {
+            // TODO: Define a style for empty fields
+        }
+    }
+
+    // When a list is the first item then "maximize it"
+    .tab-pane {
+        > :first-child.o_field_widget {
+            &.o_field_one2many,
+            &.o_field_many2many {
+                display: block;
+                width: auto;
+                margin-left: -16px;
+                margin-right: -16px;
+                margin-top: -17px;
+            }
+        }
+    }
+
+    .o_form_sheet_bg {
+        background: none !important;
+        background-color: #f9f9f9 !important;
+        padding: 0px;
+
+        .o_form_sheet {
+            border: 1px solid #d9d7d7;
+            box-shadow: 0 5px 20px -15px black;
+        }
+    }
+
+    .o_form_statusbar {
+        //margin: -16px;
+
+        .o_statusbar_status {
+            > .o_arrow_button {
+                background: #ffffff;
+            }
+
+            > .o_arrow_button.btn-primary.disabled {
+                color: $brand-primary;
+            }
+
+            > .o_arrow_button:not(.disabled):hover {
+                color: $brand-primary;
+            }
+        }
+
+        > .o_statusbar_buttons {
+            .btn[type="button"] {
+                font-variant: small-caps;
+            }
+        }
+    }
+
+    .o_notebook {
+        .o_notebook_headers {
+            .nav-tabs {
+                font-weight: bold;
+
+                .nav-link {
+                    border: 1px solid #dee2e6;
+                    background-color: #f8f8f8;
+                    border-radius: revert;
+                    margin-left: -1px;
+                }
+
+                .nav-link.active {
+                    border-top-color: $o-community-color;
+                    border-bottom-color: white;
+                    background-color: white;
+                }
+            }
+        }
+    }
+
+    .o_horizontal_separator {
+        color: #666666;
+        font-weight: bold;
+    }
+}
+
+.o_form_buttons_edit,
+.modal-dialog {
+    // Copy values from btn-danger `bootstrap_review.scss`
+    .o_form_button_cancel {
+        color: #ffffff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+}
+
+// Always shows chatter, even in modal view
+.modal .modal-dialog {
+    .o_form_view {
+        .oe_chatter {
+            display: block;
+        }
+    }
+}

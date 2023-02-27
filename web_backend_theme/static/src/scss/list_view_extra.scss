@@ -1,0 +1,46 @@
+.o_list_view {
+    thead {
+        // background-color: #eee;
+    }
+
+    tbody > tr.o_group_header {
+        background-color: #dfdfdf;
+        background-image: revert;
+
+        &:hover {
+            background-color: #cacaca;
+        }
+
+        &:focus-within {
+            background-image: none;
+        }
+    }
+
+    .o_list_table
+        .o_data_row.o_selected_row
+        > .o_data_cell:not(.o_readonly_modifier):not(.o_invisible_modifier):not(
+            .o_remaining_days_cell
+        ) {
+        padding: 0px;
+        .o_input {
+            padding: 0.3rem;
+            .o_input {
+            }
+        }
+        select.o_input {
+            padding: revert;
+        }
+        .o_field_boolean {
+            padding-top: revert;
+            padding-bottom: revert;
+        }
+        &.o_invalid_cell .o_input {
+        }
+        &.o_list_button {
+            padding: revert;
+        }
+        &.o_color_cell > .o_field_widget {
+            padding: revert;
+        }
+    }
+}

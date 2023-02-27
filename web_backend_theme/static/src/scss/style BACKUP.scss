@@ -1,0 +1,131 @@
+// Fix color Add file button
+.o_control_panel .o_cp_sidebar .o_hidden_input_file .o_form_binary_form span {
+    color: $gray-dark !important;
+}
+
+// Buttons
+
+oe_highlight {
+    color: #ffffff !important;
+    background-color: $brand-primary !important;
+}
+
+.o_external_button {
+    color: $brand-primary !important;
+    background: #ffffff;
+}
+
+// Calendar
+
+.o_calendar_container
+    .o_calendar_sidebar_container
+    .ui-datepicker
+    table
+    .ui-state-active {
+    background: none;
+    background-color: $brand-primary !important;
+    color: #ffffff !important;
+}
+
+.o_calendar_container
+    .o_calendar_sidebar_container
+    .ui-datepicker
+    table
+    .ui-state-default {
+    color: $brand-primary;
+}
+
+.datepicker {
+    .table-sm {
+        > thead {
+            color: white;
+            background-color: $brand-primary;
+
+            > tr {
+                &:first-child {
+                    th:hover {
+                        color: white;
+                        background-color: darken($brand-primary, 10%);
+                    }
+                }
+
+                &:last-child {
+                    color: $o-datepicker-week-color;
+                    background-color: $o-datepicker-week-bg-color;
+                }
+
+                > th {
+                    border-radius: 0;
+                }
+            }
+        }
+
+        > tbody {
+            > tr {
+                > td {
+                    &.active,
+                    .active {
+                        background-color: $o-brand-primary;
+                        border-radius: 100px;
+                    }
+
+                    &.today:before {
+                        border-bottom-color: $o-brand-primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.datepicker .table-sm > tbody > tr > td.active,
+.datepicker .table-sm > tbody > tr > td .active {
+    background-color: $brand-primary;
+    border-radius: 0;
+}
+
+.o_control_panel {
+    background-color: #ffffff;
+}
+
+.breadcrumb {
+    background-color: inherit;
+}
+
+.ui-autocomplete .ui-menu-item.ui-state-focus {
+    background-color: #dee2e6;
+}
+
+.ui-menu-item a:hover,
+.ui-menu-item a:focus {
+    color: #666666 !important;
+}
+
+.ui-autocomplete .ui-menu-item.ui-state-focus a {
+    color: #666666 !important;
+}
+
+.o_form_view .oe_button_box .oe_stat_button .o_stat_info .o_stat_value {
+    color: $brand-primary;
+}
+
+// Forms
+
+.o_form_view {
+    .o_form_sheet_bg {
+        background: none !important;
+        background-color: #f9f9f9 !important;
+        padding: 0px;
+
+        .o_form_sheet {
+            border: 1px solid #d9d7d7;
+            box-shadow: 0 5px 20px -15px black;
+        }
+    }
+}
+
+// Chat window
+
+.o_thread_window .o_thread_window_header {
+    background-color: $brand-primary;
+}

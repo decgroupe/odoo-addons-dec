@@ -1,0 +1,80 @@
+.o_form_view {
+    .oe_button_box {
+        // Revert oca/web/web_responsive/static/src/css/web_responsive.scss
+        @media (max-width: 767.98px) {
+            max-width: revert;
+        }
+
+        .btn.oe_stat_button {
+            margin: 0px;
+
+            .o_button_icon {
+                color: $brand-secondary;
+                font-size: 19px;
+            }
+
+            .o_stat_info,
+            > span {
+                color: $brand-secondary;
+                font-size: smaller;
+                font-weight: 500;
+
+                > .o_stat_value {
+                    color: $brand-secondary;
+                }
+
+                > .o_stat_text,
+                .o_stat_text {
+                    font-size: revert;
+                }
+            }
+        }
+    }
+
+    .oe_chatter {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+// .o_content {
+//     .o_form_view {
+//         .oe_button_box {
+//             .oe_stat_button {
+//                 width: 50% !important;
+
+//                 // 576
+//                 @include media-breakpoint-up(sm) {
+//                     width: 33.3% !important;
+//                 }
+
+//                 // 768
+//                 @include media-breakpoint-up(md) {
+//                     width: 20% !important;
+//                 }
+
+//                 // 992
+//                 @include media-breakpoint-up(lg) {
+//                     width: 14.28571429% !important;
+//                 }
+
+//                 // 1200
+//                 @include media-breakpoint-up(xl) {
+//                     width: 12.5% !important;
+//                 }
+
+//             }
+//         }
+//     }
+// }
+
+// // Do not use media for modal content
+// .modal-content {
+//     .o_form_view {
+//         .oe_button_box {
+//             .oe_stat_button {
+//                 width: 20% !important;
+//             }
+//         }
+//     }
+// }

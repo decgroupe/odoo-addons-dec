@@ -1,0 +1,21 @@
+.modal.o_technical_modal {
+    .modal-content {
+        // box-shadow: 0 5px 20px -15px black;
+        // Add a drop shadow to help identify a modal over another modal
+        filter: drop-shadow(0 10px 10px #333);
+    }
+
+    @include media-breakpoint-down(xs) {
+        &.o_modal_full {
+            .modal-dialog {
+                .modal-content {
+                    .modal-header {
+                        // Fix header wrong theme color on smartphones
+                        background: $o-brand-odoo;
+                        border-radius: revert;
+                    }
+                }
+            }
+        }
+    }
+}

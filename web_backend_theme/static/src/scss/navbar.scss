@@ -1,0 +1,49 @@
+.o_main_navbar {
+    // --o-navbar-height: $o-navbar-height-mobile;
+    // height: var(--o-navbar-height);
+
+    // >a,
+    // >button {
+    //     height: var(--o-navbar-height);
+    //     line-height: var(--o-navbar-height);
+    // }
+
+    // >.o_menu_brand {
+    //     line-height: var(--o-navbar-height);
+    // }
+
+    // >ul {
+
+    //     >li {
+
+    //         >a,
+    //         >label {
+    //             height: var(--o-navbar-height);
+    //             line-height: var(--o-navbar-height);
+    //         }
+
+    //         &.o_extra_menu_items {
+    //             >a {
+    //                 width: var(--o-navbar-height);
+    //             }
+    //         }
+    //     }
+
+    // }
+
+    .o_menu_sections {
+        .o_menu_header_lvl_1 {
+            font-variant: small-caps;
+        }
+
+        .o_menu_entry_lvl_1 {
+            font-weight: bold;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .o_main_navbar {
+        --o-navbar-height: $o-navbar-height-desktop;
+    }
+}

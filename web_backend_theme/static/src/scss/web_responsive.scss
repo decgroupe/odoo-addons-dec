@@ -1,0 +1,36 @@
+// Fix for `oca/web/web_responsive/static/src/scss/web_responsive.scss`
+.o_list_view {
+    .table-responsive {
+        .o_list_table {
+            thead {
+                // Apply sticky on the thead, not each rows
+                position: sticky;
+                top: 0;
+                z-index: 1;
+
+                tr:nth-child(1) th {
+                    // Revert to allow set color on thead directly
+                    background-color: revert;
+                }
+            }
+        }
+    }
+}
+
+// Fix for `oca/web/web_responsive/static/src/scss/web_responsive.scss`
+.o_web_client {
+    &.o_chatter_position_sided {
+        .o_action_manager {
+            .o_content,
+            .modal-content {
+                @include media-breakpoint-up(xl, $o-extra-grid-breakpoints) {
+                    .o_inner_group {
+                        .o_td_label {
+                            min-width: 160px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

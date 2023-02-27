@@ -1,0 +1,37 @@
+$gray-base: #000;
+$gray-darker: lighten($gray-base, 13.5%);
+$gray-dark: #666;
+$gray: #777;
+$gray-light: #aea79f;
+$gray-lighter: lighten($gray-base, 93.5%);
+
+// Change colors here
+
+// Odoo EE colors
+//------------------------
+$brand-primary: #714b67;
+$brand-secondary: #017e84;
+//------------------------
+
+// odoo/addons/web/static/src/scss/primary_variables.scss
+$o-community-color: $brand-primary;
+$o-brand-odoo: $o-community-color;
+$o-brand-primary: $brand-secondary;
+
+$o-brand-lightsecondary: #f6f7fa;
+
+$brand-primary-dark: darken($brand-primary, 10%);
+$brand-secondary-dark: darken($brand-secondary, 10%);
+
+// Colors
+$o-enterprise-color: $brand-primary;
+$o-enterprise-primary-color: $brand-secondary;
+
+$o-navbar-height-desktop: 40px;
+$o-navbar-height-mobile: 46px;
+
+$o-navbar-height: $o-navbar-height-desktop;
+
+// Kanban
+
+$o-kanban-default-record-width: 350px;

@@ -1,0 +1,11 @@
+// Filter search label
+
+.o_searchview {
+    .o_searchview_facet {
+        background-color: #ffffff;
+
+        .o_searchview_facet_label {
+            background-color: $brand-primary;
+        }
+    }
+}

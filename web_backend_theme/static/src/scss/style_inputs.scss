@@ -1,0 +1,46 @@
+// Inputs
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea,
+select,
+.o_form_view.o_form_editable .o_form_field_many2manytags,
+.o_searchview {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.o_web_client {
+    input,
+    textarea,
+    select {
+        // border-bottom: 2px solid #fff0;
+
+        &:focus {
+            outline: none;
+            border-bottom: 2px solid $brand-primary;
+        }
+    }
+}
+
+.o_input {
+    border: 1px solid #ccc;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: $gray;
+}
+
+.o_field_widget {
+    &.o_field_many2one .o_external_button {
+        color: $brand-secondary;
+    }
+}
+
+.input-group-text {
+    background-color: transparent;
+    color: #fff;
+    border: 0px;
+}

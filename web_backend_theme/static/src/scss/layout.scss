@@ -1,0 +1,14 @@
+html {
+    .o_loading {
+        background-color: $brand-secondary;
+        bottom: auto;
+        right: auto;
+        top: 0px;
+        left: 50%;
+        width: 180px;
+        margin-left: -90px;
+        text-align: center;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}

@@ -1,0 +1,11 @@
+a {
+    color: $brand-secondary;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+a:hover {
+    color: $brand-secondary-dark;
+    text-decoration: none;
+}

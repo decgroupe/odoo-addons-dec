@@ -1,0 +1,10 @@
+table.o_section_and_note_list_view tr.o_data_row.o_is_line_section {
+    .o_handle_cell,
+    .o_section_and_note_text_cell {
+        border-top: 1px solid #b3b3b3;
+        border-bottom: 2px solid #b3b3b3;
+        height: 48px;
+        vertical-align: middle;
+        font-weight: bolder;
+    }
+}
