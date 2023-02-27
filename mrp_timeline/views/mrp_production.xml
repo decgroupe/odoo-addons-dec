@@ -39,16 +39,4 @@
         <field name="view_mode">tree,kanban,form,calendar,timeline,pivot,graph</field>
     </record>
 
-    <record model="ir.ui.view" id="mrp_production_form_view">
-        <field name="name">mrp.production.form@mrp_timeline</field>
-        <field name="model">mrp.production</field>
-        <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
-        <field name="arch" type="xml">
-            <field name="date_planned_finished" position="attributes">
-                <attribute name="invisible">0</attribute>
-            </field>
-        </field>
-    </record>
-
 </odoo>
