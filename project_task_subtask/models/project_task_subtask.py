@@ -22,31 +22,53 @@ SUBTASK_STATES = {
 class ProjectTaskSubtask(models.Model):
     _name = "project.task.subtask"
     _inherit = ["mail.activity.mixin"]
+
     state = fields.Selection(
-        [(k, v) for k, v in list(SUBTASK_STATES.items())],
-        "Status",
+        selection=[(k, v) for k, v in list(SUBTASK_STATES.items())],
+        string="Status",
         required=True,
         copy=False,
         default="todo",
     )
-    name = fields.Char(required=True, string="Description")
-    note = fields.Char()
+    name = fields.Char(
+        required=True,
+        string="Description",
+    )
+    note = fields.Char(
+        string="Note",
+        help="Add details or comments",
+    )
     reviewer_id = fields.Many2one(
-        "res.users", "Created by", readonly=True, default=lambda self: self.env.user
+        comodel_name="res.users",
+        string="Created by",
+        readonly=True,
+        default=lambda self: self.env.user
     )
     project_id = fields.Many2one(
-        "project.project", related="task_id.project_id", store=True
+        comodel_name="project.project",
+        related="task_id.project_id",
+        store=True,
     )
-    user_id = fields.Many2one("res.users", "Assigned to", required=True)
+    user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Assigned to",
+        required=True,
+    )
     task_id = fields.Many2one(
-        "project.task", "Task", ondelete="cascade", required=True, index="1"
+        comodel_name="project.task",
+        string="Task",
+        ondelete="cascade",
+        required=True,
+        index="1",
     )
     task_state = fields.Char(
-        string="Task state", related="task_id.stage_id.name", readonly=True
+        string="Task state",
+        related="task_id.stage_id.name",
+        readonly=True,
     )
-    hide_button = fields.Boolean(compute="_compute_hide_button")
-    recolor = fields.Boolean(compute="_compute_recolor")
-    deadline = fields.Datetime(string="Deadline")
+    hide_button = fields.Boolean(compute="_compute_hide_button", )
+    recolor = fields.Boolean(compute="_compute_recolor", )
+    deadline = fields.Datetime(string="Deadline", )
 
     def _compute_recolor(self):
         self.recolor = False
@@ -58,8 +80,8 @@ class ProjectTaskSubtask(models.Model):
         self.hide_button = False
         for record in self:
             if (
-                self.env.user not in [record.reviewer_id, record.user_id]
-                and not self.env.user._is_admin()
+                self.env.user not in [record.reviewer_id, record.user_id] and
+                not self.env.user._is_admin()
             ):
                 record.hide_button = True
 
@@ -83,12 +105,14 @@ class ProjectTaskSubtask(models.Model):
                     r.name, r.state, r.reviewer_id.id, r.user_id.id
                 )
                 if not (
-                    self.env.user == r.reviewer_id
-                    or self.env.user == r.user_id
-                    or self.env.user._is_admin()
+                    self.env.user == r.reviewer_id or
+                    self.env.user == r.user_id or self.env.user._is_admin()
                 ):
                     raise UserError(
-                        _("Only users related to that subtask can change the state.")
+                        _(
+                            "Only users related to that subtask can change "
+                            "the state."
+                        )
                     )
             if vals.get("name"):
                 r.task_id.send_subtask_email(
@@ -99,12 +123,14 @@ class ProjectTaskSubtask(models.Model):
                     old_name=old_names[r.id],
                 )
                 if not (
-                    self.env.user == r.reviewer_id
-                    or self.env.user == r.user_id
-                    or self.env.user._is_admin()
+                    self.env.user == r.reviewer_id or
+                    self.env.user == r.user_id or self.env.user._is_admin()
                 ):
                     raise UserError(
-                        _("Only users related to that subtask can change the name.")
+                        _(
+                            "Only users related to that subtask can change "
+                            "the name."
+                        )
                     )
             if vals.get("user_id"):
                 r.task_id.send_subtask_email(
@@ -144,11 +170,22 @@ class ProjectTaskSubtask(models.Model):
 
 class Task(models.Model):
     _inherit = "project.task"
-    subtask_ids = fields.One2many("project.task.subtask", "task_id", "Subtask")
-    kanban_subtasks = fields.Text(compute="_compute_kanban_subtasks")
-    default_user = fields.Many2one("res.users", compute="_compute_default_user")
-    completion = fields.Integer("Completion", compute="_compute_completion")
-    completion_xml = fields.Text(compute="_compute_completion_xml")
+
+    subtask_ids = fields.One2many(
+        comodel_name="project.task.subtask",
+        inverse_name="task_id",
+        string="Subtask",
+    )
+    kanban_subtasks = fields.Text(compute="_compute_kanban_subtasks", )
+    default_user = fields.Many2one(
+        comodel_name="res.users",
+        compute="_compute_default_user",
+    )
+    completion = fields.Integer(
+        string="Completion",
+        compute="_compute_completion",
+    )
+    completion_xml = fields.Text(compute="_compute_completion_xml", )
 
     def _compute_default_user(self):
         self.default_user = False
@@ -161,8 +198,8 @@ class Task(models.Model):
                 elif self.env.user != record.create_uid:
                     record.default_user = record.create_uid
                 elif (
-                    self.env.user == record.create_uid
-                    and self.env.user == record.user_id
+                    self.env.user == record.create_uid and
+                    self.env.user == record.user_id
                 ):
                     record.default_user = self.env.user
 
@@ -173,27 +210,24 @@ class Task(models.Model):
             result_string_wt = ""
             if record.subtask_ids:
                 task_todo_ids = record.subtask_ids.filtered(
-                    lambda x: x.state == "todo" and x.user_id.id == record.env.user.id
+                    lambda x: x.state == "todo" and x.user_id.id == record.env.
+                    user.id
                 )
                 task_waiting_ids = record.subtask_ids.filtered(
-                    lambda x: x.state == "waiting"
-                    and x.user_id.id == record.env.user.id
+                    lambda x: x.state == "waiting" and x.user_id.id == record.
+                    env.user.id
                 )
                 if task_todo_ids:
                     tmp_string_td = escape(": {}".format(len(task_todo_ids)))
-                    result_string_td += _("<li><b>To-Do{}</b></li>").format(
-                        tmp_string_td
-                    )
+                    result_string_td += _("<li><b>To-Do{}</b></li>"
+                                         ).format(tmp_string_td)
                 if task_waiting_ids:
                     tmp_string_wt = escape(": {}".format(len(task_waiting_ids)))
-                    result_string_wt += _("<li><b>Waiting{}</b></li>").format(
-                        tmp_string_wt
-                    )
+                    result_string_wt += _("<li><b>Waiting{}</b></li>"
+                                         ).format(tmp_string_wt)
             record.kanban_subtasks = (
-                '<div class="kanban_subtasks"><ul>'
-                + result_string_td
-                + result_string_wt
-                + "</ul></div>"
+                '<div class="kanban_subtasks"><ul>' + result_string_td +
+                result_string_wt + "</ul></div>"
             )
 
     def _compute_completion(self):
@@ -204,7 +238,8 @@ class Task(models.Model):
         self.completion_xml = ""
         for record in self:
             active_subtasks = record.subtask_ids and record.subtask_ids.filtered(
-                lambda x: x.user_id.id == record.env.user.id and x.state != "cancelled"
+                lambda x: x.user_id.id == record.env.user.id and x.state !=
+                "cancelled"
             )
             if not active_subtasks:
                 record.completion_xml = """
@@ -236,13 +271,12 @@ class Task(models.Model):
                 </div>
                 <div class="task_completion"> {0}% </div>
             </div>
-            """.format(
-                int(completion), color, header
-            )
+            """.format(int(completion), color, header)
 
     def task_completion(self):
         user_task_ids = self.subtask_ids.filtered(
-            lambda x: x.user_id.id == self.env.user.id and x.state != "cancelled"
+            lambda x: x.user_id.id == self.env.user.id and x.state !=
+            "cancelled"
         )
         if not user_task_ids:
             return 100
@@ -279,55 +313,33 @@ class Task(models.Model):
                 subtype_xmlid = False
             elif self.env.user == reviewer:
                 body = (
-                    "<p>"
-                    + escape(user.name)
-                    + ", <br><strong>"
-                    + state
-                    + "</strong>: "
-                    + escape(subtask_name)
+                    "<p>" + escape(user.name) + ", <br><strong>" + state +
+                    "</strong>: " + escape(subtask_name)
                 )
                 partner_ids = [user.partner_id.id]
             elif self.env.user == user:
                 msg = _("I updated checklist item assigned to me")
                 body = (
-                    "<p>"
-                    + escape(reviewer.name)
-                    + ', <em style="color:#999">'
-                    + msg
-                    + ":</em> <br><strong>"
-                    + state
-                    + "</strong>: "
-                    + escape(subtask_name)
+                    "<p>" + escape(reviewer.name) +
+                    ', <em style="color:#999">' + msg + ":</em> <br><strong>" +
+                    state + "</strong>: " + escape(subtask_name)
                 )
                 partner_ids = [reviewer.partner_id.id]
             else:
                 msg = _("I updated checklist item, now its assigned to")
                 body = (
-                    "<p>"
-                    + escape(user.name)
-                    + ", "
-                    + escape(reviewer.name)
-                    + ', <em style="color:#999">'
-                    + msg
-                    + " "
-                    + escape(user.name)
-                    + ": </em> <br><strong>"
-                    + state
-                    + "</strong>: "
-                    + escape(subtask_name)
+                    "<p>" + escape(user.name) + ", " + escape(reviewer.name) +
+                    ', <em style="color:#999">' + msg + " " +
+                    escape(user.name) + ": </em> <br><strong>" + state +
+                    "</strong>: " + escape(subtask_name)
                 )
                 partner_ids = [user.partner_id.id, reviewer.partner_id.id]
             if old_name:
                 msg = _("Updated from")
                 body = (
-                    body
-                    + '<br><em style="color:#999">'
-                    + msg
-                    + "</em><br><strong>"
-                    + state
-                    + "</strong>: "
-                    + escape(old_name)
-                    + "</p>"
+                    body + '<br><em style="color:#999">' + msg +
+                    "</em><br><strong>" + state + "</strong>: " +
+                    escape(old_name) + "</p>"
                 )
             else:
                 body = body + "</p>"

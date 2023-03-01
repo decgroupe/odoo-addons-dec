@@ -6,27 +6,30 @@
 # Copyright 2020 Almas Giniatullin <https://github.com/almas50>
 # License MIT (https://opensource.org/licenses/MIT).
 {
-    "name": """Project Task Checklist""",
-    "summary": """Use checklist to be ensure that all your tasks are performed and to make easy control over them""",
-    "category": """Project Management""",
-    "images": ["images/checklist_main.png"],
+    "name": "Project Task Checklist",
+    "summary":
+        "Use checklist to be ensure that all your tasks are "
+        "performed and to make easy control over them",
+    "category": "Project Management",
     "version": "14.0.1.0.0",
     "application": False,
-    "author": "IT-Projects LLC, Manaev Rafael",
-    "support": "apps@itpp.dev",
-    "website": "https://itpp.dev",
-    "license": "Other OSI approved licence",  # MIT
-    "price": 69.00,
-    "currency": "EUR",
+    "author": "DEC, Yann Papouin, "
+              "IT-Projects LLC, Manaev Rafael",
+    'website': 'https://www.decgroupe.com',
+    "license": "MIT",
     "depends": ["base", "project"],
-    "external_dependencies": {"python": [], "bin": []},
-    "data": [
-        "security/ir.model.access.csv",
-        "views/project_task_subtask.xml",
-        "views/assets.xml",
-        "data/subscription_template.xml",
-        "security/project_security.xml",
-    ],
+    "external_dependencies": {
+        "python": [],
+        "bin": []
+    },
+    "data":
+        [
+            "security/ir.model.access.csv",
+            "security/project_security.xml",
+            "views/project_task_subtask.xml",
+            "views/assets.xml",
+            "data/subscription_template.xml",
+        ],
     "qweb": ["static/src/xml/templates.xml"],
     "demo": ["demo/project_task_subtask_demo.xml"],
     "post_load": None,

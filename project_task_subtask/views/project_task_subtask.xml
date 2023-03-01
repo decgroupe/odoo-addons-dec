@@ -7,6 +7,7 @@
     Copyright 2020 Almas Giniatullin <https://github.com/almas50>
     License MIT (https://opensource.org/licenses/MIT). -->
 <odoo>
+
     <record id="view_task_form2" model="ir.ui.view">
         <field name="name">project.task.form</field>
         <field name="model">project.task</field>
@@ -81,6 +82,7 @@
             </xpath>
         </field>
     </record>
+
     <record id="view_task_kanban_subtasks" model="ir.ui.view">
         <field name="name">project.task.kanban.subtasks</field>
         <field name="model">project.task</field>
@@ -100,6 +102,7 @@
             </xpath>
         </field>
     </record>
+    
     <record model="ir.ui.view" id="view_id">
         <field name="name">project.task.subtask</field>
         <field name="model">project.task.subtask</field>
@@ -116,6 +119,7 @@
             </form>
         </field>
     </record>
+
     <record id="project_task_subtask_view_search" model="ir.ui.view">
         <field name="name">project.task.subtask.filter</field>
         <field name="model">project.task.subtask</field>
@@ -149,6 +153,7 @@
             </search>
         </field>
     </record>
+
     <record model="ir.ui.view" id="subtask_list_view">
         <field name="name">subtask.list.form</field>
         <field name="model">project.task.subtask</field>
@@ -162,6 +167,7 @@
             </tree>
         </field>
     </record>
+
     <record id="action_view_subtask" model="ir.actions.act_window">
         <field name="name">Checklist</field>
         <field name="res_model">project.task.subtask</field>
@@ -173,6 +179,7 @@
       }
         </field>
     </record>
+
     <!-- Create a new top menu in project -->
     <menuitem
         name="My Tasks"
@@ -181,12 +188,14 @@
         sequence="2"
         groups="base.group_no_one,project.group_project_user"
     />
+
     <!-- Move built-in "All Tasks" menu to this new top menu -->
     <menuitem
         name="All Tasks"
         id="project.menu_project_management"
         parent="menu_project_mytasks"
     />
+
     <!-- Create a new menu button dedicated to subtasks -->
     <menuitem
         name="Checklist"
@@ -194,4 +203,5 @@
         id="menu_action_view_subtask"
         action="action_view_subtask"
     />
+    
 </odoo>
