@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-
     <record model="ir.ui.view" id="project_task_form_view">
         <field name="name">project.task.form@project_task_subtask</field>
         <field name="model">project.task</field>
@@ -29,14 +28,14 @@
                             <field name="hide_button" invisible='True' />
                             <button
                                 name="change_state_done"
-                                string="Change state to DONE"
+                                title="Change state to DONE"
                                 type="object"
                                 icon="fa-check"
                                 attrs="{'invisible': ['|', ('state', 'in',['done', 'cancelled']), ('hide_button', '=', True)]}"
                             />
                             <button
                                 name="change_state_todo"
-                                string="Change state to TODO"
+                                title="Change state to TODO"
                                 type="object"
                                 icon="fa-caret-square-o-right"
                                 attrs="{'invisible': [ '|',('state', '=', 'todo'), ('hide_button', '=', True)]}"
@@ -44,14 +43,14 @@
                             <button
                                 name="change_state_waiting"
                                 type="object"
-                                string="Change state to WAITING"
+                                title="Change state to WAITING"
                                 icon="fa-pause"
                                 attrs="{'invisible': [ '|',('state', '=', 'waiting'), ('hide_button', '=', True)]}"
                             />
                             <button
                                 name="change_state_cancelled"
                                 type="object"
-                                string="Change state to CANCELLED"
+                                title="Change state to CANCELLED"
                                 icon="fa-ban"
                                 attrs="{'invisible': [ '|',('state', '=', 'cancelled'), ('hide_button', '=', True)]}"
                             />
@@ -59,16 +58,12 @@
                             <field name="deadline" />
                             <button
                                 name="action_delete"
-                                string="Delete"
+                                title="Delete"
                                 type="object"
-                                attrs="{
-                                    'invisible': [
-                                        ('state', '!=', 'cancelled')
-                                    ]}"
+                                attrs="{'invisible': [('state', '!=', 'cancelled')]}"
                                 groups="base.group_no_one"
                                 icon="fa-trash-o"
                             >
-
                             </button>
                         </tree>
                     </field>

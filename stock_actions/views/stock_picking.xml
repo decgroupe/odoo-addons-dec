@@ -12,7 +12,7 @@
                 <field name="action_reassign_visible" invisible="1"/>
                 <button 
                     name="action_reassign" 
-                    string="Unreserve all and re-check availability" 
+                    title="Unreserve all and re-check availability" 
                     type="object" 
                     icon="fa-bar-chart-o" 
                     attrs="{'invisible': [('action_reassign_visible', '=', False)]}">
@@ -30,7 +30,7 @@
             <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="before">
                 <button 
                     name="action_cancel" 
-                    string="Cancel" 
+                    title="Cancel" 
                     type="object"
                     confirm="Are you sure you want to cancel this move?"
                     attrs="{

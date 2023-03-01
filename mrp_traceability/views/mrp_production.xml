@@ -48,7 +48,7 @@
                 <field name="mrp_status" string="Procurement status" class="d_move_procurement_status"/>
                 <button 
                     name="action_view_created_item" 
-                    string="Open" 
+                    title="Open" 
                     type="object"
                     attrs="{'invisible': [('action_view_created_item_visible', '=', False),]}"
                     icon="fa-external-link">

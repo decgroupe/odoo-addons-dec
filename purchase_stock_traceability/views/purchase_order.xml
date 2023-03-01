@@ -11,7 +11,7 @@
                 <field name="action_view_origin_item_visible" invisible="1"/>
                 <button 
                     name="action_view_origin_item" 
-                    string="Open" 
+                    title="Open" 
                     type="object"
                     attrs="{'invisible': [('action_view_origin_item_visible', '=', False),]}"
                     icon="fa-external-link">
