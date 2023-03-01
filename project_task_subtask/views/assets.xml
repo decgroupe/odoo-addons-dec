@@ -2,21 +2,12 @@
 <!--Copyright 2018 Kolushov Alexandr <https://it-projects.info/team/KolushovAlexandr>
     License MIT (https://opensource.org/licenses/MIT). -->
 <odoo>
-    <template
-        id="assets_backend"
-        name="Project timelog assets"
-        inherit_id="web.assets_backend"
-    >
+
+    <template id="assets_backend" name="Project timelog assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
-            <link
-                rel="stylesheet"
-                type="text/css"
-                href="/project_task_subtask/static/src/css/kanban_styles.css"
-            />
-            <script
-                type="text/javascript"
-                src="/project_task_subtask/static/src/js/one2many_renderer.js"
-            />
+            <link rel="stylesheet" type="text/scss" href="/project_task_subtask/static/src/scss/kanban_styles.scss" />
+            <script type="text/javascript" src="/project_task_subtask/static/src/js/one2many_renderer.js" />
         </xpath>
     </template>
+
 </odoo>
