@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="empty_row_layout_sale_order_form_view" >
+    <!--
+        Inherited view to make the order lines list in the form non-editable
+        for the members of some usability groups.
+        This is a backport from 12.0 that allow editing a sale order line
+        using the full form instead of the inline mode.
+    -->
+    <record model="ir.ui.view" id="view_order_form">
+        <field name="name">sale.order.form.editable.list@sale_row_layout</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="groups_id" eval="[(4, ref('product.group_stock_packaging'))]"/>
+        <!-- <field name="priority" eval="20" /> -->
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="editable" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="empty_row_layout_sale_order_form_view">
         <field name="name">sale.order.form#empty_row_layout@sale_row_layout</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_traceability.sale_order_form_view"/>
@@ -72,7 +91,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="row_layout_sale_order_form_view" >
+    <record model="ir.ui.view" id="row_layout_sale_order_form_view">
         <field name="name">sale.order.form#row_layout@sale_row_layout</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_row_layout.empty_row_layout_sale_order_form_view"/>

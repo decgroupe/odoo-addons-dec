@@ -6,6 +6,7 @@
     'category': 'Sales',
     'summary': "Show line form product fields using a row",
     'depends': [
+        'product',
         'sale_margin',
         'sale_stock',
     ],
