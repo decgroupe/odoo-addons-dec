@@ -30,40 +30,40 @@ class UoM(models.Model):
         if name:
             positive_operators = ['=', 'ilike', '=ilike', 'like', '=like']
             if operator in positive_operators:
-                uom_ids = self._search(
+                uom_ids = list(self._search(
                     args + [('name', '=ilike', name)],
                     limit=limit,
                     access_rights_uid=name_get_uid,
-                )
+                ))
 
             if not limit or len(uom_ids) < limit:
                 limit2 = (limit - len(uom_ids)) if limit else False
-                uom2_ids = self._search(
+                uom2_ids = list(self._search(
                     args + [
                         ('name', '=ilike', name + '%'),
                         ('id', 'not in', uom_ids),
                     ],
                     limit=limit2,
                     access_rights_uid=name_get_uid,
-                )
+                ))
                 uom_ids.extend(uom2_ids)
 
             if not limit or len(uom_ids) < limit:
                 limit3 = (limit - len(uom_ids)) if limit else False
-                uom3_ids = self._search(
+                uom3_ids = list(self._search(
                     args + [
                         ('name', operator, name),
                         ('id', 'not in', uom_ids),
                     ],
                     limit=limit3,
                     access_rights_uid=name_get_uid,
-                )
+                ))
                 uom_ids.extend(uom3_ids)
         else:
-            uom_ids = self._search(
+            uom_ids = list(self._search(
                 args,
                 limit=limit,
                 access_rights_uid=name_get_uid,
-            )
+            ))
 
-        return self.browse(uom_ids).name_get()
+        return uom_ids
