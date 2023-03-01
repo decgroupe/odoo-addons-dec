@@ -27,6 +27,8 @@
             "security/ir.model.access.csv",
             "security/project_security.xml",
             "views/project_task_subtask.xml",
+            "views/project_task.xml",
+            "views/menu.xml",
             "views/assets.xml",
             "data/subscription_template.xml",
         ],

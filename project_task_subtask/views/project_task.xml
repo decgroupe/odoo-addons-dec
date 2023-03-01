@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="project_task_form_view">
+        <field name="name">project.task.form@project_task_subtask</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <group name="checklist">
+                    <field name="default_user" invisible='True' />
+                    <field
+                        name="subtask_ids"
+                        context="{'default_user_id': default_user}"
+                    >
+                        <tree
+                            editable="bottom"
+                            decoration-danger="recolor == True"
+                            decoration-muted="state == 'cancelled'"
+                            decoration-success="state == 'done'"
+                            decoration-info="state == 'waiting'"
+                        >
+                            <field name="name" />
+                            <field name="recolor" invisible='True' />
+                            <field name="user_id" />
+                            <field name="state" />
+                            <field name="note" />
+                            <field name="hide_button" invisible='True' />
+                            <button
+                                name="change_state_done"
+                                string="Change state to DONE"
+                                type="object"
+                                icon="fa-check"
+                                attrs="{'invisible': ['|', ('state', 'in',['done', 'cancelled']), ('hide_button', '=', True)]}"
+                            />
+                            <button
+                                name="change_state_todo"
+                                string="Change state to TODO"
+                                type="object"
+                                icon="fa-caret-square-o-right"
+                                attrs="{'invisible': [ '|',('state', '=', 'todo'), ('hide_button', '=', True)]}"
+                            />
+                            <button
+                                name="change_state_waiting"
+                                type="object"
+                                string="Change state to WAITING"
+                                icon="fa-pause"
+                                attrs="{'invisible': [ '|',('state', '=', 'waiting'), ('hide_button', '=', True)]}"
+                            />
+                            <button
+                                name="change_state_cancelled"
+                                type="object"
+                                string="Change state to CANCELLED"
+                                icon="fa-ban"
+                                attrs="{'invisible': [ '|',('state', '=', 'cancelled'), ('hide_button', '=', True)]}"
+                            />
+                            <field name="reviewer_id" />
+                            <field name="deadline" />
+                            <button
+                                name="action_delete"
+                                string="Delete"
+                                type="object"
+                                attrs="{
+                                    'invisible': [
+                                        ('state', '!=', 'cancelled')
+                                    ]}"
+                                groups="base.group_no_one"
+                                icon="fa-trash-o"
+                            >
+
+                            </button>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_task_kanban">
+        <field name="name">project.task.kanban@project_task_subtask</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name ='tag_ids']" position="after">
+                <field name="completion" invisible="1" />
+                <field name="subtask_ids" invisible="1" />
+                <field name="kanban_subtasks" invisible="1" />
+                <field name="completion_xml" invisible="1" />
+            </xpath>
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div>
+                    <t t-raw="record.completion_xml.raw_value" />
+                    <t t-raw="record.kanban_subtasks.raw_value" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

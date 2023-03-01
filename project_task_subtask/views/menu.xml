@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Create a new top menu in project -->
+    <menuitem
+        name="My Tasks"
+        id="menu_project_mytasks"
+        parent="project.menu_main_pm"
+        sequence="2"
+        groups="base.group_no_one,project.group_project_user"
+    />
+
+    <!-- Move built-in "All Tasks" menu to this new top menu -->
+    <menuitem
+        name="All Tasks"
+        id="project.menu_project_management"
+        parent="menu_project_mytasks"
+    />
+
+    <!-- Create a new menu button dedicated to subtasks -->
+    <menuitem
+        name="Checklist"
+        parent="menu_project_mytasks"
+        id="menu_action_view_subtask"
+        action="action_view_subtask"
+    />
+
+</odoo>
