@@ -32,4 +32,4 @@ class TestUi(odoo.tests.HttpCase):
                 }, 20000);
             });
         """
-        self.phantom_js(url, code, login="admin")
+        self.browser_js(url, code, login="admin")

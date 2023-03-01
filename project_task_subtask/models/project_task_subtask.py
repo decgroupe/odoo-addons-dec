@@ -48,14 +48,14 @@ class ProjectTaskSubtask(models.Model):
     recolor = fields.Boolean(compute="_compute_recolor")
     deadline = fields.Datetime(string="Deadline")
 
-    @api.multi
     def _compute_recolor(self):
+        self.recolor = False
         for record in self:
             if self.env.user == record.user_id and record.state == "todo":
                 record.recolor = True
 
-    @api.multi
     def _compute_hide_button(self):
+        self.hide_button = False
         for record in self:
             if (
                 self.env.user not in [record.reviewer_id, record.user_id]
@@ -63,8 +63,8 @@ class ProjectTaskSubtask(models.Model):
             ):
                 record.hide_button = True
 
-    @api.multi
     def _compute_reviewer_id(self):
+        self.reviewer_id = False
         for record in self:
             record.reviewer_id = record.create_uid
 
@@ -74,7 +74,6 @@ class ProjectTaskSubtask(models.Model):
             return [("state", "=", "todo"), ("user_id", "=", self.env.uid)]
         return []
 
-    @api.multi
     def write(self, vals):
         old_names = dict(list(zip(self.mapped("id"), self.mapped("name"))))
         result = super(ProjectTaskSubtask, self).write(vals)
@@ -123,27 +122,22 @@ class ProjectTaskSubtask(models.Model):
         )
         return result
 
-    @api.multi
     def change_state_done(self):
         for record in self:
             record.state = "done"
 
-    @api.multi
     def change_state_todo(self):
         for record in self:
             record.state = "todo"
 
-    @api.multi
     def change_state_cancelled(self):
         for record in self:
             record.state = "cancelled"
 
-    @api.multi
     def change_state_waiting(self):
         for record in self:
             record.state = "waiting"
 
-    @api.multi
     def action_delete(self):
         self.unlink()
 
@@ -156,8 +150,8 @@ class Task(models.Model):
     completion = fields.Integer("Completion", compute="_compute_completion")
     completion_xml = fields.Text(compute="_compute_completion_xml")
 
-    @api.multi
     def _compute_default_user(self):
+        self.default_user = False
         for record in self:
             if self.env.user != record.user_id and self.env.user != record.create_uid:
                 record.default_user = record.user_id
@@ -172,8 +166,8 @@ class Task(models.Model):
                 ):
                     record.default_user = self.env.user
 
-    @api.multi
     def _compute_kanban_subtasks(self):
+        self.kanban_subtasks = ""
         for record in self:
             result_string_td = ""
             result_string_wt = ""
@@ -202,13 +196,12 @@ class Task(models.Model):
                 + "</ul></div>"
             )
 
-    @api.multi
     def _compute_completion(self):
         for record in self:
             record.completion = record.task_completion()
 
-    @api.multi
     def _compute_completion_xml(self):
+        self.completion_xml = ""
         for record in self:
             active_subtasks = record.subtask_ids and record.subtask_ids.filtered(
                 lambda x: x.user_id.id == record.env.user.id and x.state != "cancelled"
@@ -256,7 +249,6 @@ class Task(models.Model):
         user_done_task_ids = user_task_ids.filtered(lambda x: x.state == "done")
         return (len(user_done_task_ids) / len(user_task_ids)) * 100
 
-    @api.multi
     def send_subtask_email(
         self,
         subtask_name,
@@ -279,10 +271,12 @@ class Task(models.Model):
             if subtask_state == "waiting":
                 state = '<span style="color:#b818ce">' + state + "</span>"
             partner_ids = []
-            subtype = "project_task_subtask.subtasks_subtype"
+            subtype_xmlid = "project_task_subtask.subtasks_subtype"
             if user == self.env.user and reviewer == self.env.user:
-                body = "<p>" + "<strong>" + state + "</strong>: " + escape(subtask_name)
-                subtype = False
+                body = "<p>" + "<strong>" + state + "</strong>: " + escape(
+                    subtask_name
+                )
+                subtype_xmlid = False
             elif self.env.user == reviewer:
                 body = (
                     "<p>"
@@ -339,12 +333,11 @@ class Task(models.Model):
                 body = body + "</p>"
             r.message_post(
                 message_type="comment",
-                subtype=subtype,
+                subtype_xmlid=subtype_xmlid,
                 body=body,
                 partner_ids=partner_ids,
             )
 
-    @api.multi
     def copy(self, default=None):
         task = super(Task, self).copy(default)
         for subtask in self.subtask_ids:
