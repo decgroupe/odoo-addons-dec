@@ -11,12 +11,13 @@
     ],
     'data':
         [
-            'security/res_groups.xml',
             'data/ir_config_parameter.xml',
             'data/mail_template.xml',
             'templates/login_templates.xml',
             'views/assets.xml',
             'wizard/res_partner_impersonate.xml',
+            'security/res_groups.xml',
+            'security/ir.model.access.csv',
         ],
     'installable': True
 }
