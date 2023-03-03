@@ -9,6 +9,7 @@
     ],
     'data': [
         'security/res_groups.xml',
+        'security/ir.model.access.csv',
         'wizard/merge_helpdesk_ticket.xml',
     ],
     'installable': True
