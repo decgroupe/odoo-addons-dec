@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_mrp_distribute_timesheet_reason_user,Read only access to distribute reasons for User,model_mrp_distribute_timesheet_reason,base.group_user,1,0,0,0
 access_mrp_distribute_timesheet_reason_manager,Read and write access to distribute reasons for Manager,model_mrp_distribute_timesheet_reason,base.group_erp_manager,1,1,1,1
+access_mrp_distribute_timesheet_group_user,access_mrp_distribute_timesheet group_user,model_mrp_distribute_timesheet,base.group_user,1,1,1,1
+access_mrp_distribute_timesheet_line_group_user,access_mrp_distribute_timesheet_line group_user,model_mrp_distribute_timesheet_line,base.group_user,1,1,1,1
