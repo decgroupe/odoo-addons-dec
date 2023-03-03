@@ -9,6 +9,7 @@
     ],
     'data': [
         'security/res_groups.xml',
+        'security/ir.model.access.csv',
         'wizard/merge_project.xml',
         'wizard/merge_task.xml',
         'data/mail_template_project.xml',
