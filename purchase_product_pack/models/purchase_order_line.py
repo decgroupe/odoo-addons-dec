@@ -142,7 +142,7 @@ class PurchaseOrderLine(models.Model):
             "picking_type_id": move.picking_type_id.id,
             "reference": move.reference,
             "date": move.date,
-            "date_expected": move.date_expected,
+            "date_deadline": move.date_deadline,
             "propagate": move.propagate,
             "partner_id": move.partner_id.id,
             "procure_method": move.procure_method,
