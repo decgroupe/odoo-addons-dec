@@ -12,6 +12,7 @@
     ],
     'data':
         [
+            'security/ir.model.access.csv',
             'security/security.xml',
             'wizard/mrp_swap_production.xml',
             'wizard/mrp_swap_production_line.xml',
