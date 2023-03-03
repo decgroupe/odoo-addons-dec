@@ -13,6 +13,7 @@
         'views/purchase_order.xml',
         'views/template.xml',
         'wizard/purchase_order_merge.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True
 }
