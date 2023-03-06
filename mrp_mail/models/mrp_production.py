@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
 from odoo import api, fields, models, _
+from odoo.tools.safe_eval import safe_eval
 
 
 class MrpProduction(models.Model):
@@ -9,7 +10,7 @@ class MrpProduction(models.Model):
     _inherit = ['mrp.production', 'mail.alias.mixin']
 
     alias_id = fields.Many2one(
-        'mail.alias',
+        comodel_name='mail.alias',
         string='Alias',
         ondelete="restrict",
         required=True,
@@ -17,11 +18,14 @@ class MrpProduction(models.Model):
         "Incoming emails are automatically added as chat message."
     )
 
-    def get_alias_model_name(self, vals):
-        return vals.get('alias_model', 'mrp.production')
-
-    def get_alias_values(self):
-        values = super(MrpProduction, self).get_alias_values()
+    def _alias_get_creation_values(self):
+        values = super()._alias_get_creation_values()
+        values["alias_model_id"] = self.env.ref("mrp.model_mrp_production").id
+        if self.id:
+            values["alias_defaults"] = defaults = safe_eval(
+                self.alias_defaults or "{}"
+            )
+            defaults["parent_id"] = self.id
         return values
 
     def autocreate_mail_alias(self):
