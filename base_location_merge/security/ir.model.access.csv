@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_merge_res_city_wizard_group_user,access_merge_res_city_wizard group_user,model_merge_res_city_wizard,base.group_user,1,1,1,1
+access_merge_res_city_zip_wizard_group_user,access_merge_res_city_zip_wizard group_user,model_merge_res_city_zip_wizard,base.group_user,1,1,1,1
