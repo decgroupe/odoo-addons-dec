@@ -13,3 +13,4 @@ access_ref_attribute_manager,Full access to attributes for Manager,model_ref_att
 access_ref_reference_manager,Full access to references for Manager,model_ref_reference,product_reference_management.group_ref_manager,1,1,1,1
 access_ref_reference_line_manager,Full access to reference lines for Manager,model_ref_reference_line,product_reference_management.group_ref_manager,1,1,1,1
 access_ref_version_manager,Full access to reference version lines for Manager,model_ref_version,product_reference_management.group_ref_manager,1,1,1,1
+access_change_product_state_by_category,access_change_product_state_by_category,model_change_product_state_by_category,base.group_user,1,1,1,1 
