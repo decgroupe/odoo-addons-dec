@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_replace_bom_components,access_replace_bom_components,model_replace_bom_components,base.group_user,1,1,1,1 
+access_replace_bom_tuple,access_replace_bom_tuple,model_replace_bom_tuple,base.group_user,1,1,1,1 

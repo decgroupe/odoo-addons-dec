@@ -14,6 +14,7 @@
     'data': [
         'views/bom_template.xml',
         'wizard/replace_bom_components.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True
 }
