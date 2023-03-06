@@ -8,9 +8,11 @@
         'moved to stock location. But sometimes you need to assign it to an'
         'existing delivery picking',
     'depends': ['mrp', ],
-    'data': [
-        'wizard/mrp_attach_picking.xml',
-        'views/mrp_production.xml',
-    ],
+    'data':
+        [
+            'wizard/mrp_attach_picking.xml',
+            'views/mrp_production.xml',
+            'security/ir.model.access.csv',
+        ],
     'installable': True
 }
