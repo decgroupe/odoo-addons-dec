@@ -85,7 +85,7 @@
     
     <record id="action_account_account_tag_merge" model="ir.actions.act_window">
         <field name="name">🧙‍♂️ Merge ...</field>
-        <field name="binding_model_id" ref="account.model_account_tag"/>
+        <field name="binding_model_id" ref="account.model_account_account_tag"/>
         <field name="binding_view_types">list</field>
         <field name="res_model">merge.account.account.tag.wizard</field>
         <field name="view_mode">form</field>
