@@ -15,11 +15,20 @@ class MassEditingWizard(models.TransientModel):
     chat_enabled = fields.Boolean()
 
     @api.model
+    def _get_thread_module_names(self):
+        res = ["mail.thread", "mail.thread.cc", "mail.thread.blacklist"]
+        return res
+
+    @api.model
     def default_get(self, fields):
         res = super().default_get(fields)
-        mass_operation = self._get_mass_operation()
-        TargetModel = self.env[mass_operation.model_id.model]
-        res['chat_enabled'] = 'mail.thread' in TargetModel._inherit_module
+        server_action_id = self.env.context.get("server_action_id")
+        server_action = self.env["ir.actions.server"].sudo(
+        ).browse(server_action_id)
+        TargetModel = self.env[server_action.model_id.model]
+        thread_modules = set(TargetModel._inherit_module
+                     ) & set(self._get_thread_module_names())
+        res['chat_enabled'] = thread_modules and True or False
         return res
 
     def _apply_operation(self, items):
@@ -27,7 +36,11 @@ class MassEditingWizard(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        mass_editing = self._get_mass_operation()
+        server_action_id = self.env.context.get("server_action_id")
+        server_action = self.env["ir.actions.server"].sudo(
+        ).browse(server_action_id)
+        TargetModel = self.env[server_action.model_id.model]
+
         active_ids = self.env.context.get("active_ids", [])
         wizard = super().create(vals)
         # WARNING: The `create` method called from override `vals` with an
@@ -38,10 +51,9 @@ class MassEditingWizard(models.TransientModel):
         # A security of 6 characters minimum is also added.
         post_chat_message = len(html2plaintext(chat_message).strip()) >= 6
         if active_ids:
-            TargetModel = self.env[mass_editing.model_id.model]
             if post_chat_message:
                 for target in TargetModel.browse(active_ids):
                     target.message_post(
-                        body=chat_message, subtype="mail.mt_note"
+                        body=chat_message, subtype_xmlid="mail.mt_note"
                     )
         return wizard
