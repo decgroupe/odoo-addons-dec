@@ -12,6 +12,7 @@ def set_content_disposition_inline(result):
             'Content-Disposition'].replace('attachment', 'inline')
     return result
 
+
 class PreviewReportController(ReportController):
     @http.route(['/report/download'], type='http', auth="user")
     def report_download(self, data, token):
@@ -28,13 +29,17 @@ class PreviewReportController(ReportController):
 class PreviewAerooReportController(AerooReportController):
     @http.route('/web/report_aeroo', type='http', auth="user")
     @serialize_exception
-    def generate_aeroo_report(self, action, token, debug=False):
+    def generate_aeroo_report(self, report_id, record_ids, token, debug=False):
         result = super(PreviewAerooReportController,
-                       self).generate_aeroo_report(action, token, debug=debug)
+                       self).generate_aeroo_report(
+                           report_id, record_ids, token, debug=debug
+                       )
         result = set_content_disposition_inline(result)
         return result
 
     @http.route('/report/preview_aeroo', type='http', auth="user")
     @serialize_exception
-    def generate_aeroo_preview(self, action, token, debug=False):
-        return self.generate_aeroo_report(action, token, debug=debug)
+    def generate_aeroo_preview(self, report_id, record_ids, token, debug=False):
+        return self.generate_aeroo_report(
+            report_id, record_ids, token, debug=debug
+        )
