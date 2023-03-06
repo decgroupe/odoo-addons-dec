@@ -88,15 +88,11 @@ class ProjectType(models.Model):
         'project_ids.todo_production_count'
     )
     def _compute_todo_projects(self):
-        self.write(
-            {
-                "todo_project_count": 0,
-                "todo_project_count_unassigned": 0,
-                "todo_project_count_year_nm0": 0,
-                "todo_project_count_year_nm1": 0,
-                "todo_project_count_year_nm2": 0,
-            }
-        )
+        self.todo_project_count = 0
+        self.todo_project_count_unassigned = 0
+        self.todo_project_count_year_nm0 = 0
+        self.todo_project_count_year_nm1 = 0
+        self.todo_project_count_year_nm2 = 0
         Project = self.env["project.project"]
         type_ids = self.filtered('date_field')
         dashboard_dates = type_ids.mapped('date_field')

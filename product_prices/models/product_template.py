@@ -101,6 +101,7 @@ class ProductTemplate(models.Model):
 
     @api.depends('standard_price', 'uom_id', 'uom_po_id')
     def _compute_standard_price_po_uom(self):
+        # TODO: Init ?
         # Check that uom_id is not False (possibility in editing mode)
         self.standard_price_po_uom = 0.0
         for product in self.filtered('uom_id'):
@@ -167,6 +168,7 @@ class ProductTemplate(models.Model):
         'uom_po_id',
     )
     def _compute_default_purchase_price(self):
+        # TODO: Init ?
         for p in pb(self):
             if isinstance(p.id, models.NewId):
                 continue
@@ -204,6 +206,7 @@ class ProductTemplate(models.Model):
         'uom_id',
     )
     def _compute_default_sell_price(self):
+        # TODO: Init ?
         for p in pb(self):
             if isinstance(p.id, models.NewId):
                 continue

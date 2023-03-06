@@ -19,11 +19,10 @@ class MrpProduction(models.Model):
 
     @api.depends('bom_id', 'product_id')
     def _compute_newer_bom_id(self):
-        for production in self:
+        self.newer_bom_id = False
+        for production in self.filtered("product_id"):
             bom_id = self.env['mrp.bom']._bom_find(
                 product=production.product_id
             )
             if bom_id and production.bom_id != bom_id:
                 production.newer_bom_id = bom_id
-            else:
-                production.newer_bom_id = False
