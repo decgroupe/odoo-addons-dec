@@ -9,6 +9,7 @@
         [
             'wizard/stock_warehouse_orderpoint_simulator.xml',
             'views/stock_warehouse_orderpoint.xml',
+            'security/ir.model.access.csv',
         ],
     'installable': True
 }
