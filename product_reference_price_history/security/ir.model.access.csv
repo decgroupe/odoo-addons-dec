@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_ref_price_user,Read only access to prices for User,model_ref_price,product_reference_management.group_ref_user,1,0,0,0
 access_ref_price_manager,Full access to prices for Manager,model_ref_price,product_reference_management.group_ref_manager,1,1,1,1
+access_reference_compute_material_cost,access_reference_compute_material_cost,model_reference_compute_material_cost,base.group_user,1,1,1,1 
+access_reference_generate_material_cost_report,access_reference_generate_material_cost_report,model_reference_generate_material_cost_report,base.group_user,1,1,1,1 
