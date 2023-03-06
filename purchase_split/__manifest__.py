@@ -11,6 +11,7 @@
     'data': [
         'views/purchase_order.xml',
         'wizard/purchase_order_split.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True
 }
