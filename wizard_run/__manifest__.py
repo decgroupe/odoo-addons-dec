@@ -4,12 +4,10 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': '''Run Method from Wizard''',
-    'depends': [
-        'base',
+    'depends': ['base', ],
+    'data': [
+        'wizard/wizard_run.xml',
+        'security/ir.model.access.csv',
     ],
-    'data':
-        [
-            'wizard/wizard_run.xml',
-        ],
     'installable': True
 }
