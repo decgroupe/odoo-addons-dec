@@ -5,7 +5,6 @@
 from odoo import fields, models, tools
 
 
-
 class MailMessageSubtype(models.Model):
     _inherit = "mail.message.subtype"
 
@@ -17,7 +16,8 @@ class MailMessageSubtype(models.Model):
     )
 
     def _filter_subtypes(self, model_name, pack_ids):
-        if model_name:
+        res = pack_ids
+        if model_name and not self.env.context.get("manual_message_subscribe"):
             domain = [("excluded_res_model_ids.model", "=", model_name)]
             excluded_ids = self.search(domain)
             if excluded_ids.ids:
@@ -25,10 +25,12 @@ class MailMessageSubtype(models.Model):
                 for ids in pack_ids:
                     ids = [x for x in ids if x not in excluded_ids.ids]
                     filtered_array_ids.append(ids)
-                return filtered_array_ids
-        return pack_ids
+                res = filtered_array_ids
+        return res
 
-    @tools.ormcache("self.env.uid", "model_name")
+    @tools.ormcache_context(
+        "self.env.uid", "model_name", keys=("manual_message_subscribe",)
+    )
     def _get_auto_subscription_subtypes(self, model_name):
         (
             child_ids,
@@ -38,7 +40,7 @@ class MailMessageSubtype(models.Model):
             relation,
         ) = super()._get_auto_subscription_subtypes(model_name)
         # Apply filtering and unpack values
-        (def_ids,) = self._filter_subtypes(model_name, [def_ids])
+        def_ids = self._filter_subtypes(model_name, [def_ids])
         return child_ids, def_ids, all_int_ids, parent, relation
 
     @tools.ormcache("self.env.uid", "model_name")
