@@ -48,11 +48,6 @@ msgid "Shows button to reassign"
 msgstr "Affiche le bouton pour revérifier la disponibilité"
 
 #. module: stock_actions
-#: model:ir.model,name:stock_actions.model_stock_move
-msgid "Stock Move"
-msgstr "Mouvement de stock"
-
-#. module: stock_actions
 #: model_terms:ir.ui.view,arch_db:stock_actions.picking_form_view
 msgid "Unreserve all and re-check availability"
 msgstr "Annuler la réservation et revérifier la disponibilité"
