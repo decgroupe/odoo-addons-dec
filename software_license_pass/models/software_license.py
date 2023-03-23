@@ -57,14 +57,15 @@ class SoftwareLicense(models.Model):
         return super().write(vals)
 
     def unlink(self):
-        license_id_from_pass = self.filtered("pass_id")
-        if license_id_from_pass:
-            pass_names = [x.name for x in license_id_from_pass.mapped("pass_id")]
-            raise UserError(
-                _("It is forbidden to delete a license own by a pass:\n{}").format(
-                    "\n".join(pass_names)
+        if not self.user_has_groups("software.group_software_supermanager"):
+            license_id_from_pass = self.filtered("pass_id")
+            if license_id_from_pass:
+                pass_names = [x.name for x in license_id_from_pass.mapped("pass_id")]
+                raise UserError(
+                    _("It is forbidden to delete a license own by a pass:\n{}").format(
+                        "\n".join(pass_names)
+                    )
                 )
-            )
         return super().unlink()
 
     def _name_get(self):
