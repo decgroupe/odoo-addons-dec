@@ -120,20 +120,31 @@ class MailActivityRedirection(models.Model):
         if isinstance(note, bytes):
             note = note.decode("utf-8")
         res = True
-        if res and user_id and self.initial_user_ids.ids:
+        # Check if user match, even if `user_id` is None
+        if res and self.initial_user_ids.ids:
             res = user_id in self.initial_user_ids.ids
+        # Check if model match, even if `model_name` is None
         if res and model_name and self.model_ids.ids:
             res = model_name in self.get_model_names()
-        if res and type_xmlid and self.activity_type_ids.ids:
-            res = type_xmlid in self.get_activity_type_xmlids()
-        if res and type_id and self.activity_type_ids.ids:
-            res = type_id in self.activity_type_ids.ids
-        if res and qweb_template_xmlid and self.qweb_templates.ids:
+        # Check if activity types match
+        if res and self.activity_type_ids.ids:
+            if type_xmlid:
+                res = type_xmlid in self.get_activity_type_xmlids()
+            elif type_id:
+                res = type_id in self.activity_type_ids.ids
+            else:
+                res = False
+        # Check if qweb template match, even if `qweb_template_xmlid` is None
+        if res and self.qweb_templates.ids:
             res = qweb_template_xmlid in self.get_qweb_template_xmlids()
-        if res and note and self.regex_pattern:
-            matches = re.search(self.regex_pattern, note, re.MULTILINE | re.DOTALL)
-            if matches and matches.group(0):
-                res = True
+        # Check if note match pattern
+        if res and self.regex_pattern:
+            if note:
+                matches = re.search(self.regex_pattern, note, re.MULTILINE | re.DOTALL)
+                if matches and matches.group(0):
+                    res = True
+                else:
+                    res = False
             else:
                 res = False
         return res
