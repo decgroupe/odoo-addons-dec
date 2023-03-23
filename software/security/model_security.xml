@@ -22,5 +22,15 @@
             />
         </record>
 
+        <record model="res.groups" id="group_software_supermanager">
+            <field name="name">Super-Manager</field>
+            <field name="category_id" ref="module_category_software" />
+            <field name="implied_ids" eval="[(4, ref('group_software_manager'))]" />
+            <field
+                name="users"
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
+        </record>
+
     </data>
 </odoo>
