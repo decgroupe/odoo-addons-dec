@@ -20,7 +20,7 @@ class MailThread(models.AbstractModel):
         if "mail_post_autofollow" not in _self.env.context and \
                 "mail_activity_autofollow" not in _self.env.context:
             _self = _self.with_context(manual_message_subscribe=True)
-        return super(MailThread, _self)._message_subscribe(
+        return super(MailThread, _self).message_subscribe(
             partner_ids=partner_ids,
             channel_ids=channel_ids,
             subtype_ids=subtype_ids,
