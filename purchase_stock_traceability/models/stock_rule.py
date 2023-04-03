@@ -7,10 +7,7 @@ from odoo import models, api, _
 class StockRule(models.Model):
     _inherit = 'stock.rule'
 
-    def _run_buy(
-        self, product_id, product_qty, product_uom, location_id, name, origin,
-        values
-    ):
+    def _run_buy(self, procurements):
         # Add a `run_buy` state var to the context before calling `_run_buy`.
         # Since base implementation search for an existing open purchase
         # order before creating it, we also override the `search` method of
@@ -20,7 +17,4 @@ class StockRule(models.Model):
         # Look at `purchase_order.py` in the same folder for more details.
         return super(
             StockRule, self.with_context(run_buy=True, buyer=self.env.user.id)
-        )._run_buy(
-            product_id, product_qty, product_uom, location_id, name, origin,
-            values
-        )
+        )._run_buy(procurements)
