@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="priority" eval="50"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='miscellaneous']//field[@name='picking_type_id']" position="after">
+            <xpath expr="//page[@name='miscellaneous']/group/group[@name='progress']" position="inside">
                 <field name="supply_progress" widget="progressbar"/>
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/tree//field[@name='quantity_done']" position="after">

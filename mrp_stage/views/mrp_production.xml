@@ -36,6 +36,9 @@
                     type="object">
                 </button>
             </button>
+            <xpath expr="//page[@name='miscellaneous']/group" position="inside">
+                <group name="progress"/>
+            </xpath>
         </field>
     </record>
 

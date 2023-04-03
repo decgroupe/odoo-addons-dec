@@ -17,10 +17,10 @@
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_purchase_progress</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="inherit_id" ref="mrp_supply_progress.mrp_production_form_view" />
         <field name="priority" eval="40"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='miscellaneous']//field[@name='picking_type_id']" position="after">
+            <xpath expr="//page[@name='miscellaneous']/group/group[@name='progress']" position="inside">
                 <field name="purchase_progress" widget="progressbar"/>
             </xpath>
         </field>
