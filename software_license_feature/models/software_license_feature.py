@@ -25,7 +25,7 @@ class SoftwareLicenseFeature(models.Model):
     )
     name = fields.Char(
         compute='_compute_name',
-        stored=True,
+        store=True,
     )
     property_id = fields.Many2one(
         comodel_name='software.license.feature.property',
