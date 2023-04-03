@@ -7,8 +7,8 @@ from odoo import models, api, _
 class StockRule(models.Model):
     _inherit = 'stock.rule'
 
-    def _make_po_get_domain(self, values, partner):
-        domain = super()._make_po_get_domain(values, partner)
+    def _make_po_get_domain(self, company_id, values, partner):
+        domain = super()._make_po_get_domain(company_id, values, partner)
         # Force group_id to False if not set to only group purchase orders
         # without group_id set
 
