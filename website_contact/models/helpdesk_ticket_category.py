@@ -5,8 +5,8 @@ from odoo import fields, models
 
 
 class HelpdeskCategory(models.Model):
-    _inherit = 'helpdesk.ticket.category'
-    _order = 'sequence, name'
+    _inherit = "helpdesk.ticket.category"
+    _order = "sequence, name"
 
     sequence = fields.Integer(
         required=True,
