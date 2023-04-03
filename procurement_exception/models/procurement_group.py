@@ -28,6 +28,7 @@ class ProcurementGroup(models.Model):
                 )
         except UserError as user_error:
             # Try to intercept and then re-raise exception
+            # FIXME: product_id is now in procurements (multiple): How to handle it ???
             self._try_intercept_exception(user_error, product_id)
         return res
 
