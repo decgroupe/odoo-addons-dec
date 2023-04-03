@@ -8,7 +8,6 @@ import werkzeug.urls
 from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
-from odoo.tools import pycompat
 from odoo.exceptions import UserError, AccessDenied
 
 _logger = logging.getLogger(__name__)
@@ -55,7 +54,7 @@ class ResUsers(models.Model):
     @api.depends('signin_link_token', 'signin_link_expiration')
     def _compute_signin_link_valid(self):
         dt = now()
-        for rec, rec_sudo in pycompat.izip(self, self.sudo()):
+        for rec, rec_sudo in zip(self, self.sudo()):
             rec.signin_link_valid = bool(rec_sudo.signin_link_token) and \
             (not rec_sudo.signin_link_expiration or dt <= rec_sudo.signin_link_expiration)
 

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-  <template id="login" inherit_id="web.login" name="OAuth Login buttons">
+  This template is only used when "website" module is not installed
+  <template id="login_layout" inherit_id="web.login_layout" name="Login Layout">
+    <xpath expr="//div[@t-attf-class='card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list']" position="attributes">
+      <attribute name="style"></attribute>
+    </xpath>
+  </template>
+
+  <template id="login" inherit_id="web.login" name="Magic Login buttons">
     <xpath expr="//form" position="attributes">
       <attribute name="id">login-form</attribute>
     </xpath>
