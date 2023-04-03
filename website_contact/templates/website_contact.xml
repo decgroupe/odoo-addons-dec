@@ -11,16 +11,19 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-6 col-md-8 col-sm-10 mx-auto form p-2 mb-5">
                 <div class="px-2">
                     <t t-if="True">
                         <form
                             id="form_create_message"
                             t-att-action="form_action if form_action else '#'"
+                            t-att-data-force_action="force_action if force_action else ''"
+                            t-att-data-model_name="model_name if model_name else ''"
+                            t-att-data-success-mode="success_mode if success_mode else ''"
+                            t-att-data-success-page="success_page if success_page else '/'"
                             method="POST"
                             enctype="multipart/form-data"
-                            class="justify-content-center"
+                            class="justify-content-center s_website_form"
                         >
                             <input
                                 type="hidden"
@@ -34,16 +37,16 @@
                             />
 
                             <t t-if="show_origin_form_group">
-                                <div class="form-group required">
+                                <div class="form-group s_website_form_field required s_website_form_required">
                                     <label
-                                        class="control-label"
+                                        class="control-label s_website_form_label"
                                         for="origin"
                                     >You Are</label>
                                     <div class="">
                                         <t t-foreach="origin" t-as="o">
                                             <div class="form-check form-check-inline">
                                                 <input
-                                                    class="form-check-input"
+                                                    class="form-check-input s_website_form_input"
                                                     t-att-id="o"
                                                     type="radio"
                                                     name="origin"
@@ -62,17 +65,17 @@
                             </t>
 
                             <div
-                                class="form-group required"
+                                class="form-group s_website_form_field required s_website_form_required"
                                 t-if="show_company_form_group"
                             >
                                 <label
-                                    class="control-label"
+                                    class="control-label s_website_form_label"
                                     for="company"
                                     t-esc="company_label"
                                 />
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control s_website_form_input"
                                     name="company"
                                     t-attf-value="#{company}"
                                     required="True"
@@ -80,30 +83,30 @@
                                 />
                             </div>
                             <div
-                                class="form-group required"
+                                class="form-group s_website_form_field required s_website_form_required"
                                 t-if="show_name_form_group"
                             >
                                 <label
-                                    class="control-label"
+                                    class="control-label s_website_form_label"
                                     for="name"
                                 >Your Name</label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control s_website_form_input"
                                     name="name"
                                     t-attf-value="#{name}"
                                     required="True"
                                     placeholder="Jane Doe"
                                 />
                             </div>
-                            <div class="form-group" t-if="show_function_form_group">
+                            <div class="form-group s_website_form_field" t-if="show_function_form_group">
                                 <label
-                                    class="control-label"
+                                    class="control-label s_website_form_label"
                                     for="function"
                                 >Function</label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control s_website_form_input"
                                     name="function"
                                     t-attf-value="#{function}"
                                     placeholder="Teacher"
@@ -111,14 +114,14 @@
                             </div>
                             <div class="row" t-if="show_phone_mobile_form_group">
                                 <div class="col">
-                                    <div class="form-group">
+                                    <div class="form-group s_website_form_field">
                                         <label
-                                            class="control-label"
+                                            class="control-label s_website_form_label"
                                             for="phone"
                                         >Phone</label>
                                         <input
                                             type="text"
-                                            class="form-control"
+                                            class="form-control s_website_form_input"
                                             name="phone"
                                             t-attf-value="#{phone}"
                                             placeholder="0243302732"
@@ -126,14 +129,14 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-group">
+                                    <div class="form-group s_website_form_field">
                                         <label
-                                            class="control-label"
+                                            class="control-label s_website_form_label"
                                             for="mobile"
                                         >Mobile</label>
                                         <input
                                             type="text"
-                                            class="form-control"
+                                            class="form-control s_website_form_input"
                                             name="mobile"
                                             t-attf-value="#{mobile}"
                                             placeholder="0675308813"
@@ -142,14 +145,14 @@
                                 </div>
                             </div>
                             <t t-if="show_address_form_group">
-                                <div class="form-group required">
+                                <div class="form-group s_website_form_field required s_website_form_required">
                                     <label
-                                        class="control-label"
+                                        class="control-label s_website_form_label"
                                         for="street"
                                     >Street</label>
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control s_website_form_input"
                                         name="street"
                                         t-attf-value="#{street}"
                                         required="True"
@@ -158,14 +161,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group required">
+                                        <div class="form-group s_website_form_field required s_website_form_required">
                                             <label
-                                                class="control-label"
+                                                class="control-label s_website_form_label"
                                                 for="city"
                                             >City</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control s_website_form_input"
                                                 name="city"
                                                 t-attf-value="#{city}"
                                                 required="True"
@@ -174,14 +177,14 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group required">
+                                        <div class="form-group s_website_form_field required s_website_form_required">
                                             <label
-                                                class="control-label"
+                                                class="control-label s_website_form_label"
                                                 for="zip"
                                             >Zip Code</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control s_website_form_input"
                                                 name="zip"
                                                 t-attf-value="#{zipcode}"
                                                 required="True"
@@ -194,14 +197,14 @@
                             </t>
 
                             <t t-if="show_email_form_group">
-                                <div class="form-group required">
+                                <div class="form-group s_website_form_field required s_website_form_required">
                                     <label
-                                        class="control-label"
+                                        class="control-label s_website_form_label"
                                         for="email"
                                     >Your Email Address</label>
                                     <input
-                                        type="text"
-                                        class="form-control"
+                                        type="email"
+                                        class="form-control s_website_form_input"
                                         name="email"
                                         t-attf-value="#{email}"
                                         required="True"
@@ -224,11 +227,11 @@
 
                             <t t-if="show_category_form_group">
                                 <t t-if="categories">
-                                    <div class="form-group">
-                                        <label class="control-label">Category</label>
+                                    <div class="form-group s_website_form_field">
+                                        <label class="control-label s_website_form_label">Category</label>
                                         <div class="">
                                             <select
-                                                class="form-control"
+                                                class="form-control s_website_form_input"
                                                 id="category"
                                                 name="category"
                                                 required="True"
@@ -246,21 +249,21 @@
 
                             <t t-if="partner_name">
                                 <label
-                                    class="control-label"
+                                    class="control-label s_website_form_label"
                                     for="partner_name"
                                 >From</label>
                                 <span t-esc="partner_name" />
                             </t>
 
                             <t t-if="show_subject_form_group">
-                                <div class="form-group required">
+                                <div class="form-group s_website_form_field required s_website_form_required">
                                     <label
-                                        class="control-label"
+                                        class="control-label s_website_form_label"
                                         for="subject"
                                     >Subject</label>
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control s_website_form_input"
                                         name="subject"
                                         required="True"
                                     />
@@ -268,14 +271,14 @@
                             </t>
 
                             <t t-if="show_references_form_group">
-                                <div class="form-group">
+                                <div class="form-group s_website_form_field">
                                     <label
-                                        class="control-label"
+                                        class="control-label s_website_form_label"
                                         for="subject"
                                     >References</label>
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control s_website_form_input"
                                         name="references"
                                         placeholder="MO/210433 SO210155"
                                     />
@@ -286,13 +289,13 @@
                             </t>
 
                             <t t-if="show_description_form_group">
-                                <div class="form-group required">
+                                <div class="form-group s_website_form_field required s_website_form_required">
                                     <label
-                                        class="control-label"
+                                        class="control-label s_website_form_label"
                                         for="description"
                                     >Your Message</label>
                                     <textarea
-                                        class="form-control"
+                                        class="form-control s_website_form_input"
                                         name="description"
                                         style="min-height: 180px"
                                         required="True"
@@ -302,9 +305,9 @@
                             </t>
 
                             <t t-if="show_attachment_form_group">
-                                <div class="form-group">
+                                <div class="form-group s_website_form_field">
                                     <label
-                                        class="control-label"
+                                        class="control-label s_website_form_label"
                                         for="attachment"
                                     >Add Attachments</label>
                                     <div
@@ -326,30 +329,14 @@
                                 </div>
                             </t>
 
-                            <t t-if="show_recaptcha_form_group">
-                                <div class="form-group required">
-                                    <label
-                                        class="control-label"
-                                        for="recaptcha"
-                                    >Anti-Spam Security</label>
-                                    <div
-                                        class="form-group g-recaptcha"
-                                        id="google_recaptcha"
-                                        name="recaptcha"
-                                        t-att-data-sitekey="recaptcha_sitekey"
-                                        data-callback="gcaptcha_callback"
-                                        data-expired-callback="gcaptcha_expired_callback"
-                                    />
-                                </div>
-                            </t>
-
-                            <div class="text-center">
+                            <div class="text-center s_website_form_submit" data-name="Submit Button">
                                 <button
                                     id="submit_button"
                                     type="submit"
-                                    class="btn btn-primary btn-block"
+                                    class="btn btn-primary btn-block s_website_form_send"
                                     t-esc="submit_text"
                                 />
+                              <span id="s_website_form_result"></span>
                             </div>
                         </form>
                     </t>
