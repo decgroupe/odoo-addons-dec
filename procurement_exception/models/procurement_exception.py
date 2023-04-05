@@ -7,39 +7,39 @@ from odoo import api, fields, models
 
 
 class ProcurementException(models.Model):
-    _name = 'procurement.exception'
+    _name = "procurement.exception"
     _description = "Procurement Exception"
     _order = "sequence, id"
 
     name = fields.Char()
     sequence = fields.Integer(
-        'Sequence',
+        string="Sequence",
         default=lambda self: self._default_sequence(),
-        help="Gives the sequence order when displaying."
+        help="Gives the sequence order when displaying.",
     )
     user_id = fields.Many2one(
-        'res.users',
-        string='User',
-        ondelete='cascade',
+        comodel_name="res.users",
+        string="User",
+        ondelete="cascade",
         required=True,
     )
     product_id = fields.Many2one(
-        'product.product',
-        'Product',
-        ondelete='cascade',
-        help="Specify a product if this rule only applies to one product. Keep \
-empty otherwise."
+        comodel_name="product.product",
+        string="Product",
+        ondelete="cascade",
+        help="Specify a product if this rule only applies to one product. Keep "
+        "empty otherwise.",
     )
     categ_id = fields.Many2one(
-        'product.category',
-        'Product Category',
-        ondelete='cascade',
-        help="Specify a product category if this rule only applies to \
-products belonging to this category or its children categories. Keep empty \
-otherwise."
+        comodel_name="product.category",
+        string="Product Category",
+        ondelete="cascade",
+        help="Specify a product category if this rule only applies to "
+        "products belonging to this category or its children categories. Keep empty "
+        "otherwise.",
     )
     regex_pattern = fields.Char(
-        string='RegEx',
+        string="RegEx",
         help="Regular Expression used to parse procurement exception message",
     )
 

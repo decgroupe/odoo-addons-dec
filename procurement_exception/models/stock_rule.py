@@ -1,13 +1,15 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
-from odoo import models, registry, _
-
 import logging
+
+from odoo import _, models, registry
+
 _logger = logging.getLogger(__name__)
 
+
 class StockRule(models.Model):
-    _inherit = 'stock.rule'
+    _inherit = "stock.rule"
 
     def _log_next_activity(self, product_id, note):
         """

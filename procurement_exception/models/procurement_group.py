@@ -3,19 +3,18 @@
 
 import logging
 
-from odoo import api, models, registry, tools, _
-from odoo.exceptions import UserError, MissingError
-from psycopg2 import extensions
+from odoo import _, api, models, registry, tools
+from odoo.exceptions import MissingError, UserError
 
 _logger = logging.getLogger(__name__)
 
 
 class ProcurementGroup(models.Model):
-    _inherit = 'procurement.group'
+    _inherit = "procurement.group"
 
     @api.model
     def run(self, procurements, raise_user_error=True):
-        """ This method override existing one to catch UserError and call
+        """This method override existing one to catch UserError and call
         a custom implementation of _log_next_activity to redirect the error
         according to settings of this module.
         Redirection is built upon a regex string that is mapped to a user_id
@@ -23,9 +22,7 @@ class ProcurementGroup(models.Model):
         res = False
         try:
             with self._cr.savepoint():
-                res = super().run(
-                    procurements, raise_user_error=raise_user_error
-                )
+                res = super().run(procurements, raise_user_error=raise_user_error)
         except UserError as user_error:
             # Try to intercept and then re-raise exception
             # FIXME: product_id is now in procurements (multiple): How to handle it ???
@@ -34,7 +31,7 @@ class ProcurementGroup(models.Model):
 
     @api.model
     def _action_confirm_one_move(self, move):
-        """ This method override existing one to catch UserError and call
+        """This method override existing one to catch UserError and call
         a custom implementation of _log_next_activity to redirect the error
         according to settings of this module.
         Redirection is built upon a regex string that is mapped to a user_id
@@ -56,7 +53,7 @@ class ProcurementGroup(models.Model):
 
     @api.model
     def _action_cannot_reorder_product(self, product_id):
-        """ This method override existing one to catch UserError and call
+        """This method override existing one to catch UserError and call
         a custom implementation of _log_next_activity to redirect the error
         according to settings of this module.
         Redirection is built upon a regex string that is mapped to a user_id
@@ -70,7 +67,7 @@ class ProcurementGroup(models.Model):
 
     def _try_intercept_exception(self, user_error, product_id):
         message = user_error.name
-        redirections = self.env['procurement.exception'].search([])
+        redirections = self.env["procurement.exception"].search([])
         for redirection in redirections:
             if redirection.user_id and redirection.match(product_id, message):
                 self._log_exception(product_id, message, redirection.user_id)
@@ -93,22 +90,22 @@ class ProcurementGroup(models.Model):
         product_id = product_id.with_env(product_id.env(cr=cr))
         user_id = user_id.with_env(user_id.env(cr=cr))
 
-        #note = tools.plaintext2html(message)
+        # note = tools.plaintext2html(message)
         note = message
-        MailActivity = self.env['mail.activity']
-        model_product_template = self.env.ref('product.model_product_template')
+        MailActivity = self.env["mail.activity"]
+        model_product_template = self.env.ref("product.model_product_template")
         existing_activity = MailActivity.search(
             [
-                ('res_id', '=', product_id.product_tmpl_id.id),
-                ('res_model_id', '=', model_product_template.id),
-                ('note', '=', note),
-                ('user_id', '=', user_id.id),
+                ("res_id", "=", product_id.product_tmpl_id.id),
+                ("res_model_id", "=", model_product_template.id),
+                ("note", "=", note),
+                ("user_id", "=", user_id.id),
             ]
         )
         if not existing_activity:
             # Will be None if this warning activity type has been deleted
             activity_type_id = self.env.ref(
-                'mail.mail_activity_data_warning', raise_if_not_found=False
+                "mail.mail_activity_data_warning", raise_if_not_found=False
             )
             _logger.info(
                 "Creating new exception (Activity): {}: {}".format(
@@ -117,13 +114,12 @@ class ProcurementGroup(models.Model):
                 )
             )
             activity_data = {
-                'activity_type_id': activity_type_id and \
-                    activity_type_id.id or False,
-                'note': note,
-                'summary': _('Exception'),
-                'user_id': user_id.id,
-                'res_id': product_id.product_tmpl_id.id,
-                'res_model_id': model_product_template.id,
+                "activity_type_id": activity_type_id and activity_type_id.id or False,
+                "note": note,
+                "summary": _("Exception"),
+                "user_id": user_id.id,
+                "res_id": product_id.product_tmpl_id.id,
+                "res_model_id": model_product_template.id,
             }
             _logger.debug(activity_data)
             MailActivity.create(activity_data)

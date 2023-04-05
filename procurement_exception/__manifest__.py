@@ -9,7 +9,6 @@
         'procurement_run_mto',
         'procurement_run_mts',
     ],
-    #'force_migration':'12.0.0.0.0',
     'data':
         [
             'security/ir.model.access.csv',
