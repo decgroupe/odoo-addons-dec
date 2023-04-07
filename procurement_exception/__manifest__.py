@@ -16,5 +16,10 @@
             'views/procurement_exception.xml',
             'views/res_config_settings.xml',
         ],
+    'demo':
+        [
+            'demo/product_demo.xml',
+        ],
+        
     'installable': True
 }

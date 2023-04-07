@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="product.product" id="product_exint_nosupplier">
+        <field name="name">Product EXINT (No supplier)</field>
+        <field name="type">product</field>
+        <field
+            name="description"
+        >With product is used for testing procurement exception interception</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+
+</odoo>

@@ -4,6 +4,7 @@
 import logging
 
 from odoo import _, api, models, registry, tools
+from odoo.addons.stock.models.stock_rule import ProcurementException
 from odoo.exceptions import MissingError, UserError
 
 _logger = logging.getLogger(__name__)
@@ -22,11 +23,11 @@ class ProcurementGroup(models.Model):
         res = False
         try:
             with self._cr.savepoint():
-                res = super().run(procurements, raise_user_error=raise_user_error)
-        except UserError as user_error:
+                # Override `raise_user_error` to always get a ProcurementException
+                res = super().run(procurements, raise_user_error=False)
+        except ProcurementException as proc_except:
             # Try to intercept and then re-raise exception
-            # FIXME: product_id is now in procurements (multiple): How to handle it ???
-            self._try_intercept_exception(user_error, product_id)
+            self._try_intercept_exception(proc_except, raise_user_error)
         return res
 
     @api.model
@@ -49,7 +50,7 @@ class ProcurementGroup(models.Model):
                 super()._action_confirm_one_move(move)
         except UserError as user_error:
             # Try to intercept and then re-raise exception
-            self._try_intercept_exception(user_error, product_id)
+            self._try_intercept_user_error(user_error, product_id)
 
     @api.model
     def _action_cannot_reorder_product(self, product_id):
@@ -63,40 +64,83 @@ class ProcurementGroup(models.Model):
                 super()._action_cannot_reorder_product(product_id)
         except UserError as user_error:
             # Try to intercept and then re-raise exception
-            self._try_intercept_exception(user_error, product_id)
+            self._try_intercept_user_error(user_error, product_id)
 
-    def _try_intercept_exception(self, user_error, product_id):
-        message = user_error.name
+    def _try_intercept_user_error(self, user_error, product_id):
+        error = user_error.name
         redirections = self.env["procurement.exception"].search([])
         for redirection in redirections:
-            if redirection.user_id and redirection.match(product_id, message):
-                self._log_exception(product_id, message, redirection.user_id)
+            if redirection.user_id and redirection.match(product_id, error):
+                self._log_exception(
+                    product_id.product_tmpl_id, error, redirection.user_id
+                )
                 # Stop after first match
                 break
-        # We can finally re-raise UserError even if we are possibly in a
-        # transaction because exception has been logged using a new
-        # database cursor.
+        # We can finally re-raise UserError even if we are possibly in a transaction
+        # because exception has been logged using a new database cursor.
         # (note that _log_next_activity implementation from stock.rule
-        # also check for an existing activty).
+        # also check for an existing activity).
         raise user_error
 
-    def _log_exception(self, product_id, message, user_id):
+    def _try_intercept_exception(self, proc_except, raise_user_error):
+        procurement_errors = proc_except.procurement_exceptions
+        for procurement, error in procurement_errors:
+            product_id = procurement.product_id
+            self._log_redirected_exception(procurement.product_id, error)
+        # We can finally re-raise the original exception or convert it to `UserError`
+        # if requested by `raise_user_error`
+        if raise_user_error:
+            dummy, errors = zip(*procurement_errors)
+            raise UserError("\n".join(errors))
+        else:
+            raise proc_except
+
+    def _log_redirected_exception(self, product_id, error):
+        redirections = self.env["procurement.exception"].search([])
+        for redirection in redirections:
+            if redirection.user_id and redirection.match(product_id, error):
+                self._log_exception(
+                    product_id.product_tmpl_id, error, redirection.user_id
+                )
+                # Stop after first redirection match
+                break
+
+    def _log_exception(self, product_tmpl_id, message, user_id):
         # Create a new cursor to save this exception activity in database
         # even if we are in a transaction that will probably be rolled back
-        cr = registry(self._cr.dbname).cursor()
-        # Assign this cursor to self and all arguments to ensure consistent
-        # data in all method
-        self = self.with_env(self.env(cr=cr))
-        product_id = product_id.with_env(product_id.env(cr=cr))
-        user_id = user_id.with_env(user_id.env(cr=cr))
+        with self.env.registry.cursor() as cr:
+            env0 = api.Environment(cr, self.env.user.id, {})
 
+            # Assign this cursor to self and all arguments to ensure consistent
+            # data in all methods
+            _self = self.with_env(env0)
+            _product_tmpl_id = product_tmpl_id.with_env(env0)
+            _user_id = user_id.with_env(env0)
+
+            # Check that this product exists in the database, because it is possible
+            # that it was created during the previous uncommited transaction
+            if _product_tmpl_id.exists():
+                log_to_current_transaction = False
+                if _self._log_exception_as_activity(
+                    _product_tmpl_id, message, _user_id
+                ):
+                    # Commit this created activity to keep it even after a rollback
+                    cr.commit()
+            else:
+                log_to_current_transaction = True
+        # The product has probably been created in the current transaction, so we also
+        # log this exception activity into it
+        if log_to_current_transaction:
+            self._log_exception_as_activity(product_tmpl_id, message, user_id)
+
+    def _log_exception_as_activity(self, product_tmpl_id, message, user_id):
         # note = tools.plaintext2html(message)
         note = message
         MailActivity = self.env["mail.activity"]
         model_product_template = self.env.ref("product.model_product_template")
         existing_activity = MailActivity.search(
             [
-                ("res_id", "=", product_id.product_tmpl_id.id),
+                ("res_id", "=", product_tmpl_id.id),
                 ("res_model_id", "=", model_product_template.id),
                 ("note", "=", note),
                 ("user_id", "=", user_id.id),
@@ -109,7 +153,7 @@ class ProcurementGroup(models.Model):
             )
             _logger.info(
                 "Creating new exception (Activity): {}: {}".format(
-                    product_id.product_tmpl_id.display_name,
+                    product_tmpl_id.display_name,
                     note,
                 )
             )
@@ -118,11 +162,11 @@ class ProcurementGroup(models.Model):
                 "note": note,
                 "summary": _("Exception"),
                 "user_id": user_id.id,
-                "res_id": product_id.product_tmpl_id.id,
+                "res_id": product_tmpl_id.id,
                 "res_model_id": model_product_template.id,
             }
             _logger.debug(activity_data)
             MailActivity.create(activity_data)
-        # Commit this created activity to keep it even after a rollback
-        cr.commit()
-        cr.close()
+            return True
+        else:
+            return False
