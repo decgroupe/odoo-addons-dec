@@ -32,13 +32,23 @@ class ResUsers(models.Model):
                     if self.user_gitlab_resource_id.uid != user_uid:
                         self.user_gitlab_resource_id.uid = user_uid
                 else:
-                    self.user_gitlab_resource_id = self.\
-                        user_gitlab_resource_id.sudo().create(
-                            {
-                                'type': 'user',
-                                'uid': user_uid,
-                            }
-                    )
+                    # Make a first attempt to assign an existing resource.
+                    # This is a possibility when a previous user with the same
+                    # e-mail had already been access to the portal and the
+                    # GitLab, but this user has since be deleted.
+                    self.user_gitlab_resource_id = self.env[
+                        "gitlab.resource"].search(
+                            [("type", "=", "user"), ("uid", "=", user_uid)],
+                            limit=1
+                        )
+                    if not self.user_gitlab_resource_id:
+                        self.user_gitlab_resource_id = self.\
+                            user_gitlab_resource_id.sudo().create(
+                                {
+                                    'type': 'user',
+                                    'uid': user_uid,
+                                }
+                        )
         return user_uid
 
     @api.multi
