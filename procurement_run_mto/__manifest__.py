@@ -1,19 +1,17 @@
 {
-    'name': 'Procurement Run MTO',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Scheduler task extended to re-create PO/MO",
-    'depends': [
-        'stock',
-        'mrp',
-        'purchase_stock',
-        'mrp_production_request',
-        'stock_orderpoint_traceability',
+    "name": "Procurement Run MTO",
+    "version": "14.0.1.0.0",
+    "author": "DEC, Yann Papouin",
+    "website": "https://www.decgroupe.com",
+    "summary": "Scheduler task extended to re-create PO/MO",
+    "depends": [
+        "stock",
+        "mrp",
+        "purchase_stock",
+        "mrp_production_request",
+        "stock_orderpoint_traceability",
+        "procurement_log",
     ],
-    'data':
-        [
-            'views/procurement.xml',
-        ],
-    'installable': True
+    "data": [],
+    "installable": True,
 }
