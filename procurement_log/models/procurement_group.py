@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
 
-    def _log_exception(self, product_tmpl_id, message, user_id):
+    def _log_exception(self, product_id, message, user_id):
         # Create a new cursor to save this exception activity in database
         # even if we are in a transaction that will probably be rolled back
         with self.env.registry.cursor() as cr:
@@ -20,16 +20,14 @@ class ProcurementGroup(models.Model):
             # Assign this cursor to self and all arguments to ensure consistent
             # data in all methods
             _self = self.with_env(env0)
-            _product_tmpl_id = product_tmpl_id.with_env(env0)
+            _product_id = product_id.with_env(env0)
             _user_id = user_id.with_env(env0)
 
             # Check that this product exists in the database, because it is possible
             # that it was created during the previous uncommited transaction
-            if _product_tmpl_id.exists():
+            if _product_id.exists():
                 log_to_current_transaction = False
-                if _self._log_exception_as_activity(
-                    _product_tmpl_id, message, _user_id
-                ):
+                if _self._log_exception_as_activity(_product_id, message, _user_id):
                     # Commit this created activity to keep it even after a rollback
                     cr.commit()
             else:
@@ -37,17 +35,17 @@ class ProcurementGroup(models.Model):
         # The product has probably been created in the current transaction, so we also
         # log this exception activity into it
         if log_to_current_transaction:
-            self._log_exception_as_activity(product_tmpl_id, message, user_id)
+            self._log_exception_as_activity(product_id, message, user_id)
 
-    def _log_exception_as_activity(self, product_tmpl_id, message, user_id):
+    def _log_exception_as_activity(self, product_id, message, user_id):
         # note = tools.plaintext2html(message)
         note = message
         MailActivity = self.env["mail.activity"]
-        model_product_template = self.env.ref("product.model_product_template")
+        model_product_product = self.env.ref("product.model_product_product")
         existing_activity = MailActivity.search(
             [
-                ("res_id", "=", product_tmpl_id.id),
-                ("res_model_id", "=", model_product_template.id),
+                ("res_id", "=", product_id.id),
+                ("res_model_id", "=", model_product_product.id),
                 ("note", "=", note),
                 ("user_id", "=", user_id.id),
             ]
@@ -59,7 +57,7 @@ class ProcurementGroup(models.Model):
             )
             _logger.info(
                 "Creating new exception (Activity): {}: {}".format(
-                    product_tmpl_id.display_name,
+                    product_id.display_name,
                     note,
                 )
             )
@@ -68,8 +66,8 @@ class ProcurementGroup(models.Model):
                 "note": note,
                 "summary": _("Exception"),
                 "user_id": user_id.id,
-                "res_id": product_tmpl_id.id,
-                "res_model_id": model_product_template.id,
+                "res_id": product_id.id,
+                "res_model_id": model_product_product.id,
             }
             _logger.debug(activity_data)
             MailActivity.create(activity_data)

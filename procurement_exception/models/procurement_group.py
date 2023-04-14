@@ -71,9 +71,7 @@ class ProcurementGroup(models.Model):
         redirections = self.env["procurement.exception"].search([])
         for redirection in redirections:
             if redirection.user_id and redirection.match(product_id, error):
-                self._log_exception(
-                    product_id.product_tmpl_id, error, redirection.user_id
-                )
+                self._log_exception(product_id, error, redirection.user_id)
                 raise_user_error = False
                 # Stop after first match
                 break
@@ -98,8 +96,6 @@ class ProcurementGroup(models.Model):
         redirections = self.env["procurement.exception"].search([])
         for redirection in redirections:
             if redirection.user_id and redirection.match(product_id, error):
-                self._log_exception(
-                    product_id.product_tmpl_id, error, redirection.user_id
-                )
+                self._log_exception(product_id, error, redirection.user_id)
                 # Stop after first redirection match
                 break

@@ -71,7 +71,7 @@ class TestProcurementException(common.TransactionCase):
                 "procurement_exception.product_exint_nosupplier"
             )
             self.assertTrue(product_nosupplier_id.exists())
-            product_nosupplier_id.product_tmpl_id.activity_ids.unlink()
+            product_nosupplier_id.activity_ids.unlink()
             cr.commit()
 
     def test_buy_product_nosupplier_demo_step_1(self):
@@ -84,7 +84,7 @@ class TestProcurementException(common.TransactionCase):
             "procurement_exception.product_exint_nosupplier"
         )
         self.assertTrue(product_nosupplier_id.exists())
-        self.assertEqual(len(product_nosupplier_id.product_tmpl_id.activity_ids), 0)
+        self.assertEqual(len(product_nosupplier_id.activity_ids), 0)
         with self.assertRaises(UserError):
             self._create_make_procurement(
                 product_nosupplier_id,
@@ -92,7 +92,7 @@ class TestProcurementException(common.TransactionCase):
                 product_nosupplier_id.uom_id,
                 self.warehouse1,
             )
-        self.assertEqual(len(product_nosupplier_id.product_tmpl_id.activity_ids), 0)
+        self.assertEqual(len(product_nosupplier_id.activity_ids), 0)
 
     def test_buy_product_nosupplier_demo_step_2(self):
         """The database state is re-synced so we we can now test if the exception
@@ -102,8 +102,8 @@ class TestProcurementException(common.TransactionCase):
             "procurement_exception.product_exint_nosupplier"
         )
         self.assertTrue(product_nosupplier_id.exists())
-        self.assertEqual(len(product_nosupplier_id.product_tmpl_id.activity_ids), 1)
-        activity_id = product_nosupplier_id.product_tmpl_id.activity_ids
+        self.assertEqual(len(product_nosupplier_id.activity_ids), 1)
+        activity_id = product_nosupplier_id.activity_ids
         self.assertTrue(
             "There is no matching vendor price to generate the purchase order for product"
             in activity_id.note
@@ -133,10 +133,8 @@ class TestProcurementException(common.TransactionCase):
                 product_nosupplier_local_id.uom_id,
                 self.warehouse1,
             )
-        self.assertEqual(
-            len(product_nosupplier_local_id.product_tmpl_id.activity_ids), 1
-        )
-        activity_id = product_nosupplier_local_id.product_tmpl_id.activity_ids
+        self.assertEqual(len(product_nosupplier_local_id.activity_ids), 1)
+        activity_id = product_nosupplier_local_id.activity_ids
         self.assertTrue(
             "There is no matching vendor price to generate the purchase order for product"
             in activity_id.note
@@ -163,9 +161,7 @@ class TestProcurementException(common.TransactionCase):
             product_with_supplier_local_id.uom_id,
             self.warehouse1,
         )
-        self.assertEqual(
-            len(product_with_supplier_local_id.product_tmpl_id.activity_ids), 0
-        )
+        self.assertEqual(len(product_with_supplier_local_id.activity_ids), 0)
 
     def test_manufacture_product_nobom_local(self):
         """ """
@@ -184,8 +180,8 @@ class TestProcurementException(common.TransactionCase):
                 product_nobom_id.uom_id,
                 self.warehouse1,
             )
-        self.assertEqual(len(product_nobom_id.product_tmpl_id.activity_ids), 1)
-        activity_id = product_nobom_id.product_tmpl_id.activity_ids
+        self.assertEqual(len(product_nobom_id.activity_ids), 1)
+        activity_id = product_nobom_id.activity_ids
         self.assertTrue(
             "There is no Bill of Material of type manufacture or kit found"
             in activity_id.note
@@ -207,6 +203,7 @@ class TestProcurementException(common.TransactionCase):
         bom_id = self.env["mrp.bom"].create(
             {
                 "product_tmpl_id": product_with_bom_id.product_tmpl_id.id,
+                "product_id": product_with_bom_id.id,
                 "product_uom_id": self.unit_uom_id.id,
                 "sequence": 1,
             }
@@ -217,15 +214,14 @@ class TestProcurementException(common.TransactionCase):
             product_with_bom_id.uom_id,
             self.warehouse1,
         )
-        self.assertEqual(len(product_with_bom_id.product_tmpl_id.activity_ids), 0)
+        self.assertEqual(len(product_with_bom_id.activity_ids), 0)
         production_id = self.env["mrp.production"].search(
             [("product_id", "=", product_with_bom_id.id)], limit=1
         )
         self.assertTrue(production_id)
         self.assertEqual(production_id.state, "draft")
 
-
     def test_run_scheduler(self):
         """ """
-        self.env['procurement.group'].run_scheduler()
+        self.env["procurement.group"].run_scheduler()
         print(1)
