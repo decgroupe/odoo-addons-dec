@@ -43,9 +43,7 @@ class ProcurementGroup(models.Model):
                 with self._cr.savepoint():
                     self._action_cannot_reorder_product(product_id)
             except UserError as error:
-                self.env['stock.rule']._log_next_activity(
-                    product_id, error.name
-                )
+                self._log_exception(product_id.product_tmpl_id, error.name)
         if use_new_cursor:
             self._cr.commit()
 
