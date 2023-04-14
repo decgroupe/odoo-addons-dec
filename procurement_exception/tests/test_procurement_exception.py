@@ -223,3 +223,9 @@ class TestProcurementException(common.TransactionCase):
         )
         self.assertTrue(production_id)
         self.assertEqual(production_id.state, "draft")
+
+
+    def test_run_scheduler(self):
+        """ """
+        self.env['procurement.group'].run_scheduler()
+        print(1)

@@ -6,6 +6,7 @@
     'summary': "Create and customize activity redirection",
     'depends': [
         'stock',
+        'procurement_log',
         'procurement_run_mto',
         'procurement_run_mts',
     ],
