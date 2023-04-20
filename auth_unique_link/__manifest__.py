@@ -7,7 +7,7 @@
     'depends': [
         'web',
         'mail',
-        # 'website',
+        'portal', # needed for unit testing only
     ],
     'data':
         [
