@@ -4,8 +4,8 @@
 from datetime import datetime, timedelta
 
 from odoo import SUPERUSER_ID, api, fields
-from odoo.tests import common
 from odoo.exceptions import AccessDenied
+from odoo.tests import common
 
 
 class TestAuthUniqueLink(common.TransactionCase):

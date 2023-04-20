@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <!--
@@ -10,7 +10,11 @@
 
     <template id="assets_frontend" name="assets" inherit_id="web.assets_frontend">
         <xpath expr="link[last()]" position="after">
-            <link rel="stylesheet" type="text/scss" href="/auth_unique_link/static/src/css/style.scss"/>
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/auth_unique_link/static/src/css/style.scss"
+            />
         </xpath>
     </template>
 
