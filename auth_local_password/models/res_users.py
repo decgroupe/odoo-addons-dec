@@ -95,6 +95,7 @@ class ResUsers(models.Model):
                 _check_credentials(password, env)
         except AccessDenied as e:
             valid = False
+            # Verifies the local password, possibly updating the stored hash if needed
             if self.user_has_groups('auth_local_password.group_local_password'):
                 self.env.cr.execute(
                     "SELECT COALESCE(local_password, '') "
