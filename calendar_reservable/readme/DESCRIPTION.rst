@@ -1,0 +1,1 @@
+Filter for bookable <partners> like vehicles, rooms, etc.
