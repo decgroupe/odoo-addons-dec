@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* calendar_reservable
+#	* calendar_bookable
 #
 msgid ""
 msgstr ""
@@ -15,18 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: calendar_reservable
-#: model:ir.model,name:calendar_reservable.model_calendar_event
+#. module: calendar_bookable
+#: model:ir.model,name:calendar_bookable.model_calendar_event
 msgid "Event"
 msgstr "Évènement"
 
-#. module: calendar_reservable
-#: model_terms:ir.ui.view,arch_db:calendar_reservable.view_calendar_event_search
-msgid "Reservable"
+#. module: calendar_bookable
+#: model_terms:ir.ui.view,arch_db:calendar_bookable.view_calendar_event_search
+msgid "Bookable"
 msgstr "Réservable"
 
-#. module: calendar_reservable
-#: model_terms:ir.ui.view,arch_db:calendar_reservable.view_calendar_event_search
-msgid "Reservables like vehicles, rooms, etc."
+#. module: calendar_bookable
+#: model_terms:ir.ui.view,arch_db:calendar_bookable.view_calendar_event_search
+msgid "Bookables like vehicles, rooms, etc."
 msgstr ""
 

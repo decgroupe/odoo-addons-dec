@@ -8,10 +8,10 @@
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='mymeetings']" position="after">
                 <filter
-                    string="Reservable"
-                    help="Reservables like vehicles, rooms, etc."
-                    name="reservable"
-                    context='{"reservable": 1}'
+                    string="Bookable"
+                    help="Bookables like vehicles, rooms, etc."
+                    name="filter_bookable"
+                    context='{"bookable": 1}'
                 />
             </xpath>
         </field>
@@ -20,7 +20,7 @@
     <record model="ir.actions.act_window" id="calendar.action_calendar_event">
         <field
             name="context"
-        >{'search_default_mymeetings': 1, 'search_default_reservable': 1}</field>
+        >{'search_default_mymeetings': 1, 'search_default_filter_bookable': 1}</field>
     </record>
 
 </odoo>

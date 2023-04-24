@@ -12,7 +12,7 @@ class Meeting(models.Model):
         res = super(Meeting, self).search(
             args, offset=offset, limit=limit, order=order, count=count
         )
-        if self._context.get("reservable") and not limit and not count:
+        if self._context.get("bookable") and not limit and not count:
             start_arg = False
             stop_arg = False
             for arg in args:
@@ -23,13 +23,13 @@ class Meeting(models.Model):
                         stop_arg = arg
 
             if start_arg and stop_arg:
-                reservable_args = [
+                bookable_args = [
                     start_arg,
                     stop_arg,
-                    ("partner_ids.function", "ilike", "reservable"),
+                    ("partner_ids.bookable", "=", True),
                 ]
                 res |= super(Meeting, self).search(
-                    reservable_args,
+                    bookable_args,
                     offset=offset,
                     limit=limit,
                     order=order,
