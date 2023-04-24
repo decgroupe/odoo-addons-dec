@@ -12,12 +12,6 @@
                     attrs="{'invisible': [('use_date_range', '=', False)]}"
                 />
             </xpath>
-            <xpath
-                expr="//field[@name='date_range_ids']//field[@name='number_next_actual']"
-                position="before"
-            >
-                <field name="number_next" />
-            </xpath>
         </field>
     </record>
 
