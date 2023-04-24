@@ -6,11 +6,8 @@
         <field name="model">ir.translation</field>
         <field name="inherit_id" ref="base.view_translation_tree"/>
         <field name="arch" type="xml">
-            <field name="value" position="after">
-                <field name="module"/>
-            </field>
+            <data></data>
         </field>
     </record>
 
 </odoo>
-
