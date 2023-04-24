@@ -5,12 +5,12 @@ from odoo import fields, models
 
 
 class IrSequence(models.Model):
-    _inherit = 'ir.sequence'
+    _inherit = "ir.sequence"
 
     number_first = fields.Integer(
-        string='First Number',
+        string="First Number",
         default=1,
-        help="First number of a date range of this sequence after create or reset"
+        help="First number of a date range of this sequence after create or reset",
     )
 
     def _create_date_range_seq(self, date):

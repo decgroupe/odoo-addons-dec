@@ -1,16 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="sequence_view" >
+    <record model="ir.ui.view" id="sequence_view">
         <field name="name">ir.sequence.form@base_sequence_first_number</field>
         <field name="model">ir.sequence</field>
-        <field name="inherit_id" ref="base.sequence_view"/>
+        <field name="inherit_id" ref="base.sequence_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='number_increment']" position="before">
-                <field name="number_first" attrs="{'invisible': [('use_date_range', '=', False)]}"/>
+                <field
+                    name="number_first"
+                    attrs="{'invisible': [('use_date_range', '=', False)]}"
+                />
             </xpath>
-            <xpath expr="//field[@name='date_range_ids']//field[@name='number_next_actual']" position="before">
-                <field name="number_next"/>
+            <xpath
+                expr="//field[@name='date_range_ids']//field[@name='number_next_actual']"
+                position="before"
+            >
+                <field name="number_next" />
             </xpath>
         </field>
     </record>
