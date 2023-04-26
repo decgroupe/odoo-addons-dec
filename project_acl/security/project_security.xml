@@ -1,16 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record id="group_project_supermanager" model="res.groups">
         <field name="name">Super-Manager</field>
-        <field name="category_id" ref="base.module_category_services_project"/>
-        <field name="implied_ids" eval="[
+        <field name="category_id" ref="base.module_category_services_project" />
+        <field
+            name="implied_ids"
+            eval="[
             (4, ref('project.group_project_manager'))
-        ]"/>
-        <field name="users" eval="[
+        ]"
+        />
+        <field
+            name="users"
+            eval="[
             (4, ref('base.user_root')),
             (4, ref('base.user_admin'))
-        ]"/>
+        ]"
+        />
     </record>
 
 </odoo>
