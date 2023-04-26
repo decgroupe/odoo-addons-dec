@@ -35,11 +35,15 @@ class ResUsers(models.Model):
         return init_res
 
     def _get_ip_address(self):
-        ip_addr = request.httprequest.environ.get("HTTP_X_FORWARDED_FOR")
+        ip_addr = (
+            request.httprequest.environ.get("HTTP_X_FORWARDED_FOR")
+            if request
+            else False
+        )
         if ip_addr:
             ip_addr = ip_addr.split(",")[0]
         else:
-            ip_addr = request.httprequest.remote_addr
+            ip_addr = request.httprequest.remote_addr if request else False
         return ip_addr
 
     def _set_encrypted_local_password(self, uid, pw):
