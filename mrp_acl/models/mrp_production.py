@@ -4,7 +4,7 @@
 from odoo import _, api, models
 from odoo.exceptions import AccessError
 
-SUPERMANAGER_GROUP = "mrp_acl.group_project_supermanager"
+SUPERMANAGER_GROUP = "mrp_acl.group_mrp_supermanager"
 
 
 class MrpProduction(models.Model):

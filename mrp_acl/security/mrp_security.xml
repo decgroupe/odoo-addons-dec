@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record id="group_project_supermanager" model="res.groups">
+    
+    <record id="group_mrp_supermanager" model="res.groups">
         <field name="name">Super-Manager</field>
         <field
             name="category_id"
