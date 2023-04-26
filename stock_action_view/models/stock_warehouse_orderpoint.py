@@ -9,7 +9,7 @@ class StockWarehouseOrderpoint(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("stock.product_open_orderpoint").sudo().read()[0]
+        return self.env.ref("stock.action_orderpoint").sudo().read()[0]
 
     def action_view(self):
         action = self.action_view_base()
