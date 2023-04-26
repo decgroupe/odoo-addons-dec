@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import AccessError
 
 SUPERMANAGER_GROUP = 'mrp_acl.group_project_supermanager'
 
@@ -25,4 +25,4 @@ class MrpProduction(models.Model):
             message += ['', _("Please contact one of them to do it for you:")]
             for manager in managers:
                 message += ['- %s' % (manager, )]
-        raise UserError('\n'.join(message))
+        raise AccessError('\n'.join(message))
