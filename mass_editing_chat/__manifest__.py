@@ -4,7 +4,7 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'category': 'Tools',
-    'depends': ['mass_editing', ],
-    'data': ['wizard/mass_editing_wizard.xml', ],
+    'depends': ['mass_editing', 'mail'],
+    'data': ['wizard/mass_editing_wizard.xml', 'demo/mass_editing.xml' ],
     'installable': True
 }
