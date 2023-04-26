@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
 from odoo import _, models, api, fields
-from odoo.exceptions import RedirectWarning, UserError, ValidationError
+from odoo.exceptions import AccessError
 
 SUPERMANAGER_GROUP = 'project_acl.group_project_supermanager'
 
@@ -39,4 +39,4 @@ class Project(models.Model):
             message += ['', _("Please contact one of them to do it for you:")]
             for manager in managers:
                 message += ['- %s' % (manager, )]
-        raise UserError('\n'.join(message))
+        raise AccessError('\n'.join(message))
