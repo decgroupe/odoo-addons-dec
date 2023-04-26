@@ -200,7 +200,7 @@ class SoftwareLicensePass(models.Model):
     def action_view_base(self):
         return self.env.ref(
             'software_license_pass.act_window_software_license_pass'
-        ).read()[0]
+        ).sudo().read()[0]
 
     def action_view(self):
         action = self.action_view_base()
