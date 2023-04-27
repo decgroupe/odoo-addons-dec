@@ -1,21 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="picking_action_reassign_form_view">
         <field name="name">stock.picking.form#action_cancel@stock_actions</field>
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
-        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority" eval="90" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="before">
-                <field name="is_locked" invisible="1"/>
-                <field name="action_reassign_visible" invisible="1"/>
-                <button 
-                    name="action_reassign" 
-                    title="Unreserve all and re-check availability" 
-                    type="object" 
-                    icon="fa-bar-chart-o" 
-                    attrs="{'invisible': [('action_reassign_visible', '=', False)]}">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']"
+                position="before"
+            >
+                <field name="is_locked" invisible="1" />
+                <field name="action_reassign_visible" invisible="1" />
+                <button
+                    name="action_reassign"
+                    title="Unreserve all and re-check availability"
+                    type="object"
+                    icon="fa-bar-chart-o"
+                    attrs="{'invisible': [('action_reassign_visible', '=', False)]}"
+                >
                 </button> 
             </xpath>
         </field>
@@ -24,13 +28,16 @@
     <record model="ir.ui.view" id="picking_action_cancel_form_view">
         <field name="name">stock.picking.form#action_cancel@stock_actions</field>
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
-        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="before">
-                <button 
-                    name="action_cancel" 
-                    title="Cancel" 
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']"
+                position="before"
+            >
+                <button
+                    name="action_cancel"
+                    title="Cancel"
                     type="object"
                     confirm="Are you sure you want to cancel this move?"
                     attrs="{
@@ -40,10 +47,11 @@
                         'invisible': [
                             ('is_cancellable', '=', False)
                         ]}"
-                    icon="fa-ban">
+                    icon="fa-ban"
+                >
                 </button>
-                <field name="procure_method" invisible="1"/>
-                <field name="is_cancellable" invisible="1"/>
+                <field name="procure_method" invisible="1" />
+                <field name="is_cancellable" invisible="1" />
             </xpath>
         </field>
     </record>
