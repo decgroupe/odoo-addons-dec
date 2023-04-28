@@ -226,7 +226,7 @@
             <form position="inside">
                 <footer>
                     <button string="Save" special="save" class="oe_highlight oe_edit_only"/>
-                    <!-- stock_assign module must be installed -->
+                    <!-- stock_actions module must be installed -->
                     <button
                         name="action_assign"
                         string="Check Assign"
@@ -238,7 +238,7 @@
                             ]
                         }">
                     </button>
-                    <!-- stock_assign module must be installed -->
+                    <!-- stock_actions module must be installed -->
                     <button 
                         name="action_recompute_state"
                         string="Recompute State"
@@ -247,19 +247,6 @@
                         attrs="{
                             'invisible': [
                                 ('state', 'in', ('done','cancel')),
-                            ]
-                        }">
-                    </button>
-                    <!-- stock_actions module must be installed -->
-                    <button 
-                        name="action_force_state_confirmed_to_assigned" 
-                        string="Force Assigned" 
-                        type="object" 
-                        confirm="Are you sure that you want to set this move state to Assigned (ignoring virtual available quantity) ?"
-                        class="btn-primary" 
-                        attrs="{
-                            'invisible': [
-                                ('state', '!=', 'confirmed'),
                             ]
                         }">
                     </button>
