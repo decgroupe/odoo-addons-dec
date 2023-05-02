@@ -1,18 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_template_form_view">
         <field name="name">product.template.form@product_legacy_routes</field>
         <field name="model">product.template</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
             <field name="type" position="before">
-                <field name="procure_method"
-                    attrs="{'invisible': [('type', '=', 'service')]}"/>
-                <field name="supply_method"
-                    attrs="{'invisible': [('type', '=', 'service')]}"/>
+                <field
+                    name="procure_method"
+                    attrs="{'invisible': [('type', '=', 'service')]}"
+                />
+                <field
+                    name="supply_method"
+                    attrs="{'invisible': [('type', '=', 'service')]}"
+                />
             </field>
         </field>
     </record>
