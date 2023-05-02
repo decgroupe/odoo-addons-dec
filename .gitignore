@@ -5,6 +5,15 @@
 *.odt#*
 *.bzr/*
 *__pycache__/*
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
 # Experimental modules
 project_dhx_gantt
 web_dhx_gantt
