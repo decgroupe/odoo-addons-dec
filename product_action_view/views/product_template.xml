@@ -10,6 +10,16 @@
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     class="oe_stat_button"
+                    name="action_view_template"
+                    type="object"
+                    attrs="{'invisible': [('is_product_variant', '=', False)]}"
+                    widget="statinfo"
+                    string="Template"
+                    icon="fa-tree"
+                >
+                </button>
+                <button
+                    class="oe_stat_button"
                     name="action_view_variants"
                     type="object"
                     attrs="{'invisible': [('is_product_variant', '=', True)]}"

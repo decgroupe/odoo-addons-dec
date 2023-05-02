@@ -30,3 +30,8 @@ class ProductTemplate(models.Model):
     def action_view_variants(self):
         action = self.mapped("product_variant_ids").action_view()
         return action
+    
+    def action_view_template(self):
+        # we need to create this empty function, otherwise the inherited view
+        # "product.template.form@product_action_view" cannot be validated
+        pass
