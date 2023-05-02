@@ -183,23 +183,6 @@ class StockMove(models.Model):
     def write(self, values):
         self._archive_purchase_line(values)
         self._archive_production(values)
-        if values.get('procure_method'):
-            for move in self:
-                _logger.info(
-                    'Procure method of move %d for product %s set to %s',
-                    move.id,
-                    move.product_id.display_name,
-                    values.get('procure_method'),
-                )
-        if values.get('state'):
-            for move in self:
-                _logger.info(
-                    'State of move %d for product %s set to %s',
-                    move.id,
-                    move.product_id.display_name,
-                    values.get('state'),
-                )
-
         return super(StockMove, self).write(values)
 
     @api.depends('move_dest_ids', 'location_dest_id', 'product_id')

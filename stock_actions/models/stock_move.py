@@ -1,7 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
+import logging
 from odoo import api, fields, models
+from odoo.addons.tools_miscellaneous.tools.console_helper import (
+    dim, bold
+)
+
+_logger = logging.getLogger(__name__)
 
 
 class StockMove(models.Model):
@@ -18,13 +24,16 @@ class StockMove(models.Model):
         help="Technical field to check for button visibility",
     )
 
+    @api.model
+    def _get_reassignable_states(self):
+        return ["confirmed", "waiting", "partially_available", "assigned"]
+
     def _compute_action_reassign_visible(self):
         for move in self:
             visible = (
                 move.quantity_done < move.product_uom_qty
                 and not move.is_locked
-                and move.state
-                in ["confirmed", "waiting", "partially_available", "assigned"]
+                and move.state in self._get_reassignable_states()
             )
             move.action_reassign_visible = visible
 
@@ -81,10 +90,6 @@ class StockMove(models.Model):
     def action_recompute_state(self):
         self._recompute_state()
 
-    def action_force_state_confirmed_to_assigned(self):
-        for move in self.filtered(lambda m: m.state == "confirmed"):
-            move.write({"state": "assigned"})
-
     def _action_cancel_stream(self, downstream=False, upstream=False):
         def get_downstream_moves(move):
             res = move
@@ -140,3 +145,21 @@ class StockMove(models.Model):
             - 'done'
         """
         self._action_done()
+
+    def _log_attr_value_write(self, value, name, string):
+        if value:
+            for move in self:
+                if move[name] != value:
+                    _logger.info(
+                        "%s of move %d for \"%s\" set to %s (was %s)",
+                        string,
+                        move.id,
+                        move.product_id.display_name,
+                        dim(value),
+                        dim(move[name]),
+                    )
+
+    def write(self, values):
+        self._log_attr_value_write(values.get("procure_method"), "procure_method", "Procure method")
+        self._log_attr_value_write(values.get("state"), "state", "State")
+        return super(StockMove, self).write(values)
