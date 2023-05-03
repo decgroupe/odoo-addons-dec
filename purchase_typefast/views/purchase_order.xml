@@ -13,7 +13,11 @@
                         ('typefast_name', 'ilike', self),
                         '|',
                             ('name', 'ilike', self),
-                            ('origin', 'ilike', self)
+                            '|', 
+                                ('origin', 'ilike', self),
+                                '|', 
+                                    ('partner_ref', 'ilike', self),
+                                    ('partner_id', 'child_of', self)
                 ]
                 </attribute>
             </field>
