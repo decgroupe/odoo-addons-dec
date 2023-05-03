@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class StockWarehouseOrderpoint(models.Model):
-    _inherit = 'stock.warehouse.orderpoint'
+    _inherit = "stock.warehouse.orderpoint"
 
     product_tmpl_id = fields.Many2one(
-        'product.template',
-        'Product Template',
-        related='product_id.product_tmpl_id',
+        comodel_name="product.template",
+        string="Product Template",
+        related="product_id.product_tmpl_id",
     )
