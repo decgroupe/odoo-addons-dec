@@ -8,7 +8,7 @@ from odoo.osv import expression
 
 
 class TypefastMixin(models.AbstractModel):
-    _name = 'typefast.mixin'
+    _name = "typefast.mixin"
     _description = "Typefast Mixin"
 
     typefast_name = fields.Char(
@@ -16,32 +16,32 @@ class TypefastMixin(models.AbstractModel):
         store=True,
     )
 
-    @api.depends(lambda self: (self._rec_name, ) if self._rec_name else ())
+    @api.depends(lambda self: (self._rec_name,) if self._rec_name else ())
     def _compute_typefast(self):
         for rec in self:
             # Strip everything but alphanumeric chars from the name
-            rec.typefast_name = re.sub(r'\W+', '', rec[self._rec_name])
+            rec.typefast_name = re.sub(r"\W+", "", rec[self._rec_name])
 
     def _get_typefast_domain(self, name, operator):
         return [
-            ('|'),
-            ('name', operator, name),
-            ('typefast_name', operator, name),
+            ("|"),
+            ("name", operator, name),
+            ("typefast_name", operator, name),
         ]
 
-    def _prepare_typefast_search(self, name, args=None, operator='ilike'):
-        if name and operator == 'ilike':
+    def _prepare_typefast_search(self, name, args=None, operator="ilike"):
+        if name and operator == "ilike":
             typefast_args = self._get_typefast_domain(name, operator)
             if args:
                 args = expression.AND([args, typefast_args])
             else:
                 args = typefast_args
-            name = ''
+            name = ""
         return name, args
 
     @api.model
     def _name_search(
-        self, name, args=None, operator='ilike', limit=100, name_get_uid=None
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
     ):
         name, args = self._prepare_typefast_search(name, args, operator)
         return super()._name_search(
@@ -49,5 +49,5 @@ class TypefastMixin(models.AbstractModel):
             args=args,
             operator=operator,
             limit=limit,
-            name_get_uid=name_get_uid
+            name_get_uid=name_get_uid,
         )
