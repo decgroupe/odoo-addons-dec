@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="purchase_order_filter_view" >
+    <record model="ir.ui.view" id="purchase_order_filter_view">
         <field name="name">request.quotation.select@purchase_typefast</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" />
         <field name="arch" type="xml">
             <field name="name" position="attributes">
                 <attribute name="filter_domain">

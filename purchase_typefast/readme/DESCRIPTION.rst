@@ -1,0 +1,1 @@
+Remove all non-alphabetical characters to search for a purchase order by its name.
