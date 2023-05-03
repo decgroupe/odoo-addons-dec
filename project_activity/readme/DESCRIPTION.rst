@@ -1,0 +1,1 @@
+Add activities and chat support on Projects
