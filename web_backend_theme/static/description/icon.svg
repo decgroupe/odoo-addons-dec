@@ -6,7 +6,7 @@
    viewBox="0,0,70,70"
    id="svg17"
    sodipodi:docname="icon.svg"
-   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    inkscape:export-filename="icon.png"
    inkscape:export-xdpi="192"
    inkscape:export-ydpi="192"
@@ -25,13 +25,13 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      showgrid="false"
-     inkscape:zoom="3.6678571"
-     inkscape:cx="-61.071081"
-     inkscape:cy="52.755599"
-     inkscape:window-width="2417"
+     inkscape:zoom="10.374267"
+     inkscape:cx="40.388398"
+     inkscape:cy="32.002263"
+     inkscape:window-width="2420"
      inkscape:window-height="1411"
-     inkscape:window-x="1734"
-     inkscape:window-y="732"
+     inkscape:window-x="4931"
+     inkscape:window-y="902"
      inkscape:window-maximized="1"
      inkscape:current-layer="g15" />
   <!-- Generated with https://ivantodorovich.github.io/odoo-icon -->
@@ -45,50 +45,46 @@
        gradientUnits="userSpaceOnUse"
        id="color-1">
       <stop
-         offset="0"
-         stop-color="#51bbff"
-         id="stop2" />
-      <stop
-         offset="0.1656051"
-         stop-color="#51bbff"
-         id="stop927"
-         style="stop-color:#48e9fa;stop-opacity:1;" />
-      <stop
-         offset="0.29936308"
-         stop-color="#51bbff"
-         id="stop929"
-         style="stop-color:#3ff5b4;stop-opacity:1;" />
-      <stop
-         offset="0.50636941"
-         stop-color="#51bbff"
-         id="stop931"
-         style="stop-color:#36da5b;stop-opacity:1;" />
-      <stop
-         offset="0.65286624"
-         stop-color="#51bbff"
-         id="stop933"
-         style="stop-color:#aaff3d;stop-opacity:1;" />
-      <stop
-         offset="0.80057251"
+         offset="0.07042254"
          stop-color="#51bbff"
          id="stop935"
-         style="stop-color:#e2b015;stop-opacity:1;" />
+         style="stop-color:#fefefe;stop-opacity:1;" />
+      <stop
+         offset="0.171831"
+         stop-color="#51bbff"
+         id="stop3160"
+         style="stop-color:#f4eb00;stop-opacity:1;" />
+      <stop
+         offset="0.38938731"
+         stop-color="#51bbff"
+         id="stop933"
+         style="stop-color:#ffb13d;stop-opacity:1;" />
+      <stop
+         offset="0.7189827"
+         stop-color="#51bbff"
+         id="stop931"
+         style="stop-color:#a136da;stop-opacity:1;" />
+      <stop
+         offset="0.87664843"
+         stop-color="#51bbff"
+         id="stop927"
+         style="stop-color:#489ffa;stop-opacity:1;" />
       <stop
          offset="1"
-         stop-color="#1e88e5"
-         id="stop4"
-         style="stop-color:#f98fff;stop-opacity:1;" />
+         stop-color="#51bbff"
+         id="stop2"
+         style="stop-color:#00aaff;stop-opacity:1;" />
     </linearGradient>
     <filter
        style="color-interpolation-filters:sRGB"
        inkscape:label="Blur"
        id="filter1367"
-       x="-0.13434515"
-       y="-0.11201143"
-       width="1.2686903"
-       height="1.2240229">
+       x="-0.0046264255"
+       y="-0.0046264255"
+       width="1.0092529"
+       height="1.0092529">
       <feGaussianBlur
-         stdDeviation="3.9184 3.267"
+         stdDeviation="0.13493741"
          result="blur"
          id="feGaussianBlur1365" />
     </filter>
@@ -111,6 +107,19 @@
          fill="url(#color-1)"
          style="fill:#ffffff;fill-opacity:1" />
     </mask>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4472"
+       x="-0.075000003"
+       y="-0.075000002"
+       width="1.15"
+       height="1.15">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.1874999"
+         id="feGaussianBlur4474" />
+    </filter>
   </defs>
   <g
      fill="none"
@@ -132,12 +141,12 @@
        d="M3.5,70c-1.933,0 -3.5,-1.567 -3.5,-3.5v-63c0,-1.933 1.567,-3.5 3.5,-3.5h63c1.933,0 3.5,1.567 3.5,3.5v63c0,1.933 -1.567,3.5 -3.5,3.5z"
        id="box"
        fill="url(#color-1)"
-       style="fill:#000000;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1" />
     <path
        d="m 3.5000015,70.030112 c -1.933,0 -3.5,-1.567 -3.5,-3.5 V 3.5301144 c 0,-1.933 1.567,-3.50000024 3.5,-3.50000024 H 66.499999 c 1.933,0 3.5,1.56700024 3.5,3.50000024 V 66.530112 c 0,1.933 -1.567,3.5 -3.5,3.5 z"
        id="box-4"
        fill="url(#color-1)"
-       style="mix-blend-mode:normal;fill:url(#linearGradient1785);filter:url(#filter1367)"
+       style="mix-blend-mode:normal;fill:url(#linearGradient1785);filter:url(#filter4472);opacity:1"
        mask="url(#mask1790)" />
     <path
        d="M65,1h-61c-1.95033,0 -3.2667,0.63396 -3.9491,1.90189c0.28378,-1.64806 1.72001,-2.90189 3.4491,-2.90189h63c1.72965,0 3.16627,1.25466 3.44938,2.90352c-0.69803,-1.26902 -2.34782,-1.90352 -4.94938,-1.90352z"
