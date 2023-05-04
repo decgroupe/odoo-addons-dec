@@ -4,7 +4,10 @@
     <data noupdate="1">
         <record id="res_group_do_merge" model="res.groups">
             <field name="name">Show Helpdesk Ticket Wizard Merge Action</field>
-            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field
+                name="users"
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
         </record>
     </data>
 
