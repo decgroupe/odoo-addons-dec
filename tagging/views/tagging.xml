@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="tags_search">
@@ -32,7 +32,7 @@
         <field name="arch" type="xml">
             <form string="Tags">
                 <group colspan="4" col="4">
-                    <field name="name" on_change="on_change_tag_name(name)"/>
+                    <field name="name" />
                     <field name="active" />
                     <field name="description" colspan="4" />
                 </group>
@@ -56,5 +56,11 @@
         <field name="view_id" ref="tags_tree" />
         <field name="search_view_id" ref="tags_search" />
     </record>
+
+    <menuitem
+        action="act_open_tags_tree"
+        id="menu_action_tags"
+        parent="base.next_id_9"
+    />
 
 </odoo>
