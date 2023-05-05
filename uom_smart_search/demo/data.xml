@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="uom.product_uom_unit" model="uom.uom">
+        <field name="name">PCE</field>
+    </record>
+
+    <record id="product_uom_unit_2" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">2PCE</field>
+        <field name="factor_inv" eval="2.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_3" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">3PCE</field>
+        <field name="factor_inv" eval="3.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_4" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">4PCE</field>
+        <field name="factor_inv" eval="4.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_5" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">5PCE</field>
+        <field name="factor_inv" eval="5.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_10" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">10PCE</field>
+        <field name="factor_inv" eval="10.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_20" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">20PCE</field>
+        <field name="factor_inv" eval="20.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_100" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">100PCE</field>
+        <field name="factor_inv" eval="100.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_200" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">200PCE</field>
+        <field name="factor_inv" eval="200.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_1000" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">1000PCE</field>
+        <field name="factor_inv" eval="1000.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_unit_2000" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">2000PCE</field>
+        <field name="factor_inv" eval="2000.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_litre_10" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_vol" />
+        <field name="name">10L</field>
+        <field name="factor_inv" eval="10.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_litre_100" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_vol" />
+        <field name="name">100L</field>
+        <field name="factor_inv" eval="100.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+    <record id="product_uom_litre_1000" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_vol" />
+        <field name="name">1000L</field>
+        <field name="factor_inv" eval="1000.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+
+
+</odoo>
