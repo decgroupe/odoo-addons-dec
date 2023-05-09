@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="tagging.tags" id="tag_01">
+        <field name="name">alpha</field>
+    </record>
+
+    <record model="tagging.tags" id="tag_02">
+        <field name="name">bravo</field>
+    </record>
+
+    <record model="tagging.tags" id="tag_03">
+        <field name="name">charlie</field>
+    </record>
+
+    <record model="tagging.tags" id="tag_04">
+        <field name="name">delta</field>
+    </record>
+
+</odoo>

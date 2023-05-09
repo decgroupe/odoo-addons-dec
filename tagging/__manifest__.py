@@ -10,5 +10,8 @@
         "security/ir.model.access.csv",
         "views/tagging.xml",
     ],
+    "demo": [
+        "demo/data.xml",
+    ],
     "installable": True,
 }
