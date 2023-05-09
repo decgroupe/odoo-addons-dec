@@ -18,7 +18,6 @@ from odoo import _, api, fields, models
 
 class TaggingTag(models.Model):
     _inherit = "tagging.tags"
-    _name = _inherit
 
     product_tmpl_ids = fields.Many2many(
         comodel_name="product.template",
@@ -46,5 +45,4 @@ class TaggingTag(models.Model):
             ORDER BY tagscount
             """
         )
-
         return self.env.cr.fetchall()
