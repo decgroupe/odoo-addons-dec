@@ -1,8 +1,17 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 
 import string
+import unicodedata
 
 from odoo import _, api, fields, models
+
+SEPARATOR = "-"
+SAFE_CHARS = string.ascii_letters + string.digits + SEPARATOR
+
+
+def unaccent(txt):
+    nfkd_form = unicodedata.normalize("NFKD", txt)
+    return "".join([c for c in nfkd_form if not unicodedata.combining(c)])
 
 
 class TaggingTag(models.Model):
@@ -10,9 +19,12 @@ class TaggingTag(models.Model):
     _description = "Tag"
     _order = "name"
 
-    name = fields.Char(string="Tag", size=64, required=True)
+    name = fields.Char(string="Tag", required=True)
     color = fields.Integer()
-    description = fields.Char(string="Short Description", size=256)
+    description = fields.Char(
+        string="Text",
+        help="Full text description of the tag",
+    )
     notes = fields.Text()
     active = fields.Boolean(default=True)
     related_tags_ids = fields.Many2many(
@@ -31,41 +43,41 @@ class TaggingTag(models.Model):
         ),
     ]
 
-    def strip_accent(self, txt):
-        accents = {
-            "a": ["à", "ã", "á", "â", "ä"],
-            "c": ["ç"],
-            "e": ["é", "è", "ê", "ë"],
-            "i": ["ì", "í", "î", "ï"],
-            "n": ["ñ"],
-            "u": ["ù", "ú", "ü", "û"],
-            "y": ["ý", "ÿ"],
-            "o": ["ô", "ö", "ò", "ó", "õ"],
-        }
-        for char, accented_chars in accents.items():
-            for accented_char in accented_chars:
-                txt = txt.replace(accented_char, char)
-        return txt
-
-    @api.onchange("name")
-    def _on_change_tag_name(self):
-        tag_name = self.name.strip() if self.name else False
-        if tag_name:
-            tag_name = self.strip_accent(tag_name.lower())
-            tag_name = tag_name.replace(" ", "-")
+    def _format_name(self, value):
+        if value:
+            value = unaccent(value.strip().lower())
+            value = value.replace(" ", SEPARATOR)
 
             char_previous = ""
             char_index = 0
-            for char_current in tag_name:
+            for char_current in value:
                 char_index = char_index + 1
-                if char_current == "-" and char_previous == "-":
-                    tag_name = tag_name[: char_index - 1] + tag_name[char_index:]
+                if char_current == SEPARATOR and char_previous == SEPARATOR:
+                    value = value[: char_index - 1] + value[char_index:]
                     char_index = char_index - 1
 
                 char_previous = char_current
 
-            safe_chars = string.ascii_letters + string.digits + "-"
-            tag_name = "".join(
-                [char if char in safe_chars else "" for char in tag_name]
-            )
-            self.name = tag_name
+            value = "".join([char if char in SAFE_CHARS else "" for char in value])
+        return value
+
+    @api.onchange("name")
+    def _onchange_tag_name(self):
+        self.name = self._format_name(self.name)
+
+    @api.onchange("description")
+    def _onchange_tag_description(self):
+        self.name = self._format_name(self.description)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "name" in vals:
+                vals["name"] = self._format_name(vals["name"])
+        res_ids = super().create(vals_list)
+        return res_ids
+
+    def write(self, vals):
+        if "name" in vals:
+            vals["name"] = self._format_name(vals["name"])
+        return super().write(vals)

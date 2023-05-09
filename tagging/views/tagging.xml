@@ -31,20 +31,34 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Tags">
-                <group colspan="4" col="4">
-                    <field name="name" />
-                    <field name="active" />
-                    <field name="description" colspan="4" />
-                </group>
-                <notebook colspan="4">
-                    <page string="Notes">
-                        <separator string="Notes" colspan="4" />
-                        <field name="notes" colspan="4" nolabel="1" />
-                    </page>
-                    <page string="Related Tags">
-                        <field name="related_tags_ids" colspan="4" nolabel="1" />
-                    </page>
-                </notebook>
+                <header><data /></header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="active" invisible="1" />
+                        <widget
+                            name="web_ribbon"
+                            title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"
+                        />
+                    </div>
+                    <group name="main">
+                        <field name="name" />
+                        <field name="description" />
+                    </group>
+                    <group name="data">
+                        <notebook>
+                            <page string="Notes">
+                                <field name="notes" />
+                            </page>
+                            <page string="Related Tags">
+                                <field name="related_tags_ids" />
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                <div name="chatter" class="oe_chatter">
+                </div>
             </form>
         </field>
     </record>
