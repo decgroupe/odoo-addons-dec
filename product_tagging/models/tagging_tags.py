@@ -13,7 +13,7 @@
 # from DEC SARL.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 class TaggingTag(models.Model):
@@ -21,11 +21,11 @@ class TaggingTag(models.Model):
     _name = _inherit
 
     product_tmpl_ids = fields.Many2many(
-        comodel_name='product.template',
-        relation='tagging_product_tmpl',
-        column1='tag_id',
-        column2='product_tmpl_id',
-        string='Products',
+        comodel_name="product.template",
+        relation="tagging_product_tmpl",
+        column1="tag_id",
+        column2="product_tmpl_id",
+        string="Products",
     )
 
     @api.model

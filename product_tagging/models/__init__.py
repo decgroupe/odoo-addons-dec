@@ -1,2 +1,2 @@
-from . import tagging
-from . import product
+from . import tagging_tags
+from . import product_template

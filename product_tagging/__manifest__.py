@@ -1,17 +1,15 @@
 {
-    'name': 'Tagging (products)',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': '''Tagging products''',
-    'depends': [
-        'tagging',
-        'product',
+    "name": "Tagging (Products)",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "tagging",
+        "product",
     ],
-    'data': [
-        'views/tagging.xml',
-        'views/product.xml',
+    "data": [
+        "views/tagging_tags.xml",
+        "views/product_template.xml",
     ],
-    'installable': True,
-    # 'force_migration': '12.0.0.0.0',
+    "installable": True,
 }

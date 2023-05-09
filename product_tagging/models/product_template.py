@@ -5,12 +5,12 @@ from odoo import fields, models
 
 
 class Product(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     tagging_ids = fields.Many2many(
-        comodel_name='tagging.tags',
-        relation='tagging_product_tmpl',
-        column1='product_tmpl_id',
-        column2='tag_id',
-        string='Tags',
+        comodel_name="tagging.tags",
+        relation="tagging_product_tmpl",
+        column1="product_tmpl_id",
+        column2="tag_id",
+        string="Tags",
     )
