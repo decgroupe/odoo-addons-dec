@@ -151,21 +151,14 @@ class PurchaseOrderMerge(models.TransientModel):
             return False
 
     def _pre_process_create(self):
-        self.order_id = (
-            self.env["purchase.order"]
-            .with_context(
-                {
-                    "trigger_onchange": True,
-                    "onchange_fields_to_trigger": [self.partner_id],
-                }
-            )
-            .create(
-                {
-                    "partner_id": self.partner_id.id,
-                    "date_order": min(self.origin_order_ids.mapped("date_order")),
-                }
-            )
+        vals = self.env["purchase.order"].play_onchanges(
+            {
+                "partner_id": self.partner_id.id,
+                "date_order": min(self.origin_order_ids.mapped("date_order")),
+            },
+            ["partner_id"],
         )
+        self.order_id = self.env["purchase.order"].create(vals)
         self._pre_process_merge()
 
     def _pre_process_merge(self):

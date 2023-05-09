@@ -7,12 +7,16 @@
         "purchase",
         "purchase_stock",
         "purchase_line_procurement_group",
+        "onchange_helper",
     ],
     "data": [
         "views/purchase_order.xml",
         "views/template.xml",
         "wizard/purchase_order_merge.xml",
         "security/ir.model.access.csv",
+    ],
+    "demo": [
+        "demo/data.xml",
     ],
     "installable": True,
 }
