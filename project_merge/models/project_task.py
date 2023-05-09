@@ -9,4 +9,4 @@ class Task(models.Model):
 
     def get_access_link(self):
         # _notify_get_action_link is not callable from email template
-        return self._notify_get_action_link('view')
+        return self._notify_get_action_link("view")

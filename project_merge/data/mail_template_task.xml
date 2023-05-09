@@ -1,32 +1,61 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
 
     <record id="merged_tasks" model="mail.template">
         <field name="name">Project's Task Merge Notification Email</field>
-        <field name="model_id" ref="project_merge.model_merge_project_task_wizard"/>
+        <field name="model_id" ref="project_merge.model_merge_project_task_wizard" />
         <field name="email_from">${object.company_id.partner_id.email}</field>
         <!-- <field name="email_to">${ctx['emails'] or ''|safe}</field> -->
-        <field name="subject">The task "${ctx['src_object'].name}" has been merged.</field>
-        <field name="auto_delete" eval="True"/>
+        <field
+            name="subject"
+        >The task "${ctx['src_object'].name}" has been merged.</field>
+        <field name="auto_delete" eval="True" />
         <field name="lang">${object.company_id.partner_id.lang}</field>
         <field name="body_html" type="html">
-            <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; padding-bottom:16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
-            <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+            <table
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+                style="padding-top: 16px; padding-bottom:16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"
+            ><tr><td align="center">
+            <table
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            width="590"
+                            style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;"
+                        >
             <tbody>
                 <!-- HEADER -->
                 <tr>
                     <td align="center" style="min-width: 590px;">
-                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                        <table
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            width="590"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                             <tr><td valign="middle">
-                                <span style="font-size: 10px;">${ctx['src_object'].project_id.name}</span><br/>
+                                <span
+                                                        style="font-size: 10px;"
+                                                    >${ctx['src_object'].project_id.name}</span><br
+                                                    />
                                 <span style="font-size: 20px; font-weight: bold;">
                                     ${ctx['src_object'].name}
                                 </span>
                             </td><td valign="middle" align="right">
-                                <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                                <img
+                                                        src="/logo.png?company=${object.company_id.id}"
+                                                        style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                        alt="${object.company_id.name}"
+                                                    />
                             </td></tr>
                             <tr><td colspan="2" style="text-align:center;">
-                                <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                <hr
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                    />
                             </td></tr>
                         </table>
                     </td>
@@ -34,26 +63,43 @@
                 <!-- CONTENT -->
                 <tr>
                     <td align="center" style="min-width: 590px;">
-                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                        <table
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            width="590"
+                                            style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                             <tr><td valign="top" style="font-size: 13px;">
                                 <div>
-                                    <p>This task has been deleted and all its content has been moved to the following task:
+                                    <p
+                                                        >This task has been deleted and all its content has been moved to the following task:
                                         <ul>
-                                            <li>${object.dst_object_id.project_id.type_id.display_name}</li>
-                                            <li>${object.dst_object_id.project_id.name}</li>
+                                            <li
+                                                                >${object.dst_object_id.project_id.type_id.display_name}</li>
+                                            <li
+                                                                >${object.dst_object_id.project_id.name}</li>
                                             <li><b>${object.dst_object_id.name}</b></li>
                                         </ul>
                                     </p>
                                     <div style="margin: 16px 0px 16px 0px;">
-                                        <a href="${object.dst_object_id.get_access_link()}" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                        <a
+                                                                href="${object.dst_object_id.get_access_link()}"
+                                                                style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                                                            >
                                             View Task
                                         </a>
                                     </div>
-                                    <small><i>This action was led by ${user.name}.</i></small><br/>
+                                    <small><i
+                                                            >This action was led by ${user.name}.</i></small><br
+                                                        />
                                 </div>
                             </td></tr>
                             <tr><td style="text-align:center;">
-                                <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                <hr
+                                                        width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"
+                                                    />
                             </td></tr>
                         </table>
                     </td>
@@ -61,17 +107,29 @@
                 <!-- FOOTER -->
                 <tr>
                     <td align="center" style="min-width: 590px;">
-                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                        <table
+                                            border="0"
+                                            cellpadding="0"
+                                            cellspacing="0"
+                                            width="590"
+                                            style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;"
+                                        >
                             <tr><td valign="middle" align="left">
                                 ${object.company_id.name}
                             </td></tr>
                             <tr><td valign="middle" align="left" style="opacity: 0.7;">
                                 ${object.company_id.phone}
                                 % if object.company_id.email
-                                    | <a href="'mailto:%s' % ${object.company_id.email}" style="text-decoration:none; color: #454748;">${object.company_id.email}</a>
+                                    | <a
+                                                        href="'mailto:%s' % ${object.company_id.email}"
+                                                        style="text-decoration:none; color: #454748;"
+                                                    >${object.company_id.email}</a>
                                 % endif
                                 % if object.company_id.website
-                                    | <a href="'%s' % ${object.company_id.website}" style="text-decoration:none; color: #454748;">
+                                    | <a
+                                                        href="'%s' % ${object.company_id.website}"
+                                                        style="text-decoration:none; color: #454748;"
+                                                    >
                                     ${object.company_id.website}
                                 </a>
                                 % endif
