@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_compare
 
 
 class PurchaseOrderMerge(models.TransientModel):
@@ -102,6 +103,11 @@ class PurchaseOrderMerge(models.TransientModel):
                 % ("\n - ".join([""] + partner_ids.mapped("display_name")))
             )
 
+    def _check_selection_compatibility(self, origin_order_ids):
+        self._check_selection_count(origin_order_ids)
+        self._check_selection_state(origin_order_ids)
+        self._check_selection_partners(origin_order_ids)
+
     @api.model
     def default_get(self, fields):
         rec = super().default_get(fields)
@@ -111,9 +117,7 @@ class PurchaseOrderMerge(models.TransientModel):
         if active_model == "purchase.order" and active_ids:
             origin_order_ids = self.env["purchase.order"].browse(active_ids)
             # Ensure selected data is valid
-            self._check_selection_count(origin_order_ids)
-            self._check_selection_state(origin_order_ids)
-            self._check_selection_partners(origin_order_ids)
+            self._check_selection_compatibility(origin_order_ids)
             # Assign wizard default values
             partner_id = origin_order_ids.mapped("partner_id")
             rec.update(
@@ -128,18 +132,49 @@ class PurchaseOrderMerge(models.TransientModel):
     def _onchange_order_id(self):
         self.group_id = self.order_id.group_id
 
+    def _same_product(self, l1, l2):
+        res = l1.product_id == l2.product_id
+        return res
+
+    def _same_uom(self, l1, l2):
+        res = l1.product_uom == l2.product_uom
+        return res
+
+    def _same_price(self, l1, l2):
+        dp = self.env["decimal.precision"].precision_get("Product Price")
+        res = float_compare(l1.price_unit, l2.price_unit, precision_digits=dp) == 0
+        return res
+
+    def _same_procurement(self, l1, l2):
+        res = l1.procurement_group_id == l2.procurement_group_id
+        return res
+
+    def _same_taxes(self, l1, l2):
+        res = l1.taxes_id == l2.taxes_id
+        return res
+
+    def _same_name(self, l1, l2):
+        res = l1.name == l2.name
+        return res
+
+    def _same_lines(self, l1, l2):
+        if (
+            self._same_product(l1, l2)
+            and self._same_uom(l1, l2)
+            and self._same_price(l1, l2)
+            and self._same_procurement(l1, l2)
+            and self._same_taxes(l1, l2)
+            and self._same_name(l1, l2)
+        ):
+            return True
+        else:
+            return False
+
     def _try_merging(self, line):
         match_line = False
         if self.order_id.order_line:
             for po_line in self.order_id.order_line:
-                if (
-                    line.product_id == po_line.product_id
-                    and line.product_uom == po_line.product_uom
-                    and line.price_unit == po_line.price_unit
-                    and line.procurement_group_id == po_line.procurement_group_id
-                    and line.taxes_id == po_line.taxes_id
-                    and line.name == po_line.name
-                ):
+                if self._same_lines(line, po_line):
                     match_line = po_line
                     break
         if match_line:
@@ -169,11 +204,13 @@ class PurchaseOrderMerge(models.TransientModel):
             sequence = max(sequences)
         else:
             sequence = 0
+        po_line_unlink_ids = self.env["purchase.order.line"]
         for order in self.origin_order_ids:
             for line in order.order_line:
                 if self.merge_quantities:
                     merged = self._try_merging(line)
-                    line.unlink()
+                    if merged:
+                        po_line_unlink_ids += line
                 else:
                     merged = False
                 if not merged:
@@ -184,9 +221,11 @@ class PurchaseOrderMerge(models.TransientModel):
                             "order_id": self.order_id.id,
                         }
                     )
+        if po_line_unlink_ids:
+            po_line_unlink_ids.unlink()
         self._set_origin()
         self.order_id.message_post_with_view(
-            "purchase_merge.merged_with_template",
+            views_or_xmlid="purchase_merge.merged_with_template",
             values={
                 "order_ids": self.origin_order_ids,
             },
@@ -204,7 +243,7 @@ class PurchaseOrderMerge(models.TransientModel):
     def _post_process_cancel(self):
         for order_id in self.origin_order_ids:
             order_id.message_post_with_view(
-                "purchase_merge.merged_to_template",
+                views_or_xmlid="purchase_merge.merged_to_template",
                 values={
                     "order_id": self.order_id,
                 },
@@ -213,7 +252,7 @@ class PurchaseOrderMerge(models.TransientModel):
             order_id.button_cancel()
 
     def _post_process_delete(self):
-        self.post_process_cancel()
+        self._post_process_cancel()
         for order_id in self.origin_order_ids:
             order_id.sudo().unlink()
 
