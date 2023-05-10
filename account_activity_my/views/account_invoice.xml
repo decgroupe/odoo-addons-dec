@@ -1,45 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!-- TODO: [MIG] 13.0
+
     <record model="ir.ui.view" id="invoice_tree">
         <field name="name">account.invoice.tree@account_activity_my</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
         <field name="arch" type="xml">
-            <field name="number" position="attributes">
-                <attribute name="decoration-bf">1</attribute>
-            </field>
-            <field name="date_due" position="attributes">
-                <attribute name="widget">remaining_days</attribute>
-            </field>
-            <field name="date_due" position="after">
+            <field name="invoice_date_due" position="after">
                 <field name="activity_my_ids" widget="list_activity_my"/>
-            </field>
-            <field name="amount_total_signed" position="attributes">
-                <attribute name="decoration-bf">1</attribute>
             </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="invoice_supplier_tree_view">
-        <field name="name">account.invoice.tree@account_activity_my</field>
-        <field name="model">account.invoice</field>
-        <field name="type">tree</field>
-        <field name="inherit_id" ref="account.invoice_supplier_tree"/>
-        <field name="arch" type="xml">
-            <field name="number" position="attributes">
-                <attribute name="decoration-bf">1</attribute>
-            </field>
-            <field name="date_due" position="attributes">
-                <attribute name="widget">remaining_days</attribute>
-            </field>
-            <field name="date_due" position="after">
-                <field name="activity_my_ids" widget="list_activity_my"/>
-            </field>
-            <field name="amount_total_signed" position="attributes">
-                <attribute name="decoration-bf">1</attribute>
-            </field>
-        </field>
-    </record>
--->
 </odoo>
