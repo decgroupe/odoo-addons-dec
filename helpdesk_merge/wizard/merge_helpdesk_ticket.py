@@ -11,8 +11,14 @@ class MergeHelpdeskTicket(models.TransientModel):
     _model_merge = "helpdesk.ticket"
     _table_merge = "helpdesk_ticket"
 
-    object_ids = fields.Many2many(_model_merge, string="Helpdesk Ticket")
-    dst_object_id = fields.Many2one(_model_merge, string="Helpdesk Ticket")
+    object_ids = fields.Many2many(
+        comodel_name=_model_merge,
+        string="Helpdesk Ticket",
+    )
+    dst_object_id = fields.Many2one(
+        comodel_name=_model_merge,
+        string="Helpdesk Ticket",
+    )
     company_id = fields.Many2one(
         comodel_name="res.company",
         related="dst_object_id.company_id",
