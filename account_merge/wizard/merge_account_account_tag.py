@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class MergeAccountAccountTag(models.TransientModel):
@@ -11,9 +11,13 @@ class MergeAccountAccountTag(models.TransientModel):
     _model_merge = "account.account.tag"
     _table_merge = "account_account_tag"
 
-    object_ids = fields.Many2many(_model_merge, string="Account Tag")
+    object_ids = fields.Many2many(
+        comodel_name=_model_merge,
+        string="Account Tag",
+    )
     dst_object_id = fields.Many2one(
-        _model_merge, string="Destination Account Tag"
+        comodel_name=_model_merge,
+        string="Destination Account Tag",
     )
 
     def _merge(self, object_ids, dst_object=None, extra_checks=True):
