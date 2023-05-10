@@ -5,39 +5,44 @@ from odoo import fields, models
 
 
 class ResPartnerAcademy(models.Model):
-    """ National Education Academy """
+    """National Education Academy"""
 
-    _name = 'res.partner.academy'
-    _description = 'Academy'
-    _rec_name = 'name'
-    _order = 'name'
+    _name = "res.partner.academy"
+    _description = "Academy"
+    _rec_name = "name"
+    _order = "name"
 
-    partner_id = fields.Many2one('res.partner', 'Rectorate')
-    name = fields.Text('Name', required=True)
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Rectorate",
+    )
+    name = fields.Text(
+        string="Name",
+        required=True,
+    )
     email_domain = fields.Char(
         help="Filling this domain (part after the @) will help to "
         "quickly identify a partner academy using its e-mail suffix"
     )
     logo = fields.Binary(
-        related='partner_id.image_1920',
+        related="partner_id.image_1920",
         string="Academy Logo",
         readonly=False,
     )
     state_id = fields.Many2one(
-        "res.country.state",
+        comodel_name="res.country.state",
         related="partner_id.state_id",
-        string='State',
+        string="State",
         readonly=False,
     )
     country_id = fields.Many2one(
-        "res.country",
+        comodel_name="res.country",
         related="partner_id.country_id",
-        string='Country',
+        string="Country",
     )
     department_ids = fields.Many2many(
-        'res.country.department',
-        string='Departments',
-        help='Departments of this academy',
+        comodel_name="res.country.department",
+        string="Departments",
+        help="Departments of this academy",
         domain="[('country_id', '=', country_id), ('state_id', '=', state_id)]",
     )
-
