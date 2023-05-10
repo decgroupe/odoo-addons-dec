@@ -1,0 +1,1 @@
+Merge locations `res.city` and `res.city.zip`

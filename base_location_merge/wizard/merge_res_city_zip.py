@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class MergeResCityZip(models.TransientModel):
@@ -11,9 +11,13 @@ class MergeResCityZip(models.TransientModel):
     _model_merge = "res.city.zip"
     _table_merge = "res_city_zip"
 
-    object_ids = fields.Many2many(_model_merge, string="City/Location")
+    object_ids = fields.Many2many(
+        comodel_name=_model_merge,
+        string="City/Location",
+    )
     dst_object_id = fields.Many2one(
-        _model_merge, string="Destination City/Location"
+        comodel_name=_model_merge,
+        string="Destination City/Location",
     )
 
     group_by_city_id = fields.Boolean("City")
