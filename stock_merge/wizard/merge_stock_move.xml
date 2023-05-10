@@ -8,7 +8,10 @@
             <form string='🧙‍♂️ Merge Wizard'>
                 <sheet>
                     <field name="state" invisible="1" />
-                    <p class="oe_grey" attrs="{'invisible': [('state', '!=', ('option'))]}">
+                    <p
+                        class="oe_grey"
+                        attrs="{'invisible': [('state', '!=', ('option'))]}"
+                    >
                         Select the list of fields used to search for
                         duplicated records. If you select several fields,
                         Odoo will propose you to merge only those having
@@ -23,17 +26,28 @@
                         string="Search duplicates based on duplicated data in"
                         attrs="{'invisible': [('state', 'not in', ('option',))]}"
                     >
-                        <field name='group_by_name'/>
+                        <field name='group_by_name' />
                     </group>
-                    <separator string="Options" attrs="{'invisible': [('state', 'not in', ('option',))]}" />
-                    <group attrs="{'invisible': [('state', 'not in', ('option','finished'))]}">
-                        <field name='maximum_group' attrs="{'readonly': [('state', 'in', ('finished'))]}" />
+                    <separator
+                        string="Options"
+                        attrs="{'invisible': [('state', 'not in', ('option',))]}"
+                    />
+                    <group
+                        attrs="{'invisible': [('state', 'not in', ('option','finished'))]}"
+                    >
+                        <field
+                            name='maximum_group'
+                            attrs="{'readonly': [('state', 'in', ('finished'))]}"
+                        />
                     </group>
                     <separator
                         string="Merge the following records"
                         attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
                     />
-                    <group attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}" col="1">
+                    <group
+                        attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
+                        col="1"
+                    >
                         <p class="oe_grey">
                             Selected records will be merged together.
                             All documents linked to one of these record
@@ -85,12 +99,12 @@
 
     <record id="action_stock_move_merge" model="ir.actions.act_window">
         <field name="name">🧙‍♂️ Merge ...</field>
-        <field name="binding_model_id" ref="stock.model_stock_move"/>
+        <field name="binding_model_id" ref="stock.model_stock_move" />
         <field name="binding_view_types">list</field>
         <field name="res_model">merge.stock.move.wizard</field>
         <field name="view_mode">form</field>
         <field name="binding_type">action</field>
-        <field name="groups_id" eval="[(4, ref('stock_merge.res_group_do_merge'))]"/>
+        <field name="groups_id" eval="[(4, ref('stock_merge.res_group_do_merge'))]" />
         <field name="target">new</field>
     </record>
 

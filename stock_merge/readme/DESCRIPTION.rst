@@ -1,0 +1,1 @@
+Merge stock moves
