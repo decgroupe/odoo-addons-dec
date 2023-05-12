@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-<!-- TODO: [MIG] 13.0
-    <record model="ir.ui.view" id="invoice_tree">
+
+    <record model="ir.ui.view" id="invoice_tree_view">
         <field name="name">account.invoice.tree@account_partner_location</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
-            <field name="partner_id" position="after">
-                <field name="partner_zip_id"/>
+            <field name="invoice_date" position="before">
+                <field name="partner_zip_id" optional="hide" />
             </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_account_invoice_filter">
+    <record model="ir.ui.view" id="account_invoice_filter_view">
         <field name="name">account.invoice.select@account_partner_location</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="partner_zip_id"/>
+                <field name="partner_zip_id" />
             </xpath>
-            <xpath expr="//filter[@name='group_by_partner_id']" position="after">
-                <filter string="ZIP Location" name="group_partner_zip" domain="[]" context="{'group_by':'partner_zip_id'}"/>
+            <xpath expr="//filter[@name='status']" position="after">
+                <filter
+                    string="Partner"
+                    name="group_partner"
+                    domain="[]"
+                    context="{'group_by':'partner_id'}"
+                />
+                <filter
+                    string="ZIP Location"
+                    name="group_partner_zip"
+                    domain="[]"
+                    context="{'group_by':'partner_zip_id'}"
+                />
             </xpath>
         </field>
     </record>
--->
+
 </odoo>
