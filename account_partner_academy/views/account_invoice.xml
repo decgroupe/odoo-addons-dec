@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="view_account_invoice_filter">
+    <record model="ir.ui.view" id="account_invoice_filter_view">
         <field name="name">account.invoice.select@account_partner_academy</field>
         <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="inherit_id" ref="account_partner_location.account_invoice_filter_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="partner_academy_id" />
             </xpath>
-            <xpath expr="//filter[@name='status']" position="after">
-                <filter
-                    string="Partner"
-                    name="group_partner"
-                    domain="[]"
-                    context="{'group_by':'partner_id'}"
-                />
+            <xpath expr="//filter[@name='group_partner']" position="after">
                 <filter
                     string="Academy"
                     name="group_partner_academy"

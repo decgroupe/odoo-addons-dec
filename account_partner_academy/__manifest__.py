@@ -4,7 +4,7 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
-        "account",
+        "account_partner_location",
         "partner_academy",
     ],
     "data": [
