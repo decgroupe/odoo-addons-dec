@@ -1,14 +1,15 @@
 {
-    'name': 'Account Purchase Link',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Show related purchase orders on invoice form",
-    'depends': [
-        'account',
-        'purchase',
-        'purchase_action_view',
+    "name": "Account Purchase Link",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "account",
+        "purchase",
+        "purchase_action_view",
     ],
-    'data': ['views/account_invoice.xml', ],
-    'installable': True
+    "data": [
+        "views/account_invoice.xml",
+    ],
+    "installable": True,
 }
