@@ -1,28 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <!-- TODO: [MIG] 14.0
     <record model="ir.ui.view" id="account_move_update_form">
-        <field name="name">account.move.update.form@account_recreate_analytic_lines</field>
+        <field
+            name="name"
+        >account.move.update.form@account_recreate_analytic_lines</field>
         <field name="model">account.move.update</field>
-        <field name="inherit_id" ref="account_move_update_wizard.account_move_update_form"/>
+        <field
+            name="inherit_id"
+            ref="account_move_update_wizard.account_move_update_form"
+        />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='lines']" position="after">
                 <button
                     name="remove_lines_with_product_id"
                     string="Remove lines with a product assigned"
                     type="object"
-                    class="oe_link">
+                    class="oe_link"
+                >
                 </button>
             </xpath>
             <xpath expr="//field[@name='line_ids']/tree" position="attributes">
                 <attribute name="delete">true</attribute>
             </xpath>
-            <xpath expr="//field[@name='line_ids']/tree/field[@name='name']" position="before">
-                <field name="product_id" readonly="True"/>
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='name']"
+                position="before"
+            >
+                <field name="product_id" readonly="True" />
             </xpath>
         </field>
     </record>
-     -->
+
 
 </odoo>

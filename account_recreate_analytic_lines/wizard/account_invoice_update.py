@@ -1,23 +1,23 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
-from odoo import _, models, fields, api
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
 class AccountInvoiceUpdate(models.TransientModel):
-    _inherit = 'account.move.update'
+    _inherit = "account.move.update"
 
     def _reopen(self):
         return {
-            'type': 'ir.actions.act_window',
-            'view_mode': 'form',
-            'view_type': 'form',
-            'res_id': self.id,
-            'res_model': self._name,
-            'target': 'new',
-            'context': {
-                'default_model': self._name,
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "view_type": "form",
+            "res_id": self.id,
+            "res_model": self._name,
+            "target": "new",
+            "context": {
+                "default_model": self._name,
             },
         }
 
@@ -38,7 +38,7 @@ class AccountInvoiceUpdate(models.TransientModel):
     def _get_move_lines(self, move_id):
         move_lines = super()._get_move_lines(move_id)
         # Override default lines and select all
-        move_lines = self.env['account.move.line']
+        move_lines = self.env["account.move.line"]
         for move_line in move_id.line_ids:
             try:
                 self._get_matching_inv_line(move_line)
@@ -48,10 +48,11 @@ class AccountInvoiceUpdate(models.TransientModel):
                 pass
         return move_lines
 
+
 class AccountInvoiceLineUpdate(models.TransientModel):
-    _inherit = 'account.move.line.update'
+    _inherit = "account.move.line.update"
 
     product_id = fields.Many2one(
-        'product.product',
+        comodel_name="product.product",
         related="invoice_line_id.product_id",
     )
