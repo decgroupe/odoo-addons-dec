@@ -27,8 +27,6 @@ class ResPartner(models.Model):
     def _set_academy_from_domain(self, domain):
         if not domain:
             return
-        if not "ac-" in domain:
-            return
         # Browse all records since an email_domain field can includes
         # multiple domain
         academy_ids = self.env["res.partner.academy"].search(

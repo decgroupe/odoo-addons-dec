@@ -12,6 +12,10 @@ class ResPartnerAcademy(models.Model):
     _rec_name = "name"
     _order = "name"
 
+    active = fields.Boolean(
+        default=True,
+        help="Set active to false to hide the Academy without removing it.",
+    )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Rectorate",
