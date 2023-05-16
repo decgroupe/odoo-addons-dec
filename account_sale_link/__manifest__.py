@@ -7,6 +7,8 @@
     "depends": [
         "account",
         "sale",
+        "sale_management",
+        "sales_team",
         "sale_action_view",
     ],
     "data": [
