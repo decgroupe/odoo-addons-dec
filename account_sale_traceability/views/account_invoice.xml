@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-<!-- FIXME: [MIG] 13.0: DEL
+
     <record model="ir.ui.view" id="invoice_line_form_view">
         <field name="name">account.move.line.form@account_traceability</field>
         <field name="model">account.move.line</field>
-        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="inherit_id" ref="account.view_invoice_line_form" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <label for="sale_line_ids"/>
-                <field name="sale_line_ids"/>
+                <label for="sale_line_ids" />
+                <field name="sale_line_ids" />
             </field>
         </field>
     </record>
@@ -17,31 +17,35 @@
     <record model="ir.ui.view" id="invoice_line_tree_view">
         <field name="name">account.move.line.tree@account_traceability</field>
         <field name="model">account.move.line</field>
-        <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+        <field name="inherit_id" ref="account.view_invoice_line_tree" />
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <field name="invoice_type"/>
-                <field name="origin"/>
-                <field name="partner_id"/>
-                <field name="invoice_id"/>
-                <field name="product_id"/>
+                <field name="invoice_type" />
+                <field name="origin" />
+                <field name="partner_id" />
+                <field name="invoice_id" />
+                <field name="product_id" />
             </field>
         </field>
     </record>
--->
 
-    <record model="ir.ui.view" id="invoice_line_tree_filter_view" >
+
+    <record model="ir.ui.view" id="invoice_line_tree_filter_view">
         <field name="name">account.move.line.select@account_traceability</field>
         <field name="model">account.move.line</field>
         <field name="arch" type="xml">
             <search string="Search Invoice Lines">
-                <field name="name"/>
-                <field name="product_id"/>
+                <field name="name" />
+                <field name="product_id" />
                 <!-- FIXME: [MIG] 13.0: Missing field
                 <field name="origin"/>
                 -->
-                <field name="partner_id"/>
-                <filter string="Not attached" name="filter_not_attached" domain="[('purchase_line_id', '=', False), ('sale_line_ids', '=', False)]"/>
+                <field name="partner_id" />
+                <filter
+                    string="Not attached"
+                    name="filter_not_attached"
+                    domain="[('purchase_line_id', '=', False), ('sale_line_ids', '=', False)]"
+                />
                 
                 <!-- FIXME: [MIG] 14.0: Missing `invoice_type` field
                 <filter string="Customer Invoice" name="filter_customer_invoice" domain="[('invoice_type', '=', 'out_invoice')]"/>
@@ -54,8 +58,18 @@
                     <!-- FIXME: [MIG] 13.0: Missing field
                     <filter string="Origin" name="group_by_origin" domain="[]" context="{'group_by':'origin'}"/>
                     -->
-                    <filter string="Product" name="group_by_product_id" domain="[]" context="{'group_by':'product_id'}"/>
-                    <filter string="Partner" name="group_by_product_id" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter
+                        string="Product"
+                        name="group_by_product_id"
+                        domain="[]"
+                        context="{'group_by':'product_id'}"
+                    />
+                    <filter
+                        string="Partner"
+                        name="group_by_product_id"
+                        domain="[]"
+                        context="{'group_by':'partner_id'}"
+                    />
                 </group>
             </search>
         </field>
