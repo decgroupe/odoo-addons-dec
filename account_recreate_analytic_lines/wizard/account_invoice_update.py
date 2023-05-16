@@ -38,15 +38,7 @@ class AccountInvoiceUpdate(models.TransientModel):
     def _get_move_lines(self, move_id):
         move_lines = super()._get_move_lines(move_id)
         # Override default lines and select all
-        move_lines = self.env["account.move.line"]
-        for move_line in move_id.line_ids:
-            try:
-                self._get_matching_inv_line(move_line)
-                # Keep only lines without error
-                move_lines += move_line
-            except UserError as e:
-                pass
-        return move_lines
+        return move_id.line_ids
 
 
 class AccountInvoiceLineUpdate(models.TransientModel):

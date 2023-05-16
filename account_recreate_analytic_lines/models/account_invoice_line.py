@@ -26,11 +26,11 @@ class AccountMoveLine(models.Model):
         # - oca/account-analytic/product_analytic/models/account_invoice.py
         # It is used to re-link with correct analytic account
         for line in self:
-            if line.account_analytic_id and not self._context.get(
+            if line.analytic_account_id and not self._context.get(
                 "override_existing_account"
             ):
                 continue
-            line.account_analytic_id = self._get_product_analytic_account(
+            line.analytic_account_id = self._get_product_analytic_account(
                 line.product_id,
-                line.move_type,
+                line.move_id.move_type,
             )

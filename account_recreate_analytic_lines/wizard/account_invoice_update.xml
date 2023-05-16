@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="account_move_update_form">
+    <record model="ir.ui.view" id="account_invoice_update_form">
         <field
             name="name"
         >account.move.update.form@account_recreate_analytic_lines</field>
         <field name="model">account.move.update</field>
         <field
             name="inherit_id"
-            ref="account_move_update_wizard.account_move_update_form"
+            ref="account_invoice_update_wizard.account_invoice_update_form"
         />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='lines']" position="after">

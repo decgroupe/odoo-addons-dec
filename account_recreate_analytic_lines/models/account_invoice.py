@@ -46,33 +46,36 @@ class AccountMove(models.Model):
 
     def _set_default_analytic_account(self):
         self.ensure_one()
-        self.invoice_line_ids.set_default_analytic_account()
+        inv = self
+        inv.invoice_line_ids.set_default_analytic_account()
         # If invoice state is already open/paid then the account.move
         # already exists and will not be updated with current invoice lines
         # So we need to manually set analytic_account_id
-        if self.move_id:
-            for ml in self.move_id.line_ids:
-                if ml.credit == 0.0:
-                    continue
-                if (
-                    not self._context.get("override_existing_account")
-                    and ml.analytic_line_ids
-                ):
-                    continue
-                ml.analytic_line_ids.unlink()
-                analytic_account_id = False
-                try:
-                    inv_line = self._get_matching_inv_line(ml)
-                    analytic_account_id = inv_line.account_analytic_id
-                except UserError as e:
-                    _logger.warning(e.name or e.value)
-                    # If we are not able to find a match, then fallback
-                    # to raw way by directly finding analytic account from
-                    # account.move product_id
-                    analytic_account_id = self.env[
-                        "account.move.line"
-                    ]._get_product_analytic_account(ml.product_id, self.type)
-                if analytic_account_id:
-                    _logger.info("Recreate analytic lines for %s", ml.name)
-                    ml.analytic_account_id = analytic_account_id
-                    ml.create_analytic_lines()
+        for ml in inv.line_ids.filtered(
+                # we are only interested in invoice lines, not tax lines
+                lambda rec: bool(rec.product_id)
+        ):
+            if ml.credit == 0.0:
+                continue
+            if (
+                not self._context.get("override_existing_account")
+                and ml.analytic_line_ids
+            ):
+                continue
+            ml.analytic_line_ids.unlink()
+            analytic_account_id = False
+            try:
+                inv_line = self._get_matching_inv_line(ml)
+                analytic_account_id = inv_line.analytic_account_id
+            except UserError as e:
+                _logger.warning(e.name or e.value)
+                # If we are not able to find a match, then fallback
+                # to raw way by directly finding analytic account from
+                # account.move product_id
+                analytic_account_id = self.env[
+                    "account.move.line"
+                ]._get_product_analytic_account(ml.product_id, inv.move_type)
+            if analytic_account_id:
+                _logger.info("Recreate analytic lines for %s", ml.name)
+                ml.analytic_account_id = analytic_account_id
+                ml.create_analytic_lines()
