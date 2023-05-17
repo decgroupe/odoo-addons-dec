@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2021
 
-from odoo import fields, models, api
+from odoo import models
 from odoo.tools.progressbar import progressbar as pb
 
 
@@ -26,6 +26,6 @@ class ResCity(models.Model):
             if not to_split:
                 continue
             for prefix, zip_ids in to_split.items():
-                new_city_id = rec.copy(default={'zip_ids': False})
+                new_city_id = rec.copy(default={"zip_ids": False})
                 for zip_id in zip_ids:
                     zip_id.city_id = new_city_id
