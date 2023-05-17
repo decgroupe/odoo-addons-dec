@@ -11,7 +11,8 @@
         "purchase",
     ],
     "data": [
-        "views/account_invoice.xml",
+        "views/account_move.xml",
+        "views/account_move_line.xml",
         "views/sale_order.xml",
     ],
     "installable": True,

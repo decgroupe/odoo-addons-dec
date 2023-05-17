@@ -37,7 +37,7 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="product_id" />
-                <field name="invoice_origin" string="Source Document"/>
+                <field name="invoice_origin"/>
                 <filter
                     string="Not attached"
                     name="filter_not_attached"
