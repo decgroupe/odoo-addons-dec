@@ -1,9 +1,8 @@
 {
     "name": "Module Path",
     "version": "14.0.1.0.0",
-    "author": "DEC, Yann Papouin",
+    "author": "DEC",
     "website": "https://www.decgroupe.com",
-    "summary": "Get module path from UI",
     "depends": [
         "base",
         "web",

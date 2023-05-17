@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
-from odoo import _, api, fields, models, addons
+from odoo import _, addons, fields, models
 from odoo.modules.module import get_module_path
 
 
