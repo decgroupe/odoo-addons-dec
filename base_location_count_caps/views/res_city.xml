@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="city_tree_view">
+        <field name="name">res.city.zip.tree@base_location_count_caps</field>
+        <field name="model">res.city</field>
+        <field name="inherit_id" ref="base_address_city.view_city_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="normalized_name" optional="hide" />
+                <field name="caps_count" optional="hide" />
+                <field name="caps_ratio" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

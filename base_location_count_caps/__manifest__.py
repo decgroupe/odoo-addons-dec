@@ -4,8 +4,11 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
+        "base_address_city",
         "base_location",
     ],
-    "data": [],
+    "data": [
+        "views/res_city.xml",
+    ],
     "installable": True,
 }
