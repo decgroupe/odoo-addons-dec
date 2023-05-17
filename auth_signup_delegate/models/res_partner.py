@@ -9,23 +9,19 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     delegate_signup_token = fields.Char(
-        copy=False,
+        string="Delegate Sign-up Token",
         groups="base.group_erp_manager",
+        copy=False,
     )
 
     def delegate_signup_cancel(self):
-        return self.write({
-            'delegate_signup_token': False,
-        })
+        return self.write({"delegate_signup_token": False})
 
     def delegate_signup_prepare(self):
-        """ Generate a new token for the partners if necessary
-        """
+        """Generate a new token for the partners if necessary"""
         for partner in self:
             if not partner.delegate_signup_token:
-                partner.write({
-                    'delegate_signup_token': random_token(),
-                })
+                partner.write({"delegate_signup_token": random_token()})
         return True
 
     def delegate_create_contact(self, vals):
@@ -34,26 +30,27 @@ class ResPartner(models.Model):
     def get_delegate_signup_url(self):
         self.ensure_one()
         return "%s/signup/delegate/%s" % (
-            self.env['ir.config_parameter'].sudo().get_param('web.base.url'),
-            self.sudo().delegate_signup_token
+            self.env["ir.config_parameter"].sudo().get_param("web.base.url"),
+            self.sudo().delegate_signup_token,
         )
 
     def give_portal_access(self):
-        PortalWizard = self.env['portal.wizard']
-        PortalWizardUser = self.env['portal.wizard.user']
+        PortalWizard = self.env["portal.wizard"]
+        PortalWizardUser = self.env["portal.wizard.user"]
         wizard_id = PortalWizard.sudo().create({})
         for partner_id in self:
             already_in_portal = False
             if partner_id.user_ids:
-                already_in_portal = self.env.ref(
-                    'base.group_portal'
-                ) in partner_id.user_ids[0].groups_id
+                already_in_portal = (
+                    self.env.ref("base.group_portal")
+                    in partner_id.user_ids[0].groups_id
+                )
             if not already_in_portal:
                 vals = {
-                    'wizard_id': wizard_id.id,
-                    'partner_id': partner_id.id,
-                    'email': partner_id.email,
-                    'in_portal': True,
+                    "wizard_id": wizard_id.id,
+                    "partner_id": partner_id.id,
+                    "email": partner_id.email,
+                    "in_portal": True,
                 }
                 wizard_user_id = PortalWizardUser.sudo().create(vals)
         return wizard_id.action_apply()
