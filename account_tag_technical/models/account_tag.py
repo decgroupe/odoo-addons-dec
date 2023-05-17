@@ -5,15 +5,14 @@ from odoo import api, models
 
 
 class AccountAccountTag(models.Model):
-    _inherit = 'account.account.tag'
+    _inherit = "account.account.tag"
 
-    @api.depends('name')
+    @api.depends("name")
     def name_get(self):
-        """
-        """
+        """ """
         super_res = super().name_get()
         res = []
-        if self.user_has_groups('base.group_no_one'):
+        if self.user_has_groups("base.group_no_one"):
             ModelData = self.env["ir.model.data"]
             for item in super_res:
                 rec = self.browse(item[0])[0]
