@@ -5,7 +5,9 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "account",
+        "account_menu",
         "sale",
+        "sales_team",
         "purchase",
     ],
     "data": [
