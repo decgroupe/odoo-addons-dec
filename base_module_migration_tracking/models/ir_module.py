@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.addons.tools_miscellaneous.tools.material_design_colors import *
+from odoo.release import version_info
 
 
 class IrModule(models.Model):
@@ -121,7 +122,7 @@ class IrModule(models.Model):
                 self.env["ir.module.migration"].create(
                     {
                         "module_id": rec.id,
-                        "version": 12,
+                        "version": version_info[0],
                         "state": "installed",
                     }
                 )
