@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
 
     <record id="healthchecks_url" model="ir.config_parameter">
         <field name="key">healthchecks.url</field>
-        <field name="value">https://healthchecks.mydomain.com/ping/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx</field>
+        <field
+            name="value"
+        >https://healthchecks.mydomain.com/ping/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx</field>
     </record>
 
 </odoo>

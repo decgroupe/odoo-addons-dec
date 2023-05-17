@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -11,10 +11,14 @@ _logger = logging.getLogger(__name__)
 class IrActionsServer(models.Model):
     _inherit = "ir.actions.server"
 
-    ping_url = fields.Char('Ping URL')
+    ping_url = fields.Char("Ping URL")
 
     def run(self):
-        hc = self.env['healthchecks.ping']
+        """Override the original `run` in order to make an healtchecks ping before that
+        the action starts and another one when the action has finished. Also
+        intercept any exception to explicitely notify a fail.
+        """
+        hc = self.env["healthchecks.ping"]
         res = False
         data = {
             "cron_running": self.env.get("cron_running", False),
@@ -35,19 +39,23 @@ class IrActionsServer(models.Model):
 
     @api.model
     def _get_eval_context(self, action=None):
-        eval_context = super(IrActionsServer, self).\
-            _get_eval_context(action=action)
+        """Extend the default evaluation to context in order to allow the use of
+        `ping_log` from custom actions (eg: directly written from the backend)
+        """
+        eval_context = super(IrActionsServer, self)._get_eval_context(action=action)
         # Note that action should always be set for a `ir.actions.server`
         if action:
-            hc = self.env['healthchecks.ping']
+            hc = self.env["healthchecks.ping"]
 
             def ping_log(data=False):
                 if not isinstance(data, dict):
-                    data = {'log': data}
+                    data = {"log": data}
                 hc.action_ping_log(action.ping_url, data)
 
-            eval_context.update({
-                # helpers
-                'ping_log': ping_log,
-            })
+            eval_context.update(
+                {
+                    # helpers
+                    "ping_log": ping_log,
+                }
+            )
         return eval_context

@@ -13,6 +13,6 @@ class IrCron(models.Model):
 
     @api.model
     def _callback(self, cron_name, server_action_id, job_id):
-        return super(IrCron, self.with_context(
-            cron_running=True
-        ))._callback(cron_name, server_action_id, job_id)
+        return super(IrCron, self.with_context(cron_running=True))._callback(
+            cron_name, server_action_id, job_id
+        )

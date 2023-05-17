@@ -1,10 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2021
 
-import socket
-import requests
 import json
 import logging
+import socket
+
+import requests
 
 from odoo import api, models
 
@@ -17,13 +18,13 @@ def urljoin(*args):
     stripped for each argument.
     """
 
-    return "/".join(map(lambda x: str(x).rstrip('/'), args))
+    return "/".join(map(lambda x: str(x).rstrip("/"), args))
 
 
 class HealthchecksPing(models.Model):
     "Static class to make ping to an healthchecks.io server"
-    _name = 'healthchecks.ping'
-    _description = 'Healthchecks Ping'
+    _name = "healthchecks.ping"
+    _description = "Healthchecks Ping"
 
     @api.model
     def action_ping(self, url, data=None):
@@ -52,8 +53,8 @@ class HealthchecksPing(models.Model):
 
     @api.model
     def action_ping_config_url(self):
-        url = self.env['ir.config_parameter'].sudo().get_param(
-            'healthchecks.url', False
+        url = (
+            self.env["ir.config_parameter"].sudo().get_param("healthchecks.url", False)
         )
         self.action_ping(url)
 
