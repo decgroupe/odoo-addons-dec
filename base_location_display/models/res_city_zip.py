@@ -1,14 +1,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class ResCityZip(models.Model):
     _inherit = "res.city.zip"
 
     display_name = fields.Char(
-        compute='_compute_new_display_name',
+        compute="_compute_new_display_name",
         store=True,
         index=True,
     )
@@ -18,8 +18,7 @@ class ResCityZip(models.Model):
         return "{} {}".format(self.name, self.city_id.name)
 
     @api.depends(
-        'name', 'city_id', 'city_id.name', 'city_id.state_id',
-        'city_id.country_id'
+        "name", "city_id", "city_id.name", "city_id.state_id", "city_id.country_id"
     )
     def _compute_new_display_name(self):
         for rec in self:
