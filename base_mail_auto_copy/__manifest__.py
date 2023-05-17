@@ -1,16 +1,15 @@
 {
-    'name': 'Mail Auto Copy',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin ',
-    'website': 'https://www.decgroupe.com',
-    'summary': '''Automatically add sender as Bcc''',
-    'depends': [
-        'base',
-        'mail',
+    "name": "Mail Auto Copy",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "base",
+        "mail",
     ],
-    'data': [
-        'views/ir_mail_server.xml',
-        'views/res_users.xml',
+    "data": [
+        "views/ir_mail_server.xml",
+        "views/res_users.xml",
     ],
-    'installable': True
+    "installable": True,
 }

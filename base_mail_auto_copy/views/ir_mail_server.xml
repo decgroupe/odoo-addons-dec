@@ -1,31 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="ir_mail_server_form_view">
         <field name="name">ir.mail_server.form@mail_auto_copy</field>
         <field name="model">ir.mail_server</field>
-        <field name="inherit_id" ref="base.ir_mail_server_form"/>
+        <field name="inherit_id" ref="base.ir_mail_server_form" />
         <field name="arch" type="xml">
             <sheet position="inside">
                 <group string="Auto Copy" colspan="4">
-                    <field name="auto_add_sender"/>
-                    <field name="auto_cc_addresses"/>
-                    <field name="auto_bcc_addresses"/>
+                    <field name="auto_add_sender" />
+                    <field name="auto_cc_addresses" />
+                    <field name="auto_bcc_addresses" />
                 </group>
             </sheet>
         </field>
     </record>
-
-    <!-- <record model="ir.ui.view" id="email_message_tree_view">
-        <field name="name">mail.mail.form@mail_auto_copy</field>
-        <field name="model">mail.mail</field>
-        <field name="inherit_id" ref="mail.view_mail_form"/>
-        <field name="arch" type="xml">
-            <field name="email_cc" position="after">
-                <field name="email_bcc"/>
-            </field>
-        </field>
-    </record> -->
-
 
 </odoo>
