@@ -1,2 +1,2 @@
-from . import ir_module_migration
 from . import ir_module
+from . import ir_module_migration
