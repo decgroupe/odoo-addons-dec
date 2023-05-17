@@ -10,28 +10,20 @@ class IrModelData(models.Model):
 
     @api.model
     def modelid_to_xmlid(
-        self,
-        model_name,
-        model_id,
-        module,
-        name,
-        noupdate=False,
-        replace=False
+        self, model_name, model_id, module, name, noupdate=False, replace=False
     ):
         record = self.env[model_name].browse(model_id)
         xml_id = self.record_to_xmlid(record, module, name, noupdate, replace)
         return xml_id.id
 
     @api.model
-    def record_to_xmlid(
-        self, record, module, name, noupdate=False, replace=False
-    ):
-        rec = self.env['ir.model.data']
+    def record_to_xmlid(self, record, module, name, noupdate=False, replace=False):
+        rec = self.env["ir.model.data"]
         if replace:
             xml_ids = self.sudo().search(
                 [
-                    ('model', '=', record._name),
-                    ('res_id', '=', record.id),
+                    ("model", "=", record._name),
+                    ("res_id", "=", record.id),
                 ]
             )
             xml_ids.unlink()
@@ -39,17 +31,16 @@ class IrModelData(models.Model):
             current_xmlid = self.get_xmlid_as_string(record)
             if current_xmlid is not None:
                 raise UserError(
-                    _("This record already owns an external ID: %s") %
-                    (current_xmlid, )
+                    _("This record already owns an external ID: %s") % (current_xmlid,)
                 )
         if module and name:
             rec = self.sudo().create(
                 {
-                    'module': module,
-                    'name': name,
-                    'model': record._name,
-                    'res_id': record.id,
-                    'noupdate': noupdate,
+                    "module": module,
+                    "name": name,
+                    "model": record._name,
+                    "res_id": record.id,
+                    "noupdate": noupdate,
                 }
             )
             self._create_parents_xmlid(record, noupdate, replace)
@@ -57,7 +48,7 @@ class IrModelData(models.Model):
 
     @api.model
     def get_xmlid(self, record):
-        domain = [('model', '=', record._name), ('res_id', '=', record.id)]
+        domain = [("model", "=", record._name), ("res_id", "=", record.id)]
         model_data = self.search(domain, limit=1)
         if model_data:
             return model_data.module, model_data.name
@@ -77,5 +68,5 @@ class IrModelData(models.Model):
         module, name = self.get_xmlid(record)
         for parent_model, parent_field in record._inherits.items():
             parent = record[parent_field]
-            puffix = name + '_' + parent_model.replace('.', '_')
+            puffix = name + "_" + parent_model.replace(".", "_")
             self.record_to_xmlid(parent, module, puffix, noupdate, replace)
