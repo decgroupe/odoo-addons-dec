@@ -36,6 +36,20 @@ class DelegateAuthSignup(http.Controller):
         Partner = request.env["res.partner"].sudo()
         try:
             partner_id = self._get_partner_from_token(token)
+            user_id = partner_id.user_ids and partner_id.user_ids[0] or False
+            if not user_id or not user_id.active or partner_id.signup_token:
+                partner_id = False
+                error = _(
+                    "<b>"
+                    "You portal access must be active before you can create contacts."
+                    "</b>"
+                    "<div>"
+                    "<small>"
+                    "Please check your email to enable your account, or request a new "
+                    "activation link by resetting your password for the login page."
+                    "</small>"
+                    "</div>"
+                )
             if http.request.httprequest.method == "POST":
                 contact_id = Partner.search([("email", "=", kw.get("email"))])
                 if contact_id:

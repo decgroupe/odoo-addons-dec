@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="create_contact" name="Create Contact">
-        <t t-call="web.login_layout">
+        <t t-call="web.frontend_layout">
 
             <div class="container">
                 <div class="row">
