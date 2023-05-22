@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="crm_case_oppor_tree_view">
         <field name="name">crm.lead.tree.opportunity@crm_lead_number</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
         <field name="arch" type="xml">
             <field name="create_date" position="before">
-                <field name="number" string="Reference" decoration-bf="1"/>
+                <field name="number" string="Reference" decoration-bf="1" />
             </field>
         </field>
     </record>
@@ -15,11 +15,11 @@
     <record model="ir.ui.view" id="crm_lead_view_form">
         <field name="name">crm.lead.form.opportunity@crm_lead_number</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
                 <div>
-                    <field name="number"/>
+                    <field name="number" />
                 </div>
             </xpath>
         </field>
@@ -30,9 +30,12 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@class='oe_kanban_content']//field[@name='name']" position="before">
+            <xpath
+                expr="//div[@class='oe_kanban_content']//field[@name='name']"
+                position="before"
+            >
                 <small>
-                    <field name="number"/>
+                    <field name="number" />
                 </small>
             </xpath>
         </field>
@@ -44,18 +47,18 @@
         <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <separator/>
-                <field 
-                    string="Number" 
-                    name="number" 
+                <separator />
+                <field
+                    string="Number"
+                    name="number"
                     filter_domain="[
                         ('|'),
                         ('number', 'ilike', self),
                         ('name', 'ilike', self)
                     ]"
-                    >
+                >
                 </field>
-                <separator/>
+                <separator />
             </field>
         </field>
     </record>

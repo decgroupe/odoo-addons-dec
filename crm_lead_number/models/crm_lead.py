@@ -3,30 +3,30 @@
 
 import logging
 
-from odoo import fields, api, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class CrmLead(models.Model):
-    _inherit = 'crm.lead'
-    _rec_name_get = 'complete_name'
+    _inherit = "crm.lead"
+    _rec_name_get = "complete_name"
     _rec_name_search = "search_name"
 
     number = fields.Char(
-        string='Opportunity Number',
+        string="Opportunity Number",
         default="/",
         readonly=True,
         copy=False,
     )
     complete_name = fields.Char(
-        string='Complete Name',
-        compute='_compute_names',
+        string="Complete Name",
+        compute="_compute_names",
         store=True,
     )
     search_name = fields.Char(
-        string='Search Name',
-        compute='_compute_names',
+        string="Search Name",
+        compute="_compute_names",
         store=True,
     )
 
@@ -37,8 +37,8 @@ class CrmLead(models.Model):
         return seq.next_by_code("crm.lead.sequence") or "/"
 
     def _init_number(self, vals=None):
-        if self.type == 'opportunity':
-            if self.number == '/':
+        if self.type == "opportunity":
+            if self.number == "/":
                 self.number = self._prepare_number(vals)
 
     @api.model
@@ -52,17 +52,13 @@ class CrmLead(models.Model):
         self._init_number(vals)
         return res
 
-    @api.depends(
-        'name', 'number', 'email_from', 'partner_id', 'partner_id.name'
-    )
+    @api.depends("name", "number", "email_from", "partner_id", "partner_id.name")
     def _compute_names(self):
         for rec in self:
             rec.complete_name = "{} {}".format(rec.number, rec.name)
             rec.search_name = rec.complete_name
             if rec.email_from:
-                rec.search_name = "{} {}".format(
-                    rec.search_name, rec.email_from
-                )
+                rec.search_name = "{} {}".format(rec.search_name, rec.email_from)
             if rec.partner_id:
                 rec.search_name = "{} {}".format(
                     rec.search_name, rec.partner_id.display_name
@@ -77,7 +73,7 @@ class CrmLead(models.Model):
         return result
 
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
         cls = type(self)
         original_rec_name = cls._rec_name
         cls._rec_name = self._rec_name_search
