@@ -5,12 +5,12 @@
     <record model="ir.ui.view" id="res_users_form_view">
         <field name="name">res.users.form@connector_gitlab</field>
         <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
             <notebook colspan="4" position="inside">
                 <page string="GitLab" name="gitlab">
                     <group name="main">
-                        <field name="user_gitlab_resource_id"/>
+                        <field name="user_gitlab_resource_id" />
                     </group>
                 </page>
             </notebook>

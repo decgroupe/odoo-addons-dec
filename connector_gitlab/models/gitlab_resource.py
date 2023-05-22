@@ -1,34 +1,31 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class GitlabResource(models.Model):
-    _name = 'gitlab.resource'
-    _description = 'GitLab Resource'
-    _rec_name = 'uid'
+    _name = "gitlab.resource"
+    _description = "GitLab Resource"
+    _rec_name = "uid"
 
     type = fields.Selection(
-        [
-            ('user', 'User'),
-            ('group', 'Group'),
-            ('project', 'Project'),
+        selection=[
+            ("user", "User"),
+            ("group", "Group"),
+            ("project", "Project"),
         ],
-        string='Type',
+        string="Type",
         required=True,
     )
     uid = fields.Integer(
-        string='Backend ID',
+        string="Backend ID",
         required=True,
     )
     display_name = fields.Char(compute="_compute_display_name")
 
     _sql_constraints = [
-        (
-            'type_uid_uniq', 'unique(type, uid)',
-            'Backend ID must be unique !'
-        ),
+        ("type_uid_uniq", "unique(type, uid)", "Backend ID must be unique !"),
     ]
 
     def name_get(self):

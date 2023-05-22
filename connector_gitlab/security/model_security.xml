@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
 
@@ -9,19 +9,22 @@
 
         <record model="res.groups" id="group_gitlab_resource_user">
             <field name="name">User</field>
-            <field name="category_id" ref="module_category_gitlab"/>
-            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="module_category_gitlab" />
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
         </record>
 
         <record model="res.groups" id="base.group_user">
-            <field name="implied_ids" eval="[(4, ref('group_gitlab_resource_user'))]"/>
+            <field name="implied_ids" eval="[(4, ref('group_gitlab_resource_user'))]" />
         </record>
 
         <record model="res.groups" id="group_gitlab_resource_manager">
             <field name="name">Manager</field>
-            <field name="category_id" ref="module_category_gitlab"/>
-            <field name="implied_ids" eval="[(4, ref('group_gitlab_resource_user'))]"/>
-            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="category_id" ref="module_category_gitlab" />
+            <field name="implied_ids" eval="[(4, ref('group_gitlab_resource_user'))]" />
+            <field
+                name="users"
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
         </record>
 
     </data>

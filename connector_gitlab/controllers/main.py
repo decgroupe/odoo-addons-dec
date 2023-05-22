@@ -12,19 +12,16 @@ URL_BASE = "/api/connector_gitlab/v1"
 
 
 class GitlabController(http.Controller):
-    """ Http Public Controller for Gitlab
-    """
+    """Http Public Controller for Gitlab"""
 
     #######################################################################
 
     @http.route(
-        URL_BASE + '/SignIn',
-        type='json',
-        methods=['POST'],
+        URL_BASE + "/SignIn",
+        type="json",
+        methods=["POST"],
         auth="api_key",
         csrf=False,
     )
     def gitlab_sign_in(self, login, password, **kwargs):
-        return request.env['gitlab.service'].sudo()._get_session(
-            login, password
-        )
+        return request.env["gitlab.service"].sudo()._get_session(login, password)

@@ -1,25 +1,25 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import api, models, fields
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     user_gitlab_resource_id = fields.Many2one(
-        'gitlab.resource',
-        string='GitLab User',
+        comodel_name="gitlab.resource",
+        string="GitLab User",
     )
 
     def write(self, vals):
         previous_emails = {}
-        if 'email' in vals:
+        if "email" in vals:
             for rec in self:
                 previous_emails[rec.id] = rec.email
         res = super().write(vals)
-        if 'email' in vals or 'name' in vals:
-            for rec in self.filtered('user_ids'):
+        if "email" in vals or "name" in vals:
+            for rec in self.filtered("user_ids"):
                 user_id = rec.user_ids
                 user_id.ensure_one()
                 previous_email = previous_emails.get(rec.id, False)
