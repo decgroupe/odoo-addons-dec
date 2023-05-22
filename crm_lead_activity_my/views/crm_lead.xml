@@ -12,22 +12,34 @@
             <field name="stage_id" position="attributes">
                 <attribute name="decoration-bf">1</attribute>
             </field>
-
-            <xpath
-                expr="//tree/field[@name='activity_date_deadline']"
-                position="attributes"
-            >
-                <attribute name="invisible">1</attribute>
+            <xpath expr="//tree/field[@name='activity_ids']" position="attributes">
+                <attribute name="optional">hide</attribute>
             </xpath>
-            <xpath expr="//tree/field[@name='activity_summary']" position="replace">
-                <field name="activity_my_ids" widget="list_activity_my" />
-                <field name="activity_my_date_deadline" widget="remaining_days" />
+            <xpath
+                expr="//tree/field[@name='activity_date_deadline_my']"
+                position="before"
+            >
+                <field
+                    name="activity_my_ids"
+                    widget="list_activity_my"
+                    optional="show"
+                />
+            </xpath>
+            <xpath
+                expr="//tree/field[@name='activity_date_deadline_my']"
+                position="after"
+            >
+                <field name="activity_my_state" invisible="1" />
                 <button
                     name="action_snooze"
                     class="text-warning"
-                    attrs="{'invisible': [('activity_my_ids', '=', [])]}"
+                    attrs="{'invisible': ['|', '|', 
+                        ('activity_my_ids', '=', []),
+                        ('activity_my_state', '=', 'planned'),
+                        ('activity_my_state', '=', False),],
+                    }"
                     type="object"
-                    string="Snooze 7d"
+                    title="Snooze 7d"
                     icon="fa-bell-slash"
                 >
                 </button>
@@ -61,7 +73,7 @@
             >
                 <small name="date_deadline">
                     <div t-if="record.date_deadline.raw_value" class="my-1">
-                        <i class="fa fa-calendar" /> <field
+                        <i class="fa fa-calendar" title="Deadline" /> <field
                             name="date_deadline"
                             widget="remaining_days"
                         />
