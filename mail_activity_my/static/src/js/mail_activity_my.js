@@ -1,11 +1,10 @@
-/* License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). */
-
 odoo.define('mail_activity_my', function (require) {
     'use strict';
 
+    require('mail.Activity'); // DO NOT REMOVE
+
     var core = require('web.core');
     var field_registry = require('web.field_registry');
-    var mailActivity = require('mail.Activity');
     var _lt = core._lt;
     var KanbanActivity = field_registry.get('kanban_activity');
 
@@ -16,6 +15,9 @@ odoo.define('mail_activity_my', function (require) {
     var KanbanActivityMy = KanbanActivity.extend({
         className: 'o_mail_activity_kanban',
         template: 'mail.KanbanActivityMy',
+        fieldDependencies: _.extend({}, KanbanActivity.prototype.fieldDependencies, {
+            activity_my_state: { type: 'char' },
+        }),
 
         /**
          * @override
@@ -39,21 +41,29 @@ odoo.define('mail_activity_my', function (require) {
             this.activityState = this.recordData.activity_my_state;
         },
 
+        /**
+         * @override
+         * @private
+         */
+        _render: function () {
+            this._super(...arguments);
+            this.el.querySelector('.o_activity_btn > span').classList.replace('fa-clock-o', 'fa-clock');
+        },
+
     });
 
     // -----------------------------------------------------------------------------
     // Activities Widget for List views ('list_activity_my' widget)
     // -----------------------------------------------------------------------------
-    const ListActivityMy = KanbanActivity.extend({
+    const ListActivityMy = KanbanActivityMy.extend({
         template: 'mail.ListActivityMy',
-        events: Object.assign({}, KanbanActivity.prototype.events, {
+        events: Object.assign({}, KanbanActivityMy.prototype.events, {
             'click .dropdown-menu.o_activity': '_onDropdownClicked',
         }),
-        fieldDependencies: _.extend({}, KanbanActivity.prototype.fieldDependencies, {
-            activity_my_state: {type: 'char'},
-            activity_my_summary: {type: 'char'},
-            activity_my_type_id: {type: 'many2one', relation: 'mail.activity.type'},
-            activity_my_type_icon: {type: 'char'},
+        fieldDependencies: _.extend({}, KanbanActivityMy.prototype.fieldDependencies, {
+            activity_my_summary: { type: 'char' },
+            activity_my_type_id: { type: 'many2one', relation: 'mail.activity.type' },
+            activity_my_type_icon: { type: 'char' },
         }),
         label: _lt('My Next Activity'),
 
@@ -88,16 +98,6 @@ odoo.define('mail_activity_my', function (require) {
                 this.el.querySelector('.o_activity_btn > span').classList.replace('fa-clock', this.recordData.activity_my_type_icon);
             }
         },
-
-        /**
-         * @private
-         * @param {Object} record
-         */
-        _setState: function (record) {
-            this._super.apply(this, arguments);
-            this.activityState = this.recordData.activity_my_state;
-        },
-
 
         //--------------------------------------------------------------------------
         // Handlers

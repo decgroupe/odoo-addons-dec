@@ -1,18 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
 
     <t t-name="mail.KanbanActivityMy">
         <div class="o_kanban_inline_block dropdown o_kanban_selection o_mail_activity">
-            <a class="dropdown-toggle o-no-caret o_activity_btn" data-toggle="dropdown" role="button">
-                <span class="fa fa-clock fa-lg fa-fw" t-att-title="widget.selection[widget.activityState]" role="img" t-att-aria-label="widget.selection[widget.activity_my_state]"/>
+            <a
+                class="dropdown-toggle o-no-caret o_activity_btn"
+                data-boundary="viewport"
+                data-flip="false"
+                data-toggle="dropdown"
+                role="button"
+            >
+                <!-- span classes are generated dynamically (see _render) -->
+                <span
+                    t-att-title="widget.selection[widget.activityState]"
+                    role="img"
+                    t-att-aria-label="widget.selection[widget.activity_my_state]"
+                />
             </a>
-            <div class="dropdown-menu o_activity" role="menu"/>
+            <div class="dropdown-menu o_activity" role="menu" />
         </div>
     </t>
 
     <t t-name="mail.ListActivityMy" t-extend="mail.KanbanActivity">
         <t t-jquery=".o_mail_activity" t-operation="append">
-            <span class="o_activity_my_summary"/>
+            <span class="o_activity_my_summary" />
         </t>
     </t>
 
