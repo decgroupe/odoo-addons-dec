@@ -3,11 +3,11 @@
 
 import logging
 
-from odoo import api, models
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
 
 class CrmLead(models.Model):
-    _name = 'crm.lead'
-    _inherit = ['crm.lead', 'mail.activity.my.mixin']
+    _name = "crm.lead"
+    _inherit = ["crm.lead", "mail.activity.my.mixin"]
