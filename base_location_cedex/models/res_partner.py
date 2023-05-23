@@ -9,7 +9,8 @@ class ResPartner(models.Model):
 
     @api.onchange("zip_id")
     def _onchange_zip_id(self):
-        super()._onchange_zip_id()
+        if hasattr(super(), "_onchange_zip_id"):
+            super()._onchange_zip_id()
         if self.zip_id and self.zip_id.cedex:
             vals = {"city": self.zip_id.format_city_name_with_cedex()}
             self.update(vals)
