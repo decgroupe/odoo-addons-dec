@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
-from odoo import api, models, _
+from odoo import models
 
 
 class ResPartner(models.Model):
@@ -10,6 +10,5 @@ class ResPartner(models.Model):
     def _get_name_location_identification(self):
         res = super()._get_name_location_identification()
         if self.zip_id:
-            res = self.zip_id.display_name
+            res = "🗺️ %s" % (self.zip_id.display_name)
         return res
-
