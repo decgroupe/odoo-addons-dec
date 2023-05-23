@@ -16,7 +16,7 @@ class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
     autofill_from_analytic_line_id = fields.Many2one(
-        "account.analytic.line",
+        comodel_name="account.analytic.line",
         string="Auto-fill",
         help="Help to pre-fill timesheet using another entry",
     )
