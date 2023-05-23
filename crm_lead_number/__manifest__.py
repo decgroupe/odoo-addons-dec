@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "crm",
+        "base_sequence_first_number",
     ],
     "data": [
         "data/ir_sequence.xml",
