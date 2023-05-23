@@ -1,0 +1,1 @@
+Add partner academy to CRM
