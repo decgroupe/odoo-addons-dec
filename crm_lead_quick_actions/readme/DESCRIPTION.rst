@@ -1,0 +1,1 @@
+Add a delete icon on leads in the list view to quickly remove SPAMs
