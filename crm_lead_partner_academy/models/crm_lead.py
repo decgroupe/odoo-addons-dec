@@ -13,3 +13,10 @@ class CrmLead(models.Model):
         string="Partner's Academy",
         store=True,
     )
+
+    partner_shipping_academy_id = fields.Many2one(
+        comodel_name="res.partner.academy",
+        related="partner_shipping_id.academy_id",
+        string="Shipping Partner's Academy",
+        store=True,
+    )

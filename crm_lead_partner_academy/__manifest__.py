@@ -6,6 +6,7 @@
     "depends": [
         "crm",
         "partner_academy",
+        "crm_lead_partner_location",
     ],
     "data": [
         "views/crm_lead.xml",
