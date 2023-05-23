@@ -13,28 +13,27 @@ URL_PARTNER = URL_BASE + "/Partner"
 
 
 class CRM3CXController(http.Controller):
-    """ Http Public Controller for Helpdesk
-    """
+    """Http Public Controller for Helpdesk"""
 
     #######################################################################
 
     @http.route(
-        URL_PARTNER + '/Get',
-        type='json',
-        methods=['POST'],
+        URL_PARTNER + "/Get",
+        type="json",
+        methods=["POST"],
         auth="api_key",
         csrf=False,
     )
     def SearchPartner(self, **kw):
         res = {}
-        partner_id = request.env['res.partner']
-        session_ani = kw.get('session_ani')
+        partner_id = request.env["res.partner"]
+        session_ani = kw.get("session_ani")
         if session_ani:
             number = session_ani.lstrip("0").replace(" ", "%")
             domain = [
-                '|',
-                ('phone', 'ilike', number),
-                ('mobile', 'ilike', number),
+                "|",
+                ("phone", "ilike", number),
+                ("mobile", "ilike", number),
             ]
             partner_id = partner_id.sudo().search(domain, limit=1)
         if partner_id:
@@ -44,40 +43,40 @@ class CRM3CXController(http.Controller):
                 name = [" ".join(name[1:]), name[0]]
             else:
                 while len(name) < 2:
-                    name.append('')
+                    name.append("")
             firstname = name[1]
             lastname = name[0]
 
             res = {
                 # Firstname
-                'firstname': firstname or '',
+                "firstname": firstname or "",
                 # Lastname
-                'lastname': lastname or '',
+                "lastname": lastname or "",
                 # Mobile
-                'phonenumber': partner_id.mobile or '',
-                'company': partner_id.commercial_partner_id.name or '',
+                "phonenumber": partner_id.mobile or "",
+                "company": partner_id.commercial_partner_id.name or "",
                 # Odoo partner ID to sync data
-                'tag': str(partner_id.id),
+                "tag": str(partner_id.id),
                 # Mobile 2
-                'pv_an0': '',
+                "pv_an0": "",
                 # Domicile
-                'pv_an1': '',
+                "pv_an1": "",
                 # Domicile 2
-                'pv_an2': '',
+                "pv_an2": "",
                 # Entreprise
-                'pv_an3': partner_id.phone or '',
+                "pv_an3": partner_id.phone or "",
                 # Entreprise 2
-                'pv_an4': '',
+                "pv_an4": "",
                 # E-mail
-                'pv_an5': partner_id.email or '',
+                "pv_an5": partner_id.email or "",
                 # Autre
-                'pv_an6': '',
+                "pv_an6": "",
                 # Fax entreprise
-                'pv_an7': partner_id.fax or '',
+                "pv_an7": partner_id.fax or "",
                 # Fax domicile
-                'pv_an8': '',
+                "pv_an8": "",
                 # ---
-                'pv_an9': '',
+                "pv_an9": "",
             }
         _logger.info("{} match for {}".format(session_ani, res))
         return res
