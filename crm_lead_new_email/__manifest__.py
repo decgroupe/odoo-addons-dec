@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "crm",
+        "base_automation",
     ],
     "data": [
         "data/mail_template.xml",
