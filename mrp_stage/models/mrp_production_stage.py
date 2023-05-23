@@ -1,34 +1,34 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2022
 
-from odoo import api, models, _, fields, SUPERUSER_ID
+from odoo import SUPERUSER_ID, _, api, fields, models
 
 
 class ProductionStage(models.Model):
-    _name = 'mrp.production.stage'
-    _description = 'Production Stage'
-    _order = 'sequence, id'
+    _name = "mrp.production.stage"
+    _description = "Production Stage"
+    _order = "sequence, id"
 
     name = fields.Char(
-        string='Stage Name',
+        string="Stage Name",
         required=True,
         translate=True,
     )
     code = fields.Char(
-        string='Code',
+        string="Code",
         required=True,
         help="Unique lowercase string identifier",
     )
     emoji = fields.Char(
-        string='Icon',
+        string="Icon",
         translate=False,
     )
     description = fields.Text(translate=True)
     sequence = fields.Integer(default=1)
     fold = fields.Boolean(
-        string='Folded in Kanban',
-        help='This stage is folded in the kanban view when there are no '
-        'records in that stage to display.'
+        string="Folded in Kanban",
+        help="This stage is folded in the kanban view when there are no "
+        "records in that stage to display.",
     )
     todo = fields.Boolean(
         string="To-do",
@@ -40,15 +40,15 @@ class ProductionStage(models.Model):
     )
 
     _sql_constraints = [
-        ('code_uniq', 'unique (code)', "Code must be unique !"),
+        ("code_uniq", "unique (code)", "Code must be unique !"),
     ]
 
-    @api.depends('name', 'emoji')
+    @api.depends("name", "emoji")
     def name_get(self):
         res = []
         for rec in self:
             if rec.emoji:
-                name = '%s %s' % (rec.emoji, rec.name)
+                name = "%s %s" % (rec.emoji, rec.name)
             else:
                 name = rec.name
             res.append((rec.id, name))

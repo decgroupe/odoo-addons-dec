@@ -1,14 +1,18 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mail_activity_type_form_view">
         <field name="name">mail.activity.type.view.form@mrp_stage</field>
         <field name="model">mail.activity.type</field>
-        <field name="inherit_id" ref="mail.mail_activity_type_view_form"/>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='summary']" position="before">
-                <field name="res_model_model" invisible="1"/>
-                <field name="production_stage_id" groups="base.group_no_one" attrs="{'invisible':[('res_model_model','!=','mrp.production')]}"/>
+                <field name="res_model_model" invisible="1" />
+                <field
+                    name="production_stage_id"
+                    groups="base.group_no_one"
+                    attrs="{'invisible':[('res_model_model','!=','mrp.production')]}"
+                />
             </xpath>
         </field>
     </record>
@@ -27,7 +31,8 @@
         <field name="context">{'default_res_model': 'mrp.production'}</field>
     </record>
 
-    <menuitem id="menu_mrp_config_activity_type"
+    <menuitem
+        id="menu_mrp_config_activity_type"
         action="mail_activity_type_action_config_mrp"
         parent="mrp.menu_mrp_configuration"
         sequence="20"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_stage_tree_view">
@@ -6,12 +6,12 @@
         <field name="model">mrp.production.stage</field>
         <field name="arch" type="xml">
             <tree string="Production Stage">
-                <field name="sequence" widget="handle" groups="base.group_no_one"/>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="emoji"/>
-                <field name="fold"/>
-                <field name="todo"/>
+                <field name="sequence" widget="handle" groups="base.group_no_one" />
+                <field name="name" />
+                <field name="code" />
+                <field name="emoji" />
+                <field name="fold" />
+                <field name="todo" />
             </tree>
         </field>
     </record>
@@ -24,22 +24,30 @@
             <sheet>
                 <group>
                     <group>
-                        <field name="name"/>
-                        <field name="code"/>
-                        <field name="emoji"/>
-                        <field name="activity_type_id" domain="[('res_model_id.model', '=', 'mrp.production')]"/>
+                        <field name="name" />
+                        <field name="code" />
+                        <field name="emoji" />
+                        <field
+                                name="activity_type_id"
+                                domain="[('res_model_id.model', '=', 'mrp.production')]"
+                            />
                     </group>
                     <group>
-                        <field name="fold"/>
-                        <field name="todo"/>
-                        <field name="sequence" groups="base.group_no_one"/>
+                        <field name="fold" />
+                        <field name="todo" />
+                        <field name="sequence" groups="base.group_no_one" />
                     </group>
                 </group>
                 <group string="Stage Description">
                     <p class="text-muted" colspan="2">
                         You can also add a description to help your coworkers understand the meaning and purpose of the stage.
                     </p>
-                    <field name="description" placeholder="Add a description..." nolabel="1" colspan="2"/>
+                    <field
+                            name="description"
+                            placeholder="Add a description..."
+                            nolabel="1"
+                            colspan="2"
+                        />
                 </group>
             </sheet>
         </form>
@@ -54,7 +62,8 @@
         <field name="context">{}</field>
     </record>
 
-    <menuitem id="menu_mrp_production_stage_config"
+    <menuitem
+        id="menu_mrp_production_stage_config"
         action="action_mrp_production_stage_config"
         parent="mrp.menu_mrp_configuration"
         sequence="25"

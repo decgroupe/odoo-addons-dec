@@ -1,12 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
-import logging
-from odoo import models, api
+
+from odoo import models
 
 
 class MailActivity(models.Model):
-    _inherit = 'mail.activity'
+    _inherit = "mail.activity"
 
     def action_done(self):
         super().action_done()
@@ -14,17 +14,11 @@ class MailActivity(models.Model):
         # - web_ir_actions_act_view_reload
         # - web_ir_actions_act_multi
         return {
-            'type':
-                'ir.actions.act_multi',
-            'actions':
-                [
-                    {
-                        'type': 'ir.actions.act_window_close'
-                    },
-                    {
-                        'type': 'ir.actions.act_view_reload'
-                    },
-                ]
+            "type": "ir.actions.act_multi",
+            "actions": [
+                {"type": "ir.actions.act_window_close"},
+                {"type": "ir.actions.act_view_reload"},
+            ],
         }
 
     def action_close_dialog(self):
@@ -33,17 +27,11 @@ class MailActivity(models.Model):
         # - web_ir_actions_act_view_reload
         # - web_ir_actions_act_multi
         return {
-            'type':
-                'ir.actions.act_multi',
-            'actions':
-                [
-                    {
-                        'type': 'ir.actions.act_window_close'
-                    },
-                    {
-                        'type': 'ir.actions.act_view_reload'
-                    },
-                ]
+            "type": "ir.actions.act_multi",
+            "actions": [
+                {"type": "ir.actions.act_window_close"},
+                {"type": "ir.actions.act_view_reload"},
+            ],
         }
 
     # def unlink(self):

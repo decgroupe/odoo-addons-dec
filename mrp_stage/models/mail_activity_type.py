@@ -2,14 +2,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2023
 
-from odoo import models, api, fields
+from odoo import api, fields, models
 
 
 class MailActivityType(models.Model):
-    _inherit = 'mail.activity.type'
+    _inherit = "mail.activity.type"
 
     res_model_model = fields.Char(
-        related='res_model_id.model',
+        related="res_model_id.model",
         string="Model Technical Name",
         readonly=True,
     )
@@ -23,10 +23,10 @@ class MailActivityType(models.Model):
     production_stage_id = fields.Many2one(
         comodel_name="mrp.production.stage",
         string="Production Stage",
-        compute="_compute_production_stage_id"
+        compute="_compute_production_stage_id",
     )
 
-    @api.depends('production_stage_ids')
+    @api.depends("production_stage_ids")
     def _compute_production_stage_id(self):
         for rec in self:
             rec.production_stage_id = rec.production_stage_ids[:1].id
