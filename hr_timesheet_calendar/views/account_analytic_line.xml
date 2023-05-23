@@ -12,15 +12,12 @@
                 date_delay="unit_amount"
                 color="project_id"
                 event_open_popup="true"
-                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
+                form_view_id="%(hr_timesheet_autofill.hr_timesheet_line_form_view)s"
             >
-                
-                    <!-- 'invisible' is broken since calendar view does not call _registerModifiers -->
-                    <!-- <field name="name" attrs="{'invisible': [('same_task_name', '=', True)]}"/> -->
-                    <!-- <field name="same_task_name" invisible="0"/> -->
-
-                    <field name="calendar_name" />
+                    <!-- Note: 'invisible' as attrs is broken since calendar view does not call _registerModifiers -->
+                    <field name="project_id" filters="1" />
                     <field name="task_id" />
+                    <field name="calendar_name" />
             </calendar>
         </field>
     </record>
@@ -32,8 +29,15 @@
         <field name="act_window_id" ref="hr_timesheet.act_hr_timesheet_line" />
     </record>
 
+    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
+        <field name="view_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field
+            name="domain"
+        >[('employee_id', '!=', False), ('user_id', '=', uid)]</field>
+    </record>
+
     <record model="ir.ui.view" id="hr_timesheet_line_calendar_all">
-        <field name="name">account.analytic.line.calendar@hr_timesheet_calendar</field>
+        <field name="name">account.analytic.line.calendar.all@hr_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
         <field name="arch" type="xml">
             <calendar
@@ -43,12 +47,12 @@
                 date_delay="unit_amount"
                 color="user_id"
                 event_open_popup="true"
-                form_view_id="%(hr_timesheet.hr_timesheet_line_form)s"
+                form_view_id="%(hr_timesheet_autofill.hr_timesheet_line_form_view)s"
             >
-
+                    <field name="user_id" filters="1" card_invisible="1" />
+                    <field name="project_id" />
                     <field name="calendar_name" />
                     <field name="task_id" />
-                    <field name="project_id" />
             </calendar>
         </field>
     </record>
@@ -59,7 +63,7 @@
     >
         <field name="view_mode">calendar</field>
         <field name="sequence">5</field>
-        <field name="view_id" ref="hr_timesheet_line_calendar_all" />
+        <field name="view_id" ref="hr_timesheet_calendar.hr_timesheet_line_calendar_all" />
         <field name="act_window_id" ref="hr_timesheet.timesheet_action_all" />
     </record>
 
@@ -68,13 +72,6 @@
             name="domain"
         >[('employee_id', '!=', False), ('employee_id.active', '=', True)]</field>
         <field name="domain">[]</field>
-    </record>
-
-    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
-        <field name="view_id" ref="hr_timesheet.hr_timesheet_line_form" />
-        <field
-            name="domain"
-        >[('employee_id', '!=', False), ('user_id', '=', uid)]</field>
     </record>
 
 </odoo>
