@@ -21,7 +21,17 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_id']" position="after">
+            <xpath
+                expr="//group[@name='lead_partner']/field[@name='partner_id']"
+                position="after"
+            >
+                <field name="partner_shipping_id" />
+                <field name="partner_shipping_zip_id" string="ZIP Location" />
+            </xpath>
+            <xpath
+                expr="//group[@name='opportunity_partner']/field[@name='partner_id']"
+                position="after"
+            >
                 <field name="partner_shipping_id" />
                 <field name="partner_shipping_zip_id" string="ZIP Location" />
             </xpath>

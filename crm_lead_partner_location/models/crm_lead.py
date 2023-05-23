@@ -25,7 +25,6 @@ class CrmLead(models.Model):
         string="Delivery Address",
         help="Delivery address for created sales order.",
         tracking=True,
-        track_sequence=2,
     )
     partner_shipping_country_id = fields.Many2one(
         comodel_name="res.country",
