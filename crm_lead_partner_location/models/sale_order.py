@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     @api.model
     def default_get(self, fields):
@@ -17,6 +17,5 @@ class SaleOrder(models.Model):
             result.get("opportunity_id", False)
         )
         if opportunity_id and opportunity_id.partner_shipping_id:
-            result['partner_shipping_id'
-                  ] = opportunity_id.partner_shipping_id.id
+            result["partner_shipping_id"] = opportunity_id.partner_shipping_id.id
         return result

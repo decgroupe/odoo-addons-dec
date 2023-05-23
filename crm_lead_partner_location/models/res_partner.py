@@ -1,11 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2022
 
-from odoo import api, models
+from odoo import models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     def address_get(self, adr_pref=None):
         res = super().address_get(adr_pref)
@@ -14,5 +14,5 @@ class ResPartner(models.Model):
                 self.env.context.get("default_opportunity_id", False)
             )
             if opportunity_id and opportunity_id.partner_shipping_id:
-                res['delivery'] = opportunity_id.partner_shipping_id.id
+                res["delivery"] = opportunity_id.partner_shipping_id.id
         return res
