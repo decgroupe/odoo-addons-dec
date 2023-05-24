@@ -1,16 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
 
     <record model="ir.ui.view" id="mrp_production_tree_view">
         <field name="name">mrp.production.tree@mrp_timesheet</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
             <field name="state" position="after">
-                <field name="planned_hours" widget="float_time" groups="hr_timesheet.group_hr_timesheet_user" />
-                <field name="total_hours" widget="float_time" groups="hr_timesheet.group_hr_timesheet_user" />
-                <field name="remaining_hours" widget="float_time" groups="hr_timesheet.group_hr_timesheet_user" />
+                <field
+                    name="planned_hours"
+                    widget="float_time"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                />
+                <field
+                    name="total_hours"
+                    widget="float_time"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                />
+                <field
+                    name="remaining_hours"
+                    widget="float_time"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                />
             </field>
         </field>
     </record>
@@ -18,17 +30,23 @@
     <record model="ir.ui.view" id="mrp_production_filter_view">
         <field name="name">mrp.production.select@mrp_timesheet</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
         <field name="arch" type="xml">
             <filter name="planning_issues" position="before">
-                <filter name="filter_timesheet_allowed" string="Timesheet allowed"
-                        groups="hr_timesheet.group_hr_timesheet_user"
-                        domain="[('project_id', '!=', False)]"/>
-                <separator/>
-                <filter name="filter_timesheet_late" string="Timesheet late"
-                        groups="hr_timesheet.group_hr_timesheet_user"
-                        domain="[('remaining_hours', '&lt;', 0)]"/>
-                <separator/>
+                <filter
+                    name="filter_timesheet_allowed"
+                    string="Timesheet allowed"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                    domain="[('project_id', '!=', False)]"
+                />
+                <separator />
+                <filter
+                    name="filter_timesheet_late"
+                    string="Timesheet late"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                    domain="[('remaining_hours', '&lt;', 0)]"
+                />
+                <separator />
             </filter>
         </field>
     </record>
@@ -37,43 +55,62 @@
         <field name="name">mrp.production.form@mrp_timesheet</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="priority" eval="20" />
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='miscellaneous']//field[@name='picking_type_id']" position="before">
-                <field name="allow_timesheets"/>
+            <xpath
+                expr="//page[@name='miscellaneous']//field[@name='picking_type_id']"
+                position="before"
+            >
+                <field name="allow_timesheets" />
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page name="timesheets" string="Timesheets" attrs="{'invisible':[('project_id', '=', False)]}" groups="hr_timesheet.group_hr_timesheet_user">
+                <page
+                    name="timesheets"
+                    string="Timesheets"
+                    attrs="{'invisible':[('project_id', '=', False)]}"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                >
                     <group>
                         <group>
-                            <field name="planned_hours" widget="float_time"/>
+                            <field name="planned_hours" widget="float_time" />
                         </group>
                         <group>
-                            <field name="progress" widget="progressbar"/>
+                            <field name="progress" widget="progressbar" />
                         </group>
                     </group>
-                    <field name="timesheet_ids" context="{'default_project_id': project_id, 'default_production_id': active_id}">
+                    <field
+                        name="timesheet_ids"
+                        context="{'default_project_id': project_id, 'default_production_id': active_id}"
+                    >
                         <tree editable="bottom" delete="true">
                             <field name="project_id" invisible="1" />
                             <field name="production_id" invisible="1" />
                             <field name="date" widget="date" />
                             <field name="user_id" required="1" />
                             <field name="name" />
-                            <field name="unit_amount" string="Duration (Hour(s))" widget="float_time" />
+                            <field
+                                name="unit_amount"
+                                string="Duration (Hour(s))"
+                                widget="float_time"
+                            />
                         </tree>
                         <form>
                             <group>
                                 <field name="date" />
                                 <field name="user_id" />
                                 <field name="name" />
-                                <field name="unit_amount" string="Duration (Hour(s))" widget="float_time" />
+                                <field
+                                    name="unit_amount"
+                                    string="Duration (Hour(s))"
+                                    widget="float_time"
+                                />
                             </group>
                         </form>
                     </field>
                     <group class="oe_subtotal_footer oe_right">
-                        <field name="total_hours" widget="float_time"/>
-                        <field name="remaining_hours" widget="float_time"/>
+                        <field name="total_hours" widget="float_time" />
+                        <field name="remaining_hours" widget="float_time" />
                     </group>
                 </page>
             </xpath>
@@ -84,10 +121,12 @@
         <field name="name">mrp.production.form#project_required@mrp_timesheet</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp_project.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp_project.mrp_production_form_view" />
         <field name="arch" type="xml">
             <field name="project_id" position="attributes">
-                <attribute name="attrs">{'required': [('allow_timesheets', '=', True)]}</attribute>
+                <attribute
+                    name="attrs"
+                >{'required': [('allow_timesheets', '=', True)]}</attribute>
             </field>
         </field>
     </record>
@@ -95,34 +134,43 @@
     <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
         <field name="name">mrp.production.kanban@mrp_timesheet</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view"/>
-        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view" />
+        <field name="priority" eval="10" />
         <field name="arch" type="xml">
             <xpath expr="//kanban/field[@name='name']" position="after">
-                <field name="planned_hours"/>
-                <field name="total_hours"/>
-                <field name="progress"/>
+                <field name="planned_hours" />
+                <field name="total_hours" />
+                <field name="progress" />
             </xpath>
             <xpath expr="//kanban//templates//div[@name='progress']" position="inside">
                 <t t-if="record.planned_hours.raw_value == 0">
                     <t t-if="record.total_hours.raw_value &gt; 0">
                         <div class="alert alert-warning small" role="status">
                             <i>Building progress unavailable, no planned hours.</i>
-                            Number of hours entered: <t t-esc="record.total_hours.value"/>
+                            Number of hours entered: <t
+                                t-esc="record.total_hours.value"
+                            />
                         </div>
                     </t>
                 </t>
                 <t t-if="record.progress.raw_value &gt; 0">
-                    <t t-set="p" t-value="record.progress.raw_value"/>
+                    <t t-set="p" t-value="record.progress.raw_value" />
                     <div class="kanban_progress">
                         <div class="progress_info">
-                            <i class="fa fa-wrench"/> <span>Building Progress</span>
+                            <i class="fa fa-wrench" /> <span>Building Progress</span>
                         </div>
-                        <div class ="o_kanban_counter_progress progress kanban_progress_bar">
-                            <div  class ="progress-bar o_bar_has_records kanban_progress_bar_done" t-attf-style="width: #{p}%;">
+                        <div
+                            class="o_kanban_counter_progress progress kanban_progress_bar"
+                        >
+                            <div
+                                class="progress-bar o_bar_has_records kanban_progress_bar_done"
+                                t-attf-style="width: #{p}%;"
+                            >
                             </div>
                         </div>
-                        <div class="kanban_completion"> <t t-esc="record.progress.value"/>% </div>
+                        <div class="kanban_completion"> <t
+                                t-esc="record.progress.value"
+                            />% </div>
                     </div>
                 </t>
             </xpath>
