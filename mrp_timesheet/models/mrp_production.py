@@ -50,8 +50,6 @@ class MrpProduction(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if "planned_hours" in vals:
-            self.onchange_planned_hours()
         return res
 
     @api.depends("timesheet_ids.unit_amount")
@@ -79,18 +77,3 @@ class MrpProduction(models.Model):
                 else:
                     rec.progress = round(100.0 * rec.total_hours / rec.planned_hours, 2)
             rec.remaining_hours = rec.planned_hours - rec.total_hours
-
-    def onchange_planned_hours(self):
-        # Change confirmed -> planned
-        confirmed_orders = self.filtered(
-            lambda x: x.state == "confirmed" and x.planned_hours > 0
-        )
-        if confirmed_orders:
-            confirmed_orders.write({"state": "planned"})
-
-        # Change planned -> confirmed
-        planned_orders = self.filtered(
-            lambda x: x.state == "planned" and x.planned_hours == 0
-        )
-        if planned_orders:
-            planned_orders.write({"state": "confirmed"})
