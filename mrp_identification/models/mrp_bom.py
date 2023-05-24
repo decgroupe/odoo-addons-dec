@@ -7,16 +7,19 @@ from odoo import api, models
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    @api.depends("name", "product_id")
+    @api.depends("name", "product_tmpl_id")
     def name_get(self):
         """Custom naming to remove bom name / product name duplication"""
+        super_res = super().name_get()
         res = []
-        for rec in self.filtered("code"):
-            if rec.product_id.code in rec.code:
-                name = "[%s] %s" % (rec.code, rec.product_id.name)
+        for item in super_res:
+            rec = self.browse(item[0])[0]
+            if rec.code:
+                if rec.product_tmpl_id.default_code in rec.code:
+                    name = "[%s] %s" % (rec.code, rec.product_tmpl_id.name)
+                else:
+                    name = "[%s] %s" % (rec.code, rec.product_tmpl_id.display_name)
             else:
-                name = "[%s] %s" % (rec.code, rec.product_id.display_name)
+                name = item[1]
             res.append((rec.id, name))
-        if not res:
-            res = super().name_get()
-        return res
+        return res or super_res
