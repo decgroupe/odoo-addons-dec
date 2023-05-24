@@ -43,11 +43,12 @@ class MrpProduction(models.Model):
     @api.model
     def _get_stages_ref(self):
         return {
+            "draft": self.env.ref("mrp_stage.stage_draft"),
             "confirmed": self.env.ref("mrp_stage.stage_confirmed"),
-            "planned": self.env.ref("mrp_stage.stage_planned"),
             "progress": self.env.ref("mrp_stage.stage_progress"),
             "issue": self.env.ref("mrp_stage.stage_issue"),
             "dispatch_ready": self.env.ref("mrp_stage.stage_dispatch_ready"),
+            "to_close": self.env.ref("mrp_stage.stage_to_close"),
             "done": self.env.ref("mrp_stage.stage_done"),
             "cancel": self.env.ref("mrp_stage.stage_cancel"),
         }
@@ -70,11 +71,11 @@ class MrpProduction(models.Model):
         stage_id = False
         if self.state in stages:
             stage_id = stages[self.state]
-        if self.state in ("confirmed", "planned", "progress"):
+        if self.state in ("confirmed", "progress"):
             activity_stage_id = self._get_stage_from_activity()
             if activity_stage_id:
                 stage_id = activity_stage_id
-        elif self.state == "done":
+        elif self.state in ("to_close", "done"):
             move_finished_ids = self.move_finished_ids.filtered(
                 lambda x: x.state in ("done", "cancel")
             )
@@ -90,8 +91,10 @@ class MrpProduction(models.Model):
         "move_finished_ids.move_dest_ids.state",
     )
     def _compute_stage_id(self):
-        stages = self._get_stages_ref()
         self.stage_id = False
+        if self.env.context.get("module") == "mrp_stage":
+            return
+        stages = self._get_stages_ref()
         for rec in self:
             stage_id = rec._get_stage_from_state(stages)
             if stage_id:
@@ -124,7 +127,7 @@ class MrpProduction(models.Model):
 
     def _allow_auto_start(self):
         self.ensure_one()
-        return self.state in ("planned", "confirmed")
+        return self.state in ("confirmed")
 
     def action_view_staged(self):
         action = self.env.ref("mrp_stage.act_mrp_production_staged").read()[0]

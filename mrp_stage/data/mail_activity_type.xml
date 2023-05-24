@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <odoo>
 
-    <record id="mail_activity_production_issue" model="mail.activity.type">
+    <record model="mail.activity.type" id="mail_activity_production_issue">
         <field name="name">Issue</field>
         <field name="icon">fa-warning</field>
         <field name="delay_count">0</field>

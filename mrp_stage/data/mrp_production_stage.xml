@@ -1,20 +1,20 @@
 <?xml version="1.0" ?>
 <odoo>
 
-    <record id="stage_confirmed" model="mrp.production.stage">
-        <field name="name">Confirmed</field>
-        <field name="code">confirmed</field>
-        <field name="emoji">🏳️</field>
+    <record id="stage_draft" model="mrp.production.stage">
+        <field name="name">Draft</field>
+        <field name="code">draft</field>
+        <field name="emoji">✨</field>
         <field name="sequence" eval="10" />
         <field name="fold" eval="False" />
         <field name="todo" eval="True" />
     </record>
-    <record id="stage_planned" model="mrp.production.stage">
-        <field name="name">Planned</field>
-        <field name="code">planned</field>
-        <field name="emoji">📅</field>
+    <record id="stage_confirmed" model="mrp.production.stage">
+        <field name="name">Confirmed</field>
+        <field name="code">confirmed</field>
+        <field name="emoji">🏳️</field>
         <field name="sequence" eval="50" />
-        <field name="fold" eval="True" />
+        <field name="fold" eval="False" />
         <field name="todo" eval="True" />
     </record>
     <record id="stage_progress" model="mrp.production.stage">
@@ -32,12 +32,21 @@
         <field name="sequence" eval="150" />
         <field name="fold" eval="False" />
         <field name="todo" eval="True" />
+        <field name="activity_type_id" ref="mrp_stage.mail_activity_production_issue" />
     </record>
     <record id="stage_dispatch_ready" model="mrp.production.stage">
         <field name="name">Ready to Dispatch</field>
         <field name="code">dispatch_ready</field>
         <field name="emoji">🚚</field>
         <field name="sequence" eval="200" />
+        <field name="fold" eval="False" />
+        <field name="todo" eval="True" />
+    </record>
+    <record id="stage_to_close" model="mrp.production.stage">
+        <field name="name">To Close</field>
+        <field name="code">to_close</field>
+        <field name="emoji">🎉</field>
+        <field name="sequence" eval="225" />
         <field name="fold" eval="False" />
         <field name="todo" eval="True" />
     </record>
