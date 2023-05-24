@@ -65,7 +65,7 @@ class MrpProduction(models.Model):
 
     def _get_stage_from_state(self, stages):
         stage_id = super()._get_stage_from_state(stages)
-        if stage_id in (stages["planned"], stages["confirmed"]):
+        if stage_id in (stages["confirmed"], ):
             if not self.move_raw_ids or self.supply_progress == 100:
                 stage_id = stages["build_ready"]
             elif self._is_supply_active():
