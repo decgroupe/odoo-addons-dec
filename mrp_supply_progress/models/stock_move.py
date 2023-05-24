@@ -1,33 +1,36 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class StockMove(models.Model):
-    _inherit = 'stock.move'
+    _inherit = "stock.move"
 
     received = fields.Boolean(
-        string='Received',
-        compute='_compute_received',
+        string="Received",
+        compute="_compute_received",
         help="If received, then the product should be available "
         "to be used on production",
     )
 
     @api.depends(
-        'state', 'reserved_availability', 'product_uom_qty', 'procure_method',
-        'move_orig_ids'
+        "state",
+        "reserved_availability",
+        "product_uom_qty",
+        "procure_method",
+        "move_orig_ids",
     )
     def _compute_received(self):
         self.received = False
         for move in self:
-            if move.state == 'done':
+            if move.state == "done":
                 move.received = True
-            elif move.procure_method == 'make_to_order':
+            elif move.procure_method == "make_to_order":
                 if move.move_orig_ids and all(
-                    m.state in ['cancel', 'done'] for m in move.move_orig_ids
+                    m.state in ["cancel", "done"] for m in move.move_orig_ids
                 ):
                     move.received = True
-            elif move.procure_method == 'make_to_stock':
-                reserved = (move.reserved_availability == move.product_uom_qty)
+            elif move.procure_method == "make_to_stock":
+                reserved = move.reserved_availability == move.product_uom_qty
                 move.received = reserved

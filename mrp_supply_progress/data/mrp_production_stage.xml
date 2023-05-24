@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <!-- <delete model="mrp.production.stage" search="[('code', '=', 'build_ready')]"/> -->
