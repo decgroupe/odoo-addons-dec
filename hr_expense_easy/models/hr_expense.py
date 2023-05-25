@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
-from odoo import _, api, models, fields
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -10,11 +10,13 @@ class HrExpense(models.Model):
 
     tax_amount = fields.Float(
         string="Taxes",
-        digits='Account',
+        digits="Account",
     )
-    comments = fields.Char(string="Comments", )
+    comments = fields.Char(
+        string="Comments",
+    )
 
-    @api.onchange('tax_amount')
+    @api.onchange("tax_amount")
     def onchange_tax_amount(self):
         for expense in self:
             if expense.tax_amount > expense.total_amount:
@@ -127,13 +129,13 @@ class HrExpense(models.Model):
 
     def action_duplicate(self):
         self.ensure_one()
-        if self.state in ['done', 'approved']:
-            raise UserError(
-                _('You cannot duplicate a posted or approved expense.')
-            )
-        self.copy(default={
-            'sheet_id': self.sheet_id.id,
-        })
+        if self.state in ["done", "approved"]:
+            raise UserError(_("You cannot duplicate a posted or approved expense."))
+        self.copy(
+            default={
+                "sheet_id": self.sheet_id.id,
+            }
+        )
 
     def action_get_attachment_view(self):
         self.ensure_one()
@@ -145,15 +147,15 @@ class HrExpense(models.Model):
 
     def action_create_attachment_view(self):
         self.ensure_one()
-        context = {'default_res_model': self._name, 'default_res_id': self.id}
-        domain = [('res_model', '=', self._name), ('res_id', 'in', self.ids)]
+        context = {"default_res_model": self._name, "default_res_id": self.id}
+        domain = [("res_model", "=", self._name), ("res_id", "in", self.ids)]
         return {
-            'name': _('Create attachment'),
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'target': 'new',
-            'res_model': "ir.attachment",
-            'context': context,
-            'domain': domain,
+            "name": _("Create attachment"),
+            "type": "ir.actions.act_window",
+            "view_type": "form",
+            "view_mode": "form",
+            "target": "new",
+            "res_model": "ir.attachment",
+            "context": context,
+            "domain": domain,
         }

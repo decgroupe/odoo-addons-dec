@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data noupdate="1">
 
         <record id="cat_transport" model="product.category">
-            <field name="parent_id" ref="product.cat_expense"/>
+            <field name="parent_id" ref="product.cat_expense" />
             <field name="name">Transportation</field>
         </record>
 
         <record id="cat_catering" model="product.category">
-            <field name="parent_id" ref="product.cat_expense"/>
+            <field name="parent_id" ref="product.cat_expense" />
             <field name="name">Catering</field>
         </record>
 
         <record id="cat_lodging" model="product.category">
-            <field name="parent_id" ref="product.cat_expense"/>
+            <field name="parent_id" ref="product.cat_expense" />
             <field name="name">Lodging</field>
         </record>
 
         <record id="cat_other" model="product.category">
-            <field name="parent_id" ref="product.cat_expense"/>
+            <field name="parent_id" ref="product.cat_expense" />
             <field name="name">Other</field>
         </record>
 
