@@ -1,17 +1,15 @@
 {
-    'name': 'Helpdesk References',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': '''Link helpdesk ticket with sale, manufacturing, project, etc.''',
-    'depends': [
-        'helpdesk_mgmt',
+    "name": "Helpdesk References",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "helpdesk_mgmt",
     ],
-    #'force_migration':'12.0.0.0.0',
-    'data': [
+    "data": [
         "security/ir.model.access.csv",
         "views/helpdesk_ticket_reference.xml",
         "views/helpdesk_ticket.xml",
     ],
-    'installable': True
+    "installable": True,
 }

@@ -5,9 +5,9 @@ from odoo import models, fields
 
 
 class HelpdeskTicket(models.Model):
-    _inherit = 'helpdesk.ticket'
+    _inherit = "helpdesk.ticket"
 
     reference_ids = fields.One2many(
-        'helpdesk.ticket.reference',
-        'ticket_id',
+        comodel_name="helpdesk.ticket.reference",
+        inverse_name="ticket_id",
     )
