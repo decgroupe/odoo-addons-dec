@@ -1,18 +1,28 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
 
     <record model="ir.ui.view" id="helpdesk_ticket_search_view">
-        <field name="name">helpdesk.ticket.view.search@helpdesk_partner_location_department</field>
+        <field
+            name="name"
+        >helpdesk.ticket.view.search@helpdesk_partner_location_department</field>
         <field name="model">helpdesk.ticket</field>
-        <field name="inherit_id" ref="helpdesk_mgmt.helpdesk_ticket_view_search"/>
+        <field name="inherit_id" ref="helpdesk_mgmt.helpdesk_ticket_view_search" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_zip_id']" position="after">
-                <field name="partner_department_id"/>
-                <field name="partner_state_id"/>
+                <field name="partner_department_id" />
+                <field name="partner_state_id" />
             </xpath>
             <xpath expr="//filter[@name='group_partner_zip']" position="after">
-                <filter string="Department" name="group_partner_department" context="{'group_by':'partner_department_id'}" />
-                <filter string="State" name="group_partner_state" context="{'group_by':'partner_state_id'}" />
+                <filter
+                    string="Department"
+                    name="group_partner_department"
+                    context="{'group_by':'partner_department_id'}"
+                />
+                <filter
+                    string="State"
+                    name="group_partner_state"
+                    context="{'group_by':'partner_state_id'}"
+                />
             </xpath>
         </field>
     </record>
