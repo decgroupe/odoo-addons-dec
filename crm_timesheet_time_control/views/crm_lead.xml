@@ -11,12 +11,11 @@
                 <attribute name="domain">[('allow_timesheets', '=', True)]</attribute>
             </field>
 
-
             <!-- Sub-tree view for timesheet_ids -->
             <xpath expr="//field[@name='timesheet_ids']" position="replace">
                 <field
                     name="timesheet_ids"
-                    context="{'default_project_id': project_id, 'default_user_id': uid}"
+                    context="{'default_project_id': project_id, 'default_user_id': uid, 'form_view_ref': 'hr_timesheet_autofill.hr_timesheet_line_form_view'}"
                     attrs="{'invisible':[('project_id', '=', False)]}"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
@@ -32,18 +31,6 @@
                             widget="float_time"
                         />
                     </tree>
-                    <form>
-                        <group>
-                            <field name="date" />
-                            <field name="user_id" />
-                            <field name="name" />
-                            <field
-                                name="unit_amount"
-                                string="Duration (Hour(s))"
-                                widget="float_time"
-                            />
-                        </group>
-                    </form>
                 </field>
             </xpath>
 
