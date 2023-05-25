@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record id="time_tracking_type" model="project.type">
         <field name="name">⏱️</field>
-        <field name="description">For generic projects that are used to fill in timesheets</field>
-        <field name="project_ok" eval="True"/>
-        <field name="task_ok" eval="True"/>
+        <field
+            name="description"
+        >For generic projects that are used to fill in timesheets</field>
+        <field name="project_ok" eval="True" />
+        <field name="task_ok" eval="True" />
     </record>
 
     <record id="contract_type" model="project.type">
         <field name="name">📝 Contract</field>
         <field name="description">For sale orders</field>
-        <field name="project_ok" eval="True"/>
-        <field name="task_ok" eval="False"/>
+        <field name="project_ok" eval="True" />
+        <field name="task_ok" eval="False" />
     </record>
 
 </odoo>

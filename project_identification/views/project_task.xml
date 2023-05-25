@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_task_tree2">
@@ -7,7 +7,10 @@
         <field name="inherit_id" ref="project.view_task_tree2" />
         <field name="arch" type="xml">
             <field name="project_id" position="before">
-                <field name="project_type_id" attrs="{'readonly': 1, 'invisible': [('project_id', '=', False)]}"/>
+                <field
+                    name="project_type_id"
+                    attrs="{'readonly': 1, 'invisible': [('project_id', '=', False)]}"
+                />
             </field>
         </field>
     </record>
@@ -15,10 +18,13 @@
     <record model="ir.ui.view" id="project_task_form">
         <field name="name">project.task.form@project_identification</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="inherit_id" ref="project.view_task_form2" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='project_id']" position="before">
-                <field name="project_type_id" attrs="{'readonly': 1, 'invisible': [('project_id', '=', False)]}"/>
+                <field
+                    name="project_type_id"
+                    attrs="{'readonly': 1, 'invisible': [('project_id', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
