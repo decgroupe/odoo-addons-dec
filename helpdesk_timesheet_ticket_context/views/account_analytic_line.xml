@@ -2,9 +2,11 @@
 <odoo>
 
     <record model="ir.ui.view" id="hr_timesheet_line_form">
-        <field name="name">account.analytic.line.form@helpdesk_timesheet_ticket_context</field>
+        <field
+            name="name"
+        >account.analytic.line.form@helpdesk_timesheet_ticket_context</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="helpdesk_mgmt_timesheet.hr_timesheet_line_form"/>
+        <field name="inherit_id" ref="helpdesk_mgmt_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
             <xpath expr="//form/sheet//field[@name='ticket_id']" position="attributes">
                 <attribute name="context">
