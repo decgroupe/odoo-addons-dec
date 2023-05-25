@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_case_form_view_oppor">
+        <field name="name">crm.lead.oppor.inherited.crm@crm_timesheet_sale</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor" />
+        <field name="arch" type="xml">
+            <page name="lead" position="before">
+                <page name="sale_orders" string="Sales">
+                    <field
+                        name="order_ids"
+                        widget="many2many"
+                        domain="[('opportunity_id', '=', False)]"
+                    />
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
