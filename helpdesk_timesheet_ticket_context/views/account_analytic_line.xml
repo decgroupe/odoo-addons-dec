@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="hr_timesheet_line_form">
+    <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field
             name="name"
         >account.analytic.line.form@helpdesk_timesheet_ticket_context</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="helpdesk_mgmt_timesheet.hr_timesheet_line_form" />
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_autofill.hr_timesheet_line_form_view"
+        />
+        <field name="priority">50</field>
         <field name="arch" type="xml">
-            <xpath expr="//form/sheet//field[@name='ticket_id']" position="attributes">
-                <attribute name="context">
+            <field name="task_id" position="after">
+                <field
+                    name="ticket_id"
+                    context="
                 {
                     'default_project_id': project_id,
                     'default_description': name,
-                }
-                </attribute>
-            </xpath>
+                }"
+                />
+            </field>
         </field>
     </record>
 

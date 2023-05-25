@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "helpdesk_mgmt_timesheet",
+        "hr_timesheet_autofill",
     ],
     "data": [
         "views/account_analytic_line.xml",
