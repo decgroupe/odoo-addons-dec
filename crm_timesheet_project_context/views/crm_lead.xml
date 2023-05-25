@@ -4,10 +4,12 @@
     <record model="ir.ui.view" id="crm_lead_view_form">
         <field name="name">crm.lead.form@crm_timesheet_project_context</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm_timesheet.crm_lead_view_form"/>
+        <field name="inherit_id" ref="crm_timesheet.crm_lead_view_form" />
         <field name="arch" type="xml">
             <field name="project_id" position="attributes">
-                <attribute name="context">{'bypass_supermanager_check': True}</attribute>
+                <attribute
+                    name="context"
+                >{'bypass_supermanager_check': True}</attribute>
             </field>
         </field>
     </record>
