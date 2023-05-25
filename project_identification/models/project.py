@@ -22,6 +22,10 @@ class Project(models.Model):
 
     @api.depends("type_id")
     def _compute_from_type(self):
+        self.is_contract = False
+        self.is_time_tracking = False
+        if self.env.context.get("module") == "project_identification":
+            return
         contract_type = self.env.ref("project_identification.contract_type")
         time_tracking_type = self.env.ref("project_identification.time_tracking_type")
         for rec in self:
