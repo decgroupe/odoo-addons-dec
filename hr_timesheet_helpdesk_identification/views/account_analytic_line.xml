@@ -1,15 +1,27 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
 
     <record model="ir.ui.view" id="hr_timesheet_line_form">
-        <field name="name">account.analytic.line.form@hr_timesheet_helpdesk_identification</field>
+        <field
+            name="name"
+        >account.analytic.line.form@hr_timesheet_helpdesk_identification</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="helpdesk_mgmt_timesheet.hr_timesheet_line_form"/>
+        <field name="inherit_id" ref="helpdesk_mgmt_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
-            <xpath expr="//form/sheet//field[@name='ticket_partner_id']" position="after">
-                <field name="ticket_identification" attrs="{'invisible': [('ticket_id', '=', False)]}" string="" />
+            <xpath
+                expr="//form/sheet//field[@name='ticket_partner_id']"
+                position="after"
+            >
+                <field
+                    name="ticket_identification"
+                    attrs="{'invisible': [('ticket_id', '=', False)]}"
+                    string=""
+                />
             </xpath>
-            <xpath expr="//form/sheet//field[@name='ticket_partner_id']" position="attributes">
+            <xpath
+                expr="//form/sheet//field[@name='ticket_partner_id']"
+                position="attributes"
+            >
                 <attribute name="attrs">{'invisible': True}</attribute>
             </xpath>
         </field>

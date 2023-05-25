@@ -1,14 +1,15 @@
 {
-    'name': 'Helpdesk Identification for Timesheet',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Add identification data from helpdesk",
-    'depends': [
-        'hr_timesheet',
-        'helpdesk_mgmt_timesheet',
-        'helpdesk_identification',
+    "name": "Helpdesk Identification for Timesheet",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "hr_timesheet",
+        "helpdesk_mgmt_timesheet",
+        "helpdesk_identification",
     ],
-    'data': ['views/account_analytic_line.xml', ],
-    'installable': True
+    "data": [
+        "views/account_analytic_line.xml",
+    ],
+    "installable": True,
 }
