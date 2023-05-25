@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class AccountAnalyticLine(models.Model):
-    _inherit = 'account.analytic.line'
+    _inherit = "account.analytic.line"
 
     @api.onchange("lead_id")
     def _onchange_lead_id(self):
@@ -20,18 +20,18 @@ class AccountAnalyticLine(models.Model):
         if not self.project_id and self.lead_id.project_id:
             super()._onchange_lead_id()
 
-    @api.onchange('project_id')
+    @api.onchange("project_id")
     def _onchange_project_id(self):
         res = super()._onchange_project_id()
-        if 'domain' in res:
+        if "domain" in res:
             filter = []
             if self.project_id:
                 filter = [
-                    '|',
-                    ('project_id', '=', self.project_id.id),
-                    ('related_project_ids', '=', self.project_id.id),
+                    "|",
+                    ("project_id", "=", self.project_id.id),
+                    ("related_project_ids", "=", self.project_id.id),
                 ]
-            res['domain']['lead_id'] = filter
+            res["domain"]["lead_id"] = filter
         # Automatically select the linked opportunity
         if not self.lead_id and self.project_id.linked_lead_id:
             self.lead_id = self.project_id.linked_lead_id
