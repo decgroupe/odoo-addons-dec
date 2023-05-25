@@ -5,9 +5,9 @@ from odoo import fields, models
 
 
 class AccountAnalyticLine(models.Model):
-    _inherit = 'account.analytic.line'
+    _inherit = "account.analytic.line"
 
     sale_id = fields.Many2one(
-        comodel_name='sale.order',
-        string='Sale Order',
+        comodel_name="sale.order",
+        string="Sale Order",
     )
