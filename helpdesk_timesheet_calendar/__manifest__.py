@@ -1,17 +1,14 @@
 {
-    'name': 'Helpdesk Timesheet Calendar',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary':
-        "Add ticket number on calendar view",
-    'depends': [
-        'helpdesk_mgmt_timesheet',
-        'hr_timesheet_calendar',
+    "name": "Helpdesk Timesheet Calendar",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "helpdesk_mgmt_timesheet",
+        "hr_timesheet_calendar",
     ],
-    'data': [
-        'views/account_analytic_line.xml',
-
+    "data": [
+        "views/account_analytic_line.xml",
     ],
-    'installable': True
+    "installable": True,
 }
