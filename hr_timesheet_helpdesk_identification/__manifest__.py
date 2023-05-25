@@ -4,8 +4,7 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
-        "hr_timesheet",
-        "helpdesk_mgmt_timesheet",
+        "helpdesk_timesheet_ticket_context",
         "helpdesk_identification",
     ],
     "data": [
