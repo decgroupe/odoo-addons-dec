@@ -48,13 +48,14 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="hr_timesheet_line_form">
+    <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field name="name">account.analytic.line.form@mrp_timesheet</field>
         <field name="model">account.analytic.line</field>
         <field
             name="inherit_id"
             ref="hr_timesheet_autofill.hr_timesheet_line_form_view"
         />
+        <field name="priority">100</field>
         <field name="arch" type="xml">
             <field name="task_id" position="after">
                 <field
