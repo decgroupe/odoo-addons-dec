@@ -5,11 +5,11 @@ from odoo import models, fields
 
 
 class HelpdeskTicket(models.Model):
-    _inherit = 'helpdesk.ticket'
+    _inherit = "helpdesk.ticket"
 
     partner_academy_id = fields.Many2one(
-        'res.partner.academy',
-        related='partner_id.academy_id',
+        comodel_name="res.partner.academy",
+        related="partner_id.academy_id",
         string="Partner's Academy",
         store=True,
     )
