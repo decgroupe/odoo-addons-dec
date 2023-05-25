@@ -4,30 +4,44 @@
     <record model="ir.ui.view" id="crm_lead_view_form">
         <field name="name">crm.lead.form@crm_timesheet_time_control</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm_timesheet.crm_lead_view_form"/>
+        <field name="inherit_id" ref="crm_timesheet.crm_lead_view_form" />
         <field name="arch" type="xml">
 
             <field name="project_id" position="attributes">
                 <attribute name="domain">[('allow_timesheets', '=', True)]</attribute>
             </field>
 
+
             <!-- Sub-tree view for timesheet_ids -->
             <xpath expr="//field[@name='timesheet_ids']" position="replace">
-                <field name="timesheet_ids" context="{'default_project_id': project_id, 'default_user_id': uid}" attrs="{'invisible':[('project_id', '=', False)]}" groups="hr_timesheet.group_hr_timesheet_user">
+                <field
+                    name="timesheet_ids"
+                    context="{'default_project_id': project_id, 'default_user_id': uid}"
+                    attrs="{'invisible':[('project_id', '=', False)]}"
+                    groups="hr_timesheet.group_hr_timesheet_user"
+                >
                     <tree editable="bottom" delete="true">
-                        <field name="project_id" invisible="1"/>
+                        <field name="project_id" invisible="1" />
                         <field name="date" invisible="1" widget="date" />
-                        <field name="date_time" string="Date" required="1"/>
+                        <field name="date_time" string="Date" required="1" />
                         <field name="user_id" invisible="1" />
                         <field name="name" />
-                        <field name="unit_amount" string="Duration (Hour(s))" widget="float_time" />
+                        <field
+                            name="unit_amount"
+                            string="Duration (Hour(s))"
+                            widget="float_time"
+                        />
                     </tree>
                     <form>
                         <group>
                             <field name="date" />
                             <field name="user_id" />
                             <field name="name" />
-                            <field name="unit_amount" string="Duration (Hour(s))" widget="float_time" />
+                            <field
+                                name="unit_amount"
+                                string="Duration (Hour(s))"
+                                widget="float_time"
+                            />
                         </group>
                     </form>
                 </field>
