@@ -1,16 +1,21 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
 
     <record model="ir.ui.view" id="helpdesk_ticket_search_view">
         <field name="name">helpdesk.ticket.view.search@helpdesk_partner_location</field>
         <field name="model">helpdesk.ticket</field>
-        <field name="inherit_id" ref="helpdesk_mgmt.helpdesk_ticket_view_search"/>
+        <field name="inherit_id" ref="helpdesk_mgmt.helpdesk_ticket_view_search" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="partner_zip_id"/>
+                <field name="partner_zip_id" />
             </xpath>
             <xpath expr="//filter[@name='group_partner']" position="after">
-                <filter string="ZIP Location" name="group_partner_zip" domain="[]" context="{'group_by':'partner_zip_id'}"/>
+                <filter
+                    string="ZIP Location"
+                    name="group_partner_zip"
+                    domain="[]"
+                    context="{'group_by':'partner_zip_id'}"
+                />
             </xpath>
         </field>
     </record>
@@ -18,21 +23,21 @@
     <record model="ir.ui.view" id="ticket_tree_view">
         <field name="name">helpdesk.ticket.view.tree@helpdesk_partner_location</field>
         <field name="model">helpdesk.ticket</field>
-        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_tree"/>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_name']" position="after">
-                <field name="partner_zip_id"/>
+                <field name="partner_zip_id" />
             </xpath>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ticket_view_form" >
+    <record model="ir.ui.view" id="ticket_view_form">
         <field name="name">helpdesk.ticket.view.form@helpdesk_partner_location</field>
         <field name="model">helpdesk.ticket</field>
-        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="partner_zip_id"/>
+                <field name="partner_zip_id" />
             </xpath>
         </field>
     </record>
