@@ -6,7 +6,11 @@
             name="name"
         >account.analytic.line.form@crm_timesheet_phonecall_context</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="crm_timesheet.hr_timesheet_line_form" />
+        <field
+            name="inherit_id"
+            ref="crm_timesheet_lead_context.hr_timesheet_line_form_view"
+        />
+        <field name="priority">20</field>
         <field name="arch" type="xml">
             <field name="lead_id" position="after">
                 <field

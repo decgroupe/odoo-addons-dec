@@ -4,7 +4,7 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
-        "crm_timesheet",
+        "crm_timesheet_lead_context",
         "crm_phonecall_timesheet",
     ],
     "data": [
