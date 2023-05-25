@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "hr_timesheet",
+        "project_timesheet_time_control",
     ],
     "data": [
         "views/assets.xml",

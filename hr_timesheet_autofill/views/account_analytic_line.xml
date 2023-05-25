@@ -41,7 +41,8 @@
                     </div>
                     <group>
                         <group>
-                            <field name="date" />
+                            <field name="date" invisible="1" widget="date" />
+                            <field name="date_time" string="Date" required="1" />
                             <field
                                 name="project_id"
                                 required="1"
