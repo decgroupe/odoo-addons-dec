@@ -6,6 +6,7 @@
     "depends": [
         "base_view_inheritance_extension",
         "hr_expense",
+        "sale_expense",
     ],
     "data": [
         "views/hr_expense.xml",

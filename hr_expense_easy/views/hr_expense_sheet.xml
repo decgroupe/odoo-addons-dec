@@ -28,33 +28,39 @@
                 expr="//field[@name='expense_line_ids']/tree/field[@name='message_unread']"
                 position="before"
             >
+                <field name="product_id" required="1"/>
+                <field name="product_uom_id" optional="hide" />
+                <field name="product_uom_category_id" optional="hide" />
                 <xpath
                     expr="//field[@name='expense_line_ids']/tree/field[@name='name']"
                     position="move"
                 />
-                <field name="product_id" />
-                <field name="product_uom_id" invisible="1" />
-                <field name="product_uom_category_id" invisible="1" />
                 <field name="unit_amount" />
-                <field name="quantity" /> 
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='unit_amount']"
-                position="before"
+                expr="//field[@name='expense_line_ids']/tree/field[@name='sale_order_id']"
+                position="attributes"
             >
-                <field name="account_id" invisible="1" />
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/tree/field[@name='attachment_number']"
+                position="attributes"
+            >
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/tree/button[@name='action_get_attachment_view']"
+                position="attributes"
+            >
+                <attribute name="title">View Attachments</attribute>
+                <attribute name="string"/>
             </xpath>
             <xpath
                 expr="//field[@name='expense_line_ids']/tree/field[@name='unit_amount']"
                 position="attributes"
             >
                 <attribute name="string">Amount (Tax incl.)</attribute>
-            </xpath>
-            <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='quantity']"
-                position="attributes"
-            >
-                <attribute name="invisible">1</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='expense_line_ids']/tree/field[@name='tax_ids']"
@@ -66,7 +72,7 @@
                 expr="//field[@name='expense_line_ids']/tree/field[@name='tax_ids']"
                 position="attributes"
             >
-                <attribute name="invisible">1</attribute>
+                <attribute name="optional">hide</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='expense_line_ids']/tree/field[@name='total_amount']"
@@ -75,7 +81,7 @@
                 <field name="comments" /> 
                 <button
                     name="action_duplicate"
-                    string="Duplicate"
+                    title="Duplicate"
                     type="object"
                     icon="fa-copy"
                     attrs="{'invisible': [('state', 'in', ('done', 'approved'))]}"
