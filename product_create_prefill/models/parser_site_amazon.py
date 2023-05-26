@@ -23,7 +23,7 @@ def parse(content):
         tree.xpath('//span[@id="productTitle"]/text()[normalize-space()]')
     )
     result['price_deal'] = parser_helper.clean(
-        tree.xpath('//span[@id="priceblock_dealprice"]/text()')
+        tree.xpath('//span[@id="priceblock_dealprice"]/text()'), first=True
     )
     result['price_our'] = parser_helper.clean(
         tree.xpath(
@@ -35,11 +35,13 @@ def parse(content):
     result['price_sale'] = parser_helper.clean(
         tree.xpath('//span[@id="priceblock_saleprice"]/text()')
     )
+
     result['price_strike'] = parser_helper.clean(
         tree.xpath(
             '//span[@data-a-strike="true" and contains(@class, "a-price")]' +
             '//span[@class="a-offscreen"]/text()'
-        )
+        ),
+        first=True
     )
 
     ## MODEL
