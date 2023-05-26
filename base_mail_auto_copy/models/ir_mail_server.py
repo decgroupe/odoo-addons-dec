@@ -2,8 +2,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
+import logging
+
 from odoo import models, api, fields
 from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
+
+_logger = logging.getLogger(__name__)
 
 
 class IrMailServer(models.Model):
@@ -53,7 +57,17 @@ class IrMailServer(models.Model):
                     self.env.context.get('channel_email_from')
                 )
                 if from_rfc2822 == channel_email_from_rfc2822:
+                    _logger.info(
+                        "✉️ Do not add %s to BCC ('channel_email_from' identified)",
+                        from_rfc2822
+                    )
                     ignore_auto_add_sender = True
+            elif message.get("X-Odoo-Objects", "").startswith("mail.channel"):
+                _logger.info(
+                    "✉️ Do not add %s to BCC ('mail.channel' identified)",
+                    from_rfc2822
+                )
+                ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 message_id = message.get('Message-Id')
                 mail_authors = self.env.context.get('mail_authors', {})
