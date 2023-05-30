@@ -23,10 +23,13 @@ class DocumentPage(models.Model):
         res = super(DocumentPage, self).write(vals)
         if res:
             for rec in self.filtered(lambda x: x.type == "content"):
+                # create a new history when markdown content has changed, and also
+                # add the html content
                 if rec.content_markdown != rec.history_head.content_markdown:
                     rec._create_history(
                         {
-                            "name": vals.get("draft_name") or rec.draft_name,
+                            "page_id": rec.id,
+                            "name": rec.draft_name,
                             "summary": rec.draft_summary,
                             "content": rec.content,
                             "content_markdown": rec.content_markdown,
@@ -36,6 +39,8 @@ class DocumentPage(models.Model):
 
     def _create_history(self, vals):
         self.ensure_one()
+        # if markdown content is missing (when recomputing content with
+        # `_inverse_content`) always add it
         if "content_markdown" not in vals:
             vals["content_markdown"] = self.content_markdown
         return super()._create_history(vals)
