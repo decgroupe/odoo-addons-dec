@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="email_server_form_view">
         <field name="name">fetchmail.server.form@fetchmail_filtering</field>
         <field name="model">fetchmail.server</field>
-        <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
         <field name="arch" type="xml">
             <field name="date" position="after">
-                <field name="allowed_databases"/>
+                <field name="allowed_databases" />
             </field>
         </field>
     </record>

@@ -11,13 +11,13 @@ _logger = logging.getLogger(__name__)
 
 
 class FetchmailServer(models.AbstractModel):
-    _inherit = 'fetchmail.server'
+    _inherit = "fetchmail.server"
 
     allowed_databases = fields.Char(
         string="Allowed Databases",
         default="*",
         help="Comma-separated list of database names allowed to send "
-        "e-mails with this server, or set it to «*» to allow all."
+        "e-mails with this server, or set it to «*» to allow all.",
     )
 
     @api.model
@@ -31,12 +31,12 @@ class FetchmailServer(models.AbstractModel):
 
     def fetch_mail(self):
         # We use `fetch_mail` instead of `_fetch_mails`
-        fetchmail_server_ids = self.env['fetchmail.server']
+        fetchmail_server_ids = self.env["fetchmail.server"]
 
         for fetchmail_server_id in self:
             fetch_allowed = False
             if fetchmail_server_id.allowed_databases:
-                if fetchmail_server_id.allowed_databases == '*':
+                if fetchmail_server_id.allowed_databases == "*":
                     fetch_allowed = True
                 else:
                     fetch_allowed = self.env.cr.dbname in to_list(
@@ -44,14 +44,13 @@ class FetchmailServer(models.AbstractModel):
                     )
 
             if not fetch_allowed:
-                fetch_allowed = self.env.cr.dbname in \
-                    self._get_db_fetchmail_allowedlist()
+                fetch_allowed = (
+                    self.env.cr.dbname in self._get_db_fetchmail_allowedlist()
+                )
 
             if fetch_allowed:
                 fetchmail_server_ids += fetchmail_server_id
             else:
-                _logger.info(
-                    'fetch_mail disabled for %s', fetchmail_server_id.name
-                )
+                _logger.info("fetch_mail disabled for %s", fetchmail_server_id.name)
 
         return super(FetchmailServer, fetchmail_server_ids).fetch_mail()
