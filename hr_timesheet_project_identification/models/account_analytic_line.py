@@ -1,20 +1,20 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
-from odoo import models, api, fields
+from odoo import api, fields, models
 
 
 class AccountAnalyticLine(models.Model):
-    _inherit = 'account.analytic.line'
+    _inherit = "account.analytic.line"
 
     project_identification = fields.Char(
         string="Project Identification",
         compute="_compute_project_identification",
     )
 
-    @api.depends('project_id')
+    @api.depends("project_id")
     def _compute_project_identification(self):
         self.project_identification = False
-        for rec in self.filtered('project_id'):
+        for rec in self.filtered("project_id"):
             identifications = rec.project_id._get_name_identifications()
-            rec.project_identification = ' / '.join(identifications)
+            rec.project_identification = " / ".join(identifications)
