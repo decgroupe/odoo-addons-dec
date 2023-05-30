@@ -1,10 +1,13 @@
 {
-    'name': 'Mail Channel Prefix',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Add a custom prefix to e-mail subject",
-    'depends': ['mail', ],
-    'data': ['views/mail_channel.xml', ],
-    'installable': True
+    "name": "Mail Channel Prefix",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "mail",
+    ],
+    "data": [
+        "views/mail_channel.xml",
+    ],
+    "installable": True,
 }
