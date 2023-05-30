@@ -4,10 +4,10 @@
     <record model="ir.ui.view" id="edit_holiday_status_form">
         <field name="name">hr.leave.type.form@hr_leave_calendar_name</field>
         <field name="model">hr.leave.type</field>
-        <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form" />
         <field name="arch" type="xml">
             <group name="calendar" position="inside">
-                <field name="calendar_name"/>
+                <field name="calendar_name" />
             </group>
         </field>
     </record>
