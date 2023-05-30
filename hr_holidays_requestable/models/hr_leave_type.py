@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2022
 
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class HolidaysType(models.Model):
@@ -21,12 +21,11 @@ class HolidaysType(models.Model):
 
     @api.depends("requestable_from", "validity_stop")
     def _compute_requestable_from_valid(self):
-        dt = self._context.get('default_date_from'
-                              ) or fields.Date.context_today(self)
+        dt = self._context.get("default_date_from") or fields.Date.context_today(self)
         for rec in self:
             if rec.requestable_from and rec.validity_stop:
-                rec.requestable_from_valid = (
-                    (dt <= rec.validity_stop) and (dt >= rec.requestable_from)
+                rec.requestable_from_valid = (dt <= rec.validity_stop) and (
+                    dt >= rec.requestable_from
                 )
             else:
                 rec.requestable_from_valid = False
