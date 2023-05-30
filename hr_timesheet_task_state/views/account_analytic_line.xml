@@ -4,15 +4,16 @@
     <record model="ir.ui.view" id="hr_timesheet_line_form">
         <field name="name">account.analytic.line.form@hr_timesheet_task_state</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
             <xpath expr="//form/sheet//field[@name='task_id']" position="after">
-                <field 
+                <field
                     string=""
                     name="task_stage_id"
                     widget="statusbar"
                     attrs="{'invisible': [('task_id', '=', False)]}"
-                    options="{'clickable': '1', 'fold_field': 'fold'}">
+                    options="{'clickable': '1', 'fold_field': 'fold'}"
+                >
                 </field>
             </xpath>
         </field>
