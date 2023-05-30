@@ -18,10 +18,10 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="hr_timesheet_line_form">
+    <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field name="name">account.analytic.line.form@hr_timesheet_exclude</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="inherit_id" ref="hr_timesheet_autofill.hr_timesheet_line_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='amount']" position="before">
                 <!-- Use exclude field from `sale_timesheet_line_exclude` -->
