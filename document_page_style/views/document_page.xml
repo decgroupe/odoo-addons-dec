@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_wiki_form_view">
         <field name="name">document.page.form@document_page_style</field>
         <field name="model">document.page</field>
-        <field name="inherit_id" ref="document_page.view_wiki_form"/>
+        <field name="inherit_id" ref="document_page.view_wiki_form" />
         <field name="arch" type="xml">
             <xpath expr="//form/sheet" position="replace">
                 <div name="sheet_parent" class="d_sheet_parent">$0</div>
