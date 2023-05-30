@@ -4,10 +4,10 @@
     <record model="ir.ui.view" id="project_task_form_view">
         <field name="name">project.task.form@hr_timesheet_exclude</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_id']" position="after">
-                <field name="exclude_from_timesheet" groups="base.group_no_one"/>
+                <field name="exclude_from_timesheet" groups="base.group_no_one" />
             </xpath>
         </field>
     </record>

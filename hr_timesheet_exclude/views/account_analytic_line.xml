@@ -4,15 +4,16 @@
     <record model="ir.ui.view" id="timesheet_search_view">
         <field name="name">account.analytic.line.search@hr_timesheet_exclude</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='month']" position="before">
-                <filter 
+                <filter
                     name="filter_posted_in_timesheet"
                     string="Posted in Timesheets"
-                    domain="[('posted_in_timesheet', '=', True)]">
+                    domain="[('posted_in_timesheet', '=', True)]"
+                >
                 </filter>
-                <separator/>
+                <separator />
             </xpath>
         </field>
     </record>
@@ -20,13 +21,16 @@
     <record model="ir.ui.view" id="hr_timesheet_line_form">
         <field name="name">account.analytic.line.form@hr_timesheet_exclude</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='amount']" position="before">
-                <field name="exclude_from_sale_order"/>
+                <!-- Use exclude field from `sale_timesheet_line_exclude` -->
+                <field name="exclude_from_sale_order" />
             </xpath>
             <xpath expr="//field[@name='amount']" position="attributes">
-                <attribute name="attrs">{'invisible': [('exclude_from_sale_order', '=', True)]}</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('exclude_from_sale_order', '=', True)]}</attribute>
             </xpath>
         </field>
     </record>
