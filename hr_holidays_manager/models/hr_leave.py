@@ -1,16 +1,19 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
-from odoo import api, models
+from odoo import models
 
 
 class HolidaysRequest(models.Model):
-    _inherit = 'hr.leave'
+    _inherit = "hr.leave"
 
     def _get_employee_leave_manager(self, employee_id):
+        """Recursive function to get the nearest parent (hierachically) with
+        super-manager rights.
+        """
         parent_id = employee_id.parent_id
         is_manager = parent_id.user_id.has_group(
-            'hr_holidays_manager.group_hr_holidays_supermanager'
+            "hr_holidays_manager.group_hr_holidays_supermanager"
         )
         if parent_id:
             if is_manager:
@@ -18,7 +21,7 @@ class HolidaysRequest(models.Model):
             else:
                 return self._get_employee_leave_manager(parent_id)
         else:
-            return self.env['hr.employee']
+            return self.env["hr.employee"]
 
     def _sync_employee_details(self):
         super()._sync_employee_details()
