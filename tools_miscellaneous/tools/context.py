@@ -7,12 +7,12 @@ DUMMY_ACTIVE_ID = "#ACTIVE_ID"
 
 
 def safe_eval_action_context_string_to_dict(action):
-    return safe_eval_active_context_string_to_dict(action.get('context', '{}'))
+    return safe_eval_active_context_string_to_dict(action.get("context", "{}"))
 
 
 def safe_eval_active_context_string_to_dict(context):
     locals_dict = {
-        'active_id': DUMMY_ACTIVE_ID,
+        "active_id": DUMMY_ACTIVE_ID,
     }
     try:
         ctx_as_dict = safe_eval(

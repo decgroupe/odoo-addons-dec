@@ -4,11 +4,11 @@
 from odoo import fields
 
 
-class Bench():
+class Bench:
     def __init__(self):
         """Create instance of Bench class."""
-        self.start_time = float('nan')
-        self.stop_time = float('nan')
+        self.start_time = float("nan")
+        self.stop_time = float("nan")
         self.total_seconds = 0
         self.hours = 0
         self.minutes = 0
@@ -35,7 +35,7 @@ class Bench():
         """
         Return time elapsed.
         """
-        res = '{:02}:{:02}:{:02}'.format(
+        res = "{:02}:{:02}:{:02}".format(
             int(self.hours),
             int(self.minutes),
             int(self.seconds),
