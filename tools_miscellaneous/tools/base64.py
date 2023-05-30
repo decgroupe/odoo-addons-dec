@@ -60,6 +60,5 @@ def convert_images_to_attachments(record, field_name):
             field_name: _image_dataurl.sub(
                 base64_to_boundary, tools.ustr(record[field_name])
             ),
-            "attachment_ids": attachment_ids,
         }
     )
