@@ -4,11 +4,11 @@
 import re
 import string
 
-from odoo import models, fields, api
+from odoo import fields, models
 
 
 class DocumentPage(models.Model):
-    _inherit = 'document.page'
+    _inherit = "document.page"
 
     content_markdown = fields.Text(
         string="Content",
@@ -26,7 +26,7 @@ class DocumentPage(models.Model):
                 if rec.content_markdown != rec.history_head.content_markdown:
                     rec._create_history(
                         {
-                            "name": vals.get('draft_name') or rec.draft_name,
+                            "name": vals.get("draft_name") or rec.draft_name,
                             "summary": rec.draft_summary,
                             "content": rec.content,
                             "content_markdown": rec.content_markdown,
@@ -36,6 +36,6 @@ class DocumentPage(models.Model):
 
     def _create_history(self, vals):
         self.ensure_one()
-        if 'content_markdown' not in vals:
-            vals['content_markdown'] = self.content_markdown
+        if "content_markdown" not in vals:
+            vals["content_markdown"] = self.content_markdown
         return super()._create_history(vals)

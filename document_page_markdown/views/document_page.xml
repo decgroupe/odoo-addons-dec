@@ -1,13 +1,13 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_wiki_form_view">
         <field name="name">document.page.form@document_page_markdown</field>
         <field name="model">document.page</field>
-        <field name="inherit_id" ref="document_page.view_wiki_form"/>
+        <field name="inherit_id" ref="document_page.view_wiki_form" />
         <field name="arch" type="xml">
             <field name="content" position="after">
-                <field name="content_markdown" widget="bootstrap_markdown"/>
+                <field name="content_markdown" widget="bootstrap_markdown" />
             </field>
         </field>
     </record>
@@ -15,7 +15,7 @@
     <record model="ir.ui.view" id="document_page_search_view">
         <field name="name">document.page.search@document_page_markdown</field>
         <field name="model">document.page</field>
-        <field name="inherit_id" ref="document_page.view_wiki_filter"/>
+        <field name="inherit_id" ref="document_page.view_wiki_filter" />
         <field name="arch" type="xml">
             <field name="name" position="attributes">
                 <attribute name="filter_domain">
