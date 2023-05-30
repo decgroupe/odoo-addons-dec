@@ -4,7 +4,7 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
-        "hr_timesheet",
+        "hr_timesheet_autofill",
         "project_identification",
     ],
     "data": [

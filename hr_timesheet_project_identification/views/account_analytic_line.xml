@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
 
-    <record model="ir.ui.view" id="hr_timesheet_line_form">
+    <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field
             name="name"
         >account.analytic.line.form@hr_timesheet_project_identification</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+        <field name="inherit_id" ref="hr_timesheet_autofill.hr_timesheet_line_form_view" />
         <field name="arch" type="xml">
             <xpath
                 expr="//form/sheet//field[@name='project_id']/parent::group/parent::group"
