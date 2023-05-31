@@ -3,13 +3,13 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import api, models
 
 _logger = logging.getLogger(__name__)
 
 
 class MailMessage(models.AbstractModel):
-    _inherit = 'mail.message'
+    _inherit = "mail.message"
 
     @api.model
     def create(self, vals):
