@@ -1,27 +1,24 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2022
 
-import logging
 
-from odoo import tools, fields, models, _
+from odoo import fields, models, tools
 
-_logger = logging.getLogger(__name__)
 
 
 class MailMessageSubtype(models.Model):
-    _inherit = 'mail.message.subtype'
+    _inherit = "mail.message.subtype"
 
     excluded_res_model_ids = fields.Many2many(
-        comodel_name='ir.model',
-        string='Excluded models',
-        help="This subtype will not be included as default for models "
-        "in this list.",
+        comodel_name="ir.model",
+        string="Excluded models",
+        help="This subtype will not be included as default for models " "in this list.",
         domain="[('transient', '=', False)]",
     )
 
     def _filter_subtypes(self, model_name, pack_ids):
         if model_name:
-            domain = [('excluded_res_model_ids.model', '=', model_name)]
+            domain = [("excluded_res_model_ids.model", "=", model_name)]
             excluded_ids = self.search(domain)
             if excluded_ids.ids:
                 filtered_array_ids = []
@@ -31,18 +28,22 @@ class MailMessageSubtype(models.Model):
                 return filtered_array_ids
         return pack_ids
 
-    @tools.ormcache('self.env.uid', 'model_name')
+    @tools.ormcache("self.env.uid", "model_name")
     def _get_auto_subscription_subtypes(self, model_name):
-        child_ids, def_ids, all_int_ids, parent, relation = super(
-        )._get_auto_subscription_subtypes(model_name)
+        (
+            child_ids,
+            def_ids,
+            all_int_ids,
+            parent,
+            relation,
+        ) = super()._get_auto_subscription_subtypes(model_name)
         # Apply filtering and unpack values
-        def_ids, = self._filter_subtypes(model_name, [def_ids])
+        (def_ids,) = self._filter_subtypes(model_name, [def_ids])
         return child_ids, def_ids, all_int_ids, parent, relation
 
-    @tools.ormcache('self.env.uid', 'model_name')
+    @tools.ormcache("self.env.uid", "model_name")
     def _default_subtypes(self, model_name):
-        subtype_ids, internal_ids, external_ids = super(
-        )._default_subtypes(model_name)
+        subtype_ids, internal_ids, external_ids = super()._default_subtypes(model_name)
         # Apply filtering and unpack values
         subtype_ids, internal_ids, external_ids = self._filter_subtypes(
             model_name, [subtype_ids, internal_ids, external_ids]

@@ -1,18 +1,15 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2022
 
-import logging
 
-from odoo import fields, models, api, tools
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     auto_subscribe_on_tag = fields.Boolean(
-        string='Auto subscribe on tag',
+        string="Auto subscribe on tag",
         default=True,
         help="If checked, will be automatically added as a follower "
         "of any model with chatter support when tagged in "
@@ -20,14 +17,14 @@ class ResPartner(models.Model):
         "to the context in `message_post()`",
     )
     auto_subscribe_on_message = fields.Boolean(
-        string='Auto subscribe on message',
+        string="Auto subscribe on message",
         default=True,
         help="If checked, will be automatically added as a follower "
         "of any model with chatter support when a new message is posted or "
         "answered in the chat.",
     )
     auto_subscribe_on_activity = fields.Boolean(
-        string='Auto subscribe on activity',
+        string="Auto subscribe on activity",
         default=True,
         help="If checked, will be automatically added as a follower "
         "of any model with activity support when an activity is assigned "
