@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2022
 
-from odoo import models, api, fields
+from odoo import models
 
 
 class HrExpenseSheet(models.Model):
@@ -14,7 +14,7 @@ class HrExpenseSheet(models.Model):
         if self.user_id:
             key, value = self._get_user_assigned_extra_field_value(
                 self,
-                'employee_id',
+                "employee_id",
             )
             res[key] = value
         return res
