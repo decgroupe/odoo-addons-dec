@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <!-- Discuss utility templates for notifications -->
@@ -10,10 +10,10 @@
                     <ul>
                         <li t-foreach="extra_values" t-as="extra">
                             <small>
-                                <t t-esc="extra"/>
+                                <t t-esc="extra" />
                             </small>:
                             <b>
-                                <t t-esc="extra_value"/>
+                                <t t-esc="extra_value" />
                             </b>
                         </li>
                     </ul>
