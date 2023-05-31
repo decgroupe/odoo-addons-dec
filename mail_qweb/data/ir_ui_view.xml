@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <template id="view_email_template_part_avatar">
@@ -19,15 +19,26 @@
                 line-height:20px;
             }
         </style>
-        <table class="table_avatar" align="center" cellspacing="0" cellpadding="0" border="0">
+        <table
+            class="table_avatar"
+            align="center"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+        >
             <tbody>
                 <tr style="line-height:normal">
                     <td style="padding-right:8px" align="right">
-                        <img class="img_avatar" t-attf-src="/web/image/res.users/{{object.id}}/image_128" width="20" height="20"/>
+                        <img
+                            class="img_avatar"
+                            t-attf-src="/web/image/res.users/{{object.id}}/image_128"
+                            width="20"
+                            height="20"
+                        />
                     </td>
                     <td>
                         <a t-if="object.login">
-                            <t t-esc="object.login"></t>
+                            <t t-esc="object.login" />
                         </a>
                     </td>
                 </tr>
@@ -58,15 +69,32 @@
             </div>
             <!-- <div>Cet e-mail vous a été envoyé pour vous informer de modifications importantes apportées à votre compte (DEC-ID) et aux services DEC que vous utilisez.</div> -->
             <div>
-                <t t-esc="'%s %d' % ('©', datetime.datetime.now().year)"></t>
-                <t t-esc="env.user.company_id.name"></t>
-                <t t-esc="env.user.company_id.partner_id.partner_company_type_id.shortcut"></t>
+                <t t-esc="'%s %d' % ('©', datetime.datetime.now().year)" />
+                <t t-esc="env.user.company_id.name" />
+                <t
+                    t-esc="env.user.company_id.partner_id.partner_company_type_id.shortcut"
+                />
 ,                <a>
-                    <t t-if="env.user.company_id.partner_id.street" t-esc="env.user.company_id.partner_id.street"/>
-                    <t t-if="env.user.company_id.partner_id.street2" t-esc="env.user.company_id.partner_id.street2"/>
-                    <t t-if="env.user.company_id.partner_id.zip" t-esc="env.user.company_id.partner_id.zip"/>
-                    <t t-if="env.user.company_id.partner_id.city" t-esc="env.user.company_id.partner_id.city"/>
-                    <t t-if="env.user.company_id.partner_id.country_id" t-esc="env.user.company_id.partner_id.country_id.code"/>
+                    <t
+                        t-if="env.user.company_id.partner_id.street"
+                        t-esc="env.user.company_id.partner_id.street"
+                    />
+                    <t
+                        t-if="env.user.company_id.partner_id.street2"
+                        t-esc="env.user.company_id.partner_id.street2"
+                    />
+                    <t
+                        t-if="env.user.company_id.partner_id.zip"
+                        t-esc="env.user.company_id.partner_id.zip"
+                    />
+                    <t
+                        t-if="env.user.company_id.partner_id.city"
+                        t-esc="env.user.company_id.partner_id.city"
+                    />
+                    <t
+                        t-if="env.user.company_id.partner_id.country_id"
+                        t-esc="env.user.company_id.partner_id.country_id.code"
+                    />
                 </a>
             </div>
         </div>
@@ -158,39 +186,80 @@
             <body>
 
                 <div class="div_root" bgcolor="#FFFFFF">
-                    <table class="table_root" width="100%" lang="en" height="100%" cellspacing="0" cellpadding="0" border="0">
+                    <table
+                        class="table_root"
+                        width="100%"
+                        lang="en"
+                        height="100%"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                    >
                         <tbody>
                             <tr style="height:32px" height="32">
-                                <td></td>
+                                <td />
                             </tr>
                             <tr align="center">
                                 <td>
                                     <div>
-                                        <table class="table_content" cellspacing="0" cellpadding="0" border="0">
+                                        <table
+                                            class="table_content"
+                                            cellspacing="0"
+                                            cellpadding="0"
+                                            border="0"
+                                        >
                                             <tbody>
                                                 <tr>
-                                                    <td style="width:8px" width="8"></td>
+                                                    <td style="width:8px" width="8" />
                                                     <td>
-                                                        <div class="div_content_border" align="center">
-                                                            <img t-attf-src="/web/image/website/{{env.user.company_id.id}}/logo" class="img_logo" t-attf-alt="{{env.user.company_id.name}}" height="24"/>
-                                                            <div class="div_content_subject_container">
-                                                                <div class="div_content_subject">
-                                                                    <t t-esc="email_template.subject" />
+                                                        <div
+                                                            class="div_content_border"
+                                                            align="center"
+                                                        >
+                                                            <img
+                                                                t-attf-src="/web/image/website/{{env.user.company_id.id}}/logo"
+                                                                class="img_logo"
+                                                                t-attf-alt="{{env.user.company_id.name}}"
+                                                                height="24"
+                                                            />
+                                                            <div
+                                                                class="div_content_subject_container"
+                                                            >
+                                                                <div
+                                                                    class="div_content_subject"
+                                                                >
+                                                                    <t
+                                                                        t-esc="email_template.subject"
+                                                                    />
                                                                 </div>
-                                                                <t t-call="mail_qweb.view_email_template_part_avatar"/>
+                                                                <t
+                                                                    t-call="mail_qweb.view_email_template_part_avatar"
+                                                                />
                                                             </div>
 
-                                                            <div t-if="content_message" class="div_content_message">
-                                                                <t t-raw="content_message"/>
+                                                            <div
+                                                                t-if="content_message"
+                                                                class="div_content_message"
+                                                            >
+                                                                <t
+                                                                    t-raw="content_message"
+                                                                />
                                                             </div>
-                                                            <div t-if="content_footer" class="div_content_footer">
-                                                                <t t-raw="content_footer"/>
+                                                            <div
+                                                                t-if="content_footer"
+                                                                class="div_content_footer"
+                                                            >
+                                                                <t
+                                                                    t-raw="content_footer"
+                                                                />
                                                             </div>
                                                         </div>
 
-                                                        <t t-call="mail_qweb.view_email_template_part_footer"/>
+                                                        <t
+                                                            t-call="mail_qweb.view_email_template_part_footer"
+                                                        />
                                                     </td>
-                                                    <td style="width:8px" width="8"></td>
+                                                    <td style="width:8px" width="8" />
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -199,7 +268,7 @@
                                 </td>
                             </tr>
                             <tr style="height:32px" height="32">
-                                <td></td>
+                                <td />
                             </tr>
                         </tbody>
                     </table>
