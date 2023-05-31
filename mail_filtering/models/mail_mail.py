@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import api, models, _
+from odoo import api, models
 from odoo.tools import ormcache
 from odoo.tools.config import config, to_list
 
@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 
 
 class MailMail(models.AbstractModel):
-    _inherit = 'mail.mail'
+    _inherit = "mail.mail"
 
     @api.model
     @ormcache()
@@ -26,7 +26,7 @@ class MailMail(models.AbstractModel):
     #     self.env.context = {}
     #     for server_id, mail_batch in super()._split_by_server():
     #         # Use dirty context hook to pass mail server data
-    #         self.env.context.update({'mail_server_id': server_id})
+    #         self.env.context.update({"mail_server_id": server_id})
     #         yield server_id, mail_batch
 
     @api.model
@@ -43,7 +43,7 @@ class MailMail(models.AbstractModel):
     ):
         mail_server_id = self.env["ir.mail_server"].sudo()
         # Get the mail server used to create the `smtp_session`
-        if hasattr(smtp_session, 'mail_server_id'):
+        if hasattr(smtp_session, "mail_server_id"):
             mail_server_id = mail_server_id.browse(smtp_session.mail_server_id)
 
         # if self.env.context.get('mail_server_id'):
@@ -58,7 +58,7 @@ class MailMail(models.AbstractModel):
 
         send_allowed = False
         if mail_server_id.allowed_databases:
-            if mail_server_id.allowed_databases == '*':
+            if mail_server_id.allowed_databases == "*":
                 send_allowed = True
             else:
                 send_allowed = self.env.cr.dbname in to_list(
@@ -66,15 +66,16 @@ class MailMail(models.AbstractModel):
                 )
 
         if not send_allowed:
-            send_allowed = self.env.cr.dbname in \
-                self._get_db_process_email_allowedlist()
+            send_allowed = (
+                self.env.cr.dbname in self._get_db_process_email_allowedlist()
+            )
 
         if send_allowed:
             return super()._send(auto_commit, raise_exception, smtp_session)
         else:
-            _logger.info('_send disabled for %s', mail_server_id.name)
-            if self.env.context.get('raise_if_send_not_allowed'):
+            _logger.info("_send disabled for %s", mail_server_id.name)
+            if self.env.context.get("raise_if_send_not_allowed"):
                 raise Exception(
-                    'Sending with %s is not allowed' % (mail_server_id.name)
+                    "Sending with %s is not allowed" % (mail_server_id.name)
                 )
             return False
