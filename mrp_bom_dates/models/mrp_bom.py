@@ -5,14 +5,14 @@ from odoo import fields, models
 
 
 class MrpBom(models.Model):
-    _inherit = 'mrp.bom'
+    _inherit = "mrp.bom"
 
     date_start = fields.Date(
-        'Valid From',
+        string="Valid From",
         copy=False,
     )
-    
+
     date_stop = fields.Date(
-        'Valid Until',
+        string="Valid Until",
         copy=False,
     )
