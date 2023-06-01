@@ -3,18 +3,19 @@
 
 from itertools import chain
 
-from odoo import api, fields, models, _
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
 class ProductPricelist(models.Model):
-    _inherit = 'product.pricelist'
+    _inherit = "product.pricelist"
 
     # This method is a copy/paste of the one in:
     #   ./addons/product/models/product_pricelist.py
     # except that the SQL query is hooked to add sequence in ORDER BY.
     # DO NOT SAVE this file with auto-format, keep original format to
     # follow modifications from original method.
+    # yapf: disable
     def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
         """ Low-level method - Mono pricelist, multi products
         Returns: dict{product_id: (price, suitable_rule) for the given pricelist}
@@ -260,17 +261,19 @@ class ProductPricelist(models.Model):
         
             addto_history(product.id, action='close')
         return results
-
+    # yapf: enable
 
     def price_get_multi_history(self, raw_products_by_qty_by_partner):
-        """ Multi pricelist, multi product  - return tuple """
+        """Multi pricelist, multi product  - return tuple"""
         history = {}
         products_by_qty_by_partner = []
         for product, qty, partner in raw_products_by_qty_by_partner:
             if type(product) == int:
-                product = self.env['product.product'].browse(product)
+                product = self.env["product.product"].browse(product)
             if type(partner) == int:
-                partner = self.env['res.partner'].browse(partner)
+                partner = self.env["res.partner"].browse(partner)
             products_by_qty_by_partner.append((product, qty, partner))
-        res = self.with_context(history=history)._compute_price_rule_multi(products_by_qty_by_partner)
+        res = self.with_context(history=history)._compute_price_rule_multi(
+            products_by_qty_by_partner
+        )
         return history
