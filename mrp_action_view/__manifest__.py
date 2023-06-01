@@ -5,7 +5,11 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "mrp",
+        "product_action_view",
     ],
-    "data": [],
+    "data": [
+        "views/mrp_bom.xml",
+        "views/mrp_production.xml",
+    ],
     "installable": True,
 }

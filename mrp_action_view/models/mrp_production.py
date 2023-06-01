@@ -22,3 +22,8 @@ class MrpProduction(models.Model):
             action["views"] = [(form.id, "form")]
             action["res_id"] = self.ids[0]
         return action
+
+    def action_open_product(self):
+        action = self.mapped("product_id").action_view()
+        action["context"] = {}
+        return action
