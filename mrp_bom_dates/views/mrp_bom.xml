@@ -7,10 +7,12 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
-            <field name="ready_to_produce" position="before">
-                <field name="date_start" />
-                <field name="date_stop" />
-            </field>
+            <xpath expr="//page[@name='miscellaneous']/group[1]" position="inside">
+                <group name="dates">
+                    <field name="date_start" />
+                    <field name="date_stop" />
+                </group>
+            </xpath>
         </field>
     </record>
 
@@ -20,9 +22,6 @@
         <field name="type">tree</field>
         <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
         <field name="arch" type="xml">
-            <field name="sequence" position="attributes">
-                <attribute name="invisible">0</attribute>
-            </field>
             <field name="product_tmpl_id" position="after">
                 <field name="date_start" />
                 <field name="date_stop" />
