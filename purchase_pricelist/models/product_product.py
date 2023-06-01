@@ -1,11 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-import logging
 
 from odoo import models
-
-_logger = logging.getLogger(__name__)
 
 
 class ProductProduct(models.Model):

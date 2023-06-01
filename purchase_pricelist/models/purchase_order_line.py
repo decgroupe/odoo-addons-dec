@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+    _inherit = "purchase.order.line"
 
     # _get_display_price is inspired from the 'sale.order.line'
     # same name function
@@ -18,7 +18,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _get_price_unit(self, product_id, pricelist_id, taxes_id, company_id):
-        res = self.env['account.tax']._fix_tax_included_price_company(
+        res = self.env["account.tax"]._fix_tax_included_price_company(
             self._get_display_price(product_id, pricelist_id),
             product_id.supplier_taxes_id,
             taxes_id,
@@ -37,7 +37,7 @@ class PurchaseOrderLine(models.Model):
             date=order_id.date_order,
             pricelist=order_id.pricelist_id.id,
             uom=product_uom_id.id,
-            fiscal_position=self.env.context.get('fiscal_position')
+            fiscal_position=self.env.context.get("fiscal_position"),
         )
         res = self._get_price_unit(
             product, order_id.pricelist_id, taxes_id, order_id.company_id
@@ -46,14 +46,21 @@ class PurchaseOrderLine(models.Model):
 
     # _onchange_quantity is inspired from the 'sale.order.line'
     # product_id_change function
-    @api.onchange('product_qty', 'product_uom')
+    @api.onchange("product_qty", "product_uom")
     def _onchange_quantity(self):
         super()._onchange_quantity()
-        if self._is_editable() and self.product_id \
-            and self.order_id.pricelist_id and self.order_id.partner_id:
+        if (
+            self._is_editable()
+            and self.product_id
+            and self.order_id.pricelist_id
+            and self.order_id.partner_id
+        ):
             self.price_unit = self._get_price_unit_by_quantity(
-                self.order_id, self.product_id, self.product_uom_qty,
-                self.product_uom, self.taxes_id
+                self.order_id,
+                self.product_id,
+                self.product_uom_qty,
+                self.product_uom,
+                self.taxes_id,
             )
 
     def _suggest_quantity(self):

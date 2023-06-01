@@ -1,31 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_pricelist_tree_view">
         <field name="name">product.pricelist.tree@purchase_pricelist</field>
         <field name="model">product.pricelist</field>
-        <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
+        <field name="inherit_id" ref="product.product_pricelist_view_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="type" invisible="1"/>
+                <field name="type" invisible="1" />
             </field>
             <field name="discount_policy" position="attributes">
-                <attribute name="attrs">{'invisible': [('type', '=', 'purchase')]}</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '=', 'purchase')]}</attribute>
             </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="product_pricelist_form_view" >
+    <record model="ir.ui.view" id="product_pricelist_form_view">
         <field name="name">product.pricelist.form@purchase_pricelist</field>
         <field name="model">product.pricelist</field>
-        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
         <field name="arch" type="xml">
             <field name="discount_policy" position="replace">
-                <field name="type"/>
-                <field name="discount_policy" attrs="{'invisible': [('type', '=', 'purchase')]}"/>
+                <field name="type" />
+                <field
+                    name="discount_policy"
+                    attrs="{'invisible': [('type', '=', 'purchase')]}"
+                />
             </field>
             <field name="country_group_ids" position="replace">
-                <field name="country_group_ids" attrs="{'invisible': [('type', '=', 'purchase')]}"/>
+                <field
+                    name="country_group_ids"
+                    attrs="{'invisible': [('type', '=', 'purchase')]}"
+                />
             </field>
         </field>
     </record>
@@ -33,40 +41,49 @@
     <record model="ir.ui.view" id="product_pricelist_view_kanban">
         <field name="name">product.pricelist.kanban@purchase_pricelist</field>
         <field name="model">product.pricelist</field>
-        <field name="inherit_id" ref="product.product_pricelist_view_kanban"/>
+        <field name="inherit_id" ref="product.product_pricelist_view_kanban" />
         <field name="arch" type="xml">
             <data>
-                <xpath expr='//div[contains(@id, "product_pricelist")]' position="after">
-                    <field name="type"/>
+                <xpath
+                    expr='//div[contains(@id, "product_pricelist")]'
+                    position="after"
+                >
+                    <field name="type" />
                 </xpath>
             </data>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="product.product_pricelist_action2" >
+    <record model="ir.actions.act_window" id="product.product_pricelist_action2">
         <field name="domain">[('type', '=', 'sale')]</field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_product_pricelist" >
+    <record model="ir.actions.act_window" id="act_window_product_pricelist">
         <field name="name">Pricelists</field>
         <field name="res_model">product.pricelist</field>
         <field name="view_mode">form,tree,kanban</field>
         <field name="domain">[('type', '=', 'purchase')]</field>
-        <field name="view_id" ref="product_pricelist_tree_view"/>
+        <field name="view_id" ref="product_pricelist_tree_view" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_product_pricelist_tree" >
-        <field name="sequence" eval="1"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_product_pricelist_tree"
+    >
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="product_pricelist_tree_view"/>
-        <field name="act_window_id" ref="act_window_product_pricelist"/>
+        <field name="view_id" ref="product_pricelist_tree_view" />
+        <field name="act_window_id" ref="act_window_product_pricelist" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_product_pricelist_form" >
-        <field name="sequence" eval="2"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_product_pricelist_form"
+    >
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="product_pricelist_form_view"/>
-        <field name="act_window_id" ref="act_window_product_pricelist"/>
+        <field name="view_id" ref="product_pricelist_form_view" />
+        <field name="act_window_id" ref="act_window_product_pricelist" />
     </record>
 
 </odoo>

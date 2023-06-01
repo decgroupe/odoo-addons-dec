@@ -1,16 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="partner_property_form_view">
         <field name="name">res.partner@purchase_pricelist</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="groups_id" eval="[(4, ref('purchase_pricelist.group_purchase_pricelist'))]"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('purchase_pricelist.group_purchase_pricelist'))]"
+        />
         <field name="arch" type="xml"> 
             <group name="purchase" position="inside">
-                <field name="property_product_pricelist_purchase" groups="purchase_pricelist.group_purchase_pricelist" attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}"/>
-                <div name="parent_pricelists" groups="purchase_pricelist.group_purchase_pricelist" colspan="2" attrs="{'invisible': ['|',('is_company','=',True),('parent_id','=',False)]}">
-                    <p>Pricelists are managed on <button name="open_commercial_entity" type="object" string="the parent company" class="oe_link"/></p>
+                <field
+                    name="property_product_pricelist_purchase"
+                    groups="purchase_pricelist.group_purchase_pricelist"
+                    attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}"
+                />
+                <div
+                    name="parent_pricelists"
+                    groups="purchase_pricelist.group_purchase_pricelist"
+                    colspan="2"
+                    attrs="{'invisible': ['|',('is_company','=',True),('parent_id','=',False)]}"
+                >
+                    <p>Pricelists are managed on <button
+                            name="open_commercial_entity"
+                            type="object"
+                            string="the parent company"
+                            class="oe_link"
+                        /></p>
                 </div>
             </group>
         </field>
