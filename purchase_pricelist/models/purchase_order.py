@@ -12,10 +12,12 @@ class PurchaseOrder(models.Model):
     pricelist_id = fields.Many2one(
         comodel_name="product.pricelist",
         string="Pricelist",
+        check_company=True,  # Unrequired company
         required=False,
         readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
-        domain=[("type", "=", "purchase")],
+        domain="[('type', '=', 'purchase'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        tracking=1,
         help="Pricelist for current purchase order.",
     )
 

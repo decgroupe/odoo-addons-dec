@@ -10,14 +10,5 @@ class SaleOrder(models.Model):
     # Override sale pricelist field from addons/sale/models/sale.py
     # Lock type to sale using domain attribute
     pricelist_id = fields.Many2one(
-        comodel_name="product.pricelist",
-        string="Pricelist",
-        required=True,
-        readonly=True,
-        states={
-            "draft": [("readonly", False)],
-            "sent": [("readonly", False)],
-        },
-        domain=[("type", "=", "sale")],
-        help="Pricelist for current sales order.",
+        domain="[('type', '=', 'sale'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )

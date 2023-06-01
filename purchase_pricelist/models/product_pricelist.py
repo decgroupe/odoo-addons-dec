@@ -41,9 +41,7 @@ class ProductPricelist(models.Model):
         # `partner_ids` might be ID from inactive users. We should use active_test
         # as we will do a search() later (real case for website public user).
         Partner = self.env["res.partner"].with_context(active_test=False)
-        Property = self.env["ir.property"].with_context(
-            force_company=company_id or self.env.user.company_id.id
-        )
+        Property = self.env['ir.property'].with_company(company_id)
         # if no specific property, try to find a fitting pricelist
         result = Property._get_multi(
             "property_product_pricelist_purchase", Partner._name, partner_ids
