@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <record model="ir.ui.view" id="mrp_bom_form_view">
+        <field name="name">mrp.bom.form@mrp_bom_order</field>
+        <field name="model">mrp.bom</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="arch" type="xml">
+            <field name="ready_to_produce" position="before">
+                <field name="sequence" />
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="mrp_bom_tree_view">
         <field name="name">mrp.bom.tree@mrp_bom_order</field>
         <field name="model">mrp.bom</field>
         <field name="type">tree</field>
         <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
         <field name="arch" type="xml">
+            <field name="sequence" position="attributes">
+                <attribute name="widget" />
+            </field>
             <xpath expr="//tree" position="attributes">
                 <attribute name="default_order" remove="product_tmpl_id" />
             </xpath>
