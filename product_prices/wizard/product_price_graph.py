@@ -5,25 +5,25 @@ from odoo import api, fields, models
 
 
 class ProductPriceGraph(models.TransientModel):
-    _name = 'product.price.graph'
-    _description = 'Customize purchase report'
+    _name = "product.price.graph"
+    _description = "Customize purchase report"
 
-    product_id = fields.Many2one('product.product')
+    product_id = fields.Many2one(
+        comodel_name="product.product",
+    )
     default_purchase_price_graph_po_uom = fields.Char(
-        string='Purchase Price Graph',
-        related='product_id.default_purchase_price_graph_po_uom'
+        string="Purchase Price Graph",
+        related="product_id.default_purchase_price_graph_po_uom",
     )
     default_sell_price_graph = fields.Char(
-        string='Sell Price Graph',
-        related='product_id.default_sell_price_graph'
+        string="Sell Price Graph",
+        related="product_id.default_sell_price_graph",
     )
 
     @api.model
     def default_get(self, fields):
         res = super().default_get(fields)
-        active_ids = self.env.context.get('active_ids')
-        if self.env.context.get(
-            'active_model'
-        ) == 'product.product' and active_ids:
-            res['product_id'] = active_ids[0]
+        active_ids = self.env.context.get("active_ids")
+        if self.env.context.get("active_model") == "product.product" and active_ids:
+            res["product_id"] = active_ids[0]
         return res

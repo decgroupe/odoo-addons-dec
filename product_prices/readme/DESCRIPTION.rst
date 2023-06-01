@@ -1,0 +1,1 @@
+Store prices write dates

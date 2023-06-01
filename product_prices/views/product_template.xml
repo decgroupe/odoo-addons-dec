@@ -1,40 +1,76 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_template_form_view">
         <field name="name">product.template.form@product_prices</field>
         <field name="model">product.template</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
             <field name="list_price" position="before">
-                <separator string="Sell price" colspan="2"/>
+                <separator string="Sell price" colspan="2" />
             </field>
             <field name="list_price" position="after">
-                <field name="pricelist_bypass" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
-                <field name="pricelist_bypass_item" attrs="{'invisible':['|', ('sale_ok','!=',True), ('pricelist_bypass','!=',True)]}" groups="base.group_erp_manager"/>
-                <label for="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}"/>
-                <div name="default_sell_price" attrs="{'invisible':[('sale_ok','!=',True)]}">
-                    <field name="default_sell_price" class="default_price"/>
-                    <button name="open_price_graph" string="Open Graph ..." type="object" context="{'sell_price':True}"/>
+                <field
+                    name="pricelist_bypass"
+                    attrs="{'invisible':[('sale_ok','!=',True)]}"
+                />
+                <field
+                    name="pricelist_bypass_item"
+                    attrs="{'invisible':['|', ('sale_ok','!=',True), ('pricelist_bypass','!=',True)]}"
+                    groups="base.group_erp_manager"
+                />
+                <label
+                    for="default_sell_price"
+                    attrs="{'invisible':[('sale_ok','!=',True)]}"
+                />
+                <div
+                    name="default_sell_price"
+                    attrs="{'invisible':[('sale_ok','!=',True)]}"
+                >
+                    <field name="default_sell_price" class="default_price" />
+                    <button
+                        name="open_price_graph"
+                        string="Open Graph ..."
+                        type="object"
+                        context="{'sell_price':True}"
+                    />
                 </div>
-                <label for="price_write_uid" string="Edited" groups="base.group_erp_manager" attrs="{'invisible':[('price_write_uid','=',False)]}" />
-                <div name="price_write_editor" groups="base.group_erp_manager" attrs="{'invisible':[('price_write_uid','=',False)]}">
-                    <field name="price_write_date" nolabel="1" readonly="1"/> by <field name="price_write_uid" readonly="1"/>
+                <label
+                    for="price_write_uid"
+                    string="Edited"
+                    groups="base.group_erp_manager"
+                    attrs="{'invisible':[('price_write_uid','=',False)]}"
+                />
+                <div
+                    name="price_write_editor"
+                    groups="base.group_erp_manager"
+                    attrs="{'invisible':[('price_write_uid','=',False)]}"
+                >
+                    <field name="price_write_date" nolabel="1" readonly="1" /> by <field
+                        name="price_write_uid"
+                        readonly="1"
+                    />
                 </div>
             </field>
             <label for="standard_price" position="before">
-                <separator string="Cost price and purchase price" colspan="2"/>
+                <separator string="Cost price and purchase price" colspan="2" />
             </label>
             <label for="standard_price" position="replace">
-                <label for="standard_price" string="Purchase Price (PO) / Cost Price (MO)" groups="base.group_user" 
+                <label
+                    for="standard_price"
+                    string="Purchase Price (PO) / Cost Price (MO)"
+                    groups="base.group_user"
                     attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
-                    style="min-width: 220px;">
+                    style="min-width: 220px;"
+                >
                 </label>
             </label>
             <div name="standard_price_uom" position="after">
-                <field name="same_uom" invisible="1"/>
-                <field name="standard_price_po_uom" widget='monetary' 
+                <field name="same_uom" invisible="1" />
+                <field
+                    name="standard_price_po_uom"
+                    widget='monetary'
                     attrs="
                         {'invisible':
                             ['|',
@@ -42,23 +78,56 @@
                                 ('same_uom', '=', True)]
                         }"
                 />
-                <label for="default_purchase_price_po_uom" string="Purchase Prices" attrs="{'invisible':[('purchase_ok','!=',True)]}"/>
-                <div name="default_purchase_price" attrs="{'invisible':[('purchase_ok','!=',True)]}">
+                <label
+                    for="default_purchase_price_po_uom"
+                    string="Purchase Prices"
+                    attrs="{'invisible':[('purchase_ok','!=',True)]}"
+                />
+                <div
+                    name="default_purchase_price"
+                    attrs="{'invisible':[('purchase_ok','!=',True)]}"
+                >
                     <div>
-                        <small><field name="default_purchase_price" nolabel="1" attrs="{'invisible':[('same_uom','=',True)]}" class="default_price"/></small>
+                        <small><field
+                                name="default_purchase_price"
+                                nolabel="1"
+                                attrs="{'invisible':[('same_uom','=',True)]}"
+                                class="default_price"
+                            /></small>
                     </div>
                     <div>
-                        <field name="default_purchase_price_po_uom" class="default_price"/>
-                        <button name="open_price_graph" string="Open Graph ..." type="object" context="{'purchase_price':True}"/>
+                        <field
+                            name="default_purchase_price_po_uom"
+                            class="default_price"
+                        />
+                        <button
+                            name="open_price_graph"
+                            string="Open Graph ..."
+                            type="object"
+                            context="{'purchase_price':True}"
+                        />
                     </div>
                 </div>
-                <label for="standard_price_write_uid" string="Edited" groups="base.group_erp_manager" attrs="{'invisible':[('standard_price_write_uid','=',False)]}" />
-                <div name="standard_price_write_editor" groups="base.group_erp_manager" attrs="{'invisible':[('standard_price_write_uid','=',False)]}">
-                    <field name="standard_price_write_date" nolabel="1" readonly="1"/> by <field name="standard_price_write_uid" readonly="1"/>
+                <label
+                    for="standard_price_write_uid"
+                    string="Edited"
+                    groups="base.group_erp_manager"
+                    attrs="{'invisible':[('standard_price_write_uid','=',False)]}"
+                />
+                <div
+                    name="standard_price_write_editor"
+                    groups="base.group_erp_manager"
+                    attrs="{'invisible':[('standard_price_write_uid','=',False)]}"
+                >
+                    <field
+                        name="standard_price_write_date"
+                        nolabel="1"
+                        readonly="1"
+                    /> by <field name="standard_price_write_uid" readonly="1" />
                 </div>
             </div>
             <field name="uom_id" position="before">
-                <separator string="Unit of Measure" colspan="2"/>
+                <separator string="Unit of Measure" colspan="2" />
             </field>
         </field>
     </record>

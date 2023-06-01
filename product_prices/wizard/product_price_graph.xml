@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_price_graph_view">
@@ -8,12 +8,20 @@
         <field name="arch" type="xml">
             <form string="Price Graph">
                 <group>
-                    <field name="product_id" invisible="1"/>
+                    <field name="product_id" invisible="1" />
                 </group>
-                    <field name="default_sell_price_graph" widget="mermaid" invisible="not context.get('sell_price', False)"/>
-                    <field name="default_purchase_price_graph_po_uom" widget="mermaid" invisible="not context.get('purchase_price', False)"/>
+                    <field
+                    name="default_sell_price_graph"
+                    widget="mermaid"
+                    invisible="not context.get('sell_price', False)"
+                />
+                    <field
+                    name="default_purchase_price_graph_po_uom"
+                    widget="mermaid"
+                    invisible="not context.get('purchase_price', False)"
+                />
                 <footer>
-                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary" />
                 </footer>
             </form>
         </field>
@@ -23,7 +31,7 @@
         <field name="name">Price Graph</field>
         <field name="res_model">product.price.graph</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="product_prices.product_price_graph_view"/>
+        <field name="view_id" ref="product_prices.product_price_graph_view" />
         <field name="target">new</field>
     </record>
 
