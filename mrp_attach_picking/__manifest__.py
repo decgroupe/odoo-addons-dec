@@ -1,18 +1,15 @@
 {
-    'name': 'Manufacturing Attach Picking',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary':
-        'When a manufacturing order is created manually, it will be '
-        'moved to stock location. But sometimes you need to assign it to an'
-        'existing delivery picking',
-    'depends': ['mrp', ],
-    'data':
-        [
-            'wizard/mrp_attach_picking.xml',
-            'views/mrp_production.xml',
-            'security/ir.model.access.csv',
-        ],
-    'installable': True
+    "name": "Manufacturing Attach Picking",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "mrp",
+    ],
+    "data": [
+        "wizard/mrp_attach_picking.xml",
+        "views/mrp_production.xml",
+        "security/ir.model.access.csv",
+    ],
+    "installable": True,
 }

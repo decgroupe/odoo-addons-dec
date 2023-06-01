@@ -1,0 +1,1 @@
+When a manufacturing order is created manually, it will be moved to stock location. But sometimes you need to assign it to an existing delivery picking.
