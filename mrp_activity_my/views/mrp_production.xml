@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_tree_view">
         <field name="name">mrp.production.tree@mrp_activity_my</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
             <field name="name" position="attributes">
                 <attribute name="decoration-bf">1</attribute>
@@ -14,7 +14,7 @@
             </field>
             <field name="origin" position="before">
                 <!-- WARNING: the string character is a non-breaking space (NBSP) since nolabel="1" is not available in 12.0 -->
-                <field name="activity_my_ids" widget="list_activity_my" string=" "/>
+                <field name="activity_my_ids" widget="list_activity_my" string=" " />
             </field>
         </field>
     </record>
@@ -22,15 +22,18 @@
     <record model="ir.ui.view" id="mrp_production_kanban_view">
         <field name="name">mrp.production.kanban@mrp_activity_my</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_kanban_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_kanban_view" />
         <field name="arch" type="xml">
             <xpath expr="//kanban/templates" position="before">
-                <field name="activity_my_ids"/>
-                <field name="activity_my_state"/>
-                <progressbar field="activity_my_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                <field name="activity_my_ids" />
+                <field name="activity_my_state" />
+                <progressbar
+                    field="activity_my_state"
+                    colors='{"planned": "success", "today": "warning", "overdue": "danger"}'
+                />
             </xpath>
             <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
-                <field name="activity_my_ids" widget="kanban_activity_my"/>
+                <field name="activity_my_ids" widget="kanban_activity_my" />
             </xpath>
         </field>
     </record>
@@ -38,18 +41,20 @@
     <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
         <field name="name">mrp.production.kanban@mrp_activity_my</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp_stage.mrp_production_staged_kanban_view"/>
+        <field name="inherit_id" ref="mrp_stage.mrp_production_staged_kanban_view" />
         <field name="arch" type="xml">
             <xpath expr="//kanban/templates" position="before">
-                <field name="activity_my_ids"/>
-                <field name="activity_my_state"/>
-                <progressbar field="activity_my_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                <field name="activity_my_ids" />
+                <field name="activity_my_state" />
+                <progressbar
+                    field="activity_my_state"
+                    colors='{"planned": "success", "today": "warning", "overdue": "danger"}'
+                />
             </xpath>
             <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
-                <field name="activity_my_ids" widget="kanban_activity_my"/>
+                <field name="activity_my_ids" widget="kanban_activity_my" />
             </xpath>
         </field>
     </record>
-
 
 </odoo>
