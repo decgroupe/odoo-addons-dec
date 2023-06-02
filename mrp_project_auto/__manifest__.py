@@ -1,14 +1,15 @@
 {
-    'name': 'Manufacturing Project Auto',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': 'Automatically create or link project',
-    'depends': [
-        'project_identification',
-        'mrp_project',
-        'mrp_sale',
+    "name": "Manufacturing Project Auto",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "project_identification",
+        "mrp_project",
+        "mrp_sale",
     ],
-    'data': ['views/mrp_production.xml', ],
-    'installable': True
+    "data": [
+        "views/mrp_production.xml",
+    ],
+    "installable": True,
 }

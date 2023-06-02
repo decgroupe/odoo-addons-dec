@@ -1,31 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.actions.act_window"  id="production_action_from_project">
+    <record model="ir.actions.act_window" id="production_action_from_project">
         <field name="name">Productions</field>
         <field name="res_model">mrp.production</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="search_view_id" ref="mrp.view_mrp_production_filter" />
     </record>
 
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_project_auto</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='project_id']" position="after">
-                <div colspan="2" 
-                    class="alert alert-info" role="alert" 
+                <div
+                    colspan="2"
+                    class="alert alert-info"
+                    role="alert"
                     style="margin-right: 15px;"
-                    attrs="{'invisible': [('|'), ('allow_timesheets', '=', True), ('project_id', '!=', False)]}">
-                        <button 
-                            name="action_create_project" 
-                            string="Create a Project to use Timesheets" 
-                            context="{'override_project_id':True}"
-                            help="Automatically create a new project based on sale order informations" 
-                            type="object"
-                            icon="fa-puzzle-piece">
+                    attrs="{'invisible': [('|'), ('allow_timesheets', '=', True), ('project_id', '!=', False)]}"
+                >
+                        <button
+                        name="action_create_project"
+                        string="Create a Project to use Timesheets"
+                        context="{'override_project_id':True}"
+                        help="Automatically create a new project based on sale order informations"
+                        type="object"
+                        icon="fa-puzzle-piece"
+                    >
                         </button>
                 </div>
             </xpath>
