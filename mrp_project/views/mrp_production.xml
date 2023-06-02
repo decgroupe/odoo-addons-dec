@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.actions.act_window"  id="production_action_from_project">
+    <record model="ir.actions.act_window" id="production_action_from_project">
         <field name="name">Productions</field>
         <field name="res_model">mrp.production</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="search_view_id" ref="mrp.view_mrp_production_filter" />
     </record>
 
     <record model="ir.ui.view" id="mrp_production_tree_view">
         <field name="name">mrp.production.tree@mrp_project</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
             <field name="state" position="after">
-                <field name="project_id"/>
+                <field name="project_id" />
             </field>
         </field>
     </record>
@@ -22,10 +22,10 @@
     <record model="ir.ui.view" id="mrp_production_filter_view">
         <field name="name">mrp.production.select@mrp_project</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='origin']" position="after">
-                <field name="project_id"/>
+                <field name="project_id" />
             </xpath>
         </field>
     </record>
@@ -34,11 +34,11 @@
         <field name="name">mrp.production.form@mrp_project</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='miscellaneous']/group" position="inside">
                 <group name="project">
-                    <field name="project_id"/>
+                    <field name="project_id" />
                 </group>
             </xpath>
         </field>

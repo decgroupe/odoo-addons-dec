@@ -1,22 +1,34 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
 
     <record model="ir.ui.view" id="edit_project_form_view">
         <field name="name">project.project.form@mrp_project</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="inherit_id" ref="project.edit_project" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_view_all_rating']" position="before">
-                <button class="oe_stat_button" type="action"
-                        icon="fa-wrench" name="%(production_action_from_project)d"
-                        context="{'search_default_project_id': active_id, 'default_project_id': active_id}">
-                    <field string="Productions" name="production_count" widget="statinfo"/>
+                <button
+                    class="oe_stat_button"
+                    type="action"
+                    icon="fa-wrench"
+                    name="%(production_action_from_project)d"
+                    context="{'search_default_project_id': active_id, 'default_project_id': active_id}"
+                >
+                    <field
+                        string="Productions"
+                        name="production_count"
+                        widget="statinfo"
+                    />
                 </button>
             </xpath>
             <xpath expr="//div[@name='options_active']" position="inside">
                 <div>
-                    <label for="label_productions" class="oe_inline" string="Name of productions :"/>
-                    <field name="label_productions" class="oe_inline oe_input_align"/>
+                    <label
+                        for="label_productions"
+                        class="oe_inline"
+                        string="Name of productions :"
+                    />
+                    <field name="label_productions" class="oe_inline oe_input_align" />
                 </div>
             </xpath>
         </field>
@@ -25,22 +37,24 @@
     <record model="ir.ui.view" id="view_project_kanban">
         <field name="name">project.project.kanban@mrp_project</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="inherit_id" ref="project.view_project_kanban" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='task_count']" position="after">
-                <field name="production_count"/>
-                <field name="label_productions"/>
+                <field name="production_count" />
+                <field name="label_productions" />
             </xpath>
             <xpath expr="//a[hasclass('o_project_kanban_box')]" position="after">
-                <a class="o_project_kanban_box"
+                <a
+                    class="o_project_kanban_box"
                     name="%(production_action_from_project)d"
                     type="action"
-                    context="{'search_default_project_id': active_id, 'default_project_id': active_id}">
+                    context="{'search_default_project_id': active_id, 'default_project_id': active_id}"
+                >
                     <span class="o_value">
-                        <t t-esc="record.production_count.value"/>
+                        <t t-esc="record.production_count.value" />
                     </span>
                     <span class="o_label">
-                        <t t-esc="record.label_productions.value"/>
+                        <t t-esc="record.label_productions.value" />
                     </span>
                 </a>
             </xpath>
@@ -50,11 +64,14 @@
     <record id="view_project_search" model="ir.ui.view">
         <field name="name">project.project.select@mrp_project</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="inherit_id" ref="project.view_project_project_filter" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='inactive']" position="after">
-                <filter string="Open Productions" name="filter_open_productions" 
-                    domain="[('todo_production_count', '&gt;', 0)]"/>
+                <filter
+                    string="Open Productions"
+                    name="filter_open_productions"
+                    domain="[('todo_production_count', '&gt;', 0)]"
+                />
             </xpath>
         </field>
     </record>
