@@ -1,17 +1,16 @@
 {
-    'name': 'Manufacturing Purchase',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Service purchase tracking",
-    'depends': [
-        'purchase_subcontracted_service',
-        'mrp_production_service',
+    "name": "Manufacturing Purchase",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "purchase_subcontracted_service",
+        "mrp_production_service",
     ],
-    'data': [
-        'data/mail_activity_template.xml',
-        'views/mrp_production.xml',
-        'views/purchase_order.xml',
+    "data": [
+        "data/mail_activity_template.xml",
+        "views/mrp_production.xml",
+        "views/purchase_order.xml",
     ],
-    'installable': True
+    "installable": True,
 }
