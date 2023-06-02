@@ -1,24 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_project_task</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button type="object"
+                <button
+                    type="object"
                     name="action_view_task"
-                    class="oe_stat_button"  
+                    class="oe_stat_button"
                     icon="fa-tasks"
-                    attrs="{'invisible': [('task_count', '=', 0)]}">
-                    <field name="task_count" widget="statinfo" string="Tasks"/>
+                    attrs="{'invisible': [('task_count', '=', 0)]}"
+                >
+                    <field name="task_count" widget="statinfo" string="Tasks" />
                 </button>
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/parent::page" position="after">
-                <page string="Tasks" name="tasks" attrs="{'invisible': [('task_ids', '=', [])]}">
-                    <field name="task_ids"/>
+                <page
+                    string="Tasks"
+                    name="tasks"
+                    attrs="{'invisible': [('task_ids', '=', [])]}"
+                >
+                    <field name="task_ids" />
                 </page>
             </xpath>
         </field>
@@ -27,24 +33,31 @@
     <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
         <field name="name">mrp.production.kanban@mrp_project_task</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view"/>
-        <field name="priority" eval="12"/>
+        <field name="inherit_id" ref="mrp_partner.mrp_production_staged_kanban_view" />
+        <field name="priority" eval="12" />
         <field name="arch" type="xml">
             <xpath expr="//kanban/field[@name='name']" position="after">
-                <field name="task_progress"/>
+                <field name="task_progress" />
             </xpath>
             <xpath expr="//kanban//templates//div[@name='progress']" position="inside">
                 <t t-if="record.task_progress.raw_value &gt; 0">
-                    <t t-set="p" t-value="record.task_progress.raw_value"/>
+                    <t t-set="p" t-value="record.task_progress.raw_value" />
                     <div class="kanban_progress">
                         <div class="progress_info">
-                            <i class="fa fa-puzzle-piece"/> <span>Task Progress</span>
+                            <i class="fa fa-puzzle-piece" /> <span>Task Progress</span>
                         </div>
-                        <div class ="o_kanban_counter_progress progress kanban_progress_bar">
-                            <div  class ="progress-bar o_bar_has_records kanban_progress_bar_done" t-attf-style="width: #{p}%;">
+                        <div
+                            class="o_kanban_counter_progress progress kanban_progress_bar"
+                        >
+                            <div
+                                class="progress-bar o_bar_has_records kanban_progress_bar_done"
+                                t-attf-style="width: #{p}%;"
+                            >
                             </div>
                         </div>
-                        <div class="kanban_completion"> <t t-esc="record.task_progress.value"/>% </div>
+                        <div class="kanban_completion"> <t
+                                t-esc="record.task_progress.value"
+                            />% </div>
                     </div>
                 </t>
             </xpath>

@@ -5,18 +5,20 @@ from odoo import _, api, fields, models
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     task_ids = fields.One2many(
-        'project.task',
-        'production_id',
-        string='Tasks',
+        comodel_name="project.task",
+        inverse_name="production_id",
+        string="Tasks",
         domain=lambda self: [
-            ('|'), ('type_id', '=', False),
+            ("|"),
+            ("type_id", "=", False),
             (
-                'type_id', '!=',
-                self.env.ref('project_identification.time_tracking_type').id
-            )
+                "type_id",
+                "!=",
+                self.env.ref("project_identification.time_tracking_type").id,
+            ),
         ],
         readonly=True,
         copy=False,
@@ -24,28 +26,25 @@ class MrpProduction(models.Model):
     )
 
     task_count = fields.Integer(
-        compute='_compute_task_count',
+        compute="_compute_task_count",
         store=True,
         string="Number of Tasks",
     )
 
     task_progress = fields.Float(
-        compute='_compute_task_progress',
-        group_operator='avg',
+        compute="_compute_task_progress",
+        group_operator="avg",
         store=True,
-        string='Progress',
+        string="Progress",
     )
 
-    @api.depends('task_ids', 'task_ids.progress', 'task_ids.stage_id')
+    @api.depends("task_ids", "task_ids.progress", "task_ids.stage_id")
     def _compute_task_progress(self):
         self.task_progress = 100
-        for rec in self.filtered('task_ids'):
-            active_task_ids = rec.task_ids.filtered(
-                lambda x: x.stage_id.fold is False
-            )
+        for rec in self.filtered("task_ids"):
+            active_task_ids = rec.task_ids.filtered(lambda x: x.stage_id.fold is False)
             if active_task_ids:
-                value = sum(active_task_ids.mapped("progress")
-                        ) / len(active_task_ids)
+                value = sum(active_task_ids.mapped("progress")) / len(active_task_ids)
             else:
                 value = 100
             rec.task_progress = value
@@ -57,37 +56,37 @@ class MrpProduction(models.Model):
             rec.task_count = len(rec.task_ids)
 
     def action_view_task(self):
-        action = self.mapped('task_ids').action_view()
-        action['context'] = {}
+        action = self.mapped("task_ids").action_view()
+        action["context"] = {}
         return action
 
     def _create_task_prepare_values(self, bom_line, dict):
         self.ensure_one()
         planned_hours = bom_line._convert_qty_company_hours()
-        title = '%s: %s' % (self.name or '', bom_line.display_name)
-        description = bom_line.landmark or ''
+        title = "%s: %s" % (self.name or "", bom_line.display_name)
+        description = bom_line.landmark or ""
         return {
-            'name': title,
-            'planned_hours': planned_hours,
-            'partner_id': self.partner_id.id,
-            'email_from': self.partner_id.email,
-            'description': description,
-            'project_id': self.project_id.id,
-            'exclude_from_sale_order': True,
-            'production_id': self.id,
-            'bom_line_id': bom_line.id,
-            'company_id': self.company_id.id,
-            'user_id': False,  # force non assigned task, as created as sudo()
+            "name": title,
+            "planned_hours": planned_hours,
+            "partner_id": self.partner_id.id,
+            "email_from": self.partner_id.email,
+            "description": description,
+            "project_id": self.project_id.id,
+            "exclude_from_sale_order": True,
+            "production_id": self.id,
+            "bom_line_id": bom_line.id,
+            "company_id": self.company_id.id,
+            "user_id": False,  # force non assigned task, as created as sudo()
         }
 
     def _create_task(self, bom_line, dict):
-        """ Generate task for the given so line, and link it.
-            :param project: record of project.project in which the task should be created
-            :return task: record of the created task
+        """Generate task for the given so line, and link it.
+        :param project: record of project.project in which the task should be created
+        :return task: record of the created task
         """
         values = self._create_task_prepare_values(bom_line, dict)
-        task = self.env['project.task'].sudo().create(values)
-        self.write({'task_id': task.id})
+        task = self.env["project.task"].sudo().create(values)
+        self.write({"task_id": task.id})
         # post message on task
         task_msg = _("This task has been created from: ") + (
             "<a href=# data-oe-model=mrp.production data-oe-id=%d>%s</a> (%s)"
@@ -97,9 +96,11 @@ class MrpProduction(models.Model):
 
     def _action_launch_procurement_rule(self, bom_line, dict):
         self.ensure_one()
-        if self.project_id \
-        and bom_line.product_id.type == 'service' \
-        and bom_line.product_id.service_tracking == 'task_in_project':
+        if (
+            self.project_id
+            and bom_line.product_id.type == "service"
+            and bom_line.product_id.service_tracking == "task_in_project"
+        ):
             self._create_task(bom_line, dict)
             res = True
         else:
@@ -112,9 +113,10 @@ class MrpProduction(models.Model):
         return result
 
     def _activity_cancel_on_task(self):
-        """ If some MO are cancelled, we need to put an activity on their
-            generated task.
+        """If some MO are cancelled, we need to put an activity on their
+        generated task.
         """
+        raise NotImplementedError()
         # purchase_to_notify_map = {
         # }  # map PO -> recordset of POL as {purchase.order: set(mrp.production)}
 
