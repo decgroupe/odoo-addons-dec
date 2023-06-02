@@ -1,11 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     @api.model
     def create(self, values):
@@ -21,7 +21,7 @@ class MrpProduction(models.Model):
                     if move.sale_line_id and move.sale_line_id.order_id:
                         sale_order_id = move.sale_line_id.order_id
                         break
-                move_ids = move_ids.mapped('move_dest_ids')
+                move_ids = move_ids.mapped("move_dest_ids")
         if sale_order_id:
             production.sale_order_id = sale_order_id
             production.partner_id = sale_order_id.partner_shipping_id

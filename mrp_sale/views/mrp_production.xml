@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
         <field name="name">mrp.production.kanban@mrp_partner</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp_stage.mrp_production_staged_kanban_view"/>
+        <field name="inherit_id" ref="mrp_stage.mrp_production_staged_kanban_view" />
         <field name="priority">14</field>
         <field name="arch" type="xml">
             <xpath expr="//kanban/field[@name='name']" position="after">
@@ -13,7 +13,7 @@
             <xpath expr="//kanban//templates//div[@name='body']" position="inside">
                 <div name="origin">
                     <span class="text-muted">
-                        <field name="sale_order_id"/>
+                        <field name="sale_order_id" />
                     </span>
                 </div>
             </xpath>
