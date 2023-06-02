@@ -43,25 +43,22 @@ class Partner(models.Model):
             p.property_product_pricelist_purchase = res.get(p.id)
 
     def _inverse_product_pricelist_purchase(self):
-        Property = self.env["ir.property"]
-        actual = Property.get(
-            "property_product_pricelist_purchase",
-            self._name,
-            "%s,%s" % (self._name, self.id),
-        )
-
-        # update at each change country, and so erase old pricelist
-        if self.property_product_pricelist_purchase or actual:
-            # keep the company of the current user before sudo
-            Property.with_context(
-                force_company=self._context.get(
-                    "force_company", self.env.user.company_id.id
-                )
-            ).sudo().set_multi(
+        for partner in self:
+            Property = self.env["ir.property"]
+            actual = Property._get(
                 "property_product_pricelist_purchase",
-                self._name,
-                {self.id: self.property_product_pricelist_purchase},
+                partner._name,
+                "%s,%s" % (partner._name, partner.id),
             )
+
+            # update at each change country, and so erase old pricelist
+            if partner.property_product_pricelist_purchase or actual:
+                # keep the company of the current user before sudo
+                Property.with_company(partner.company_id).sudo()._set_multi(
+                    "property_product_pricelist_purchase",
+                    partner._name,
+                    {partner.id: partner.property_product_pricelist_purchase},
+                )
 
     def _commercial_fields(self):
         return super(Partner, self)._commercial_fields() + [
