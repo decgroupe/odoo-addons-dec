@@ -11,4 +11,6 @@
         "views/product_pricelist_item.xml",
     ],
     "installable": True,
+    "pre_init_hook": "rename_module",
+
 }
