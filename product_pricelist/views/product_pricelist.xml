@@ -10,29 +10,31 @@
                 <div class="oe_button_box" name="button_box" />
             </xpath>
             <xpath expr="//tree/field[@name='name']" position="before">
-                <field name="sequence" />
+                <field name="sequence"/>
             </xpath>
             <xpath expr="//tree/field[@name='name']" position="after">
-                <field name="product_id" />
-                <field
-                    name="product_tmpl_id"
-                /> <!-- groups="product.group_product_variant"/> -->
-                <field name="categ_id" />
+                <field name="product_tmpl_id" /> 
+                <field name="product_id" groups="product.group_product_variant"/>
+                <field name="categ_id" string="Category" />
             </xpath>
             <field name="base" position="attributes">
                 <attribute name="invisible">0</attribute>
+                <attribute name="optional">show</attribute>
             </field>
             <field name="base" position="after">
                 <field name="base_pricelist_id" />
             </field>
             <field name="price_discount" position="attributes">
                 <attribute name="invisible">0</attribute>
+                <attribute name="optional">show</attribute>
             </field>
             <field name="applied_on" position="attributes">
                 <attribute name="invisible">0</attribute>
+                <attribute name="optional">show</attribute>
             </field>
             <field name="compute_price" position="attributes">
                 <attribute name="invisible">0</attribute>
+                <attribute name="optional">show</attribute>
             </field>
         </field>
     </record>
