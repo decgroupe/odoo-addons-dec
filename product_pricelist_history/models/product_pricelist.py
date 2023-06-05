@@ -3,7 +3,7 @@
 
 from itertools import chain
 
-from odoo import _, api, fields, models, tools
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -233,54 +233,6 @@ class ProductPricelist(models.Model):
             results[product.id] = (price, suitable_rule and suitable_rule.id or False)
 
         return results
-    # yapf: enable
-
-    # This method is a copy/paste of the one in:
-    #   ./addons/product/models/product_pricelist.py
-    # except that `_addto_history` has been added.
-    # yapf: disable
-    def _compute_price(self, price, price_uom, product, quantity=1.0, partner=False):
-        """Compute the unit price of a product in the context of a pricelist application.
-           The unused parameters are there to make the full context available for overrides.
-        """
-        self.ensure_one()
-        convert_to_price_uom = (lambda price: product.uom_id._compute_price(price, price_uom))
-        hkey = (product, quantity, partner)
-        self._addto_history(hkey, _('Base price is now {} ({})').format(price, self.compute_price))
-        if self.compute_price == 'fixed':
-            price = convert_to_price_uom(self.fixed_price)
-            self._addto_history(hkey, _('Price (fixed) set to {}').format(price))
-        elif self.compute_price == 'percentage':
-            price = (price - (price * (self.percent_price / 100))) or 0.0
-            self._addto_history(hkey, _('Price (percentage) set to {}').format(price))
-        else:
-            # complete formula
-            price_limit = price
-            price = (price - (price * (self.price_discount / 100))) or 0.0
-
-            if self.price_discount:
-                self._addto_history(hkey, _('Price discounted to {} ({}%)').format(price, self.price_discount))
-
-            if self.price_round:
-                price = tools.float_round(price, precision_rounding=self.price_round)
-                self._addto_history(hkey, _('Price rounded to {}').format(price))
-
-            if self.price_surcharge:
-                price_surcharge = convert_to_price_uom(self.price_surcharge)
-                price += price_surcharge
-                self._addto_history(hkey, _('Price surcharge applied {} (+{})').format(price, price_surcharge))
-
-            if self.price_min_margin:
-                price_min_margin = convert_to_price_uom(self.price_min_margin)
-                price = max(price, price_limit + price_min_margin)
-                self._addto_history(hkey, _('Price updated (minimum margin) to {}').format(price))
-
-            if self.price_max_margin:
-                price_max_margin = convert_to_price_uom(self.price_max_margin)
-                price = min(price, price_limit + price_max_margin)
-                self._addto_history(hkey, _('Price updated (maximum margin) to {}').format(price))
-
-        return price
     # yapf: enable
 
     def price_get_multi_history(self, raw_products_by_qty_by_partner):
