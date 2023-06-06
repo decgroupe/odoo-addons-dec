@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_pricelist_form_view">
         <field name="name">product.pricelist.form@product_pricelist_analysis</field>
         <field name="model">product.pricelist</field>
-        <field name="inherit_id" ref="product_pricelist.product_pricelist_form_view"/>
+        <field name="inherit_id" ref="product_pricelist_sequence.product_pricelist_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button 
+                <button
                     class="oe_stat_button"
-                    name="action_view_pricelist_items" 
-                    string="Pricelist Items" 
-                    help="Show pricelist items details" 
+                    name="action_view_pricelist_items"
+                    string="Pricelist Items"
+                    help="Show pricelist items details"
                     type="object"
-                    icon="fa-bars">
+                    icon="fa-bars"
+                >
                 </button>
             </xpath>
         </field>

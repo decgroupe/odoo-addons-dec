@@ -1,66 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_pricelist_item_tree_view_from_product">
-        <field name="name">product.pricelist.item.tree@product_pricelist_analysis</field>
+        <field
+            name="name"
+        >product.pricelist.item.tree@product_pricelist_analysis</field>
         <field name="model">product.pricelist.item</field>
-        <field name="inherit_id" ref="product.product_pricelist_item_tree_view_from_product"/>
+        <field
+            name="inherit_id"
+            ref="product.product_pricelist_item_tree_view_from_product"
+        />
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <field name="pricelist_id" invisible="1"/>
+                <field name="pricelist_id" invisible="1" />
             </field>
             <field name="categ_id" position="after">
-                <field name="price" string="Price"/>
-                <field name="base"/>
-                <field name="base_pricelist_id"/>
-                <field name="price_discount"/>
-                <field name="applied_on"/>
-                <field name="compute_price"/>
+                <field name="price" string="Price" />
+                <field name="base" />
+                <field name="base_pricelist_id" />
+                <field name="price_discount" />
+                <field name="applied_on" />
+                <field name="compute_price" />
             </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="product_pricelist_item_form_view" >
-        <field name="name">product.pricelist.item.form@product_pricelist_analysis</field>
+    <record model="ir.ui.view" id="product_pricelist_item_form_view">
+        <field
+            name="name"
+        >product.pricelist.item.form@product_pricelist_analysis</field>
         <field name="model">product.pricelist.item</field>
-        <field name="inherit_id" ref="product_pricelist.product_pricelist_item_form_view"/>
+        <field
+            name="inherit_id"
+            ref="product_pricelist_sequence.product_pricelist_item_form_view"
+        />
         <field name="arch" type="xml">
             <xpath expr="//h1" position="before">
-                <field name="pricelist_id"/>
+                <field name="pricelist_id" />
             </xpath>
         </field>
     </record>
 
     <record model="ir.ui.view" id="product_pricelist_item_search_view">
-        <field name="name">product.pricelist.item.form@product_pricelist_analysis</field>
+        <field
+            name="name"
+        >product.pricelist.item.form@product_pricelist_analysis</field>
         <field name="model">product.pricelist.item</field>
         <field name="arch" type="xml">
             <search string="Search">
-                <field name="sequence"/>
-                <field name="pricelist_id"/>
-                <field name="product_tmpl_id"/>
-                <field name="product_id" groups="product.group_product_variant"/>
-                <separator/>
-                <filter string="Sale Pricelist" name="filter_pricelist_sale" domain="[('pricelist_id.type','=','sale')]"/>
-                <filter string="Purchase Pricelist" name="filter_pricelist_purchase" domain="[('pricelist_id.type','=','purchase')]"/>
-                <separator/>
-                <filter string="Permanent" name="filter_permanent" domain="[('date_start','=',False), ('date_end','=',False)]"/>
+                <field name="sequence" />
+                <field name="pricelist_id" />
+                <field name="product_tmpl_id" />
+                <field name="product_id" groups="product.group_product_variant" />
+                <separator />
+                <filter
+                    string="Sale Pricelist"
+                    name="filter_pricelist_sale"
+                    domain="[('pricelist_id.type','=','sale')]"
+                />
+                <filter
+                    string="Purchase Pricelist"
+                    name="filter_pricelist_purchase"
+                    domain="[('pricelist_id.type','=','purchase')]"
+                />
+                <separator />
+                <filter
+                    string="Permanent"
+                    name="filter_permanent"
+                    domain="[('date_start','=',False), ('date_end','=',False)]"
+                />
                 <group string="Group By" name="groupby">
-                    <filter string="Sequence" name="groupby_sequence" context="{'group_by':'sequence'}"/>
-                    <filter string="Pricelist" name="groupby_pricelist" context="{'group_by':'pricelist_id'}"/>
-                    <filter string="Category" name="groupby_category" context="{'group_by':'categ_id'}"/>
-                    <filter string="Product" name="groupby_product_template" context="{'group_by':'product_tmpl_id'}"/>
-                    <filter string="Variant" name="groupby_product_variant" context="{'group_by':'product_id'}"/> <!-- groups="product.group_product_variant"/> -->
+                    <filter
+                        string="Sequence"
+                        name="groupby_sequence"
+                        context="{'group_by':'sequence'}"
+                    />
+                    <filter
+                        string="Pricelist"
+                        name="groupby_pricelist"
+                        context="{'group_by':'pricelist_id'}"
+                    />
+                    <filter
+                        string="Category"
+                        name="groupby_category"
+                        context="{'group_by':'categ_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="groupby_product_template"
+                        context="{'group_by':'product_tmpl_id'}"
+                    />
+                    <filter
+                        string="Variant"
+                        name="groupby_product_variant"
+                        context="{'group_by':'product_id'}"
+                    /> <!-- groups="product.group_product_variant"/> -->
                 </group>
             </search>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_product_pricelist_item" >
+    <record model="ir.actions.act_window" id="act_window_product_pricelist_item">
         <field name="name">Pricelist Items</field>
         <field name="res_model">product.pricelist.item</field>
         <field name="view_mode">form,tree</field>
-        <field name="search_view_id" ref="product_pricelist_item_search_view"/>
+        <field name="search_view_id" ref="product_pricelist_item_search_view" />
         <field name="context">
                 {
                     'search_default_groupby_pricelist':1,
@@ -68,18 +112,24 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_product_pricelist_item_tree" >
-        <field name="sequence" eval="1"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_product_pricelist_item_tree"
+    >
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="product_pricelist_item_tree_view_from_product"/>
-        <field name="act_window_id" ref="act_window_product_pricelist_item"/>
+        <field name="view_id" ref="product_pricelist_item_tree_view_from_product" />
+        <field name="act_window_id" ref="act_window_product_pricelist_item" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_product_pricelist_item_form" >
-        <field name="sequence" eval="2"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_product_pricelist_item_form"
+    >
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="product_pricelist_item_form_view"/>
-        <field name="act_window_id" ref="act_window_product_pricelist_item"/>
+        <field name="view_id" ref="product_pricelist_item_form_view" />
+        <field name="act_window_id" ref="act_window_product_pricelist_item" />
     </record>
 
 </odoo>
