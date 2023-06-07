@@ -79,6 +79,7 @@
                             <field name="user_id"/>
                             <field name="origin"/>
                             <field name="partner_id"/>
+                            <field name="partner_referral_id"/>
                         </group>
                     </group>
                     <group name="licenses">
