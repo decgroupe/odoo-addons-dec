@@ -7,6 +7,7 @@
         "sale_timesheet",
         "sale_project",
         "software_license_pass",
+        "partner_commercial_fencing",
     ],
     "data": [
         "views/software_license_pass.xml",

@@ -89,8 +89,10 @@ class SaleOrderLine(models.Model):
         # Post-write pass data to propagate values to all licenses created
         # during the `action_resync_with_pack`
         today = fields.Date.from_string(fields.Date.context_today(self))
+        partner_shipping_id = self.order_id.partner_shipping_id
         vals = {
-            "partner_id": self.order_id.partner_shipping_id.id,
+            "partner_id": partner_shipping_id.unfenced_commercial_partner_id.id,
+            "partner_referral_id": partner_shipping_id.id,
         }
         sale_pass_data = self._get_sale_application_pass_data(today)
         vals.update(sale_pass_data)
