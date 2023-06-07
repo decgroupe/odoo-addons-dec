@@ -108,6 +108,13 @@ class SoftwareLicensePass(models.Model):
         string="Partner",
         copy=False,
     )
+    partner_referral_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Referral partner",
+        copy=False,
+        default=lambda self: self.partner_id,
+        track_visibility="onchange",
+    )
     license_ids = fields.One2many(
         comodel_name="software.license",
         inverse_name="pass_id",

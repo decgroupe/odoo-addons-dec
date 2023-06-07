@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 13:27+0000\n"
-"PO-Revision-Date: 2023-02-09 14:27+0100\n"
+"POT-Creation-Date: 2023-06-07 12:37+0000\n"
+"PO-Revision-Date: 2023-06-07 14:39+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: software_license_pass
 #: model:mail.template,report_name:software_license_pass.email_template
@@ -29,7 +29,7 @@ msgid "%s (%s for %s)"
 msgstr "%s (%s pour %s)"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:155
+#: code:addons/software_license_pass/models/software_license_pass.py:162
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copie)"
@@ -39,9 +39,9 @@ msgstr "%s (copie)"
 msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
 "    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Dear ${object.partner_id.name}\n"
-"        % if object.partner_id.parent_id:\n"
-"            (${object.partner_id.parent_id.name})\n"
+"        Dear ${object.partner_referral_id.name or object.partner_id.name}\n"
+"        % if object.partner_id.unfenced_commercial_partner_id and object.partner_id.unfenced_commercial_partner_id != object.partner_id:\n"
+"            (${object.partner_id.unfenced_commercial_partner_id.name})\n"
 "        % endif\n"
 "        <br/><br/>\n"
 "        Here is your ${ctx['model_description']} <strong>${object.name}</strong>\n"
@@ -77,9 +77,9 @@ msgid ""
 msgstr ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
 "    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Bonjour ${object.partner_id.name}\n"
-"        % if object.partner_id.parent_id:\n"
-"            (${object.partner_id.parent_id.name})\n"
+"        Bonjour ${object.partner_referral_id.name or object.partner_id.name}\n"
+"        % if object.partner_id.unfenced_commercial_partner_id and object.partner_id.unfenced_commercial_partner_id != object.partner_id:\n"
+"            (${object.partner_id.unfenced_commercial_partner_id.name})\n"
 "        % endif\n"
 "        <br/><br/>\n"
 "        Voici votre ${ctx['model_description']} <strong>${object.name}</strong>\n"
@@ -172,7 +172,7 @@ msgid "Application Packs"
 msgstr "Pack d'applications"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:264
+#: code:addons/software_license_pass/models/software_license_pass.py:271
 #: model:ir.model,name:software_license_pass.model_software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 #, python-format
@@ -428,8 +428,8 @@ msgstr "Nom"
 
 #. module: software_license_pass
 #: code:addons/software_license_pass/models/software_license_pass.py:57
-#: code:addons/software_license_pass/models/software_license_pass.py:136
-#: code:addons/software_license_pass/models/software_license_pass.py:139
+#: code:addons/software_license_pass/models/software_license_pass.py:143
+#: code:addons/software_license_pass/models/software_license_pass.py:146
 #, python-format
 msgid "New"
 msgstr "Nouveau"
@@ -567,6 +567,11 @@ msgstr "Référence"
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__origin
 msgid "Reference of the document that generated this pass."
 msgstr "Référence du document qui a généré ce « pass »."
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_referral_id
+msgid "Referral partner"
+msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__user_id
