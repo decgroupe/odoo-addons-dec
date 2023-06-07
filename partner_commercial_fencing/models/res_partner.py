@@ -15,14 +15,21 @@ class ResPartner(models.Model):
         "business documents from its commercial partner.",
     )
 
+    unfenced_commercial_partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        compute='_compute_commercial_partner',
+        string='Unfenced Commercial Entity',
+        store=True,
+        index=True
+    )
+
     @api.depends(
         'is_company', 'inherit_commercial_partner',
         'parent_id.inherit_commercial_partner'
     )
     def _compute_commercial_partner(self):
         super()._compute_commercial_partner()
-        # for partner in self.filtered(lambda x: not x.is_company):
         for rec in self:
+            rec.unfenced_commercial_partner_id = rec.commercial_partner_id
             if not rec.inherit_commercial_partner and not rec.is_company:
                 rec.commercial_partner_id = rec
-                # rec.commercial_partner_id = getattr(self, '_origin', self)

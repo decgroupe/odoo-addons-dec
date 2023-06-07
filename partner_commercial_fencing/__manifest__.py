@@ -7,6 +7,9 @@
         "Add an option to hide business documents in portal "
         "to specific contacts",
     'depends': ['base', ],
-    'data': ['views/partner.xml', ],
+    'data': [
+        'views/partner.xml',
+        'data/ir_rule.xml',
+    ],
     'installable': True
 }
