@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="ir.rule" id="base.res_partner_portal_public_rule">
+        <field
+            name="domain_force"
+        >[('id', 'child_of', user.unfenced_commercial_partner_id.id)]</field>
+    </record>
+
+</odoo>

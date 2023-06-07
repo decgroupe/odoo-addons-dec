@@ -8,6 +8,7 @@
     ],
     "data": [
         "views/partner.xml",
+        "data/ir_rule.xml",
     ],
     "installable": True,
 }
