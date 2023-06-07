@@ -4,10 +4,12 @@
     'author': 'DEC, Yann Papouin',
     'website': 'https://www.decgroupe.com',
     'summary': "Manage software licenses (pass)",
-    'depends': [
-        'sale_timesheet',
-        'software_license_pass',
-    ],
+    'depends':
+        [
+            'sale_timesheet',
+            'software_license_pass',
+            'partner_commercial_fencing',
+        ],
     'data':
         [
             'views/software_license_pass.xml',
