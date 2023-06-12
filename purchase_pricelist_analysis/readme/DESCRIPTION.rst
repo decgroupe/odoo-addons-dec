@@ -1,0 +1,2 @@
+- Open purchase pricelist items from product view.
+- Get list price from supplier infos
