@@ -11,16 +11,31 @@
             ref="product.product_pricelist_item_tree_view_from_product"
         />
         <field name="arch" type="xml">
-            <field name="name" position="before">
-                <field name="pricelist_id" invisible="1" />
+            <xpath expr="//tree" position="attributes">
+                <attribute name="editable" />
+            </xpath>
+            <field name="name" position="attributes">
+                <attribute name="string" />
             </field>
-            <field name="categ_id" position="after">
+            <field name="categ_id" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="string">Category</attribute>
+            </field>
+            <field name="product_tmpl_id" position="attributes">
+                <attribute name="invisible" />
+                <attribute name="string">Product Template</attribute>
+            </field>
+            <field name="fixed_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="fixed_price" position="after">
                 <field name="price" string="Price" />
                 <field name="base" />
                 <field name="base_pricelist_id" />
                 <field name="price_discount" />
                 <field name="applied_on" />
                 <field name="compute_price" />
+                <field name="min_quantity" position="move"/>
             </field>
         </field>
     </record>
