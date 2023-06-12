@@ -43,6 +43,9 @@ class PurchaseOrderLine(models.Model):
             product, order_id.pricelist_id, taxes_id, order_id.company_id
         )
         return res
+    
+    def _is_editable(self):
+        return True
 
     # _onchange_quantity is inspired from the 'sale.order.line'
     # product_id_change function
@@ -50,7 +53,7 @@ class PurchaseOrderLine(models.Model):
     def _onchange_quantity(self):
         super()._onchange_quantity()
         if (
-            self._is_editable()
+            self._is_editable() # purchase_product_pack compatibility
             and self.product_id
             and self.order_id.pricelist_id
             and self.order_id.partner_id

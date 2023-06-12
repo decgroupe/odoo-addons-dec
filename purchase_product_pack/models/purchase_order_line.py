@@ -90,9 +90,11 @@ class PurchaseOrderLine(models.Model):
                 record.move_dest_ids.unlink()
 
     def _is_editable(self):
-        #res = super().is_line_editable()
-        res = True
-        if self.pack_parent_line_id and not self.pack_modifiable:
+        if hasattr(super(), "_is_editable"):
+            res = super()._is_editable()
+        else:
+            res = True
+        if res and self.pack_parent_line_id and not self.pack_modifiable:
             res = False
         return res
 
