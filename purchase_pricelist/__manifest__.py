@@ -12,6 +12,7 @@
     "data": [
         "security/purchase_pricelist.xml",
         "views/product_pricelist.xml",
+        "views/product_supplierinfo.xml",
         "views/purchase_order.xml",
         "views/res_partner.xml",
         "views/menu.xml",
