@@ -1,0 +1,1 @@
+First, check that the `group_sale_pricelist` is enabled to enabled.

@@ -11,32 +11,32 @@ class Partner(models.Model):
     # Override sale pricelist field from addons/product/models/res_partner.py
     # Lock type to sale using domain attribute
     property_product_pricelist = fields.Many2one(
-        comodel_name="product.pricelist",
-        string="Pricelist",
-        compute="_compute_product_pricelist",
-        inverse="_inverse_product_pricelist",
-        company_dependent=False,
-        domain=[("type", "=", "sale")],
-        help="This pricelist will be used, instead of the default one, for sales to the current partner",
+        domain=lambda self: [
+            ("type", "=", "sale"),
+            ("company_id", "in", (self.env.company.id, False)),
+        ],
     )
 
     # Purchase pricelist field is a dummy copy of the sale pricelist field
-    # 'compute' and 'inverse' functions are identical to the sale one
-    # excepting that the property name used inside these functions
+    # 'compute' and 'inverse' functions are identical to the sale one excepting the
+    # property name used inside these functions
     property_product_pricelist_purchase = fields.Many2one(
         comodel_name="product.pricelist",
         string="Purchase Pricelist",
         compute="_compute_product_pricelist_purchase",
         inverse="_inverse_product_pricelist_purchase",
         company_dependent=False,
-        domain=[("type", "=", "purchase")],
-        help="This pricelist will be used, instead of the default one, for purchases from the current partner",
+        domain=lambda self: [
+            ("type", "=", "purchase"),
+            ("company_id", "in", (self.env.company.id, False)),
+        ],
+        help="This pricelist will be used, instead of the default one, for purchases "
+        "from the current partner",
     )
 
     def _compute_product_pricelist_purchase(self):
-        Pricelist = self.env["product.pricelist"]
-        company = self.env.context.get("force_company", False)
-        res = Pricelist._get_partner_pricelist_purchase_multi(
+        company = self.env.company.id
+        res = self.env["product.pricelist"]._get_partner_pricelist_purchase_multi(
             self.ids, company_id=company
         )
         for p in self:

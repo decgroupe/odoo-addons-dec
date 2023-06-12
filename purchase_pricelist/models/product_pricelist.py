@@ -24,7 +24,7 @@ class ProductPricelist(models.Model):
         :param company_id: if passed, used for looking up properties,
          instead of current user's company
         """
-        res = self._get_partner_pricelist_multi([partner_id], company_id)
+        res = self._get_partner_pricelist_purchase_multi([partner_id], company_id)
         return res[partner_id].id
 
     # Adaptation for purchase from addons/product/models/product_pricelist.py

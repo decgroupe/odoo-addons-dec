@@ -22,18 +22,18 @@
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view" />
         <field name="arch" type="xml">
-            <field name="discount_policy" position="replace">
+            <group name="pricelist_settings" position="inside">
                 <field name="type" />
-                <field
-                    name="discount_policy"
-                    attrs="{'invisible': [('type', '=', 'purchase')]}"
-                />
+            </group>
+            <field name="discount_policy" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '=', 'purchase')]}</attribute>
             </field>
-            <field name="country_group_ids" position="replace">
-                <field
-                    name="country_group_ids"
-                    attrs="{'invisible': [('type', '=', 'purchase')]}"
-                />
+            <field name="country_group_ids" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('type', '=', 'purchase')]}</attribute>
             </field>
         </field>
     </record>
@@ -63,6 +63,7 @@
         <field name="res_model">product.pricelist</field>
         <field name="view_mode">form,tree,kanban</field>
         <field name="domain">[('type', '=', 'purchase')]</field>
+        <field name="context">{'default_type': 'purchase'}</field>
         <field name="view_id" ref="product_pricelist_tree_view" />
     </record>
 
