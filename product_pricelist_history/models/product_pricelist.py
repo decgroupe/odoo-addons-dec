@@ -95,10 +95,13 @@ class ProductPricelist(models.Model):
             if not "level" in history:
                 history["level"] = 0
             history["level"] += 1
-            self._compute_price_rule_history(products_qty_partner, date, uom_id)
+            res = self._compute_price_rule_history(products_qty_partner, date, uom_id)
             history["level"] -= 1
             if history["level"] == 0:
                 history["level"] = -1
+                # for product, qty, partner in products_qty_partner:
+                #     hkey = (product, qty, partner)
+                #     self._addto_history(hkey, _('Done ...').format(self.name))
         res = super()._compute_price_rule(products_qty_partner, date, uom_id)
         return res
 
@@ -159,9 +162,7 @@ class ProductPricelist(models.Model):
                 self._addto_history(hkey, _('{} rule(s) loaded').format(len(items)))
             else:
                 self._addto_history(hkey, _('No rules loaded at this step'), action='close')
-                results[product.id] = (0.0, False)
-                return results
-            
+
             results[product.id] = 0.0
             suitable_rule = False
 
@@ -213,13 +214,9 @@ class ProductPricelist(models.Model):
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
                     self._addto_history(hkey, _('Price is based on another pricelist: {}').format(rule.base_pricelist_id.name))
                     self._addto_history(hkey, indent=True)
-                    price, rule_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)], date, uom_id)[product.id]  # TDE: 0 = price, 1 = rule
+                    price = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)], date, uom_id)[product.id][0]  # TDE: 0 = price, 1 = rule
                     src_currency = rule.base_pricelist_id.currency_id
                     self._addto_history(hkey, unindent=True)
-                    if rule_tmp:
-                        price = src_currency._convert(price, self.currency_id, self.env.user.company_id, date, round=False)
-                    else:
-                        continue
                 else:
                     # if base option is public price take sale price else cost price of product
                     # price_compute returns the price in the context UoM, i.e. qty_uom_id
@@ -243,9 +240,12 @@ class ProductPricelist(models.Model):
             if not suitable_rule:
                 cur = product.currency_id
                 price = cur._convert(price, self.currency_id, self.env.company, date, round=False)
-
             results[product.id] = (price, suitable_rule and suitable_rule.id or False)
-            self._addto_history(hkey, action='close')
+            if suitable_rule:
+                rule_name = _('with rule [{}] {}').format(suitable_rule.id, suitable_rule.name)
+            else:
+                rule_name = _("without any rule")
+            self._addto_history(hkey, _('Returns {} {}').format(price, rule_name), action='close')
         return results
     # yapf: enable
 
