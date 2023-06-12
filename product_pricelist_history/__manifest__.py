@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "product",
+        "product_pricelist_supplierinfo",
     ],
     "data": [],
     "installable": True,

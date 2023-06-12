@@ -89,11 +89,24 @@ class ProductPricelist(models.Model):
 
         return res
 
+    def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
+        history = self.env.context.get("history", False)
+        if isinstance(history, dict) and history.get("level", 0) >= 0:
+            if not "level" in history:
+                history["level"] = 0
+            history["level"] += 1
+            self._compute_price_rule_history(products_qty_partner, date, uom_id)
+            history["level"] -= 1
+            if history["level"] == 0:
+                history["level"] = -1
+        res = super()._compute_price_rule(products_qty_partner, date, uom_id)
+        return res
+
     # This method is a copy/paste of the one in:
     #   ./addons/product/models/product_pricelist.py
     # except that `_addto_history` has been added.
     # yapf: disable
-    def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
+    def _compute_price_rule_history(self, products_qty_partner, date=False, uom_id=False):
         """ Low-level method - Mono pricelist, multi products
         Returns: dict{product_id: (price, suitable_rule) for the given pricelist}
 
@@ -145,7 +158,7 @@ class ProductPricelist(models.Model):
             if len(items) > 0:
                 self._addto_history(hkey, _('{} rule(s) loaded').format(len(items)))
             else:
-                self._addto_history(hkey, _('No rules loaded at this step'))
+                self._addto_history(hkey, _('No rules loaded at this step'), action='close')
                 results[product.id] = (0.0, False)
                 return results
             
@@ -164,12 +177,12 @@ class ProductPricelist(models.Model):
                 except UserError:
                     # Ignored - incompatible UoM in context, use default product UoM
                     pass
-            self._addto_history(hkey, _('Quantity is {}').format(qty_in_product_uom))
+            history_state_id = self._addto_history(hkey, _('Quantity is {}').format(qty_in_product_uom))
 
             # if Public user try to access standard price from website sale, need to call price_compute.
             # TDE SURPRISE: product can actually be a template
             price = product.price_compute('list_price')[product.id]
-            history_state_id = self._addto_history(hkey, _('Base price is {}').format(price))
+            # history_state_id = self._addto_history(hkey, _('Base price is {}').format(price))
 
             price_uom = self.env['uom.uom'].browse([qty_uom_id])
             for rule in items:
@@ -222,6 +235,7 @@ class ProductPricelist(models.Model):
                         price, self.currency_id, self.env.company, date, round=False)
 
                 if price is not False:
+                    self._addto_history(hkey, _('Base price is {}').format(price))
                     price = rule._compute_price(price, price_uom, product, quantity=qty, partner=partner)
                     suitable_rule = rule
                 break
@@ -231,7 +245,7 @@ class ProductPricelist(models.Model):
                 price = cur._convert(price, self.currency_id, self.env.company, date, round=False)
 
             results[product.id] = (price, suitable_rule and suitable_rule.id or False)
-
+            self._addto_history(hkey, action='close')
         return results
     # yapf: enable
 
@@ -249,3 +263,11 @@ class ProductPricelist(models.Model):
             products_by_qty_by_partner
         )
         return history
+
+    # def _register_hook(self):
+    #     model = self.env[self._name]
+    #     model._patch_method(
+    #         "_compute_price_rule",
+    #         ProductPricelist._compute_price_rule_history,
+    #     )
+    #     return super()._register_hook()
