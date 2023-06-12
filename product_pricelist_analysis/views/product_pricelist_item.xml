@@ -71,12 +71,6 @@
                 <filter
                     string="Sale Pricelist"
                     name="filter_pricelist_sale"
-                    domain="[('pricelist_id.type','=','sale')]"
-                />
-                <filter
-                    string="Purchase Pricelist"
-                    name="filter_pricelist_purchase"
-                    domain="[('pricelist_id.type','=','purchase')]"
                 />
                 <separator />
                 <filter

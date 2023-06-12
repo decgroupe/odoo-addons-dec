@@ -6,7 +6,6 @@
     "depends": [
         "product",
         "product_pricelist_sequence",
-        "purchase_pricelist",  # Needed for type sale/purchase
     ],
     "data": [
         "views/product_pricelist_item.xml",
