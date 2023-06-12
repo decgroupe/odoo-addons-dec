@@ -53,3 +53,21 @@ class PurchaseOrder(models.Model):
         for order in self:
             for line in order.order_line:
                 line._onchange_quantity()
+
+    def _prepare_purchase_order_line(
+        self, product_id, product_qty, product_uom, company_id, supplier, po
+    ):
+        res = super()._prepare_purchase_order_line(
+            product_id, product_qty, product_uom, company_id, supplier, po
+        )
+        if po and po.pricelist_id:
+            if res.get("taxes_id") and len(res["taxes_id"][0]) == 3:
+                taxes_id = self.env["account.tax"].browse(res["taxes_id"][0][2])
+            else:
+                taxes_id = self.env["account.tax"]
+
+            price_unit = self.env["purchase.order.line"]._get_price_unit_by_quantity(
+                po, product_id, product_qty, product_uom, taxes_id
+            )
+            res["price_unit"] = price_unit
+        return res
