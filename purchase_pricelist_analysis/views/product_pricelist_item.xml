@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_pricelist_item_search_view">
+        <field
+            name="name"
+        >product.pricelist.item.form@purchase_pricelist_analysis</field>
+        <field name="model">product.pricelist.item</field>
+        <field
+            name="inherit_id"
+            ref="product_pricelist_analysis.product_pricelist_item_search_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='filter_pricelist_sale']" position="attributes">
+                <attribute name="domain">[('pricelist_id.type','=','sale')]</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='filter_pricelist_sale']" position="after">
+                <filter
+                    string="Purchase Pricelist"
+                    name="filter_pricelist_purchase"
+                    domain="[('pricelist_id.type','=','purchase')]"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
