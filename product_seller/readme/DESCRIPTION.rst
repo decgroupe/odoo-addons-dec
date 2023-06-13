@@ -1,0 +1,1 @@
+Shortcut to main seller/supplier
