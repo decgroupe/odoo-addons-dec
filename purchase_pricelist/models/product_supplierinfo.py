@@ -20,15 +20,20 @@ class ProductSupplierinfo(models.Model):
         help="List price based on seller pricelist (Default UoM)",
     )
 
-    def _get_list_price(self, uom_id):
+    def _get_list_price(self, uom_id=False):
         self.ensure_one()
-        res = self.price  # TODO: Convert from default UoM to uom_id
+        res = self.price
+        # Product can be a template or a variant
+        product_id = self.product_id or self.product_tmpl_id
+        if uom_id:
+            price_uom = self.env["uom.uom"].browse(uom_id)
+        else:
+            price_uom = product_id.uom_id
+        res = product_id.uom_po_id._compute_price(self.price, price_uom)
         # Ignore NewId because `_compute_price_rule_get_items` use raw SQL
         if not isinstance(self.id, models.NewId):
             pricelist = self.name.property_product_pricelist_purchase
             if pricelist:
-                # Product can be a template or a variant
-                product_id = self.product_id or self.product_tmpl_id
                 # Convert quantities to default product UoM
                 qty = self.product_uom._compute_quantity(
                     self.min_qty or 1.0, product_id.uom_id
