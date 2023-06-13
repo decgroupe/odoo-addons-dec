@@ -18,10 +18,10 @@ class ProductProduct(models.Model):
     def write(self, vals):
         now = fields.Datetime.now()
         if "list_price" in vals:
-            vals["price_write_date"] = fields.Datetime.now()
+            vals["price_write_date"] = now
             vals["price_write_uid"] = self.env.user.id
         if "standard_price" in vals:
-            vals["standard_price_write_date"] = fields.Datetime.now()
+            vals["standard_price_write_date"] = now
             vals["standard_price_write_uid"] = self.env.user.id
         res = super().write(vals)
         return res

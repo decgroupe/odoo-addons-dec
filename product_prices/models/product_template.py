@@ -15,7 +15,10 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     # Override digit field to increase precision and track changes
-    standard_price = fields.Float(digits="Purchase Price", tracking=True)
+    standard_price = fields.Float(
+        digits="Purchase Price",
+        tracking=True,
+    )
     # Override to track changes
     list_price = fields.Float(tracking=True)
 
@@ -98,9 +101,8 @@ class ProductTemplate(models.Model):
 
     @api.depends("standard_price", "uom_id", "uom_po_id")
     def _compute_standard_price_po_uom(self):
-        # TODO: Init ?
-        # Check that uom_id is not False (possibility in editing mode)
         self.standard_price_po_uom = 0.0
+        # Check that uom_id is not False (possibility in editing mode)
         for product in self.filtered("uom_id"):
             price = product.uom_id._compute_price(
                 product.standard_price,
@@ -128,15 +130,15 @@ class ProductTemplate(models.Model):
     def onchange_prices(self):
         self._compute_default_purchase_price()
 
-    def get_purchase_price(self, seller_id=False, uom_id=False):
+    def get_purchase_price(self, supplier_id=False, uom_id=False):
         """Use same logic from _compute_default_purchase_price without
             the history thing
 
         Args:
             seller_id (bool, optional): Partner to use to get purchase
-            pricelist. Use the seller_id from product if not set. Defaults
+            pricelist. Use the main_seller_id from product if not set. Defaults
             to False.
-            uom_id (bool, optional): Unit used to compute the price. Use the
+            uom_id (uom.uom, optional): Unit used to compute the price. Use the
             uom_id from product Defaults to False.
 
         Returns:
@@ -144,12 +146,12 @@ class ProductTemplate(models.Model):
         """
         self.ensure_one()
         res = 0
-        if not seller_id:
-            seller_id = self.seller_id
+        if not supplier_id:
+            supplier_id = self.main_seller_id.name
         if not uom_id:
             uom_id = self.uom_id
-        if seller_id:
-            pricelist = seller_id.property_product_pricelist_purchase
+        if supplier_id:
+            pricelist = supplier_id.property_product_pricelist_purchase
             if pricelist:
                 res = pricelist.get_product_price(self, 1, False, uom_id=uom_id.id)
         else:
@@ -167,40 +169,20 @@ class ProductTemplate(models.Model):
         self.default_purchase_price_graph = False
         self.default_purchase_price_po_uom = 0
         self.default_purchase_price_graph_po_uom = False
-        for p in pb(self):
-            if isinstance(p.id, models.NewId):
-                continue
-            if p.seller_id:
-                history = {}
-                pricelist = (
-                    p.seller_id.property_product_pricelist_purchase.with_context(
-                        history=history
-                    )
-                )
-                if pricelist:
-                    p.default_purchase_price = pricelist.get_product_price(
-                        p, 1, False, uom_id=p.uom_id.id
-                    )
-                    graph = (
-                        history[p.id]["graph"]["header"]
-                        + history[p.id]["graph"]["body"]
-                    )
-                    p.default_purchase_price_graph = "\n".join(graph)
-
-                    history.clear()
-                    p.default_purchase_price_po_uom = pricelist.get_product_price(
-                        p, 1, False, uom_id=p.uom_po_id.id
-                    )
-                    graph = (
-                        history[p.id]["graph"]["header"]
-                        + history[p.id]["graph"]["body"]
-                    )
-                    p.default_purchase_price_graph_po_uom = "\n".join(graph)
+        for rec in pb(self):
+            seller_id = rec.main_seller_id
+            if rec.main_seller_id:
+                rec.default_purchase_price = seller_id.list_price_unit
+                rec.default_purchase_price_graph = seller_id.list_price_unit_graph
+                rec.default_purchase_price_po_uom = seller_id.list_price
+                rec.default_purchase_price_graph_po_uom = seller_id.list_price_graph
             else:
-                p.default_purchase_price = p.standard_price
-                p.default_purchase_price_graph = False
-                p.default_purchase_price_po_uom = p.standard_price_po_uom
-                p.default_purchase_price_graph_po_uom = False
+                msg = "No default seller assigned to this product (missing 'main_seller_id')"
+                graph = []
+                rec.default_purchase_price = rec.standard_price
+                rec.default_purchase_price_graph = "\n".join(graph)
+                rec.default_purchase_price_po_uom = rec.standard_price_po_uom
+                rec.default_purchase_price_graph_po_uom = "\n".join(graph)
 
     @api.depends(
         "company_id",
@@ -211,58 +193,78 @@ class ProductTemplate(models.Model):
     def _compute_default_sell_price(self):
         self.default_sell_price = 0
         self.default_sell_price_graph = False
-        for p in pb(self):
-            if isinstance(p.id, models.NewId):
+        history = {}
+        for product in pb(self):
+            if isinstance(product.id, models.NewId):
                 continue
-            if p.company_id and p.company_id.partner_id:
-                history = {}
+            qty = 1.0
+            partner = False
+            hkey = (product, qty, partner)
+            self.env["product.pricelist"]._ensure_history_struct(history, hkey)
+            company_id = product.company_id or self.env.company
+            if company_id and company_id.partner_id:
                 pricelist = (
-                    p.company_id.partner_id.property_product_pricelist.with_context(
+                    company_id.partner_id.property_product_pricelist.with_context(
                         history=history
                     )
                 )
                 if pricelist:
-                    p.default_sell_price = pricelist.get_product_price(
-                        p, 1, False, uom_id=p.uom_id.id
+                    product.default_sell_price = pricelist.get_product_price(
+                        product, qty, partner, uom_id=product.uom_id.id
                     )
-                    graph = (
-                        history[p.id]["graph"]["header"]
-                        + history[p.id]["graph"]["body"]
-                    )
-                    p.default_sell_price_graph = "\n".join(graph)
+
             else:
-                p.default_sell_price = p.list_price
-                p.default_sell_price_graph = False
+                product.default_sell_price = product.list_price
+                self.env["product.pricelist"].with_context(
+                    history=history
+                )._addto_history(
+                    hkey,
+                    message="No company assigned to this product "
+                    "(missing 'property_product_pricelist')",
+                    action="end",
+                )
+            graph = history[hkey]["graph"]["header"] + history[hkey]["graph"]["body"]
+            product.default_sell_price_graph = "\n".join(graph)
+
+    def _get_pricelist_search_domain(self):
+        return [("type", "=", "sale")]
+
+    def _get_pricelist_items_search_domain(self, pricelists):
+        # Currently, we just assert that there is only one variant.
+        product_id = self.product_variant_id
+        return [
+            ("pricelist_id", "in", pricelists.ids),
+            "|",
+            ("product_tmpl_id", "=", self.id),
+            ("product_id", "=", product_id.id),
+        ]
+
+    def _prepare_bypass_rule(self, pricelists):
+        # Currently, we just assert that there is only one variant.
+        product_id = self.product_variant_id
+        return {
+            "sequence": 2,
+            "note": _("By-pass {}").format(self.default_code),
+            "pricelist_id": pricelists.ids[0],
+            "product_tmpl_id": self.id,
+            "product_id": product_id.id,
+            "compute_price": "formula",
+            "applied_on": "1_product",
+            "base": "list_price",
+            "company_id": self.company_id.id,
+        }
 
     def update_bypass(self, state):
         Pricelist = self.env["product.pricelist"]
         PricelistItem = self.env["product.pricelist.item"]
         for product_tmpl_id in self:
-            # Currently, we just assert that there is only one variant.
-            product_id = product_tmpl_id.product_variant_id
-            pricelists = Pricelist.search([("type", "=", "sale")])
+            pricelists = Pricelist.search(self._get_pricelist_search_domain())
             pricelist_items = PricelistItem.search(
-                [
-                    ("pricelist_id", "in", pricelists.ids),
-                    "|",
-                    ("product_tmpl_id", "=", product_tmpl_id.id),
-                    ("product_id", "=", product_id.id),
-                ]
+                self._get_pricelist_items_search_domain(pricelists)
             )
-
             if state:
                 if not pricelist_items:
-                    data = {
-                        "sequence": 2,
-                        "note": _("By-pass {}").format(product_tmpl_id.default_code),
-                        "pricelist_id": pricelists.ids[0],
-                        "product_tmpl_id": product_tmpl_id.id,
-                        "product_id": product_id.id,
-                        "compute_price": "formula",
-                        "applied_on": "1_product",
-                        "base": "list_price",
-                        "company_id": product_tmpl_id.company_id.id,
-                    }
+                    data = self._prepare_bypass_rule(pricelists)
                     product_tmpl_id.pricelist_bypass_item = PricelistItem.create(data)
             else:
                 if len(pricelist_items) > 1:
@@ -295,108 +297,3 @@ class ProductTemplate(models.Model):
         # Currently, we just assert that there is only one variant.
         action = self.product_variant_id.open_price_graph()
         return action
-
-    @api.model
-    def convert_openerp_to_odoo_prices(self):
-        """
-        With our OpenERP, instance, prices were set for purchase UoM
-        but now, we are using the Odoo way, so all prices must be set
-        for product Uom. This function is done to be called only once,
-        and immediatly after the migration.
-        """
-        SUBJECT = "Price Conversion"
-        FIELDS = [
-            "name",
-            "default_code",
-            "standard_price",
-            "list_price",
-            "uom_id",
-            "uom_po_id",
-        ]
-        done_ids = []
-        product_ids = self.search([("same_uom", "!=", True)])
-        product_ids = self.env["product.product"].search([("same_uom", "!=", True)])
-        notification_ids = self.env["mail.message"].search(
-            [
-                ("model", "=", self._name),
-                ("res_id", "in", product_ids.ids),
-                ("message_type", "=", "notification"),
-                ("subject", "=", SUBJECT),
-            ]
-        )
-        if notification_ids:
-            done_ids = notification_ids.mapped("res_id")
-
-        product_price_precision = self.env["decimal.precision"].precision_get(
-            "Product Price"
-        )
-        purchase_price_precision = self.env["decimal.precision"].precision_get(
-            "Purchase Price"
-        )
-
-        for product_id in product_ids:
-            if product_id.id in done_ids:
-                continue
-            p = product_id.read(FIELDS)[0]
-            uom_id = self.env["uom.uom"].browse(p["uom_id"][0])
-            uom_po_id = self.env["uom.uom"].browse(p["uom_po_id"][0])
-            _logger.info(
-                "[%s]%s:  %.2f=1x%s  %.4f=1x%s",
-                p["default_code"],
-                p["name"],
-                p["list_price"],
-                uom_id.name,
-                p["standard_price"],
-                uom_po_id.name,
-            )
-            ratio = uom_po_id.factor_inv * uom_id.factor_inv
-            list_price = float_round(
-                p["list_price"] / ratio, precision_digits=product_price_precision
-            )
-            standard_price = float_round(
-                p["standard_price"] / ratio, precision_digits=purchase_price_precision
-            )
-
-            data = {}
-            body = []
-            # Prepare data that will update sell price (list_price)
-            if (
-                float_compare(
-                    p["list_price"],
-                    list_price,
-                    precision_digits=product_price_precision,
-                )
-                != 0
-            ):
-                data["list_price"] = list_price
-                body.append(
-                    _("Sell price set to {} (from {} for 1×{})").format(
-                        list_price, p["list_price"], uom_po_id.name
-                    )
-                )
-            # Prepare data that will update sell price (list_price)
-            if (
-                float_compare(
-                    p["standard_price"],
-                    standard_price,
-                    precision_digits=purchase_price_precision,
-                )
-                != 0
-            ):
-                data["standard_price"] = standard_price
-                body.append(
-                    _("Purchase price set to {} (from {} for 1×{})").format(
-                        standard_price, p["standard_price"], uom_po_id.name
-                    )
-                )
-
-            if body:
-                body = "\n".join(body)
-                _logger.info(
-                    "New prices are: {}, {}".format(list_price, standard_price)
-                )
-                product_id.message_post(body=body, subject=SUBJECT)
-
-            if data:
-                product_id.write(data)
-                self.env.cr.commit()

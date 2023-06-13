@@ -6,8 +6,12 @@
     "depends": [
         "web_widget_mermaid",
         "product",
-        "product_seller",
-        "product_pricelist",
+        "product_seller", 
+        "product_pricelist_sequence",
+        "product_pricelist_history",
+        "product_pricelist_analysis",
+        "purchase_pricelist",
+        "purchase_pricelist_analysis",
     ],
     "data": [
         "views/assets.xml",

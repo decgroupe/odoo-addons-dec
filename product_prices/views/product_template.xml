@@ -7,10 +7,10 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
-            <field name="list_price" position="before">
+            <label for="list_price" position="before">
                 <separator string="Sell price" colspan="2" />
-            </field>
-            <field name="list_price" position="after">
+            </label>
+            <div name="pricing" position="after">
                 <field
                     name="pricelist_bypass"
                     attrs="{'invisible':[('sale_ok','!=',True)]}"
@@ -30,10 +30,13 @@
                 >
                     <field name="default_sell_price" class="default_price" />
                     <button
+                        icon="fa-sitemap"
                         name="open_price_graph"
                         string="Open Graph ..."
                         type="object"
                         context="{'sell_price':True}"
+                        class="oe_inline"
+
                     />
                 </div>
                 <label
@@ -52,7 +55,7 @@
                         readonly="1"
                     />
                 </div>
-            </field>
+            </div>
             <label for="standard_price" position="before">
                 <separator string="Cost price and purchase price" colspan="2" />
             </label>
@@ -102,9 +105,11 @@
                         />
                         <button
                             name="open_price_graph"
+                            icon="fa-sitemap"
                             string="Open Graph ..."
                             type="object"
                             context="{'purchase_price':True}"
+                            class="oe_inline"
                         />
                     </div>
                 </div>
