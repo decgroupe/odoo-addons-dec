@@ -5,7 +5,11 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "product",
+        "product_pricelist_supplierinfo",
+        "product_main_supplierinfo",
     ],
-    "data": [],
+    "data": [
+        "views/product_template.xml",
+    ],
     "installable": True,
 }

@@ -8,27 +8,58 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
     _name = _inherit
 
-    @api.depends("seller_ids")
-    def _get_main_product_supplier(self):
-        """Determines the main (best) product supplier for ``product``,
-        returning the corresponding ``supplierinfo`` record, or False
-        if none were found. The default strategy is to select the
-        supplier with the highest priority (i.e. smallest sequence).
+    main_seller_id = fields.Many2one(
+        comodel_name="product.supplierinfo",
+        string="Main Vendor",
+        compute="_compute_main_seller_id",
+    )
 
-        :param browse_record product: product to supply
-        :rtype: product.supplierinfo browse_record or False
+    @api.depends(
+        "seller_ids.name.active",
+        "seller_ids.sequence",
+        "seller_ids.min_qty",
+        "seller_ids.price",
+        "seller_ids.company_id",
+        "seller_ids.product_id",
+        "seller_ids.date_start",
+        "seller_ids.date_end",
+    )
+    @api.depends_context("company")
+    def _compute_main_seller_id(self):
+        for product in self:
+            sellers = product._get_sellers()
+            product.main_seller_id = fields.first(sellers)
+
+    def _get_sellers(self):
+        """Returns all available sellers of a product based on some constraints.
+
+        They are ordered and filtered like it is done in the standard 'product' addon.
         """
-        sellers = [
-            (seller_info.sequence, seller_info)
-            for seller_info in self.seller_ids or []
-            if seller_info and isinstance(seller_info.sequence, int)
-        ]
-        res = sellers and sellers[0][1] or False
-        return res
+        self.ensure_one()
+        all_sellers = self._prepare_sellers(False).filtered(
+            lambda s: not s.company_id or s.company_id.id == self.env.company.id
+        )
+        today = fields.Date.context_today(self)
+        sellers = all_sellers.filtered(
+            lambda s: (
+                (s.product_id == self or not s.product_id)
+                and (
+                    (s.date_start <= today if s.date_start else True)
+                    and (s.date_end >= today if s.date_end else True)
+                )
+            )
+        )
+        if not sellers:
+            sellers = all_sellers.filtered(lambda s: (s.product_tmpl_id == self))
+            if not sellers:
+                sellers = sellers = all_sellers.filtered(
+                    lambda s: not s.product_tmpl_id
+                )
+        return sellers.sorted("price")
 
     def _calc_seller(self):
         for product in self:
-            main_supplier = product._get_main_product_supplier()
+            main_supplier = self.main_seller_id
             product.seller_info_id = main_supplier and main_supplier.id or False
             product.seller_delay = main_supplier and main_supplier.delay or 1
             product.seller_id = main_supplier and main_supplier.name.id or False
@@ -40,23 +71,20 @@ class ProductTemplate(models.Model):
             )
 
     seller_info_id = fields.Many2one(
-        "product.supplierinfo",
+        comodel_name="product.supplierinfo",
         compute=_calc_seller,
-        # store=True,
     )
     seller_delay = fields.Integer(
         compute=_calc_seller,
         string="Supplier Lead Time",
-        # store=True,
-        help="This is the average delay in days between the purchase order \
-confirmation and the reception of goods for this product and for the \
-default supplier. It is used by the scheduler to order requests based \
-on reordering delays.",
+        help="This is the average delay in days between the purchase order "
+        "confirmation and the reception of goods for this product and for the "
+        "default supplier. It is used by the scheduler to order requests based "
+        "on reordering delays.",
     )
     seller_id = fields.Many2one(
-        "res.partner",
+        comodel_name="res.partner",
         compute=_calc_seller,
-        # store=True,
         string="Main Supplier",
         help="Main Supplier who has highest priority in Supplier List.",
     )
