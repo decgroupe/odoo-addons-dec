@@ -36,6 +36,14 @@ class ProductSupplierinfo(models.Model):
         qty = self.product_uom._compute_quantity(self.min_qty or 1.0, product_id.uom_id)
         partner = self.name
         hkey = (product_id, qty, partner)
+        if not self.name.property_product_pricelist_purchase:
+            msg = (
+                "No purchase pricelist found for seller '%s'"
+                "(missing 'property_product_pricelist_purchase')" % (self.display_name)
+            )
+            self.env["product.pricelist"].with_context(history=history)._addto_history(
+                hkey, message=msg, action="end"
+            )
         if hkey in history:
             graph = history[hkey]["graph"]["header"] + history[hkey]["graph"]["body"]
             steps = history[hkey]["steps"]
