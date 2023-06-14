@@ -150,12 +150,12 @@ class ProductTemplate(models.Model):
             supplier_id = self.main_seller_id.name
         if not uom_id:
             uom_id = self.uom_id
-        if supplier_id:
-            pricelist = supplier_id.property_product_pricelist_purchase
-            if pricelist:
-                res = pricelist.get_product_price(self, 1, False, uom_id=uom_id.id)
+        seller = self._select_seller(partner_id=supplier_id, quantity=1.0)
+        if seller:
+            res = seller.list_price_unit
         else:
             res = self.standard_price
+        res = self.uom_id._compute_price(res, uom_id)
         return res
 
     @api.depends(

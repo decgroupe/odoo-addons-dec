@@ -40,7 +40,7 @@ class MrpBomLine(models.Model):
                     line.partner_id, line.product_uom_id
                 )
                 line.cost_price = line.unit_price * line.product_qty
-                line.public_price = (
-                    line.product_id.lst_price / line.product_uom_id.factor
+                line.public_price = line.product_id.uom_id._compute_price(
+                    line.product_id.lst_price,
+                    line.product_uom_id,
                 )
-
