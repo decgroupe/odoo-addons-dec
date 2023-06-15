@@ -81,11 +81,12 @@ class MrpBom(models.Model):
                         # Specific case for floats, use float_compare to
                         # avoid detecting changes due to rounding issues
                         if isinstance(current_line_state[k], float):
-                            digits = BomLine._fields[k].digits
+                            digits = BomLine._fields[k]._digits
+                            prec = self.env["decimal.precision"].precision_get(digits)
                             if float_compare(
                                 current_line_state[k],
                                 previous_line_state[k],
-                                precision_digits=digits[1],
+                                precision_digits=prec,
                             ):
                                 edited_fields.append(k)
                         else:
