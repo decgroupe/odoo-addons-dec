@@ -15,4 +15,5 @@
         "static/src/components/chatter_topbar/chatter_topbar.xml",
     ],
     "installable": True,
+    "application": True,
 }
