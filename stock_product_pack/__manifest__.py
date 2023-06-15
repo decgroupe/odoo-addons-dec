@@ -1,13 +1,12 @@
 {
-    'name': 'Stock Product Pack',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': '''Add support for product packs''',
-    'depends': [
-        'stock',
-        'product_pack',
+    "name": "Stock Product Pack",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "stock",
+        "product_pack",
     ],
-    'data': [],
-    'installable': True
+    "data": [],
+    "installable": True,
 }

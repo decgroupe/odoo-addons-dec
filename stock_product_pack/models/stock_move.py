@@ -1,22 +1,26 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class StockMove(models.Model):
-    _inherit = 'stock.move'
+    _inherit = "stock.move"
 
     pack_parent_move_id = fields.Many2one(
-        'stock.move',
-        'Pack',
-        help='The pack that contains this product.',
+        comodel_name="stock.move",
+        string="Pack",
+        help="The pack that contains this product.",
         ondelete="cascade",
     )
     pack_child_move_ids = fields.One2many(
-        'stock.move', 'pack_parent_move_id', 'Lines in pack'
+        comodel_name="stock.move",
+        inverse_name="pack_parent_move_id",
+        string="Lines in pack",
     )
-    pack_level = fields.Integer(compute='_compute_pack_level')
+    pack_level = fields.Integer(
+        compute="_compute_pack_level",
+    )
 
     def _compute_pack_level(self):
         self.pack_level = 0
@@ -36,7 +40,10 @@ class StockMove(models.Model):
                 # has not been updated yet, then ignore it. It will be
                 # updated by its parent when procvessing its
                 # pack_child_move_ids
-                if move.pack_parent_move_id and move.pack_parent_move_id.id not in updated_ids:
+                if (
+                    move.pack_parent_move_id
+                    and move.pack_parent_move_id.id not in updated_ids
+                ):
                     continue
                 updated_ids.append(move.id)
                 move.sequence = sequence
