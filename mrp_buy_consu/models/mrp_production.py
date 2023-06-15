@@ -5,7 +5,7 @@ from odoo import models
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     def _generate_raw_moves(self, exploded_lines):
         moves = super()._generate_raw_moves(exploded_lines)
@@ -22,14 +22,14 @@ class MrpProduction(models.Model):
                 # Check this bom line if this product MUST be
                 # purchased (using buy_consumable boolean)
                 if bom_line.buy_consumable:
-                    res['procure_method'] = 'make_to_order'
+                    res["procure_method"] = "make_to_order"
                 else:
                     # Override source location if product is consumable
                     # Copy destination to source location to create a fake
                     # move that will stay in Warehouse/Production location
-                    location = self.env['stock.location'].browse(
-                        res['location_dest_id']
+                    location = self.env["stock.location"].browse(
+                        res["location_dest_id"]
                     )
-                    res['location_id'] = location.id
-                    res['warehouse_id'] = location.get_warehouse().id
+                    res["location_id"] = location.id
+                    res["warehouse_id"] = location.get_warehouse().id
         return res
