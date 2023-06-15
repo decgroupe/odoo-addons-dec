@@ -1,27 +1,27 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
-from inspect import getargvalues
-from odoo import fields, models, api
+
+from odoo import models
 from odoo.tools.float_utils import float_compare
 
 TRACKED_FIELDS = [
-    'product_id',
-    'partner_id',
-    'buy_consumable',
-    'landmark',
-    'product_qty',
-    'product_uom_id',
-    'public_price',
-    'unit_price',
-    'cost_price',
+    "product_id",
+    "partner_id",
+    "buy_consumable",
+    "landmark",
+    "product_qty",
+    "product_uom_id",
+    "public_price",
+    "unit_price",
+    "cost_price",
 ]
 
 
 def fix(res):
-    """ 
-        Ensure all dictionaries keys are string
-        Ensure all tuples becomes lists
+    """
+    Ensure all dictionaries keys are string
+    Ensure all tuples becomes lists
     """
     if res is None:
         return False
@@ -36,15 +36,15 @@ def fix(res):
 
 
 class MrpBom(models.Model):
-    _inherit = 'mrp.bom'
+    _inherit = "mrp.bom"
 
     def write(self, vals):
         states = {}
-        if 'bom_line_ids' in vals:
+        if "bom_line_ids" in vals:
             for rec in self:
                 states[rec.id] = rec.get_track_state()
         super().write(vals)
-        if 'bom_line_ids' in vals:
+        if "bom_line_ids" in vals:
             for rec in self:
                 if rec.id in states:
                     rec.set_track_state(states[rec.id])
@@ -54,15 +54,15 @@ class MrpBom(models.Model):
         vals = self.bom_line_ids.read(fields=TRACKED_FIELDS)
         res = {}
         for v in vals:
-            id = v.pop('id')
+            id = v.pop("id")
             res[id] = v
         res = fix(res)
         return res
 
     def set_track_state(self, previous_state):
         self.ensure_one()
-        BomLine = self.env['mrp.bom.line']
-        IrTranslation = self.env['ir.translation']
+        BomLine = self.env["mrp.bom.line"]
+        IrTranslation = self.env["ir.translation"]
 
         edited_lines = {}
         added_lines = {}
@@ -85,7 +85,7 @@ class MrpBom(models.Model):
                             if float_compare(
                                 current_line_state[k],
                                 previous_line_state[k],
-                                precision_digits=digits[1]
+                                precision_digits=digits[1],
                             ):
                                 edited_fields.append(k)
                         else:
@@ -93,14 +93,14 @@ class MrpBom(models.Model):
 
                 if edited_fields:
                     edited_lines[id] = {
-                        'line': self.env['mrp.bom.line'].browse(int(id)),
-                        'edited_fields': edited_fields,
-                        'current': current_line_state,
-                        'previous': previous_line_state,
+                        "line": self.env["mrp.bom.line"].browse(int(id)),
+                        "edited_fields": edited_fields,
+                        "current": current_line_state,
+                        "previous": previous_line_state,
                     }
 
         for id in add_ids:
-            added_lines[id] = self.env['mrp.bom.line'].browse(int(id))
+            added_lines[id] = self.env["mrp.bom.line"].browse(int(id))
 
         for id in rem_ids:
             removed_lines[id] = previous_state[id]
@@ -109,17 +109,16 @@ class MrpBom(models.Model):
             # Store tracked fields with their translation
             tracked_fields = {}
             for key in TRACKED_FIELDS:
-                tracked_fields[key] = \
-                    IrTranslation.get_field_string(BomLine._name)[key]
+                tracked_fields[key] = IrTranslation.get_field_string(BomLine._name)[key]
 
             self.message_post_with_view(
-                'mrp_bom_replace_components.track_bom_template',
+                "mrp_bom_replace_components.track_bom_template",
                 values={
-                    'tracked_fields': tracked_fields,
-                    'edited_lines': edited_lines,
-                    'added_lines': added_lines,
-                    'removed_lines': removed_lines,
+                    "tracked_fields": tracked_fields,
+                    "edited_lines": edited_lines,
+                    "added_lines": added_lines,
+                    "removed_lines": removed_lines,
                 },
-                subtype_id=self.env.ref('mail.mt_note').id
+                subtype_id=self.env.ref("mail.mt_note").id,
             )
         return True
