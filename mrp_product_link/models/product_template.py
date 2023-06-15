@@ -1,15 +1,15 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
-from odoo import models, fields, api
-from odoo.tools.float_utils import float_round
+from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     mrp_product_qty = fields.Float(
-        'Manufactured', compute='_compute_mrp_product_qty'
+        string="Manufactured",
+        compute="_compute_mrp_product_qty",
     )
 
     def _compute_mrp_product_qty(self):
@@ -17,7 +17,7 @@ class ProductTemplate(models.Model):
 
     def action_view_mos(self):
         action = super().action_view_mos()
-        action['context'] = {
-            'search_default_last_year_mo_order': 0,
+        action["context"] = {
+            "search_default_last_year_mo_order": 0,
         }
         return action

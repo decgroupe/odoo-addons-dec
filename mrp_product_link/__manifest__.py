@@ -1,10 +1,11 @@
 {
-    'name': 'Manufacturing Product Link',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': '''Override built-in link locked to 1-year''',
-    'depends': ['mrp', ],
-    'data': [],
-    'installable': True
+    "name": "Manufacturing Product Link",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "mrp",
+    ],
+    "data": [],
+    "installable": True,
 }
