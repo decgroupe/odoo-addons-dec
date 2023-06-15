@@ -7,9 +7,8 @@ from odoo import fields, models
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    product_state = fields.Char(
-        related="product_tmpl_id.state",
+    product_state_id = fields.Many2one(
+        related="product_tmpl_id.product_state_id",
         readonly=False,
         store=True,
-        string="Product State",
     )
