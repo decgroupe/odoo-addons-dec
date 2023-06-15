@@ -8,15 +8,14 @@ from odoo.tools.float_utils import float_round
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    mrp_product_qty = fields.Float(
-        string="Manufactured",
-        compute="_compute_mrp_product_qty",
-    )
-
     # Copy from odoo/addons/mrp/models/product.py with hard-coded date range
     # removed from domain
     def _compute_mrp_product_qty(self):
-        domain = [("state", "=", "done"), ("product_id", "in", self.ids)]
+        super()._compute_mrp_product_qty()
+        domain = [
+            # ("state", "=", "done"),
+            ("product_id", "in", self.ids),
+        ]
         read_group_res = self.env["mrp.production"].read_group(
             domain, ["product_id", "product_uom_qty"], ["product_id"]
         )
@@ -27,6 +26,9 @@ class ProductProduct(models.Model):
             ]
         )
         for product in self:
+            if not product.id:
+                product.mrp_product_qty = 0.0
+                continue
             product.mrp_product_qty = float_round(
                 mapped_data.get(product.id, 0),
                 precision_rounding=product.uom_id.rounding,
@@ -34,7 +36,8 @@ class ProductProduct(models.Model):
 
     def action_view_mos(self):
         action = super().action_view_mos()
-        action["context"] = {
-            "search_default_last_year_mo_order": 0,
-        }
+        action["domain"] = [
+            # ("state", "=", "done"),
+            ("product_id", "in", self.ids)
+        ]
         return action

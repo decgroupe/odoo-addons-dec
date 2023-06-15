@@ -7,17 +7,13 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    mrp_product_qty = fields.Float(
-        string="Manufactured",
-        compute="_compute_mrp_product_qty",
-    )
-
-    def _compute_mrp_product_qty(self):
-        super()._compute_mrp_product_qty()
-
     def action_view_mos(self):
         action = super().action_view_mos()
+        action["domain"] = [
+            # ("state", "=", "done"),
+            ('product_tmpl_id', 'in', self.ids)
+        ]
         action["context"] = {
-            "search_default_last_year_mo_order": 0,
+            "search_default_filter_plan_date": 0,
         }
         return action
