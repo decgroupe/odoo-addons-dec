@@ -130,34 +130,6 @@ class ProductTemplate(models.Model):
     def onchange_prices(self):
         self._compute_default_purchase_price()
 
-    def get_purchase_price(self, supplier_id=False, uom_id=False):
-        """Use same logic from _compute_default_purchase_price without
-            the history thing
-
-        Args:
-            seller_id (bool, optional): Partner to use to get purchase
-            pricelist. Use the main_seller_id from product if not set. Defaults
-            to False.
-            uom_id (uom.uom, optional): Unit used to compute the price. Use the
-            uom_id from product Defaults to False.
-
-        Returns:
-            float: Purchase price
-        """
-        self.ensure_one()
-        res = 0
-        if not supplier_id:
-            supplier_id = self.main_seller_id.name
-        if not uom_id:
-            uom_id = self.uom_id
-        seller = self._select_seller(partner_id=supplier_id, quantity=1.0)
-        if seller:
-            res = seller.list_price_unit
-        else:
-            res = self.standard_price
-        res = self.uom_id._compute_price(res, uom_id)
-        return res
-
     @api.depends(
         "seller_id",
         "standard_price",

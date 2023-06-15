@@ -36,10 +36,18 @@ class MrpBomLine(models.Model):
         self.public_price = 0
         for line in self:
             if line.product_id:
-                line.unit_price = line.product_id.product_tmpl_id.get_purchase_price(
-                    line.partner_id, line.product_uom_id
+                # Get purchase/cost price
+                if line.seller_id:
+                    price = line.seller_id.list_price_unit
+                else:
+                    price = line.product_id.standard_price
+                line.unit_price = line.product_id.uom_id._compute_price(
+                    price,
+                    line.product_uom_id,
                 )
+                # Compute total cost price
                 line.cost_price = line.unit_price * line.product_qty
+                # Compute public price
                 line.public_price = line.product_id.uom_id._compute_price(
                     line.product_id.lst_price,
                     line.product_uom_id,
