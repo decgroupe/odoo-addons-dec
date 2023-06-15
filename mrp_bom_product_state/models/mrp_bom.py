@@ -5,11 +5,11 @@ from odoo import fields, models
 
 
 class MrpBom(models.Model):
-    _inherit = 'mrp.bom'
+    _inherit = "mrp.bom"
 
-    product_state = fields.Selection(
-        related='product_tmpl_id.state',
+    product_state = fields.Char(
+        related="product_tmpl_id.state",
         readonly=False,
         store=True,
-        string='Product State',
+        string="Product State",
     )
