@@ -3,11 +3,11 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     @api.model
     def create(self, values):
@@ -16,29 +16,28 @@ class MrpProduction(models.Model):
         return production_id
 
     def _override_date_planned(self, values):
-        if not values.get('date_planned_start'):
+        if not values.get("date_planned_start"):
             res = True
-        elif values.get('date_planned_start') == \
-            values.get('date_planned_finished'):
+        elif values.get("date_planned_start") == values.get("date_planned_finished"):
             res = True
         else:
             res = False
         return res
 
     def _get_date_start(self, values):
-        """ Use default `date_planned_start` or the `today`, if not set, as 
-            default start date.
-            The purpose of this method is to be overriden.
+        """Use default `date_planned_start` or the `today`, if not set, as
+        default start date.
+        The purpose of this method is to be overriden.
         """
-        if values.get('date_planned_start'):
-            res = fields.Datetime.from_string(values.get('date_planned_start'))
+        if values.get("date_planned_start"):
+            res = fields.Datetime.from_string(values.get("date_planned_start"))
         else:
             res = fields.Date.context_today(self)
         return res
 
     def _get_date_finished(self, date_start, product_id, company_id):
-        """ Use inverse method of `_get_date_planned` defined in
-            odoo/addons/mrp/models/stock_rule.py
+        """Use inverse method of `_get_date_planned` defined in
+        odoo/addons/mrp/models/stock_rule.py
         """
         date_planned = fields.Datetime.from_string(date_start)
         if product_id:
@@ -53,14 +52,10 @@ class MrpProduction(models.Model):
 
     def _prepare_mo_values(self, values):
         if self._override_date_planned(values):
-            product_id = self.env['product.product'].browse(
-                values.get('product_id')
-            )
-            company_id = self.env['res.company'].browse(
-                values.get('company_id')
-            )
+            product_id = self.env["product.product"].browse(values.get("product_id"))
+            company_id = self.env["res.company"].browse(values.get("company_id"))
             date_start = self._get_date_start(values)
-            values['date_planned_start'] = date_start
-            values['date_planned_finished'] = self._get_date_finished(
+            values["date_planned_start"] = date_start
+            values["date_planned_finished"] = self._get_date_finished(
                 date_start, product_id, company_id
             )
