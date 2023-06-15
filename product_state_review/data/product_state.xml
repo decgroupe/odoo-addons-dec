@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
+
     <record id="product_state_quotation" model="product.state">
         <field name="code">quotation</field>
         <field name="name">In Quotation</field>
@@ -10,4 +11,5 @@
         <field name="name">Need review</field>
         <field name="sequence">15</field>
     </record>
+    
 </odoo>

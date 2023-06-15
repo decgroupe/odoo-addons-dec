@@ -8,7 +8,6 @@
         "product_state_active",
     ],
     "data": [
-        "views/product_views.xml",
         "data/product_state.xml",
     ],
     "installable": True,
