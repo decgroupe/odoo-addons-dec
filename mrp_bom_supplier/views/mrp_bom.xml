@@ -1,16 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_bom_form_view">
         <field name="name">mrp.bom.form@mrp_bom_supplier</field>
         <field name="model">mrp.bom</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='bom_line_ids']/tree//field[@name='product_qty']" position="before">
-                <field name="partner_id"/>
-                <field name="delay"/>
-                <field name="landmark"/>
+            <xpath
+                expr="//field[@name='bom_line_ids']/tree//field[@name='product_qty']"
+                position="before"
+            >
+                <field name="partner_id" />
+                <field name="delay" />
+                <field name="landmark" />
             </xpath>
         </field>
     </record>
@@ -19,12 +22,12 @@
         <field name="name">mrp.bom.line.view.form@mrp_bom_supplier</field>
         <field name="model">mrp.bom.line</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_bom_line_view_form"/>
+        <field name="inherit_id" ref="mrp.mrp_bom_line_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//group/group[1]" position="inside">
-                <field name="partner_id"/>
-                <field name="delay"/>
-                <field name="landmark"/>
+                <field name="partner_id" />
+                <field name="delay" />
+                <field name="landmark" />
             </xpath>
         </field>
     </record>
