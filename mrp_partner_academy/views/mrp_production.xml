@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
 <!-- 
     <record model="ir.ui.view" id="mrp_production_tree_view">
         <field name="name">mrp.production.tree@mrp_partner_academy</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_academy_id"/>
+                <field name="partner_academy_id" />
             </field>
         </field>
     </record>
@@ -17,10 +17,10 @@
         <field name="name">mrp.production.form@mrp_partner_academy</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_academy_id"/>
+                <field name="partner_academy_id" />
             </field>
         </field>
     </record>
@@ -29,13 +29,18 @@
     <record model="ir.ui.view" id="mrp_production_filter_view">
         <field name="name">mrp.production.select@mrp_partner_academy</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_academy_id"/>
+                <field name="partner_academy_id" />
             </field>
             <filter name="groupby_partner_id" position="after">
-                <filter string="Academy" name="group_partner_academy" domain="[]" context="{'group_by':'partner_academy_id'}"/>
+                <filter
+                    string="Academy"
+                    name="group_partner_academy"
+                    domain="[]"
+                    context="{'group_by':'partner_academy_id'}"
+                />
             </filter>
         </field>
     </record>
