@@ -12,9 +12,9 @@ class MrpBomLine(models.Model):
         comodel_name="res.partner",
         string="Supplier",
     )
-    supplier_id = fields.Many2one(
+    seller_id = fields.Many2one(
         comodel_name="product.supplierinfo",
-        string="Supplier",
+        string="Seller",
         compute="_compute_supplier_info",
     )
     delay = fields.Integer(
@@ -30,31 +30,25 @@ class MrpBomLine(models.Model):
         """Given a BoM line, return the supplierinfo that matches
         with product and partner, if exist"""
         self.ensure_one()
-        # Get supplier info from current partner_id
-        supplierinfos = self.product_id.seller_ids.filtered(
-            lambda s: (s.product_id == self.product_id and s.name == self.partner_id)
-        )
-        # Try again if product variant is enabled
-        if not supplierinfos:
-            supplierinfos = self.product_id.seller_ids.filtered(
-                lambda s: (
-                    s.product_tmpl_id == self.product_tmpl_id
-                    and s.name == self.partner_id
-                )
-            )
-        return supplierinfos and supplierinfos[0] or False
+        supplier_id = self.partner_id
+        if not supplier_id:
+            supplier_id = self.product_id.main_seller_id.name
+        seller_id = self.product_id.with_context(
+            uom=self.product_uom_id.id
+        )._select_seller(partner_id=supplier_id, quantity=self.product_qty)
+        return seller_id
 
-    @api.depends("partner_id")
+    @api.depends("partner_id", "product_uom_id", "product_qty")
     def _compute_supplier_info(self):
         for rec in self:
-            rec.supplier_id = rec._get_supplierinfo()
+            rec.seller_id = rec._get_supplierinfo()
 
-    @api.depends("product_id.supply_method", "product_id.procure_method", "supplier_id")
+    @api.depends("product_id.supply_method", "product_id.procure_method", "seller_id")
     def _compute_delay(self):
         for rec in self:
             if rec.product_id.procure_method == "make_to_order":
                 if rec.product_id.supply_method == "buy":
-                    rec.delay = rec.supplier_id.delay
+                    rec.delay = rec.seller_id.delay
                 elif rec.product_id.supply_method == "produce":
                     rec.delay = rec.product_id.produce_delay
             elif rec.product_id.procure_method == "make_to_stock":
@@ -66,7 +60,7 @@ class MrpBomLine(models.Model):
         for rec in self:
             if rec.product_id.procure_method == "make_to_order":
                 if rec.product_id.supply_method == "buy":
-                    if rec.supplier_id:
-                        rec.supplier_id.delay = rec.delay
+                    if rec.seller_id:
+                        rec.seller_id.delay = rec.delay
                 elif rec.product_id.supply_method == "produce":
                     rec.product_id.produce_delay = rec.delay
