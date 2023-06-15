@@ -5,7 +5,8 @@
     padding-left: 3px;
     padding-right: 3px;
     font-size: 75%;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro",
+        monospace;
 }
 
 .note_table {
@@ -23,9 +24,7 @@
 
     tr.odd {
         background-color: #e8e8e8;
-
     }
-
 }
 
 pre {
@@ -39,5 +38,5 @@ pre {
     word-wrap: break-word;
     background-color: #0a121b !important;
     border: 1px solid rgb(168, 157, 141);
-    color: rgb(200, 255, 255) !important
+    color: rgb(200, 255, 255) !important;
 }
