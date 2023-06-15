@@ -1,0 +1,3 @@
+Small supply is a new consumable definition:
+Contrary to `consumable`, `small_supply` quantities are managed by stock rules.
+But when used in a BoM ...
