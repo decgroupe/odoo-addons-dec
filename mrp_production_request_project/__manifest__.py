@@ -4,7 +4,8 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
-        "mrp_partner",
+        "mrp_project",
+        "sale_project",
         "sale_mrp_production_request_link",
     ],
     "data": [],
