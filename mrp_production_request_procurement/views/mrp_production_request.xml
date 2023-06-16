@@ -1,15 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_request_form_view">
-        <field name="name">mrp.production.request.form@mrp_production_request_procurement</field>
+        <field
+            name="name"
+        >mrp.production.request.form@mrp_production_request_procurement</field>
         <field name="model">mrp.production.request</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_form"/>
+        <field
+            name="inherit_id"
+            ref="mrp_production_request.view_mrp_production_request_form"
+        />
         <field name="arch" type="xml">
             <field name="bom_id" position="after">
-                <field  name="production_name" invisible="1" />
-                <field name="use_common_procurement_group" 
+                <field name="production_name" invisible="1" />
+                <field
+                    name="use_common_procurement_group"
                     attrs="{'invisible': 
                         [
                             '|',
@@ -17,18 +23,19 @@
                                 '|',
                                 ('done_qty', '&gt;', 0),
                                 ('manufactured_qty', '&gt;', 0),
-                        ]}" >
+                        ]}"
+                >
                 </field>
-                <field 
-                    name="common_procurement_group_id" 
+                <field
+                    name="common_procurement_group_id"
                     attrs="{'invisible': 
                         [
                             ('use_common_procurement_group', '=', False)
-                        ]}" >
+                        ]}"
+                >
                 </field>
             </field>
         </field>
     </record>
 
 </odoo>
-

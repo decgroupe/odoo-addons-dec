@@ -5,45 +5,45 @@ from odoo import api, fields, models, _
 
 
 class MrpProductionRequest(models.Model):
-    _inherit = 'mrp.production.request'
+    _inherit = "mrp.production.request"
 
     production_name = fields.Char(
-        string='Prefix',
+        string="Prefix",
         readonly=True,
     )
     use_common_procurement_group = fields.Boolean(
-        string='Use Common Procurement Group',
+        string="Use Common Procurement Group",
         readonly=True,
         states={
-            'draft': [('readonly', False)],
-            'to_approve': [('readonly', False)],
+            "draft": [("readonly", False)],
+            "to_approve": [("readonly", False)],
         },
-        help='If checked, when the first manufacturing order is created '
-        'a procurement order is first created based on the MO sequence. '
+        help="If checked, when the first manufacturing order is created "
+        "a procurement order is first created based on the MO sequence. ",
     )
     common_procurement_group_id = fields.Many2one(
-        string='Common Procurement Group',
-        comodel_name='procurement.group',
+        string="Common Procurement Group",
+        comodel_name="procurement.group",
         copy=False,
         readonly=True,
         states={
-            'draft': [('readonly', False)],
-            'to_approve': [('readonly', False)],
+            "draft": [("readonly", False)],
+            "to_approve": [("readonly", False)],
         },
     )
 
     @api.model
     def _create_sequence(self, vals):
         # Generate and store a unique name as base for all production orders
-        if not vals.get('name') or vals.get('name') == '/':
-            if vals.get('picking_type_id'):
-                picking_type_id = self.env['stock.picking.type'].browse(
-                    vals['picking_type_id']
+        if not vals.get("name") or vals.get("name") == "/":
+            if vals.get("picking_type_id"):
+                picking_type_id = self.env["stock.picking.type"].browse(
+                    vals["picking_type_id"]
                 )
             else:
                 picking_type_id = False
-            vals['production_name'] = self._get_production_name(picking_type_id)
-            vals['name'] = vals['production_name'].replace('MO', 'MR')
+            vals["production_name"] = self._get_production_name(picking_type_id)
+            vals["name"] = vals["production_name"].replace("MO", "MR")
         vals = super()._create_sequence(vals)
         return vals
 
@@ -64,7 +64,7 @@ class MrpProductionRequest(models.Model):
         if picking_type_id:
             res = picking_type_id.sequence_id.next_by_id()
         else:
-            res = self.env['ir.sequence'].next_by_code('mrp.production')
+            res = self.env["ir.sequence"].next_by_code("mrp.production")
         return res
 
     def _create_procurement_group(self):
@@ -75,6 +75,6 @@ class MrpProductionRequest(models.Model):
         """
         self.ensure_one()
         procurement_group_id = self.env["procurement.group"].create(
-            {'name': self.production_name}
+            {"name": self.production_name}
         )
         return procurement_group_id
