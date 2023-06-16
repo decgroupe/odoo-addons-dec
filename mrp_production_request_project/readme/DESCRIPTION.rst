@@ -1,0 +1,1 @@
+Set project from sale order when creating a new manufacturing order.
