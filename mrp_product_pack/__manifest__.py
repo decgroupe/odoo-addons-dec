@@ -5,7 +5,8 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "mrp",
-        "stock_product_pack",
+        "stock",
+        "product_pack",
     ],
     "data": [],
     "installable": True,

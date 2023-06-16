@@ -9,7 +9,6 @@
         'purchase_stock',
         'product_pack',
         'stock_auto_validate',
-        'stock_product_pack',
         'mrp_product_pack',
         'stock_picking_line_auto_fill',
     ],
