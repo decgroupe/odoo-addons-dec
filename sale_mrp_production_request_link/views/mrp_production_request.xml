@@ -1,39 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_request_form_view">
-        <field name="name">mrp.production.request.form@sale_mrp_production_request_link</field>
+        <field
+            name="name"
+        >mrp.production.request.form@sale_mrp_production_request_link</field>
         <field name="model">mrp.production.request</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_form"/>
+        <field
+            name="inherit_id"
+            ref="mrp_production_request.view_mrp_production_request_form"
+        />
         <field name="arch" type="xml">
             <field name="bom_id" position="after">
-                <field name="sale_order_id" readonly="1"/>
+                <field name="sale_order_id" readonly="1" />
             </field>
             <field name="message_follower_ids" position="after">
-                <field name="activity_ids" widget="mail_activity"/>
+                <field name="activity_ids" widget="mail_activity" />
             </field>
         </field>
     </record>
 
     <record model="ir.ui.view" id="mrp_production_request_tree_view">
-        <field name="name">mrp.production.request.tree@sale_mrp_production_request_link</field>
+        <field
+            name="name"
+        >mrp.production.request.tree@sale_mrp_production_request_link</field>
         <field name="model">mrp.production.request</field>
-        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_tree"/>
+        <field
+            name="inherit_id"
+            ref="mrp_production_request.view_mrp_production_request_tree"
+        />
         <field name="arch" type="xml">
             <field name="origin" position="after">
-                <field name="sale_order_id"/>
+                <field name="sale_order_id" />
             </field>
         </field>
     </record>
 
     <record model="ir.ui.view" id="mrp_production_request_search_view">
-        <field name="name">mrp.production.request.search@sale_mrp_production_request_link</field>
+        <field
+            name="name"
+        >mrp.production.request.search@sale_mrp_production_request_link</field>
         <field name="model">mrp.production.request</field>
-        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_search"/>
+        <field
+            name="inherit_id"
+            ref="mrp_production_request.view_mrp_production_request_search"
+        />
         <field name="arch" type="xml">
             <field name="bom_id" position="after">
-                <field name="sale_order_id"/>
+                <field name="sale_order_id" />
             </field>
         </field>
     </record>

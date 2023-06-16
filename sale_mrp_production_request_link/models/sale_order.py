@@ -5,15 +5,15 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     production_request_ids = fields.One2many(
-        'mrp.production.request',
-        'sale_order_id',
+        comodel_name="mrp.production.request",
+        inverse_name="sale_order_id",
         string="Manufacturing Requests",
     )
     production_request_count = fields.Integer(
-        compute='_compute_production_request_count',
+        compute="_compute_production_request_count",
         store=True,
         string="Number of Manufacturing Requests",
     )
@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
             sale.production_request_count = len(sale.production_request_ids)
 
     def action_view_production_request(self):
-        action = self.mapped('production_request_ids').action_view()
+        action = self.mapped("production_request_ids").action_view()
         return action
 
     def action_cancel(self):
@@ -36,18 +36,19 @@ class SaleOrder(models.Model):
         return result
 
     def _activity_cancel_on_production_request(self):
-        """ If some SO are cancelled, we need to put an activity on their
-            generated production requests. We only want one activity to
-            be attached.
+        """If some SO are cancelled, we need to put an activity on their
+        generated production requests. We only want one activity to
+        be attached.
         """
-        for production_request in self.mapped('production_request_ids'):
+        for production_request in self.mapped("production_request_ids"):
             production_request.activity_schedule_with_view(
-                'mail.mail_activity_data_warning',
-                user_id=production_request.assigned_to.id or
-                production_request.requested_by.id or self.env.uid,
-                views_or_xmlid='sale_mrp_production_request_link.'
-                'exception_production_request_on_sale_cancellation',
+                "mail.mail_activity_data_warning",
+                user_id=production_request.assigned_to.id
+                or production_request.requested_by.id
+                or self.env.uid,
+                views_or_xmlid="sale_mrp_production_request_link."
+                "exception_production_request_on_sale_cancellation",
                 render_context={
-                    'sale_orders': self,
-                }
+                    "sale_orders": self,
+                },
             )
