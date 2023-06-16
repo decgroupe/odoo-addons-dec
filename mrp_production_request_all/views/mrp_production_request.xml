@@ -1,20 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_request_form_view">
-        <field name="name">mrp.production.request.form@mrp_production_request_all</field>
+        <field
+            name="name"
+        >mrp.production.request.form@mrp_production_request_all</field>
         <field name="model">mrp.production.request</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp_production_request.view_mrp_production_request_form"/>
+        <field
+            name="inherit_id"
+            ref="mrp_production_request.view_mrp_production_request_form"
+        />
         <field name="arch" type="xml">
             <button name="button_done" position="before">
-                <button 
-                    name="create_all_manufacturing_orders" 
-                    string="Create all Manufacturing Orders" 
+                <button
+                    name="create_all_manufacturing_orders"
+                    string="Create all Manufacturing Orders"
                     help="This action will create a new Manufacturing Order for each quantity:
 - If required quantity=1.0 when it will generate 1 × MO of 1 unit
 - If required quantity=5.0 when it will generate 5 × MO of 1 unit"
-                    type="object" 
+                    type="object"
                     class="oe_highlight"
                     groups="mrp_production_request.group_mrp_production_request_manager"
                     attrs="{'invisible': [
@@ -23,11 +28,11 @@
                                 ('&amp;'),
                                     ('state', '=', 'approved'),
                                     ('pending_qty', '=', 0),
-                        ]}" >
+                        ]}"
+                >
                 </button>
             </button>
         </field>
     </record>
 
 </odoo>
-
