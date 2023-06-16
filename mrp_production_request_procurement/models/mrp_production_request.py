@@ -42,8 +42,10 @@ class MrpProductionRequest(models.Model):
                 )
             else:
                 picking_type_id = False
-            vals["production_name"] = self._get_production_name(picking_type_id)
-            vals["name"] = vals["production_name"].replace("MO", "MR")
+            production_name = self._get_production_name(picking_type_id)
+            if production_name:
+                vals["production_name"] = production_name
+                vals["name"] = vals["production_name"].replace("MO", "MR")
         vals = super()._create_sequence(vals)
         return vals
 
