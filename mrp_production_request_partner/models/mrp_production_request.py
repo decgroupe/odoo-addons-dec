@@ -1,19 +1,19 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
-from odoo import models, api, fields
+from odoo import api, fields, models
 
 
 class MrpProductionRequest(models.Model):
-    _inherit = 'mrp.production.request'
+    _inherit = "mrp.production.request"
 
     partner_id = fields.Many2one(
-        'res.partner',
-        'Partner',
+        comodel_name="res.partner",
+        string="Partner",
     )
     zip_id = fields.Many2one(
-        related='partner_id.zip_id',
-        string='ZIP Location',
+        related="partner_id.zip_id",
+        string="ZIP Location",
     )
 
     @api.model
