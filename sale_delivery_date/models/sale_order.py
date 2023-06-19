@@ -1,9 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2022
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
-from odoo import models, api, fields
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
