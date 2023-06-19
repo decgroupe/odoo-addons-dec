@@ -1,15 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="project_task_search">
         <field name="name">project.task.search.form@sale_timesheet_project</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="inherit_id" ref="project.view_task_search_form" />
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='starred']/following-sibling::separator" position="after">
-                <filter string="To invoice" name="filter_to_invoice" domain="[('sale_line_id.invoice_status', '=', 'to invoice')]"/>
-                <filter string="Invoiced" name="filter_to_invoice" domain="[('sale_line_id.invoice_status', '=', 'invoiced')]"/>
-                <separator/>
+            <xpath
+                expr="//filter[@name='starred']/following-sibling::separator"
+                position="after"
+            >
+                <filter
+                    string="To invoice"
+                    name="filter_to_invoice"
+                    domain="[('sale_line_id.invoice_status', '=', 'to invoice')]"
+                />
+                <filter
+                    string="Invoiced"
+                    name="filter_to_invoice"
+                    domain="[('sale_line_id.invoice_status', '=', 'invoiced')]"
+                />
+                <separator />
             </xpath>
         </field>
     </record>

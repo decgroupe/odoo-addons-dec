@@ -4,16 +4,18 @@
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_timesheet_project</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_cancel']" position="before">
-                <button type="object" 
-                    name="action_create_project" 
+                <button
+                    type="object"
+                    name="action_create_project"
                     icon="fa-stopwatch"
-                    string="Create Project" 
-                    class="btn-secondary" 
+                    string="Create Project"
+                    class="btn-secondary"
                     context="{}"
-                    attrs="{'invisible':[('project_id', '!=', False)]}">
+                    attrs="{'invisible':[('project_id', '!=', False)]}"
+                >
                 </button>
             </xpath>
         </field>

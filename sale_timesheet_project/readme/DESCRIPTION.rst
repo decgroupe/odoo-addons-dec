@@ -1,0 +1,1 @@
+Auto-create project on validate and add a button to create a timesheet before validating the sale order.
