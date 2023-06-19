@@ -6,10 +6,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='expected_date']" position="after">
+            <xpath expr="//field[@name='effective_date']" position="before">
                 <field
                     name="expected_last_date"
                     attrs="{'invisible': [('picking_policy', '=', 'one')]}"
+                    widget="date"
                 />
             </xpath>
             <xpath expr="//field[@name='effective_date']" position="after">
