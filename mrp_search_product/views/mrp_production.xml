@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_filter_view">
         <field name="name">mrp.production.select@mrp_search_product</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="move_raw_ids" string="Raw Product" filter_domain="[('move_raw_ids.product_id','ilike',self)]"/>
+                <field
+                    name="move_raw_ids"
+                    string="Raw Product"
+                    filter_domain="[('move_raw_ids.product_id','ilike',self)]"
+                />
             </field>
         </field>
     </record>
