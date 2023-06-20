@@ -16,7 +16,7 @@
     "author": "DEC, Yann Papouin, "
               "IT-Projects LLC, Manaev Rafael",
     'website': 'https://www.decgroupe.com',
-    "license": "MIT",
+    "license": "Other OSI approved licence", # MIT
     "depends": ["base", "project"],
     "external_dependencies": {
         "python": [],
