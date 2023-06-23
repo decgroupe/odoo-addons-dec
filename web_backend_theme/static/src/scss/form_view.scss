@@ -114,7 +114,7 @@
 // Always shows chatter, even in modal view
 .modal .modal-dialog {
     .o_form_view {
-        .oe_chatter {
+        .o_FormRenderer_chatterContainer {
             display: block;
         }
     }
