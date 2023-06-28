@@ -16,6 +16,10 @@
         }
     }
 
+    tbody > tr > td {
+        height: 100%;
+    }
+
     .o_list_table
         .o_data_row.o_selected_row
         > .o_data_cell:not(.o_readonly_modifier):not(.o_invisible_modifier):not(
@@ -29,6 +33,7 @@
         }
         select.o_input {
             padding: revert;
+            height: 100%;
         }
         .o_field_boolean {
             padding-top: revert;
