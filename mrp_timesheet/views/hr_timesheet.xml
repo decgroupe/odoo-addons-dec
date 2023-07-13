@@ -42,7 +42,8 @@
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
         <field name="arch" type="xml">
             <field name="task_id" position="after">
-                <field name="production_id" required="context.get('production_required', False)" />
+                <field name="production_id" required="context.get('production_required', False)" 
+                    context="{'active_test':False}" />
                 <field name="production_identification" attrs="{'invisible': [('production_id', '=', False)]}" string="" />
             </field>
         </field>
