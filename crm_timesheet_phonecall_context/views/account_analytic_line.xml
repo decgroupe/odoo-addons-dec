@@ -15,11 +15,11 @@
             <field name="lead_id" position="after">
                 <field
                     name="phonecall_id"
-                    context="
-                {
-                    'default_project_id': project_id,
-                    'default_description': name,
-                }"
+                    context="{
+                        'active_test': False,
+                        'default_project_id': project_id,
+                        'default_description': name,
+                    }"
                 />
             </field>
         </field>
