@@ -61,6 +61,7 @@
                 <field
                     name="production_id"
                     required="context.get('production_required', False)"
+                    context="{'active_test':False}"
                 />
                 <field
                     name="production_identification"
