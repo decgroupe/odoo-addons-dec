@@ -14,11 +14,11 @@
             <field name="task_id" position="after">
                 <field
                     name="lead_id"
-                    context="
-                {
-                    'default_project_id': project_id,
-                    'default_type': 'opportunity',
-                }"
+                    context="{
+                        'active_test': False,
+                        'default_project_id': project_id,
+                        'default_type': 'opportunity',
+                    }"
                 />
             </field>
         </field>
