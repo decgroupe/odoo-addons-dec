@@ -14,7 +14,10 @@
                 <field
                     name="sale_id"
                     domain="[('opportunity_id', '=', lead_id)]"
-                    context="{'default_opportunity_id': lead_id}"
+                    context="{
+                        'active_test': False,
+                        'default_opportunity_id': lead_id
+                    }"
                     attrs="{'invisible': [('lead_id', '=', False)]}"
                 >
                 </field>
