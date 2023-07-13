@@ -9,6 +9,7 @@
             <xpath expr="//form/sheet//field[@name='ticket_id']" position="attributes">
                 <attribute name="context">
                 {
+                    'active_test': False,
                     'default_project_id': project_id,
                     'default_description': name,
                 }
