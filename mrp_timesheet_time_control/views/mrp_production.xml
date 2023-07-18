@@ -7,11 +7,17 @@
         <field name="inherit_id" ref="mrp_timesheet.mrp_production_form_view" />
         <field name="arch" type="xml">
             <!-- Sub-tree view for timesheet_ids -->
-            <xpath expr="//field[@name='timesheet_ids']/tree//field[@name='date']" position="attributes">
+            <xpath
+                expr="//field[@name='timesheet_ids']/tree//field[@name='date']"
+                position="attributes"
+            >
                 <attribute name="invisible">1</attribute>
             </xpath>
-            <xpath expr="//field[@name='timesheet_ids']/tree//field[@name='date']" position="after">
-                <field name="date_time" string="Date" required="1"/>
+            <xpath
+                expr="//field[@name='timesheet_ids']/tree//field[@name='date']"
+                position="after"
+            >
+                <field name="date_time" string="Date" required="1" />
             </xpath>
         </field>
     </record>
