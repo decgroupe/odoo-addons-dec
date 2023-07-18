@@ -12,15 +12,12 @@ class MrpProduction(models.Model):
     # Add index to speed-up search
     bom_id = fields.Many2one(index=True)
 
-    def _get_default_stage_id(self):
-        """Gives default stage_id"""
-        return self.env.ref("mrp_stage.stage_confirmed", raise_if_not_found=False)
-
     stage_id = fields.Many2one(
         comodel_name="mrp.production.stage",
         string="Stage",
         ondelete="set null",
-        default=_get_default_stage_id,
+        default=lambda self: self._get_default_stage_id(),
+        group_expand="_read_group_stage_ids",
         compute="_compute_stage_id",
         tracking=True,
         index=True,
@@ -39,6 +36,16 @@ class MrpProduction(models.Model):
 
     # For Kanban
     kanban_color = fields.Integer(string="Color Index")
+
+    # Used for Kanban grouped_by view
+    @api.model
+    def _read_group_stage_ids(self, stages, domain, order):
+        stage_ids = self.env["mrp.production.stage"].search([])
+        return stages or stage_ids
+
+    def _get_default_stage_id(self):
+        """Gives default stage_id"""
+        return self.env.ref("mrp_stage.stage_confirmed", raise_if_not_found=False)
 
     @api.model
     def _get_stages_ref(self):
