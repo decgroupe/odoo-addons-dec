@@ -1,16 +1,16 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class MrpDistributeTimesheetReason(models.Model):
-    _name = 'mrp.distribute.timesheet.reason'
+    _name = "mrp.distribute.timesheet.reason"
     _order = "sequence, id"
-    _description = 'Selectable reason used when distributing a timesheet'
+    _description = "Selectable reason used when distributing a timesheet"
 
     sequence = fields.Integer(
-        'Sequence',
+        string="Sequence",
         default=1,
         help="Gives the sequence order when displaying.",
     )
