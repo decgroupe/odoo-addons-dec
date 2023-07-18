@@ -5,24 +5,24 @@ from odoo import fields, models
 
 
 class MrpSwapProductionLine(models.TransientModel):
-    _name = 'mrp.swap.production.line'
-    _description = 'Line for swaping two manufacturing orders'
+    _name = "mrp.swap.production.line"
+    _description = "Line for swaping two manufacturing orders"
 
     product_id = fields.Many2one(
-        comodel_name='product.product',
-        string='Product',
+        comodel_name="product.product",
+        string="Product",
         required=True,
         readonly=True,
     )
     from_production_id = fields.Many2one(
-        'mrp.production',
-        'From',
+        comodel_name="mrp.production",
+        string="From",
         required=True,
         readonly=True,
     )
     to_production_id = fields.Many2one(
-        'mrp.production',
-        'To',
+        comodel_name="mrp.production",
+        string="To",
         required=True,
         readonly=True,
     )
