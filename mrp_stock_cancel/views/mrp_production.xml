@@ -10,6 +10,18 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
                 <button
+                    name="action_assign"
+                    title="Check availability"
+                    type="object"
+                    icon="fa-bar-chart-o"
+                    attrs="{'invisible': [
+                        '|',
+                        ('is_locked', '=', True),
+                        ( 'state', 'not in', ['confirmed', 'waiting', 'partially_available'])
+                    ]}"
+                >
+                </button>
+                <button
                     name="action_cancel"
                     title="Cancel"
                     type="object"
