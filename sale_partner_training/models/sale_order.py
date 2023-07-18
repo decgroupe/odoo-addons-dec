@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     training_specialty_ids = fields.Many2many(
-        comodel_name='res.partner.training.specialty',
-        string='Specialties',
-        help='Educational Training Specialties related to this order.',
+        comodel_name="res.partner.training.specialty",
+        string="Specialties",
+        help="Educational Training Specialties related to this order.",
     )
