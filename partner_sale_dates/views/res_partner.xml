@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="partner_tree_view">
@@ -7,9 +7,9 @@
         <field name="inherit_id" ref="base.view_partner_tree" />
         <field name="arch" type="xml">
             <field name="email" position="after">
-                <field name="last_quotation_date" widget="remaining_days"/>
-                <field name="last_sale_date" widget="remaining_days"/>
-                <field name="last_sale_delivery_date" widget="remaining_days"/>
+                <field name="last_quotation_date" widget="remaining_days" />
+                <field name="last_sale_date" widget="remaining_days" />
+                <field name="last_sale_delivery_date" widget="remaining_days" />
             </field>
         </field>
     </record>
@@ -18,23 +18,30 @@
         <field name="name">res.partner.form@partner_sale_dates</field>
         <field name="model">res.partner</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-
-            <!-- Button name was "%(sale.act_res_partner_2_sale_order)d" in 12.0 
-                    and changed to "action_view_sale_order" in 13.0 -->
+            <!-- Button name was "%(sale.act_res_partner_2_sale_order)d" in 12.0
+            and changed to "action_view_sale_order" in 13.0 -->
             <button name="action_view_sale_order" position="after">
-                <button class="oe_stat_button" type="object" name="action_open_shipping_sale_orders" 
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_open_shipping_sale_orders"
                     groups="sales_team.group_sale_salesman"
-                    icon="fa-truck">
-                    <field string="Shipping (Sales)" name="shipping_sale_order_count" widget="statinfo"/>
+                    icon="fa-truck"
+                >
+                    <field
+                        string="Shipping (Sales)"
+                        name="shipping_sale_order_count"
+                        widget="statinfo"
+                    />
                 </button>
             </button>
 
             <group name="sale" position="inside">
-                <field name="last_quotation_date"/>
-                <field name="last_sale_date"/>
-                <field name="last_sale_delivery_date"/>
+                <field name="last_quotation_date" />
+                <field name="last_sale_date" />
+                <field name="last_sale_delivery_date" />
             </group>
 
         </field>
