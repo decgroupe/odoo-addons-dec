@@ -9,6 +9,7 @@
         "mrp_identification",
         "mrp_stage",
         "hr_timesheet",
+        "hr_timesheet_autofill",
     ],
     "data": [
         "views/mrp_production.xml",
