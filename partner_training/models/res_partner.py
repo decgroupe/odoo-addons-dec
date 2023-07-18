@@ -8,7 +8,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     training_specialty_ids = fields.Many2many(
-        comodel_name='res.partner.training.specialty',
-        string='Specialties',
-        help='Educational Training Specialties of this partner.',
+        comodel_name="res.partner.training.specialty",
+        string="Specialties",
+        help="Educational Training Specialties of this partner.",
     )

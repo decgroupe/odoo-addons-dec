@@ -5,52 +5,54 @@ from odoo import fields, models, api
 
 
 class ResPartnerTrainingSpecialty(models.Model):
-    _description = 'Educational Training Specialty'
+    _description = "Educational Training Specialty"
     _name = "res.partner.training.specialty"
     _order = "name"
-    _rec_name = 'complete_name'
+    _rec_name = "complete_name"
 
     active = fields.Boolean(
-        'Active',
+        string="Active",
         default=True,
     )
     name = fields.Char(
-        'Name',
+        string="Name",
         required=True,
         translate=False,
     )
     complete_name = fields.Char(
-        'Complete Name',
-        compute='_compute_names',
+        string="Complete Name",
+        compute="_compute_names",
         store=True,
     )
     search_name = fields.Char(
-        'Search Name',
-        compute='_compute_names',
+        string="Search Name",
+        compute="_compute_names",
         store=True,
     )
     acronym = fields.Char(
-        'Acronym',
+        string="Acronym",
         translate=False,
     )
     training_id = fields.Many2one(
-        'res.partner.training',
-        string='Educational Training',
+        comodel_name="res.partner.training",
+        string="Educational Training",
         required=True,
     )
 
     _sql_constraints = [
         (
-            'train_name_uniq', 'unique(training_id, name)',
-            'Name must be unique !'
+            "train_name_uniq",
+            "unique(training_id, name)",
+            "Name must be unique !",
         ),
         (
-            'train_acro_uniq', 'unique(training_id, acronym)',
-            'Acronym must be unique !'
+            "train_acro_uniq",
+            "unique(training_id, acronym)",
+            "Acronym must be unique !",
         ),
     ]
 
-    @api.depends('name', 'acronym', 'training_id', 'training_id.name')
+    @api.depends("name", "acronym", "training_id", "training_id.name")
     def _compute_names(self):
         for rec in self:
             if rec.acronym:
@@ -63,7 +65,7 @@ class ResPartnerTrainingSpecialty(models.Model):
             )
 
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
         cls = type(self)
         original_rec_name = cls._rec_name
         cls._rec_name = "search_name"

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="res_partner_training_specialty_tree_view">
@@ -6,9 +6,9 @@
         <field name="model">res.partner.training.specialty</field>
         <field name="arch" type="xml">
             <tree string="Educational Training Specialties">
-                <field name="name"/>
-                <field name="acronym"/>
-                <field name="training_id"/>
+                <field name="name" />
+                <field name="acronym" />
+                <field name="training_id" />
             </tree>
         </field>
     </record>
@@ -20,31 +20,32 @@
             <form string="Educational Training Specialty">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        
-            <field name="active" invisible="1" />
-            <widget
-                name="web_ribbon"
-                title="Archived"
-                bg_color="bg-danger"
-                attrs="{'invisible': [('active', '=', True)]}"
-            />
-            
+                        <field name="active" invisible="1" />
+                        <widget
+                            name="web_ribbon"
+                            title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"
+                        />
                     </div>
                     <group name="title">
                         <div class="oe_title">
-                            <label for="name" class="oe_edit_only"/>
+                            <label for="name" class="oe_edit_only" />
                             <h1>
-                                <field name="name" placeholder="Personal Care and Services Support"/>
+                                <field
+                                    name="name"
+                                    placeholder="Personal Care and Services Support"
+                                />
                             </h1>
                         </div>
                     </group>
                     <group name="main">
                         <group name="primary">
-                            <field name="training_id"/>
-                            <field name="acronym" placeholder="PCSS"/>
+                            <field name="training_id" />
+                            <field name="acronym" placeholder="PCSS" />
                         </group>
-                        <group name="secondary"/>
-                        <field name="complete_name"/>
+                        <group name="secondary" />
+                        <field name="complete_name" />
                     </group>
                 </sheet>
             </form>
@@ -52,14 +53,20 @@
     </record>
 
     <record model="ir.ui.view" id="partner_training_search_view">
-        <field name="name">res.partner.training.specialty.search@partner_training</field>
+        <field
+            name="name"
+        >res.partner.training.specialty.search@partner_training</field>
         <field name="model">res.partner.training.specialty</field>
         <field name="arch" type="xml">
             <search string="Educational Training Specialty">
-                <field name="search_name" string="Full Name"/>
-                <separator/>
+                <field name="search_name" string="Full Name" />
+                <separator />
                 <group string="Group By" name="groupby">
-                    <filter string="Educational Training" name="groupby_training_id" context="{'group_by':'training_id'}"/>
+                    <filter
+                        string="Educational Training"
+                        name="groupby_training_id"
+                        context="{'group_by':'training_id'}"
+                    />
                 </group>
             </search>
         </field>

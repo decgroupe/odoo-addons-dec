@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="res_partner_training_tree_view">
@@ -6,8 +6,12 @@
         <field name="model">res.partner.training</field>
         <field name="arch" type="xml">
             <tree string="Educational Trainings">
-                <field name="name"/>
-                <field name="specialty_ids" string="Specialties or Sectors" widget="many2many_tags"/>
+                <field name="name" />
+                <field
+                    name="specialty_ids"
+                    string="Specialties or Sectors"
+                    widget="many2many_tags"
+                />
             </tree>
         </field>
     </record>
@@ -19,31 +23,32 @@
             <form string="Educational Training">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        
-            <field name="active" invisible="1" />
-            <widget
-                name="web_ribbon"
-                title="Archived"
-                bg_color="bg-danger"
-                attrs="{'invisible': [('active', '=', True)]}"
-            />
-            
+                        <field name="active" invisible="1" />
+                        <widget
+                            name="web_ribbon"
+                            title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"
+                        />
                     </div>
                     <group name="title">
                         <div class="oe_title">
-                            <label for="name" class="oe_edit_only"/>
+                            <label for="name" class="oe_edit_only" />
                             <h1>
-                                <field name="name"/>
+                                <field name="name" />
                             </h1>
                         </div>
                     </group>
                     <group name="main">
-                        <label for="title" class="oe_edit_only"/>
-                        <field name="title"/>
+                        <label for="title" class="oe_edit_only" />
+                        <field name="title" />
                         <field name="specialty_ids">
                             <tree editable="bottom">
-                                <field name="name" placeholder="Personal Care and Services Support"/>
-                                <field name="acronym" placeholder="PCSS"/>
+                                <field
+                                    name="name"
+                                    placeholder="Personal Care and Services Support"
+                                />
+                                <field name="acronym" placeholder="PCSS" />
                             </tree>
                         </field>
                         <group name="primary">

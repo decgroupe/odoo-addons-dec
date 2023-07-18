@@ -5,29 +5,29 @@ from odoo import fields, models
 
 
 class ResPartnerTraining(models.Model):
-    _description = 'Educational Training'
+    _description = "Educational Training"
     _name = "res.partner.training"
     _order = "name"
 
     active = fields.Boolean(
-        'Active',
+        string="Active",
         default=True,
     )
     name = fields.Char(
-        'Name',
+        string="Name",
         required=True,
         translate=False,
     )
     title = fields.Char(
-        'Title',
+        string="Title",
         translate=False,
     )
     specialty_ids = fields.One2many(
-        'res.partner.training.specialty',
-        'training_id',
-        string='Specialties',
+        comodel_name="res.partner.training.specialty",
+        inverse_name="training_id",
+        string="Specialties",
     )
 
     _sql_constraints = [
-        ('name', 'unique(name)', 'Name must be unique !'),
+        ("name", "unique(name)", "Name must be unique !"),
     ]

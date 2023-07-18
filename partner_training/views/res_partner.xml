@@ -1,16 +1,14 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_partner_form_partner_academy">
         <field name="name">res.partner.form@partner_training</field>
         <field name="model">res.partner</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <field name="category_id" position="before">
-                <field name="training_specialty_ids"
-                    widget="many2many_tags" 
-                />
+                <field name="training_specialty_ids" widget="many2many_tags" />
             </field>
         </field>
     </record>
