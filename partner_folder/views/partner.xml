@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="partner_form_view">
@@ -19,7 +19,7 @@
         <field name="inherit_id" ref="base.view_partner_tree" />
         <field name="arch" type="xml">
             <field name="email" position="after">
-                <field name="folder_uri"/>
+                <field name="folder_uri" />
             </field>
         </field>
     </record>
