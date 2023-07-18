@@ -4,10 +4,13 @@
     <record model="ir.ui.view" id="hr_timesheet_line_calendar">
         <field name="name">account.analytic.line.calendar@mrp_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet_calendar.hr_timesheet_line_calendar"/>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_calendar.hr_timesheet_line_calendar"
+        />
         <field name="arch" type="xml">
             <xpath expr="//calendar/field[@name='task_id']" position="before">
-                <field name="production_id"/>
+                <field name="production_id" />
             </xpath>
         </field>
     </record>
@@ -15,10 +18,13 @@
     <record model="ir.ui.view" id="hr_timesheet_line_calendar_all">
         <field name="name">account.analytic.line.calendar@mrp_timesheet_calendar</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet_calendar.hr_timesheet_line_calendar_all"/>
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_calendar.hr_timesheet_line_calendar_all"
+        />
         <field name="arch" type="xml">
             <xpath expr="//calendar/field[@name='project_id']" position="before">
-                <field name="production_id"/>
+                <field name="production_id" />
             </xpath>
         </field>
     </record>
