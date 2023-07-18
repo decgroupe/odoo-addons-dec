@@ -6,12 +6,14 @@ from odoo.exceptions import UserError
 
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = "mrp.production"
 
     @api.model
     def create(self, values):
-        if values.get('bom_id'):
-            bom_id = self.env['mrp.bom'].browse(values.get('bom_id'))
+        if values.get("bom_id"):
+            bom_id = self.env["mrp.bom"].browse(values.get("bom_id"))
+            # FIXME: Since BoM can be set after create, a new way must be found
+            # to ensure a valid check
             self._check_bom_warnings(bom_id)
         production = super(MrpProduction, self).create(values)
         return production
@@ -21,19 +23,19 @@ class MrpProduction(models.Model):
         for line in bom_id.bom_line_ids:
             errors += self._check_bom_line_product(line.product_id)
         if errors:
-            errors = ['\n'] + errors
+            errors = ["\n"] + errors
             raise UserError(
                 _(
-                    'Cannot manufacture product {}, because of '
-                    'following error(s):'
-                    '{}'
-                ).format(bom_id.product_id.display_name, '\n - '.join(errors))
+                    "Cannot manufacture product {}, because of "
+                    "following error(s):"
+                    "{}"
+                ).format(bom_id.product_id.display_name, "\n - ".join(errors))
             )
 
     def _check_bom_line_product(self, product_id):
         res = []
         if not product_id.active:
-            res.append(_('{} is archived').format(product_id.display_name))
-        if product_id.state == 'obsolete':
-            res.append(_('{} is obsolete').format(product_id.display_name))
+            res.append(_("{} is archived").format(product_id.display_name))
+        if product_id.state == "obsolete":
+            res.append(_("{} is obsolete").format(product_id.display_name))
         return res
