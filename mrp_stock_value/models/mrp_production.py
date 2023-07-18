@@ -24,7 +24,7 @@ class MrpProduction(models.Model):
     @api.depends("move_raw_ids")
     def _compute_consumed_value(self):
         PricesHistory = self.env["product.prices.history"]
-        price_type = "purchase"
+        PRICE_TYPE = "purchase"
         self.consumed_value = 0
         for rec in self:
             all_move_ids = rec.move_raw_ids.filtered(lambda x: x.state == "done")
@@ -34,27 +34,28 @@ class MrpProduction(models.Model):
                         ("company_id", "=", rec.company_id.id),
                         ("product_id", "=", move_id.product_id.id),
                         ("datetime", "<=", move_id.date),
-                        ("type", "=", price_type),
+                        ("type", "=", PRICE_TYPE),
                     ],
                     order="datetime desc, id desc",
                     limit=1,
                 )
                 if history:
-                    price = history.get_price(price_type)
+                    price = history.get_price(PRICE_TYPE)
                     rec.consumed_value += price * move_id.quantity_done
                 else:
                     print(move_id)
 
-    def post_inventory(self):
+    def button_mark_done(self):
         moves_done = {}
         for rec in self:
             all_move_ids = rec.move_raw_ids.filtered(lambda x: x.state == "done")
             moves_done[rec.id] = len(all_move_ids)
-        super().post_inventory()
+        res = super().button_mark_done()
         for rec in self:
             all_move_ids = rec.move_raw_ids.filtered(lambda x: x.state == "done")
             if len(all_move_ids) != moves_done[rec.id]:
                 rec._message_post_consumed_value()
+        return res
 
     def _message_post_consumed_value(self):
         self.ensure_one()
