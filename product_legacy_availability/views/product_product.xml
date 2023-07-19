@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_normal_form_view">
@@ -9,7 +9,10 @@
             <group name="group_lots_and_weight" position="after">
                 <group name="legacy_availability" string="Legacy Availability">
                     <field name="legacy_qty_available" string="Quantity On Hand" />
-                    <field name="legacy_virtual_available" string="Quantity Available" />
+                    <field
+                        name="legacy_virtual_available"
+                        string="Quantity Available"
+                    />
                     <field name="legacy_incoming_qty" string="Incoming" />
                     <field name="legacy_outgoing_qty" string="Outgoing" />
                 </group>
