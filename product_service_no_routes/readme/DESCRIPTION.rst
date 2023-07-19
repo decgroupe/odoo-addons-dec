@@ -1,0 +1,1 @@
+Since we consider that routes on product are only for physical items then we remove existing routes when setting a product as a service.
