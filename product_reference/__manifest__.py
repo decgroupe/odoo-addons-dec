@@ -19,6 +19,7 @@
         'product_legacy_routes',
         'product_tagging',
         'product_pack_order_type',
+        'product_pack_line',
         'product_public_code',
         'mrp_production_request',
         'mrp_bom_dates',
