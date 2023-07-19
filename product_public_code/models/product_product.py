@@ -8,9 +8,9 @@ class Product(models.Model):
     _inherit = "product.product"
 
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
         # If name starts with a wilcard, then clear arg domain
-        if name.startswith('*'):
+        if name.startswith("*"):
             name = name[1:]
             args = False
         if not args:

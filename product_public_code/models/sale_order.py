@@ -5,15 +5,15 @@ from odoo import api, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def product_id_change(self):
         res = super().product_id_change()
         if self.product_id and self.product_id.public_code:
-            parts = list(self.name.partition('\n'))
-            parts[0] = '[{}] {}'.format(
+            parts = list(self.name.partition("\n"))
+            parts[0] = "[{}] {}".format(
                 self.product_id.public_code, self.product_id.name
             )
-            self.name = ''.join(parts)
+            self.name = "".join(parts)
         return res
