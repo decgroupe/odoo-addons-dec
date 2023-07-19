@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="res_config_settings_view_form">
         <field name="name">res.config.settings.view.form@product_reference</field>
         <field name="model">res.config.settings</field>
-        <field name="priority" eval="35"/>
+        <field name="priority" eval="35" />
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
-
-            <xpath expr="//div[@data-key='product_reference_management']//div[@id='reference_management']" position="inside" >
+            <xpath
+                expr="//div[@data-key='product_reference_management']//div[@id='reference_management']"
+                position="inside"
+            >
                 <div class="col-12 col-lg-6 o_setting_box">
                     <div class="o_setting_right_pane">
                         <span class="o_form_label">Auto-create Analytic Account</span>
@@ -17,15 +19,16 @@
                         </div>
                         <div class="content-group">
                             <div class="mt16" attrs="">
-                                <field name="auto_create_reference_category_analytic_account"
+                                <field
+                                    name="auto_create_reference_category_analytic_account"
                                     class="o_light_label"
-                                    context="{'default_company_id': company_id}"/>
+                                    context="{'default_company_id': company_id}"
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
             </xpath>
-
         </field>
     </record>
 

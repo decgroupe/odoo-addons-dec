@@ -5,9 +5,9 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     auto_create_reference_category_analytic_account = fields.Boolean(
-        related='company_id.auto_create_reference_category_analytic_account',
+        related="company_id.auto_create_reference_category_analytic_account",
         readonly=False,
     )
