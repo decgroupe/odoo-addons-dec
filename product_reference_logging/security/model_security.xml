@@ -1,11 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
 
         <record model="res.groups" id="group_ref_log_user">
             <field name="name">Logging User</field>
-            <field name="category_id" ref="product_reference_management.module_category_reference"/>
-            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field
+                name="category_id"
+                ref="product_reference_management.module_category_reference"
+            />
+            <field
+                name="users"
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
         </record>
 
     </data>

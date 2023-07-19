@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_log_tree_view" >
+    <record model="ir.ui.view" id="ref_log_tree_view">
         <field name="name">ref.log.tree@product_reference</field>
         <field name="model">ref.log</field>
         <field name="arch" type="xml">
             <tree string="Logs">
-                <field name="username"/>
-                <field name="operation"/>
-                <field name="localcomputername"/>
-                <field name="ipaddress"/>
-                <field name="datetime"/>
+                <field name="username" />
+                <field name="operation" />
+                <field name="localcomputername" />
+                <field name="ipaddress" />
+                <field name="datetime" />
             </tree>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_ref_log" >
+    <record model="ir.actions.act_window" id="act_window_ref_log">
         <field name="name">Logs</field>
         <field name="res_model">ref.log</field>
-        <field name="view_id" ref="ref_log_tree_view"/>
+        <field name="view_id" ref="ref_log_tree_view" />
     </record>
 
 </odoo>
