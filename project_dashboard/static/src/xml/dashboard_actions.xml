@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <templates>
 
     <t t-name="ProjectDashboard.all_tasks_button">
-        <button type="button" class="btn btn-secondary o_header_button_view_all_tasks"><span>All Tasks</span></button>
+        <button
+            type="button"
+            class="btn btn-secondary o_header_button_view_all_tasks"
+        ><span>All Tasks</span></button>
     </t>
 
     <t t-extend="ListView.buttons" t-name="ProjectDashboardListView.buttons">
         <t t-jquery="button.o_list_button_add" t-operation="after">
-            <t t-call="ProjectDashboard.all_tasks_button"/>
+            <t t-call="ProjectDashboard.all_tasks_button" />
         </t>
     </t>
 
     <t t-extend="KanbanView.buttons" t-name="ProjectDashboardKanbanView.buttons">
         <!-- Using the "button.o-kanban-button-new" selector doesn't work ... don't know why -->
         <t t-jquery="button" t-operation="after">
-            <t t-call="ProjectDashboard.all_tasks_button"/>
+            <t t-call="ProjectDashboard.all_tasks_button" />
         </t>
     </t>
 

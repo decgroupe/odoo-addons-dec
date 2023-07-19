@@ -1,12 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="assets_backend" name="project_dashboard assets" inherit_id="web.assets_backend">
+    <template
+        id="assets_backend"
+        name="project_dashboard assets"
+        inherit_id="web.assets_backend"
+    >
         <xpath expr="//script[last()]" position="after">
-            <script type="text/javascript" src="/project_dashboard/static/src/js/list_controller.js"></script>
-            <script type="text/javascript" src="/project_dashboard/static/src/js/list_view.js"></script>
-            <script type="text/javascript" src="/project_dashboard/static/src/js/kanban_controller.js"></script>
-            <script type="text/javascript" src="/project_dashboard/static/src/js/kanban_view.js"></script>
+            <script
+                type="text/javascript"
+                src="/project_dashboard/static/src/js/list_controller.js"
+            />
+            <script
+                type="text/javascript"
+                src="/project_dashboard/static/src/js/list_view.js"
+            />
+            <script
+                type="text/javascript"
+                src="/project_dashboard/static/src/js/kanban_controller.js"
+            />
+            <script
+                type="text/javascript"
+                src="/project_dashboard/static/src/js/kanban_view.js"
+            />
         </xpath>
     </template>
 
