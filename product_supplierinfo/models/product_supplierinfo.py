@@ -3,5 +3,6 @@
 
 from odoo import models
 
+
 class ProductSupplierinfo(models.Model):
-    _inherit = 'product.supplierinfo'
+    _inherit = "product.supplierinfo"
