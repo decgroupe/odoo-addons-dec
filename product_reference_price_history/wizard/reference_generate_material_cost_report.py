@@ -3,28 +3,24 @@
 
 from odoo import api, models, fields
 
-import logging
-
-_logger = logging.getLogger(__name__)
-
 
 class ReferenceGenerateMaterialCostReport(models.TransientModel):
-    _inherit = 'wizard.run'
-    _name = 'reference.generate_material_cost_report'
-    _description = 'Generate Material Cost Report'
+    _inherit = "wizard.run"
+    _name = "reference.generate_material_cost_report"
+    _description = "Generate Material Cost Report"
 
     @api.model
     def _get_default_email_to(self):
-        return ','.join(
+        return ",".join(
             [
-                self.env['ref.reference']._get_cost_report_default_email(),
+                self.env["ref.reference"]._get_cost_report_default_email(),
                 self.env.user.email,
             ]
         )
 
     use_custom_date_range = fields.Boolean(string="Custom Dates")
     email_to = fields.Char(
-        'To (Emails)',
+        string="To (Emails)",
         help="Comma-separated recipient addresses",
         default=_get_default_email_to,
     )
@@ -34,10 +30,10 @@ class ReferenceGenerateMaterialCostReport(models.TransientModel):
 
     def pre_execute(self):
         if self.date_before and self.date_after:
-            assert (self.date_after < self.date_before)
+            assert self.date_after < self.date_before
 
     def execute(self):
-        self.env['ref.reference'].generate_material_cost_report(
+        self.env["ref.reference"].generate_material_cost_report(
             self.date_before,
             self.date_after,
             self.format_prices,

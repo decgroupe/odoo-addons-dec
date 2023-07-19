@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="reference_compute_material_cost_wizard_view">
         <field name="model">reference.compute_material_cost</field>
-        <field name="inherit_id" ref="wizard_run.wizard_run_wizard_view"/>
+        <field name="inherit_id" ref="wizard_run.wizard_run_wizard_view" />
         <field name="arch" type="xml">
             <p name="title" position="inside">
                 Check all references for price changes and send a mail with results.
@@ -11,10 +11,10 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_reference_compute_material_cost" >
+    <record model="ir.actions.act_window" id="action_reference_compute_material_cost">
         <field name="name">Compute Material Cost</field>
         <field name="res_model">reference.compute_material_cost</field>
-        <field name="view_id" ref="reference_compute_material_cost_wizard_view"/>
+        <field name="view_id" ref="reference_compute_material_cost_wizard_view" />
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>

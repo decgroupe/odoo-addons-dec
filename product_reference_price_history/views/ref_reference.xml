@@ -1,15 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_reference_form_view" >
+    <record model="ir.ui.view" id="ref_reference_form_view">
         <field name="name">ref.reference.form@product_reference_price_history</field>
         <field name="model">ref.reference</field>
-        <field name="inherit_id" ref="product_reference.ref_reference_form_view"/>
+        <field name="inherit_id" ref="product_reference.ref_reference_form_view" />
         <field name="arch" type="xml">
             <notebook name="main_notebook" position="inside">
                 <page name="price_history" string="Pricelist">
-                    <group name="prices" attrs="{'invisible': [('product_id', '=', False)]}">
-                        <field name="price_ids"/>
+                    <group
+                        name="prices"
+                        attrs="{'invisible': [('product_id', '=', False)]}"
+                    >
+                        <field name="price_ids" />
                     </group>
                 </page>
             </notebook>

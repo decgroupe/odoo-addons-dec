@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_price_tree_view" >
+    <record model="ir.ui.view" id="ref_price_tree_view">
         <field name="name">ref.price.tree@product_reference_price_history</field>
         <field name="model">ref.price</field>
         <field name="arch" type="xml">
             <tree string="Prices">
-                <field name="date"/>
-                <field name="value"/>
+                <field name="date" />
+                <field name="value" />
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ref_price_form_view" >
+    <record model="ir.ui.view" id="ref_price_form_view">
         <field name="name">ref.price.form@product_reference_price_history</field>
         <field name="model">ref.price</field>
         <field name="arch" type="xml">
             <form string="Prices">
-                <field name="date"/>
-                <field name="value"/>
+                <field name="date" />
+                <field name="value" />
             </form>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_ref_price" >
+    <record model="ir.actions.act_window" id="act_window_ref_price">
         <field name="name">Prices</field>
         <field name="res_model">ref.price</field>
-        <field name="view_id" ref="ref_price_tree_view"/>
+        <field name="view_id" ref="ref_price_tree_view" />
     </record>
 
 </odoo>
