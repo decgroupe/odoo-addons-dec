@@ -1,33 +1,33 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class RefMarketCategory(models.Model):
-    _name = 'ref.market.category'
-    _description = 'Market Category'
-    _rec_name = 'description'
-    _order = 'sequence'
+    _name = "ref.market.category"
+    _description = "Market Category"
+    _rec_name = "description"
+    _order = "sequence"
 
     prefix = fields.Char(
-        string='Prefix',
+        string="Prefix",
         required=True,
     )
     description = fields.Char(
-        string='Description',
+        string="Description",
         required=True,
     )
     sequence = fields.Integer(
-        string='Position',
+        string="Position",
         required=True,
     )
     state = fields.Selection(
         selection=[
-            ('normal', 'Normal'),
-            ('obsolete', 'Obsolete'),
-            ('title', 'Title'),
+            ("normal", "Normal"),
+            ("obsolete", "Obsolete"),
+            ("title", "Title"),
         ],
-        string='Status',
-        default='normal',
+        string="Status",
+        default="normal",
     )
