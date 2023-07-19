@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <!-- product.prices.history -->
@@ -8,14 +8,25 @@
         <field name="arch" type="xml">
             <form string="Product Prices History">
                 <group name="main">
-                    <field name="product_id" invisible="context.get('product_prices_history_multi_view', False) is False"/>
-                    <field name="datetime"/>
-                    <field name="purchase_price" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                    <field name="sell_price" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                    <field name="create_uid"/>
-                    <field name="type" invisible="1"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                    <field name="company_currency_id" invisible="1"/>
+                    <field
+                        name="product_id"
+                        invisible="context.get('product_prices_history_multi_view', False) is False"
+                    />
+                    <field name="datetime" />
+                    <field
+                        name="purchase_price"
+                        widget="monetary"
+                        options="{'currency_field': 'company_currency_id'}"
+                    />
+                    <field
+                        name="sell_price"
+                        widget="monetary"
+                        options="{'currency_field': 'company_currency_id'}"
+                    />
+                    <field name="create_uid" />
+                    <field name="type" invisible="1" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <field name="company_currency_id" invisible="1" />
                 </group>
             </form>
         </field>
@@ -26,20 +37,27 @@
         <field name="model">product.prices.history</field>
         <field name="arch" type="xml">
             <tree string="Product Prices History" editable="top">
-                <field name="product_id" invisible="context.get('product_prices_history_multi_view', False) is False"/>
-                <field name="datetime"/>
-                <field name="purchase_price" 
-                    widget="monetary" 
-                    options="{'currency_field': 'company_currency_id'}" 
-                    invisible="context.get('default_type', 'purchase') != 'purchase'"/>
-                <field name="sell_price" 
-                    widget="monetary" 
-                    options="{'currency_field': 'company_currency_id'}" 
-                    invisible="context.get('default_type', 'sell') != 'sell'"/>
-                <field name="create_uid"/>
-                <field name="type" invisible="context.get('default_type', False)"/>
-                <field name="company_id" groups="base.group_multi_company"/>
-                <field name="company_currency_id" invisible="1"/>
+                <field
+                    name="product_id"
+                    invisible="context.get('product_prices_history_multi_view', False) is False"
+                />
+                <field name="datetime" />
+                <field
+                    name="purchase_price"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    invisible="context.get('default_type', 'purchase') != 'purchase'"
+                />
+                <field
+                    name="sell_price"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    invisible="context.get('default_type', 'sell') != 'sell'"
+                />
+                <field name="create_uid" />
+                <field name="type" invisible="context.get('default_type', False)" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="company_currency_id" invisible="1" />
             </tree>
         </field>
     </record>
@@ -49,11 +67,23 @@
         <field name="model">product.prices.history</field>
         <field name="arch" type="xml">
             <search string="Search Product Prices History">
-                <field name="product_id"/>
+                <field name="product_id" />
                 <group string="Group By" name="groupby">
-                    <filter name="product_groupby" string="Product" context="{'group_by': 'product_id'}"/>
-                    <filter name="datetime_groupby" string="Date" context="{'group_by': 'datetime:month'}"/>
-                    <filter name="create_uid_groupby" string="Created by" context="{'group_by': 'create_uid'}"/>
+                    <filter
+                        name="product_groupby"
+                        string="Product"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        name="datetime_groupby"
+                        string="Date"
+                        context="{'group_by': 'datetime:month'}"
+                    />
+                    <filter
+                        name="create_uid_groupby"
+                        string="Created by"
+                        context="{'group_by': 'create_uid'}"
+                    />
                 </group>
             </search>
         </field>
