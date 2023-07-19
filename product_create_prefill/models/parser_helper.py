@@ -1,21 +1,19 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2020
 
-import os
-import sys
-import random
-import re
-import json
-import requests
-import unicodedata
 import importlib
+import json
 import logging
-
-from lxml import html
+import os
+import re
+import unicodedata
 from collections import OrderedDict
+
+import requests
 
 # https://stackoverflow.com/questions/23705304/can-json-loads-ignore-trailing-commas
 from jsoncomment import JsonComment
+from lxml import html
 
 from . import requests_html
 
@@ -27,16 +25,18 @@ def reload():
 
 
 def dict_to_json(value):
-    return str(json.dumps(
-        value,
-        indent=4,
-        ensure_ascii=False,
-    ))
+    return str(
+        json.dumps(
+            value,
+            indent=4,
+            ensure_ascii=False,
+        )
+    )
 
 
 def remove_nonvisible_unicodes(text):
-    """ [summary]
-        https://stackoverflow.com/questions/17978720/invisible-characters-ascii
+    """[summary]
+    https://stackoverflow.com/questions/17978720/invisible-characters-ascii
     """
     CHARLIST = [
         # '\u2000',  #    En Quad                &#8192;      " "
@@ -50,92 +50,92 @@ def remove_nonvisible_unicodes(text):
         # '\u2008',  #    Punctuation Space      &#8200;      " "
         # '\u2009',  #    Thin Space             &#8201;      " "
         # '\u200a',  #    Hair Space             &#8202;      " "
-        '\u200b',  #    Zero-Width Space       &#8203;      "​"
-        '\u200c',  #    Zero Width Non-Joiner  &#8204;      "‌"
-        '\u200d',  #    Zero Width Joiner      &#8205;      "‍"
-        '\u200e',  #    Left-To-Right Mark     &#8206;      "‎"
-        '\u200f',  #    Right-To-Left Mark     &#8207;      "‏"
+        "\u200b",  #    Zero-Width Space       &#8203;      "​"
+        "\u200c",  #    Zero Width Non-Joiner  &#8204;      "‌"
+        "\u200d",  #    Zero Width Joiner      &#8205;      "‍"
+        "\u200e",  #    Left-To-Right Mark     &#8206;      "‎"
+        "\u200f",  #    Right-To-Left Mark     &#8207;      "‏"
         # '\u202f',  #    Narrow No-Break Space  &#8239;      " "
         # '\u2800',  #    Braille blank pattern  &#10240;     "⠀"
     ]
     for char in CHARLIST:
-        text = text.replace(char, '')
+        text = text.replace(char, "")
     return text
 
 
 def replace_unicode_spaces_with_standard_spaces(text):
-    """ Replace all whitespace
+    """Replace all whitespace
 
-        This includes all unicode whitespace, as described in the answer to
-        this question: https://stackoverflow.com/questions/37903317/is-there-a-python-constant-for-unicode-whitespace
-        From that answer, you can see that (at the time of writing), the
-        unicode constants recognized as whitespace (e.g. \s) in Python
-        regular expressions are these:
+    This includes all unicode whitespace, as described in the answer to
+    this question: https://stackoverflow.com/questions/37903317/is-there-a-python-constant-for-unicode-whitespace
+    From that answer, you can see that (at the time of writing), the
+    unicode constants recognized as whitespace (e.g. \s) in Python
+    regular expressions are these:
 
-        0x0009
-        0x000A
-        0x000B
-        0x000C
-        0x000D
-        0x001C
-        0x001D
-        0x001E
-        0x001F
-        0x0020
-        0x0085
-        0x00A0
-        0x1680
-        0x2000
-        0x2001
-        0x2002
-        0x2003
-        0x2004
-        0x2005
-        0x2006
-        0x2007
-        0x2008
-        0x2009
-        0x200A
-        0x2028
-        0x2029
-        0x202F
-        0x205F
-        0x3000
+    0x0009
+    0x000A
+    0x000B
+    0x000C
+    0x000D
+    0x001C
+    0x001D
+    0x001E
+    0x001F
+    0x0020
+    0x0085
+    0x00A0
+    0x1680
+    0x2000
+    0x2001
+    0x2002
+    0x2003
+    0x2004
+    0x2005
+    0x2006
+    0x2007
+    0x2008
+    0x2009
+    0x200A
+    0x2028
+    0x2029
+    0x202F
+    0x205F
+    0x3000
     """
 
     CHARLIST = [
-        '\u0009',
+        "\u0009",
         # '\u000A', # newline
-        '\u000B',
-        '\u000C',
-        '\u000D',
-        '\u001C',
-        '\u001D',
-        '\u001E',
-        '\u001F',
-        '\u0020',
-        '\u0085',
-        '\u00A0',
-        '\u1680',
-        '\u2000',
-        '\u2001',
-        '\u2002',
-        '\u2003',
-        '\u2004',
-        '\u2005',
-        '\u2006',
-        '\u2007',
-        '\u2008',
-        '\u2009',
-        '\u200A',
-        '\u2028',
-        '\u2029',
-        '\u202F',
-        '\u205F',
-        '\u3000',
+        "\u000B",
+        "\u000C",
+        "\u000D",
+        "\u001C",
+        "\u001D",
+        "\u001E",
+        "\u001F",
+        "\u0020",
+        "\u0085",
+        "\u00A0",
+        "\u1680",
+        "\u2000",
+        "\u2001",
+        "\u2002",
+        "\u2003",
+        "\u2004",
+        "\u2005",
+        "\u2006",
+        "\u2007",
+        "\u2008",
+        "\u2009",
+        "\u200A",
+        "\u2028",
+        "\u2029",
+        "\u202F",
+        "\u205F",
+        "\u3000",
     ]
     for char in CHARLIST:
-        text = text.replace(char, ' ')
+        text = text.replace(char, " ")
     return text
 
 
@@ -154,18 +154,18 @@ def fill_common_data(
     purchase_price,
     supplier,
     image_url,
-    other={}
+    other={},
 ):
     res = {
-        'code': clean_text(code),
-        'name': clean_text(name),
-        'manufacturer': clean_text(manufacturer),
-        'description': clean_text(description),
-        'public_price': public_price,
-        'purchase_price': purchase_price,
-        'supplier': clean_text(supplier),
-        'image_url': clean_text(image_url),
-        'other': other,
+        "code": clean_text(code),
+        "name": clean_text(name),
+        "manufacturer": clean_text(manufacturer),
+        "description": clean_text(description),
+        "public_price": public_price,
+        "purchase_price": purchase_price,
+        "supplier": clean_text(supplier),
+        "image_url": clean_text(image_url),
+        "other": other,
     }
     return res
 
@@ -187,14 +187,10 @@ def fill_common_data(
 # Internet Explorer 11 on Windows 10
 # Using https://www.whatismybrowser.com/detect/what-http-headers-is-my-browser-sending
 HEADERS = {
-    "ACCEPT":
-        "text/html, application/xhtml+xml, image/jxr, */* ",
-    "ACCEPT-ENCODING":
-        "gzip, deflate",
-    "ACCEPT-LANGUAGE":
-        "fr-FR,fr;q=0.5 ",
-    "USER-AGENT":
-        "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
+    "ACCEPT": "text/html, application/xhtml+xml, image/jxr, */* ",
+    "ACCEPT-ENCODING": "gzip, deflate",
+    "ACCEPT-LANGUAGE": "fr-FR,fr;q=0.5 ",
+    "USER-AGENT": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
 }
 
 
@@ -206,20 +202,18 @@ def get_html_tree(content, use_javascript=False):
         content = r.html.html
     else:
         # Convert URL to HTML content
-        if content.startswith('http'):
+        if content.startswith("http"):
             page = requests.get(content, headers=HEADERS)
-            #print(page.encoding)
+            # print(page.encoding)
             content = page.content.decode(page.encoding)
-            #print(content)
+            # print(content)
 
-        if 'captcha' in str(content):
+        if "captcha" in str(content):
             path = os.path.dirname(__file__)
-            f = open(os.path.join(path, '_captcha_out.html'), 'w')
+            f = open(os.path.join(path, "_captcha_out.html"), "w")
             f.write(content)
             f.close()
-            print(
-                'CAPTCHA REQUEST DETECTED, OUTPUT WRITTEN TO _captcha_out.html'
-            )
+            print("CAPTCHA REQUEST DETECTED, OUTPUT WRITTEN TO _captcha_out.html")
 
     tree = html.fromstring(content)
     return tree
@@ -233,9 +227,9 @@ def caseless_equal(left, right):
     return normalize_caseless(left) == normalize_caseless(right)
 
 
-def load_json_string(string, create_file=False, output_filename='./out.json'):
+def load_json_string(string, create_file=False, output_filename="./out.json"):
     if create_file:
-        f = open(output_filename, 'w')
+        f = open(output_filename, "w")
         f.write(string)
         f.close()
     res = JsonComment(json).loads(string, object_pairs_hook=OrderedDict)
@@ -245,41 +239,39 @@ def load_json_string(string, create_file=False, output_filename='./out.json'):
 def clean(xpath_res, first=False):
     if isinstance(xpath_res, list):
         if not xpath_res:
-            return ''
-        if first and len(xpath_res) >1 :
+            return ""
+        if first and len(xpath_res) > 1:
             xpath_res = xpath_res[0]
         else:
-            xpath_res = ' '.join(xpath_res)
+            xpath_res = " ".join(xpath_res)
     # We could use span[normalize-space(translate(text(),"\n", ""))
-    xpath_res = os.linesep.join(
-        [s for s in xpath_res.splitlines() if s.strip()]
-    )
+    xpath_res = os.linesep.join([s for s in xpath_res.splitlines() if s.strip()])
     xpath_res = xpath_res.strip()
     # Remove non-breaking space characters
-    xpath_res = xpath_res.replace(u'\u00a0', '')
+    xpath_res = xpath_res.replace("\u00a0", "")
     # Remove multiple spaces
-    xpath_res = re.sub(' +', ' ', xpath_res)
+    xpath_res = re.sub(" +", " ", xpath_res)
     return xpath_res
 
 
 class ParserResultDict(OrderedDict):
     def __init__(self):
         super()
-        self['description'] = ''
+        self["description"] = ""
 
     def add_description_title(self, name):
         if name:
-            if self['description']:
-                self['description'] += os.linesep * 2
-            self['description'] += '{}:'.format(name.rstrip(':'))
+            if self["description"]:
+                self["description"] += os.linesep * 2
+            self["description"] += "{}:".format(name.rstrip(":"))
 
-    def add_description(self, name, value, prefix='-'):
+    def add_description(self, name, value, prefix="-"):
         if name and value:
-            if self['description']:
-                self['description'] += os.linesep
-            self['description'] += '{} {}: {}'.format(
+            if self["description"]:
+                self["description"] += os.linesep
+            self["description"] += "{} {}: {}".format(
                 prefix,
-                name.rstrip(':'),
+                name.rstrip(":"),
                 value,
             )
 

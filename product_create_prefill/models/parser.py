@@ -2,23 +2,24 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
 import importlib
-
 from pprint import pformat
 
-from . import parser_helper_prices
-from . import parser_helper
+from . import (
+    parser_helper,
+    parser_helper_prices,
+    parser_site_amazon,
+    parser_site_bricodepot,
+    parser_site_cdiscount,
+    parser_site_hardwarefr,
+    parser_site_labs,
+    parser_site_ldlc,
+    parser_site_manomano,
+    parser_site_materielnet,
+    parser_site_radiospares,
+    parser_site_rueducommerce,
+    parser_site_topachat,
+)
 
-from . import parser_site_amazon
-from . import parser_site_cdiscount
-from . import parser_site_topachat
-from . import parser_site_rueducommerce
-from . import parser_site_hardwarefr
-from . import parser_site_materielnet
-from . import parser_site_ldlc
-from . import parser_site_labs
-from . import parser_site_bricodepot
-from . import parser_site_manomano
-from . import parser_site_radiospares
 
 def reload():
     importlib.reload(parser_helper_prices)
@@ -37,36 +38,36 @@ def reload():
 
 def parse_html_product_page(url):
     print(url)
-    if 'amazon' in url:
+    if "amazon" in url:
         res = parser_site_amazon.parse(url)
-    elif 'cdiscount' in url:
+    elif "cdiscount" in url:
         res = parser_site_cdiscount.parse(url)
-    elif 'rueducommerce' in url:
+    elif "rueducommerce" in url:
         res = parser_site_rueducommerce.parse(url)
-    elif 'topachat' in url:
+    elif "topachat" in url:
         res = parser_site_topachat.parse(url)
-    elif 'materiel.net' in url:
+    elif "materiel.net" in url:
         res = parser_site_materielnet.parse(url)
-    elif 'ldlc' in url:
+    elif "ldlc" in url:
         res = parser_site_ldlc.parse(url)
-    elif 'hardware.fr' in url:
+    elif "hardware.fr" in url:
         res = parser_site_hardwarefr.parse(url)
-    elif 'bricodepot' in url:
+    elif "bricodepot" in url:
         res = parser_site_bricodepot.parse(url)
-    elif 'manomano' in url:
+    elif "manomano" in url:
         res = parser_site_manomano.parse(url)
-    elif 'rs-online' in url:
+    elif "rs-online" in url:
         res = parser_site_radiospares.parse(url)
     else:
         res = parser_helper.fill_common_data(
-            code='?',
-            name='?',
-            manufacturer='',
-            description='',
+            code="?",
+            name="?",
+            manufacturer="",
+            description="",
             public_price=0,
             purchase_price=0,
-            supplier='',
-            image_url='',
+            supplier="",
+            image_url="",
             other={},
         )
 

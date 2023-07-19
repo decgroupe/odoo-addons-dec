@@ -9,7 +9,7 @@ from . import parser
 
 
 class Product(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     @api.model
     def prefill(self, url):

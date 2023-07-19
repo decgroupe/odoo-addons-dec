@@ -3,8 +3,7 @@
 
 import importlib
 
-from . import parser_helper
-from . import parser_helper_prices
+from . import parser_helper, parser_helper_prices
 
 
 def reload():
@@ -17,16 +16,16 @@ def parse(content):
     tree = parser_helper.get_html_tree(content)
 
     result = {}
-    result['title'] = tree.xpath(
+    result["title"] = tree.xpath(
         '//span[@id="ctl00_MainPanel_FormViewArticle_LabelDescription"]/text()'
     )
-    result['price_1'] = tree.xpath(
+    result["price_1"] = tree.xpath(
         '//span[@id="ctl00_MainPanel_FormViewArticle_MultiplePriceControl1_LabelPrice1"]/text()'
     )
-    result['model'] = tree.xpath(
+    result["model"] = tree.xpath(
         '//span[@id="ctl00_MainPanel_FormViewArticle_LabelCodeArticle"]/text()'
     )
-    result['marque'] = tree.xpath(
+    result["marque"] = tree.xpath(
         '//img[@id="ctl00_MainPanel_FormViewArticle_imgMarque"]/@title'
     )
 
