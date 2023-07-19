@@ -5,13 +5,12 @@ from odoo import fields, models
 
 
 class RefReference(models.Model):
-    _inherit = 'ref.reference'
-    _name = _inherit
+    _inherit = "ref.reference"
 
     tagging_ids = fields.Many2many(
-        comodel_name='tagging.tags',
-        relation='tagging_ref_reference',
-        column1='reference_id',
-        column2='tag_id',
-        string='Tags',
+        comodel_name="tagging.tags",
+        relation="tagging_ref_reference",
+        column1="reference_id",
+        column2="tag_id",
+        string="Tags",
     )
