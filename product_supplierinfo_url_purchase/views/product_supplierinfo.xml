@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="purchase_order_form_view">
         <field name="name">purchase.order.form@product_supplierinfo_url_purchase</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <!--
-            <xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="after">
-                <field name="product_supplier_url" string="URL" widget="url"/>
-            </xpath>
-            -->
-            <xpath expr="//field[@name='order_line']//form//field[@name='name']" position="before">
-                <field name="product_supplier_url" string="URL" widget="url"/>
+            <xpath
+                expr="//field[@name='order_line']//form//field[@name='name']"
+                position="before"
+            >
+                <field name="product_supplier_url" string="URL" widget="url" />
             </xpath>
         </field>
     </record>
 
     <record model="ir.ui.view" id="purchase_order_line_tree_view">
-        <field name="name">purchase.order.line.tree@product_supplierinfo_url_purchase</field>
+        <field
+            name="name"
+        >purchase.order.line.tree@product_supplierinfo_url_purchase</field>
         <field name="model">purchase.order.line</field>
-        <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="product_supplier_url" string="URL" widget="url"/>
+                <field name="product_supplier_url" string="URL" widget="url" />
             </field>
         </field>
     </record>
