@@ -1,13 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
-import logging
-
-from odoo import _, api, models, registry, tools
+from odoo import api, models
 from odoo.addons.stock.models.stock_rule import ProcurementException
 from odoo.exceptions import MissingError, UserError
-
-_logger = logging.getLogger(__name__)
 
 
 class ProcurementGroup(models.Model):
