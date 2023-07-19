@@ -1,25 +1,24 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2022
 
-from odoo import api, models, fields
+from odoo import fields, models
 
 
 class CrmLead(models.Model):
     _inherit = "crm.lead"
 
     related_project_ids = fields.One2many(
-        comodel_name='project.project',
-        inverse_name='linked_lead_id',
-        string='Related Projects',
+        comodel_name="project.project",
+        inverse_name="linked_lead_id",
+        string="Related Projects",
     )
-
     related_project_count = fields.Integer(
-        compute='_compute_related_project_count',
+        compute="_compute_related_project_count",
         string="Related Project Count",
     )
 
     def action_view_related_projects(self):
-        action = self.mapped('related_project_ids').action_view()
+        action = self.mapped("related_project_ids").action_view()
         action["domain"] = [("linked_lead_id", "in", self.ids)]
         if "context" not in action:
             action["context"] = {
