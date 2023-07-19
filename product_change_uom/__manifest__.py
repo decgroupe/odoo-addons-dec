@@ -1,14 +1,14 @@
 {
-    'name': 'Product Change UoM',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary':
-        "Allow product UoM change if all stock moves are "
-        "done or cancelled",
-    'depends': ['product', 'stock'],
-    'data': [
-        'security/res_groups.xml',
+    "name": "Product Change UoM",  # Replace with deltatech_change_uom ?
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "product",
+        "stock",
     ],
-    'installable': True
+    "data": [
+        "security/res_groups.xml",
+    ],
+    "installable": True,
 }
