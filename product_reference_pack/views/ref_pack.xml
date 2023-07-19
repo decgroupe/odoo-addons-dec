@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_pack_tree_view" >
+    <record model="ir.ui.view" id="ref_pack_tree_view">
         <field name="name">ref.pack.tree@product_reference</field>
         <field name="model">ref.pack</field>
         <field name="arch" type="xml">
             <tree string="Packs">
-                <field name="name"/>
-                <field name="product_id"/>
-                <field name="default_code"/>
-                <field name="public_code"/>
+                <field name="name" />
+                <field name="product_id" />
+                <field name="default_code" />
+                <field name="public_code" />
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ref_pack_form_view" >
+    <record model="ir.ui.view" id="ref_pack_form_view">
         <field name="name">ref.pack.form@product_reference</field>
         <field name="model">ref.pack</field>
         <field name="arch" type="xml">
@@ -22,22 +22,22 @@
                 <sheet>
                     <group>
                         <div class="oe_title">
-                            <label for="name" class="oe_edit_only"/>
+                            <label for="name" class="oe_edit_only" />
                             <h1>
-                                <field name="name"/>
+                                <field name="name" />
                             </h1>
                         </div>
                     </group>
                     <group>
-                        <field name="type"/>
+                        <field name="type" />
                         <group>
-                            <field name="product_id"/>
-                            <field name="default_code"/>
-                            <field name="public_code"/>
+                            <field name="product_id" />
+                            <field name="default_code" />
+                            <field name="public_code" />
                         </group>
                         <group>
-                            <field name="list_price"/>
-                            <field name="standard_price"/>
+                            <field name="list_price" />
+                            <field name="standard_price" />
                         </group>
                     </group>
                 </sheet>
@@ -45,26 +45,25 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_ref_pack" >
+    <record model="ir.actions.act_window" id="act_window_ref_pack">
         <field name="name">Packs</field>
         <field name="res_model">ref.pack</field>
         <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="ref_pack_tree_view"/>
+        <field name="view_id" ref="ref_pack_tree_view" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_ref_pack_tree" >
-        <field name="sequence" eval="1"/>
+    <record model="ir.actions.act_window.view" id="act_window_view_ref_pack_tree">
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="ref_pack_tree_view"/>
-        <field name="act_window_id" ref="act_window_ref_pack"/>
+        <field name="view_id" ref="ref_pack_tree_view" />
+        <field name="act_window_id" ref="act_window_ref_pack" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_ref_pack_form" >
-        <field name="sequence" eval="2"/>
+    <record model="ir.actions.act_window.view" id="act_window_view_ref_pack_form">
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="ref_pack_form_view"/>
-        <field name="act_window_id" ref="act_window_ref_pack"/>
+        <field name="view_id" ref="ref_pack_form_view" />
+        <field name="act_window_id" ref="act_window_ref_pack" />
     </record>
 
 </odoo>
-
