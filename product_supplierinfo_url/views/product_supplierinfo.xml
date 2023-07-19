@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_supplierinfo_form_view">
-        <field name="name">product.supplierinfo.form.view@product_supplierinfo_url</field>
+        <field
+            name="name"
+        >product.supplierinfo.form.view@product_supplierinfo_url</field>
         <field name="model">product.supplierinfo</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
         <field name="arch" type="xml">
             <field name="product_code" position="after">
-                <field name="url" widget="url"/>
+                <field name="url" widget="url" />
             </field>
         </field>
     </record>
