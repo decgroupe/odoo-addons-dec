@@ -1,21 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_template_form_view">
         <field name="name">product.template.form@product_location</field>
         <field name="model">product.template</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
             <group name="group_lots_and_weight" position="after">
                 <group name="storage" string="Storage Location">
-                    <field name="loc_rack" attrs="{'readonly':[('type','=','service')]}" />
-                    <field name="loc_row" attrs="{'readonly':[('type','=','service')]}"/>
-                    <field name="loc_case" attrs="{'readonly':[('type','=','service')]}"/>
+                    <field
+                        name="loc_rack"
+                        attrs="{'readonly':[('type','=','service')]}"
+                    />
+                    <field
+                        name="loc_row"
+                        attrs="{'readonly':[('type','=','service')]}"
+                    />
+                    <field
+                        name="loc_case"
+                        attrs="{'readonly':[('type','=','service')]}"
+                    />
                 </group>
             </group>
         </field>
     </record>
 
 </odoo>
-
