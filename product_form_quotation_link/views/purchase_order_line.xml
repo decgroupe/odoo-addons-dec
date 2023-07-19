@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.actions.act_window" id="action_purchase_line_product_tree">
@@ -11,10 +11,13 @@
         </field>
         <field name="name">Purchases</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="view_id" ref="purchase.purchase_order_line_tree" />
     </record>
 
-    <record model="ir.actions.act_window" id="action_purchase_line_product_product_tree">
+    <record
+        model="ir.actions.act_window"
+        id="action_purchase_line_product_product_tree"
+    >
         <field name="context">{}</field>
         <field name="domain">
             [
@@ -24,7 +27,7 @@
         </field>
         <field name="name">Purchases</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="view_id" ref="purchase.purchase_order_line_tree" />
     </record>
 
 </odoo>
