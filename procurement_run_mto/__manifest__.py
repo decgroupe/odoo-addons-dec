@@ -1,9 +1,8 @@
 {
     "name": "Procurement Run MTO",
     "version": "14.0.1.0.0",
-    "author": "DEC, Yann Papouin",
+    "author": "DEC",
     "website": "https://www.decgroupe.com",
-    "summary": "Scheduler task extended to re-create PO/MO",
     "depends": [
         "stock",
         "mrp",
