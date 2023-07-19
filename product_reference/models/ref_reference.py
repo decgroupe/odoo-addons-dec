@@ -56,11 +56,15 @@ class RefReference(models.Model):
         string="Name",
         readonly=False,
     )
-    state = fields.Selection(
-        related="product_id.state",
+    state_id = fields.Many2one(
+        related="product_id.product_state_id",
         string="Status",
         readonly=False,
-        default="quotation",
+        default=lambda self: self._get_default_state(),
+        store=True,
+    )
+    state = fields.Char(
+        related="state_id.code",
         store=True,
     )
     description = fields.Text(
@@ -126,6 +130,12 @@ class RefReference(models.Model):
     _sql_constraints = [
         ("value_uniq", "unique(value)", "Reference value must be unique !"),
     ]
+
+    def _get_default_state(self):
+        state = self.env.ref(
+            "product_state_review.product_state_quotation", raise_if_not_found=False
+        )
+        return state if state and state.id else False
 
     def _prepare_product_vals(self, ref_vals):
         category_id = ref_vals.get("category_id")

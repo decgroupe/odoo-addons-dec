@@ -18,18 +18,14 @@ class ChangeProductStateByCategory(models.TransientModel):
     category_id = fields.Many2one(
         comodel_name="product.category",
     )
-    state = fields.Selection(
-        selection="_get_states",
+    state_id = fields.Many2one(
+        comodel_name="product.state",
         string="New Status",
     )
     domain = fields.Char(
         string="Apply on",
         default="[]",
     )
-
-    @api.model
-    def _get_states(self):
-        return self.env["product.template"]._fields["state"].selection
 
     @api.model
     def default_get(self, fields):
@@ -41,7 +37,7 @@ class ChangeProductStateByCategory(models.TransientModel):
         self.ensure_one()
         ProductProduct = self.env["product.product"]
         ProductTemplate = self.env["product.template"]
-        if self.state:
+        if self.state_id:
             search_domain = safe_eval(self.domain)
             product_ids = ProductProduct.search(search_domain)
             ids = product_ids.mapped("product_tmpl_id").ids
@@ -57,7 +53,7 @@ class ChangeProductStateByCategory(models.TransientModel):
                 idx += SPLIT
                 ProductTemplate.with_context(prefetch_fields=False).browse(
                     chunck_ids
-                ).write({"state": self.state})
+                ).write({"product_state_id": self.state_id.id})
 
     @api.onchange("category_id")
     def _onchange_category_id(self):

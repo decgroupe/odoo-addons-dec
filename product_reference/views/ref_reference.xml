@@ -9,7 +9,8 @@
                 <field name="value" />
                 <field name="category_id" />
                 <field name="product_id" />
-                <field name="state" />
+                <field name="state_id" />
+                <field name="state" invisible="1" />
             </tree>
         </field>
     </record>
@@ -93,7 +94,7 @@
                                     'required': [('id', '!=', False)],
                                 }"
                             />
-                            <field name="state" />
+                            <field name="state_id" />
                             <field name="public_code" />
                         </group>
                     </group>
@@ -161,9 +162,9 @@
                     />
                     <filter
                         string="State"
-                        name="group_by_state"
+                        name="group_by_state_id"
                         domain="[]"
-                        context="{'group_by':'state'}"
+                        context="{'group_by':'state_id'}"
                     />
                 </group>
             </search>
