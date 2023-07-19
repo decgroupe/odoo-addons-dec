@@ -3,9 +3,9 @@
 
 from datetime import timedelta
 
-from odoo import SUPERUSER_ID, api, fields
-from odoo.tests import common
+from odoo import fields
 from odoo.exceptions import UserError
+from odoo.tests import common
 
 
 class TestProcurementRunManufactureWarnings(common.TransactionCase):

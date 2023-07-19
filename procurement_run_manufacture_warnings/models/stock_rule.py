@@ -1,9 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
-from itertools import product
 
-from odoo import _, api, models
+from odoo import _, models
 from odoo.addons.stock.models.stock_rule import ProcurementException
 from odoo.exceptions import UserError
 
