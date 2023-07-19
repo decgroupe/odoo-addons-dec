@@ -1,15 +1,14 @@
 {
-    'name': 'Product Picking',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Remember product picking options",
-    'depends': [
-        'product',
+    "name": "Product Picking",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "product",
     ],
-    'data': [
-        'views/product_template.xml',
-        'views/product_product.xml',
+    "data": [
+        "views/product_template.xml",
+        "views/product_product.xml",
     ],
-    'installable': True
+    "installable": True,
 }
