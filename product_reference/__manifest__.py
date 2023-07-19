@@ -11,6 +11,7 @@
         'uom',
         'product',
         'mrp',
+        'product_category_analytic',
         'product_reference_management',
         'product_state_review',
         'product_location',
