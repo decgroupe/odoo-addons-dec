@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_attribute_tree_view" >
+    <record model="ir.ui.view" id="ref_attribute_tree_view">
         <field name="name">ref.attribute.tree@product_reference</field>
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
             <tree string="Attributes">
-                <field name="code"/>
-                <field name="name"/>
+                <field name="code" />
+                <field name="name" />
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ref_attribute_form_view" >
+    <record model="ir.ui.view" id="ref_attribute_form_view">
         <field name="name">ref.attribute.form@product_reference</field>
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
             <form string="Attributes">
                 <group>
-                    <field name="code"/>
-                    <field name="name"/>
+                    <field name="code" />
+                    <field name="name" />
                 </group>
             </form>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_ref_attribute" >
+    <record model="ir.actions.act_window" id="act_window_ref_attribute">
         <field name="name">Attributes</field>
         <field name="res_model">ref.attribute</field>
-        <field name="view_id" ref="ref_attribute_tree_view"/>
+        <field name="view_id" ref="ref_attribute_tree_view" />
     </record>
 
 </odoo>

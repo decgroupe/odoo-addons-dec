@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_reference_tree_view" >
+    <record model="ir.ui.view" id="ref_reference_tree_view">
         <field name="name">ref.reference.tree@product_reference</field>
         <field name="model">ref.reference</field>
         <field name="arch" type="xml">
             <tree string="References">
-                <field name="value"/>
-                <field name="category_id"/>
-                <field name="product_id"/>
-                <field name="state"/>
+                <field name="value" />
+                <field name="category_id" />
+                <field name="product_id" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -17,88 +17,109 @@
     <record model="ir.ui.view" id="ref_reference_color_tree_view">
         <field name="name">ref.reference.tree#color@product_reference</field>
         <field name="model">ref.reference</field>
-        <field name="inherit_id" ref="ref_reference_tree_view"/>
+        <field name="inherit_id" ref="ref_reference_tree_view" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="decoration-success">state == 'quotation'</attribute>
                 <attribute name="decoration-primary">state == 'review'</attribute>
                 <attribute name="decoration-info">state == 'draft'</attribute>
-                <!-- 
+                <!--
                 <attribute name="decoration-warning">state == ''</attribute>
                 <attribute name="decoration-bf">state == 'sellable'</attribute>
                 <attribute name="decoration-muted">state == 'done'</attribute>
                 -->
-                <attribute name="decoration-muted-strike">state == 'obsolete'</attribute>
+                <attribute
+                    name="decoration-muted-strike"
+                >state == 'obsolete'</attribute>
             </xpath>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ref_reference_form_view" >
+    <record model="ir.ui.view" id="ref_reference_form_view">
         <field name="name">ref.reference.form@product_reference</field>
         <field name="model">ref.reference</field>
         <field name="arch" type="xml">
             <form string="Reference" duplicate="0">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        
-            <field name="active" invisible="1" />
-            <widget
-                name="web_ribbon"
-                title="Archived"
-                bg_color="bg-danger"
-                attrs="{'invisible': [('active', '=', True)]}"
-            />
-            
+                        <field name="active" invisible="1" />
+                        <widget
+                            name="web_ribbon"
+                            title="Archived"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"
+                        />
                     </div>
                     <group name="head">
                         <div class="oe_title">
-                            <label for="value" class="oe_edit_only"/>
+                            <label for="value" class="oe_edit_only" />
                             <h1>
-                                <field name="value" readonly="1" force_save="1"/>
+                                <field name="value" readonly="1" force_save="1" />
                             </h1>
                         </div>
                     </group>
                     <group name="composition">
-                        <field name="name" required="1"/>
-                        <field name="category_id" attrs="{
-                            'readonly': [('id', '!=', False)],
-                        }"/>
-                        <field name="reference_line_ids" attrs="{
-                            'readonly': [('id', '!=', False)],
-                        }"/>
+                        <field name="name" required="1" />
+                        <field
+                            name="category_id"
+                            attrs="{
+                                'readonly': [('id', '!=', False)],
+                            }"
+                        />
+                        <field
+                            name="reference_line_ids"
+                            attrs="{
+                                'readonly': [('id', '!=', False)],
+                            }"
+                        />
                     </group>
                     <group name="common">
                         <group name="ref_details">
-                            <field name="searchvalue"/>
-                            <field name="datetime" attrs="{
-                                'readonly': [('product_id', '!=', False)],
-                            }"/>
+                            <field name="searchvalue" />
+                            <field
+                                name="datetime"
+                                attrs="{
+                                    'readonly': [('product_id', '!=', False)],
+                                }"
+                            />
 
                         </group>
                         <group name="product_details">
-                            <field name="product_id" attrs="{
-                                'invisible': [('id', '=', False)],
-                                'readonly': [('id', '!=', False)],
-                                'required': [('id', '!=', False)],
-                            }"/>
-                            <field name="state"/>
-                            <field name="public_code"/>
+                            <field
+                                name="product_id"
+                                attrs="{
+                                    'invisible': [('id', '=', False)],
+                                    'readonly': [('id', '!=', False)],
+                                    'required': [('id', '!=', False)],
+                                }"
+                            />
+                            <field name="state" />
+                            <field name="public_code" />
                         </group>
                     </group>
                     <notebook name="main_notebook">
                         <page name="general" string="Notes">
-                            <group name="versions" attrs="{'invisible': [('id', '=', False)]}">
-                                <field name="current_version"/>
-                                <field name="version_ids" context="{
-                                    'version_ids':version_ids, 
-                                    'active_id':active_id, 
-                                    'active_model':active_model,
-                                    }"/>
+                            <group
+                                name="versions"
+                                attrs="{'invisible': [('id', '=', False)]}"
+                            >
+                                <field name="current_version" />
+                                <field
+                                    name="version_ids"
+                                    context="{
+                                        'version_ids':version_ids,
+                                        'active_id':active_id,
+                                        'active_model':active_model,
+                                    }"
+                                />
                             </group>
                             <group name="notes">
-                                <field name="description" attrs="{
-                                    'invisible': [('product_id', '=', False)],
-                                }"/>
+                                <field
+                                    name="description"
+                                    attrs="{
+                                        'invisible': [('product_id', '=', False)],
+                                    }"
+                                />
                             </group>
                         </page>
                     </notebook>
@@ -107,56 +128,71 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ref_reference_filter_view" >
+    <record model="ir.ui.view" id="ref_reference_filter_view">
         <field name="name">ref.reference.select@product_reference</field>
         <field name="model">ref.reference</field>
         <field name="arch" type="xml">
             <search string="Search References">
-                <field name="name" string="Reference" filter_domain="[
-                    '|', 
-                        '|', 
-                            '|', 
-                            ('value', 'ilike', self), 
+                <field
+                    name="name"
+                    string="Reference"
+                    filter_domain="[
+                    '|',
+                        '|',
+                            '|',
+                            ('value', 'ilike', self),
                             ('searchvalue', 'ilike', self),
                         ('name', 'ilike', self),
                     ('public_code', 'ilike', self)
-                ]"/>
-                <filter 
-                    string="Not obsolete" 
-                    name="filter_not_obsolete" 
-                    domain="[('state', '!=', 'obsolete'),]">
+                ]"
+                />
+                <filter
+                    string="Not obsolete"
+                    name="filter_not_obsolete"
+                    domain="[('state', '!=', 'obsolete'),]"
+                >
                 </filter>
                 <group string="Group By" name="group_by">
-                    <filter string="Category" name="group_by_category_id" domain="[]" context="{'group_by':'category_id'}"/>
-                    <filter string="State" name="group_by_state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter
+                        string="Category"
+                        name="group_by_category_id"
+                        domain="[]"
+                        context="{'group_by':'category_id'}"
+                    />
+                    <filter
+                        string="State"
+                        name="group_by_state"
+                        domain="[]"
+                        context="{'group_by':'state'}"
+                    />
                 </group>
             </search>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_ref_reference" >
+    <record model="ir.actions.act_window" id="act_window_ref_reference">
         <field name="name">References</field>
         <field name="res_model">ref.reference</field>
         <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="ref_reference_tree_view"/>
+        <field name="view_id" ref="ref_reference_tree_view" />
         <field name="context">{
-            'search_default_filter_not_obsolete': 1, 
+            'search_default_filter_not_obsolete': 1,
         }
         </field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_ref_reference_tree" >
-        <field name="sequence" eval="1"/>
+    <record model="ir.actions.act_window.view" id="act_window_view_ref_reference_tree">
+        <field name="sequence" eval="1" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="ref_reference_tree_view"/>
-        <field name="act_window_id" ref="act_window_ref_reference"/>
+        <field name="view_id" ref="ref_reference_tree_view" />
+        <field name="act_window_id" ref="act_window_ref_reference" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_ref_reference_form" >
-        <field name="sequence" eval="2"/>
+    <record model="ir.actions.act_window.view" id="act_window_view_ref_reference_form">
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="ref_reference_form_view"/>
-        <field name="act_window_id" ref="act_window_ref_reference"/>
+        <field name="view_id" ref="ref_reference_form_view" />
+        <field name="act_window_id" ref="act_window_ref_reference" />
     </record>
 
 </odoo>

@@ -5,38 +5,33 @@ from odoo import fields, models
 
 
 class RefCategoryLine(models.Model):
-    """ Description """
-
-    _name = 'ref.category.line'
-    _description = 'Category line'
-    _rec_name = 'description'
-    _order = 'sequence'
+    _name = "ref.category.line"
+    _description = "Category line"
+    _rec_name = "description"
+    _order = "sequence"
 
     category_id = fields.Many2one(
-        'ref.category',
-        'Category',
+        comodel_name="ref.category",
+        string="Category",
         required=True,
-        ondelete='cascade',
+        ondelete="cascade",
     )
     property_id = fields.Many2one(
-        'ref.property',
-        'Property',
+        comodel_name="ref.property",
+        string="Property",
         required=True,
-        ondelete='cascade',
+        ondelete="cascade",
     )
     description = fields.Char(
-        'Property description',
+        string="Property description",
         size=128,
     )
     sequence = fields.Integer(
-        'Position',
+        string="Position",
         required=True,
         default=1,
     )
 
     _sql_constraints = [
-        (
-            'cat_seq_uniq', 'unique(category_id, sequence)',
-            'Position must be unique !'
-        ),
+        ("cat_seq_uniq", "unique(category_id, sequence)", "Position must be unique !"),
     ]

@@ -8,19 +8,19 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     reference_id = fields.Many2one(
-        comodel_name='ref.reference',
-        string='Reference',
-        compute='_compute_reference_id',
+        comodel_name="ref.reference",
+        string="Reference",
+        compute="_compute_reference_id",
         readonly=True,
-        ondelete='set null',
+        ondelete="set null",
     )
     reference_ids = fields.One2many(
-        comodel_name='ref.reference',
-        inverse_name='product_id',
-        string='References',
+        comodel_name="ref.reference",
+        inverse_name="product_id",
+        string="References",
     )
 
-    @api.depends('reference_ids')
+    @api.depends("reference_ids")
     def _compute_reference_id(self):
         for product in self:
             if len(product.reference_ids) > 0:
@@ -39,12 +39,12 @@ class ProductTemplate(models.Model):
         result = name_search_result
         if name:
             # Make a specific search to find a product with version inside
-            if not result and 'V' in name.upper():
-                reference = name.upper().rpartition('V')
+            if not result and "V" in name.upper():
+                reference = name.upper().rpartition("V")
                 if reference[0]:
                     res = []
                     products = self.env[model].search(
-                        [('default_code', 'ilike', reference[0])], limit=limit
+                        [("default_code", "ilike", reference[0])], limit=limit
                     )
                     res = products.name_get()
                     result = res + result

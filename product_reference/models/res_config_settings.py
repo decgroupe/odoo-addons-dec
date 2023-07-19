@@ -5,11 +5,11 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     main_product_category_id = fields.Many2one(
-        'product.category',
-        'Main Product Category',
-        related='company_id.main_product_category_id',
-        readonly=False
+        comodel_name="product.category",
+        string="Main Product Category",
+        related="company_id.main_product_category_id",
+        readonly=False,
     )

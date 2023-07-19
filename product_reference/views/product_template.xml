@@ -1,13 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_template_only_form_view">
         <field name="name">product.template.product.form@product_reference</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product_public_code.product_template_only_form_view"/>
+        <field
+            name="inherit_id"
+            ref="product_public_code.product_template_only_form_view"
+        />
         <field name="arch" type="xml">
             <field name="default_code" position="before">
-                <field name="reference_id" attrs="{'invisible': [('reference_id', '=', False)]}"/>
+                <field
+                    name="reference_id"
+                    attrs="{'invisible': [('reference_id', '=', False)]}"
+                />
             </field>
         </field>
     </record>
@@ -15,63 +21,74 @@
     <record model="ir.ui.view" id="product_template_search_view">
         <field name="name">product.template.search@product_reference</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product_public_code.product_template_search_view"/>
+        <field
+            name="inherit_id"
+            ref="product_public_code.product_template_search_view"
+        />
         <field name="arch" type="xml">
             <filter name="filter_to_sell" position="before">
-                <filter 
-                    string="Has a Location" 
-                    name="filter_has_location" 
+                <filter
+                    string="Has a Location"
+                    name="filter_has_location"
                     domain="[
                         ('|'),
                             ('loc_rack','!=',False),
                             ('|'),
                                 ('loc_row','!=',False),
                                 ('loc_case','!=',False),
-                    ]">
+                    ]"
+                >
                 </filter>
-                <separator/>
-                <filter 
-                    string="Not obsolete" 
-                    name="filter_not_obsolete" 
-                    domain="[('state', '!=', 'obsolete'),]">
+                <separator />
+                <filter
+                    string="Not obsolete"
+                    name="filter_not_obsolete"
+                    domain="[('state', '!=', 'obsolete'),]"
+                >
                 </filter>
-                <separator/>
-                <filter 
-                    string="REFManager" 
-                    name="filter_refmanager" 
-                    domain="[('reference_ids', '!=', False),]">
+                <separator />
+                <filter
+                    string="REFManager"
+                    name="filter_refmanager"
+                    domain="[('reference_ids', '!=', False),]"
+                >
                 </filter>
-                <separator/>
+                <separator />
             </filter>
             <xpath expr="//search" position="inside">
-                <separator/>
+                <separator />
                 <group string="Group By" name="groupby">
-                    <filter 
-                        string="Category" 
-                        name="groupby_category" 
-                        context="{'group_by':'categ_id'}">
+                    <filter
+                        string="Category"
+                        name="groupby_category"
+                        context="{'group_by':'categ_id'}"
+                    >
                     </filter>
-                    <separator/>
-                    <filter 
-                        string="Rack" 
-                        name="groupby_loc_rack" 
-                        context="{'group_by':'loc_rack'}">
+                    <separator />
+                    <filter
+                        string="Rack"
+                        name="groupby_loc_rack"
+                        context="{'group_by':'loc_rack'}"
+                    >
                     </filter>
-                    <filter 
-                        string="Row" 
-                        name="groupby_loc_row" 
-                        context="{'group_by':'loc_row'}">
+                    <filter
+                        string="Row"
+                        name="groupby_loc_row"
+                        context="{'group_by':'loc_row'}"
+                    >
                     </filter>
-                    <filter 
-                        string="Case" 
-                        name="groupby_loc_case" 
-                        context="{'group_by':'loc_case'}">
+                    <filter
+                        string="Case"
+                        name="groupby_loc_case"
+                        context="{'group_by':'loc_case'}"
+                    >
                     </filter>
-                    <separator/>
-                    <filter 
-                        string="Default Code" 
-                        name="groupby_default_code" 
-                        context="{'group_by':'default_code'}">
+                    <separator />
+                    <filter
+                        string="Default Code"
+                        name="groupby_default_code"
+                        context="{'group_by':'default_code'}"
+                    >
                     </filter>
                 </group>
             </xpath>
@@ -81,12 +98,12 @@
     <record id="product_template_as_service_tree_view" model="ir.ui.view">
         <field name="name">product.template.tree#asservice@product_reference</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product_public_code.product_template_tree_view"/>
+        <field name="inherit_id" ref="product_public_code.product_template_tree_view" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <field name="name" position="before">
                 <!-- WARNING: the string character is a non-breaking space (NBSP) space -->
-                <field name="image_128" string=" " widget="image"/>
+                <field name="image_128" string=" " widget="image" />
             </field>
             <tree position="attributes">
                 <attribute name="decoration-success">state == 'quotation'</attribute>
@@ -94,15 +111,15 @@
                 <attribute name="decoration-info">state == 'draft'</attribute>
                 <attribute name="decoration-bf">state == 'sellable'</attribute>
                 <attribute name="decoration-muted">state == 'obsolete'</attribute>
-                <!-- 
+                <!--
                 <attribute name="decoration-warning">state == ''</attribute>
                 <attribute name="decoration-muted-strike">state == 'obsolete'</attribute>
                 -->
                 <attribute name="decoration-danger">False</attribute>
             </tree>
-            <field name="qty_available" position="replace"/>
-            <field name="qty_available_not_res" position="replace"/>
-            <field name="virtual_available" position="replace"/>
+            <field name="qty_available" position="replace" />
+            <field name="qty_available_not_res" position="replace" />
+            <field name="virtual_available" position="replace" />
             <field name="categ_id" position="attributes">
                 <attribute name="class">d_categ_id</attribute>
             </field>
@@ -112,13 +129,13 @@
     <record id="product_template_as_product_tree_view" model="ir.ui.view">
         <field name="name">product.template.tree#asproduct@product_reference</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product_template_as_service_tree_view"/>
+        <field name="inherit_id" ref="product_template_as_service_tree_view" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="loc_rack"/>
-                <field name="loc_row"/>
-                <field name="loc_case"/>
+                <field name="loc_rack" />
+                <field name="loc_row" />
+                <field name="loc_case" />
             </field>
         </field>
     </record>
@@ -128,33 +145,44 @@
         <field name="res_model">product.template</field>
         <field name="view_mode">tree,form,kanban</field>
         <field name="limit">20</field>
-        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="search_view_id" ref="product.product_template_search_view" />
         <field name="context">{
-            'search_default_consumable': 1, 
-            'search_default_filter_not_obsolete': 1, 
+            'search_default_consumable': 1,
+            'search_default_filter_not_obsolete': 1,
             'search_default_filter_has_public_code': 1,
             'search_default_filter_has_location': 1,
             'default_type': 'product'}
         </field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_product_template_as_product_tree" >
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_product_template_as_product_tree"
+    >
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="product_template_as_product_tree_view"/>
-        <field name="act_window_id" ref="act_window_product_template_as_product"/>
+        <field name="view_id" ref="product_template_as_product_tree_view" />
+        <field name="act_window_id" ref="act_window_product_template_as_product" />
     </record>
 
     <record id="product_template_service_search_view" model="ir.ui.view">
         <field name="name">product.template.search.service.form</field>
         <field name="model">product.template</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="product_reference.product_template_search_view"/>
+        <field name="inherit_id" ref="product_reference.product_template_search_view" />
         <field name="arch" type="xml">
             <xpath expr="//search" position="inside">
-                <separator/>
+                <separator />
                 <group string="Group By" name="groupby_service">
-                    <filter string="Service Tracking" name="groupby_service_tracking" context="{'group_by':'service_tracking'}"/>
-                    <filter string="Service Type" name="groupby_service_type" context="{'group_by':'service_type'}"/>
+                    <filter
+                        string="Service Tracking"
+                        name="groupby_service_tracking"
+                        context="{'group_by':'service_tracking'}"
+                    />
+                    <filter
+                        string="Service Type"
+                        name="groupby_service_type"
+                        context="{'group_by':'service_type'}"
+                    />
                 </group>
             </xpath>
         </field>
@@ -165,38 +193,53 @@
         <field name="res_model">product.template</field>
         <field name="view_mode">tree,form,kanban</field>
         <field name="limit">20</field>
-        <field name="search_view_id" ref="product_reference.product_template_service_search_view"/>
+        <field
+            name="search_view_id"
+            ref="product_reference.product_template_service_search_view"
+        />
         <field name="context">{
-            'search_default_services': 1, 
-            'search_default_groupby_service_tracking': 1, 
-            'search_default_groupby_service_type': 1, 
+            'search_default_services': 1,
+            'search_default_groupby_service_tracking': 1,
+            'search_default_groupby_service_type': 1,
             'default_type': 'service'}
         </field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_product_template_as_service_tree" >
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_product_template_as_service_tree"
+    >
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="product_template_as_service_tree_view"/>
-        <field name="act_window_id" ref="act_window_product_template_as_service"/>
+        <field name="view_id" ref="product_template_as_service_tree_view" />
+        <field name="act_window_id" ref="act_window_product_template_as_service" />
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_product_template_as_refmanager_product">
+    <record
+        model="ir.actions.act_window"
+        id="act_window_product_template_as_refmanager_product"
+    >
         <field name="name">Products</field>
         <field name="res_model">product.template</field>
         <field name="view_mode">tree,form,kanban</field>
         <field name="limit">20</field>
-        <field name="search_view_id" ref="product.product_template_search_view"/>
+        <field name="search_view_id" ref="product.product_template_search_view" />
         <field name="context">{
             'search_default_filter_refmanager': 1,
-            'search_default_filter_not_obsolete': 1, 
+            'search_default_filter_not_obsolete': 1,
         }
         </field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_product_template_as_refmanager_product_tree" >
-        <field name="act_window_id" ref="act_window_product_template_as_refmanager_product"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_product_template_as_refmanager_product_tree"
+    >
+        <field
+            name="act_window_id"
+            ref="act_window_product_template_as_refmanager_product"
+        />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="product_template_as_product_tree_view"/>
+        <field name="view_id" ref="product_template_as_product_tree_view" />
     </record>
 
 </odoo>

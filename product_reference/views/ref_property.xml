@@ -1,42 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_property_tree_view" >
+    <record model="ir.ui.view" id="ref_property_tree_view">
         <field name="name">ref.property.tree@product_reference</field>
         <field name="model">ref.property</field>
         <field name="arch" type="xml">
             <tree string="Properties" create="false" delete="false">
-                <field name="name"/>
-                <field name="format"/>
-                <field name="fixed"/>
+                <field name="name" />
+                <field name="format" />
+                <field name="fixed" />
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ref_property_form_view" >
+    <record model="ir.ui.view" id="ref_property_form_view">
         <field name="name">ref.property.form@product_reference</field>
         <field name="model">ref.property</field>
         <field name="arch" type="xml">
             <form string="Properties">
                 <sheet>
                     <div class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
-                        <h1><field name="name" class="oe_inline"/></h1>
+                        <label for="name" class="oe_edit_only" />
+                        <h1><field name="name" class="oe_inline" /></h1>
                     </div>
                     <group>
-                        <field name="format"/>
-                        <field name="fixed"/>
-                        <field name="attribute_ids" attrs="{'invisible': [('fixed', '=', False)]}"/>
+                        <field name="format" />
+                        <field name="fixed" />
+                        <field
+                            name="attribute_ids"
+                            attrs="{'invisible': [('fixed', '=', False)]}"
+                        />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_ref_property" >
+    <record model="ir.actions.act_window" id="act_window_ref_property">
         <field name="name">Properties</field>
         <field name="res_model">ref.property</field>
-        <field name="view_id" ref="ref_property_tree_view"/>
+        <field name="view_id" ref="ref_property_tree_view" />
     </record>
 
 </odoo>

@@ -1,39 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="ref_category_line_tree_view" >
+    <record model="ir.ui.view" id="ref_category_line_tree_view">
         <field name="name">ref.category.line.tree@product_reference</field>
         <field name="model">ref.category.line</field>
         <field name="arch" type="xml">
             <tree string="Category lines">
-                <field name="sequence" widget="handle"/>
-                <field name="property_id"/>
-                <field name="description"/>
+                <field name="sequence" widget="handle" />
+                <field name="property_id" />
+                <field name="description" />
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="ref_category_line_form_view" >
+    <record model="ir.ui.view" id="ref_category_line_form_view">
         <field name="name">ref.category.line.form@product_reference</field>
         <field name="model">ref.category.line</field>
         <field name="arch" type="xml">
             <form string="Category Lines">
                 <div class="oe_title">
-                    <label for="property_id" class="oe_edit_only"/>
-                    <h1><field name="property_id" class="oe_inline"/></h1>
+                    <label for="property_id" class="oe_edit_only" />
+                    <h1><field name="property_id" class="oe_inline" /></h1>
                 </div>
                 <group>
-                    <field name="sequence" invisible="0"/>
-                    <field name="description" invisible="0"/>
+                    <field name="sequence" invisible="0" />
+                    <field name="description" invisible="0" />
                 </group>
             </form>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_ref_category_line" >
+    <record model="ir.actions.act_window" id="act_window_ref_category_line">
         <field name="name">Category lines</field>
         <field name="res_model">ref.category.line</field>
-        <field name="view_id" ref="ref_category_line_tree_view"/>
+        <field name="view_id" ref="ref_category_line_tree_view" />
     </record>
 
 </odoo>

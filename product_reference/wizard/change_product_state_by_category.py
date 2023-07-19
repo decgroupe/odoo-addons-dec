@@ -4,27 +4,32 @@
 import logging
 
 from odoo import api, fields, models
-from odoo.tools.safe_eval import safe_eval
 from odoo.tools.misc import split_every
 from odoo.tools.progressbar import progressbar as pb
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
 
 class ChangeProductStateByCategory(models.TransientModel):
-    _name = 'change.product.state.by.category'
-    _description = 'Customize purchase report'
+    _name = "change.product.state.by.category"
+    _description = "Customize purchase report"
 
-    category_id = fields.Many2one('product.category')
-    state = fields.Selection(
-        selection='_get_states',
-        string='New Status',
+    category_id = fields.Many2one(
+        comodel_name="product.category",
     )
-    domain = fields.Char(string='Apply on', default='[]')
+    state = fields.Selection(
+        selection="_get_states",
+        string="New Status",
+    )
+    domain = fields.Char(
+        string="Apply on",
+        default="[]",
+    )
 
     @api.model
     def _get_states(self):
-        return self.env['product.template']._fields['state'].selection
+        return self.env["product.template"]._fields["state"].selection
 
     @api.model
     def default_get(self, fields):
@@ -34,30 +39,29 @@ class ChangeProductStateByCategory(models.TransientModel):
 
     def action_update_state(self):
         self.ensure_one()
-        ProductProduct = self.env['product.product']
-        ProductTemplate = self.env['product.template']
+        ProductProduct = self.env["product.product"]
+        ProductTemplate = self.env["product.template"]
         if self.state:
             search_domain = safe_eval(self.domain)
             product_ids = ProductProduct.search(search_domain)
-            ids = product_ids.mapped('product_tmpl_id').ids
+            ids = product_ids.mapped("product_tmpl_id").ids
             SPLIT = 500
             idx = 0
             for chunck_ids in pb(list(split_every(SPLIT, ids))):
                 _logger.info(
-                    'Processing (%d -> %d)/%d', idx, min(idx + SPLIT, len(ids)),
-                    len(ids)
+                    "Processing (%d -> %d)/%d",
+                    idx,
+                    min(idx + SPLIT, len(ids)),
+                    len(ids),
                 )
                 idx += SPLIT
-                ProductTemplate.with_context(prefetch_fields=False
-                                            ).browse(chunck_ids).write(
-                                                {'state': self.state}
-                                            )
+                ProductTemplate.with_context(prefetch_fields=False).browse(
+                    chunck_ids
+                ).write({"state": self.state})
 
-    @api.onchange('category_id')
+    @api.onchange("category_id")
     def _onchange_category_id(self):
         if self.category_id:
-            self.domain = "[('categ_id', 'child_of', %s)]" % (
-                self.category_id.id,
-            )
+            self.domain = "[('categ_id', 'child_of', %s)]" % (self.category_id.id,)
         else:
             self.domain = "[]"
