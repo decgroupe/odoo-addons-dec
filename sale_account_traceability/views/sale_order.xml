@@ -4,30 +4,35 @@
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_account_traceability</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_traceability.sale_order_form_view"/>
-        <field name="groups_id" eval="[(4,ref('sale_account_traceability.group_sale_account_traceability'))]"/>
+        <field name="inherit_id" ref="sale_traceability.sale_order_form_view" />
+        <field
+            name="groups_id"
+            eval="[(4,ref('sale_account_traceability.group_sale_account_traceability'))]"
+        />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='invoice_lines']" position="attributes">
                 <attribute name="attrs">
                     {'invisible': [
-                        '|', 
-                            ('display_type', '!=', False), 
-                            '&amp;', 
+                        '|',
+                            ('display_type', '!=', False),
+                            '&amp;',
                                 ('parent.state', 'not in', ['sale', 'done']),
                                 ('invoice_lines', '=', []),
                     ]}
                 </attribute>
             </xpath>
             <xpath expr="//div[@name='traceability_container']" position="inside">
-                <xpath expr="//div[@name='invoice_lines']" position="move"/>
-                <field name="force_invoiced"/>
-                <button type="object" 
-                    name="action_force_invoiced" 
+                <xpath expr="//div[@name='invoice_lines']" position="move" />
+                <field name="force_invoiced" />
+                <button
+                    type="object"
+                    name="action_force_invoiced"
                     icon=""
-                    string="Consider this line as fully invoiced" 
-                    class="oe_inline oe_link" 
+                    string="Consider this line as fully invoiced"
+                    class="oe_inline oe_link"
                     context="{}"
-                    attrs="{'invisible': [('state', 'not in', ('sale', 'done'))]}">
+                    attrs="{'invisible': [('state', 'not in', ('sale', 'done'))]}"
+                >
                 </button>
             </xpath>
         </field>
