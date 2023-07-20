@@ -5,11 +5,11 @@ from odoo import models, api
 
 
 class PurchaseOrderLine(models.Model):
-    _inherit = 'purchase.order.line'
+    _inherit = "purchase.order.line"
 
     def action_propagate_cancel(self):
-        if self.env.context.get('propagate'):
-            moves_to_cancel = self.env['stock.move']
+        if self.env.context.get("propagate"):
+            moves_to_cancel = self.env["stock.move"]
             for line in self:
                 for move in line.move_dest_ids:
                     moves_to_cancel += move
@@ -18,7 +18,7 @@ class PurchaseOrderLine(models.Model):
                 moves_to_cancel.action_cancel_downstream()
 
         # Keep a link with orders
-        purchase_orders = self.env['purchase.order']
+        purchase_orders = self.env["purchase.order"]
         for line in self:
             purchase_orders |= line.order_id
         # Finally delete all
@@ -34,6 +34,6 @@ class PurchaseOrderLine(models.Model):
         self.ensure_one()
         # OCA module needed: web_ir_actions_act_view_reload
         view = {
-            'type': 'ir.actions.act_view_reload',
+            "type": "ir.actions.act_view_reload",
         }
         return view
