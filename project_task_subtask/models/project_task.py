@@ -16,7 +16,9 @@ class Task(models.Model):
         inverse_name="task_id",
         string="Subtask",
     )
-    kanban_subtasks = fields.Text(compute="_compute_kanban_subtasks", )
+    kanban_subtasks = fields.Text(
+        compute="_compute_kanban_subtasks",
+    )
     default_user = fields.Many2one(
         comodel_name="res.users",
         compute="_compute_default_user",
@@ -25,7 +27,9 @@ class Task(models.Model):
         string="Completion",
         compute="_compute_completion",
     )
-    completion_xml = fields.Text(compute="_compute_completion_xml", )
+    completion_xml = fields.Text(
+        compute="_compute_completion_xml",
+    )
 
     def _compute_default_user(self):
         self.default_user = False
@@ -38,8 +42,8 @@ class Task(models.Model):
                 elif self.env.user != record.create_uid:
                     record.default_user = record.create_uid
                 elif (
-                    self.env.user == record.create_uid and
-                    self.env.user == record.user_id
+                    self.env.user == record.create_uid
+                    and self.env.user == record.user_id
                 ):
                     record.default_user = self.env.user
 
@@ -50,24 +54,27 @@ class Task(models.Model):
             result_string_wt = ""
             if record.subtask_ids:
                 task_todo_ids = record.subtask_ids.filtered(
-                    lambda x: x.state == "todo" and x.user_id.id == record.env.
-                    user.id
+                    lambda x: x.state == "todo" and x.user_id.id == record.env.user.id
                 )
                 task_waiting_ids = record.subtask_ids.filtered(
-                    lambda x: x.state == "waiting" and x.user_id.id == record.
-                    env.user.id
+                    lambda x: x.state == "waiting"
+                    and x.user_id.id == record.env.user.id
                 )
                 if task_todo_ids:
                     tmp_string_td = escape(": {}".format(len(task_todo_ids)))
-                    result_string_td += _("<li><b>To-Do{}</b></li>"
-                                         ).format(tmp_string_td)
+                    result_string_td += _("<li><b>To-Do{}</b></li>").format(
+                        tmp_string_td
+                    )
                 if task_waiting_ids:
                     tmp_string_wt = escape(": {}".format(len(task_waiting_ids)))
-                    result_string_wt += _("<li><b>Waiting{}</b></li>"
-                                         ).format(tmp_string_wt)
+                    result_string_wt += _("<li><b>Waiting{}</b></li>").format(
+                        tmp_string_wt
+                    )
             record.kanban_subtasks = (
-                '<div class="kanban_subtasks"><ul>' + result_string_td +
-                result_string_wt + "</ul></div>"
+                '<div class="kanban_subtasks"><ul>'
+                + result_string_td
+                + result_string_wt
+                + "</ul></div>"
             )
 
     def _compute_completion(self):
@@ -78,8 +85,7 @@ class Task(models.Model):
         self.completion_xml = ""
         for record in self:
             active_subtasks = record.subtask_ids and record.subtask_ids.filtered(
-                lambda x: x.user_id.id == record.env.user.id and x.state !=
-                "cancelled"
+                lambda x: x.user_id.id == record.env.user.id and x.state != "cancelled"
             )
             if not active_subtasks:
                 record.completion_xml = """
@@ -100,23 +106,24 @@ class Task(models.Model):
                 </div>
                 <div class ="o_kanban_counter_progress progress task_progress_bar">
                     <div data-filter="done"
-                         class ="progress-bar {1} o_bar_has_records task_progress_bar_done"
-                         data-original-title="1 done"
-                         style="width: {0}%;">
+                        class ="progress-bar {1} o_bar_has_records task_progress_bar_done"
+                        data-original-title="1 done"
+                        style="width: {0}%;">
                     </div>
                     <div data-filter="blocked"
-                         class ="progress-bar bg-danger-full"
-                         data-original-title="0 blocked">
+                        class ="progress-bar bg-danger-full"
+                        data-original-title="0 blocked">
                     </div>
                 </div>
                 <div class="task_completion"> {0}% </div>
             </div>
-            """.format(int(completion), color, header)
+            """.format(
+                int(completion), color, header
+            )
 
     def task_completion(self):
         user_task_ids = self.subtask_ids.filtered(
-            lambda x: x.user_id.id == self.env.user.id and x.state !=
-            "cancelled"
+            lambda x: x.user_id.id == self.env.user.id and x.state != "cancelled"
         )
         if not user_task_ids:
             return 100
@@ -147,39 +154,59 @@ class Task(models.Model):
             partner_ids = []
             subtype_xmlid = "project_task_subtask.subtasks_subtype"
             if user == self.env.user and reviewer == self.env.user:
-                body = "<p>" + "<strong>" + state + "</strong>: " + escape(
-                    subtask_name
-                )
+                body = "<p>" + "<strong>" + state + "</strong>: " + escape(subtask_name)
                 subtype_xmlid = False
             elif self.env.user == reviewer:
                 body = (
-                    "<p>" + escape(user.name) + ", <br><strong>" + state +
-                    "</strong>: " + escape(subtask_name)
+                    "<p>"
+                    + escape(user.name)
+                    + ", <br><strong>"
+                    + state
+                    + "</strong>: "
+                    + escape(subtask_name)
                 )
                 partner_ids = [user.partner_id.id]
             elif self.env.user == user:
                 msg = _("I updated checklist item assigned to me")
                 body = (
-                    "<p>" + escape(reviewer.name) +
-                    ', <em style="color:#999">' + msg + ":</em> <br><strong>" +
-                    state + "</strong>: " + escape(subtask_name)
+                    "<p>"
+                    + escape(reviewer.name)
+                    + ', <em style="color:#999">'
+                    + msg
+                    + ":</em> <br><strong>"
+                    + state
+                    + "</strong>: "
+                    + escape(subtask_name)
                 )
                 partner_ids = [reviewer.partner_id.id]
             else:
                 msg = _("I updated checklist item, now its assigned to")
                 body = (
-                    "<p>" + escape(user.name) + ", " + escape(reviewer.name) +
-                    ', <em style="color:#999">' + msg + " " +
-                    escape(user.name) + ": </em> <br><strong>" + state +
-                    "</strong>: " + escape(subtask_name)
+                    "<p>"
+                    + escape(user.name)
+                    + ", "
+                    + escape(reviewer.name)
+                    + ', <em style="color:#999">'
+                    + msg
+                    + " "
+                    + escape(user.name)
+                    + ": </em> <br><strong>"
+                    + state
+                    + "</strong>: "
+                    + escape(subtask_name)
                 )
                 partner_ids = [user.partner_id.id, reviewer.partner_id.id]
             if old_name:
                 msg = _("Updated from")
                 body = (
-                    body + '<br><em style="color:#999">' + msg +
-                    "</em><br><strong>" + state + "</strong>: " +
-                    escape(old_name) + "</p>"
+                    body
+                    + '<br><em style="color:#999">'
+                    + msg
+                    + "</em><br><strong>"
+                    + state
+                    + "</strong>: "
+                    + escape(old_name)
+                    + "</p>"
                 )
             else:
                 body = body + "</p>"

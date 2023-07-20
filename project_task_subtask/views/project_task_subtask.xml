@@ -31,25 +31,33 @@
         <field name="arch" type="xml">
             <search string="Filter">
                 <field name="name" string="Description" />
-                <filter string="My" domain="[('user_id','=',uid)]" name="filter_my_subtask" />
+                <filter
+                    string="My"
+                    domain="[('user_id','=',uid)]"
+                    name="filter_my_subtask"
+                />
                 <separator />
                 <filter
                     string="TODO"
                     domain="[('state','=','todo')]"
-                    name="filter_done_subtask"/>
+                    name="filter_done_subtask"
+                />
                 <group expand="0" string="Group By">
                     <filter
                         string="Project"
                         name="filter_project"
-                        context="{'group_by':'project_id'}"/>
+                        context="{'group_by':'project_id'}"
+                    />
                     <filter
                         string="Task"
                         name="filter_task"
-                        context="{'group_by':'task_id'}"/>
+                        context="{'group_by':'task_id'}"
+                    />
                     <filter
                         string="User"
                         name="filter_user"
-                        context="{'group_by':'user_id'}"/>
+                        context="{'group_by':'user_id'}"
+                    />
                 </group>
             </search>
         </field>

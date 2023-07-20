@@ -41,7 +41,7 @@ class ProjectTaskSubtask(models.Model):
         comodel_name="res.users",
         string="Created by",
         readonly=True,
-        default=lambda self: self.env.user
+        default=lambda self: self.env.user,
     )
     project_id = fields.Many2one(
         comodel_name="project.project",
@@ -65,9 +65,15 @@ class ProjectTaskSubtask(models.Model):
         related="task_id.stage_id.name",
         readonly=True,
     )
-    hide_button = fields.Boolean(compute="_compute_hide_button", )
-    recolor = fields.Boolean(compute="_compute_recolor", )
-    deadline = fields.Datetime(string="Deadline", )
+    hide_button = fields.Boolean(
+        compute="_compute_hide_button",
+    )
+    recolor = fields.Boolean(
+        compute="_compute_recolor",
+    )
+    deadline = fields.Datetime(
+        string="Deadline",
+    )
 
     def _compute_recolor(self):
         self.recolor = False
@@ -79,8 +85,8 @@ class ProjectTaskSubtask(models.Model):
         self.hide_button = False
         for record in self:
             if (
-                self.env.user not in [record.reviewer_id, record.user_id] and
-                not self.env.user._is_admin()
+                self.env.user not in [record.reviewer_id, record.user_id]
+                and not self.env.user._is_admin()
             ):
                 record.hide_button = True
 
@@ -104,14 +110,12 @@ class ProjectTaskSubtask(models.Model):
                     r.name, r.state, r.reviewer_id.id, r.user_id.id
                 )
                 if not (
-                    self.env.user == r.reviewer_id or
-                    self.env.user == r.user_id or self.env.user._is_admin()
+                    self.env.user == r.reviewer_id
+                    or self.env.user == r.user_id
+                    or self.env.user._is_admin()
                 ):
                     raise UserError(
-                        _(
-                            "Only users related to that subtask can change "
-                            "the state."
-                        )
+                        _("Only users related to that subtask can change " "the state.")
                     )
             if vals.get("name"):
                 r.task_id.send_subtask_email(
@@ -122,14 +126,12 @@ class ProjectTaskSubtask(models.Model):
                     old_name=old_names[r.id],
                 )
                 if not (
-                    self.env.user == r.reviewer_id or
-                    self.env.user == r.user_id or self.env.user._is_admin()
+                    self.env.user == r.reviewer_id
+                    or self.env.user == r.user_id
+                    or self.env.user._is_admin()
                 ):
                     raise UserError(
-                        _(
-                            "Only users related to that subtask can change "
-                            "the name."
-                        )
+                        _("Only users related to that subtask can change " "the name.")
                     )
             if vals.get("user_id"):
                 r.task_id.send_subtask_email(

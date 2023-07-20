@@ -7,31 +7,23 @@
 # License MIT (https://opensource.org/licenses/MIT).
 {
     "name": "Project Task Checklist",
-    "summary":
-        "Use checklist to be ensure that all your tasks are "
-        "performed and to make easy control over them",
     "category": "Project Management",
     "version": "14.0.1.0.0",
     "application": False,
-    "author": "DEC, Yann Papouin, "
-              "IT-Projects LLC, Manaev Rafael",
-    'website': 'https://www.decgroupe.com',
-    "license": "Other OSI approved licence", # MIT
+    "author": "DEC" "IT-Projects LLC, Manaev Rafael",
+    "website": "https://www.decgroupe.com",
+    "license": "Other OSI approved licence",  # MIT
     "depends": ["base", "project"],
-    "external_dependencies": {
-        "python": [],
-        "bin": []
-    },
-    "data":
-        [
-            "security/ir.model.access.csv",
-            "security/project_security.xml",
-            "views/project_task_subtask.xml",
-            "views/project_task.xml",
-            "views/menu.xml",
-            "views/assets.xml",
-            "data/subscription_template.xml",
-        ],
+    "external_dependencies": {"python": [], "bin": []},
+    "data": [
+        "security/ir.model.access.csv",
+        "security/project_security.xml",
+        "views/project_task_subtask.xml",
+        "views/project_task.xml",
+        "views/menu.xml",
+        "views/assets.xml",
+        "data/subscription_template.xml",
+    ],
     "qweb": ["static/src/xml/templates.xml"],
     "demo": ["demo/project_task_subtask_demo.xml"],
     "post_load": None,
