@@ -4,39 +4,41 @@
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_lockable</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_cancel']" position="before">
-                <button 
-                    name="action_draft_lock" 
-                    type="object" 
-                    attrs="{'invisible': 
+                <button
+                    name="action_draft_lock"
+                    type="object"
+                    attrs="{'invisible':
                         [
                             ('|'),
                                 ('state', '!=', 'draft'),
                                 ('&amp;'),
                                     ('state', '=', 'draft'),
-                                    ('locked_draft', '=', True), 
+                                    ('locked_draft', '=', True),
                         ]}"
-                    string="Lock Changes">
+                    string="Lock Changes"
+                >
                 </button>
-                <button 
-                    name="action_draft_unlock" 
-                    type="object" 
+                <button
+                    name="action_draft_unlock"
+                    type="object"
                     disabled="[('same_user', '=', False)]"
-                    attrs="{'invisible': 
+                    attrs="{'invisible':
                         [
                             ('|'),
                                 ('state', '=', 'draft'),
-                                ('locked_draft', '=', False), 
+                                ('locked_draft', '=', False),
                         ]}"
                     class="btn btn-warning"
-                    string="Allow Changes">
+                    string="Allow Changes"
+                >
                 </button>
             </xpath>
             <xpath expr="//field[@name='validity_date']" position="before">
-                <field name="locked_draft" invisible="1"/>
-                <field name="same_user" invisible="1"/>
+                <field name="locked_draft" invisible="1" />
+                <field name="same_user" invisible="1" />
             </xpath>
         </field>
     </record>
