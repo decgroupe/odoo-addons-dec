@@ -5,7 +5,7 @@ from odoo import models, api, _
 
 
 class StockRule(models.Model):
-    _inherit = 'stock.rule'
+    _inherit = "stock.rule"
 
     def _run_buy(self, procurements):
         # Add a `run_buy` state var to the context before calling `_run_buy`.
