@@ -1,14 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="project_project_form">
         <field name="name">project.project.form@project_partner_location</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="inherit_id" ref="project.edit_project" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="partner_shipping_id" attrs="{'readonly': 1, 'invisible': [('partner_shipping_id', '=', False)]}"/>
-                <field name="partner_shipping_zip_id" attrs="{'readonly': 1, 'invisible': [('partner_shipping_zip_id', '=', False)]}"/>
+                <field
+                    name="partner_shipping_id"
+                    attrs="{'readonly': 1, 'invisible': [('partner_shipping_id', '=', False)]}"
+                />
+                <field
+                    name="partner_shipping_zip_id"
+                    attrs="{'readonly': 1, 'invisible': [('partner_shipping_zip_id', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
@@ -16,11 +22,11 @@
     <record model="ir.ui.view" id="view_project">
         <field name="name">project.project.tree.select@project_partner_location</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.view_project"/>
+        <field name="inherit_id" ref="project.view_project" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_shipping_id"/>
-                <field name="partner_shipping_zip_id"/>
+                <field name="partner_shipping_id" />
+                <field name="partner_shipping_zip_id" />
             </field>
         </field>
     </record>
@@ -28,22 +34,22 @@
     <record model="ir.ui.view" id="view_project_kanban">
         <field name="name">project.project.kanban@project_partner_location</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="inherit_id" ref="project.view_project_kanban" />
         <field name="arch" type="xml">
 
             <xpath expr="//kanban/field[@name='name']" position="after">
                 <field name="partner_shipping_id" />
-                <field name="partner_shipping_zip_id"/>
+                <field name="partner_shipping_zip_id" />
             </xpath>
             <xpath expr="//div[hasclass('o_primary')]" position="inside">
                 <small name="partner_shipping_id">
                     <div t-if="record.partner_shipping_id.raw_value">
-                        <i class="fa fa-truck"/>
-                        <t t-raw="record.partner_shipping_id.value"/>
+                        <i class="fa fa-truck" />
+                        <t t-raw="record.partner_shipping_id.value" />
                     </div>
                     <div t-if="record.partner_shipping_zip_id.raw_value">
-                        <i class="fa fa-map-marker"/>
-                        <t t-raw="record.partner_shipping_zip_id.value"/>
+                        <i class="fa fa-map-marker" />
+                        <t t-raw="record.partner_shipping_zip_id.value" />
                     </div>
                 </small>
             </xpath>
@@ -54,7 +60,7 @@
     <record model="ir.ui.view" id="project_project_filter_view">
         <field name="name">project.project.select@project_partner_location</field>
         <field name="model">project.project</field>
-        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="inherit_id" ref="project.view_project_project_filter" />
         <field name="arch" type="xml">
             <field name="partner_id" position="attributes">
                 <attribute name="filter_domain">
@@ -66,11 +72,19 @@
                 </attribute>
             </field>
             <field name="partner_id" position="after">
-                <field name="partner_shipping_zip_id"/>
+                <field name="partner_shipping_zip_id" />
             </field>
             <filter name="Partner" position="after">
-                <filter string="Shipping Partner" name="filter_partner_shipping" context="{'group_by': 'partner_shipping_id'}"/>
-                <filter string="Shipping Partner's ZIP" name="filter_partner_shipping_zip" context="{'group_by': 'partner_shipping_zip_id'}"/>
+                <filter
+                    string="Shipping Partner"
+                    name="filter_partner_shipping"
+                    context="{'group_by': 'partner_shipping_id'}"
+                />
+                <filter
+                    string="Shipping Partner's ZIP"
+                    name="filter_partner_shipping_zip"
+                    context="{'group_by': 'partner_shipping_zip_id'}"
+                />
             </filter>
         </field>
     </record>

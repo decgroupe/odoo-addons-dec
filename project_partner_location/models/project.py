@@ -8,31 +8,30 @@ class Project(models.Model):
     _inherit = "project.project"
 
     partner_shipping_id = fields.Many2one(
-        comodel_name='res.partner',
-        compute='_compute_partner_shipping_id',
+        comodel_name="res.partner",
+        compute="_compute_partner_shipping_id",
         string="Shipping Partner",
         readonly=True,
         store=True,
         help="Retrieved from `sale_order_id` if set, otherwise search "
-        "for a sale/project name match."
+        "for a sale/project name match.",
     )
     partner_shipping_zip_id = fields.Many2one(
-        comodel_name='res.city.zip',
-        related='partner_shipping_id.zip_id',
+        comodel_name="res.city.zip",
+        related="partner_shipping_id.zip_id",
         string="Shipping Partner's ZIP",
         readonly=True,
         store=True,
     )
     partner_shipping_country_id = fields.Many2one(
-        'res.country',
-        related='partner_shipping_id.country_id',
+        comodel_name="res.country",
+        related="partner_shipping_id.country_id",
         string="Shipping Partner's Country",
         store=True,
     )
 
     @api.depends(
-        'contract_ids', 'contract_ids.partner_shipping_id', 'sale_order_id',
-        'name'
+        "contract_ids", "contract_ids.partner_shipping_id", "sale_order_id", "name"
     )
     def _compute_partner_shipping_id(self):
         for rec in self:
@@ -42,8 +41,8 @@ class Project(models.Model):
             elif rec.sale_order_id:
                 rec.partner_shipping_id = rec.sale_order_id.partner_shipping_id
             elif rec.name:
-                sale_id = self.env['sale.order'].search(
-                    [('name', '=', rec.name)], limit=1
+                sale_id = self.env["sale.order"].search(
+                    [("name", "=", rec.name)], limit=1
                 )
                 if sale_id:
                     rec.partner_shipping_id = sale_id.partner_shipping_id
@@ -53,24 +52,24 @@ class Project(models.Model):
                 rec.partner_shipping_id = False
 
     @api.depends(
-        'partner_shipping_id',
-        'partner_shipping_zip_id',
-        'partner_id',
+        "partner_shipping_id",
+        "partner_shipping_zip_id",
+        "partner_id",
     )
     def _get_name_identifications(self):
         res = super()._get_name_identifications()
         # Add partner and its location to quickly identify a contract
         if self.partner_shipping_id:
             pre = self.partner_shipping_id._get_contact_type_emoji()
-            name = ('%s %s') % (pre, self.partner_shipping_id.display_name)
+            name = ("%s %s") % (pre, self.partner_shipping_id.display_name)
             res.append(name)
         if self.partner_shipping_zip_id:
-            name = ('🗺️ %s') % (self.partner_shipping_zip_id.display_name, )
+            name = ("🗺️ %s") % (self.partner_shipping_zip_id.display_name,)
             res.append(name)
         # Fallback to default `partner_id`
         if not self.partner_shipping_id and self.partner_id:
             pre = self.partner_id._get_contact_type_emoji()
-            name = ('%s %s') % (pre, self.partner_id.display_name)
+            name = ("%s %s") % (pre, self.partner_id.display_name)
             res.append(name)
         return res
 
@@ -82,8 +81,8 @@ class Project(models.Model):
             if rec.sale_order_id:
                 partner_id = rec.sale_order_id.partner_id
             elif rec.name:
-                sale_id = self.env['sale.order'].search(
-                    [('name', '=', rec.name)], limit=1
+                sale_id = self.env["sale.order"].search(
+                    [("name", "=", rec.name)], limit=1
                 )
                 if sale_id:
                     partner_id = sale_id.partner_id

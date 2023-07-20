@@ -1,14 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="project_task_form">
         <field name="name">project.task.form@project_partner_location</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="inherit_id" ref="project.view_task_form2" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="partner_shipping_id" attrs="{'readonly': 1, 'invisible': [('partner_shipping_id', '=', False)]}"/>
-                <field name="partner_shipping_zip_id" attrs="{'readonly': 1, 'invisible': [('partner_shipping_zip_id', '=', False)]}"/>
+                <field
+                    name="partner_shipping_id"
+                    attrs="{'readonly': 1, 'invisible': [('partner_shipping_id', '=', False)]}"
+                />
+                <field
+                    name="partner_shipping_zip_id"
+                    attrs="{'readonly': 1, 'invisible': [('partner_shipping_zip_id', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
@@ -19,8 +25,8 @@
         <field name="inherit_id" ref="project.view_task_tree2" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="partner_shipping_id"/>
-                <field name="partner_shipping_zip_id"/>
+                <field name="partner_shipping_id" />
+                <field name="partner_shipping_zip_id" />
             </field>
         </field>
     </record>
@@ -28,19 +34,23 @@
     <record model="ir.ui.view" id="view_task_kanban">
         <field name="name">project.task.kanban@project_partner_location</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="inherit_id" ref="project.view_task_kanban" />
         <field name="arch" type="xml">
             <xpath expr="//kanban/field[@name='user_id']" position="after">
                 <field name="partner_shipping_id" />
-                <field name="partner_shipping_zip_id"/>
+                <field name="partner_shipping_zip_id" />
             </xpath>
             <xpath expr="//div[hasclass('o_kanban_record_body')]" position="inside">
                 <small name="partner_shipping_id">
                     <div t-if="record.partner_shipping_id.raw_value">
-                        <i class="fa fa-truck"/> <t t-raw="record.partner_shipping_id.value"/>
+                        <i class="fa fa-truck" /> <t
+                            t-raw="record.partner_shipping_id.value"
+                        />
                     </div>
                     <div t-if="record.partner_shipping_zip_id.raw_value">
-                        <i class="fa fa-map-marker"/> <t t-raw="record.partner_shipping_zip_id.value"/>
+                        <i class="fa fa-map-marker" /> <t
+                            t-raw="record.partner_shipping_zip_id.value"
+                        />
                     </div>
                 </small>
             </xpath>
@@ -50,7 +60,7 @@
     <record model="ir.ui.view" id="project_task_search">
         <field name="name">project.task.search.form@project_partner_location</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="inherit_id" ref="project.view_task_search_form" />
         <field name="arch" type="xml">
             <field name="partner_id" position="attributes">
                 <attribute name="filter_domain">
@@ -62,7 +72,7 @@
                 </attribute>
             </field>
             <field name="partner_id" position="after">
-                <field name="partner_shipping_zip_id"/>
+                <field name="partner_shipping_zip_id" />
             </field>
         </field>
     </record>
