@@ -1,21 +1,21 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
-from odoo import fields, models, api
+from odoo import fields, models
 
 
 class Department(models.Model):
     _inherit = "hr.department"
 
     signature_logo_url = fields.Char(
-        string='Logo URL',
+        string="Logo URL",
         help="Logo used to replace the one used to render the user signature",
     )
     signature_color_suffix = fields.Char(
-        string='Color suffix',
+        string="Color suffix",
         help="Suffix used to replace the one used to render the user signature",
     )
     signature_primary_color = fields.Char(
-        string='Primary Color',
+        string="Primary Color",
         help="Color used to replace the one used to render the user signature",
     )

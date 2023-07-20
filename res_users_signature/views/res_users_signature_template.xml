@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="res_users_signature_template_form_view">
@@ -9,26 +9,26 @@
                 <sheet>
                     <group name="title">
                         <div class="oe_title">
-                            <label for="name" class="oe_edit_only"/>
+                            <label for="name" class="oe_edit_only" />
                             <h1>
-                                <field name="name"/>
+                                <field name="name" />
                             </h1>
                         </div>
                     </group>
                     <group name="main">
                         <group name="primary">
-                            <field name="logo_url"/>
-                            <field name="color_suffix"/>
-                            <field name="primary_color"/>
+                            <field name="logo_url" />
+                            <field name="color_suffix" />
+                            <field name="primary_color" />
                         </group>
                         <group name="secondary">
                         </group>
-                        <label for="body_text"/>
-                        <field name="body_text"/>
-                        <label for="body_html"/>
-                        <field name="body_html" widget="text"/>
-                        <label for="body_lightweight_html"/>
-                        <field name="body_lightweight_html" widget="text"/>
+                        <label for="body_text" />
+                        <field name="body_text" />
+                        <label for="body_html" />
+                        <field name="body_html" widget="text" />
+                        <label for="body_lightweight_html" />
+                        <field name="body_lightweight_html" widget="text" />
                     </group>
                 </sheet>
             </form>

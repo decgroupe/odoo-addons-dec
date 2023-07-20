@@ -1,18 +1,18 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-from odoo import fields, models, api
+from odoo import fields, models
 
 
 class Employee(models.Model):
     _inherit = "hr.employee"
 
     other_websites = fields.Text(
-        'Other Websites',
+        string="Other Websites",
         help="Use one line per website",
     )
     other_work_emails = fields.Text(
-        'Other Work Emails',
+        string="Other Work Emails",
         help="Use one line per e-mail",
     )
     work_phone_extension = fields.Char(

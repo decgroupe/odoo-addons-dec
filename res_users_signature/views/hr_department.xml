@@ -4,13 +4,13 @@
     <record model="ir.ui.view" id="department_form_view">
         <field name="name">hr.department.form@res_users_signature</field>
         <field name="model">hr.department</field>
-        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="inherit_id" ref="hr.view_department_form" />
         <field name="arch" type="xml">
             <sheet position="inside">
                 <group col="4">
-                    <field name="signature_logo_url"/>
-                    <field name="signature_color_suffix"/>
-                    <field name="signature_primary_color"/>
+                    <field name="signature_logo_url" />
+                    <field name="signature_color_suffix" />
+                    <field name="signature_primary_color" />
                 </group>
             </sheet>
         </field>
