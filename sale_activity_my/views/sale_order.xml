@@ -4,14 +4,14 @@
     <record model="ir.ui.view" id="quotation_tree_view">
         <field name="name">sale.order.tree@sale_activity_my</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="name" position="attributes">
                 <attribute name="decoration-bf">1</attribute>
             </field>
             <field name="user_id" position="after">
-                <field name="activity_my_ids" widget="list_activity_my"/>
-                <field name="activity_my_date_deadline" widget="remaining_days"/>
+                <field name="activity_my_ids" widget="list_activity_my" />
+                <field name="activity_my_date_deadline" widget="remaining_days" />
             </field>
         </field>
     </record>
@@ -19,14 +19,14 @@
     <record model="ir.ui.view" id="order_tree_view">
         <field name="name">sale.order.tree@sale_activity_my</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="name" position="attributes">
                 <attribute name="decoration-bf">1</attribute>
             </field>
             <field name="user_id" position="after">
-                <field name="activity_my_ids" widget="list_activity_my"/>
-                <field name="activity_my_date_deadline" widget="remaining_days"/>
+                <field name="activity_my_ids" widget="list_activity_my" />
+                <field name="activity_my_date_deadline" widget="remaining_days" />
             </field>
         </field>
     </record>
@@ -34,15 +34,18 @@
     <record model="ir.ui.view" id="sale_order_kanban_view">
         <field name="name">sale.order.kanban@sale_activity_my</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sale_order_kanban"/>
+        <field name="inherit_id" ref="sale.view_sale_order_kanban" />
         <field name="arch" type="xml">
             <xpath expr="//kanban/templates" position="before">
-                <field name="activity_my_ids"/>
-                <field name="activity_my_state"/>
-                <progressbar field="activity_my_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                <field name="activity_my_ids" />
+                <field name="activity_my_state" />
+                <progressbar
+                    field="activity_my_state"
+                    colors='{"planned": "success", "today": "warning", "overdue": "danger"}'
+                />
             </xpath>
             <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
-                <field name="activity_my_ids" widget="kanban_activity_my"/>
+                <field name="activity_my_ids" widget="kanban_activity_my" />
             </xpath>
         </field>
     </record>
