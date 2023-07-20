@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <!--
@@ -11,7 +11,7 @@
         <field name="name">sale.order.form.editable.list@sale_row_layout</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups_id" eval="[(4, ref('product.group_stock_packaging'))]"/>
+        <field name="groups_id" eval="[(4, ref('product.group_stock_packaging'))]" />
         <!-- <field name="priority" eval="20" /> -->
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
@@ -23,24 +23,33 @@
     <record model="ir.ui.view" id="empty_row_layout_sale_order_form_view">
         <field name="name">sale.order.form#empty_row_layout@sale_row_layout</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_traceability.sale_order_form_view"/>
+        <field name="inherit_id" ref="sale_traceability.sale_order_form_view" />
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
-                <group name="row_display" class="row_group" col="2" colspan="4" attrs="{'invisible':[('display_type', '!=', False)]}">
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='name']"
+                position="after"
+            >
+                <group
+                    name="row_display"
+                    class="row_group"
+                    col="2"
+                    colspan="4"
+                    attrs="{'invisible':[('display_type', '!=', False)]}"
+                >
                     <group class="row_group">
                         <table class="row_layout row_table">
                             <thead>
                             <tr>
-                                <th class="row_cell" name="row_label_10"></th>
-                                <th class="row_cell" name="row_label_20"></th>
-                                <th class="row_cell" name="row_label_30"></th>
+                                <th class="row_cell" name="row_label_10" />
+                                <th class="row_cell" name="row_label_20" />
+                                <th class="row_cell" name="row_label_30" />
                             </tr>
                             </thead>
                             <tr>
-                                <td class="row_cell" name="row1_field_10"></td>
-                                <td class="row_cell" name="row1_field_20"></td>
-                                <td class="row_cell" name="row1_field_30"></td>
+                                <td class="row_cell" name="row1_field_10" />
+                                <td class="row_cell" name="row1_field_20" />
+                                <td class="row_cell" name="row1_field_30" />
                             </tr>
                         </table>
                     </group>
@@ -48,39 +57,45 @@
                         <table class="row_layout row_table">
                             <thead>
                             <tr>
-                                <th class="row_cell" name="row_label_40"></th>
-                                <th class="row_cell" name="row_label_50"></th>
-                                <th class="row_cell" name="row_label_60"></th>
+                                <th class="row_cell" name="row_label_40" />
+                                <th class="row_cell" name="row_label_50" />
+                                <th class="row_cell" name="row_label_60" />
                             </tr>
                             </thead>
                             <tr>
-                                <td class="row_cell" name="row1_field_40"></td>
-                                <td class="row_cell" name="row1_field_50"></td>
-                                <td class="row_cell" name="row1_field_60"></td>
+                                <td class="row_cell" name="row1_field_40" />
+                                <td class="row_cell" name="row1_field_50" />
+                                <td class="row_cell" name="row1_field_60" />
                             </tr>
                         </table>
                     </group>
                 </group>
-                
-                <group name="row_display2" class="row_group" col="2" colspan="4" attrs="{'invisible':[('display_type', '!=', False)]}">
+
+                <group
+                    name="row_display2"
+                    class="row_group"
+                    col="2"
+                    colspan="4"
+                    attrs="{'invisible':[('display_type', '!=', False)]}"
+                >
                     <group class="row_group" col="1" colspan="1">
                     </group>
                     <group class="row_group" col="1" colspan="1">
                         <table class="row_layout row_total">
                             <tr>
                                 <th class="row_cell" name="row2_field_50">
-                                    <label for="margin"/>
+                                    <label for="margin" />
                                 </th>
                                 <td class="row_cell" name="row2_field_60" colspan="2">
-                                    <field name="margin"/>
+                                    <field name="margin" />
                                 </td>
                             </tr>
                             <tr>
                                 <th class="row_cell" name="row3_field_50">
-                                    <label for="price_subtotal"/>
+                                    <label for="price_subtotal" />
                                 </th>
                                 <td class="row_cell" name="row3_field_60" colspan="2">
-                                    <field name="price_subtotal" position="move"/>
+                                    <field name="price_subtotal" position="move" />
                                 </td>
                             </tr>
                         </table>
@@ -94,64 +109,97 @@
     <record model="ir.ui.view" id="row_layout_sale_order_form_view">
         <field name="name">sale.order.form#row_layout@sale_row_layout</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_row_layout.empty_row_layout_sale_order_form_view"/>
+        <field
+            name="inherit_id"
+            ref="sale_row_layout.empty_row_layout_sale_order_form_view"
+        />
         <field name="arch" type="xml">
 
             <!-- Remove div container for :
                 <field name="product_uom_qty"/>
                 <field name="product_uom"/>
             in order to keep good alignement with next fields (step 1/2) -->
-            <xpath expr="//label[@for='product_uom_qty']/following-sibling::div" position="attributes">
+            <xpath
+                expr="//label[@for='product_uom_qty']/following-sibling::div"
+                position="attributes"
+            >
                 <attribute name="name">product_uom_div</attribute>
             </xpath>
 
-            <xpath expr="//field[@name='order_line']/form//label[@for='product_uom_qty']" position="attributes">
+            <xpath
+                expr="//field[@name='order_line']/form//label[@for='product_uom_qty']"
+                position="attributes"
+            >
                 <attribute name="class">row_label</attribute>
             </xpath>
-            <xpath expr="//field[@name='order_line']/form//label[@for='discount']" position="attributes">
+            <xpath
+                expr="//field[@name='order_line']/form//label[@for='discount']"
+                position="attributes"
+            >
                 <attribute name="class">row_label</attribute>
             </xpath>
-            
+
             <xpath expr="//th[@name='row_label_10']" position="inside">
-                <xpath expr="//field[@name='order_line']/form//label[@for='product_uom_qty']" position="move"/>
+                <xpath
+                    expr="//field[@name='order_line']/form//label[@for='product_uom_qty']"
+                    position="move"
+                />
             </xpath>
             <xpath expr="//th[@name='row_label_20']" position="inside">
-                <label for="product_uom"/>
+                <label for="product_uom" />
             </xpath>
             <xpath expr="//th[@name='row_label_30']" position="inside">
-                <label for="purchase_price"/>
+                <label for="purchase_price" />
             </xpath>
             <xpath expr="//th[@name='row_label_40']" position="inside">
-                <label for="price_unit"/>
+                <label for="price_unit" />
             </xpath>
             <xpath expr="//th[@name='row_label_50']" position="inside">
-                <xpath expr="//field[@name='order_line']/form//label[@for='discount']" position="move"/>
+                <xpath
+                    expr="//field[@name='order_line']/form//label[@for='discount']"
+                    position="move"
+                />
             </xpath>
 
             <xpath expr="//td[@name='row1_field_10']" position="inside">
-                <xpath expr="//field[@name='order_line']/form//field[@name='product_uom_qty']" position="move"/>
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='product_uom_qty']"
+                    position="move"
+                />
             </xpath>
             <xpath expr="//td[@name='row1_field_20']" position="inside">
-                <xpath expr="//field[@name='order_line']/form//field[@name='product_uom']" position="move"/>
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='product_uom']"
+                    position="move"
+                />
             </xpath>
             <xpath expr="//td[@name='row1_field_30']" position="inside">
-                <xpath expr="//field[@name='order_line']/form//field[@name='purchase_price']" position="move"/>
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='purchase_price']"
+                    position="move"
+                />
             </xpath>
             <xpath expr="//td[@name='row1_field_40']" position="inside">
-                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="move"/>
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                    position="move"
+                />
             </xpath>
             <xpath expr="//td[@name='row1_field_50']" position="inside">
-                <field name="discount" position="move"/>
+                <field name="discount" position="move" />
             </xpath>
 
             <!-- Remove div container for :
                 <field name="product_uom_qty"/>
                 <field name="product_uom"/>
             in order to keep good alignement with next fields (step 2/2) -->
-            <xpath expr="//div[@name='product_uom_div']" position="replace"/>
+            <xpath expr="//div[@name='product_uom_div']" position="replace" />
 
             <!-- Remove div container for discount since not used anymore -->
-            <xpath expr="//field[@name='order_line']/form//div[@name='discount']" position="replace"/>
+            <xpath
+                expr="//field[@name='order_line']/form//div[@name='discount']"
+                position="replace"
+            />
         </field>
     </record>
 
