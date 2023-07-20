@@ -1,14 +1,15 @@
 {
-    'name': 'Sale Partner Academy',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'category': 'Sales',
-    'summary': '''Add shipping partner academy to sale orders''',
-    'depends': [
-        'sale',
-        'partner_academy',
+    "name": "Sale Partner Academy",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "category": "Sales",
+    "depends": [
+        "sale",
+        "partner_academy",
     ],
-    'data': ['views/sale_order.xml', ],
-    'installable': True
+    "data": [
+        "views/sale_order.xml",
+    ],
+    "installable": True,
 }
