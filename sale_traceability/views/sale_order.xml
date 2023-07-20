@@ -13,15 +13,7 @@
                 position="before"
             >
                 <div name="traceability_container">
-
                 </div>
-            </xpath>
-            <!-- Create a div container for invoice lines for easier inheriting -->
-            <xpath
-                expr="//field[@name='invoice_lines']/parent::div"
-                position="attributes"
-            >
-                <attribute name="name">invoice_lines</attribute>
             </xpath>
         </field>
     </record>
