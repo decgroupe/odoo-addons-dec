@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_task_kanban">
         <field name="name">project.task.kanban@project_user</field>
         <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="inherit_id" ref="project.view_task_kanban" />
         <field name="arch" type="xml">
             <xpath expr="//div[@role='menu']/a[1]" position="before">
                 <div t-if="!record.user_id.id != uid" class="">
-                    <a name="action_assign_to_me" type="object" role="menuitem" class="dropdown-item">Assign to Me</a>
+                    <a
+                        name="action_assign_to_me"
+                        type="object"
+                        role="menuitem"
+                        class="dropdown-item"
+                    >Assign to Me</a>
                 </div>
             </xpath>
         </field>
