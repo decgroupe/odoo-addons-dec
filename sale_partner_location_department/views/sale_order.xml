@@ -2,17 +2,27 @@
 <odoo>
 
     <record model="ir.ui.view" id="sales_order_filter_view">
-        <field name="name">sale.order.list.select@sale_partner_location_department</field>
+        <field
+            name="name"
+        >sale.order.list.select@sale_partner_location_department</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <field name="partner_shipping_zip_id" position="after">
-                <field name="partner_shipping_department_id"/>
-                <field name="partner_shipping_state_id"/>
+                <field name="partner_shipping_department_id" />
+                <field name="partner_shipping_state_id" />
             </field>
             <xpath expr="//filter[@name='group_ship_partner_zip']" position="after">
-                <filter string="Shipping Partner's Department" name="group_ship_partner_department" context="{'group_by':'partner_shipping_department_id'}" />
-                <filter string="Shipping Partner's State" name="group_ship_partner_state" context="{'group_by':'partner_shipping_state_id'}" />
+                <filter
+                    string="Shipping Partner's Department"
+                    name="group_ship_partner_department"
+                    context="{'group_by':'partner_shipping_department_id'}"
+                />
+                <filter
+                    string="Shipping Partner's State"
+                    name="group_ship_partner_state"
+                    context="{'group_by':'partner_shipping_state_id'}"
+                />
             </xpath>
         </field>
     </record>
