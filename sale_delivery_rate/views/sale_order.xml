@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="order_tree_view">
         <field name="name">sale.order.tree@sale_delivery_rate</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="state" position="after">
-                <field 
-                    name="delivery_rate" 
+                <field
+                    name="delivery_rate"
                     widget="progressbar"
                     attrs="{
                         'invisible': [
                             ('state', 'not in', ['sale', 'done', 'cancel'])
-                        ]}">
+                        ]}"
+                >
                 </field>
             </field>
         </field>
@@ -22,29 +23,31 @@
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_delivery_rate</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field 
-                    name="sent_rate" 
+                <field
+                    name="sent_rate"
                     widget="progressbar"
                     attrs="{
                         'invisible': [
                             '|',
                             ('picking_ids', '=', []),
                             ('state', 'not in', ['sale', 'done', 'cancel']),
-                        ]}">
+                        ]}"
+                >
                 </field>
-                <field name="tasks_ids" invisible='1'/>
-                <field 
-                    name="task_rate" 
+                <field name="tasks_ids" invisible='1' />
+                <field
+                    name="task_rate"
                     widget="progressbar"
                     attrs="{
                         'invisible': [
                             '|',
                             ('tasks_ids', '=', []),
                             ('state', 'not in', ['sale', 'done', 'cancel']),
-                        ]}">
+                        ]}"
+                >
                 </field>
             </xpath>
         </field>
