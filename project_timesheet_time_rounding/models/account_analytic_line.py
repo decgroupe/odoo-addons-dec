@@ -2,12 +2,13 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
 from datetime import datetime, timedelta
-from odoo import models, api, fields
+
+from odoo import api, fields, models
 
 
 class AccountAnalyticLine(models.Model):
-    _inherit = 'account.analytic.line'
-    _order = 'date_time desc'
+    _inherit = "account.analytic.line"
+    _order = "date_time desc"
 
     @api.model
     def _default_date_time(self):
