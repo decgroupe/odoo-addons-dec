@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <template id="login_sync_warning_template">
         <div>
             <div class="alert alert-warning" role="alert">
                 <strong>⚠️ User login not in sync with contact e-mail.</strong>
-                The contact email is now <u t-esc="contact_email"/> but its login is still <u t-esc="user_login"/> !
+                The contact email is now <u
+                    t-esc="contact_email"
+                /> but its login is still <u t-esc="user_login" /> !
             </div>
             <div class="alert alert-info" role="alert">
                 Ask your odoo administrator to make this change or ask him to give you the permission to synchronize contact e-mail with user login
