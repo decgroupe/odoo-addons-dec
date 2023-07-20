@@ -11,7 +11,6 @@
     ],
     "data": [
         "views/assets.xml",
-        # FIXME: [MIG] 14.0: Disabled because issue with View name: sale.order.line.tree.sale.stock.qty
         "views/sale_order.xml",
     ],
     "installable": True,

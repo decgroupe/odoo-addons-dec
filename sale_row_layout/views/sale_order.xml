@@ -23,7 +23,7 @@
     <record model="ir.ui.view" id="empty_row_layout_sale_order_form_view">
         <field name="name">sale.order.form#empty_row_layout@sale_row_layout</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_traceability.sale_order_form_view" />
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
 
             <xpath
@@ -138,6 +138,13 @@
             >
                 <attribute name="class">row_label</attribute>
             </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='discount']"
+                position="attributes"
+            >
+                <!-- Also set group visibility restriction since it only exists on the div container -->
+                <attribute name="groups">product.group_discount_per_so_line</attribute>
+            </xpath>
 
             <xpath expr="//th[@name='row_label_10']" position="inside">
                 <xpath
@@ -186,7 +193,7 @@
                 />
             </xpath>
             <xpath expr="//td[@name='row1_field_50']" position="inside">
-                <field name="discount" position="move" />
+                <field name="discount" position="move"/>
             </xpath>
 
             <!-- Remove div container for :
