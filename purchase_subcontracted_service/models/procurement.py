@@ -10,6 +10,8 @@ class ProcurementGroup(models.Model):
     @api.model
     def _is_subcontracted_service(self, product_id):
         return (
-            product_id.type == 'service' and product_id.service_to_purchase and
-            product_id.purchase_ok or False
+            product_id.type == "service"
+            and product_id.service_to_purchase
+            and product_id.purchase_ok
+            or False
         )

@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_template_subcontracted_service_form_view">
         <field name="name">product_template_subcontracted_service_view_form</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="subcontracted_service.product_template_subcontracted_service_view_form"/>
+        <field
+            name="inherit_id"
+            ref="subcontracted_service.product_template_subcontracted_service_view_form"
+        />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='property_subcontracted_service']/parent::group" position="replace">
+            <xpath
+                expr="//field[@name='property_subcontracted_service']/parent::group"
+                position="replace"
+            >
                 <!-- Remove unused field -->
             </xpath>
         </field>
