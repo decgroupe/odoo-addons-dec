@@ -2,8 +2,8 @@
 <odoo>
 
     <template id="view_email_template_login_edit">
-        <t t-set="new_login" t-value="ctx.get('new_login')" />
-        <t t-set="previous_login" t-value="ctx.get('previous_login')" />
+        <t t-set="new_login" t-value="env.context.get('new_login')" />
+        <t t-set="previous_login" t-value="env.context.get('previous_login')" />
 
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="content_message">
@@ -18,7 +18,7 @@
                 <t t-if="new_login">
                     <div class="div_content_message_bottom">
                         <a
-                            t-attf-href="/web/login?auth_login={{ctx.get('new_login')}}"
+                            t-attf-href="/web/login?auth_login={{env.context.get('new_login')}}"
                             target="_blank"
                         >
                             Go to My Account
