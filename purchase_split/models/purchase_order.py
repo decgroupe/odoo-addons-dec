@@ -5,7 +5,7 @@ from odoo import models, api
 
 
 class PurchaseOrder(models.Model):
-    _inherit = 'purchase.order'
+    _inherit = "purchase.order"
 
     def action_split(self):
         pass

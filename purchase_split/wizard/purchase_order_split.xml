@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="purchase_order_split_form_view">
@@ -12,9 +12,10 @@
                     it empty to create a new purchase order.
                 </p>
                 <group>
-                    <field name="partner_id" invisible="1"/>
-                    <field name="origin_order_id" invisible="1"/>
-                    <field name="order_id"
+                    <field name="partner_id" invisible="1" />
+                    <field name="origin_order_id" invisible="1" />
+                    <field
+                        name="order_id"
                         domain="[
                             ('id', '!=', origin_order_id),
                             ('partner_id', '=', partner_id),
@@ -26,22 +27,24 @@
                             'no_quick_create': True,
                         }"
                     />
-                    <field name="order_line_ids"/>
+                    <field name="order_line_ids" />
                 </group>
                 <footer>
-                    <button 
+                    <button
                         class="btn-primary"
                         string="Confirm Split"
                         name="action_split"
                         type="object"
                         default_focus="1"
-                        context="{}">
+                        context="{}"
+                    >
                     </button>
-                    <button 
+                    <button
                         class="btn-secondary"
                         string="Cancel"
                         special="cancel"
-                        context="{}">
+                        context="{}"
+                    >
                     </button>
                 </footer>
             </form>
@@ -50,7 +53,7 @@
 
     <record id="act_window_purchase_order_split" model="ir.actions.act_window">
         <field name="name">🧙‍♂️ Split ...</field>
-        <field name="binding_model_id" ref="purchase.model_purchase_order_line"/>
+        <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
         <field name="binding_view_types">form</field>
         <field name="res_model">purchase.order.split</field>
         <field name="view_mode">form</field>
