@@ -1,28 +1,24 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-import logging
-
-from odoo import api, fields, models, _
-
-_logger = logging.getLogger(__name__)
+from odoo import api, fields, models
 
 
 class SoftwareApplication(models.Model):
-    _inherit = 'software.application'
+    _inherit = "software.application"
 
     corner_image = fields.Binary(
-        "Corner Image",
+        string="Corner Image",
         attachment=True,
     )
     pictogram_image = fields.Binary(
-        "Pictogram Image",
+        string="Pictogram Image",
         attachment=True,
     )
     image_ids = fields.One2many(
-        'software.application.image',
-        'application_id',
-        string='Tooltips',
+        comodel_name="software.application.image",
+        inverse_name="application_id",
+        string="Tooltips",
     )
     is_free = fields.Boolean(
         string="Display as « Free »",
@@ -38,17 +34,17 @@ class SoftwareApplication(models.Model):
         help="Sometimes, an application is specifically developped for a "
         "customer and should not be shared with others. This is the purpose "
         "of this setting: Hide this application until the customer is logged "
-        "in with an account with a valid license."
+        "in with an account with a valid license.",
     )
 
     def write(self, vals):
-        if 'type' in vals:
-            if vals.get('type') == 'other':
+        if "type" in vals:
+            if vals.get("type") == "other":
                 vals.update(
                     {
-                        'corner_image': False,
-                        'pictogram_image': False,
-                        'image_ids': [(6, 0, [])],
+                        "corner_image": False,
+                        "pictogram_image": False,
+                        "image_ids": [(6, 0, [])],
                     }
                 )
         return super().write(vals)
@@ -56,7 +52,7 @@ class SoftwareApplication(models.Model):
     @api.model
     def _get_launcher_manifest_domain(self):
         return [
-            ('type', 'in', ['inhouse', 'resource']),
+            ("type", "in", ["inhouse", "resource"]),
         ]
 
     def _get_launcher_manifest_entry(self, with_tooltips=False):
@@ -85,17 +81,16 @@ class SoftwareApplication(models.Model):
         for release_id in self.release_ids:
             releases.append(
                 {
-                    'version':
-                        {
-                            'string': release_id.version,
-                            'major': release_id.version_major,
-                            'minor': release_id.version_minor,
-                            'patch': release_id.version_patch,
-                            'prerelease': release_id.version_prerelease,
-                            'build': release_id.version_build,
-                        },
-                    'date': release_id.date,
-                    'url': release_id.url,
+                    "version": {
+                        "string": release_id.version,
+                        "major": release_id.version_major,
+                        "minor": release_id.version_minor,
+                        "patch": release_id.version_patch,
+                        "prerelease": release_id.version_prerelease,
+                        "build": release_id.version_build,
+                    },
+                    "date": release_id.date,
+                    "url": release_id.url,
                 }
             )
         tooltip_images = []

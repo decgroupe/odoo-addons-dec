@@ -1,65 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="software_application_form_view">
         <field name="name">software.application.form@software_license_launcher</field>
         <field name="model">software.application</field>
-        <field name="inherit_id" ref="software_application.software_application_form_view"/>
+        <field
+            name="inherit_id"
+            ref="software_application.software_application_form_view"
+        />
         <field name="arch" type="xml">
 
             <page name="releases" position="after">
-                <page string="Launcher" name="launcher" attrs="{'invisible': [('type', '=', 'other')]}">
+                <page
+                    string="Launcher"
+                    name="launcher"
+                    attrs="{'invisible': [('type', '=', 'other')]}"
+                >
                     <group name="properties">
                         <group>
-                            <field name="is_free"/>
-                            <field name="is_soon"/>
+                            <field name="is_free" />
+                            <field name="is_soon" />
                         </group>
                         <group>
-                            <field name="need_license"/>
+                            <field name="need_license" />
                         </group>
                     </group>
                     <group name="images">
                         <group>
-                            <field name="corner_image" widget="image"/>
+                            <field name="corner_image" widget="image" />
                         </group>
                         <group>
-                            <field name="pictogram_image" widget="image"/>
+                            <field name="pictogram_image" widget="image" />
                         </group>
                     </group>
                     <group name="tooltip_images" string="Tooltip Images">
-                        <field name="image_ids" nolabel="1" class="o_website_sale_image_list"
+                        <field
+                            name="image_ids"
+                            nolabel="1"
+                            class="o_website_sale_image_list"
                             context="{
                                 'default_application_id': active_id,
                                 'image_ids': image_ids,
                                 'default_resize_x': 225,
                                 'default_resize_y': 150,
-                            }">
-                            <kanban string="Application Images" class="o_attachments_previews">
-                                <field name="id"/>
-                                <field name="name"/>
-                                <field name="resized_image"/>
+                            }"
+                        >
+                            <kanban
+                                string="Application Images"
+                                class="o_attachments_previews"
+                            >
+                                <field name="id" />
+                                <field name="name" />
+                                <field name="resized_image" />
                                 <templates>
                                     <t t-name="kanban-box">
-                                        <div class="o_attachment oe_kanban_global_click o_website_sale_image_card">
+                                        <div
+                                            class="o_attachment oe_kanban_global_click o_website_sale_image_card"
+                                        >
                                             <div class="o_attachment_wrap">
                                                 <div class="o_image_box">
-                                                    <div class="o_attachment_image" t-attf-style="background-image:url({{kanban_image('software.application.image', 'resized_image', record.id.raw_value)}});"/>
-                                                    <div t-attf-class="o_image_overlay" t-att-title="record.name.value"/>
-                                                    <div class="o_website_sale_image_card_title" t-att-title="record.name.value">
-                                                        <field name="name"/>
+                                                    <div
+                                                        class="o_attachment_image"
+                                                        t-attf-style="background-image:url({{kanban_image('software.application.image', 'resized_image', record.id.raw_value)}});"
+                                                    />
+                                                    <div
+                                                        t-attf-class="o_image_overlay"
+                                                        t-att-title="record.name.value"
+                                                    />
+                                                    <div
+                                                        class="o_website_sale_image_card_title"
+                                                        t-att-title="record.name.value"
+                                                    >
+                                                        <field name="name" />
                                                     </div>
                                                 </div>
 
-                                                <t t-set="size" t-value="[record.resized_image.value][0]"/>
-                                                <t t-set="size_status" t-value="'normal'" t-if="size.indexOf('Bytes') !== -1 or ( size.indexOf('Kb') !== -1 and size[2]=='.')"/>
-                                                <t t-set="size_status" t-value="'warning'" t-elif="( size.indexOf('Kb') !== -1 and size[3]=='.')"/>
-                                                <t t-set="size_status" t-value="'danger'"  t-else=""/>
-                                                <t t-set="message" t-value="'Acceptable file size'" t-if="size_status == 'normal'"></t>
-                                                <t t-set="message" t-value="'Huge file size. The image should be optimized/reduced.'" t-elif="size_status == 'warning'"></t>
-                                                <t t-set="message" t-value="'Optimization required! Reduce the image size or increase your compression settings.'" t-else=""></t>
+                                                <t
+                                                    t-set="size"
+                                                    t-value="[record.resized_image.value][0]"
+                                                />
+                                                <t
+                                                    t-set="size_status"
+                                                    t-value="'normal'"
+                                                    t-if="size.indexOf('Bytes') !== -1 or ( size.indexOf('Kb') !== -1 and size[2]=='.')"
+                                                />
+                                                <t
+                                                    t-set="size_status"
+                                                    t-value="'warning'"
+                                                    t-elif="( size.indexOf('Kb') !== -1 and size[3]=='.')"
+                                                />
+                                                <t
+                                                    t-set="size_status"
+                                                    t-value="'danger'"
+                                                    t-else=""
+                                                />
+                                                <t
+                                                    t-set="message"
+                                                    t-value="'Acceptable file size'"
+                                                    t-if="size_status == 'normal'"
+                                                />
+                                                <t
+                                                    t-set="message"
+                                                    t-value="'Huge file size. The image should be optimized/reduced.'"
+                                                    t-elif="size_status == 'warning'"
+                                                />
+                                                <t
+                                                    t-set="message"
+                                                    t-value="'Optimization required! Reduce the image size or increase your compression settings.'"
+                                                    t-else=""
+                                                />
 
-                                                <span t-attf-class="o_website_sale_image_card_size badge badge-#{size_status}" t-att-title="message">
-                                                    <t t-esc="record.resized_image.value"/>
+                                                <span
+                                                    t-attf-class="o_website_sale_image_card_size badge badge-#{size_status}"
+                                                    t-att-title="message"
+                                                >
+                                                    <t
+                                                        t-esc="record.resized_image.value"
+                                                    />
                                                 </span>
                                             </div>
                                         </div>
