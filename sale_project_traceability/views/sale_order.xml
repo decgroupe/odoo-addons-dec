@@ -4,13 +4,19 @@
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_project_traceability</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_traceability.sale_order_form_view"/>
-        <field name="groups_id" eval="[(4,ref('sale_project_traceability.group_sale_project_traceability'))]"/>
+        <field name="inherit_id" ref="sale_traceability.sale_order_form_view" />
+        <field
+            name="groups_id"
+            eval="[(4,ref('sale_project_traceability.group_sale_project_traceability'))]"
+        />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='traceability_container']" position="inside">
-                <div name="tasks" attrs="{'invisible': ['|', ('display_type', '!=', False), ('task_ids', '=', [])]}">
-                    <label for="task_ids"/>
-                    <field name="task_ids"/>
+                <div
+                    name="tasks"
+                    attrs="{'invisible': ['|', ('display_type', '!=', False), ('task_ids', '=', [])]}"
+                >
+                    <label for="task_ids" />
+                    <field name="task_ids" />
                 </div>
             </xpath>
         </field>

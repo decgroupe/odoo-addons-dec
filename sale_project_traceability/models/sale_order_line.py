@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     task_ids = fields.One2many(
-        'project.task',
-        'sale_line_id',
-        string='Tasks',
+        comodel_name="project.task",
+        inverse_name="sale_line_id",
+        string="Tasks",
     )
