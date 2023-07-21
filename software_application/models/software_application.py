@@ -6,22 +6,22 @@ from odoo.tools import pycompat
 
 
 class SoftwareApplication(models.Model):
-    _name = 'software.application'
-    _description = 'Software Application'
-    _order = 'identifier asc, name'
+    _name = "software.application"
+    _description = "Software Application"
+    _order = "identifier asc, name"
 
     active = fields.Boolean(
-        'Active',
+        string="Active",
         default=True,
         help="If unchecked, it will allow you to hide the application "
         "without removing it.",
     )
     name = fields.Text(
-        'Application',
+        string="Application",
         required=True,
     )
     info = fields.Text(
-        string='Informations',
+        string="Informations",
         help="Add details or missing informations",
     )
     website = fields.Char(
@@ -29,61 +29,61 @@ class SoftwareApplication(models.Model):
         help="Website of the application",
     )
     product_id = fields.Many2one(
-        comodel_name='product.product',
+        comodel_name="product.product",
         string="Related Product",
         help="By linking this application to a product, sales informations "
         "like description will be used in communications to customers",
     )
     product_name = fields.Char(
-        related='product_id.name',
+        related="product_id.name",
         readonly=False,
     )
     product_description = fields.Text(
-        related='product_id.description_sale',
+        related="product_id.description_sale",
         readonly=False,
     )
     release_ids = fields.One2many(
-        comodel_name='software.application.release',
-        inverse_name='application_id',
+        comodel_name="software.application.release",
+        inverse_name="application_id",
         string="Releases",
     )
     image = fields.Binary(
-        "Image",
-        compute='_compute_image',
-        inverse='_inverse_image',
-        help="Image of the application (automatically resized to 300 x 200)."
+        string="Image",
+        compute="_compute_image",
+        inverse="_inverse_image",
+        help="Image of the application (automatically resized to 300 x 200).",
     )
     attachment_image = fields.Binary(
-        "Launcher Image",
+        string="Launcher Image",
         attachment=True,
     )
     tag_ids = fields.Many2many(
-        comodel_name='software.tag',
-        string='Tags',
+        comodel_name="software.tag",
+        string="Tags",
     )
     type = fields.Selection(
         selection=[
-            ('inhouse', _('In-House Application')),
-            ('other', _('Other Application')),
-            ('resource', _('Resource')),
+            ("inhouse", _("In-House Application")),
+            ("other", _("Other Application")),
+            ("resource", _("Resource")),
         ],
-        string='Type',
-        default='inhouse',
-        required=True
+        string="Type",
+        default="inhouse",
+        required=True,
     )
     resource_ids = fields.Many2many(
-        comodel_name='software.application',
-        relation='software_asset_resource_rel',
-        column1='app_id',
-        column2='res_id',
-        string='Resources',
-        domain=[('type', '=', 'resource')],
+        comodel_name="software.application",
+        relation="software_asset_resource_rel",
+        column1="app_id",
+        column2="res_id",
+        string="Resources",
+        domain=[("type", "=", "resource")],
     )
 
-    @api.depends('attachment_image')
+    @api.depends("attachment_image")
     def _compute_image(self):
         for rec in self:
-            if rec.env.context.get('bin_size'):
+            if rec.env.context.get("bin_size"):
                 rec.image = rec.attachment_image
             else:
                 rec.image = tools.image_resize_image(
@@ -94,18 +94,22 @@ class SoftwareApplication(models.Model):
         self.ensure_one()
         value = self.image
         if isinstance(value, pycompat.text_type):
-            value = value.encode('ascii')
+            value = value.encode("ascii")
         self.attachment_image = tools.image_resize_image(value, size=(300, 200))
 
     def write(self, vals):
-        if 'type' in vals:
-            if vals.get('type') == 'other':
-                vals.update({
-                    'product_id': False,
-                    'tag_ids': [(6, 0, [])],
-                })
-            if vals.get('type') != 'inhouse':
-                vals.update({
-                    'resource_ids': [(6, 0, [])],
-                })
+        if "type" in vals:
+            if vals.get("type") == "other":
+                vals.update(
+                    {
+                        "product_id": False,
+                        "tag_ids": [(6, 0, [])],
+                    }
+                )
+            if vals.get("type") != "inhouse":
+                vals.update(
+                    {
+                        "resource_ids": [(6, 0, [])],
+                    }
+                )
         return super().write(vals)

@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import _, api, fields, models
+from odoo import fields, models
 
 
 class SoftwareTag(models.Model):
@@ -12,8 +12,10 @@ class SoftwareTag(models.Model):
         required=True,
         translate=True,
     )
-    color = fields.Integer(string='Color Index')
+    color = fields.Integer(
+        string="Color Index",
+    )
 
     _sql_constraints = [
-        ('name_uniq', 'unique (name)', "Tag name already exists!"),
+        ("name_uniq", "unique (name)", "Tag name already exists!"),
     ]

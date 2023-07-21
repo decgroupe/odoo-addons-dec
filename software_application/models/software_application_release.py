@@ -7,25 +7,24 @@ from odoo import _, api, fields, models
 
 
 class SoftwareApplicationRelease(models.Model):
-    _name = 'software.application.release'
-    _description = 'License Application Release'
-    # _order = 'version_major, version_minor, version_patch'
-    _order = 'version_major desc, version_minor desc, version_patch desc'
-    _rec_name = 'version'
+    _name = "software.application.release"
+    _description = "License Application Release"
+    _order = "version_major desc, version_minor desc, version_patch desc"
+    _rec_name = "version"
 
     @api.model
     def _get_default_version(self):
         res = "1.0.0"
-        if 'release_ids' in self.env.context:
+        if "release_ids" in self.env.context:
             sem_ver = False
-            for o2m in self.env.context.get('release_ids'):
+            for o2m in self.env.context.get("release_ids"):
                 version = False
                 if isinstance(o2m[1], int):
                     rec_id = o2m[1]
                     version = self.browse(rec_id).version
                 elif isinstance(o2m[1], str) and isinstance(o2m[2], dict):
                     rec_data = o2m[2]
-                    version = rec_data.get('version', False)
+                    version = rec_data.get("version", False)
                 if version:
                     cur_sem_ver = semver.VersionInfo.parse(version)
                     if not sem_ver or cur_sem_ver > sem_ver:
@@ -38,31 +37,32 @@ class SoftwareApplicationRelease(models.Model):
         items = []
         for i in range(count):
             items.append("<li><p>%s %d</p></li>" % (name, i + 1))
-        return "<ul>%s</ul>" % ''.join(items)
+        return "<ul>%s</ul>" % "".join(items)
 
     @api.model
     def _get_default_content(self):
         default_titles = [
-            (_("What's New"), _('new')),
-            (_("Fixes"), _('fix')),
-            (_("Known Issues"), _('issue')),
+            (_("What's New"), _("new")),
+            (_("Fixes"), _("fix")),
+            (_("Known Issues"), _("issue")),
         ]
         content = []
         for title, item_name in default_titles:
             content.append(
-                "<h2>%s</h2>%s" % (
+                "<h2>%s</h2>%s"
+                % (
                     title,
                     self._get_default_content_items(item_name, 3),
                 )
             )
-        return ''.join(content)
+        return "".join(content)
 
     @api.model
     def _get_default_url(self):
-        return ''
+        return ""
 
     application_id = fields.Many2one(
-        comodel_name='software.application',
+        comodel_name="software.application",
         string="Application",
         required=True,
     )
@@ -79,12 +79,12 @@ class SoftwareApplicationRelease(models.Model):
         "1.10.0 -> 1.11.0.\n"
         "Once a versioned package has been released, the contents of that "
         "version MUST NOT be modified.\n"
-        "Any modifications MUST be released as a new version."
+        "Any modifications MUST be released as a new version.",
     )
     version_major = fields.Integer(
         string="Major",
         compute="_compute_version_number_metadata",
-        inverse='_inverse_version_number_metadata',
+        inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
         required=True,
@@ -92,12 +92,12 @@ class SoftwareApplicationRelease(models.Model):
         "backwards incompatible changes are introduced to the public API.\n"
         "It MAY also include minor and patch level changes.\n"
         "Patch and minor versions MUST be reset to 0 when major version is "
-        "incremented."
+        "incremented.",
     )
     version_minor = fields.Integer(
         string="Minor",
         compute="_compute_version_number_metadata",
-        inverse='_inverse_version_number_metadata',
+        inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
         required=True,
@@ -108,24 +108,24 @@ class SoftwareApplicationRelease(models.Model):
         "It MAY be incremented if substantial new functionality "
         "or improvements are introduced within the private code.\n"
         "It MAY include patch level changes.\n"
-        "Patch version MUST be reset to 0 when minor version is incremented."
+        "Patch version MUST be reset to 0 when minor version is incremented.",
     )
     version_patch = fields.Integer(
         string="Patch",
         compute="_compute_version_number_metadata",
-        inverse='_inverse_version_number_metadata',
+        inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
         required=True,
         help="Patch version Z (x.y.Z | x > 0) MUST be incremented if only "
         "backwards compatible bug fixes are introduced.\n"
         "A bug fix is defined as an internal change that fixes incorrect "
-        "behavior."
+        "behavior.",
     )
     version_prerelease = fields.Char(
         string="Pre-release",
         compute="_compute_version_number_metadata",
-        inverse='_inverse_version_number_metadata',
+        inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
         help="A pre-release version MAY be denoted by appending a hyphen and "
@@ -141,12 +141,12 @@ class SoftwareApplicationRelease(models.Model):
         "is unstable and might not satisfy the intended compatibility "
         "requirements as denoted by its associated normal version.\n"
         "Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, "
-        "1.0.0-x-y-z.–."
+        "1.0.0-x-y-z.–.",
     )
     version_build = fields.Char(
         string="Build",
         compute="_compute_version_number_metadata",
-        inverse='_inverse_version_number_metadata',
+        inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
         help="Build metadata MAY be denoted by appending a plus sign and a "
@@ -160,7 +160,7 @@ class SoftwareApplicationRelease(models.Model):
         "Thus two versions that differ only in the build "
         "metadata, have the same precedence.\n"
         "Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, "
-        "1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3—-117B344092BD."
+        "1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3—-117B344092BD.",
     )
     date = fields.Date(
         string="Date",
@@ -169,25 +169,27 @@ class SoftwareApplicationRelease(models.Model):
         default=fields.Date.context_today,
     )
     content = fields.Html(
-        string='Release Notes',
+        string="Release Notes",
         translate=False,
         sanitize=False,
         default=_get_default_content,
     )
     url = fields.Char(
-        string='Download URL',
+        string="Download URL",
         default=_get_default_url,
     )
 
     _sql_constraints = [
         (
-            'app_version_uniq', 'unique (application_id,version)',
-            'The release version must be unique per application !'
+            "app_version_uniq",
+            "unique (application_id,version)",
+            "The release version must be unique per application !",
         ),
         (
-            'app_url_uniq', 'unique (application_id,url)',
-            'The release url must be unique per application !'
-        )
+            "app_url_uniq",
+            "unique (application_id,url)",
+            "The release url must be unique per application !",
+        ),
     ]
 
     @api.depends("version")
@@ -201,15 +203,21 @@ class SoftwareApplicationRelease(models.Model):
             rec.version_build = ver.build
 
     @api.depends(
-        "version_major", "version_minor", "version_patch", "version_prerelease",
-        "version_build"
+        "version_major",
+        "version_minor",
+        "version_patch",
+        "version_prerelease",
+        "version_build",
     )
     def _inverse_version_number_metadata(self):
         self._recompute_version_from_number_metadata()
 
     @api.onchange(
-        "version_major", "version_minor", "version_patch", "version_prerelease",
-        "version_build"
+        "version_major",
+        "version_minor",
+        "version_patch",
+        "version_prerelease",
+        "version_build",
     )
     def _onchange_version_number_metadata(self):
         self._recompute_version_from_number_metadata()
@@ -217,7 +225,10 @@ class SoftwareApplicationRelease(models.Model):
     def _recompute_version_from_number_metadata(self):
         for rec in self:
             ver = semver.VersionInfo(
-                rec.version_major, rec.version_minor, rec.version_patch,
-                rec.version_prerelease or '', rec.version_build or ''
+                rec.version_major,
+                rec.version_minor,
+                rec.version_patch,
+                rec.version_prerelease or "",
+                rec.version_build or "",
             )
             rec.version = str(ver)

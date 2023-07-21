@@ -1,27 +1,24 @@
 {
-    'name': 'Software Application',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Manage software applications",
-    'depends': [
-        'base',
-        'mail',
-        'product',
-        'software',
+    "name": "Software Application",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "base",
+        "mail",
+        "product",
+        "software",
     ],
     "external_dependencies": {
-        "python": ['semver'],
+        "python": ["semver"],
     },
-    'data':
-        [
-            'security/ir.model.access.csv',
-            'views/software_tag.xml',
-            'views/software_application.xml',
-            'views/software_application_release.xml',
-            'views/menu.xml',
-            'views/assets.xml',
-        ],
-    # 'force_migration': '12.0.2.0.1',
-    'installable': True
-} 
+    "data": [
+        "security/ir.model.access.csv",
+        "views/software_tag.xml",
+        "views/software_application.xml",
+        "views/software_application_release.xml",
+        "views/menu.xml",
+        "views/assets.xml",
+    ],
+    "installable": True,
+}
