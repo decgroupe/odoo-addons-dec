@@ -1,13 +1,12 @@
 {
-    'name': 'Stock (Manufacturing)',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': '''Get related data between stock and manufacturing''',
-    'depends': [
-        'mrp',
-        'stock',
+    "name": "Stock (Manufacturing)",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "mrp",
+        "stock",
     ],
-    'data': [],
-    'installable': True
+    "data": [],
+    "installable": True,
 }
