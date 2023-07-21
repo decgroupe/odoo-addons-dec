@@ -1,41 +1,62 @@
 <template>
-    
+
     <t t-name="CalendarView.sidebar.options">
         <div class="o_calendar_options">
-            <h3 t-if="widget.title"><t t-esc="widget.title"/></h3>
+            <h3 t-if="widget.title"><t t-esc="widget.title" /></h3>
             <div class="o_calendar_options_items">
-                <div 
-                    t-foreach="widget.options" 
-                    t-as="opt" 
-                    t-if="opt.display == null || opt.display" 
-                    class="o_calendar_option_item" 
-                    t-att-data-name="opt.name">
+                <div
+                    t-foreach="widget.options"
+                    t-as="opt"
+                    t-if="opt.display == null || opt.display"
+                    class="o_calendar_option_item"
+                    t-att-data-name="opt.name"
+                >
 
-                    <t t-set="id_for_label" t-value="_.uniqueId('o_calendar_option_item')"/>
+                    <t
+                        t-set="id_for_label"
+                        t-value="_.uniqueId('o_calendar_option_item')"
+                    />
 
                     <t t-if="opt.type == 'boolean'">
-                        <div class="custom-control custom-control-inline custom-checkbox">
-                            <input type="checkbox"
+                        <div
+                            class="custom-control custom-control-inline custom-checkbox"
+                        >
+                            <input
+                                type="checkbox"
                                 t-att-id="id_for_label"
                                 name="selection"
                                 class="custom-control-input"
-                                t-att-checked="opt.default_value === true ? true : undefined"/>
+                                t-att-checked="opt.default_value === true ? true : undefined"
+                            />
 
-                            <label t-att-for="id_for_label" class="custom-control-label">
-                                <t t-esc="opt.label"/>
+                            <label
+                                t-att-for="id_for_label"
+                                class="custom-control-label"
+                            >
+                                <t t-esc="opt.label" />
                             </label>
                         </div>
                     </t>
 
                     <t t-if="opt.type == 'list'">
                         <div class="custom-control custom-control-inline custom-list">
-                            <label t-att-for="id_for_label" class="custom-control-label">
-                                <t t-esc="opt.label"/>
+                            <label
+                                t-att-for="id_for_label"
+                                class="custom-control-label"
+                            >
+                                <t t-esc="opt.label" />
                             </label>
-                            <select t-att-id="id_for_label" class="custom-control-select">
+                            <select
+                                t-att-id="id_for_label"
+                                class="custom-control-select"
+                            >
                                 <t t-foreach="opt.values" t-as="opt_value">
-                                    <option class="" t-att-value="opt_value[0]" t-att-selected="opt.default_value === opt_value[0] ? true : undefined">
-                                        <t t-esc="opt_value[1]"/>
+                                    <option
+                                        class=""
+                                        t-att-value="opt_value[0]"
+                                        t-att-selected="opt.default_value === opt_value[0] ? true : undefined"
+                                    >
+                                        <t t-esc="opt_value[1]" />
                                     </option>
                                 </t>
                             </select>

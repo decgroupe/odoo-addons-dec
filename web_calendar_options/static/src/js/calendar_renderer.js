@@ -135,8 +135,8 @@ odoo.define('web_calendar_options.CalendarRenderer', function (require) {
                 console.warn('get_option', name, option);
             }
             return option;
-        },    
-        
+        },
+
         get_cookie_name() {
             return CALENDAR_OPTION_COOKIE + this.model + '_';
         },
