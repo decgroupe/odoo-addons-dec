@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
 
@@ -9,14 +9,17 @@
 
         <record model="res.groups" id="group_software_user">
             <field name="name">Software User</field>
-            <field name="category_id" ref="module_category_software"/>
+            <field name="category_id" ref="module_category_software" />
         </record>
-        
+
         <record model="res.groups" id="group_software_manager">
             <field name="name">Software Manager</field>
-            <field name="category_id" ref="module_category_software"/>
-            <field name="implied_ids" eval="[(4, ref('group_software_user'))]"/>
-            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="category_id" ref="module_category_software" />
+            <field name="implied_ids" eval="[(4, ref('group_software_user'))]" />
+            <field
+                name="users"
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
         </record>
 
     </data>
