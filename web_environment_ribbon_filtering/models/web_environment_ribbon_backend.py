@@ -7,7 +7,7 @@ from odoo.tools.config import config, to_list
 
 
 class WebEnvironmentRibbonBackend(models.AbstractModel):
-    _inherit = 'web.environment.ribbon.backend'
+    _inherit = "web.environment.ribbon.backend"
 
     @api.model
     @ormcache()
@@ -26,5 +26,5 @@ class WebEnvironmentRibbonBackend(models.AbstractModel):
         """
         res = super().get_environment_ribbon()
         if self.env.cr.dbname in self._get_db_ribbon_ignorelist():
-            res['name'] = ''
+            res["name"] = ""
         return res
