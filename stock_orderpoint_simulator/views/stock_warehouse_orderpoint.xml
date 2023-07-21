@@ -1,17 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="warehouse_orderpoint_form_view">
-        <field name="name">stock.warehouse.orderpoint.form@stock_orderpoint_simulator</field>
+        <field
+            name="name"
+        >stock.warehouse.orderpoint.form@stock_orderpoint_simulator</field>
         <field name="model">stock.warehouse.orderpoint</field>
-        <field name="inherit_id" ref="stock.view_warehouse_orderpoint_form"/>
+        <field name="inherit_id" ref="stock.view_warehouse_orderpoint_form" />
         <field name="arch" type="xml">
             <xpath expr="//form/sheet/group[1]/group[1]" position="inside">
-                <button 
+                <button
                     name="%(action_orderpoint_simulator)d"
                     string="Open Simulator"
                     type="action"
-                    icon="fa-calculator">
+                    icon="fa-calculator"
+                >
                 </button>
             </xpath>
         </field>
