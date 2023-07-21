@@ -3,51 +3,49 @@
 
 import logging
 
-from odoo import api, models, fields
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class ResUsers(models.Model):
-    _inherit = 'res.users'
+    _inherit = "res.users"
 
     user_gitlab_resource_id = fields.Many2one(
-        related='partner_id.user_gitlab_resource_id',
-        string='GitLab User',
+        related="partner_id.user_gitlab_resource_id",
+        string="GitLab User",
         inherited=True,
         readonly=False,
     )
 
     def _get_gitlab_project_uids(self):
         self.ensure_one()
-        SoftwareLicense = self.env['software.license']
+        SoftwareLicense = self.env["software.license"]
         # Search all applications currently owned by this partner
         domain = SoftwareLicense._get_license_default_portal_domain(
             request_partner_id=self.partner_id,
             include_pass_licenses=True,
         )
-        application_ids = SoftwareLicense.search(domain).\
-            mapped('application_id')
+        application_ids = SoftwareLicense.search(domain).mapped("application_id")
         # Keep only GitLab resources
         return application_ids._get_gitlab_project_uids()
 
     def _get_joined_gitlab_projects(self):
         self.ensure_one()
-        GitLab = self.env['gitlab.service']
+        GitLab = self.env["gitlab.service"]
         # Prefetch a list of projects where this user is already a member
         # for optimization
-        memberships = GitLab.get_user_memberships(
-            self.user_gitlab_resource_id.uid
-        )
+        memberships = GitLab.get_user_memberships(self.user_gitlab_resource_id.uid)
         project_uids = [
-            resource['source_id']
-            for resource in memberships if resource['source_type'] == 'Project'
+            resource["source_id"]
+            for resource in memberships
+            if resource["source_type"] == "Project"
         ]
         return project_uids
 
     def _set_access_to_gitlab_projects(self, project_uids=False):
         self.ensure_one()
-        GitLab = self.env['gitlab.service']
+        GitLab = self.env["gitlab.service"]
         if not project_uids:
             project_uids = self._get_gitlab_project_uids()
         _logger.info(
@@ -66,7 +64,7 @@ class ResUsers(models.Model):
 
     def _remove_access_to_gitlab_projects(self, project_uids=False):
         self.ensure_one()
-        GitLab = self.env['gitlab.service']
+        GitLab = self.env["gitlab.service"]
         if not project_uids:
             project_uids = self._get_gitlab_project_uids()
         _logger.info(
@@ -90,6 +88,6 @@ class ResUsers(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if 'password' in vals:
-            self._create_or_update_gitlab_user(vals.get('password'))
+        if "password" in vals:
+            self._create_or_update_gitlab_user(vals.get("password"))
         return res

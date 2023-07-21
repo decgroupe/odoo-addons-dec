@@ -1,16 +1,14 @@
 {
-    'name': 'Software License (GitLab)',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Store GitLab project infos to applications",
-    'depends': [
-        'software_license',
-        'connector_gitlab',
+    "name": "Software License (GitLab)",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "software_license",
+        "connector_gitlab",
     ],
-    'data':
-        [
-            'views/software_application.xml',
-        ],
-    'installable': True
+    "data": [
+        "views/software_application.xml",
+    ],
+    "installable": True,
 }
