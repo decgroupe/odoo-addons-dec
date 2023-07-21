@@ -8,54 +8,54 @@ from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
-SYSTEM = 'software_license_legacy.feature_property_system'
+SYSTEM = "software_license_legacy.feature_property_system"
 
-CLASSIC = 'software_license_legacy.feature_value_system_classic'
-CAVE = 'software_license_legacy.feature_value_system_cave'
-RIFT = 'software_license_legacy.feature_value_system_rift'
-VIVE = 'software_license_legacy.feature_value_system_vive'
+CLASSIC = "software_license_legacy.feature_value_system_classic"
+CAVE = "software_license_legacy.feature_value_system_cave"
+RIFT = "software_license_legacy.feature_value_system_rift"
+VIVE = "software_license_legacy.feature_value_system_vive"
 
 
 class SoftwareLicense(models.Model):
-    _inherit = 'software.license'
+    _inherit = "software.license"
 
     main_hardware_id = fields.Many2one(
-        comodel_name='software.license.hardware',
+        comodel_name="software.license.hardware",
         string="Main Hardware",
         compute="_compute_main_hardware",
         store=True,
     )
     main_hardware_name = fields.Char(
-        'Main Hardware Identifier',
+        "Main Hardware Identifier",
         related="main_hardware_id.name",
     )
     main_hardware_dongle_identifier = fields.Integer(
-        string='Dongle ID',
+        string="Dongle ID",
         help="Unique device ID set and given by then dongle manufacturer",
         related="main_hardware_id.dongle_identifier",
     )
     system_classic = fields.Boolean(
-        'System Classic',
+        "System Classic",
         compute="_compute_system",
         store=True,
     )
     system_cave = fields.Boolean(
-        'System Cave',
+        "System Cave",
         compute="_compute_system",
         store=True,
     )
     system_rift = fields.Boolean(
-        'System Rift',
+        "System Rift",
         compute="_compute_system",
         store=True,
     )
     system_vive = fields.Boolean(
-        'System Vive',
+        "System Vive",
         compute="_compute_system",
         store=True,
     )
 
-    @api.depends('hardware_ids')
+    @api.depends("hardware_ids")
     def _compute_main_hardware(self):
         for rec in self:
             if rec.hardware_ids:
@@ -63,7 +63,7 @@ class SoftwareLicense(models.Model):
             else:
                 rec.main_hardware_id = False
 
-    @api.depends('feature_ids')
+    @api.depends("feature_ids")
     def _compute_system(self):
         property_system = self.env.ref(SYSTEM)
         value_system_classic = self.env.ref(CLASSIC)
@@ -87,7 +87,8 @@ class SoftwareLicense(models.Model):
                         rec.system_vive = True
                     else:
                         _logger.info(
-                            'Unknown system: %s', feature.value_id.name,
+                            "Unknown system: %s",
+                            feature.value_id.name,
                         )
 
     @api.model
@@ -98,28 +99,25 @@ class SoftwareLicense(models.Model):
             if vals.get(field_name):
                 sequence = len(record.feature_ids) + 1
                 feature_vals = {
-                    'license_id': record.id,
-                    'sequence': sequence,
-                    'property_id': self.env.ref(SYSTEM).id,
-                    'value_id': self.env.ref(value_ref).id,
+                    "license_id": record.id,
+                    "sequence": sequence,
+                    "property_id": self.env.ref(SYSTEM).id,
+                    "value_id": self.env.ref(value_ref).id,
                 }
-                self.env['software.license.feature'].create(feature_vals)
+                self.env["software.license.feature"].create(feature_vals)
 
-        try_create_property_value('system_classic', CLASSIC)
-        try_create_property_value('system_cave', CAVE)
-        try_create_property_value('system_rift', RIFT)
-        try_create_property_value('system_vive', VIVE)
+        try_create_property_value("system_classic", CLASSIC)
+        try_create_property_value("system_cave", CAVE)
+        try_create_property_value("system_rift", RIFT)
+        try_create_property_value("system_vive", VIVE)
 
-        if vals.get('main_hardware_name'):
+        if vals.get("main_hardware_name"):
             hardware_vals = {
-                'license_id':
-                    record.id,
-                'name':
-                    vals.get('main_hardware_name'),
-                'dongle_identifier':
-                    vals.get('main_hardware_dongle_identifier'),
+                "license_id": record.id,
+                "name": vals.get("main_hardware_name"),
+                "dongle_identifier": vals.get("main_hardware_dongle_identifier"),
             }
-            self.env['software.license.hardware'].create(hardware_vals)
+            self.env["software.license.hardware"].create(hardware_vals)
 
         return record
 
