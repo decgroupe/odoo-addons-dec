@@ -153,7 +153,7 @@
                 />
             </xpath>
             <xpath expr="//th[@name='row_label_20']" position="inside">
-                <label for="product_uom" />
+                <label for="product_uom" groups="uom.group_uom"/>
             </xpath>
             <xpath expr="//th[@name='row_label_30']" position="inside">
                 <label for="purchase_price" />
