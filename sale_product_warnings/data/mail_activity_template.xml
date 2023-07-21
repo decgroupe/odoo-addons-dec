@@ -1,12 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="exception_product_review" name="Message: Alert when a reviewable product is used">
+    <template
+        id="exception_product_review"
+        name="Message: Alert when a reviewable product is used"
+    >
         <div>
             <p>
-                Please review the following product that was added to <t t-esc="order_id.name"/> (<t t-esc="order_state"/>) while was in « <t t-esc="product_state"/> »:
-                <a href="#" data-oe-model="product.product" t-att-data-oe-id="product_id.id">
-                    <t t-esc="product_id.display_name"/></a>
+                Please review the following product that was added to <t
+                    t-esc="order_id.name"
+                /> (<t t-esc="order_state" />) while was in « <t
+                    t-esc="product_state"
+                /> »:
+                <a
+                    href="#"
+                    data-oe-model="product.product"
+                    t-att-data-oe-id="product_id.id"
+                >
+                    <t t-esc="product_id.display_name" /></a>
             </p>
         </div>
     </template>
