@@ -1,9 +1,8 @@
 {
     "name": "Website Contact",
     "version": "14.0.1.0.0",
-    "author": "DEC, Yann Papouin",
+    "author": "DEC",
     "website": "https://www.decgroupe.com",
-    "summary": "Allow helpdesk data manipulation without user account",
     "depends": [
         "helpdesk_notify",
         "crm",

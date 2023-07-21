@@ -1,19 +1,15 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2021
 
-import logging
-import json
-import werkzeug
 import base64
+import json
 
 import odoo.http as http
-from odoo.http import request
-from odoo import _, tools, SUPERUSER_ID
-from odoo.exceptions import ValidationError, UserError
-
+from odoo import SUPERUSER_ID, _, tools
 from odoo.addons.tools_miscellaneous.tools.html_helper import b, p
+from odoo.exceptions import UserError, ValidationError
+from odoo.http import request
 
-_logger = logging.getLogger(__name__)
 
 URL_BASE = "/contact"
 

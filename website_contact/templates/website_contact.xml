@@ -37,7 +37,9 @@
                             />
 
                             <t t-if="show_origin_form_group">
-                                <div class="form-group s_website_form_field required s_website_form_required">
+                                <div
+                                    class="form-group s_website_form_field required s_website_form_required"
+                                >
                                     <label
                                         class="control-label s_website_form_label"
                                         for="origin"
@@ -99,7 +101,10 @@
                                     placeholder="Jane Doe"
                                 />
                             </div>
-                            <div class="form-group s_website_form_field" t-if="show_function_form_group">
+                            <div
+                                class="form-group s_website_form_field"
+                                t-if="show_function_form_group"
+                            >
                                 <label
                                     class="control-label s_website_form_label"
                                     for="function"
@@ -145,7 +150,9 @@
                                 </div>
                             </div>
                             <t t-if="show_address_form_group">
-                                <div class="form-group s_website_form_field required s_website_form_required">
+                                <div
+                                    class="form-group s_website_form_field required s_website_form_required"
+                                >
                                     <label
                                         class="control-label s_website_form_label"
                                         for="street"
@@ -161,7 +168,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-group s_website_form_field required s_website_form_required">
+                                        <div
+                                            class="form-group s_website_form_field required s_website_form_required"
+                                        >
                                             <label
                                                 class="control-label s_website_form_label"
                                                 for="city"
@@ -177,7 +186,9 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="form-group s_website_form_field required s_website_form_required">
+                                        <div
+                                            class="form-group s_website_form_field required s_website_form_required"
+                                        >
                                             <label
                                                 class="control-label s_website_form_label"
                                                 for="zip"
@@ -197,7 +208,9 @@
                             </t>
 
                             <t t-if="show_email_form_group">
-                                <div class="form-group s_website_form_field required s_website_form_required">
+                                <div
+                                    class="form-group s_website_form_field required s_website_form_required"
+                                >
                                     <label
                                         class="control-label s_website_form_label"
                                         for="email"
@@ -228,7 +241,9 @@
                             <t t-if="show_category_form_group">
                                 <t t-if="categories">
                                     <div class="form-group s_website_form_field">
-                                        <label class="control-label s_website_form_label">Category</label>
+                                        <label
+                                            class="control-label s_website_form_label"
+                                        >Category</label>
                                         <div class="">
                                             <select
                                                 class="form-control s_website_form_input"
@@ -256,7 +271,9 @@
                             </t>
 
                             <t t-if="show_subject_form_group">
-                                <div class="form-group s_website_form_field required s_website_form_required">
+                                <div
+                                    class="form-group s_website_form_field required s_website_form_required"
+                                >
                                     <label
                                         class="control-label s_website_form_label"
                                         for="subject"
@@ -289,7 +306,9 @@
                             </t>
 
                             <t t-if="show_description_form_group">
-                                <div class="form-group s_website_form_field required s_website_form_required">
+                                <div
+                                    class="form-group s_website_form_field required s_website_form_required"
+                                >
                                     <label
                                         class="control-label s_website_form_label"
                                         for="description"
@@ -329,14 +348,17 @@
                                 </div>
                             </t>
 
-                            <div class="text-center s_website_form_submit" data-name="Submit Button">
+                            <div
+                                class="text-center s_website_form_submit"
+                                data-name="Submit Button"
+                            >
                                 <button
                                     id="submit_button"
                                     type="submit"
                                     class="btn btn-primary btn-block s_website_form_send"
                                     t-esc="submit_text"
                                 />
-                              <span id="s_website_form_result"></span>
+                              <span id="s_website_form_result" />
                             </div>
                         </form>
                     </t>

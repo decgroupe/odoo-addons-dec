@@ -6,9 +6,4 @@
         <field name="name">Contact Form</field>
     </record>
 
-    <!-- UTM Medium -->
-    <!-- <record model="utm.medium" id="utm_medium_website">
-        <field name="name">Website</field>
-    </record> -->
-
 </odoo>
