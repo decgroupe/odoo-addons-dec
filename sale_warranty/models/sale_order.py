@@ -5,15 +5,15 @@ from odoo import fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     warranty = fields.Integer(
-        'Warranty period',
+        string="Warranty period",
         readonly=True,
         states={
-            'draft': [('readonly', False)],
-            'sent': [('readonly', False)],
+            "draft": [("readonly", False)],
+            "sent": [("readonly", False)],
         },
         help="Warranty delay in year(s)",
-        default=2
+        default=2,
     )

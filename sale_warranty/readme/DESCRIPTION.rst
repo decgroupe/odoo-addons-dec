@@ -1,0 +1,1 @@
+Warranty per sale order.
