@@ -4,12 +4,11 @@
     width: 19em;
 }
 
-
 .d_move {
     color: black;
     border-radius: 2px;
 
-    >ul {
+    > ul {
         padding-left: 1rem;
         margin-bottom: auto;
     }
@@ -32,7 +31,7 @@
 }
 
 .d_move_assigned {
-    >small {
+    > small {
         background-color: bisque;
     }
 }

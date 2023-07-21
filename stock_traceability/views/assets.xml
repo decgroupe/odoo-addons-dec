@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <template id="assets_backend" name="assets" inherit_id="web.assets_backend">
         <xpath expr="link[last()]" position="after">
-            <link rel="stylesheet" type="text/scss" href="/stock_traceability/static/src/css/style.scss" />
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/stock_traceability/static/src/css/style.scss"
+            />
         </xpath>
     </template>
 
