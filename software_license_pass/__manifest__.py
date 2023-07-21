@@ -6,8 +6,10 @@
     "depends": [
         "software_license_token",
         "software_license_feature",
+        "software_license_keygen",
         "auth_signup_delegate",
         "sequence_reset_period",
+        "base_sequence_first_number",
     ],
     "data": [
         "security/ir.model.access.csv",
