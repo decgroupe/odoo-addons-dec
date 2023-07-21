@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_form_view" >
+    <record model="ir.ui.view" id="software_license_form_view">
         <field name="name">software.license.form@software_license_pass</field>
         <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_form_view"/>
+        <field name="inherit_id" ref="software_license.software_license_form_view" />
         <field name="arch" type="xml">
             <field name="production_id" position="before">
-                <field name="pass_id"/>
+                <field name="pass_id" />
             </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_license_tree_view" >
+    <record model="ir.ui.view" id="software_license_tree_view">
         <field name="name">software.license.tree@software_license_pass</field>
         <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_tree_view"/>
+        <field name="inherit_id" ref="software_license.software_license_tree_view" />
         <field name="arch" type="xml">
             <field name="production_id" position="before">
-                <field name="pass_id"/>
+                <field name="pass_id" />
             </field>
         </field>
     </record>
@@ -26,10 +26,14 @@
     <record model="ir.ui.view" id="software_license_search_view">
         <field name="name">software.license.search@software_license_pass</field>
         <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_search_view"/>
+        <field name="inherit_id" ref="software_license.software_license_search_view" />
         <field name="arch" type="xml">
-            <filter name="groupby_production_id" position="after"> 
-                <filter string="Pass" name="groupby_pass_id" context="{'group_by':'pass_id'}"/> 
+            <filter name="groupby_production_id" position="after">
+                <filter
+                    string="Pass"
+                    name="groupby_pass_id"
+                    context="{'group_by':'pass_id'}"
+                />
             </filter>
         </field>
     </record>

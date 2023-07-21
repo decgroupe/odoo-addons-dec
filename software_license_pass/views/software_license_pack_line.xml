@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="software_license_pack_line_form_view">
@@ -7,9 +7,15 @@
         <field name="arch" type="xml">
             <form string="Application Pack Line">
                 <group>
-                    <field name="application_id"/>
-                    <field name="license_template_id" context="{'default_type': 'template', 'default_application_id': application_id}"/>
-                    <field name="feature_ids" attrs="{'invisible': [('license_template_id', '=', False)]}"/>
+                    <field name="application_id" />
+                    <field
+                        name="license_template_id"
+                        context="{'default_type': 'template', 'default_application_id': application_id}"
+                    />
+                    <field
+                        name="feature_ids"
+                        attrs="{'invisible': [('license_template_id', '=', False)]}"
+                    />
                 </group>
             </form>
         </field>
@@ -20,8 +26,11 @@
         <field name="model">software.license.pack.line</field>
         <field name="arch" type="xml">
             <tree string="Application Pack Lines" editable="bottom">
-                <field name="application_id"/>
-                <field name="license_template_id" context="{'default_type': 'template', 'default_application_id': application_id}" />
+                <field name="application_id" />
+                <field
+                    name="license_template_id"
+                    context="{'default_type': 'template', 'default_application_id': application_id}"
+                />
             </tree>
         </field>
     </record>

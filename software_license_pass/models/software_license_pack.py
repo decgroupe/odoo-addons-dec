@@ -3,35 +3,34 @@
 
 import logging
 
-from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class SoftwareLicensePack(models.Model):
-    _name = 'software.license.pack'
-    _description = 'Application Pack'
+    _name = "software.license.pack"
+    _description = "Application Pack"
 
     name = fields.Char(
-        string='Name',
+        string="Name",
         translate=True,
         required=True,
     )
     line_ids = fields.One2many(
-        comodel_name='software.license.pack.line',
-        inverse_name='pack_id',
-        string='Pack Content',
-        help='Applications that are part of this pack.'
+        comodel_name="software.license.pack.line",
+        inverse_name="pack_id",
+        string="Pack Content",
+        help="Applications that are part of this pack.",
     )
     pass_ids = fields.One2many(
-        comodel_name='software.license.pass',
-        inverse_name='pack_id',
-        string='Passes',
-        help='Passes generated from this pack.'
+        comodel_name="software.license.pass",
+        inverse_name="pack_id",
+        string="Passes",
+        help="Passes generated from this pack.",
     )
     pass_count = fields.Integer(
-        compute='_compute_pass_count',
+        compute="_compute_pass_count",
         string="Number of Passes",
     )
 
@@ -48,4 +47,4 @@ class SoftwareLicensePack(models.Model):
         return self.pass_ids.action_view()
 
     def action_resync(self):
-        self.mapped('pass_ids').action_resync_with_pack()
+        self.mapped("pass_ids").action_resync_with_pack()

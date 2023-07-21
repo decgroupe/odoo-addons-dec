@@ -2,23 +2,23 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
 
 class SoftwareLicense(models.Model):
-    _inherit = 'software.license'
+    _inherit = "software.license"
 
     pass_id = fields.Many2one(
-        comodel_name='software.license.pass',
-        string='Pass',
+        comodel_name="software.license.pass",
+        string="Pass",
         readonly=True,
     )
     pack_id = fields.Many2one(
-        comodel_name='software.license.pack',
-        related='pass_id.pack_id',
+        comodel_name="software.license.pack",
+        related="pass_id.pack_id",
     )
     pack_line_id = fields.Many2one(
-        comodel_name='software.license.pack.line',
+        comodel_name="software.license.pack.line",
         string="Pack Line",
         help="Line of the pack used to generate this license",
     )
@@ -30,26 +30,26 @@ class SoftwareLicense(models.Model):
     )
 
     PASS_LOCKED_FIELDS = [
-        'pass_id',
-        'active',
-        'partner_id',
-        'max_allowed_hardware',
-        'expiration_date',
+        "pass_id",
+        "active",
+        "partner_id",
+        "max_allowed_hardware",
+        "expiration_date",
     ]
 
     def _check_pass_editing(self, vals):
-        if self.env.context.get('override_from_pass'):
+        if self.env.context.get("override_from_pass"):
             return
-        for rec in self.filtered('pass_id'):
+        for rec in self.filtered("pass_id"):
             locked_fields = []
             for key in list(vals):
-                if (key in self.PASS_LOCKED_FIELDS):
+                if key in self.PASS_LOCKED_FIELDS:
                     locked_fields.append(key)
             if locked_fields:
                 raise UserError(
                     _(
                         "It is forbidden to update these license's fields when owned by a pass:\n{}"
-                    ).format('\n'.join(locked_fields))
+                    ).format("\n".join(locked_fields))
                 )
 
     def write(self, vals):
@@ -57,14 +57,13 @@ class SoftwareLicense(models.Model):
         return super().write(vals)
 
     def unlink(self):
-        license_id_from_pass = self.filtered('pass_id')
+        license_id_from_pass = self.filtered("pass_id")
         if license_id_from_pass:
-            pass_names = [
-                x.name for x in license_id_from_pass.mapped('pass_id')
-            ]
+            pass_names = [x.name for x in license_id_from_pass.mapped("pass_id")]
             raise UserError(
-                _('It is forbidden to delete a license own by a pass:\n{}'
-                 ).format('\n'.join(pass_names))
+                _("It is forbidden to delete a license own by a pass:\n{}").format(
+                    "\n".join(pass_names)
+                )
             )
         return super().unlink()
 
@@ -72,7 +71,7 @@ class SoftwareLicense(models.Model):
         res = super()._name_get()
         if self.pack_id:
             pack_name = self.pack_id.display_name
-            res = _('%s (%s for %s)') % (res, self.serial, pack_name)
+            res = _("%s (%s for %s)") % (res, self.serial, pack_name)
         return res
 
     def _get_template_id(self):
@@ -83,13 +82,13 @@ class SoftwareLicense(models.Model):
             return self.pack_line_id.license_template_id
         return template_id
 
-    @api.depends('pass_id', 'pass_id.serial')
+    @api.depends("pass_id", "pass_id.serial")
     def _compute_activation_identifier(self):
         super()._compute_activation_identifier()
-        for rec in self.filtered('pass_id'):
+        for rec in self.filtered("pass_id"):
             rec.activation_identifier = rec.pass_id.serial
 
-    @api.depends('pass_id', 'pass_id.state')
+    @api.depends("pass_id", "pass_id.state")
     def _compute_pass_state(self):
         for rec in self:
             if rec.pass_id:
@@ -99,10 +98,12 @@ class SoftwareLicense(models.Model):
 
     def _prepare_export_vals(self, include_activation_identifier=True):
         res = super()._prepare_export_vals(include_activation_identifier)
-        res.update({
-            'pack': self.pack_id.name,
-            'pass': self.pass_id.name,
-        })
+        res.update(
+            {
+                "pack": self.pack_id.name,
+                "pass": self.pass_id.name,
+            }
+        )
         return res
 
     def check_max_activation_reached(self, hardware_name):
