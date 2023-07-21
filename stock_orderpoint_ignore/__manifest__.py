@@ -1,15 +1,12 @@
 {
-    'name': 'Orderpoint ignore make_to_order',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary':
-        "Do not execute orderpoint for product configured as "
-        "make_to_stock",
-    'depends': [
-        'stock',
-        'product_legacy_routes',
+    "name": "Orderpoint ignore MTO",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "stock",
+        "product_legacy_routes",
     ],
-    'data': [],
-    'installable': True
+    "data": [],
+    "installable": True,
 }
