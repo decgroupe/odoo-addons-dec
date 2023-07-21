@@ -5,12 +5,12 @@ from odoo import api, fields, models
 
 
 class SoftwareLicense(models.Model):
-    _inherit = 'software.license'
+    _inherit = "software.license"
 
     feature_ids = fields.One2many(
-        comodel_name='software.license.feature',
-        inverse_name='license_id',
-        string='Features',
+        comodel_name="software.license.feature",
+        inverse_name="license_id",
+        string="Features",
         copy=True,
     )
 
@@ -20,38 +20,40 @@ class SoftwareLicense(models.Model):
 
     def action_sync_features_with_template(self):
         vals_list = []
-        deleted_feature_ids = self.env['software.license.feature']
+        deleted_feature_ids = self.env["software.license.feature"]
         for rec in self:
             template_id = rec._get_template_id()
             if template_id:
                 deleted_feature_ids += rec.feature_ids
                 for feature_id in template_id.feature_ids:
                     vals = feature_id._prepare_template_vals()
-                    vals['license_id'] = rec.id
+                    vals["license_id"] = rec.id
                     vals_list.append(vals)
         # Delete previous features
         if deleted_feature_ids:
             deleted_feature_ids.unlink()
         # Recreate features from scratch
         if vals_list:
-            self.env['software.license.feature'].create(vals_list)
+            self.env["software.license.feature"].create(vals_list)
 
-    @api.onchange('application_id')
+    @api.onchange("application_id")
     def onchange_application_id(self):
         self.ensure_one()
         vals = {}
         feature_ids = []
-        self.feature_ids = [(5, )]
+        self.feature_ids = [(5,)]
         template_feature_ids = self.application_id.template_id.feature_ids
         for template_feature_id in template_feature_ids:
             feature = (
-                0, 0, {
-                    'sequence': template_feature_id.sequence,
-                    'property_id': template_feature_id.property_id.id,
-                }
+                0,
+                0,
+                {
+                    "sequence": template_feature_id.sequence,
+                    "property_id": template_feature_id.property_id.id,
+                },
             )
             feature_ids.append(feature)
-        vals['feature_ids'] = feature_ids
+        vals["feature_ids"] = feature_ids
         self.update(vals)
 
     def get_features_dict(self):
@@ -72,5 +74,5 @@ class SoftwareLicense(models.Model):
 
     def _prepare_export_vals(self, include_activation_identifier=True):
         res = super()._prepare_export_vals(include_activation_identifier)
-        res['features'] = self.get_features_dict()
+        res["features"] = self.get_features_dict()
         return res

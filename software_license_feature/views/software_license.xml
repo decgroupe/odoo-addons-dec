@@ -1,20 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-<!--
-    <record model="ir.ui.view" id="software_license_tree_view" >
-        <field name="name">software.license.tree@software_license_feature</field>
-        <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_tree_view"/>
-        <field name="arch" type="xml">
-
-        </field>
-    </record>
--->
-    <record model="ir.ui.view" id="software_license_form_view" >
+    <record model="ir.ui.view" id="software_license_form_view">
         <field name="name">software.license.form@software_license_feature</field>
         <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_form_view"/>
+        <field name="inherit_id" ref="software_license.software_license_form_view" />
         <field name="arch" type="xml">
             <header position="inside">
                 <button
@@ -23,29 +13,22 @@
                     help="Synchronize features defined as template in application"
                     type="object"
                     attrs="{'invisible': [('type', '!=', 'standard')]}"
-                    class="btn-primary">
+                    class="btn-primary"
+                >
                 </button>
             </header>
             <group name="main" position="after">
                 <group name="features">
-                    <field name="feature_ids" context="{
+                    <field
+                        name="feature_ids"
+                        context="{
                         'tree_view_ref': 'software_license_feature.software_license_feature_editable_tree_view',
                         'form_view_ref': 'software_license_feature.software_license_feature_form_view'
-                    }"/>
+                    }"
+                    />
                 </group>
             </group>
         </field>
     </record>
-
-<!--
-    <record model="ir.ui.view" id="software_license_search_view">
-        <field name="name">software.license.search@software_license_feature</field>
-        <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_search_view"/>
-        <field name="arch" type="xml">
-
-        </field>
-    </record>
--->
 
 </odoo>

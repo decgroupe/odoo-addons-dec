@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.menu" id="menu_software_license_feature_property">
         <field name="name">Feature Properties</field>
-        <field name="sequence" eval="10"/>
-        <field name="action" ref="act_window_software_license_feature_property"/>
-        <field name="parent_id" ref="software.menu_configuration"/>
+        <field name="sequence" eval="10" />
+        <field name="action" ref="act_window_software_license_feature_property" />
+        <field name="parent_id" ref="software.menu_configuration" />
     </record>
 
 </odoo>

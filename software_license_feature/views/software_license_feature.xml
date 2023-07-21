@@ -1,30 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_feature_tree_view" >
-        <field name="name">software.license.feature.tree@software_license_feature</field>
+    <record model="ir.ui.view" id="software_license_feature_tree_view">
+        <field
+            name="name"
+        >software.license.feature.tree@software_license_feature</field>
         <field name="model">software.license.feature</field>
         <field name="arch" type="xml">
             <tree string="Features" create="true" delete="true">
-                <field name="sequence" widget="handle"/>
-                <field name="property_id"/>
-                <field name="customizable" invisible="1"/>
-                <field name="value_id" string="Value (List)" domain="[('property_id', '=', property_id)]" context="{'default_property_id': property_id}" attrs="{
+                <field name="sequence" widget="handle" />
+                <field name="property_id" />
+                <field name="customizable" invisible="1" />
+                <field
+                    name="value_id"
+                    string="Value (List)"
+                    domain="[('property_id', '=', property_id)]"
+                    context="{'default_property_id': property_id}"
+                    attrs="{
                     'invisible': [('customizable', '=', True)],
                     'required': [('customizable', '!=', True)],
-                }"/>
-                <field name="value" string="Value (Input)" attrs="{
+                }"
+                />
+                <field
+                    name="value"
+                    string="Value (Input)"
+                    attrs="{
                     'invisible': [('customizable', '!=', True)],
                     'required': [('customizable', '=', True)],
-                }"/>
+                }"
+                />
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_license_feature_editable_tree_view" >
-        <field name="name">software.license.feature.tree#editable@software_license_feature</field>
+    <record model="ir.ui.view" id="software_license_feature_editable_tree_view">
+        <field
+            name="name"
+        >software.license.feature.tree#editable@software_license_feature</field>
         <field name="model">software.license.feature</field>
-        <field name="inherit_id" ref="software_license_feature.software_license_feature_tree_view"/>
+        <field
+            name="inherit_id"
+            ref="software_license_feature.software_license_feature_tree_view"
+        />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree position="attributes">
@@ -32,38 +49,47 @@
             </tree>
         </field>
     </record>
-    
-    <record model="ir.ui.view" id="software_license_feature_form_view" >
-        <field name="name">software.license.feature.form@software_license_feature</field>
+
+    <record model="ir.ui.view" id="software_license_feature_form_view">
+        <field
+            name="name"
+        >software.license.feature.form@software_license_feature</field>
         <field name="model">software.license.feature</field>
         <field name="arch" type="xml">
             <form string="Features">
                 <div class="oe_title">
-                    <label for="property_id" class="oe_edit_only"/>
+                    <label for="property_id" class="oe_edit_only" />
                     <h1>
-                        <field name="property_id" class="oe_inline"/>
+                        <field name="property_id" class="oe_inline" />
                     </h1>
                 </div>
                 <group>
-                    <field name="sequence" invisible="1"/>
-                    <field name="customizable" invisible="1"/>
-                    <field name="value_id" domain="[('property_id', '=', property_id)]" attrs="{
+                    <field name="sequence" invisible="1" />
+                    <field name="customizable" invisible="1" />
+                    <field
+                        name="value_id"
+                        domain="[('property_id', '=', property_id)]"
+                        attrs="{
                         'invisible': [('customizable', '=', True)],
                         'required': [('customizable', '!=', True)],
-                    }"/>
-                    <field name="value" attrs="{
+                    }"
+                    />
+                    <field
+                        name="value"
+                        attrs="{
                         'invisible': [('customizable', '!=', True)],
                         'required': [('customizable', '=', True)],
-                    }"/>
+                    }"
+                    />
                 </group>
             </form>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_software_license_feature" >
+    <record model="ir.actions.act_window" id="act_window_software_license_feature">
         <field name="name">Features</field>
         <field name="res_model">software.license.feature</field>
-        <field name="view_id" ref="software_license_feature_tree_view"/>
+        <field name="view_id" ref="software_license_feature_tree_view" />
     </record>
 
 </odoo>
