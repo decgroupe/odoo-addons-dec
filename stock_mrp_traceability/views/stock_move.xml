@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="stock_move_form_view">
         <field name="name">stock.move.form@stock_mrp_traceability</field>
         <field name="model">stock.move</field>
-        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="inherit_id" ref="stock.view_move_form" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='origin_grp_col2']" position="inside">
-                <field name="created_production_id"/>
-                <field name="production_id"/>
-                <field name="raw_material_production_id"/>
+                <field name="created_production_id" />
+                <field name="production_id" />
+                <field name="raw_material_production_id" />
             </xpath>
         </field>
     </record>

@@ -1,22 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="picking_form_view">
         <field name="name">stock.picking.form@stock_mrp_traceability</field>
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
-        <field name="priority" eval="1000"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority" eval="1000" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="after">
-                <field name="action_view_created_item_visible" invisible="1"/>
-                <field name="group_id" string="🧩"/>
-                <field name="pick_status" string="Procurement status" class="d_move_procurement_status"/>
-                <button 
-                    name="action_view_created_item" 
-                    title="Open" 
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']"
+                position="after"
+            >
+                <field name="action_view_created_item_visible" invisible="1" />
+                <field name="group_id" string="🧩" />
+                <field
+                    name="pick_status"
+                    string="Procurement status"
+                    class="d_move_procurement_status"
+                />
+                <button
+                    name="action_view_created_item"
+                    title="Open"
                     type="object"
                     attrs="{'invisible': [('action_view_created_item_visible', '=', False),]}"
-                    icon="fa-external-link">
+                    icon="fa-external-link"
+                >
                 </button>
             </xpath>
         </field>
