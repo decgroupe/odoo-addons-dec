@@ -9,7 +9,7 @@ class StockMove(models.Model):
 
     action_auto_operation_fill_visible = fields.Boolean(
         "Show button to auto fill operations",
-        compute='_compute_action_auto_operation_fill_visible',
+        compute="_compute_action_auto_operation_fill_visible",
         readonly=True,
     )
 
@@ -23,12 +23,13 @@ class StockMove(models.Model):
     # except that we don't filter out if qty_done is already set
     def action_auto_operation_fill(self):
         for move in self:
-            operations = move.mapped('move_line_ids')
+            operations = move.mapped("move_line_ids")
             operations_to_auto_fill = operations.filtered(
                 lambda op: (
-                    op.product_id and (
-                        not op.lots_visible or not op.picking_id.picking_type_id
-                        .avoid_lot_assignment
+                    op.product_id
+                    and (
+                        not op.lots_visible
+                        or not op.picking_id.picking_type_id.avoid_lot_assignment
                     )
                 )
             )

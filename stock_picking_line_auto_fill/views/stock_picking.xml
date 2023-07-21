@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="picking_form_view">
         <field name="name">stock.picking.form@stock_picking_line_auto_fill</field>
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
-        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
-                <field name="action_auto_operation_fill_visible" invisible="1"/>
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']"
+                position="after"
+            >
+                <field name="action_auto_operation_fill_visible" invisible="1" />
                 <button
                     name="action_auto_operation_fill"
                     type="object"
@@ -29,7 +32,8 @@
                             ('parent.auto_fill_operation', '=', True),
                         ]
                     }"
-                    help="This button will automatically fill this operation if it have no tracking set on the product, no processed qty and no selected package.">
+                    help="This button will automatically fill this operation if it have no tracking set on the product, no processed qty and no selected package."
+                >
                 </button>
             </xpath>
         </field>

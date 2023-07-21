@@ -1,16 +1,14 @@
 {
-    'name': 'Stock Picking Line Autofill',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': '''Auto encode picking line''',
-    'depends': [
-        'stock',
-        'stock_move_line_auto_fill',
+    "name": "Stock Picking Line Autofill",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "stock",
+        "stock_move_line_auto_fill",
     ],
-    'data':
-        [
-            'views/stock_picking.xml',
-        ],
-    'installable': True
+    "data": [
+        "views/stock_picking.xml",
+    ],
+    "installable": True,
 }

@@ -1,0 +1,1 @@
+Auto encode picking line.
