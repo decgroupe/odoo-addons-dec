@@ -9,7 +9,7 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     auto_validate = fields.Boolean(
-        'Auto Validate',
+        string="Auto Validate",
         help="Also validate linked moves when this move is validated.",
         copy=False,
     )
@@ -22,14 +22,13 @@ class StockMove(models.Model):
 
     def _action_auto_validate(self):
         self.ensure_one()
-        auto_validated_moves = self.\
-            mapped('move_dest_ids').\
-            filtered(lambda m: m.auto_validate and m.state == 'assigned')
+        auto_validated_moves = self.mapped("move_dest_ids").filtered(
+            lambda m: m.auto_validate and m.state == "assigned"
+        )
         # If initial quantity changed to 0, then do not auto_validate
         # descendants moves
         if float_is_zero(
-            self.product_uom_qty,
-            precision_rounding=self.product_id.uom_id.rounding
+            self.product_uom_qty, precision_rounding=self.product_id.uom_id.rounding
         ):
             auto_validated_moves._do_unreserve()
         else:
