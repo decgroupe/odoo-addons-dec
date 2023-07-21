@@ -33,7 +33,7 @@ odoo.define('web_form_orderedby.FormController', function (require) {
          */
         restoreOrderedBy: function (orderedBy) {
             var formKey = this.getFormKey();
-            if (!(formKey in orderedBy )) {
+            if (!(formKey in orderedBy)) {
                 return;
             }
             var self = this;
@@ -60,7 +60,7 @@ odoo.define('web_form_orderedby.FormController', function (require) {
          * Generate a unique key based on model name and its id
          */
         getFormKey: function () {
-            return  this.renderer.state.model + ',' + this.renderer.state.res_id
+            return this.renderer.state.model + ',' + this.renderer.state.res_id
         },
 
         /**
@@ -74,7 +74,7 @@ odoo.define('web_form_orderedby.FormController', function (require) {
             var res = this._super(event);
             // Create a unique key for this form
             var formKey = this.getFormKey();
-            if (!(formKey in this.orderedBy )) {
+            if (!(formKey in this.orderedBy)) {
                 this.orderedBy[formKey] = {};
             }
             // Store formatted orderedBy that will be re-apply after an update
