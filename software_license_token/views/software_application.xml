@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_application_form_view" >
+    <record model="ir.ui.view" id="software_application_form_view">
         <field name="name">software.application.form@software_license_token</field>
         <field name="model">software.application</field>
-        <field name="inherit_id" ref="software_license.software_application_form_view"/>
+        <field
+            name="inherit_id"
+            ref="software_license.software_application_form_view"
+        />
         <field name="arch" type="xml">
             <header position="inside">
                 <button
@@ -19,14 +22,27 @@
                                 ('private_key', '!=', False),
                                 ('public_key', '!=', False),
                     ]}"
-                    class="btn-primary">
+                    class="btn-primary"
+                >
                 </button>
             </header>
             <page name="licensing" position="after">
-                <page name="token" string="Keys" attrs="{'invisible': [('type', '!=', 'inhouse')]}">
+                <page
+                    name="token"
+                    string="Keys"
+                    attrs="{'invisible': [('type', '!=', 'inhouse')]}"
+                >
                     <group name="key_pair">
-                        <field name="private_key" class="d_view_key" placeholder="-----BEGIN RSA PRIVATE KEY-----"/>
-                        <field name="public_key" class="d_view_key" placeholder="-----BEGIN PUBLIC KEY-----"/>
+                        <field
+                            name="private_key"
+                            class="d_view_key"
+                            placeholder="-----BEGIN RSA PRIVATE KEY-----"
+                        />
+                        <field
+                            name="public_key"
+                            class="d_view_key"
+                            placeholder="-----BEGIN PUBLIC KEY-----"
+                        />
                     </group>
                 </page>
             </page>

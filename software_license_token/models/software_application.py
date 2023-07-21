@@ -2,11 +2,12 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
 from Crypto.PublicKey import RSA
-from odoo import api, fields, models
+
+from odoo import fields, models
 
 
 class SoftwareApplication(models.Model):
-    _inherit = 'software.application'
+    _inherit = "software.application"
 
     private_key = fields.Text()
     public_key = fields.Text()
@@ -18,10 +19,12 @@ class SoftwareApplication(models.Model):
             rec.public_key = key.publickey().export_key()
 
     def write(self, vals):
-        if 'type' in vals:
-            if vals.get('type') != 'inhouse':
-                vals.update({
-                    'private_key': False,
-                    'public_key': False,
-                })
+        if "type" in vals:
+            if vals.get("type") != "inhouse":
+                vals.update(
+                    {
+                        "private_key": False,
+                        "public_key": False,
+                    }
+                )
         return super().write(vals)

@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 
 
 class SoftwareLicense(models.Model):
-    _inherit = 'software.license'
+    _inherit = "software.license"
 
     expiration_date = fields.Datetime(
         string="Expiration Date",
@@ -22,27 +22,27 @@ class SoftwareLicense(models.Model):
         "identifiers will not be allowed to be greater than this value.",
     )
 
-    @api.constrains('hardware_ids')
+    @api.constrains("hardware_ids")
     def _check_max_allowed_hardware(self):
-        if self.env.context.get('install_mode'):
+        if self.env.context.get("install_mode"):
             # Ignore constraint when loading XML data
             return
         for rec in self:
-            if rec.max_allowed_hardware > 0 and \
-            len(rec.hardware_ids) > rec.max_allowed_hardware:
-                raise ValidationError(
-                    _('Maximum hardware identifier count reached')
-                )
+            if (
+                rec.max_allowed_hardware > 0
+                and len(rec.hardware_ids) > rec.max_allowed_hardware
+            ):
+                raise ValidationError(_("Maximum hardware identifier count reached"))
 
-    @api.constrains('hardware_ids', 'expiration_date')
+    @api.constrains("hardware_ids", "expiration_date")
     def _check_expiration_date(self):
-        if self.env.context.get('install_mode'):
+        if self.env.context.get("install_mode"):
             # Ignore constraint when loading XML data
             return
-        for rec in self.filtered('expiration_date'):
+        for rec in self.filtered("expiration_date"):
             for hardware_id in rec.hardware_ids:
                 if hardware_id.validation_date > rec.expiration_date:
-                    raise ValidationError(_('Expiration date reached'))
+                    raise ValidationError(_("Expiration date reached"))
 
     def check_expired(self):
         self.ensure_one()
@@ -60,8 +60,10 @@ class SoftwareLicense(models.Model):
 
     def check_max_activation_reached(self, hardware_name):
         res = super().check_max_activation_reached(hardware_name)
-        if self.max_allowed_hardware > 0 and \
-            len(self.hardware_ids) >= self.max_allowed_hardware:
+        if (
+            self.max_allowed_hardware > 0
+            and len(self.hardware_ids) >= self.max_allowed_hardware
+        ):
             res = True
         return res
 
@@ -71,17 +73,13 @@ class SoftwareLicense(models.Model):
         hardware_ids = self.hardware_ids
         # Apply filtering to select only wanted hardware identifiers
         if filter_names:
-            hardware_ids = hardware_ids.filtered(
-                lambda l: l.name in filter_names
-            )
+            hardware_ids = hardware_ids.filtered(lambda l: l.name in filter_names)
         for hardware_id in hardware_ids:
-            hardware_data = hardware_id._prepare_export_vals(
-                include_license_data=False
-            )
+            hardware_data = hardware_id._prepare_export_vals(include_license_data=False)
             res[hardware_id.name] = hardware_data
         return res
 
     def _prepare_export_vals(self, include_activation_identifier=True):
         res = super()._prepare_export_vals(include_activation_identifier)
-        res['expiration_date'] = fields.Datetime.to_string(self.expiration_date)
+        res["expiration_date"] = fields.Datetime.to_string(self.expiration_date)
         return res

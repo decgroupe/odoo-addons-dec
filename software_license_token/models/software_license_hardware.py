@@ -1,27 +1,23 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-import json
-import io
 import base64
-import logging
+import io
+import json
 
-from dateutil.relativedelta import relativedelta
-
+from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
-from Crypto.Cipher import AES, PKCS1_OAEP
+from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
 
-_logger = logging.getLogger(__name__)
-
 
 class SoftwareLicenseHardware(models.Model):
-    _inherit = 'software.license.hardware'
+    _inherit = "software.license.hardware"
 
     validation_date = fields.Datetime(
-        string='Validation Date',
+        string="Validation Date",
         default=fields.Datetime.now,
         required=True,
     )
@@ -52,14 +48,11 @@ class SoftwareLicenseHardware(models.Model):
         res = super()._prepare_export_vals(include_license_data)
         res.update(
             {
-                'date':
-                    fields.Datetime.to_string(self.validation_date),
-                'validity_days':
-                    self.validity_days,
-                'validation_expiration_date':
-                    fields.Datetime.to_string(
-                        self._get_validation_expiration_date()
-                    ),
+                "date": fields.Datetime.to_string(self.validation_date),
+                "validity_days": self.validity_days,
+                "validation_expiration_date": fields.Datetime.to_string(
+                    self._get_validation_expiration_date()
+                ),
             }
         )
         return res
@@ -75,7 +68,7 @@ class SoftwareLicenseHardware(models.Model):
         # Create a header to help identify this license file when opening it
         # with a text editor
         lic_file = [
-            '# {0} License (id: {1})'.format(
+            "# {0} License (id: {1})".format(
                 self.license_id.application_id.name,
                 self.license_id.application_id.identifier,
             )
@@ -87,7 +80,7 @@ class SoftwareLicenseHardware(models.Model):
         base_string = json.dumps(base)
         # Ensure padding of 16 byte boundary
         while len(base_string) % 16 != 0:
-            base_string = base_string + '\n'
+            base_string = base_string + "\n"
         # Convert json string to byte data
         data = base_string.encode("utf-8")
 
@@ -115,4 +108,4 @@ class SoftwareLicenseHardware(models.Model):
         f.close()
 
         # Return a ready to use license string to write as a file
-        return '\n'.join(lic_file)
+        return "\n".join(lic_file)
