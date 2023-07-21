@@ -1,12 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-from Crypto.PublicKey import RSA
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SoftwareApplication(models.Model):
-    _inherit = 'software.application'
+    _inherit = "software.application"
 
     auto_generate_serial = fields.Boolean(
         string="Auto-generate Serial",
@@ -15,9 +14,11 @@ class SoftwareApplication(models.Model):
     )
 
     def write(self, vals):
-        if 'type' in vals:
-            if vals.get('type') != 'inhouse':
-                vals.update({
-                    'auto_generate_serial': False,
-                })
+        if "type" in vals:
+            if vals.get("type") != "inhouse":
+                vals.update(
+                    {
+                        "auto_generate_serial": False,
+                    }
+                )
         return super().write(vals)

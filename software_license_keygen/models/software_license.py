@@ -3,45 +3,44 @@
 
 import string
 import time
+
 from Crypto.Hash import SHA256
 from key_generator.key_generator import generate
 
-from odoo import api, fields, models
+from odoo import api, models
 
-SEPARATOR = '-'
+SEPARATOR = "-"
 LENGTH = 5
 
 
 class SoftwareLicense(models.Model):
-    _inherit = 'software.license'
+    _inherit = "software.license"
 
     @api.model
     def create(self, vals):
-        if self.env.context.get('force_generate_serial'):
-            if vals.get('type') == 'standard' and not vals.get('serial'):
-                vals['serial'] = self._generate_serial()
+        if self.env.context.get("force_generate_serial"):
+            if vals.get("type") == "standard" and not vals.get("serial"):
+                vals["serial"] = self._generate_serial()
         license_id = super().create(vals)
         if license_id.serial == self._get_default_serial():
             license_id.onchange_application_id()
         return license_id
 
-    @api.returns('self', lambda value: value.id)
+    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()
         if default is None:
             default = {}
-        if not default.get(
-            'serial'
-        ) and self.application_id.auto_generate_serial:
+        if not default.get("serial") and self.application_id.auto_generate_serial:
             default.update(serial=self._generate_serial())
         return super(SoftwareLicense, self).copy(default)
 
-    @api.onchange('application_id')
+    @api.onchange("application_id")
     def onchange_application_id(self):
         self.ensure_one()
         vals = {}
-        if self.application_id.auto_generate_serial and self.type == 'standard':
-            vals['serial'] = self._generate_serial()
+        if self.application_id.auto_generate_serial and self.type == "standard":
+            vals["serial"] = self._generate_serial()
         self.update(vals)
 
     def action_generate_serial(self):
@@ -52,28 +51,31 @@ class SoftwareLicense(models.Model):
     def _generate_serial(self):
         timestamp = time.time()
         # List of characters that will be excluded from the generator
-        excluded_chars = ['O']
+        excluded_chars = ["O"]
         # List of characters that will be used by the generator
         extras = [c for c in string.ascii_uppercase if not c in excluded_chars]
         # Generate the key using the current timestamp as the seed
-        key_custom = generate(
-            3,
-            SEPARATOR,
-            LENGTH,
-            LENGTH,
-            type_of_value='int',
-            capital='none',
-            extras=extras,
-            seed=timestamp
-        ).get_key().upper()
+        key_custom = (
+            generate(
+                3,
+                SEPARATOR,
+                LENGTH,
+                LENGTH,
+                type_of_value="int",
+                capital="none",
+                extras=extras,
+                seed=timestamp,
+            )
+            .get_key()
+            .upper()
+        )
 
         # Generate the signature but only on a key cleared of separator char
-        key_without_separator = key_custom.replace(SEPARATOR, '')
-        key_signature = SHA256.SHA256Hash(key_without_separator.encode()
-                                         ).hexdigest()
+        key_without_separator = key_custom.replace(SEPARATOR, "")
+        key_signature = SHA256.SHA256Hash(key_without_separator.encode()).hexdigest()
         # We keep only the first values of the signature as a checksum
         key_checksum = key_signature[0:LENGTH].upper()
 
         # The checksum is added at the end of the key
-        serial = '{}{}{}'.format(key_custom, SEPARATOR, key_checksum)
+        serial = "{}{}{}".format(key_custom, SEPARATOR, key_checksum)
         return serial

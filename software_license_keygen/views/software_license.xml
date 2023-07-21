@@ -1,21 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-<!--
-    <record model="ir.ui.view" id="software_license_tree_view" >
-        <field name="name">software.license.tree@software_license_keygen</field>
-        <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_tree_view"/>
-        <field name="arch" type="xml">
-
-        </field>
-    </record>
--->
-
-    <record model="ir.ui.view" id="software_license_form_view" >
+    <record model="ir.ui.view" id="software_license_form_view">
         <field name="name">software.license.form@software_license_keygen</field>
         <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_form_view"/>
+        <field name="inherit_id" ref="software_license.software_license_form_view" />
         <field name="arch" type="xml">
             <field name="serial" position="after">
                 <button
@@ -24,21 +13,11 @@
                     help="Create a random pre-formatted serial"
                     type="object"
                     attrs="{'invisible': ['|', ('id', '=', False), ('type', '!=', 'standard')]}"
-                    class="btn-primary oe_edit_only">
+                    class="btn-primary oe_edit_only"
+                >
                 </button>
             </field>
         </field>
     </record>
-
-<!--
-    <record model="ir.ui.view" id="software_license_search_view">
-        <field name="name">software.license.search@software_license_keygen</field>
-        <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_search_view"/>
-        <field name="arch" type="xml">
-
-        </field>
-    </record>
--->
 
 </odoo>
