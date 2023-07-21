@@ -1,21 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_application_tree_view" >
+    <record model="ir.ui.view" id="software_application_tree_view">
         <field name="name">software.application.tree@software_license</field>
         <field name="model">software.application</field>
-        <field name="inherit_id" ref="software_application.software_application_tree_view"/>
+        <field
+            name="inherit_id"
+            ref="software_application.software_application_tree_view"
+        />
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <field name="identifier"/>
+                <field name="identifier" />
             </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_application_form_view" >
+    <record model="ir.ui.view" id="software_application_form_view">
         <field name="name">software.application.form@software_license</field>
         <field name="model">software.application</field>
-        <field name="inherit_id" ref="software_application.software_application_form_view"/>
+        <field
+            name="inherit_id"
+            ref="software_application.software_application_form_view"
+        />
         <field name="arch" type="xml">
             <header position="inside">
                 <button
@@ -28,15 +34,23 @@
                         ('type', '!=', 'inhouse'),
                         ('template_id', '!=', False),
                     ]}"
-                    class="btn-primary">
+                    class="btn-primary"
+                >
                 </button>
             </header>
             <page name="releases" position="after">
-                <page string="Licensing" name="licensing" attrs="{'invisible': [('type', '=', 'other')]}">
+                <page
+                    string="Licensing"
+                    name="licensing"
+                    attrs="{'invisible': [('type', '=', 'other')]}"
+                >
                     <group name="main">
                         <group name="primary">
-                            <field name="identifier"/>
-                            <field name="template_id" context="{'default_type': 'template', 'default_application_id': id}"/>
+                            <field name="identifier" />
+                            <field
+                                name="template_id"
+                                context="{'default_type': 'template', 'default_application_id': id}"
+                            />
                         </group>
                         <group name="secondary">
                         </group>
@@ -45,14 +59,17 @@
             </page>
         </field>
     </record>
-    
+
     <record model="ir.ui.view" id="software_application_search_view">
         <field name="name">software.application.search@software_license</field>
         <field name="model">software.application</field>
-        <field name="inherit_id" ref="software_application.software_application_search_view"/>
+        <field
+            name="inherit_id"
+            ref="software_application.software_application_search_view"
+        />
         <field name="arch" type="xml">
             <field name="info" position="before">
-                <field name="identifier"/>
+                <field name="identifier" />
             </field>
         </field>
     </record>

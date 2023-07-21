@@ -5,22 +5,22 @@ from odoo import _, api, fields, models
 
 
 class SoftwareLicense(models.Model):
-    _name = 'software.license'
-    _description = 'License'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-    _rec_name = 'serial'
-    _order = 'id desc'
+    _name = "software.license"
+    _description = "License"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _rec_name = "serial"
+    _order = "id desc"
 
     @api.model
     def _get_default_serial(self):
-        if self.env.context.get('default_type') == 'template':
-            new_id = self.search([], order='id desc', limit=1).id + 1
-            return _('✳️ Template %d') % (new_id)
+        if self.env.context.get("default_type") == "template":
+            new_id = self.search([], order="id desc", limit=1).id + 1
+            return _("✳️ Template %d") % (new_id)
         else:
-            return _('New')
+            return _("New")
 
     active = fields.Boolean(
-        'Active',
+        "Active",
         default=True,
         help="If unchecked, it will allow you to hide the license "
         "without removing it.",
@@ -38,62 +38,63 @@ class SoftwareLicense(models.Model):
         store=True,
     )
     application_id = fields.Many2one(
-        comodel_name='software.application',
-        string='Application',
+        comodel_name="software.application",
+        string="Application",
         required=True,
     )
     hardware_ids = fields.One2many(
-        comodel_name='software.license.hardware',
-        inverse_name='license_id',
+        comodel_name="software.license.hardware",
+        inverse_name="license_id",
         string="Hardware Identifiers",
         copy=False,
         help="Unique hardware identifiers sent by client application made to "
         "identify a system. This identifier must not change over time or "
-        "activation related data would be invalidated"
+        "activation related data would be invalidated",
     )
     product_id = fields.Many2one(
-        'product.product',
-        'Product',
+        "product.product",
+        "Product",
         domain=[],
         change_default=True,
     )
-    production_id = fields.Many2one('mrp.production', 'Production')
-    partner_id = fields.Many2one('res.partner', 'Partner')
+    production_id = fields.Many2one("mrp.production", "Production")
+    partner_id = fields.Many2one("res.partner", "Partner")
     info = fields.Text(
-        'Informations',
+        "Informations",
         help="This field is deprecated, use the chatter now.",
     )
     type = fields.Selection(
         selection=[
-            ('standard', _('Standard')),
-            ('template', _('Template')),
+            ("standard", _("Standard")),
+            ("template", _("Template")),
         ],
-        string='Type',
-        default='standard',
-        required=True
+        string="Type",
+        default="standard",
+        required=True,
     )
 
     _sql_constraints = [
         (
-            'serial_uniq', 'unique(serial,application_id)',
-            'Serial Activation Code must be unique per Application!'
+            "serial_uniq",
+            "unique(serial,application_id)",
+            "Serial Activation Code must be unique per Application!",
         ),
     ]
 
-    @api.returns('self', lambda value: value.id)
+    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()
         if default is None:
             default = {}
-        if not default.get('serial'):
-            default.update(serial=_('%s (copy)') % (self.serial))
+        if not default.get("serial"):
+            default.update(serial=_("%s (copy)") % (self.serial))
         return super(SoftwareLicense, self).copy(default)
 
     def _name_get(self):
         self.ensure_one()
-        return ('[%s] %s') % (self.application_id.name, self.serial)
+        return ("[%s] %s") % (self.application_id.name, self.serial)
 
-    @api.depends('serial', 'application_id.name')
+    @api.depends("serial", "application_id.name")
     def name_get(self):
         result = []
         for rec in self:
@@ -103,19 +104,19 @@ class SoftwareLicense(models.Model):
 
     def _prepare_export_vals(self, include_activation_identifier=True):
         res = {
-            'application_identifier': self.application_id.identifier,
-            'application_name': self.application_id.name,
-            'partner': self.partner_id.display_name,
-            'production': self.production_id.display_name,
+            "application_identifier": self.application_id.identifier,
+            "application_name": self.application_id.name,
+            "partner": self.partner_id.display_name,
+            "production": self.production_id.display_name,
         }
         if include_activation_identifier:
-            res['serial'] = self.activation_identifier
+            res["serial"] = self.activation_identifier
         return res
 
     def _prepare_hardware_activation_vals(self, hardware):
         res = {
-            'license_id': self.id,
-            'name': hardware,
+            "license_id": self.id,
+            "name": hardware,
         }
         return res
 
@@ -126,9 +127,9 @@ class SoftwareLicense(models.Model):
     def activate(self, hardware):
         self.ensure_one()
         vals = self._prepare_hardware_activation_vals(hardware)
-        return self.env['software.license.hardware'].create(vals)
+        return self.env["software.license.hardware"].create(vals)
 
-    @api.depends('serial')
+    @api.depends("serial")
     def _compute_activation_identifier(self):
         for rec in self:
             rec.activation_identifier = rec.serial
