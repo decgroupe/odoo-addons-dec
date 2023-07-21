@@ -5,10 +5,17 @@ from odoo import fields, models
 
 
 class SoftwareAccountSupplier(models.Model):
-    _name = 'software.account.supplier'
-    _description = 'Software Account supplier'
-    _order = 'id desc'
+    _name = "software.account.supplier"
+    _description = "Software Account supplier"
+    _order = "id desc"
 
-    name = fields.Text('Name', required=True)
-    image = fields.Binary('Image')
-    rules = fields.Text('Rules')
+    name = fields.Text(
+        string="Name",
+        required=True,
+    )
+    image = fields.Binary(
+        string="Image",
+    )
+    rules = fields.Text(
+        string="Rules",
+    )

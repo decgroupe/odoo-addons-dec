@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.menu" id="menu_software_accounting">
         <field name="name">Accounting</field>
-        <field name="sequence" eval="10"/>
-        <field name="parent_id" ref="software.menu_software"/>
+        <field name="sequence" eval="10" />
+        <field name="parent_id" ref="software.menu_software" />
     </record>
 
     <record model="ir.ui.menu" id="menu_software_account">
         <field name="name">Account</field>
-        <field name="sequence" eval="10"/>
-        <field name="action" ref="act_window_software_account"/>
-        <field name="parent_id" ref="menu_software_accounting"/>
+        <field name="sequence" eval="10" />
+        <field name="action" ref="act_window_software_account" />
+        <field name="parent_id" ref="menu_software_accounting" />
     </record>
 
     <record model="ir.ui.menu" id="menu_software_account_supplier">
         <field name="name">Supplier</field>
-        <field name="sequence" eval="20"/>
-        <field name="action" ref="act_window_software_account_supplier"/>
-        <field name="parent_id" ref="menu_software_accounting"/>
+        <field name="sequence" eval="20" />
+        <field name="action" ref="act_window_software_account_supplier" />
+        <field name="parent_id" ref="menu_software_accounting" />
     </record>
 
 </odoo>
