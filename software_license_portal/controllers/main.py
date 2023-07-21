@@ -3,10 +3,10 @@
 
 import pprint
 
-from odoo import http, fields
+import odoo.tools.convert as odoo_convert
+from odoo import fields, http
 from odoo.http import request
 from odoo.tools.translate import _
-import odoo.tools.convert as odoo_convert
 
 SUCCESS = 0
 ERROR = 1
@@ -14,82 +14,72 @@ ERROR = 1
 LICENSE_NOT_FOUND = {
     "result": ERROR,
     "message_id": "LICENSE_NOT_FOUND",
-    "message":
-        "unable to find an existing license for this "
-        "identifier and this serial key.",
+    "message": "unable to find an existing license for this "
+    "identifier and this serial key.",
 }
 
 HARDWARE_NOT_FOUND = {
     "result": ERROR,
     "message_id": "HARDWARE_NOT_FOUND",
-    "message":
-        "this hardware identifier is not used to activate/validate any "
-        "serial key on our system.",
+    "message": "this hardware identifier is not used to activate/validate any "
+    "serial key on our system.",
 }
 
 SERIAL_ALREADY_ACTIVATED_ON_HARDWARE = {
     "result": ERROR,
     "message_id": "SERIAL_ALREADY_ACTIVATED_ON_HARDWARE",
-    "message":
-        "the serial key is already activated with this hardware identifier, "
-        "use Validate endpoint to update a license.",
+    "message": "the serial key is already activated with this hardware identifier, "
+    "use Validate endpoint to update a license.",
 }
 
 SERIAL_EXPIRED = {
     "result": ERROR,
     "message_id": "SERIAL_EXPIRED",
-    "message":
-        "the expiration date for this serial key is reached, "
-        "no activation or validation will be able to proceed.",
+    "message": "the expiration date for this serial key is reached, "
+    "no activation or validation will be able to proceed.",
 }
 
 SERIAL_TOO_MANY_ACTIVATION = {
     "result": ERROR,
     "message_id": "SERIAL_TOO_MANY_ACTIVATION",
-    "message":
-        "the serial key is already activated on all available hardware "
-        "identifier slots. Deactivate from the application or "
-        "from your account to free some slots.",
+    "message": "the serial key is already activated on all available hardware "
+    "identifier slots. Deactivate from the application or "
+    "from your account to free some slots.",
 }
 
 SERIAL_NOT_ACTIVATED_ON_HARDWARE = {
     "result": ERROR,
     "message_id": "SERIAL_NOT_ACTIVATED_ON_HARDWARE",
-    "message":
-        "the serial key is not activated on a machine with the given "
-        "hardware identifier and therefore cannot be updated or deactivated.",
+    "message": "the serial key is not activated on a machine with the given "
+    "hardware identifier and therefore cannot be updated or deactivated.",
 }
 
 ALL_SERIALS_DEACTIVATED_ON_HARDWARE = {
     "result": SUCCESS,
     "message_id": "ALL_SERIALS_DEACTIVATED_ON_HARDWARE",
-    "message":
-        "all serial keys have been successfully deactivated on the machine "
-        "with the given hardware identifier.",
+    "message": "all serial keys have been successfully deactivated on the machine "
+    "with the given hardware identifier.",
 }
 
 SERIAL_ACTIVATED_ON_HARDWARE = {
     "result": SUCCESS,
     "message_id": "SERIAL_ACTIVATED_ON_HARDWARE",
-    "message":
-        "the serial key has been successfully activated on the machine with "
-        "the given hardware identifier.",
+    "message": "the serial key has been successfully activated on the machine with "
+    "the given hardware identifier.",
 }
 
 SERIAL_DEACTIVATED_ON_HARDWARE = {
     "result": SUCCESS,
     "message_id": "SERIAL_DEACTIVATED_ON_HARDWARE",
-    "message":
-        "the serial key has been successfully deactivated on the machine with "
-        "the given hardware identifier.",
+    "message": "the serial key has been successfully deactivated on the machine with "
+    "the given hardware identifier.",
 }
 
 SERIAL_UPDATED_ON_HARDWARE = {
     "result": SUCCESS,
     "message_id": "SERIAL_UPDATED_ON_HARDWARE",
-    "message":
-        "the serial key activation has been successfully updated on the "
-        "machine with the given hardware identifier.",
+    "message": "the serial key activation has been successfully updated on the "
+    "machine with the given hardware identifier.",
 }
 
 URL_BASE_V1 = "/api/license/v1"
@@ -101,15 +91,14 @@ URL_VAR_HARDWARE = "/hardware/<string:hardware>"
 
 
 class SoftwareLicenseController(http.Controller):
-    """ Http Controller for Software Licensing System
-    """
+    """Http Controller for Software Licensing System"""
 
     #######################################################################
 
     @http.route(
-        URL_BASE_V1 + '/ResetUnitTesting',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + "/ResetUnitTesting",
+        type="json",
+        methods=["POST"],
         auth="public",
         csrf=False,
     )
@@ -118,24 +107,26 @@ class SoftwareLicenseController(http.Controller):
         previous_safe_eval = odoo_convert.safe_eval
         # Define a local context and override default `safe_eval`
         local_ctx = {
-            'same_hardware_identifier': 'SAME',
-            'other_hardware_identifier': 'OTHER',
+            "same_hardware_identifier": "SAME",
+            "other_hardware_identifier": "OTHER",
         }
         # Let the testing user update local context with data from json
         local_ctx.update(request.params.copy())
-        odoo_convert.safe_eval = lambda expr, ctx={
-        }: odoo_convert.s_eval(expr, ctx, local_ctx, nocopy=True)
+        odoo_convert.safe_eval = lambda expr, ctx={}: odoo_convert.s_eval(
+            expr, ctx, local_ctx, nocopy=True
+        )
         try:
             for file in [
-                'data/unit_testing_software_application.xml',
-                'data/unit_testing_software_license.xml',
+                "data/unit_testing_software_application.xml",
+                "data/unit_testing_software_license.xml",
             ]:
                 odoo_convert.convert_file(
                     request.env.cr,
-                    'software_license_portal',
-                    file, {},
-                    mode='init',
-                    kind='data'
+                    "software_license_portal",
+                    file,
+                    {},
+                    mode="init",
+                    kind="data",
                 )
         finally:
             # Restore previous function
@@ -145,46 +136,49 @@ class SoftwareLicenseController(http.Controller):
     # http://odessa.decindustrie.com:8008/api/license/v1/identifier/{identifier}/serial/{serial}/hardware/{hardware}
 
     def _get_hardware_id(self, identifier, hardware, serial=False):
-        hardware_id = request.env['software.license.hardware']
+        hardware_id = request.env["software.license.hardware"]
         if hardware:
             domain = [
-                ('name', '=', hardware),
-                ('license_id.application_id.identifier', '=', identifier),
+                ("name", "=", hardware),
+                ("license_id.application_id.identifier", "=", identifier),
             ]
             if serial:
                 domain += [
-                    ('license_id.activation_identifier', '=', serial),
+                    ("license_id.activation_identifier", "=", serial),
                 ]
 
             hardware_id = hardware_id.sudo().search(domain, limit=1)
         return hardware_id
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_HARDWARE + '/Serial',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_HARDWARE + "/Serial",
+        type="json",
+        methods=["POST"],
         auth="public",
         csrf=False,
     )
     def get_serial(self, identifier, hardware, **kwargs):
         hardware_id = self._get_hardware_id(identifier, hardware)
-        return {'serial': hardware_id.license_id.serial}
+        return {"serial": hardware_id.license_id.serial}
 
     def _get_license_id(self, identifier, serial):
-        license_id = request.env['software.license']
+        license_id = request.env["software.license"]
         if identifier > 0:
             domain = [
-                ('application_id.identifier', '=', identifier),
-                ('activation_identifier', '=', serial),
+                ("application_id.identifier", "=", identifier),
+                ("activation_identifier", "=", serial),
             ]
             license_id = license_id.sudo().search(domain, limit=1)
         return license_id
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_SERIAL + URL_VAR_HARDWARE +
-        '/Activate',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1
+        + URL_VAR_IDENTIFIER
+        + URL_VAR_SERIAL
+        + URL_VAR_HARDWARE
+        + "/Activate",
+        type="json",
+        methods=["POST"],
         auth="public",
         csrf=False,
     )
@@ -207,10 +201,13 @@ class SoftwareLicenseController(http.Controller):
             return msg
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_SERIAL + URL_VAR_HARDWARE +
-        '/Deactivate',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1
+        + URL_VAR_IDENTIFIER
+        + URL_VAR_SERIAL
+        + URL_VAR_HARDWARE
+        + "/Deactivate",
+        type="json",
+        methods=["POST"],
         auth="public",
         csrf=False,
     )
@@ -226,10 +223,13 @@ class SoftwareLicenseController(http.Controller):
             return SERIAL_DEACTIVATED_ON_HARDWARE
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_IDENTIFIER + URL_VAR_SERIAL + URL_VAR_HARDWARE +
-        '/Validate',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1
+        + URL_VAR_IDENTIFIER
+        + URL_VAR_SERIAL
+        + URL_VAR_HARDWARE
+        + "/Validate",
+        type="json",
+        methods=["POST"],
         auth="public",
         csrf=False,
     )
@@ -250,40 +250,37 @@ class SoftwareLicenseController(http.Controller):
 
     def _get_request_info(self, req):
         res = {}
-        ip_addr = req.httprequest.environ.get('HTTP_X_FORWARDED_FOR')
+        ip_addr = req.httprequest.environ.get("HTTP_X_FORWARDED_FOR")
         if ip_addr:
-            ip_addr = ip_addr.split(',')[0]
+            ip_addr = ip_addr.split(",")[0]
         else:
             ip_addr = req.httprequest.remote_addr
-        res['httprequest'] = {'remote_addr': ip_addr}
-        if 'telemetry' in req.params:
-            res['telemetry'] = req.params['telemetry'].copy()
+        res["httprequest"] = {"remote_addr": ip_addr}
+        if "telemetry" in req.params:
+            res["telemetry"] = req.params["telemetry"].copy()
         else:
             # Fallback to pre 2023 implementation where telemetry
             # (aka sysinfos) data were directly put into the main params
             # json object
-            res['telemetry'] = req.params.copy()
+            res["telemetry"] = req.params.copy()
         return pprint.pformat(res)
 
     def _append_common_data(self, license_id, hardware_id, msg):
-        msg['server_date'] = fields.Date.to_string(fields.Date.today())
-        msg['server_datetime'] = fields.Datetime.to_string(
-            fields.Datetime.now()
-        )
+        msg["server_date"] = fields.Date.to_string(fields.Date.today())
+        msg["server_datetime"] = fields.Datetime.to_string(fields.Datetime.now())
         self._append_license_string(hardware_id, msg)
         self._append_remaining_activation(license_id, msg)
         self._append_expiration_dates(license_id, hardware_id, msg)
 
     def _append_license_string(self, hardware_id, msg):
-        msg['license_string'] = hardware_id.get_license_string()
+        msg["license_string"] = hardware_id.get_license_string()
 
     def _append_remaining_activation(self, license_id, msg):
-        msg['remaining_activation'] = license_id.get_remaining_activation()
+        msg["remaining_activation"] = license_id.get_remaining_activation()
         pass_remaining_activation = 0
         if license_id.pass_id:
-            pass_remaining_activation = license_id.pass_id.\
-                get_remaining_activation()
-        msg['pass_remaining_activation'] = pass_remaining_activation
+            pass_remaining_activation = license_id.pass_id.get_remaining_activation()
+        msg["pass_remaining_activation"] = pass_remaining_activation
 
     def _append_expiration_dates(self, license_id, hardware_id, msg):
         license_exp_date = license_id.expiration_date
@@ -291,22 +288,22 @@ class SoftwareLicenseController(http.Controller):
         min_date = validation_exp_date
         if license_exp_date and license_exp_date < min_date:
             min_date = license_exp_date
-        msg['expiration_date'] = {
-            'license': fields.Datetime.to_string(license_exp_date),
-            'validation': fields.Datetime.to_string(validation_exp_date),
-            'min': fields.Datetime.to_string(min_date),
+        msg["expiration_date"] = {
+            "license": fields.Datetime.to_string(license_exp_date),
+            "validation": fields.Datetime.to_string(validation_exp_date),
+            "min": fields.Datetime.to_string(min_date),
         }
 
     #######################################################################
 
     def _get_licenses(self, identifier, hardware, **kwargs):
-        SoftwareLicense = request.env['software.license']
+        SoftwareLicense = request.env["software.license"]
         domain = SoftwareLicense._get_license_default_portal_domain(
             request_partner_id=request.env.user.partner_id,
             include_pass_licenses=True,
         )
         if identifier:
-            domain += [('application_id.identifier', '=', identifier)]
+            domain += [("application_id.identifier", "=", identifier)]
         license_ids = SoftwareLicense.search(domain)
         res = {}
         for license_id in license_ids:
@@ -322,8 +319,9 @@ class SoftwareLicenseController(http.Controller):
                     # Allow multiple hardware identifiers separated with
                     # a `:` character
                     hw_names = hardware.split(":")
-                license_data['hardwares'] = license_id.sudo().\
-                    get_hardwares_dict(filter_names=hw_names)
+                license_data["hardwares"] = license_id.sudo().get_hardwares_dict(
+                    filter_names=hw_names
+                )
             self._append_remaining_activation(license_id, license_data)
             # Warning, the key used there is `serial`, not the
             # `activation_identifier`, don't rely on it
@@ -331,9 +329,9 @@ class SoftwareLicenseController(http.Controller):
         return res
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_HARDWARE + '/Licenses',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + URL_VAR_HARDWARE + "/Licenses",
+        type="json",
+        methods=["POST"],
         auth="user",
         csrf=False,
     )
@@ -341,9 +339,9 @@ class SoftwareLicenseController(http.Controller):
         return self._get_licenses(identifier=False, hardware=hardware)
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_IDENTIFIER + '/Licenses',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + "/Licenses",
+        type="json",
+        methods=["POST"],
         auth="user",
         csrf=False,
     )
@@ -351,9 +349,9 @@ class SoftwareLicenseController(http.Controller):
         return self._get_licenses(identifier=identifier, hardware=False)
 
     @http.route(
-        URL_BASE_V1 + '/Licenses',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + "/Licenses",
+        type="json",
+        methods=["POST"],
         auth="user",
         csrf=False,
     )
@@ -361,8 +359,8 @@ class SoftwareLicenseController(http.Controller):
         return self._get_licenses(identifier=False, hardware=False)
 
     @http.route(
-        URL_BASE_V1 + '/Infos',
-        methods=['GET'],
+        URL_BASE_V1 + "/Infos",
+        methods=["GET"],
         auth="none",
         csrf=False,
     )
@@ -370,9 +368,9 @@ class SoftwareLicenseController(http.Controller):
         return self._get_request_info(request)
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_HARDWARE + '/Activate',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + URL_VAR_HARDWARE + "/Activate",
+        type="json",
+        methods=["POST"],
         auth="public",
         csrf=False,
     )
@@ -387,9 +385,9 @@ class SoftwareLicenseController(http.Controller):
         return res
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_HARDWARE + '/Validate',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + URL_VAR_HARDWARE + "/Validate",
+        type="json",
+        methods=["POST"],
         auth="public",
         csrf=False,
     )
@@ -404,22 +402,22 @@ class SoftwareLicenseController(http.Controller):
         return res
 
     def _get_hardware_ids(self, hardware, identifier=False, serial=False):
-        hardware_id = request.env['software.license.hardware']
+        hardware_id = request.env["software.license.hardware"]
         if hardware:
-            domain = [('name', '=', hardware)]
+            domain = [("name", "=", hardware)]
             if identifier:
                 domain += [
-                    ('license_id.application_id.identifier', '=', identifier),
+                    ("license_id.application_id.identifier", "=", identifier),
                 ]
             if serial:
-                domain += [('license_id.activation_identifier', '=', serial)]
+                domain += [("license_id.activation_identifier", "=", serial)]
             hardware_ids = hardware_id.sudo().search(domain)
         return hardware_ids
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_HARDWARE + '/Deactivate',
-        type='json',
-        methods=['POST'],
+        URL_BASE_V1 + URL_VAR_HARDWARE + "/Deactivate",
+        type="json",
+        methods=["POST"],
         auth="user",
         csrf=False,
     )

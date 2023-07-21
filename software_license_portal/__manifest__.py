@@ -1,22 +1,20 @@
 {
-    'name': 'Software License (Portal)',
-    'version': "14.0.1.0.0",
-    'author': 'DEC, Yann Papouin',
-    'website': 'https://www.decgroupe.com',
-    'summary': "Manage software licenses through the portal",
-    'depends': [
-        'portal',
-        'software_license_token',
-        'software_license_dongle',
-        'software_license_pass',
+    "name": "Software License (Portal)",
+    "version": "14.0.1.0.0",
+    "author": "DEC",
+    "website": "https://www.decgroupe.com",
+    "depends": [
+        "portal",
+        "software_license_token",
+        "software_license_dongle",
+        "software_license_pass",
     ],
-    'data':
-        [
-            'security/ir.model.access.csv',
-            'security/software_license.xml',
-            'views/software_application.xml',
-            'templates/software_license.xml',
-            'templates/software_license_pass.xml',
-        ],
-    'installable': True
+    "data": [
+        "security/ir.model.access.csv",
+        "security/software_license.xml",
+        "views/software_application.xml",
+        "templates/software_license.xml",
+        "templates/software_license_pass.xml",
+    ],
+    "installable": True,
 }

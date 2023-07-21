@@ -1,21 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_application_form_view" >
+    <record model="ir.ui.view" id="software_application_form_view">
         <field name="name">software.application.form@software_license_portal</field>
         <field name="model">software.application</field>
-        <field name="inherit_id" ref="software_license.software_application_form_view"/>
+        <field
+            name="inherit_id"
+            ref="software_license.software_application_form_view"
+        />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
-                <button 
+                <button
                     name="action_portal_publish"
                     type="object"
                     class="oe_stat_button"
-                    icon="fa-globe">
-                        <div class="o_field_widget o_stat_info">
-                            <field name="portal_published" widget="toggle_button"/>
-                        </div>
-                        <span class="o_stat_text">Portal</span>
+                    icon="fa-globe"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <field name="portal_published" widget="toggle_button" />
+                    </div>
+                    <span class="o_stat_text">Portal</span>
                 </button>
             </div>
         </field>

@@ -1,11 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import _, api, fields, models
+from odoo import api, models
 
 
 class SoftwareLicensePass(models.Model):
-    _inherit = 'software.license.pass'
+    _inherit = "software.license.pass"
 
     @api.model
     def _get_pass_default_portal_domain(self, request_partner_id):
@@ -15,13 +15,13 @@ class SoftwareLicensePass(models.Model):
         if not partner_id:
             partner_id = request_partner_id
         return [
-            ('partner_id', 'child_of', partner_id.id),
-            ('state', '=', 'sent'),
+            ("partner_id", "child_of", partner_id.id),
+            ("state", "=", "sent"),
         ]
 
     def deactivate(self, hardware_name):
         self.ensure_one()
-        hardware_ids = self.license_ids.mapped('hardware_ids').filtered(
+        hardware_ids = self.license_ids.mapped("hardware_ids").filtered(
             lambda x: x.name == hardware_name
         )
         hardware_ids.unlink()
