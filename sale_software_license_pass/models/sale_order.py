@@ -5,15 +5,15 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     license_pass_ids = fields.One2many(
-        comodel_name='software.license.pass',
-        inverse_name='sale_order_id',
+        comodel_name="software.license.pass",
+        inverse_name="sale_order_id",
         string="Passes",
     )
     license_pass_count = fields.Integer(
-        compute='_compute_license_pass_count',
+        compute="_compute_license_pass_count",
         string="Number of Passes",
     )
 
@@ -34,20 +34,20 @@ class SaleOrder(models.Model):
         return result
 
     def _activity_cancel_on_application_pass(self):
-        """ If some SO are cancelled, we need to put an activity on their
-            generated application passes. We only want one activity to
-            be attached.
+        """If some SO are cancelled, we need to put an activity on their
+        generated application passes. We only want one activity to
+        be attached.
         """
-        for license_pass_id in self.mapped('license_pass_ids'):
-            if license_pass_id.state == 'draft':
+        for license_pass_id in self.mapped("license_pass_ids"):
+            if license_pass_id.state == "draft":
                 license_pass_id.action_cancel()
             else:
                 license_pass_id.activity_schedule_with_view(
-                    'mail.mail_activity_data_warning',
+                    "mail.mail_activity_data_warning",
                     user_id=license_pass_id.user_id.id or self.env.uid,
-                    views_or_xmlid='sale_software_license_pass.'
-                    'exception_application_pass_sale_cancellation',
+                    views_or_xmlid="sale_software_license_pass."
+                    "exception_application_pass_sale_cancellation",
                     render_context={
-                        'sale_orders': self,
-                    }
+                        "sale_orders": self,
+                    },
                 )
