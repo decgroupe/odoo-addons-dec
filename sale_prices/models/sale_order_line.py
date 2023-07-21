@@ -1,15 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
-import logging
-from odoo import api, fields, models
-from odoo.tools import float_is_zero, float_round
-
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
     """
     WARNING: `_compute_margin` and `_get_purchase_price` should return same
     values since their content is exactly the same, so we need to take care
