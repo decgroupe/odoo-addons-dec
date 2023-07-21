@@ -1,35 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_hardware_tree_view" >
-        <field name="name">software.license.hardware.tree@software_license_dongle</field>
+    <record model="ir.ui.view" id="software_license_hardware_tree_view">
+        <field
+            name="name"
+        >software.license.hardware.tree@software_license_dongle</field>
         <field name="model">software.license.hardware</field>
-        <field name="inherit_id" ref="software_license.software_license_hardware_tree_view"/>
+        <field
+            name="inherit_id"
+            ref="software_license.software_license_hardware_tree_view"
+        />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="dongle_identifier" attrs="{'column_invisible': [('parent.dongle_product_id', '=', 0)]}"/>
+                <field
+                    name="dongle_identifier"
+                    attrs="{'column_invisible': [('parent.dongle_product_id', '=', 0)]}"
+                />
             </field>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_license_hardware_form_view" >
-        <field name="name">software.license.hardware.form@software_license_dongle</field>
+    <record model="ir.ui.view" id="software_license_hardware_form_view">
+        <field
+            name="name"
+        >software.license.hardware.form@software_license_dongle</field>
         <field name="model">software.license.hardware</field>
-        <field name="inherit_id" ref="software_license.software_license_hardware_form_view"/>
+        <field
+            name="inherit_id"
+            ref="software_license.software_license_hardware_form_view"
+        />
         <field name="arch" type="xml">
             <group name="primary" position="inside">
-                <field name="dongle_identifier"/>
+                <field name="dongle_identifier" />
             </group>
         </field>
     </record>
-    
+
     <record model="ir.ui.view" id="software_license_hardware_search_view">
-        <field name="name">software.license.hardware.search@software_license_dongle</field>
+        <field
+            name="name"
+        >software.license.hardware.search@software_license_dongle</field>
         <field name="model">software.license.hardware</field>
-        <field name="inherit_id" ref="software_license.software_license_hardware_search_view"/>
+        <field
+            name="inherit_id"
+            ref="software_license.software_license_hardware_search_view"
+        />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="dongle_identifier"/>
+                <field name="dongle_identifier" />
             </field>
         </field>
     </record>

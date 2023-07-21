@@ -5,17 +5,19 @@ from odoo import fields, models
 
 
 class SoftwareApplication(models.Model):
-    _inherit = 'software.application'
+    _inherit = "software.application"
 
     dongle_product_id = fields.Integer(
-        string='Dongle Product ID',
-        help='Product ID to write into the dongle',
+        string="Dongle Product ID",
+        help="Product ID to write into the dongle",
     )
 
     def write(self, vals):
-        if 'type' in vals:
-            if vals.get('type') == 'other':
-                vals.update({
-                    'dongle_product_id': 0,
-                })
+        if "type" in vals:
+            if vals.get("type") == "other":
+                vals.update(
+                    {
+                        "dongle_product_id": 0,
+                    }
+                )
         return super().write(vals)

@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="software_license_form_view" >
+    <record model="ir.ui.view" id="software_license_form_view">
         <field name="name">software.license.form@software_license_dongle</field>
         <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_form_view"/>
+        <field name="inherit_id" ref="software_license.software_license_form_view" />
         <field name="arch" type="xml">
             <field name="application_id" position="after">
-                <field name="dongle_product_id" invisible="1"/>
+                <field name="dongle_product_id" invisible="1" />
             </field>
         </field>
     </record>
@@ -15,12 +15,16 @@
     <record model="ir.ui.view" id="software_license_search_view">
         <field name="name">software.license.search@software_license_dongle</field>
         <field name="model">software.license</field>
-        <field name="inherit_id" ref="software_license.software_license_search_view"/>
+        <field name="inherit_id" ref="software_license.software_license_search_view" />
         <field name="arch" type="xml">
             <field name="application_id" position="after">
-                <field name="dongle_product_id"/>
-                <separator/>
-                <filter string="With dongle" name="filter_with_dongle" domain="[('dongle_product_id', '>', 0)]"/>
+                <field name="dongle_product_id" />
+                <separator />
+                <filter
+                    string="With dongle"
+                    name="filter_with_dongle"
+                    domain="[('dongle_product_id', '>', 0)]"
+                />
             </field>
         </field>
     </record>
