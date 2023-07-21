@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="product_template_only_form_view">
         <field name="name">product.template.product.form@uom_wide_fix</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view"/>
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
             <field name="uom_po_id" position="after">
-                <button 
-                    name="action_fix_uom_consistency" 
-                    string="UoM category consistency" 
+                <button
+                    name="action_fix_uom_consistency"
+                    string="UoM category consistency"
                     confirm="Are you sure that you want to try fixing this product unit of measure?"
                     type="object"
                     data-dismiss="modal"
                     class="btn btn-primary"
-                    context="{}">
+                    context="{}"
+                >
                 </button>
             </field>
         </field>
