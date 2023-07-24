@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="wizard_run_wizard_view">
@@ -6,25 +6,27 @@
         <field name="model">wizard.run</field>
         <field name="arch" type="xml">
             <form string="Parameters">
-                <p name="title"></p>
+                <p name="title" />
                 <footer>
-                    <button 
-                        name="run" 
-                        string="Run" 
-                        type="object" 
-                        class="btn-primary">
+                    <button
+                        name="run"
+                        string="Run"
+                        type="object"
+                        class="btn-primary"
+                    >
                     </button>
-                    <button 
-                        string="Cancel" 
-                        class="btn-secondary" 
-                        special="cancel">
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                    >
                     </button>
                 </footer>
             </form>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_wizard_run" >
+    <record model="ir.actions.act_window" id="action_wizard_run">
         <field name="name">Run</field>
         <field name="res_model">wizard.run</field>
         <field name="view_mode">form</field>
