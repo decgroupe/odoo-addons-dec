@@ -355,10 +355,10 @@
                                 <button
                                     id="submit_button"
                                     type="submit"
-                                    class="btn btn-primary btn-block s_website_form_send"
+                                    t-attf-class="btn btn-primary btn-block #{'s_website_form_send' if success_mode else ''}"
                                     t-esc="submit_text"
                                 />
-                              <span id="s_website_form_result" />
+                                <span id="s_website_form_result" />
                             </div>
                         </form>
                     </t>
