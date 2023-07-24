@@ -1,31 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="products_item" name="Display product public code" inherit_id="website_sale.products_item" customize_show="True">
+    <template
+        id="products_item"
+        name="Display product public code"
+        inherit_id="website_sale.products_item"
+        customize_show="True"
+    >
         <!-- Product title in list -->
         <xpath expr="//a[@t-field='product.name']" position="after">
             <div>
-                <span class="badge badge-dark"> Ref: <span t-field="product.website_public_code"/></span>
+                <span class="badge badge-dark"> Ref: <span
+                        t-field="product.website_public_code"
+                    /></span>
             </div>
         </xpath>
     </template>
 
-    <template id="product" name="Display product public code" inherit_id="website_sale_workflow_dec.product" customize_show="True">
+    <template
+        id="product"
+        name="Display product public code"
+        inherit_id="website_sale.product"
+        customize_show="True"
+    >
         <xpath expr="//t[@t-set='additional_title']" positions="before">
             <t t-set="additional_title" t-value="product.website_public_code" />
         </xpath>
         <!-- Product Title -->
-        <xpath expr="//h2[@t-field='product.name']" position="after">
+        <xpath expr="//h1[@t-field='product.name']" position="after">
             <div class="badge badge-dark">
-                Ref: <span itemprop="website_public_code" t-field="product.website_public_code"/>
+                Ref: <span
+                    itemprop="website_public_code"
+                    t-field="product.website_public_code"
+                />
             </div>
         </xpath>
     </template>
 
-    <template id="recommended_products" name="Display product public code" inherit_id="website_sale.recommended_products" customize_show="True">
+    <template
+        id="recommended_products"
+        name="Display product public code"
+        inherit_id="website_sale.recommended_products"
+        customize_show="True"
+    >
         <!-- Product title in recommended products -->
         <xpath expr="//span[@t-field='alt_product.name']" position="before">
-            <span t-att-title="alt_product.website_public_code" t-field="alt_product.website_public_code" class="o_text_overflow" style="display: block;"/>
+            <span
+                t-att-title="alt_product.website_public_code"
+                t-field="alt_product.website_public_code"
+                class="o_text_overflow"
+                style="display: block;"
+            />
         </xpath>
     </template>
 
