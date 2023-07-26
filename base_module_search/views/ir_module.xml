@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="module_kanban_view" model="ir.ui.view">
+    <record model="ir.actions.act_window" id="base.open_module_tree">
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.view" id="module_kanban_view">
         <field name="name">Apps Kanban@base_module_search</field>
         <field name="model">ir.module.module</field>
         <field name="inherit_id" ref="base.module_view_kanban" />
