@@ -13,6 +13,7 @@
         "mrp_action_view",
         "mail",
         "mail_action_view",
+        "product_location",
         "product_supplierinfo_picking",
         "web_tree_dynamic_colored_field",
         "web_base_view",
