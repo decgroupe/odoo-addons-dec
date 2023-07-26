@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="view_translation_tree_view">
         <field name="name">ir.translation.tree@base_translation</field>
         <field name="model">ir.translation</field>
-        <field name="inherit_id" ref="base.view_translation_tree"/>
+        <field name="inherit_id" ref="base.view_translation_tree" />
         <field name="arch" type="xml">
-            <data></data>
+            <data />
         </field>
     </record>
 
