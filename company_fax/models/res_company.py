@@ -5,10 +5,10 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     fax = fields.Char(
-        related='partner_id.fax',
+        related="partner_id.fax",
         store=True,
         readonly=False,
     )
