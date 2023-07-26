@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="crm_case_leads_form_view">
         <field name="name">crm.lead.form.lead@crm_lead_archive</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
                 <field name="active" invisible="1" />
@@ -22,9 +22,9 @@
     <record model="ir.ui.view" id="crm_case_leads_filter_view">
         <field name="name">crm.lead.search.lead@crm_lead_archive</field>
         <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+        <field name="inherit_id" ref="crm.view_crm_case_leads_filter" />
         <field name="arch" type="xml">
-            <data/>
+            <data />
         </field>
     </record>
 
