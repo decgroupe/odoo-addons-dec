@@ -25,8 +25,12 @@ odoo.define('report.web_pdf_preview', function (require) {
                 break;
             case '/web/report_aeroo':
                 var params = {
-                    action: options.data.action,
-                    token: new Date().getTime()
+                    report_id: options.data.report_id,
+                    record_ids: options.data.record_ids,
+                    context: options.data.context,
+                    action_context: options.data.action_context,
+                    token: new Date().getTime(),
+                    debug: true,
                 };
                 var url = session.url('/report/preview_aeroo', params);
                 break;
