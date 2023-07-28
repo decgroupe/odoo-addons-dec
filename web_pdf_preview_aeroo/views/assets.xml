@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="assets_backend"
+        name="web_pdf_preview_aeroo assets"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/web_pdf_preview_aeroo/static/src/js/web_pdf_preview_aeroo.js"
+            />
+        </xpath>
+    </template>
+</odoo>
