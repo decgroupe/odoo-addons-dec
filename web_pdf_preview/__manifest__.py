@@ -6,7 +6,6 @@
     "depends": [
         "base",
         "web",
-        "report_aeroo",
     ],
     "data": [
         "views/web_pdf_preview.xml",

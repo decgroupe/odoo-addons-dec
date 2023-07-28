@@ -2,7 +2,6 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
 from odoo import http
-from odoo.addons.report_aeroo.controllers.main import AerooReportController
 from odoo.addons.web.controllers.main import ReportController, serialize_exception
 
 
@@ -24,25 +23,3 @@ class PreviewReportController(ReportController):
     @http.route(["/report/preview"], type="http", auth="user")
     def report_preview(self, data, token):
         return self.report_download(data, token)
-
-
-class PreviewAerooReportController(AerooReportController):
-    @http.route("/web/report_aeroo", type="http", auth="user")
-    @serialize_exception
-    def generate_aeroo_report(
-        self, report_id, record_ids, context, action_context, token, debug=False
-    ):
-        result = super(PreviewAerooReportController, self).generate_aeroo_report(
-            report_id, record_ids, context, action_context, token, debug=debug
-        )
-        result = set_content_disposition_inline(result)
-        return result
-
-    @http.route("/report/preview_aeroo", type="http", auth="user")
-    @serialize_exception
-    def generate_aeroo_preview(
-        self, report_id, record_ids, context, action_context, token, debug=False
-    ):
-        return self.generate_aeroo_report(
-            report_id, record_ids, context, action_context, token, debug=debug
-        )
