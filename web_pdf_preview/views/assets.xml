@@ -9,7 +9,7 @@
         <xpath expr="." position="inside">
             <script
                 type="text/javascript"
-                src="/web_pdf_preview/static/src/js/web_pdf_preview.js"
+                src="/web_pdf_preview/static/src/js/wpp_session.js"
             />
         </xpath>
     </template>
