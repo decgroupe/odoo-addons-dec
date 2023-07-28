@@ -8,7 +8,7 @@
         "web",
     ],
     "data": [
-        "views/web_pdf_preview.xml",
+        "views/assets.xml",
     ],
     "qweb": [],
     "installable": True,

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+
     <template
         id="assets_backend"
         name="web_pdf_preview assets"
@@ -12,4 +13,5 @@
             />
         </xpath>
     </template>
+
 </odoo>
