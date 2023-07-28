@@ -11,6 +11,7 @@ odoo.define('web_pdf_preview_aeroo.Session', function (require) {
                     record_ids: options.data.record_ids,
                     context: options.data.context,
                     action_context: options.data.action_context,
+                    action_data: options.data.action_data,
                     token: new Date().getTime(),
                     debug: true,
                 };
