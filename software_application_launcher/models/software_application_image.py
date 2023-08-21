@@ -2,7 +2,6 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
 from odoo import api, fields, models, tools
-from odoo.tools import pycompat
 
 
 class SoftwareApplicationImage(models.Model):
@@ -70,8 +69,8 @@ class SoftwareApplicationImage(models.Model):
             if rec.env.context.get("bin_size"):
                 rec.resized_image = rec.image
             elif rec.resize_x and rec.resize_y:
-                rec.resized_image = tools.image_resize_image(
-                    rec.image, size=(rec.resize_x, rec.resize_y), avoid_if_small=True
+                rec.resized_image = tools.image_process(
+                    rec.image, size=(rec.resize_x, rec.resize_y)
                 )
             else:
                 rec.resized_image = rec.image
@@ -81,11 +80,11 @@ class SoftwareApplicationImage(models.Model):
         self.ensure_one()
         for rec in self:
             value = rec.resized_image
-            if isinstance(value, pycompat.text_type):
+            if isinstance(value, str):
                 value = value.encode("ascii")
             if rec.resize_x and rec.resize_y:
-                rec.image = tools.image_resize_image(
-                    value, size=(rec.resize_x, rec.resize_y), avoid_if_small=True
+                rec.image = tools.image_process(
+                    value, size=(rec.resize_x, rec.resize_y)
                 )
             else:
                 rec.image = value
