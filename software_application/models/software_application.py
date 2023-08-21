@@ -2,7 +2,6 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
 from odoo import _, api, fields, models, tools
-from odoo.tools import pycompat
 
 
 class SoftwareApplication(models.Model):
@@ -86,16 +85,14 @@ class SoftwareApplication(models.Model):
             if rec.env.context.get("bin_size"):
                 rec.image = rec.attachment_image
             else:
-                rec.image = tools.image_resize_image(
-                    rec.attachment_image, size=(300, 200)
-                )
+                rec.image = tools.image_process(rec.attachment_image, size=(300, 200))
 
     def _inverse_image(self):
         self.ensure_one()
         value = self.image
-        if isinstance(value, pycompat.text_type):
+        if isinstance(value, str):
             value = value.encode("ascii")
-        self.attachment_image = tools.image_resize_image(value, size=(300, 200))
+        self.attachment_image = tools.image_process(value, size=(300, 200))
 
     def write(self, vals):
         if "type" in vals:
