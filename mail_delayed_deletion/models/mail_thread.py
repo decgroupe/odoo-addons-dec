@@ -10,7 +10,6 @@ except ImportError:
     import xmlrpclib
 
 from odoo import models
-from odoo.tools import pycompat
 
 _logger = logging.getLogger(__name__)
 
@@ -34,7 +33,7 @@ class MailThread(models.AbstractModel):
         # Use the same logic from odoo/addons/mail/models/mail_thread.py
         if isinstance(message, xmlrpclib.Binary):
             message = bytes(message.data)
-        if isinstance(message, pycompat.text_type):
+        if isinstance(message, str):
             message = message.encode("utf-8")
         extract = getattr(email, "message_from_bytes", email.message_from_string)
         msg_txt = extract(message)
