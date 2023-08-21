@@ -34,9 +34,7 @@ class SignatureController(http.Controller):
             img_width = int(kw.get("w", 0))
             img_height = int(kw.get("h", 0))
             if img_width > 0 and img_height > 0:
-                logo = tools.image_resize_image(
-                    logo, size=(img_width, img_height), upper_limit=True
-                )
+                logo = tools.image_process(logo, size=(img_width, img_height))
             image_base64 = base64.b64decode(logo)
             image_data = io.BytesIO(image_base64)
             mimetype = guess_mimetype(image_base64, default="image/png")
