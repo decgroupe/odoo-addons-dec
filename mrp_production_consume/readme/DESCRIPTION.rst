@@ -1,0 +1,1 @@
+Consume BoM line by line

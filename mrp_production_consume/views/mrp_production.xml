@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_production_consume</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <button name="button_plan" position="before">
-                <button 
-                    name="open_consume" 
-                    string="Consume" 
+                <button
+                    name="open_consume"
+                    string="Consume"
                     attrs="{'invisible': [
                             ('move_raw_ids', '=', [])
                         ]}"
                     icon="fa-utensils"
-                    type="object">
+                    type="object"
+                >
                 </button>
             </button>
         </field>
