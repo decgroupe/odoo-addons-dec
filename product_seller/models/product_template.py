@@ -59,7 +59,7 @@ class ProductTemplate(models.Model):
 
     def _calc_seller(self):
         for product in self:
-            main_supplier = self.main_seller_id
+            main_supplier = product.main_seller_id
             product.seller_info_id = main_supplier and main_supplier.id or False
             product.seller_delay = main_supplier and main_supplier.delay or 1
             product.seller_id = main_supplier and main_supplier.name.id or False
