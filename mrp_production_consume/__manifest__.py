@@ -8,6 +8,7 @@
         "sale_stock",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "views/mrp_production.xml",
         "wizard/mrp_consume.xml",
     ],

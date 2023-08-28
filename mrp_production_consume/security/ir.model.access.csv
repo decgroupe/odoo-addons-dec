@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_consume,access_mrp_consume,model_mrp_consume,base.group_user,1,1,1,1
+access_mrp_consume_line,access_mrp_consume_line,model_mrp_consume_line,base.group_user,1,1,1,1
