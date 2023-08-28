@@ -1,19 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mrp_consume_wizard_view">
         <field name="name">mrp.consume@mrp_production_consume_location</field>
         <field name="model">mrp.consume</field>
-        <field name="inherit_id" ref="mrp_production_consume.mrp_consume_wizard_view"/>
+        <field name="inherit_id" ref="mrp_production_consume.mrp_consume_wizard_view" />
         <field name="arch" type="xml">
-            <data></data>
-            <!-- TODO: [MIG] 13.0: Wait for `mrp_production_consume` fixes
-            <xpath expr="//field[@name='produce_line_ids']/tree/field[@name='product_id']" position="after">
-                <field name="product_location" string="Location" class="d_product_location"/>
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="product_location"
+                    string="Location"
+                    class="d_product_location"
+                />
             </xpath>
-            
-            <xpath expr="//field[@name='produce_line_ids']/tree/field[@name='product_uom_id']" position="after">
-                <field name="inventory_activity_id" invisible="1"/>
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='product_uom_id']"
+                position="after"
+            >
+                <field name="inventory_activity_id" invisible="1" />
                 <button
                     name="action_create_inventory_activity"
                     type="object"
@@ -26,10 +33,10 @@
                             ('inventory_activity_id', '!=', False),
                         ]
                     }"
-                    help="This button will create an activity requesting an inventory for this product.">
+                    help="This button will create an activity requesting an inventory for this product."
+                >
                 </button>
             </xpath>
-            -->
         </field>
     </record>
 
