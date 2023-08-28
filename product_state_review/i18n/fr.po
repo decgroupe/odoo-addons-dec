@@ -7,10 +7,10 @@
 # guillaume bauer <guillaume.bauer@syentys.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 21:05+0000\n"
-"PO-Revision-Date: 2020-03-31 23:39+0200\n"
+"POT-Creation-Date: 2023-08-24 09:26+0000\n"
+"PO-Revision-Date: 2023-08-24 15:55+0200\n"
 "Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -18,45 +18,49 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: product_state_review
-#: selection:product.template,state:0
-msgid "End of Lifecycle"
-msgstr "En fin de vie"
+#: model:ir.model.fields,field_description:product_state_review.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: product_state_review
-#: selection:product.template,state:0
-msgid "In Development"
-msgstr "En développement"
+#: model:ir.model.fields,field_description:product_state_review.field_product_template__id
+msgid "ID"
+msgstr "ID"
 
 #. module: product_state_review
-#: selection:product.template,state:0
+#: model:product.state,name:product_state_review.product_state_quotation
 msgid "In Quotation"
 msgstr "En devis"
 
 #. module: product_state_review
-#: selection:product.template,state:0
+#: model:ir.model.fields,field_description:product_state_review.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: product_state_review
+#: model:product.state,name:product_state_review.product_state_review
 msgid "Need review"
 msgstr "À réviser"
-
-#. module: product_state_review
-#: selection:product.template,state:0
-msgid "Normal"
-msgstr "Normal"
-
-#. module: product_state_review
-#: selection:product.template,state:0
-msgid "Obsolete"
-msgstr "Obsolète"
 
 #. module: product_state_review
 #: model:ir.model,name:product_state_review.model_product_template
 msgid "Product Template"
 msgstr "Modèle de produit"
 
-#. module: product_state_review
-#: model:ir.model.fields,field_description:product_state_review.field_product_product__state
-#: model:ir.model.fields,field_description:product_state_review.field_product_template__state
-msgid "Status"
-msgstr "Statut"
+#~ msgid "End of Lifecycle"
+#~ msgstr "En fin de vie"
+
+#~ msgid "In Development"
+#~ msgstr "En développement"
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
+
+#~ msgid "Obsolete"
+#~ msgstr "Obsolète"
+
+#~ msgid "Status"
+#~ msgstr "Statut"
