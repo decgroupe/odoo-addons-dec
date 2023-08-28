@@ -42,14 +42,6 @@
         <field name="fold" eval="False" />
         <field name="todo" eval="True" />
     </record>
-    <record id="stage_to_close" model="mrp.production.stage">
-        <field name="name">To Close</field>
-        <field name="code">to_close</field>
-        <field name="emoji">🎉</field>
-        <field name="sequence" eval="225" />
-        <field name="fold" eval="False" />
-        <field name="todo" eval="True" />
-    </record>
     <record id="stage_done" model="mrp.production.stage">
         <field name="name">Done</field>
         <field name="code">done</field>

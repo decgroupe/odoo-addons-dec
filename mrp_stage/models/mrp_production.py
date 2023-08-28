@@ -55,7 +55,6 @@ class MrpProduction(models.Model):
             "progress": self.env.ref("mrp_stage.stage_progress"),
             "issue": self.env.ref("mrp_stage.stage_issue"),
             "dispatch_ready": self.env.ref("mrp_stage.stage_dispatch_ready"),
-            "to_close": self.env.ref("mrp_stage.stage_to_close"),
             "done": self.env.ref("mrp_stage.stage_done"),
             "cancel": self.env.ref("mrp_stage.stage_cancel"),
         }
@@ -78,11 +77,13 @@ class MrpProduction(models.Model):
         stage_id = False
         if self.state in stages:
             stage_id = stages[self.state]
-        if self.state in ("confirmed", "progress"):
+        elif self.state == "to_close":
+            stage_id = stages["progress"]
+        if self.state in ("confirmed", "progress", "to_close"):
             activity_stage_id = self._get_stage_from_activity()
             if activity_stage_id:
                 stage_id = activity_stage_id
-        elif self.state in ("to_close", "done"):
+        elif self.state in ("done"):
             move_finished_ids = self.move_finished_ids.filtered(
                 lambda x: x.state in ("done", "cancel")
             )
@@ -125,6 +126,20 @@ class MrpProduction(models.Model):
             {
                 "state": "progress",
                 "date_start": datetime.now(),
+            }
+        )
+        # OCA module needed: web_ir_actions_act_view_reload
+        return {
+            "type": "ir.actions.act_view_reload",
+        }
+
+    def action_on_hold(self):
+        self.ensure_one()
+        if self.state in ("draft", "done", "cancel"):
+            return True
+        self.write(
+            {
+                "state": "confirmed",
             }
         )
         # OCA module needed: web_ir_actions_act_view_reload

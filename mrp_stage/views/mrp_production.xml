@@ -24,7 +24,7 @@
             <field name="user_id" position="before">
                 <field name="stage_id" groups="base.group_no_one" />
             </field>
-            <button name="button_plan" position="before">
+            <button name="button_mark_done" position="before">
                 <button
                     name="action_start"
                     string="Start Production"
@@ -33,6 +33,17 @@
                         ]}"
                     icon="fa-caret-right"
                     class="btn-success"
+                    type="object"
+                >
+                </button>
+                <button
+                    name="action_on_hold"
+                    string="Put back on hold"
+                    attrs="{'invisible': [
+                            ('state', 'not in', ('progress','to_close'))
+                        ]}"
+                    icon="fa-pause"
+                    class="btn-light"
                     type="object"
                 >
                 </button>
