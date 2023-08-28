@@ -34,6 +34,7 @@ class StockMove(models.Model):
         "procure_method",
         "product_type",
         "created_purchase_line_id",
+        "move_orig_ids.purchase_line_id",
         "created_production_id",
     )
     def _compute_mrp_status(self):

@@ -124,7 +124,7 @@ class StockMove(models.Model):
         copy=False,
     )
     product_activity_id = fields.Many2one(
-        "mail.activity",
+        comodel_name="mail.activity",
         string="Related Activity",
         compute="_compute_product_activity_id",
     )
@@ -245,6 +245,8 @@ class StockMove(models.Model):
         action = False
         if self.created_purchase_line_id:
             action = self.created_purchase_line_id.order_id.action_view()
+        elif self.move_orig_ids.purchase_line_id:
+            action = self.move_orig_ids.purchase_line_id.order_id.action_view()
         elif self.purchase_line_id:
             action = self.purchase_line_id.order_id.action_view()
         elif self.created_production_id:
@@ -265,6 +267,7 @@ class StockMove(models.Model):
         self.ensure_one()
         return (
             self.created_purchase_line_id
+            or self.move_orig_ids.purchase_line_id
             or self.purchase_line_id
             or self.created_production_id
             or self.production_id
@@ -319,6 +322,9 @@ class StockMove(models.Model):
         res = []
         if self.created_purchase_line_id:
             head, desc = self.created_purchase_line_id.get_head_desc()
+            res.append(format_hd(head, desc, html))
+        elif self.move_orig_ids.purchase_line_id:
+            head, desc = self.move_orig_ids.purchase_line_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         elif self.purchase_line_id:
             head, desc = self.purchase_line_id.get_head_desc()

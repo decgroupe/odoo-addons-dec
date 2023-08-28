@@ -69,6 +69,7 @@ class StockMove(models.Model):
     def _is_related(self):
         if (
             self.created_purchase_line_id
+            or self.move_orig_ids.purchase_line_id
             or self.purchase_line_id
             or self.created_mrp_production_request_id
             or self.production_id
@@ -81,6 +82,7 @@ class StockMove(models.Model):
         "procure_method",
         "product_type",
         "created_purchase_line_id",
+        "move_orig_ids.purchase_line_id",
         "move_orig_ids.production_id",
     )
     def _compute_pick_status(self):

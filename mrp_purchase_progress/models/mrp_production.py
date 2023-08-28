@@ -27,7 +27,10 @@ class MrpProduction(models.Model):
             all_move_ids = rec.move_raw_ids.filtered(
                 lambda x: x.state != "cancel"
                 and x.procure_method == "make_to_order"
-                and x.created_purchase_line_id.id
+                and (
+                    x.created_purchase_line_id.id
+                    or x.move_orig_ids.purchase_line_id.ids
+                )
             )
             if all_move_ids:
                 purchased_move_ids = all_move_ids.mapped("move_orig_ids").filtered(
