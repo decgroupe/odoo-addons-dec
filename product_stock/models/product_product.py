@@ -14,7 +14,7 @@ class Product(models.Model):
     )
 
     last_move_date = fields.Datetime(
-        related="last_move_id.date",
+        compute="_compute_last_stock_move",
         string="Last Stock Move Date",
     )
 
@@ -24,6 +24,7 @@ class Product(models.Model):
                 [("product_id", "=", rec.id)], limit=1, order="date desc, id desc"
             )
             rec.last_move_id = move_id
+            rec.last_move_date = move_id.date
 
     @api.model
     def search_inventory_done_at_location(self, create_date, location_id):
