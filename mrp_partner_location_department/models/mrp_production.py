@@ -10,12 +10,12 @@ class MrpProduction(models.Model):
     partner_department_id = fields.Many2one(
         comodel_name="res.country.department",
         related="partner_id.department_id",
-        string="Department",
+        string="Partner's Department",
         store=True,
     )
     partner_state_id = fields.Many2one(
         comodel_name="res.country.state",
         related="partner_id.state_id",
-        string="State",
+        string="Partner's State",
         store=True,
     )
