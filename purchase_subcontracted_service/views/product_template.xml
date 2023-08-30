@@ -10,7 +10,7 @@
         />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='property_subcontracted_service']/parent::group"
+                expr="//field[@name='property_subcontracted_service']"
                 position="replace"
             >
                 <!-- Remove unused field -->
