@@ -2,20 +2,35 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
 
-from odoo import _, api, models
+from odoo import api, models
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    @api.depends(
-        "move_raw_ids.state", "workorder_ids.move_raw_ids", "bom_id.ready_to_produce"
-    )
-    def _compute_availability(self):
-        super()._compute_availability()
-        for order in self:
-            if not order.move_raw_ids:
-                # Override availability from 'none' (min) to 'assigned' (max)
-                # This will allow us to display the 'Produce' button
-                order.availability = "assigned"
-                continue
+    def _compute_state(self):
+        other_mos = self.env["mrp.production"]
+        for production in self:
+            if production.product_id and not production.move_raw_ids and all(
+                move.state in ("cancel", "done")
+                for move in production.move_finished_ids
+            ):
+                production.state = "done"
+                production.reservation_state = "assigned"
+            else:
+                other_mos += production
+        super(MrpProduction, other_mos)._compute_state()
+
+    def action_confirm(self):
+        self._check_company()
+        mo_to_confirm = self.env["mrp.production"]
+        for production in self:
+            if not production.move_raw_ids:
+                production.qty_producing = production.product_qty
+                production.move_finished_ids._action_confirm()
+                for move in production.move_finished_ids:
+                    move.quantity_done = move.product_uom_qty
+                production.move_finished_ids._action_done()
+            else:
+                mo_to_confirm += production
+        return super(MrpProduction, mo_to_confirm).action_confirm()
