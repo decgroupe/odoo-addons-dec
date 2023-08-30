@@ -3,7 +3,6 @@
 
 
 from odoo import _, api, fields, models
-from odoo.addons import decimal_precision as dp
 from odoo.tools import float_compare
 
 
@@ -33,7 +32,7 @@ class MrpConsumeLine(models.TransientModel):
     )
     qty_to_consume = fields.Float(
         string="To Consume",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
@@ -41,14 +40,14 @@ class MrpConsumeLine(models.TransientModel):
     )
     qty_done = fields.Float(
         string="Consumed",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     move_id = fields.Many2one(
         comodel_name="stock.move",
     )
     qty_reserved = fields.Float(
         string="Reserved",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
 
     @api.onchange("lot_id")

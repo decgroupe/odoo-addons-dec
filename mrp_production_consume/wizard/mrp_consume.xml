@@ -90,7 +90,7 @@
                             <field name="is_minimized" invisible="1" />
                             <button
                                 name="action_minimize_qty_done"
-                                string="Minimize"
+                                title="Minimize"
                                 type="object"
                                 attrs="{'invisible': [('is_minimized', '=', True)]}"
                                 icon="fa-backward"
@@ -100,7 +100,7 @@
                             <field name="is_maximized" invisible="1" />
                             <button
                                 name="action_maximize_qty_done_reserved"
-                                string="Maximize"
+                                title="Maximize"
                                 type="object"
                                 attrs="{'invisible': [('is_maximized', '=', True)]}"
                                 icon="fa-forward"

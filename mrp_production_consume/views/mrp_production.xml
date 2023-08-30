@@ -12,7 +12,9 @@
                     name="open_consume"
                     string="Consume"
                     attrs="{'invisible': [
-                            ('move_raw_ids', '=', [])
+                            '|',
+                            ('move_raw_ids', '=', []),
+                            ('state', '=', 'draft'),
                         ]}"
                     icon="fa-utensils"
                     type="object"

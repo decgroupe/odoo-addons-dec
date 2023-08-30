@@ -4,7 +4,6 @@
 from datetime import datetime
 
 from odoo import _, api, fields, models
-from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, float_round
 
@@ -30,7 +29,7 @@ class MrpConsume(models.TransientModel):
     )
     product_qty = fields.Float(
         string="Quantity",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
         required=True,
     )
     product_uom_id = fields.Many2one(
@@ -139,7 +138,8 @@ class MrpConsume(models.TransientModel):
         # Check finished move where consumed move lines should be generated
         self.check_finished_move_lots()
         # Post inventory immediatly to execute _action_done on stock moves
-        self.production_id._post_inventory()
+        move_ids = self.line_ids.mapped("move_id")
+        self.production_id._post_inventory_consume(move_ids)
         if self.production_id.state == "confirmed":
             self.production_id.write(
                 {
@@ -163,6 +163,7 @@ class MrpConsume(models.TransientModel):
                 qty_todo * move.unit_factor,
                 precision_rounding=move.product_uom.rounding,
             )
+            # Process stock.moveline BEGIN
             for move_line in move.move_line_ids:
                 if (
                     float_compare(
@@ -187,7 +188,7 @@ class MrpConsume(models.TransientModel):
                     {
                         "move_id": move.id,
                         "qty_to_consume": to_consume_in_line,
-                        "qty_done": to_consume_in_line,
+                        "qty_done": move.quantity_done,
                         "lot_id": move_line.lot_id.id,
                         "product_uom_id": move.product_uom.id,
                         "product_id": move.product_id.id,
@@ -197,6 +198,7 @@ class MrpConsume(models.TransientModel):
                     }
                 )
                 qty_to_consume -= to_consume_in_line
+            # Process stock.moveline END
             if (
                 float_compare(
                     qty_to_consume, 0.0, precision_rounding=move.product_uom.rounding
@@ -223,13 +225,15 @@ class MrpConsume(models.TransientModel):
                         )
                         qty_to_consume -= 1
                 else:
+                    qty_done = min(move.quantity_done, move.reserved_availability)
                     lines.append(
                         {
                             "move_id": move.id,
                             "qty_to_consume": qty_to_consume,
-                            "qty_done": qty_to_consume,
+                            "qty_done": qty_done,
                             "product_uom_id": move.product_uom.id,
                             "product_id": move.product_id.id,
+                            "qty_reserved": move.reserved_availability,
                         }
                     )
 
@@ -257,11 +261,6 @@ class MrpConsume(models.TransientModel):
                         }
                     )
         self.line_ids = [(5,)] + [(0, 0, x) for x in lines]
-
-        # Override qty_done to 0 to allow the user to choose which
-        # line he wants to validate and comsume
-        for pl in self.line_ids:
-            pl.qty_done = 0
 
     def action_minimize_qty_done(self):
         self.ensure_one()
