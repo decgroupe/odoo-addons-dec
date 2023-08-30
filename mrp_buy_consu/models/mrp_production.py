@@ -15,8 +15,17 @@ class MrpProduction(models.Model):
         move = super()._generate_raw_move(bom_line, line_data)
         return move
 
-    def _get_raw_move_data(self, bom_line, line_data):
-        res = super()._get_raw_move_data(bom_line, line_data)
+    def _get_move_raw_values(
+        self,
+        product_id,
+        product_uom_qty,
+        product_uom,
+        operation_id=False,
+        bom_line=False,
+    ):
+        res = super(MrpProduction, self)._get_move_raw_values(
+            product_id, product_uom_qty, product_uom, operation_id, bom_line
+        )
         if res is not None:
             if bom_line.product_id.is_consumable:
                 # Check this bom line if this product MUST be
