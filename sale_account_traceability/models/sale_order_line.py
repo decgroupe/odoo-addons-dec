@@ -34,7 +34,9 @@ class SaleOrderLine(models.Model):
     def _compute_invoice_status(self):
         res = super(SaleOrderLine, self)._compute_invoice_status()
         for line in self:
-            if (
+            if line.state == ('draft'):
+                line.invoice_status = 'no'
+            elif (
                 float_is_zero(
                     line.price_total, precision_rounding=line.currency_id.rounding
                 )
