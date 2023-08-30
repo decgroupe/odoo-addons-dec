@@ -9,7 +9,7 @@ class MrpProduction(models.Model):
 
     allow_timesheets = fields.Boolean(
         string="Allow timesheets",
-        default=True,
+        default=lambda self: self._default_allow_timesheets(),
     )
     planned_hours = fields.Float(
         string="Planned Hours",
@@ -51,6 +51,10 @@ class MrpProduction(models.Model):
     def write(self, vals):
         res = super().write(vals)
         return res
+
+    @api.model
+    def _default_allow_timesheets(self):
+        return False
 
     @api.depends("timesheet_ids.unit_amount")
     def _compute_total_hours(self):
