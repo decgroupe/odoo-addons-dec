@@ -41,9 +41,9 @@ class StockRule(models.Model):
 
     def _check_product_state(self, product_id):
         if product_id.state not in ["draft", "sellable"]:
-            state_desc = dict(
-                product_id._fields["state"]._description_selection(self.env)
-            )
+            ProductState = self.env["product.state"]
+            state_draft = ProductState.search([("code", "=", "draft")], limit=1)
+            state_sellable = ProductState.search([("code", "=", "sellable")], limit=1)
             raise UserError(
                 _(
                     'Cannot manufacture product %s, state is "%s". '
@@ -51,9 +51,9 @@ class StockRule(models.Model):
                 )
                 % (
                     product_id.display_name,
-                    state_desc.get(product_id.state),
-                    state_desc.get("draft"),
-                    state_desc.get("sellable"),
+                    product_id.product_state_id.name,
+                    state_draft.name,
+                    state_sellable.name,
                 )
             )
 

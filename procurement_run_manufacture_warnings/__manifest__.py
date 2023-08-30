@@ -6,6 +6,7 @@
     "depends": [
         "mrp",
         "sale_stock",
+        "product_state",
         "product_state_review",
     ],
     "soft_depends": [
