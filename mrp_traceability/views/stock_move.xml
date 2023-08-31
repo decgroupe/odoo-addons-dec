@@ -46,6 +46,50 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="stock_move_form_view">
+        <field name="name">stock.move.form@mrp_traceability</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='linked_group']/field[@name='move_orig_ids']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('move_orig_ids', '=', [])]}</attribute>
+            </xpath>
+            <xpath
+                expr="//group[@name='linked_group']/field[@name='move_orig_ids']"
+                position="after"
+            >
+                <field
+                    name="move_conv_orig_ids"
+                    context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}"
+                    attrs="{'invisible': [('move_conv_orig_ids', '=', [])]}"
+                />
+            </xpath>
+            <xpath
+                expr="//group[@name='linked_group']/field[@name='move_dest_ids']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('move_dest_ids', '=', [])]}</attribute>
+            </xpath>
+            <xpath
+                expr="//group[@name='linked_group']/field[@name='move_dest_ids']"
+                position="after"
+            >
+                <field
+                    name="move_conv_dest_ids"
+                    context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}"
+                    attrs="{'invisible': [('move_conv_dest_ids', '=', [])]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="stock_move_details_form_view">
         <field name="name">stock.move.details.form@mrp_traceability</field>
         <field name="model">stock.move</field>
@@ -177,17 +221,42 @@
                         <field name="produce_line_ids" />
                     </tree>
                 </field>
-                <label for="move_orig_ids" />
+                <label
+                    for="move_orig_ids"
+                    attrs="{'invisible': [('move_orig_ids', '=', [])]}"
+                />
                 <field
                     name="move_orig_ids"
                     context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}"
+                    attrs="{'invisible': [('move_orig_ids', '=', [])]}"
                 />
-                <label for="move_dest_ids" />
+                <label
+                    for="move_conv_orig_ids"
+                    attrs="{'invisible': [('move_conv_orig_ids', '=', [])]}"
+                />
+                <field
+                    name="move_conv_orig_ids"
+                    context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}"
+                    attrs="{'invisible': [('move_conv_orig_ids', '=', [])]}"
+                />
+                <label
+                    for="move_dest_ids"
+                    attrs="{'invisible': [('move_dest_ids', '=', [])]}"
+                />
                 <field
                     name="move_dest_ids"
                     context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}"
+                    attrs="{'invisible': [('move_dest_ids', '=', [])]}"
                 />
-
+                <label
+                    for="move_conv_dest_ids"
+                    attrs="{'invisible': [('move_conv_dest_ids', '=', [])]}"
+                />
+                <field
+                    name="move_conv_dest_ids"
+                    context="{'tree_view_ref':'mrp_traceability.stock_move_tree_view'}"
+                    attrs="{'invisible': [('move_conv_dest_ids', '=', [])]}"
+                />
                 <div
                     class="d_view_name"
                     groups="base.group_erp_manager"

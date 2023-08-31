@@ -2,10 +2,30 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2020
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
+
+    move_conv_dest_ids = fields.Many2many(
+        comodel_name="stock.move",
+        relation="stock_move_move_conv_rel",
+        column1="move_conv_orig_id",
+        column2="move_conv_dest_id",
+        string="Destination Moves (After Conversion)",
+        copy=False,
+        help="Optional: final stock move when building a product",
+    )
+    move_conv_orig_ids = fields.Many2many(
+        comodel_name="stock.move",
+        relation="stock_move_move_conv_rel",
+        column1="move_conv_dest_id",
+        column2="move_conv_orig_id",
+        string="Original Moves (Before Conversion)",
+        copy=False,
+        help="Optional: raw stock moves when building a product",
+    )
 
     mrp_status = fields.Html(
         compute="_compute_mrp_status",
@@ -61,3 +81,46 @@ class StockMove(models.Model):
         action["views"] = [(form.id, "form")]
         action["res_id"] = self.picking_id.id
         return action
+
+    def _migrate_dest_move_to_conv_dest_move(self):
+        domain = [
+            ("production_id", "!=", False),
+        ]
+        production_move_ids = (
+            self.env["stock.move"]
+            .with_context(prefetch_fields=False)
+            .search(domain, limit=0)
+        )
+
+        for production_move_id in production_move_ids:
+            production_id = production_move_id.production_id
+            if production_move_id.move_conv_orig_ids:
+                continue
+            if not production_id.move_raw_ids and not production_move_id.move_orig_ids:
+                continue
+            print(
+                "Processing",
+                production_id.name,
+                production_id.state,
+                production_id.bom_id.name_get()[0][1],
+            )
+            raw_move_ids = production_move_id.move_orig_ids
+            if (
+                production_move_id.product_id.id
+                in raw_move_ids.mapped("product_id").ids
+            ):
+                raise ValidationError("Possible invalid data (same product)")
+            if len(production_id.move_raw_ids) != len(raw_move_ids):
+                if len(raw_move_ids) == 0 and production_id.state == "cancel":
+                    # Ok relink
+                    pass
+                elif len(production_id.move_raw_ids) > len(raw_move_ids):
+                    diff_move_ids = production_id.move_raw_ids - raw_move_ids
+                    if diff_move_ids.mapped("state") == "cancel":
+                        # ok Relink + re-attach
+                        pass
+                else:
+                    raise ValidationError("Possible invalid data (raw count)")
+
+            production_move_id.move_conv_orig_ids = production_id.move_raw_ids
+            production_move_id.move_orig_ids = False
