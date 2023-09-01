@@ -1,6 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
+import logging
 from datetime import datetime
 
 from odoo import _, api, fields, models
@@ -9,6 +10,9 @@ from odoo.addons.tools_miscellaneous.tools.context import (
     safe_eval_active_context_dict_to_string,
 )
 from odoo.tools.safe_eval import safe_eval
+
+
+_logger = logging.getLogger(__name__)
 
 
 class ProjectType(models.Model):
@@ -94,7 +98,16 @@ class ProjectType(models.Model):
         self.todo_project_count_year_nm2 = 0
         Project = self.env["project.project"]
         type_ids = self.filtered("date_field")
-        dashboard_dates = type_ids.mapped("date_field")
+        dashboard_dates = []
+        for date in type_ids.mapped("date_field"):
+            if date not in dashboard_dates:
+                # Ensure that the named field exists in the model
+                if date in Project._fields:
+                    dashboard_dates.append(date)
+                else:
+                    _logger.warning(
+                        _("Field %s not found in %s model") % (date, Project)
+                    )
         result_per_date_reference = {}
         for date_field in dashboard_dates:
             date_field_year = date_field + ":year"
@@ -129,6 +142,9 @@ class ProjectType(models.Model):
 
         current_year = datetime.today().year
         for rec in type_ids:
+            if rec.date_field not in dashboard_dates:
+                # Ignore missing date field
+                continue
             result = result_per_date_reference[rec.date_field]
             child_ids = self.env["project.type"].search([("id", "child_of", rec.id)])
             rec.todo_project_count = sum(
