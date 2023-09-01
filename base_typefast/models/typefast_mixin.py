@@ -10,6 +10,10 @@ from odoo.osv import expression
 class TypefastMixin(models.AbstractModel):
     _name = "typefast.mixin"
     _description = "Typefast Mixin"
+    _typefast_options = {
+        "source": "rec_name", # or name_get
+        "strip": True,
+    }
 
     typefast_name = fields.Char(
         compute="_compute_typefast",
@@ -19,8 +23,19 @@ class TypefastMixin(models.AbstractModel):
     @api.depends(lambda self: (self._rec_name,) if self._rec_name else ())
     def _compute_typefast(self):
         for rec in self:
-            # Strip everything but alphanumeric chars from the name
-            rec.typefast_name = re.sub(r"\W+", "", rec[self._rec_name])
+            rec.typefast_name = False
+            if self._typefast_options.get("source") == "rec_name":
+                field_type = self._fields[self._rec_name].type
+                if field_type == "char":
+                    rec.typefast_name = rec[self._rec_name]
+                elif field_type == "many2one":
+                    rec.typefast_name = rec[self._rec_name].display_name
+            elif self._typefast_options.get("source") == "name_get":
+                rec.typefast_name = rec.name_get()[0][1]
+
+            if rec.typefast_name and self._typefast_options.get("strip"):
+                # Strip everything but alphanumeric chars from the name
+                rec.typefast_name = re.sub(r"\W+", "", rec.typefast_name)
 
     def _get_typefast_domain(self, name, operator):
         return [
