@@ -41,7 +41,7 @@ class SaleOrderLine(models.Model):
             else:
                 price = 0
 
-            if hasattr(self, "_onchange_origin") and self._onchange_origin in (
+            if self._onchange_origin and self._onchange_origin in (
                 "discount",
                 "price_unit",
             ):
@@ -101,9 +101,7 @@ class SaleOrderLine(models.Model):
         # Recompute price_unit
         super().product_uom_change()
 
-        if hasattr(self, "_onchange_origin") and self._onchange_origin in (
-            "product_id"
-        ):
+        if self._onchange_origin and self._onchange_origin in ("product_id"):
             # Do not update `price_unit` when `product_id` is at the origin
             # of the @onchange event to avoid price issues when a rule
             # with a fixed price has already set the discount property
