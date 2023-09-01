@@ -12,6 +12,10 @@ class MailComposer(models.TransientModel):
         string="To",
         help="Message recipients (emails)",
     )
+    email_cc = fields.Char(
+        string="Cc",
+        help="Carbon copy message recipients",
+    )
 
     def get_mail_values(self, res_ids):
         results = super(MailComposer, self).get_mail_values(res_ids)
@@ -19,6 +23,8 @@ class MailComposer(models.TransientModel):
             for res_id, mail_values in results.items():
                 if not mail_values.get("email_to"):
                     mail_values["email_to"] = self.email_to
+                if not mail_values.get("email_cc"):
+                    mail_values["email_cc"] = self.email_to
         return results
 
     def send_mail(self, auto_commit=False):
