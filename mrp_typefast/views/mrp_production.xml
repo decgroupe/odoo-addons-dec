@@ -12,7 +12,7 @@
                     '|',
                         ('typefast_name', 'ilike', self),
                         '|',
-                            ('bom_id', 'ilike', self),
+                            ('bom_id.typefast_name', 'ilike', self),
                             '|',
                                 ('name', 'ilike', self),
                                 ('origin', 'ilike', self)
