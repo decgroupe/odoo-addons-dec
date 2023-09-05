@@ -2,36 +2,35 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2023
 
-from odoo import api, models, fields, tools
-
 import logging
+
+from odoo import api, fields, models, tools
 
 _logger = logging.getLogger(__name__)
 
 
 class MailActivityTeam(models.AbstractModel):
-    _inherit = 'mail.activity.team'
+    _inherit = "mail.activity.team"
 
     # image: all image fields are base64 encoded and PIL-supported
     image = fields.Binary(
         string="Image",
         attachment=True,
-        help="This field holds the image used for this team, limited "
-        "to 1024x1024px",
+        help="This field holds the image used for this team, limited " "to 1024x1024px",
     )
     image_medium = fields.Binary(
         string="Medium-sized image",
         attachment=True,
         help="Medium-sized image of this team. It is automatically "
         "resized as a 128x128px image, with aspect ratio preserved. "
-        "Use this field in form views or some kanban views."
+        "Use this field in form views or some kanban views.",
     )
     image_small = fields.Binary(
         string="Small-sized image",
         attachment=True,
         help="Small-sized image of this team. It is automatically "
         "resized as a 64x64px image, with aspect ratio preserved. "
-        "Use this field anywhere a small image is required."
+        "Use this field anywhere a small image is required.",
     )
 
     @api.model_create_multi

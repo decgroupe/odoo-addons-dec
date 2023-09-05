@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
 
     <t t-name="mail.activity_items" t-extend="mail.activity_items">
@@ -6,21 +6,27 @@
         <t t-jquery=".o_avatar_stack" t-operation="replace">
             <div class="o_avatar_stack">
                 <t t-if="activity.user_id[0]">
-                    <img t-attf-src="/web/image#{activity.user_id[0] >= 0 ? ('/res.users/' + activity.user_id[0] + '/image_small') : ''}" 
-                        class="o_thread_message_avatar rounded-circle mb8" 
-                        t-att-title="activity.user_id[1]" 
-                        t-att-alt="activity.user_id[1]"/>
+                    <img
+                        t-attf-src="/web/image#{activity.user_id[0] >= 0 ? ('/res.users/' + activity.user_id[0] + '/image_small') : ''}"
+                        class="o_thread_message_avatar rounded-circle mb8"
+                        t-att-title="activity.user_id[1]"
+                        t-att-alt="activity.user_id[1]"
+                    />
                 </t>
                 <t t-else="">
                     <t t-if="activity.team_id[0]">
-                        <img t-attf-src="/web/image/mail.activity.team/#{activity.team_id[0]}/image_small"
-                            class="o_thread_message_avatar rounded-circle mb8" 
-                            t-att-title="activity.team_id[1]" 
-                            t-att-alt="activity.team_id[1]"/>
+                        <img
+                            t-attf-src="/web/image/mail.activity.team/#{activity.team_id[0]}/image_small"
+                            class="o_thread_message_avatar rounded-circle mb8"
+                            t-att-title="activity.team_id[1]"
+                            t-att-alt="activity.team_id[1]"
+                        />
                     </t>
                 </t>
-                <i t-att-class="'o_avatar_icon fa ' + activity.icon + ' bg-' + (activity.state == 'planned'? 'success' : (activity.state == 'today'? 'warning' : 'danger')) + '-full'"
-                    t-att-title="activity.activity_type_id[1]"/>
+                <i
+                    t-att-class="'o_avatar_icon fa ' + activity.icon + ' bg-' + (activity.state == 'planned'? 'success' : (activity.state == 'today'? 'warning' : 'danger')) + '-full'"
+                    t-att-title="activity.activity_type_id[1]"
+                />
             </div>
         </t>
 

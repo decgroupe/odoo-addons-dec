@@ -1,13 +1,21 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mail_activity_team_view_form">
         <field name="name">mail.activity.team.view.form@mail_activity_team_image</field>
         <field name="model">mail.activity.team</field>
-        <field name="inherit_id" ref="mail_activity_team.mail_activity_team_view_form"/>
+        <field
+            name="inherit_id"
+            ref="mail_activity_team.mail_activity_team_view_form"
+        />
         <field name="arch" type="xml">
             <group name="base" position="inside">
-                <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
+                <field
+                    name="image"
+                    widget='image'
+                    class="oe_avatar"
+                    options='{"preview_image": "image_medium"}'
+                />
             </group>
         </field>
     </record>
