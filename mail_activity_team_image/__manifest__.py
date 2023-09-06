@@ -1,6 +1,6 @@
 {
     "name": "Mail Activity Team Image",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "DEC",
     "category": "Social Network",
     "website": "https://github.com/OCA/social",
@@ -9,6 +9,7 @@
         "mail_activity_team",
     ],
     "data": [
+        'views/assets.xml',
         "views/mail_activity_team.xml",
     ],
     "qweb": [
