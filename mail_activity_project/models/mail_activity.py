@@ -19,22 +19,30 @@ class MailActivity(models.Model):
 
     @api.depends("res_model", "res_id")
     def _compute_project_id(self):
-        for obj in self:
-            res_model = obj.res_model
-            res_id = obj.res_id
+        for activity in self:
+            res_model = activity.res_model
+            res_id = activity.res_id
+            activity.project_id = False
             if not res_model or not res_id:
                 _logger.error(
                     "Activity %d is missing a model/id " "(res_model=%s, res_id=%d)",
-                    obj.id,
+                    activity.id,
                     res_model,
                     res_id,
                 )
                 continue
             if res_model == "project.project":
-                obj.project_id = res_id
+                activity.project_id = res_id
             else:
-                res_model_id = obj.env[res_model].search([("id", "=", res_id)])
-                if "project_id" in res_model_id._fields and res_model_id.project_id:
-                    obj.project_id = res_model_id.project_id
+                res_model_id = activity.env[res_model].search([("id", "=", res_id)])
+                # Check for existing function as this case could happen when
+                # compute is called from a hook (post_install)
+                if hasattr(self, "_get_project_field_name"):
+                    project_field_name = res_model_id._get_project_field_name()
                 else:
-                    obj.project_id = None
+                    project_field_name = "project_id"
+                if project_field_name in res_model_id._fields:
+                    project_id = res_model_id[project_field_name]
+                    activity.project_id = project_id
+                else:
+                    activity.project_id = None
