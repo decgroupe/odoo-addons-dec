@@ -6,11 +6,11 @@ from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
-    _inherit = ['mrp.production', 'mail.activity.forecast.mixin']
+    _inherit = ['mrp.production', 'mail.activity.schedule.mixin']
     _name = 'mrp.production'
 
-    def _get_forecast_date_fields(self):
-        res = super()._get_forecast_date_fields()
+    def _get_schedule_date_fields(self):
+        res = super()._get_schedule_date_fields()
         res.update(
             {
                 'start': 'date_planned_start',

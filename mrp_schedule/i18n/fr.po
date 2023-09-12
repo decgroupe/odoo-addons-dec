@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mrp_forecast
+# 	* mrp_schedule
 #
 msgid ""
 msgstr ""
@@ -17,37 +17,37 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. module: mrp_forecast
-#: model:ir.model.fields,help:mrp_forecast.field_mrp_production__schedulable
+#. module: mrp_schedule
+#: model:ir.model.fields,help:mrp_schedule.field_mrp_production__schedulable
 msgid "A scheduling activity will be automatically created and synced while schedulable is set"
 msgstr "Une activité de planification sera automatiquement créée et synchronisée lorsque l'option \"Planifiable\" est activée"
 
-#. module: mrp_forecast
-#: model:ir.model.fields,field_description:mrp_forecast.field_mrp_production__display_name
+#. module: mrp_schedule
+#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: mrp_forecast
-#: model:ir.model.fields,field_description:mrp_forecast.field_mrp_production__id
+#. module: mrp_schedule
+#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__id
 msgid "ID"
 msgstr "ID"
 
-#. module: mrp_forecast
-#: model:ir.model.fields,field_description:mrp_forecast.field_mrp_production____last_update
+#. module: mrp_schedule
+#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
-#. module: mrp_forecast
-#: model:ir.model,name:mrp_forecast.model_mrp_production
+#. module: mrp_schedule
+#: model:ir.model,name:mrp_schedule.model_mrp_production
 msgid "Production Order"
 msgstr "Ordre de fabrication"
 
-#. module: mrp_forecast
-#: model:ir.model.fields,field_description:mrp_forecast.field_mrp_production__schedulable
+#. module: mrp_schedule
+#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__schedulable
 msgid "Schedulable"
 msgstr "Planifiable"
 
-#. module: mrp_forecast
-#: model:ir.model.fields,field_description:mrp_forecast.field_mrp_production__scheduling_activity_id
+#. module: mrp_schedule
+#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__scheduling_activity_id
 msgid "Scheduling Activity"
 msgstr "Activité de planification"
