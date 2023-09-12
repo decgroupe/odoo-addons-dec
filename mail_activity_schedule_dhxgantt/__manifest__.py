@@ -1,6 +1,6 @@
 {
     "name": "Mail Activity Schedule (Gantt)",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "DEC",
     "category": "Social Network",
     "website": "https://github.com/OCA/social",
