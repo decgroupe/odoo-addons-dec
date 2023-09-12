@@ -6,11 +6,11 @@ from odoo import api, fields, models
 
 
 class Project(models.Model):
-    _inherit = ['project.project', 'mail.activity.forecast.mixin']
+    _inherit = ['project.project', 'mail.activity.schedule.mixin']
     _name = 'project.project'
 
-    def _get_forecast_date_fields(self):
-        res = super()._get_forecast_date_fields()
+    def _get_schedule_date_fields(self):
+        res = super()._get_schedule_date_fields()
         res.update(
             {
                 'start': 'date_start',
