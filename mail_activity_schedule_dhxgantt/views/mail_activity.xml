@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="mail_activity_view_gantt">
-        <field name="name">mail.activity.view.gantt@mail_activity_forecast_dhxgantt</field>
+        <field name="name">mail.activity.view.gantt@mail_activity_schedule_dhxgantt</field>
         <field name="model">mail.activity</field>
         <field name="type">dhxgantt</field>
         <field name="arch" type="xml">
@@ -42,7 +42,7 @@
     <record id="action_open_boards_activities_gantt" model="ir.actions.act_window.view">
         <field eval="10" name="sequence"/>
         <field name="view_mode">dhxgantt</field>
-        <field name="view_id" ref="mail_activity_forecast_dhxgantt.mail_activity_view_gantt"/>
+        <field name="view_id" ref="mail_activity_schedule_dhxgantt.mail_activity_view_gantt"/>
         <field name="act_window_id" ref="mail_activity_board.open_boards_activities"/>
     </record>
 
