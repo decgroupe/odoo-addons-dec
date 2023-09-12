@@ -2,20 +2,20 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2022
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class Project(models.Model):
-    _inherit = ['project.project', 'mail.activity.schedule.mixin']
-    _name = 'project.project'
+    _inherit = ["project.project", "mail.activity.schedule.mixin"]
+    _name = "project.project"
 
     def _get_schedule_date_fields(self):
         res = super()._get_schedule_date_fields()
         res.update(
             {
-                'start': 'date_start',
-                'stop': 'date',
-                'deadline': 'date',
+                "start": "date_start",
+                "stop": "date",
+                "deadline": "date",
             }
         )
         return res
