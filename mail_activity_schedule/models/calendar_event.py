@@ -2,11 +2,12 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2022
 
 from pytz import timezone, utc
-from odoo import _, api, models
+
+from odoo import models
 
 
 class CalendarEvent(models.Model):
-    _inherit = 'calendar.event'
+    _inherit = "calendar.event"
 
     def write(self, vals):
         res = super().write(vals)
@@ -15,9 +16,11 @@ class CalendarEvent(models.Model):
         return res
 
     def _sync_with_activities(self, vals):
-        if self.activity_ids and (
-            'start' in vals or 'stop' in vals
-        ) and not self.env.context.get('syncing_calendar_event', False):
+        if (
+            self.activity_ids
+            and ("start" in vals or "stop" in vals)
+            and not self.env.context.get("syncing_calendar_event", False)
+        ):
             for rec in self.with_context(syncing_mail_activity=True):
                 if self.allday:
                     # We don't use `start_date` nor `stop_date` to have a
@@ -40,14 +43,14 @@ class CalendarEvent(models.Model):
 
                     rec.activity_ids.write(
                         {
-                            'date_start': start,
-                            'date_stop': stop,
+                            "date_start": start,
+                            "date_stop": stop,
                         }
                     )
                 else:
                     rec.activity_ids.write(
                         {
-                            'date_start': rec.start_datetime,
-                            'date_stop': rec.stop_datetime,
+                            "date_start": rec.start_datetime,
+                            "date_stop": rec.stop_datetime,
                         }
                     )

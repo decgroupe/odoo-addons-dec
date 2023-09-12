@@ -1,16 +1,23 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mail_activity_view_form_popup">
         <field name="name">mail.activity.view.form.popup@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
-        <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
+        <field name="inherit_id" ref="mail.mail_activity_view_form_popup" />
         <field name="arch" type="xml">
-            <xpath expr="//form//field[@name='date_deadline']/parent::group" position="after">
-                <group name="activity_plannable" string="Planning" attrs="{'invisible': [('activity_plannable', '=', False)]}">
+            <xpath
+                expr="//form//field[@name='date_deadline']/parent::group"
+                position="after"
+            >
+                <group
+                    name="activity_plannable"
+                    string="Planning"
+                    attrs="{'invisible': [('activity_plannable', '=', False)]}"
+                >
                     <field name="activity_plannable" invisible="1" />
-                    <field name="date_start"/>
-                    <field name="date_stop"/>
+                    <field name="date_start" />
+                    <field name="date_stop" />
                 </group>
             </xpath>
         </field>
@@ -19,11 +26,11 @@
     <record model="ir.ui.view" id="mail_activity_view_tree">
         <field name="name">mail.activity.view.tree@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
-        <field name="inherit_id" ref="mail.mail_activity_view_tree"/>
+        <field name="inherit_id" ref="mail.mail_activity_view_tree" />
         <field name="arch" type="xml">
             <field name="date_deadline" position="after">
-                <field name="date_start"/>
-                <field name="date_stop"/>
+                <field name="date_start" />
+                <field name="date_stop" />
             </field>
         </field>
     </record>
@@ -31,42 +38,53 @@
     <record model="ir.ui.view" id="mail_activity_view_form_board">
         <field name="name">mail.activity.view.form@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
-        <field name="inherit_id" ref="mail_activity_board.mail_activity_view_form_board"/>
+        <field
+            name="inherit_id"
+            ref="mail_activity_board.mail_activity_view_form_board"
+        />
         <field name="arch" type="xml">
             <field name="date_deadline" position="after">
-                <field name="date_start"/>
-                <field name="date_stop"/>
+                <field name="date_start" />
+                <field name="date_stop" />
             </field>
         </field>
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_kanban">
-        <field name="name">mail.activity.boards.view.kanban@mail_activity_schedule</field>
+        <field
+            name="name"
+        >mail.activity.boards.view.kanban@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
-        <field name="inherit_id" ref="mail_activity_board.mail_activity_view_kanban"/>
+        <field name="inherit_id" ref="mail_activity_board.mail_activity_view_kanban" />
         <field name="arch" type="xml">
             <field name="date_deadline" position="after">
-                <field name="date_start"/>
-                <field name="date_stop"/>
+                <field name="date_start" />
+                <field name="date_stop" />
             </field>
             <xpath expr="//field[@name='date_deadline']" position="after">
                 <t t-if="record.date_start.value">
-                    <field name="date_start"/>
+                    <field name="date_start" />
                 </t>
                 <t t-if="record.date_stop.value">
-                    <field name="date_stop"/>
+                    <field name="date_stop" />
                 </t>
             </xpath>
         </field>
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_search">
-        <field name="name">mail.activity.boards.view.search@mail_activity_schedule</field>
+        <field
+            name="name"
+        >mail.activity.boards.view.search@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
-        <field name="inherit_id" ref="mail_activity_board.mail_activity_view_search"/>
+        <field name="inherit_id" ref="mail_activity_board.mail_activity_view_search" />
         <field name="arch" type="xml">
             <xpath expr='//filter[@name="assigned_user"]' position='before'>
-                <filter string="Document Name" name="group_res_name" context="{'group_by': 'res_name'}"/>
+                <filter
+                    string="Document Name"
+                    name="group_res_name"
+                    context="{'group_by': 'res_name'}"
+                />
             </xpath>
         </field>
     </record>
