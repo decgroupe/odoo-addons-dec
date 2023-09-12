@@ -1,8 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
 
     <record model="ir.ui.view" id="mail_activity_view_gantt">
-        <field name="name">mail.activity.view.gantt@mail_activity_schedule_dhxgantt</field>
+        <field
+            name="name"
+        >mail.activity.view.gantt@mail_activity_schedule_dhxgantt</field>
         <field name="model">mail.activity</field>
         <field name="type">dhxgantt</field>
         <field name="arch" type="xml">
@@ -22,17 +24,17 @@
                 css_class="gantt_class"
                 assigned_resource="gantt_assigned_resource"
             >
-                <field name="user_id"/>
-                <field name="res_id"/>
-                <field name="res_name"/>
-                <field name="res_model"/>
-                <field name="state"/>
-                <field name="icon"/>
-                <field name="activity_type_id"/>
-                <field name="activity_category"/>
+                <field name="user_id" />
+                <field name="res_id" />
+                <field name="res_name" />
+                <field name="res_model" />
+                <field name="state" />
+                <field name="icon" />
+                <field name="activity_type_id" />
+                <field name="activity_category" />
                 <!-- <field name="partner_id"/> -->
                 <!-- TODO: use the calendar_event_id as a hook for date_start and date_stop -->
-                <field name="calendar_event_id_start"/>
+                <field name="calendar_event_id_start" />
             </dhxgantt>
         </field>
     </record>
@@ -40,10 +42,13 @@
     <!-- Note that we set a sequence fo this view but original `open_boards_activities`
             action does not set them (and the default is null < 0)  -->
     <record id="action_open_boards_activities_gantt" model="ir.actions.act_window.view">
-        <field eval="10" name="sequence"/>
+        <field eval="10" name="sequence" />
         <field name="view_mode">dhxgantt</field>
-        <field name="view_id" ref="mail_activity_schedule_dhxgantt.mail_activity_view_gantt"/>
-        <field name="act_window_id" ref="mail_activity_board.open_boards_activities"/>
+        <field
+            name="view_id"
+            ref="mail_activity_schedule_dhxgantt.mail_activity_view_gantt"
+        />
+        <field name="act_window_id" ref="mail_activity_board.open_boards_activities" />
     </record>
 
 </odoo>

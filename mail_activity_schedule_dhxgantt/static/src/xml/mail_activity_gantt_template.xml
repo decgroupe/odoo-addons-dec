@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
 
-    <t t-name="mail_activity_schedule_dhxgantt.row.title" t-extend="web_dhxgantt.row.title">
+    <t
+        t-name="mail_activity_schedule_dhxgantt.row.title"
+        t-extend="web_dhxgantt.row.title"
+    >
         <t t-jquery=".o_gantt_row_title" t-operation="replace">
             <span class="o_gantt_row_title">
-                <span t-if="rec.icon" t-att-class="'fa ' + rec.icon"/>
-                <t t-esc="rec.activity_type_id.data.display_name"/>:
+                <span t-if="rec.icon" t-att-class="'fa ' + rec.icon" />
+                <t t-esc="rec.activity_type_id.data.display_name" />:
                 <small>
                     <b>
                         <t t-if="item.columnTitle">
-                            <t t-esc="item.columnTitle"/>
+                            <t t-esc="item.columnTitle" />
                         </t>
                         <t t-else="">
-                            <t t-esc="rec.res_name"/>
+                            <t t-esc="rec.res_name" />
                         </t>
                     </b>
                 </small>
