@@ -2,7 +2,7 @@
 <odoo>
 
     <record model="ir.ui.view" id="mail_activity_view_form_popup">
-        <field name="name">mail.activity.view.form.popup@mail_activity_forecast</field>
+        <field name="name">mail.activity.view.form.popup@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
         <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
         <field name="arch" type="xml">
@@ -17,7 +17,7 @@
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_tree">
-        <field name="name">mail.activity.view.tree@mail_activity_forecast</field>
+        <field name="name">mail.activity.view.tree@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
         <field name="inherit_id" ref="mail.mail_activity_view_tree"/>
         <field name="arch" type="xml">
@@ -29,7 +29,7 @@
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_form_board">
-        <field name="name">mail.activity.view.form@mail_activity_forecast</field>
+        <field name="name">mail.activity.view.form@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
         <field name="inherit_id" ref="mail_activity_board.mail_activity_view_form_board"/>
         <field name="arch" type="xml">
@@ -41,7 +41,7 @@
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_kanban">
-        <field name="name">mail.activity.boards.view.kanban@mail_activity_forecast</field>
+        <field name="name">mail.activity.boards.view.kanban@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
         <field name="inherit_id" ref="mail_activity_board.mail_activity_view_kanban"/>
         <field name="arch" type="xml">
@@ -61,7 +61,7 @@
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_search">
-        <field name="name">mail.activity.boards.view.search@mail_activity_forecast</field>
+        <field name="name">mail.activity.boards.view.search@mail_activity_schedule</field>
         <field name="model">mail.activity</field>
         <field name="inherit_id" ref="mail_activity_board.mail_activity_view_search"/>
         <field name="arch" type="xml">

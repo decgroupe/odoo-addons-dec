@@ -6,9 +6,9 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
-class MailActivityForecastMixin(models.AbstractModel):
-    _name = 'mail.activity.forecast.mixin'
-    _description = 'Activity Forecast Mixin'
+class MailActivityScheduleMixin(models.AbstractModel):
+    _name = 'mail.activity.schedule.mixin'
+    _description = 'Activity Schedule Mixin'
 
     scheduling_activity_id = fields.Many2one(
         comodel_name="mail.activity",
@@ -24,7 +24,7 @@ class MailActivityForecastMixin(models.AbstractModel):
 
     @api.model
     def create(self, vals):
-        rec = super(MailActivityForecastMixin, self).create(vals)
+        rec = super(MailActivityScheduleMixin, self).create(vals)
         if rec.schedulable:
             rec._ensure_scheduling_activity()
             rec._sync_with_scheduling_activity(vals)
@@ -49,7 +49,7 @@ class MailActivityForecastMixin(models.AbstractModel):
     def _get_scheduling_activity_deadline(self):
         self.ensure_one()
         res = False
-        date_fields = self._get_forecast_date_fields()
+        date_fields = self._get_schedule_date_fields()
         if not res:
             if date_fields.get('deadline'):
                 res = self[date_fields['deadline']]
@@ -69,7 +69,7 @@ class MailActivityForecastMixin(models.AbstractModel):
     @api.multi
     def _prepare_scheduling_activity_data(self):
         self.ensure_one()
-        act_type = self.env.ref("mail_activity_forecast.mail_activity_schedule")
+        act_type = self.env.ref("mail_activity_schedule.mail_activity_schedule")
         return {
             'activity_type_id': act_type.id,
             'user_id': self.user_id.id,
@@ -103,7 +103,7 @@ class MailActivityForecastMixin(models.AbstractModel):
             context_name = 'syncing_' + rec._name.replace('.', '_')
             if not rec.env.context.get(context_name, False):
                 data = {}
-                date_fields = rec._get_forecast_date_fields()
+                date_fields = rec._get_schedule_date_fields()
                 if not vals or date_fields['start'] in vals:
                     data['date_start'] = rec[date_fields['start']]
                 if not vals or date_fields['stop'] in vals:
@@ -114,7 +114,7 @@ class MailActivityForecastMixin(models.AbstractModel):
                 if data:
                     rec.scheduling_activity_id.write(data)
 
-    def _get_forecast_date_fields(self):
+    def _get_schedule_date_fields(self):
         return {
             'start': False,
             'stop': False,

@@ -1,6 +1,6 @@
 {
-    'name': 'Mail Activity Forecast',
-    'summary': "Forecast",
+    'name': 'Mail Activity Schedule',
+    'summary': "Schedule",
     'version': '12.0.1.0.0',
     'author': 'DEC, Yann Papouin',
     'category': 'Social Network',

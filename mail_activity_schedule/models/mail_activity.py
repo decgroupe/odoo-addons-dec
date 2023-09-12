@@ -50,9 +50,9 @@ class MailActivity(models.Model):
                 context_name = 'syncing_' + rec.res_model.replace('.', '_')
                 rec = rec.with_context({context_name: True})
                 model = rec.env[rec.res_model]
-                if hasattr(model, "_get_forecast_date_fields"):
+                if hasattr(model, "_get_schedule_date_fields"):
                     data = {}
-                    date_fields = model._get_forecast_date_fields()
+                    date_fields = model._get_schedule_date_fields()
                     if date_fields.get('start') and 'date_start' in vals:
                         data[date_fields['start']] = rec.date_start
                     if date_fields.get('stop') and 'date_stop' in vals:
