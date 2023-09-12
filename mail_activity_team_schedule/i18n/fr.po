@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mail_activity_team_forecast
+# 	* mail_activity_team_schedule
 #
 msgid ""
 msgstr ""
@@ -17,22 +17,22 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. module: mail_activity_team_forecast
-#: model:ir.model,name:mail_activity_team_forecast.model_mail_activity
+#. module: mail_activity_team_schedule
+#: model:ir.model,name:mail_activity_team_schedule.model_mail_activity
 msgid "Activity"
 msgstr "Activité"
 
-#. module: mail_activity_team_forecast
-#: model:ir.model.fields,field_description:mail_activity_team_forecast.field_mail_activity__display_name
+#. module: mail_activity_team_schedule
+#: model:ir.model.fields,field_description:mail_activity_team_schedule.field_mail_activity__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: mail_activity_team_forecast
-#: model:ir.model.fields,field_description:mail_activity_team_forecast.field_mail_activity__id
+#. module: mail_activity_team_schedule
+#: model:ir.model.fields,field_description:mail_activity_team_schedule.field_mail_activity__id
 msgid "ID"
 msgstr "ID"
 
-#. module: mail_activity_team_forecast
-#: model:ir.model.fields,field_description:mail_activity_team_forecast.field_mail_activity____last_update
+#. module: mail_activity_team_schedule
+#: model:ir.model.fields,field_description:mail_activity_team_schedule.field_mail_activity____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
