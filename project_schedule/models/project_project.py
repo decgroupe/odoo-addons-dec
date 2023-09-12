@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2022
 
@@ -20,12 +19,10 @@ class Project(models.Model):
         )
         return res
 
-    @api.multi
     @api.depends("active")
     def _compute_schedulable(self):
         super()._compute_schedulable()
 
-    @api.multi
     def _is_schedulable(self):
         res = super()._is_schedulable()
         if res:
