@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2022
 
@@ -30,7 +29,6 @@ class MailActivityScheduleMixin(models.AbstractModel):
             rec._sync_with_scheduling_activity(vals)
         return rec
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if res:
@@ -45,7 +43,6 @@ class MailActivityScheduleMixin(models.AbstractModel):
 
         return res
 
-    @api.multi
     def _get_scheduling_activity_deadline(self):
         self.ensure_one()
         res = False
@@ -66,7 +63,6 @@ class MailActivityScheduleMixin(models.AbstractModel):
             res = fields.Date.context_today(self)
         return res
 
-    @api.multi
     def _prepare_scheduling_activity_data(self):
         self.ensure_one()
         act_type = self.env.ref("mail_activity_schedule.mail_activity_schedule")
@@ -76,7 +72,6 @@ class MailActivityScheduleMixin(models.AbstractModel):
             'automated': True,
         }
 
-    @api.multi
     def _ensure_scheduling_activity(self):
         if 'mail.activity.mixin' not in self._inherit_module:
             return
@@ -93,7 +88,6 @@ class MailActivityScheduleMixin(models.AbstractModel):
                     )
                     rec._sync_with_scheduling_activity(vals=False)
 
-    @api.multi
     def _sync_with_scheduling_activity(self, vals=False):
         if 'mail.activity.mixin' not in self._inherit_module:
             return
@@ -121,17 +115,14 @@ class MailActivityScheduleMixin(models.AbstractModel):
             'deadline': False,
         }
 
-    @api.multi
     def _compute_schedulable(self):
         for rec in self:
             rec.schedulable = rec._is_schedulable()
 
-    @api.multi
     def _is_schedulable(self):
         self.ensure_one()
         return True
 
-    @api.multi
     def _close_scheduling_activity(self):
         for rec in self:
             rec.scheduling_activity_id.action_done()

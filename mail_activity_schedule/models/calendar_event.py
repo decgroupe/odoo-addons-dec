@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2022
 
@@ -9,14 +8,12 @@ from odoo import _, api, models
 class CalendarEvent(models.Model):
     _inherit = 'calendar.event'
 
-    @api.multi
     def write(self, vals):
         res = super().write(vals)
         if res:
             self._sync_with_activities(vals)
         return res
 
-    @api.multi
     def _sync_with_activities(self, vals):
         if self.activity_ids and (
             'start' in vals or 'stop' in vals

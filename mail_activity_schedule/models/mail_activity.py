@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2022
 
@@ -88,7 +87,7 @@ class MailActivity(models.Model):
                         }
                     )
 
-    @api.multi
     def _compute_assigned_resource(self):
-        for rec in self.filtered('user_id'):
+        self.assigned_resource = False
+        for rec in self.filtered("user_id"):
             rec.assigned_resource = rec.user_id.name
