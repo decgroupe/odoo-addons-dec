@@ -11,9 +11,11 @@ class MrpBom(models.Model):
 
     def write(self, vals):
         if "code" in vals:
-            if self.env.context.get(
-                "bypass_supermanager_check"
-            ) or self.user_has_groups(mrp_production.SUPERMANAGER_GROUP):
+            if (
+                self.env.context.get("bypass_supermanager_check")
+                or self.user_has_groups(mrp_production.SUPERMANAGER_GROUP)
+                or self.env.is_superuser()
+            ):
                 pass
             else:
                 self.env["mrp.production"]._raise_not_supermanager(
