@@ -12,8 +12,10 @@ class Project(models.Model):
 
     @api.model
     def create(self, vals):
-        if self.env.context.get("bypass_supermanager_check") or self.user_has_groups(
-            SUPERMANAGER_GROUP
+        if (
+            self.env.context.get("bypass_supermanager_check")
+            or self.user_has_groups(SUPERMANAGER_GROUP)
+            or self.env.is_superuser()
         ):
             pass
         else:
