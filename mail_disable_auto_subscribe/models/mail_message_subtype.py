@@ -39,8 +39,8 @@ class MailMessageSubtype(models.Model):
             parent,
             relation,
         ) = super()._get_auto_subscription_subtypes(model_name)
-        # Apply filtering and unpack values
-        def_ids = self._filter_subtypes(model_name, [def_ids])
+        # Apply filtering and unpack values (KEEP THE COMMA !!!)
+        def_ids,  = self._filter_subtypes(model_name, [def_ids])
         return child_ids, def_ids, all_int_ids, parent, relation
 
     @tools.ormcache("self.env.uid", "model_name")
