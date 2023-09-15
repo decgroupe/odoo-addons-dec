@@ -22,7 +22,7 @@ class IrActionsServer(models.Model):
         res = False
         data = {
             "cron_running": self.env.get("cron_running", False),
-            "action_names": [rec.name for rec in self],
+            "action_names": [rec.name for rec in self.sudo()],
         }
         for rec in self.filtered("ping_url"):
             hc.action_ping_start(rec.ping_url, data)
