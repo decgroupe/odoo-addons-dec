@@ -9,7 +9,10 @@ class ProductProduct(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("product.product_normal_action").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "product.product_normal_action"
+        )
+        return action
 
     def action_view(self):
         action = self.action_view_base()
