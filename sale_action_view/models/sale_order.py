@@ -9,7 +9,10 @@ class SaleOrder(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("sale.action_orders").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "sale.action_orders"
+        )
+        return action
 
     def action_view(self):
         action = self.action_view_base()
