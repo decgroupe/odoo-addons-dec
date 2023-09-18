@@ -9,11 +9,10 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def action_view_base(self):
-        return (
-            self.env.ref("purchase_action_view.action_purchase_order_line_tree")
-            .sudo()
-            .read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "purchase_action_view.action_purchase_order_line_tree"
         )
+        return action
 
     def action_view(self):
         action = self.action_view_base()
