@@ -28,8 +28,9 @@ class ProductProduct(models.Model):
 
     def open_price_graph(self):
         self.ensure_one()
-        act = self.env.ref("product_prices.act_window_product_price_graph")
-        action = act.read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "product_prices.act_window_product_price_graph"
+        )
         context = json.loads(action["context"])
         context.update(
             {
@@ -39,7 +40,4 @@ class ProductProduct(models.Model):
             }
         )
         action["context"] = json.dumps(context)
-
-        # action = self.env.ref('product_prices.act_window_product_price_graph'
-        #                      ).read()[0]
         return action
