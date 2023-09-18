@@ -9,7 +9,7 @@ class MailActivity(models.Model):
 
     @api.model
     def action_view_base(self):
-        # action = self.env.ref('mail.mail_activity_action').read()[0]
+        # Alternative of `mail.mail_activity_action`
         action = {
             "type": "ir.actions.act_window",
             "name": "My Action Name",
