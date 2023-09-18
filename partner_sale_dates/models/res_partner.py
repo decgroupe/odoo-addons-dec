@@ -104,7 +104,9 @@ class ResPartner(models.Model):
             partner.last_sale_delivery_date = order.effective_last_date
 
     def action_open_shipping_sale_orders(self):
-        action = self.env.ref("sale.act_res_partner_2_sale_order").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "sale.act_res_partner_2_sale_order"
+        )
         action["domain"] = [
             ("id", "in", self.mapped("shipping_sale_order_ids").ids),
         ]
