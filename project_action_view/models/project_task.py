@@ -9,7 +9,10 @@ class ProjectTask(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("project.action_view_task").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "project.action_view_task"
+        )
+        return action
 
     def action_view(self):
         action = self.action_view_base()
@@ -25,7 +28,10 @@ class ProjectTask(models.Model):
 
     @api.model
     def action_view_project_base(self):
-        return self.env.ref("project.open_view_project_all").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "project.open_view_project_all"
+        )
+        return action
 
     def action_view_project_form(self):
         self.ensure_one()
