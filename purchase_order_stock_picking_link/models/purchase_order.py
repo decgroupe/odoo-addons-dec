@@ -33,23 +33,24 @@ class PurchaseOrder(models.Model):
         Note that it is a copycat of action_view_picking from
             'addons/purchase_stock/models/purchase.py'
         """
-        action = self.env.ref("stock.action_picking_tree_all")
-        result = action.read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "stock.action_picking_tree_all"
+        )
         # override the context to get rid of the default filtering on
         # operation type
-        result["context"] = {}
+        action["context"] = {}
         pick_ids = self.mapped("outgoing_picking_ids")
         # choose the view_mode accordingly
         if not pick_ids or len(pick_ids) > 1:
-            result["domain"] = "[('id', 'in', %s)]" % (pick_ids.ids)
+            action["domain"] = "[('id', 'in', %s)]" % (pick_ids.ids)
         elif len(pick_ids) == 1:
             res = self.env.ref("stock.view_picking_form", False)
             form_view = [(res and res.id or False, "form")]
-            if "views" in result:
-                result["views"] = form_view + [
-                    (state, view) for state, view in result["views"] if view != "form"
+            if "views" in action:
+                action["views"] = form_view + [
+                    (state, view) for state, view in action["views"] if view != "form"
                 ]
             else:
-                result["views"] = form_view
-            result["res_id"] = pick_ids.id
-        return result
+                action["views"] = form_view
+            action["res_id"] = pick_ids.id
+        return action
