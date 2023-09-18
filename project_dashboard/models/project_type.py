@@ -182,9 +182,9 @@ class ProjectType(models.Model):
             )
 
     def action_open_project_from_dashboard(self):
-        action = self.env.ref(
+        action = self.env["ir.actions.actions"]._for_xml_id(
             "project_dashboard.action_project_kanban_from_dashboard"
-        ).read()[0]
+        )
         context = safe_eval_action_context_string_to_dict(action)
         if len(self.ids) == 1:
             if self.date_field:
@@ -217,8 +217,9 @@ class ProjectType(models.Model):
 
     def action_open_project_tasks(self):
         active_id = self.env.context.get("project_id")
-        act = self.env.ref("project.act_project_project_2_project_task_all")
-        action = act.read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "project.act_project_project_2_project_task_all"
+        )
         # Set active_id and active_ids to allow safe evaluation
         eval_ctx = dict(self.env.context)
         eval_ctx.update(
