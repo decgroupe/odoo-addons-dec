@@ -203,9 +203,9 @@ class ProductProduct(models.Model):
 
     def show_product_prices_history(self):
         product_ids = self
-        action = self.env.ref(
+        action = self.env["ir.actions.actions"]._for_xml_id(
             "product_prices_history.product_prices_history_action"
-        ).read()[0]
+        )
         action["domain"] = [
             ("product_id", "in", product_ids.ids),
             ("type", "=", self._context.get("price_type")),
