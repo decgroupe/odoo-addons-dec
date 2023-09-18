@@ -15,8 +15,8 @@ class HelpdeskTicket(models.Model):
             ticket.stage_id = stage_done
 
     def action_create_quotation(self):
-        ticket_action = self.env.ref("helpdesk_mgmt.helpdesk_ticket_action")
-        quot_action = self.env.ref("sale.action_quotations_with_onboarding")
+        ticket_action = self.env.ref("helpdesk_mgmt.helpdesk_ticket_action").sudo()
+        quot_action = self.env.ref("sale.action_quotations_with_onboarding").sudo()
         # Reset the context to avoid team_id collision when creating a new
         # sale order
         default_context = self.env.user.context_get()
