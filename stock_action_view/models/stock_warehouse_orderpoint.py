@@ -9,7 +9,8 @@ class StockWarehouseOrderpoint(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("stock.action_orderpoint").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("stock.action_orderpoint")
+        return action
 
     def action_view(self):
         action = self.action_view_base()

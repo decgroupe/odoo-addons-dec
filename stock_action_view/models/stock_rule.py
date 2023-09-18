@@ -9,7 +9,8 @@ class StockRule(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("stock.action_rules_form").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("stock.action_rules_form")
+        return action
 
     def action_view(self):
         action = self.action_view_base()

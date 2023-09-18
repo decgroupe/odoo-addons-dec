@@ -9,7 +9,10 @@ class StockPicking(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("stock.stock_picking_action_picking_type").sudo().read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "stock.stock_picking_action_picking_type"
+        )
+        return action
 
     def action_view(self):
         action = self.action_view_base()
