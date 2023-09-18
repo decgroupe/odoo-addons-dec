@@ -34,5 +34,7 @@ class MrpProduction(models.Model):
 
     def open_consume(self):
         self.ensure_one()
-        action = self.env.ref("mrp_production_consume.act_mrp_consume").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "mrp_production_consume.act_mrp_consume"
+        )
         return action
