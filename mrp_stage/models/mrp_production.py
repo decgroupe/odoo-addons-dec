@@ -152,7 +152,9 @@ class MrpProduction(models.Model):
         return self.state in ("confirmed")
 
     def action_view_staged(self):
-        action = self.env.ref("mrp_stage.act_mrp_production_staged").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "mrp_stage.act_mrp_production_staged"
+        )
         if not self.ids:
             pass
         elif len(self.ids) > 1:
@@ -166,7 +168,9 @@ class MrpProduction(models.Model):
 
     @api.model
     def action_view_staged_with_products(self, product_ids):
-        action = self.env.ref("mrp_stage.act_mrp_production_staged").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "mrp_stage.act_mrp_production_staged"
+        )
         action["domain"] = [("product_id", "in", product_ids)]
         action["context"] = {}
         return action
