@@ -203,7 +203,9 @@ class RefReference(models.Model):
 
     def _get_reference_report_line(self, reference, prices, format_prices):
         base = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
-        ref_action = self.env.ref("product_reference.act_window_ref_reference")
+        ref_action = self.env["ir.actions.actions"]._for_xml_id(
+            "product_reference.act_window_ref_reference"
+        )
         href = "%s/web#%s" % (
             base,
             url_encode(
