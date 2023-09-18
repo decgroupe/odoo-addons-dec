@@ -200,11 +200,10 @@ class SoftwareLicensePass(models.Model):
 
     @api.model
     def action_view_base(self):
-        return (
-            self.env.ref("software_license_pass.act_window_software_license_pass")
-            .sudo()
-            .read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "software_license_pass.act_window_software_license_pass"
         )
+        return action
 
     def action_view(self):
         action = self.action_view_base()
