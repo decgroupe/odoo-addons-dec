@@ -9,7 +9,7 @@ class MrpProduction(models.Model):
 
     @api.model
     def action_view_base(self):
-        return self.env.ref("mrp.mrp_production_action").sudo().read()[0]
+        return self.env["ir.actions.actions"]._for_xml_id("mrp.mrp_production_action")
 
     def action_view(self):
         action = self.action_view_base()
