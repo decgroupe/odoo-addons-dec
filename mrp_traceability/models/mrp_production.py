@@ -28,9 +28,9 @@ class MrpProduction(models.Model):
         """Link move destination to production moves to-do to improve traceability with
         some custom tools.
         """
-        self.ensure_one()
         if not vals or vals.get("move_finished_ids") or vals.get("move_raw_ids"):
-            if self.move_finished_ids.ids and self.move_raw_ids.ids:
-                self.move_raw_ids.write(
-                    {"move_conv_dest_ids": [(6, 0, self.move_finished_ids.ids)]}
-                )
+            for rec in self:
+                if rec.move_finished_ids.ids and rec.move_raw_ids.ids:
+                    rec.move_raw_ids.write(
+                        {"move_conv_dest_ids": [(6, 0, self.move_finished_ids.ids)]}
+                    )
