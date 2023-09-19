@@ -23,9 +23,17 @@ class HolidaysRequest(models.Model):
         else:
             return self.env["hr.employee"]
 
-    def _sync_employee_details(self):
-        super()._sync_employee_details()
+    def _compute_from_employee_id(self):
+        super()._compute_from_employee_id()
         for holiday in self:
             manager_id = self._get_employee_leave_manager(holiday.employee_id)
             if manager_id and manager_id != holiday.manager_id:
                 holiday.manager_id = manager_id
+
+    def _get_responsible_for_approval(self):
+        responsible = super()._get_responsible_for_approval()
+        if responsible == self.env.user:
+            manager = self._get_employee_leave_manager(self.employee_id)
+            if manager:
+                responsible = manager.user_id
+        return responsible
