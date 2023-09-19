@@ -35,7 +35,7 @@ class MailActivityRedirection(models.Model):
     initial_user_ids = fields.Many2many(
         comodel_name="res.users",
         string="Users initially targeted",
-        domain=["|", ("active", "=", True), ("active", "=", False)],
+        context={"active_test": False},
     )
     model_ids = fields.Many2many(
         comodel_name="ir.model",

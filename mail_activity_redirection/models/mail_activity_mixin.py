@@ -1,7 +1,7 @@
 # Copyright 2021 DEC SARL, Inc - All Rights Reserved.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models
+from odoo import _, models
 
 import logging
 
@@ -32,6 +32,10 @@ class MailActivityMixin(models.AbstractModel):
                 act_values.get("stored_views_or_xmlid"),
                 note,
             ):
+                _logger.info(
+                    _("Activity redirected to %s by rule %s")
+                    % (redirection.user_id.name, redirection.name)
+                )
                 # Replace User with the one set in redirection rule
                 act_values["user_id"] = redirection.user_id.id
                 # Keep a reference on this redirection to assign created
