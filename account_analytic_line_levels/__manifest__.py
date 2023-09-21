@@ -7,5 +7,8 @@
         "account_analytic_parent",
     ],
     "data": [],
+    "demo": [
+        "demo/account_analytic_line.xml",
+    ],
     "installable": True,
 }

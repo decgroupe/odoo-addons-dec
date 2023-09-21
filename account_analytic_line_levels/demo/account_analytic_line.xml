@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="account.analytic.line" id="aal_it">
+        <field name="name">Integration task</field>
+        <field name="account_id" ref="account_analytic_parent.analytic_integration"/>
+        <field name="date" eval="(DateTime.now() + relativedelta(weekday=3,weeks=-2)).strftime('%Y-%m-%d')"/>
+        <field name="amount">20</field>
+        <field name="unit_amount">5.00</field>
+    </record>
+
+    <record model="account.analytic.line" id="aal_op">
+        <field name="name">Online publish</field>
+        <field name="account_id" ref="account_analytic_parent.analytic_online"/>
+        <field name="date" eval="(DateTime.now() + relativedelta(weekday=1,weeks=-1)).strftime('%Y-%m-%d')"/>
+        <field name="amount">10</field>
+        <field name="unit_amount">2.00</field>
+    </record>
+
+</odoo>
