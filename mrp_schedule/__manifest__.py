@@ -4,6 +4,7 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
+        "mrp",
         "mail_activity_schedule",
     ],
     "data": [
