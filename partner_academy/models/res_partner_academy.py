@@ -26,7 +26,8 @@ class ResPartnerAcademy(models.Model):
     )
     email_domain = fields.Char(
         help="Filling this domain (part after the @) will help to "
-        "quickly identify a partner academy using its e-mail suffix"
+        "quickly identify a partner academy using its e-mail suffix."
+        "Please note that multiple domains can be added (separated by a single-space)."
     )
     logo = fields.Binary(
         related="partner_id.image_1920",
