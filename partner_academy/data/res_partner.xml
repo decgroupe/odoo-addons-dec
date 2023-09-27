@@ -1,0 +1,770 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9496__rectorat_de_lacademie_montpellier"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Montpellier</field>
+        <field name="street">31, rue de l'Université</field>
+        <field name="street2">CS 39004</field>
+        <field name="city">Montpellier Cedex 2</field>
+        <field name="zip">34064</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_state.res_country_state_languedocroussillon"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">04 67 91 47 00</field>
+        <field name="website">https://www.ac-montpellier.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_montpellier.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_montpellier</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9484__rectorat_de_lacademie_damiens"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie d'Amiens</field>
+        <field name="street">20 boulevard d'Alsace-Lorraine</field>
+        <field name="city">Amiens Cedex</field>
+        <field name="zip">80063</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_nordpasdecalais" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">03 22 82 38 23 </field>
+        <field name="fax">03 22 92 82 12</field>
+        <field name="email">ce.rectorat@ac-amiens.fr</field>
+        <field name="website">https://www.ac-amiens.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_amiens.png"
+        />
+        <field name="xid">partner_academy.rectorat_amiens</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4276__rectorat_de_lacademie_dorleans_tours"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie d'Orléans-Tours</field>
+        <field name="street">21, rue Saint Etienne</field>
+        <field name="city">Orléans Cedex</field>
+        <field name="zip">45043</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_centre" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">02 38 79 38 79 </field>
+        <field name="email">ce.rectorat@ac-orleans-tours.fr</field>
+        <field name="website">https://www.ac-orleans-tours.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_orleans_tours.png"
+        />
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_orleans_tours.png"
+        />
+        <field name="xid">partner_academy.rectorat_orleans_tours</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9483__rectorat_de_lacademie_de_aix_marseille"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Aix-Marseille</field>
+        <field name="street">Place Lucien Paye</field>
+        <field name="city">Aix-en-Provence Cedex 1</field>
+        <field name="zip">13621</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_state.res_country_state_provencealpescotedazur"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">04.42.91.70.00</field>
+        <field name="website">https://www.ac-aix-marseille.fr/</field>
+
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_aix_marseille.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_aix_marseille</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9482__rectorat_de_lacademie_de_besancon"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Besançon</field>
+        <field name="street">10 rue de la Convention</field>
+        <field name="street2">45 avenue Carnot</field>
+        <field name="city">Besançon Cedex</field>
+        <field name="zip">25030</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_bourgogne" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">03 81 65 47 00</field>
+        <field name="website">https://www.ac-besancon.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_besancon.png"
+        />
+        <field name="xid">partner_academy.rectorat_besancon</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4862__rectorat_de_lacademie_de_bordeaux"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Bordeaux</field>
+        <field name="street">94-114 Rue Georges Bonnac</field>
+        <field name="city">Bordeaux</field>
+        <field name="zip">33000</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone"> 05 57 57 38 00</field>
+        <field name="fax">05 56 96 29 42 </field>
+        <field name="website">https://www.ac-bordeaux.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_bordeaux.png"
+        />
+        <field name="xid">partner_academy.rectorat_bordeaux</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9485__rectorat_de_lacademie_de_clermont_ferrand"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Clermont-Ferrand</field>
+        <field name="street">3 avenue Vercingétorix 63033 Clermont-Ferrand cedex</field>
+        <field name="city">Clermont-Ferrand Cedex 1</field>
+        <field name="zip">63033</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">04 73 99 30 00 </field>
+        <field name="email">ce.rectorat@ac-clermont.fr</field>
+        <field name="website">http://www.ac-clermont.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_clermont_ferrand.png"
+        />
+        <field name="xid">partner_academy.rectorat_clermont_ferrand</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9486__rectorat_de_lacademie_de_corse"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Corse</field>
+        <field name="street">Boulevard Pascal Rossini</field>
+        <field name="street2">BP 808</field>
+        <field name="city">Ajaccio Cedex 4</field>
+        <field name="zip">20192</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_corse" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">04 95 50 33 33</field>
+        <field name="email">ce.rectorat@ac-corse.fr</field>
+        <field name="website">http://www.ac-corse.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_corse.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_corse</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9487__rectorat_de_lacademie_de_creteil"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Créteil</field>
+        <field name="street">4, rue Georges Enesco</field>
+        <field name="city">Créteil Cedex</field>
+        <field name="zip">94010</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">01 57 02 60 00</field>
+        <field name="fax">01 57 02 62 55</field>
+        <field name="website">http://www.ac-creteil.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_creteil.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_creteil</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4533__rectorat_de_lacademie_de_dijon"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Dijon</field>
+        <field name="street">2 G rue général Dlaborde</field>
+        <field name="street2">BP 81 921</field>
+        <field name="city">Dijon cedex</field>
+        <field name="zip">21019</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_bourgogne" />
+        <field name="country_id" ref="base.fr" />
+        <field name="website">https://www.ac-dijon.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_dijon.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_dijon</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9488__rectorat_de_lacademie_de_grenoble"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Grenoble</field>
+        <field name="street">7 place Bir-Hakeim</field>
+        <field name="street2">CS 81065</field>
+        <field name="city">Grenoble Cedex 1</field>
+        <field name="zip">38021</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">04.76.74.70.00</field>
+        <field name="website">http://www.ac-grenoble.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_grenoble.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_grenoble</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9489__rectorat_de_lacademie_de_guadeloupe"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Guadeloupe</field>
+        <field name="street">Parc d'activités la Providence</field>
+        <field name="street2">ZAC de Dothémare BP 480</field>
+        <field name="city">Les Abymes  Cedex</field>
+        <field name="zip">97183</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_department_oversea.res_country_state_guadeloupe"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">05 90 47 81 00 </field>
+        <field name="fax">05 90 47 81 01</field>
+        <field name="website">http://www.ac-guadeloupe.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_guadeloupe.png"
+        />
+        <field name="xid">partner_academy.rectorat_guadeloupe</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9490__rectorat_de_lacademie_de_guyane"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Guyane</field>
+        <field name="street">Route de Baduel</field>
+        <field name="street2">BP6011</field>
+        <field name="city">Cayenne Cedex</field>
+        <field name="zip">97306</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_department_oversea.res_country_state_guyane"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">05 94 27 20 00</field>
+        <field name="website">http://www.ac-guyane.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_guyane.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_guyane</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9493__rectorat_de_lacademie_de_la_reunion"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de La Réunion</field>
+        <field name="street">24, avenue Georges Brassens</field>
+        <field name="street2">CS 71003</field>
+        <field name="city">Saint-Denis Cedex 9</field>
+        <field name="zip">97743</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_department_oversea.res_country_state_reunion"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">02 62 48 10 10</field>
+        <field name="website">https://www.ac-reunion.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_la_reunion.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_la_reunion</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9491__rectorat_de_lacademie_de_lille"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Lille</field>
+        <field name="street">144 rue de Bavay</field>
+        <field name="street2">BP709</field>
+        <field name="city">Lille Cedex</field>
+        <field name="zip">59033</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_nordpasdecalais" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">03 20 15 60 00</field>
+        <field name="website">http://www1.ac-lille.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_lille.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_lille</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9494__rectorat_de_lacademie_de_limoges"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Limoges</field>
+        <field name="street">13 rue François Chénieux</field>
+        <field name="city">Limoges Cedex</field>
+        <field name="zip">87031</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">05 55 11 40 40 </field>
+        <field name="website">https://www.ac-limoges.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_limoges.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_limoges</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9495__rectorat_de_lacademie_de_lyon"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Lyon</field>
+        <field name="street">92, rue de Marseille</field>
+        <field name="street2">BP 7227</field>
+        <field name="city">Lyon Cedex 07</field>
+        <field name="zip">69354</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">04 72 80 60 60</field>
+        <field name="website">http://www.ac-lyon.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_lyon.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_lyon</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9492__rectorat_de_lacademie_de_martinique"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Martinique</field>
+        <field name="street">Les Hauts de Terreville</field>
+        <field name="city">Schoelcher Cedex</field>
+        <field name="zip">97279</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_department_oversea.res_country_state_martinique"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">05 96 52 25 00</field>
+        <field name="website">http://www.ac-martinique.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_martinique.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_martinique</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9501__rectorat_de_lacademie_de_mayotte"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Mayotte</field>
+        <field name="street2">BP 76</field>
+        <field name="city">Mamoudzou</field>
+        <field name="zip">97600</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_department_oversea.res_country_state_mayotte"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">+262 269 61 10 24</field>
+        <field name="fax">+269 2 69 61 09 87</field>
+        <field name="website">https://www.ac-mayotte.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_mayotte.png"
+        />
+        <field name="xid">partner_academy.rectorat_mayotte</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4237__rectorat_de_lacademie_de_nancy_metz"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Nancy-Metz</field>
+        <field name="street">2 Rue Philippe de Gueldres</field>
+        <field name="city">Nancy</field>
+        <field name="zip">54000</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
+        <field name="country_id" ref="base.fr" />
+        <field name="website">http://www.ac-nancy-metz.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_nancy_metz.png"
+        />
+        <field name="xid">partner_academy.rectorat_nancy_metz</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9497__rectorat_de_lacademie_de_nantes"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Nantes</field>
+        <field name="street">4, rue de la Houssinière</field>
+        <field name="street2">BP 72616</field>
+        <field name="city">Nantes Cedex 03</field>
+        <field name="zip">44326</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_paysdelaloire" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">02 40 37 37 37</field>
+        <field name="website">https://www.ac-nantes.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_nantes.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_nantes</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9498__rectorat_de_lacademie_de_nice"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Nice</field>
+        <field name="street">53, avenue Cap de Croix</field>
+        <field name="city">Nice Cedex 2</field>
+        <field name="zip">06181</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_state.res_country_state_provencealpescotedazur"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">0493537070</field>
+        <field name="website">https://www.ac-nice.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_nice.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_nice</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_5312__rectorat_de_lacademie_de_normandie"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Normandie</field>
+        <field name="street">168 Rue Caponière</field>
+        <field name="city">Caen Cedex</field>
+        <field name="zip">14061</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_bassenormandie" />
+        <field name="country_id" ref="base.fr" />
+        <field name="website">https://www.ac-normandie.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_normandie.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_normandie</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4150__rectorat_de_lacademie_de_paris"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Paris</field>
+        <field name="street">94, Avenue Gambetta</field>
+        <field name="city">Paris</field>
+        <field name="zip">75984</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">0144624749</field>
+        <field name="email">reda.farah@ac-paris.fr</field>
+        <field name="website">https://www.ac-paris.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_paris.png"
+        />
+        <field name="xid">partner_academy.rectorat_paris</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4998__rectorat_de_lacademie_de_poitiers"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Poitiers</field>
+        <field name="street">22 rue Guillaume VII le Troubadour</field>
+        <field name="street2">CS 40625</field>
+        <field name="city">Poitiers Cedex</field>
+        <field name="zip">86022</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">05.16.52.66.00</field>
+        <field name="website">http://www.ac-poitiers.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_poitiers.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_poitiers</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9499__rectorat_de_lacademie_de_reims"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Reims</field>
+        <field name="street">1, rue Navier</field>
+        <field name="city">Reims Cedex</field>
+        <field name="zip">51082</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">03 26 05 69 69</field>
+        <field name="website">https://www.ac-reims.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_reims.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_reims</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4554__rectorat_de_lacademie_de_rennes"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Rennes</field>
+        <field name="street">96 rue d'Antrain</field>
+        <field name="street2">CS10503</field>
+        <field name="city">Rennes Cedex 7</field>
+        <field name="zip">35705</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_bretagne" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">02 23 21 77 77</field>
+        <field name="fax">02 23 21 73 05</field>
+        <field name="website">http://www.ac-rennes.fr/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_rennes.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_rennes</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_12062__rectorat_de_lacademie_de_rouen"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Rouen</field>
+        <field name="street">25 rue de Fontenelle</field>
+        <field name="city">Rouen</field>
+        <field name="zip">76000</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_bassenormandie" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">02 32 08 90 00</field>
+        <field name="email">ce.rectorat@ac-rouen.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_normandie.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_rouen</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4277__rectorat_de_lacademie_de_strasbourg"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Strasbourg</field>
+        <field name="street">6, rue de la Toussaint</field>
+        <field name="city">Strasbourg Cedex</field>
+        <field name="zip">67975</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">03 88 23 37 23</field>
+        <field name="website">http://www.ac-strasbourg.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_strasbourg.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_strasbourg</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_4178__rectorat_de_lacademie_de_toulouse"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Toulouse</field>
+        <field name="street">Place Saint Jacques</field>
+        <field name="city">Toulouse</field>
+        <field name="zip">31070</field>
+        <field
+            name="state_id"
+            ref="l10n_fr_state.res_country_state_languedocroussillon"
+        />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">05.61.17.70.00</field>
+        <field name="website">http://www.ac-toulouse.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_toulouse.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_toulouse</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9366__rectorat_de_lacademie_de_versailles"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Rectorat de l'académie de Versailles</field>
+        <field name="street">3 Boulevard de Lesseps</field>
+        <field name="city">Versailles</field>
+        <field name="zip">78017</field>
+        <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
+        <field name="country_id" ref="base.fr" />
+        <field name="phone">01 30 83 44 44</field>
+        <field name="website">http://www.ac-versailles.fr</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/rectorat_versailles.jpg"
+        />
+        <field name="xid">partner_academy.rectorat_versailles</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9504__vice_rectorat_de_polynesie_francaise"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Vice-Rectorat de Polynésie Française</field>
+        <field name="street">25 avenue Pierre LOTI</field>
+        <field name="street2">BP 1632</field>
+        <field name="city">Papeete</field>
+        <field name="zip">98713</field>
+        <field name="country_id" ref="base.pf" />
+        <field name="phone">+689 40 478 400 </field>
+        <field name="email">accueil@ac-polynesie.pf</field>
+        <field name="website">https://www.monvr.pf/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/vice_rectorat_polynesie_francaise.jpg"
+        />
+        <field name="xid">partner_academy.vice_rectorat_polynesie_francaise</field>
+    </record>
+
+    <record
+        model="res.partner"
+        id="xml_export.res_partner_9502__vice_rectorat_de_la_nouvelle_caledonie"
+    >
+        <field name="is_company" eval="True" />
+        <field name="name">Vice-Rectorat de la Nouvelle-Calédonie</field>
+        <field name="street">1, avenue des Frères Carcopino</field>
+        <field name="street2">BP G4</field>
+        <field name="city">Nouméa Cedex</field>
+        <field name="zip">98848</field>
+        <field name="country_id" ref="base.nc" />
+        <field name="phone">(+687) 26.61.00</field>
+        <field name="website">https://www.ac-noumea.nc/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/vice_rectorat_nouvelle_caledonie.jpg"
+        />
+        <field name="xid">partner_academy.vice_rectorat_nouvelle_caledonie</field>
+    </record>
+
+    <record model="res.partner" id="__export__.res_partner_9503_de6995d4">
+        <field name="is_company" eval="True" />
+        <field name="name">Vice-Rectorat des îles Wallis et Futuna</field>
+        <field name="street">BP244</field>
+        <field name="city">Mata'Utu</field>
+        <field name="zip">98600</field>
+        <field name="country_id" ref="base.wf" />
+        <field name="phone">(+681) 72.28.28</field>
+        <field name="fax">(+681) 72.20.40</field>
+        <field name="website">https://www.ac-wf.wf/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="partner_academy/static/img/vice_rectorat_wallis_futuna.jpg"
+        />
+        <field name="xid">partner_academy.vice_rectorat_wallis_futuna</field>
+    </record>
+
+</odoo>
