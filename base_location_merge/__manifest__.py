@@ -13,5 +13,9 @@
         "wizard/merge_res_city.xml",
         "wizard/merge_res_city_zip.xml",
     ],
+    "demo": [
+        "demo/res_city.xml",
+        "demo/res_city_zip.xml",
+    ],
     "installable": True,
 }

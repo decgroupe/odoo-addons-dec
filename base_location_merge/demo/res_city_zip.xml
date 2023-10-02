@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="res.city.zip" id="demo_lemans_72000_zip">
+        <field name="name">72000</field>
+        <field name="city_id" ref="demo_lemans_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_lemans_72002_zip">
+        <field name="name">72002</field>
+        <field name="city_id" ref="demo_lemans_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_lemans_72003_zip">
+        <field name="name">72003</field>
+        <field name="city_id" ref="demo_lemans_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_lemans_72100_zip">
+        <field name="name">72100</field>
+        <field name="city_id" ref="demo_lemans_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_belmontet_zip">
+        <field name="name">46025</field>
+        <field name="city_id" ref="demo_belmontet_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_lebreil_zip">
+        <field name="name">46166</field>
+        <field name="city_id" ref="demo_lebreil_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_montcuq_zip">
+        <field name="name">46201</field>
+        <field name="city_id" ref="demo_montcuq_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_saintecroix_zip">
+        <field name="name">46261</field>
+        <field name="city_id" ref="demo_saintecroix_city" />
+    </record>
+
+    <record model="res.city.zip" id="demo_valprionde_zip">
+        <field name="name">46326</field>
+        <field name="city_id" ref="demo_valprionde_city" />
+    </record>
+
+</odoo>

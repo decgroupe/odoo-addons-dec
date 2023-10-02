@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="res.city" id="demo_lemans_city">
+        <field name="name">Le Mans</field>
+        <field name="country_id" ref="base.fr" />
+    </record>
+
+    <record model="res.city" id="demo_saintecroix_city">
+        <field name="name">Sainte-Croix</field>
+        <field name="country_id" ref="base.fr" />
+    </record>
+
+    <record model="res.city" id="demo_belmontet_city">
+        <field name="name">Belmontet</field>
+        <field name="country_id" ref="base.fr" />
+    </record>
+
+    <record model="res.city" id="demo_lebreil_city">
+        <field name="name">Lebreil</field>
+        <field name="country_id" ref="base.fr" />
+    </record>
+
+    <record model="res.city" id="demo_montcuq_city">
+        <field name="name">Montcuq</field>
+        <field name="country_id" ref="base.fr" />
+    </record>
+
+    <record model="res.city" id="demo_valprionde_city">
+        <field name="name">Valprionde</field>
+        <field name="country_id" ref="base.fr" />
+    </record>
+
+</odoo>
