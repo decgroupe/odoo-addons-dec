@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "account",
+        "account_menu",
         "deltatech_merge",
     ],
     "data": [
