@@ -12,6 +12,7 @@ class AccountAccountTag(models.Model):
         """ """
         super_res = super().name_get()
         res = []
+        # WARNING: This will also checks for request.session.debug
         if self.user_has_groups("base.group_no_one"):
             ModelData = self.env["ir.model.data"]
             for item in super_res:
