@@ -466,6 +466,7 @@ class StockMove(models.Model):
         else:
             head = "{0}{1}".format(self.product_id.type_emoji, product_type)
 
+        # WARNING: This will also checks for request.session.debug
         if self.user_has_groups("base.group_no_one"):
             head = "{0} ({1})".format(head, self.id)
         status.insert(0, head)
