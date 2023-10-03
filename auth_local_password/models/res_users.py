@@ -72,15 +72,16 @@ class ResUsers(models.Model):
         ctx = self._crypt_context()
         for user in self:
             pw = user.local_password and user.local_password.strip()
-            if pw is False:
+            if not pw:
                 self._clear_local_password(user.id)
             else:
                 self._check_local_password(pw)
-                self._set_encrypted_local_password(user.id, ctx.encrypt(pw))
+                self._set_encrypted_local_password(user.id, ctx.hash(pw))
 
     def _check_credentials(self, password, env):
         try:
-            is_local = ipaddress.ip_address(self._get_ip_address()).is_private
+            ip_address = self._get_ip_address()
+            is_local = ip_address and ipaddress.ip_address(ip_address).is_private
             return super(
                 ResUsers, self.with_context(bypass_mfa=is_local)
             )._check_credentials(password, env)
