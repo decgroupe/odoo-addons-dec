@@ -27,6 +27,7 @@ class SoftwareLicenseFeatureValue(models.Model):
     def _name_get(self):
         self.ensure_one()
         res = self.name
+        # WARNING: This will also checks for request.session.debug
         if self.user_has_groups("base.group_no_one"):
             res = ("%s (%s)") % (res, self.property_id.name)
         return res
