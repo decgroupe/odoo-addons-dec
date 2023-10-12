@@ -23,14 +23,7 @@ class DelegateAuthSignup(http.Controller):
             raise werkzeug.exceptions.NotFound()
         return partner_id
 
-    @http.route(
-        "/signup/delegate/<string:token>",
-        type="http",
-        auth="public",
-        website=True,
-        csrf=True,
-    )
-    def delegate_create_contact(self, token, message=False, **kw):
+    def _delegate_create_contact(self, token, message=False, **kw):
         error = False
         partner_id = False
         Partner = request.env["res.partner"].sudo()
@@ -41,16 +34,16 @@ class DelegateAuthSignup(http.Controller):
                 partner_id = False
                 error = _(
                     "<b>"
-                    "You portal access must be active before you can create contacts."
+                    "Your portal access must be active before you can create contacts."
                     "</b>"
                     "<div>"
                     "<small>"
                     "Please check your email to enable your account, or request a new "
-                    "activation link by resetting your password for the login page."
+                    "activation link by resetting your password from the login page."
                     "</small>"
                     "</div>"
                 )
-            if http.request.httprequest.method == "POST":
+            if partner_id and http.request.httprequest.method == "POST":
                 contact_id = Partner.search([("email", "=", kw.get("email"))])
                 if contact_id:
                     # Having two or more contacts with the same email is
@@ -101,7 +94,8 @@ class DelegateAuthSignup(http.Controller):
                         "function": kw.get("function"),
                     }
                     contact_id = Partner.delegate_create_contact(vals)
-                contact_id.give_portal_access()
+                # Use the partner's user to give portal access
+                contact_id.with_user(user_id).give_portal_access()
                 message = _(
                     "Contact %s has been created and a "
                     "confirmation e-mail has been sent to %s"
@@ -115,7 +109,7 @@ class DelegateAuthSignup(http.Controller):
         except Exception as e:
             error = str(e)
 
-        return http.request.render(
+        return (
             "auth_signup_delegate.create_contact",
             {
                 "partner_id": partner_id,
@@ -127,3 +121,14 @@ class DelegateAuthSignup(http.Controller):
                 "error": error,
             },
         )
+
+    @http.route(
+        "/signup/delegate/<string:token>",
+        type="http",
+        auth="public",
+        website=True,
+        csrf=True,
+    )
+    def delegate_create_contact(self, token, message=False, **kw):
+        template_name, data = self._delegate_create_contact(token, message, **kw)
+        return http.request.render(template_name, data)

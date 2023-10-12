@@ -31,12 +31,13 @@ class ResPartnerSignupDelegate(models.TransientModel):
         if active_model == "res.partner" and active_id:
             partner_id = self.env["res.partner"].browse(active_id)[0]
             user_id = partner_id.user_ids and partner_id.user_ids[0] or False
-            rec.update(
-                {
-                    "user_id": user_id.id,
-                    "url": user_id.partner_id.get_delegate_signup_url(),
-                }
-            )
+            if user_id:
+                rec.update(
+                    {
+                        "user_id": user_id.id,
+                        "url": user_id.partner_id.get_delegate_signup_url(),
+                    }
+                )
         return rec
 
     def action_init_signup_delegation(self):
