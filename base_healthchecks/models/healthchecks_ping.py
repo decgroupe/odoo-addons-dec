@@ -56,7 +56,7 @@ class HealthchecksPing(models.Model):
         url = (
             self.env["ir.config_parameter"].sudo().get_param("healthchecks.url", False)
         )
-        self.action_ping(url)
+        return self.action_ping(url)
 
     @api.model
     def _get_ping_data(self):
