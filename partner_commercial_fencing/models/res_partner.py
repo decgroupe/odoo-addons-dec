@@ -30,6 +30,11 @@ class ResPartner(models.Model):
     def _compute_commercial_partner(self):
         super()._compute_commercial_partner()
         for rec in self:
-            rec.unfenced_commercial_partner_id = rec.commercial_partner_id
+            if rec.is_company or not rec.parent_id:
+                rec.unfenced_commercial_partner_id = rec.commercial_partner_id
+            else:
+                rec.unfenced_commercial_partner_id = (
+                    rec.parent_id.unfenced_commercial_partner_id
+                )
             if not rec.inherit_commercial_partner and not rec.is_company:
                 rec.commercial_partner_id = rec
