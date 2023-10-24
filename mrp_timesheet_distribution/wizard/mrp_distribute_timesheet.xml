@@ -112,7 +112,7 @@
     <record id="act_window_distribute_timesheet" model="ir.actions.act_window">
         <field name="name">🧙‍♂️ Distribute timesheet ...</field>
         <field name="binding_model_id" ref="mrp.model_mrp_production" />
-        <field name="binding_view_types">list</field>
+        <field name="binding_view_types">form,list</field>
         <field name="res_model">mrp.distribute.timesheet</field>
         <field name="view_mode">form</field>
         <field name="binding_type">action</field>
