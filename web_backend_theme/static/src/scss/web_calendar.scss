@@ -1,0 +1,31 @@
+.o_calendar_container {
+    .o_calendar_view {
+        .fc-event .fc-content {
+            margin: 2px 4px;
+            font-weight: revert;
+
+            div.o_field_user_id {
+            }
+            div.o_field_name {
+                font-size: 0.9em;
+                font-weight: 500;
+            }
+            div.o_field_partner_ids {
+                font-size: 0.6em;
+                float: right;
+            }
+            div.o_field_description {
+                font-size: 0.78em;
+            }
+        }
+
+        .o_calendar_widget {
+            > .fc-view-container img {
+                vertical-align: top;
+                margin-left: 1px;
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}

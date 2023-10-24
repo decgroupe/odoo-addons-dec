@@ -76,6 +76,11 @@
             <link
                 rel="stylesheet"
                 type="text/scss"
+                href="/web_backend_theme/static/src/scss/web_calendar.scss"
+            />
+            <link
+                rel="stylesheet"
+                type="text/scss"
                 href="/web_backend_theme/static/src/scss/fields_extra.scss"
             />
             <link
@@ -109,12 +114,12 @@
                 rel="stylesheet"
                 type="text/scss"
                 href="/web_backend_theme/static/src/scss/web_responsive.scss"
-            /> 
+            />
             <link
                 rel="stylesheet"
                 type="text/scss"
                 href="/web_backend_theme/static/src/scss/tooltip.scss"
-            /> 
+            />
         </xpath>
         <xpath expr="link[last()]" position="after">
             <!-- Override the loading -->
