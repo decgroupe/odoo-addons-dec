@@ -113,11 +113,20 @@ odoo.define('web_calendar_options.CalendarRenderer', function (require) {
                 slotDuration: slotDurationCookie,
                 snapDuration: snapDurationCookie,
                 weekNumberTitle: _t('W'),
-                businessHours: {
-                    daysOfWeek: [1, 2, 3, 4],
-                    start: '08:30',
-                    end: '17:00',
-                }
+                businessHours: [
+                    {
+                        daysOfWeek: [1, 2, 3, 4, 5],
+                        startTime: '08:30',
+                        endTime: '12:00',
+                    },
+                    {
+                        daysOfWeek: [1, 2, 3, 4, 5],
+                        startTime: '13:30',
+                        endTime: '17:00',
+                    }
+                ]
+                // Do not set firstDay, the Odoo Calendar already use the `lang.week_start`
+                // to set the first day of the week
             });
             this._super.apply(this, arguments);
         },
@@ -129,8 +138,7 @@ odoo.define('web_calendar_options.CalendarRenderer', function (require) {
         },
 
         get_option(name) {
-            // var option = this.calendar.fullCalendar('option', name);
-            var option = undefined;
+            var option = this.calendar.getOption(name);
             if (option === undefined) {
                 console.warn('get_option', name, option);
             }

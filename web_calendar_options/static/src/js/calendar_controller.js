@@ -13,9 +13,7 @@ odoo.define('web_calendar_options.CalendarController', function (require) {
          * @param {OdooEvent} event
          */
         _onChangeOption: function (event) {
-            this.renderer.$calendar.fullCalendar('option', {
-                [event.data.name]: event.data.value,
-            });
+            this.renderer.calendar.setOption(event.data.name, event.data.value);
         },
 
     });
