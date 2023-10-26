@@ -29,7 +29,14 @@ class MrpProduction(models.Model):
     def autocreate_mail_alias(self):
         for rec in self:
             if not rec.alias_name:
-                rec.alias_name = rec.name
+                rec.alias_name = self._clean_alias_name(rec.name)
+                if rec.alias_id:
+                    # Force thread_id since we don't wont to create a new
+                    # production order, we just want add incoming message
+                    # to the chatter
+                    rec.alias_force_thread_id = rec.id
+                else:
+                    rec.alias_force_thread_id = 0
 
     def _clean_alias_name(self, alias_name):
         return alias_name.replace("/", "")
@@ -37,21 +44,12 @@ class MrpProduction(models.Model):
     @api.model
     def create(self, vals):
         production = super(MrpProduction, self).create(vals)
-        if not production.alias_name:
-            production.alias_name = production.name
+        if not self.env.context.get("no_mail_alias_autocreate", False):
+            production.sudo().autocreate_mail_alias()
         return production
 
     def write(self, vals):
-        if vals.get("alias_name"):
-            vals["alias_name"] = self._clean_alias_name(vals["alias_name"])
         res = super().write(vals)
-        if vals.get("alias_name"):
-            for rec in self:
-                if rec.alias_id:
-                    # Force thead_id since we don't wont to create a new
-                    # production order, we just want add incoming message
-                    # to the chatter
-                    rec.alias_force_thread_id = rec.id
-                else:
-                    rec.alias_force_thread_id = 0
+        if not "alias_name" in vals:
+            self.sudo().autocreate_mail_alias()
         return res
