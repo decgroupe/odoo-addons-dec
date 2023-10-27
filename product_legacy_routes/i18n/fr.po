@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:11+0000\n"
-"PO-Revision-Date: 2020-07-28 22:55+0200\n"
+"POT-Creation-Date: 2023-10-27 13:16+0000\n"
+"PO-Revision-Date: 2023-10-27 15:18+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,45 +15,72 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: product_legacy_routes
 #: model:ir.model.fields,help:product_legacy_routes.field_product_product__procure_method
 #: model:ir.model.fields,help:product_legacy_routes.field_product_template__procure_method
-msgid "'Make to Stock': When needed, take from the stock or wait until re-supplying. 'Make to Order': When needed, purchase or produce for the procurement request."
-msgstr "'Sur stock' : au besoin, on prend dans le stock ou on attend jusqu'au prochain réapprovisionnement. 'À la demande': au besoin, on achète ou on fabrique selon la demande."
+msgid ""
+"'Make to Stock': When needed, take from the stock or wait until re-"
+"supplying.\n"
+"'Make to Order': When needed, purchase or produce for the procurement request."
+msgstr ""
+"'Sur stock' : au besoin, on prend dans le stock ou on attend jusqu'au "
+"prochain réapprovisionnement.\n"
+"'À la demande': au besoin, on achète ou on fabrique selon la demande."
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:43
-#: selection:product.template,supply_method:0
+#: code:addons/product_legacy_routes/models/product_template.py:0
+#: model:ir.model.fields.selection,name:product_legacy_routes.selection__product_template__supply_method__buy
 #, python-format
 msgid "Buy"
 msgstr "Acheter"
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:61
+#: model:ir.model.fields,field_description:product_legacy_routes.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_legacy_routes
+#: model:ir.model.fields,field_description:product_legacy_routes.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_legacy_routes
+#: model:ir.model.fields,help:product_legacy_routes.field_product_template__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: product_legacy_routes
+#: model:ir.model.fields,field_description:product_legacy_routes.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: product_legacy_routes
+#: code:addons/product_legacy_routes/models/product_template.py:0
 #, python-format
 msgid "Make To Order"
 msgstr "Sur commande"
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:69
-#, fuzzy, python-format
+#: code:addons/product_legacy_routes/models/product_template.py:0
+#: code:addons/product_legacy_routes/tests/test_product_legacy_routes.py:0
+#, python-format
 msgid "Make To Order + Make To Stock"
-msgstr "Sur commande"
+msgstr "Prendre dans le stock + approvisionnement à la commande"
 
 #. module: product_legacy_routes
-#: selection:product.template,procure_method:0
+#: model:ir.model.fields.selection,name:product_legacy_routes.selection__product_template__procure_method__make_to_order
 msgid "Make to Order"
 msgstr "Sur commande"
 
 #. module: product_legacy_routes
-#: selection:product.template,procure_method:0
+#: model:ir.model.fields.selection,name:product_legacy_routes.selection__product_template__procure_method__make_to_stock
 msgid "Make to Stock"
 msgstr "Production sur stock"
 
 #. module: product_legacy_routes
-#: code:addons/product_legacy_routes/models/product_template.py:52
+#: code:addons/product_legacy_routes/models/product_template.py:0
 #, python-format
 msgid "Manufacture"
 msgstr "Produire"
@@ -65,15 +92,19 @@ msgid "Procurement method"
 msgstr "Méthode d'approvisionnement"
 
 #. module: product_legacy_routes
-#: selection:product.template,supply_method:0
+#: model:ir.model.fields.selection,name:product_legacy_routes.selection__product_template__supply_method__produce
 msgid "Produce"
 msgstr "Produire"
 
 #. module: product_legacy_routes
 #: model:ir.model.fields,help:product_legacy_routes.field_product_product__supply_method
 #: model:ir.model.fields,help:product_legacy_routes.field_product_template__supply_method
-msgid "Produce will generate production order or tasks, according to the product type. Buy will trigger purchase orders when requested."
-msgstr "Produire génère l'ordre de fabrication ou les tâches, en fonction du type de produit. Acheter déclenchera des commandes d'achat en cas de besoin."
+msgid ""
+"Produce will generate production order or tasks, according to the product "
+"type. Buy will trigger purchase orders when requested."
+msgstr ""
+"Produire génère l'ordre de fabrication ou les tâches, en fonction du type de "
+"produit. Acheter déclenchera des commandes d'achat en cas de besoin."
 
 #. module: product_legacy_routes
 #: model:ir.model,name:product_legacy_routes.model_product_template
@@ -85,3 +116,8 @@ msgstr "Modèle d'article"
 #: model:ir.model.fields,field_description:product_legacy_routes.field_product_template__supply_method
 msgid "Supply method"
 msgstr "Méthode de fourniture"
+
+#. module: product_legacy_routes
+#: model:ir.model.fields,field_description:product_legacy_routes.field_product_template__xid
+msgid "XML-ID"
+msgstr "XML-ID"
