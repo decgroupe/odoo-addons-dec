@@ -1,13 +1,19 @@
 .task_progress {
-    width: 40%;
+    width: 55%;
     display: inline-block;
+    vertical-align: top;
     font-size: 10px;
+    margin-bottom: 5px;
+
+    .progress_container {
+        display: flex;
+    }
 
     .task_progress_bar {
-        width: 85%;
-        display: inline-block;
+        width: 65%;
+        display: flex;
         margin-bottom: 0px;
-        height: 10px;
+        height: 15px;
     }
 
     .task_progress_bar_done {
@@ -16,18 +22,30 @@
     }
 
     .task_completion {
-        width: 10%;
         display: inline-block;
-        height: 13px;
+        margin-left: 5px;
+        font-weight: bold;
+    }
+
+    .progress-bar {
+        height: 100%;
     }
 }
 
 .kanban_subtasks {
-    width: 55%;
+    width: 40%;
     display: inline-block;
+    vertical-align: top;
     font-size: 10px;
 
     ul {
-        -webkit-padding-start: 30px;
+        padding-left: 25px;
+        margin-bottom: 0;
+
+        .count_progress_item {
+            .number {
+                font-weight: bold;
+            }
+        }
     }
 }

@@ -16,19 +16,47 @@ class Task(models.Model):
         inverse_name="task_id",
         string="Subtask",
     )
-    kanban_subtasks = fields.Text(
-        compute="_compute_kanban_subtasks",
-    )
     default_user = fields.Many2one(
         comodel_name="res.users",
         compute="_compute_default_user",
     )
-    completion = fields.Integer(
-        string="Completion",
-        compute="_compute_completion",
+    user_active_subtask_ids = fields.One2many(
+        comodel_name="project.task.subtask",
+        compute="_compute_user_subtask_ids",
+        string="My sub-tasks (active)",
     )
-    completion_xml = fields.Text(
-        compute="_compute_completion_xml",
+    user_done_subtask_ids = fields.One2many(
+        comodel_name="project.task.subtask",
+        compute="_compute_user_subtask_ids",
+        string="My sub-tasks (done)",
+    )
+    user_todo_subtask_ids = fields.One2many(
+        comodel_name="project.task.subtask",
+        compute="_compute_user_subtask_ids",
+        string="My sub-tasks (todo)",
+    )
+    user_waiting_subtask_ids = fields.One2many(
+        comodel_name="project.task.subtask",
+        compute="_compute_user_subtask_ids",
+        string="My sub-tasks (waiting)",
+    )
+    user_done_subtask_progress = fields.Integer(
+        string="% Done",
+        compute="_compute_user_subtask_ids",
+    )
+    user_todo_subtask_progress = fields.Integer(
+        string="% Todo",
+        compute="_compute_user_subtask_ids",
+    )
+    user_waiting_subtask_progress = fields.Integer(
+        string="% Waiting",
+        compute="_compute_user_subtask_ids",
+    )
+    kanban_subtasks_progress_bar = fields.Text(
+        compute="_compute_kanban_subtasks_user_progress",
+    )
+    kanban_subtasks_progress_list = fields.Text(
+        compute="_compute_kanban_subtasks_user_progress",
     )
 
     def _compute_default_user(self):
@@ -47,88 +75,89 @@ class Task(models.Model):
                 ):
                     record.default_user = self.env.user
 
-    def _compute_kanban_subtasks(self):
-        self.kanban_subtasks = ""
-        for record in self:
-            result_string_td = ""
-            result_string_wt = ""
-            if record.subtask_ids:
-                task_todo_ids = record.subtask_ids.filtered(
-                    lambda x: x.state == "todo" and x.user_id.id == record.env.user.id
-                )
-                task_waiting_ids = record.subtask_ids.filtered(
-                    lambda x: x.state == "waiting"
-                    and x.user_id.id == record.env.user.id
-                )
-                if task_todo_ids:
-                    tmp_string_td = escape(": {}".format(len(task_todo_ids)))
-                    result_string_td += _("<li><b>To-Do{}</b></li>").format(
-                        tmp_string_td
-                    )
-                if task_waiting_ids:
-                    tmp_string_wt = escape(": {}".format(len(task_waiting_ids)))
-                    result_string_wt += _("<li><b>Waiting{}</b></li>").format(
-                        tmp_string_wt
-                    )
-            record.kanban_subtasks = (
-                '<div class="kanban_subtasks"><ul>'
-                + result_string_td
-                + result_string_wt
-                + "</ul></div>"
-            )
+    def _li_task(self, name, subtask_ids):
+        if not subtask_ids:
+            return ""
+        counter = escape(str(len(subtask_ids)))
+        return (
+            '<li class="count_progress_item">{}: <span class="number">{}</span></li>'
+        ).format(name, counter)
 
-    def _compute_completion(self):
-        for record in self:
-            record.completion = record.task_completion()
-
-    def _compute_completion_xml(self):
-        self.completion_xml = ""
-        for record in self:
-            active_subtasks = record.subtask_ids and record.subtask_ids.filtered(
-                lambda x: x.user_id.id == record.env.user.id and x.state != "cancelled"
-            )
-            if not active_subtasks:
-                record.completion_xml = """
-                    <div class="task_progress">
-                    </div>
-                    """
-                continue
-
-            completion = record.task_completion()
-            color = "bg-success-full"
-            if completion < 50:
-                color = "bg-danger-full"
-            header = _("Your Checklist:")
-            record.completion_xml = """
-            <div class="task_progress">
+    def _compute_kanban_subtasks_user_progress(self):
+        self.kanban_subtasks_progress_bar = ""
+        self.kanban_subtasks_progress_list = ""
+        for rec in self:
+            # Progress Bar
+            bar = ""
+            if rec.user_active_subtask_ids:
+                header = _("Your Checklist:")
+                bar = """
                 <div class="progress_info">
-                    {2}
+                    {0}
                 </div>
-                <div class ="o_kanban_counter_progress progress task_progress_bar">
-                    <div data-filter="done"
-                        class ="progress-bar {1} o_bar_has_records task_progress_bar_done"
-                        data-original-title="1 done"
-                        style="width: {0}%;">
+                <div class="progress_container">
+                    <div class="o_kanban_counter_progress progress task_progress_bar">
+                        <div class ="progress-bar bg-success-full" style="width: {1}%;"/>
+                        <div class ="progress-bar bg-warning-full" style="width: {2}%;"/>
                     </div>
-                    <div data-filter="blocked"
-                        class ="progress-bar bg-danger-full"
-                        data-original-title="0 blocked">
-                    </div>
+                    <div class="task_completion"> {1}% </div>
                 </div>
-                <div class="task_completion"> {0}% </div>
-            </div>
-            """.format(
-                int(completion), color, header
+                """.format(
+                    header,
+                    rec.user_done_subtask_progress,
+                    rec.user_waiting_subtask_progress,
+                )
+            rec.kanban_subtasks_progress_bar = (
+                '<div class="task_progress">{0}</div>'.format(bar)
+            )
+            # Progress List
+            lis = ""
+            if rec.user_done_subtask_ids:
+                lis += rec._li_task(_("Done"), rec.user_done_subtask_ids)
+            if rec.user_waiting_subtask_ids:
+                lis += rec._li_task(_("Waiting"), rec.user_waiting_subtask_ids)
+            if rec.user_todo_subtask_ids:
+                lis += rec._li_task(_("Todo"), rec.user_todo_subtask_ids)
+            rec.kanban_subtasks_progress_list = (
+                '<div class="kanban_subtasks"><ul>{}</ul></div>'.format(lis)
             )
 
-    def task_completion(self):
-        user_task_ids = self.subtask_ids.filtered(
-            lambda x: x.user_id.id == self.env.user.id and x.state != "cancelled"
-        )
-        if not user_task_ids:
-            return 100
-        user_done_task_ids = user_task_ids.filtered(lambda x: x.state == "done")
-        return (len(user_done_task_ids) / len(user_task_ids)) * 100
+    def _compute_user_subtask_ids(self):
+        for rec in self:
+            rec.user_active_subtask_ids = rec.subtask_ids.filtered(
+                lambda x: x.user_id.id == rec.env.user.id and x.state != "cancelled"
+            )
+            if not rec.user_active_subtask_ids:
+                # Tasks
+                rec.user_done_subtask_ids = False
+                rec.user_todo_subtask_ids = False
+                rec.user_waiting_subtask_ids = False
+                # Count
+                rec.user_done_subtask_progress = 100
+                rec.user_todo_subtask_progress = 100
+                rec.user_waiting_subtask_progress = 100
+            else:
+                # Tasks
+                rec.user_done_subtask_ids = rec.user_active_subtask_ids.filtered(
+                    lambda x: x.state == "done"
+                )
+                rec.user_todo_subtask_ids = rec.user_active_subtask_ids.filtered(
+                    lambda x: x.state == "todo"
+                )
+                rec.user_waiting_subtask_ids = rec.user_active_subtask_ids.filtered(
+                    lambda x: x.state == "waiting"
+                )
+                # Count
+                active_count = len(rec.user_active_subtask_ids)
+                rec.user_done_subtask_progress = (
+                    len(rec.user_done_subtask_ids) / active_count
+                ) * 100
+                rec.user_todo_subtask_progress = (
+                    len(rec.user_todo_subtask_ids) / active_count
+                ) * 100
+                rec.user_waiting_subtask_progress = (
+                    len(rec.user_waiting_subtask_ids) / active_count
+                ) * 100
 
     def send_subtask_email(
         self,
