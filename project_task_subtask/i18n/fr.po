@@ -6,10 +6,10 @@
 # Translation Bot <i18n-bot@it-projects.info>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 09:39+0000\n"
-"PO-Revision-Date: 2021-07-09 11:40+0200\n"
+"POT-Creation-Date: 2023-10-27 10:05+0000\n"
+"PO-Revision-Date: 2023-10-27 12:06+0200\n"
 "Last-Translator: Translation Bot <i18n-bot@it-projects.info>, 2018\n"
 "Language-Team: French (https://www.transifex.com/it-projects-llc/teams/76080/fr/)\n"
 "Language: fr\n"
@@ -20,16 +20,19 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:190
-#, python-format
-msgid "<li><b>To-Do{}</b></li>"
-msgstr "<li><b>À faire{}</b></li>"
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_done_subtask_progress
+msgid "% Done"
+msgstr "% Terminé"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:195
-#, python-format
-msgid "<li><b>Waiting{}</b></li>"
-msgstr "<li><b>En attente{}</b></li>"
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_todo_subtask_progress
+msgid "% Todo"
+msgstr "% À faire"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_waiting_subtask_progress
+msgid "% Waiting"
+msgstr "% En attente"
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_ids
@@ -37,9 +40,24 @@ msgid "Activities"
 msgstr "Activités"
 
 #. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Activité exception décoration"
+
+#. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_state
 msgid "Activity State"
 msgstr "Statut de l'activité"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d’activité"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,help:project_task_subtask.field_project_task_subtask__note
+msgid "Add details or comments"
+msgstr "Ajouter des détails ou des commentaires"
 
 #. module: project_task_subtask
 #: model:mail.message.subtype,name:project_task_subtask.all_subtask_subtype
@@ -53,48 +71,37 @@ msgid "Assigned to"
 msgstr "Assigné à"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:18
-#: selection:project.task.subtask,state:0
+#: code:addons/project_task_subtask/models/project_task_subtask.py:0
+#: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__cancelled
 #, python-format
 msgid "Cancelled"
 msgstr "Annulé"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.view_task_form2
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
 msgid "Change state to CANCELLED"
 msgstr "Changer l'état pour \"Annulé\""
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.view_task_form2
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
 msgid "Change state to DONE"
 msgstr "Changer l'état pour \"Terminé\""
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.view_task_form2
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
 msgid "Change state to TODO"
 msgstr "Changer l'état pour \"À faire\""
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.view_task_form2
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
 msgid "Change state to WAITING"
 msgstr "Changer l'état pour \"En attente\""
 
 #. module: project_task_subtask
 #: model:ir.actions.act_window,name:project_task_subtask.action_view_subtask
 #: model:ir.ui.menu,name:project_task_subtask.menu_action_view_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.view_task_form2
 msgid "Checklist"
 msgstr "Liste de contrôle"
-
-#. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__completion
-msgid "Completion"
-msgstr "Complétion"
-
-#. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__completion_xml
-msgid "Completion Xml"
-msgstr "Complétion Xml"
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__create_uid
@@ -118,35 +125,42 @@ msgid "Default User"
 msgstr "Utilisateur par défaut"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.view_task_form2
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
 msgid "Delete"
 msgstr "Supprimer"
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__name
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "Description"
 msgstr "Description"
 
 #. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__display_name
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:15
-#: selection:project.task.subtask,state:0
+#: code:addons/project_task_subtask/models/project_task.py:0
+#: code:addons/project_task_subtask/models/project_task_subtask.py:0
+#: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__done
 #, python-format
 msgid "Done"
 msgstr "Terminé"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "Filter"
 msgstr "Filtrer"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model:ir.model.fields,help:project_task_subtask.field_project_task_subtask__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome ex: fa-tasks"
+
+#. module: project_task_subtask
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "Group By"
 msgstr "Grouper Par"
 
@@ -156,28 +170,53 @@ msgid "Hide Button"
 msgstr "Masquer les boutons"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:297
+#: code:addons/project_task_subtask/models/project_task.py:0
 #, python-format
 msgid "I updated checklist item assigned to me"
 msgstr "J'ai mis à jour l'élément de la liste de contrôle qui m'est attribué"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:310
+#: code:addons/project_task_subtask/models/project_task.py:0
 #, python-format
 msgid "I updated checklist item, now its assigned to"
-msgstr "J'ai mis à jour l'élément de la liste de contrôle, maintenant il est attribué à"
+msgstr ""
+"J'ai mis à jour l'élément de la liste de contrôle, maintenant il est "
+"attribué à"
 
 #. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__id
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__id
 msgid "ID"
 msgstr "ID"
 
 #. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__kanban_subtasks
-msgid "Kanban Subtasks"
-msgstr "Sous-tâches Kanban"
+#: model:ir.model.fields,help:project_task_subtask.field_project_task__xid
+#: model:ir.model.fields,help:project_task_subtask.field_project_task_subtask__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,help:project_task_subtask.field_project_task_subtask__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__kanban_subtasks_progress_bar
+msgid "Kanban Subtasks Progress Bar"
+msgstr "Barre de progression des sous-tâches Kanban"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__kanban_subtasks_progress_list
+msgid "Kanban Subtasks Progress List"
+msgstr "Liste de progression des sous-tâches Kanban"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task____last_update
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask____last_update
 msgid "Last Modified on"
 msgstr "Dernière Modification le"
@@ -193,14 +232,39 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "My"
 msgstr "Mes"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Mon échéance d'activité"
 
 #. module: project_task_subtask
 #: model:ir.ui.menu,name:project_task_subtask.menu_project_mytasks
 msgid "My Tasks"
 msgstr "Mes tâches"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_active_subtask_ids
+msgid "My sub-tasks (active)"
+msgstr "Mes sous-tâches (actives)"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_done_subtask_ids
+msgid "My sub-tasks (done)"
+msgstr "Mes sous-tâches (terminées)"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_todo_subtask_ids
+msgid "My sub-tasks (todo)"
+msgstr "Mes sous-tâches (à faire)"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_waiting_subtask_ids
+msgid "My sub-tasks (waiting)"
+msgstr "Mes sous-tâches (en attente)"
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_date_deadline
@@ -223,30 +287,22 @@ msgid "Note"
 msgstr "Remarque"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:108
+#: code:addons/project_task_subtask/models/project_task_subtask.py:0
 #, python-format
 msgid "Only users related to that subtask can change the name."
-msgstr "Seuls les utilisateurs associés à cette sous-tâche peuvent changer son nom."
+msgstr ""
+"Seuls les utilisateurs associés à cette sous-tâche peuvent changer son nom."
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:92
+#: code:addons/project_task_subtask/models/project_task_subtask.py:0
 #, python-format
 msgid "Only users related to that subtask can change the state."
-msgstr "Seuls les utilisateurs associés à cette sous-tâche peuvent changer son état."
-
-#. module: project_task_subtask
-#: selection:project.task.subtask,activity_state:0
-msgid "Overdue"
-msgstr "Dû"
-
-#. module: project_task_subtask
-#: selection:project.task.subtask,activity_state:0
-msgid "Planned"
-msgstr "Planifié"
+msgstr ""
+"Seuls les utilisateurs associés à cette sous-tâche peuvent changer son état."
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__project_id
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "Project"
 msgstr "Projet"
 
@@ -262,7 +318,7 @@ msgstr "Responsable"
 
 #. module: project_task_subtask
 #. openerp-web
-#: code:addons/project_task_subtask/static/src/xml/templates.xml:10
+#: code:addons/project_task_subtask/static/src/xml/templates.xml:0
 #, python-format
 msgid "Sort"
 msgstr "Trier"
@@ -288,8 +344,13 @@ msgstr ""
 #. module: project_task_subtask
 #: model:mail.message.subtype,description:project_task_subtask.all_subtask_subtype
 #: model:mail.message.subtype,description:project_task_subtask.subtasks_subtype
-msgid "Subscribe to checklist updates of other users. By default you are notified on checklist items to and from you only."
-msgstr "Abonnez-vous aux mises à jour de la liste de contrôle des autres utilisateurs. Par défaut, vous êtes averti uniquement vos éléments de la liste de contrôle."
+msgid ""
+"Subscribe to checklist updates of other users. By default you are notified "
+"on checklist items to and from you only."
+msgstr ""
+"Abonnez-vous aux mises à jour de la liste de contrôle des autres "
+"utilisateurs. Par défaut, vous êtes averti uniquement vos éléments de la "
+"liste de contrôle."
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task__subtask_ids
@@ -297,19 +358,19 @@ msgid "Subtask"
 msgstr "Sous-tâche"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.view_id
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_form_view
 msgid "Subtask Message"
 msgstr "Message de sous-tâche"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "TODO"
-msgstr "Á faire"
+msgstr "À faire"
 
 #. module: project_task_subtask
 #: model:ir.model,name:project_task_subtask.model_project_task
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__task_id
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "Task"
 msgstr "Tâche"
 
@@ -319,44 +380,57 @@ msgid "Task state"
 msgstr "État de la tâche"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:16
-#: selection:project.task.subtask,state:0
+#: code:addons/project_task_subtask/models/project_task_subtask.py:0
+#: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__todo
 #, python-format
 msgid "To-Do"
 msgstr "À faire"
 
 #. module: project_task_subtask
-#: selection:project.task.subtask,activity_state:0
-msgid "Today"
-msgstr "Aujourd'hui"
+#: code:addons/project_task_subtask/models/project_task.py:0
+#, python-format
+msgid "Todo"
+msgstr "À faire"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,help:project_task_subtask.field_project_task_subtask__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type d'activité d'exception enregistrée."
 
 #. module: project_task_subtask
 #. openerp-web
-#: code:addons/project_task_subtask/static/src/xml/templates.xml:15
+#: code:addons/project_task_subtask/static/src/xml/templates.xml:0
 #, python-format
 msgid "Unsort"
 msgstr "Annuler le tri"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:327
+#: code:addons/project_task_subtask/models/project_task.py:0
 #, python-format
 msgid "Updated from"
 msgstr "Mis à jour depuis"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_view_search
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "User"
 msgstr "Utilisateur"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:17
-#: selection:project.task.subtask,state:0
+#: code:addons/project_task_subtask/models/project_task.py:0
+#: code:addons/project_task_subtask/models/project_task_subtask.py:0
+#: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__waiting
 #, python-format
 msgid "Waiting"
 msgstr "En attente"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:227
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__xid
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: project_task_subtask
+#: code:addons/project_task_subtask/models/project_task.py:0
 #, python-format
 msgid "Your Checklist:"
 msgstr "Votre liste de contrôle :"
@@ -365,6 +439,32 @@ msgstr "Votre liste de contrôle :"
 #: model:ir.model,name:project_task_subtask.model_project_task_subtask
 msgid "project.task.subtask"
 msgstr "project.task.subtask"
+
+#. module: project_task_subtask
+#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_team_user_ids
+msgid "test field"
+msgstr "champ de test"
+
+#~ msgid "<li><b>To-Do{}</b></li>"
+#~ msgstr "<li><b>À faire{}</b></li>"
+
+#~ msgid "<li><b>Waiting{}</b></li>"
+#~ msgstr "<li><b>En attente{}</b></li>"
+
+#~ msgid "Completion"
+#~ msgstr "Complétion"
+
+#~ msgid "Completion Xml"
+#~ msgstr "Complétion Xml"
+
+#~ msgid "Overdue"
+#~ msgstr "Dû"
+
+#~ msgid "Planned"
+#~ msgstr "Planifié"
+
+#~ msgid "Today"
+#~ msgstr "Aujourd'hui"
 
 #~ msgid "Change state to Waiting"
 #~ msgstr "Changer l'état pour \"En attente\""
