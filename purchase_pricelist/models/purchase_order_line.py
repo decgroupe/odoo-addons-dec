@@ -43,7 +43,7 @@ class PurchaseOrderLine(models.Model):
             product, order_id.pricelist_id, taxes_id, order_id.company_id
         )
         return res
-    
+
     def _is_editable(self):
         return True
 
@@ -53,7 +53,7 @@ class PurchaseOrderLine(models.Model):
     def _onchange_quantity(self):
         super()._onchange_quantity()
         if (
-            self._is_editable() # purchase_product_pack compatibility
+            self._is_editable()  # purchase_product_pack compatibility
             and self.product_id
             and self.order_id.pricelist_id
             and self.order_id.partner_id
@@ -68,3 +68,19 @@ class PurchaseOrderLine(models.Model):
 
     def _suggest_quantity(self):
         super()._suggest_quantity()
+
+    def _prepare_purchase_order_line(
+        self, product_id, product_qty, product_uom, company_id, supplier, po
+    ):
+        res = super()._prepare_purchase_order_line(
+            product_id, product_qty, product_uom, company_id, supplier, po
+        )
+        if po and po.pricelist_id:
+            taxes_id = self.env["account.tax"]
+            if res.get("taxes_id") and len(res["taxes_id"][0]) == 3:
+                taxes_id = taxes_id.browse(res["taxes_id"][0][2])
+            price_unit = self.env["purchase.order.line"]._get_price_unit_by_quantity(
+                po, product_id, product_qty, product_uom, taxes_id
+            )
+            res["price_unit"] = price_unit
+        return res
