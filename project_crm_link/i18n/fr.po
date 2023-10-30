@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-31 10:50+0000\n"
-"PO-Revision-Date: 2022-10-31 11:51+0100\n"
+"POT-Creation-Date: 2023-10-30 15:19+0000\n"
+"PO-Revision-Date: 2023-10-30 16:20+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -30,6 +30,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: project_crm_link
+#: model:ir.model.fields,help:project_crm_link.field_crm_lead__xid
+#: model:ir.model.fields,help:project_crm_link.field_project_project__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: project_crm_link
 #: model:ir.model.fields,field_description:project_crm_link.field_crm_lead____last_update
 #: model:ir.model.fields,field_description:project_crm_link.field_project_project____last_update
 msgid "Last Modified on"
@@ -44,6 +50,11 @@ msgstr "Piste/opportunité"
 #: model_terms:ir.ui.view,arch_db:project_crm_link.project_project_filter_view
 msgid "Linked Opportunities"
 msgstr "Opportunités liées"
+
+#. module: project_crm_link
+#: model:ir.model.fields,field_description:project_crm_link.field_project_project__opportunity_ids
+msgid "Opportunities"
+msgstr "Opportunités"
 
 #. module: project_crm_link
 #: model:ir.model.fields,field_description:project_crm_link.field_project_project__linked_lead_id
@@ -62,6 +73,20 @@ msgstr "Nombre de projets connexes"
 
 #. module: project_crm_link
 #: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__related_project_ids
-#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_case_oppor_form_view
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
 msgid "Related Projects"
 msgstr "Projets connexes"
+
+#. module: project_crm_link
+#: model:ir.model.fields,help:project_crm_link.field_project_project__opportunity_ids
+msgid ""
+"The same project can be used to store timesheets of multiple opportunities"
+msgstr ""
+"Le même projet peut être utilisé pour stocker les feuilles de temps de "
+"plusieurs opportunités"
+
+#. module: project_crm_link
+#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__xid
+#: model:ir.model.fields,field_description:project_crm_link.field_project_project__xid
+msgid "XML-ID"
+msgstr "XML-ID"

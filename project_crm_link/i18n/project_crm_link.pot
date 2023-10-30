@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_crm_link
+# 	* project_crm_link
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-31 10:50+0000\n"
-"PO-Revision-Date: 2022-10-31 10:50+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-10-30 15:20+0000\n"
+"PO-Revision-Date: 2023-10-30 15:20+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,6 +28,12 @@ msgid "ID"
 msgstr ""
 
 #. module: project_crm_link
+#: model:ir.model.fields,help:project_crm_link.field_crm_lead__xid
+#: model:ir.model.fields,help:project_crm_link.field_project_project__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: project_crm_link
 #: model:ir.model.fields,field_description:project_crm_link.field_crm_lead____last_update
 #: model:ir.model.fields,field_description:project_crm_link.field_project_project____last_update
 msgid "Last Modified on"
@@ -41,6 +47,11 @@ msgstr ""
 #. module: project_crm_link
 #: model_terms:ir.ui.view,arch_db:project_crm_link.project_project_filter_view
 msgid "Linked Opportunities"
+msgstr ""
+
+#. module: project_crm_link
+#: model:ir.model.fields,field_description:project_crm_link.field_project_project__opportunity_ids
+msgid "Opportunities"
 msgstr ""
 
 #. module: project_crm_link
@@ -60,7 +71,18 @@ msgstr ""
 
 #. module: project_crm_link
 #: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__related_project_ids
-#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_case_oppor_form_view
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
 msgid "Related Projects"
 msgstr ""
 
+#. module: project_crm_link
+#: model:ir.model.fields,help:project_crm_link.field_project_project__opportunity_ids
+msgid ""
+"The same project can be used to store timesheets of multiple opportunities"
+msgstr ""
+
+#. module: project_crm_link
+#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__xid
+#: model:ir.model.fields,field_description:project_crm_link.field_project_project__xid
+msgid "XML-ID"
+msgstr ""
