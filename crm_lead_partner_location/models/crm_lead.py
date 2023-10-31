@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class CrmLead(models.Model):
@@ -46,13 +46,11 @@ class CrmLead(models.Model):
         store=True,
     )
 
-    def _onchange_partner_id_values(self, partner_id):
-        result = super()._onchange_partner_id_values(partner_id)
-        if partner_id:
-            partner = self.env["res.partner"].browse(partner_id)
-            addr = partner.address_get(["delivery"])
-            result["partner_shipping_id"] = addr["delivery"]
-        return result
+    @api.onchange("partner_id")
+    def _onchange_partner_id(self):
+        if self.partner_id:
+            addr = self.partner_id.address_get(["delivery"])
+            self.partner_shipping_id = self.env["res.partner"].browse(addr["delivery"])
 
     def _convert_opportunity_data(self, customer, team_id=False):
         values = super()._convert_opportunity_data(customer, team_id)
