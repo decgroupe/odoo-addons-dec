@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- 1/2: Force a group to allow other relaxing rules -->
+    <record model="ir.rule" id="base.ir_ui_view_custom_personal">
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- 2/2: Specific rule for admin that allows him to see all dashboards -->
+    <record model="ir.rule" id="ir_ui_view_custom_admin">
+        <field name="name">ir.ui.view_custom rule for admin</field>
+        <field name="model_id" ref="base.model_ir_ui_view_custom"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+
+</odoo>
