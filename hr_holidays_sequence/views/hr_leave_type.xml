@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+
+    <record model="ir.ui.view" id="edit_holiday_status_form_view">
+        <field name="name">hr.leave.type.form@hr_holidays_sequence</field>
+        <field name="model">hr.leave.type</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form" />
+        <field name="arch" type="xml">
+            <field name="request_unit" position="after">
+                <field name="sequence" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
