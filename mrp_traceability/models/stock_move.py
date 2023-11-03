@@ -1,8 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2020
 
+import logging
+
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class StockMove(models.Model):
@@ -100,11 +104,13 @@ class StockMove(models.Model):
                 continue
             if not production_id.move_raw_ids and not production_move_id.move_orig_ids:
                 continue
-            print(
-                "Processing",
-                production_id.name,
-                production_id.state,
-                production_id.bom_id.name_get()[0][1],
+            if production_id.bom_id:
+                bom_name = production_id.bom_id.name_get()[0][1]
+            else:
+                bom_name = "???"
+            _logger.info(
+                "Processing %s %s %s"
+                % (production_id.name, production_id.state, bom_name)
             )
             raw_move_ids = production_move_id.move_orig_ids
             if (
