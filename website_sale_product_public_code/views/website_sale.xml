@@ -27,7 +27,7 @@
             <t t-set="additional_title" t-value="product.website_public_code" />
         </xpath>
         <!-- Product Title -->
-        <xpath expr="//h1[@t-field='product.name']" position="after">
+        <xpath expr="//h2[@itemprop='name']" position="after">
             <div class="badge badge-dark">
                 Ref: <span
                     itemprop="website_public_code"
