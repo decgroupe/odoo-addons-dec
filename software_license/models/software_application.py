@@ -6,6 +6,7 @@ from odoo import fields, models
 
 class SoftwareApplication(models.Model):
     _inherit = "software.application"
+    _order = "identifier asc, name"
 
     identifier = fields.Integer(
         string="Identifier",

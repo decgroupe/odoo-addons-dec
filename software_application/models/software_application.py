@@ -7,7 +7,7 @@ from odoo import _, api, fields, models, tools
 class SoftwareApplication(models.Model):
     _name = "software.application"
     _description = "Software Application"
-    _order = "identifier asc, name"
+    _order = "name"
 
     active = fields.Boolean(
         string="Active",
