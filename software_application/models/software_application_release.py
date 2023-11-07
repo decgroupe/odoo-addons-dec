@@ -16,6 +16,7 @@ class SoftwareApplicationRelease(models.Model):
         comodel_name="software.application",
         string="Application",
         required=True,
+        ondelete="cascade",
     )
     version = fields.Char(
         string="Version",
@@ -191,10 +192,13 @@ class SoftwareApplicationRelease(models.Model):
             sem_ver = False
             for o2m in self.env.context.get("release_ids"):
                 version = False
-                if isinstance(o2m[1], int):
+                is_real_id = isinstance(o2m[1], int) and o2m[1] > 0
+                is_new_id = isinstance(o2m[1], int) and o2m[1] == 0
+                is_virtual_id = isinstance(o2m[1], str)
+                if is_real_id:
                     rec_id = o2m[1]
                     version = self.browse(rec_id).version
-                elif isinstance(o2m[1], str) and isinstance(o2m[2], dict):
+                elif (is_new_id or is_virtual_id) and isinstance(o2m[2], dict):
                     rec_data = o2m[2]
                     version = rec_data.get("version", False)
                 if version:
@@ -215,15 +219,17 @@ class SoftwareApplicationRelease(models.Model):
             items.append("<li><p>%s %d</p></li>" % (name, i + 1))
         return "<ul>%s</ul>" % "".join(items)
 
-    @api.model
-    def _get_default_content(self):
-        default_titles = [
+    def _get_default_content_titles(self):
+        return [
             (_("What's New"), _("new")),
             (_("Fixes"), _("fix")),
             (_("Known Issues"), _("issue")),
         ]
+
+    @api.model
+    def _get_default_content(self):
         content = []
-        for title, item_name in default_titles:
+        for title, item_name in self._get_default_content_titles():
             content.append(
                 "<h2>%s</h2>%s"
                 % (

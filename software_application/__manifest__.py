@@ -20,5 +20,10 @@
         "views/menu.xml",
         "views/assets.xml",
     ],
+    "demo": [
+        "demo/product_product.xml",
+        "demo/software_tag.xml",
+        "demo/software_application.xml",
+    ],
     "installable": True,
 }

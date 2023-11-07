@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.application" id="res_myfitnessapp_userguide">
+        <field name="name">MyFitnessApp's Userguide</field>
+        <field name="type">resource</field>
+    </record>
+
+    <record model="software.application" id="sa_myfitnessapp">
+        <field name="name">MyFitnessApp</field>
+        <field name="type">inhouse</field>
+        <field
+            name="resource_ids"
+            eval="[(4, ref('software_application.res_myfitnessapp_userguide')),]"
+        />
+        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi7')),]" />
+    </record>
+
+    <record model="software.application.release" id="sa_myfitnessapp_r0">
+        <field name="application_id" ref="software_application.sa_myfitnessapp" />
+        <field name="version">1.0.0</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/apps/myfitnessapp/setup_1.0.0.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=3)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application.release" id="sa_myfitnessapp_r1">
+        <field name="application_id" ref="software_application.sa_myfitnessapp" />
+        <field name="version">1.0.1</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/apps/myfitnessapp/setup_1.0.1.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application" id="sa_calm">
+        <field name="name">Calm</field>
+        <field name="type">inhouse</field>
+        <field name="info">App #1 for sleep, meditation and relaxation.</field>
+        <field
+            name="image"
+            type="base64"
+            file="software_application/static/img/calm.png"
+        />
+        <field name="product_id" ref="product_calm" />
+        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi3')),]" />
+    </record>
+
+    <record model="software.application.release" id="sa_calm_r0">
+        <field name="application_id" ref="software_application.sa_calm" />
+        <field name="version">1.0.1-beta+Q3</field>
+        <field name="url">https://cdn.mydomain.com/apps/calm/setup_v1.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(days=45)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application" id="sa_newage">
+        <field name="name">New Age</field>
+        <field name="type">inhouse</field>
+        <field
+            name="info"
+        >New Age is our internal codename for our new top secret application</field>
+        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi16')),]" />
+    </record>
+
+    <record model="software.application" id="sa_brickgame">
+        <field name="name">The Brick Game</field>
+        <field name="type">inhouse</field>
+        <field name="info">2D Arcade Game</field>
+        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi3')),]" />
+    </record>
+
+</odoo>

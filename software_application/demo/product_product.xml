@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="product.product" id="product_calm">
+        <field name="name">Calm</field>
+        <field name="default_code">CLM001</field>
+        <field name="categ_id" ref="product.product_category_4"/>
+        <field name="standard_price">0</field>
+        <field name="list_price">25</field>
+        <field name="type">service</field>
+        <field name="description_sale">Relaxing Application for your Smartphone</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.tag" id="tag_pegi3">
+        <field name="name">Pegi 3</field>
+    </record>
+
+    <record model="software.tag" id="tag_pegi7">
+        <field name="name">Pegi 7</field>
+    </record>
+
+    <record model="software.tag" id="tag_pegi12">
+        <field name="name">Pegi 12</field>
+    </record>
+
+    <record model="software.tag" id="tag_pegi16">
+        <field name="name">Pegi 16</field>
+    </record>
+
+    <record model="software.tag" id="tag_pegi18">
+        <field name="name">Pegi 18</field>
+    </record>
+
+</odoo>

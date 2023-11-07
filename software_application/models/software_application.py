@@ -55,6 +55,7 @@ class SoftwareApplication(models.Model):
     attachment_image = fields.Binary(
         string="Launcher Image",
         attachment=True,
+        help="Technical field used to store the image in the database"
     )
     tag_ids = fields.Many2many(
         comodel_name="software.tag",
