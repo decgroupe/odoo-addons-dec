@@ -12,55 +12,6 @@ class SoftwareApplicationRelease(models.Model):
     _order = "version_major desc, version_minor desc, version_patch desc"
     _rec_name = "version"
 
-    @api.model
-    def _get_default_version(self):
-        res = "1.0.0"
-        if "release_ids" in self.env.context:
-            sem_ver = False
-            for o2m in self.env.context.get("release_ids"):
-                version = False
-                if isinstance(o2m[1], int):
-                    rec_id = o2m[1]
-                    version = self.browse(rec_id).version
-                elif isinstance(o2m[1], str) and isinstance(o2m[2], dict):
-                    rec_data = o2m[2]
-                    version = rec_data.get("version", False)
-                if version:
-                    cur_sem_ver = semver.VersionInfo.parse(version)
-                    if not sem_ver or cur_sem_ver > sem_ver:
-                        sem_ver = cur_sem_ver
-            if sem_ver:
-                res = str(sem_ver.bump_major())
-        return res
-
-    def _get_default_content_items(self, name="item", count=1):
-        items = []
-        for i in range(count):
-            items.append("<li><p>%s %d</p></li>" % (name, i + 1))
-        return "<ul>%s</ul>" % "".join(items)
-
-    @api.model
-    def _get_default_content(self):
-        default_titles = [
-            (_("What's New"), _("new")),
-            (_("Fixes"), _("fix")),
-            (_("Known Issues"), _("issue")),
-        ]
-        content = []
-        for title, item_name in default_titles:
-            content.append(
-                "<h2>%s</h2>%s"
-                % (
-                    title,
-                    self._get_default_content_items(item_name, 3),
-                )
-            )
-        return "".join(content)
-
-    @api.model
-    def _get_default_url(self):
-        return ""
-
     application_id = fields.Many2one(
         comodel_name="software.application",
         string="Application",
@@ -68,7 +19,7 @@ class SoftwareApplicationRelease(models.Model):
     )
     version = fields.Char(
         string="Version",
-        default=_get_default_version,
+        default=lambda self: self._get_default_version(),
         required=True,
         help="Version numbering using semver https://semver.org.\n"
         "A normal version number MUST take the form X.Y.Z where X, Y, and Z "
@@ -87,7 +38,7 @@ class SoftwareApplicationRelease(models.Model):
         inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
-        required=True,
+        required=False,
         help="Major version X (X.y.z | X > 0) MUST be incremented if any "
         "backwards incompatible changes are introduced to the public API.\n"
         "It MAY also include minor and patch level changes.\n"
@@ -100,7 +51,7 @@ class SoftwareApplicationRelease(models.Model):
         inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
-        required=True,
+        required=False,
         help="Minor version Y (x.Y.z | x > 0) MUST be incremented if new, "
         "backwards compatible functionality is introduced to the public API.\n"
         "It MUST be incremented if any public API functionality is marked as "
@@ -116,7 +67,7 @@ class SoftwareApplicationRelease(models.Model):
         inverse="_inverse_version_number_metadata",
         readonly=False,
         store=True,
-        required=True,
+        required=False,
         help="Patch version Z (x.y.Z | x > 0) MUST be incremented if only "
         "backwards compatible bug fixes are introduced.\n"
         "A bug fix is defined as an internal change that fixes incorrect "
@@ -166,17 +117,17 @@ class SoftwareApplicationRelease(models.Model):
         string="Date",
         help="Release's Date",
         required=True,
-        default=fields.Date.context_today,
+        default=lambda self: self._get_default_date(),
     )
     content = fields.Html(
         string="Release Notes",
         translate=False,
         sanitize=False,
-        default=_get_default_content,
+        default=lambda self: self._get_default_content(),
     )
     url = fields.Char(
         string="Download URL",
-        default=_get_default_url,
+        default=lambda self: self._get_default_url(),
     )
 
     _sql_constraints = [
@@ -232,3 +183,56 @@ class SoftwareApplicationRelease(models.Model):
                 rec.version_build or "",
             )
             rec.version = str(ver)
+
+    @api.model
+    def _get_default_version(self):
+        res = "1.0.0"
+        if "release_ids" in self.env.context:
+            sem_ver = False
+            for o2m in self.env.context.get("release_ids"):
+                version = False
+                if isinstance(o2m[1], int):
+                    rec_id = o2m[1]
+                    version = self.browse(rec_id).version
+                elif isinstance(o2m[1], str) and isinstance(o2m[2], dict):
+                    rec_data = o2m[2]
+                    version = rec_data.get("version", False)
+                if version:
+                    cur_sem_ver = semver.VersionInfo.parse(version)
+                    if not sem_ver or cur_sem_ver > sem_ver:
+                        sem_ver = cur_sem_ver
+            if sem_ver:
+                res = str(sem_ver.bump_major())
+        return res
+
+    @api.model
+    def _get_default_date(self):
+        return fields.Date.context_today(self)
+
+    def _get_default_content_items(self, name="item", count=1):
+        items = []
+        for i in range(count):
+            items.append("<li><p>%s %d</p></li>" % (name, i + 1))
+        return "<ul>%s</ul>" % "".join(items)
+
+    @api.model
+    def _get_default_content(self):
+        default_titles = [
+            (_("What's New"), _("new")),
+            (_("Fixes"), _("fix")),
+            (_("Known Issues"), _("issue")),
+        ]
+        content = []
+        for title, item_name in default_titles:
+            content.append(
+                "<h2>%s</h2>%s"
+                % (
+                    title,
+                    self._get_default_content_items(item_name, 3),
+                )
+            )
+        return "".join(content)
+
+    @api.model
+    def _get_default_url(self):
+        return ""
