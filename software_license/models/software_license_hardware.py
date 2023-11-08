@@ -20,7 +20,7 @@ class SoftwareLicenseHardware(models.Model):
         string="Identifier",
     )
     info = fields.Text(
-        "Informations",
+        string="Informations",
     )
 
     def _prepare_export_vals(self, include_license_data=True):

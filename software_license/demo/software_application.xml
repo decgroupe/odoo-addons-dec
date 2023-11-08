@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.application" id="software_application.sa_myfitnessapp">
+        <field name="template_id" ref="sl_myfitnessapp_tpl1" />
+        <field name="identifier" eval="1001" />
+    </record>
+
+    <record model="software.application" id="software_application.sa_brickgame">
+        <field name="identifier" eval="1002" />
+    </record>
+
+</odoo>

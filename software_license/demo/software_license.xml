@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.license" id="sl_myfitnessapp_tpl1">
+        <field name="application_id" ref="software_application.sa_myfitnessapp"/>
+        <field name="type">template</field>
+        <field name="serial">✳️ Template 1</field>
+    </record>
+
+    <record model="software.license" id="sl_myfitnessapp1">
+        <field name="application_id" ref="software_application.sa_myfitnessapp"/>
+        <field name="type">standard</field>
+        <field name="serial">0DAY-0001</field>
+        <field name="partner_id" ref="base.res_partner_address_15"/>
+    </record>
+
+    <record model="software.license.hardware" id="sl_myfitnessapp1_hw1">
+        <field name="license_id" ref="sl_myfitnessapp1"/>
+        <field name="name">13:bd:17:6b:03:46</field>
+        <field name="info">Mac-ID</field>
+    </record>
+
+    <record model="software.license.hardware" id="sl_myfitnessapp1_hw2">
+        <field name="license_id" ref="sl_myfitnessapp1"/>
+        <field name="name">6a:32:bb:7f:36:14</field>
+        <field name="info">Mac-ID</field>
+    </record>
+
+    <record model="software.license" id="sl_myfitnessapp2">
+        <field name="application_id" ref="software_application.sa_myfitnessapp"/>
+        <field name="type">standard</field>
+        <field name="serial">0DAY-0002</field>
+        <field name="partner_id" ref="base.res_partner_address_31"/>
+    </record>
+
+    <record model="software.license.hardware" id="sl_myfitnessapp2_hw1">
+        <field name="license_id" ref="sl_myfitnessapp2"/>
+        <field name="name">11:ec:09:af:b6:8c</field>
+        <field name="info">Mac-ID</field>
+    </record>
+
+    <record model="software.license" id="sl_brickgame1">
+        <field name="application_id" ref="software_application.sa_brickgame"/>
+        <field name="type">standard</field>
+        <field name="serial">BG-A01</field>
+        <field name="partner_id" ref="base.res_partner_address_7"/>
+    </record>
+
+</odoo>
