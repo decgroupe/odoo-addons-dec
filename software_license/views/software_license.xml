@@ -112,6 +112,7 @@
         <field name="view_id" ref="software_license_tree_view" />
         <field name="search_view_id" ref="software_license_search_view" />
         <field name="domain">[('type', '=', 'standard')]</field>
+        <field name="context">{'default_type': 'standard'}</field>
     </record>
 
     <record
@@ -141,6 +142,7 @@
         <field name="view_id" ref="software_license_tree_view" />
         <field name="search_view_id" ref="software_license_search_view" />
         <field name="domain">[('type', '=', 'template')]</field>
+        <field name="context">{'default_type': 'template'}</field>
     </record>
 
     <record

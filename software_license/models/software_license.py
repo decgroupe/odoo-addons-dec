@@ -20,7 +20,7 @@ class SoftwareLicense(models.Model):
             return _("New")
 
     active = fields.Boolean(
-        "Active",
+        string="Active",
         default=True,
         help="If unchecked, it will allow you to hide the license "
         "without removing it.",
@@ -52,14 +52,17 @@ class SoftwareLicense(models.Model):
         "activation related data would be invalidated",
     )
     product_id = fields.Many2one(
-        "product.product",
-        "Product",
+        comodel_name="product.product",
+        string="Product",
         domain=[],
         change_default=True,
     )
-    partner_id = fields.Many2one("res.partner", "Partner")
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Partner",
+    )
     info = fields.Text(
-        "Informations",
+        string="Informations",
         help="This field is deprecated, use the chatter now.",
     )
     type = fields.Selection(
