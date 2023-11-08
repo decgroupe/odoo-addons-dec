@@ -57,7 +57,6 @@ class SoftwareLicense(models.Model):
         domain=[],
         change_default=True,
     )
-    production_id = fields.Many2one("mrp.production", "Production")
     partner_id = fields.Many2one("res.partner", "Partner")
     info = fields.Text(
         "Informations",
@@ -107,7 +106,6 @@ class SoftwareLicense(models.Model):
             "application_identifier": self.application_id.identifier,
             "application_name": self.application_id.name,
             "partner": self.partner_id.display_name,
-            "production": self.production_id.display_name,
         }
         if include_activation_identifier:
             res["serial"] = self.activation_identifier

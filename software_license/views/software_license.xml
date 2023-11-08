@@ -9,7 +9,6 @@
                 <field name="application_id" />
                 <field name="serial" />
                 <field name="product_id" />
-                <field name="production_id" />
                 <field name="partner_id" />
             </tree>
         </field>
@@ -48,7 +47,6 @@
                             attrs="{'invisible': [('type', '!=', 'standard')]}"
                         >
                             <field name="product_id" />
-                            <field name="production_id" />
                             <field name="partner_id" />
                         </group>
                     </group>
@@ -101,11 +99,6 @@
                         string="Product"
                         name="groupby_product_id"
                         context="{'group_by':'product_id'}"
-                    />
-                    <filter
-                        string="Production"
-                        name="groupby_production_id"
-                        context="{'group_by':'production_id'}"
                     />
                 </group>
             </search>

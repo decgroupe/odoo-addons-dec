@@ -4,7 +4,6 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "software_application",
-        "mrp",
     ],
     "data": [
         "security/ir.model.access.csv",
