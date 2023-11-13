@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.application" id="software_application.sa_myfitnessapp">
+        <field name="private_key">-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAuWmRjH7Sd6+CXLWbyUmGmXjymy3OWxdEZqRmYDeGwCe8Fz4I
+6gfclt1yORMwxEiHVxCmf9v+2uSS2CO0OGqE/vxI/CyxAe2cFpS7EhpLnDnYfKHP
+9LGTPKhwJalmorA2iN4JrOBrzVdyj+eu1zBKroAJX9/SqSpoNaQgelF5Trxqnuqf
+sViYdrW5lSVrAN5aEai+L5CjN0oYAH+eWVfe5gUjtvIwLuF4R66fbAmiFAYuN25a
+6jH1o4xXX2TqPKmn/yRjjAXPEqCIaXWhwpi3JY6wl2qui/0RqXPIzmhL7Jjv/rP5
+23H18ph0B756IdQxFjVZ6gddWB27KMMmIPooTwIDAQABAoIBAAIic4EFEsI6/Iq5
+soXyOUD6Efz0XYxR68Eswlr4OK5spq8z0SF0nrcD7KU4kdaoqRo5AFm3fCsj94bS
+fmgp3ccbu3FfyFfn1uSxqKewMs+lINdqe3zrMHFB1Syx0xMraS1RNRZO7R7Lk2+R
+sMMcdLemlLUMXB4DdXisn40Y9AcSgjXZBqEg9STtZjPMJYTcctSupkUdd6L5zlCu
+P96nRRa9rQefoR2GDhrHTJGz9XkOPdaWV4tF7JKRqR3Axr2GF2E8OjDwfaesGV33
+zSAR4J6kSYORBqKbuVFskZzKI5alrWcV4NwNzlGPXG011yqZOSmLGM/S1b2YVm1f
+luauC6UCgYEAygPGJmzWw+xFNwF1gcy+JQNrcItSvZlrDyKgsV3ZZnVUpKKfyFJa
+i22R98q7xnlhvCSlf92Jp8Qi9//pEtv88tWgBRyE8pJHPGfDDH2RAENUeuyC0B6/
+n3PjvMHjAI+UX97Xu4vF9Umssj9QYqTL/P0nHxaOgoJDtFkf40OoNbMCgYEA6vX+
+eulgURoeBEqeq0d6DlTR7oxpEmxacLI/xy8FFuNzq5hsnsaVpCEOy5hNoOaSf7QP
+NyEyHIHbJN+a46kAi/8RiqhGIX46EXR+IUYMD5p/X57Y3w9Nawik5sYzZTj2S6q1
+ErwFc2NN0Yk65k+ahZvET+O1Zc0sTHcTTk8sLPUCgYEAuUCavnQCwqpxko6o9n4O
+RJ0NMqjhGHOPRNLpb51zlsyz8UIcqrQyyjeRqx1j8w8uvD0S893xtUJdGvW4BA5u
+uTWDyAwuMtBHuTIiINspVIdp+kvXbgk0ioHY7ykSBVqlowEU7qyvvU9xqgf7rGoZ
+koeID688wpu4gLNWVa+empcCgYBCxvs2b5GCO0wAqDyELWJRJGYtyBYsuELT+LUL
+pR9rK+W6BS4JyiLJbOPJlVWqvx0v0jrozjRxya5AwpRA081l/G493CliZ3+VamhW
+iJPw81X0FS9J5g14uBI1zGra/99wDeo8ktdxve1l+fyVbFZcVrLqiasKbc+DQ+xm
+uzWw6QKBgQC3KLrqrs/lUVvq2vjh2WtBGE7ion4j/DRbQbby+hAsp3sgJn9Sju+k
+cVAC6eTVN0ivrtSewBIhYafJaJ3HDGBATx56MAkBtNVdAlX6VFmUjeWs1CWdJOqY
+4WwSYBr2nc8XSlyRiOLUm5aMcS4H4iTN2AjsUbJvFZ9C7bzrUjGVoA==
+-----END RSA PRIVATE KEY-----</field>
+        <field name="public_key">-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuWmRjH7Sd6+CXLWbyUmG
+mXjymy3OWxdEZqRmYDeGwCe8Fz4I6gfclt1yORMwxEiHVxCmf9v+2uSS2CO0OGqE
+/vxI/CyxAe2cFpS7EhpLnDnYfKHP9LGTPKhwJalmorA2iN4JrOBrzVdyj+eu1zBK
+roAJX9/SqSpoNaQgelF5TrxqnuqfsViYdrW5lSVrAN5aEai+L5CjN0oYAH+eWVfe
+5gUjtvIwLuF4R66fbAmiFAYuN25a6jH1o4xXX2TqPKmn/yRjjAXPEqCIaXWhwpi3
+JY6wl2qui/0RqXPIzmhL7Jjv/rP523H18ph0B756IdQxFjVZ6gddWB27KMMmIPoo
+TwIDAQAB
+-----END PUBLIC KEY-----</field>
+    </record>
+
+</odoo>

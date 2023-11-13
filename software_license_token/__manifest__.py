@@ -17,5 +17,9 @@
         "views/software_license_hardware.xml",
         "views/software_application.xml",
     ],
+    "demo": [
+        "demo/software_application.xml",
+        "demo/software_license.xml",
+    ],
     "installable": True,
 }

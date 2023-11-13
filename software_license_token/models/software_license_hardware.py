@@ -39,9 +39,10 @@ class SoftwareLicenseHardware(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        for rec in self:
-            rec.license_id._check_max_allowed_hardware()
-            rec.license_id._check_expiration_date()
+        license_ids = self.mapped("license_id")
+        if license_ids and not self.env.context.get("bypass_license_checks", False):
+            license_ids._check_max_allowed_hardware()
+            license_ids._check_expiration_date()
         return res
 
     def _prepare_export_vals(self, include_license_data=True):

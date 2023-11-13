@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.license" id="software_license.sl_myfitnessapp1">
+        <field name="max_allowed_hardware" eval="4" />
+        <field name="expiration_date" eval="datetime.now()+relativedelta(days=30)" />
+    </record>
+
+</odoo>
