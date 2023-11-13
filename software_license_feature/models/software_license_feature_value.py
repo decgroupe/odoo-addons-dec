@@ -13,16 +13,12 @@ class SoftwareLicenseFeatureValue(models.Model):
         comodel_name="software.license.feature.property",
         string="Feature",
         required=True,
+        ondelete="cascade",
     )
     name = fields.Char(
         string="Name",
         required=True,
     )
-
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        return record
 
     def _name_get(self):
         self.ensure_one()

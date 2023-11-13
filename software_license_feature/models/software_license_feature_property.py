@@ -26,7 +26,3 @@ class SoftwareLicenseFeatureProperty(models.Model):
         "a feature set. That means that there will be no list of selectable "
         "values when customizable.",
     )
-
-    def write(self, vals):
-        res = super().write(vals)
-        return res

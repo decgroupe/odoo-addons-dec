@@ -54,18 +54,19 @@ class SoftwareLicenseFeature(models.Model):
             property_id = self.env["software.license.feature.property"].browse(
                 vals.get("property_id")
             )
-            if not property_id.customizable:
-                if not vals.get("value_id"):
-                    raise_missing_error = True
-            else:
-                if not vals.get("value"):
-                    raise_missing_error = True
-            if raise_missing_error:
-                raise UserError(
-                    _("Missing value for property {} : {}").format(
-                        vals.get("sequence", 0), property_id.name
+            if property_id:
+                if not property_id.customizable:
+                    if not vals.get("value_id"):
+                        raise_missing_error = True
+                else:
+                    if not vals.get("value"):
+                        raise_missing_error = True
+                if raise_missing_error:
+                    raise UserError(
+                        _("Missing value for property {} : {}").format(
+                            vals.get("sequence", 0), property_id.name
+                        )
                     )
-                )
         records = super().create(vals_list)
         return records
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.license.feature.property" id="feature_edition">
+        <field name="name">Edition</field>
+        <field name="customizable" eval="False"/>
+    </record>
+
+    <record model="software.license.feature.value" id="feature_edition_prop_silver">
+        <field name="property_id" ref="feature_edition"/>
+        <field name="name">Silver</field>
+    </record>
+
+    <record model="software.license.feature.value" id="feature_edition_prop_gold">
+        <field name="property_id" ref="feature_edition"/>
+        <field name="name">Gold</field>
+    </record>
+
+    <record model="software.license.feature.value" id="feature_edition_prop_platinum">
+        <field name="property_id" ref="feature_edition"/>
+        <field name="name">Platinum</field>
+    </record>
+
+    <record model="software.license.feature.property" id="feature_year">
+        <field name="name">Year</field>
+        <field name="customizable" eval="True"/>
+    </record>
+
+</odoo>

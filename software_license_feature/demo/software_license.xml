@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.license.feature" id="sl_myfitnessapp_tpl1_feature_line1">
+        <field name="name">Edition</field>
+        <field name="sequence" eval="1" />
+        <field name="license_id" ref="software_license.sl_myfitnessapp_tpl1" />
+        <field name="property_id" ref="software_license_feature.feature_edition" />
+        <field
+            name="value_id"
+            ref="software_license_feature.feature_edition_prop_silver"
+        />
+    </record>
+
+    <record model="software.license.feature" id="sl_myfitnessapp_tpl1_feature_line2">
+        <field name="name">Year</field>
+        <field name="sequence" eval="2" />
+        <field name="license_id" ref="software_license.sl_myfitnessapp_tpl1" />
+        <field name="property_id" ref="software_license_feature.feature_year" />
+        <field name="value">2022</field>
+    </record>
+
+    <record model="software.license.feature" id="sl_myfitnessapp_tpl1_feature_line3">
+        <field name="name">Year</field>
+        <field name="sequence" eval="3" />
+        <field name="license_id" ref="software_license.sl_myfitnessapp_tpl1" />
+        <field name="property_id" ref="software_license_feature.feature_year" />
+        <field name="value">2023</field>
+    </record>
+
+    <record model="software.license" id="software_license.sl_myfitnessapp_tpl1">
+        <field
+            name="feature_ids"
+            eval="[
+                (4, ref('software_license_feature.sl_myfitnessapp_tpl1_feature_line1')),
+                (4, ref('software_license_feature.sl_myfitnessapp_tpl1_feature_line2')),
+            ]"
+        />
+    </record>
+
+    <function
+        model="software.license"
+        name="action_sync_features_with_template"
+        eval="[[ref('software_license.sl_myfitnessapp1'),]]"
+    />
+
+</odoo>

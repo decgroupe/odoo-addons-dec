@@ -17,17 +17,17 @@
                     domain="[('property_id', '=', property_id)]"
                     context="{'default_property_id': property_id}"
                     attrs="{
-                    'invisible': [('customizable', '=', True)],
-                    'required': [('customizable', '!=', True)],
-                }"
+                        'invisible': [('customizable', '=', True)],
+                        'required': [('customizable', '!=', True)],
+                    }"
                 />
                 <field
                     name="value"
                     string="Value (Input)"
                     attrs="{
-                    'invisible': [('customizable', '!=', True)],
-                    'required': [('customizable', '=', True)],
-                }"
+                        'invisible': [('customizable', '!=', True)],
+                        'required': [('customizable', '=', True)],
+                    }"
                 />
             </tree>
         </field>
@@ -70,16 +70,16 @@
                         name="value_id"
                         domain="[('property_id', '=', property_id)]"
                         attrs="{
-                        'invisible': [('customizable', '=', True)],
-                        'required': [('customizable', '!=', True)],
-                    }"
+                            'invisible': [('customizable', '=', True)],
+                            'required': [('customizable', '!=', True)],
+                        }"
                     />
                     <field
                         name="value"
                         attrs="{
-                        'invisible': [('customizable', '!=', True)],
-                        'required': [('customizable', '=', True)],
-                    }"
+                            'invisible': [('customizable', '!=', True)],
+                            'required': [('customizable', '=', True)],
+                        }"
                     />
                 </group>
             </form>
