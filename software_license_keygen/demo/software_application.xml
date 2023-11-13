@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.application" id="software_application.sa_brickgame">
+        <field name="auto_generate_serial" eval="True" />
+    </record>
+
+</odoo>
