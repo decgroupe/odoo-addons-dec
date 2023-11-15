@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.license.pass" id="pass_basic1">
+        <field name="pack_id" ref="sl_pack_basic" />
+    </record>
+
+    <record model="software.license.pass" id="pass_basic2">
+        <field name="pack_id" ref="sl_pack_basic" />
+        <field name="expiration_date" eval="datetime.now()+relativedelta(days=15)" />
+    </record>
+
+    <record model="software.license.pass" id="pass_premium1">
+        <field name="pack_id" ref="sl_pack_premium" />
+    </record>
+
+    <record model="software.license.pass" id="pass_premium2">
+        <field name="pack_id" ref="sl_pack_premium" />
+        <field name="expiration_date" eval="datetime.now()+relativedelta(days=30)" />
+    </record>
+
+    <function
+        model="software.license.pass"
+        name="action_resync_with_pack"
+        eval="[[
+            ref('software_license_pass.pass_basic1'),
+            ref('software_license_pass.pass_basic2'),
+            ref('software_license_pass.pass_premium1'),
+            ref('software_license_pass.pass_premium2'),
+        ]]"
+    />
+</odoo>

@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SoftwareLicensePass(models.Model):
@@ -173,6 +174,18 @@ class SoftwareLicensePass(models.Model):
     def _get_unique_hardware_names(self):
         self.ensure_one()
         return set(self.license_ids.mapped("hardware_ids").mapped("name"))
+
+    @api.constrains("license_ids")
+    def _check_max_allowed_hardware(self):
+        if self.env.context.get("install_mode"):
+            # Ignore constraint when loading XML data
+            return
+        for rec in self:
+            if rec.max_allowed_hardware > 0 and rec.get_remaining_activation() < 0:
+                raise ValidationError(
+                    _("Maximum hardware identifier count reached for pass %s")
+                    % (rec.display_name)
+                )
 
     def check_max_activation_reached(self, hardware_name):
         self.ensure_one()

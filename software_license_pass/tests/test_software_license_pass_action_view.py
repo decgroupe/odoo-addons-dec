@@ -48,3 +48,8 @@ class TestSoftwareLicensePassActionView(SavepointCase):
 
     def test_01_software_license_pass_action_view(self):
         self._test_action_view_sm_records(self.model_software_license_pass)
+
+    def test_02_software_license_pack_action_view_pass(self):
+        pack_basic = self.env.ref("software_license_pass.sl_pack_basic")
+        action = pack_basic.action_view_pass()
+        self.assertEqual(action["domain"][0][2], pack_basic.pass_ids.ids)

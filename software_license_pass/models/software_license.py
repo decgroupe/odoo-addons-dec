@@ -48,7 +48,8 @@ class SoftwareLicense(models.Model):
             if locked_fields:
                 raise UserError(
                     _(
-                        "It is forbidden to update these license's fields when owned by a pass:\n{}"
+                        "It is forbidden to update these license's fields when owned "
+                        "by a pass:\n{}"
                     ).format("\n".join(locked_fields))
                 )
 
@@ -72,7 +73,7 @@ class SoftwareLicense(models.Model):
         res = super()._name_get()
         if self.pack_id:
             pack_name = self.pack_id.display_name
-            res = _("%s (%s for %s)") % (res, self.serial, pack_name)
+            res = _("%s (%s for %s)") % (res, self.pass_id.serial, pack_name)
         return res
 
     def _get_template_id(self):
