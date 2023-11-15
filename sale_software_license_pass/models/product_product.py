@@ -1,11 +1,17 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class Product(models.Model):
     _inherit = "product.product"
+
+    license_pack_id = fields.Many2one(
+        comodel_name="software.license.pack",
+        string="Application Pack",
+        help="Pack used to generate a new Application Pass.",
+    )
 
     @api.onchange("service_tracking")
     def _onchange_service_tracking(self):

@@ -7,6 +7,9 @@ from odoo import api, fields, models
 class SoftwareLicensePass(models.Model):
     _inherit = "software.license.pass"
 
+    product_id = fields.Many2one(
+        domain="[('license_pack_id', '!=', False)]",
+    )
     sale_order_id = fields.Many2one(
         comodel_name="sale.order",
         string="Sale Order",

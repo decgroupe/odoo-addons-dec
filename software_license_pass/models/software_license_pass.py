@@ -33,7 +33,6 @@ class SoftwareLicensePass(models.Model):
         string="Product",
         help="Product at the origin of the pass",
         change_default=True,
-        domain="[('license_pack_id', '!=', False)]",
         ondelete="restrict",
     )
     pack_id = fields.Many2one(
