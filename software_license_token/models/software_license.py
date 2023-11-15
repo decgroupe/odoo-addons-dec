@@ -60,11 +60,13 @@ class SoftwareLicense(models.Model):
 
     def check_max_activation_reached(self, hardware_name):
         res = super().check_max_activation_reached(hardware_name)
-        if (
-            self.max_allowed_hardware > 0
-            and len(self.hardware_ids) >= self.max_allowed_hardware
-        ):
-            res = True
+        if self.max_allowed_hardware > 0:
+            if hardware_name not in self.hardware_ids.mapped("name"):
+                # If an hardware is already in our list, that means that
+                # we don't care about max activation. Otherwise check for
+                # already used slots count
+                if len(self.hardware_ids) >= self.max_allowed_hardware:
+                    res = True
         return res
 
     def get_hardwares_dict(self, filter_names):

@@ -53,7 +53,11 @@ class TestSoftwareLicenseToken(TransactionCase):
         self.assertFalse(fitness_lic1.check_max_activation_reached("device_uuid_3/4"))
         self.assertFalse(fitness_lic1.check_max_activation_reached("uuid_random"))
         fitness_lic1.activate("device_uuid_4/4")
-        self.assertTrue(fitness_lic1.check_max_activation_reached("device_uuid_4/4"))
+        self.assertFalse(
+            fitness_lic1.check_max_activation_reached("device_uuid_4/4"),
+            "Max activation reached must always return False if the device is already "
+            "in the list of activated hardware.",
+        )
         self.assertTrue(fitness_lic1.check_max_activation_reached("uuid_random"))
         with self.assertRaisesRegex(
             ValidationError, r"Maximum hardware identifier count reached"
