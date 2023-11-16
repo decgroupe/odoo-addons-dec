@@ -7,7 +7,7 @@
     "depends": [
         "sale",
         "sale_stock",
-        "sale_delivery_date",
+        "sale_delivery_last_date",
         "web",
     ],
     "data": [

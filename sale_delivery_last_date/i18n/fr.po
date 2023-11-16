@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_delivery_date
+# 	* sale_delivery_last_date
 #
 msgid ""
 msgstr ""
@@ -17,42 +17,42 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 2.4.3\n"
 
-#. module: sale_delivery_date
-#: model:ir.model.fields,help:sale_delivery_date.field_sale_order__effective_last_date
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,help:sale_delivery_last_date.field_sale_order__effective_last_date
 msgid "Completion date of the last delivery order."
 msgstr "Date d’achèvement du dernier bon de livraison."
 
-#. module: sale_delivery_date
-#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__display_name
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: sale_delivery_date
-#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__id
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__id
 msgid "ID"
 msgstr "ID"
 
-#. module: sale_delivery_date
-#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order____last_update
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
-#. module: sale_delivery_date
-#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__effective_last_date
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__effective_last_date
 msgid "Latest Effective Date"
 msgstr "Dernière date effective"
 
-#. module: sale_delivery_date
-#: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__expected_last_date
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__expected_last_date
 msgid "Latest Expected Date"
 msgstr "Dernière date prévue"
 
-#. module: sale_delivery_date
-#: model:ir.model.fields,help:sale_delivery_date.field_sale_order__expected_last_date
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,help:sale_delivery_last_date.field_sale_order__expected_last_date
 msgid "Latest delivery date that you can tell your customer, computed from product lead times."
 msgstr "Date de livraison la plus éloignée que vous pouvez communiquer à votre client, calculée à partir des délais de livraison des produits."
 
-#. module: sale_delivery_date
-#: model:ir.model,name:sale_delivery_date.model_sale_order
+#. module: sale_delivery_last_date
+#: model:ir.model,name:sale_delivery_last_date.model_sale_order
 msgid "Sale Order"
 msgstr "Bon de commande"

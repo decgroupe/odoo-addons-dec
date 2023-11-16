@@ -1,5 +1,5 @@
 {
-    "name": "Sale Delivery Date",
+    "name": "Sale Delivery Last Date",
     "version": "14.0.1.0.0",
     "author": "DEC",
     "website": "https://www.decgroupe.com",
@@ -9,5 +9,6 @@
     "data": [
         "views/sale_order.xml",
     ],
+    "pre_init_hook": "rename_module",
     "installable": True,
 }

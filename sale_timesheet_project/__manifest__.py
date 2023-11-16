@@ -7,7 +7,7 @@
     "depends": [
         "project_identification",
         "sale_timesheet",
-        "sale_delivery_date",
+        "sale_delivery_last_date",
         "sale_action_view",
     ],
     "data": [
