@@ -28,7 +28,7 @@ class SoftwareLicense(models.Model):
     serial = fields.Char(
         required=True,
         copy=False,
-        default=_get_default_serial,
+        default=lambda self: self._get_default_serial(),
         tracking=True,
         help="Unique serial used as an authorization identifier",
     )
