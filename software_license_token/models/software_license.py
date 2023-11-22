@@ -32,7 +32,10 @@ class SoftwareLicense(models.Model):
                 rec.max_allowed_hardware > 0
                 and len(rec.hardware_ids) > rec.max_allowed_hardware
             ):
-                raise ValidationError(_("Maximum hardware identifier count reached"))
+                raise ValidationError(
+                    _("Maximum hardware identifier count reached for license %s")
+                    % (rec.display_name)
+                )
 
     @api.constrains("hardware_ids", "expiration_date")
     def _check_expiration_date(self):

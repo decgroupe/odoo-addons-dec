@@ -60,7 +60,7 @@ class TestSoftwareLicenseToken(TransactionCase):
         )
         self.assertTrue(fitness_lic1.check_max_activation_reached("uuid_random"))
         with self.assertRaisesRegex(
-            ValidationError, r"Maximum hardware identifier count reached"
+            ValidationError, r"Maximum hardware identifier count reached for license"
         ):
             fitness_lic1.activate("device_uuid_5/4")
         # check unlimited activation
@@ -154,7 +154,7 @@ class TestSoftwareLicenseToken(TransactionCase):
         # max allowed hardware constraint
         fitness_lic1.max_allowed_hardware = 1
         with self.assertRaisesRegex(
-            ValidationError, r"Maximum hardware identifier count reached"
+            ValidationError, r"Maximum hardware identifier count reached for license"
         ):
             fitness_lic1._check_max_allowed_hardware()
         self.assertIsNone(
