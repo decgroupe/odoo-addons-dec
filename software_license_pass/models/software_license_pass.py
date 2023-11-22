@@ -65,7 +65,7 @@ class SoftwareLicensePass(models.Model):
     serial = fields.Char(
         required=True,
         copy=False,
-        default=_get_default_serial,
+        default=lambda self: self._get_default_serial(),
         tracking=True,
         help="Unique serial used as an authorization identifier",
     )
@@ -86,7 +86,7 @@ class SoftwareLicensePass(models.Model):
         comodel_name="res.company",
         string="Company",
         required=True,
-        default=_get_default_company,
+        default=lambda self: self._get_default_company(),
         copy=False,
     )
     user_id = fields.Many2one(
@@ -94,7 +94,7 @@ class SoftwareLicensePass(models.Model):
         string="Responsible",
         domain="[('share', '=', False)]",
         required=False,
-        default=_get_current_user,
+        default=lambda self: self._get_current_user(),
         tracking=True,
         copy=False,
     )
