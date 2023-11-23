@@ -46,7 +46,7 @@ class TestAuthLocalPassword(SavepointCase, HttpCase):
 
     def test_01_min_requirement(self):
         ERROR_MSG = "local password does not meet the minimum length"
-        with self.assertRaisesRegex(UserError, ERROR_MSG):
+        with self.assertRaisesRegex(UserError, ERROR_MSG), self.cr.savepoint():
             self.user.local_password = "123"
 
     def test_02_clear_password(self):
@@ -67,7 +67,7 @@ class TestAuthLocalPassword(SavepointCase, HttpCase):
         pin_password = "1234"
         self.user.local_password = pin_password
         # an error should be raised if IP address not found
-        with self.assertRaisesRegex(AccessDenied, ERROR_MSG):
+        with self.assertRaisesRegex(AccessDenied, ERROR_MSG), self.cr.savepoint():
             self.authenticate("test_user_1", pin_password)
         # test PIN login from local network
         with MockRequest(self.env, environ={"HTTP_X_FORWARDED_FOR": "192.168.10.1"}):
@@ -75,9 +75,9 @@ class TestAuthLocalPassword(SavepointCase, HttpCase):
         with MockRequest(self.env, remote_addr="192.168.10.1"):
             self.authenticate("test_user_1", pin_password)
         # test PIN login from internet network
-        with self.assertRaisesRegex(AccessDenied, ERROR_MSG):
+        with self.assertRaisesRegex(AccessDenied, ERROR_MSG), self.cr.savepoint():
             with MockRequest(self.env, environ={"HTTP_X_FORWARDED_FOR": "88.10.20.2"}):
                 self.authenticate("test_user_1", pin_password)
-        with self.assertRaisesRegex(AccessDenied, ERROR_MSG):
+        with self.assertRaisesRegex(AccessDenied, ERROR_MSG), self.cr.savepoint():
             with MockRequest(self.env, remote_addr="88.10.20.2"):
                 self.authenticate("test_user_1", pin_password)
