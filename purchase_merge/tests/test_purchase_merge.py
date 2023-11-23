@@ -41,7 +41,9 @@ class TestPurchaseMerge(TransactionCase):
             "active_model": self.purchase_model._name,
             "active_ids": (self.order_1 + self.order_2).ids,
         }
-        with self.assertRaisesRegex(UserError, r"incompatible states"):
+        with self.assertRaisesRegex(
+            UserError, r"incompatible states"
+        ), self.cr.savepoint():
             wizard_id = self.merge_order_wizard_model.with_context(ctx).create({})
             wizard_id.action_merge()
 
@@ -51,7 +53,9 @@ class TestPurchaseMerge(TransactionCase):
             "active_model": self.purchase_model._name,
             "active_ids": (self.order_1 + self.order_2).ids,
         }
-        with self.assertRaisesRegex(UserError, r"incompatible states"):
+        with self.assertRaisesRegex(
+            UserError, r"incompatible states"
+        ), self.cr.savepoint():
             wizard_id = self.merge_order_wizard_model.with_context(ctx).create({})
             wizard_id.action_merge()
 
@@ -62,7 +66,7 @@ class TestPurchaseMerge(TransactionCase):
         }
         with self.assertRaisesRegex(
             UserError, r"All orders must have the same supplier"
-        ):
+        ), self.cr.savepoint():
             wizard_id = self.merge_order_wizard_model.with_context(ctx).create({})
             wizard_id.action_merge()
 
