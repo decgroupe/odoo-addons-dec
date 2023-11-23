@@ -34,7 +34,7 @@ class TestAuthSignupDelegate(TransactionCase):
         self.assertFalse(self._in_portal(self.partner))
         with self.assertRaisesRegex(
             UserError, "Some contacts don't have a valid email"
-        ):
+        ), self.cr.savepoint():
             self.partner.give_portal_access()
         self.partner.email = "partner@domain.com"
         self.partner.give_portal_access()
