@@ -39,13 +39,15 @@ class TestProjectAcl(SavepointCase):
         )
 
     def test_01_create_project_as_project_user(self):
-        with self.assertRaisesRegex(AccessError, r"Super-Manager"):
+        with self.assertRaisesRegex(AccessError, r"Super-Manager"), self.cr.savepoint():
             project_id = self.project_model.with_user(self.project_user).create(
                 {"name": "project1"}
             )
         # in bypass mode, the standard access error should be raised because a project
         # user do not have rights to create projects
-        with self.assertRaisesRegex(AccessError, r"Project\/Administrator"):
+        with self.assertRaisesRegex(
+            AccessError, r"Project\/Administrator"
+        ), self.cr.savepoint():
             project_id = (
                 self.project_model.with_user(self.project_user)
                 .with_context(bypass_supermanager_check=True)
@@ -54,7 +56,7 @@ class TestProjectAcl(SavepointCase):
             self.assertTrue(project_id)
 
     def test_02_create_project_as_project_manager(self):
-        with self.assertRaisesRegex(AccessError, r"Super-Manager"):
+        with self.assertRaisesRegex(AccessError, r"Super-Manager"), self.cr.savepoint():
             project_id = self.project_model.with_user(self.project_manager).create(
                 {"name": "project1"}
             )
