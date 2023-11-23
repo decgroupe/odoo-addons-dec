@@ -48,17 +48,19 @@ class TestProjectAcl(SavepointCase):
         )
 
     def test_01_create_production_as_production_user(self):
-        with self.assertRaisesRegex(AccessError, r"Super-Manager"):
+        with self.assertRaisesRegex(AccessError, r"Super-Manager"), self.cr.savepoint():
             self.bom1.with_user(self.production_user).write({"code": "123"})
         # in bypass mode, the standard access error should be raised because a
         # production user do not have rights to edit BoM
-        with self.assertRaisesRegex(AccessError, r"Manufacturing\/Administrator"):
+        with self.assertRaisesRegex(
+            AccessError, r"Manufacturing\/Administrator"
+        ), self.cr.savepoint():
             self.bom1.with_user(self.production_user).with_context(
                 bypass_supermanager_check=True
             ).write({"code": "123"})
 
     def test_02_create_production_as_production_manager(self):
-        with self.assertRaisesRegex(AccessError, r"Super-Manager"):
+        with self.assertRaisesRegex(AccessError, r"Super-Manager"), self.cr.savepoint():
             self.bom1.with_user(self.production_manager).write({"code": "123"})
         self.bom1.with_user(self.production_manager).with_context(
             bypass_supermanager_check=True
