@@ -67,7 +67,7 @@ class TestAuthUniqueLink(common.TransactionCase):
         wizard_id = self._get_impersonate_wizard(user_id)
 
         # check that an already logged user is not able to check credentials
-        with self.assertRaises(AccessDenied):
+        with self.assertRaises(AccessDenied), self.cr.savepoint():
             self.env["res.users"].sudo()._check_credentials(
                 wizard_id.token, {"interactive": True}
             )
