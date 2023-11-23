@@ -90,7 +90,7 @@ class TestHelpdeskMerge(TransactionCase):
         # first merge try
         with self.assertRaisesRegex(
             AccessDenied, "You don't have the right to merge tickets"
-        ):
+        ), self.cr.savepoint():
             wizard_id.action_merge()
         # add needed group
         self.user.groups_id += self.env.ref("helpdesk_merge.res_group_do_merge")
