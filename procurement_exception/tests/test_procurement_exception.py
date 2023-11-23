@@ -85,7 +85,7 @@ class TestProcurementException(common.TransactionCase):
         )
         self.assertTrue(product_nosupplier_id.exists())
         self.assertEqual(len(product_nosupplier_id.activity_ids), 0)
-        with self.assertRaises(UserError):
+        with self.assertRaises(UserError), self.cr.savepoint():
             self._create_make_procurement(
                 product_nosupplier_id,
                 15.00,
@@ -126,7 +126,7 @@ class TestProcurementException(common.TransactionCase):
                 # "seller_ids": [(6, 0, [supplier_info1.id])],
             }
         )
-        with self.assertRaises(UserError):
+        with self.assertRaises(UserError), self.cr.savepoint():
             self._create_make_procurement(
                 product_nosupplier_local_id,
                 15.00,
@@ -173,7 +173,7 @@ class TestProcurementException(common.TransactionCase):
                 "route_ids": [(6, 0, [self.route_manufacture.id, self.route_mto.id])],
             }
         )
-        with self.assertRaises(UserError):
+        with self.assertRaises(UserError), self.cr.savepoint():
             self._create_make_procurement(
                 product_nobom_id,
                 15.00,
