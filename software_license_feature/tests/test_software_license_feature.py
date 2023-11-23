@@ -71,7 +71,9 @@ class TestSoftwareLicenseFeature(TransactionCase):
         self.assertEqual(len(lic3_form.feature_ids), 3)
         # features are added but no value is set, check that the `required` keyword
         # set in the view is working properly
-        with self.assertRaisesRegex(AssertionError, "is a required field"):
+        with self.assertRaisesRegex(
+            AssertionError, "is a required field"
+        ), self.cr.savepoint():
             lic3_form.save()
         # set edition value
         with lic3_form.feature_ids.edit(0) as feature_line_form:
@@ -109,7 +111,7 @@ class TestSoftwareLicenseFeature(TransactionCase):
         }
         with self.assertRaisesRegex(
             UserError, r"Missing value for property .* Edition"
-        ):
+        ), self.cr.savepoint():
             self.feature_model.create(data1)
         data1["value_id"] = (
             self.env.ref("software_license_feature.feature_edition_prop_silver").id,
@@ -128,7 +130,9 @@ class TestSoftwareLicenseFeature(TransactionCase):
             "sequence": 1,
             "property_id": self.env.ref("software_license_feature.feature_year").id,
         }
-        with self.assertRaisesRegex(UserError, r"Missing value for property .* Year"):
+        with self.assertRaisesRegex(
+            UserError, r"Missing value for property .* Year"
+        ), self.cr.savepoint():
             self.feature_model.create(data2)
         data2["value"] = 1998
         feature2_id = self.feature_model.create(data2)
