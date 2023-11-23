@@ -42,7 +42,9 @@ class TestStockAction(TestStockActionCommon):
                 ]
             }
         )
-        with self.assertRaisesRegex(UserError, "No rule has been found to replenish.*"):
+        with self.assertRaisesRegex(
+            UserError, "No rule has been found to replenish.*"
+        ), self.cr.savepoint():
             move.action_confirm()
 
     def test_02_mto_route(self):
@@ -60,7 +62,9 @@ class TestStockAction(TestStockActionCommon):
                 ]
             }
         )
-        with self.assertRaisesRegex(UserError, "No rule has been found to replenish.*"):
+        with self.assertRaisesRegex(
+            UserError, "No rule has been found to replenish.*"
+        ), self.cr.savepoint():
             move.action_confirm()
 
     def test_03_mto_plus_buy_routes_nosupplier(self):
@@ -82,7 +86,7 @@ class TestStockAction(TestStockActionCommon):
         with self.assertRaisesRegex(
             UserError,
             "There is no matching vendor price to generate the purchase order.*",
-        ):
+        ), self.cr.savepoint():
             move.action_confirm()
 
     def test_04_mto_plus_manufacture_routes_nobom(self):
@@ -104,7 +108,7 @@ class TestStockAction(TestStockActionCommon):
         with self.assertRaisesRegex(
             UserError,
             "There is no Bill of Material of type manufacture or kit found.*",
-        ):
+        ), self.cr.savepoint():
             move.action_confirm()
 
     def test_05_mto_plus_buy_routes(self):
