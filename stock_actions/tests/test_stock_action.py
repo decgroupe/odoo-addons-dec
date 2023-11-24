@@ -1,5 +1,5 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
+# Written by Yann Papouin <ypa at decgroupe.com>, Apr 2023
 
 from odoo.addons.stock_actions.tests.common import TestStockActionCommon
 from odoo.exceptions import UserError

@@ -1,10 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
+# Written by Yann Papouin <ypa at decgroupe.com>, Apr 2023
 
 from odoo.addons.stock.tests.common2 import TestStockCommon
 from odoo.exceptions import UserError
 from odoo.tests import new_test_user
-from odoo.tests.common import SavepointCase
 
 
 class TestStockActionCommon(TestStockCommon):
@@ -20,6 +19,7 @@ class TestStockActionCommon(TestStockCommon):
         cls.pack_location = cls.env.ref("stock.location_pack_zone")
         cls.pack_location.active = True
         cls.route_mto = cls.warehouse_1.mto_pull_id.route_id
+        cls.route_mto.active = True
         cls.unit_uom_id = cls.env.ref("uom.product_uom_unit")
 
     def setUp(self):
