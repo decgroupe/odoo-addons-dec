@@ -6,7 +6,6 @@
     "depends": [
         "purchase_stock",
         "stock_actions",
-        "web_ir_actions_act_view_reload",
     ],
     "data": [
         "views/purchase_order.xml",
