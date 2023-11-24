@@ -6,31 +6,31 @@
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/form" position="inside">
-                <header>
-                    <button
-                        name="action_propagate_cancel"
-                        string="Delete purchase line"
-                        confirm="Are you sure that you want to delete this line immediatly?"
-                        type="object"
-                        data-dismiss="modal"
-                        class="btn btn-primary"
-                        context="{'propagate':False}"
-                        icon="fa-times"
-                    >
-                    </button>
-                    <button
-                        name="action_propagate_cancel"
-                        string="Delete purchase line and propagate cancelation"
-                        confirm="Are you sure that you want to cancel this procurement (from an existing delivery order or production order) and delete this line immediatly?"
-                        type="object"
-                        data-dismiss="modal"
-                        class="btn btn-warning"
-                        context="{'propagate':True}"
-                        icon="fa-ban"
-                    >
-                    </button>
-                </header>
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <button
+                    name="action_propagate_cancel"
+                    title="Delete purchase line"
+                    confirm="Are you sure that you want to delete this line immediatly?"
+                    type="object"
+                    data-dismiss="modal"
+                    class="btn btn-outline-danger"
+                    context="{'propagate':False}"
+                    states="draft,to approve,sent"
+                    icon="fa-trash"
+                >
+                </button>
+                <button
+                    name="action_propagate_cancel"
+                    title="Delete purchase line and propagate cancelation"
+                    confirm="Are you sure that you want to cancel this procurement (from an existing delivery order or production order) and delete this line immediatly?"
+                    type="object"
+                    data-dismiss="modal"
+                    class="btn btn-outline-warning"
+                    context="{'propagate':True}"
+                    states="draft,to approve,sent"
+                    icon="fa-ban"
+                >
+                </button>
             </xpath>
         </field>
     </record>
