@@ -68,7 +68,7 @@ class PurchaseOrderLine(models.Model):
                     notify_messages[move.picking_id] = []
                 notify_messages[move.picking_id].append(message)
 
-        # Write a notification on each picking
+        # write a notification on each picking
         for picking_id, messages in notify_messages.items():
             msg_list = ""
             for m in messages:
@@ -83,25 +83,25 @@ class PurchaseOrderLine(models.Model):
         res = super().write(vals)
         return res
 
-    def unlink(self):
-        for line in self:
-            if line.move_dest_ids:
-                # We need to unlink this line from its destination moves to
-                # avoid inconsistent data.
-                # Note that Purchase Order cancelation does the same thing in
-                # button_cancel()
-                # addons/purchase_stock/models/purchase.py
-                move_dest_ids = line.move_dest_ids.filtered(
-                    lambda m: m.state not in ("done", "cancel")
-                )
-                move_orig_ids = move_dest_ids.mapped("move_orig_ids")
-                siblings_states = move_orig_ids.mapped("state")
-                if all(s in ("done", "cancel") for s in siblings_states):
-                    move_dest_ids.write({"procure_method": "make_to_stock"})
-                    move_dest_ids._recompute_state()
+    def _unlink_from_destination_moves(self):
+        """We need to unlink this line from its destination moves to avoid inconsistent
+        data. `PurchaseOrder.button_cancel()` does the same thing in
+        `addons/purchase_stock/models/purchase.py`
+        """
+        self.ensure_one()
+        move_dest_ids = self.move_dest_ids.filtered(
+            lambda m: m.state not in ("done", "cancel")
+        )
+        move_orig_ids = move_dest_ids.mapped("move_orig_ids")
+        siblings_states = move_orig_ids.mapped("state")
+        if all(s in ("done", "cancel") for s in siblings_states):
+            move_dest_ids.write({"procure_method": "make_to_stock"})
+            move_dest_ids._recompute_state()
 
-            # Note that it is like writing 'created_purchase_line_id': False
+    def unlink(self):
+        for line in self.filtered("move_dest_ids"):
+            line._unlink_from_destination_moves()
+            # note that it is like writing 'created_purchase_line_id': False
             # for each move in move_dest_ids
             line.write({"move_dest_ids": [(5, 0, 0)]})
-
         return super(PurchaseOrderLine, self).unlink()
