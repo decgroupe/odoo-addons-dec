@@ -1,11 +1,15 @@
 {
-    "name": "Purchase line cancel",
+    "name": "Purchase Cancel",
     "version": "14.0.1.0.0",
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
         "purchase_stock",
+        "stock_actions",
     ],
-    "data": [],
+    "data": [
+        "views/purchase_order.xml",
+    ],
     "installable": True,
+    "pre_init_hook": "rename_module",
 }
