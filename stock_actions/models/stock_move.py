@@ -3,9 +3,7 @@
 
 import logging
 from odoo import api, fields, models
-from odoo.addons.tools_miscellaneous.tools.console_helper import (
-    dim, bold
-)
+from odoo.addons.tools_miscellaneous.tools.console_helper import dim, bold
 
 _logger = logging.getLogger(__name__)
 
@@ -18,7 +16,11 @@ class StockMove(models.Model):
         compute="_compute_action_reassign_visible",
         readonly=True,
     )
-
+    action_set_mto_visible = fields.Boolean(
+        string="Shows button to convert procure method to MTO",
+        compute="_compute_action_set_mto_visible",
+        readonly=True,
+    )
     is_cancellable = fields.Boolean(
         compute="_compute_is_cancellable",
         help="Technical field to check for button visibility",
@@ -146,12 +148,44 @@ class StockMove(models.Model):
         """
         self._action_done()
 
+    @api.model
+    def _get_mtoable_states(self):
+        return ["draft", "confirmed", "waiting", "partially_available", "assigned"]
+
+    def _compute_action_set_mto_visible(self):
+        for move in self:
+            visible = (
+                move.quantity_done == 0
+                and not move.is_locked
+                and move.state in self._get_mtoable_states()
+                and move.procure_method == "make_to_stock"
+            )
+            move.action_set_mto_visible = visible
+
+    def action_set_mto(self):
+        move_ids = self.filtered(
+            lambda m: m.procure_method == "make_to_stock"
+            and m.state in self._get_mtoable_states()
+        )
+        if move_ids:
+            move_ids._do_unreserve()
+            move_ids.write(
+                {
+                    # Since Odoo 14.0, `_action_confirm` requires the move to be
+                    # in `draft` state
+                    "state": "draft",
+                    "procure_method": "make_to_order",
+                }
+            )
+            # move_ids._recompute_state()
+            move_ids._action_confirm()
+
     def _log_attr_value_write(self, value, name, string):
         if value:
             for move in self:
                 if move[name] != value:
                     _logger.info(
-                        "%s of move %d for \"%s\" set to %s (was %s)",
+                        '%s of move %d for "%s" set to %s (was %s)',
                         string,
                         move.id,
                         move.product_id.display_name,
@@ -160,6 +194,8 @@ class StockMove(models.Model):
                     )
 
     def write(self, values):
-        self._log_attr_value_write(values.get("procure_method"), "procure_method", "Procure method")
+        self._log_attr_value_write(
+            values.get("procure_method"), "procure_method", "Procure method"
+        )
         self._log_attr_value_write(values.get("state"), "state", "State")
         return super(StockMove, self).write(values)

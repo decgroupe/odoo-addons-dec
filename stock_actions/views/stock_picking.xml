@@ -20,11 +20,19 @@
                     icon="fa-bar-chart-o"
                     attrs="{'invisible': [('action_reassign_visible', '=', False)]}"
                 >
-                </button> 
+                </button>
+                <field name="action_set_mto_visible" invisible="1" />
+                <button
+                    name="action_set_mto"
+                    title="Change procure method to « Make to Order » and make a restock order (buy, manufacture)"
+                    type="object"
+                    icon="fa-gear"
+                    attrs="{'invisible': [('action_set_mto_visible', '=', False)]}"
+                >
+                </button>
             </xpath>
         </field>
     </record>
-
     <record model="ir.ui.view" id="picking_action_cancel_form_view">
         <field name="name">stock.picking.form#action_cancel@stock_actions</field>
         <field name="model">stock.picking</field>
