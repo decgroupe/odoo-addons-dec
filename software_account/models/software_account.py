@@ -69,8 +69,3 @@ class SoftwareAccount(models.Model):
     info = fields.Text(
         string="Informations",
     )
-
-    def _get_aeroo_report_filename(self):
-        names = [x.login or str(x.id) for x in self]
-        res = "-".join(names)
-        return res
