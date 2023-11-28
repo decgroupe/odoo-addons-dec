@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-07 12:37+0000\n"
-"PO-Revision-Date: 2023-06-07 14:39+0200\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 15:05+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,21 +15,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: software_license_pass
 #: model:mail.template,report_name:software_license_pass.email_template
 msgid "${(object.name or '').replace('/','_')}"
-msgstr ""
+msgstr "${(object.name or '').replace('/','_')}"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:79
+#: code:addons/software_license_pass/models/software_license.py:0
 #, python-format
 msgid "%s (%s for %s)"
 msgstr "%s (%s pour %s)"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:162
+#: code:addons/software_license_pass/models/software_license_pass.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copie)"
@@ -38,79 +38,100 @@ msgstr "%s (copie)"
 #: model:mail.template,body_html:software_license_pass.email_template
 msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Dear ${object.partner_referral_id.name or object.partner_id.name}\n"
-"        % if object.partner_id.unfenced_commercial_partner_id and object.partner_id.unfenced_commercial_partner_id != object.partner_id:\n"
-"            (${object.partner_id.unfenced_commercial_partner_id.name})\n"
-"        % endif\n"
-"        <br/><br/>\n"
-"        Here is your ${ctx['model_description']} <strong>${object.name}</strong>\n"
-"        % if object.origin:\n"
-"            (with reference: ${object.origin})\n"
-"        % endif\n"
-"        from ${object.company_id.name}.\n"
-"        <br/>\n"
-"        <p>\n"
-"            This pass allows you to activate up to ${object.max_allowed_hardware} devices and to access following applications:\n"
-"            <ul>\n"
-"            % for license_id in object.license_ids:\n"
-"                <li>\n"
-"                    <span style=\"margin-left:5px\">${license_id.application_id.name}</span>\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                    Dear ${object.partner_referral_id.name or object."
+"partner_id.name}\n"
+"                    % if object.partner_id.unfenced_commercial_partner_id "
+"and object.partner_id.unfenced_commercial_partner_id != object.partner_id:\n"
+"                        (${object.partner_id.unfenced_commercial_partner_id."
+"name})\n"
+"                    % endif\n"
+"                    <br/><br/>\n"
+"                    Here is your ${ctx['model_description']} <strong>"
+"${object.name}</strong>\n"
+"                    % if object.origin:\n"
+"                        (with reference: ${object.origin})\n"
+"                    % endif\n"
+"                    from ${object.company_id.name}.\n"
+"                    <br/>\n"
+"                    <p>\n"
+"                        This pass allows you to activate up to ${object."
+"max_allowed_hardware} devices and to access following applications:\n"
+"                        <ul>\n"
+"                        % for license_id in object.license_ids:\n"
+"                            <li>\n"
+"                                <span style=\"margin-left:5px\">${license_id."
+"application_id.name}</span>\n"
 "                    % if license_id.application_id.product_name:\n"
-"                        <span style=\"margin-left:5px\">${license_id.application_id.product_name}</span>\n"
+"                        <span style=\"margin-left:5px\">${license_id."
+"application_id.product_name}</span>\n"
 "                    % endif\n"
 "                </li>\n"
 "            % endfor\n"
 "            </ul>\n"
 "            % if object.expiration_date:\n"
-"            <i>This access will be valid until ${format_date(object.expiration_date)}.</i>\n"
+"            <i>This access will be valid until ${format_date(object."
+"expiration_date)}.</i>\n"
 "            <br/>\n"
 "            % endif\n"
 "            <br/>\n"
-"            <b>Please read carefully the accompanying documentation which explains how to manage your activations and where you can download your digital content.</b>\n"
-"        </p>\n"
-"        <br/><br/>\n"
-"        Do not hesitate to contact us if you have any question.\n"
-"    </p>\n"
-"</div>\n"
+"            <b>Please read carefully the accompanying documentation which "
+"explains how to manage your activations and where you can download your "
+"digital content.</b>\n"
+"                    </p>\n"
+"                    <br/><br/>\n"
+"                    Do not hesitate to contact us if you have any question.\n"
+"                </p>\n"
+"            </div>\n"
 "        "
 msgstr ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Bonjour ${object.partner_referral_id.name or object.partner_id.name}\n"
-"        % if object.partner_id.unfenced_commercial_partner_id and object.partner_id.unfenced_commercial_partner_id != object.partner_id:\n"
-"            (${object.partner_id.unfenced_commercial_partner_id.name})\n"
-"        % endif\n"
-"        <br/><br/>\n"
-"        Voici votre ${ctx['model_description']} <strong>${object.name}</strong>\n"
-"        % if object.origin:\n"
-"            (avec comme référence: ${object.origin})\n"
-"        % endif\n"
-"        de ${object.company_id.name}.\n"
-"        <br/>\n"
-"        <p>\n"
-"            Ce « pass » permet d'activer jusqu'à ${object.max_allowed_hardware} appareils et d'accéder aux applications suivantes:\n"
-"            <ul>\n"
-"            % for license_id in object.license_ids:\n"
-"                <li>\n"
-"                    <span style=\"margin-left:5px\">${license_id.application_id.name}</span>\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                    Bonjour ${object.partner_referral_id.name or object."
+"partner_id.name}\n"
+"                    % if object.partner_id.unfenced_commercial_partner_id "
+"and object.partner_id.unfenced_commercial_partner_id != object.partner_id:\n"
+"                        (${object.partner_id.unfenced_commercial_partner_id."
+"name})\n"
+"                    % endif\n"
+"                    <br/><br/>\n"
+"                    Voici votre ${ctx['model_description']} <strong>${object."
+"name}</strong>\n"
+"                    % if object.origin:\n"
+"                        (avec comme référence: ${object.origin})\n"
+"                    % endif\n"
+"                    from ${object.company_id.name}.\n"
+"                    <br/>\n"
+"                    <p>\n"
+"                        Ce « pass » permet d'activer jusqu'à ${object."
+"max_allowed_hardware} appareils et d'accéder aux applications suivantes:\n"
+"                        <ul>\n"
+"                        % for license_id in object.license_ids:\n"
+"                            <li>\n"
+"                                <span style=\"margin-left:5px\">${license_id."
+"application_id.name}</span>\n"
 "                    % if license_id.application_id.product_name:\n"
-"                        <span style=\"margin-left:5px\">${license_id.application_id.product_name}</span>\n"
+"                        <span style=\"margin-left:5px\">${license_id."
+"application_id.product_name}</span>\n"
 "                    % endif\n"
 "                </li>\n"
 "            % endfor\n"
 "            </ul>\n"
 "            % if object.expiration_date:\n"
-"            <i>Cet accès sera valide jusqu'au ${format_date(object.expiration_date)}.</i>\n"
+"            <i>Cet accès sera valide jusqu'au ${format_date(object."
+"expiration_date)}.</i>\n"
 "            <br/>\n"
 "            % endif\n"
 "            <br/>\n"
-"            <b>Veuillez lire attentivement la documentation d'accompagnement qui explique comment gérer vos activations et où vous pouvez télécharger votre contenu numérique.</b>\n"
-"        </p>\n"
-"        <br/><br/>\n"
-"        N'hésitez pas à nous contacter si vous avez des questions.\n"
-"    </p>\n"
-"</div>\n"
+"            <b>Veuillez lire attentivement la documentation d'accompagnement "
+"qui explique comment gérer vos activations et où vous pouvez télécharger "
+"votre contenu numérique.</b>\n"
+"                    </p>\n"
+"                    <br/><br/>\n"
+"                    N'hésitez pas à nous contacter si vous avez des "
+"questions.\n"
+"                </p>\n"
+"            </div>\n"
 "        "
 
 #. module: software_license_pass
@@ -129,6 +150,11 @@ msgid "Activities"
 msgstr "Activités"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Activité d'exception de décoration"
+
+#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_state
 msgid "Activity State"
 msgstr "Status de l'Activité"
@@ -139,9 +165,10 @@ msgid "Activity Type Icon"
 msgstr "Icône de type d’activité"
 
 #. module: software_license_pass
-#: sql_constraint:software.license.pack.line:0
+#: model:ir.model.constraint,message:software_license_pass.constraint_software_license_pack_line_app_uniq
 msgid "An application must appear only once in a pack!"
-msgstr "Une application ne doit être apparaître qu’une seule fois dans un pack !"
+msgstr ""
+"Une application ne doit être apparaître qu’une seule fois dans un pack !"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__application_id
@@ -172,7 +199,7 @@ msgid "Application Packs"
 msgstr "Pack d'applications"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:271
+#: code:addons/software_license_pass/models/software_license_pass.py:0
 #: model:ir.model,name:software_license_pass.model_software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 #, python-format
@@ -191,6 +218,7 @@ msgid "Applications that are part of this pack."
 msgstr "Applications qui font partie de ce pack."
 
 #. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Archived"
 msgstr "Archivé"
@@ -211,7 +239,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. module: software_license_pass
-#: selection:software.license.pass,state:0
+#: model:ir.model.fields.selection,name:software_license_pass.selection__software_license_pass__state__cancel
 msgid "Cancelled"
 msgstr "Annulé"
 
@@ -293,12 +321,27 @@ msgid "ID"
 msgstr "ID"
 
 #. module: software_license_pass
-#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread
-msgid "If checked new messages require your attention."
-msgstr "Si coché, de nouveaux messages demandent votre attention."
+#: model:ir.model.fields,help:software_license_pass.field_software_license__xid
+#: model:ir.model.fields,help:software_license_pass.field_software_license_hardware__xid
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pack__xid
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pack_line__xid
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: software_license_pass
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_needaction
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si coché, de nouveaux messages demandent votre attention."
 
@@ -309,18 +352,29 @@ msgstr "Si actif, certains messages ont une erreur de livraison."
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__max_allowed_hardware
-msgid "If more than 0, then the number of registered hardware identifiers will not be allowed to be greater than this value."
-msgstr "Si plus de 0, alors le nombre d’identificateurs matériels enregistrés ne sera pas autorisé à être supérieur à cette valeur."
+msgid ""
+"If more than 0, then the number of registered hardware identifiers will not "
+"be allowed to be greater than this value."
+msgstr ""
+"Si plus de 0, alors le nombre d’identificateurs matériels enregistrés ne "
+"sera pas autorisé à être supérieur à cette valeur."
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__expiration_date
-msgid "If set, then after this date it will not be possible to proceed or renew any activation."
-msgstr "Si défini, alors il ne sera pas possible, après cette date, de procéder à une activation ou de la renouveler ."
+msgid ""
+"If set, then after this date it will not be possible to proceed or renew any "
+"activation."
+msgstr ""
+"Si défini, alors il ne sera pas possible, après cette date, de procéder à "
+"une activation ou de la renouveler ."
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__active
-msgid "If unchecked, it will allow you to hide the application pass without removing it."
-msgstr "Si non coché, permet de masquer le « pass » d'applications sans le supprimer."
+msgid ""
+"If unchecked, it will allow you to hide the application pass without "
+"removing it."
+msgstr ""
+"Si non coché, permet de masquer le « pass » d'applications sans le supprimer."
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_is_follower
@@ -328,7 +382,7 @@ msgid "Is Follower"
 msgstr "Est un abonné"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:70
+#: code:addons/software_license_pass/models/software_license.py:0
 #, python-format
 msgid ""
 "It is forbidden to delete a license own by a pass:\n"
@@ -338,13 +392,14 @@ msgstr ""
 "{}"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license.py:52
+#: code:addons/software_license_pass/models/software_license.py:0
 #, python-format
 msgid ""
 "It is forbidden to update these license's fields when owned by a pass:\n"
 "{}"
 msgstr ""
-"Il est interdit de mettre à jour ces champs de licences lorsqu'elles sont détenues par un « pass » :\n"
+"Il est interdit de mettre à jour ces champs de licences lorsqu'elles sont "
+"détenues par un « pass » :\n"
 "{}"
 
 #. module: software_license_pass
@@ -394,7 +449,9 @@ msgstr "Licences"
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__license_ids
 msgid "Licenses dynamically generated by this pass to match pack content"
-msgstr "Licences générées dynamiquement par ce « pass » pour correspondre au contenu du pack"
+msgstr ""
+"Licences générées dynamiquement par ce « pass » pour correspondre au contenu "
+"du pack"
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license__pack_line_id
@@ -412,6 +469,12 @@ msgid "Maximum Activation Count"
 msgstr "Nombre maximum d’activations"
 
 #. module: software_license_pass
+#: code:addons/software_license_pass/models/software_license_pass.py:0
+#, python-format
+msgid "Maximum hardware identifier count reached for pass %s"
+msgstr "Nombre maximal d’identificateurs matériels atteint pour le pass %s"
+
+#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_has_error
 msgid "Message Delivery error"
 msgstr "Erreur d'envoi du message"
@@ -422,14 +485,17 @@ msgid "Messages"
 msgstr "Messages"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Ma date limite d'activité"
+
+#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__name
 msgid "Name"
 msgstr "Nom"
 
 #. module: software_license_pass
-#: code:addons/software_license_pass/models/software_license_pass.py:57
-#: code:addons/software_license_pass/models/software_license_pass.py:143
-#: code:addons/software_license_pass/models/software_license_pass.py:146
+#: code:addons/software_license_pass/models/software_license_pass.py:0
 #, python-format
 msgid "New"
 msgstr "Nouveau"
@@ -461,7 +527,7 @@ msgstr "Nombre de « Pass »"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr "Nombre d'erreurs"
 
 #. module: software_license_pass
@@ -478,11 +544,6 @@ msgstr "Nombre de messages avec des erreurs d'envoi"
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Nombre de messages non lus"
-
-#. module: software_license_pass
-#: selection:software.license.pass,activity_state:0
-msgid "Overdue"
-msgstr "Retard"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license__pack_id
@@ -543,11 +604,6 @@ msgid "Passes generated from this pack."
 msgstr "« Pass » générés à partir de ce pack."
 
 #. module: software_license_pass
-#: selection:software.license.pass,activity_state:0
-msgid "Planned"
-msgstr "Planifié"
-
-#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__product_id
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Product"
@@ -571,6 +627,11 @@ msgstr "Référence du document qui a généré ce « pass »."
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_referral_id
 msgid "Referral partner"
+msgstr "Partenaire de référence"
+
+#. module: software_license_pass
+#: model:mail.activity.type,name:software_license_pass.mail_activity_type_followup
+msgid "Relancer"
 msgstr ""
 
 #. module: software_license_pass
@@ -714,7 +775,7 @@ msgid "Send by Email"
 msgstr "Envoyer par email"
 
 #. module: software_license_pass
-#: selection:software.license.pass,state:0
+#: model:ir.model.fields.selection,name:software_license_pass.selection__software_license_pass__state__sent
 msgid "Sent"
 msgstr "Envoyé"
 
@@ -724,9 +785,11 @@ msgid "Serial"
 msgstr "Numéro de série"
 
 #. module: software_license_pass
-#: sql_constraint:software.license.pass:0
+#: model:ir.model.constraint,message:software_license_pass.constraint_software_license_pass_serial_uniq
 msgid "Serial Pass Activation Code must be unique!"
-msgstr "Le numéro de série (code d’activation) du « pass » doit être unique par application!"
+msgstr ""
+"Le numéro de série (code d’activation) du « pass » doit être unique par "
+"application!"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__origin
@@ -752,14 +815,14 @@ msgstr ""
 "Planifiée : activités futures."
 
 #. module: software_license_pass
-#: selection:software.license.pass,state:0
+#: model:ir.model.fields.selection,name:software_license_pass.selection__software_license_pass__state__draft
 msgid "To Send"
 msgstr "À Envoyer"
 
 #. module: software_license_pass
-#: selection:software.license.pass,activity_state:0
-msgid "Today"
-msgstr "Aujourd'hui"
+#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type d'activité d'exception enregistrée"
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__serial
@@ -785,6 +848,15 @@ msgstr "Messages du site web"
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__website_message_ids
 msgid "Website communication history"
 msgstr "Historique de communication du site web"
+
+#. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license__xid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__xid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__xid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__xid
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: software_license_pass
 #: model:uom.uom,name:software_license_pass.product_uom_year_seat1
@@ -1518,13 +1590,27 @@ msgstr "Année/Poste"
 
 #. module: software_license_pass
 #: model:mail.template,subject:software_license_pass.email_template
-msgid "e-space ${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or 'n/a' })"
+msgid ""
+"e-space ${object.company_id.name} ${ctx['model_description']} (Ref ${object."
+"name or 'n/a' })"
 msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__activity_team_user_ids
 msgid "test field"
-msgstr ""
+msgstr "champ de test"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#~ msgid "Overdue"
+#~ msgstr "Retard"
+
+#~ msgid "Planned"
+#~ msgstr "Planifié"
+
+#~ msgid "Today"
+#~ msgstr "Aujourd'hui"
 
 #~ msgid "Product Template"
 #~ msgstr "Modèle d'article"
@@ -1583,8 +1669,13 @@ msgstr ""
 #~ msgid "Exception(s) occurred on the sale order(s):"
 #~ msgstr "Des exceptions sont survenues sur le(s) bon(s) de commande:"
 
-#~ msgid "On Sales order confirmation, this product can generate a project and/or task. From those, you can track the service you are selling."
-#~ msgstr "Lors de la confirmation de la commande client, ce produit peut générer un projet ou une tâche. Cela vous permet ainsi de suivre le service que vous vendez."
+#~ msgid ""
+#~ "On Sales order confirmation, this product can generate a project and/or "
+#~ "task. From those, you can track the service you are selling."
+#~ msgstr ""
+#~ "Lors de la confirmation de la commande client, ce produit peut générer un "
+#~ "projet ou une tâche. Cela vous permet ainsi de suivre le service que vous "
+#~ "vendez."
 
 #~ msgid "Pack used to generate a new Application Pass."
 #~ msgstr "Pack utilisé pour générer un nouveau « pass » d'applications."

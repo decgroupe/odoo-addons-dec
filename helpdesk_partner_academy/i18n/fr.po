@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-23 20:26+0000\n"
-"PO-Revision-Date: 2021-05-23 22:21+0200\n"
+"POT-Creation-Date: 2023-11-28 10:14+0000\n"
+"PO-Revision-Date: 2023-11-28 11:50+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: helpdesk_partner_academy
 #: model_terms:ir.ui.view,arch_db:helpdesk_partner_academy.helpdesk_ticket_search_view
 msgid "Academy"
 msgstr "Académie"
+
+#. module: helpdesk_partner_academy
+#: model:ir.model.fields,field_description:helpdesk_partner_academy.field_helpdesk_ticket__display_name
+msgid "Display Name"
+msgstr "Intitulé"
 
 #. module: helpdesk_partner_academy
 #: model:ir.model.fields,help:helpdesk_partner_academy.field_helpdesk_ticket__partner_academy_id
@@ -33,6 +38,26 @@ msgid "Helpdesk Ticket"
 msgstr "Ticket d'assistance"
 
 #. module: helpdesk_partner_academy
+#: model:ir.model.fields,field_description:helpdesk_partner_academy.field_helpdesk_ticket__id
+msgid "ID"
+msgstr "ID"
+
+#. module: helpdesk_partner_academy
+#: model:ir.model.fields,help:helpdesk_partner_academy.field_helpdesk_ticket__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: helpdesk_partner_academy
+#: model:ir.model.fields,field_description:helpdesk_partner_academy.field_helpdesk_ticket____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: helpdesk_partner_academy
 #: model:ir.model.fields,field_description:helpdesk_partner_academy.field_helpdesk_ticket__partner_academy_id
 msgid "Partner's Academy"
 msgstr "Académie du partenaire"
+
+#. module: helpdesk_partner_academy
+#: model:ir.model.fields,field_description:helpdesk_partner_academy.field_helpdesk_ticket__xid
+msgid "XML-ID"
+msgstr "XML-ID"

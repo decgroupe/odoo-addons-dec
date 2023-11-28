@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* res_users_login_sync
+# 	* res_users_login_sync
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-28 13:15+0000\n"
-"PO-Revision-Date: 2022-10-28 13:15+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 10:29+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,13 +22,16 @@ msgstr ""
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
-msgid "<strong>⚠️ User login not in sync with contact e-mail.</strong>\n"
+msgid ""
+"<strong>⚠️ User login not in sync with contact e-mail.</strong>\n"
 "                The contact email is now"
 msgstr ""
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
-msgid "Ask your odoo administrator to make this change or ask him to give you the permission to synchronize contact e-mail with user login"
+msgid ""
+"Ask your odoo administrator to make this change or ask him to give you the "
+"permission to synchronize contact e-mail with user login"
 msgstr ""
 
 #. module: res_users_login_sync
@@ -54,6 +57,12 @@ msgid "ID"
 msgstr ""
 
 #. module: res_users_login_sync
+#: model:ir.model.fields,help:res_users_login_sync.field_res_partner__xid
+#: model:ir.model.fields,help:res_users_login_sync.field_res_users__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: res_users_login_sync
 #: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner____last_update
 #: model:ir.model.fields,field_description:res_users_login_sync.field_res_users____last_update
 msgid "Last Modified on"
@@ -71,12 +80,20 @@ msgstr ""
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
-msgid "Note that for security reason, a copy of this notification has been sent to your old and your new login"
+msgid ""
+"Note that for security reason, a copy of this notification has been sent to "
+"your old and your new login"
 msgstr ""
 
 #. module: res_users_login_sync
 #: model:ir.model,name:res_users_login_sync.model_res_users
 msgid "Users"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner__xid
+#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users__xid
+msgid "XML-ID"
 msgstr ""
 
 #. module: res_users_login_sync
@@ -88,4 +105,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
 msgid "but its login is still"
 msgstr ""
-

@@ -4,21 +4,41 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 14:05+0000\n"
-"PO-Revision-Date: 2021-07-09 16:12+0200\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 14:11+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: project_acl
-#: code:addons/project_acl/models/project.py:40
+#: model:ir.model.fields,field_description:project_acl.field_project_project__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: project_acl
+#: model:ir.model.fields,field_description:project_acl.field_project_project__id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_acl
+#: model:ir.model.fields,help:project_acl.field_project_project__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: project_acl
+#: model:ir.model.fields,field_description:project_acl.field_project_project____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: project_acl
+#: code:addons/project_acl/models/project.py:0
 #, python-format
 msgid "Please contact one of them to do it for you:"
 msgstr "S’il vous plaît contacter l’un de ces membres pour le faire pour vous :"
@@ -34,18 +54,21 @@ msgid "Super-Manager"
 msgstr "Super-Gestionnaire"
 
 #. module: project_acl
-#: model:ir.model,name:project_acl.model_project_task
-msgid "Task"
-msgstr "Tâche"
+#: model:ir.model.fields,field_description:project_acl.field_project_project__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: project_acl
-#: code:addons/project_acl/models/project.py:34
+#: code:addons/project_acl/models/project.py:0
 #, python-format
 msgid "You are not allowed to create a new project!"
 msgstr "Vous n’êtes pas autorisé à créer un nouveau projet !"
 
 #. module: project_acl
-#: code:addons/project_acl/models/project.py:36
+#: code:addons/project_acl/models/project.py:0
 #, python-format
 msgid "You must be a member of the « Project's Super-Manager » group."
 msgstr "Vous devez être membre du groupe « Super-Gestionnaire de projet » 🙄."
+
+#~ msgid "Task"
+#~ msgstr "Tâche"

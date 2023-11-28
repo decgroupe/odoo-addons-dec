@@ -30,8 +30,8 @@ msgid ""
 "delivery order or production order) and delete this line immediatly?"
 msgstr ""
 "Êtes-vous certain de vouloir annuler cet approvisionnement (qui provient "
-"d'un bon de livraison ou d'un ordre de fabrication) et supprimer cette "
-"ligne immédiatement?"
+"d'un bon de livraison ou d'un ordre de fabrication) et supprimer cette ligne"
+" immédiatement?"
 
 #. module: purchase_stock_cancel
 #: model_terms:ir.ui.view,arch_db:purchase_stock_cancel.purchase_order_form_view
@@ -76,8 +76,8 @@ msgid ""
 "after %s cancellation propagation from <b>%s</b>"
 msgstr ""
 "Le mouvement <small>%d</small> pour <small>%s</small> a également été "
-"<b>annulé</b> après la propagation de l'annulation de %s à partir de <b>%s</"
-"b>"
+"<b>annulé</b> après la propagation de l'annulation de %s à partir de "
+"<b>%s</b>"
 
 #. module: purchase_stock_cancel
 #: code:addons/purchase_stock_cancel/models/purchase_order_line.py:0

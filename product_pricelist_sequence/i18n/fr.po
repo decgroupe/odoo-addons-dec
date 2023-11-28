@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:12+0000\n"
-"PO-Revision-Date: 2020-10-13 22:15+0200\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:05+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,133 +15,124 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:218
-#, python-format
-msgid "Base price is now {} ({})"
-msgstr "Le prix de référence est maintenant {} ({})"
+#: model_terms:ir.ui.view,arch_db:product_pricelist_sequence.product_pricelist_form_view
+msgid "Category"
+msgstr "Catégorie"
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:172
-#, python-format
-msgid "Base price is {}"
-msgstr "Le prix de référence est {}"
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist_item__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: product_pricelist_sequence
-#: model:ir.model.fields,help:product_pricelist.field_product_pricelist_item__note
+#: model:ir.model.fields,help:product_pricelist_sequence.field_product_pricelist_item__note
 msgid "Explicit rule name for this pricelist line."
 msgstr "Nom explicite pour cette ligne de la liste de prix."
 
 #. module: product_pricelist_sequence
-#: model:ir.model.fields,help:product_pricelist.field_product_pricelist_item__sequence
-msgid "Gives the order in which the pricelist items will be checked. The evaluation gives highest priority to lowest sequence."
-msgstr "Donne l'ordre dans lequel les entrées de la liste de prix sont vérifiées. L'évaluation donne la plus grande priorité à la séquence la plus petite."
+#: model:ir.model.fields,help:product_pricelist_sequence.field_product_pricelist_item__sequence
+msgid ""
+"Gives the order in which the pricelist items will be checked. The "
+"evaluation gives highest priority to lowest sequence."
+msgstr ""
+"Donne l'ordre dans lequel les entrées de la liste de prix sont vérifiées. "
+"L'évaluation donne la plus grande priorité à la séquence la plus petite."
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:147
-#, python-format
-msgid "No rules loaded at this step"
-msgstr "Aucune règle chargée à cette étape"
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist__id
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist_item__id
+msgid "ID"
+msgstr "ID"
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:176
-#, python-format
-msgid "Parse rule [{}] {}"
-msgstr "Analyse de la règle [{}] {}"
+#: model:ir.model.fields,help:product_pricelist_sequence.field_product_pricelist__xid
+#: model:ir.model.fields,help:product_pricelist_sequence.field_product_pricelist_item__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:221
-#, python-format
-msgid "Price (fixed) set to {}"
-msgstr "Le prix (fixe) est {}"
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist____last_update
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist_item____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:224
-#, python-format
-msgid "Price (percentage) set to {}"
-msgstr "Le prix (pourcentage) est {}"
-
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:231
-#, python-format
-msgid "Price discounted to {} ({}%)"
-msgstr "Le prix remisé est {} ({}%)"
-
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:212
-#, python-format
-msgid "Price is based on \"{}\""
-msgstr "Le prix de référence est \"{}\""
-
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:201
-#, python-format
-msgid "Price is based on another pricelist: {}"
-msgstr "Le prix de référence se  base sur une autre liste de prix: {}"
-
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:235
-#, python-format
-msgid "Price rounded to {}"
-msgstr "Prix arrondie à {}"
-
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:240
-#, python-format
-msgid "Price surcharge applied {} (+{})"
-msgstr "Supplément de prix appliqué {} (+{})"
-
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:250
-#, python-format
-msgid "Price updated (maximum margin) to {}"
-msgstr "Prix mis à jour (selon la limite de marge maximum) à {}"
-
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:245
-#, python-format
-msgid "Price updated (minimum margin) to {}"
-msgstr "Prix mis à jour (selon la limite de marge minimum) à {}"
-
-#. module: product_pricelist_sequence
-#: model:ir.model,name:product_pricelist.model_product_pricelist
+#: model:ir.model,name:product_pricelist_sequence.model_product_pricelist
 msgid "Pricelist"
 msgstr "Liste de prix"
 
 #. module: product_pricelist_sequence
-#: model:ir.model,name:product_pricelist.model_product_pricelist_item
-msgid "Pricelist Item"
-msgstr "Règle de prix"
+#: model:ir.model,name:product_pricelist_sequence.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr "Règle des listes des prix"
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:167
-#, python-format
-msgid "Quantity is {}"
-msgstr "La quantité est de {}"
-
-#. module: product_pricelist_sequence
-#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist_item__note
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist_item__note
 msgid "Rule Name"
 msgstr "Nom de la règle"
 
 #. module: product_pricelist_sequence
-#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist_item__sequence
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist_item__sequence
 msgid "Sequence"
 msgstr "Séquence"
 
 #. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:143
-#, python-format
-msgid "Using {}"
-msgstr "Utilisation de {}"
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist__xid
+#: model:ir.model.fields,field_description:product_pricelist_sequence.field_product_pricelist_item__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
-#. module: product_pricelist_sequence
-#: code:addons/product_pricelist/models/product_pricelist.py:145
-#, python-format
-msgid "{} rule(s) loaded"
-msgstr "{} règle(s) chargée(s)"
+#~ msgid "Base price is now {} ({})"
+#~ msgstr "Le prix de référence est maintenant {} ({})"
+
+#~ msgid "Base price is {}"
+#~ msgstr "Le prix de référence est {}"
+
+#~ msgid "No rules loaded at this step"
+#~ msgstr "Aucune règle chargée à cette étape"
+
+#~ msgid "Parse rule [{}] {}"
+#~ msgstr "Analyse de la règle [{}] {}"
+
+#~ msgid "Price (fixed) set to {}"
+#~ msgstr "Le prix (fixe) est {}"
+
+#~ msgid "Price (percentage) set to {}"
+#~ msgstr "Le prix (pourcentage) est {}"
+
+#~ msgid "Price discounted to {} ({}%)"
+#~ msgstr "Le prix remisé est {} ({}%)"
+
+#~ msgid "Price is based on \"{}\""
+#~ msgstr "Le prix de référence est \"{}\""
+
+#~ msgid "Price is based on another pricelist: {}"
+#~ msgstr "Le prix de référence se  base sur une autre liste de prix: {}"
+
+#~ msgid "Price rounded to {}"
+#~ msgstr "Prix arrondie à {}"
+
+#~ msgid "Price surcharge applied {} (+{})"
+#~ msgstr "Supplément de prix appliqué {} (+{})"
+
+#~ msgid "Price updated (maximum margin) to {}"
+#~ msgstr "Prix mis à jour (selon la limite de marge maximum) à {}"
+
+#~ msgid "Price updated (minimum margin) to {}"
+#~ msgstr "Prix mis à jour (selon la limite de marge minimum) à {}"
+
+#~ msgid "Quantity is {}"
+#~ msgstr "La quantité est de {}"
+
+#~ msgid "Using {}"
+#~ msgstr "Utilisation de {}"
+
+#~ msgid "{} rule(s) loaded"
+#~ msgstr "{} règle(s) chargée(s)"
 
 #~ msgid "Price"
 #~ msgstr "Prix"

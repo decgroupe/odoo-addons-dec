@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-03 18:45+0000\n"
-"PO-Revision-Date: 2021-06-03 20:45+0200\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 14:12+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: project_identification
 #: model:ir.actions.act_window,name:project_identification.open_view_contract_all
@@ -27,6 +27,12 @@ msgstr "Contrats"
 #: model:ir.ui.menu,name:project_identification.menu_contracts_and_projects
 msgid "Contracts & Projects"
 msgstr "Contrats & projets"
+
+#. module: project_identification
+#: model:ir.model.fields,field_description:project_identification.field_project_project__display_name
+#: model:ir.model.fields,field_description:project_identification.field_project_task__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: project_identification
 #: model_terms:ir.ui.view,arch_db:project_identification.project_project_filter_view
@@ -42,6 +48,18 @@ msgstr "Pour les projets génériques, et utilisé pour remplir les feuilles de 
 #: model:project.type,description:project_identification.contract_type
 msgid "For sale orders"
 msgstr "Pour les commandes client"
+
+#. module: project_identification
+#: model:ir.model.fields,field_description:project_identification.field_project_project__id
+#: model:ir.model.fields,field_description:project_identification.field_project_task__id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_identification
+#: model:ir.model.fields,help:project_identification.field_project_project__xid
+#: model:ir.model.fields,help:project_identification.field_project_task__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: project_identification
 #: model_terms:ir.ui.view,arch_db:project_identification.project_project_filter_view
@@ -64,6 +82,12 @@ msgid "Is not a Contract"
 msgstr "N’est pas un contrat"
 
 #. module: project_identification
+#: model:ir.model.fields,field_description:project_identification.field_project_project____last_update
+#: model:ir.model.fields,field_description:project_identification.field_project_task____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: project_identification
 #: model:ir.model,name:project_identification.model_project_project
 msgid "Project"
 msgstr "Projet"
@@ -77,6 +101,12 @@ msgstr "Type de projet"
 #: model:ir.model,name:project_identification.model_project_task
 msgid "Task"
 msgstr "Tâche"
+
+#. module: project_identification
+#: model:ir.model.fields,field_description:project_identification.field_project_project__xid
+#: model:ir.model.fields,field_description:project_identification.field_project_task__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: project_identification
 #: model:project.type,name:project_identification.contract_type

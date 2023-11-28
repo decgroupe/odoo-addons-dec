@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* software_account
+# 	* software_account
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:11+0000\n"
-"PO-Revision-Date: 2020-11-14 11:11+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,70 +16,81 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: software_account
+#: model:ir.actions.report,print_report_name:software_account.software_account_report
+msgid "(object._get_aeroo_report_filename())"
+msgstr ""
+
+#. module: software_account
 #: model:ir.ui.menu,name:software_account.menu_software_account
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_form_view
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
 msgid "Account"
-msgstr "Compte"
+msgstr ""
 
 #. module: software_account
 #: model:ir.ui.menu,name:software_account.menu_software_accounting
 msgid "Accounting"
-msgstr "Comptabilité"
+msgstr ""
 
 #. module: software_account
 #: model:ir.actions.act_window,name:software_account.act_window_software_account
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_tree_view
 msgid "Accounts"
-msgstr "Identifiants"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__answer
 msgid "Answer"
-msgstr "Réponse"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__create_uid
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__create_date
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__display_name
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__email
 msgid "E-Mail"
-msgstr "Courriel"
+msgstr ""
 
 #. module: software_account
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
 msgid "Email"
-msgstr "Courriel"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__firstname
 msgid "Firstname"
-msgstr "Prénom"
+msgstr ""
 
 #. module: software_account
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
 msgid "Group By"
-msgstr "Regrouper par"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__id
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__id
 msgid "ID"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,help:software_account.field_software_account__xid
+#: model:ir.model.fields,help:software_account.field_software_account_supplier__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: software_account
@@ -96,67 +107,67 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_account.field_software_account____last_update
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__write_uid
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__write_date
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__lastname
 msgid "Lastname"
-msgstr "Nom"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__login
 msgid "Login"
-msgstr "Identifiant"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__datetime
 msgid "Modification date"
-msgstr "Date de modification"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__name
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__partner_id
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
 msgid "Partner"
-msgstr "Partenaire"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__password
 msgid "Password"
-msgstr "Mot de passe"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__pin
 msgid "Pin Code"
-msgstr "Code PIN"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__product_id
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
 msgid "Product"
-msgstr "Article"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__production_id
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_search_view
 msgid "Production"
-msgstr "Fabrication"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__question
@@ -166,17 +177,17 @@ msgstr ""
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account_supplier__rules
 msgid "Rules"
-msgstr "Règles"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model,name:software_account.model_software_account
 msgid "Software Account"
-msgstr "Compte logiciel"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model,name:software_account.model_software_account_supplier
 msgid "Software Account supplier"
-msgstr "Type de compte"
+msgstr ""
 
 #. module: software_account
 #: model:ir.model.fields,field_description:software_account.field_software_account__supplier_id
@@ -185,22 +196,27 @@ msgstr "Type de compte"
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_form_view
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_kanban_view
 msgid "Supplier"
-msgstr "Fournisseur"
+msgstr ""
 
 #. module: software_account
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_form_view
 msgid "Supplier name"
-msgstr "Nom du fournisseur"
+msgstr ""
 
 #. module: software_account
 #: model:ir.actions.act_window,name:software_account.act_window_software_account_supplier
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_search_view
 #: model_terms:ir.ui.view,arch_db:software_account.software_account_supplier_tree_view
 msgid "Suppliers"
-msgstr "Fournisseurs"
+msgstr ""
+
+#. module: software_account
+#: model:ir.model.fields,field_description:software_account.field_software_account__xid
+#: model:ir.model.fields,field_description:software_account.field_software_account_supplier__xid
+msgid "XML-ID"
+msgstr ""
 
 #. module: software_account
 #: model:ir.actions.report,name:software_account.software_account_report
 msgid "📄 Account (customer information)"
-msgstr "📄 Compte (informations client)"
-
+msgstr ""

@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_return_routes
+# 	* stock_return_routes
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 10:32+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,24 +16,55 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_return_routes
-#: code:addons/stock_return_routes/models/mrp_unbuild.py:21
+#: model:ir.model.fields,field_description:stock_return_routes.field_mrp_unbuild__display_name
+#: model:ir.model.fields,field_description:stock_return_routes.field_product_product__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: stock_return_routes
+#: code:addons/stock_return_routes/models/mrp_unbuild.py:0
 #, python-format
 msgid "Following product's routes has been edited:"
-msgstr "Les routes des produits suivants ont été modifiées:"
+msgstr ""
+
+#. module: stock_return_routes
+#: model:ir.model.fields,field_description:stock_return_routes.field_mrp_unbuild__id
+#: model:ir.model.fields,field_description:stock_return_routes.field_product_product__id
+msgid "ID"
+msgstr ""
+
+#. module: stock_return_routes
+#: model:ir.model.fields,help:stock_return_routes.field_mrp_unbuild__xid
+#: model:ir.model.fields,help:stock_return_routes.field_product_product__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: stock_return_routes
+#: model:ir.model.fields,field_description:stock_return_routes.field_mrp_unbuild____last_update
+#: model:ir.model.fields,field_description:stock_return_routes.field_product_product____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: stock_return_routes
 #: model:ir.model,name:stock_return_routes.model_product_product
 msgid "Product"
-msgstr "Article"
+msgstr ""
 
 #. module: stock_return_routes
-#: code:addons/stock_return_routes/models/product_product.py:23
+#: code:addons/stock_return_routes/models/product_product.py:0
 #, python-format
-msgid "Route <small><b>%s</b></small> replaced with route <small><b>%s</b></small> while processing %s."
-msgstr "La route <small><b>%s</b></small> remplace la route <small><b>%s</b></small> while processing unbuild %s."
+msgid ""
+"Route <small><b>%s</b></small> replaced with route <small><b>%s</b></small> "
+"while processing %s."
+msgstr ""
 
 #. module: stock_return_routes
 #: model:ir.model,name:stock_return_routes.model_mrp_unbuild
 msgid "Unbuild Order"
-msgstr "Ordre de deconstruction"
+msgstr ""
 
+#. module: stock_return_routes
+#: model:ir.model.fields,field_description:stock_return_routes.field_mrp_unbuild__xid
+#: model:ir.model.fields,field_description:stock_return_routes.field_product_product__xid
+msgid "XML-ID"
+msgstr ""

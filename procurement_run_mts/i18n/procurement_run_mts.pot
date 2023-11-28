@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* procurement_run_mts
+# 	* procurement_run_mts
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:11+0000\n"
-"PO-Revision-Date: 2020-11-14 11:11+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:26+0000\n"
+"PO-Revision-Date: 2023-11-28 10:26+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,13 +16,37 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: procurement_run_mts
-#: code:addons/procurement_run_mts/models/procurement_group.py:101
+#: model:ir.model.fields,field_description:procurement_run_mts.field_procurement_group__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: procurement_run_mts
+#: model:ir.model.fields,field_description:procurement_run_mts.field_procurement_group__id
+msgid "ID"
+msgstr ""
+
+#. module: procurement_run_mts
+#: model:ir.model.fields,help:procurement_run_mts.field_procurement_group__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: procurement_run_mts
+#: model:ir.model.fields,field_description:procurement_run_mts.field_procurement_group____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: procurement_run_mts
+#: code:addons/procurement_run_mts/models/procurement_group.py:0
 #, python-format
 msgid "Not enough stock and no minimum orderpoint rule"
-msgstr "Pas assez de stock, et aucun réapprovisionnement défini."
+msgstr ""
 
 #. module: procurement_run_mts
 #: model:ir.model,name:procurement_run_mts.model_procurement_group
 msgid "Procurement Group"
-msgstr "Groupe d'approvisionnement"
+msgstr ""
 
+#. module: procurement_run_mts
+#: model:ir.model.fields,field_description:procurement_run_mts.field_procurement_group__xid
+msgid "XML-ID"
+msgstr ""

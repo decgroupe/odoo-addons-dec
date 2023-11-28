@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 17:06+0000\n"
-"PO-Revision-Date: 2020-09-25 19:26+0200\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 15:09+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: stock_orderpoint_auto_multiple
+#: model:ir.model.fields,field_description:stock_orderpoint_auto_multiple.field_stock_warehouse_orderpoint__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: stock_orderpoint_auto_multiple
+#: model:ir.model.fields,field_description:stock_orderpoint_auto_multiple.field_stock_warehouse_orderpoint__id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_orderpoint_auto_multiple
+#: model:ir.model.fields,help:stock_orderpoint_auto_multiple.field_stock_warehouse_orderpoint__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: stock_orderpoint_auto_multiple
+#: model:ir.model.fields,field_description:stock_orderpoint_auto_multiple.field_stock_warehouse_orderpoint____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: stock_orderpoint_auto_multiple
 #: model:ir.model,name:stock_orderpoint_auto_multiple.model_stock_warehouse_orderpoint
@@ -24,10 +44,20 @@ msgstr "Règle de stock minimum"
 
 #. module: stock_orderpoint_auto_multiple
 #: model:ir.model.fields,field_description:stock_orderpoint_auto_multiple.field_stock_warehouse_orderpoint__qty_multiple
-msgid "Qty Multiple"
-msgstr "Multiple Qté"
+msgid "Multiple Quantity"
+msgstr "Quantité Multiple de"
 
 #. module: stock_orderpoint_auto_multiple
 #: model:ir.model.fields,help:stock_orderpoint_auto_multiple.field_stock_warehouse_orderpoint__qty_multiple
 msgid "This value is automatically computed from the product purchase UoM"
-msgstr "Cette valeur est automatiquement calculée à partir de l'unité d'achat du produit"
+msgstr ""
+"Cette valeur est automatiquement calculée à partir de l'unité d'achat du "
+"produit"
+
+#. module: stock_orderpoint_auto_multiple
+#: model:ir.model.fields,field_description:stock_orderpoint_auto_multiple.field_stock_warehouse_orderpoint__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Qty Multiple"
+#~ msgstr "Multiple Qté"

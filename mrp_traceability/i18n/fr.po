@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_traceability
+# 	* mrp_traceability
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 11:29+0000\n"
-"PO-Revision-Date: 2021-09-01 11:29+0000\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 13:54+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
@@ -21,14 +23,43 @@ msgid "Close"
 msgstr "Fermer"
 
 #. module: mrp_traceability
+#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__move_conv_dest_ids
+msgid "Destination Moves (After Conversion)"
+msgstr "Mouvements de destination (après conversion)"
+
+#. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
 msgid "Details"
 msgstr "Détails"
 
 #. module: mrp_traceability
+#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
 msgid "Done/Reserved"
 msgstr "Terminé/Réservé"
+
+#. module: mrp_traceability
+#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_traceability
+#: model:ir.model.fields,help:mrp_traceability.field_mrp_production__xid
+#: model:ir.model.fields,help:mrp_traceability.field_stock_move__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mrp_traceability
+#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: mrp_traceability
 #: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__mrp_status
@@ -45,6 +76,21 @@ msgstr "Ouvert"
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
 msgid "Open Advanced Form View"
 msgstr "Ouvrir la vue étendue"
+
+#. module: mrp_traceability
+#: model:ir.model.fields,help:mrp_traceability.field_stock_move__move_conv_dest_ids
+msgid "Optional: final stock move when building a product"
+msgstr "Facultatif: dernier mouvement de stock lors de la fabrication d'un produit"
+
+#. module: mrp_traceability
+#: model:ir.model.fields,help:mrp_traceability.field_stock_move__move_conv_orig_ids
+msgid "Optional: raw stock moves when building a product"
+msgstr "Facultatif: les mouvements de stock brut lors de la fabrication d'un produit"
+
+#. module: mrp_traceability
+#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__move_conv_orig_ids
+msgid "Original Moves (Before Conversion)"
+msgstr "Mouvements originaux (avant la conversion)"
 
 #. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
@@ -84,6 +130,12 @@ msgid "Stock Moves"
 msgstr "Mouvements de stocks"
 
 #. module: mrp_traceability
+#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__xid
+#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: mrp_traceability
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
 msgid "stock.move.details.form#admin@mrp_traceability"
 msgstr ""
@@ -92,4 +144,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
 msgid "stock.move.details.form@mrp_traceability"
 msgstr ""
-

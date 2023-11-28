@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_mts_mto
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"PO-Revision-Date: 2023-11-28 13:43+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_mts_mto
+#: model:ir.model.fields,field_description:mrp_mts_mto.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_mts_mto
+#: model:ir.model.fields,field_description:mrp_mts_mto.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_mts_mto
+#: model:ir.model.fields,help:mrp_mts_mto.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mrp_mts_mto
+#: model:ir.model.fields,field_description:mrp_mts_mto.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: mrp_mts_mto
+#: model:ir.model,name:mrp_mts_mto.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_mts_mto
+#: model:ir.model.fields,field_description:mrp_mts_mto.field_mrp_production__xid
+msgid "XML-ID"
+msgstr "XML-ID"

@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_sale_traceability
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"PO-Revision-Date: 2023-11-28 09:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,help:account_sale_traceability.field_account_move_line__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model:ir.model,name:account_sale_traceability.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model_terms:ir.ui.view,arch_db:account_sale_traceability.invoice_line_tree_filter_view
+msgid "Not attached"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__invoice_origin
+msgid "Origin"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model_terms:ir.ui.view,arch_db:account_sale_traceability.invoice_line_tree_filter_view
+msgid "Product"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model_terms:ir.ui.view,arch_db:account_sale_traceability.invoice_line_form_view
+msgid "Sale Lines"
+msgstr ""
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,help:account_sale_traceability.field_account_move_line__invoice_origin
+msgid "The document(s) that generated the invoice."
+msgstr ""
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__xid
+msgid "XML-ID"
+msgstr ""

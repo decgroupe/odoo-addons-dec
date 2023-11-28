@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_orderpoint_simulator
+# 	* stock_orderpoint_simulator
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-11 15:19+0000\n"
-"PO-Revision-Date: 2020-12-11 15:19+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 10:32+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,8 @@ msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
-msgid ")\n"
+msgid ""
+")\n"
 "                        You can change it to simulate your result but don't forget to change\n"
 "                        this UoM in the product form if you want match your simulation."
 msgstr ""
@@ -25,32 +26,32 @@ msgstr ""
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
 msgid "Apply"
-msgstr "Appliquer"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__available_qty
 msgid "Available Quantity"
-msgstr "Quantité disponible"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
 msgid "Cancel"
-msgstr "Annuler"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__id
@@ -58,19 +59,24 @@ msgid "ID"
 msgstr ""
 
 #. module: stock_orderpoint_simulator
+#: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
@@ -80,7 +86,7 @@ msgstr ""
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_max_qty
 msgid "Maximum Quantity"
-msgstr "Quantité maximale"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
@@ -90,13 +96,13 @@ msgstr ""
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_min_qty
 msgid "Minimum Quantity"
-msgstr "Quantité minimum"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.actions.act_window,name:stock_orderpoint_simulator.action_orderpoint_simulator
 #: model:ir.model,name:stock_orderpoint_simulator.model_stock_warehouse_orderpoint_simulator
 msgid "Minimum Stock Rule Simulator"
-msgstr "Simulateur de règle de stock minimum"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
@@ -106,47 +112,47 @@ msgstr ""
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__needed_qty
 msgid "Needed Quantity"
-msgstr "Quantité nécessaire"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.warehouse_orderpoint_form_view
 msgid "Open Simulator"
-msgstr "Ouvrir le simulateur"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__origin_orderpoint_id
 msgid "Origin Orderpoint"
-msgstr "Réapprovisionnement d'origine"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_uom_po_id
 msgid "Purchase Unit of Measure"
-msgstr "Unité de mesure d'achat"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__qty_multiple
 msgid "Qty Multiple"
-msgstr "Multiple Qté"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__qty_to_order
 msgid "Quantity to Order"
-msgstr "Quantité à commander"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
 msgid "Remaining"
-msgstr "Restant"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__remaining_qty
 msgid "Remaining Quantity"
-msgstr "Quantité Restante"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
 msgid "Select Options"
-msgstr "Choisir les options"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__qty_multiple
@@ -155,30 +161,41 @@ msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
-msgid "This multiple is normally equal to the Purchase Unit of Measure <b>ratio</b>. ("
+msgid ""
+"This multiple is normally equal to the Purchase Unit of Measure "
+"<b>ratio</b>. ("
 msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_min_qty
-msgid "When the virtual stock goes below the Min Quantity specified for this field, Odoo generates a procurement to bring the forecasted quantity to the Max Quantity."
-msgstr "Quand le stock virtuel tombe en dessous de la quantité mini indiquée dans de champ, Odoo génère un approvisionnement pour ramener la quantité prévue à la quantité maxi."
+msgid ""
+"When the virtual stock goes below the Min Quantity specified for this field,"
+" Odoo generates a procurement to bring the forecasted quantity to the Max "
+"Quantity."
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_max_qty
-msgid "When the virtual stock goes below the Min Quantity, Odoo generates a procurement to bring the forecasted quantity to the Quantity specified as Max Quantity."
-msgstr "Quand le stock virtuel tombe en dessous de la quantité mini, Odoo génère un approvisionnement pour ramener la quantité prévue à la quantité indiquée ici."
+msgid ""
+"When the virtual stock goes below the Min Quantity, Odoo generates a "
+"procurement to bring the forecasted quantity to the Quantity specified as "
+"Max Quantity."
+msgstr ""
+
+#. module: stock_orderpoint_simulator
+#: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__xid
+msgid "XML-ID"
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
-msgid "You can change <b>editable</b> fields to simulate an orderpoint.\n"
+msgid ""
+"You can change <b>editable</b> fields to simulate an orderpoint.\n"
 "                    Default values are loaded from real product state.\n"
 "                    Click <b>Apply</b> to copy <b>minimum</b> and <b>maximum</b> values."
-msgstr "Vous pouvez modifier les champs <b>éditables</b> pour simuler un réapprovisionnement.\n"
-"                    Les valeurs par défaut sont récupérées selon l'état actuel de l'article.\n"
-"                    Cliquer sur <b>Appliquer</b> pour copier les valeurs <b>minimum</b> et <b>maximum</b>."
+msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.actions.act_window,name:stock_orderpoint_simulator.act_window_stock_warehouse_orderpoint_simulator
-msgid "🧙‍♂️ Simulator ..."
-msgstr "🧙‍♂️ Simulateur ..."
-
+msgid "🧙‍♂️ Simulator ..."
+msgstr ""

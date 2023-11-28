@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-04 14:23+0000\n"
-"PO-Revision-Date: 2022-01-04 15:23+0100\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 14:58+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,30 +15,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: software_application
 #: model:ir.model.fields,help:software_application.field_software_application__product_description
-msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
-msgstr "Une description du produit que vous souhaitez communiquer à vos clients. Cette description sera copiée sur chaque bon de commande, bon de livraison et note de crédit/facture client"
+msgid ""
+"A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, "
+"Delivery Order and Customer Invoice/Credit Note"
+msgstr ""
+"Une description du produit que vous souhaitez communiquer à vos clients. Cette description sera copiée sur chaque bon de commande, "
+"bon de livraison et note de crédit/facture client"
 
 #. module: software_application
 #: model:ir.model.fields,help:software_application.field_software_application_release__version_prerelease
 msgid ""
-"A pre-release version MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch version.\n"
+"A pre-release version MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch "
+"version.\n"
 "Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
 "Identifiers MUST NOT be empty.\n"
 "Numeric identifiers MUST NOT include leading zeroes.\n"
 "Pre-release versions have a lower precedence than the associated normal version.\n"
-"A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version.\n"
+"A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as "
+"denoted by its associated normal version.\n"
 "Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.–."
 msgstr ""
-"Une version de pré-livraison PEUT être notée par l’ajout d’un trait d’union et d’une série d’identifiants séparés par des points suivant immédiatement l’identifiant de version de correction.\n"
+"Une version de pré-livraison PEUT être notée par l’ajout d’un trait d’union et d’une série d’identifiants séparés par des points "
+"suivant immédiatement l’identifiant de version de correction.\n"
 "Les identifiants DOIVENT être composés uniquement de caractères alphanumériques ASCII et de traits d’union [0-9A-Za-z-].\n"
 "Les identifiants NE DOIVENT PAS être vides.\n"
 "Les identifiants numériques NE DOIVENT PAS être préfixés par des zéros.\n"
 "Les versions de pré-livraison précèdent la version normale associée (version de pré-livraison < version normale).\n"
-"Une version de pré-livraison indique que la version n’est pas stable et ne satisfait pas forcément les exigences de compatibilité associées à une version normale.\n"
+"Une version de pré-livraison indique que la version n’est pas stable et ne satisfait pas forcément les exigences de compatibilité "
+"associées à une version normale.\n"
 "Exemples : 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92."
 
 #. module: software_application
@@ -66,6 +74,11 @@ msgid "Applications"
 msgstr "Applications"
 
 #. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: software_application
 #: model:ir.ui.menu,name:software_application.menu_software_asset
 msgid "Assets"
 msgstr "Assets"
@@ -78,14 +91,16 @@ msgstr "Build"
 #. module: software_application
 #: model:ir.model.fields,help:software_application.field_software_application_release__version_build
 msgid ""
-"Build metadata MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch or pre-release version.\n"
+"Build metadata MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch or "
+"pre-release version.\n"
 "Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
 "Identifiers MUST NOT be empty.\n"
 "Build metadata MUST be ignored when determining version precedence.\n"
 "Thus two versions that differ only in the build metadata, have the same precedence.\n"
 "Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3—-117B344092BD."
 msgstr ""
-"Les méta-données de construction PEUVENT être notées par l’ajout d’un signe « plus » et d’une série d’identifiants séparés par des points suivant immédiatement l’identifiant de version de correction ou de pré-livraison.\n"
+"Les méta-données de construction PEUVENT être notées par l’ajout d’un signe « plus » et d’une série d’identifiants séparés par des "
+"points suivant immédiatement l’identifiant de version de correction ou de pré-livraison.\n"
 "Les identifiants DOIVENT être composés uniquement de caractères alphanumériques ASCII et de traits d’union [0-9A-Za-z-].\n"
 "Les identifiants NE DOIVENT PAS être vides.\n"
 "Les méta-données de construction DEVRAIENT être ignorées dans l’ordre des versions.\n"
@@ -95,7 +110,9 @@ msgstr ""
 #. module: software_application
 #: model:ir.model.fields,help:software_application.field_software_application__product_id
 msgid "By linking this application to a product, sales informations like description will be used in communications to customers"
-msgstr "En liant cette application à un article, les informations de vente comme la description seront utilisées dans les communications aux clients"
+msgstr ""
+"En liant cette application à un article, les informations de vente comme la description seront utilisées dans les communications aux "
+"clients"
 
 #. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_tag__color
@@ -144,7 +161,7 @@ msgid "Download URL"
 msgstr "Lien de téléchargement"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:48
+#: code:addons/software_application/models/software_application_release.py:0
 #, python-format
 msgid "Fixes"
 msgstr "Correctifs"
@@ -155,6 +172,13 @@ msgstr "Correctifs"
 #: model:ir.model.fields,field_description:software_application.field_software_tag__id
 msgid "ID"
 msgstr "ID"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__xid
+#: model:ir.model.fields,help:software_application.field_software_application_release__xid
+#: model:ir.model.fields,help:software_application.field_software_tag__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: software_application
 #: model:ir.model.fields,help:software_application.field_software_application__active
@@ -172,8 +196,8 @@ msgid "Image of the application (automatically resized to 300 x 200)."
 msgstr "Image de l'application (redimensionnée automatiquement à 300 x 200)."
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:67
-#: selection:software.application,type:0
+#: code:addons/software_application/models/software_application.py:0
+#: model:ir.model.fields.selection,name:software_application.selection__software_application__type__inhouse
 #, python-format
 msgid "In-House Application"
 msgstr "Application interne"
@@ -191,7 +215,7 @@ msgid "Informations"
 msgstr "Informations"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:49
+#: code:addons/software_application/models/software_application_release.py:0
 #, python-format
 msgid "Known Issues"
 msgstr "Problèmes connus"
@@ -239,7 +263,8 @@ msgid ""
 "It MAY also include minor and patch level changes.\n"
 "Patch and minor versions MUST be reset to 0 when major version is incremented."
 msgstr ""
-"L’identifiant de version majeur X (X.y.z | X > 0) DOIT être incrémenté si des changements non rétrocompatibles sont introduits dans l’API publique.\n"
+"L’identifiant de version majeur X (X.y.z | X > 0) DOIT être incrémenté si des changements non rétrocompatibles sont introduits dans "
+"l’API publique.\n"
 "Cela PEUT inclure dans le même temps des changements mineurs et des corrections.\n"
 "Les identifiants de version mineure et de correction DOIVENT être remis à zéro quand l’identifiant de version majeure est incrémenté."
 
@@ -257,7 +282,8 @@ msgid ""
 "It MAY include patch level changes.\n"
 "Patch version MUST be reset to 0 when minor version is incremented."
 msgstr ""
-"L’identifiant de version mineure Y (x.Y.z | x > 0) DOIT être incrémenté si de nouvelles fonctionnalités rétrocompatibles sont introduites dans l’API publique.\n"
+"L’identifiant de version mineure Y (x.Y.z | x > 0) DOIT être incrémenté si de nouvelles fonctionnalités rétrocompatibles sont "
+"introduites dans l’API publique.\n"
 "Il DOIT être incrémenté si une fonctionnalité de l’API publique est marquée comme obsolète.\n"
 "Il PEUT être incrémenté si de nouvelles fonctionnalités ou améliorations substantielles sont introduites dans le code privé.\n"
 "Il PEUT inclure dans le même temps des corrections.\n"
@@ -273,8 +299,8 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:68
-#: selection:software.application,type:0
+#: code:addons/software_application/models/software_application.py:0
+#: model:ir.model.fields.selection,name:software_application.selection__software_application__type__other
 #, python-format
 msgid "Other Application"
 msgstr "Autre application"
@@ -301,7 +327,8 @@ msgid ""
 "Patch version Z (x.y.Z | x > 0) MUST be incremented if only backwards compatible bug fixes are introduced.\n"
 "A bug fix is defined as an internal change that fixes incorrect behavior."
 msgstr ""
-"L’identifiant de version de correction Z (x.y.Z | x > 0) DOIT être incrémenté si seules des corrections rétrocompatibles sont introduites.\n"
+"L’identifiant de version de correction Z (x.y.Z | x > 0) DOIT être incrémenté si seules des corrections rétrocompatibles sont "
+"introduites.\n"
 "Une correction est définie comme un changement interne qui corrige un comportement incorrect."
 
 #. module: software_application
@@ -344,8 +371,8 @@ msgid "Releases"
 msgstr "Publications"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:69
-#: selection:software.application,type:0
+#: code:addons/software_application/models/software_application.py:0
+#: model:ir.model.fields.selection,name:software_application.selection__software_application__type__resource
 #, python-format
 msgid "Resource"
 msgstr "Ressource"
@@ -361,7 +388,7 @@ msgstr "Ressources"
 
 #. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__product_description
-msgid "Sale Description"
+msgid "Sales Description"
 msgstr "Description vente"
 
 #. module: software_application
@@ -380,6 +407,11 @@ msgid "Tag"
 msgstr "Étiquette"
 
 #. module: software_application
+#: model:ir.model.constraint,message:software_application.constraint_software_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr "Ce nom d'étiquette existe déjà !"
+
+#. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__tag_ids
 #: model:ir.ui.menu,name:software_application.menu_software_tag
 #: model_terms:ir.ui.view,arch_db:software_application.software_tag_search_view
@@ -393,12 +425,17 @@ msgid "Tags..."
 msgstr "Étiquettes..."
 
 #. module: software_application
-#: sql_constraint:software.application.release:0
+#: model:ir.model.fields,help:software_application.field_software_application__attachment_image
+msgid "Technical field used to store the image in the database"
+msgstr "Champ technique utilisé pour stocker l'image dans la base de données"
+
+#. module: software_application
+#: model:ir.model.constraint,message:software_application.constraint_software_application_release_app_url_uniq
 msgid "The release url must be unique per application !"
 msgstr "Le lien doit être unique par application !"
 
 #. module: software_application
-#: sql_constraint:software.application.release:0
+#: model:ir.model.constraint,message:software_application.constraint_software_application_release_app_version_uniq
 msgid "The release version must be unique per application !"
 msgstr "La version doit être unique par application!"
 
@@ -423,8 +460,10 @@ msgid ""
 "Any modifications MUST be released as a new version."
 msgstr ""
 "Gestion sémantique de version utilisant semver https://semver.org.\n"
-"Un numéro de version standard DOIT prendre la forme X.Y.Z où X, Y et Z sont des entiers non négatifs et NE DOIVENT PAS être préfixés par des zéros.\n"
-"X représente l’identifiant de version majeure, Y représente l’identifiant de version mineure et Z l’identifiant de version de correction.\n"
+"Un numéro de version standard DOIT prendre la forme X.Y.Z où X, Y et Z sont des entiers non négatifs et NE DOIVENT PAS être préfixés "
+"par des zéros.\n"
+"X représente l’identifiant de version majeure, Y représente l’identifiant de version mineure et Z l’identifiant de version de "
+"correction.\n"
 "Chaque élément DOIT s’incrémenter numériquement. Exemple : 1.9.0 -> 1.10.0 -> 1.11.0.\n"
 "Une fois qu’un composant est publié, le contenu de sa version NE DOIT PAS être modifié.\n"
 "Toute modification DOIT être publiée dans une nouvelle version."
@@ -440,28 +479,32 @@ msgid "Website of the application"
 msgstr "Site web de l’application"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:47
+#: code:addons/software_application/models/software_application_release.py:0
 #, python-format
 msgid "What's New"
 msgstr "Quoi de neuf"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:48
+#: model:ir.model.fields,field_description:software_application.field_software_application__xid
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__xid
+#: model:ir.model.fields,field_description:software_application.field_software_tag__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:0
 #, python-format
 msgid "fix"
 msgstr "correctif"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:49
+#: code:addons/software_application/models/software_application_release.py:0
 #, python-format
 msgid "issue"
 msgstr "problème"
 
 #. module: software_application
-#: code:addons/software_application/models/software_application_release.py:47
+#: code:addons/software_application/models/software_application_release.py:0
 #, python-format
 msgid "new"
 msgstr "nouveau"
-
-#~ msgid "Tag name already exists!"
-#~ msgstr "Ce nom d'étiquette existe déjà !"

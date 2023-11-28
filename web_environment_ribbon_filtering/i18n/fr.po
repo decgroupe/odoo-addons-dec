@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-10-13 22:18+0200\n"
+"POT-Creation-Date: 2023-11-28 10:33+0000\n"
+"PO-Revision-Date: 2023-11-28 15:40+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,9 +15,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: web_environment_ribbon_filtering
+#: model:ir.model.fields,field_description:web_environment_ribbon_filtering.field_web_environment_ribbon_backend__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: web_environment_ribbon_filtering
+#: model:ir.model.fields,field_description:web_environment_ribbon_filtering.field_web_environment_ribbon_backend__id
+msgid "ID"
+msgstr "ID"
+
+#. module: web_environment_ribbon_filtering
+#: model:ir.model.fields,help:web_environment_ribbon_filtering.field_web_environment_ribbon_backend__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: web_environment_ribbon_filtering
+#: model:ir.model.fields,field_description:web_environment_ribbon_filtering.field_web_environment_ribbon_backend____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: web_environment_ribbon_filtering
 #: model:ir.model,name:web_environment_ribbon_filtering.model_web_environment_ribbon_backend
 msgid "Web Environment Ribbon Backend"
 msgstr "Backend du bandeau de l'environnement Web"
+
+#. module: web_environment_ribbon_filtering
+#: model:ir.model.fields,field_description:web_environment_ribbon_filtering.field_web_environment_ribbon_backend__xid
+msgid "XML-ID"
+msgstr "XML-ID"

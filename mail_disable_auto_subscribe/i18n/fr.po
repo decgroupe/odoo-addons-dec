@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 08:21+0000\n"
-"PO-Revision-Date: 2022-05-24 10:25+0200\n"
+"POT-Creation-Date: 2023-11-28 10:21+0000\n"
+"PO-Revision-Date: 2023-11-28 11:58+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_partner__auto_subscribe_on_activity
@@ -72,22 +72,47 @@ msgid "ID"
 msgstr "ID"
 
 #. module: mail_disable_auto_subscribe
+#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_mail_message_subtype__xid
+#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_mail_thread__xid
+#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_partner__xid
+#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_users__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_partner__auto_subscribe_on_activity
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_users__auto_subscribe_on_activity
-msgid "If checked, will be automatically added as a follower of any model with activity support when an activity is assigned to you."
-msgstr "Si cette option est cochée, vous êtes automatiquement ajouté en tant qu’abonné de tout modèle qui prend en charge les activités lorsqu’une activité vous est assignée."
+msgid ""
+"If checked, will be automatically added as a follower of any model with "
+"activity support when an activity is assigned to you."
+msgstr ""
+"Si cette option est cochée, vous êtes automatiquement ajouté en tant "
+"qu’abonné de tout modèle qui prend en charge les activités lorsqu’une "
+"activité vous est assignée."
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_partner__auto_subscribe_on_message
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_users__auto_subscribe_on_message
-msgid "If checked, will be automatically added as a follower of any model with chatter support when a new message is posted or answered in the chat."
-msgstr "Si cette option est cochée, vous êtes automatiquement ajouté en tant qu’abonné de tout modèle qui prend en charge le « chatter » lorsque vous postez un message dans le chat."
+msgid ""
+"If checked, will be automatically added as a follower of any model with "
+"chatter support when a new message is posted or answered in the chat."
+msgstr ""
+"Si cette option est cochée, vous êtes automatiquement ajouté en tant "
+"qu’abonné de tout modèle qui prend en charge le « chatter » lorsque vous "
+"postez un message dans le chat."
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_partner__auto_subscribe_on_tag
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_users__auto_subscribe_on_tag
-msgid "If checked, will be automatically added as a follower of any model with chatter support when tagged in the chat. (only in models which add `mail_post_autofollow=True` to the context in `message_post()`"
-msgstr "Si cette option est cochée, vous êtes automatiquement ajouté en tant qu’abonné de tout modèle qui prend en charge le « chatter » lorsque vous êtes « taggé » dans le chat. (seulement dans les modèles qui ajoutent `mail_post_autofollow=True` au contexte dans `message_post()`"
+msgid ""
+"If checked, will be automatically added as a follower of any model with "
+"chatter support when tagged in the chat. (only in models which add "
+"`mail_post_autofollow=True` to the context in `message_post()`"
+msgstr ""
+"Si cette option est cochée, vous êtes automatiquement ajouté en tant "
+"qu’abonné de tout modèle qui prend en charge le « chatter » lorsque vous "
+"êtes « taggé » dans le chat. (seulement dans les modèles qui ajoutent "
+"`mail_post_autofollow=True` au contexte dans `message_post()`"
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_message_subtype____last_update
@@ -105,12 +130,21 @@ msgstr "Sous-types de messages"
 #. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_mail_message_subtype__excluded_res_model_ids
 msgid "This subtype will not be included as default for models in this list."
-msgstr "Ce sous-type ne sera pas inclus par défaut pour les modèles de cette liste."
+msgstr ""
+"Ce sous-type ne sera pas inclus par défaut pour les modèles de cette liste."
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model,name:mail_disable_auto_subscribe.model_res_users
 msgid "Users"
 msgstr "Utilisateurs"
+
+#. module: mail_disable_auto_subscribe
+#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_message_subtype__xid
+#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_thread__xid
+#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_partner__xid
+#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_users__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #~ msgid "Message"
 #~ msgstr "Message"

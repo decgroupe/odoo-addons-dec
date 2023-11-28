@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* partner_training
+# 	* partner_training
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 13:03+0000\n"
-"PO-Revision-Date: 2022-05-09 13:03+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:26+0000\n"
+"PO-Revision-Date: 2023-11-28 10:26+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgid "Acronym"
 msgstr ""
 
 #. module: partner_training
-#: sql_constraint:res.partner.training.specialty:0
+#: model:ir.model.constraint,message:partner_training.constraint_res_partner_training_specialty_train_acro_uniq
 msgid "Acronym must be unique !"
 msgstr ""
 
@@ -29,6 +29,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__active
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__active
 msgid "Active"
+msgstr ""
+
+#. module: partner_training
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_form_view
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
+msgid "Archived"
 msgstr ""
 
 #. module: partner_training
@@ -122,6 +128,13 @@ msgid "ID"
 msgstr ""
 
 #. module: partner_training
+#: model:ir.model.fields,help:partner_training.field_res_partner__xid
+#: model:ir.model.fields,help:partner_training.field_res_partner_training__xid
+#: model:ir.model.fields,help:partner_training.field_res_partner_training_specialty__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner____last_update
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training____last_update
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty____last_update
@@ -143,7 +156,9 @@ msgstr ""
 #. module: partner_training
 #: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_action
 #: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_specialty_action
-msgid "Manage educational trainings to better classify orders for tracking and analysis purposes."
+msgid ""
+"Manage educational trainings to better classify orders for tracking and "
+"analysis purposes."
 msgstr ""
 
 #. module: partner_training
@@ -153,8 +168,8 @@ msgid "Name"
 msgstr ""
 
 #. module: partner_training
-#: sql_constraint:res.partner.training:0
-#: sql_constraint:res.partner.training.specialty:0
+#: model:ir.model.constraint,message:partner_training.constraint_res_partner_training_name
+#: model:ir.model.constraint,message:partner_training.constraint_res_partner_training_specialty_train_name_uniq
 msgid "Name must be unique !"
 msgstr ""
 
@@ -198,3 +213,9 @@ msgstr ""
 msgid "Trainings"
 msgstr ""
 
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner__xid
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__xid
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__xid
+msgid "XML-ID"
+msgstr ""

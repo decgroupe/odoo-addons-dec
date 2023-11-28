@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 14:09+0000\n"
-"PO-Revision-Date: 2021-11-04 15:12+0100\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 14:58+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,10 +15,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:91
+#: code:addons/software_license/models/software_license.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copie)"
@@ -44,15 +44,30 @@ msgid "Activities"
 msgstr "Activités"
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Activité d'exception de décoration"
+
+#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__activity_state
 msgid "Activity State"
 msgstr "Status de l'Activité"
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d’activité"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__application_id
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "Application"
 msgstr "Application"
+
+#. module: software_license
+#: model_terms:ir.ui.view,arch_db:software_license.software_license_form_view
+msgid "Archived"
+msgstr "Archivé"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__message_attachment_count
@@ -87,6 +102,7 @@ msgid "Créer un nouveau document"
 msgstr ""
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_application__display_name
 #: model:ir.model.fields,field_description:software_license.field_software_license__display_name
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__display_name
 msgid "Display Name"
@@ -113,6 +129,11 @@ msgid "Followers (Partners)"
 msgstr "Abonnés (Partenaires)"
 
 #. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome ex: fa-tasks"
+
+#. module: software_license
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "Group By"
 msgstr "Regrouper par"
@@ -135,10 +156,28 @@ msgid "Hardwares"
 msgstr "Matériels"
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_application__id
 #: model:ir.model.fields,field_description:software_license.field_software_license__id
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__id
 msgid "ID"
 msgstr "ID"
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_application__xid
+#: model:ir.model.fields,help:software_license.field_software_license__xid
+#: model:ir.model.fields,help:software_license.field_software_license_hardware__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_application__identifier
@@ -147,17 +186,13 @@ msgid "Identifier"
 msgstr "Identifiant"
 
 #. module: software_license
-#: sql_constraint:software.application:0
+#: model:ir.model.constraint,message:software_license.constraint_software_application_identifier_uniq
 msgid "Identifier/Name must be unique!"
 msgstr "L’identificateur/nom doit être unique!"
 
 #. module: software_license
-#: model:ir.model.fields,help:software_license.field_software_license__message_unread
-msgid "If checked new messages require your attention."
-msgstr "Si coché, de nouveaux messages demandent votre attention."
-
-#. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license__message_needaction
+#: model:ir.model.fields,help:software_license.field_software_license__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si coché, de nouveaux messages demandent votre attention."
 
@@ -184,6 +219,7 @@ msgid "Is Follower"
 msgstr "Est un abonné"
 
 #. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_application____last_update
 #: model:ir.model.fields,field_description:software_license.field_software_license____last_update
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware____last_update
 msgid "Last Modified on"
@@ -204,8 +240,7 @@ msgstr "Dernière mise à jour le"
 #. module: software_license
 #: model:ir.model,name:software_license.model_software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license_hardware__license_id
-#: model:ir.ui.menu,name:software_license.menu_software_license
-#: model_terms:ir.ui.view,arch_db:software_license.software_license_form_view
+#: model:ir.ui.menu,name:software_license.menu_software_license model_terms:ir.ui.view,arch_db:software_license.software_license_form_view
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "License"
 msgstr "Licence"
@@ -254,7 +289,12 @@ msgid "Messages"
 msgstr "Messages"
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:21
+#: model:ir.model.fields,field_description:software_license.field_software_license__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Ma date limite d'activité"
+
+#. module: software_license
+#: code:addons/software_license/models/software_license.py:0
 #, python-format
 msgid "New"
 msgstr "Nouveau"
@@ -281,7 +321,7 @@ msgstr "Nombre d'actions"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr "Nombre d'erreurs"
 
 #. module: software_license
@@ -300,32 +340,16 @@ msgid "Number of unread messages"
 msgstr "Nombre de messages non lus"
 
 #. module: software_license
-#: selection:software.license,activity_state:0
-msgid "Overdue"
-msgstr "Retard"
-
-#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__partner_id
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "Partner"
 msgstr "Partenaire"
 
 #. module: software_license
-#: selection:software.license,activity_state:0
-msgid "Planned"
-msgstr "Planifié"
-
-#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__product_id
 #: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
 msgid "Product"
 msgstr "Article"
-
-#. module: software_license
-#: model:ir.model.fields,field_description:software_license.field_software_license__production_id
-#: model_terms:ir.ui.view,arch_db:software_license.software_license_search_view
-msgid "Production"
-msgstr "Fabrication"
 
 #. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__activity_user_id
@@ -343,7 +367,7 @@ msgid "Serial"
 msgstr "Numéro de série"
 
 #. module: software_license
-#: sql_constraint:software.license:0
+#: model:ir.model.constraint,message:software_license.constraint_software_license_serial_uniq
 msgid "Serial Activation Code must be unique per Application!"
 msgstr "Le numéro de série (code d’activation) doit être unique par application!"
 
@@ -353,8 +377,8 @@ msgid "Software Application"
 msgstr "Application"
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:69
-#: selection:software.license,type:0
+#: code:addons/software_license/models/software_license.py:0
+#: model:ir.model.fields.selection,name:software_license.selection__software_license__type__standard
 #, python-format
 msgid "Standard"
 msgstr "Standard"
@@ -368,13 +392,13 @@ msgid ""
 "Planned: Future activities."
 msgstr ""
 "Statut basé sur les activités\n"
-"En retard : la date d'échéance est déjà dépassée\n"
-"Aujourd'hui : la date d'activité est aujourd'hui\n"
-"Planifiée : activités futures"
+"En retard : La date d'échéance est déjà dépassée\n"
+"Aujourd'hui : L'activité est planifiée pour aujourd'hui\n"
+"Planifiées : Activités futures."
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:70
-#: selection:software.license,type:0
+#: code:addons/software_license/models/software_license.py:0
+#: model:ir.model.fields.selection,name:software_license.selection__software_license__type__template
 #, python-format
 msgid "Template"
 msgstr "Modèle"
@@ -385,19 +409,23 @@ msgid "This field is deprecated, use the chatter now."
 msgstr "Ce champ est obsolète, utilisez le chatter maintenant."
 
 #. module: software_license
-#: selection:software.license,activity_state:0
-msgid "Today"
-msgstr "Aujourd'hui"
-
-#. module: software_license
 #: model:ir.model.fields,field_description:software_license.field_software_license__type
 msgid "Type"
 msgstr "Type"
 
 #. module: software_license
+#: model:ir.model.fields,help:software_license.field_software_license__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type d'activité d'exception enregistrée"
+
+#. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license__hardware_ids
-msgid "Unique hardware identifiers sent by client application made to identify a system. This identifier must not change over time or activation related data would be invalidated"
-msgstr "Identificateurs matériels uniques envoyés par l'application client pour identifier un système. Cet identificateur ne doit pas changer au fil du temps, sinon les données liées à l'activation seraient invalidées"
+msgid ""
+"Unique hardware identifiers sent by client application made to identify a system. This identifier must not change over time or "
+"activation related data would be invalidated"
+msgstr ""
+"Identificateurs matériels uniques envoyés par l'application client pour identifier un système. Cet identificateur ne doit pas changer "
+"au fil du temps, sinon les données liées à l'activation seraient invalidées"
 
 #. module: software_license
 #: model:ir.model.fields,help:software_license.field_software_license__activation_identifier
@@ -430,10 +458,37 @@ msgid "Website communication history"
 msgstr "Historique de communication du site web"
 
 #. module: software_license
-#: code:addons/software_license/models/software_license.py:19
+#: model:ir.model.fields,field_description:software_license.field_software_application__xid
+#: model:ir.model.fields,field_description:software_license.field_software_license__xid
+#: model:ir.model.fields,field_description:software_license.field_software_license_hardware__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: software_license
+#: model:ir.model.fields,field_description:software_license.field_software_license__activity_team_user_ids
+msgid "test field"
+msgstr "champ de test"
+
+#. module: software_license
+#: code:addons/software_license/models/software_license.py:0
 #, python-format
 msgid "✳️ Template %d"
 msgstr "✳️ Modèle %d"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#~ msgid "Overdue"
+#~ msgstr "Retard"
+
+#~ msgid "Planned"
+#~ msgstr "Planifié"
+
+#~ msgid "Production"
+#~ msgstr "Fabrication"
+
+#~ msgid "Today"
+#~ msgstr "Aujourd'hui"
 
 #~ msgid "License Application Release"
 #~ msgstr "Publication d'une application sous licence"
@@ -441,24 +496,32 @@ msgstr "✳️ Modèle %d"
 #~ msgid "Software Tag"
 #~ msgstr "Étiquette Logicielle"
 
-#~ msgid "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, Delivery Order and Customer Invoice/Credit Note"
-#~ msgstr "Une description du produit que vous souhaitez communiquer à vos clients. Cette description sera copiée sur chaque bon de commande, bon de livraison et note de crédit/facture client"
+#~ msgid ""
+#~ "A description of the Product that you want to communicate to your customers. This description will be copied to every Sales Order, "
+#~ "Delivery Order and Customer Invoice/Credit Note"
+#~ msgstr ""
+#~ "Une description du produit que vous souhaitez communiquer à vos clients. Cette description sera copiée sur chaque bon de commande, "
+#~ "bon de livraison et note de crédit/facture client"
 
 #~ msgid ""
-#~ "A pre-release version MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch version.\n"
+#~ "A pre-release version MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch "
+#~ "version.\n"
 #~ "Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
 #~ "Identifiers MUST NOT be empty.\n"
 #~ "Numeric identifiers MUST NOT include leading zeroes.\n"
 #~ "Pre-release versions have a lower precedence than the associated normal version.\n"
-#~ "A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version.\n"
+#~ "A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as "
+#~ "denoted by its associated normal version.\n"
 #~ "Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.–."
 #~ msgstr ""
-#~ "Une version de pré-livraison PEUT être notée par l’ajout d’un trait d’union et d’une série d’identifiants séparés par des points suivant immédiatement l’identifiant de version de correction.\n"
+#~ "Une version de pré-livraison PEUT être notée par l’ajout d’un trait d’union et d’une série d’identifiants séparés par des points "
+#~ "suivant immédiatement l’identifiant de version de correction.\n"
 #~ "Les identifiants DOIVENT être composés uniquement de caractères alphanumériques ASCII et de traits d’union [0-9A-Za-z-].\n"
 #~ "Les identifiants NE DOIVENT PAS être vides.\n"
 #~ "Les identifiants numériques NE DOIVENT PAS être préfixés par des zéros.\n"
 #~ "Les versions de pré-livraison précèdent la version normale associée (version de pré-livraison < version normale).\n"
-#~ "Une version de pré-livraison indique que la version n’est pas stable et ne satisfait pas forcément les exigences de compatibilité associées à une version normale.\n"
+#~ "Une version de pré-livraison indique que la version n’est pas stable et ne satisfait pas forcément les exigences de compatibilité "
+#~ "associées à une version normale.\n"
 #~ "Exemples : 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92."
 
 #~ msgid "Add details or missing informations"
@@ -471,14 +534,16 @@ msgstr "✳️ Modèle %d"
 #~ msgstr "Build"
 
 #~ msgid ""
-#~ "Build metadata MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch or pre-release version.\n"
+#~ "Build metadata MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch or "
+#~ "pre-release version.\n"
 #~ "Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
 #~ "Identifiers MUST NOT be empty.\n"
 #~ "Build metadata MUST be ignored when determining version precedence.\n"
 #~ "Thus two versions that differ only in the build metadata, have the same precedence.\n"
 #~ "Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3—-117B344092BD."
 #~ msgstr ""
-#~ "Les méta-données de construction PEUVENT être notées par l’ajout d’un signe « plus » et d’une série d’identifiants séparés par des points suivant immédiatement l’identifiant de version de correction ou de pré-livraison.\n"
+#~ "Les méta-données de construction PEUVENT être notées par l’ajout d’un signe « plus » et d’une série d’identifiants séparés par des "
+#~ "points suivant immédiatement l’identifiant de version de correction ou de pré-livraison.\n"
 #~ "Les identifiants DOIVENT être composés uniquement de caractères alphanumériques ASCII et de traits d’union [0-9A-Za-z-].\n"
 #~ "Les identifiants NE DOIVENT PAS être vides.\n"
 #~ "Les méta-données de construction DEVRAIENT être ignorées dans l’ordre des versions.\n"
@@ -486,7 +551,9 @@ msgstr "✳️ Modèle %d"
 #~ "Exemples : 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85."
 
 #~ msgid "By linking this application to a product, sales informations like description will be used in communications to customers"
-#~ msgstr "En liant cette application à un article, les informations de vente comme la description seront utilisées dans les communications aux clients"
+#~ msgstr ""
+#~ "En liant cette application à un article, les informations de vente comme la description seront utilisées dans les communications aux "
+#~ "clients"
 
 #~ msgid "Color Index"
 #~ msgstr "Couleur"
@@ -532,7 +599,8 @@ msgstr "✳️ Modèle %d"
 #~ "It MAY also include minor and patch level changes.\n"
 #~ "Patch and minor versions MUST be reset to 0 when major version is incremented."
 #~ msgstr ""
-#~ "L’identifiant de version majeur X (X.y.z | X > 0) DOIT être incrémenté si des changements non rétrocompatibles sont introduits dans l’API publique.\n"
+#~ "L’identifiant de version majeur X (X.y.z | X > 0) DOIT être incrémenté si des changements non rétrocompatibles sont introduits dans "
+#~ "l’API publique.\n"
 #~ "Cela PEUT inclure dans le même temps des changements mineurs et des corrections.\n"
 #~ "Les identifiants de version mineure et de correction DOIVENT être remis à zéro quand l’identifiant de version majeure est incrémenté."
 
@@ -546,7 +614,8 @@ msgstr "✳️ Modèle %d"
 #~ "It MAY include patch level changes.\n"
 #~ "Patch version MUST be reset to 0 when minor version is incremented."
 #~ msgstr ""
-#~ "L’identifiant de version mineure Y (x.Y.z | x > 0) DOIT être incrémenté si de nouvelles fonctionnalités rétrocompatibles sont introduites dans l’API publique.\n"
+#~ "L’identifiant de version mineure Y (x.Y.z | x > 0) DOIT être incrémenté si de nouvelles fonctionnalités rétrocompatibles sont "
+#~ "introduites dans l’API publique.\n"
 #~ "Il DOIT être incrémenté si une fonctionnalité de l’API publique est marquée comme obsolète.\n"
 #~ "Il PEUT être incrémenté si de nouvelles fonctionnalités ou améliorations substantielles sont introduites dans le code privé.\n"
 #~ "Il PEUT inclure dans le même temps des corrections.\n"
@@ -562,7 +631,8 @@ msgstr "✳️ Modèle %d"
 #~ "Patch version Z (x.y.Z | x > 0) MUST be incremented if only backwards compatible bug fixes are introduced.\n"
 #~ "A bug fix is defined as an internal change that fixes incorrect behavior."
 #~ msgstr ""
-#~ "L’identifiant de version de correction Z (x.y.Z | x > 0) DOIT être incrémenté si seules des corrections rétrocompatibles sont introduites.\n"
+#~ "L’identifiant de version de correction Z (x.y.Z | x > 0) DOIT être incrémenté si seules des corrections rétrocompatibles sont "
+#~ "introduites.\n"
 #~ "Une correction est définie comme un changement interne qui corrige un comportement incorrect."
 
 #~ msgid "Pre-release"
@@ -619,8 +689,10 @@ msgstr "✳️ Modèle %d"
 #~ "Any modifications MUST be released as a new version."
 #~ msgstr ""
 #~ "Gestion sémantique de version utilisant semver https://semver.org.\n"
-#~ "Un numéro de version standard DOIT prendre la forme X.Y.Z où X, Y et Z sont des entiers non négatifs et NE DOIVENT PAS être préfixés par des zéros.\n"
-#~ "X représente l’identifiant de version majeure, Y représente l’identifiant de version mineure et Z l’identifiant de version de correction.\n"
+#~ "Un numéro de version standard DOIT prendre la forme X.Y.Z où X, Y et Z sont des entiers non négatifs et NE DOIVENT PAS être préfixés "
+#~ "par des zéros.\n"
+#~ "X représente l’identifiant de version majeure, Y représente l’identifiant de version mineure et Z l’identifiant de version de "
+#~ "correction.\n"
 #~ "Chaque élément DOIT s’incrémenter numériquement. Exemple : 1.9.0 -> 1.10.0 -> 1.11.0.\n"
 #~ "Une fois qu’un composant est publié, le contenu de sa version NE DOIT PAS être modifié.\n"
 #~ "Toute modification DOIT être publiée dans une nouvelle version."

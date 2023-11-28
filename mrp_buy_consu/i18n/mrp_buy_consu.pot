@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_buy_consu
+# 	* mrp_buy_consu
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:22+0000\n"
+"PO-Revision-Date: 2023-11-28 10:22+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,32 +17,62 @@ msgstr ""
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_type
-msgid "A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
 "A consumable product is a product for which stock is not managed.\n"
 "A service is a non-material product you provide."
-msgstr "Un produit stockable est un produit dont on gère le stock. L'application \"Inventaire\" doit être installée. \n"
-"Un produit consommable, d'un autre côté, est un produit pour lequel le stock n'est pas géré.\n"
-"Un service est un produit immatériel que vous fournissez."
+msgstr ""
 
 #. module: mrp_buy_consu
 #: model:ir.model,name:mrp_buy_consu.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr "Ligne de nomenclature"
+msgstr ""
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__buy_consumable
 msgid "Buy"
-msgstr "Acheter"
+msgstr ""
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__display_name
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__id
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__xid
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_small_supply
+msgid ""
+"If checked, then this product will be considered like a consumable stockable"
+" product"
+msgstr ""
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_is_consumable
 msgid "Is Consumable"
-msgstr "Est consommable"
+msgstr ""
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line____last_update
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_type
 msgid "Product Type"
-msgstr "Type d'article"
+msgstr ""
 
 #. module: mrp_buy_consu
 #: model:ir.model,name:mrp_buy_consu.model_mrp_production
@@ -50,7 +80,17 @@ msgid "Production Order"
 msgstr ""
 
 #. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_small_supply
+msgid "Small Supply"
+msgstr ""
+
+#. module: mrp_buy_consu
 #: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__buy_consumable
 msgid "Used to force buying a consumable product."
 msgstr ""
 
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__xid
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__xid
+msgid "XML-ID"
+msgstr ""

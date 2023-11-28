@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-01 14:20+0000\n"
-"PO-Revision-Date: 2021-02-01 15:20+0100\n"
+"POT-Creation-Date: 2023-11-28 09:55+0000\n"
+"PO-Revision-Date: 2023-11-28 11:38+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,14 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: calendar_bookable
-#: model:ir.model,name:calendar_bookable.model_calendar_event
-msgid "Event"
-msgstr "Évènement"
-
-#. module: calendar_bookable
+#: model:ir.model.fields,field_description:calendar_bookable.field_res_partner__bookable
+#: model:ir.model.fields,field_description:calendar_bookable.field_res_users__bookable
 #: model_terms:ir.ui.view,arch_db:calendar_bookable.view_calendar_event_search
 msgid "Bookable"
 msgstr "Réservable"
@@ -31,3 +28,52 @@ msgstr "Réservable"
 #: model_terms:ir.ui.view,arch_db:calendar_bookable.view_calendar_event_search
 msgid "Bookables like vehicles, rooms, etc."
 msgstr "Les réservables comme les véhicules, les salles, etc."
+
+#. module: calendar_bookable
+#: model:ir.model,name:calendar_bookable.model_calendar_event
+msgid "Calendar Event"
+msgstr "Calendrier de l'événement"
+
+#. module: calendar_bookable
+#: model:ir.model,name:calendar_bookable.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: calendar_bookable
+#: model:ir.model.fields,field_description:calendar_bookable.field_calendar_event__display_name
+#: model:ir.model.fields,field_description:calendar_bookable.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: calendar_bookable
+#: model:ir.model.fields,field_description:calendar_bookable.field_calendar_event__id
+#: model:ir.model.fields,field_description:calendar_bookable.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: calendar_bookable
+#: model:ir.model.fields,help:calendar_bookable.field_calendar_event__xid
+#: model:ir.model.fields,help:calendar_bookable.field_res_partner__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: calendar_bookable
+#: model:ir.model.fields,help:calendar_bookable.field_res_partner__bookable
+#: model:ir.model.fields,help:calendar_bookable.field_res_users__bookable
+msgid "If checked, the calendar will consider this partner as a bookable resource"
+msgstr "Si cette case est cochée, le calendrier considérera ce partenaire comme une ressource réservable."
+
+#. module: calendar_bookable
+#: model:ir.model.fields,field_description:calendar_bookable.field_calendar_event____last_update
+#: model:ir.model.fields,field_description:calendar_bookable.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: calendar_bookable
+#: model:ir.model.fields,field_description:calendar_bookable.field_calendar_event__xid
+#: model:ir.model.fields,field_description:calendar_bookable.field_res_partner__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Event"
+#~ msgstr "Évènement"

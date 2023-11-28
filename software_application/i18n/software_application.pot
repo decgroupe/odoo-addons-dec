@@ -1,0 +1,468 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* software_application
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__product_description
+msgid ""
+"A description of the Product that you want to communicate to your customers."
+" This description will be copied to every Sales Order, Delivery Order and "
+"Customer Invoice/Credit Note"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_prerelease
+msgid ""
+"A pre-release version MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch version.\n"
+"Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
+"Identifiers MUST NOT be empty.\n"
+"Numeric identifiers MUST NOT include leading zeroes.\n"
+"Pre-release versions have a lower precedence than the associated normal version.\n"
+"A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version.\n"
+"Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.–."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__active
+msgid "Active"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__info
+msgid "Add details or missing informations"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__name
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__application_id
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Application"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_tag
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_search_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_tree_view
+msgid "Applications"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Archived"
+msgstr ""
+
+#. module: software_application
+#: model:ir.ui.menu,name:software_application.menu_software_asset
+msgid "Assets"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_build
+msgid "Build"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_build
+msgid ""
+"Build metadata MAY be denoted by appending a plus sign and a series of dot separated identifiers immediately following the patch or pre-release version.\n"
+"Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-].\n"
+"Identifiers MUST NOT be empty.\n"
+"Build metadata MUST be ignored when determining version precedence.\n"
+"Thus two versions that differ only in the build metadata, have the same precedence.\n"
+"Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3—-117B344092BD."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__product_id
+msgid ""
+"By linking this application to a product, sales informations like "
+"description will be used in communications to customers"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_tag__color
+msgid "Color Index"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_form_view
+msgid "Content"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.actions.act_window,help:software_application.act_window_software_tag
+msgid "Create a new tag"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__create_uid
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__create_uid
+#: model:ir.model.fields,field_description:software_application.field_software_tag__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__create_date
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__create_date
+#: model:ir.model.fields,field_description:software_application.field_software_tag__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__date
+msgid "Date"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__display_name
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__display_name
+#: model:ir.model.fields,field_description:software_application.field_software_tag__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__url
+msgid "Download URL"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:0
+#, python-format
+msgid "Fixes"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__id
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__id
+#: model:ir.model.fields,field_description:software_application.field_software_tag__id
+msgid "ID"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__xid
+#: model:ir.model.fields,help:software_application.field_software_application_release__xid
+#: model:ir.model.fields,help:software_application.field_software_tag__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__active
+msgid ""
+"If unchecked, it will allow you to hide the application without removing it."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__image
+msgid "Image"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__image
+msgid "Image of the application (automatically resized to 300 x 200)."
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application.py:0
+#: model:ir.model.fields.selection,name:software_application.selection__software_application__type__inhouse
+#, python-format
+msgid "In-House Application"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_inhouse
+#: model:ir.ui.menu,name:software_application.menu_software_application_inhouse
+msgid "In-House Apps"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__info
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Informations"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:0
+#, python-format
+msgid "Known Issues"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application____last_update
+#: model:ir.model.fields,field_description:software_application.field_software_application_release____last_update
+#: model:ir.model.fields,field_description:software_application.field_software_tag____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__write_uid
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__write_uid
+#: model:ir.model.fields,field_description:software_application.field_software_tag__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__write_date
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__write_date
+#: model:ir.model.fields,field_description:software_application.field_software_tag__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__attachment_image
+msgid "Launcher Image"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model,name:software_application.model_software_application_release
+msgid "License Application Release"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_major
+msgid "Major"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_major
+msgid ""
+"Major version X (X.y.z | X > 0) MUST be incremented if any backwards incompatible changes are introduced to the public API.\n"
+"It MAY also include minor and patch level changes.\n"
+"Patch and minor versions MUST be reset to 0 when major version is incremented."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_minor
+msgid "Minor"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_minor
+msgid ""
+"Minor version Y (x.Y.z | x > 0) MUST be incremented if new, backwards compatible functionality is introduced to the public API.\n"
+"It MUST be incremented if any public API functionality is marked as deprecated.\n"
+"It MAY be incremented if substantial new functionality or improvements are introduced within the private code.\n"
+"It MAY include patch level changes.\n"
+"Patch version MUST be reset to 0 when minor version is incremented."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__product_name
+#: model:ir.model.fields,field_description:software_application.field_software_tag__name
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_other_tree_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_resource_tree_view
+msgid "Name"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application.py:0
+#: model:ir.model.fields.selection,name:software_application.selection__software_application__type__other
+#, python-format
+msgid "Other Application"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_other_tree_view
+msgid "Other Applications"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_other
+#: model:ir.ui.menu,name:software_application.menu_software_application_other
+msgid "Other Apps"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_patch
+msgid "Patch"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version_patch
+msgid ""
+"Patch version Z (x.y.Z | x > 0) MUST be incremented if only backwards compatible bug fixes are introduced.\n"
+"A bug fix is defined as an internal change that fixes incorrect behavior."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version_prerelease
+msgid "Pre-release"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Real name of the application, eg: Ubuntu 20.04"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__product_id
+msgid "Related Product"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_form_view
+msgid "Release"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__content
+msgid "Release Notes"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__date
+msgid "Release's Date"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_release
+#: model:ir.model.fields,field_description:software_application.field_software_application__release_ids
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_search_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_tree_view
+msgid "Releases"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application.py:0
+#: model:ir.model.fields.selection,name:software_application.selection__software_application__type__resource
+#, python-format
+msgid "Resource"
+msgstr ""
+
+#. module: software_application
+#: model:ir.actions.act_window,name:software_application.act_window_software_application_resource
+#: model:ir.model.fields,field_description:software_application.field_software_application__resource_ids
+#: model:ir.ui.menu,name:software_application.menu_software_application_resource
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_resource_tree_view
+msgid "Resources"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__product_description
+msgid "Sales Description"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model,name:software_application.model_software_application
+msgid "Software Application"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model,name:software_application.model_software_tag
+msgid "Software Tag"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_tag_form_view
+msgid "Tag"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.constraint,message:software_application.constraint_software_tag_name_uniq
+msgid "Tag name already exists!"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__tag_ids
+#: model:ir.ui.menu,name:software_application.menu_software_tag
+#: model_terms:ir.ui.view,arch_db:software_application.software_tag_search_view
+#: model_terms:ir.ui.view,arch_db:software_application.software_tag_tree_view
+msgid "Tags"
+msgstr ""
+
+#. module: software_application
+#: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
+msgid "Tags..."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__attachment_image
+msgid "Technical field used to store the image in the database"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.constraint,message:software_application.constraint_software_application_release_app_url_uniq
+msgid "The release url must be unique per application !"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.constraint,message:software_application.constraint_software_application_release_app_version_uniq
+msgid "The release version must be unique per application !"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__type
+msgid "Type"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__version
+msgid "Version"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application_release__version
+msgid ""
+"Version numbering using semver https://semver.org.\n"
+"A normal version number MUST take the form X.Y.Z where X, Y, and Z are non-negative integers, and MUST NOT contain leading zeroes.\n"
+"X is the major version, Y is the minor version, and Z is the patch version.\n"
+"Each element MUST increase numerically. For instance: 1.9.0 -> 1.10.0 -> 1.11.0.\n"
+"Once a versioned package has been released, the contents of that version MUST NOT be modified.\n"
+"Any modifications MUST be released as a new version."
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__website
+msgid "Website"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__website
+msgid "Website of the application"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:0
+#, python-format
+msgid "What's New"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,field_description:software_application.field_software_application__xid
+#: model:ir.model.fields,field_description:software_application.field_software_application_release__xid
+#: model:ir.model.fields,field_description:software_application.field_software_tag__xid
+msgid "XML-ID"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:0
+#, python-format
+msgid "fix"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:0
+#, python-format
+msgid "issue"
+msgstr ""
+
+#. module: software_application
+#: code:addons/software_application/models/software_application_release.py:0
+#, python-format
+msgid "new"
+msgstr ""

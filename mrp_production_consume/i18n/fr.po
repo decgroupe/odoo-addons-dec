@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 13:44+0000\n"
-"PO-Revision-Date: 2021-09-01 15:45+0200\n"
+"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"PO-Revision-Date: 2023-11-28 13:46+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_production_consume
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
@@ -28,7 +28,13 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. module: mrp_production_consume
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: mrp_production_consume
 #: model:ir.actions.act_window,name:mrp_production_consume.act_mrp_consume
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__consume_id
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_production_form_view
 msgid "Consume"
@@ -62,8 +68,14 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: mrp_production_consume
+#: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
+msgid "Creates a new serial/lot number"
+msgstr "Créer un nouveau numéro de lot/série"
+
+#. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__display_name
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__display_name
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_production__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -76,8 +88,16 @@ msgstr "Assure la tracabilité d'un article stockable dans votre entrepôt."
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__id
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__id
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_production__id
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_production_consume
+#: model:ir.model.fields,help:mrp_production_consume.field_mrp_consume__xid
+#: model:ir.model.fields,help:mrp_production_consume.field_mrp_consume_line__xid
+#: model:ir.model.fields,help:mrp_production_consume.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__is_maximized
@@ -92,6 +112,7 @@ msgstr "Est minimisé"
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume____last_update
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line____last_update
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_production____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -108,7 +129,7 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: mrp_production_consume
-#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__lot_id
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__finished_lot_id
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__lot_id
 msgid "Lot/Serial Number"
 msgstr "Lot/numéro de série"
@@ -149,18 +170,19 @@ msgid "Only show products from stock"
 msgstr "Ne montrez que les articles en provenance du stock"
 
 #. module: mrp_production_consume
+#: code:addons/mrp_production_consume/wizard/mrp_consume.py:0
+#, python-format
+msgid "Please enter a lot or serial number for %s !"
+msgstr "Saisissez un lot ou un numéro de série pour %s."
+
+#. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__product_id
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__product_id
 msgid "Product"
 msgstr "Article"
 
 #. module: mrp_production_consume
-#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__product_produce_id
-msgid "Product Produce"
-msgstr "Production d'articles"
-
-#. module: mrp_production_consume
-#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__produce_line_ids
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__line_ids
 msgid "Product to Track"
 msgstr "Produit à tracer"
 
@@ -176,13 +198,9 @@ msgstr "Ordre de fabrication"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__product_qty
+#: model_terms:ir.ui.view,arch_db:mrp_production_consume.mrp_consume_wizard_view
 msgid "Quantity"
 msgstr "Quantité"
-
-#. module: mrp_production_consume
-#: model:ir.model,name:mrp_production_consume.model_mrp_product_produce
-msgid "Record Production"
-msgstr "Enregistrer la production"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__serial
@@ -193,11 +211,6 @@ msgstr "Nécessite un numéro de série"
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__qty_reserved
 msgid "Reserved"
 msgstr "Réservé"
-
-#. module: mrp_production_consume
-#: model:ir.model,name:mrp_production_consume.model_stock_move
-msgid "Stock Move"
-msgstr "Mouvement de stock"
 
 #. module: mrp_production_consume
 #: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__qty_to_consume
@@ -217,7 +230,32 @@ msgid "Unit of Measure"
 msgstr "Unité de mesure"
 
 #. module: mrp_production_consume
-#: code:addons/mrp_production_consume/wizard/mrp_produce.py:19
+#: code:addons/mrp_production_consume/wizard/mrp_consume_line.py:0
 #, python-format
-msgid "You cannot produce a zero quantity, check finished products stock move quantities!"
-msgstr "Vous ne pouvez pas produire une quantité nulle, vérifiez les quantités de demande initiale des produits finis !"
+msgid "Warning"
+msgstr "Avertissement"
+
+#. module: mrp_production_consume
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume__xid
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_consume_line__xid
+#: model:ir.model.fields,field_description:mrp_production_consume.field_mrp_production__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: mrp_production_consume
+#: code:addons/mrp_production_consume/wizard/mrp_consume_line.py:0
+#, python-format
+msgid "You can only process 1.0 %s of products with unique serial number."
+msgstr "Vous pouvez uniquement traiter 1.0 %s des produits avec un numéro de série unique."
+
+#~ msgid "Product Produce"
+#~ msgstr "Production d'articles"
+
+#~ msgid "Record Production"
+#~ msgstr "Enregistrer la production"
+
+#~ msgid "Stock Move"
+#~ msgstr "Mouvement de stock"
+
+#~ msgid "You cannot produce a zero quantity, check finished products stock move quantities!"
+#~ msgstr "Vous ne pouvez pas produire une quantité nulle, vérifiez les quantités de demande initiale des produits finis !"

@@ -1,0 +1,101 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_pricelist_analysis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 10:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__list_price_graph
+msgid "Computation Graph"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__list_price_unit_graph
+msgid "Computation Graph (Default UoM) "
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__list_price_steps
+msgid "Computation Steps"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__list_price_unit_steps
+msgid "Computation Steps (Default UoM)"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model_terms:ir.ui.view,arch_db:purchase_pricelist_analysis.product_supplierinfo_form_view
+msgid "Graph"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_unit_graph
+msgid "Mermaid type graph to explain seller price computation (Default UoM)"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_graph
+msgid "Mermaid type graph to explain seller price computation (Purchase UoM)"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.ui.menu,name:purchase_pricelist_analysis.menu_pricelist_items
+msgid "Pricelist items"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model_terms:ir.ui.view,arch_db:purchase_pricelist_analysis.product_pricelist_item_search_view
+msgid "Purchase Pricelist"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model,name:purchase_pricelist_analysis.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_unit_steps
+msgid "Text enumeration to explain seller price computation (Default UoM)"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_steps
+msgid "Text enumeration to explain seller price computation (Purchase UoM)"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__xid
+msgid "XML-ID"
+msgstr ""

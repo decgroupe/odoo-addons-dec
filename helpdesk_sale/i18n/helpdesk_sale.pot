@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* helpdesk_sale
+# 	* helpdesk_sale
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:14+0000\n"
+"PO-Revision-Date: 2023-11-28 10:14+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,34 +17,59 @@ msgstr ""
 
 #. module: helpdesk_sale
 #: model_terms:ir.ui.view,arch_db:helpdesk_sale.ticket_view_form
-msgid "Are you sure that you want to close this ticket to create a new quotation?"
-msgstr "Êtes-vous sûr de vouloir fermer ce ticket afin de créer un devis ?"
+msgid ""
+"Are you sure that you want to close this ticket to create a new quotation?"
+msgstr ""
 
 #. module: helpdesk_sale
-#: code:addons/helpdesk_sale/models/helpdesk_ticket.py:25
+#: code:addons/helpdesk_sale/models/helpdesk_ticket.py:0
 #, python-format
 msgid "Case %s: %s"
-msgstr "Cas %s: %s"
+msgstr ""
 
 #. module: helpdesk_sale
 #: model_terms:ir.ui.view,arch_db:helpdesk_sale.ticket_view_form
 msgid "Create a Quotation"
-msgstr "Créer un devis"
+msgstr ""
 
 #. module: helpdesk_sale
-#: code:addons/helpdesk_sale/models/helpdesk_ticket.py:45
+#: code:addons/helpdesk_sale/models/helpdesk_ticket.py:0
 #, python-format
 msgid "Created from helpdesk ticket <a href='web#%s'>%s</a>"
-msgstr "Créé à partir du ticket d'assistance <a href='web#%s'>%s</a>"
+msgstr ""
+
+#. module: helpdesk_sale
+#: model:ir.model.fields,field_description:helpdesk_sale.field_helpdesk_ticket__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: helpdesk_sale
 #: model:ir.model,name:helpdesk_sale.model_helpdesk_ticket
 msgid "Helpdesk Ticket"
-msgstr "Ticket d'assistance"
+msgstr ""
 
 #. module: helpdesk_sale
-#: code:addons/helpdesk_sale/models/helpdesk_ticket.py:60
+#: model:ir.model.fields,field_description:helpdesk_sale.field_helpdesk_ticket__id
+msgid "ID"
+msgstr ""
+
+#. module: helpdesk_sale
+#: model:ir.model.fields,help:helpdesk_sale.field_helpdesk_ticket__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: helpdesk_sale
+#: model:ir.model.fields,field_description:helpdesk_sale.field_helpdesk_ticket____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: helpdesk_sale
+#: code:addons/helpdesk_sale/models/helpdesk_ticket.py:0
 #, python-format
 msgid "New quotation <a href='web#%s'>%s</a> created"
-msgstr "Nouveau devis <a href='web#%s'>%s</a> créé"
+msgstr ""
 
+#. module: helpdesk_sale
+#: model:ir.model.fields,field_description:helpdesk_sale.field_helpdesk_ticket__xid
+msgid "XML-ID"
+msgstr ""

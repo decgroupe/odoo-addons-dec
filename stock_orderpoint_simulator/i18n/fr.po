@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-11 15:19+0000\n"
-"PO-Revision-Date: 2021-02-09 11:18+0100\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 15:12+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
@@ -62,6 +62,11 @@ msgstr "Nom affiché"
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__id
 msgid "ID"
 msgstr "ID"
+
+#. module: stock_orderpoint_simulator
+#: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator____last_update
@@ -166,13 +171,26 @@ msgstr "Ce multiple est normalement égal au <b>ratio</b> de l'unité de mesure 
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_min_qty
-msgid "When the virtual stock goes below the Min Quantity specified for this field, Odoo generates a procurement to bring the forecasted quantity to the Max Quantity."
-msgstr "Quand le stock virtuel tombe en dessous de la quantité mini indiquée dans de champ, Odoo génère un approvisionnement pour ramener la quantité prévue à la quantité maxi."
+msgid ""
+"When the virtual stock goes below the Min Quantity specified for this field, Odoo generates a procurement to "
+"bring the forecasted quantity to the Max Quantity."
+msgstr ""
+"Quand le stock virtuel tombe en dessous de la quantité mini indiquée dans de champ, Odoo génère un "
+"approvisionnement pour ramener la quantité prévue à la quantité maxi."
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_max_qty
-msgid "When the virtual stock goes below the Min Quantity, Odoo generates a procurement to bring the forecasted quantity to the Quantity specified as Max Quantity."
-msgstr "Quand le stock virtuel tombe en dessous de la quantité mini, Odoo génère un approvisionnement pour ramener la quantité prévue à la quantité indiquée ici."
+msgid ""
+"When the virtual stock goes below the Min Quantity, Odoo generates a procurement to bring the forecasted "
+"quantity to the Quantity specified as Max Quantity."
+msgstr ""
+"Quand le stock virtuel tombe en dessous de la quantité mini, Odoo génère un approvisionnement pour ramener la "
+"quantité prévue à la quantité indiquée ici."
+
+#. module: stock_orderpoint_simulator
+#: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
@@ -187,5 +205,5 @@ msgstr ""
 
 #. module: stock_orderpoint_simulator
 #: model:ir.actions.act_window,name:stock_orderpoint_simulator.act_window_stock_warehouse_orderpoint_simulator
-msgid "🧙‍♂️ Simulator ..."
-msgstr "🧙‍♂️ Simulateur ..."
+msgid "🧙‍♂️ Simulator ..."
+msgstr "🧙‍♂️ Simulateur ..."

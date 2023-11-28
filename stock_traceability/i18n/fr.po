@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 12:39+0100\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 15:14+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "#Products"
+msgstr "Nb d'articles"
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_mail_activity
+msgid "Activity"
+msgstr "Activité"
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
-msgid "Are you sure that you want to set this move state to Assigned (ignoring virtual available quantity) ?"
-msgstr "Êtes-vous sur de vouloir forcer l'état de ce mouvement à \"Disponible\" (en ignorant la quantité disponible) ?"
+msgid "Are you sure that you want to cancel this move ?"
+msgstr "Êtes-vous sûr de vouloir annuler ce mouvement ?"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Cancel"
+msgstr "Annuler"
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
@@ -34,6 +49,11 @@ msgid "Close"
 msgstr "Fermer"
 
 #. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Conditions"
+msgstr "Conditions"
+
+#. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_production_archive
 msgid "Created Production Archive"
 msgstr "Archive de l'ordre de fabrication créé"
@@ -42,6 +62,19 @@ msgstr "Archive de l'ordre de fabrication créé"
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_purchase_line_archive
 msgid "Created Purchase Line Archive"
 msgstr "Archive de ligne d'achat créé"
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.stock_move_form_view
@@ -54,20 +87,59 @@ msgid "Final location"
 msgstr "Emplacement final"
 
 #. module: stock_traceability
-#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
-msgid "Force Assigned"
-msgstr "Forcer la disponibilité"
-
-#. module: stock_traceability
 #: model:ir.model.fields,help:stock_traceability.field_stock_move__final_location
 msgid "Get final location name"
 msgstr "Obtenir le nom de l’emplacement final"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:267
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__id
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__id
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group__id
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__id
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__id
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__id
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__id
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant__id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_traceability
+#: model:ir.model.fields,help:stock_traceability.field_mail_activity__xid
+#: model:ir.model.fields,help:stock_traceability.field_mrp_production__xid
+#: model:ir.model.fields,help:stock_traceability.field_procurement_group__xid
+#: model:ir.model.fields,help:stock_traceability.field_product_template__xid
+#: model:ir.model.fields,help:stock_traceability.field_purchase_order__xid
+#: model:ir.model.fields,help:stock_traceability.field_purchase_order_line__xid
+#: model:ir.model.fields,help:stock_traceability.field_stock_move__xid
+#: model:ir.model.fields,help:stock_traceability.field_stock_picking__xid
+#: model:ir.model.fields,help:stock_traceability.field_stock_quant__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "Location"
 msgstr "Emplacement"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Locations"
+msgstr "Emplacements"
 
 #. module: stock_traceability
 #: model:ir.actions.act_window,name:stock_traceability.act_product_template_stock_move_open
@@ -75,7 +147,7 @@ msgid "Moves"
 msgstr "Mouvements"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:266
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "Not Set"
 msgstr "Non défini"
@@ -84,6 +156,31 @@ msgstr "Non défini"
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_move_picking_form_view
 msgid "Open Advanced Form View"
 msgstr "Ouvrir la vue étendue"
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_procurement_group
+msgid "Procurement Group"
+msgstr "Groupe d'approvisionnement"
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de fabrication"
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_purchase_order
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
 
 #. module: stock_traceability
 #: model:ir.model,name:stock_traceability.model_stock_quant
@@ -101,10 +198,20 @@ msgid "Related Activity"
 msgstr "Activité associée"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:368
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "Reservation issue"
 msgstr "Problème de réservation"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Reserved"
+msgstr "Réservé"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Save"
+msgstr "Enregistrer"
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__action_view_created_item_visible
@@ -112,12 +219,65 @@ msgid "Show Link to Created Item"
 msgstr "Afficher le lien vers l'élément créé"
 
 #. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__state_emoji
+msgid "State Emoji"
+msgstr "Emoji d'état"
+
+#. module: stock_traceability
 #: model:ir.model,name:stock_traceability.model_stock_move
 msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:336
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Stock Moves"
+msgstr "Mouvements de stocks"
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__tree_bg_color
+msgid "Tree Bg Color"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__tree_fg_color
+msgid "Tree Fg Color"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_product_product__type_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__type_emoji
+msgid "Type Emoji"
+msgstr "Emoji de type"
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Unit Of Measure"
+msgstr "Unité de mesure"
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "canceled"
 msgstr "annulé"
@@ -143,13 +303,16 @@ msgid "stock.move.picking.form@stock_traceability"
 msgstr "stock.move.picking.form@stock_traceability"
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:369
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "{0} needed but {1} available"
 msgstr "{0} nécessaire mais {1} disponible"
 
+#~ msgid "Are you sure that you want to set this move state to Assigned (ignoring virtual available quantity) ?"
+#~ msgstr "Êtes-vous sur de vouloir forcer l'état de ce mouvement à \"Disponible\" (en ignorant la quantité disponible) ?"
+
+#~ msgid "Force Assigned"
+#~ msgstr "Forcer la disponibilité"
+
 #~ msgid "Quantity in the default UoM of the product"
 #~ msgstr "Quantité dans l'UdM par défaut de l'article"
-
-#~ msgid "Procurement Group"
-#~ msgstr "Groupe d'approvisionnement"

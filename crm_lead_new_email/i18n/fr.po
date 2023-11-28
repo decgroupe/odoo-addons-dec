@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-25 17:53+0000\n"
-"PO-Revision-Date: 2022-01-25 18:54+0100\n"
+"POT-Creation-Date: 2023-11-28 09:55+0000\n"
+"PO-Revision-Date: 2023-11-28 11:40+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: crm_lead_new_email
 #: model:mail.template,body_html:crm_lead_new_email.email_template
@@ -53,6 +53,26 @@ msgstr ""
 "        "
 
 #. module: crm_lead_new_email
+#: model:ir.model.fields,field_description:crm_lead_new_email.field_crm_lead__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: crm_lead_new_email
+#: model:ir.model.fields,field_description:crm_lead_new_email.field_crm_lead__id
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_lead_new_email
+#: model:ir.model.fields,help:crm_lead_new_email.field_crm_lead__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: crm_lead_new_email
+#: model:ir.model.fields,field_description:crm_lead_new_email.field_crm_lead____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: crm_lead_new_email
 #: model:ir.model,name:crm_lead_new_email.model_crm_lead
 msgid "Lead/Opportunity"
 msgstr "Piste/opportunité"
@@ -67,6 +87,11 @@ msgstr "Avertissement de nouvelle piste"
 #: model:ir.model.fields,field_description:crm_lead_new_email.field_crm_lead__original_message_id
 msgid "Original Message"
 msgstr "Message d’origine"
+
+#. module: crm_lead_new_email
+#: model:ir.model.fields,field_description:crm_lead_new_email.field_crm_lead__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: crm_lead_new_email
 #: model:mail.template,subject:crm_lead_new_email.email_template

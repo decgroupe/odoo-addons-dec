@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* res_users_signature
+# 	* res_users_signature
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-04 12:13+0000\n"
-"PO-Revision-Date: 2022-01-04 12:13+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 10:29+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,6 +56,15 @@ msgid "Created on"
 msgstr ""
 
 #. module: res_users_signature
+#: model:ir.model,name:res_users_signature.model_hr_department
+msgid "Department"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__display_name
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:res_users_signature.field_res_partner__display_name
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__display_name
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__display_name
 msgid "Display Name"
 msgstr ""
@@ -66,7 +75,7 @@ msgid "Employee"
 msgstr ""
 
 #. module: res_users_signature
-#: code:addons/res_users_signature/models/res_users_signature_template.py:238
+#: code:addons/res_users_signature/models/res_users_signature_template.py:0
 #, python-format
 msgid "Failed to render template %r using values %r"
 msgstr ""
@@ -78,21 +87,33 @@ msgid "Generate Signatures from Company Template"
 msgstr ""
 
 #. module: res_users_signature
-#: model:ir.model,name:res_users_signature.model_hr_department
-msgid "HR Department"
-msgstr ""
-
-#. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__body_html
 msgid "Html Version"
 msgstr ""
 
 #. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__id
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__id
+#: model:ir.model.fields,field_description:res_users_signature.field_res_partner__id
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__id
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__id
 msgid "ID"
 msgstr ""
 
 #. module: res_users_signature
+#: model:ir.model.fields,help:res_users_signature.field_hr_department__xid
+#: model:ir.model.fields,help:res_users_signature.field_hr_employee__xid
+#: model:ir.model.fields,help:res_users_signature.field_res_partner__xid
+#: model:ir.model.fields,help:res_users_signature.field_res_users__xid
+#: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_department____last_update
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee____last_update
+#: model:ir.model.fields,field_description:res_users_signature.field_res_partner____last_update
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users____last_update
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -162,17 +183,23 @@ msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__primary_color
-msgid "Same color as the one used to render this signature, it will be used as a reference to replace with the department's one"
+msgid ""
+"Same color as the one used to render this signature, it will be used as a "
+"reference to replace with the department's one"
 msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__logo_url
-msgid "Same logo URL as the one used to render this signature, it will be used as a reference to replace with the department's one"
+msgid ""
+"Same logo URL as the one used to render this signature, it will be used as a"
+" reference to replace with the department's one"
 msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__color_suffix
-msgid "Same text pattern as the one used to render this signature, it will be used as a reference to replace with the department's one"
+msgid ""
+"Same text pattern as the one used to render this signature, it will be used "
+"as a reference to replace with the department's one"
 msgstr ""
 
 #. module: res_users_signature
@@ -223,7 +250,9 @@ msgstr ""
 
 #. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_res_users__signature_text
-msgid "This field is only used on reports when the report engine does not support html rendering"
+msgid ""
+"This field is only used on reports when the report engine does not support "
+"html rendering"
 msgstr ""
 
 #. module: res_users_signature
@@ -237,7 +266,7 @@ msgid "Use one line per website"
 msgstr ""
 
 #. module: res_users_signature
-#: code:addons/res_users_signature/models/res_users_signature_template.py:126
+#: code:addons/res_users_signature/models/res_users_signature_template.py:0
 #, python-format
 msgid "User %s is not linked to an employee"
 msgstr ""
@@ -257,3 +286,11 @@ msgstr ""
 msgid "Work Phone Extension"
 msgstr ""
 
+#. module: res_users_signature
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__xid
+#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__xid
+#: model:ir.model.fields,field_description:res_users_signature.field_res_partner__xid
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users__xid
+#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__xid
+msgid "XML-ID"
+msgstr ""

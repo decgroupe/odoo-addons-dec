@@ -1,0 +1,155 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* software_license_token
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 10:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
+msgid "-----BEGIN PUBLIC KEY-----"
+msgstr ""
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
+msgid "-----BEGIN RSA PRIVATE KEY-----"
+msgstr ""
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
+msgid "Create a new public/private key pair"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_application__display_name
+#: model:ir.model.fields,field_description:software_license_token.field_software_license__display_name
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_hardware__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license__expiration_date
+msgid "Expiration Date"
+msgstr ""
+
+#. module: software_license_token
+#: code:addons/software_license_token/models/software_license.py:0
+#, python-format
+msgid "Expiration date reached"
+msgstr ""
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
+msgid "Generate Keys"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_application__id
+#: model:ir.model.fields,field_description:software_license_token.field_software_license__id
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_hardware__id
+msgid "ID"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,help:software_license_token.field_software_application__xid
+#: model:ir.model.fields,help:software_license_token.field_software_license__xid
+#: model:ir.model.fields,help:software_license_token.field_software_license_hardware__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,help:software_license_token.field_software_license__max_allowed_hardware
+msgid ""
+"If more than 0, then the number of registered hardware identifiers will not "
+"be allowed to be greater than this value."
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,help:software_license_token.field_software_license__expiration_date
+msgid ""
+"If set, then after this date it will not be possible to proceed or renew any"
+" activation."
+msgstr ""
+
+#. module: software_license_token
+#: model_terms:ir.ui.view,arch_db:software_license_token.software_application_form_view
+msgid "Keys"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_application____last_update
+#: model:ir.model.fields,field_description:software_license_token.field_software_license____last_update
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_hardware____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model,name:software_license_token.model_software_license
+msgid "License"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model,name:software_license_token.model_software_license_hardware
+msgid "License Hardware"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license__max_allowed_hardware
+msgid "Maximum Activation Count"
+msgstr ""
+
+#. module: software_license_token
+#: code:addons/software_license_token/models/software_license.py:0
+#, python-format
+msgid "Maximum hardware identifier count reached for license %s"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_application__private_key
+msgid "Private Key"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_application__public_key
+msgid "Public Key"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model,name:software_license_token.model_software_application
+msgid "Software Application"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,help:software_license_token.field_software_license_hardware__validity_days
+msgid ""
+"The license file data can be used to internally validate an activation until"
+" this delay is reached. After this, a new validation will be required to "
+"continue using the application."
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_hardware__validation_date
+msgid "Validation Date"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_hardware__validity_days
+msgid "Validity (Days)"
+msgstr ""
+
+#. module: software_license_token
+#: model:ir.model.fields,field_description:software_license_token.field_software_application__xid
+#: model:ir.model.fields,field_description:software_license_token.field_software_license__xid
+#: model:ir.model.fields,field_description:software_license_token.field_software_license_hardware__xid
+msgid "XML-ID"
+msgstr ""

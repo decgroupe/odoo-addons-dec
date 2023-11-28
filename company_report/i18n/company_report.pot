@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* company_report
+# 	* company_report
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 09:55+0000\n"
+"PO-Revision-Date: 2023-11-28 09:55+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,40 +18,61 @@ msgstr ""
 #. module: company_report
 #: model:ir.model,name:company_report.model_res_partner_bank
 msgid "Bank Accounts"
-msgstr "Comptes bancaires"
+msgstr ""
 
 #. module: company_report
 #: model:ir.model.fields,field_description:company_report.field_res_company__report_bank_footer
 msgid "Bank Accounts Footer"
-msgstr "Pied de page des comptes bancaires"
+msgstr ""
 
 #. module: company_report
 #: model:ir.model,name:company_report.model_res_company
 msgid "Companies"
-msgstr "Sociétés"
+msgstr ""
+
+#. module: company_report
+#: model:ir.model.fields,field_description:company_report.field_res_company__display_name
+#: model:ir.model.fields,field_description:company_report.field_res_partner_bank__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: company_report
 #: model:ir.model.fields,field_description:company_report.field_res_partner_bank__footer
 msgid "Display on Reports"
-msgstr "Afficher sur les rapports"
+msgstr ""
 
 #. module: company_report
 #: model:ir.model.fields,help:company_report.field_res_partner_bank__footer
-msgid "Display this bank account on the footer of printed documents like invoices and sales orders."
-msgstr "Afficher ce compte bancaire sur le pied de page des documents imprimés tels que les factures et les commandes de vente."
+msgid ""
+"Display this bank account on the footer of printed documents like invoices "
+"and sales orders."
+msgstr ""
 
 #. module: company_report
 #: model_terms:ir.ui.view,arch_db:company_report.company_form_view
 msgid "Footer"
-msgstr "Bas de page"
+msgstr ""
+
+#. module: company_report
+#: model:ir.model.fields,field_description:company_report.field_res_company__id
+#: model:ir.model.fields,field_description:company_report.field_res_partner_bank__id
+msgid "ID"
+msgstr ""
+
+#. module: company_report
+#: model:ir.model.fields,field_description:company_report.field_res_company____last_update
+#: model:ir.model.fields,field_description:company_report.field_res_partner_bank____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: company_report
 #: model:ir.model.fields,help:company_report.field_res_company__report_bank_footer
-msgid "This field is computed automatically based on bank accounts defined, having the display on footer checkbox set."
-msgstr "Ce champ est calculé automatiquement en fonction des comptes bancaires définis et son affichage en pied de page est possible si la case à cocher est cochée."
+msgid ""
+"This field is computed automatically based on bank accounts defined, having "
+"the display on footer checkbox set."
+msgstr ""
 
 #. module: company_report
 #: model_terms:ir.ui.view,arch_db:company_report.company_form_view
 msgid "e.g. Opening hours, bank accounts (one per line)"
-msgstr "Par ex. Heures d'ouverture, comptes bancaires (un par ligne)"
-
+msgstr ""

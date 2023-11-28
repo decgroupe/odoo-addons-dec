@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_production_request_all
+# 	* mrp_production_request_all
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"PO-Revision-Date: 2023-11-28 10:23+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,25 +18,42 @@ msgstr ""
 #. module: mrp_production_request_all
 #: model_terms:ir.ui.view,arch_db:mrp_production_request_all.mrp_production_request_form_view
 msgid "Create all Manufacturing Orders"
-msgstr "Créer tous les ordres de fabrication"
+msgstr ""
+
+#. module: mrp_production_request_all
+#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_request_all
+#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_request_all
+#: model:ir.model.fields,help:mrp_production_request_all.field_mrp_production_request__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: mrp_production_request_all
+#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: mrp_production_request_all
 #: model:ir.model,name:mrp_production_request_all.model_mrp_production_request
 msgid "Manufacturing Request"
-msgstr "Demande de fabrication"
-
-#. module: mrp_production_request_all
-#: model:ir.model,name:mrp_production_request_all.model_mrp_production
-msgid "Production Order"
 msgstr ""
 
 #. module: mrp_production_request_all
-#: model:ir.model,name:mrp_production_request_all.model_stock_move
-msgid "Stock Move"
-msgstr "Mouvement de stock"
+#: model_terms:ir.ui.view,arch_db:mrp_production_request_all.mrp_production_request_form_view
+msgid ""
+"This action will create a new Manufacturing Order for each quantity: - If "
+"required quantity=1.0 when it will generate 1 × MO of 1 unit - If required "
+"quantity=5.0 when it will generate 5 × MO of 1 unit"
+msgstr ""
 
 #. module: mrp_production_request_all
-#: model_terms:ir.ui.view,arch_db:mrp_production_request_all.mrp_production_request_form_view
-msgid "This action will create a new Manufacturing Order for each quantity: - If required quantity=1.0 when it will generate 1 × MO of 1 unit - If required quantity=5.0 when it will generate 5 × MO of 1 unit"
-msgstr "Cette action va créer un ordre de fabrication individuel pour chaque quantité: - Si la quantité demandé est quantité=1.0 alors cela va générer 1 x MO de 1 unité - Si la quantité demandé est quantité=5.0 alors cela va générer 5 x MO de 1 unité"
-
+#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request__xid
+msgid "XML-ID"
+msgstr ""

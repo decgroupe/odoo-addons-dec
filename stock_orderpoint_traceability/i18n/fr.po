@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:14+0000\n"
-"PO-Revision-Date: 2020-10-02 23:30+0200\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 15:12+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: stock_orderpoint_traceability
 #: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_move__orderpoint_created_production_ids
@@ -28,6 +28,41 @@ msgid "Created Purchase Order Lines by Orderpoint"
 msgstr "Commandes fournisseur créées par un ordre de réappro."
 
 #. module: stock_orderpoint_traceability
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_move__display_name
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_warehouse_orderpoint__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: stock_orderpoint_traceability
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_move__id
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_warehouse_orderpoint__id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_orderpoint_traceability
+#: model:ir.model.fields,help:stock_orderpoint_traceability.field_stock_move__xid
+#: model:ir.model.fields,help:stock_orderpoint_traceability.field_stock_warehouse_orderpoint__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: stock_orderpoint_traceability
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_move____last_update
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_warehouse_orderpoint____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: stock_orderpoint_traceability
+#: model:ir.model,name:stock_orderpoint_traceability.model_stock_warehouse_orderpoint
+msgid "Minimum Inventory Rule"
+msgstr "Règle de stock minimum."
+
+#. module: stock_orderpoint_traceability
 #: model:ir.model,name:stock_orderpoint_traceability.model_stock_move
 msgid "Stock Move"
 msgstr "Mouvement de stock"
+
+#. module: stock_orderpoint_traceability
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_move__xid
+#: model:ir.model.fields,field_description:stock_orderpoint_traceability.field_stock_warehouse_orderpoint__xid
+msgid "XML-ID"
+msgstr "XML-ID"

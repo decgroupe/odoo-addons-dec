@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_production_request_procurement
+# 	* mrp_production_request_procurement
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"PO-Revision-Date: 2023-11-28 10:23+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,45 +18,71 @@ msgstr ""
 #. module: mrp_production_request_procurement
 #: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__common_procurement_group_id
 msgid "Common Procurement Group"
-msgstr "Groupe d'approvisionnement commun"
+msgstr ""
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__display_name
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo__display_name
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__id
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo__id
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo_line__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,help:mrp_production_request_procurement.field_mrp_production_request__xid
+#: model:ir.model.fields,help:mrp_production_request_procurement.field_mrp_production_request_create_mo__xid
+#: model:ir.model.fields,help:mrp_production_request_procurement.field_mrp_production_request_create_mo_line__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
 
 #. module: mrp_production_request_procurement
 #: model:ir.model.fields,help:mrp_production_request_procurement.field_mrp_production_request__use_common_procurement_group
-msgid "If checked, when the first manufacturing order is created a procurement order is first created based on the MO sequence. "
-msgstr "Si cette case est cochée, lorsque le premier ordre de fabrication est créé, un groupe d'approvisionnement est d'abord créé en fonction de la séquence MO. "
+msgid ""
+"If checked, when the first manufacturing order is created a procurement "
+"order is first created based on the MO sequence. "
+msgstr ""
+
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request____last_update
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo____last_update
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: mrp_production_request_procurement
 #: model:ir.model,name:mrp_production_request_procurement.model_mrp_production_request
 msgid "Manufacturing Request"
-msgstr "Demande de fabrication"
+msgstr ""
 
 #. module: mrp_production_request_procurement
 #: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__production_name
 msgid "Prefix"
-msgstr "Préfixe"
-
-#. module: mrp_production_request_procurement
-#: model:ir.model,name:mrp_production_request_procurement.model_mrp_production
-msgid "Production Order"
 msgstr ""
-
-#. module: mrp_production_request_procurement
-#: model:ir.model,name:mrp_production_request_procurement.model_stock_move
-msgid "Stock Move"
-msgstr "Mouvement de stock"
 
 #. module: mrp_production_request_procurement
 #: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__use_common_procurement_group
 msgid "Use Common Procurement Group"
-msgstr "Utiliser un groupe d'approvisionnement commun"
+msgstr ""
 
 #. module: mrp_production_request_procurement
 #: model:ir.model,name:mrp_production_request_procurement.model_mrp_production_request_create_mo
 msgid "Wizard to create Manufacturing Orders"
-msgstr "Assistant pour créer des ordres de fabrication"
+msgstr ""
 
 #. module: mrp_production_request_procurement
 #: model:ir.model,name:mrp_production_request_procurement.model_mrp_production_request_create_mo_line
 msgid "Wizard to create Manufacturing Orders Line"
-msgstr "Assistant pour créer une ligne d'ordre de fabrication"
+msgstr ""
 
+#. module: mrp_production_request_procurement
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request__xid
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo__xid
+#: model:ir.model.fields,field_description:mrp_production_request_procurement.field_mrp_production_request_create_mo_line__xid
+msgid "XML-ID"
+msgstr ""

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-14 15:05+0000\n"
-"PO-Revision-Date: 2020-07-29 15:07+0200\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:09+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: product_seller
+#: model:ir.model.fields,field_description:product_seller.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_seller
+#: model:ir.model.fields,field_description:product_seller.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_seller
+#: model:ir.model.fields,help:product_seller.field_product_template__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: product_seller
+#: model:ir.model.fields,field_description:product_seller.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_product__seller_id
@@ -28,6 +48,11 @@ msgstr "Fournisseur principal"
 #: model:ir.model.fields,help:product_seller.field_product_template__seller_id
 msgid "Main Supplier who has highest priority in Supplier List."
 msgstr "Fournisseur qui a la priorité la plus haute dans la liste de prix."
+
+#. module: product_seller
+#: model:ir.model.fields,field_description:product_seller.field_product_template__main_seller_id
+msgid "Main Vendor"
+msgstr "Fournisseur principal"
 
 #. module: product_seller
 #: model:ir.model.fields,help:product_seller.field_product_product__seller_product_code
@@ -61,8 +86,15 @@ msgstr "Délai d'exécution du fournisseur"
 #. module: product_seller
 #: model:ir.model.fields,help:product_seller.field_product_product__seller_delay
 #: model:ir.model.fields,help:product_seller.field_product_template__seller_delay
-msgid "This is the average delay in days between the purchase order confirmation and the reception of goods for this product and for the default supplier. It is used by the scheduler to order requests based on reordering delays."
-msgstr "C'est le temps moyen entre la confirmation de la commande d'achat et la réception des marchandises pour cet article et pour le fournisseur par défaut. Le planificateur utilise cette information pour choisir l'ordre des requêtes."
+msgid ""
+"This is the average delay in days between the purchase order confirmation "
+"and the reception of goods for this product and for the default supplier. "
+"It is used by the scheduler to order requests based on reordering delays."
+msgstr ""
+"C'est le temps moyen entre la confirmation de la commande d'achat et la "
+"réception des marchandises pour cet article et pour le fournisseur par "
+"défaut. Le planificateur utilise cette information pour choisir l'ordre des "
+"requêtes."
 
 #. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_product__seller_product_code
@@ -75,3 +107,8 @@ msgstr "Référence Fournisseur"
 #: model:ir.model.fields,field_description:product_seller.field_product_template__seller_product_name
 msgid "Vendor Product Name"
 msgstr "Nom de l'article chez le fournisseur"
+
+#. module: product_seller
+#: model:ir.model.fields,field_description:product_seller.field_product_template__xid
+msgid "XML-ID"
+msgstr "XML-ID"

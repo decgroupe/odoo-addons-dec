@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 07:15+0000\n"
-"PO-Revision-Date: 2021-03-26 16:05+0100\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 15:01+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: software_license_legacy
 #: model_terms:ir.ui.view,arch_db:software_license_legacy.software_license_search_view
@@ -26,6 +31,21 @@ msgstr "Dongle"
 #: model:ir.model.fields,field_description:software_license_legacy.field_software_license__main_hardware_dongle_identifier
 msgid "Dongle ID"
 msgstr "Dongle ID"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__id
+msgid "ID"
+msgstr "ID"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,help:software_license_legacy.field_software_license__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: software_license_legacy
 #: model:ir.model,name:software_license_legacy.model_software_license
@@ -66,3 +86,8 @@ msgstr "Vive"
 #: model:ir.model.fields,help:software_license_legacy.field_software_license__main_hardware_dongle_identifier
 msgid "Unique device ID set and given by then dongle manufacturer"
 msgstr "ID de périphérique unique défini et donné par le fabricant du dongle"
+
+#. module: software_license_legacy
+#: model:ir.model.fields,field_description:software_license_legacy.field_software_license__xid
+msgid "XML-ID"
+msgstr "XML-ID"

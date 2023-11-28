@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* helpdesk_merge
+# 	* helpdesk_merge
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-11 09:04+0000\n"
-"PO-Revision-Date: 2022-07-11 09:04+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:14+0000\n"
+"PO-Revision-Date: 2023-11-28 10:14+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,11 +51,6 @@ msgid "Display Name"
 msgstr ""
 
 #. module: helpdesk_merge
-#: selection:merge.helpdesk.ticket.wizard,state:0
-msgid "Finished"
-msgstr ""
-
-#. module: helpdesk_merge
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__number_group
 msgid "Group of Objects"
 msgstr ""
@@ -69,6 +64,11 @@ msgstr ""
 #. module: helpdesk_merge
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__id
 msgid "ID"
+msgstr ""
+
+#. module: helpdesk_merge
+#: model:ir.model.fields,help:helpdesk_merge.field_merge_helpdesk_ticket_wizard__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: helpdesk_merge
@@ -117,11 +117,6 @@ msgid "Name"
 msgstr ""
 
 #. module: helpdesk_merge
-#: selection:merge.helpdesk.ticket.wizard,state:0
-msgid "Option"
-msgstr ""
-
-#. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
 msgid "Options"
 msgstr ""
@@ -133,7 +128,8 @@ msgstr ""
 
 #. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
-msgid "Select the list of fields used to search for\n"
+msgid ""
+"Select the list of fields used to search for\n"
 "                        duplicated records. If you select several fields,\n"
 "                        Odoo will propose you to merge only those having\n"
 "                        all these fields in common. (not one of the fields)."
@@ -141,15 +137,11 @@ msgstr ""
 
 #. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
-msgid "Selected records will be merged together.\n"
+msgid ""
+"Selected records will be merged together.\n"
 "                            All documents linked to one of these record\n"
 "                            will be redirected to the destination record.\n"
 "                            You can remove records from this list to avoid merging them."
-msgstr ""
-
-#. module: helpdesk_merge
-#: selection:merge.helpdesk.ticket.wizard,state:0
-msgid "Selection"
 msgstr ""
 
 #. module: helpdesk_merge
@@ -168,8 +160,15 @@ msgid "State"
 msgstr ""
 
 #. module: helpdesk_merge
-#: model:ir.actions.act_window,name:helpdesk_merge.action_helpdesk_ticket_merge
-msgid "🧙‍♂️ Merge ..."
+#: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__xid
+msgid "XML-ID"
+msgstr ""
+
+#. module: helpdesk_merge
+#: code:addons/helpdesk_merge/wizard/merge_helpdesk_ticket.py:0
+#, python-format
+msgid ""
+"You don't have the right to merge tickets. Please contact an Administrator."
 msgstr ""
 
 #. module: helpdesk_merge
@@ -177,3 +176,7 @@ msgstr ""
 msgid "🧙‍♂️ Merge Wizard"
 msgstr ""
 
+#. module: helpdesk_merge
+#: model:ir.actions.act_window,name:helpdesk_merge.action_helpdesk_ticket_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr ""

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-19 16:41+0000\n"
-"PO-Revision-Date: 2021-11-19 17:42+0100\n"
+"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"PO-Revision-Date: 2023-11-28 14:32+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_account_traceability
 #: model:res.groups,name:sale_account_traceability.group_sale_account_traceability
@@ -28,9 +28,24 @@ msgid "Consider this line as fully invoiced"
 msgstr "Considérer cette ligne comme entièrement facturée"
 
 #. module: sale_account_traceability
+#: model:ir.model.fields,field_description:sale_account_traceability.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_account_traceability
 #: model:ir.model.fields,field_description:sale_account_traceability.field_sale_order_line__force_invoiced
 msgid "Force invoiced"
 msgstr "Forcer facturé"
+
+#. module: sale_account_traceability
+#: model:ir.model.fields,field_description:sale_account_traceability.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_account_traceability
+#: model:ir.model.fields,help:sale_account_traceability.field_sale_order_line__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: sale_account_traceability
 #: model:ir.model.fields,field_description:sale_account_traceability.field_sale_order_line__invoice_lines
@@ -38,9 +53,9 @@ msgid "Invoice Lines"
 msgstr "Lignes de factures"
 
 #. module: sale_account_traceability
-#: model:ir.model,name:sale_account_traceability.model_sale_order
-msgid "Sale Order"
-msgstr "Commande de vente"
+#: model:ir.model.fields,field_description:sale_account_traceability.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: sale_account_traceability
 #: model:ir.model,name:sale_account_traceability.model_sale_order_line
@@ -49,5 +64,18 @@ msgstr "Ligne de commande de vente"
 
 #. module: sale_account_traceability
 #: model:ir.model.fields,help:sale_account_traceability.field_sale_order_line__force_invoiced
-msgid "When you set this field, the sale line will be considered as fully billed, even when there may be ordered or delivered quantities pending to bill."
-msgstr "Lorsque vous définissez ce champ, la ligne de vente sera considérée comme entièrement facturée, même lorsqu'il peut y avoir des quantités commandées ou livrées en attente de facturation."
+msgid ""
+"When you set this field, the sale line will be considered as fully billed, "
+"even when there may be ordered or delivered quantities pending to bill."
+msgstr ""
+"Lorsque vous définissez ce champ, la ligne de vente sera considérée comme "
+"entièrement facturée, même lorsqu'il peut y avoir des quantités commandées "
+"ou livrées en attente de facturation."
+
+#. module: sale_account_traceability
+#: model:ir.model.fields,field_description:sale_account_traceability.field_sale_order_line__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Sale Order"
+#~ msgstr "Commande de vente"

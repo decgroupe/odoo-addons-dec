@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-13 20:12+0000\n"
-"PO-Revision-Date: 2020-10-08 22:35+0200\n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 14:28+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_res_partner
 msgid "Contact"
 msgstr "Contact"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product__display_name
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__display_name
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__display_name
+#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__id
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product__id
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__id
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__id
+#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,help:purchase_pricelist.field_product_pricelist__xid
+#: model:ir.model.fields,help:purchase_pricelist.field_product_product__xid
+#: model:ir.model.fields,help:purchase_pricelist.field_product_supplierinfo__xid
+#: model:ir.model.fields,help:purchase_pricelist.field_purchase_order__xid
+#: model:ir.model.fields,help:purchase_pricelist.field_purchase_order_line__xid
+#: model:ir.model.fields,help:purchase_pricelist.field_res_partner__xid
+#: model:ir.model.fields,help:purchase_pricelist.field_sale_order__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,help:purchase_pricelist.field_sale_order__pricelist_id
+msgid "If you change the pricelist, only newly added lines will be affected."
+msgstr ""
+"Si vous modifiez la liste de prix; seules les lignes de bon de commande "
+"ajoutées après cette modification seront affectées. "
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist____last_update
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product____last_update
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo____last_update
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner____last_update
+#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__list_price
+msgid "List Price"
+msgstr "Prix tarif"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__list_price_unit
+msgid "List Price (Default UoM)"
+msgstr "Prix tarif (UdM par défaut)"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,help:purchase_pricelist.field_product_supplierinfo__list_price_unit
+msgid "List price based on seller pricelist (Default UoM)"
+msgstr "Prix tarif basé sur la liste de prix du vendeur (Udm par défaut)"
+
+#. module: purchase_pricelist
+#: model:ir.model.fields,help:purchase_pricelist.field_product_supplierinfo__list_price
+msgid "List price based on seller pricelist (Purchase UoM)"
+msgstr "Prix tarif basé sur la liste de prix du vendeur (Udm d'achat)"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_product_pricelist
@@ -40,11 +111,6 @@ msgstr "Type de liste de prix"
 #: model:ir.model.fields,help:purchase_pricelist.field_purchase_order__pricelist_id
 msgid "Pricelist for current purchase order."
 msgstr "Liste de prix du bon de commande d'achat actuel."
-
-#. module: purchase_pricelist
-#: model:ir.model.fields,help:purchase_pricelist.field_sale_order__pricelist_id
-msgid "Pricelist for current sales order."
-msgstr "Liste de prix du bon de commande actuel."
 
 #. module: purchase_pricelist
 #: model:ir.actions.act_window,name:purchase_pricelist.act_window_product_pricelist
@@ -75,7 +141,7 @@ msgstr "Ligne de commande d'achat"
 #. module: purchase_pricelist
 #: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__property_product_pricelist_purchase
 #: model:ir.model.fields,field_description:purchase_pricelist.field_res_users__property_product_pricelist_purchase
-#: selection:product.pricelist,type:0
+#: model:ir.model.fields.selection,name:purchase_pricelist.selection__product_pricelist__type__purchase
 msgid "Purchase Pricelist"
 msgstr "Liste de prix d'achat"
 
@@ -90,31 +156,39 @@ msgid "Recompute Prices"
 msgstr "Recalculer les prix"
 
 #. module: purchase_pricelist
-#: model:ir.model,name:purchase_pricelist.model_sale_order
-msgid "Sale Order"
-msgstr "Bon de commande"
-
-#. module: purchase_pricelist
-#: selection:product.pricelist,type:0
+#: model:ir.model.fields.selection,name:purchase_pricelist.selection__product_pricelist__type__sale
 msgid "Sale Pricelist"
 msgstr "Liste de prix de vente"
 
 #. module: purchase_pricelist
-#: model:ir.model,name:purchase_pricelist.model_stock_rule
-msgid "Stock Rule"
-msgstr "Règle de stock minimum"
+#: model:ir.model,name:purchase_pricelist.model_sale_order
+msgid "Sales Order"
+msgstr "Commande client"
+
+#. module: purchase_pricelist
+#: model:ir.model,name:purchase_pricelist.model_product_supplierinfo
+msgid "Supplier Pricelist"
+msgstr "Liste de prix du fournisseur"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_partner__property_product_pricelist_purchase
 #: model:ir.model.fields,help:purchase_pricelist.field_res_users__property_product_pricelist_purchase
-msgid "This pricelist will be used, instead of the default one, for purchases from the current partner"
-msgstr "Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les achats du partenaire courant"
+msgid ""
+"This pricelist will be used, instead of the default one, for purchases from "
+"the current partner"
+msgstr ""
+"Cette liste de prix sera utilisée, au lieu de celle par défaut, pour les "
+"achats du partenaire courant"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_partner__property_product_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_res_users__property_product_pricelist
-msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
-msgstr "Cette liste de prix sera utilisée, à la place de la liste par défaut, pour les ventes faites au partenaire actuel"
+msgid ""
+"This pricelist will be used, instead of the default one, for sales to the "
+"current partner"
+msgstr ""
+"Cette liste de prix sera utilisée, à la place de la liste par défaut, pour "
+"les ventes faites au partenaire actuel"
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__type
@@ -122,6 +196,23 @@ msgid "Type"
 msgstr "Type"
 
 #. module: purchase_pricelist
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__xid
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product__xid
+#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__xid
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order__xid
+#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line__xid
+#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__xid
+#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: purchase_pricelist
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist.partner_property_form_view
 msgid "the parent company"
 msgstr "la société parente"
+
+#~ msgid "Pricelist for current sales order."
+#~ msgstr "Liste de prix du bon de commande actuel."
+
+#~ msgid "Stock Rule"
+#~ msgstr "Règle de stock minimum"

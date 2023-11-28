@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-16 15:32+0000\n"
-"PO-Revision-Date: 2023-01-16 16:32+0100\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 13:50+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
@@ -61,8 +61,12 @@ msgstr "Nomenclature"
 
 #. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production__bom_id
-msgid "Bill of Materials allow you to define the list of required raw materials to make a finished product."
-msgstr "Les nomenclatures permettent de définir la liste des matières premières nécessaires à la fabrication des produits finis."
+msgid ""
+"Bill of Materials allow you to define the list of required components to make a "
+"finished product."
+msgstr ""
+"Les nomenclatures vous permettent de définir une liste des composants requis "
+"pour fabriquer un produit fini."
 
 #. module: mrp_stage
 #: model:mrp.production.stage,name:mrp_stage.stage_cancel
@@ -75,7 +79,7 @@ msgid "Code"
 msgstr "Code"
 
 #. module: mrp_stage
-#: sql_constraint:mrp.production.stage:0
+#: model:ir.model.constraint,message:mrp_stage.constraint_mrp_production_stage_code_uniq
 msgid "Code must be unique !"
 msgstr "Le code doit être unique !"
 
@@ -123,6 +127,11 @@ msgid "Done"
 msgstr "Terminé"
 
 #. module: mrp_stage
+#: model:mrp.production.stage,name:mrp_stage.stage_draft
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "Dropdown menu"
 msgstr "Menu déroulant"
@@ -144,6 +153,14 @@ msgstr "Repliée dans la vue Kanban"
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__id
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_stage
+#: model:ir.model.fields,help:mrp_stage.field_mail_activity__xid
+#: model:ir.model.fields,help:mrp_stage.field_mail_activity_type__xid
+#: model:ir.model.fields,help:mrp_stage.field_mrp_production__xid
+#: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__emoji
@@ -195,11 +212,6 @@ msgid "My Orders"
 msgstr "Mes fabrications"
 
 #. module: mrp_stage
-#: model:mrp.production.stage,name:mrp_stage.stage_planned
-msgid "Planned"
-msgstr "Planifiée"
-
-#. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "Product"
 msgstr "Article"
@@ -223,6 +235,11 @@ msgstr "Étape de fabrication"
 #: model:ir.ui.menu,name:mrp_stage.menu_mrp_production_stage_config
 msgid "Production Stages"
 msgstr "Étapes de fabrication"
+
+#. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_form_view
+msgid "Put back on hold"
+msgstr "Remettre en attente"
 
 #. module: mrp_stage
 #: model:mrp.production.stage,name:mrp_stage.stage_dispatch_ready
@@ -267,8 +284,12 @@ msgstr "Cette étape est considérée comme ayant des actions nécessaires"
 
 #. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__fold
-msgid "This stage is folded in the kanban view when there are no records in that stage to display."
-msgstr "Cette étape est repliée dans la vue Kanban quand il n'y a pas de dossier à afficher dans cette étape."
+msgid ""
+"This stage is folded in the kanban view when there are no records in that stage "
+"to display."
+msgstr ""
+"Cette étape est repliée dans la vue Kanban quand il n'y a pas de dossier à "
+"afficher dans cette étape."
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
@@ -293,23 +314,42 @@ msgstr "Messages non lus"
 
 #. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production__stage_todo
-msgid "Used as a filter to only display production order linked to stages with to-do actions"
-msgstr "Utilisé comme un filtre pour afficher uniquement les ordres de production liés aux étapes avec des actions à faire"
+msgid ""
+"Used as a filter to only display production order linked to stages with to-do "
+"actions"
+msgstr ""
+"Utilisé comme un filtre pour afficher uniquement les ordres de production liés "
+"aux étapes avec des actions à faire"
+
+#. module: mrp_stage
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__xid
+#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__xid
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__xid
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
-msgid "You can also add a description to help your coworkers understand the meaning and purpose of the stage."
-msgstr "Vous pouvez aussi ajouter une description pour aider vos co-équipiers à comprendre la signification et le but de cette étape."
+msgid ""
+"You can also add a description to help your coworkers understand the meaning "
+"and purpose of the stage."
+msgstr ""
+"Vous pouvez aussi ajouter une description pour aider vos co-équipiers à "
+"comprendre la signification et le but de cette étape."
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "oe_kanban_text_red"
-msgstr "oe_kanban_text_red"
+msgstr ""
 
 #. module: mrp_stage
 #: model:ir.actions.server,name:mrp_stage.action_recompute_stage
 msgid "⚡️ Recompute Stage Assignment"
 msgstr "⚡️ Recalculer l'affectation d'étape"
+
+#~ msgid "Planned"
+#~ msgstr "Planifiée"
 
 #, fuzzy
 #~ msgid "Production State"

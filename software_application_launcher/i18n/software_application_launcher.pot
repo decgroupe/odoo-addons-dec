@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* software_application_launcher
+# 	* software_application_launcher
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-04 14:42+0000\n"
-"PO-Revision-Date: 2022-01-04 14:42+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,6 +44,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__display_name
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__display_name
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__display_name
 msgid "Display Name"
@@ -60,9 +61,17 @@ msgid "Display as « Soon »"
 msgstr ""
 
 #. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__id
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__id
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__id
 msgid "ID"
+msgstr ""
+
+#. module: software_application_launcher
+#: model:ir.model.fields,help:software_application_launcher.field_software_application__xid
+#: model:ir.model.fields,help:software_application_launcher.field_software_application_image__xid
+#: model:ir.model.fields,help:software_application_launcher.field_software_tag__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: software_application_launcher
@@ -82,6 +91,7 @@ msgid "Image of the application (automatically resized)."
 msgstr ""
 
 #. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application____last_update
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image____last_update
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_tag____last_update
 msgid "Last Modified on"
@@ -152,16 +162,20 @@ msgstr ""
 
 #. module: software_application_launcher
 #: model:ir.model.fields,help:software_application_launcher.field_software_application__need_license
-msgid "Sometimes, an application is specifically developped for a customer and should not be shared with others. This is the purpose of this setting: Hide this application until the customer is logged in with an account with a valid license."
+msgid ""
+"Sometimes, an application is specifically developped for a customer and "
+"should not be shared with others. This is the purpose of this setting: Hide "
+"this application until the customer is logged in with an account with a "
+"valid license."
 msgstr ""
 
 #. module: software_application_launcher
-#: sql_constraint:software.tag:0
+#: model:ir.model.constraint,message:software_application_launcher.constraint_software_tag_name_uniq
 msgid "Tag name already exists!"
 msgstr ""
 
 #. module: software_application_launcher
-#: code:addons/software_application_launcher/models/software_tag.py:24
+#: code:addons/software_application_launcher/models/software_tag.py:0
 #, python-format
 msgid "This tag cannot be removed"
 msgstr ""
@@ -176,3 +190,9 @@ msgstr ""
 msgid "Tooltips"
 msgstr ""
 
+#. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__xid
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__xid
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__xid
+msgid "XML-ID"
+msgstr ""

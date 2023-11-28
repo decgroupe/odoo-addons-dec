@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_merge
+# 	* project_merge
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-27 13:35+0000\n"
-"PO-Revision-Date: 2021-08-27 13:35+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 10:28+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,8 @@ msgstr ""
 
 #. module: project_merge
 #: model:mail.template,body_html:project_merge.merged_tasks
-msgid "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; padding-bottom:16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\"><tr><td align=\"center\">\n"
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; padding-bottom:16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\"><tr><td align=\"center\">\n"
 "            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
 "            <tbody>\n"
 "                <!-- HEADER -->\n"
@@ -95,7 +96,8 @@ msgstr ""
 
 #. module: project_merge
 #: model:mail.template,body_html:project_merge.merged_projects
-msgid "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; padding-bottom:16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\"><tr><td align=\"center\">\n"
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; padding-bottom:16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\"><tr><td align=\"center\">\n"
 "            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
 "            <tbody>\n"
 "                <!-- HEADER -->\n"
@@ -124,7 +126,9 @@ msgid "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-t
 "                                <div>\n"
 "                                    <p>This project has been deleted and all its content has been moved to the following project:\n"
 "                                        <ul>\n"
-"                                            <li>${object.dst_object_id.type_id.display_name}</li>\n"
+"                                            <li>\n"
+"                                                ${object.dst_object_id.type_id.display_name}\n"
+"                                            </li>\n"
 "                                            <li><b>${object.dst_object_id.name}</b></li>\n"
 "                                        </ul>\n"
 "                                    </p>\n"
@@ -209,13 +213,9 @@ msgstr ""
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__display_name
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__display_name
+#: model:ir.model.fields,field_description:project_merge.field_project_project__display_name
+#: model:ir.model.fields,field_description:project_merge.field_project_task__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: project_merge
-#: selection:merge.project.project.wizard,state:0
-#: selection:merge.project.task.wizard,state:0
-msgid "Finished"
 msgstr ""
 
 #. module: project_merge
@@ -227,12 +227,24 @@ msgstr ""
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__id
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__id
+#: model:ir.model.fields,field_description:project_merge.field_project_project__id
+#: model:ir.model.fields,field_description:project_merge.field_project_task__id
 msgid "ID"
+msgstr ""
+
+#. module: project_merge
+#: model:ir.model.fields,help:project_merge.field_merge_project_project_wizard__xid
+#: model:ir.model.fields,help:project_merge.field_merge_project_task_wizard__xid
+#: model:ir.model.fields,help:project_merge.field_project_project__xid
+#: model:ir.model.fields,help:project_merge.field_project_task__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard____last_update
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard____last_update
+#: model:ir.model.fields,field_description:project_merge.field_project_project____last_update
+#: model:ir.model.fields,field_description:project_merge.field_project_task____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -289,12 +301,6 @@ msgid "Name"
 msgstr ""
 
 #. module: project_merge
-#: selection:merge.project.project.wizard,state:0
-#: selection:merge.project.task.wizard,state:0
-msgid "Option"
-msgstr ""
-
-#. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
 msgid "Options"
@@ -316,7 +322,8 @@ msgstr ""
 #. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
-msgid "Select the list of fields used to search for\n"
+msgid ""
+"Select the list of fields used to search for\n"
 "                        duplicated records. If you select several fields,\n"
 "                        Odoo will propose you to merge only those having\n"
 "                        all these fields in common. (not one of the fields)."
@@ -325,16 +332,11 @@ msgstr ""
 #. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
-msgid "Selected records will be merged together.\n"
+msgid ""
+"Selected records will be merged together.\n"
 "                            All documents linked to one of these record\n"
 "                            will be redirected to the destination record.\n"
 "                            You can remove records from this list to avoid merging them."
-msgstr ""
-
-#. module: project_merge
-#: selection:merge.project.project.wizard,state:0
-#: selection:merge.project.task.wizard,state:0
-msgid "Selection"
 msgstr ""
 
 #. module: project_merge
@@ -372,9 +374,11 @@ msgid "The task \"${ctx['src_object'].name}\" has been merged."
 msgstr ""
 
 #. module: project_merge
-#: model:ir.actions.act_window,name:project_merge.action_project_project_merge
-#: model:ir.actions.act_window,name:project_merge.action_project_task_merge
-msgid "🧙‍♂️ Merge ..."
+#: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__xid
+#: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__xid
+#: model:ir.model.fields,field_description:project_merge.field_project_project__xid
+#: model:ir.model.fields,field_description:project_merge.field_project_task__xid
+msgid "XML-ID"
 msgstr ""
 
 #. module: project_merge
@@ -383,3 +387,8 @@ msgstr ""
 msgid "🧙‍♂️ Merge Wizard"
 msgstr ""
 
+#. module: project_merge
+#: model:ir.actions.act_window,name:project_merge.action_project_project_merge
+#: model:ir.actions.act_window,name:project_merge.action_project_task_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr ""

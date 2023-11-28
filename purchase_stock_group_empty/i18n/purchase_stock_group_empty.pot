@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* purchase_stock_group_empty
+# 	* purchase_stock_group_empty
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 10:29+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +16,31 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: purchase_stock_group_empty
+#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: purchase_stock_group_empty
+#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: purchase_stock_group_empty
+#: model:ir.model.fields,help:purchase_stock_group_empty.field_stock_rule__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: purchase_stock_group_empty
+#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: purchase_stock_group_empty
 #: model:ir.model,name:purchase_stock_group_empty.model_stock_rule
 msgid "Stock Rule"
-msgstr "Règle de stock minimum"
+msgstr ""
 
+#. module: purchase_stock_group_empty
+#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule__xid
+msgid "XML-ID"
+msgstr ""

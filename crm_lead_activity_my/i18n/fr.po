@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 09:57+0000\n"
-"PO-Revision-Date: 2022-02-18 10:58+0100\n"
+"POT-Creation-Date: 2023-11-28 09:55+0000\n"
+"PO-Revision-Date: 2023-11-28 11:42+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: crm_lead_activity_my
+#: model_terms:ir.ui.view,arch_db:crm_lead_activity_my.crm_case_kanban_view_leads
+msgid "<i class=\"fa fa-calendar\" title=\"Deadline\"/>"
+msgstr "<i class=\"fa fa-calendar\" title=\"Échéance\"/>"
 
 #. module: crm_lead_activity_my
 #: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__display_name
@@ -26,6 +31,11 @@ msgstr "Nom affiché"
 #: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__id
 msgid "ID"
 msgstr "ID"
+
+#. module: crm_lead_activity_my
+#: model:ir.model.fields,help:crm_lead_activity_my.field_crm_lead__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: crm_lead_activity_my
 #: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead____last_update
@@ -73,16 +83,6 @@ msgid "My Next Activity User"
 msgstr "Utilisateur de ma prochaine activité"
 
 #. module: crm_lead_activity_my
-#: selection:crm.lead,activity_my_state:0
-msgid "Overdue"
-msgstr "Retard"
-
-#. module: crm_lead_activity_my
-#: selection:crm.lead,activity_my_state:0
-msgid "Planned"
-msgstr "Planifié"
-
-#. module: crm_lead_activity_my
 #: model_terms:ir.ui.view,arch_db:crm_lead_activity_my.crm_case_kanban_view_leads
 #: model_terms:ir.ui.view,arch_db:crm_lead_activity_my.crm_case_oppor_tree_view
 msgid "Snooze 7d"
@@ -97,16 +97,28 @@ msgid ""
 "Planned: Future activities."
 msgstr ""
 "Statut basé sur les activités\n"
-"En retard : la date d'échéance est déjà dépassée\n"
-"Aujourd'hui : la date d'activité est aujourd'hui\n"
-"Planifiée : activités futures"
+"En retard : La date d'échéance est déjà dépassée\n"
+"Aujourd'hui : L'activité est planifiée pour aujourd'hui\n"
+"Planifiées : Activités futures."
 
 #. module: crm_lead_activity_my
 #: model_terms:ir.ui.view,arch_db:crm_lead_activity_my.crm_case_kanban_view_leads
-msgid "This bar allows to filter the opportunities based on scheduled activities."
-msgstr "Cette barre autorise à filtrer les opportunités basée sur les activités planifiées."
+msgid ""
+"This bar allows to filter the opportunities based on scheduled activities."
+msgstr ""
+"Cette barre autorise à filtrer les opportunités basée sur les activités "
+"planifiées."
 
 #. module: crm_lead_activity_my
-#: selection:crm.lead,activity_my_state:0
-msgid "Today"
-msgstr "Aujourd'hui"
+#: model:ir.model.fields,field_description:crm_lead_activity_my.field_crm_lead__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Overdue"
+#~ msgstr "Retard"
+
+#~ msgid "Planned"
+#~ msgstr "Planifié"
+
+#~ msgid "Today"
+#~ msgstr "Aujourd'hui"

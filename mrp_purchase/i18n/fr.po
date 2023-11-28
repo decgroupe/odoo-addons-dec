@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-02 12:31+0000\n"
-"PO-Revision-Date: 2021-06-02 14:32+0200\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 13:49+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_purchase
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_mrp_on_purchase_cancellation
@@ -26,6 +26,14 @@ msgid ""
 msgstr ""
 ".\n"
 "               Des actions manuelles pourraient être requises."
+
+#. module: mrp_purchase
+#: model:ir.model.fields,field_description:mrp_purchase.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:mrp_purchase.field_stock_rule__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: mrp_purchase
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_purchase_on_mrp_cancellation
@@ -42,6 +50,30 @@ msgstr "Des exceptions sont survenues sur le(s) bon(s) de commande:"
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_purchase_on_mrp_cancellation
 msgid "Exception(s):"
 msgstr "Exception(s):"
+
+#. module: mrp_purchase
+#: model:ir.model.fields,field_description:mrp_purchase.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order__id
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:mrp_purchase.field_stock_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_purchase
+#: model:ir.model.fields,help:mrp_purchase.field_mrp_production__xid
+#: model:ir.model.fields,help:mrp_purchase.field_purchase_order__xid
+#: model:ir.model.fields,help:mrp_purchase.field_purchase_order_line__xid
+#: model:ir.model.fields,help:mrp_purchase.field_stock_rule__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mrp_purchase
+#: model:ir.model.fields,field_description:mrp_purchase.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:mrp_purchase.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: mrp_purchase
 #: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order_line__bom_line_id
@@ -91,10 +123,22 @@ msgid "Subcontracted Services"
 msgstr "Services sous-traités"
 
 #. module: mrp_purchase
-#: code:addons/mrp_purchase/models/mrp_production.py:27
+#: code:addons/mrp_purchase/models/mrp_production.py:0
 #, python-format
-msgid "The procurement workflow for this line is not supported: <a href=# data-oe-model=mrp.bom.line data-oe-id=%d>%s</a>"
-msgstr "Le processus d’approvisionnement pour cette ligne n’est pas pris en charge : <a href=# data-oe-model=mrp.bom.line data-oe-id=%d>%s</a>"
+msgid ""
+"The procurement workflow for this line is not supported: <a href=# data-oe-"
+"model=mrp.bom.line data-oe-id=%d>%s</a>"
+msgstr ""
+"Le processus d’approvisionnement pour cette ligne n’est pas pris en "
+"charge : <a href=# data-oe-model=mrp.bom.line data-oe-id=%d>%s</a>"
+
+#. module: mrp_purchase
+#: model:ir.model.fields,field_description:mrp_purchase.field_mrp_production__xid
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order__xid
+#: model:ir.model.fields,field_description:mrp_purchase.field_purchase_order_line__xid
+#: model:ir.model.fields,field_description:mrp_purchase.field_stock_rule__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: mrp_purchase
 #: model_terms:ir.ui.view,arch_db:mrp_purchase.exception_mrp_on_purchase_cancellation

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-03 15:11+0000\n"
-"PO-Revision-Date: 2021-03-08 13:06+0100\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 13:55+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_timesheet_distribution
 #: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
@@ -54,7 +54,7 @@ msgstr "Créé le"
 #. module: mrp_timesheet_distribution
 #: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
 msgid "Date"
-msgstr "Date "
+msgstr "Date"
 
 #. module: mrp_timesheet_distribution
 #: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__date_time
@@ -129,6 +129,13 @@ msgstr "Donne l'ordre d'affichage"
 #: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__id
 msgid "ID"
 msgstr "ID"
+
+#. module: mrp_timesheet_distribution
+#: model:ir.model.fields,help:mrp_timesheet_distribution.field_mrp_distribute_timesheet__xid
+#: model:ir.model.fields,help:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__xid
+#: model:ir.model.fields,help:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: mrp_timesheet_distribution
 #: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet____last_update
@@ -219,18 +226,23 @@ msgstr "Choisir les options"
 #. module: mrp_timesheet_distribution
 #: model_terms:ir.ui.view,arch_db:mrp_timesheet_distribution.mrp_distribute_timesheet_form_view
 msgid ""
-"Select an existing reason or choose <i>Other ...</i> to enter a custom reason.\n"
-"                    It will be distributed on selected production orders. The distribution preview\n"
+"Select an existing reason or choose <i>Other ...</i> to enter a custom "
+"reason.\n"
+"                    It will be distributed on selected production orders. The "
+"distribution preview\n"
 "                    is visible on the timesheet lines table."
 msgstr ""
-"Sélectionnez un motif existant ou choisissez <i>Autre ...</i> pour saisir un motif particulier.\n"
-"                    Il sera distribué sur les ordres de fabrication sélectionnés. L’aperçu de distribution\n"
+"Sélectionnez un motif existant ou choisissez <i>Autre ...</i> pour saisir un "
+"motif particulier.\n"
+"                    Il sera distribué sur les ordres de fabrication "
+"sélectionnés. L’aperçu de distribution\n"
 "                    est visible dans la table des lignes de feuilles de temps."
 
 #. module: mrp_timesheet_distribution
 #: model:ir.model,name:mrp_timesheet_distribution.model_mrp_distribute_timesheet_reason
 msgid "Selectable reason used when distributing a timesheet"
-msgstr "Raison sélectionnable utilisée lors de la distribution d’une feuille de temps"
+msgstr ""
+"Raison sélectionnable utilisée lors de la distribution d’une feuille de temps"
 
 #. module: mrp_timesheet_distribution
 #: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__sequence
@@ -243,7 +255,7 @@ msgid "Start Time"
 msgstr "Heure de début"
 
 #. module: mrp_timesheet_distribution
-#: code:addons/mrp_timesheet_distribution/wizard/mrp_distribute_timesheet.py:236
+#: code:addons/mrp_timesheet_distribution/wizard/mrp_distribute_timesheet.py:0
 #, python-format
 msgid "The number of timesheet lines cannot be 0."
 msgstr "Le nombre de lignes de feuille de temps ne peut pas être 0."
@@ -254,9 +266,16 @@ msgid "Timesheet Lines"
 msgstr "Lignes des feuilles de temps"
 
 #. module: mrp_timesheet_distribution
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet__xid
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_line__xid
+#: model:ir.model.fields,field_description:mrp_timesheet_distribution.field_mrp_distribute_timesheet_reason__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: mrp_timesheet_distribution
 #: model:ir.actions.act_window,name:mrp_timesheet_distribution.act_window_distribute_timesheet
-msgid "🧙‍♂️ Distribute timesheet ..."
-msgstr "🧙‍♂️ Distribuer une feuille de temps ..."
+msgid "🧙‍♂️ Distribute timesheet ..."
+msgstr "🧙‍♂️ Distribuer une feuille de temps ..."
 
 #~ msgid ""
 #~ "Select a product existing in at least one bill of materials\n"
@@ -264,5 +283,6 @@ msgstr "🧙‍♂️ Distribuer une feuille de temps ..."
 #~ "                    selected bill of materials."
 #~ msgstr ""
 #~ "Sélectionner un article existant dans au moins une des nomenclatures\n"
-#~ "                    et choisir un autre article qui le remplacera dans tous les\n"
+#~ "                    et choisir un autre article qui le remplacera dans "
+#~ "tous les\n"
 #~ "                    nomenclatures sélectionnées."

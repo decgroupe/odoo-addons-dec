@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 16:48+0000\n"
-"PO-Revision-Date: 2020-07-28 22:20+0200\n"
+"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"PO-Revision-Date: 2023-11-28 13:43+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: mrp_note
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_note
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_note
+#: model:ir.model.fields,help:mrp_note.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: mrp_note
 #: model:ir.model.fields,field_description:mrp_note.field_mrp_production__note
@@ -23,10 +38,9 @@ msgid "Internal Notes"
 msgstr "Notes internes"
 
 #. module: mrp_note
-#: code:addons/mrp_note/models/mrp_production.py:17
-#, python-format
-msgid "Internal notes changed to: {}"
-msgstr "Notes internes modifiées: {}"
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: mrp_note
 #: model_terms:ir.ui.view,arch_db:mrp_note.mrp_production_form_view
@@ -37,3 +51,11 @@ msgstr "Notes"
 #: model:ir.model,name:mrp_note.model_mrp_production
 msgid "Production Order"
 msgstr "Ordre de fabrication"
+
+#. module: mrp_note
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Internal notes changed to: {}"
+#~ msgstr "Notes internes modifiées: {}"

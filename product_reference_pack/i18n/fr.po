@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-18 16:12+0000\n"
-"PO-Revision-Date: 2020-10-18 18:14+0200\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:08+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__default_code
@@ -23,7 +23,7 @@ msgid "Code"
 msgstr "Code"
 
 #. module: product_reference_pack
-#: selection:ref.pack,type:0
+#: model:ir.model.fields.selection,name:product_reference_pack.selection__ref_pack__type__company
 msgid "Company"
 msgstr "Société"
 
@@ -31,11 +31,6 @@ msgstr "Société"
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__standard_price
 msgid "Cost Price"
 msgstr "Prix de revient"
-
-#. module: product_reference_pack
-#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__standard_price
-msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
-msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__create_uid
@@ -58,6 +53,24 @@ msgid "ID"
 msgstr "ID"
 
 #. module: product_reference_pack
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__standard_price
+msgid ""
+"In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
+"        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to compute margins on sale orders."
+msgstr ""
+"En Prix Standard & AVCO : valeur du produit (calculée automatiquement en AVCO).\n"
+"         En FIFO : valeur de la prochaine unité qui sortira du stock (calculée automatiquement).\n"
+"         Utilisé pour évaluer le produit lorsque le coût d'achat n'est pas connu (par exemple, ajustement des stocks).\n"
+"         Utilisé pour calculer les marges sur les bons de commande."
+
+#. module: product_reference_pack
 #: model_terms:ir.ui.view,arch_db:product_reference_pack.product_template_search_view
 msgid "Is not a Pack"
 msgstr "N'est pas un Pack"
@@ -78,7 +91,7 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: product_reference_pack
-#: selection:ref.pack,type:0
+#: model:ir.model.fields.selection,name:product_reference_pack.selection__ref_pack__type__manufacturer
 msgid "Manufacturer"
 msgstr "Fabriquant"
 
@@ -121,9 +134,14 @@ msgid "Price at which the product is sold to customers."
 msgstr "Prix auquel le produit est vendu aux clients."
 
 #. module: product_reference_pack
-#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__product_id
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__product_variant_id
 msgid "Product"
 msgstr "Produits"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__product_id
+msgid "Product Template"
+msgstr "Modèle de produit"
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__public_code
@@ -139,6 +157,14 @@ msgstr "Prix de vente"
 #: model:ir.actions.act_window,name:product_reference_pack.act_window_product_template_as_service
 msgid "Services"
 msgstr "Prestations"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
+#~ msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
 
 #~ msgid "Attribute"
 #~ msgstr "Attribut"
@@ -215,9 +241,6 @@ msgstr "Prestations"
 #~ msgid "Has a Public Code"
 #~ msgstr "A une référence commerciale"
 
-#~ msgid "ID defined in xml file"
-#~ msgstr "ID de la vue définie dans le fichier XML"
-
 #~ msgid "IP Address"
 #~ msgstr "Adresse IP"
 
@@ -286,9 +309,6 @@ msgstr "Prestations"
 
 #~ msgid "Product Qty"
 #~ msgstr "Qté de produit"
-
-#~ msgid "Product Template"
-#~ msgstr "Modèle de produit"
 
 #~ msgid "Product UOM"
 #~ msgstr "UdM du produit"

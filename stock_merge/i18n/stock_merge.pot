@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_merge
+# 	* stock_merge
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 11:29+0000\n"
-"PO-Revision-Date: 2021-09-01 11:29+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 10:32+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,13 +46,13 @@ msgid "Current Line"
 msgstr ""
 
 #. module: stock_merge
-#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__display_name
-msgid "Display Name"
+#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__dst_object_id
+msgid "Destination Stock Move"
 msgstr ""
 
 #. module: stock_merge
-#: selection:merge.stock.move.wizard,state:0
-msgid "Finished"
+#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: stock_merge
@@ -63,6 +63,11 @@ msgstr ""
 #. module: stock_merge
 #: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__id
 msgid "ID"
+msgstr ""
+
+#. module: stock_merge
+#: model:ir.model.fields,help:stock_merge.field_merge_stock_move_wizard__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: stock_merge
@@ -111,11 +116,6 @@ msgid "Name"
 msgstr ""
 
 #. module: stock_merge
-#: selection:merge.stock.move.wizard,state:0
-msgid "Option"
-msgstr ""
-
-#. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
 msgid "Options"
 msgstr ""
@@ -127,7 +127,8 @@ msgstr ""
 
 #. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid "Select the list of fields used to search for\n"
+msgid ""
+"Select the list of fields used to search for\n"
 "                        duplicated records. If you select several fields,\n"
 "                        Odoo will propose you to merge only those having\n"
 "                        all these fields in common. (not one of the fields)."
@@ -135,15 +136,11 @@ msgstr ""
 
 #. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid "Selected records will be merged together.\n"
+msgid ""
+"Selected records will be merged together.\n"
 "                            All documents linked to one of these record\n"
 "                            will be redirected to the destination record.\n"
 "                            You can remove records from this list to avoid merging them."
-msgstr ""
-
-#. module: stock_merge
-#: selection:merge.stock.move.wizard,state:0
-msgid "Selection"
 msgstr ""
 
 #. module: stock_merge
@@ -162,14 +159,13 @@ msgid "State"
 msgstr ""
 
 #. module: stock_merge
-#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__dst_object_id
 #: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__object_ids
 msgid "Stock Move"
 msgstr ""
 
 #. module: stock_merge
-#: model:ir.actions.act_window,name:stock_merge.action_stock_move_merge
-msgid "🧙‍♂️ Merge ..."
+#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__xid
+msgid "XML-ID"
 msgstr ""
 
 #. module: stock_merge
@@ -177,3 +173,7 @@ msgstr ""
 msgid "🧙‍♂️ Merge Wizard"
 msgstr ""
 
+#. module: stock_merge
+#: model:ir.actions.act_window,name:stock_merge.action_stock_move_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr ""

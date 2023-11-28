@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-11 18:25+0000\n"
-"PO-Revision-Date: 2022-05-11 20:26+0200\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:07+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__activity_name
@@ -70,9 +70,22 @@ msgid "ID"
 msgstr "ID"
 
 #. module: product_reference_market
+#: model:ir.model.fields,help:product_reference_market.field_product_product__xid
+#: model:ir.model.fields,help:product_reference_market.field_product_template__xid
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__xid
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__xid
+#: model:ir.model.fields,help:product_reference_market.field_ref_market_category__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: product_reference_market
 #: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__locked_price
-msgid "If set, then the price field will be used instead of the computed price based on supplier pricelist"
-msgstr "S’il est défini, le champ de prix sera utilisé à la place du prix calculé en fonction de la liste de prix du fournisseur."
+msgid ""
+"If set, then the price field will be used instead of the computed price based "
+"on supplier pricelist"
+msgstr ""
+"S’il est défini, le champ de prix sera utilisé à la place du prix calculé en "
+"fonction de la liste de prix du fournisseur."
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__labortime
@@ -82,7 +95,8 @@ msgstr "Temps de main d'oeuvre"
 #. module: product_reference_market
 #: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__labortime
 msgid "Labor hour(s) computed from BoM"
-msgstr "Heure(s) de main d'oeuvre calculée(s) à partir de la nomenclature du tarif"
+msgstr ""
+"Heure(s) de main d'oeuvre calculée(s) à partir de la nomenclature du tarif"
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_product_product____last_update
@@ -156,6 +170,16 @@ msgid "Name of the activity that will be generated"
 msgstr "Nom de l’activité qui sera générée"
 
 #. module: product_reference_market
+#: model:ir.model.fields.selection,name:product_reference_market.selection__ref_market_category__state__normal
+msgid "Normal"
+msgstr "Normal"
+
+#. module: product_reference_market
+#: model:ir.model.fields.selection,name:product_reference_market.selection__ref_market_category__state__obsolete
+msgid "Obsolete"
+msgstr "Obsolète"
+
+#. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__market_bom_id
 msgid "Parent BoM"
 msgstr "Nomenclature mère"
@@ -205,13 +229,24 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__state
+msgid "Status"
+msgstr "État"
+
+#. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__partner_id
 msgid "Supplier"
 msgstr "Fournisseur"
 
 #. module: product_reference_market
+#: model:ir.model.fields.selection,name:product_reference_market.selection__ref_market_category__state__title
+msgid "Title"
+msgstr "Intitulé"
+
+#. module: product_reference_market
 #: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__product_uom_id
-msgid "UoM (Unit of Measure) is the unit of measurement for the inventory control"
+msgid ""
+"UoM (Unit of Measure) is the unit of measurement for the inventory control"
 msgstr "UdM (Unité de mesure) est l'unité utilisée pour le contrôle d'inventaire"
 
 #. module: product_reference_market
@@ -219,6 +254,15 @@ msgstr "UdM (Unité de mesure) est l'unité utilisée pour le contrôle d'invent
 #: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__material_cost_factor
 msgid "Used by REF manager Market"
 msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
+
+#. module: product_reference_market
+#: model:ir.model.fields,field_description:product_reference_market.field_product_product__xid
+#: model:ir.model.fields,field_description:product_reference_market.field_product_template__xid
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__xid
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__xid
+#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #~ msgid "Create Date"
 #~ msgstr "Date de création"
@@ -228,9 +272,6 @@ msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
 
 #~ msgid "External ID"
 #~ msgstr "Identifiant externe"
-
-#~ msgid "ID defined in xml file"
-#~ msgstr "ID de la vue définie dans le fichier XML"
 
 #~ msgid "Last Write Date"
 #~ msgstr "Date de dernière modification"
@@ -289,8 +330,12 @@ msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
 #~ msgid "Cost Price"
 #~ msgstr "Prix de revient"
 
-#~ msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
-#~ msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
+#~ msgid ""
+#~ "Cost used for stock valuation in standard price and as a first price to set "
+#~ "in average/FIFO."
+#~ msgstr ""
+#~ "Coût utilisé pour la valorisation des stocks au prix standard et comme "
+#~ "premier prix à définir en moyenne / FIFO."
 
 #~ msgid "Create date"
 #~ msgstr "Date de création"
@@ -303,9 +348,6 @@ msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
 
 #~ msgid "Fixed values"
 #~ msgstr "Valeurs fixes"
-
-#~ msgid "Format"
-#~ msgstr "Format"
 
 #~ msgid "Group By"
 #~ msgstr "Regrouper par"
@@ -444,9 +486,6 @@ msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
 
 #~ msgid "Services"
 #~ msgstr "Prestations"
-
-#~ msgid "Status"
-#~ msgstr "État"
 
 #~ msgid "Template"
 #~ msgstr "Modèle"

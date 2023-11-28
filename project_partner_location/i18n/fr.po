@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-17 15:10+0000\n"
-"PO-Revision-Date: 2021-11-17 16:12+0100\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 14:13+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: project_partner_location
+#: model:ir.model.fields,field_description:project_partner_location.field_project_project__display_name
+#: model:ir.model.fields,field_description:project_partner_location.field_project_task__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: project_partner_location
+#: model:ir.model.fields,field_description:project_partner_location.field_project_project__id
+#: model:ir.model.fields,field_description:project_partner_location.field_project_task__id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_partner_location
+#: model:ir.model.fields,help:project_partner_location.field_project_project__xid
+#: model:ir.model.fields,help:project_partner_location.field_project_task__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: project_partner_location
+#: model:ir.model.fields,field_description:project_partner_location.field_project_project____last_update
+#: model:ir.model.fields,field_description:project_partner_location.field_project_task____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: project_partner_location
 #: model:ir.model,name:project_partner_location.model_project_project
@@ -24,8 +48,12 @@ msgstr "Projet"
 
 #. module: project_partner_location
 #: model:ir.model.fields,help:project_partner_location.field_project_project__partner_shipping_id
-msgid "Retrieved from `sale_order_id` if set, otherwise search for a sale/project name match."
-msgstr "Récupéré à partir de 'sale_order_id' si défini, sinon recherche de correspondance depuis le nom des commande/projet."
+msgid ""
+"Retrieved from `sale_order_id` if set, otherwise search for a sale/project "
+"name match."
+msgstr ""
+"Récupéré à partir de 'sale_order_id' si défini, sinon recherche de "
+"correspondance depuis le nom des commande/projet."
 
 #. module: project_partner_location
 #: model:ir.model.fields,field_description:project_partner_location.field_project_project__partner_shipping_id
@@ -51,3 +79,9 @@ msgstr "Code postal du destinataire"
 #: model:ir.model,name:project_partner_location.model_project_task
 msgid "Task"
 msgstr "Tâche"
+
+#. module: project_partner_location
+#: model:ir.model.fields,field_description:project_partner_location.field_project_project__xid
+#: model:ir.model.fields,field_description:project_partner_location.field_project_task__xid
+msgid "XML-ID"
+msgstr "XML-ID"

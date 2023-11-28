@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-18 09:34+0000\n"
-"PO-Revision-Date: 2021-11-18 10:36+0100\n"
+"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"PO-Revision-Date: 2023-11-28 11:31+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:0
+#, python-format
+msgid ""
+"<b>Your portal access must be active before you can create contacts.</"
+"b><div><small>Please check your email to enable your account, or request a "
+"new activation link by resetting your password from the login page.</"
+"small></div>"
+msgstr ""
+"<b>Votre accès au portail doit être actif avant de pouvoir créer des "
+"contacts.</b><div><small>Veuillez consulter vos e-mails pour activer votre "
+"compte ou demander un nouveau lien d'activation en réinitialisant votre mot "
+"de passe à partir de la page de connexion.</small></div>"
+
+#. module: auth_signup_delegate
+#: model:res.groups,name:auth_signup_delegate.group_delegate
+msgid "Allow to give delegation rights any portal User"
+msgstr ""
+"Permet de donner des droits de délégation à n'importe quel utilisateur du "
+"portail"
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
@@ -23,21 +44,33 @@ msgid "Assistant"
 msgstr "Assistant"
 
 #. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.res_partner_signup_delegate_form_view
+msgid "Cancel Sign-up Delegation"
+msgstr "Annuler la délégation d'inscription"
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.res_partner_signup_delegate_form_view
+msgid "Close"
+msgstr "Fermer"
+
+#. module: auth_signup_delegate
 #: model:ir.model,name:auth_signup_delegate.model_res_partner
 msgid "Contact"
 msgstr "Contact"
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:75
+#: code:addons/auth_signup_delegate/controllers/main.py:0
 #, python-format
 msgid "Contact %s (%s) already have an access to the Portal."
 msgstr "Le contact %s (%s) a déjà accès au portail."
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:90
+#: code:addons/auth_signup_delegate/controllers/main.py:0
 #, python-format
-msgid "Contact %s has been created and a confirmation e-mail has been sent to %s"
-msgstr "Le contact %s a été créé et un e-mail de confirmation a été envoyé à %s"
+msgid ""
+"Contact %s has been created and a confirmation e-mail has been sent to %s"
+msgstr ""
+"Le contact %s a été créé et un e-mail de confirmation a été envoyé à %s"
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
@@ -45,10 +78,37 @@ msgid "Create"
 msgstr "Créer"
 
 #. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__create_uid
+msgid "Created by"
+msgstr "Créée par"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: auth_signup_delegate
 #: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__delegate_signup_token
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__token
 #: model:ir.model.fields,field_description:auth_signup_delegate.field_res_users__delegate_signup_token
-msgid "Delegate Signup Token"
-msgstr "Jeton d’inscription délégué"
+msgid "Delegate Sign-up Token"
+msgstr "Jeton de délégation d'inscription"
+
+#. module: auth_signup_delegate
+#: model:ir.model,name:auth_signup_delegate.model_res_partner_signup_delegate
+msgid "Delegate Sign-up to Portal User"
+msgstr "Déléguer l'inscription à un utilisateur du portail"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__url
+msgid "Delegated Sign-up URL"
+msgstr "URL d'inscription déléguée"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__display_name
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
@@ -61,7 +121,24 @@ msgid "Function"
 msgstr "Fonction"
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:99
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.res_partner_signup_delegate_form_view
+msgid "Generate a Sign-up Delegation Token"
+msgstr "Générer un jeton de délégation d'inscription"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__id
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__id
+msgid "ID"
+msgstr "ID"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,help:auth_signup_delegate.field_res_partner__xid
+#: model:ir.model.fields,help:auth_signup_delegate.field_res_partner_signup_delegate__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:0
 #, python-format
 msgid "Invalid Token"
 msgstr "Jeton non valide"
@@ -72,10 +149,27 @@ msgid "Jane Doe"
 msgstr "Michel Blanc"
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:48
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner____last_update
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:0
 #, python-format
 msgid "Multiple contacts already exists with this email, please contact us."
-msgstr "Plusieurs contacts existent déjà avec cet e-mail, veuillez nous contacter."
+msgstr ""
+"Plusieurs contacts existent déjà avec cet e-mail, veuillez nous contacter."
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
@@ -89,16 +183,66 @@ msgstr "Nouveau contact"
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
-msgid "Please note that an e-mail will be sent to this address with a specific link to create a password!"
-msgstr "Veuillez noter qu’un e-mail sera envoyé à cette adresse avec un lien spécifique pour créer un mot de passe !"
+msgid ""
+"Please note that an e-mail will be sent to this address with a specific "
+"link to create a password!"
+msgstr ""
+"Veuillez noter qu’un e-mail sera envoyé à cette adresse avec un lien "
+"spécifique pour créer un mot de passe !"
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:64
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.res_partner_signup_delegate_form_view
+msgid "Select Options"
+msgstr "Choisir les options"
+
+#. module: auth_signup_delegate
+#: model:ir.actions.act_window,name:auth_signup_delegate.action_res_partner_signup_delegate
+msgid "Sign-up Delegate"
+msgstr "Délégué l'inscription"
+
+#. module: auth_signup_delegate
+#: code:addons/auth_signup_delegate/controllers/main.py:0
 #, python-format
-msgid "This email already exists for a contact that is not a member of your company. You cannot grant him a portal access."
-msgstr "Cet e-mail existe déjà pour un contact qui n’est pas membre de votre société / établissement. Vous ne pouvez pas lui accorder un accès au portail."
+msgid ""
+"This email already exists for a contact that is not a member of your "
+"company. You cannot grant him a portal access."
+msgstr ""
+"Cet e-mail existe déjà pour un contact qui n’est pas membre de votre "
+"société / établissement. Vous ne pouvez pas lui accorder un accès au "
+"portail."
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.res_partner_signup_delegate_form_view
+msgid ""
+"This partner is <b>not</b> in the <b>Portal</b> group.<br/>\n"
+"                    <b>Give him a portal access first.</b>"
+msgstr ""
+"Ce partenaire n'est <b>pas</b> dans le groupe <b>portail</b>.<br/>\n"
+"                    <b>Donnez lui d’abord accès au portail.</b>"
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.res_partner_signup_delegate_form_view
+msgid "Use these <b>informations</b> for maintenance/testing only."
+msgstr ""
+"Utilisez ces <b>informations</b> uniquement pour la maintenance/les essais."
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: auth_signup_delegate
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__xid
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
 msgid "jane.doe@example.com"
 msgstr "michel.blanc@example.com"
+
+#. module: auth_signup_delegate
+#: model:ir.actions.act_window,name:auth_signup_delegate.act_window_res_partner_signup_delegate
+msgid "🧙‍♂️ Sign-up Delegation ..."
+msgstr "🧙‍♂️ Délégation d'inscription ..."

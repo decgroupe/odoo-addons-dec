@@ -4,28 +4,51 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 15:44+0000\n"
-"PO-Revision-Date: 2020-11-30 11:44+0000\n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 14:30+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: purchase_stock_traceability
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_stock_rule__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: purchase_stock_traceability
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order__id
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_stock_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_stock_traceability
+#: model:ir.model.fields,help:purchase_stock_traceability.field_purchase_order__xid
+#: model:ir.model.fields,help:purchase_stock_traceability.field_purchase_order_line__xid
+#: model:ir.model.fields,help:purchase_stock_traceability.field_stock_rule__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: purchase_stock_traceability
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: purchase_stock_traceability
 #: model_terms:ir.ui.view,arch_db:purchase_stock_traceability.purchase_order_view_form_inherit
 msgid "Open"
 msgstr "Ouvrir"
-
-#. module: purchase_stock_traceability
-#: code:addons/purchase_stock_traceability/models/purchase_order_line.py:177
-#, fuzzy, python-format
-msgid "Procurement Group(s)"
-msgstr "Origine de l'appro."
 
 #. module: purchase_stock_traceability
 #: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order_line__procurement_origin
@@ -46,3 +69,19 @@ msgstr "Ligne de commande d'achat"
 #: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order_line__action_view_origin_item_visible
 msgid "Show Link to Origin Item"
 msgstr "Montre le lien vers l'objet d'origine"
+
+#. module: purchase_stock_traceability
+#: model:ir.model,name:purchase_stock_traceability.model_stock_rule
+msgid "Stock Rule"
+msgstr "Règle de stock minimum"
+
+#. module: purchase_stock_traceability
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order__xid
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_purchase_order_line__xid
+#: model:ir.model.fields,field_description:purchase_stock_traceability.field_stock_rule__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#, fuzzy
+#~ msgid "Procurement Group(s)"
+#~ msgstr "Origine de l'appro."

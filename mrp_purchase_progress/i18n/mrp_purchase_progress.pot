@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_purchase_progress
+# 	* mrp_purchase_progress
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 07:00+0000\n"
-"PO-Revision-Date: 2022-09-05 07:00+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 10:24+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,6 +28,11 @@ msgstr ""
 #. module: mrp_purchase_progress
 #: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__id
 msgid "ID"
+msgstr ""
+
+#. module: mrp_purchase_progress
+#: model:ir.model.fields,help:mrp_purchase_progress.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: mrp_purchase_progress
@@ -56,6 +61,11 @@ msgid "Show Purchase Progress"
 msgstr ""
 
 #. module: mrp_purchase_progress
+#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__xid
+msgid "XML-ID"
+msgstr ""
+
+#. module: mrp_purchase_progress
 #: model:ir.actions.server,name:mrp_purchase_progress.action_update_purchase_progress
 msgid "⚡️ Update Purchase Progress"
 msgstr ""
@@ -66,4 +76,3 @@ msgstr ""
 #: model:ir.cron,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
 msgid "🚧 Production: Compute Purchase Progress"
 msgstr ""
-

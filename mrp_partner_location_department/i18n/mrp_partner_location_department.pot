@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_partner_location_department
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"PO-Revision-Date: 2023-11-28 10:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_partner_location_department
+#: model_terms:ir.ui.view,arch_db:mrp_partner_location_department.mrp_production_filter_view
+msgid "Department"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model.fields,field_description:mrp_partner_location_department.field_mrp_production__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model.fields,field_description:mrp_partner_location_department.field_mrp_production__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model.fields,help:mrp_partner_location_department.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model.fields,field_description:mrp_partner_location_department.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model.fields,field_description:mrp_partner_location_department.field_mrp_production__partner_department_id
+msgid "Partner's Department"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model.fields,field_description:mrp_partner_location_department.field_mrp_production__partner_state_id
+msgid "Partner's State"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model,name:mrp_partner_location_department.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model_terms:ir.ui.view,arch_db:mrp_partner_location_department.mrp_production_filter_view
+msgid "State"
+msgstr ""
+
+#. module: mrp_partner_location_department
+#: model:ir.model.fields,field_description:mrp_partner_location_department.field_mrp_production__xid
+msgid "XML-ID"
+msgstr ""

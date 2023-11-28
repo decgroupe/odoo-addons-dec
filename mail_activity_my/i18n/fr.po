@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 09:57+0000\n"
-"PO-Revision-Date: 2022-02-17 15:44+0100\n"
+"POT-Creation-Date: 2023-11-28 10:21+0000\n"
+"PO-Revision-Date: 2023-11-28 11:56+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mail_activity_my
 #: model:ir.model.fields,field_description:mail_activity_my.field_mail_activity_my_mixin__display_name
@@ -26,6 +26,11 @@ msgstr "Nom affiché"
 #: model:ir.model.fields,field_description:mail_activity_my.field_mail_activity_my_mixin__id
 msgid "ID"
 msgstr "ID"
+
+#. module: mail_activity_my
+#: model:ir.model.fields,help:mail_activity_my.field_mail_activity_my_mixin__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: mail_activity_my
 #: model:ir.model.fields,field_description:mail_activity_my.field_mail_activity_my_mixin____last_update
@@ -59,7 +64,7 @@ msgstr "Ma date limite"
 
 #. module: mail_activity_my
 #. openerp-web
-#: code:addons/mail_activity_my/static/src/js/mail_activity_my.js:58
+#: code:addons/mail_activity_my/static/src/js/mail_activity_my.js:0
 #, python-format
 msgid "My Next Activity"
 msgstr "Ma prochaine activité"
@@ -80,12 +85,30 @@ msgid "My Next Activity User"
 msgstr "Utilisateur de ma prochaine activité"
 
 #. module: mail_activity_my
-#: selection:mail.activity.my.mixin,activity_my_state:0
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__account_move__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__crm_lead__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__helpdesk_ticket__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__mail_activity_my_mixin__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__mrp_production__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__project_project__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__project_task__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__purchase_order__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__sale_order__activity_my_state__overdue
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__stock_picking__activity_my_state__overdue
 msgid "Overdue"
 msgstr "Retard"
 
 #. module: mail_activity_my
-#: selection:mail.activity.my.mixin,activity_my_state:0
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__account_move__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__crm_lead__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__helpdesk_ticket__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__mail_activity_my_mixin__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__mrp_production__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__project_project__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__project_task__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__purchase_order__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__sale_order__activity_my_state__planned
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__stock_picking__activity_my_state__planned
 msgid "Planned"
 msgstr "Planifiée"
 
@@ -103,9 +126,23 @@ msgstr ""
 "Planifiée : activités futures."
 
 #. module: mail_activity_my
-#: selection:mail.activity.my.mixin,activity_my_state:0
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__account_move__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__crm_lead__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__helpdesk_ticket__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__mail_activity_my_mixin__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__mrp_production__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__project_project__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__project_task__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__purchase_order__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__sale_order__activity_my_state__today
+#: model:ir.model.fields.selection,name:mail_activity_my.selection__stock_picking__activity_my_state__today
 msgid "Today"
 msgstr "Aujourd'hui"
+
+#. module: mail_activity_my
+#: model:ir.model.fields,field_description:mail_activity_my.field_mail_activity_my_mixin__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #~ msgid "Warning"
 #~ msgstr "Avertissement"

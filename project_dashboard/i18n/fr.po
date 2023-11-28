@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-01 10:17+0000\n"
-"PO-Revision-Date: 2022-07-01 12:17+0200\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 14:12+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "<i class=\"fa fa-ellipsis-v\" title=\"menu\"/>"
+msgstr ""
 
 #. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
@@ -29,7 +34,7 @@ msgstr "Tous"
 
 #. module: project_dashboard
 #. openerp-web
-#: code:addons/project_dashboard/static/src/xml/dashboard_actions.xml:6
+#: code:addons/project_dashboard/static/src/xml/dashboard_actions.xml:0
 #, python-format
 msgid "All Tasks"
 msgstr "Toutes les tâches"
@@ -40,7 +45,7 @@ msgid "Color Index"
 msgstr "Couleur"
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:76
+#: code:addons/project_dashboard/models/project_project.py:0
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "Current Year"
@@ -49,6 +54,7 @@ msgstr "Année en cours"
 #. module: project_dashboard
 #: model:ir.actions.act_window,name:project_dashboard.project_type_dashboard_action
 #: model:ir.ui.menu,name:project_dashboard.menu_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.edit_project_form_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_form
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -75,15 +81,31 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: project_dashboard
+#: code:addons/project_dashboard/models/project_type.py:0
+#, python-format
+msgid "Field %s not found in %s model"
+msgstr "Le champ %s n'est pas trouvé dans le modèle %s"
+
+#. module: project_dashboard
 #: model:ir.model.fields,field_description:project_dashboard.field_project_project__id
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__id
 msgid "ID"
 msgstr "ID"
 
 #. module: project_dashboard
+#: model:ir.model.fields,help:project_dashboard.field_project_project__xid
+#: model:ir.model.fields,help:project_dashboard.field_project_type__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: project_dashboard
 #: model:ir.model.fields,help:project_dashboard.field_project_project__dashboard_sequence
-msgid "If set, then this project will be displayed on the dashboard. A higher value indicats an higher priority."
-msgstr "S’il est défini, ce projet sera affiché sur le tableau de bord. Une valeur élevée indique une priorité plus élevée."
+msgid ""
+"If set, then this project will be displayed on the dashboard. A higher "
+"value indicats an higher priority."
+msgstr ""
+"S’il est défini, ce projet sera affiché sur le tableau de bord. Une valeur "
+"élevée indique une priorité plus élevée."
 
 #. module: project_dashboard
 #: model:ir.model.fields,field_description:project_dashboard.field_project_project__kanban_description
@@ -97,7 +119,7 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:72
+#: code:addons/project_dashboard/models/project_project.py:0
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "More Older"
@@ -105,13 +127,20 @@ msgstr "Plus anciens"
 
 #. module: project_dashboard
 #: model:ir.model.fields,help:project_dashboard.field_project_type__open_default_groupby
-msgid "Name of the field to use as default group by when opening projects of this type"
-msgstr "Nom du champ à utiliser pour le regroupement par défaut lors de l'ouverture de projets de ce type"
+msgid ""
+"Name of the field to use as default group by when opening projects of this "
+"type"
+msgstr ""
+"Nom du champ à utiliser pour le regroupement par défaut lors de l'ouverture "
+"de projets de ce type"
 
 #. module: project_dashboard
 #: model:ir.model.fields,help:project_dashboard.field_project_type__date_field
-msgid "Name of the field to use as reference when computing projects count per year"
-msgstr "Nom du champ à utiliser comme référence lors du calcul du nombre de projets par an"
+msgid ""
+"Name of the field to use as reference when computing projects count per year"
+msgstr ""
+"Nom du champ à utiliser comme référence lors du calcul du nombre de projets "
+"par an"
 
 #. module: project_dashboard
 #: model:ir.model.fields,field_description:project_dashboard.field_project_type__todo_project_count
@@ -144,7 +173,7 @@ msgid "Open project form"
 msgstr "Ouvrir la ficher du projet"
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:74
+#: code:addons/project_dashboard/models/project_project.py:0
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 #, python-format
 msgid "Previous Year"
@@ -188,3 +217,9 @@ msgstr "Non assigné"
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "View tasks"
 msgstr "Voir les tâches"
+
+#. module: project_dashboard
+#: model:ir.model.fields,field_description:project_dashboard.field_project_project__xid
+#: model:ir.model.fields,field_description:project_dashboard.field_project_type__xid
+msgid "XML-ID"
+msgstr "XML-ID"

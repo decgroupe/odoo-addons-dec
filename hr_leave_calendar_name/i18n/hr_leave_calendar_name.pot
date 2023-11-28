@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* hr_leave_calendar_name
+# 	* hr_leave_calendar_name
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-24 08:02+0000\n"
-"PO-Revision-Date: 2022-06-24 08:02+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:19+0000\n"
+"PO-Revision-Date: 2023-11-28 10:19+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,21 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hr_leave_calendar_name
-#: code:addons/hr_leave_calendar_name/models/hr_leave.py:19
+#: code:addons/hr_leave_calendar_name/models/hr_leave.py:0
 #, python-format
 msgid "%.2f day(s)"
 msgstr ""
 
 #. module: hr_leave_calendar_name
-#: code:addons/hr_leave_calendar_name/models/hr_leave.py:17
+#: code:addons/hr_leave_calendar_name/models/hr_leave.py:0
 #, python-format
 msgid "%.2f hour(s)"
-msgstr ""
-
-#. module: hr_leave_calendar_name
-#: code:addons/hr_leave_calendar_name/models/hr_leave.py:21
-#, python-format
-msgid "%s [%s] : %s"
 msgstr ""
 
 #. module: hr_leave_calendar_name
@@ -46,8 +40,16 @@ msgid "ID"
 msgstr ""
 
 #. module: hr_leave_calendar_name
+#: model:ir.model.fields,help:hr_leave_calendar_name.field_hr_leave__xid
+#: model:ir.model.fields,help:hr_leave_calendar_name.field_hr_leave_type__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: hr_leave_calendar_name
 #: model:ir.model.fields,help:hr_leave_calendar_name.field_hr_leave_type__calendar_name
-msgid "If set, a custom name that will be used when creating the meeting instead of the default name"
+msgid ""
+"If set, a custom name that will be used when creating the meeting instead of"
+" the default name"
 msgstr ""
 
 #. module: hr_leave_calendar_name
@@ -57,17 +59,22 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: hr_leave_calendar_name
-#: model:ir.model,name:hr_leave_calendar_name.model_hr_leave
-msgid "Leave"
-msgstr ""
-
-#. module: hr_leave_calendar_name
-#: model:ir.model,name:hr_leave_calendar_name.model_hr_leave_type
-msgid "Leave Type"
-msgstr ""
-
-#. module: hr_leave_calendar_name
 #: model:ir.model.fields,field_description:hr_leave_calendar_name.field_hr_leave_type__calendar_name
 msgid "Meeting Name"
 msgstr ""
 
+#. module: hr_leave_calendar_name
+#: model:ir.model,name:hr_leave_calendar_name.model_hr_leave
+msgid "Time Off"
+msgstr ""
+
+#. module: hr_leave_calendar_name
+#: model:ir.model,name:hr_leave_calendar_name.model_hr_leave_type
+msgid "Time Off Type"
+msgstr ""
+
+#. module: hr_leave_calendar_name
+#: model:ir.model.fields,field_description:hr_leave_calendar_name.field_hr_leave__xid
+#: model:ir.model.fields,field_description:hr_leave_calendar_name.field_hr_leave_type__xid
+msgid "XML-ID"
+msgstr ""

@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_pack_order_type
+# 	* product_pack_order_type
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:11+0000\n"
-"PO-Revision-Date: 2020-11-14 11:11+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,9 +16,41 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_pack_order_type
-#: selection:product.template,pack_order_type:0
+#: model:ir.model.fields.selection,name:product_pack_order_type.selection__product_template__pack_order_type__all
 msgid "All"
-msgstr "Tout"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__id
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__id
+#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,help:product_pack_order_type.field_product_product__xid
+#: model:ir.model.fields,help:product_pack_order_type.field_product_template__xid
+#: model:ir.model.fields,help:product_pack_order_type.field_purchase_order_line__xid
+#: model:ir.model.fields,help:product_pack_order_type.field_sale_order_line__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: product_pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template____last_update
+#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: product_pack_order_type
 #: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__pack_order_type
@@ -26,49 +58,54 @@ msgstr "Tout"
 #: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__pack_order_type
 #: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__pack_order_type
 msgid "Order Type"
-msgstr "Type de commande"
+msgstr ""
 
 #. module: product_pack_order_type
 #: model:ir.model,name:product_pack_order_type.model_product_product
 msgid "Product"
-msgstr "Article"
+msgstr ""
 
 #. module: product_pack_order_type
 #: model:ir.model,name:product_pack_order_type.model_product_template
 msgid "Product Template"
-msgstr "Modèle d'article"
+msgstr ""
 
 #. module: product_pack_order_type
 #: model:ir.model.fields,help:product_pack_order_type.field_product_product__pack_order_type
 #: model:ir.model.fields,help:product_pack_order_type.field_product_template__pack_order_type
 #: model:ir.model.fields,help:product_pack_order_type.field_purchase_order_line__pack_order_type
 #: model:ir.model.fields,help:product_pack_order_type.field_sale_order_line__pack_order_type
-msgid "Product will be treated as a pack:\n"
+msgid ""
+"Product will be treated as a pack:\n"
 "* All: Everywhere\n"
 "* Sale: Only when added in a Sale Order\n"
 "* Purchase: Only when added in a Purchase Order"
-msgstr "Le produit sera considéré comme un pack:\n"
-"* Tout: partout\n"
-"* Vente: uniquement lorsqu'il est ajouté à une commande client\n"
-"* Achat: uniquement lorsqu'il est ajouté à une commande fournisseur"
+msgstr ""
 
 #. module: product_pack_order_type
-#: selection:product.template,pack_order_type:0
+#: model:ir.model.fields.selection,name:product_pack_order_type.selection__product_template__pack_order_type__purchase
 msgid "Purchase"
-msgstr "Achat"
+msgstr ""
 
 #. module: product_pack_order_type
 #: model:ir.model,name:product_pack_order_type.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Ligne de commande d'achat"
+msgstr ""
 
 #. module: product_pack_order_type
-#: selection:product.template,pack_order_type:0
+#: model:ir.model.fields.selection,name:product_pack_order_type.selection__product_template__pack_order_type__sale
 msgid "Sale"
-msgstr "Vente"
+msgstr ""
 
 #. module: product_pack_order_type
 #: model:ir.model,name:product_pack_order_type.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de bons de commande"
+msgstr ""
 
+#. module: product_pack_order_type
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__xid
+#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__xid
+#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__xid
+#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__xid
+msgid "XML-ID"
+msgstr ""

@@ -4,23 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-01 11:29+0000\n"
-"PO-Revision-Date: 2022-06-01 13:31+0200\n"
+"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"PO-Revision-Date: 2023-11-28 11:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.2.3\n"
-
-#. module: base_mail_auto_copy
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_add_sender
-msgid "Auto Add Sender"
-msgstr "Ajouter automatiquement l'expéditeur"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_bcc_addresses
@@ -38,9 +33,15 @@ msgid "Auto Copy"
 msgstr "Copie automatique"
 
 #. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_add_sender
+msgid "Auto add sender"
+msgstr "Ajouter automatiquement l'expéditeur"
+
+#. module: base_mail_auto_copy
 #: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__auto_add_sender
 msgid "Automatically add sender to the list of hidden recipients"
-msgstr "Ajouter automatiquement l’expéditeur à la liste des destinataires masqués"
+msgstr ""
+"Ajouter automatiquement l’expéditeur à la liste des destinataires masqués"
 
 #. module: base_mail_auto_copy
 #: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__auto_bcc_addresses
@@ -81,10 +82,21 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_mail_auto_copy
+#: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__xid
+#: model:ir.model.fields,help:base_mail_auto_copy.field_mail_channel__xid
+#: model:ir.model.fields,help:base_mail_auto_copy.field_mail_mail__xid
+#: model:ir.model.fields,help:base_mail_auto_copy.field_res_partner__xid
+#: model:ir.model.fields,help:base_mail_auto_copy.field_res_users__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: base_mail_auto_copy
 #: model:ir.model.fields,help:base_mail_auto_copy.field_res_partner__copy_sent_email
 #: model:ir.model.fields,help:base_mail_auto_copy.field_res_users__copy_sent_email
 msgid "If checked, will receive a copy of all sent e-mails"
-msgstr "Si cette option est cochée, vous recevrez une copie de tous les e-mails envoyés"
+msgstr ""
+"Si cette option est cochée, vous recevrez une copie de tous les e-mails "
+"envoyés"
 
 #. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server____last_update
@@ -115,3 +127,12 @@ msgstr "Recevoir une copie de tous mes e-mails"
 #: model:ir.model,name:base_mail_auto_copy.model_res_users
 msgid "Users"
 msgstr "Utilisateurs"
+
+#. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__xid
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel__xid
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail__xid
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__xid
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__xid
+msgid "XML-ID"
+msgstr "XML-ID"

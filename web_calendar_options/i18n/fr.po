@@ -4,85 +4,85 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-23 13:56+0000\n"
+"POT-Creation-Date: 2023-11-28 10:33+0000\n"
 "PO-Revision-Date: 2021-02-23 15:10+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
 "X-Generator: Poedit 2.3.1\n"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:103
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "1 hour"
 msgstr "1 heure"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:100
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "10 minutes"
 msgstr "10 minutes"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:101
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "15 minutes"
 msgstr "15 minutes"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:102
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "30 minutes"
 msgstr "30 minutes"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:99
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "5 minutes"
 msgstr "5 minutes"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:111
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "Now Indicator"
 msgstr "Indicateur « maintenant »"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:107
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "Options"
 msgstr "Options"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:117
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "Show Weekend"
 msgstr "Afficher le week-end"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:123
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "Slot Duration"
 msgstr "Durée d'une case"
 
 #. module: web_calendar_options
 #. openerp-web
-#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:130
+#: code:addons/web_calendar_options/static/src/js/calendar_renderer.js:0
 #, python-format
 msgid "Snap Duration"
 msgstr "Durée d'accroche"

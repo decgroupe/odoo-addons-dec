@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-24 09:26+0000\n"
-"PO-Revision-Date: 2023-08-24 15:55+0200\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:09+0100\n"
 "Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -31,6 +31,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: product_state_review
+#: model:ir.model.fields,help:product_state_review.field_product_template__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: product_state_review
 #: model:product.state,name:product_state_review.product_state_quotation
 msgid "In Quotation"
 msgstr "En devis"
@@ -49,6 +54,11 @@ msgstr "À réviser"
 #: model:ir.model,name:product_state_review.model_product_template
 msgid "Product Template"
 msgstr "Modèle de produit"
+
+#. module: product_state_review
+#: model:ir.model.fields,field_description:product_state_review.field_product_template__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #~ msgid "End of Lifecycle"
 #~ msgstr "En fin de vie"

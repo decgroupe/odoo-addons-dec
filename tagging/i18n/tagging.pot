@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* tagging
+# 	* tagging
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 10:32+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,27 +18,37 @@ msgstr ""
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__active
 msgid "Active"
-msgstr "Actif"
+msgstr ""
+
+#. module: tagging
+#: model_terms:ir.ui.view,arch_db:tagging.tags_form
+msgid "Archived"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__color
 msgid "Color"
-msgstr "Couleur"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
+
+#. module: tagging
+#: model:ir.model.fields,help:tagging.field_tagging_tags__description
+msgid "Full text description of the tag"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__id
@@ -48,17 +58,17 @@ msgstr ""
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__notes
@@ -70,32 +80,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__related_tags_ids
 #: model_terms:ir.ui.view,arch_db:tagging.tags_form
 msgid "Related Tags"
-msgstr "Mots clés associés"
-
-#. module: tagging
-#: model:ir.model.fields,field_description:tagging.field_tagging_tags__description
-msgid "Short Description"
-msgstr "Description courte"
+msgstr ""
 
 #. module: tagging
 #: model:ir.model,name:tagging.model_tagging_tags
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__name
 msgid "Tag"
-msgstr "Mot clé"
+msgstr ""
 
 #. module: tagging
 #: model:ir.actions.act_window,name:tagging.act_open_tags_tree
-#: model:ir.ui.menu,name:tagging.menu_tagging_tags
+#: model:ir.ui.menu,name:tagging.menu_action_tags
 #: model_terms:ir.ui.view,arch_db:tagging.tags_form
 #: model_terms:ir.ui.view,arch_db:tagging.tags_search
 #: model_terms:ir.ui.view,arch_db:tagging.tags_tree
 msgid "Tags"
-msgstr "Étiquettes"
+msgstr ""
 
 #. module: tagging
-#: code:addons/tagging/models/tagging.py:29
-#: sql_constraint:tagging.tags:0
+#: model:ir.model.fields,field_description:tagging.field_tagging_tags__description
+msgid "Text"
+msgstr ""
+
+#. module: tagging
+#: code:addons/tagging/models/tagging.py:0
+#: model:ir.model.constraint,message:tagging.constraint_tagging_tags_tagging_tags_name_unique
 #, python-format
 msgid "The tag names must be unique!"
-msgstr "Le nom du mot clé doit être unique!"
-
+msgstr ""

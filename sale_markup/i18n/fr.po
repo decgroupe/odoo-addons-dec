@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 17:11+0000\n"
-"PO-Revision-Date: 2020-03-31 23:41+0200\n"
+"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"PO-Revision-Date: 2023-11-28 14:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: sale_markup
+#: model:ir.model.fields,field_description:sale_markup.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_markup
+#: model:ir.model.fields,field_description:sale_markup.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_markup
+#: model:ir.model.fields,help:sale_markup.field_sale_order_line__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: sale_markup
+#: model:ir.model.fields,field_description:sale_markup.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: sale_markup
 #: model:ir.model.fields,field_description:sale_markup.field_sale_order_line__margin_percent
@@ -31,3 +51,8 @@ msgstr "Marque (%)"
 #: model:ir.model,name:sale_markup.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Ligne de commandes de vente"
+
+#. module: sale_markup
+#: model:ir.model.fields,field_description:sale_markup.field_sale_order_line__xid
+msgid "XML-ID"
+msgstr "XML-ID"

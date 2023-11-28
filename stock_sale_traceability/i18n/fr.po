@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:40+0000\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
 "PO-Revision-Date: 2020-10-02 23:29+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
@@ -17,7 +17,5 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 2.3\n"
 
-#. module: stock_sale_traceability
-#: model:ir.model,name:stock_sale_traceability.model_stock_move
-msgid "Stock Move"
-msgstr "Mouvement de stock"
+#~ msgid "Stock Move"
+#~ msgstr "Mouvement de stock"

@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-11 17:35+0000\n"
-"PO-Revision-Date: 2021-05-11 19:29+0200\n"
+"POT-Creation-Date: 2023-11-28 09:53+0000\n"
+"PO-Revision-Date: 2023-11-28 11:17+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,19 +14,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: account_partner_location_department
-#: model:ir.model.fields,field_description:account_partner_location_department.field_account_invoice__partner_department_id
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_bank_statement_line__partner_department_id
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move__partner_department_id
 #: model:ir.model.fields,field_description:account_partner_location_department.field_account_move_line__partner_department_id
-#: model_terms:ir.ui.view,arch_db:account_partner_location_department.view_account_invoice_filter
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_payment__partner_department_id
+#: model_terms:ir.ui.view,arch_db:account_partner_location_department.account_invoice_filter_view
 msgid "Department"
 msgstr "Département"
 
 #. module: account_partner_location_department
-#: model:ir.model,name:account_partner_location_department.model_account_invoice
-msgid "Invoice"
-msgstr "Facture"
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move__display_name
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: account_partner_location_department
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move__id
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_partner_location_department
+#: model:ir.model.fields,help:account_partner_location_department.field_account_move__xid
+#: model:ir.model.fields,help:account_partner_location_department.field_account_move_line__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: account_partner_location_department
+#: model:ir.model,name:account_partner_location_department.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
 
 #. module: account_partner_location_department
 #: model:ir.model,name:account_partner_location_department.model_account_move_line
@@ -34,8 +54,25 @@ msgid "Journal Item"
 msgstr "Écriture comptable"
 
 #. module: account_partner_location_department
-#: model:ir.model.fields,field_description:account_partner_location_department.field_account_invoice__partner_state_id
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move____last_update
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: account_partner_location_department
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_bank_statement_line__partner_state_id
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move__partner_state_id
 #: model:ir.model.fields,field_description:account_partner_location_department.field_account_move_line__partner_state_id
-#: model_terms:ir.ui.view,arch_db:account_partner_location_department.view_account_invoice_filter
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_payment__partner_state_id
+#: model_terms:ir.ui.view,arch_db:account_partner_location_department.account_invoice_filter_view
 msgid "State"
 msgstr "Région"
+
+#. module: account_partner_location_department
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move__xid
+#: model:ir.model.fields,field_description:account_partner_location_department.field_account_move_line__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Invoice"
+#~ msgstr "Facture"

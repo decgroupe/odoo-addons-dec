@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-18 16:12+0000\n"
-"PO-Revision-Date: 2020-10-18 18:13+0200\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:05+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: product_public_code
+#: model:ir.model.fields,field_description:product_public_code.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_public_code.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: product_public_code
 #: model_terms:ir.ui.view,arch_db:product_public_code.product_template_search_view
 msgid "Has a Public Code"
 msgstr "A une référence commerciale"
+
+#. module: product_public_code
+#: model:ir.model.fields,field_description:product_public_code.field_product_product__id
+#: model:ir.model.fields,field_description:product_public_code.field_product_template__id
+#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_public_code
+#: model:ir.model.fields,help:product_public_code.field_product_product__xid
+#: model:ir.model.fields,help:product_public_code.field_product_template__xid
+#: model:ir.model.fields,help:product_public_code.field_sale_order_line__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: product_public_code
+#: model:ir.model.fields,field_description:product_public_code.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_public_code.field_product_template____last_update
+#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: product_public_code
 #: model:ir.model,name:product_public_code.model_product_product
@@ -42,6 +70,13 @@ msgstr "Référence commerciale"
 #: model:ir.model,name:product_public_code.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Ligne de commande de vente"
+
+#. module: product_public_code
+#: model:ir.model.fields,field_description:product_public_code.field_product_product__xid
+#: model:ir.model.fields,field_description:product_public_code.field_product_template__xid
+#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #~ msgid "Attribute"
 #~ msgstr "Attribut"
@@ -118,9 +153,6 @@ msgstr "Ligne de commande de vente"
 #~ msgid "Description"
 #~ msgstr "Description"
 
-#~ msgid "Display Name"
-#~ msgstr "Nom affiché"
-
 #~ msgid "External ID"
 #~ msgstr "Identifiant externe"
 
@@ -136,12 +168,6 @@ msgstr "Ligne de commande de vente"
 #~ msgid "Has a Location"
 #~ msgstr "Est repéré"
 
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "ID defined in xml file"
-#~ msgstr "ID de la vue définie dans le fichier XML"
-
 #~ msgid "IP Address"
 #~ msgstr "Adresse IP"
 
@@ -150,9 +176,6 @@ msgstr "Ligne de commande de vente"
 
 #~ msgid "Is not a Pack"
 #~ msgstr "N'est pas un Pack"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Dernière modification le"
 
 #~ msgid "Last Updated by"
 #~ msgstr "Dernière modification par"

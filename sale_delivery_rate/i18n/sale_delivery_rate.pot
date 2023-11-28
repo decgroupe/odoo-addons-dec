@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_delivery_rate
+# 	* sale_delivery_rate
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-10 13:36+0000\n"
-"PO-Revision-Date: 2022-11-10 13:36+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"PO-Revision-Date: 2023-11-28 10:30+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: sale_delivery_rate
-#: selection:sale.order.line,delivery_status:0
+#: model:ir.model.fields.selection,name:sale_delivery_rate.selection__sale_order_line__delivery_status__full
 msgid "Fully Delivered"
 msgstr ""
 
@@ -43,13 +43,19 @@ msgid "ID"
 msgstr ""
 
 #. module: sale_delivery_rate
+#: model:ir.model.fields,help:sale_delivery_rate.field_sale_order__xid
+#: model:ir.model.fields,help:sale_delivery_rate.field_sale_order_line__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: sale_delivery_rate
 #: model:ir.model.fields,field_description:sale_delivery_rate.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_delivery_rate.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_delivery_rate
-#: selection:sale.order.line,delivery_status:0
+#: model:ir.model.fields.selection,name:sale_delivery_rate.selection__sale_order_line__delivery_status__none
 msgid "Nothing to Deliver"
 msgstr ""
 
@@ -70,7 +76,7 @@ msgstr ""
 
 #. module: sale_delivery_rate
 #: model:ir.model,name:sale_delivery_rate.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_delivery_rate
@@ -89,7 +95,12 @@ msgid "Task Rate"
 msgstr ""
 
 #. module: sale_delivery_rate
-#: selection:sale.order.line,delivery_status:0
+#: model:ir.model.fields.selection,name:sale_delivery_rate.selection__sale_order_line__delivery_status__todo
 msgid "To Deliver"
 msgstr ""
 
+#. module: sale_delivery_rate
+#: model:ir.model.fields,field_description:sale_delivery_rate.field_sale_order__xid
+#: model:ir.model.fields,field_description:sale_delivery_rate.field_sale_order_line__xid
+msgid "XML-ID"
+msgstr ""

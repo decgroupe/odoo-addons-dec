@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_reference_pack
+# 	* product_reference_pack
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,34 +21,29 @@ msgid "Code"
 msgstr ""
 
 #. module: product_reference_pack
-#: selection:ref.pack,type:0
+#: model:ir.model.fields.selection,name:product_reference_pack.selection__ref_pack__type__company
 msgid "Company"
-msgstr "Société"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__standard_price
 msgid "Cost Price"
-msgstr "Prix de revient"
-
-#. module: product_reference_pack
-#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__standard_price
-msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
-msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à fixer en moyenne / FIFO."
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__id
@@ -56,34 +51,48 @@ msgid "ID"
 msgstr ""
 
 #. module: product_reference_pack
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: product_reference_pack
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__standard_price
+msgid ""
+"In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
+"        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to compute margins on sale orders."
+msgstr ""
+
+#. module: product_reference_pack
 #: model_terms:ir.ui.view,arch_db:product_reference_pack.product_template_search_view
 msgid "Is not a Pack"
-msgstr "N'est pas un Pack"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: product_reference_pack
-#: selection:ref.pack,type:0
+#: model:ir.model.fields.selection,name:product_reference_pack.selection__ref_pack__type__manufacturer
 msgid "Manufacturer"
-msgstr "Fabriquant"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__name
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model,name:product_reference_pack.model_ref_pack
@@ -94,17 +103,17 @@ msgstr ""
 #. module: product_reference_pack
 #: model:res.groups,name:product_reference_pack.group_ref_pack_manager
 msgid "Pack Manager"
-msgstr "Gestionnaire des packs"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__type
 msgid "Pack Type"
-msgstr "Type de pack"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:res.groups,name:product_reference_pack.group_ref_pack_user
 msgid "Pack User"
-msgstr "Utilisateur des packs"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.actions.act_window,name:product_reference_pack.act_window_ref_pack
@@ -116,25 +125,34 @@ msgstr ""
 #. module: product_reference_pack
 #: model:ir.model.fields,help:product_reference_pack.field_ref_pack__list_price
 msgid "Price at which the product is sold to customers."
-msgstr "Prix auquel l'article est vendu aux clients."
+msgstr ""
+
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__product_variant_id
+msgid "Product"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__product_id
-msgid "Product"
-msgstr "Article"
+msgid "Product Template"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__public_code
 msgid "Public Code"
-msgstr "Référence commerciale"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__list_price
 msgid "Sale Price"
-msgstr "Prix de vente"
+msgstr ""
 
 #. module: product_reference_pack
 #: model:ir.actions.act_window,name:product_reference_pack.act_window_product_template_as_service
 msgid "Services"
-msgstr "Prestations"
+msgstr ""
 
+#. module: product_reference_pack
+#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__xid
+msgid "XML-ID"
+msgstr ""

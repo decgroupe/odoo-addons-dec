@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-21 15:53+0000\n"
-"PO-Revision-Date: 2021-05-21 17:54+0200\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 13:58+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: partner_academy
 #: model:ir.ui.menu,name:partner_academy.res_partner_academy_menu
@@ -28,6 +28,7 @@ msgstr "Académies"
 #: model:ir.model,name:partner_academy.model_res_partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner__academy_id
 #: model:ir.model.fields,field_description:partner_academy.field_res_users__academy_id
+#: model:ir.module.category,name:partner_academy.module_category_partner_academy
 #: model_terms:ir.ui.view,arch_db:partner_academy.res_partner_academy_form_view
 msgid "Academy"
 msgstr "Académie"
@@ -36,6 +37,21 @@ msgstr "Académie"
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__logo
 msgid "Academy Logo"
 msgstr "Logo de l'académie"
+
+#. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: partner_academy
+#: model:res.groups,name:partner_academy.group_academy_manager
+msgid "Administrator"
+msgstr "Administrateur"
+
+#. module: partner_academy
+#: model_terms:ir.ui.view,arch_db:partner_academy.res_partner_academy_form_view
+msgid "Archived"
+msgstr "Archivé"
 
 #. module: partner_academy
 #: model:ir.model,name:partner_academy.model_res_partner
@@ -73,6 +89,7 @@ msgid "Departments of this academy"
 msgstr "Départements de cette académie"
 
 #. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner__display_name
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
@@ -90,15 +107,29 @@ msgstr "Domaine des e-mails"
 
 #. module: partner_academy
 #: model:ir.model.fields,help:partner_academy.field_res_partner_academy__email_domain
-msgid "Filling this domain (part after the @) will help to quickly identify a partner academy using its e-mail suffix"
-msgstr "Remplir ce domaine (la partie après le @) aidera à identifier rapidement l'académie d'un partenaire en utilisant son suffixe e-mail"
+msgid ""
+"Filling this domain (part after the @) will help to quickly identify a "
+"partner academy using its e-mail suffix.Please note that multiple domains can "
+"be added (separated by a single-space)."
+msgstr ""
+"Remplir ce domaine (la partie après le @) aidera à identifier rapidement "
+"l'académie d'un partenaire en utilisant son suffixe e-mail. Veuillez noter "
+"que plusieurs domaines peuvent être ajoutés (séparés par un espace)."
 
 #. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner__id
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__id
 msgid "ID"
 msgstr "ID"
 
 #. module: partner_academy
+#: model:ir.model.fields,help:partner_academy.field_res_partner__xid
+#: model:ir.model.fields,help:partner_academy.field_res_partner_academy__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner____last_update
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
@@ -115,8 +146,12 @@ msgstr "Dernière mise à jour le"
 
 #. module: partner_academy
 #: model_terms:ir.actions.act_window,help:partner_academy.res_partner_academy_action
-msgid "Manage academies to better classify partners for tracking and analysis purposes."
-msgstr "Gérez les académies pour mieux classer les partenaires à des fins de suivi et d'analyse."
+msgid ""
+"Manage academies to better classify partners for tracking and analysis "
+"purposes."
+msgstr ""
+"Gérez les académies pour mieux classer les partenaires à des fins de suivi et "
+"d'analyse."
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__name
@@ -129,11 +164,30 @@ msgid "Rectorate"
 msgstr "Rectorat"
 
 #. module: partner_academy
+#: model:ir.model.fields,help:partner_academy.field_res_partner_academy__active
+msgid "Set active to false to hide the Academy without removing it."
+msgstr ""
+"Mettre le champs actif à faux pour masquer l'académie sans la supprimer."
+
+#. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__state_id
 msgid "State"
 msgstr "Région"
 
 #. module: partner_academy
-#: model:ir.model.fields,help:partner_academy.field_res_partner_academy__logo
-msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
-msgstr "Ce champ contient l'image utilisée comme photo d'identité pour ce contact, limitée à 1024x1024px"
+#: model:res.groups,name:partner_academy.group_academy_user
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: partner_academy
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner__xid
+#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid ""
+#~ "This field holds the image used as avatar for this contact, limited to "
+#~ "1024x1024px"
+#~ msgstr ""
+#~ "Ce champ contient l'image utilisée comme photo d'identité pour ce contact, "
+#~ "limitée à 1024x1024px"

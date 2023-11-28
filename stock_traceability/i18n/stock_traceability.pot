@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* stock_traceability
+# 	* stock_traceability
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"PO-Revision-Date: 2023-11-28 10:32+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,8 +16,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "#Products"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_mail_activity
+msgid "Activity"
+msgstr ""
+
+#. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
-msgid "Are you sure that you want to set this move state to Assigned (ignoring virtual available quantity) ?"
+msgid "Are you sure that you want to cancel this move ?"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Cancel"
 msgstr ""
 
 #. module: stock_traceability
@@ -29,58 +44,140 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_move_picking_form_view
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
 msgid "Close"
-msgstr "Fermer"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Conditions"
+msgstr ""
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_production_archive
 msgid "Created Production Archive"
-msgstr "Archive de l'ordre de fabrication créé"
+msgstr ""
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__created_purchase_line_archive
 msgid "Created Purchase Line Archive"
-msgstr "Archive de ligne d'achat créé"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.stock_move_form_view
 msgid "Done/Reserved"
-msgstr "Terminé/Réservé"
+msgstr ""
 
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__final_location
 msgid "Final location"
-msgstr "Emplacement final"
-
-#. module: stock_traceability
-#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
-msgid "Force Assigned"
 msgstr ""
 
 #. module: stock_traceability
 #: model:ir.model.fields,help:stock_traceability.field_stock_move__final_location
 msgid "Get final location name"
-msgstr "Obtenir le nom de l’emplacement final"
+msgstr ""
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:267
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__id
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__id
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group__id
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__id
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__id
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__id
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__id
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant__id
+msgid "ID"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,help:stock_traceability.field_mail_activity__xid
+#: model:ir.model.fields,help:stock_traceability.field_mrp_production__xid
+#: model:ir.model.fields,help:stock_traceability.field_procurement_group__xid
+#: model:ir.model.fields,help:stock_traceability.field_product_template__xid
+#: model:ir.model.fields,help:stock_traceability.field_purchase_order__xid
+#: model:ir.model.fields,help:stock_traceability.field_purchase_order_line__xid
+#: model:ir.model.fields,help:stock_traceability.field_stock_move__xid
+#: model:ir.model.fields,help:stock_traceability.field_stock_picking__xid
+#: model:ir.model.fields,help:stock_traceability.field_stock_quant__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "Location"
-msgstr "Emplacement"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Locations"
+msgstr ""
 
 #. module: stock_traceability
 #: model:ir.actions.act_window,name:stock_traceability.act_product_template_stock_move_open
 msgid "Moves"
-msgstr "Mouvements"
+msgstr ""
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:266
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "Not Set"
-msgstr "Non défini"
+msgstr ""
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_move_picking_form_view
 msgid "Open Advanced Form View"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_procurement_group
+msgid "Procurement Group"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_mrp_production
+msgid "Production Order"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_purchase_order_line
+msgid "Purchase Order Line"
 msgstr ""
 
 #. module: stock_traceability
@@ -96,29 +193,92 @@ msgstr ""
 #. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__product_activity_id
 msgid "Related Activity"
-msgstr "Activité associée"
+msgstr ""
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:368
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "Reservation issue"
 msgstr ""
 
 #. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Reserved"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
+msgid "Save"
+msgstr ""
+
+#. module: stock_traceability
 #: model:ir.model.fields,field_description:stock_traceability.field_stock_move__action_view_created_item_visible
 msgid "Show Link to Created Item"
-msgstr "Afficher le lien vers l'élément créé"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__state_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__state_emoji
+msgid "State Emoji"
+msgstr ""
 
 #. module: stock_traceability
 #: model:ir.model,name:stock_traceability.model_stock_move
 msgid "Stock Move"
-msgstr "Mouvement de stock"
+msgstr ""
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:336
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Stock Moves"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model,name:stock_traceability.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__tree_bg_color
+msgid "Tree Bg Color"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__tree_fg_color
+msgid "Tree Fg Color"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_product_product__type_emoji
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__type_emoji
+msgid "Type Emoji"
+msgstr ""
+
+#. module: stock_traceability
+#: model_terms:ir.ui.view,arch_db:stock_traceability.view_move_picking_form
+msgid "Unit Of Measure"
+msgstr ""
+
+#. module: stock_traceability
+#: model:ir.model.fields,field_description:stock_traceability.field_mail_activity__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_mrp_production__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_procurement_group__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_product_template__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_purchase_order_line__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_move__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_picking__xid
+#: model:ir.model.fields,field_description:stock_traceability.field_stock_quant__xid
+msgid "XML-ID"
+msgstr ""
+
+#. module: stock_traceability
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "canceled"
-msgstr "annulé"
+msgstr ""
 
 #. module: stock_traceability
 #: model_terms:ir.ui.view,arch_db:stock_traceability.admin_stock_move_form_view
@@ -141,8 +301,7 @@ msgid "stock.move.picking.form@stock_traceability"
 msgstr ""
 
 #. module: stock_traceability
-#: code:addons/stock_traceability/models/stock_move.py:369
+#: code:addons/stock_traceability/models/stock_move.py:0
 #, python-format
 msgid "{0} needed but {1} available"
 msgstr ""
-

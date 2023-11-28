@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_bom_supplier
+# 	* mrp_bom_supplier
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-19 13:32+0000\n"
-"PO-Revision-Date: 2022-09-19 13:32+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:22+0000\n"
+"PO-Revision-Date: 2023-11-28 10:22+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,6 +45,13 @@ msgid "ID"
 msgstr ""
 
 #. module: mrp_bom_supplier
+#: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_bom__xid
+#: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_bom_line__xid
+#: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: mrp_bom_supplier
 #: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__landmark
 msgid "Landmark"
 msgstr ""
@@ -58,7 +65,9 @@ msgstr ""
 
 #. module: mrp_bom_supplier
 #: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_bom_line__delay
-msgid "Produce lead time in days if the product have to be manufactured or delivery lead time in days if the product have to be purchased."
+msgid ""
+"Produce lead time in days if the product have to be manufactured or delivery"
+" lead time in days if the product have to be purchased."
 msgstr ""
 
 #. module: mrp_bom_supplier
@@ -67,8 +76,18 @@ msgid "Production Order"
 msgstr ""
 
 #. module: mrp_bom_supplier
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__seller_id
+msgid "Seller"
+msgstr ""
+
+#. module: mrp_bom_supplier
 #: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__partner_id
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__supplier_id
 msgid "Supplier"
 msgstr ""
 
+#. module: mrp_bom_supplier
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom__xid
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__xid
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production__xid
+msgid "XML-ID"
+msgstr ""

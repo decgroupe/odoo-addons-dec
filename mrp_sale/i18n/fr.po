@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 09:25+0000\n"
-"PO-Revision-Date: 2022-09-01 11:27+0200\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 13:48+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -19,16 +19,25 @@ msgstr ""
 
 #. module: mrp_sale
 #: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_sale.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: mrp_sale
 #: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_sale.field_sale_order__id
 msgid "ID"
 msgstr "ID"
 
 #. module: mrp_sale
+#: model:ir.model.fields,help:mrp_sale.field_mrp_production__xid
+#: model:ir.model.fields,help:mrp_sale.field_sale_order__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mrp_sale
 #: model:ir.model.fields,field_description:mrp_sale.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_sale.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -36,6 +45,17 @@ msgstr "Dernière modification le"
 #: model:ir.model,name:mrp_sale.model_mrp_production
 msgid "Production Order"
 msgstr "Ordre de fabrication"
+
+#. module: mrp_sale
+#: model:ir.model,name:mrp_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Commande client"
+
+#. module: mrp_sale
+#: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__xid
+#: model:ir.model.fields,field_description:mrp_sale.field_sale_order__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-04 15:47+0000\n"
-"PO-Revision-Date: 2021-11-04 16:48+0100\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 15:06+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,16 +15,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
 msgid ""
 "<br/>\n"
-"                    <strong>Create Date:</strong>"
+"                                    <strong>Create Date:</strong>"
 msgstr ""
 "<br/>\n"
-"                    <strong>Date de création:</strong>"
+"                                    <strong>Date de création:</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.software_application_form_view
@@ -71,14 +71,14 @@ msgid "Action"
 msgstr "Action"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:84
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:82
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #, python-format
 msgid "All"
 msgstr "Tous"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:51
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_licenses
 #, python-format
 msgid "Application"
@@ -102,6 +102,13 @@ msgid "Deactivate"
 msgstr "Désactiver"
 
 #. module: software_license_portal
+#: model:ir.model.fields,field_description:software_license_portal.field_software_application__display_name
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license__display_name
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_licenses
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_passes
 msgid "Expiration Date"
@@ -112,6 +119,20 @@ msgstr "Date d'expiration"
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "Hardware Identifiers"
 msgstr "Identificateurs matériels"
+
+#. module: software_license_portal
+#: model:ir.model.fields,field_description:software_license_portal.field_software_application__id
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license__id
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__id
+msgid "ID"
+msgstr "ID"
+
+#. module: software_license_portal
+#: model:ir.model.fields,help:software_license_portal.field_software_application__xid
+#: model:ir.model.fields,help:software_license_portal.field_software_license__xid
+#: model:ir.model.fields,help:software_license_portal.field_software_license_pass__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: software_license_portal
 #: model:ir.model.fields,field_description:software_license_portal.field_software_application__portal_published
@@ -125,6 +146,13 @@ msgid "Informations"
 msgstr "Informations"
 
 #. module: software_license_portal
+#: model:ir.model.fields,field_description:software_license_portal.field_software_application____last_update
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license____last_update
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
 msgid "Last activation"
 msgstr "Dernière activation"
@@ -133,11 +161,6 @@ msgstr "Dernière activation"
 #: model:ir.model,name:software_license_portal.model_software_license
 msgid "License"
 msgstr "Licence"
-
-#. module: software_license_portal
-#: model:ir.model,name:software_license_portal.model_software_license_hardware
-msgid "License Hardware"
-msgstr "Matériel"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_licenses
@@ -152,8 +175,8 @@ msgid "List of available applications"
 msgstr "Liste des applications disponibles"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:42
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:42
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #, python-format
 msgid "Newest"
 msgstr "Le plus récent"
@@ -165,7 +188,7 @@ msgid "Owner"
 msgstr "Propriétaire"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:50
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_passes
 #, python-format
 msgid "Pack"
@@ -184,41 +207,41 @@ msgid "Ref."
 msgstr "Réf."
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:79
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:77
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #, python-format
 msgid "Search in All"
 msgstr "Chercher dans Tout"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:66
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
 #, python-format
 msgid "Search in Applications"
 msgstr "Rechercher dans les applications"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:71
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:69
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #, python-format
 msgid "Search in Hardware identifiers"
 msgstr "Rechercher dans les identificateurs matériels"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:64
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #, python-format
 msgid "Search in Packs"
 msgstr "Rechercher dans les packs"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:61
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:60
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #, python-format
 msgid "Search in Serials"
 msgstr "Rechercher dans les numéros de série"
 
 #. module: software_license_portal
-#: code:addons/software_license_portal/controllers/myaccount_license.py:46
-#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:46
+#: code:addons/software_license_portal/controllers/myaccount_license.py:0
+#: code:addons/software_license_portal/controllers/myaccount_license_pass.py:0
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_licenses
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_passes
 #, python-format
@@ -255,3 +278,13 @@ msgstr "Il n'y a pas de « pass » lié à votre compte."
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "Unique ID"
 msgstr "ID unique"
+
+#. module: software_license_portal
+#: model:ir.model.fields,field_description:software_license_portal.field_software_application__xid
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license__xid
+#: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "License Hardware"
+#~ msgstr "Matériel"

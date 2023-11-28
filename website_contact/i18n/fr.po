@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-16 13:20+0000\n"
-"PO-Revision-Date: 2021-11-16 16:48+0100\n"
+"POT-Creation-Date: 2023-11-28 10:33+0000\n"
+"PO-Revision-Date: 2023-11-28 15:43+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -51,19 +51,19 @@ msgid "<span>Service</span>"
 msgstr "<span>Technique / SAV</span>"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:30
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "A company "
 msgstr "Une entreprise "
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:28
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "A private person"
 msgstr "Un particulier"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:29
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "A school"
 msgstr "Un établissement scolaire"
@@ -80,9 +80,9 @@ msgid "Add Attachments"
 msgstr "Ajouter des pièces jointes"
 
 #. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Anti-Spam Security"
-msgstr "Sécurité antispam"
+#: model:ir.model.fields,field_description:website_contact.field_crm_lead__attachment_ids
+msgid "Attachments"
+msgstr "Pièces jointes"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
@@ -101,13 +101,13 @@ msgid "City"
 msgstr "Ville"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:37
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Company"
 msgstr "Société"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:43
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Company Name"
 msgstr "Nom de votre société ou établissement"
@@ -133,10 +133,11 @@ msgstr "Contactez-nous"
 #: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid ""
 "Contact us about anything related to our company or services.<br/>\n"
-"                              We'll do our best to get back to you as soon as possible."
+"                                                            We'll do our best to get back to you as soon as possible."
 msgstr ""
 "Contactez-nous pour tout ce qui concerne notre société ou nos services.<br/>\n"
-"Nous ferons de notre mieux pour vous répondre dans les plus brefs délais."
+"                                                            Nous ferons de notre mieux pour vous répondre dans les "
+"plus brefs délais."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
@@ -145,12 +146,19 @@ msgid "Delivery"
 msgstr "Livraison"
 
 #. module: website_contact
+#: model:ir.model.fields,field_description:website_contact.field_crm_lead__display_name
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket__display_name
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "From"
 msgstr "De"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:44
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Full Address (street, zipcode, city)"
 msgstr "Adresse complète (rue, code postal, ville)"
@@ -177,9 +185,35 @@ msgid "Helpdesk Ticket Category"
 msgstr "Catégorie de ticket d'assistance"
 
 #. module: website_contact
+#: model:ir.model.fields,field_description:website_contact.field_crm_lead__id
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket__id
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__id
+msgid "ID"
+msgstr "ID"
+
+#. module: website_contact
+#: model:ir.model.fields,help:website_contact.field_crm_lead__xid
+#: model:ir.model.fields,help:website_contact.field_helpdesk_ticket__xid
+#: model:ir.model.fields,help:website_contact.field_helpdesk_ticket_category__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "Jane Doe"
 msgstr "Michel Blanc"
+
+#. module: website_contact
+#: model:ir.model.fields,field_description:website_contact.field_crm_lead____last_update
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket____last_update
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: website_contact
+#: model:ir.model,name:website_contact.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Piste/opportunité"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -187,14 +221,7 @@ msgid "MO/210433 SO210155"
 msgstr "MO/210433 SO210155"
 
 #. module: website_contact
-#. openerp-web
-#: code:addons/website_contact/static/src/js/validator.js:43
-#, python-format
-msgid "Max file count reached: "
-msgstr "Nombre maximal de fichiers atteint : "
-
-#. module: website_contact
-#: code:addons/website_contact/controllers/main.py:123
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Message"
 msgstr "Message"
@@ -205,13 +232,13 @@ msgid "Mobile"
 msgstr "Mobile"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:166
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Next"
 msgstr "Suivant"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:122
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Origin"
 msgstr "Origine"
@@ -228,8 +255,12 @@ msgstr "Téléphone"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Please indicate the reference(s) of the products concerned for a service request (references generally start with three letters) or the serial number (MO)."
-msgstr "Merci d'indiquer la ou les références des produits concernés pour une demande de SAV (les références débutent généralement par trois lettres) ou le numéro de série (MO)."
+msgid ""
+"Please indicate the reference(s) of the products concerned for a service request (references generally start with "
+"three letters) or the serial number (MO)."
+msgstr ""
+"Merci d'indiquer la ou les références des produits concernés pour une demande de SAV (les références débutent "
+"généralement par trois lettres) ou le numéro de série (MO)."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -260,7 +291,7 @@ msgid "Receive a product sales brochure"
 msgstr "Recevoir une plaquette commerciale produit"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:124
+#: code:addons/website_contact/controllers/main.py:0
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 #, python-format
 msgid "References"
@@ -273,7 +304,7 @@ msgid "Sample request:"
 msgstr "Exemple de demande :"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:35
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "School"
 msgstr "École"
@@ -299,11 +330,16 @@ msgid "Subject"
 msgstr "Sujet"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:94
-#: code:addons/website_contact/controllers/main.py:210
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Submit"
 msgstr "Envoyer"
+
+#. module: website_contact
+#: code:addons/website_contact/controllers/main.py:0
+#, python-format
+msgid "Suspicious activity detected by Google reCaptcha."
+msgstr "Activité suspecte détectée par Google reCaptcha."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -327,6 +363,13 @@ msgid "Troubleshooting / Repair"
 msgstr "Dépannage / Réparation"
 
 #. module: website_contact
+#: model:ir.model.fields,field_description:website_contact.field_crm_lead__xid
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket__xid
+#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "You Are"
 msgstr "Vous êtes"
@@ -347,7 +390,7 @@ msgid "Your Name"
 msgstr "Votre nom"
 
 #. module: website_contact
-#: code:addons/website_contact/controllers/main.py:45
+#: code:addons/website_contact/controllers/main.py:0
 #, python-format
 msgid "Your Request"
 msgstr "Votre demande"
@@ -361,6 +404,12 @@ msgstr "Code postal"
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "jane.doe@example.com"
 msgstr "michel.blanc@example.com"
+
+#~ msgid "Anti-Spam Security"
+#~ msgstr "Sécurité antispam"
+
+#~ msgid "Max file count reached: "
+#~ msgstr "Nombre maximal de fichiers atteint : "
 
 #, fuzzy
 #~ msgid ""

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 12:53+0000\n"
-"PO-Revision-Date: 2022-11-15 13:53+0100\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:05+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -64,6 +64,14 @@ msgstr "Regrouper par"
 #: model:ir.model.fields,field_description:product_prices_history.field_stock_move__id
 msgid "ID"
 msgstr "ID"
+
+#. module: product_prices_history
+#: model:ir.model.fields,help:product_prices_history.field_product_prices_history__xid
+#: model:ir.model.fields,help:product_prices_history.field_product_product__xid
+#: model:ir.model.fields,help:product_prices_history.field_product_template__xid
+#: model:ir.model.fields,help:product_prices_history.field_stock_move__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: product_prices_history
 #: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history____last_update
@@ -124,7 +132,7 @@ msgid "Product Template"
 msgstr "Modèle d'article"
 
 #. module: product_prices_history
-#: selection:product.prices.history,type:0
+#: model:ir.model.fields.selection,name:product_prices_history.selection__product_prices_history__type__purchase
 msgid "Purchase"
 msgstr "Achat"
 
@@ -139,7 +147,7 @@ msgid "Search Product Prices History"
 msgstr "Recherche dans l'historique des prix d'un produit"
 
 #. module: product_prices_history
-#: selection:product.prices.history,type:0
+#: model:ir.model.fields.selection,name:product_prices_history.selection__product_prices_history__type__sell
 msgid "Sell"
 msgstr "Vente"
 
@@ -164,9 +172,17 @@ msgid "Type"
 msgstr "Type"
 
 #. module: product_prices_history
-#: model:ir.actions.server,name:product_prices_history.ir_cron_product_autoset_ok_ir_actions_server
-#: model:ir.cron,cron_name:product_prices_history.ir_cron_product_autoset_ok
-#: model:ir.cron,name:product_prices_history.ir_cron_product_autoset_ok
+#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__xid
+#: model:ir.model.fields,field_description:product_prices_history.field_product_product__xid
+#: model:ir.model.fields,field_description:product_prices_history.field_product_template__xid
+#: model:ir.model.fields,field_description:product_prices_history.field_stock_move__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: product_prices_history
+#: model:ir.actions.server,name:product_prices_history.ir_cron_update_default_prices_ir_actions_server
+#: model:ir.cron,cron_name:product_prices_history.ir_cron_update_default_prices
+#: model:ir.cron,name:product_prices_history.ir_cron_update_default_prices
 msgid "💲 Prices History: Store sell/purchase prices"
 msgstr "💲 Historique des prix: Enregistre les prix de vente/d'achat"
 

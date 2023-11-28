@@ -4,18 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 09:38+0000\n"
-"PO-Revision-Date: 2021-10-14 11:40+0200\n"
+"POT-Creation-Date: 2023-11-28 10:21+0000\n"
+"PO-Revision-Date: 2023-11-28 11:59+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mail_filtering
 #: model:ir.model.fields,field_description:mail_filtering.field_ir_mail_server__allowed_databases
@@ -24,8 +24,37 @@ msgstr "Bases de données autorisées"
 
 #. module: mail_filtering
 #: model:ir.model.fields,help:mail_filtering.field_ir_mail_server__allowed_databases
-msgid "Comma-separated list of database names allowed to send e-mails with this server"
-msgstr "Liste séparée par des virgules de noms de base de données autorisées à envoyer des e-mails avec ce serveur, ou définissez-la sur « * » pour tout autoriser."
+msgid ""
+"Comma-separated list of database names allowed to send e-mails with this "
+"server, or set it to «*» to allow all."
+msgstr ""
+"Liste séparée par des virgules de noms de base de données autorisées à "
+"envoyer des e-mails avec ce serveur, ou définissez-la sur « * » pour tout "
+"autoriser."
+
+#. module: mail_filtering
+#: model:ir.model.fields,field_description:mail_filtering.field_ir_mail_server__display_name
+#: model:ir.model.fields,field_description:mail_filtering.field_mail_mail__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mail_filtering
+#: model:ir.model.fields,field_description:mail_filtering.field_ir_mail_server__id
+#: model:ir.model.fields,field_description:mail_filtering.field_mail_mail__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mail_filtering
+#: model:ir.model.fields,help:mail_filtering.field_ir_mail_server__xid
+#: model:ir.model.fields,help:mail_filtering.field_mail_mail__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mail_filtering
+#: model:ir.model.fields,field_description:mail_filtering.field_ir_mail_server____last_update
+#: model:ir.model.fields,field_description:mail_filtering.field_mail_mail____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: mail_filtering
 #: model:ir.model,name:mail_filtering.model_ir_mail_server
@@ -36,3 +65,9 @@ msgstr "Serveur d'email"
 #: model:ir.model,name:mail_filtering.model_mail_mail
 msgid "Outgoing Mails"
 msgstr "Courriels à envoyer"
+
+#. module: mail_filtering
+#: model:ir.model.fields,field_description:mail_filtering.field_ir_mail_server__xid
+#: model:ir.model.fields,field_description:mail_filtering.field_mail_mail__xid
+msgid "XML-ID"
+msgstr "XML-ID"

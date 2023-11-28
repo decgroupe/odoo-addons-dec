@@ -4,18 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-13 12:37+0000\n"
-"PO-Revision-Date: 2022-06-13 14:38+0200\n"
+"POT-Creation-Date: 2023-11-28 10:22+0000\n"
+"PO-Revision-Date: 2023-11-28 12:01+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mass_editing_chat
 #: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard__chat_enabled
@@ -28,9 +28,19 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: mass_editing_chat
+#: model:ir.actions.server,name:mass_editing_chat.mass_editing_partner_note
+msgid "Edit Note (Mass)"
+msgstr "Note d'édition (en masse)"
+
+#. module: mass_editing_chat
 #: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard__id
 msgid "ID"
 msgstr "ID"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,help:mass_editing_chat.field_mass_editing_wizard__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: mass_editing_chat
 #: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard____last_update
@@ -51,3 +61,8 @@ msgstr "Note"
 #: model:ir.model,name:mass_editing_chat.model_mass_editing_wizard
 msgid "Wizard for mass edition"
 msgstr "Assistant pour l'édition en lot"
+
+#. module: mass_editing_chat
+#: model:ir.model.fields,field_description:mass_editing_chat.field_mass_editing_wizard__xid
+msgid "XML-ID"
+msgstr "XML-ID"

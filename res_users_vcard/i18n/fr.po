@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* res_users_vcard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"PO-Revision-Date: 2023-11-28 14:32+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: res_users_vcard
+#: model:ir.model.fields,field_description:res_users_vcard.field_hr_employee__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: res_users_vcard
+#: model:ir.model,name:res_users_vcard.model_hr_employee
+msgid "Employee"
+msgstr "Employé"
+
+#. module: res_users_vcard
+#: model:ir.model.fields,field_description:res_users_vcard.field_hr_employee__id
+msgid "ID"
+msgstr "ID"
+
+#. module: res_users_vcard
+#: model:ir.model.fields,help:res_users_vcard.field_hr_employee__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: res_users_vcard
+#: model:ir.model.fields,field_description:res_users_vcard.field_hr_employee____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: res_users_vcard
+#: model:ir.model.fields,field_description:res_users_vcard.field_hr_employee__xid
+msgid "XML-ID"
+msgstr "XML-ID"

@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_acl
+# 	* project_acl
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 14:05+0000\n"
-"PO-Revision-Date: 2021-07-09 14:05+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 10:28+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +16,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: project_acl
-#: code:addons/project_acl/models/project.py:40
+#: model:ir.model.fields,field_description:project_acl.field_project_project__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: project_acl
+#: model:ir.model.fields,field_description:project_acl.field_project_project__id
+msgid "ID"
+msgstr ""
+
+#. module: project_acl
+#: model:ir.model.fields,help:project_acl.field_project_project__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: project_acl
+#: model:ir.model.fields,field_description:project_acl.field_project_project____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: project_acl
+#: code:addons/project_acl/models/project.py:0
 #, python-format
 msgid "Please contact one of them to do it for you:"
 msgstr ""
@@ -32,19 +52,18 @@ msgid "Super-Manager"
 msgstr ""
 
 #. module: project_acl
-#: model:ir.model,name:project_acl.model_project_task
-msgid "Task"
+#: model:ir.model.fields,field_description:project_acl.field_project_project__xid
+msgid "XML-ID"
 msgstr ""
 
 #. module: project_acl
-#: code:addons/project_acl/models/project.py:34
+#: code:addons/project_acl/models/project.py:0
 #, python-format
 msgid "You are not allowed to create a new project!"
 msgstr ""
 
 #. module: project_acl
-#: code:addons/project_acl/models/project.py:36
+#: code:addons/project_acl/models/project.py:0
 #, python-format
 msgid "You must be a member of the « Project's Super-Manager » group."
 msgstr ""
-

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-28 13:15+0000\n"
-"PO-Revision-Date: 2022-10-28 15:18+0200\n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 14:31+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
@@ -28,13 +28,19 @@ msgid ""
 "<strong>⚠️ User login not in sync with contact e-mail.</strong>\n"
 "                The contact email is now"
 msgstr ""
-"<strong>⚠️ L'identifiant de l'utilisateur n'est pas synchronisé avec l'e-mail du contact.</strong>\n"
+"<strong>⚠️ L'identifiant de l'utilisateur n'est pas synchronisé avec l'e-"
+"mail du contact.</strong>\n"
 "                L'e-mail de contact est maintenant"
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
-msgid "Ask your odoo administrator to make this change or ask him to give you the permission to synchronize contact e-mail with user login"
-msgstr "Demandez à votre administrateur de faire ce changement ou demandez-lui de vous donner la permission de synchroniser l'e-mail de contact avec l'identifiant de l'utilisateur"
+msgid ""
+"Ask your odoo administrator to make this change or ask him to give you the "
+"permission to synchronize contact e-mail with user login"
+msgstr ""
+"Demandez à votre administrateur de faire ce changement ou demandez-lui de "
+"vous donner la permission de synchroniser l'e-mail de contact avec "
+"l'identifiant de l'utilisateur"
 
 #. module: res_users_login_sync
 #: model:ir.model,name:res_users_login_sync.model_res_partner
@@ -59,6 +65,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: res_users_login_sync
+#: model:ir.model.fields,help:res_users_login_sync.field_res_partner__xid
+#: model:ir.model.fields,help:res_users_login_sync.field_res_users__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: res_users_login_sync
 #: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner____last_update
 #: model:ir.model.fields,field_description:res_users_login_sync.field_res_users____last_update
 msgid "Last Modified on"
@@ -72,17 +84,29 @@ msgstr "Notification de changement d'identifiant"
 #. module: res_users_login_sync
 #: model:res.groups,name:res_users_login_sync.group_user_login_sync
 msgid "Manually keep contact e-mail in sync with user login"
-msgstr "Conserver manuellement l'e-mail de contact en synchronisation avec l'identifiant de l'utilisateur"
+msgstr ""
+"Conserver manuellement l'e-mail de contact en synchronisation avec "
+"l'identifiant de l'utilisateur"
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
-msgid "Note that for security reason, a copy of this notification has been sent to your old and your new login"
-msgstr "Notez que pour des raisons de sécurité, une copie de cette notification a été envoyée à votre ancien identifiant"
+msgid ""
+"Note that for security reason, a copy of this notification has been sent to "
+"your old and your new login"
+msgstr ""
+"Notez que pour des raisons de sécurité, une copie de cette notification a "
+"été envoyée à votre ancien identifiant"
 
 #. module: res_users_login_sync
 #: model:ir.model,name:res_users_login_sync.model_res_users
 msgid "Users"
 msgstr "Utilisateurs"
+
+#. module: res_users_login_sync
+#: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner__xid
+#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit

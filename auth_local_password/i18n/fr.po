@@ -4,18 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-15 07:25+0000\n"
-"PO-Revision-Date: 2022-06-15 09:29+0200\n"
+"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"PO-Revision-Date: 2023-11-28 11:19+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: auth_local_password
 #: model:res.groups,name:auth_local_password.group_local_password
@@ -23,7 +23,7 @@ msgid "Allow use of a secondary password (local only)"
 msgstr "Autoriser l'utilisation d'un mot de passe secondaire (local seulement)"
 
 #. module: auth_local_password
-#: code:addons/auth_local_password/models/res_users.py:110
+#: code:addons/auth_local_password/models/res_users.py:0
 #, python-format
 msgid "Cannot use a local password from Internet"
 msgstr "Impossible d'utiliser un mot de passe local depuis Internet"
@@ -39,9 +39,19 @@ msgid "ID"
 msgstr "ID"
 
 #. module: auth_local_password
+#: model:ir.model.fields,help:auth_local_password.field_res_users__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: auth_local_password
 #: model:ir.model.fields,field_description:auth_local_password.field_res_users____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
+
+#. module: auth_local_password
+#: model_terms:ir.ui.view,arch_db:auth_local_password.res_users_preferences_form_view
+msgid "Local Authentication"
+msgstr "Authentification locale"
 
 #. module: auth_local_password
 #: model:ir.model.fields,field_description:auth_local_password.field_res_users__local_password
@@ -59,7 +69,12 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 #. module: auth_local_password
-#: code:addons/auth_local_password/models/res_users.py:73
+#: model:ir.model.fields,field_description:auth_local_password.field_res_users__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: auth_local_password
+#: code:addons/auth_local_password/models/res_users.py:0
 #, python-format
 msgid "Your local password does not meet the minimum length (4 characters)"
 msgstr "Votre mot de passe local ne respecte pas la longueur minimale (4 caractères)"

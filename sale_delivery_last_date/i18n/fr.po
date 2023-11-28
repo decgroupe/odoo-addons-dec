@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-29 08:42+0000\n"
-"PO-Revision-Date: 2022-08-29 10:43+0200\n"
+"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"PO-Revision-Date: 2023-11-28 14:32+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_delivery_last_date
 #: model:ir.model.fields,help:sale_delivery_last_date.field_sale_order__effective_last_date
@@ -31,6 +31,11 @@ msgstr "Nom affiché"
 #: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,help:sale_delivery_last_date.field_sale_order__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: sale_delivery_last_date
 #: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order____last_update
@@ -49,10 +54,19 @@ msgstr "Dernière date prévue"
 
 #. module: sale_delivery_last_date
 #: model:ir.model.fields,help:sale_delivery_last_date.field_sale_order__expected_last_date
-msgid "Latest delivery date that you can tell your customer, computed from product lead times."
-msgstr "Date de livraison la plus éloignée que vous pouvez communiquer à votre client, calculée à partir des délais de livraison des produits."
+msgid ""
+"Latest delivery date that you can tell your customer, computed from product "
+"lead times."
+msgstr ""
+"Date de livraison la plus éloignée que vous pouvez communiquer à votre "
+"client, calculée à partir des délais de livraison des produits."
 
 #. module: sale_delivery_last_date
 #: model:ir.model,name:sale_delivery_last_date.model_sale_order
-msgid "Sale Order"
-msgstr "Bon de commande"
+msgid "Sales Order"
+msgstr "Commande client"
+
+#. module: sale_delivery_last_date
+#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__xid
+msgid "XML-ID"
+msgstr "XML-ID"

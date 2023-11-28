@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 13:03+0000\n"
-"PO-Revision-Date: 2022-05-09 15:04+0200\n"
+"POT-Creation-Date: 2023-11-28 10:26+0000\n"
+"PO-Revision-Date: 2023-11-28 13:59+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__acronym
@@ -23,7 +23,7 @@ msgid "Acronym"
 msgstr "Sigle"
 
 #. module: partner_training
-#: sql_constraint:res.partner.training.specialty:0
+#: model:ir.model.constraint,message:partner_training.constraint_res_partner_training_specialty_train_acro_uniq
 msgid "Acronym must be unique !"
 msgstr "Le sigle doit être unique !"
 
@@ -32,6 +32,12 @@ msgstr "Le sigle doit être unique !"
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__active
 msgid "Active"
 msgstr "Actif"
+
+#. module: partner_training
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_form_view
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
+msgid "Archived"
+msgstr "Archivé"
 
 #. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__complete_name
@@ -124,6 +130,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: partner_training
+#: model:ir.model.fields,help:partner_training.field_res_partner__xid
+#: model:ir.model.fields,help:partner_training.field_res_partner_training__xid
+#: model:ir.model.fields,help:partner_training.field_res_partner_training_specialty__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner____last_update
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training____last_update
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty____last_update
@@ -145,8 +158,12 @@ msgstr "Dernière mise à jour le"
 #. module: partner_training
 #: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_action
 #: model_terms:ir.actions.act_window,help:partner_training.res_partner_training_specialty_action
-msgid "Manage educational trainings to better classify orders for tracking and analysis purposes."
-msgstr "Gérez les formations pédagogiques pour mieux classer les commandes à des fins de suivi et d'analyse."
+msgid ""
+"Manage educational trainings to better classify orders for tracking and "
+"analysis purposes."
+msgstr ""
+"Gérez les formations pédagogiques pour mieux classer les commandes à des "
+"fins de suivi et d'analyse."
 
 #. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__name
@@ -155,8 +172,8 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: partner_training
-#: sql_constraint:res.partner.training:0
-#: sql_constraint:res.partner.training.specialty:0
+#: model:ir.model.constraint,message:partner_training.constraint_res_partner_training_name
+#: model:ir.model.constraint,message:partner_training.constraint_res_partner_training_specialty_train_name_uniq
 msgid "Name must be unique !"
 msgstr "Le nom doit être unique !"
 
@@ -199,3 +216,10 @@ msgstr "Intitulé"
 #: model:ir.ui.menu,name:partner_training.res_partner_training_menu
 msgid "Trainings"
 msgstr "Formations"
+
+#. module: partner_training
+#: model:ir.model.fields,field_description:partner_training.field_res_partner__xid
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__xid
+#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__xid
+msgid "XML-ID"
+msgstr "XML-ID"

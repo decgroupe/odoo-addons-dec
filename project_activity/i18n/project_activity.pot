@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_activity
+# 	* project_activity
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 08:11+0000\n"
-"PO-Revision-Date: 2022-09-14 08:11+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 10:28+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,6 +18,11 @@ msgstr ""
 #. module: project_activity
 #: model:ir.model.fields,field_description:project_activity.field_project_project__activity_ids
 msgid "Activities"
+msgstr ""
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_exception_decoration
+msgid "Activity Exception Decoration"
 msgstr ""
 
 #. module: project_activity
@@ -46,8 +51,28 @@ msgid "ID"
 msgstr ""
 
 #. module: project_activity
+#: model:ir.model.fields,help:project_activity.field_project_project__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: project_activity
+#: model:ir.model.fields,help:project_activity.field_project_project__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: project_activity
 #: model:ir.model.fields,field_description:project_activity.field_project_project____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__my_activity_date_deadline
+msgid "My Activity Deadline"
 msgstr ""
 
 #. module: project_activity
@@ -66,16 +91,6 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: project_activity
-#: selection:project.project,activity_state:0
-msgid "Overdue"
-msgstr ""
-
-#. module: project_activity
-#: selection:project.project,activity_state:0
-msgid "Planned"
-msgstr ""
-
-#. module: project_activity
 #: model:ir.model,name:project_activity.model_project_project
 msgid "Project"
 msgstr ""
@@ -87,19 +102,24 @@ msgstr ""
 
 #. module: project_activity
 #: model:ir.model.fields,help:project_activity.field_project_project__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
 
 #. module: project_activity
-#: selection:project.project,activity_state:0
-msgid "Today"
+#: model:ir.model.fields,help:project_activity.field_project_project__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_project__xid
+msgid "XML-ID"
 msgstr ""
 
 #. module: project_activity
 #: model:ir.model.fields,field_description:project_activity.field_project_project__activity_team_user_ids
 msgid "test field"
 msgstr ""
-

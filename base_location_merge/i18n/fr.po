@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-15 09:48+0000\n"
-"PO-Revision-Date: 2020-12-15 12:22+0100\n"
+"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"PO-Revision-Date: 2023-11-28 11:36+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
@@ -24,7 +24,6 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. module: base_location_merge
-#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__dst_object_id
 #: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__object_ids
 #: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__group_by_city_id
 msgid "City"
@@ -60,6 +59,11 @@ msgid "Current Line"
 msgstr "Ligne actuelle"
 
 #. module: base_location_merge
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__dst_object_id
+msgid "Destination City"
+msgstr "Ville de destination"
+
+#. module: base_location_merge
 #: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__dst_object_id
 msgid "Destination City/Location"
 msgstr "Localisation de destination"
@@ -69,12 +73,6 @@ msgstr "Localisation de destination"
 #: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
-
-#. module: base_location_merge
-#: selection:merge.res.city.wizard,state:0
-#: selection:merge.res.city.zip.wizard,state:0
-msgid "Finished"
-msgstr "Terminé"
 
 #. module: base_location_merge
 #: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__number_group
@@ -87,6 +85,12 @@ msgstr "Groupe d’objets"
 #: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__id
 msgid "ID"
 msgstr "ID"
+
+#. module: base_location_merge
+#: model:ir.model.fields,help:base_location_merge.field_merge_res_city_wizard__xid
+#: model:ir.model.fields,help:base_location_merge.field_merge_res_city_zip_wizard__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: base_location_merge
 #: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard____last_update
@@ -155,12 +159,6 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: base_location_merge
-#: selection:merge.res.city.wizard,state:0
-#: selection:merge.res.city.zip.wizard,state:0
-msgid "Option"
-msgstr "Option"
-
-#. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
 msgid "Options"
@@ -213,15 +211,7 @@ msgstr ""
 "                             Vous pouvez enlever des localisations de cette liste pour éviter de les fusionner."
 
 #. module: base_location_merge
-#: selection:merge.res.city.wizard,state:0
-#: selection:merge.res.city.zip.wizard,state:0
-msgid "Selection"
-msgstr "Sélection"
-
-#. module: base_location_merge
 #: model:res.groups,name:base_location_merge.res_group_base_location_do_merge
-#: model:res.groups,name:base_location_merge.res_group_product_do_merge
-#: model:res.groups,name:base_location_merge.res_group_res_city_zip_do_merge
 msgid "Show Wizard City/Location Merge Action"
 msgstr "Afficher l'action d'assistance de fusion des localisations"
 
@@ -242,13 +232,28 @@ msgid "State"
 msgstr "État"
 
 #. module: base_location_merge
-#: model:ir.actions.act_window,name:base_location_merge.action_res_city_merge
-#: model:ir.actions.act_window,name:base_location_merge.action_res_city_zip_merge
-msgid "🧙‍♂️ Merge ..."
-msgstr "🧙‍♂️ Fusionner ..."
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_wizard__xid
+#: model:ir.model.fields,field_description:base_location_merge.field_merge_res_city_zip_wizard__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: base_location_merge
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_wizard_form
 #: model_terms:ir.ui.view,arch_db:base_location_merge.merge_res_city_zip_wizard_form
 msgid "🧙‍♂️ Merge Wizard"
 msgstr "🧙‍♂️ Assistant de fusion"
+
+#. module: base_location_merge
+#: model:ir.actions.act_window,name:base_location_merge.action_res_city_merge
+#: model:ir.actions.act_window,name:base_location_merge.action_res_city_zip_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr "🧙‍♂️ Fusionner ..."
+
+#~ msgid "Finished"
+#~ msgstr "Terminé"
+
+#~ msgid "Option"
+#~ msgstr "Option"
+
+#~ msgid "Selection"
+#~ msgstr "Sélection"

@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mail_activity_redirection
+# 	* mail_activity_redirection
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-11 21:41+0000\n"
-"PO-Revision-Date: 2021-04-11 21:41+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:21+0000\n"
+"PO-Revision-Date: 2023-11-28 10:21+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,6 +58,17 @@ msgid "Activity Types"
 msgstr ""
 
 #. module: mail_activity_redirection
+#: code:addons/mail_activity_redirection/models/mail_activity_mixin.py:0
+#, python-format
+msgid "Activity redirected to %s by rule %s"
+msgstr ""
+
+#. module: mail_activity_redirection
+#: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
+msgid "Archived"
+msgstr ""
+
+#. module: mail_activity_redirection
 #: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__active
 msgid "By unchecking the active field, you may hide a rule you will not use."
 msgstr ""
@@ -78,6 +89,8 @@ msgid "Default rule to redirect every activities to admin user"
 msgstr ""
 
 #. module: mail_activity_redirection
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity__display_name
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_mixin__display_name
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__display_name
 msgid "Display Name"
 msgstr ""
@@ -98,8 +111,17 @@ msgid "History of latest intercepted and redirected activities"
 msgstr ""
 
 #. module: mail_activity_redirection
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity__id
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_mixin__id
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__id
 msgid "ID"
+msgstr ""
+
+#. module: mail_activity_redirection
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity__xid
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_mixin__xid
+#: model:ir.model.fields,help:mail_activity_redirection.field_mail_activity_redirection__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: mail_activity_redirection
@@ -113,6 +135,8 @@ msgid "Intercepted Activities"
 msgstr ""
 
 #. module: mail_activity_redirection
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity____last_update
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_mixin____last_update
 #: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -204,7 +228,13 @@ msgid "Users initially targeted"
 msgstr ""
 
 #. module: mail_activity_redirection
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity__xid
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_mixin__xid
+#: model:ir.model.fields,field_description:mail_activity_redirection.field_mail_activity_redirection__xid
+msgid "XML-ID"
+msgstr ""
+
+#. module: mail_activity_redirection
 #: model_terms:ir.ui.view,arch_db:mail_activity_redirection.mail_activity_redirection_form_view
 msgid "regex101.com"
 msgstr ""
-

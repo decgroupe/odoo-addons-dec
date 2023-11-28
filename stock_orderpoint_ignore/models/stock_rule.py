@@ -20,12 +20,9 @@ class StockRule(models.Model):
                 and procurement.product_id.procure_method == "make_to_order"
             ):
                 _logger.info(
-                    _(
-                        "Ignore stock.rule for `make_to_order` product {}, "
-                        "please consider to archive or delete its orderpoints"
-                    ).format(
-                        procurement.product_id.display_name,
-                    )
+                    "Ignore stock.rule for `make_to_order` product %s, "
+                    "please consider to archive or delete its orderpoints",
+                    procurement.product_id.display_name,
                 )
             else:
                 alt_procurements.append((procurement, rule))

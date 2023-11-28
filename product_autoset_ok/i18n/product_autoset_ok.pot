@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_autoset_ok
+# 	* product_autoset_ok
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:26+0000\n"
+"PO-Revision-Date: 2023-11-28 10:26+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +19,36 @@ msgstr ""
 #: model:ir.actions.server,name:product_autoset_ok.ir_cron_product_autoset_ok_ir_actions_server
 #: model:ir.cron,cron_name:product_autoset_ok.ir_cron_product_autoset_ok
 #: model:ir.cron,name:product_autoset_ok.ir_cron_product_autoset_ok
-msgid "Autoset products: Set sale_ok/purchase_ok if used in sale/purchase orders"
-msgstr "Définition auto des articles: Active \"Peut-être vendu/acheté\" si utilisé dans une commande client/fournisseur"
+msgid ""
+"Autoset products: Set sale_ok/purchase_ok if used in sale/purchase orders"
+msgstr ""
+
+#. module: product_autoset_ok
+#: model:ir.model.fields,field_description:product_autoset_ok.field_product_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_autoset_ok
+#: model:ir.model.fields,field_description:product_autoset_ok.field_product_template__id
+msgid "ID"
+msgstr ""
+
+#. module: product_autoset_ok
+#: model:ir.model.fields,help:product_autoset_ok.field_product_template__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: product_autoset_ok
+#: model:ir.model.fields,field_description:product_autoset_ok.field_product_template____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: product_autoset_ok
 #: model:ir.model,name:product_autoset_ok.model_product_template
 msgid "Product Template"
-msgstr "Modèle d'article"
+msgstr ""
 
+#. module: product_autoset_ok
+#: model:ir.model.fields,field_description:product_autoset_ok.field_product_template__xid
+msgid "XML-ID"
+msgstr ""

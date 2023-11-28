@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_category_analytic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 10:26+0000\n"
+"PO-Revision-Date: 2023-11-28 10:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_category_analytic
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_category__display_name
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_template__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_category__expense_default_ac_id
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_product__expense_default_ac_id
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_template__expense_default_ac_id
+msgid "Expense Default Analytic Account"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_category__id
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_template__id
+msgid "ID"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model.fields,help:product_category_analytic.field_product_category__xid
+#: model:ir.model.fields,help:product_category_analytic.field_product_template__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_category__income_default_ac_id
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_product__income_default_ac_id
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_template__income_default_ac_id
+msgid "Income Default Analytic Account"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_category____last_update
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_template____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model,name:product_category_analytic.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model,name:product_category_analytic.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: product_category_analytic
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_category__xid
+#: model:ir.model.fields,field_description:product_category_analytic.field_product_template__xid
+msgid "XML-ID"
+msgstr ""

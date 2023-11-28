@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-25 19:27+0000\n"
-"PO-Revision-Date: 2020-09-25 19:49+0200\n"
+"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"PO-Revision-Date: 2023-11-28 13:56+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,13 +15,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_warnings
-#: code:addons/mrp_warnings/models/mrp_production.py:27
+#: code:addons/mrp_warnings/models/mrp_production.py:0
 #, python-format
 msgid "Cannot manufacture product {}, because of following error(s):{}"
 msgstr "Impossible de fabriquer l'article {}, à cause des erreurs suivantes:{}"
+
+#. module: mrp_warnings
+#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_warnings
+#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production__id
+#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_warnings
+#: model:ir.model.fields,help:mrp_warnings.field_mrp_production__xid
+#: model:ir.model.fields,help:mrp_warnings.field_stock_move__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mrp_warnings
+#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production____last_update
+#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: mrp_warnings
 #: model:ir.model,name:mrp_warnings.model_mrp_production
@@ -29,13 +53,30 @@ msgid "Production Order"
 msgstr "Ordre de fabrication"
 
 #. module: mrp_warnings
-#: code:addons/mrp_warnings/models/mrp_production.py:37
+#: model:ir.model,name:mrp_warnings.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: mrp_warnings
+#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production__xid
+#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: mrp_warnings
+#: code:addons/mrp_warnings/models/stock_move.py:0
+#, python-format
+msgid "You cannot produce a zero quantity for %s"
+msgstr "Vous ne pouvez pas produire une quantité nulle pour %s"
+
+#. module: mrp_warnings
+#: code:addons/mrp_warnings/models/mrp_production.py:0
 #, python-format
 msgid "{} is archived"
 msgstr "{} est archivé"
 
 #. module: mrp_warnings
-#: code:addons/mrp_warnings/models/mrp_production.py:39
+#: code:addons/mrp_warnings/models/mrp_production.py:0
 #, python-format
 msgid "{} is obsolete"
 msgstr "{} est obsolète"

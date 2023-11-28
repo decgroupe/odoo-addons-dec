@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-10-25 20:47+0100\n"
+"POT-Creation-Date: 2023-11-28 10:22+0000\n"
+"PO-Revision-Date: 2023-11-28 13:41+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,17 +15,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_type
 msgid ""
-"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A storable product is a product for which you manage stock. The Inventory "
+"app has to be installed.\n"
 "A consumable product is a product for which stock is not managed.\n"
 "A service is a non-material product you provide."
 msgstr ""
-"Un produit stockable est un produit dont on gère le stock. L'application \"Inventaire\" doit être installée. \n"
-"Un produit consommable, d'un autre côté, est un produit pour lequel le stock n'est pas géré.\n"
+"Un produit stockable est un produit dont on gère le stock. L'application "
+"\"Inventaire\" doit être installée. \n"
+"Un produit consommable, d'un autre côté, est un produit pour lequel le "
+"stock n'est pas géré.\n"
 "Un service est un produit immatériel que vous fournissez."
 
 #. module: mrp_buy_consu
@@ -39,9 +42,41 @@ msgid "Buy"
 msgstr "Acheter"
 
 #. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__display_name
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__id
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__xid
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_small_supply
+msgid ""
+"If checked, then this product will be considered like a consumable "
+"stockable product"
+msgstr ""
+"Si coché, alors ce produit sera consideré comme un consommable stockable"
+
+#. module: mrp_buy_consu
 #: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_is_consumable
 msgid "Is Consumable"
 msgstr "Est consommable"
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line____last_update
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_type
@@ -54,6 +89,17 @@ msgid "Production Order"
 msgstr "Ordre de fabrication"
 
 #. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_small_supply
+msgid "Small Supply"
+msgstr "Petite fourniture"
+
+#. module: mrp_buy_consu
 #: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__buy_consumable
 msgid "Used to force buying a consumable product."
 msgstr "Utilisé pour forcer l’achat d’un produit consommable."
+
+#. module: mrp_buy_consu
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__xid
+#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__xid
+msgid "XML-ID"
+msgstr "XML-ID"

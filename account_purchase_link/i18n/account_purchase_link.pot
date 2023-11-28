@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_purchase_link
+# 	* account_purchase_link
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 09:53+0000\n"
+"PO-Revision-Date: 2023-11-28 09:53+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,27 +16,55 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_purchase_link
-#: model:ir.model,name:account_purchase_link.model_account_invoice
-msgid "Invoice"
-msgstr "Facture"
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_move__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: account_purchase_link
-#: model:ir.model.fields,field_description:account_purchase_link.field_account_invoice__purchase_order_ids
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_move__id
+msgid "ID"
+msgstr ""
+
+#. module: account_purchase_link
+#: model:ir.model.fields,help:account_purchase_link.field_account_move__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: account_purchase_link
+#: model:ir.model,name:account_purchase_link.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: account_purchase_link
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_move____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: account_purchase_link
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_bank_statement_line__purchase_order_ids
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_move__purchase_order_ids
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_payment__purchase_order_ids
 msgid "Purchase Order"
-msgstr "Commande fournisseur"
+msgstr ""
 
 #. module: account_purchase_link
-#: model:ir.model.fields,field_description:account_purchase_link.field_account_invoice__purchase_order_count
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_bank_statement_line__purchase_order_count
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_move__purchase_order_count
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_payment__purchase_order_count
 msgid "Purchase Order count"
-msgstr "Nombre de commandes fournisseur"
+msgstr ""
 
 #. module: account_purchase_link
 #: model_terms:ir.ui.view,arch_db:account_purchase_link.invoice_supplier_form_view
-msgid "Purchase Orders"
-msgstr "Bons de commande"
+msgid "Purchases"
+msgstr ""
 
 #. module: account_purchase_link
 #: model_terms:ir.ui.view,arch_db:account_purchase_link.invoice_supplier_form_view
 msgid "Show purchase orders related to this invoice"
-msgstr "Afficher les commandes fournisseur liées à cette facture"
+msgstr ""
 
+#. module: account_purchase_link
+#: model:ir.model.fields,field_description:account_purchase_link.field_account_move__xid
+msgid "XML-ID"
+msgstr ""

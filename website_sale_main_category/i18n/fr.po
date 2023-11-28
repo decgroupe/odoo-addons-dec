@@ -4,18 +4,47 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-23 11:21+0000\n"
-"PO-Revision-Date: 2020-11-23 12:27+0100\n"
+"POT-Creation-Date: 2023-11-28 10:33+0000\n"
+"PO-Revision-Date: 2023-11-28 15:42+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: website_sale_main_category
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_product__display_name
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: website_sale_main_category
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_product__id
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: website_sale_main_category
+#: model:ir.model.fields,help:website_sale_main_category.field_product_product__xid
+#: model:ir.model.fields,help:website_sale_main_category.field_product_template__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: website_sale_main_category
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_product____last_update
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: website_sale_main_category
+#: model:ir.model,name:website_sale_main_category.model_product_product
+msgid "Product"
+msgstr "Article"
 
 #. module: website_sale_main_category
 #: model:ir.model,name:website_sale_main_category.model_product_template
@@ -28,3 +57,9 @@ msgstr "Modèle d'article"
 #: model_terms:ir.ui.view,arch_db:website_sale_main_category.product_template_search_view_website
 msgid "Website Main Product Category"
 msgstr "Catégorie d'articles principale du site Web"
+
+#. module: website_sale_main_category
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_product__xid
+#: model:ir.model.fields,field_description:website_sale_main_category.field_product_template__xid
+msgid "XML-ID"
+msgstr "XML-ID"

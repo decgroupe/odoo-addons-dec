@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-17 13:55+0000\n"
-"PO-Revision-Date: 2020-11-14 12:41+0100\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 14:10+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,36 +15,69 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: product_small_supply
 #: model_terms:ir.ui.view,arch_db:product_small_supply.product_normal_form_view
 msgid ""
-"<div class=\"o_form_label\" style=\"font-weight: bold;\" attrs=\"{'invisible': [                         '|',                             ('type', '!=', 'consu'),                             ('small_supply', '=', True),                     ]}\">\n"
+"<span class=\"o_form_label\" style=\"font-weight: bold;\" attrs="
+"\"{'invisible': [                         '|',                             "
+"('type', '!=', 'consu'),                             ('small_supply', '=', "
+"True),                     ]}\">\n"
 "                    Small Supply\n"
-"                </div>"
+"                </span>"
 msgstr ""
-"<div class=\"o_form_label\" style=\"font-weight: bold;\" attrs=\"{'invisible': [                         '|',                             ('type', '!=', 'consu'),                             ('small_supply', '=', True),                     ]}\">\n"
+"<span class=\"o_form_label\" style=\"font-weight: bold;\" attrs="
+"\"{'invisible': [                         '|',                             "
+"('type', '!=', 'consu'),                             ('small_supply', '=', "
+"True),                     ]}\">\n"
 "                    Petite fourniture\n"
-"                </div>"
+"                </span>"
 
 #. module: product_small_supply
 #: model_terms:ir.ui.view,arch_db:product_small_supply.product_normal_form_view
-#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view2
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view
 msgid "Convert to Small Supply"
 msgstr "Convertir en petite fourniture"
 
 #. module: product_small_supply
+#: model:ir.model.fields,field_description:product_small_supply.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_small_supply.field_product_template__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_small_supply
+#: model:ir.model.fields,field_description:product_small_supply.field_product_product__id
+#: model:ir.model.fields,field_description:product_small_supply.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_small_supply
+#: model:ir.model.fields,help:product_small_supply.field_product_product__xid
+#: model:ir.model.fields,help:product_small_supply.field_product_template__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: product_small_supply
 #: model:ir.model.fields,help:product_small_supply.field_product_product__small_supply
 #: model:ir.model.fields,help:product_small_supply.field_product_template__small_supply
-msgid "If checked, then this product will be considered like a consumable stockable product"
-msgstr "Si coché, alors ce produit sera consideré comme un consommable stockable"
+msgid ""
+"If checked, then this product will be considered like a consumable "
+"stockable product"
+msgstr ""
+"Si coché, alors ce produit sera consideré comme un consommable stockable"
 
 #. module: product_small_supply
 #: model:ir.model.fields,field_description:product_small_supply.field_product_product__is_consumable
 #: model:ir.model.fields,field_description:product_small_supply.field_product_template__is_consumable
 msgid "Is Consumable"
 msgstr "Est consommable"
+
+#. module: product_small_supply
+#: model:ir.model.fields,field_description:product_small_supply.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_small_supply.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
 
 #. module: product_small_supply
 #: model:ir.model,name:product_small_supply.model_product_product
@@ -59,7 +92,13 @@ msgstr "Modèle d'article"
 #. module: product_small_supply
 #: model:ir.model.fields,field_description:product_small_supply.field_product_product__small_supply
 #: model:ir.model.fields,field_description:product_small_supply.field_product_template__small_supply
-#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view2
+#: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_only_form_view
 #: model_terms:ir.ui.view,arch_db:product_small_supply.product_template_search_view
 msgid "Small Supply"
 msgstr "Petite fourniture"
+
+#. module: product_small_supply
+#: model:ir.model.fields,field_description:product_small_supply.field_product_product__xid
+#: model:ir.model.fields,field_description:product_small_supply.field_product_template__xid
+msgid "XML-ID"
+msgstr "XML-ID"

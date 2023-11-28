@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* google_calendar_filtering
+# 	* google_calendar_filtering
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:34+0000\n"
-"PO-Revision-Date: 2020-11-14 11:34+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:14+0000\n"
+"PO-Revision-Date: 2023-11-28 10:14+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +16,41 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: google_calendar_filtering
-#: model:ir.model,name:google_calendar_filtering.model_google_calendar
-msgid "Google Calendar"
-msgstr "Calendrier Google"
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_google_calendar_sync__display_name
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
 
+#. module: google_calendar_filtering
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_google_calendar_sync__id
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: google_calendar_filtering
+#: model:ir.model.fields,help:google_calendar_filtering.field_google_calendar_sync__xid
+#: model:ir.model.fields,help:google_calendar_filtering.field_res_users__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: google_calendar_filtering
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_google_calendar_sync____last_update
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_res_users____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: google_calendar_filtering
+#: model:ir.model,name:google_calendar_filtering.model_google_calendar_sync
+msgid "Synchronize a record with Google Calendar"
+msgstr ""
+
+#. module: google_calendar_filtering
+#: model:ir.model,name:google_calendar_filtering.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: google_calendar_filtering
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_google_calendar_sync__xid
+#: model:ir.model.fields,field_description:google_calendar_filtering.field_res_users__xid
+msgid "XML-ID"
+msgstr ""

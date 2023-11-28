@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mrp_note
+# 	* mrp_note
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:10+0000\n"
-"PO-Revision-Date: 2020-11-14 11:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"PO-Revision-Date: 2023-11-28 10:23+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,15 +16,29 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_note
-#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__note
-msgid "Internal Notes"
-msgstr "Notes internes"
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: mrp_note
-#: code:addons/mrp_note/models/mrp_production.py:17
-#, python-format
-msgid "Internal notes changed to: {}"
-msgstr "Notes internes modifiées: {}"
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_note
+#: model:ir.model.fields,help:mrp_note.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: mrp_note
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__note
+msgid "Internal Notes"
+msgstr ""
+
+#. module: mrp_note
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: mrp_note
 #: model_terms:ir.ui.view,arch_db:mrp_note.mrp_production_form_view
@@ -36,3 +50,7 @@ msgstr ""
 msgid "Production Order"
 msgstr ""
 
+#. module: mrp_note
+#: model:ir.model.fields,field_description:mrp_note.field_mrp_production__xid
+msgid "XML-ID"
+msgstr ""

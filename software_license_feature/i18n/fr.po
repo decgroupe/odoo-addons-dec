@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 14:45+0000\n"
-"PO-Revision-Date: 2021-10-28 16:49+0200\n"
+"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"PO-Revision-Date: 2023-11-28 14:59+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: software_license_feature
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__create_uid
@@ -32,10 +32,15 @@ msgstr "Créé le"
 
 #. module: software_license_feature
 #: model:ir.model.fields,help:software_license_feature.field_software_license_feature__value
-msgid "Custom value for this property, accessible only if the property is set as customizable"
-msgstr "Valeur personnalisée pour cette propriété, accessible uniquement si la propriété est définie comme personnalisable"
+msgid ""
+"Custom value for this property, accessible only if the property is set as "
+"customizable"
+msgstr ""
+"Valeur personnalisée pour cette propriété, accessible uniquement si la "
+"propriété est définie comme personnalisable"
 
 #. module: software_license_feature
+#: model:ir.model.fields,field_description:software_license_feature.field_software_license__display_name
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__display_name
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__display_name
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value__display_name
@@ -71,6 +76,7 @@ msgid "Features"
 msgstr "Fonctionnalités"
 
 #. module: software_license_feature
+#: model:ir.model.fields,field_description:software_license_feature.field_software_license__id
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__id
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__id
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value__id
@@ -78,9 +84,23 @@ msgid "ID"
 msgstr "ID"
 
 #. module: software_license_feature
+#: model:ir.model.fields,help:software_license_feature.field_software_license__xid
+#: model:ir.model.fields,help:software_license_feature.field_software_license_feature__xid
+#: model:ir.model.fields,help:software_license_feature.field_software_license_feature_property__xid
+#: model:ir.model.fields,help:software_license_feature.field_software_license_feature_value__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: software_license_feature
 #: model:ir.model.fields,help:software_license_feature.field_software_license_feature_property__customizable
-msgid "Indicate when this property is customizable when added in a feature set. That means that there will be no list of selectable values when customizable."
-msgstr "Indiquez quand cette propriété est personnalisable lorsqu'elle est ajoutée à un ensemble de fonctionnalités. Cela signifie qu'il n'y aura pas de liste de valeurs sélectionnables lors de la personnalisation."
+msgid ""
+"Indicate when this property is customizable when added in a feature set. "
+"That means that there will be no list of selectable values when "
+"customizable."
+msgstr ""
+"Indiquez quand cette propriété est personnalisable lorsqu'elle est ajoutée "
+"à un ensemble de fonctionnalités. Cela signifie qu'il n'y aura pas de liste "
+"de valeurs sélectionnables lors de la personnalisation."
 
 #. module: software_license_feature
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__customizable
@@ -89,6 +109,7 @@ msgid "Is Customizable ?"
 msgstr "Personnalisable ?"
 
 #. module: software_license_feature
+#: model:ir.model.fields,field_description:software_license_feature.field_software_license____last_update
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature____last_update
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property____last_update
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value____last_update
@@ -116,7 +137,7 @@ msgid "License"
 msgstr "Licence"
 
 #. module: software_license_feature
-#: code:addons/software_license_feature/models/software_license_feature.py:66
+#: code:addons/software_license_feature/models/software_license_feature.py:0
 #, python-format
 msgid "Missing value for property {} : {}"
 msgstr "Valeur manquante pour la propriété {} : {}"
@@ -146,11 +167,6 @@ msgid "Property"
 msgstr "Propriété"
 
 #. module: software_license_feature
-#: model:ir.model,name:software_license_feature.model_software_application
-msgid "Software Application"
-msgstr "Application"
-
-#. module: software_license_feature
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_form_view
 msgid "Sync Features"
 msgstr "Synchroniser les fonctionnalités"
@@ -158,7 +174,8 @@ msgstr "Synchroniser les fonctionnalités"
 #. module: software_license_feature
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_form_view
 msgid "Synchronize features defined as template in application"
-msgstr "Synchroniser les fonctionnalités définies comme modèle dans l’application"
+msgstr ""
+"Synchroniser les fonctionnalités définies comme modèle dans l’application"
 
 #. module: software_license_feature
 #: model:ir.model.fields,help:software_license_feature.field_software_license_feature__customizable
@@ -193,3 +210,14 @@ msgstr "Valeur d’une fonctionnalité d’une licence logicielle"
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_value_tree_view
 msgid "Values"
 msgstr "Valeurs"
+
+#. module: software_license_feature
+#: model:ir.model.fields,field_description:software_license_feature.field_software_license__xid
+#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__xid
+#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__xid
+#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Software Application"
+#~ msgstr "Application"

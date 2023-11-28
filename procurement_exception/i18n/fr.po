@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 21:13+0000\n"
-"PO-Revision-Date: 2020-10-02 23:36+0200\n"
+"POT-Creation-Date: 2023-11-28 10:26+0000\n"
+"PO-Revision-Date: 2023-11-28 13:58+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,17 +14,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.res_config_settings_form_view
 msgid "<span class=\"o_form_label\">Exceptions Redirection</span>"
 msgstr "<span class=\"o_form_label\">Redirection des exceptions</span>"
-
-#. module: procurement_exception
-#: model:ir.model,name:procurement_exception.model_res_config_settings
-msgid "Config Settings"
-msgstr "Paramétrage"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__create_uid
@@ -38,14 +33,9 @@ msgstr "Créé le"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__display_name
+#: model:ir.model.fields,field_description:procurement_exception.field_procurement_group__display_name
 msgid "Display Name"
 msgstr "Nom d’affichage"
-
-#. module: procurement_exception
-#: code:addons/procurement_exception/models/procurement_group.py:123
-#, python-format
-msgid "Exception"
-msgstr "Exception"
 
 #. module: procurement_exception
 #: model:ir.model.fields,help:procurement_exception.field_procurement_exception__sequence
@@ -59,11 +49,19 @@ msgstr "Regrouper par"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__id
+#: model:ir.model.fields,field_description:procurement_exception.field_procurement_group__id
 msgid "ID"
 msgstr "ID"
 
 #. module: procurement_exception
+#: model:ir.model.fields,help:procurement_exception.field_procurement_exception__xid
+#: model:ir.model.fields,help:procurement_exception.field_procurement_group__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception____last_update
+#: model:ir.model.fields,field_description:procurement_exception.field_procurement_group____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -123,7 +121,9 @@ msgstr "Catégorie d'articles"
 #. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.res_config_settings_form_view
 msgid "Redirect procurement exceptions to specific Users"
-msgstr "Rediriger les exceptions d'approvisionnement vers des utilisateurs spécifiques"
+msgstr ""
+"Rediriger les exceptions d'approvisionnement vers des utilisateurs "
+"spécifiques"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__regex_pattern
@@ -133,7 +133,9 @@ msgstr "RegEx"
 #. module: procurement_exception
 #: model:ir.model.fields,help:procurement_exception.field_procurement_exception__regex_pattern
 msgid "Regular Expression used to parse procurement exception message"
-msgstr "Expression régulière utilisée pour analyser le message de l'exception générée lors de l'approvisionnement"
+msgstr ""
+"Expression régulière utilisée pour analyser le message de l'exception "
+"générée lors de l'approvisionnement"
 
 #. module: procurement_exception
 #: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__sequence
@@ -142,18 +144,21 @@ msgstr "Séquence"
 
 #. module: procurement_exception
 #: model:ir.model.fields,help:procurement_exception.field_procurement_exception__categ_id
-msgid "Specify a product category if this rule only applies to products belonging to this category or its children categories. Keep empty otherwise."
-msgstr "Indiquez une catégorie d'articles si cette règle ne s'applique qu'à cette catégorie et à ses enfants. Laissez vide dans le cas contraire."
+msgid ""
+"Specify a product category if this rule only applies to products belonging "
+"to this category or its children categories. Keep empty otherwise."
+msgstr ""
+"Indiquez une catégorie d'articles si cette règle ne s'applique qu'à cette "
+"catégorie et à ses enfants. Laissez vide dans le cas contraire."
 
 #. module: procurement_exception
 #: model:ir.model.fields,help:procurement_exception.field_procurement_exception__product_id
-msgid "Specify a product if this rule only applies to one product. Keep empty otherwise."
-msgstr "Indiquez un article si cette règle ne s'applique qu'à lui. Laissez vide dans le cas contraire."
-
-#. module: procurement_exception
-#: model:ir.model,name:procurement_exception.model_stock_rule
-msgid "Stock Rule"
-msgstr "Règle de stock minimum"
+msgid ""
+"Specify a product if this rule only applies to one product. Keep empty "
+"otherwise."
+msgstr ""
+"Indiquez un article si cette règle ne s'applique qu'à lui. Laissez vide "
+"dans le cas contraire."
 
 #. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.procurement_exception_form_view
@@ -167,6 +172,21 @@ msgid "User"
 msgstr "Utilisateur"
 
 #. module: procurement_exception
+#: model:ir.model.fields,field_description:procurement_exception.field_procurement_exception__xid
+#: model:ir.model.fields,field_description:procurement_exception.field_procurement_group__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: procurement_exception
 #: model_terms:ir.ui.view,arch_db:procurement_exception.procurement_exception_form_view
 msgid "regex101.com"
 msgstr "regex101.com"
+
+#~ msgid "Config Settings"
+#~ msgstr "Paramétrage"
+
+#~ msgid "Exception"
+#~ msgstr "Exception"
+
+#~ msgid "Stock Rule"
+#~ msgstr "Règle de stock minimum"

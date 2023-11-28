@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-08 13:36+0000\n"
-"PO-Revision-Date: 2021-11-08 14:51+0100\n"
+"POT-Creation-Date: 2023-11-28 10:19+0000\n"
+"PO-Revision-Date: 2023-11-28 11:54+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: hr_timesheet_exclude
 #: model:ir.model,name:hr_timesheet_exclude.model_account_analytic_line
@@ -25,8 +25,19 @@ msgstr "Ligne analytique"
 #. module: hr_timesheet_exclude
 #: model:ir.model.fields,help:hr_timesheet_exclude.field_project_project__exclude_from_timesheet
 #: model:ir.model.fields,help:hr_timesheet_exclude.field_project_task__exclude_from_timesheet
-msgid "Checking this would exclude any timesheet entries logged towards this project in Analysis view."
-msgstr "Cette option exclut toutes les entrées de feuille de temps consignées dans cette tâche en mode Analyse."
+msgid ""
+"Checking this would exclude any timesheet entries logged towards this "
+"project in Analysis view."
+msgstr ""
+"Cette option exclut toutes les entrées de feuille de temps consignées dans "
+"cette tâche en mode Analyse."
+
+#. module: hr_timesheet_exclude
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_project__display_name
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_task__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: hr_timesheet_exclude
 #: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_project__exclude_from_timesheet
@@ -36,7 +47,29 @@ msgid "Exclude from Timesheet Accounting"
 msgstr "Exclure de la comptabilité des feuilles de temps"
 
 #. module: hr_timesheet_exclude
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_project__id
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_task__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_timesheet_exclude
+#: model:ir.model.fields,help:hr_timesheet_exclude.field_account_analytic_line__xid
+#: model:ir.model.fields,help:hr_timesheet_exclude.field_project_project__xid
+#: model:ir.model.fields,help:hr_timesheet_exclude.field_project_task__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: hr_timesheet_exclude
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_account_analytic_line____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_project____last_update
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_task____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: hr_timesheet_exclude
 #: model:ir.model.fields,field_description:hr_timesheet_exclude.field_account_analytic_line__posted_in_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_hr_timesheet_switch__posted_in_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_exclude.timesheet_search_view
 msgid "Posted in Timesheets"
 msgstr "Comptabilisé dans les feuilles de temps"
@@ -50,3 +83,10 @@ msgstr "Projet"
 #: model:ir.model,name:hr_timesheet_exclude.model_project_task
 msgid "Task"
 msgstr "Tâche"
+
+#. module: hr_timesheet_exclude
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_account_analytic_line__xid
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_project__xid
+#: model:ir.model.fields,field_description:hr_timesheet_exclude.field_project_task__xid
+msgid "XML-ID"
+msgstr "XML-ID"

@@ -4,28 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-13 19:49+0000\n"
+"POT-Creation-Date: 2023-11-28 09:55+0000\n"
 "PO-Revision-Date: 2021-07-13 21:50+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
 "X-Generator: Poedit 2.3.1\n"
-
-#. module: base_typefast
-#: model:ir.model.fields,field_description:base_typefast.field_typefast_mixin__create_uid
-msgid "Created by"
-msgstr "Créé par"
-
-#. module: base_typefast
-#: model:ir.model.fields,field_description:base_typefast.field_typefast_mixin__create_date
-msgid "Created on"
-msgstr "Créé le"
 
 #. module: base_typefast
 #: model:ir.model.fields,field_description:base_typefast.field_typefast_mixin__display_name
@@ -43,16 +33,6 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: base_typefast
-#: model:ir.model.fields,field_description:base_typefast.field_typefast_mixin__write_uid
-msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
-
-#. module: base_typefast
-#: model:ir.model.fields,field_description:base_typefast.field_typefast_mixin__write_date
-msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
-
-#. module: base_typefast
 #: model:ir.model,name:base_typefast.model_typefast_mixin
 msgid "Typefast Mixin"
 msgstr "Mixin de saisie rapide"
@@ -61,3 +41,15 @@ msgstr "Mixin de saisie rapide"
 #: model:ir.model.fields,field_description:base_typefast.field_typefast_mixin__typefast_name
 msgid "Typefast Name"
 msgstr "Nom de saisie rapide"
+
+#~ msgid "Created by"
+#~ msgstr "Créé par"
+
+#~ msgid "Created on"
+#~ msgstr "Créé le"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Dernière mise à jour par"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Dernière mise à jour le"

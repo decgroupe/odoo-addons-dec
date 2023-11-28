@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_reference_logging
+# 	* product_reference_logging
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-14 11:12+0000\n"
-"PO-Revision-Date: 2020-11-14 11:12+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,22 +18,22 @@ msgstr ""
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__localcomputername
 msgid "Computer"
-msgstr "PC"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__id
@@ -41,59 +41,68 @@ msgid "ID"
 msgstr ""
 
 #. module: product_reference_logging
+#: model:ir.model.fields,help:product_reference_logging.field_ref_log__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__ipaddress
 msgid "IP Address"
-msgstr "Adresse IP"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__localusername
 msgid "Local Username"
-msgstr "Nom utilisateur PC"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model,name:product_reference_logging.model_ref_log
 msgid "Log"
-msgstr "Historique"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:res.groups,name:product_reference_logging.group_ref_log_user
 msgid "Logging User"
-msgstr "Utilisateur de l'historique"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.actions.act_window,name:product_reference_logging.act_window_ref_log
 #: model:ir.ui.menu,name:product_reference_logging.menu_ref_log
 #: model_terms:ir.ui.view,arch_db:product_reference_logging.ref_log_tree_view
 msgid "Logs"
-msgstr "Historiques"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__datetime
 msgid "Modification date"
-msgstr "Date de modification"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__operation
 msgid "Operation"
-msgstr "Opération"
+msgstr ""
 
 #. module: product_reference_logging
 #: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__username
 msgid "User"
-msgstr "Utilisateur"
+msgstr ""
 
+#. module: product_reference_logging
+#: model:ir.model.fields,field_description:product_reference_logging.field_ref_log__xid
+msgid "XML-ID"
+msgstr ""

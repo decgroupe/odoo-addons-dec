@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_reference
+# 	* product_reference
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 13:52+0000\n"
-"PO-Revision-Date: 2022-11-15 13:52+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,15 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_category.py:82
-#: code:addons/product_reference/models/ref_reference.py:212
+#: code:addons/product_reference/models/ref_category.py:0
+#: code:addons/product_reference/models/ref_reference.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr ""
 
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" role=\"img\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
 #. module: product_reference
@@ -40,6 +43,11 @@ msgstr ""
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__domain
 msgid "Apply on"
+msgstr ""
+
+#. module: product_reference
+#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
+msgid "Archived"
 msgstr ""
 
 #. module: product_reference
@@ -123,7 +131,7 @@ msgid "Code"
 msgstr ""
 
 #. module: product_reference
-#: sql_constraint:ref.category:0
+#: model:ir.model.constraint,message:product_reference.constraint_ref_category_code_uniq
 msgid "Code category must be unique !"
 msgstr ""
 
@@ -235,12 +243,28 @@ msgid "ID"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,help:product_reference.field_ref_reference__active
-msgid "If unchecked, it will allow you to hide the reference without removing it."
+#: model:ir.model.fields,help:product_reference.field_change_product_state_by_category__xid
+#: model:ir.model.fields,help:product_reference.field_product_template__xid
+#: model:ir.model.fields,help:product_reference.field_ref_attribute__xid
+#: model:ir.model.fields,help:product_reference.field_ref_category__xid
+#: model:ir.model.fields,help:product_reference.field_ref_category_line__xid
+#: model:ir.model.fields,help:product_reference.field_ref_property__xid
+#: model:ir.model.fields,help:product_reference.field_ref_reference__xid
+#: model:ir.model.fields,help:product_reference.field_ref_reference_line__xid
+#: model:ir.model.fields,help:product_reference.field_ref_version__xid
+#: model:ir.model.fields,help:product_reference.field_res_company__xid
+#: model:ir.model.fields,help:product_reference.field_res_config_settings__xid
+msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_reference.py:189
+#: model:ir.model.fields,help:product_reference.field_ref_reference__active
+msgid ""
+"If unchecked, it will allow you to hide the reference without removing it."
+msgstr ""
+
+#. module: product_reference
+#: code:addons/product_reference/models/ref_reference.py:0
 #, python-format
 msgid "Initial Version"
 msgstr ""
@@ -251,19 +275,19 @@ msgid "Internal Notes"
 msgstr ""
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_property.py:80
+#: code:addons/product_reference/models/ref_property.py:0
 #, python-format
 msgid "Invalid char %s, an allowed char should be in %s"
 msgstr ""
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_property.py:50
+#: code:addons/product_reference/models/ref_property.py:0
 #, python-format
 msgid "Invalid char %s, only allowed chars are %s"
 msgstr ""
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_property.py:72
+#: code:addons/product_reference/models/ref_property.py:0
 #, python-format
 msgid "Invalid value length, the length must be %d"
 msgstr ""
@@ -313,41 +337,21 @@ msgid "Lines"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model,name:product_reference.model_ref_log
-msgid "Log"
-msgstr ""
-
-#. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_res_company__main_product_category_id
 #: model:ir.model.fields,field_description:product_reference.field_res_config_settings__main_product_category_id
 msgid "Main Product Category"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model,name:product_reference.model_ref_market_bom
-msgid "Market BoM"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model,name:product_reference.model_ref_market_category
-msgid "Market Category"
-msgstr ""
-
-#. module: product_reference
-#: code:addons/product_reference/models/ref_reference_line.py:46
+#: code:addons/product_reference/models/ref_reference_line.py:0
 #, python-format
 msgid "Missing attribute for property {} : {}"
 msgstr ""
 
 #. module: product_reference
-#: code:addons/product_reference/models/ref_reference_line.py:53
+#: code:addons/product_reference/models/ref_reference_line.py:0
 #, python-format
 msgid "Missing value for property {} : {}"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model,name:product_reference.model_ir_model_data
-msgid "Model Data"
 msgstr ""
 
 #. module: product_reference
@@ -369,7 +373,7 @@ msgid "Name"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__state
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__state_id
 msgid "New Status"
 msgstr ""
 
@@ -385,11 +389,6 @@ msgid "Notes"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model,name:product_reference.model_ref_pack
-msgid "Pack"
-msgstr ""
-
-#. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__picturepath
 msgid "Path to picture"
 msgstr ""
@@ -401,7 +400,7 @@ msgid "Position"
 msgstr ""
 
 #. module: product_reference
-#: sql_constraint:ref.category.line:0
+#: model:ir.model.constraint,message:product_reference.constraint_ref_category_line_cat_seq_uniq
 msgid "Position must be unique !"
 msgstr ""
 
@@ -411,7 +410,6 @@ msgid "Price Graph"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model,name:product_reference.model_product_product
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_variant_id
 msgid "Product"
 msgstr ""
@@ -523,7 +521,7 @@ msgid "Reference lines"
 msgstr ""
 
 #. module: product_reference
-#: sql_constraint:ref.reference:0
+#: model:ir.model.constraint,message:product_reference.constraint_ref_reference_value_uniq
 msgid "Reference value must be unique !"
 msgstr ""
 
@@ -547,11 +545,6 @@ msgid "Row"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model,name:product_reference.model_sale_order_line
-msgid "Sales Order Line"
-msgstr ""
-
-#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
 msgid "Search References"
 msgstr ""
@@ -564,6 +557,11 @@ msgstr ""
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
 msgid "Select a category to pre-fill domain filter."
+msgstr ""
+
+#. module: product_reference
+#: model:ir.model.fields,help:product_reference.field_ref_reference__state_id
+msgid "Select a state for this product"
 msgstr ""
 
 #. module: product_reference
@@ -584,7 +582,9 @@ msgstr ""
 
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
-msgid "Set default root product category used when creating a new reference category"
+msgid ""
+"Set default root product category used when creating a new reference "
+"category"
 msgstr ""
 
 #. module: product_reference
@@ -594,6 +594,11 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,field_description:product_reference.field_ref_reference__state
+msgid "State Code"
+msgstr ""
+
+#. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__state_id
 msgid "Status"
 msgstr ""
 
@@ -609,7 +614,9 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.model.fields,help:product_reference.field_ref_category__description_template
-msgid "This text is used to automatically generate the product description based on its properties"
+msgid ""
+"This text is used to automatically generate the product description based on"
+" its properties"
 msgstr ""
 
 #. module: product_reference
@@ -636,6 +643,21 @@ msgid "Wizards"
 msgstr ""
 
 #. module: product_reference
+#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__xid
+#: model:ir.model.fields,field_description:product_reference.field_product_template__xid
+#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__xid
+#: model:ir.model.fields,field_description:product_reference.field_ref_category__xid
+#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__xid
+#: model:ir.model.fields,field_description:product_reference.field_ref_property__xid
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference__xid
+#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__xid
+#: model:ir.model.fields,field_description:product_reference.field_ref_version__xid
+#: model:ir.model.fields,field_description:product_reference.field_res_company__xid
+#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__xid
+msgid "XML-ID"
+msgstr ""
+
+#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
 msgid "You can use this widget to customize the Product selection."
 msgstr ""
@@ -643,6 +665,5 @@ msgstr ""
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_change_product_state_by_category
 #: model:ir.ui.menu,name:product_reference.menu_change_product_state_by_category
-msgid "🧙‍♂️ Change product state by category ..."
+msgid "🧙‍♂️ Change product state by category ..."
 msgstr ""
-

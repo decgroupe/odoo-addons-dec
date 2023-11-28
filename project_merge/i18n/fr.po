@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-27 13:35+0000\n"
-"PO-Revision-Date: 2021-08-27 15:44+0200\n"
+"POT-Creation-Date: 2023-11-28 10:28+0000\n"
+"PO-Revision-Date: 2023-11-28 14:14+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: project_merge
 #: model:mail.template,body_html:project_merge.merged_tasks
@@ -202,7 +202,9 @@ msgid ""
 "                                <div>\n"
 "                                    <p>This project has been deleted and all its content has been moved to the following project:\n"
 "                                        <ul>\n"
-"                                            <li>${object.dst_object_id.type_id.display_name}</li>\n"
+"                                            <li>\n"
+"                                                ${object.dst_object_id.type_id.display_name}\n"
+"                                            </li>\n"
 "                                            <li><b>${object.dst_object_id.name}</b></li>\n"
 "                                        </ul>\n"
 "                                    </p>\n"
@@ -255,7 +257,7 @@ msgstr ""
 "                    <td align=\"center\" style=\"min-width: 590px;\">\n"
 "                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                            <tr><td valign=\"middle\">\n"
-"                                <span style=\"font-size: 10px;\">Projet</span><br/>\n"
+"                                <span style=\"font-size: 10px;\">Project</span><br/>\n"
 "                                <span style=\"font-size: 20px; font-weight: bold;\">\n"
 "                                    ${ctx['src_object'].name}\n"
 "                                </span>\n"
@@ -276,7 +278,9 @@ msgstr ""
 "                                <div>\n"
 "                                    <p>Ce projet a été supprimé et tout son contenu a été déplacé vers le projet suivant:\n"
 "                                        <ul>\n"
-"                                            <li>${object.dst_object_id.type_id.display_name}</li>\n"
+"                                            <li>\n"
+"                                                ${object.dst_object_id.type_id.display_name}\n"
+"                                            </li>\n"
 "                                            <li><b>${object.dst_object_id.name}</b></li>\n"
 "                                        </ul>\n"
 "                                    </p>\n"
@@ -360,14 +364,10 @@ msgstr "Ligne actuelle"
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__display_name
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__display_name
+#: model:ir.model.fields,field_description:project_merge.field_project_project__display_name
+#: model:ir.model.fields,field_description:project_merge.field_project_task__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
-
-#. module: project_merge
-#: selection:merge.project.project.wizard,state:0
-#: selection:merge.project.task.wizard,state:0
-msgid "Finished"
-msgstr "Terminé"
 
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__number_group
@@ -378,12 +378,24 @@ msgstr "Groupe d’objets"
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__id
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__id
+#: model:ir.model.fields,field_description:project_merge.field_project_project__id
+#: model:ir.model.fields,field_description:project_merge.field_project_task__id
 msgid "ID"
 msgstr "ID"
 
 #. module: project_merge
+#: model:ir.model.fields,help:project_merge.field_merge_project_project_wizard__xid
+#: model:ir.model.fields,help:project_merge.field_merge_project_task_wizard__xid
+#: model:ir.model.fields,help:project_merge.field_project_project__xid
+#: model:ir.model.fields,help:project_merge.field_project_task__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard____last_update
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard____last_update
+#: model:ir.model.fields,field_description:project_merge.field_project_project____last_update
+#: model:ir.model.fields,field_description:project_merge.field_project_task____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -440,12 +452,6 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: project_merge
-#: selection:merge.project.project.wizard,state:0
-#: selection:merge.project.task.wizard,state:0
-msgid "Option"
-msgstr "Option"
-
-#. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
 msgid "Options"
@@ -493,12 +499,6 @@ msgstr ""
 "                             Vous pouvez enlever des enregistrements de cette liste pour éviter de les fusionner."
 
 #. module: project_merge
-#: selection:merge.project.project.wizard,state:0
-#: selection:merge.project.task.wizard,state:0
-msgid "Selection"
-msgstr "Sélection"
-
-#. module: project_merge
 #: model:res.groups,name:project_merge.res_group_do_merge
 msgid "Show Project/Task Wizard Merge Action"
 msgstr "Afficher l'action d'assistance de fusion des projets/tâches"
@@ -533,13 +533,30 @@ msgid "The task \"${ctx['src_object'].name}\" has been merged."
 msgstr "La tâche \"${ctx['src_object'].name}\" a été fusionnée."
 
 #. module: project_merge
-#: model:ir.actions.act_window,name:project_merge.action_project_project_merge
-#: model:ir.actions.act_window,name:project_merge.action_project_task_merge
-msgid "🧙‍♂️ Merge ..."
-msgstr "🧙‍♂️ Fusionner ..."
+#: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__xid
+#: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__xid
+#: model:ir.model.fields,field_description:project_merge.field_project_project__xid
+#: model:ir.model.fields,field_description:project_merge.field_project_task__xid
+msgid "XML-ID"
+msgstr "XML-ID"
 
 #. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
 msgid "🧙‍♂️ Merge Wizard"
 msgstr "🧙‍♂️ Assistant de fusion"
+
+#. module: project_merge
+#: model:ir.actions.act_window,name:project_merge.action_project_project_merge
+#: model:ir.actions.act_window,name:project_merge.action_project_task_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr "🧙‍♂️ Fusionner ..."
+
+#~ msgid "Finished"
+#~ msgstr "Terminé"
+
+#~ msgid "Option"
+#~ msgstr "Option"
+
+#~ msgid "Selection"
+#~ msgstr "Sélection"

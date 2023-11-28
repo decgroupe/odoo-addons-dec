@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 12:22+0000\n"
-"PO-Revision-Date: 2022-09-06 14:23+0200\n"
+"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"PO-Revision-Date: 2023-11-28 14:16+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -30,6 +30,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: purchase_action_view
+#: model:ir.model.fields,help:purchase_action_view.field_purchase_order__xid
+#: model:ir.model.fields,help:purchase_action_view.field_purchase_order_line__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: purchase_action_view
 #: model:ir.model.fields,field_description:purchase_action_view.field_purchase_order____last_update
 #: model:ir.model.fields,field_description:purchase_action_view.field_purchase_order_line____last_update
 msgid "Last Modified on"
@@ -49,3 +55,9 @@ msgstr "Ligne de commande d'achat"
 #: model:ir.actions.act_window,name:purchase_action_view.action_purchase_order_line_tree
 msgid "Purchase Order Lines"
 msgstr "Lignes d'achats"
+
+#. module: purchase_action_view
+#: model:ir.model.fields,field_description:purchase_action_view.field_purchase_order__xid
+#: model:ir.model.fields,field_description:purchase_action_view.field_purchase_order_line__xid
+msgid "XML-ID"
+msgstr "XML-ID"

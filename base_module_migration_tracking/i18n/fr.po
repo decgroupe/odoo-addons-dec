@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 08:48+0000\n"
-"PO-Revision-Date: 2022-11-15 10:15+0100\n"
+"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"PO-Revision-Date: 2023-11-28 11:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -53,7 +53,7 @@ msgid "18"
 msgstr "18"
 
 #. module: base_module_migration_tracking
-#: selection:ir.module.migration,state:0
+#: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__adopted
 msgid "Adopted"
 msgstr "Adopté"
 
@@ -115,12 +115,18 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_module_migration_tracking
+#: model:ir.model.fields,help:base_module_migration_tracking.field_ir_module_migration__xid
+#: model:ir.model.fields,help:base_module_migration_tracking.field_ir_module_module__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: base_module_migration_tracking
 #: model:ir.actions.server,name:base_module_migration_tracking.action_init_migration_status
 msgid "Init Migration Status"
 msgstr "Initialiser l'état de la migration"
 
 #. module: base_module_migration_tracking
-#: selection:ir.module.migration,state:0
+#: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__installed
 msgid "Installed"
 msgstr "Installé"
 
@@ -141,7 +147,7 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: base_module_migration_tracking
-#: selection:ir.module.migration,state:0
+#: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__migrated
 msgid "Migrated"
 msgstr "Migré"
 
@@ -173,7 +179,7 @@ msgid "Note"
 msgstr "Note"
 
 #. module: base_module_migration_tracking
-#: selection:ir.module.migration,state:0
+#: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__obsolete
 msgid "Obsolete"
 msgstr "Obsolète"
 
@@ -203,7 +209,7 @@ msgid "State"
 msgstr "État"
 
 #. module: base_module_migration_tracking
-#: selection:ir.module.migration,state:0
+#: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__todo
 msgid "To-do"
 msgstr "À faire"
 
@@ -211,3 +217,9 @@ msgstr "À faire"
 #: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__version
 msgid "Version"
 msgstr "Version"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__xid
+#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__xid
+msgid "XML-ID"
+msgstr "XML-ID"

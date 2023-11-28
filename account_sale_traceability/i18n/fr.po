@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-25 13:28+0000\n"
-"PO-Revision-Date: 2020-11-25 14:29+0100\n"
+"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"PO-Revision-Date: 2023-11-28 11:21+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,54 +15,77 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
-msgid "Customer Invoice"
-msgstr "Facture client"
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
-msgid "Group By"
-msgstr "Regrouper par"
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__id
+msgid "ID"
+msgstr "ID"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
-msgid "Invoice"
-msgstr "Facture"
+#. module: account_sale_traceability
+#: model:ir.model.fields,help:account_sale_traceability.field_account_move_line__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: account_traceability
-#: model:ir.model,name:account_traceability.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Ligne de facture"
+#. module: account_sale_traceability
+#: model:ir.model,name:account_sale_traceability.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: account_sale_traceability
+#: model_terms:ir.ui.view,arch_db:account_sale_traceability.invoice_line_tree_filter_view
 msgid "Not attached"
 msgstr "Non reliée"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__invoice_origin
 msgid "Origin"
 msgstr "Origine"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
-msgid "Partner"
-msgstr "Partenaire"
-
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
+#. module: account_sale_traceability
+#: model_terms:ir.ui.view,arch_db:account_sale_traceability.invoice_line_tree_filter_view
 msgid "Product"
 msgstr "Article"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
-msgid "Search Invoice Lines"
-msgstr "Recherche des lignes de factures"
+#. module: account_sale_traceability
+#: model_terms:ir.ui.view,arch_db:account_sale_traceability.invoice_line_form_view
+msgid "Sale Lines"
+msgstr "Lignes de vente"
 
-#. module: account_traceability
-#: model_terms:ir.ui.view,arch_db:account_traceability.invoice_line_tree_filter_view
-msgid "Supplier Invoice"
-msgstr "Facture fournisseur"
+#. module: account_sale_traceability
+#: model:ir.model.fields,help:account_sale_traceability.field_account_move_line__invoice_origin
+msgid "The document(s) that generated the invoice."
+msgstr "Le (s) document (s) qui a généré la facture."
+
+#. module: account_sale_traceability
+#: model:ir.model.fields,field_description:account_sale_traceability.field_account_move_line__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#~ msgid "Customer Invoice"
+#~ msgstr "Facture client"
+
+#~ msgid "Group By"
+#~ msgstr "Regrouper par"
+
+#~ msgid "Invoice"
+#~ msgstr "Facture"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Ligne de facture"
+
+#~ msgid "Partner"
+#~ msgstr "Partenaire"
+
+#~ msgid "Supplier Invoice"
+#~ msgstr "Facture fournisseur"

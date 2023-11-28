@@ -4,18 +4,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-11 09:04+0000\n"
-"PO-Revision-Date: 2022-07-11 11:05+0200\n"
+"POT-Creation-Date: 2023-11-28 10:14+0000\n"
+"PO-Revision-Date: 2023-11-28 11:48+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: fr\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
@@ -53,11 +53,6 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: helpdesk_merge
-#: selection:merge.helpdesk.ticket.wizard,state:0
-msgid "Finished"
-msgstr "Terminé"
-
-#. module: helpdesk_merge
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__number_group
 msgid "Group of Objects"
 msgstr "Groupe d’objets"
@@ -72,6 +67,11 @@ msgstr "Ticket d'assistance"
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__id
 msgid "ID"
 msgstr "ID"
+
+#. module: helpdesk_merge
+#: model:ir.model.fields,help:helpdesk_merge.field_merge_helpdesk_ticket_wizard__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: helpdesk_merge
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard____last_update
@@ -119,11 +119,6 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: helpdesk_merge
-#: selection:merge.helpdesk.ticket.wizard,state:0
-msgid "Option"
-msgstr "Option"
-
-#. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
 msgid "Options"
 msgstr "Options"
@@ -160,11 +155,6 @@ msgstr ""
 "                             Vous pouvez enlever des enregistrements de cette liste pour éviter de les fusionner."
 
 #. module: helpdesk_merge
-#: selection:merge.helpdesk.ticket.wizard,state:0
-msgid "Selection"
-msgstr "Sélection"
-
-#. module: helpdesk_merge
 #: model:res.groups,name:helpdesk_merge.res_group_do_merge
 msgid "Show Helpdesk Ticket Wizard Merge Action"
 msgstr "Afficher l'action d'assistance de fusion des tickets"
@@ -180,11 +170,31 @@ msgid "State"
 msgstr "État"
 
 #. module: helpdesk_merge
-#: model:ir.actions.act_window,name:helpdesk_merge.action_helpdesk_ticket_merge
-msgid "🧙‍♂️ Merge ..."
-msgstr "🧙‍♂️ Fusionner ..."
+#: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: helpdesk_merge
+#: code:addons/helpdesk_merge/wizard/merge_helpdesk_ticket.py:0
+#, python-format
+msgid "You don't have the right to merge tickets. Please contact an Administrator."
+msgstr "Vous n'avez pas le droit de fusionner des tickets. Veuillez contacter un administrateur."
 
 #. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
 msgid "🧙‍♂️ Merge Wizard"
 msgstr "🧙‍♂️ Assistant de fusion"
+
+#. module: helpdesk_merge
+#: model:ir.actions.act_window,name:helpdesk_merge.action_helpdesk_ticket_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr "🧙‍♂️ Fusionner ..."
+
+#~ msgid "Finished"
+#~ msgstr "Terminé"
+
+#~ msgid "Option"
+#~ msgstr "Option"
+
+#~ msgid "Selection"
+#~ msgstr "Sélection"

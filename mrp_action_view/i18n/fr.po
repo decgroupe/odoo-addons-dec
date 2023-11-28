@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-06 12:22+0000\n"
-"PO-Revision-Date: 2022-09-06 14:24+0200\n"
+"POT-Creation-Date: 2023-11-28 10:22+0000\n"
+"PO-Revision-Date: 2023-11-28 13:40+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,16 +18,30 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_action_view
+#: model:ir.model,name:mrp_action_view.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: mrp_action_view
+#: model:ir.model.fields,field_description:mrp_action_view.field_mrp_bom__display_name
 #: model:ir.model.fields,field_description:mrp_action_view.field_mrp_production__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: mrp_action_view
+#: model:ir.model.fields,field_description:mrp_action_view.field_mrp_bom__id
 #: model:ir.model.fields,field_description:mrp_action_view.field_mrp_production__id
 msgid "ID"
 msgstr "ID"
 
 #. module: mrp_action_view
+#: model:ir.model.fields,help:mrp_action_view.field_mrp_bom__xid
+#: model:ir.model.fields,help:mrp_action_view.field_mrp_production__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mrp_action_view
+#: model:ir.model.fields,field_description:mrp_action_view.field_mrp_bom____last_update
 #: model:ir.model.fields,field_description:mrp_action_view.field_mrp_production____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
@@ -36,3 +50,15 @@ msgstr "Dernière modification le"
 #: model:ir.model,name:mrp_action_view.model_mrp_production
 msgid "Production Order"
 msgstr "Fabrication"
+
+#. module: mrp_action_view
+#: model:ir.model.fields,field_description:mrp_action_view.field_mrp_bom__xid
+#: model:ir.model.fields,field_description:mrp_action_view.field_mrp_production__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: mrp_action_view
+#: model:ir.actions.server,name:mrp_action_view.action_open_bom_product
+#: model:ir.actions.server,name:mrp_action_view.action_open_production_product
+msgid "⚡️ Open Product"
+msgstr "⚡️ Ouvrir le produit"
