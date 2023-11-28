@@ -3,8 +3,8 @@
 
 import logging
 
-from odoo import api, models
-from odoo.exceptions import MissingError, UserError
+from odoo import _, api, models
+from odoo.exceptions import MissingError, UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -105,5 +105,17 @@ class ProcurementGroup(models.Model):
                 move.product_id.display_name,
                 move.picking_id.display_name,
             )
+        )
+        move._do_unreserve()
+        if move.move_line_ids:
+            raise ValidationError(
+                _("Forcing draft state on move '%(move)s' is forbidden.", move=move)
+            )
+        move.write(
+            {
+                # Since Odoo 14.0, `_action_confirm` requires the move to be
+                # in `draft` state
+                "state": "draft",
+            }
         )
         move._action_confirm()
