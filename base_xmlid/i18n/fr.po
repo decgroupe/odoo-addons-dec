@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_xmlid
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 09:55+0000\n"
+"PO-Revision-Date: 2023-11-28 11:11+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: base_xmlid
+#: model:ir.model.fields,field_description:base_xmlid.field_ir_model_data__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: base_xmlid
+#: model:ir.model.fields,field_description:base_xmlid.field_ir_model_data__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_xmlid
+#: model:ir.model.fields,field_description:base_xmlid.field_ir_model_data____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: base_xmlid
+#: model:ir.model,name:base_xmlid.model_ir_model_data
+msgid "Model Data"
+msgstr "Modèle de Données"
+
+#. module: base_xmlid
+#: code:addons/base_xmlid/models/ir_model_data.py:0
+#, python-format
+msgid "This record already owns an external ID: %s"
+msgstr "Cet enregistrement possède déjà un identifiant externe: %s"
