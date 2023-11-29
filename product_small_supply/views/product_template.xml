@@ -11,29 +11,6 @@
                     name="small_supply"
                     attrs="{'invisible': [('type', '!=', 'product')]}"
                 />
-                <div
-                    class="o_form_label"
-                    style="font-weight: bold;"
-                    attrs="{'invisible': [
-                        '|',
-                            ('type', '!=', 'consu'),
-                            ('small_supply', '=', True),
-                    ]}"
-                >
-                    Small Supply
-                </div>
-                <button
-                    name="action_convert_consu_to_small_supply"
-                    string="Convert to Small Supply"
-                    type="object"
-                    attrs="{'invisible': [
-                        '|',
-                            ('type', '!=', 'consu'),
-                            ('small_supply', '=', True),
-                    ]}"
-                    solid_icon="fa-gas-pump"
-                >
-                </button>
             </field>
         </field>
     </record>

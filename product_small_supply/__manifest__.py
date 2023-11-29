@@ -6,7 +6,6 @@
     "depends": [
         "product",
         "stock",
-        "product_legacy_availability",
     ],
     "data": [
         "views/product_template.xml",
