@@ -1,41 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record model="ir.ui.view" id="product_normal_form_view">
-        <field name="name">product.product.form@product_small_supply</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_normal_form_view" />
-        <field name="arch" type="xml">
-            <field name="type" position="after">
-                <field
-                    name="small_supply"
-                    attrs="{'invisible': [('type', '!=', 'product')]}"
-                />
-                <span
-                    class="o_form_label"
-                    style="font-weight: bold;"
-                    attrs="{'invisible': [
-                        '|',
-                            ('type', '!=', 'consu'),
-                            ('small_supply', '=', True),
-                    ]}"
-                >
-                    Small Supply
-                </span>
-                <button
-                    name="action_convert_consu_to_small_supply"
-                    string="Convert to Small Supply"
-                    type="object"
-                    attrs="{'invisible': [
-                        '|',
-                            ('type', '!=', 'consu'),
-                            ('small_supply', '=', True),
-                    ]}"
-                    solid_icon="fa-gas-pump"
-                >
-                </button>
-            </field>
-        </field>
-    </record>
-
 </odoo>
