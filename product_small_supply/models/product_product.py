@@ -63,5 +63,10 @@ class Product(models.Model):
         return res
 
     def action_convert_consu_to_small_supply(self):
-        stock_location_ids = self.env.ref("stock.stock_location_stock")
-        self._convert_consu_to_small_supply(stock_location_ids)
+        company_id = self.env.context.get("default_company_id", self.env.company.id)
+        stock_location = (
+            self.env["stock.warehouse"]
+            .search([("company_id", "=", company_id)], limit=1)
+            .lot_stock_id
+        )
+        self._convert_consu_to_small_supply(stock_location)

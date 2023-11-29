@@ -26,6 +26,7 @@ class ProductTemplate(models.Model):
 
     def write(self, vals):
         move_ids = self.env["stock.move"]
+        # check if the `type` field is modified
         if any("type" in vals and vals["type"] != prod_tmpl.type for prod_tmpl in self):
             existing_move_lines = self.env["stock.move.line"].search(
                 [
@@ -39,6 +40,7 @@ class ProductTemplate(models.Model):
             if existing_move_lines:
                 move_ids = existing_move_lines.mapped("move_id")
                 move_ids._do_unreserve()
+            # if the new type is not `product` then disable small supply
             if vals["type"] != "product":
                 vals["small_supply"] = False
         res = super().write(vals)
@@ -49,14 +51,6 @@ class ProductTemplate(models.Model):
             move_ids._action_assign()
         return res
 
-    def _convert_consu_to_small_supply(
-        self, stock_location_ids=False, merge_quants=True, raise_exception=True
-    ):
-        product_variant_ids = self.mapped("product_variant_ids")
-        product_variant_ids._convert_consu_to_small_supply(
-            stock_location_ids, merge_quants, raise_exception
-        )
-
     def action_convert_consu_to_small_supply(self):
-        stock_location_ids = self.env.ref("stock.stock_location_stock")
-        self._convert_consu_to_small_supply(stock_location_ids)
+        product_variant_ids = self.mapped("product_variant_ids")
+        product_variant_ids.action_convert_consu_to_small_supply()
