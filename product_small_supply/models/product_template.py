@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -15,6 +15,7 @@ class ProductTemplate(models.Model):
 
     is_consumable = fields.Boolean(compute="_compute_is_consumable")
 
+    @api.depends("type", "small_supply")
     def _compute_is_consumable(self):
         for product in self:
             if product.type == "consu":
