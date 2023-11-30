@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mrp_stock_cancel
+# 	* mrp_stock_actions
 #
 msgid ""
 msgstr ""
@@ -17,18 +17,18 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. module: mrp_stock_cancel
-#: model_terms:ir.ui.view,arch_db:mrp_stock_cancel.mrp_production_form_view
+#. module: mrp_stock_actions
+#: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
 msgid "Are you sure you want to cancel this move?"
 msgstr "Êtes-vous sûr de vouloir annuler ce mouvement ?"
 
-#. module: mrp_stock_cancel
-#: model_terms:ir.ui.view,arch_db:mrp_stock_cancel.mrp_production_form_view
+#. module: mrp_stock_actions
+#: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
 msgid "Cancel"
 msgstr "Annuler"
 
-#. module: mrp_stock_cancel
-#: model_terms:ir.ui.view,arch_db:mrp_stock_cancel.mrp_production_form_view
+#. module: mrp_stock_actions
+#: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
 msgid "Check availability"
 msgstr "Vérifier la disponibilité"
 
