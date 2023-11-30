@@ -13,7 +13,7 @@ class StockRule(models.Model):
         # order before creating it, we also override the `search` method of
         # the `purchase.order` to post a custom message if any. We also
         # override the `create` method for the same reason (when non existing
-        # ourchase order is found).
+        # purchase order is found).
         # Look at `purchase_order.py` in the same folder for more details.
         return super(
             StockRule, self.with_context(run_buy=True, buyer=self.env.user.id)
