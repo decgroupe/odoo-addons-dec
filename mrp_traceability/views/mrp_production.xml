@@ -30,12 +30,14 @@
                 <attribute name="context">
                 {
                     'form_view_ref': 'mrp_traceability.stock_move_details_form_view',
-                    'final_lots': show_final_lots,
+                    'default_date': date_planned_start,
+                    'default_date_deadline': date_deadline,
                     'default_location_id': location_src_id,
                     'default_location_dest_id': production_location_id,
-                    'default_state': 'confirmed',
+                    'default_state': 'draft',
                     'default_raw_material_production_id': id,
-                    'default_picking_type_id': picking_type_id
+                    'default_picking_type_id': picking_type_id,
+                    'default_company_id': company_id
                 }
                 </attribute>
             </xpath>
