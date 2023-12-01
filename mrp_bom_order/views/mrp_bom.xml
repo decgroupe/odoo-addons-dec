@@ -22,9 +22,6 @@
             <field name="sequence" position="attributes">
                 <attribute name="widget" />
             </field>
-            <xpath expr="//tree" position="attributes">
-                <attribute name="default_order" remove="product_tmpl_id" />
-            </xpath>
         </field>
     </record>
 
