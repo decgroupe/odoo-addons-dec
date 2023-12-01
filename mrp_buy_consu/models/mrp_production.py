@@ -1,19 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
-from odoo import models
+from odoo import api, models
 
 
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
-
-    def _generate_raw_moves(self, exploded_lines):
-        moves = super()._generate_raw_moves(exploded_lines)
-        return moves
-
-    def _generate_raw_move(self, bom_line, line_data):
-        move = super()._generate_raw_move(bom_line, line_data)
-        return move
 
     def _get_move_raw_values(
         self,
@@ -42,3 +34,13 @@ class MrpProduction(models.Model):
                     res["location_id"] = location.id
                     res["warehouse_id"] = location.get_warehouse().id
         return res
+
+    @api.onchange("location_src_id", "move_raw_ids", "bom_id")
+    def _onchange_location(self):
+        """Inherit `onchange` since values set in `_get_move_raw_values` will be
+        overriden by this function"""
+        super()._onchange_location()
+        for move in self.move_raw_ids:
+            if move.product_id.is_consumable and not move.bom_line_id.buy_consumable:
+                move.location_id = move.location_dest_id
+                move.warehouse_id = move.location_dest_id.get_warehouse()

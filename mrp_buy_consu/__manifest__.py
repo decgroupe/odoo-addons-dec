@@ -9,6 +9,7 @@
     ],
     "data": [
         "views/mrp_bom.xml",
+        "views/mrp_production.xml",
     ],
     "installable": True,
 }
