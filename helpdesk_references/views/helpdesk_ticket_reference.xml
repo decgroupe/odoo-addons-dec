@@ -5,7 +5,7 @@
         <field name="name">helpdesk.ticket.reference.tree@helpdesk_references</field>
         <field name="model">helpdesk.ticket.reference</field>
         <field name="arch" type="xml">
-            <tree string="References">
+            <tree>
                 <field name="model_ref_id" />
             </tree>
         </field>

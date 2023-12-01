@@ -34,7 +34,7 @@
         <field name="name">software.account.supplier.tree@software_account</field>
         <field name="model">software.account.supplier</field>
         <field name="arch" type="xml">
-            <tree string="Suppliers">
+            <tree>
                 <field name="name" />
             </tree>
         </field>

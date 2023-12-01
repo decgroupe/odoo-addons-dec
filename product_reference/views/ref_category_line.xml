@@ -5,7 +5,7 @@
         <field name="name">ref.category.line.tree@product_reference</field>
         <field name="model">ref.category.line</field>
         <field name="arch" type="xml">
-            <tree string="Category lines">
+            <tree>
                 <field name="sequence" widget="handle" />
                 <field name="property_id" />
                 <field name="description" />

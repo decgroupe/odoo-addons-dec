@@ -5,7 +5,7 @@
         <field name="name">procurement.exception.tree@procurement_exception</field>
         <field name="model">procurement.exception</field>
         <field name="arch" type="xml">
-            <tree string="Procurement Exceptions">
+            <tree>
                 <field name="sequence" widget='handle' />
                 <field name="name" />
                 <field name="user_id" />

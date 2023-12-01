@@ -5,7 +5,7 @@
         <field name="name">gitlab.resource.tree@connector_gitlab</field>
         <field name="model">gitlab.resource</field>
         <field name="arch" type="xml">
-            <tree string="Resources" create="true" delete="true">
+            <tree create="true" delete="true">
                 <field name="type" />
                 <field name="uid" />
             </tree>
@@ -34,7 +34,7 @@
             </form>
         </field>
     </record>
-    
+
     <record model="ir.ui.view" id="gitlab_resource_search_view">
         <field name="name">gitlab.resource.search@connector_gitlab</field>
         <field name="model">gitlab.resource</field>

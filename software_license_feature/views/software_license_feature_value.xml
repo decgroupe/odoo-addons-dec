@@ -7,7 +7,7 @@
         >software.license.feature.value.tree@software_license_feature</field>
         <field name="model">software.license.feature.value</field>
         <field name="arch" type="xml">
-            <tree string="Values">
+            <tree>
                 <field name="property_id" invisible="1" />
                 <field name="name" />
             </tree>

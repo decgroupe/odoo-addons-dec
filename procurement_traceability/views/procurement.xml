@@ -7,7 +7,7 @@
         <field name="type">tree</field>
         <field eval="1" name="priority" />
         <field name="arch" type="xml">
-            <tree string="Procurements">
+            <tree>
                 <field name="name" />
                 <field name="move_type" />
                 <field name="sale_id" />

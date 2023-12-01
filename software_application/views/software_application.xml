@@ -5,7 +5,7 @@
         <field name="name">software.application.tree@software_application</field>
         <field name="model">software.application</field>
         <field name="arch" type="xml">
-            <tree string="Applications">
+            <tree>
                 <field name="image" string=" " widget="image" class="d_tree_image"/>
                 <field name="name"/>
                 <field name="product_name"/>
@@ -19,7 +19,7 @@
         <field name="name">software.application.tree#resource@software_application</field>
         <field name="model">software.application</field>
         <field name="arch" type="xml">
-            <tree string="Resources">
+            <tree>
                 <field name="image" string=" " widget="image" class="d_tree_image"/>
                 <field name="name" string="Name"/>
                 <field name="product_name"/>
@@ -28,12 +28,12 @@
             </tree>
         </field>
     </record>
-    
+
     <record model="ir.ui.view" id="software_application_other_tree_view" >
         <field name="name">software.application.tree#other@software_application</field>
         <field name="model">software.application</field>
         <field name="arch" type="xml">
-            <tree string="Other Applications">
+            <tree>
                 <field name="image" string=" " widget="image" class="d_tree_image"/>
                 <field name="name" string="Name"/>
                 <field name="info"/>
@@ -50,7 +50,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        
+
             <field name="active" invisible="1" />
             <widget
                 name="web_ribbon"
@@ -58,7 +58,7 @@
                 bg_color="bg-danger"
                 attrs="{'invisible': [('active', '=', True)]}"
             />
-            
+
                     </div>
                     <field name="image" widget="image" nolabel="1" class="oe_avatar"/>
                     <div name="title" class="oe_title">
@@ -77,7 +77,7 @@
                         </group>
                         <group name="secondary">
                             <field name="type"/>
-                            <field 
+                            <field
                                 name="tag_ids"
                                 placeholder="Tags..."
                                 widget="many2many_tags"
@@ -105,7 +105,7 @@
             </form>
         </field>
     </record>
-    
+
     <record model="ir.ui.view" id="software_application_search_view">
         <field name="name">software.application.search@software_application</field>
         <field name="model">software.application</field>

@@ -5,7 +5,7 @@
         <field name="name">ref.property.tree@product_reference</field>
         <field name="model">ref.property</field>
         <field name="arch" type="xml">
-            <tree string="Properties" create="false" delete="false">
+            <tree create="false" delete="false">
                 <field name="name" />
                 <field name="format" />
                 <field name="fixed" />

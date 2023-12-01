@@ -5,7 +5,7 @@
         <field name="name">software.license.hardware.tree@software_license</field>
         <field name="model">software.license.hardware</field>
         <field name="arch" type="xml">
-            <tree string="Hardwares" create="true" delete="true">
+            <tree create="true" delete="true">
                 <field name="name" />
                 <field name="info" />
             </tree>

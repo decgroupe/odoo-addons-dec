@@ -5,7 +5,7 @@
         <field name="name">software.license.tree@software_license</field>
         <field name="model">software.license</field>
         <field name="arch" type="xml">
-            <tree string="Licenses">
+            <tree>
                 <field name="application_id" />
                 <field name="serial" />
                 <field name="product_id" />

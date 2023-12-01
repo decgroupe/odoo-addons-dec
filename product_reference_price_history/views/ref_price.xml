@@ -5,7 +5,7 @@
         <field name="name">ref.price.tree@product_reference_price_history</field>
         <field name="model">ref.price</field>
         <field name="arch" type="xml">
-            <tree string="Prices">
+            <tree>
                 <field name="date" />
                 <field name="value" />
             </tree>

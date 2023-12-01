@@ -5,7 +5,7 @@
         <field name="name">ref.log.tree@product_reference</field>
         <field name="model">ref.log</field>
         <field name="arch" type="xml">
-            <tree string="Logs">
+            <tree>
                 <field name="username" />
                 <field name="operation" />
                 <field name="localcomputername" />

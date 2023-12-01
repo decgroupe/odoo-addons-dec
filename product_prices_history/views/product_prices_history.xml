@@ -36,7 +36,7 @@
         <field name="name">product.prices.history.tree@product_prices_history</field>
         <field name="model">product.prices.history</field>
         <field name="arch" type="xml">
-            <tree string="Product Prices History" editable="top">
+            <tree editable="top">
                 <field
                     name="product_id"
                     invisible="context.get('product_prices_history_multi_view', False) is False"

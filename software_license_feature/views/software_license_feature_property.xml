@@ -7,7 +7,7 @@
         >software.license.feature.property.tree@software_license_feature</field>
         <field name="model">software.license.feature.property</field>
         <field name="arch" type="xml">
-            <tree string="Properties" create="true" delete="true">
+            <tree create="true" delete="true">
                 <field name="name" />
                 <field name="customizable" />
             </tree>

@@ -5,7 +5,7 @@
         <field name="name">ref.attribute.tree@product_reference</field>
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
-            <tree string="Attributes">
+            <tree>
                 <field name="code" />
                 <field name="name" />
             </tree>

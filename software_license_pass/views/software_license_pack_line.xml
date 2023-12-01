@@ -25,7 +25,7 @@
         <field name="name">software.license.pack.line.tree@software_license_pass</field>
         <field name="model">software.license.pack.line</field>
         <field name="arch" type="xml">
-            <tree string="Application Pack Lines" editable="bottom">
+            <tree editable="bottom">
                 <field name="application_id" />
                 <field
                     name="license_template_id"

@@ -5,7 +5,7 @@
         <field name="name">mrp.production.stage.tree@mrp_stage</field>
         <field name="model">mrp.production.stage</field>
         <field name="arch" type="xml">
-            <tree string="Production Stage">
+            <tree>
                 <field name="sequence" widget="handle" groups="base.group_no_one" />
                 <field name="name" />
                 <field name="code" />

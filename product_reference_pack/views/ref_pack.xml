@@ -5,7 +5,7 @@
         <field name="name">ref.pack.tree@product_reference</field>
         <field name="model">ref.pack</field>
         <field name="arch" type="xml">
-            <tree string="Packs">
+            <tree>
                 <field name="name" />
                 <field name="product_id" />
                 <field name="default_code" />

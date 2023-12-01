@@ -5,7 +5,7 @@
         <field name="name">ref.version.tree@product_reference</field>
         <field name="model">ref.version</field>
         <field name="arch" type="xml">
-            <tree string="Versions" editable="bottom">
+            <tree editable="bottom">
                 <field name="version" />
                 <field name="datetime" />
                 <field name="name" />

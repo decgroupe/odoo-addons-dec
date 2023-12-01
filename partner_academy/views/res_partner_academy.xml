@@ -5,7 +5,7 @@
         <field name="name">res.partner.academy.tree@partner_academy</field>
         <field name="model">res.partner.academy</field>
         <field name="arch" type="xml">
-            <tree string="Academies">
+            <tree>
                 <field name="name" decoration-bf="1"/>
                 <field name="state_id" />
             </tree>

@@ -5,7 +5,7 @@
         <field name="name">software.license.pack.tree_pack@software_license_pass</field>
         <field name="model">software.license.pack</field>
         <field name="arch" type="xml">
-            <tree string="Application Packs">
+            <tree>
                 <field name="name" />
             </tree>
         </field>

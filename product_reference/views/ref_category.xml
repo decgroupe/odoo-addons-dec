@@ -5,7 +5,7 @@
         <field name="name">ref.category.tree@product_reference</field>
         <field name="model">ref.category</field>
         <field name="arch" type="xml">
-            <tree string="Categories">
+            <tree>
                 <field name="code" />
                 <field name="name" />
                 <field name="product_category_id" />

@@ -5,7 +5,7 @@
         <field name="name">software.application.release.tree@software_application</field>
         <field name="model">software.application.release</field>
         <field name="arch" type="xml">
-            <tree string="Releases" create="true" delete="true">
+            <tree create="true" delete="true">
                 <field name="version"/>
                 <field name="date"/>
                 <field name="url" widget="url"/>

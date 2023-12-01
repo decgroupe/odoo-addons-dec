@@ -5,7 +5,7 @@
         <field name="name">software.license.pass.tree_pass@software_license_pass</field>
         <field name="model">software.license.pass</field>
         <field name="arch" type="xml">
-            <tree string="Application Passes">
+            <tree>
                 <field name="name" />
                 <field name="serial" />
                 <field name="partner_id" />

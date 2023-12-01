@@ -5,7 +5,7 @@
         <field name="name">res.partner.training.tree@partner_training</field>
         <field name="model">res.partner.training</field>
         <field name="arch" type="xml">
-            <tree string="Educational Trainings">
+            <tree>
                 <field name="name" />
                 <field
                     name="specialty_ids"

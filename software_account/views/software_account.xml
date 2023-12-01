@@ -5,7 +5,7 @@
         <field name="name">software.account.tree@software_account</field>
         <field name="model">software.account</field>
         <field name="arch" type="xml">
-            <tree string="Accounts">
+            <tree>
                 <field name="supplier_id" />
                 <field name="login" />
                 <field name="password" />
