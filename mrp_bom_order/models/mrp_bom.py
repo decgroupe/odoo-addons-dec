@@ -18,6 +18,10 @@ class MrpBom(models.Model):
         company_id=False,
         bom_type=False,
     ):
+        """Original `_bom_find` method call `search` with an hard-coded `order` value.
+        ./addons/mrp/models/mrp_bom.py, so we add a context value to override this with
+        our own hard-coded order.
+        """
         return super(
             MrpBom, self.with_context(mrp_bom_order_override_search_order=True)
         )._bom_find(
@@ -30,6 +34,8 @@ class MrpBom(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
+        """ Override `order` hard-coded value with our own order
+        """
         if self.env.context.get("mrp_bom_order_override_search_order", False) is True:
             order = "sequence desc, product_id"
         res = super(MrpBom, self).search(
