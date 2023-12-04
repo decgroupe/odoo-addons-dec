@@ -51,8 +51,6 @@ class MrpAttachPicking(models.TransientModel):
 
     def do_attach(self):
         self.ensure_one()
-        if not self.move_id:
-            raise ValidationError(_("A valid stock move must be selected."))
         # Filter finished move in case of some of them are cancelled
         move_finished_ids = self.production_id.move_finished_ids.filtered(
             lambda x: x.state in ("confirmed", "assigned", "done")
@@ -61,17 +59,12 @@ class MrpAttachPicking(models.TransientModel):
             raise ValidationError(
                 _("None of the production finished moves can be linked.")
             )
-        # In case of one move is already done, set the next
-        # move state to assigned
-        if "done" in move_finished_ids.mapped("state"):
-            state = "assigned"
-        else:
-            state = "waiting"
-        # Link chosen move with our production order
-        self.move_id.write(
-            {
-                "procure_method": "make_to_order",
-                "state": state,
-                "move_orig_ids": [(6, 0, move_finished_ids.ids)],
-            }
-        )
+        # write procure method and recompute state BEFORE assigning a parent move to
+        # ensure a `waiting` state
+        self.move_id.write({"procure_method": "make_to_order"})
+        self.move_id._recompute_state()
+        # link chosen move with our production order
+        self.move_id.write({"move_orig_ids": [(6, 0, move_finished_ids.ids)]})
+        self.move_id._recompute_state()
+        # also try to assign in the case the parent move is already done
+        self.move_id._action_assign()
