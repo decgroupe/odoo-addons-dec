@@ -109,6 +109,10 @@ class TestSoftwareLicenseToken(TransactionCase):
     @freeze_time("2023-12-01 12:00:00")
     def test_05_license_activation(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
+        # override existing demo data to have valid dates
+        fitness_lic1.hardware_ids.write({
+            "validation_date": fields.Datetime.now() + relativedelta(days=2)
+        })
         fitness_lic1.expiration_date = fields.Datetime.now() + relativedelta(days=7)
         self.assertEqual(fitness_lic1.activation_identifier, fitness_lic1.serial)
         # test exported values (even if comes from a private function)
@@ -122,14 +126,15 @@ class TestSoftwareLicenseToken(TransactionCase):
     @freeze_time("2023-12-10 15:00:00")
     def test_06_license_activation_details(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
+        fitness_lic1.expiration_date = fields.Datetime.now() + relativedelta(days=180)
         hardware_id = fitness_lic1.activate("my_device_uuid")
         _filter = ["my_device_uuid"]
         hw_data = fitness_lic1.get_hardwares_dict(_filter)
         my_data = hw_data["my_device_uuid"]
         self.assertEqual(my_data["hardware_identifier"], "my_device_uuid")
         self.assertEqual(my_data["date"], "2023-12-10 15:00:00")
-        self.assertEqual(my_data["validity_days"], 2)
-        self.assertEqual(my_data["validation_expiration_date"], "2023-12-12 15:00:00")
+        self.assertEqual(my_data["validity_days"], 180)
+        self.assertEqual(my_data["validation_expiration_date"], "2024-06-07 15:00:00")
         license_string = hardware_id.get_license_string()
         # check license header (remaining data is encrypted)
         self.assertRegex(license_string, r"# MyFitnessApp License \(id: 1001\)")

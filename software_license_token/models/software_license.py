@@ -88,3 +88,9 @@ class SoftwareLicense(models.Model):
         res = super()._prepare_export_vals(include_activation_identifier)
         res["expiration_date"] = fields.Datetime.to_string(self.expiration_date)
         return res
+
+    def _prepare_hardware_activation_vals(self, hardware):
+        res = super()._prepare_hardware_activation_vals(hardware)
+        if self.expiration_date:
+            res["validity_days"] = (self.expiration_date - fields.Datetime.now()).days
+        return res

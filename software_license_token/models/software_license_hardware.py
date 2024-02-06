@@ -60,7 +60,10 @@ class SoftwareLicenseHardware(models.Model):
 
     def _get_validation_expiration_date(self):
         self.ensure_one()
-        return self.validation_date + relativedelta(days=self.validity_days)
+        expiration_date = self.validation_date + relativedelta(days=self.validity_days)
+        if self.license_id.expiration_date:
+            expiration_date = min(expiration_date, self.license_id.expiration_date)
+        return expiration_date
 
     def get_license_string(self):
         self.ensure_one()
