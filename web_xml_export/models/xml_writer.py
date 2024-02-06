@@ -209,7 +209,7 @@ class XmlWriter(models.Model):
     def get_copy_data(self, model, id, result, fields=[]):
         res = []
         obj = self.env[model]
-        data = obj.browse([id][0]).read(fields)
+        data = obj.browse(id).read(fields)
         if isinstance(data, list):
             data = data[0]
         mod_fields = obj.fields_get()
@@ -311,6 +311,8 @@ class XmlWriter(models.Model):
 
     @api.model
     def generate_export_xml(self, model, fields, ids, import_compat):
+        global blank_dict
+        blank_dict = {}
         doc = minidom.Document()
         root = doc.createElement("odoo")
         doc.appendChild(root)
