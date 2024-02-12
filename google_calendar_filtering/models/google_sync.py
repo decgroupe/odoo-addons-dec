@@ -35,9 +35,9 @@ class GoogleSync(models.AbstractModel):
     @api.model
     def _sync_google2odoo(self, google_events: GoogleEvent, default_reminders=()):
         if self.env.cr.dbname in self._get_db_allowedlist():
-            return super()._sync_odoo2google(google_events, default_reminders)
+            return super()._sync_google2odoo(google_events, default_reminders)
         else:
-            _logger.info("_sync_odoo2google disabled")
+            _logger.info("_sync_google2odoo disabled")
             return None
 
     def _google_insert(
