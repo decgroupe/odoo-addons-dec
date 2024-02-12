@@ -11,7 +11,7 @@
                     string="Bookable"
                     help="Bookables like vehicles, rooms, etc."
                     name="filter_bookable"
-                    context='{"bookable": 1}'
+                    domain="[('partner_ids.bookable', '=', True)]"
                 />
             </xpath>
         </field>
