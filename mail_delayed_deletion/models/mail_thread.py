@@ -35,8 +35,7 @@ class MailThread(models.AbstractModel):
             message = bytes(message.data)
         if isinstance(message, str):
             message = message.encode("utf-8")
-        extract = getattr(email, "message_from_bytes", email.message_from_string)
-        msg_txt = extract(message)
+        msg_txt = email.message_from_bytes(message, policy=email.policy.SMTP)
 
         msg = self.message_parse(msg_txt, save_original=save_original)
         # Checks if Message-Id is already in the database but tagged to be
