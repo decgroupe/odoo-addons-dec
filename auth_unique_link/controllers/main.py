@@ -61,7 +61,7 @@ class AuthUniqueLink(Home):
         user_id = request.env["res.users"].sudo().search(domain, limit=1)
         if user_id:
             basic = request.params.get("basic", False)
-            user_id._send_signin_link_email(basic=basic)
+            user_id.with_user(user_id)._send_signin_link_email(basic=basic)
             # Create a context dictionary on a function level that will be
             # used by the translate function
             context = {"lang": user_id.lang}
