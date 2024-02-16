@@ -33,7 +33,7 @@
                 <button
                     name="action_snooze"
                     class="text-warning"
-                    attrs="{'invisible': ['|', '|', 
+                    attrs="{'invisible': ['|', '|',
                         ('activity_my_ids', '=', []),
                         ('activity_my_state', '=', 'planned'),
                         ('activity_my_state', '=', False),],
@@ -63,7 +63,7 @@
                 <progressbar
                     field="activity_my_state"
                     colors='{"planned": "success", "today": "warning", "overdue": "danger"}'
-                    sum_field="planned_revenue"
+                    sum_field="expected_revenue"
                     help="This bar allows to filter the opportunities based on scheduled activities."
                 />
             </xpath>
