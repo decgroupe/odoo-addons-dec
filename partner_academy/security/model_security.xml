@@ -6,13 +6,17 @@
         <field name="sequence">90</field>
     </record>
 
-    <record id="group_academy_user" model="res.groups">
+    <record model="res.groups" id="group_academy_user">
         <field name="name">User</field>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="category_id" ref="partner_academy.module_category_partner_academy"/>
     </record>
 
-    <record id="group_academy_manager" model="res.groups">
+    <record model="res.groups" id="base.group_user">
+        <field name="implied_ids" eval="[(4, ref('group_academy_user'))]" />
+    </record>
+
+    <record model="res.groups" id="group_academy_manager">
         <field name="name">Administrator</field>
         <field name="category_id" ref="partner_academy.module_category_partner_academy"/>
         <field name="implied_ids" eval="[(4, ref('group_academy_user'))]"/>
