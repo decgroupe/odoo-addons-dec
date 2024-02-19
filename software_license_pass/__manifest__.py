@@ -13,6 +13,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/assets.xml",
         "views/software_license_pass.xml",
         "views/software_license.xml",
         "views/software_license_pack.xml",
