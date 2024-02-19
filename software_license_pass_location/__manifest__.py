@@ -8,6 +8,7 @@
         "software_license_pass",
     ],
     "data": [
+        "views/assets.xml",
         "views/software_license_pass.xml",
     ],
     "installable": True,
