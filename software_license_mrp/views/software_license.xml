@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="software_license.software_license_tree_view" />
         <field name="arch" type="xml">
             <field name="product_id" position="after">
-                <field name="production_id" />
+                <field name="production_id" optional="hide"/>
             </field>
         </field>
     </record>
@@ -30,7 +30,7 @@
         <field name="arch" type="xml">
             <filter name="groupby_product_id" position="after">
                 <filter
-                    string="Pass"
+                    string="Production"
                     name="groupby_production_id"
                     context="{'group_by':'production_id'}"
                 />
