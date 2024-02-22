@@ -18,6 +18,13 @@ class MailMail(models.AbstractModel):
         "date/time",
     )
 
+    @api.model
+    def create(self, vals):
+        res = super(MailMail, self).create(vals)
+        name = "%s (%s)" % (res.message_id, res.subject)
+        _logger.info("✉️ Creating %s", name)
+        return res
+
     def _get_delayed_deletion_days(self):
         ICP = self.env["ir.config_parameter"].sudo()
         delayed_deletion_days = int(ICP.get_param("mail_delayed_deletion.days"))
@@ -69,5 +76,18 @@ class MailMail(models.AbstractModel):
 
     def unlink(self):
         for rec in self:
-            _logger.info("Deleting %s", rec.message_id)
+            name = "%s (%s) (mail_message_id: %s)" % (
+                rec.message_id,
+                rec.subject,
+                rec.mail_message_id,
+            )
+            if rec.delayed_deletion:
+                _logger.info(
+                    "✉️ Deleting %s scheduled to be deleted at %s (created at %s)",
+                    name,
+                    rec.delayed_deletion,
+                    rec.create_date,
+                )
+            else:
+                _logger.info("✉️ Deleting %s", name)
         return super().unlink()
