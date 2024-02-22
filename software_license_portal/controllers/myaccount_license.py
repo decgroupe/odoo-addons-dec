@@ -171,7 +171,7 @@ class LicenseCustomerPortal(CustomerPortal):
         )
 
     def _license_get_page_view_values(self, license_sudo, **kwargs):
-        files = request.env["ir.attachment"].search(
+        files = request.env["ir.attachment"].sudo().search(
             [("res_model", "=", "software.license"), ("res_id", "=", license_sudo.id)]
         )
         values = {
