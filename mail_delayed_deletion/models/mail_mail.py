@@ -58,7 +58,8 @@ class MailMail(models.AbstractModel):
         """Convert auto-delete to delayed deletion."""
         # If we have another error, we want to keep the mail.
         if not failure_type or failure_type == "RECIPIENT":
-            self._delay_auto_delete()
+            if not self.env.context.get("mail_immediate_deletion"):
+                self._delay_auto_delete()
         return super()._postprocess_sent_message(
             success_pids=success_pids,
             failure_reason=failure_reason,
