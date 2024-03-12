@@ -25,6 +25,7 @@
                             t-attf-action="/web/login_link{{ '?debug' if debug else '' }}"
                             method="post"
                         >
+                        <!-- <t t-debug="pdb"/> -->
                             <input
                                 type="hidden"
                                 name="csrf_token"
@@ -49,7 +50,9 @@
                             <p id="link-instruction" class="small">
                             We will email you a magic sign in link.
                             </p>
+
                             <p
+                                name="link-error"
                                 class="alert alert-danger"
                                 t-if="link_error"
                                 role="alert"
@@ -63,6 +66,7 @@
                                 </t>
                             </p>
                             <p
+                                name="link-success"
                                 class="alert alert-success"
                                 t-if="link_success"
                                 role="alert"
