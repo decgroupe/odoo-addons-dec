@@ -5,7 +5,7 @@ import logging
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
-from werkzeug import url_encode
+from werkzeug.urls import url_encode
 
 from odoo import api, fields, models
 from odoo.tools.misc import formatLang
