@@ -80,9 +80,9 @@ class MailThread(models.AbstractModel):
         strip_attachments=False,
         thread_id=None,
     ):
-        self._message_process_delete_duplicated_messages(
-            model, message, custom_values, save_original, thread_id
-        )
+        # self._message_process_delete_duplicated_messages(
+        #     model, message, custom_values, save_original, thread_id
+        # )
         thread_id = super().message_process(
             model=model,
             message=message,
