@@ -41,13 +41,13 @@ class MailThread(models.AbstractModel):
         # Checks if Message-Id is already in the database but tagged to be
         # deleted later (using `delayed_deletion`)
         if msg.get("message_id"):
-            existing_msg_ids = self.env["mail.mail"].search(
+            existing_mail_ids = self.env["mail.mail"].search(
                 [
                     ("message_id", "=", msg.get("message_id")),
                     ("delayed_deletion", "!=", False),
                 ]
             )
-            if existing_msg_ids:
+            if existing_mail_ids:
                 try:
                     # Like the super method, find possible routes for the
                     # message. If a ValueError exception is raised then no
@@ -61,6 +61,10 @@ class MailThread(models.AbstractModel):
                         "duplicated Message-Id %s before processing.",
                         msg.get("message_id"),
                     )
+                    # Instead of deleting mails, we delete messages (ignoring
+                    # notification value of mail object) that will also delete mails
+                    # via cascade
+                    existing_msg_ids = existing_mail_ids.mapped("mail_message_id")
                     existing_msg_ids.unlink()
                 except ValueError:
                     _logger.info(
