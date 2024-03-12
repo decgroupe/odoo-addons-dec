@@ -17,13 +17,12 @@ _logger = logging.getLogger(__name__)
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
-    def message_process(
+    def _message_process_delete_duplicated_messages(
         self,
         model,
         message,
         custom_values=None,
         save_original=False,
-        strip_attachments=False,
         thread_id=None,
     ):
         """Deleting mails, scheduled to be deleted, with duplicated
@@ -72,6 +71,18 @@ class MailThread(models.AbstractModel):
                         msg.get("message_id"),
                     )
 
+    def message_process(
+        self,
+        model,
+        message,
+        custom_values=None,
+        save_original=False,
+        strip_attachments=False,
+        thread_id=None,
+    ):
+        self._message_process_delete_duplicated_messages(
+            model, message, custom_values, save_original, thread_id
+        )
         thread_id = super().message_process(
             model=model,
             message=message,
