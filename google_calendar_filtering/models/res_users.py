@@ -28,3 +28,9 @@ class User(models.Model):
         else:
             _logger.info("_sync_all_google_calendar disabled")
             return None
+
+    def sync_google_calendar(self):
+        google = GoogleCalendarService(self.env['google.service'])
+        for user in self:
+            if user.google_calendar_rtoken:
+                user.with_user(user).sudo()._sync_google_calendar(google)
