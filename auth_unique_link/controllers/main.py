@@ -7,12 +7,13 @@ import werkzeug
 
 import odoo
 from odoo import _, http
-from odoo.addons.web.controllers.main import Home, ensure_db
+from odoo.addons.web.controllers.main import Home, ensure_db, SIGN_UP_REQUEST_PARAMS
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
 URL_BASE = "/api/auth_unique_link/v1"
+SIGN_UP_REQUEST_PARAMS.update({"link_error", "link_success", "show_create_account"})
 
 
 class AuthUniqueLink(Home):
@@ -62,7 +63,7 @@ class AuthUniqueLink(Home):
         user_id = request.env["res.users"].sudo().search(domain, limit=1)
         if user_id:
             basic = request.params.get("basic", False)
-            user_id.with_user(user_id)._send_signin_link_email(basic=basic)
+            user_id.with_user(odoo.SUPERUSER_ID).sudo()._send_signin_link_email(basic=basic)
             # Create a context dictionary on a function level that will be
             # used by the translate function
             context = {"lang": user_id.lang}
@@ -82,14 +83,16 @@ class AuthUniqueLink(Home):
     def web_login_link_request(self, **kw):
         query = {
             "redirect": request.params.get("redirect"),
+            "email": request.params.get("email"),
         }
         res = self._send_signin_link(request.params["email"])
         query.update(res)
-        return http.local_redirect(
+        response = http.local_redirect(
             path="/web/login",
             query=query,
             keep_hash=True,
         )
+        return response
 
     @http.route(
         URL_BASE + "/SendLink",
