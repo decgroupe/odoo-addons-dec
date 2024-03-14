@@ -1,8 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
+import logging
+
 from odoo import api, fields, models
 from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
+
+_logger = logging.getLogger(__name__)
 
 
 class IrMailServer(models.Model):
@@ -20,6 +24,14 @@ class IrMailServer(models.Model):
         string="Auto BCC addresses",
         help="Comma-separated list of auto Bcc addresses",
     )
+
+    def _get_mail_message(self, message):
+        message_id = self.env["mail.message"].search(
+            [("message_id", "=", message.get("message-id"))],
+            order="id desc",
+            limit=1,
+        )
+        return message_id
 
     def get_mail_server(self, mail_server_id, smtp_server):
         # Get mail_server like it's done in
@@ -44,28 +56,25 @@ class IrMailServer(models.Model):
         auto_bcc_addresses = mail_server.auto_bcc_addresses
 
         if mail_server.auto_add_sender:
+            # retrieve original message
+            mail_message_id = self._get_mail_message(message)
             ignore_auto_add_sender = False
             from_rfc2822 = extract_rfc2822_addresses(message["From"])
-            if self.env.context.get("channel_email_from"):
+            if mail_message_id.model == "mail.channel":
                 # Do not automatically add sender to bcc if the message comes
                 # from a channel
                 channel_email_from_rfc2822 = extract_rfc2822_addresses(
-                    self.env.context.get("channel_email_from")
+                    mail_message_id.email_from
                 )
-                if from_rfc2822 == channel_email_from_rfc2822:
+                if from_rfc2822[0] == channel_email_from_rfc2822[0]:
+                    _logger.info("Do not add %s to BCC - R1", from_rfc2822[0])
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
-                message_id = message.get("Message-Id")
-                mail_authors = self.env.context.get("mail_authors", {})
-                author_id = mail_authors.get(message_id, False)
-                if author_id:
-                    message.get("Message-Id")
-                    partner_id = self.env["res.partner"].browse(author_id)
-                else:
-                    partner_id = self.env["res.partner"].search(
-                        [("email", "=", from_rfc2822[0])], limit=1
-                    )
+                partner_id = self.env["res.partner"].search(
+                    [("email", "=", from_rfc2822[0])], limit=1
+                )
                 if partner_id and not partner_id.copy_sent_email:
+                    _logger.info("Do not add %s to BCC - R2", from_rfc2822[0])
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 if not auto_bcc_addresses:
@@ -74,6 +83,9 @@ class IrMailServer(models.Model):
                     auto_bcc_addresses += "," + message["From"]
 
         if auto_bcc_addresses:
+            _logger.info(
+                "Message-Id %r BCC to %s", message.get("message-id"), auto_bcc_addresses
+            )
             if not message.get("Bcc"):
                 message["Bcc"] = auto_bcc_addresses
             else:
