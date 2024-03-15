@@ -43,14 +43,12 @@ odoo.define('web_form_orderedby.FormController', function (require) {
                     var field = widget.name;
                     if (field in orderedBy[formKey]) {
                         // Retrieve model from widget dynamic-id
-                        var list = self.model.localData[widget.renderer.state.id];
-                        // Apply order-by and refresh widget only if needed
-                        if (list.orderedBy != self.orderedBy[formKey][field]) {
-                            list.orderedBy = self.orderedBy[formKey][field];
-                            // Execute update like _onToggleColumnOrder
+                        var list_id = widget.renderer.state.id;
+                        // Execute update like _onToggleColumnOrder
+                        self.model.restoreSort(list_id, self.orderedBy[formKey][field]).then(function () {
                             var state = self.model.get(self.handle);
                             self.renderer.confirmChange(state, state.id, [field]);
-                        }
+                        });
                     }
                 });
             });
