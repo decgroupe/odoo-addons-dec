@@ -42,6 +42,7 @@ class AuthUniqueLink(Home):
         try:
             uid = request.session.authenticate(request.session.db, login, token)
             request.params["login_success"] = True
+            request.params["password"] = ""
             self.web_login()
             request.env.user.signin_link_cancel()
             return http.redirect_with_hash(self._login_redirect(uid, redirect=redirect))
