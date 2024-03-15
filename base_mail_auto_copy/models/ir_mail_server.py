@@ -61,6 +61,9 @@ class IrMailServer(models.Model):
             ignore_auto_add_sender = False
             from_rfc2822 = extract_rfc2822_addresses(message["From"])
             if mail_message_id.model == "mail.channel":
+                # catchall_alias = self.env['ir.config_parameter'].sudo().get_param('mail.catchall.alias')
+                # TEMP: Test if it fixes duplicates
+                auto_bcc_addresses = False
                 # Do not automatically add sender to bcc if the message comes
                 # from a channel
                 channel_email_from_rfc2822 = extract_rfc2822_addresses(
@@ -93,6 +96,28 @@ class IrMailServer(models.Model):
                 message["Bcc"] += "," + auto_bcc_addresses
 
     @api.model
+    def _debug_outgoing_message(self, message):
+        _logger.info(
+            "📮 Outgoing E-Mail\n"
+            "   Message-Id: %r\n"
+            "  Return-Path: %s\n"
+            "     Reply-To: %s\n"
+            "         From: %s\n"
+            "           To: %s\n"
+            "           Cc: %s\n"
+            "          Bcc: %s\n"
+            "      Subject: %s\n",
+            message.get("Message-Id"),
+            message.get("Return-Path"),
+            message.get("Reply-To"),
+            message.get("From"),
+            message.get("To"),
+            message.get("Cc"),
+            message.get("Bcc"),
+            message.get("Subject"),
+        )
+
+    @api.model
     def send_email(
         self,
         message,
@@ -110,6 +135,7 @@ class IrMailServer(models.Model):
             self.update_cc_addresses(mail_server, message)
             self.update_bcc_addresses(mail_server, message)
 
+        self._debug_outgoing_message(message)
         message_id = super(IrMailServer, self).send_email(
             message,
             mail_server_id=mail_server_id,
