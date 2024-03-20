@@ -1,35 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+    <template
+        id="view_email_template_notification"
+        inherit_id="mail_qweb.view_email_template_notification"
+    >
+        <xpath expr="//div[@id='content_subject_container']" position="inside">
+            <t t-call="mail_qweb.view_email_template_part_user_avatar" />
+        </xpath>
+    </template>
+
     <template id="view_email_template_login_edit">
+        <t t-set="user" t-value="object" />
         <t t-set="new_login" t-value="env.context.get('new_login')" />
         <t t-set="previous_login" t-value="env.context.get('previous_login')" />
+        <t t-set="notify_account_changes" t-value="True" />
 
-        <t t-call="mail_qweb.view_email_template_notification">
+        <t t-call="res_users_login_sync.view_email_template_notification">
             <t t-set="content_message">
                 <t t-if="new_login">
                     Your login is now set to <t t-esc="new_login" />
+                    <br/>
                     <small>
                         <t t-if="previous_login">
                         (replacing <t t-esc="previous_login" />)
                         </t>
                     </small>
                 </t>
+            </t>
+            <t t-set="content_message_action">
                 <t t-if="new_login">
-                    <div class="div_content_message_bottom">
-                        <a
-                            t-attf-href="/web/login?auth_login={{env.context.get('new_login')}}"
-                            target="_blank"
-                        >
-                            Go to My Account
-                        </a>
-                    </div>
+                    <a
+                        t-attf-href="/web/login?auth_login={{env.context.get('new_login')}}"
+                        target="_blank"
+                    >
+                        Go to My Account
+                    </a>
                 </t>
             </t>
-            <t t-set="content_footer">
+            <t t-set="content_message_bottom">
                 Note that for security reason, a copy of this notification has been sent to your old and your new login
             </t>
         </t>
+
     </template>
 
 </odoo>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="view_email_template_part_avatar">
+    <template id="view_email_template_part_user_avatar">
         <style>
             .table_avatar {
                 margin-top:8px;
@@ -31,14 +31,14 @@
                     <td style="padding-right:8px" align="right">
                         <img
                             class="img_avatar"
-                            t-attf-src="/web/image/res.users/{{object.id}}/image_128"
+                            t-attf-src="/web/image/res.users/{{user.id}}/image_128"
                             width="20"
                             height="20"
                         />
                     </td>
                     <td>
-                        <a t-if="object.login">
-                            <t t-esc="object.login" />
+                        <a t-if="user.login">
+                            <t t-esc="user.login" />
                         </a>
                     </td>
                 </tr>
@@ -48,14 +48,14 @@
 
     <template id="view_email_template_part_footer">
         <style>
-            .div_footer {
+            #footer {
                 font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.54);
                 font-size:11px;
                 line-height:18px;
                 padding-top:12px;
                 text-align:center;
             }
-            .div_footer a {
+            #footer a {
                 font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.54);
                 font-size:11px;
                 line-height:18px;
@@ -63,10 +63,16 @@
                 text-align:center;
             }
         </style>
-        <div class="div_footer">
-            <div>
-                You have received this email to notify you of important changes to your account and services
+        <div id="footer">
+            <div id="footer_message">
+                <t t-if="footer_message">
+                    <t t-raw="footer_message" />
+                </t>
+                <t t-if="notify_account_changes">
+                    You have received this email to notify you of important changes to your account and services
+                </t>
             </div>
+
             <!-- <div>Cet e-mail vous a été envoyé pour vous informer de modifications importantes apportées à votre compte (DEC-ID) et aux services DEC que vous utilisez.</div> -->
             <div>
                 <t t-esc="'%s %d' % ('©', datetime.datetime.now().year)" />
@@ -127,9 +133,10 @@
                     }
                     .img_logo {
                         margin-bottom:16px;
+                        height:24px;
                     }
-                    
-                    .div_content_subject_container {
+
+                    #content_subject_container {
                         font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
                         border-bottom:thin solid #dadce0;
                         color:rgba(0,0,0,0.87);
@@ -138,11 +145,11 @@
                         text-align:center;
                         word-break:break-word;
                     }
-                    .div_content_subject {
+                    #content_subject {
                         font-size:24px;
                     }
 
-                    .div_content_message {
+                    #content_message {
                         font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
                         font-size:14px;
                         color:rgba(0,0,0,0.87);
@@ -150,11 +157,11 @@
                         padding-top:20px;
                         text-align:center;
                     }
-                    .div_content_message_bottom {
+                    #content_message_action {
                         padding-top:32px;
                         text-align:center;
                     }
-                    .div_content_message_bottom a {
+                    #content_message a {
                         font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
                         line-height:16px;
                         color:#ffffff;
@@ -167,7 +174,7 @@
                         border-radius:5px;
                         min-width:90px;
                     }
-                    .div_content_footer {
+                    #content_message_bottom {
                         font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
                         padding-top:20px;
                         font-size:12px;
@@ -176,7 +183,7 @@
                         letter-spacing:0.3px;
                         text-align:center;
                     }
-                    .div_content_footer a {
+                    #content_message_bottom a {
                         color:rgba(0,0,0,0.87);
                         text-decoration:inherit;
                     }
@@ -217,40 +224,43 @@
                                                             align="center"
                                                         >
                                                             <img
-                                                                t-attf-src="/web/image/website/{{env.user.company_id.id}}/logo"
                                                                 class="img_logo"
+                                                                t-attf-src="/web/image/website/{{env.user.company_id.id}}/logo"
                                                                 t-attf-alt="{{env.user.company_id.name}}"
-                                                                height="24"
                                                             />
                                                             <div
-                                                                class="div_content_subject_container"
+                                                                id="content_subject_container"
                                                             >
                                                                 <div
-                                                                    class="div_content_subject"
+                                                                    id="content_subject"
                                                                 >
                                                                     <t
                                                                         t-esc="email_template.subject"
                                                                     />
                                                                 </div>
-                                                                <t
-                                                                    t-call="mail_qweb.view_email_template_part_avatar"
-                                                                />
                                                             </div>
 
                                                             <div
                                                                 t-if="content_message"
-                                                                class="div_content_message"
+                                                                id="content_message"
                                                             >
                                                                 <t
                                                                     t-raw="content_message"
                                                                 />
+                                                                <div
+                                                                    id="content_message_action"
+                                                                >
+                                                                <t
+                                                                        t-raw="content_message_action"
+                                                                    />
+                                                                </div>
                                                             </div>
                                                             <div
-                                                                t-if="content_footer"
-                                                                class="div_content_footer"
+                                                                t-if="content_message_bottom"
+                                                                id="content_message_bottom"
                                                             >
                                                                 <t
-                                                                    t-raw="content_footer"
+                                                                    t-raw="content_message_bottom"
                                                                 />
                                                             </div>
                                                         </div>
@@ -273,7 +283,7 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- 
+                <!--
                 <img style="float: right" t-attf-src="data:image;base64,{{env.user.company_id.logo}}" />
                 <!~~ if some template calling us sets this variable, we print a h1 tag /~~>
                 <h1 t-if="email_heading">
