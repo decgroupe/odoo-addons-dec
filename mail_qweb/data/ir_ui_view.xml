@@ -148,7 +148,16 @@
                     #content_subject {
                         font-size:24px;
                     }
-
+                    #content_warning {
+                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                        text-align:center;
+                        color: #FFFFFF;
+                        font-size: 10px;
+                        background-color: #414141;
+                        border-radius:8px;
+                        padding: 5px;
+                        margin-bottom: 16px;
+                    }
                     #content_message {
                         font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
                         font-size:14px;
@@ -157,11 +166,14 @@
                         padding-top:20px;
                         text-align:center;
                     }
+                    #content_message ul {
+                        text-align:left;
+                    }
                     #content_message_action {
                         padding-top:32px;
                         text-align:center;
                     }
-                    #content_message a {
+                    #content_message_action a {
                         font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
                         line-height:16px;
                         color:#ffffff;
@@ -170,24 +182,33 @@
                         font-size:14px;
                         display:inline-block;
                         padding:10px 24px;
-                        background-color:#875a7b;
+                        background-color:#414141;
                         border-radius:5px;
                         min-width:90px;
                     }
                     #content_message_bottom {
                         font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                        padding-top:20px;
                         font-size:12px;
                         line-height:16px;
                         color:#5f6368;
                         letter-spacing:0.3px;
+                        padding-top:20px;
                         text-align:center;
                     }
                     #content_message_bottom a {
                         color:rgba(0,0,0,0.87);
                         text-decoration:inherit;
                     }
-
+                    #content_message_signature {
+                        border-top:thin solid #dadce0;
+                        margin-top: 30px;
+                    }
+                    #content_message_signature_txt {
+                        margin-top: 10px;
+                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                        font-size:12px;
+                        color:rgba(0,0,0,0.64);
+                    }
                 </style>
             </head>
             <body>
@@ -219,6 +240,25 @@
                                                 <tr>
                                                     <td style="width:8px" width="8" />
                                                     <td>
+                                                        <div id="header">
+                                                            <div id="header_message">
+                                                                <t
+                                                                    t-if="header_message"
+                                                                >
+                                                                    <t
+                                                                        t-raw="header_message"
+                                                                    />
+                                                                </t>
+                                                                <div
+                                                                    id="content_warning"
+                                                                    t-if="content_warning"
+                                                                >
+                                                                    <t
+                                                                        t-raw="content_warning"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div
                                                             class="div_content_border"
                                                             align="center"
@@ -233,9 +273,10 @@
                                                             >
                                                                 <div
                                                                     id="content_subject"
+                                                                    t-if="content_subject"
                                                                 >
                                                                     <t
-                                                                        t-esc="email_template.subject"
+                                                                        t-esc="content_subject"
                                                                     />
                                                                 </div>
                                                             </div>
@@ -263,6 +304,22 @@
                                                                     t-raw="content_message_bottom"
                                                                 />
                                                             </div>
+                                                            <div
+                                                                t-if="content_message_signature"
+                                                                id="content_message_signature"
+                                                            >
+                                                                <t
+                                                                    t-raw="content_message_signature"
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                t-if="content_message_signature_txt"
+                                                                id="content_message_signature_txt"
+                                                            >
+                                                                <t
+                                                                    t-raw="content_message_signature_txt"
+                                                                />
+                                                            </div>
                                                         </div>
 
                                                         <t
@@ -283,28 +340,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!--
-                <img style="float: right" t-attf-src="data:image;base64,{{env.user.company_id.logo}}" />
-                <!~~ if some template calling us sets this variable, we print a h1 tag /~~>
-                <h1 t-if="email_heading">
-                    <t t-esc="email_heading" />
-                </h1>
-                <t t-raw="0" />
-                <!~~ use some standard footer if the user doesn't have a signature /~~>
-                <footer t-if="not email_use_user_signature">
-                    <p>
-                        <a t-att-href="env.user.company_id.website">
-                            <t t-esc="env.user.company_id.name" />
-                        </a>
-                    </p>
-                    <p>
-                        <t t-esc="env.user.company_id.phone" />
-                    </p>
-                </footer>
-                <footer t-if="email_use_user_signature">
-                    <t t-raw="env.user.signature" />
-                </footer>
-                 -->
             </body>
         </html>
     </template>
