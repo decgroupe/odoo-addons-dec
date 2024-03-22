@@ -4,6 +4,7 @@
     <template
         id="view_email_template_notification"
         inherit_id="mail_qweb.view_email_template_notification"
+        primary="True"
     >
         <xpath expr="//div[@id='content_subject_container']" position="inside">
             <t t-call="mail_qweb.view_email_template_part_user_avatar" />
