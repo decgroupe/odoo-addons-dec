@@ -384,6 +384,9 @@
                                                                         t-esc="content_subject"
                                                                     />
                                                                 </div>
+                                                                <t t-if="user">
+                                                                    <t t-call="mail_qweb.view_email_template_part_user_avatar" />
+                                                                </t>
                                                             </div>
 
                                                             <div
