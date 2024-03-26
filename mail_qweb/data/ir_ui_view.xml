@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+    <template id="view_email_template_part_partners_avatar">
+        <style>
+            .table_avatar {
+                margin-top:8px;
+                width:100%;
+                align:center;
+            }
+            .tr_avatar {
+                line-height:normal;
+            }
+            .td_avatar {
+                width:10%;
+                padding-right:8px;
+                text-align:right;
+            }
+            .td_partner {
+                width:70%;
+            }
+            .td_partner a {
+                text-decoration:none;
+                font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                color:rgba(0,0,0,0.87);
+                font-size:12px;
+                line-height:16px;
+            }
+            .td_notify {
+                width:20%;
+            }
+            .img_avatar {
+                width:16px;
+                height:16px;
+                vertical-align:sub;
+                border-radius:50%;
+            }
+        </style>
+        <table class="table_avatar" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <t t-foreach="partners" t-as="partner">
+                    <tr class="tr_avatar">
+                        <td class="td_avatar">
+                            <img
+                                class="img_avatar"
+                                t-attf-src="/web/image/res.partner/{{partner.id}}/image_128"
+                            />
+                        </td>
+                        <td class="td_partner">
+                            <a t-if="partner">
+                                <a t-attf-href="mailto:{{partner.email_formatted}}"><t
+                                        t-esc="partner.display_name"
+                                    /></a>
+                            </a>
+                        </td>
+                        <td class="td_notify">
+                            <i t-if="notifs.get(partner.id) == 'email'">e-mail</i>
+                            <i t-if="notifs.get(partner.id) == 'inbox'">odoo</i>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+
+
     <template id="view_email_template_part_user_avatar">
         <style>
             .table_avatar {
@@ -106,6 +169,30 @@
         </div>
     </template>
 
+    <template id="view_email_template_part_also_notified">
+        <!-- <t t-esc="notification_group_name"/> -->
+        <p class="notify_title">Also notified:</p>
+        <t t-foreach="recipients_groups_data" t-as="recipients_group_data">
+            <p
+                class="notify_group"
+                t-if="recipients_group_data['notification_group_name'] == 'user'"
+            >Internal Users</p>
+            <p
+                class="notify_group"
+                t-if="recipients_group_data['notification_group_name'] in ('portal', 'portal_customer')"
+            >Portal Users</p>
+            <p
+                class="notify_group"
+                t-if="recipients_group_data['notification_group_name'] == 'customer'"
+            >External Partners</p>
+            <t t-set="partners" t-value="recipients_group_data['_recipients']" />
+            <t t-set="notifs" t-value="recipients_group_data['_notif_mode']" />
+            <div>
+                <t t-call="mail_qweb.view_email_template_part_partners_avatar" />
+            </div>
+        </t>
+    </template>
+
     <template id="view_email_template_notification">
         <html>
             <head>
@@ -190,7 +277,7 @@
                         font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
                         font-size:12px;
                         line-height:16px;
-                        color:#5f6368;
+                        color:#606060;
                         letter-spacing:0.3px;
                         padding-top:20px;
                         text-align:center;
@@ -199,12 +286,30 @@
                         color:rgba(0,0,0,0.87);
                         text-decoration:inherit;
                     }
+                    #content_message_bottom_cc {
+                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                        font-size:12px;
+                        line-height:16px;
+                        color:#606060;
+                        letter-spacing:0.3px;
+                        padding-top:20px;
+                        text-align:left;
+                        overflow: auto;
+                    }
+                    #content_message_bottom_cc .notify_title {
+                        text-align:left;
+                        text-decoration: underline;
+                        margin: 0;
+                    }
+                    #content_message_bottom_cc .notify_group {
+                        text-align:left;
+                        font-weight:600;
+                        margin-bottom: 0;
+                        margin-left: 10px;
+                    }
                     #content_message_signature {
                         border-top:thin solid #dadce0;
                         margin-top: 30px;
-                    }
-                    #content_message_signature_txt {
-                        margin-top: 10px;
                         font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
                         font-size:12px;
                         color:rgba(0,0,0,0.64);
@@ -290,6 +395,7 @@
                                                                 />
                                                                 <div
                                                                     id="content_message_action"
+                                                                    t-if="content_message_action"
                                                                 >
                                                                 <t
                                                                         t-raw="content_message_action"
@@ -305,19 +411,19 @@
                                                                 />
                                                             </div>
                                                             <div
+                                                                t-if="content_message_bottom_cc"
+                                                                id="content_message_bottom_cc"
+                                                            >
+                                                                <t
+                                                                    t-raw="content_message_bottom_cc"
+                                                                />
+                                                            </div>
+                                                            <div
                                                                 t-if="content_message_signature"
                                                                 id="content_message_signature"
                                                             >
                                                                 <t
                                                                     t-raw="content_message_signature"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                t-if="content_message_signature_txt"
-                                                                id="content_message_signature_txt"
-                                                            >
-                                                                <t
-                                                                    t-raw="content_message_signature_txt"
                                                                 />
                                                             </div>
                                                         </div>
@@ -342,6 +448,102 @@
                 </div>
             </body>
         </html>
+    </template>
+
+    <!-- Override Odoo's default mail notification layout -->
+    <template id="mail.message_notification_email">
+        <t t-call="mail_qweb.view_email_template_notification">
+            <t t-set="env" t-value="message.env" />
+            <t t-set="content_subject">
+                <t t-if="message.subject">
+                    <t t-raw="message.subject" />
+                </t>
+                <t t-else="">
+                    <t t-raw="record.name" />
+                </t>
+            </t>
+            <t t-set="header_message">
+                <div
+                    t-if="has_button_access"
+                    itemscope="itemscope"
+                    itemtype="http://schema.org/EmailMessage"
+                >
+                    <div
+                        itemprop="potentialAction"
+                        itemscope="itemscope"
+                        itemtype="http://schema.org/ViewAction"
+                    >
+                        <link itemprop="target" t-att-href="button_access['url']" />
+                        <link itemprop="url" t-att-href="button_access['url']" />
+                        <meta itemprop="name" t-att-content="button_access['title']" />
+                    </div>
+                </div>
+            </t>
+            <t t-set="content_warning" t-if="subtype.internal">
+                <strong>Internal communication :</strong>
+                Replying will post an internal note. Followers won't receive any email notification.
+            </t>
+            <t
+                t-set="content_message_action"
+                t-if="(has_button_access or len(actions) &gt; 0)"
+            >
+                <div summary="o_mail_notification">
+                    <t t-if="has_button_access">
+                        <a t-att-href="button_access['url']">
+                            <t t-esc="button_access['title']" />
+                        </a>
+                    </t>
+                    <t t-if="actions">
+                        <t t-foreach="actions" t-as="action">
+                            |
+                            <a t-att-href="action['url']">
+                                <t t-esc="action['title']" />
+                            </a>
+                        </t>
+                    </t>
+                </div>
+            </t>
+            <t t-set="content_message">
+                <div t-raw="message.body" />
+                <ul t-if="tracking_values">
+                    <t t-foreach="tracking_values" t-as="tracking">
+                        <li><t t-esc="tracking[0]" />: <t
+                                t-esc="tracking[1]"
+                            /> -&gt; <t t-esc="tracking[2]" /></li>
+                    </t>
+                </ul>
+            </t>
+
+            <t
+                t-set="content_message_bottom_cc"
+                t-if="notification_group_name not in ('customer','portal','portal_customer')"
+            >
+                <t t-call="mail_qweb.view_email_template_part_also_notified" />
+            </t>
+
+            <t t-set="content_message_signature" t-if="signature">
+                <t t-raw="signature" />
+            </t>
+        </t>
+    </template>
+
+    <!-- Override Odoo's default mail notification light layout -->
+    <template id="mail.mail_notification_light">
+        <t t-call="mail_qweb.view_email_template_notification">
+            <t t-set="env" t-value="message.env" />
+            <t t-set="content_subject">
+                <t t-raw="message.subject" />
+            </t>
+            <t t-set="content_message">
+                <t t-raw="message.body" />
+            </t>
+            <t
+                t-set="content_message_bottom_cc"
+                t-if="notification_group_name not in ('customer','portal','portal_customer')"
+            >
+                <t t-call="mail_qweb.view_email_template_part_also_notified" />
+            </t>
+        </t>
     </template>
 
 </odoo>
