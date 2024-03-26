@@ -25,3 +25,13 @@ class CrmLead(models.Model):
                 rec.original_message_id = message_ids[0]
             else:
                 rec.original_message_id = False
+
+    @api.model
+    def message_new(self, msg_dict, custom_values=None):
+        if custom_values is None:
+            custom_values = {}
+        defaults = {}
+        if msg_dict.get("body"):
+            defaults["description"] = msg_dict.get("body")
+        defaults.update(custom_values)
+        return super().message_new(msg_dict, custom_values=defaults)
