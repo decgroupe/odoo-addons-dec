@@ -5,13 +5,14 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "web",
-        "mail",
+        "mail_qweb",
         "portal",  # needed for unit testing only
     ],
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "data/ir_config_parameter.xml",
+        "data/ir_ui_view.xml",
         "data/mail_template.xml",
         "templates/login_templates.xml",
         "views/assets.xml",

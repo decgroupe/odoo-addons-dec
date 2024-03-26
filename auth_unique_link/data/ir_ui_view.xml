@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="view_mail_template_signin_link">
+        <t t-call="mail_qweb.view_email_template_notification">
+            <t t-set="notify_account_changes" t-value="True" />
+            <t t-set="notified_user" t-value="object" />
+            <t t-set="content_message">
+                <div>
+                    <p>Click on the button below to be logged in to our portal</p>
+                </div>
+            </t>
+            <t t-set="content_message_action">
+                <a t-att-href="object.signin_link_url">Log me in</a>
+            </t>
+        </t>
+    </template>
+
+    <template id="view_mail_template_signin_link_basic">
+        <style>
+            #code {
+                border:2px solid #e2e2e2;
+                font-family:'Roboto',sans-serif;
+                font-weight:bold;
+                font-size:30px;
+                line-height:1.1;
+                text-align:center;
+                text-decoration:none;
+                display:block;
+                border-radius:8px;
+                color:#333;
+                letter-spacing:5px;
+                padding:10px;
+                margin:10px auto;
+                width: fit-content;
+            }
+        </style>
+        <t t-call="mail_qweb.view_email_template_notification">
+
+            <t t-set="notify_account_changes" t-value="True" />
+            <t t-set="notified_user" t-value="object" />
+            <t t-set="content_message">
+                <div>
+                    <p>
+                        Use the following code as <b
+                        >password</b> to log in to our portal
+                    </p>
+                </div>
+                <div id="code">
+                    <span t-esc="object.sudo().signin_link_token">012345</span>
+                </div>
+            </t>
+            <t t-set="content_message_action">
+                <a t-attf-href="/web/login?auth_login={{object.email}}">Go To Login Page</a>
+            </t>
+        </t>
+    </template>
+
+</odoo>
