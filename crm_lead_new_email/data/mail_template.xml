@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
 
-    <record model="mail.template" id="email_template">
+    <record model="mail.template" id="mail_template_new_email_lead">
         <field name="name">New Lead</field>
         <field name="model_id" ref="crm.model_crm_lead" />
         <field
@@ -15,28 +15,8 @@
         <field
             name="lang"
         >${object.partner_id.lang or object.company_id.partner_id.lang}</field>
-        <field name="body_html" type="html">
-            <div style="margin: 0px; padding: 0px;">
-                <p>Message from ${object.email_from}</p>
-                % if not object.partner_id:
-                <p
-                    style="color: rgb(231, 99, 99);"
-                >No contact matches were found for this email.<br />
-                It is advisable to create a contact associated with this email to enable automatic recognition of incoming messages.
-                </p>
-                % endif
-                <a
-                    href="${'/mail/view?model=%s\u0026res_id=%s' % ('crm.lead', object.id)}"
-                    target="_blank"
-                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
-                >Open in Odoo</a>
-                % if object.original_message_id.body:
-                <p>
-                ${object.original_message_id.body|safe}
-                </p>
-                % endif
-            </div>
-        </field>
+        <field name="body_type">qweb</field>
+        <field name="body_view_id" ref="view_mail_template_new_email_lead" />
     </record>
 
 </odoo>

@@ -8,7 +8,7 @@
         <field name="trigger">on_create</field>
         <field name="state">email</field>
         <field name="filter_domain">[["type","=","lead"]]</field>
-        <field name="template_id" ref="crm_lead_new_email.email_template" />
+        <field name="template_id" ref="crm_lead_new_email.mail_template_new_email_lead" />
     </record>
 
 </odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="view_mail_template_new_email_lead">
+        <t t-call="mail_qweb.view_email_template_notification">
+
+            <t t-set="content_warning" t-if="not object.partner_id">
+                <strong>No match found for <t t-esc="object.email_from" />:</strong>
+                It is advisable to create a contact associated with this email to enable automatic recognition of incoming messages.
+            </t>
+
+            <t t-set="content_message">
+                <p>
+                    <t t-if="object.description">
+                        <t t-raw="object.description" />
+                    </t>
+                    <t t-elif="object.original_message_id.body">
+                        <t t-raw="object.original_message_id.body" />
+                    </t>
+                    <t t-else="">(No text)</t>
+                </p>
+            </t>
+            <t t-set="content_message_action">
+                <a
+                    t-att-href="'/mail/view?model=%s\u0026res_id=%s' % ('crm.lead', object.id)"
+                >
+                    Open Lead
+                </a>
+            </t>
+        </t>
+    </template>
+
+</odoo>

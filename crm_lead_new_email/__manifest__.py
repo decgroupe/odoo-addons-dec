@@ -6,8 +6,10 @@
     "depends": [
         "crm",
         "base_automation",
+        "mail_qweb",
     ],
     "data": [
+        "data/ir_ui_view.xml",
         "data/mail_template.xml",
         "data/base_automation.xml",
     ],
