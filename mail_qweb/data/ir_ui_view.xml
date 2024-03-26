@@ -94,14 +94,14 @@
                     <td style="padding-right:8px" align="right">
                         <img
                             class="img_avatar"
-                            t-attf-src="/web/image/res.users/{{user.id}}/image_128"
+                            t-attf-src="/web/image/res.users/{{notif_user.id}}/image_128"
                             width="20"
                             height="20"
                         />
                     </td>
                     <td>
-                        <a t-if="user.login">
-                            <t t-esc="user.login" />
+                        <a t-if="notified_user.login">
+                            <t t-esc="notified_user.login" />
                         </a>
                     </td>
                 </tr>
@@ -384,7 +384,7 @@
                                                                         t-esc="content_subject"
                                                                     />
                                                                 </div>
-                                                                <t t-if="user">
+                                                                <t t-if="notified_user">
                                                                     <t t-call="mail_qweb.view_email_template_part_user_avatar" />
                                                                 </t>
                                                             </div>

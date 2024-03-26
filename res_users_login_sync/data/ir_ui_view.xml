@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="view_email_template_login_edit">
-        <t t-set="user" t-value="object" />
+        <t t-set="notified_user" t-value="object" />
         <t t-set="new_login" t-value="env.context.get('new_login')" />
         <t t-set="previous_login" t-value="env.context.get('previous_login')" />
         <t t-set="notify_account_changes" t-value="True" />
