@@ -381,7 +381,7 @@
                                                                     t-if="content_subject"
                                                                 >
                                                                     <t
-                                                                        t-esc="content_subject"
+                                                                        t-raw="content_subject"
                                                                     />
                                                                 </div>
                                                                 <t t-if="notified_user">
