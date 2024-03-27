@@ -14,6 +14,7 @@
         "security/ir.model.access.csv",
         "wizard/merge_project.xml",
         "wizard/merge_task.xml",
+        "data/ir_ui_view.xml",
         "data/mail_template_project.xml",
         "data/mail_template_task.xml",
     ],

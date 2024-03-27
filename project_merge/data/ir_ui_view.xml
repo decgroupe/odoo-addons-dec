@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template
+        id="view_email_template_notification_diff"
+        inherit_id="mail_qweb.view_email_template_notification"
+        primary="True"
+    >
+        <style>
+            #diff {
+                width: 100%;
+                border: 1px solid #CCC;
+                border-collapse: collapse;
+            }
+            #diff .column_header {
+                color: white;
+                background-color: #414141;
+            }
+            #diff tr {
+                height: 30px;
+            }
+            #diff td {
+                width: 33%;
+            }
+        </style>
+    </template>
+
+    <template id="view_mail_template_merged_projects">
+        <t t-call="project_merge.view_email_template_notification_diff">
+
+            <t t-if="env.context.get('src_object')">
+                <t t-set="src_object_id" t-value="env.context.get('src_object')" />
+            </t>
+            <t t-else="">
+                <!-- Use same object as fallback to test this template -->
+                <t t-set="src_object_id" t-value="object.dst_object_id" />
+            </t>
+
+            <t t-set="content_subject">
+                <t t-esc="email_subject" />
+            </t>
+
+            <t t-set="content_message">
+                <table id="diff">
+                    <tr class="column_header">
+                        <td>
+                            Data
+                        </td>
+                        <td>
+                            Before
+                        </td>
+                        <td>
+                            After
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_header">
+                            Name
+                        </td>
+                        <td>
+                            <t t-esc="src_object_id.name" />
+                        </td>
+                        <td>
+                            <t t-esc="object.dst_object_id.name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_header">
+                            Type
+                        </td>
+                        <td>
+                            <t t-esc="src_object_id.type_id.display_name" />
+                        </td>
+                        <td>
+                            <t t-esc="object.dst_object_id.type_id.display_name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_header">
+                            Responsible
+                        </td>
+                        <td>
+                            <t t-esc="src_object_id.user_id.display_name" />
+                        </td>
+                        <td>
+                            <t t-esc="object.dst_object_id.user_id.display_name" />
+                        </td>
+                    </tr>
+                </table>
+
+                <p>The project <t t-esc="src_object_id.name" /> is now deleted</p>
+            </t>
+            <t t-set="content_message_action">
+                <a t-att-href="object.dst_object_id.get_access_link()">
+                    Open Project
+                </a>
+            </t>
+            <t t-set="content_message_bottom">
+                This action was led by <t t-esc="user.name" />
+            </t>
+        </t>
+    </template>
+
+    <template id="view_mail_template_merged_tasks">
+        <t t-call="project_merge.view_email_template_notification_diff">
+
+            <t t-if="env.context.get('src_object')">
+                <t t-set="src_object_id" t-value="env.context.get('src_object')" />
+            </t>
+            <t t-else="">
+                <!-- Use same object as fallback to test this template -->
+                <t t-set="src_object_id" t-value="object.dst_object_id" />
+            </t>
+
+            <t t-set="content_subject">
+                <t t-esc="email_subject" />
+            </t>
+
+            <t t-set="content_message">
+                <table id="diff">
+                    <tr class="column_header">
+                        <td>
+                            Data
+                        </td>
+                        <td>
+                            Before
+                        </td>
+                        <td>
+                            After
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_header">
+                            Name
+                        </td>
+                        <td>
+                            <t t-esc="src_object_id.name" />
+                        </td>
+                        <td>
+                            <t t-esc="object.dst_object_id.name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_header">
+                            Assigned To
+                        </td>
+                        <td>
+                            <t t-esc="src_object_id.user_id.display_name" />
+                        </td>
+                        <td>
+                            <t t-esc="object.dst_object_id.user_id.display_name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_header">
+                            Project
+                        </td>
+                        <td>
+                            <t t-esc="src_object_id.project_id.name" />
+                        </td>
+                        <td>
+                            <t t-esc="object.dst_object_id.project_id.name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_header">
+                            Type
+                        </td>
+                        <td>
+                            <t t-esc="src_object_id.project_id.type_id.display_name" />
+                        </td>
+                        <td>
+                            <t t-esc="object.dst_object_id.project_id.type_id.display_name" />
+                        </td>
+                    </tr>
+                </table>
+
+                <p>The task <t t-esc="src_object_id.name" /> is now deleted</p>
+
+            </t>
+            <t t-set="content_message_action">
+                <a t-att-href="object.dst_object_id.get_access_link()">
+                    Open Task
+                </a>
+            </t>
+            <t t-set="content_message_bottom">
+                This action was led by <t t-esc="user.name" />
+            </t>
+        </t>
+    </template>
+
+</odoo>

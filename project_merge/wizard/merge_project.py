@@ -38,9 +38,13 @@ class MergeProject(models.TransientModel):
         super()._log_merge_operation(src_objects, dst_object)
         template_id = self.env.ref("project_merge.merged_projects")
         for src_object in src_objects:
-            values = {
-                "recipient_ids": [(6, 0, src_object.user_id.mapped("partner_id").ids)],
-            }
-            template_id.with_context(src_object=src_object).send_mail(
-                self.id, force_send=True, email_values=values
-            )
+            partner_id = src_object.user_id.mapped("partner_id")
+            if partner_id:
+                partner_to = ",".join(str(id) for id in partner_id.ids)
+            else:
+                partner_to = False
+            # do not use force_send because the merge can fail and we don't want send
+            # a false e-mail
+            template_id.with_context(
+                src_object=src_object, partner_to=partner_to
+            ).send_mail(self.id, force_send=False)
