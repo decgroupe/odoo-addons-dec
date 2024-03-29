@@ -63,7 +63,7 @@
         </table>
     </template>
 
-
+    <!-- Note: Keep inline style for chat rendering -->
     <template id="view_email_template_part_user_avatar">
         <style>
             .table_avatar {
@@ -94,15 +94,36 @@
                     <td style="padding-right:8px" align="right">
                         <img
                             class="img_avatar"
-                            t-attf-src="/web/image/res.users/{{notified_user.id}}/image_128"
+                            t-attf-src="/web/image/res.users/{{user_avatar.id}}/image_128"
                             width="20"
                             height="20"
                         />
                     </td>
                     <td>
-                        <a t-if="notified_user.login">
-                            <t t-esc="notified_user.login" />
+                        <a t-if="user_avatar.login">
+                            <t t-esc="user_avatar.login" />
                         </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <!-- Note: Keep inline style for chat rendering -->
+    <template id="view_email_template_part_user_avatar_inline">
+        <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                    <td style="padding-right:2px; width:22px" align="right">
+                        <img
+                            class="img_avatar"
+                            t-attf-src="/web/image/res.users/{{user_avatar.id}}/image_128"
+                            width="20"
+                            height="20"
+                        />
+                    </td>
+                    <td>
+                        <t t-esc="user_avatar.display_name" />
                     </td>
                 </tr>
             </tbody>
@@ -112,18 +133,16 @@
     <template id="view_email_template_part_footer">
         <style>
             #footer {
-                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.54);
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                color:rgba(0,0,0,0.54);
                 font-size:11px;
                 line-height:18px;
                 padding-top:12px;
                 text-align:center;
             }
             #footer a {
-                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.54);
-                font-size:11px;
-                line-height:18px;
-                padding-top:12px;
-                text-align:center;
+                text-decoration:none;
+                color:rgba(0,0,0,0.54);
             }
         </style>
         <div id="footer">
@@ -136,49 +155,58 @@
                 </t>
             </div>
 
-            <!-- <div>Cet e-mail vous a été envoyé pour vous informer de modifications importantes apportées à votre compte (DEC-ID) et aux services DEC que vous utilisez.</div> -->
-            <div>
-                <t t-esc="'%s %d' % ('©', datetime.datetime.now().year)" />
-                <t t-esc="env.user.company_id.name" />
-                <t
-                    t-esc="env.user.company_id.partner_id.partner_company_type_id.shortcut"
-                />,
-                <a>
-                    <t
-                        t-if="env.user.company_id.partner_id.street"
-                        t-esc="env.user.company_id.partner_id.street"
-                    />
-                    <t
-                        t-if="env.user.company_id.partner_id.street2"
-                        t-esc="env.user.company_id.partner_id.street2"
-                    />
-                    <t
-                        t-if="env.user.company_id.partner_id.zip"
-                        t-esc="env.user.company_id.partner_id.zip"
-                    />
-                    <t
-                        t-if="env.user.company_id.partner_id.city"
-                        t-esc="env.user.company_id.partner_id.city"
-                    />
-                    <t
-                        t-if="env.user.company_id.partner_id.country_id"
-                        t-esc="env.user.company_id.partner_id.country_id.code"
-                    />
-                </a>
+            <t t-if="not company">
+                <t t-set="company" t-value="env.user.company_id" />
+            </t>
 
-                <br />
-                <a href="/contact">Contact Us</a>
-                <t t-if="company.phone"> |
-                    <t t-esc="company.phone" />
-                </t>
-                <t t-if="company.website"> |
-                    <a t-att-href="'%s' % company.website" t-esc="company.website" />
-                </t>
-                <t t-if="company.email"> |
-                    <a t-att-href="'mailto:%s' % company.email" t-esc="company.email" />
-                </t>
+            <t t-if="company">
+                <div>
+                    <t t-esc="'%s %d' % ('©', datetime.datetime.now().year)" />
+                    <t t-esc="company.name" />
+                    <t t-esc="company.partner_id.partner_company_type_id.shortcut" />,
+                    <a>
+                        <t
+                            t-if="company.partner_id.street"
+                            t-esc="company.partner_id.street"
+                        />
+                        <t
+                            t-if="company.partner_id.street2"
+                            t-esc="company.partner_id.street2"
+                        />
+                        <t
+                            t-if="company.partner_id.zip"
+                            t-esc="company.partner_id.zip"
+                        />
+                        <t
+                            t-if="company.partner_id.city"
+                            t-esc="company.partner_id.city"
+                        />
+                        <t
+                            t-if="company.partner_id.country_id"
+                            t-esc="company.partner_id.country_id.code"
+                        />
+                    </a>
 
-            </div>
+                    <br />
+                    <a href="/contact">Contact Us</a>
+                    <t t-if="company.phone"> |
+                        <t t-esc="company.phone" />
+                    </t>
+                    <t t-if="company.website"> |
+                        <a
+                            t-att-href="'%s' % company.website"
+                            t-esc="company.website"
+                        />
+                    </t>
+                    <t t-if="company.email"> |
+                        <a
+                            t-att-href="'mailto:%s' % company.email"
+                            t-esc="company.email"
+                        />
+                    </t>
+
+                </div>
+            </t>
         </div>
     </template>
 
@@ -334,22 +362,31 @@
                         //border: 1px solid #CCC;
                         border-collapse: collapse;
                     }
-                    #content_table .column_header {
+                    #content_table > tr {
+                        height: 30px;
+                    }
+                    #content_table > tr.column_header {
                         color: white;
                         background-color: #414141;
                     }
-                    #content_table tr {
-                        height: 30px;
-                    }
-                    #content_table td {
+                    #content_table > tr > td {
                         width: 50%;
                         text-align: left;
                         padding-left: 5px;
                         padding-right: 5px;
                     }
-                    #content_table td.row_header{
+                    #content_table > tr > td.row_header{
                         font-weight: bold;
                         text-align: right;
+                    }
+
+                    blockquote {
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        border-left: 5px solid;
+                        border-color: #dee2e6;
+                        font-style: italic;
+                        text-align: initial;
                     }
 
                 </style>
@@ -408,7 +445,7 @@
                                                         >
                                                             <img
                                                                 class="img_logo"
-                                                                t-attf-src="/web/image/website/{{env.user.company_id.id}}/logo"
+                                                                t-attf-src="{{env.user.company_id.get_base_url()}}/web/image/website/{{env.user.company_id.id}}/logo"
                                                                 t-attf-alt="{{env.user.company_id.name}}"
                                                             />
                                                             <div
@@ -423,6 +460,10 @@
                                                                     />
                                                                 </div>
                                                                 <t t-if="notified_user">
+                                                                    <t
+                                                                        t-set="user_avatar"
+                                                                        t-value="notified_user"
+                                                                    />
                                                                     <t
                                                                         t-call="mail_qweb.view_email_template_part_user_avatar"
                                                                     />
@@ -734,7 +775,12 @@
 
         <div>
             <p>
-                Activity done
+                Activity done: <span
+                    t-attf-class="fa #{activity.activity_type_id.icon} fa-fw"
+                /><span t-field="activity.activity_type_id.name" />
+                <t t-if="display_assignee"><small> (originally assigned to <span
+                            t-field="activity.user_id.name"
+                        />)</small></t>
             </p>
 
             <div t-if="feedback">
@@ -744,16 +790,15 @@
                 </t>
             </div>
 
+            <t t-set="content_message_signature" t-value="Yoohoo" />
+
             <table id="content_table">
                 <tr t-if="activity.activity_type_id">
                     <td class="row_header">
                         Type
                     </td>
                     <td>
-                        <span
-                            t-attf-class="fa #{activity.activity_type_id.icon} fa-fw"
-                            t-field="activity.activity_type_id.name"
-                        />
+                        <span t-field="activity.activity_type_id.name" />
                     </td>
                 </tr>
                 <tr t-if="display_assignee">
@@ -761,7 +806,10 @@
                         Assigned to
                     </td>
                     <td>
-                        <span t-field="activity.user_id.name" />
+                        <t t-set="user_avatar" t-value="activity.user_id" />
+                        <t
+                            t-call="mail_qweb.view_email_template_part_user_avatar_inline"
+                        />
                     </td>
                 </tr>
                 <tr t-if="activity.res_name">
@@ -793,7 +841,10 @@
                         Closed by
                     </td>
                     <td>
-                        <t t-esc="env.user.display_name" />
+                        <t t-set="user_avatar" t-value="env.user" />
+                        <t
+                            t-call="mail_qweb.view_email_template_part_user_avatar_inline"
+                        />
                     </td>
                 </tr>
                 <tr
@@ -809,6 +860,39 @@
             </table>
 
         </div>
+    </template>
+
+    <!-- Mail gateway templates (refusing catchall@ and bounce@) -->
+    <template id="mail.mail_bounce_catchall">
+        <t t-call="mail_qweb.view_email_template_notification">
+            <t t-set="content_message">
+                <p>Hello <i t-esc="message['email_from']" />,</p>
+                <p>The email sent to <t
+                        t-esc="message['to']"
+                    /> cannot be processed. This address is exclusively used to collect replies and should not be used to directly contact <b
+                        t-esc="res_company.name"
+                    />.
+                </p>
+                <p>Please contact us using <a
+                        t-att-href="'mailto:%s' % res_company.email"
+                    ><t t-esc="res_company.email" /></a>
+                </p>
+                <blockquote><t t-raw="message['body']" /></blockquote>
+            </t>
+        </t>
+    </template>
+
+    <!-- Mail bounce alias mail template. Note that the body is filled by
+        `MailAlias::_get_alias_bounced_body_fallback` if no custom message is set in
+        field `alias_bounced_content`
+    -->
+    <template id="mail.mail_bounce_alias_security">
+        <t t-call="mail_qweb.view_email_template_notification">
+            <t t-set="content_message">
+                <t t-raw="body" />
+                <blockquote><t t-raw="message['body']" /></blockquote>
+            </t>
+        </t>
     </template>
 
 </odoo>
