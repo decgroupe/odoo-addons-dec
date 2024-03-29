@@ -94,7 +94,7 @@
                     <td style="padding-right:8px" align="right">
                         <img
                             class="img_avatar"
-                            t-attf-src="/web/image/res.users/{{notif_user.id}}/image_128"
+                            t-attf-src="/web/image/res.users/{{notified_user.id}}/image_128"
                             width="20"
                             height="20"
                         />
@@ -142,8 +142,8 @@
                 <t t-esc="env.user.company_id.name" />
                 <t
                     t-esc="env.user.company_id.partner_id.partner_company_type_id.shortcut"
-                />
-,                <a>
+                />,
+                <a>
                     <t
                         t-if="env.user.company_id.partner_id.street"
                         t-esc="env.user.company_id.partner_id.street"
@@ -165,6 +165,19 @@
                         t-esc="env.user.company_id.partner_id.country_id.code"
                     />
                 </a>
+
+                <br />
+                <a href="/contact">Contact Us</a>
+                <t t-if="company.phone"> |
+                    <t t-esc="company.phone" />
+                </t>
+                <t t-if="company.website"> |
+                    <a t-att-href="'%s' % company.website" t-esc="company.website" />
+                </t>
+                <t t-if="company.email"> |
+                    <a t-att-href="'mailto:%s' % company.email" t-esc="company.email" />
+                </t>
+
             </div>
         </div>
     </template>
@@ -217,6 +230,7 @@
                         border-color:#dadce0;
                         border-radius:8px;
                         padding:40px 20px;
+                        background-color: white;
                     }
                     .img_logo {
                         margin-bottom:16px;
@@ -314,6 +328,30 @@
                         font-size:12px;
                         color:rgba(0,0,0,0.64);
                     }
+
+                    #content_table {
+                        width: 100%;
+                        //border: 1px solid #CCC;
+                        border-collapse: collapse;
+                    }
+                    #content_table .column_header {
+                        color: white;
+                        background-color: #414141;
+                    }
+                    #content_table tr {
+                        height: 30px;
+                    }
+                    #content_table td {
+                        width: 50%;
+                        text-align: left;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                    }
+                    #content_table td.row_header{
+                        font-weight: bold;
+                        text-align: right;
+                    }
+
                 </style>
             </head>
             <body>
@@ -385,7 +423,9 @@
                                                                     />
                                                                 </div>
                                                                 <t t-if="notified_user">
-                                                                    <t t-call="mail_qweb.view_email_template_part_user_avatar" />
+                                                                    <t
+                                                                        t-call="mail_qweb.view_email_template_part_user_avatar"
+                                                                    />
                                                                 </t>
                                                             </div>
 
@@ -530,6 +570,11 @@
         </t>
     </template>
 
+    <!-- Override Odoo's default mail notification border layout -->
+    <!-- USELESS: Not used anywhere -->
+    <template id="mail.mail_notification_borders">
+    </template>
+
     <!-- Override Odoo's default mail notification light layout -->
     <template id="mail.mail_notification_light">
         <t t-call="mail_qweb.view_email_template_notification">
@@ -547,6 +592,223 @@
                 <t t-call="mail_qweb.view_email_template_part_also_notified" />
             </t>
         </t>
+    </template>
+
+    <!-- Override Odoo's « Pay Now » mail notification layout -->
+    <template id="mail_notification_paynow" inherit_id="mail.mail_notification_paynow">
+        <xpath expr="//t" position="replace">
+
+            <t t-call="mail_qweb.view_email_template_notification">
+                <!-- Copy/paste variables init from original view -->
+                <t
+                    t-set="access_action"
+                    t-value="record.with_context(force_website=True).get_access_action()"
+                />
+                <t
+                    t-set="is_online"
+                    t-value="access_action and access_action['type'] == 'ir.actions.act_url'"
+                />
+                <t t-set="base_url" t-value="record.get_base_url()" />
+                <t
+                    t-set="share_url"
+                    t-value="record._get_share_url(redirect=True, signup_partner=notification_is_customer, share_token=notification_is_customer)"
+                />
+                <t
+                    t-set="access_url"
+                    t-value="is_online and share_url and base_url + share_url or ''"
+                />
+                <t t-set="access_name">View <t
+                        t-esc="model_description or 'document'"
+                    /></t>
+
+                <t t-set="env" t-value="message.env" />
+                <t t-set="content_subject">
+                    <t t-raw="message.subject" />
+                </t>
+                <t t-set="content_message">
+                    <t t-raw="message.body" />
+                </t>
+                <t t-set="content_message_action">
+                    <a t-att-href="access_url">
+                        <t t-esc="access_name" />
+                    </a>
+                </t>
+                <t
+                    t-set="content_message_bottom_cc"
+                    t-if="notification_group_name not in ('customer','portal','portal_customer')"
+                >
+                    <t t-call="mail_qweb.view_email_template_part_also_notified" />
+                </t>
+
+                <t t-set="user_signature" t-value="record.user_id or env.user" />
+                <t
+                    t-set="content_message_signature"
+                    t-if="user_signature and user_signature.signature"
+                >
+                    <t t-raw="user_signature.signature" />
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Override Odoo's « You have been assigned To ... » mail notification content -->
+    <template id="mail.message_user_assigned">
+        <p>
+            <t t-esc="object.user_id.name" />,<br />
+            You have been assigned to <t t-esc="model_description or 'document'" /> <t
+                t-esc="object.display_name"
+            />.
+        </p>
+        <div id="content_message_action">
+            <a
+                t-att-href="access_link"
+                t-att-data-oe-model="object._name"
+                t-att-data-oe-id="object.id"
+            >View <t t-esc="model_description or 'document'" />
+            </a>
+        </div>
+    </template>
+
+    <!-- Override Odoo's « Acivity has been assigned to you ... » mail notification content -->
+    <template id="mail.message_activity_assigned">
+        <div>
+            <p>
+                <span t-field="activity.create_uid.name" /> assigned you an activity:
+            </p>
+            <table id="content_table">
+                <tr t-if="activity.activity_type_id">
+                    <td class="row_header">
+                        Type
+                    </td>
+                    <td>
+                        <span t-field="activity.activity_type_id.name" />
+                    </td>
+                </tr>
+                <tr t-if="activity.res_name">
+                    <td class="row_header">
+                        On
+                    </td>
+                    <td>
+                        <span t-field="activity.res_name" />
+                    </td>
+                </tr>
+                <tr t-if="activity.summary">
+                    <td class="row_header">
+                        Summary
+                    </td>
+                    <td>
+                        <span t-field="activity.summary" />
+                    </td>
+                </tr>
+                <tr t-if="activity.date_deadline">
+                    <td class="row_header">
+                        To close for
+                    </td>
+                    <td>
+                        <span t-field="activity.date_deadline" />
+                    </td>
+                </tr>
+                <tr
+                    t-if="activity.note and activity.note != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'"
+                >
+                    <td class="row_header">
+                        Note
+                    </td>
+                    <td>
+                        <span t-field="activity.note" />
+                    </td>
+                </tr>
+            </table>
+            <div id="content_message_action">
+                <a
+                    t-att-href="access_link"
+                    t-att-data-oe-model="activity.res_model"
+                    t-att-data-oe-id="activity.res_id"
+                >View <t t-esc="model_description or 'document'" />
+                </a>
+            </div>
+        </div>
+    </template>
+
+    <template id="mail.message_activity_done">
+
+        <div>
+            <p>
+                Activity done
+            </p>
+
+            <div t-if="feedback">
+                <t t-foreach="feedback.split('\n')" t-as="feedback_line">
+                    <t t-esc="feedback_line" />
+                    <br t-if="not feedback_line_last" />
+                </t>
+            </div>
+
+            <table id="content_table">
+                <tr t-if="activity.activity_type_id">
+                    <td class="row_header">
+                        Type
+                    </td>
+                    <td>
+                        <span
+                            t-attf-class="fa #{activity.activity_type_id.icon} fa-fw"
+                            t-field="activity.activity_type_id.name"
+                        />
+                    </td>
+                </tr>
+                <tr t-if="display_assignee">
+                    <td class="row_header">
+                        Assigned to
+                    </td>
+                    <td>
+                        <span t-field="activity.user_id.name" />
+                    </td>
+                </tr>
+                <tr t-if="activity.res_name">
+                    <td class="row_header">
+                        On
+                    </td>
+                    <td>
+                        <span t-field="activity.res_name" />
+                    </td>
+                </tr>
+                <tr t-if="activity.summary">
+                    <td class="row_header">
+                        Summary
+                    </td>
+                    <td>
+                        <span t-field="activity.summary" />
+                    </td>
+                </tr>
+                <tr t-if="activity.date_deadline">
+                    <td class="row_header">
+                        To close for
+                    </td>
+                    <td>
+                        <span t-field="activity.date_deadline" />
+                    </td>
+                </tr>
+                <tr t-if="env and env.user">
+                    <td class="row_header">
+                        Closed by
+                    </td>
+                    <td>
+                        <t t-esc="env.user.display_name" />
+                    </td>
+                </tr>
+                <tr
+                    t-if="activity.note and activity.note != '&lt;p&gt;&lt;br&gt;&lt;/p&gt;'"
+                >
+                    <td class="row_header">
+                        Note
+                    </td>
+                    <td>
+                        <span t-field="activity.note" />
+                    </td>
+                </tr>
+            </table>
+
+        </div>
     </template>
 
 </odoo>
