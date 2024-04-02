@@ -30,7 +30,9 @@ class DelegateAuthSignup(http.Controller):
         try:
             partner_id = self._get_partner_from_token(token)
             user_id = partner_id.user_ids and partner_id.user_ids[0] or False
-            if not user_id or not user_id.active or partner_id.signup_token:
+            # user state is computed from `auth_signup` module
+            # when last login date is set then user state is `active` otherwise `new`
+            if not user_id or not user_id.active or user_id.state == "new":
                 partner_id = False
                 error = _(
                     "<b>"

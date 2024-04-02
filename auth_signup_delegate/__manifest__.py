@@ -6,6 +6,7 @@
     "summary": "",
     "depends": [
         "base",
+        "auth_signup",
         "portal",
     ],
     "data": [
