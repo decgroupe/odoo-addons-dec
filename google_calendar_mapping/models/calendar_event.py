@@ -11,7 +11,8 @@ class CalendarEvent(models.Model):
     def _odoo_attendee_commands(self, google_event):
         """Hook `google_event` data before being processed by `google_calendar` module"""
         # replace in-place emails (google email => odoo email)
-        for attendee in google_event.attendees:
+        google_attendees = google_event.attendees or []
+        for attendee in google_attendees:
             attendee_email = tools.email_normalize(attendee.get("email"))
             user_id = self.env["res.users"].search(
                 [("google_calendar_cal_id", "=", attendee_email)], limit=1
