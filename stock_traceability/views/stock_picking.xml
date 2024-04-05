@@ -34,8 +34,8 @@
                     force_save="1"
                 >
                 </field>
-                <field name="move_orig_ids" groups="base.group_no_one" />
-                <field name="move_dest_ids" groups="base.group_no_one" />
+                <field name="move_orig_ids" groups="base.group_no_one" optional="hide"/>
+                <field name="move_dest_ids" groups="base.group_no_one" optional="hide"/>
                 <field
                     name="product_supplier_code"
                     attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
