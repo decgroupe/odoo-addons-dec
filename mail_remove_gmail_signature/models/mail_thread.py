@@ -13,21 +13,43 @@ from odoo.tools import pycompat
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
-    def _message_extract_payload(self, message, save_original=False):
-        body, attachments = super()._message_extract_payload(message, save_original)
-        if body:
-            # Only remove signature for an e-mail coming from our domain
-            email_from = tools.decode_smtp_header(message.get("from"), quoted=True)
-            email_from = parseaddr(email_from)[1]
-            email_domain = email_from.partition("@")[2]
-            catchall_domain = (
+    def _message_belong_to_us(self, message):
+        res = False
+        email_from = tools.decode_message_header(message, "From")
+        email_from = parseaddr(email_from)[1]
+        email_domain = email_from.partition("@")[2]
+        catchall_domain_lowered = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("mail.catchall.domain", "")
+            .strip()
+            .lower()
+        )
+        if catchall_domain_lowered:
+            catchall_domains = [catchall_domain_lowered]
+            catchall_domains_allowed = (
                 self.env["ir.config_parameter"]
-                .with_user()
-                .get_param("mail.catchall.domain")
+                .sudo()
+                .get_param("mail.catchall.domain.allowed")
+                .lower()
             )
-            if email_domain == catchall_domain:
-                body = self._remove_gmail_signatures(body)
-        return body, attachments
+            if catchall_domains_allowed:
+                for domain in catchall_domains_allowed.split(","):
+                    if domain not in catchall_domains:
+                        catchall_domains.append(domain)
+            res = email_domain in catchall_domains
+        return res
+
+    def _message_parse_process_body_before_sanitize(self, message, body):
+        """WARNING: Ensure the commit `[DEC][IMP] mail: Allow parsing before sanitizing`
+        is added to your Odoo/OCB runtime
+        """
+        res = super()._message_parse_process_body_before_sanitize(message, body)
+        if res:
+            # Only remove signature for an e-mail coming from our domain
+            if self._message_belong_to_us(message):
+                res = self._remove_gmail_signatures(res)
+        return res
 
     def _remove_gmail_signatures(self, body):
         if not body:
@@ -44,7 +66,7 @@ class MailThread(models.AbstractModel):
         for node in root.iter():
             # TODO: we should probably remove only the first occurence, so
             # a context var could be used to force remove all
-            if "gmail_signature" in (node.get("data-smartmail") or ""):
+            if "gmail_signature" in (node.get("class") or ""):
                 postprocessed = True
                 if node.getparent() is not None:
                     to_remove.append(node)
@@ -53,5 +75,5 @@ class MailThread(models.AbstractModel):
             node.getparent().remove(node)
         if postprocessed:
             body = lxml.etree.tostring(root, pretty_print=False, encoding="UTF-8")
-            body = pycompat.to_native(body)
+            body = pycompat.to_text(body)
         return body
