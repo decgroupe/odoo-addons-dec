@@ -235,303 +235,285 @@
     </template>
 
     <template id="view_email_template_notification">
-        <html>
-            <head>
-                <style>
-                    .div_root {
-                        margin:0;
-                        padding:0;
-                    }
-                    .table_root {
-                        min-width:348px;
-                    }
-                    .table_content {
-                        padding-bottom:20px;
-                        max-width:516px;
-                        min-width:220px;
-                    }
-                    .table_footer {}
+        <style>
+            #table_root {
+                min-width:348px;
+                margin:0;
+                padding:0;
+            }
+            .table_content {
+                padding-bottom:20px;
+                max-width:516px;
+                min-width:220px;
+            }
 
-                    .div_content_border {
-                        border-style:solid;
-                        border-width:thin;
-                        border-color:#dadce0;
-                        border-radius:8px;
-                        padding:40px 20px;
-                        background-color: white;
-                    }
-                    .img_logo {
-                        margin-bottom:16px;
-                        height:24px;
-                    }
+            .div_content_border {
+                border-style:solid;
+                border-width:thin;
+                border-color:#dadce0;
+                border-radius:8px;
+                padding:40px 20px;
+                background-color: white;
+            }
+            .img_logo {
+                margin-bottom:16px;
+                height:24px;
+            }
 
-                    #content_subject_container {
-                        font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-                        border-bottom:thin solid #dadce0;
-                        color:rgba(0,0,0,0.87);
-                        line-height:32px;
-                        padding-bottom:24px;
-                        text-align:center;
-                        word-break:break-word;
-                    }
-                    #content_subject {
-                        font-size:24px;
-                    }
-                    #content_warning {
-                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                        text-align:center;
-                        color: #FFFFFF;
-                        font-size: 10px;
-                        background-color: #414141;
-                        border-radius:8px;
-                        padding: 5px;
-                        margin-bottom: 16px;
-                    }
-                    #content_message {
-                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                        font-size:14px;
-                        color:rgba(0,0,0,0.87);
-                        line-height:20px;
-                        padding-top:20px;
-                        text-align:center;
-                    }
-                    #content_message ul {
-                        text-align:left;
-                    }
-                    #content_message_action {
-                        padding-top:32px;
-                        text-align:center;
-                    }
-                    #content_message_action a {
-                        font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-                        line-height:16px;
-                        color:#ffffff;
-                        font-weight:400;
-                        text-decoration:none;
-                        font-size:14px;
-                        display:inline-block;
-                        padding:10px 24px;
-                        background-color:#414141;
-                        border-radius:5px;
-                        min-width:90px;
-                    }
-                    #content_message_bottom {
-                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                        font-size:12px;
-                        line-height:16px;
-                        color:#606060;
-                        letter-spacing:0.3px;
-                        padding-top:20px;
-                        text-align:center;
-                    }
-                    #content_message_bottom a {
-                        color:rgba(0,0,0,0.87);
-                        text-decoration:inherit;
-                    }
-                    #content_message_bottom_cc {
-                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                        font-size:12px;
-                        line-height:16px;
-                        color:#606060;
-                        letter-spacing:0.3px;
-                        padding-top:20px;
-                        text-align:left;
-                        overflow: auto;
-                    }
-                    #content_message_bottom_cc .notify_title {
-                        text-align:left;
-                        text-decoration: underline;
-                        margin: 0;
-                    }
-                    #content_message_bottom_cc .notify_group {
-                        text-align:left;
-                        font-weight:600;
-                        margin-bottom: 0;
-                        margin-left: 10px;
-                    }
-                    #content_message_signature {
-                        border-top:thin solid #dadce0;
-                        margin-top: 30px;
-                        font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                        font-size:12px;
-                        color:rgba(0,0,0,0.64);
-                    }
+            #content_subject_container {
+                font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                border-bottom:thin solid #dadce0;
+                color:rgba(0,0,0,0.87);
+                line-height:32px;
+                padding-bottom:24px;
+                text-align:center;
+                word-break:break-word;
+            }
+            #content_subject {
+                font-size:24px;
+            }
+            #content_warning {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                text-align:center;
+                color: #FFFFFF;
+                font-size: 10px;
+                background-color: #414141;
+                border-radius:8px;
+                padding: 5px;
+                margin-bottom: 16px;
+            }
+            #content_message {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:14px;
+                color:rgba(0,0,0,0.87);
+                line-height:20px;
+                padding-top:20px;
+                text-align:center;
+            }
+            #content_message ul {
+                text-align:left;
+            }
+            #content_message_action {
+                padding-top:32px;
+                text-align:center;
+            }
+            #content_message_action a {
+                font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                line-height:16px;
+                color:#ffffff;
+                font-weight:400;
+                text-decoration:none;
+                font-size:14px;
+                display:inline-block;
+                padding:10px 24px;
+                background-color:#414141;
+                border-radius:5px;
+                min-width:90px;
+            }
+            #content_message_bottom {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:12px;
+                line-height:16px;
+                color:#606060;
+                letter-spacing:0.3px;
+                padding-top:20px;
+                text-align:center;
+            }
+            #content_message_bottom a {
+                color:rgba(0,0,0,0.87);
+                text-decoration:inherit;
+            }
+            #content_message_bottom_cc {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:12px;
+                line-height:16px;
+                color:#606060;
+                letter-spacing:0.3px;
+                padding-top:20px;
+                text-align:left;
+                overflow: auto;
+            }
+            #content_message_bottom_cc .notify_title {
+                text-align:left;
+                text-decoration: underline;
+                margin: 0;
+            }
+            #content_message_bottom_cc .notify_group {
+                text-align:left;
+                font-weight:600;
+                margin-bottom: 0;
+                margin-left: 10px;
+            }
+            #content_message_signature {
+                border-top:thin solid #dadce0;
+                margin-top: 30px;
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:12px;
+                color:rgba(0,0,0,0.64);
+            }
 
-                    #content_table {
-                        width: 100%;
-                        //border: 1px solid #CCC;
-                        border-collapse: collapse;
-                    }
-                    #content_table > tr {
-                        height: 30px;
-                    }
-                    #content_table > tr.column_header {
-                        color: white;
-                        background-color: #414141;
-                    }
-                    #content_table > tr > td {
-                        width: 50%;
-                        text-align: left;
-                        padding-left: 5px;
-                        padding-right: 5px;
-                    }
-                    #content_table > tr > td.row_header{
-                        font-weight: bold;
-                        text-align: right;
-                    }
+            #content_table {
+                width: 100%;
+                //border: 1px solid #CCC;
+                border-collapse: collapse;
+            }
+            #content_table > tr {
+                height: 30px;
+            }
+            #content_table > tr.column_header {
+                color: white;
+                background-color: #414141;
+            }
+            #content_table > tr > td {
+                width: 50%;
+                text-align: left;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            #content_table > tr > td.row_header{
+                font-weight: bold;
+                text-align: right;
+            }
 
-                    blockquote {
-                        margin-top: 1rem;
-                        padding: 0.5rem 1rem;
-                        border-left: 5px solid;
-                        border-color: #dee2e6;
-                        font-style: italic;
-                        text-align: initial;
-                    }
+            blockquote {
+                margin-top: 1rem;
+                padding: 0.5rem 1rem;
+                border-left: 5px solid;
+                border-color: #dee2e6;
+                font-style: italic;
+                text-align: initial;
+            }
 
-                </style>
-            </head>
-            <body>
+        </style>
 
-                <div class="div_root" bgcolor="#FFFFFF">
-                    <table
-                        class="table_root"
-                        width="100%"
-                        lang="en"
-                        height="100%"
-                        cellspacing="0"
-                        cellpadding="0"
-                        border="0"
-                    >
-                        <tbody>
-                            <tr style="height:32px" height="32">
-                                <td />
-                            </tr>
-                            <tr align="center">
-                                <td>
-                                    <div>
-                                        <table
-                                            class="table_content"
-                                            cellspacing="0"
-                                            cellpadding="0"
-                                            border="0"
-                                        >
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width:8px" width="8" />
-                                                    <td>
-                                                        <div id="header">
-                                                            <div id="header_message">
-                                                                <t
-                                                                    t-if="header_message"
-                                                                >
-                                                                    <t
-                                                                        t-raw="header_message"
-                                                                    />
-                                                                </t>
-                                                                <div
-                                                                    id="content_warning"
-                                                                    t-if="content_warning"
-                                                                >
-                                                                    <t
-                                                                        t-raw="content_warning"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="div_content_border"
-                                                            align="center"
-                                                        >
-                                                            <img
-                                                                class="img_logo"
-                                                                t-attf-src="{{env.user.company_id.get_base_url()}}/web/image/website/{{env.user.company_id.id}}/logo"
-                                                                t-attf-alt="{{env.user.company_id.name}}"
-                                                            />
-                                                            <div
-                                                                id="content_subject_container"
-                                                            >
-                                                                <div
-                                                                    id="content_subject"
-                                                                    t-if="content_subject"
-                                                                >
-                                                                    <t
-                                                                        t-raw="content_subject"
-                                                                    />
-                                                                </div>
-                                                                <t t-if="notified_user">
-                                                                    <t
-                                                                        t-set="user_avatar"
-                                                                        t-value="notified_user"
-                                                                    />
-                                                                    <t
-                                                                        t-call="mail_qweb.view_email_template_part_user_avatar"
-                                                                    />
-                                                                </t>
-                                                            </div>
-
-                                                            <div
-                                                                t-if="content_message"
-                                                                id="content_message"
-                                                            >
-                                                                <t
-                                                                    t-raw="content_message"
-                                                                />
-                                                                <div
-                                                                    id="content_message_action"
-                                                                    t-if="content_message_action"
-                                                                >
-                                                                <t
-                                                                        t-raw="content_message_action"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                t-if="content_message_bottom"
-                                                                id="content_message_bottom"
-                                                            >
-                                                                <t
-                                                                    t-raw="content_message_bottom"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                t-if="content_message_bottom_cc"
-                                                                id="content_message_bottom_cc"
-                                                            >
-                                                                <t
-                                                                    t-raw="content_message_bottom_cc"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                t-if="content_message_signature"
-                                                                id="content_message_signature"
-                                                            >
-                                                                <t
-                                                                    t-raw="content_message_signature"
-                                                                />
-                                                            </div>
-                                                        </div>
-
+        <table
+            id="table_root"
+            width="100%"
+            lang="en"
+            height="100%"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+        >
+            <tbody>
+                <tr style="height:32px" height="32">
+                    <td />
+                </tr>
+                <tr align="center">
+                    <td>
+                        <div>
+                            <table
+                                class="table_content"
+                                cellspacing="0"
+                                cellpadding="0"
+                                border="0"
+                            >
+                                <tbody>
+                                    <tr>
+                                        <td style="width:8px" width="8" />
+                                        <td>
+                                            <div id="header">
+                                                <div id="header_message">
+                                                    <t t-if="header_message">
+                                                        <t t-raw="header_message" />
+                                                    </t>
+                                                    <div
+                                                        id="content_warning"
+                                                        t-if="content_warning"
+                                                    >
                                                         <t
-                                                            t-call="mail_qweb.view_email_template_part_footer"
+                                                            t-raw="content_warning"
                                                         />
-                                                    </td>
-                                                    <td style="width:8px" width="8" />
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="div_content_border"
+                                                align="center"
+                                            >
+                                                <img
+                                                    class="img_logo"
+                                                    t-attf-src="{{env.user.company_id.get_base_url()}}/web/image/website/{{env.user.company_id.id}}/logo"
+                                                    t-attf-alt="{{env.user.company_id.name}}"
+                                                />
+                                                <div id="content_subject_container">
+                                                    <div
+                                                        id="content_subject"
+                                                        t-if="content_subject"
+                                                    >
+                                                        <t
+                                                            t-raw="content_subject"
+                                                        />
+                                                    </div>
+                                                    <t t-if="notified_user">
+                                                        <t
+                                                            t-set="user_avatar"
+                                                            t-value="notified_user"
+                                                        />
+                                                        <t
+                                                            t-call="mail_qweb.view_email_template_part_user_avatar"
+                                                        />
+                                                    </t>
+                                                </div>
 
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr style="height:32px" height="32">
-                                <td />
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </body>
-        </html>
+                                                <div
+                                                    t-if="content_message"
+                                                    id="content_message"
+                                                >
+                                                    <t t-raw="content_message" />
+                                                    <div
+                                                        id="content_message_action"
+                                                        t-if="content_message_action"
+                                                    >
+                                                    <t
+                                                            t-raw="content_message_action"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    t-if="content_message_bottom"
+                                                    id="content_message_bottom"
+                                                >
+                                                    <t
+                                                        t-raw="content_message_bottom"
+                                                    />
+                                                </div>
+                                                <div
+                                                    t-if="content_message_bottom_cc"
+                                                    id="content_message_bottom_cc"
+                                                >
+                                                    <t
+                                                        t-raw="content_message_bottom_cc"
+                                                    />
+                                                </div>
+                                                <div
+                                                    t-if="content_message_signature"
+                                                    id="content_message_signature"
+                                                >
+                                                    <t
+                                                        t-raw="content_message_signature"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <t
+                                                t-call="mail_qweb.view_email_template_part_footer"
+                                            />
+                                        </td>
+                                        <td style="width:8px" width="8" />
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height:32px" height="32">
+                    <td />
+                </tr>
+            </tbody>
+        </table>
+
     </template>
 
     <!-- Override Odoo's default mail notification layout -->
