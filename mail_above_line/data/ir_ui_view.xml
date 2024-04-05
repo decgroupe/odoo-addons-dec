@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="view_email_template_notification" inherit_id="mail_qweb.view_email_template_notification">
+        <style>
+            #reply_above_warning {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:10px;
+                text-align: center;
+                color:rgba(0,0,0,0.54);
+            }
+        </style>
+        <xpath expr="//table[@id='table_root']" position="before">
+            <div id="reply_above_warning">##- Please type your reply above this line -##</div>
+        </xpath>
+    </template>
+
+</odoo>
