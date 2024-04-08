@@ -27,8 +27,10 @@ class MailThread(models.AbstractModel):
                 user = message.author_id.user_ids[0]
                 if message.add_sign and user.signature_answer:
                     if message.subtype_id.internal:
+                        _logger.info("Replacing 'signature' with a shorter one #1")
                         res["signature"] = user.signature_answer
                     elif message.subject:
                         if "Re:" in message.subject or "Re :" in message.subject:
+                            _logger.info("Replacing 'signature' with a shorter one #2")
                             res["signature"] = user.signature_answer
         return res
