@@ -614,6 +614,10 @@
             >
                 <t t-call="mail_qweb.view_email_template_part_also_notified" />
             </t>
+            <!-- Contrary to original light template, signature is also added -->
+            <t t-set="content_message_signature" t-if="signature">
+                <t t-raw="signature" />
+            </t>
         </t>
     </template>
 
@@ -771,8 +775,6 @@
                     <br t-if="not feedback_line_last" />
                 </t>
             </div>
-
-            <t t-set="content_message_signature" t-value="Yoohoo" />
 
             <table id="content_table">
                 <tr t-if="activity.activity_type_id">

@@ -72,6 +72,19 @@ class MailThread(models.AbstractModel):
     def _notify_prepare_template_context(
         self, message, msg_vals, model_description=False, mail_auto_delete=True
     ):
+        """All default template values are set from this function:
+        - message: mail.message
+        - signature: char
+        - website_url: char
+        - company: res.company
+        - model_description: char
+        - record: module.model
+        - record_name: char
+        - tracking_values: list
+        - is_discussion: boolean
+        - subtype: mail.message.subtype
+        - lang: char
+        """
         res = super()._notify_prepare_template_context(
             message,
             msg_vals,
@@ -80,3 +93,36 @@ class MailThread(models.AbstractModel):
         )
         res["recipients_groups_data"] = msg_vals["recipients_groups_data"]
         return res
+
+    def message_notify(
+        self,
+        *,
+        partner_ids=False,
+        parent_id=False,
+        model=False,
+        res_id=False,
+        author_id=None,
+        email_from=None,
+        body="",
+        subject=False,
+        **kwargs
+    ):
+        """Odoo's shortcut to notify subscribers of messages without publishing on the
+        chat."""
+        if (
+            kwargs
+            and kwargs.get("email_layout_xmlid") == "mail.mail_notification_light"
+        ):
+            # force signature for light template
+            kwargs["add_sign"] = True
+        super().message_notify(
+            partner_ids=partner_ids,
+            parent_id=parent_id,
+            model=model,
+            res_id=res_id,
+            author_id=author_id,
+            email_from=email_from,
+            body=body,
+            subject=subject,
+            **kwargs
+        )
