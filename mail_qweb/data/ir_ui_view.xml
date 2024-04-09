@@ -211,8 +211,7 @@
     </template>
 
     <template id="view_email_template_part_also_notified">
-        <!-- <t t-esc="notification_group_name"/> -->
-        <p class="notify_title">Also notified:</p>
+        <p class="notify_title">Also notified (<t t-esc="notification_group_name"/>):</p>
         <t t-foreach="recipients_groups_data" t-as="recipients_group_data">
             <p
                 class="notify_group"
@@ -310,7 +309,7 @@
                 border-radius:5px;
                 min-width:90px;
             }
-            #content_message_bottom {
+            .content_message_bottom {
                 font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
                 font-size:12px;
                 line-height:16px;
@@ -319,7 +318,7 @@
                 padding-top:20px;
                 text-align:center;
             }
-            #content_message_bottom a {
+            .content_message_bottom a {
                 color:rgba(0,0,0,0.87);
                 text-decoration:inherit;
             }
@@ -421,9 +420,7 @@
                                                         id="content_warning"
                                                         t-if="content_warning"
                                                     >
-                                                        <t
-                                                            t-raw="content_warning"
-                                                        />
+                                                        <t t-raw="content_warning" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -441,9 +438,7 @@
                                                         id="content_subject"
                                                         t-if="content_subject"
                                                     >
-                                                        <t
-                                                            t-raw="content_subject"
-                                                        />
+                                                        <t t-raw="content_subject" />
                                                     </div>
                                                     <t t-if="notified_user">
                                                         <t
@@ -465,18 +460,15 @@
                                                         id="content_message_action"
                                                         t-if="content_message_action"
                                                     >
-                                                    <t
-                                                            t-raw="content_message_action"
-                                                        />
+                                                    <t t-raw="content_message_action" />
                                                     </div>
                                                 </div>
                                                 <div
                                                     t-if="content_message_bottom"
                                                     id="content_message_bottom"
+                                                    class="content_message_bottom"
                                                 >
-                                                    <t
-                                                        t-raw="content_message_bottom"
-                                                    />
+                                                    <t t-raw="content_message_bottom" />
                                                 </div>
                                                 <div
                                                     t-if="content_message_bottom_cc"
@@ -582,7 +574,7 @@
 
             <t
                 t-set="content_message_bottom_cc"
-                t-if="notification_group_name not in ('customer','portal','portal_customer')"
+                t-if="notification_group_name and notification_group_name not in ('customer','portal','portal_customer')"
             >
                 <t t-call="mail_qweb.view_email_template_part_also_notified" />
             </t>
@@ -618,7 +610,7 @@
             </t>
             <t
                 t-set="content_message_bottom_cc"
-                t-if="notification_group_name not in ('customer','portal','portal_customer')"
+                t-if="notification_group_name and notification_group_name not in ('customer','portal','portal_customer')"
             >
                 <t t-call="mail_qweb.view_email_template_part_also_notified" />
             </t>
@@ -670,7 +662,7 @@
                 </t>
                 <t
                     t-set="content_message_bottom_cc"
-                    t-if="notification_group_name not in ('customer','portal','portal_customer')"
+                    t-if="notification_group_name and notification_group_name not in ('customer','portal','portal_customer')"
                 >
                     <t t-call="mail_qweb.view_email_template_part_also_notified" />
                 </t>
