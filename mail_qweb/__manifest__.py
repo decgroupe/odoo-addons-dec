@@ -12,6 +12,7 @@
     ],
     "data": [
         "data/ir_ui_view.xml",
+        "wizard/mail_compose_message.xml",
     ],
     "installable": True,
 }
