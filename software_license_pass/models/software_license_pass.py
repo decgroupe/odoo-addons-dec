@@ -115,6 +115,11 @@ class SoftwareLicensePass(models.Model):
         default=lambda self: self.partner_id,
         track_visibility="onchange",
     )
+    partner_contact_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Contact Partner",
+        compute="_compute_partner",
+    )
     license_ids = fields.One2many(
         comodel_name="software.license",
         inverse_name="pass_id",
@@ -254,7 +259,7 @@ class SoftwareLicensePass(models.Model):
         """
         self.ensure_one()
         self.user_id = self._get_current_user()
-        partner_id = self.partner_referral_id or self.partner_id
+        partner_id = self.partner_contact_id
         partner_id.sudo().delegate_signup_prepare()
         template_id = self.env.ref("software_license_pass.email_template", False)
         form_id = self.env.ref("mail.email_compose_message_wizard_form", False)
@@ -266,7 +271,7 @@ class SoftwareLicensePass(models.Model):
             "default_composition_mode": "comment",
             "mark_as_sent": True,
             "model_description": _("Application Pass"),
-            "custom_layout": "mail.mail_notification_light",
+            "custom_layout": "software_license_pass.mail_notification_layout",
             "force_email": True,
         }
         return {
@@ -303,3 +308,11 @@ class SoftwareLicensePass(models.Model):
                         force_generate_serial=True
                     ).create(vals)
         self.mapped("license_ids").action_sync_features_with_template()
+
+    @api.depends("partner_id", "partner_referral_id")
+    def _compute_partner(self):
+        for rec in self:
+            if rec.partner_referral_id:
+                rec.partner_contact_id = rec.partner_referral_id
+            else:
+                rec.partner_contact_id = rec.partner_id
