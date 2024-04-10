@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree create="true" delete="true">
                 <field name="name" />
+                <field name="device_fqdn" />
                 <field name="info" />
             </tree>
         </field>
@@ -32,6 +33,9 @@
                     </group>
                     <group name="main">
                         <group name="primary">
+                            <field name="device_name" />
+                            <field name="device_domain" />
+                            <field name="device_fqdn" />
                         </group>
                         <group name="secondary">
                         </group>
