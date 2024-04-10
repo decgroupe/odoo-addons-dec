@@ -2,11 +2,17 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2023
 
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class SoftwareLicenseHardware(models.Model):
     _inherit = "software.license.hardware"
+
+    pass_id = fields.Many2one(
+        comodel_name="software.license.pass",
+        related="license_id.pass_id",
+        store=True,
+    )
 
     @api.model
     def create(self, vals):
