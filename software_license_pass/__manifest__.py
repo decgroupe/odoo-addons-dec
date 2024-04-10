@@ -10,6 +10,7 @@
         "auth_signup_delegate",
         "sequence_reset_period",
         "base_sequence_first_number",
+        "mail_qweb",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -20,6 +21,7 @@
         "views/software_license_pack_line.xml",
         "views/menu.xml",
         "data/sequence.xml",
+        "data/ir_ui_view.xml",
         "data/mail_template.xml",
         "data/uom.xml",
     ],

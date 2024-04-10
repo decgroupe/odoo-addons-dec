@@ -261,7 +261,9 @@ class SoftwareLicensePass(models.Model):
         self.user_id = self._get_current_user()
         partner_id = self.partner_contact_id
         partner_id.sudo().delegate_signup_prepare()
-        template_id = self.env.ref("software_license_pass.email_template", False)
+        template_id = self.env.ref(
+            "software_license_pass.email_template_pass_send", False
+        )
         form_id = self.env.ref("mail.email_compose_message_wizard_form", False)
         ctx = {
             "default_model": "software.license.pass",
