@@ -49,7 +49,8 @@ class CrmLead(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        self._init_number(vals)
+        for rec in self:
+            rec._init_number(vals)
         return res
 
     @api.depends("name", "number", "email_from", "partner_id", "partner_id.name")
