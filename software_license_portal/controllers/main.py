@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
 import pprint
+import json
 
 import odoo.tools.convert as odoo_convert
 from odoo import fields, http
@@ -263,7 +264,7 @@ class SoftwareLicenseController(http.Controller):
             # (aka sysinfos) data were directly put into the main params
             # json object
             res["telemetry"] = req.params.copy()
-        return pprint.pformat(res)
+        return json.dumps(res, indent=4)
 
     def _append_common_data(self, license_id, hardware_id, msg):
         msg["server_date"] = fields.Date.to_string(fields.Date.today())
