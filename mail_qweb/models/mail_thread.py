@@ -91,6 +91,8 @@ class MailThread(models.AbstractModel):
             model_description,
             mail_auto_delete,
         )
+        if "object" not in res:
+            res["object"] = res["record"]
         res["recipients_groups_data"] = msg_vals["recipients_groups_data"]
         return res
 
