@@ -211,7 +211,9 @@
     </template>
 
     <template id="view_email_template_part_also_notified">
-        <p class="notify_title">Also notified (<t t-esc="notification_group_name"/>):</p>
+        <p class="notify_title">Also notified (<t
+                t-esc="notification_group_name"
+            />):</p>
         <t t-foreach="recipients_groups_data" t-as="recipients_group_data">
             <p
                 class="notify_group"
@@ -235,6 +237,91 @@
 
     <template id="view_email_template_notification">
         <style>
+
+            .figure {
+                display: inline-block;
+            }
+
+            .alert {
+                position: relative;
+                padding: 0.75rem 1.25rem;
+                margin-bottom: 1rem;
+                border: 1px solid transparent;
+                border-radius: 0.25rem;
+            }
+
+            .alert-success {
+                color: #155724;
+                background-color: #d4edda;
+                border-color: #c3e6cb;
+            }
+
+            .alert-success hr {
+                border-top-color: #b1dfbb;
+            }
+
+            .alert-success .alert-link {
+                color: #0b2e13;
+            }
+
+            .alert-info {
+                color: #0c5460;
+                background-color: #d1ecf1;
+                border-color: #bee5eb;
+            }
+
+            .alert-info hr {
+                border-top-color: #abdde5;
+            }
+
+            .alert-info .alert-link {
+                color: #062c33;
+            }
+
+            .alert-warning {
+                color: #856404;
+                background-color: #fff3cd;
+                border-color: #ffeeba;
+            }
+
+            .alert-warning hr {
+                border-top-color: #ffe8a1;
+            }
+
+            .alert-warning .alert-link {
+                color: #533f03;
+            }
+
+            .alert-danger {
+                color: #721c24;
+                background-color: #f8d7da;
+                border-color: #f5c6cb;
+            }
+
+            .alert-danger hr {
+                border-top-color: #f1b0b7;
+            }
+
+            .alert-danger .alert-link {
+                color: #491217;
+            }
+
+            .text-success {
+                color: #28a745 !important;
+            }
+
+            .text-info {
+                color: #17a2b8 !important;
+            }
+
+            .text-warning {
+                color: #ffc107 !important;
+            }
+
+            .text-danger {
+                color: #dc3545 !important;
+            }
+
             #table_root {
                 min-width:348px;
                 margin:0;
@@ -296,7 +383,7 @@
                 padding-top:32px;
                 text-align:center;
             }
-            #content_message_action a {
+            #content_message_action a, .action-link {
                 font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
                 line-height:16px;
                 color:#ffffff;
@@ -351,25 +438,25 @@
                 color:rgba(0,0,0,0.64);
             }
 
-            #content_table {
+            .content_table {
                 width: 100%;
                 //border: 1px solid #CCC;
                 border-collapse: collapse;
             }
-            #content_table > tr {
+            .content_table > tr {
                 height: 30px;
             }
-            #content_table > tr.column_header {
+            .content_table > tr.column_header {
                 color: white;
                 background-color: #414141;
             }
-            #content_table > tr > td {
+            .content_table > tr > td {
                 width: 50%;
                 text-align: left;
                 padding-left: 5px;
                 padding-right: 5px;
             }
-            #content_table > tr > td.row_header{
+            .content_table > tr > td.row_header{
                 font-weight: bold;
                 text-align: right;
             }
@@ -702,7 +789,7 @@
             <p>
                 <span t-field="activity.create_uid.name" /> assigned you an activity:
             </p>
-            <table id="content_table">
+            <table class="content_table">
                 <tr t-if="activity.activity_type_id">
                     <td class="row_header">
                         Type
@@ -776,7 +863,7 @@
                 </t>
             </div>
 
-            <table id="content_table">
+            <table class="content_table">
                 <tr t-if="activity.activity_type_id">
                     <td class="row_header">
                         Type
