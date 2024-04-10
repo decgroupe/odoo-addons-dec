@@ -14,5 +14,9 @@
             />
         </record>
 
+        <record model="res.groups" id="product_reference_management.group_ref_manager">
+            <field name="implied_ids" eval="[(4, ref('group_ref_log_user'))]" />
+        </record>
+
     </data>
 </odoo>
