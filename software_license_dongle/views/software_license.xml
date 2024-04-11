@@ -17,14 +17,16 @@
         <field name="model">software.license</field>
         <field name="inherit_id" ref="software_license.software_license_search_view" />
         <field name="arch" type="xml">
-            <field name="application_id" position="after">
-                <field name="dongle_product_id" />
+            <filter name="inactive" position="after">
                 <separator />
                 <filter
                     string="With dongle"
                     name="filter_with_dongle"
                     domain="[('dongle_product_id', '>', 0)]"
                 />
+            </filter>
+            <field name="application_id" position="after">
+                <field name="dongle_product_id" />
             </field>
         </field>
     </record>

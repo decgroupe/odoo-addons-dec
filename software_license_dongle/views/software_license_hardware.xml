@@ -12,10 +12,7 @@
         />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field
-                    name="dongle_identifier"
-                    attrs="{'column_invisible': [('parent.dongle_product_id', '=', 0)]}"
-                />
+                <field name="dongle_identifier" optional="hide"/>
             </field>
         </field>
     </record>
