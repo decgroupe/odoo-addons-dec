@@ -13,6 +13,11 @@ class SoftwareLicense(models.Model):
         string="Pass",
         readonly=True,
     )
+    pass_product_id = fields.Many2one(
+        comodel_name="product.product",
+        string="Pass Product",
+        related="pass_id.product_id",
+    )
     pack_id = fields.Many2one(
         comodel_name="software.license.pack",
         related="pass_id.pack_id",

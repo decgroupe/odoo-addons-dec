@@ -11,6 +11,7 @@
                 <field name="partner_id" widget="many2one_avatar" />
                 <field name="product_id" optional="show" />
                 <field name="max_allowed_hardware" />
+                <field name="hardware_group_count" optional="hide" />
                 <field name="activity_ids" widget="list_activity" optional="show" />
                 <field name="expiration_date" widget="remaining_days" optional="show" />
                 <field
@@ -80,13 +81,29 @@
                             name="action_view_licenses"
                             type="object"
                             widget="statinfo"
-                            icon="fa-tree"
+                            icon="fa-bars"
+                            attrs="{'invisible': [('license_count', '=', 0)]}"
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
                                     <field name="license_count" />
                                 </span>
                                 <span class="o_stat_text">Licenses</span>
+                            </div>
+                        </button>
+                        <button
+                            class="oe_stat_button"
+                            name="action_view_hardwares"
+                            type="object"
+                            widget="statinfo"
+                            icon="fa-bars"
+                            attrs="{'invisible': [('hardware_count', '=', 0)]}"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="hardware_count" />
+                                </span>
+                                <span class="o_stat_text">Hardwares</span>
                             </div>
                         </button>
                     </div>
@@ -122,6 +139,9 @@
                                 <field name="pack_line_id" groups="base.group_no_one" />
                             </tree>
                         </field>
+                    </group>
+                    <group name="hardware_groups">
+                        <field name="hardware_group_ids" />
                     </group>
                 </sheet>
                 <div class="oe_chatter">

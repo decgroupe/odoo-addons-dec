@@ -17,6 +17,8 @@
         "views/assets.xml",
         "views/software_license_pass.xml",
         "views/software_license.xml",
+        "views/software_license_hardware.xml",
+        "views/software_license_hardware_group.xml",
         "views/software_license_pack.xml",
         "views/software_license_pack_line.xml",
         "views/menu.xml",

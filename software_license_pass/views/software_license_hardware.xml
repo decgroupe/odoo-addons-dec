@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="software_license_hardware_search_view">
+        <field name="name">software.license.hardware.search@software_license_pass</field>
+        <field name="model">software.license.hardware</field>
+        <field name="inherit_id" ref="software_license.software_license_hardware_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='groupby_license_id']" position="after">
+                <filter
+                    string="Pass"
+                    name="groupby_pass_id"
+                    context="{'group_by':'pass_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

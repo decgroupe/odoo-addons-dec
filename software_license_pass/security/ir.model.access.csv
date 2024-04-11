@@ -7,3 +7,6 @@ access_software_license_pack_user,Read and write access to software license pack
 access_software_license_pack_manager,Read and write access to software license pack for Manager,model_software_license_pack,software.group_software_manager,1,1,1,1
 access_software_license_pack_line_user,Read and write access to software license pack line for User,model_software_license_pack_line,software.group_software_user,1,1,0,0
 access_software_license_pack_line_manager,Read and write access to software license pack line for Manager,model_software_license_pack_line,software.group_software_manager,1,1,1,1
+access_software_license_hardware_group_internal_user,Read access to software license hardware group for Internal User,model_software_license_hardware_group,base.group_user,1,0,0,0
+access_software_license_hardware_group_user,Read and write access to software license hardware group for User,model_software_license_hardware_group,software.group_software_user,1,1,0,0
+access_software_license_hardware_group_manager,Full access to software license hardware group for Manager,model_software_license_hardware_group,software.group_software_manager,1,1,1,1
