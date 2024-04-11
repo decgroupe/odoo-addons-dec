@@ -51,6 +51,11 @@ class SoftwareLicense(models.Model):
         "identify a system. This identifier must not change over time or "
         "activation related data would be invalidated",
     )
+    hardware_count = fields.Integer(
+        compute="_compute_hardware_count",
+        string="Number of Hardwares",
+        store=True,
+    )
     product_id = fields.Many2one(
         comodel_name="product.product",
         string="Product",
@@ -158,3 +163,12 @@ class SoftwareLicense(models.Model):
             action["views"] = [(form.id, "form")]
             action["res_id"] = self.id
         return action
+
+    @api.depends("hardware_ids")
+    def _compute_hardware_count(self):
+        self.hardware_count = 0
+        for rec in self.with_context(active_test=False):
+            rec.hardware_count = len(rec.hardware_ids)
+
+    def action_view_hardwares(self):
+        return self.with_context(active_test=False).hardware_ids.action_view()
