@@ -3,20 +3,40 @@
 
     <record model="software.license.pass" id="pass_basic1">
         <field name="pack_id" ref="sl_pack_basic" />
+        <!-- Azure Interior -->
+        <field name="partner_id" ref="base.res_partner_12" />
+        <!-- Brandon Freeman -->
+        <field name="partner_referral_id" ref="base.res_partner_address_15" />
     </record>
 
     <record model="software.license.pass" id="pass_basic2">
         <field name="pack_id" ref="sl_pack_basic" />
         <field name="expiration_date" eval="datetime.now()+relativedelta(days=15)" />
+        <!-- Deco Addict -->
+        <field name="partner_id" ref="base.res_partner_2" />
+        <!-- Addison Olson -->
+        <field name="partner_referral_id" ref="base.res_partner_address_31" />
     </record>
 
     <record model="software.license.pass" id="pass_premium1">
         <field name="pack_id" ref="sl_pack_premium" />
+        <!-- Gemini Furniture -->
+        <field name="partner_id" ref="base.res_partner_3" />
     </record>
 
     <record model="software.license.pass" id="pass_premium2">
         <field name="pack_id" ref="sl_pack_premium" />
         <field name="expiration_date" eval="datetime.now()+relativedelta(days=30)" />
+        <!-- Lumber Inc -->
+        <field name="partner_id" ref="base.res_partner_18" />
+    </record>
+
+    <record model="software.license.pass" id="pass_premium3">
+        <field name="pack_id" ref="sl_pack_premium" />
+        <field name="expiration_date" eval="datetime.now()+relativedelta(days=30)" />
+        <field name="max_allowed_hardware" eval="10" />
+        <!-- Ready Mat -->
+        <field name="partner_id" ref="base.res_partner_4" />
     </record>
 
     <function
@@ -27,7 +47,50 @@
             ref('software_license_pass.pass_basic2'),
             ref('software_license_pass.pass_premium1'),
             ref('software_license_pass.pass_premium2'),
+            ref('software_license_pass.pass_premium3'),
         ]]"
     />
+
+    <function
+        model="software.license.pass"
+        name="activate"
+        eval="[[ref('software_license_pass.pass_premium3'),]] "
+    >
+        <value name="hardware">3925aab3fa0dd</value>
+        <value name="info">
+            {
+                "httprequest": {
+                    "remote_addr": "80.10.72.1"
+                },
+                "telemetry": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.readymat.com",
+                        "HostName": "PC-ReadyMat1"
+                    }
+                }
+            }
+        </value>
+    </function>
+
+    <function
+        model="software.license.pass"
+        name="activate"
+        eval="[[ref('software_license_pass.pass_premium3'),]]"
+    >
+        <value name="hardware">ab99c8ef7899f</value>
+        <value name="info">
+            {
+                "httprequest": {
+                    "remote_addr": "80.10.72.1"
+                },
+                "telemetry": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.readymat.com",
+                        "HostName": "PC-ReadyMat2"
+                    }
+                }
+            }
+        </value>
+    </function>
 
 </odoo>

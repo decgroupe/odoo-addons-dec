@@ -151,6 +151,7 @@ class SoftwareLicensePass(models.Model):
         copy=False,
         help="Compilation dynamically generated from licenses hardware identifiers",
         compute="_compute_hardware_group_ids",
+        store=True,
     )
     hardware_group_count = fields.Integer(
         string="Number of Hardware Groups",
