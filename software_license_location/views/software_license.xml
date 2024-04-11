@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="software_license.software_license_tree_view" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="partner_zip_id" />
+                <field name="partner_zip_id"  class="d_software_license_location_partner_zip_id"/>
             </field>
         </field>
     </record>
