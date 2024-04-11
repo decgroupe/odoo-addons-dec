@@ -28,6 +28,14 @@
         <field name="model">software.license</field>
         <field name="inherit_id" ref="software_license.software_license_search_view" />
         <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <separator />
+                <filter
+                    string="Without pass"
+                    name="filter_without_pass"
+                    domain="[('pass_id', '=', False)]"
+                />
+            </filter>
             <filter name="groupby_product_id" position="after">
                 <filter
                     string="Pass"
