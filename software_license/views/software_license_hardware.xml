@@ -57,8 +57,33 @@
         <field name="model">software.license.hardware</field>
         <field name="arch" type="xml">
             <search string="Hardwares">
-                <field name="name" />
+                <field
+                    string="Identifier or FQDN"
+                    name="name"
+                    filter_domain="[
+                        ('|'),
+                        ('name', 'ilike', self),
+                        ('device_fqdn', 'ilike', self)
+                    ]"
+                />
                 <field name="info" />
+                <group string="Group By" name="groupby">
+                    <filter
+                        string="Name"
+                        name="groupby_name"
+                        context="{'group_by':'name'}"
+                    />
+                    <filter
+                        string="License"
+                        name="groupby_license_id"
+                        context="{'group_by':'license_id'}"
+                    />
+                    <filter
+                        string="FQDN"
+                        name="groupby_fqdn"
+                        context="{'group_by':'device_fqdn'}"
+                    />
+                </group>
             </search>
         </field>
     </record>

@@ -6,10 +6,10 @@
         <field name="model">software.license</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="application_id" />
-                <field name="serial" />
+                <field name="application_id" decoration-bf="1" />
+                <field name="serial" class="d_software_license_serial" />
                 <field name="product_id" />
-                <field name="partner_id" />
+                <field name="partner_id" widget="many2one_avatar" />
             </tree>
         </field>
     </record>
@@ -81,6 +81,11 @@
         <field name="model">software.license</field>
         <field name="arch" type="xml">
             <search string="License">
+                <filter
+                    name="inactive"
+                    string="Archived"
+                    domain="[('active','=',False)]"
+                />
                 <field name="partner_id" />
                 <field name="serial" filter_domain="" />
                 <field name="application_id" />
