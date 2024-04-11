@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <record model="ir.ui.view" id="software_license_pass_tree_view">
+        <field name="name">software.license.pass.tree_pass@sale_software_license_pass</field>
+        <field name="model">software.license.pass</field>
+        <field
+            name="inherit_id"
+            ref="software_license_pass.software_license_pass_tree_view"
+        />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="sale_order_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="software_license_pass_form_view">
         <field name="name">software.license.pass.form@sale_software_license_pass</field>
         <field name="model">software.license.pass</field>
