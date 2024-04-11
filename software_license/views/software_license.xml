@@ -102,6 +102,17 @@
                     string="Archived"
                     domain="[('active','=',False)]"
                 />
+                <separator />
+                <filter
+                    name="filter_inhouse"
+                    string="In-House"
+                    domain="[('application_id.type','=','inhouse')]"
+                />
+                <filter
+                    name="filter_other"
+                    string="Other"
+                    domain="[('application_id.type','=','other')]"
+                />
                 <field name="partner_id" />
                 <field name="serial" filter_domain="" />
                 <field name="application_id" />
