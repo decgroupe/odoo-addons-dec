@@ -7,10 +7,10 @@
         <field name="inherit_id" ref="software_license.software_license_tree_view" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="system_classic" />
-                <field name="system_cave" />
-                <field name="system_rift" />
-                <field name="system_vive" />
+                <field name="system_classic" optional="hide"/>
+                <field name="system_cave" optional="hide"/>
+                <field name="system_rift" optional="hide"/>
+                <field name="system_vive" optional="hide"/>
             </field>
         </field>
     </record>
@@ -41,10 +41,10 @@
                 <separator />
             </field>
             <field name="partner_id" position="after">
-                <field name="system_classic" />
-                <field name="system_cave" />
-                <field name="system_rift" />
-                <field name="system_vive" />
+                <field name="system_classic" invisible="1" />
+                <field name="system_cave" invisible="1" />
+                <field name="system_rift" invisible="1" />
+                <field name="system_vive" invisible="1" />
             </field>
         </field>
     </record>
