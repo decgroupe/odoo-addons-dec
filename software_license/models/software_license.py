@@ -119,6 +119,18 @@ class SoftwareLicense(models.Model):
             res["serial"] = self.activation_identifier
         return res
 
+    def get_hardwares_dict(self, filter_names):
+        self.ensure_one()
+        res = {}
+        hardware_ids = self.hardware_ids
+        # Apply filtering to select only wanted hardware identifiers
+        if filter_names:
+            hardware_ids = hardware_ids.filtered(lambda l: l.name in filter_names)
+        for hardware_id in hardware_ids:
+            hardware_data = hardware_id._prepare_export_vals(include_license_data=False)
+            res[hardware_id.name] = hardware_data
+        return res
+
     def _prepare_hardware_activation_vals(self, hardware):
         res = {
             "license_id": self.id,

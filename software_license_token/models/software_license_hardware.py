@@ -66,6 +66,7 @@ class SoftwareLicenseHardware(models.Model):
         return expiration_date
 
     def get_license_string(self):
+        """Validate now and generate an updated license string (with encrypted data)"""
         self.ensure_one()
         self.validation_date = fields.datetime.now()
 

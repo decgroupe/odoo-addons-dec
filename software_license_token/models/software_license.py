@@ -72,18 +72,6 @@ class SoftwareLicense(models.Model):
                     res = True
         return res
 
-    def get_hardwares_dict(self, filter_names):
-        self.ensure_one()
-        res = {}
-        hardware_ids = self.hardware_ids
-        # Apply filtering to select only wanted hardware identifiers
-        if filter_names:
-            hardware_ids = hardware_ids.filtered(lambda l: l.name in filter_names)
-        for hardware_id in hardware_ids:
-            hardware_data = hardware_id._prepare_export_vals(include_license_data=False)
-            res[hardware_id.name] = hardware_data
-        return res
-
     def _prepare_export_vals(self, include_activation_identifier=True):
         res = super()._prepare_export_vals(include_activation_identifier)
         res["expiration_date"] = fields.Datetime.to_string(self.expiration_date)
