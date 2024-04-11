@@ -71,3 +71,22 @@ class SoftwareLicenseHardware(models.Model):
                     rec.device_fqdn = f"{rec.device_name}.{rec.device_domain}"
                 else:
                     rec.device_fqdn = rec.device_name
+
+    @api.model
+    def action_view_base(self):
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "software_license.act_window_software_license_hardware"
+        )
+        return action
+
+    def action_view(self):
+        action = self.action_view_base()
+        if not self.ids:
+            pass
+        elif len(self.ids) > 1:
+            action["domain"] = [("id", "in", self.ids)]
+        else:
+            form = self.env.ref("software_license.software_license_hardware_form_view")
+            action["views"] = [(form.id, "form")]
+            action["res_id"] = self.id
+        return action
