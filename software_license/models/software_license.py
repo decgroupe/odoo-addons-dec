@@ -172,3 +172,17 @@ class SoftwareLicense(models.Model):
 
     def action_view_hardwares(self):
         return self.with_context(active_test=False).hardware_ids.action_view()
+
+    @api.model
+    def get_license_ids(self, identifier, serial, limit=None):
+        license_ids = self.env["software.license"]
+        domain = []
+        if identifier:
+            domain += [
+                ("application_id.identifier", "=", identifier),
+            ]
+        if serial:
+            domain += [("activation_identifier", "=", serial)]
+        if domain:
+            license_ids = license_ids.search(domain, limit=limit)
+        return license_ids

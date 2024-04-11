@@ -9,6 +9,7 @@
                 <field name="name" />
                 <field name="device_fqdn" />
                 <field name="info" />
+                <field name="license_id" optional="hide"/>
             </tree>
         </field>
     </record>

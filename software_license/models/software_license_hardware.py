@@ -90,3 +90,17 @@ class SoftwareLicenseHardware(models.Model):
             action["views"] = [(form.id, "form")]
             action["res_id"] = self.id
         return action
+
+    @api.model
+    def get_hardware_ids(self, hardware, identifier=False, serial=False, limit=None):
+        hardware_ids = self.env["software.license.hardware"]
+        if hardware:
+            domain = [("name", "=", hardware)]
+            if identifier:
+                domain += [
+                    ("license_id.application_id.identifier", "=", identifier),
+                ]
+            if serial:
+                domain += [("license_id.activation_identifier", "=", serial)]
+            hardware_ids = hardware_ids.search(domain, limit=limit)
+        return hardware_ids
