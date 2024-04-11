@@ -41,6 +41,14 @@ class SoftwareLicenseHardware(models.Model):
         store=True,
     )
 
+    _sql_constraints = [
+        (
+            "hardware_uniq",
+            "unique(name,license_id)",
+            "Hardware name must be unique per license!",
+        ),
+    ]
+
     def _prepare_export_vals(self, include_license_data=True):
         if include_license_data:
             res = self.license_id._prepare_export_vals()

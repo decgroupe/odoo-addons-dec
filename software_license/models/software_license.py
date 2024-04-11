@@ -130,15 +130,21 @@ class SoftwareLicense(models.Model):
         self.ensure_one()
         return False
 
-    def activate(self, hardware):
+    def activate(self, hardware, info=False):
         """Create a new hardware for this license. (Note that limits like maximum
         activation or expiration date are automatically checked using `@api.constrains`
         in dedicated modules, like `_check_max_allowed_hardware` or
         `_check_expiration_date`.
         """
         self.ensure_one()
-        vals = self._prepare_hardware_activation_vals(hardware)
-        return self.env["software.license.hardware"].create(vals)
+        Hardware = self.env["software.license.hardware"]
+        if hardware not in self.hardware_ids.mapped("name"):
+            vals = self._prepare_hardware_activation_vals(hardware)
+            if info:
+                vals["info"] = info
+            return Hardware.create(vals)
+        else:
+            return Hardware
 
     @api.depends("serial")
     def _compute_activation_identifier(self):
