@@ -137,18 +137,11 @@ class SoftwareLicenseController(http.Controller):
     # http://odessa.decindustrie.com:8008/api/license/v1/identifier/{identifier}/serial/{serial}/hardware/{hardware}
 
     def _get_hardware_id(self, identifier, hardware, serial=False):
-        hardware_id = request.env["software.license.hardware"]
-        if hardware:
-            domain = [
-                ("name", "=", hardware),
-                ("license_id.application_id.identifier", "=", identifier),
-            ]
-            if serial:
-                domain += [
-                    ("license_id.activation_identifier", "=", serial),
-                ]
-
-            hardware_id = hardware_id.sudo().search(domain, limit=1)
+        hardware_id = (
+            request.env["software.license.hardware"]
+            .sudo()
+            .get_hardware_ids(identifier, hardware, serial, limit=1)
+        )
         return hardware_id
 
     @http.route(
@@ -163,13 +156,11 @@ class SoftwareLicenseController(http.Controller):
         return {"serial": hardware_id.license_id.serial}
 
     def _get_license_id(self, identifier, serial):
-        license_id = request.env["software.license"]
-        if identifier > 0:
-            domain = [
-                ("application_id.identifier", "=", identifier),
-                ("activation_identifier", "=", serial),
-            ]
-            license_id = license_id.sudo().search(domain, limit=1)
+        license_id = (
+            request.env["software.license"]
+            .sudo()
+            .get_hardware_ids(identifier, serial, limit=1)
+        )
         return license_id
 
     @http.route(
@@ -198,6 +189,7 @@ class SoftwareLicenseController(http.Controller):
             hardware_id = license_id.activate(hardware)
             hardware_id.info = self._get_request_info(request)
             msg = SERIAL_ACTIVATED_ON_HARDWARE.copy()
+            # common data will contain the validated license string
             self._append_common_data(license_id, hardware_id, msg)
             return msg
 
@@ -246,6 +238,7 @@ class SoftwareLicenseController(http.Controller):
         else:
             hardware_id.info = self._get_request_info(request)
             msg = SERIAL_UPDATED_ON_HARDWARE.copy()
+            # common data will contain the validated license string
             self._append_common_data(license_id, hardware_id, msg)
             return msg
 
@@ -403,16 +396,11 @@ class SoftwareLicenseController(http.Controller):
         return res
 
     def _get_hardware_ids(self, hardware, identifier=False, serial=False):
-        hardware_id = request.env["software.license.hardware"]
-        if hardware:
-            domain = [("name", "=", hardware)]
-            if identifier:
-                domain += [
-                    ("license_id.application_id.identifier", "=", identifier),
-                ]
-            if serial:
-                domain += [("license_id.activation_identifier", "=", serial)]
-            hardware_ids = hardware_id.sudo().search(domain)
+        hardware_ids = (
+            request.env["software.license.hardware"]
+            .sudo()
+            .get_hardware_ids(identifier, hardware, serial)
+        )
         return hardware_ids
 
     @http.route(
