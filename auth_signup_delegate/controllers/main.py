@@ -33,18 +33,9 @@ class DelegateAuthSignup(http.Controller):
             # user state is computed from `auth_signup` module
             # when last login date is set then user state is `active` otherwise `new`
             if not user_id or not user_id.active or user_id.state == "new":
+                template = request.env.ref("auth_signup_delegate.account_not_activated")
+                error = template._render({"partner": partner_id}, engine="ir.qweb")
                 partner_id = False
-                error = _(
-                    "<b>"
-                    "Your portal access must be active before you can create contacts."
-                    "</b>"
-                    "<div>"
-                    "<small>"
-                    "Please check your email to enable your account, or request a new "
-                    "activation link by resetting your password from the login page."
-                    "</small>"
-                    "</div>"
-                )
             if partner_id and http.request.httprequest.method == "POST":
                 contact_id = Partner.search([("email", "=", kw.get("email"))])
                 if contact_id:

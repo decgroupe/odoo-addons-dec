@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <template id="account_not_activated">
+        <b>Your portal access must be active before you can create contacts.</b>
+        <div>
+            <small>
+                Please check your emails (<u
+                    t-esc="partner.email"
+                />) to enable your account, or request a new activation link by resetting your password from the login page.
+            </small>
+        </div>
+    </template>
+
     <template id="create_contact" name="Create Contact">
         <t t-call="web.frontend_layout">
 
