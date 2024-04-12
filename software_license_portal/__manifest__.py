@@ -8,6 +8,7 @@
         "software_license_token",
         "software_license_dongle",
         "software_license_pass",
+        "partner_identification_base", # for emojis
     ],
     "data": [
         "security/ir.model.access.csv",

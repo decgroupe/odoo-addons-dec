@@ -161,7 +161,7 @@
                                 </div>
                             </div>
 
-                            <t t-if="license_pass._get_unique_hardware_names()">
+                            <t t-if="license_pass.sudo().hardware_group_ids">
                                 <div class="row mt8">
                                     <div class="col-md-12">
                                         <h4
@@ -174,17 +174,23 @@
                                                 <thead>
                                                     <tr class="active">
                                                         <th>Unique ID</th>
-                                                        <th>Action</th>
+                                                        <th>Device Name</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <t
-                                                    t-foreach="license_pass._get_unique_hardware_names()"
-                                                    t-as="hardware_name"
+                                                    t-foreach="license_pass.sudo().hardware_group_ids"
+                                                    t-as="hardware_group_id"
                                                 >
                                                     <tr>
                                                         <td>
                                                             <span
-                                                                t-esc="hardware_name"
+                                                                t-esc="hardware_group_id.name"
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            <span
+                                                                t-esc="hardware_group_id.device_fqdn"
                                                             />
                                                         </td>
                                                         <td>
@@ -207,7 +213,7 @@
                                                             <input
                                                                     type="hidden"
                                                                     name="hardware_name"
-                                                                    t-attf-value="#{hardware_name}"
+                                                                    t-attf-value="#{hardware_group_id.name}"
                                                                 />
                                                             <button
                                                                     class="btn btn-success pull-right"
