@@ -113,12 +113,11 @@ class RefReference(models.Model):
         format_prices=True,
         email_to=False,
     ):
-        if not self.ids:
-            domain = [("state", "!=", "obsolete")]
-            references = self.search(domain)
-        else:
-            references = self
+        domain = [("state", "!=", "obsolete")]
+        if self.ids:
+            domain += [("id", "in", self.ids)]
 
+        references = self.search(domain)
         references._generate_material_cost_report(
             date_before, date_after, format_prices, email_to
         )
@@ -212,7 +211,7 @@ class RefReference(models.Model):
                 {
                     "id": reference.id,
                     "model": "ref.reference",
-                    "action": ref_action.id,
+                    "action": ref_action["id"],
                     "view_type": "form",
                 }
             ),
