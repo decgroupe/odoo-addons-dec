@@ -114,6 +114,7 @@ class SoftwareLicensePass(models.Model):
         copy=False,
         default=lambda self: self.partner_id,
         track_visibility="onchange",
+        domain="[('id', 'child_of', partner_id)]"
     )
     partner_contact_id = fields.Many2one(
         comodel_name="res.partner",
@@ -282,11 +283,12 @@ class SoftwareLicensePass(models.Model):
             self.filtered(lambda o: o.state == "draft").with_context(
                 tracking_disable=True
             ).write({"state": "sent"})
-            partner_ids = kwargs.get("partner_ids", False)
-            if partner_ids:
-                partner_ids = self.env["res.partner"].browse(partner_ids)
-            else:
-                partner_ids = self.mapped("partner_id")
+            ids = kwargs.get("partner_ids", False)
+            # always add our contact partner (main or referral)
+            partner_ids = self.mapped("partner_contact_id")
+            if ids:
+                partner_ids |= self.env["res.partner"].browse(ids)
+            # portal access is given only once
             partner_ids.give_portal_access()
         return super(
             SoftwareLicensePass, self.with_context(mail_post_autofollow=True)
@@ -297,7 +299,8 @@ class SoftwareLicensePass(models.Model):
         template message loaded by default
         """
         self.ensure_one()
-        self.user_id = self._get_current_user()
+        if not self.user_id:
+            self.user_id = self._get_current_user()
         partner_id = self.partner_contact_id
         partner_id.sudo().delegate_signup_prepare()
         template_id = self.env.ref(
@@ -401,3 +404,21 @@ class SoftwareLicensePass(models.Model):
         for rec in self:
             for license_id in rec.license_ids:
                 license_id.activate(hardware, info)
+
+    @api.onchange("partner_id")
+    def _onchange_partner_id(self):
+        self.partner_referral_id = False
+
+    @api.constrains("partner_referral_id", "partner_id")
+    def _validate_partners(self):
+        for record in self.filtered("partner_referral_id"):
+            partner_ids = self.env["res.partner"].search(
+                [("id", "child_of", record.partner_id.id)]
+            )
+            if record.partner_referral_id not in partner_ids:
+                raise ValidationError(
+                    _(
+                        "The referral partner must be a hierarchical "
+                        "descendant of the main partner!"
+                    )
+                )
