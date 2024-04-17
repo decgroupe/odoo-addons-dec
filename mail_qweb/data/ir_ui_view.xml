@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="view_email_template_part_partners_avatar">
+    <template id="mail_qweb.view_email_template_part_partners_avatar">
         <style>
             .table_avatar {
                 margin-top:8px;
@@ -64,7 +64,7 @@
     </template>
 
     <!-- Note: Keep inline style for chat rendering -->
-    <template id="view_email_template_part_user_avatar">
+    <template id="mail_qweb.view_email_template_part_user_avatar">
         <style>
             .table_avatar {
                 margin-top:8px;
@@ -110,7 +110,7 @@
     </template>
 
     <!-- Note: Keep inline style for chat rendering -->
-    <template id="view_email_template_part_user_avatar_inline">
+    <template id="mail_qweb.view_email_template_part_user_avatar_inline">
         <table cellspacing="0" cellpadding="0" border="0">
             <tbody>
                 <tr>
@@ -130,7 +130,7 @@
         </table>
     </template>
 
-    <template id="view_email_template_part_footer">
+    <template id="mail_qweb.view_email_template_part_footer">
         <style>
             #footer {
                 font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
@@ -210,7 +210,7 @@
         </div>
     </template>
 
-    <template id="view_email_template_part_also_notified">
+    <template id="mail_qweb.view_email_template_part_also_notified">
         <p class="notify_title">Also notified (<t
                 t-esc="notification_group_name"
             />):</p>
@@ -235,7 +235,7 @@
         </t>
     </template>
 
-    <template id="view_email_template_part_content_message">
+    <template id="mail_qweb.view_email_template_part_content_message">
         <style>
             #content_message {
                 font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
@@ -328,7 +328,7 @@
         </div>
     </template>
 
-    <template id="view_email_template_notification">
+    <template id="mail_qweb.view_email_template_notification">
         <style>
 
             .figure {
@@ -591,7 +591,7 @@
     </template>
 
     <!-- Override Odoo's default mail notification layout -->
-    <template id="mail.message_notification_email">
+    <template id="mail_qweb.message_notification_email">
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="env" t-value="message.env" />
             <t t-set="content_subject">
@@ -666,22 +666,28 @@
             </t>
         </t>
     </template>
+    <template id="mail.message_notification_email">
+        <t t-call="mail_qweb.message_notification_email"/>
+    </template>
 
     <!-- Override Odoo's default mail notification border layout -->
     <!-- USELESS: Not used anywhere -->
+    <template id="mail_qweb.mail_notification_borders">
+    </template>
     <template id="mail.mail_notification_borders">
+        <t t-call="mail_qweb.mail_notification_borders"/>
     </template>
 
     <!-- Custom empty layout: To replace fallback layout.
     When a notification is set using `_notify_record_by_email`, the `template_xmlid`
     is set from `email_layout_xmlid` or fallback to `mail.message_notification_email`.
     -->
-    <template id="mail_notification_empty">
+    <template id="mail_qweb.mail_notification_empty">
         <t t-raw="message.body" />
     </template>
 
     <!-- Override Odoo's default mail notification light layout -->
-    <template id="mail.mail_notification_light">
+    <template id="mail_qweb.mail_notification_light">
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="env" t-value="message.env" />
             <t t-set="content_subject">
@@ -702,9 +708,12 @@
             </t>
         </t>
     </template>
+    <template id="mail.mail_notification_light">
+        <t t-call="mail_qweb.mail_notification_light"/>
+    </template>
 
     <!-- Override Odoo's « Pay Now » mail notification layout -->
-    <template id="mail_notification_paynow" inherit_id="mail.mail_notification_paynow">
+    <template id="mail_qweb.mail_notification_paynow" inherit_id="mail.mail_notification_paynow">
         <xpath expr="//t" position="replace">
 
             <t t-call="mail_qweb.view_email_template_notification">
@@ -761,12 +770,14 @@
     </template>
 
     <!-- Override Odoo's « You have been assigned To ... » mail notification content -->
-    <template id="mail.message_user_assigned">
+    <template id="mail_qweb.message_user_assigned">
         <p>
             <t t-esc="object.user_id.name" />,<br />
-            You have been assigned to <t t-esc="model_description or 'document'" /> <t
-                t-esc="object.display_name"
-            />.
+            <span>
+                You have been assigned to <b t-esc="model_description or 'document'" />:
+                <br />
+                <small>« <t t-esc="object.display_name" /> »</small>.
+            </span>
         </p>
         <div id="content_message_action">
             <a
@@ -777,9 +788,12 @@
             </a>
         </div>
     </template>
+    <template id="mail.message_user_assigned">
+        <t t-call="mail_qweb.message_user_assigned"/>
+    </template>
 
     <!-- Override Odoo's « Activity has been assigned to you ... » mail notification content -->
-    <template id="mail.message_activity_assigned">
+    <template id="mail_qweb.message_activity_assigned">
         <div>
             <p>
                 <span t-field="activity.create_uid.name" /> assigned you an activity:
@@ -838,8 +852,11 @@
             </div>
         </div>
     </template>
+    <template id="mail.message_activity_assigned">
+        <t t-call="mail_qweb.message_activity_assigned"/>
+    </template>
 
-    <template id="mail.message_activity_done">
+    <template id="mail_qweb.message_activity_done">
 
         <div>
             <p>
@@ -927,9 +944,12 @@
 
         </div>
     </template>
+    <template id="mail.message_activity_done">
+        <t t-call="mail_qweb.message_activity_done"/>
+    </template>
 
     <!-- Mail gateway templates (refusing catchall@ and bounce@) -->
-    <template id="mail.mail_bounce_catchall">
+    <template id="mail_qweb.mail_bounce_catchall">
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="content_message">
                 <p>Hello <i t-esc="message['email_from']" />,</p>
@@ -947,18 +967,24 @@
             </t>
         </t>
     </template>
+    <template id="mail.mail_bounce_catchall">
+        <t t-call="mail_qweb.mail_bounce_catchall"/>
+    </template>
 
     <!-- Mail bounce alias mail template. Note that the body is filled by
         `MailAlias::_get_alias_bounced_body_fallback` if no custom message is set in
         field `alias_bounced_content`
     -->
-    <template id="mail.mail_bounce_alias_security">
+    <template id="mail_qweb.mail_bounce_alias_security">
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="content_message">
                 <t t-raw="body" />
                 <blockquote><t t-raw="message['body']" /></blockquote>
             </t>
         </t>
+    </template>
+    <template id="mail.mail_bounce_alias_security">
+        <t t-call="mail_qweb.mail_bounce_alias_security"/>
     </template>
 
 </odoo>
