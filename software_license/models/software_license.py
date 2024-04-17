@@ -72,8 +72,8 @@ class SoftwareLicense(models.Model):
     )
     type = fields.Selection(
         selection=[
-            ("standard", _("Standard")),
-            ("template", _("Template")),
+            ("standard", "Standard"),
+            ("template", "Template"),
         ],
         string="Type",
         default="standard",
