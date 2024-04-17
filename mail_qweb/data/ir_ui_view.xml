@@ -55,7 +55,7 @@
                         </td>
                         <td class="td_notify">
                             <i t-if="notifs.get(partner.id) == 'email'">e-mail</i>
-                            <i t-if="notifs.get(partner.id) == 'inbox'">odoo</i>
+                            <i t-if="notifs.get(partner.id) == 'inbox'">inbox</i>
                         </td>
                     </tr>
                 </t>
@@ -151,7 +151,7 @@
                     <t t-raw="footer_message" />
                 </t>
                 <t t-if="notify_account_changes">
-                    You have received this email to notify you of important changes to your account and services
+                    You have received this email to notify you of important changes to your account and services.
                 </t>
             </div>
 
@@ -233,6 +233,99 @@
                 <t t-call="mail_qweb.view_email_template_part_partners_avatar" />
             </div>
         </t>
+    </template>
+
+    <template id="view_email_template_part_content_message">
+        <style>
+            #content_message {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:14px;
+                color:rgba(0,0,0,0.87);
+                line-height:20px;
+                padding-top:20px;
+                text-align:center;
+            }
+            #content_message ul {
+                text-align:left;
+            }
+            #content_message_action {
+                padding-top:32px;
+                text-align:center;
+            }
+            #content_message_action a, .action-link {
+                font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                line-height:16px;
+                color:#ffffff;
+                font-weight:400;
+                text-decoration:none;
+                font-size:14px;
+                display:inline-block;
+                padding:10px 24px;
+                background-color:#414141;
+                border-radius:5px;
+                min-width:90px;
+            }
+            .content_message_bottom {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:12px;
+                line-height:16px;
+                color:#606060;
+                letter-spacing:0.3px;
+                padding-top:20px;
+                text-align:center;
+            }
+            .content_message_bottom a {
+                color:rgba(0,0,0,0.87);
+                text-decoration:inherit;
+            }
+            #content_message_bottom_cc {
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:12px;
+                line-height:16px;
+                color:#606060;
+                letter-spacing:0.3px;
+                padding-top:20px;
+                text-align:left;
+                overflow: auto;
+            }
+            #content_message_bottom_cc .notify_title {
+                text-align:left;
+                text-decoration: underline;
+                margin: 0;
+            }
+            #content_message_bottom_cc .notify_group {
+                text-align:left;
+                font-weight:600;
+                margin-bottom: 0;
+                margin-left: 10px;
+            }
+            #content_message_signature {
+                border-top:thin solid #dadce0;
+                margin-top: 30px;
+                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+                font-size:12px;
+                color:rgba(0,0,0,0.64);
+            }
+        </style>
+        <div t-if="content_message" id="content_message">
+            <t t-raw="content_message" />
+            <div id="content_message_action" t-if="content_message_action">
+            <t t-raw="content_message_action" />
+            </div>
+        </div>
+        <div
+            t-if="content_message_bottom"
+            id="content_message_bottom"
+            class="content_message_bottom"
+        >
+            <t t-raw="content_message_bottom" />
+        </div>
+        <div t-if="content_message_bottom_cc" id="content_message_bottom_cc">
+            <t t-raw="content_message_bottom_cc" />
+        </div>
+        <div t-if="content_message_signature" id="content_message_signature">
+            <t t-raw="content_message_signature" />
+        </div>
     </template>
 
     <template id="view_email_template_notification">
@@ -322,8 +415,12 @@
                 color: #dc3545 !important;
             }
 
+            h1 {
+                line-height: 28px;
+            }
+
             #table_root {
-                min-width:348px;
+                min-width:248px;
                 margin:0;
                 padding:0;
             }
@@ -367,75 +464,6 @@
                 border-radius:8px;
                 padding: 5px;
                 margin-bottom: 16px;
-            }
-            #content_message {
-                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                font-size:14px;
-                color:rgba(0,0,0,0.87);
-                line-height:20px;
-                padding-top:20px;
-                text-align:center;
-            }
-            #content_message ul {
-                text-align:left;
-            }
-            #content_message_action {
-                padding-top:32px;
-                text-align:center;
-            }
-            #content_message_action a, .action-link {
-                font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-                line-height:16px;
-                color:#ffffff;
-                font-weight:400;
-                text-decoration:none;
-                font-size:14px;
-                display:inline-block;
-                padding:10px 24px;
-                background-color:#414141;
-                border-radius:5px;
-                min-width:90px;
-            }
-            .content_message_bottom {
-                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                font-size:12px;
-                line-height:16px;
-                color:#606060;
-                letter-spacing:0.3px;
-                padding-top:20px;
-                text-align:center;
-            }
-            .content_message_bottom a {
-                color:rgba(0,0,0,0.87);
-                text-decoration:inherit;
-            }
-            #content_message_bottom_cc {
-                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                font-size:12px;
-                line-height:16px;
-                color:#606060;
-                letter-spacing:0.3px;
-                padding-top:20px;
-                text-align:left;
-                overflow: auto;
-            }
-            #content_message_bottom_cc .notify_title {
-                text-align:left;
-                text-decoration: underline;
-                margin: 0;
-            }
-            #content_message_bottom_cc .notify_group {
-                text-align:left;
-                font-weight:600;
-                margin-bottom: 0;
-                margin-left: 10px;
-            }
-            #content_message_signature {
-                border-top:thin solid #dadce0;
-                margin-top: 30px;
-                font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
-                font-size:12px;
-                color:rgba(0,0,0,0.64);
             }
 
             .content_table {
@@ -537,42 +565,9 @@
                                                         />
                                                     </t>
                                                 </div>
-
-                                                <div
-                                                    t-if="content_message"
-                                                    id="content_message"
-                                                >
-                                                    <t t-raw="content_message" />
-                                                    <div
-                                                        id="content_message_action"
-                                                        t-if="content_message_action"
-                                                    >
-                                                    <t t-raw="content_message_action" />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    t-if="content_message_bottom"
-                                                    id="content_message_bottom"
-                                                    class="content_message_bottom"
-                                                >
-                                                    <t t-raw="content_message_bottom" />
-                                                </div>
-                                                <div
-                                                    t-if="content_message_bottom_cc"
-                                                    id="content_message_bottom_cc"
-                                                >
-                                                    <t
-                                                        t-raw="content_message_bottom_cc"
-                                                    />
-                                                </div>
-                                                <div
-                                                    t-if="content_message_signature"
-                                                    id="content_message_signature"
-                                                >
-                                                    <t
-                                                        t-raw="content_message_signature"
-                                                    />
-                                                </div>
+                                                <t
+                                                    t-call="mail_qweb.view_email_template_part_content_message"
+                                                />
                                             </div>
 
                                             <t
@@ -666,7 +661,7 @@
                 <t t-call="mail_qweb.view_email_template_part_also_notified" />
             </t>
 
-            <t t-set="content_message_signature" t-if="signature">
+            <t t-set="content_message_signature" t-if="not is_html_empty(signature)">
                 <t t-raw="signature" />
             </t>
         </t>
@@ -702,7 +697,7 @@
                 <t t-call="mail_qweb.view_email_template_part_also_notified" />
             </t>
             <!-- Contrary to original light template, signature is also added -->
-            <t t-set="content_message_signature" t-if="signature">
+            <t t-set="content_message_signature" t-if="not is_html_empty(signature)">
                 <t t-raw="signature" />
             </t>
         </t>
@@ -783,7 +778,7 @@
         </div>
     </template>
 
-    <!-- Override Odoo's « Acivity has been assigned to you ... » mail notification content -->
+    <!-- Override Odoo's « Activity has been assigned to you ... » mail notification content -->
     <template id="mail.message_activity_assigned">
         <div>
             <p>
