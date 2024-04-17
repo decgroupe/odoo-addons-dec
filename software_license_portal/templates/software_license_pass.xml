@@ -2,7 +2,7 @@
 <odoo>
 
     <template
-        id="portal_software_pass_layout"
+        id="software_license_portal.portal_software_pass_layout"
         name="Portal layout: pass menu entry"
         inherit_id="portal.portal_breadcrumbs"
         priority="50"
@@ -25,7 +25,7 @@
     </template>
 
     <template
-        id="portal_software_pass_my_home"
+        id="software_license_portal.portal_software_pass_my_home"
         name="Portal My Home : pass entries"
         inherit_id="portal.portal_my_home"
         priority="40"
@@ -39,7 +39,7 @@
         </xpath>
     </template>
 
-    <template id="portal_my_passes" name="My passes">
+    <template id="software_license_portal.portal_my_passes" name="My passes">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />
             <t t-call="portal.portal_searchbar">
@@ -101,7 +101,10 @@
         </t>
     </template>
 
-    <template id="portal_software_pass_page" name="Pass Portal Template">
+    <template
+        id="software_license_portal.portal_software_pass_page"
+        name="Pass Portal Template"
+    >
         <t t-call="portal.portal_layout">
             <div class="container">
                 <div class="panel panel-default">
@@ -175,7 +178,7 @@
                                                     <tr class="active">
                                                         <th>Unique ID</th>
                                                         <th>Device Name</th>
-                                                        <th></th>
+                                                        <th />
                                                     </tr>
                                                 </thead>
                                                 <t

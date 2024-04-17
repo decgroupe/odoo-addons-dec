@@ -2,7 +2,7 @@
 <odoo>
 
     <template
-        id="portal_software_license_layout"
+        id="software_license_portal.portal_software_license_layout"
         name="Portal layout: license menu entry"
         inherit_id="portal.portal_breadcrumbs"
         priority="50"
@@ -25,7 +25,7 @@
     </template>
 
     <template
-        id="portal_software_license_my_home"
+        id="software_license_portal.portal_software_license_my_home"
         name="Portal My Home : license entries"
         inherit_id="portal.portal_my_home"
         priority="40"
@@ -39,7 +39,7 @@
         </xpath>
     </template>
 
-    <template id="portal_my_licenses" name="My licenses">
+    <template id="software_license_portal.portal_my_licenses" name="My licenses">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />
             <t t-call="portal.portal_searchbar">
@@ -97,7 +97,10 @@
         </t>
     </template>
 
-    <template id="portal_software_license_page" name="License Portal Template">
+    <template
+        id="software_license_portal.portal_software_license_page"
+        name="License Portal Template"
+    >
         <t t-call="portal.portal_layout">
             <div class="container">
                 <div class="panel panel-default">
