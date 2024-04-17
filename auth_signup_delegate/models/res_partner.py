@@ -37,7 +37,13 @@ class ResPartner(models.Model):
     def give_portal_access(self):
         PortalWizard = self.env["portal.wizard"]
         PortalWizardUser = self.env["portal.wizard.user"]
-        wizard_id = PortalWizard.sudo().create({})
+        # unset active_id/active_ids otherwise wizard.user_ids will be filled with
+        # garbage (because not check for `active_model` in `_default_user_ids`)
+        wizard_id = (
+            PortalWizard.with_context(active_id=False, active_ids=False)
+            .sudo()
+            .create({})
+        )
         for partner_id in self:
             already_in_portal = False
             if partner_id.user_ids:
