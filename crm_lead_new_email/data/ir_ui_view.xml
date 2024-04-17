@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="view_mail_template_new_email_lead">
+    <template id="crm_lead_new_email.view_mail_template_new_email_lead">
         <t t-call="mail_qweb.view_email_template_notification">
 
             <t t-set="content_warning" t-if="not object.partner_id">
