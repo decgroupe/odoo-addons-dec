@@ -15,6 +15,7 @@ class IrMailServer(models.Model):
     auto_add_sender = fields.Boolean(
         string="Auto add sender",
         help="Automatically add sender to the list of hidden recipients",
+        default=True,
     )
     auto_cc_addresses = fields.Text(
         string="Auto CC addresses",
@@ -61,9 +62,6 @@ class IrMailServer(models.Model):
             ignore_auto_add_sender = False
             from_rfc2822 = extract_rfc2822_addresses(message["From"])
             if mail_message_id.model == "mail.channel":
-                # catchall_alias = self.env['ir.config_parameter'].sudo().get_param('mail.catchall.alias')
-                # TEMP: Test if it fixes duplicates
-                auto_bcc_addresses = False
                 # Do not automatically add sender to bcc if the message comes
                 # from a channel
                 channel_email_from_rfc2822 = extract_rfc2822_addresses(
@@ -74,7 +72,8 @@ class IrMailServer(models.Model):
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 partner_id = self.env["res.partner"].search(
-                    [("email", "=", from_rfc2822[0])], limit=1
+                    [("email", "=", from_rfc2822[0]), ("user_ids", "!=", False)],
+                    limit=1,
                 )
                 if partner_id and not partner_id.copy_sent_email:
                     _logger.info("Do not add %s to BCC - R2", from_rfc2822[0])
