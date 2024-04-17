@@ -2,7 +2,7 @@
 <odoo>
 
     <template
-        id="view_email_template_notification_diff"
+        id="project_merge.view_email_template_notification_diff"
         inherit_id="mail_qweb.view_email_template_notification"
         primary="True"
     >
@@ -25,7 +25,7 @@
         </style>
     </template>
 
-    <template id="view_mail_template_merged_projects">
+    <template id="project_merge.view_mail_template_merged_projects">
         <t t-call="project_merge.view_email_template_notification_diff">
 
             <t t-if="env.context.get('src_object')">
@@ -101,7 +101,7 @@
         </t>
     </template>
 
-    <template id="view_mail_template_merged_tasks">
+    <template id="project_merge.view_mail_template_merged_tasks">
         <t t-call="project_merge.view_email_template_notification_diff">
 
             <t t-if="env.context.get('src_object')">
@@ -170,7 +170,9 @@
                             <t t-esc="src_object_id.project_id.type_id.display_name" />
                         </td>
                         <td>
-                            <t t-esc="object.dst_object_id.project_id.type_id.display_name" />
+                            <t
+                                t-esc="object.dst_object_id.project_id.type_id.display_name"
+                            />
                         </td>
                     </tr>
                 </table>
