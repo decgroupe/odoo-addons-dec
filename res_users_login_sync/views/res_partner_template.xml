@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="login_sync_warning_template">
+    <template id="res_users_login_sync.login_sync_warning_template">
         <div>
             <div class="alert alert-warning" role="alert">
                 <strong>⚠️ User login not in sync with contact e-mail.</strong>

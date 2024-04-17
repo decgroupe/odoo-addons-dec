@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="view_email_template_login_edit">
+    <template id="res_users_login_sync.view_email_template_login_edit">
         <t t-set="notified_user" t-value="object" />
         <t t-set="new_login" t-value="env.context.get('new_login')" />
         <t t-set="previous_login" t-value="env.context.get('previous_login')" />
