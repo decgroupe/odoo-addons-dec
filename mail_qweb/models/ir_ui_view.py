@@ -4,7 +4,7 @@
 import logging
 
 from odoo import api, models
-from odoo.tools import safe_eval
+from odoo.tools import safe_eval, is_html_empty
 
 _logger = logging.getLogger(__name__)
 
@@ -28,5 +28,6 @@ class View(models.Model):
         qcontext = dict(
             env=self.env,
             datetime=safe_eval.datetime,
+            is_html_empty=is_html_empty,
         )
         return qcontext
