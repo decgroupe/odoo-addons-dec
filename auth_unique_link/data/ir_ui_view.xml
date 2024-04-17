@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="view_mail_template_signin_link">
+    <template id="auth_unique_link.view_mail_template_signin_link">
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="notify_account_changes" t-value="True" />
             <t t-set="notified_user" t-value="object" />
@@ -16,7 +16,7 @@
         </t>
     </template>
 
-    <template id="view_mail_template_signin_link_basic">
+    <template id="auth_unique_link.view_mail_template_signin_link_basic">
         <style>
             #code {
                 border:2px solid #e2e2e2;
@@ -51,7 +51,9 @@
                 </div>
             </t>
             <t t-set="content_message_action">
-                <a t-attf-href="/web/login?auth_login={{object.email}}">Go To Login Page</a>
+                <a
+                    t-attf-href="/web/login?auth_login={{object.email}}"
+                >Go To Login Page</a>
             </t>
         </t>
     </template>
