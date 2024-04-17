@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="view_created_ticket_internal_template">
+    <template id="helpdesk_notify.view_created_ticket_internal_template">
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="content_subject">
                 <t t-esc="email_subject" />
