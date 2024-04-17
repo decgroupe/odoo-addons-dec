@@ -2,7 +2,10 @@
 <odoo>
 
     <!-- Discuss utility templates for notifications -->
-    <template id="message_user_assigned" inherit_id="mail.message_user_assigned">
+    <template
+        id="mail_extra_notify.message_user_assigned"
+        inherit_id="mail_qweb.message_user_assigned"
+    >
         <xpath expr="//p[1]" position="after">
             <t t-if="extra_values">
                 <p>

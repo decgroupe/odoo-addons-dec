@@ -5,7 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "base",
-        "mail",
+        "mail_qweb",
     ],
     "data": [
         "data/mail.xml",
