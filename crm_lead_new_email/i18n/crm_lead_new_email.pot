@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:55+0000\n"
-"PO-Revision-Date: 2023-11-28 09:55+0000\n"
+"POT-Creation-Date: 2024-04-17 07:44+0000\n"
+"PO-Revision-Date: 2024-04-17 07:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,23 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: crm_lead_new_email
-#: model:mail.template,body_html:crm_lead_new_email.email_template
-msgid ""
-"<div style=\"margin: 0px; padding: 0px;\">\n"
-"                <p>Message from ${object.email_from}</p>\n"
-"                % if not object.partner_id:\n"
-"                <p style=\"color: rgb(231, 99, 99);\">No contact matches were found for this email.<br/>\n"
-"                It is advisable to create a contact associated with this email to enable automatic recognition of incoming messages.\n"
-"                </p>\n"
-"                % endif\n"
-"                <a href=\"${'/mail/view?model=%s\\u0026res_id=%s' % ('crm.lead', object.id)}\" target=\"_blank\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">Open in Odoo</a>\n"
-"                % if object.original_message_id.body:\n"
-"                <p>\n"
-"                ${object.original_message_id.body|safe}\n"
-"                </p>\n"
-"                % endif\n"
-"            </div>\n"
-"        "
+#: model_terms:ir.ui.view,arch_db:crm_lead_new_email.view_mail_template_new_email_lead
+msgid "(No text)"
 msgstr ""
 
 #. module: crm_lead_new_email
@@ -46,8 +31,10 @@ msgid "ID"
 msgstr ""
 
 #. module: crm_lead_new_email
-#: model:ir.model.fields,help:crm_lead_new_email.field_crm_lead__xid
-msgid "ID of the record defined in xml file"
+#: model_terms:ir.ui.view,arch_db:crm_lead_new_email.view_mail_template_new_email_lead
+msgid ""
+"It is advisable to create a contact associated with this email to enable "
+"automatic recognition of incoming messages."
 msgstr ""
 
 #. module: crm_lead_new_email
@@ -67,16 +54,21 @@ msgid "New Lead Warning"
 msgstr ""
 
 #. module: crm_lead_new_email
+#: model_terms:ir.ui.view,arch_db:crm_lead_new_email.view_mail_template_new_email_lead
+msgid "No match found for"
+msgstr ""
+
+#. module: crm_lead_new_email
+#: model_terms:ir.ui.view,arch_db:crm_lead_new_email.view_mail_template_new_email_lead
+msgid "Open Lead"
+msgstr ""
+
+#. module: crm_lead_new_email
 #: model:ir.model.fields,field_description:crm_lead_new_email.field_crm_lead__original_message_id
 msgid "Original Message"
 msgstr ""
 
 #. module: crm_lead_new_email
-#: model:ir.model.fields,field_description:crm_lead_new_email.field_crm_lead__xid
-msgid "XML-ID"
-msgstr ""
-
-#. module: crm_lead_new_email
-#: model:mail.template,subject:crm_lead_new_email.email_template
+#: model:mail.template,subject:crm_lead_new_email.mail_template_new_email_lead
 msgid "✨ New Lead: ${object.name}"
 msgstr ""

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:54+0000\n"
-"PO-Revision-Date: 2023-11-28 09:54+0000\n"
+"POT-Creation-Date: 2024-04-17 07:44+0000\n"
+"PO-Revision-Date: 2024-04-17 07:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,158 +16,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.view_mail_template_signin_link_basic
+msgid "012345"
+msgstr ""
+
+#. module: auth_unique_link
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.login
 msgid "<span>Simple Code (6-digits)</span>"
 msgstr ""
 
 #. module: auth_unique_link
-#: model:mail.template,body_html:auth_unique_link.mail_template_signin_link
-msgid ""
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td align=\"center\">\n"
-"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
-"                            <tbody>\n"
-"                                <!-- HEADER -->\n"
-"                                <tr>\n"
-"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                                            <tr>\n"
-"                                                <td valign=\"middle\">\n"
-"                                                    <span style=\"font-size: 10px;\">Your Account</span>\n"
-"                                                    <br/>\n"
-"                                                    <span style=\"font-size: 20px; font-weight: bold;\">\n"
-"                                                        ${object.name}\n"
-"                                                    </span>\n"
-"                                                </td>\n"
-"                                                <td valign=\"middle\" align=\"right\">\n"
-"                                                    <img src=\"/logo.png?company=${object.company_id.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${object.company_id.name}\"/>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                            <tr>\n"
-"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
-"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                        </table>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                                <!-- CONTENT -->\n"
-"                                <tr>\n"
-"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                                            <tr>\n"
-"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <div>\n"
-"                                                            Dear ${object.name or ''},\n"
-"                                                        <br/>\n"
-"                                                        <br/>\n"
-"                                                            To log into ${object.company_id.name}'s portal, please press the button below:\n"
-"                                                        <br/>\n"
-"                                                        <div style=\"margin: 16px 0px 16px 0px;\">\n"
-"                                                            <a href=\"${object.signin_link_url}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
-"                                                                Sign In\n"
-"                                                            </a>\n"
-"                                                        </div>\n"
-"                                                    </div>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                            <tr>\n"
-"                                                <td style=\"text-align:center;\">\n"
-"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                        </table>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                            </tbody>\n"
-"                        </table>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        "
-msgstr ""
-
-#. module: auth_unique_link
-#: model:mail.template,body_html:auth_unique_link.mail_template_signin_link_basic
-msgid ""
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td align=\"center\">\n"
-"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
-"                            <tbody>\n"
-"                                <!-- HEADER -->\n"
-"                                <tr>\n"
-"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                                            <tr>\n"
-"                                                <td valign=\"middle\">\n"
-"                                                    <span style=\"font-size: 10px;\">Your Account</span>\n"
-"                                                    <br/>\n"
-"                                                    <span style=\"font-size: 20px; font-weight: bold;\">\n"
-"                                                        ${object.name}\n"
-"                                                    </span>\n"
-"                                                </td>\n"
-"                                                <td valign=\"middle\" align=\"right\">\n"
-"                                                    <img src=\"/logo.png?company=${object.company_id.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${object.company_id.name}\"/>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                            <tr>\n"
-"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
-"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                        </table>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                                <!-- CONTENT -->\n"
-"                                <tr>\n"
-"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
-"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                                            <tr>\n"
-"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <div>\n"
-"                                                            Dear ${object.name or ''},\n"
-"                                                        <br/>\n"
-"                                                        <br/>\n"
-"                                                            To log into ${object.company_id.name}'s portal, use the following code as password:\n"
-"                                                        <br/>\n"
-"                                                        <br/>\n"
-"\n"
-"                                                        <table role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" align=\"center\">\n"
-"                                                            <tbody>\n"
-"                                                                <tr>\n"
-"                                                                    <td style=\"border-radius:8px;background:#ffffff;text-align:center\">\n"
-"                                                                        <div style=\"background:#ffffff;border:2px solid #e2e2e2;font-family:'Roboto',sans-serif;font-size:30px;line-height:1.1;text-align:center;text-decoration:none;display:block;border-radius:8px;font-weight:bold;padding:10px 40px\">\n"
-"                                                                            <span style=\"color:#333;letter-spacing:5px\">${object.sudo().signin_link_token}</span>\n"
-"                                                                        </div>\n"
-"                                                                    </td>\n"
-"                                                                </tr>\n"
-"                                                            </tbody>\n"
-"                                                        </table>\n"
-"\n"
-"                                                    </div>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                            <tr>\n"
-"                                                <td style=\"text-align:center;\">\n"
-"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
-"                                                </td>\n"
-"                                            </tr>\n"
-"                                        </table>\n"
-"                                    </td>\n"
-"                                </tr>\n"
-"                            </tbody>\n"
-"                        </table>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        "
-msgstr ""
-
-#. module: auth_unique_link
 #: model:res.groups,name:auth_unique_link.group_impersonate
 msgid "Allow to impersonate any portal User"
+msgstr ""
+
+#. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.view_mail_template_signin_link
+msgid "Click on the button below to be logged in to our portal"
 msgstr ""
 
 #. module: auth_unique_link
@@ -217,15 +82,14 @@ msgid "Generate New Sign-In Code"
 msgstr ""
 
 #. module: auth_unique_link
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__id
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__id
-msgid "ID"
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.view_mail_template_signin_link_basic
+msgid "Go To Login Page"
 msgstr ""
 
 #. module: auth_unique_link
-#: model:ir.model.fields,help:auth_unique_link.field_res_partner_impersonate__xid
-#: model:ir.model.fields,help:auth_unique_link.field_res_users__xid
-msgid "ID of the record defined in xml file"
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__id
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__id
+msgid "ID"
 msgstr ""
 
 #. module: auth_unique_link
@@ -269,6 +133,11 @@ msgstr ""
 #: model:mail.template,subject:auth_unique_link.mail_template_signin_link_basic
 msgid ""
 "Log in to ${object.company_id.name} [${object.sudo().signin_link_token}]"
+msgstr ""
+
+#. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.view_mail_template_signin_link
+msgid "Log me in"
 msgstr ""
 
 #. module: auth_unique_link
@@ -332,6 +201,11 @@ msgid "Unknown email address."
 msgstr ""
 
 #. module: auth_unique_link
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.view_mail_template_signin_link_basic
+msgid "Use the following code as <b>password</b> to log in to our portal"
+msgstr ""
+
+#. module: auth_unique_link
 #: model_terms:ir.ui.view,arch_db:auth_unique_link.res_partner_impersonate_form_view
 msgid "Use these <b>credentials</b> for a maintenance login."
 msgstr ""
@@ -356,12 +230,6 @@ msgstr ""
 #, python-format
 msgid ""
 "We've sent you an email with login instructions. Please check your inbox!"
-msgstr ""
-
-#. module: auth_unique_link
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__xid
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__xid
-msgid "XML-ID"
 msgstr ""
 
 #. module: auth_unique_link

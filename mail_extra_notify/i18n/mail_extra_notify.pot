@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:21+0000\n"
-"PO-Revision-Date: 2023-11-28 10:21+0000\n"
+"POT-Creation-Date: 2024-04-17 07:44+0000\n"
+"PO-Revision-Date: 2024-04-17 07:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,6 @@ msgid "ID"
 msgstr ""
 
 #. module: mail_extra_notify
-#: model:ir.model.fields,help:mail_extra_notify.field_ir_ui_view__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: mail_extra_notify
 #: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -48,9 +43,4 @@ msgstr ""
 #. module: mail_extra_notify
 #: model:ir.model,name:mail_extra_notify.model_ir_ui_view
 msgid "View"
-msgstr ""
-
-#. module: mail_extra_notify
-#: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view__xid
-msgid "XML-ID"
 msgstr ""

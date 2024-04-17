@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:31+0000\n"
-"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"POT-Creation-Date: 2024-04-17 07:45+0000\n"
+"PO-Revision-Date: 2024-04-17 07:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,6 @@ msgstr ""
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "Action"
 msgstr ""
 
@@ -98,6 +97,11 @@ msgid "Deactivate"
 msgstr ""
 
 #. module: software_license_portal
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+msgid "Device Name"
+msgstr ""
+
+#. module: software_license_portal
 #: model:ir.model.fields,field_description:software_license_portal.field_software_application__display_name
 #: model:ir.model.fields,field_description:software_license_portal.field_software_license__display_name
 #: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__display_name
@@ -121,13 +125,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license_portal.field_software_license__id
 #: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__id
 msgid "ID"
-msgstr ""
-
-#. module: software_license_portal
-#: model:ir.model.fields,help:software_license_portal.field_software_application__xid
-#: model:ir.model.fields,help:software_license_portal.field_software_license__xid
-#: model:ir.model.fields,help:software_license_portal.field_software_license_pass__xid
-msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: software_license_portal
@@ -273,11 +270,4 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "Unique ID"
-msgstr ""
-
-#. module: software_license_portal
-#: model:ir.model.fields,field_description:software_license_portal.field_software_application__xid
-#: model:ir.model.fields,field_description:software_license_portal.field_software_license__xid
-#: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__xid
-msgid "XML-ID"
 msgstr ""

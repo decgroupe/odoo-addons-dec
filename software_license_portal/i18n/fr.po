@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:31+0000\n"
-"PO-Revision-Date: 2023-11-28 15:06+0100\n"
+"POT-Creation-Date: 2024-04-17 07:45+0000\n"
+"PO-Revision-Date: 2024-04-17 09:52+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
@@ -24,7 +24,7 @@ msgid ""
 "                                    <strong>Create Date:</strong>"
 msgstr ""
 "<br/>\n"
-"                                    <strong>Date de création:</strong>"
+"                                    <strong>Date de création :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.software_application_form_view
@@ -34,29 +34,29 @@ msgstr "<span class=\"o_stat_text\">Portail</span>"
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
 msgid "<strong>Application:</strong>"
-msgstr "<strong>Application:</strong>"
+msgstr "<strong>Application :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "<strong>Create Date:</strong>"
-msgstr "<strong>Date de création </strong>"
+msgstr "<strong>Date de création :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "<strong>Expiration Date:</strong>"
-msgstr "<strong>Date d'expiration:</strong>"
+msgstr "<strong>Date d'expiration :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "<strong>Maximum Activation Count:</strong>"
-msgstr "<strong>Nombre maximum d’activations:</strong>"
+msgstr "<strong>Nombre maximum d’activations :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "<strong>Pack:</strong>"
-msgstr "<strong>Pack:</strong>"
+msgstr "<strong>Pack :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
@@ -66,7 +66,6 @@ msgstr "<strong>Activations restantes :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "Action"
 msgstr "Action"
 
@@ -87,7 +86,7 @@ msgstr "Application"
 #. module: software_license_portal
 #: model:ir.model,name:software_license_portal.model_software_license_pass
 msgid "Application Pass"
-msgstr "« Pass » d'applications"
+msgstr "Pass d'applications"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_licenses
@@ -100,6 +99,11 @@ msgstr "Date de création"
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "Deactivate"
 msgstr "Désactiver"
+
+#. module: software_license_portal
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+msgid "Device Name"
+msgstr "Nom de l'appareil"
 
 #. module: software_license_portal
 #: model:ir.model.fields,field_description:software_license_portal.field_software_application__display_name
@@ -126,13 +130,6 @@ msgstr "Identificateurs matériels"
 #: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__id
 msgid "ID"
 msgstr "ID"
-
-#. module: software_license_portal
-#: model:ir.model.fields,help:software_license_portal.field_software_application__xid
-#: model:ir.model.fields,help:software_license_portal.field_software_license__xid
-#: model:ir.model.fields,help:software_license_portal.field_software_license_pass__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: software_license_portal
 #: model:ir.model.fields,field_description:software_license_portal.field_software_application__portal_published
@@ -199,7 +196,7 @@ msgstr "Pack"
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_layout
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_my_home
 msgid "Passes"
-msgstr "« Pass »"
+msgstr "Pass"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_passes
@@ -261,7 +258,7 @@ msgstr "Il n'y a pas de matériel activé sur cette licence."
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
 msgid "There is no activated hardware on this pass."
-msgstr "Il n'y a pas de matériel activé sur ce « pass »."
+msgstr "Il n'y a pas de matériel activé sur ce pass."
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_licenses
@@ -271,7 +268,7 @@ msgstr "Il n'y a pas de licence liée à votre compte."
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_my_passes
 msgid "There is no pass linked to your account."
-msgstr "Il n'y a pas de « pass » lié à votre compte."
+msgstr "Il n'y a pas de pass lié à votre compte."
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
@@ -279,12 +276,11 @@ msgstr "Il n'y a pas de « pass » lié à votre compte."
 msgid "Unique ID"
 msgstr "ID unique"
 
-#. module: software_license_portal
-#: model:ir.model.fields,field_description:software_license_portal.field_software_application__xid
-#: model:ir.model.fields,field_description:software_license_portal.field_software_license__xid
-#: model:ir.model.fields,field_description:software_license_portal.field_software_license_pass__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "License Hardware"
 #~ msgstr "Matériel"

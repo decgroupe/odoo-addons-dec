@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:54+0000\n"
-"PO-Revision-Date: 2023-11-28 11:31+0100\n"
+"POT-Creation-Date: 2024-04-16 11:33+0000\n"
+"PO-Revision-Date: 2024-04-16 13:40+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,18 +18,21 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: auth_signup_delegate
-#: code:addons/auth_signup_delegate/controllers/main.py:0
-#, python-format
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.account_not_activated
 msgid ""
-"<b>Your portal access must be active before you can create contacts.</"
-"b><div><small>Please check your email to enable your account, or request a "
-"new activation link by resetting your password from the login page.</"
-"small></div>"
+") to enable your account, or request a new activation link by resetting "
+"your password from the login page."
+msgstr ""
+") pour activer votre compte, ou demander un nouveau lien d'activation en "
+"réinitialisant votre mot de passe à partir de la page de connexion."
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.account_not_activated
+msgid ""
+"<b>Your portal access must be active before you can create contacts.</b>"
 msgstr ""
 "<b>Votre accès au portail doit être actif avant de pouvoir créer des "
-"contacts.</b><div><small>Veuillez consulter vos e-mails pour activer votre "
-"compte ou demander un nouveau lien d'activation en réinitialisant votre mot "
-"de passe à partir de la page de connexion.</small></div>"
+"contacts.</b>"
 
 #. module: auth_signup_delegate
 #: model:res.groups,name:auth_signup_delegate.group_delegate
@@ -180,6 +183,11 @@ msgstr "Nom"
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
 msgid "New Contact"
 msgstr "Nouveau contact"
+
+#. module: auth_signup_delegate
+#: model_terms:ir.ui.view,arch_db:auth_signup_delegate.account_not_activated
+msgid "Please check your emails ("
+msgstr "Veuillez vérifier vos courriels ("
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
