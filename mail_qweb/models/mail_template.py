@@ -1,9 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2024
 
-from odoo import models
-from odoo import tools
+import logging
 
+from odoo import models, tools
+
+_logger = logging.getLogger(__name__)
 
 class MailTemplate(models.Model):
     _inherit = "mail.template"
@@ -34,4 +36,18 @@ class MailTemplate(models.Model):
         )
         for res_id, rendered in res.items():
             res[res_id] = self._premailer_apply_transform(tools.ustr(rendered))
+        return res
+
+    def _render_field(
+        self, field, res_ids, compute_lang=False, set_lang=False, post_process=False
+    ):
+        res = super()._render_field(
+            field=field,
+            res_ids=res_ids,
+            compute_lang=compute_lang,
+            set_lang=set_lang,
+            post_process=post_process,
+        )
+        for res_id in res_ids:
+            _logger.debug("=> Renderered field %s: %s", field, res[res_id])
         return res
