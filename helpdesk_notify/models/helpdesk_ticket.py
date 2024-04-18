@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class HelpdeskTicket(models.Model):
@@ -25,15 +25,18 @@ class HelpdeskTicket(models.Model):
             if not assigned_user_id or (assigned_user_id not in team_id.user_ids):
                 emails = []
                 for user_id in team_id.user_ids:
-                    emails.append(user_id.partner_id.email)
+                    emails.append(user_id.partner_id.email_formatted)
                     # self.message_subscribe(
                     #     partner_ids=user_id.partner_id.ids
                     # )
-                self.with_context(emails=",".join(emails)).send_user_internal_mail()
+                self.send_user_internal_mail(emails)
 
-    def send_user_internal_mail(self):
+    def send_user_internal_mail(self, emails):
+        email_values = {"email_to": ",".join(emails)}
         self.env.ref("helpdesk_notify.created_ticket_internal_template").send_mail(
-            self.id, force_send=True
+            self.id,
+            force_send=True,
+            email_values=email_values,
         )
 
     def _should_notify_new_ticket(self):
