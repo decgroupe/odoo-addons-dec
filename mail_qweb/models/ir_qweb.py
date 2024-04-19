@@ -14,7 +14,7 @@ class IrQWeb(models.AbstractModel):
 
     @api.model
     def _render(self, id_or_xml_id, values=None, **options):
-        _logger.info(
+        _logger.debug(
             "Rendering QWeb %s with: %s", id_or_xml_id, pprint.pformat(values)
         )
         res = super(IrQWeb, self)._render(id_or_xml_id, values=values, **options)
