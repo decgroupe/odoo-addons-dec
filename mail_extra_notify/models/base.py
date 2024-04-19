@@ -9,7 +9,7 @@ from odoo.tools import format_datetime
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    def _get_user_assigned_extra_field_value(self, model, field_name):
+    def _get_assigned_extra_field_value(self, model, field_name):
         IrTranslation = self.env["ir.translation"]
         key = IrTranslation.get_field_string(model._name)[field_name]
         value = model[field_name]

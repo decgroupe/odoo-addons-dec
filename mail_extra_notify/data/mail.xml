@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <!-- Discuss utility templates for notifications -->
+    <template id="mail_extra_notify.more_informations">
+        <t t-if="extra_values">
+            <p>
+                More informations:
+                <ul>
+                    <li t-foreach="extra_values" t-as="extra">
+                        <small>
+                            <t t-esc="extra" />
+                        </small>:
+                        <b>
+                            <t t-esc="extra_value" />
+                        </b>
+                    </li>
+                </ul>
+            </p>
+        </t>
+    </template>
+
     <template
         id="mail_extra_notify.message_user_assigned"
         inherit_id="mail_qweb.message_user_assigned"
     >
         <xpath expr="//p[1]" position="after">
-            <t t-if="extra_values">
-                <p>
-                    More informations:
-                    <ul>
-                        <li t-foreach="extra_values" t-as="extra">
-                            <small>
-                                <t t-esc="extra" />
-                            </small>:
-                            <b>
-                                <t t-esc="extra_value" />
-                            </b>
-                        </li>
-                    </ul>
-                </p>
-            </t>
+            <t t-call="mail_extra_notify.more_informations" />
+        </xpath>
+    </template>
+
+    <template
+        id="mail_extra_notify.message_activity_assigned"
+        inherit_id="mail_qweb.message_activity_assigned"
+    >
+        <xpath expr="//table[1]" position="after">
+            <t t-call="mail_extra_notify.more_informations" />
         </xpath>
     </template>
 
