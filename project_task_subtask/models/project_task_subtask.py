@@ -11,10 +11,10 @@ from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
 
 SUBTASK_STATES = {
-    "done": _("Done"),
-    "todo": _("To-Do"),
-    "waiting": _("Waiting"),
-    "cancelled": _("Cancelled"),
+    "done": "Done",
+    "todo": "To-Do",
+    "waiting": "Waiting",
+    "cancelled": "Cancelled",
 }
 
 
