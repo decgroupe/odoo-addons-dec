@@ -11,10 +11,10 @@ class AccountMove(models.Model):
         self.ensure_one()
         res = {}
 
-        if self.origin:
+        if self.invoice_origin:
             key, value = self._get_user_assigned_extra_field_value(
                 self,
-                "origin",
+                "invoice_origin",
             )
             res[key] = value
         if self.partner_shipping_id:

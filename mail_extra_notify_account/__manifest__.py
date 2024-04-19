@@ -7,6 +7,7 @@
         "mail_extra_notify",
         "account",
         "account_partner_location",
+        "sale", # for partner_shipping_id field
     ],
     "data": [],
     "installable": True,
