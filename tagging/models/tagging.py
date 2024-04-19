@@ -39,7 +39,7 @@ class TaggingTag(models.Model):
         (
             "tagging_tags_name_unique",
             "unique (name)",
-            _("The tag names must be unique!"),
+            "The tag names must be unique!",
         ),
     ]
 
