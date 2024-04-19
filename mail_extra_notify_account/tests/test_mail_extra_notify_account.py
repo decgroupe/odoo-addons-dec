@@ -21,7 +21,7 @@ class TestMailExtraNotifyAccount(TestMailExtraNotifyCommon):
             existing_mail_ids = self.Mail.search([])
             # set salesperson
             self.invoice_id.user_id = self.user1
-            # get lastest email
+            # get latest email
             mail_id = self.Mail.search([]) - existing_mail_ids
             self.assertEqual(len(mail_id), 1)
             self.assertEqual(
@@ -34,8 +34,31 @@ class TestMailExtraNotifyAccount(TestMailExtraNotifyCommon):
         finally:
             self.mail_unlink_enabled()
 
-    def test_02_assigned_draft_invoice_more_informations(self):
+    def test_02_assigned_activity_more_informations(self):
+        try:
+            self.mail_unlink_disabled()
+            # keep a trace of existing mail
+            existing_mail_ids = self.Mail.search([])
+            # assign an activity
+            activity_id = self.invoice_id.activity_schedule(
+                act_type_xmlid="mail.mail_activity_data_todo",
+                note="Please check this",
+                user_id=self.user1.id,
+            )
+            # get latest email
+            mail_id = self.Mail.search([]) - existing_mail_ids
+            self.assertEqual(len(mail_id), 1)
+            self.assertEqual(
+                mail_id.subject,
+                "INV/2024/04/0002: To Do assigned to you",
+            )
+            self.assertIn("Origin", mail_id.body)
+            self.assertIn("Status", mail_id.body)
+            self.assertIn("Total", mail_id.body)
+        finally:
+            self.mail_unlink_enabled()
 
+    def test_03_assigned_draft_invoice_more_informations(self):
         try:
             self.mail_unlink_disabled()
             draft_invoice_id = self.env["account.move"].create(
@@ -51,7 +74,7 @@ class TestMailExtraNotifyAccount(TestMailExtraNotifyCommon):
             existing_mail_ids = self.Mail.search([])
             # set salesperson
             draft_invoice_id.user_id = self.user1
-            # get lastest email
+            # get latest email
             mail_id = self.Mail.search([]) - existing_mail_ids
             self.assertEqual(len(mail_id), 1)
             self.assertEqual(
