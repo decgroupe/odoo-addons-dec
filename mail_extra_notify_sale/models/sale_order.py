@@ -7,30 +7,30 @@ from odoo import models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def _get_user_assigned_extra_values(self):
+    def _get_assigned_extra_values(self, type):
         self.ensure_one()
         res = {}
 
         if self.opportunity_id:
-            key, value = self._get_user_assigned_extra_field_value(
+            key, value = self._get_assigned_extra_field_value(
                 self,
                 "opportunity_id",
             )
             res[key] = value
         if self.partner_shipping_id:
-            key, value = self._get_user_assigned_extra_field_value(
+            key, value = self._get_assigned_extra_field_value(
                 self,
                 "partner_shipping_id",
             )
             res[key] = value
         if self.partner_shipping_zip_id:
-            key, value = self._get_user_assigned_extra_field_value(
+            key, value = self._get_assigned_extra_field_value(
                 self,
                 "partner_shipping_zip_id",
             )
             res[key] = value
         # Total
-        key, value = self._get_user_assigned_extra_field_value(
+        key, value = self._get_assigned_extra_field_value(
             self,
             "amount_total",
         )
