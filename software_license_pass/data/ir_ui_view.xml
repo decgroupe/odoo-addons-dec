@@ -32,7 +32,7 @@
                     t-esc="object.max_allowed_hardware"
                 />
             </t>
-            <t t-else="">unlimited</t> devices and to access following applications:
+            <t t-else="">unlimited</t> device(s) and to access following applications:
             <ul>
                 <li t-foreach="object.license_ids" t-as="license_id">
                     <span t-esc="license_id.application_id.name" />
@@ -57,7 +57,8 @@
         </p>
 
         <p class="content_message_bottom">
-        Do not hesitate to contact us if you have any question (you can reply to this email).</p>
+            Do not hesitate to contact us if you have any question (you can reply to this email).
+        </p>
     </template>
 
 </odoo>
