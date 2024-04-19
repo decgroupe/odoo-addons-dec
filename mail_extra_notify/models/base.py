@@ -1,8 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2022
 
-from odoo import models
+from datetime import datetime
 
+from odoo import models
+from odoo.tools import format_datetime
 
 class Base(models.AbstractModel):
     _inherit = "base"
@@ -16,4 +18,6 @@ class Base(models.AbstractModel):
                 value = value.name_get()[0][1]
             else:
                 value = False
+        elif isinstance(value, datetime):
+            value = format_datetime(self.env, value, self.env.user.tz)
         return key, value
