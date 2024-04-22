@@ -6,6 +6,7 @@
     "depends": [
         "mail_extra_notify",
         "sale",
+        "sale_crm", # opportunity_id field
         "sale_partner_location",
         "sale_timesheet",
     ],
