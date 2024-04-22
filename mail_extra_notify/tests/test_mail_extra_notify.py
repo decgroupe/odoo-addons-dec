@@ -1,8 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
-
-from odoo.addons.mail_extra_notify.tests.common import TestMailExtraNotifyCommon, tagged
+from odoo.tests import tagged
+from odoo.addons.mail_extra_notify.tests.common import TestMailExtraNotifyCommon
 
 
 @tagged("post_install", "-at_install")
@@ -56,4 +56,3 @@ class TestMailExtraNotify(TestMailExtraNotifyCommon):
             self.assertIn("Created by", mail_id.body)
         finally:
             self.mail_unlink_enabled()
-
