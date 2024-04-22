@@ -6,9 +6,9 @@
             <p>
                 More informations:
                 <ul>
-                    <li t-foreach="extra_values" t-as="extra">
+                    <li t-foreach="extra_values" t-as="extra" t-att-name="extra[0]">
                         <small>
-                            <t t-esc="extra" />
+                            <t t-esc="extra[1]" />
                         </small>:
                         <b>
                             <t t-esc="extra_value" />
