@@ -1,0 +1,53 @@
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
+# Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
+
+from odoo.addons.mail.tests.common import MailCase
+from odoo.addons.mail_remove_gmail_signature.tests.common import MSG_FROM_YFI
+from odoo.tests import tagged
+from odoo.tests.common import SavepointCase
+from odoo.tools import mute_logger
+
+
+@tagged("mail_thread", "mail_gateway")
+class TestMailRemoveGmailSignature(SavepointCase, MailCase):
+    def setUp(self):
+        super().setUp()
+        self.project_id = self.env.ref("project.project_project_2")
+        alias_data = {
+            "alias_name": "project-rd",
+            "alias_model_id": self.env.ref("project.model_project_task").id,
+            "alias_force_thread_id": 0,
+            "alias_defaults": "{'project_id': %d}" % self.project_id.id,
+            "alias_contact": "everyone",
+            "alias_parent_model_id": self.env.ref("project.model_project_project").id,
+            "alias_parent_thread_id": self.project_id.id,
+        }
+        self.env["mail.alias"].create(alias_data)
+
+    @mute_logger("odoo.addons.mail.models.mail_thread")
+    def test_01_message_from_our_domain(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "mail.catchall.domain", "mycompany.com"
+        )
+        incoming_message = MSG_FROM_YFI
+        prev_task_ids = self.project_id.task_ids
+        record_id = self.env["mail.thread"].message_process(None, incoming_message)
+        task_id = self.project_id.task_ids - prev_task_ids
+        self.assertEqual(1, len(task_id))
+        self.assertEqual(task_id.id, record_id)
+        self.assertNotIn(
+            "res_users_signature_workflow_myc", task_id.message_ids[0].body
+        )
+
+    @mute_logger("odoo.addons.mail.models.mail_thread")
+    def test_02_message_from_other_domain(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "mail.catchall.domain", "widget.com"
+        )
+        incoming_message = MSG_FROM_YFI
+        prev_task_ids = self.project_id.task_ids
+        record_id = self.env["mail.thread"].message_process(None, incoming_message)
+        task_id = self.project_id.task_ids - prev_task_ids
+        self.assertEqual(1, len(task_id))
+        self.assertEqual(task_id.id, record_id)
+        self.assertIn("res_users_signature_workflow_myc", task_id.message_ids[0].body)

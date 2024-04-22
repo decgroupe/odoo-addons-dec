@@ -19,22 +19,19 @@ class MailThread(models.AbstractModel):
         email_from = parseaddr(email_from)[1]
         email_domain = email_from.partition("@")[2]
         catchall_domain_lowered = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("mail.catchall.domain", "")
-            .strip()
-            .lower()
+            self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain", "")
         )
+        if catchall_domain_lowered:
+            catchall_domain_lowered = catchall_domain_lowered.strip().lower()
         if catchall_domain_lowered:
             catchall_domains = [catchall_domain_lowered]
             catchall_domains_allowed = (
                 self.env["ir.config_parameter"]
                 .sudo()
                 .get_param("mail.catchall.domain.allowed")
-                .lower()
             )
             if catchall_domains_allowed:
-                for domain in catchall_domains_allowed.split(","):
+                for domain in catchall_domains_allowed.lower().split(","):
                     if domain not in catchall_domains:
                         catchall_domains.append(domain)
             res = email_domain in catchall_domains
@@ -66,7 +63,10 @@ class MailThread(models.AbstractModel):
         for node in root.iter():
             # TODO: we should probably remove only the first occurence, so
             # a context var could be used to force remove all
-            if "gmail_signature" in (node.get("class") or ""):
+
+            if "gmail_signature" in (
+                node.get("data-smartmails") or ""
+            ) or "gmail_signature" in (node.get("class") or ""):
                 postprocessed = True
                 if node.getparent() is not None:
                     to_remove.append(node)
