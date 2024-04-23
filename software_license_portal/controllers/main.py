@@ -159,7 +159,7 @@ class SoftwareLicenseController(http.Controller):
         license_id = (
             request.env["software.license"]
             .sudo()
-            .get_hardware_ids(identifier, serial, limit=1)
+            .get_license_ids(identifier, serial, limit=1)
         )
         return license_id
 
