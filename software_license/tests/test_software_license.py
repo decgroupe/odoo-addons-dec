@@ -11,6 +11,7 @@ class TestSoftwareLicense(TransactionCase):
         super().setUp()
         self.application_model = self.env["software.application"]
         self.software_license = self.env["software.license"]
+        self.software_license_hardware = self.env["software.license.hardware"]
 
     def test_01_create_license(self):
         newage_app = self.env.ref("software_application.sa_newage")
@@ -82,3 +83,120 @@ class TestSoftwareLicense(TransactionCase):
         self.assertEqual(hw_exported_vals["partner"], "Azure Interior, Brandon Freeman")
         self.assertEqual(hw_exported_vals["serial"], "0DAY-0001")
         self.assertEqual(hw_exported_vals["hardware_identifier"], "13:bd:17:6b:03:46")
+
+    def test_06_search_license(self):
+        license_ids = self.software_license.get_license_ids(
+            identifier="1001", serial=False
+        )
+        # at least 2 licenses exists from this module
+        self.assertGreaterEqual(len(license_ids), 2)
+        license_ids = self.software_license.get_license_ids(
+            identifier="1001", serial="0DAY-0001"
+        )
+        self.assertEqual(len(license_ids), 1)
+
+    def test_07_search_hardware(self):
+        hardware_ids = self.software_license_hardware.get_hardware_ids(
+            hardware="11:ec:09:af:b6:8c"
+        )
+        self.assertEqual(len(hardware_ids), 2)
+        hardware_ids = self.software_license_hardware.get_hardware_ids(
+            hardware="11:ec:09:af:b6:8c", identifier="1002"
+        )
+        self.assertEqual(len(hardware_ids), 1)
+        hardware_ids = self.software_license_hardware.get_hardware_ids(
+            hardware="11:ec:09:af:b6:8c", identifier="1002", serial="BG-A02"
+        )
+        self.assertEqual(len(hardware_ids), 1)
+        hardware_ids = self.software_license_hardware.get_hardware_ids(
+            hardware="11:ec:09:af:b6:8c", serial="BG-A02"
+        )
+        self.assertEqual(len(hardware_ids), 1)
+        hardware_ids = self.software_license_hardware.get_hardware_ids(
+            hardware="11:ec:09:af:b6:8c", identifier="1001", serial="0DAY-0002"
+        )
+        self.assertEqual(len(hardware_ids), 1)
+        hardware_ids = self.software_license_hardware.get_hardware_ids(
+            hardware="11:ec:09:af:b6:8c", serial="0DAY-0002"
+        )
+        self.assertEqual(len(hardware_ids), 1)
+
+    def test_08_device_info(self):
+        fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
+        # legacy (telemetry was params)
+        hardware_id = fitness_lic1.activate(
+            "device_uuid_1",
+            info="""{
+                "params": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.readymat.com",
+                        "HostName": "PC-ReadyMat1"
+                    }
+                }
+            }""",
+        )
+        self.assertEqual(hardware_id.device_name, "PC-ReadyMat1")
+        self.assertEqual(hardware_id.device_domain, "ad.readymat.com")
+        self.assertEqual(hardware_id.device_fqdn, "PC-ReadyMat1.ad.readymat.com")
+        # full
+        hardware_id = fitness_lic1.activate(
+            "device_uuid_2",
+            info="""{
+                "telemetry": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.readymat.com",
+                        "HostName": "PC-ReadyMat1"
+                    }
+                }
+            }""",
+        )
+        self.assertEqual(hardware_id.device_name, "PC-ReadyMat1")
+        self.assertEqual(hardware_id.device_domain, "ad.readymat.com")
+        self.assertEqual(hardware_id.device_fqdn, "PC-ReadyMat1.ad.readymat.com")
+        # no domain
+        hardware_id = fitness_lic1.activate(
+            "device_uuid_3",
+            info="""{
+                "telemetry": {
+                    "NetworkInformation": {
+                        "HostName": "PC-ReadyMat1"
+                    }
+                }
+            }""",
+        )
+        self.assertEqual(hardware_id.device_name, "PC-ReadyMat1")
+        self.assertEqual(hardware_id.device_domain, False)
+        self.assertEqual(hardware_id.device_fqdn, "PC-ReadyMat1")
+        # no network information
+        hardware_id = fitness_lic1.activate(
+            "device_uuid_4",
+            info="""{
+                "telemetry": {
+                    "NetworkInformation": {},
+                    "SystemInfo": {
+                        "deviceName": "PC-ReadyMat1"
+                    }
+                }
+            }""",
+        )
+        self.assertEqual(hardware_id.device_name, "PC-ReadyMat1")
+        self.assertEqual(hardware_id.device_domain, False)
+        self.assertEqual(hardware_id.device_fqdn, "PC-ReadyMat1")
+        # partial network information
+        hardware_id = fitness_lic1.activate(
+            "device_uuid_5",
+            info="""{
+                "telemetry": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.readymat.com"
+                    },
+                    "SystemInfo": {
+                        "deviceName": "PC-ReadyMat1"
+                    }
+                }
+            }""",
+        )
+        self.assertEqual(hardware_id.device_name, "PC-ReadyMat1")
+        self.assertEqual(hardware_id.device_domain, "ad.readymat.com")
+        self.assertEqual(hardware_id.device_fqdn, "PC-ReadyMat1.ad.readymat.com")
+        print(1)

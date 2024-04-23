@@ -119,7 +119,7 @@ class SoftwareLicense(models.Model):
             res["serial"] = self.activation_identifier
         return res
 
-    def get_hardwares_dict(self, filter_names):
+    def get_hardwares_dict(self, filter_names=False):
         self.ensure_one()
         res = {}
         hardware_ids = self.hardware_ids
@@ -194,7 +194,7 @@ class SoftwareLicense(models.Model):
     @api.model
     def get_license_ids(self, identifier, serial, limit=None):
         license_ids = self.env["software.license"]
-        domain = []
+        domain = [("type", "!=", "template")]
         if identifier:
             domain += [
                 ("application_id.identifier", "=", identifier),

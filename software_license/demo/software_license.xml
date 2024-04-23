@@ -46,4 +46,41 @@
         <field name="partner_id" ref="base.res_partner_address_7" />
     </record>
 
+    <record model="software.license" id="sl_brickgame2">
+        <field name="application_id" ref="software_application.sa_brickgame" />
+        <field name="type">standard</field>
+        <field name="serial">BG-A02</field>
+        <field name="partner_id" ref="base.res_partner_address_16" />
+    </record>
+
+    <record model="software.license.hardware" id="sl_brickgame2_hw1">
+        <field name="license_id" ref="sl_brickgame2" />
+        <field name="name">11:ec:09:af:b6:8c</field>
+        <field name="info">{}</field>
+    </record>
+
+    <record model="software.license.hardware" id="sl_brickgame2_hw2">
+        <field name="license_id" ref="sl_brickgame2" />
+        <field name="name">13:bd:17:6b:03:46</field>
+        <field name="info">{}</field>
+    </record>
+
+    <record model="software.license.hardware" id="sl_brickgame2_hw3">
+        <field name="license_id" ref="sl_brickgame2" />
+        <field name="name">6a:32:bb:7f:36:14</field>
+        <field name="info">{}</field>
+    </record>
+
+    <record model="software.license.hardware" id="sl_brickgame2_hw4">
+        <field name="license_id" ref="sl_brickgame2" />
+        <field name="name">72:e8:a5:64:1c:33</field>
+        <field name="info">{}</field>
+    </record>
+
+    <record model="software.license.hardware" id="sl_brickgame2_hw5">
+        <field name="license_id" ref="sl_brickgame2" />
+        <field name="name">c5:28:79:ac:8d:b1</field>
+        <field name="info">{}</field>
+    </record>
+
 </odoo>
