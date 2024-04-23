@@ -140,7 +140,7 @@ class SoftwareLicenseController(http.Controller):
         hardware_id = (
             request.env["software.license.hardware"]
             .sudo()
-            .get_hardware_ids(identifier, hardware, serial, limit=1)
+            .get_hardware_ids(hardware, identifier, serial, limit=1)
         )
         return hardware_id
 
