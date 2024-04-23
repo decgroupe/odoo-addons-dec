@@ -18,6 +18,15 @@
         <field name="partner_referral_id" ref="base.res_partner_address_31" />
     </record>
 
+    <record model="software.license.pass" id="pass_mid1">
+        <field name="pack_id" ref="sl_pack_mid" />
+        <field name="expiration_date" eval="datetime.now()+relativedelta(days=15)" />
+        <!-- Lumber Inc -->
+        <field name="partner_id" ref="base.res_partner_18" />
+        <!-- Lorraine Douglas -->
+        <field name="partner_referral_id" ref="base.res_partner_address_30" />
+    </record>
+
     <record model="software.license.pass" id="pass_premium1">
         <field name="pack_id" ref="sl_pack_premium" />
         <!-- Gemini Furniture -->
@@ -45,11 +54,33 @@
         eval="[[
             ref('software_license_pass.pass_basic1'),
             ref('software_license_pass.pass_basic2'),
+            ref('software_license_pass.pass_mid1'),
             ref('software_license_pass.pass_premium1'),
             ref('software_license_pass.pass_premium2'),
             ref('software_license_pass.pass_premium3'),
         ]]"
     />
+
+    <function
+        model="software.license.pass"
+        name="activate"
+        eval="[[ref('software_license_pass.pass_mid1'),]] "
+    >
+        <value name="hardware">3a006cbacfb50</value>
+        <value name="info">
+            {
+                "httprequest": {
+                    "remote_addr": "98.89.72.2"
+                },
+                "telemetry": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.lumberinc.com",
+                        "HostName": "PC-LI-1"
+                    }
+                }
+            }
+        </value>
+    </function>
 
     <function
         model="software.license.pass"

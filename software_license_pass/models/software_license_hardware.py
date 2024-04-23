@@ -27,6 +27,8 @@ class SoftwareLicenseHardware(models.Model):
         # it will probably be never reached because an exception will be raised
         # in the parent write for the same reason
         pass_ids = self.mapped("license_id").mapped("pass_id")
-        if pass_ids and not self.env.context.get("bypass_pass_checks", False):
+        if pass_ids and not self.env.context.get(
+            "bypass_pass_checks", False
+        ):  # pragma: no cover
             pass_ids._check_max_allowed_hardware()
         return res

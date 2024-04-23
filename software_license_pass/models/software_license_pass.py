@@ -1,8 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareLicensePass(models.Model):
@@ -114,7 +118,7 @@ class SoftwareLicensePass(models.Model):
         copy=False,
         default=lambda self: self.partner_id,
         track_visibility="onchange",
-        domain="[('id', 'child_of', partner_id)]"
+        domain="[('id', 'child_of', partner_id)]",
     )
     partner_contact_id = fields.Many2one(
         comodel_name="res.partner",

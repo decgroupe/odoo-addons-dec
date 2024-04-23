@@ -5,13 +5,22 @@
         <field name="name">Basic</field>
     </record>
 
-    <record model="software.license.pack.line" id="sl_pack_basic_line2">
+    <record model="software.license.pack.line" id="sl_pack_basic_line1">
         <field name="pack_id" ref="sl_pack_basic" />
+        <field name="application_id" ref="software_application.sa_newage" />
+    </record>
+
+    <record model="software.license.pack" id="sl_pack_mid">
+        <field name="name">Intermediate</field>
+    </record>
+
+    <record model="software.license.pack.line" id="sl_pack_mid_line1">
+        <field name="pack_id" ref="sl_pack_mid" />
         <field name="application_id" ref="software_application.sa_calm" />
     </record>
 
-    <record model="software.license.pack.line" id="sl_pack_basic_line2">
-        <field name="pack_id" ref="sl_pack_basic" />
+    <record model="software.license.pack.line" id="sl_pack_mid_line2">
+        <field name="pack_id" ref="sl_pack_mid" />
         <field name="application_id" ref="software_application.sa_newage" />
     </record>
 

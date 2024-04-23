@@ -8,7 +8,7 @@ from freezegun import freeze_time
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import new_test_user
+from odoo.tests import new_test_user, Form
 from odoo.tests.common import TransactionCase
 
 
@@ -148,16 +148,19 @@ class TestSoftwareLicensePass(TransactionCase):
 
     def test_07_pass_send(self):
         pass_basic1 = self.env.ref("software_license_pass.pass_basic1")
+        # remove responsible
+        pass_basic1.user_id = False
         self.assertEqual(pass_basic1.state, "draft")
         license_id = pass_basic1.license_ids[0]
         self.assertEqual(license_id.pass_state, "draft")
-        action = pass_basic1.action_send()
+        action = pass_basic1.with_user(self.pass_user).action_send()
         wizard = (
             self.env[action["res_model"]].with_context(action["context"]).create({})
         )
         wizard.action_send_mail()
         self.assertEqual(pass_basic1.state, "sent")
         self.assertEqual(license_id.pass_state, "sent")
+        self.assertEqual(pass_basic1.user_id, self.pass_user)
 
     def test_08_pass_cancel(self):
         pass_basic1 = self.env.ref("software_license_pass.pass_basic1")
@@ -280,3 +283,75 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(len(pack_premium.line_ids), 3)
         pack_premium.write({"line_ids": [(0, 0, {"application_id": brickgame_app.id})]})
         self.assertEqual(len(pack_premium.line_ids), 4)
+
+    def test_16_hardware_group(self):
+        pass_prm1 = self.env.ref("software_license_pass.pass_premium1")
+        pass_prm1.max_allowed_hardware = 10
+        pass_lic1 = pass_prm1.license_ids[0]
+        pass_lic2 = pass_prm1.license_ids[1]
+        pass_lic3 = pass_prm1.license_ids[1]
+        pass_lic1.activate(
+            "device_uuid_1",
+            info="""{
+                "telemetry": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.readymat.com",
+                        "HostName": "PC-ReadyMat1"
+                    }
+                }
+            }""",
+        )
+        # same device id but different hostname => must generate a new hardware group
+        pass_lic2.activate(
+            "device_uuid_1",
+            info="""{
+                "telemetry": {
+                    "NetworkInformation": {
+                        "DomainName": "ad.readymat.com",
+                        "HostName": "PC-ReadyMat1_RENAMED_RECENTLY"
+                    }
+                }
+            }""",
+        )
+        pass_lic2.activate("device_uuid_2")
+        pass_lic3.activate("device_uuid_3")
+        pass_lic3.activate("device_uuid_4")
+        # device_uuid_1 should be there twice
+        self.assertEqual(len(pass_prm1.hardware_group_ids), 5)
+        # remaining activation should only consider 4 hardwares
+        self.assertEqual(pass_prm1.get_remaining_activation(), 6)
+
+    def test_17_hardware_group_deactivate(self):
+        pass_prm3 = self.env.ref("software_license_pass.pass_premium3")
+        group_names = pass_prm3.hardware_group_ids.mapped("name")
+        group_count = len(pass_prm3.hardware_group_ids)
+        for identifier in pass_prm3._get_unique_hardware_names():
+            self.assertIn(identifier, group_names)
+        pass_prm3.license_ids[0].activate("123456789")
+        self.assertEqual(len(pass_prm3.hardware_group_ids), group_count + 1)
+        pass_prm3.hardware_group_ids[-1].action_deactivate()
+        self.assertEqual(len(pass_prm3.hardware_group_ids), group_count)
+
+    def test_18_referral_partner(self):
+        pass_prm3 = self.env.ref("software_license_pass.pass_premium3")
+        # Ready Mat
+        self.assertEqual(pass_prm3.partner_id, self.env.ref("base.res_partner_4"))
+        # Ready Mat, Edith Sanchez
+        pass_prm3.partner_referral_id = self.env.ref("base.res_partner_address_14")
+        with self.assertRaisesRegex(
+            ValidationError,
+            r"The referral partner must be a hierarchical "
+            "descendant of the main partner!",
+        ), self.cr.savepoint():
+            # Gemini Furniture, Soham Palmer
+            pass_prm3.partner_referral_id = self.env.ref("base.res_partner_address_11")
+
+    def test_19_partner_change_referral_partner(self):
+        pass_prm3 = self.env.ref("software_license_pass.pass_premium3")
+        # Ready Mat
+        self.assertEqual(pass_prm3.partner_id, self.env.ref("base.res_partner_4"))
+        # Ready Mat, Edith Sanchez
+        pass_prm3.partner_referral_id = self.env.ref("base.res_partner_address_14")
+        with Form(pass_prm3) as pass_form:
+            pass_form.partner_id = self.env.ref("base.res_partner_3")
+        self.assertFalse(pass_prm3.partner_referral_id)

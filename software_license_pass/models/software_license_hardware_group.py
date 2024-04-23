@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class SoftwareLicenseHardwareGroup(models.Model):
@@ -38,6 +38,11 @@ class SoftwareLicenseHardwareGroup(models.Model):
         compute="_compute_hardwares",
     )
 
+    @api.depends(
+        "pass_id",
+        "pass_id.hardware_ids",
+        "pass_id.hardware_ids.validation_date",
+    )
     def _compute_hardwares(self):
         self.last_validation_date = False
         self.hardware_ids = False
