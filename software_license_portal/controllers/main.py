@@ -103,7 +103,7 @@ class SoftwareLicenseController(http.Controller):
         auth="public",
         csrf=False,
     )
-    def reset_unit_testing(self, **kwargs):
+    def reset_unit_testing(self, **kwargs):  # pragma: no cover
         # Keep a reference on the previous function
         previous_safe_eval = odoo_convert.safe_eval
         # Define a local context and override default `safe_eval`
@@ -134,9 +134,8 @@ class SoftwareLicenseController(http.Controller):
             odoo_convert.safe_eval = previous_safe_eval
 
     #######################################################################
-    # http://odessa.decindustrie.com:8008/api/license/v1/identifier/{identifier}/serial/{serial}/hardware/{hardware}
 
-    def _get_hardware_id(self, identifier, hardware, serial=False):
+    def _get_hardware_id(self, hardware, identifier, serial=False):
         hardware_id = (
             request.env["software.license.hardware"]
             .sudo()
@@ -152,7 +151,7 @@ class SoftwareLicenseController(http.Controller):
         csrf=False,
     )
     def get_serial(self, identifier, hardware, **kwargs):
-        hardware_id = self._get_hardware_id(identifier, hardware)
+        hardware_id = self._get_hardware_id(hardware, identifier)
         return {"serial": hardware_id.license_id.serial}
 
     def _get_license_id(self, identifier, serial):
@@ -180,7 +179,7 @@ class SoftwareLicenseController(http.Controller):
             return LICENSE_NOT_FOUND
         elif license_id.check_expired():
             return SERIAL_EXPIRED
-        hardware_id = self._get_hardware_id(identifier, hardware, serial)
+        hardware_id = self._get_hardware_id(hardware, identifier, serial)
         if hardware_id:
             return SERIAL_ALREADY_ACTIVATED_ON_HARDWARE
         elif license_id.check_max_activation_reached(hardware_name=hardware):
@@ -208,7 +207,7 @@ class SoftwareLicenseController(http.Controller):
         license_id = self._get_license_id(identifier, serial)
         if not license_id:
             return LICENSE_NOT_FOUND
-        hardware_id = self._get_hardware_id(identifier, hardware, serial)
+        hardware_id = self._get_hardware_id(hardware, identifier, serial)
         if not hardware_id:
             return SERIAL_NOT_ACTIVATED_ON_HARDWARE
         else:
@@ -232,7 +231,7 @@ class SoftwareLicenseController(http.Controller):
             return LICENSE_NOT_FOUND
         elif license_id.check_expired():
             return SERIAL_EXPIRED
-        hardware_id = self._get_hardware_id(identifier, hardware, serial)
+        hardware_id = self._get_hardware_id(hardware, identifier, serial)
         if not hardware_id:
             return SERIAL_NOT_ACTIVATED_ON_HARDWARE
         else:
@@ -291,7 +290,8 @@ class SoftwareLicenseController(http.Controller):
     #######################################################################
 
     def _get_licenses(self, identifier, hardware, **kwargs):
-        SoftwareLicense = request.env["software.license"]
+        # use sudo to bypass access rules, only rely on the domain
+        SoftwareLicense = request.env["software.license"].sudo()
         domain = SoftwareLicense._get_license_default_portal_domain(
             request_partner_id=request.env.user.partner_id,
             include_pass_licenses=True,
@@ -301,7 +301,7 @@ class SoftwareLicenseController(http.Controller):
         license_ids = SoftwareLicense.search(domain)
         res = {}
         for license_id in license_ids:
-            license_data = license_id.sudo()._prepare_export_vals(
+            license_data = license_id._prepare_export_vals(
                 include_activation_identifier=True
             )
             if hardware:
@@ -310,12 +310,15 @@ class SoftwareLicenseController(http.Controller):
                     # hardwares
                     hw_names = False
                 else:
-                    # Allow multiple hardware identifiers separated with
-                    # a `:` character
-                    hw_names = hardware.split(":")
-                license_data["hardwares"] = license_id.sudo().get_hardwares_dict(
+                    # allow multiple hardware identifiers separated with
+                    # a `||` sequence
+                    hw_names = hardware.split("||")
+                license_data["hardwares"] = license_id.get_hardwares_dict(
                     filter_names=hw_names
                 )
+                if not license_data["hardwares"]:
+                    # if no hardwares match our query, then ignore this license
+                    continue
             self._append_remaining_activation(license_id, license_data)
             # Warning, the key used there is `serial`, not the
             # `activation_identifier`, don't rely on it
@@ -399,7 +402,7 @@ class SoftwareLicenseController(http.Controller):
         hardware_ids = (
             request.env["software.license.hardware"]
             .sudo()
-            .get_hardware_ids(identifier, hardware, serial)
+            .get_hardware_ids(hardware, identifier, serial)
         )
         return hardware_ids
 
