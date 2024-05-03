@@ -70,7 +70,7 @@ class SoftwareLicenseHardware(models.Model):
         self.ensure_one()
         self.validation_date = fields.datetime.now()
 
-        # Create a header to help identify this license file when opening it
+        # create a header to help identify this license file when opening it
         # with a text editor
         lic_file = [
             "# {0} License (id: {1})".format(
@@ -79,38 +79,43 @@ class SoftwareLicenseHardware(models.Model):
             )
         ]
 
-        # Base data
+        # base data
         base = self._prepare_export_vals()
-        # Convert python dict to json string
+        # convert python dict to json string
         base_string = json.dumps(base)
-        # Ensure padding of 16 byte boundary
+        # ensure padding of 16 byte boundary
         while len(base_string) % 16 != 0:
             base_string = base_string + "\n"
-        # Convert json string to byte data
+        # convert json string to byte data
         data = base_string.encode("utf-8")
 
-        key = RSA.import_key(self.license_id.application_id.public_key)
-        session_key = get_random_bytes(16)
+        # append encrypted data only if the application owns a public key
+        if self.license_id.application_id.public_key:
 
-        # Encrypt the session key with the public RSA key
-        cipher_rsa = PKCS1_OAEP.new(key)
-        enc_session_key = cipher_rsa.encrypt(session_key)
+            key = RSA.import_key(self.license_id.application_id.public_key)
+            session_key = get_random_bytes(16)
 
-        # Encrypt the data with the AES session key
-        # - EAX mode is not supported by .net 4
-        # - CFB mode is not supported by .netcore 2
-        # - ECB mode has known vulnerabilities
-        cipher_aes = AES.new(session_key, AES.MODE_CBC)
-        ciphertext = cipher_aes.encrypt(data)
+            # encrypt the session key with the public RSA key
+            cipher_rsa = PKCS1_OAEP.new(key)
+            enc_session_key = cipher_rsa.encrypt(session_key)
 
-        f = io.BytesIO()
-        for x in (enc_session_key, cipher_aes.iv, ciphertext):
-            f.write(x)
-        f.seek(0)
-        stream_length = f.getbuffer().nbytes
-        # Convert encrypted binary content to base64 string
-        lic_file.append(base64.encodebytes(f.read(stream_length)).decode())
-        f.close()
+            # encrypt the data with the AES session key
+            # - EAX mode is not supported by .net 4
+            # - CFB mode is not supported by .netcore 2
+            # - ECB mode has known vulnerabilities
+            cipher_aes = AES.new(session_key, AES.MODE_CBC)
+            ciphertext = cipher_aes.encrypt(data)
+
+            f = io.BytesIO()
+            for x in (enc_session_key, cipher_aes.iv, ciphertext):
+                f.write(x)
+            f.seek(0)
+            stream_length = f.getbuffer().nbytes
+            # convert encrypted binary content to base64 string
+            lic_file.append(base64.encodebytes(f.read(stream_length)).decode())
+            f.close()
+        else:
+            lic_file.append(base64.b64encode(data).decode())
 
         # Return a ready to use license string to write as a file
         return "\n".join(lic_file)
