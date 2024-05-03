@@ -117,7 +117,7 @@ class SoftwareLicensePass(models.Model):
         string="Referral partner",
         copy=False,
         default=lambda self: self.partner_id,
-        track_visibility="onchange",
+        tracking=True,
         domain="[('id', 'child_of', partner_id)]",
     )
     partner_contact_id = fields.Many2one(
