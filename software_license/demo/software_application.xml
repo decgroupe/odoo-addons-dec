@@ -1,6 +1,14 @@
 <?xml version="1.0" ?>
 <odoo>
 
+    <record model="software.application" id="software_application.sa_calm">
+        <field name="identifier" eval="2000" />
+    </record>
+
+    <record model="software.application" id="software_application.sa_newage">
+        <field name="identifier" eval="1000" />
+    </record>
+
     <record model="software.application" id="software_application.sa_myfitnessapp">
         <field name="template_id" ref="sl_myfitnessapp_tpl1" />
         <field name="identifier" eval="1001" />
