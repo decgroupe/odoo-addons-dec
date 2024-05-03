@@ -144,7 +144,7 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(license_id.pass_state, "draft")
         license_id.with_context(override_from_pass=True).pass_id = False
         self.assertEqual(pass_basic1.state, "draft")
-        self.assertEqual(license_id.pass_state, "none")
+        self.assertFalse(license_id.pass_state)
 
     def test_07_pass_send(self):
         pass_basic1 = self.env.ref("software_license_pass.pass_basic1")

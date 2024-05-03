@@ -30,7 +30,7 @@ class SoftwareLicense(models.Model):
     pass_state = fields.Char(
         string="Pass State",
         compute="_compute_pass_state",
-        default="none",
+        default=False,
         store=True,
     )
 
@@ -101,7 +101,7 @@ class SoftwareLicense(models.Model):
             if rec.pass_id:
                 rec.pass_state = rec.pass_id.state
             else:
-                rec.pass_state = "none"
+                rec.pass_state = False
 
     def _prepare_export_vals(self, include_activation_identifier=True):
         res = super()._prepare_export_vals(include_activation_identifier)
