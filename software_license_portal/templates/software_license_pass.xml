@@ -49,7 +49,7 @@
                 <p>There is no pass linked to your account.</p>
             </t>
             <div t-if="passes" class="panel panel-default">
-                <div class="table-responsive"><table
+                <div class="table-responsive"><table name="passes"
                         class="table table-hover o_portal_my_doc_table"
                     >
                     <thead>
@@ -62,37 +62,41 @@
                             <th>Expiration Date</th>
                         </tr>
                     </thead>
-                    <t t-foreach="passes" t-as="license_pass">
-                        <tr>
-                            <td>
-                                <t
-                                        t-esc="license_pass.sudo().partner_id._get_contact_type_emoji()"
-                                    />
-                            </td>
-                            <td>
-                                <span t-field="license_pass.name" />
-                            </td>
-                            <td>
-                                <a t-attf-href="/my/pass/#{license_pass.id}">
-                                    <t t-esc="license_pass.serial" />
-                                </a>
-                            </td>
-                            <td>
-                                <small>
-                                    <b>
-                                        <t t-esc="license_pass.pack_id.name" />
-                                    </b>
-                                    <t t-esc="license_pass.product_id.display_name" />
-                                </small>
-                            </td>
-                            <td>
-                                <span t-field="license_pass.create_date" />
-                            </td>
-                            <td>
-                                <span t-field="license_pass.expiration_date" />
-                            </td>
-                        </tr>
-                    </t>
+                    <tbody>
+                        <t t-foreach="passes" t-as="license_pass">
+                            <tr>
+                                <td>
+                                    <t
+                                            t-esc="license_pass.sudo().partner_id._get_contact_type_emoji()"
+                                        />
+                                </td>
+                                <td>
+                                    <span t-field="license_pass.name" />
+                                </td>
+                                <td>
+                                    <a t-attf-href="/my/pass/#{license_pass.id}">
+                                        <t t-esc="license_pass.serial" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <small>
+                                        <b>
+                                            <t t-esc="license_pass.pack_id.name" />
+                                        </b>
+                                        <t
+                                                t-esc="license_pass.product_id.display_name"
+                                            />
+                                    </small>
+                                </td>
+                                <td>
+                                    <span t-field="license_pass.create_date" />
+                                </td>
+                                <td>
+                                    <span t-field="license_pass.expiration_date" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
                 </table></div>
                 <div t-if="pager" class="o_portal_pager text-center">
                         <t t-call="portal.pager" />
@@ -171,7 +175,7 @@
                                             class="page-header"
                                         >Hardware Identifiers</h4>
                                         <div class="table-responsive">
-                                            <table
+                                            <table name="hardware_groups"
                                                 class="table table-hover o_portal_my_doc_table"
                                             >
                                                 <thead>
@@ -181,53 +185,55 @@
                                                         <th />
                                                     </tr>
                                                 </thead>
-                                                <t
-                                                    t-foreach="license_pass.sudo().hardware_group_ids"
-                                                    t-as="hardware_group_id"
-                                                >
-                                                    <tr>
-                                                        <td>
-                                                            <span
-                                                                t-esc="hardware_group_id.name"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <span
-                                                                t-esc="hardware_group_id.device_fqdn"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <form
-                                                                method="post"
-                                                                t-if="True"
-                                                                t-attf-action="/my/pass/deactivate"
-                                                                style="display:inline;"
-                                                            >
-                                                            <input
-                                                                    type="hidden"
-                                                                    name="csrf_token"
-                                                                    t-att-value="request.csrf_token()"
+                                                <tbody>
+                                                    <t
+                                                        t-foreach="license_pass.sudo().hardware_group_ids"
+                                                        t-as="hardware_group_id"
+                                                    >
+                                                        <tr>
+                                                            <td>
+                                                                <span
+                                                                    t-esc="hardware_group_id.name"
                                                                 />
-                                                            <input
-                                                                    type="hidden"
-                                                                    name="pass_id"
-                                                                    t-attf-value="#{license_pass.id}"
+                                                            </td>
+                                                            <td>
+                                                                <span
+                                                                    t-esc="hardware_group_id.device_fqdn"
                                                                 />
-                                                            <input
-                                                                    type="hidden"
-                                                                    name="hardware_name"
-                                                                    t-attf-value="#{hardware_group_id.name}"
-                                                                />
-                                                            <button
-                                                                    class="btn btn-success pull-right"
-                                                                    style="margin-right:15px;margin-top:3px;"
+                                                            </td>
+                                                            <td>
+                                                                <form
+                                                                    method="post"
+                                                                    t-if="True"
+                                                                    t-attf-action="/my/pass/deactivate"
+                                                                    style="display:inline;"
                                                                 >
-                                                                    Deactivate
-                                                                </button>
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                </t>
+                                                                <input
+                                                                        type="hidden"
+                                                                        name="csrf_token"
+                                                                        t-att-value="request.csrf_token()"
+                                                                    />
+                                                                <input
+                                                                        type="hidden"
+                                                                        name="pass_id"
+                                                                        t-attf-value="#{license_pass.id}"
+                                                                    />
+                                                                <input
+                                                                        type="hidden"
+                                                                        name="hardware_name"
+                                                                        t-attf-value="#{hardware_group_id.name}"
+                                                                    />
+                                                                <button
+                                                                        class="btn btn-success pull-right"
+                                                                        style="margin-right:15px;margin-top:3px;"
+                                                                    >
+                                                                        Deactivate
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>

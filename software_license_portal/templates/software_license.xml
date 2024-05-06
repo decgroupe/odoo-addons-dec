@@ -50,6 +50,7 @@
             </t>
             <div t-if="licenses" class="panel panel-default">
                 <div class="table-responsive"><table
+                        name="licenses"
                         class="table table-hover o_portal_my_doc_table"
                     >
                     <thead>
@@ -61,37 +62,39 @@
                             <th>Expiration Date</th>
                         </tr>
                     </thead>
-                    <t t-foreach="licenses" t-as="license">
-                        <tr>
-                            <td>
-                                <t
-                                        t-esc="license.sudo().partner_id._get_contact_type_emoji()"
-                                    />
-                            </td>
-                            <td>
-                                <a t-attf-href="/my/license/#{license.id}">
-                                    <t t-esc="license.serial" />
-                                </a>
-                            </td>
-                            <td>
-                                <small>
-                                    <b>
-                                        <t t-esc="license.application_id.name" />
-                                    </b>
-                                    <t t-esc="license.application_id.info" />
-                                </small>
-                            </td>
-                            <td>
-                                <span t-field="license.create_date" />
-                            </td>
-                            <td>
-                                <span t-field="license.expiration_date" />
-                            </td>
-                        </tr>
-                    </t>
+                    <tbody>
+                        <t t-foreach="licenses" t-as="license">
+                            <tr>
+                                <td>
+                                    <t
+                                            t-esc="license.sudo().partner_id._get_contact_type_emoji()"
+                                        />
+                                </td>
+                                <td>
+                                    <a t-attf-href="/my/license/#{license.id}">
+                                        <t t-esc="license.serial" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <small>
+                                        <b>
+                                            <t t-esc="license.application_id.name" />
+                                        </b>
+                                        <t t-esc="license.application_id.info" />
+                                    </small>
+                                </td>
+                                <td>
+                                    <span t-field="license.create_date" />
+                                </td>
+                                <td>
+                                    <span t-field="license.expiration_date" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
                 </table></div>
                 <div t-if="pager" class="o_portal_pager text-center">
-                        <t t-call="portal.pager" />
+                    <t t-call="portal.pager" />
                 </div>
             </div>
         </t>
@@ -144,15 +147,6 @@
                                     </t>
                                 </div>
                                 <div class="col-md-6">
-                                    <!-- <strong>Last Stage Update:</strong> <span t-field="license.last_stage_update" /><br/> -->
-                                    <!-- <strong>Attachments:</strong><br />
-                                    <t t-foreach="files" t-as="f">
-                                            <a t-att-href="'/web/content/%i?download=true' % f.id">
-                                                    <span class="fa fa-download" />
-                                                    <span t-esc="f.name" />
-                                            </a>
-                                            <br />
-                                    </t> -->
                                 </div>
                             </div>
                             <t t-if="license.hardware_ids">
@@ -162,7 +156,7 @@
                                             class="page-header"
                                         >Hardware Identifiers</h4>
                                         <div class="table-responsive">
-                                            <table
+                                            <table name="hardware_identifiers"
                                                 class="table table-hover o_portal_my_doc_table"
                                             >
                                                 <thead>
@@ -173,60 +167,62 @@
                                                         <th>Informations</th>
                                                     </tr>
                                                 </thead>
-                                                <t
-                                                    t-foreach="license.hardware_ids"
-                                                    t-as="hardware_id"
-                                                >
-                                                    <tr>
-                                                        <td>
-                                                            <span
-                                                                t-esc="hardware_id.name"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <span
-                                                                t-field="hardware_id.validation_date"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <form
-                                                                method="POST"
-                                                                t-if="True"
-                                                                t-attf-action="/my/license/deactivate"
-                                                                style="display:inline;"
-                                                            >
-                                                                <input
-                                                                    type="hidden"
-                                                                    name="csrf_token"
-                                                                    t-att-value="request.csrf_token()"
+                                                <tbody>
+                                                    <t
+                                                        t-foreach="license.hardware_ids"
+                                                        t-as="hardware_id"
+                                                    >
+                                                        <tr>
+                                                            <td>
+                                                                <span
+                                                                    t-esc="hardware_id.name"
                                                                 />
-                                                                <input
-                                                                    type="hidden"
-                                                                    name="hardware_id"
-                                                                    t-attf-value="#{hardware_id.id}"
+                                                            </td>
+                                                            <td>
+                                                                <span
+                                                                    t-field="hardware_id.validation_date"
                                                                 />
-                                                                <input
-                                                                    type="hidden"
-                                                                    name="license_id"
-                                                                    t-attf-value="#{license.id}"
-                                                                />
-                                                                <button
-                                                                    class="btn btn-success"
-                                                                    style="margin-right:15px;margin-top:3px;"
+                                                            </td>
+                                                            <td>
+                                                                <form
+                                                                    method="POST"
+                                                                    t-if="True"
+                                                                    t-attf-action="/my/license/deactivate"
+                                                                    style="display:inline;"
                                                                 >
-                                                                    Deactivate
-                                                                </button>
-                                                            </form>
-                                                        </td>
-                                                        <td
-                                                            style="font-size: x-small;font-family: monospace;"
-                                                        >
-                                                            <span
-                                                                t-esc="hardware_id.info"
-                                                            />
-                                                        </td>
-                                                    </tr>
-                                                </t>
+                                                                    <input
+                                                                        type="hidden"
+                                                                        name="csrf_token"
+                                                                        t-att-value="request.csrf_token()"
+                                                                    />
+                                                                    <input
+                                                                        type="hidden"
+                                                                        name="hardware_id"
+                                                                        t-attf-value="#{hardware_id.id}"
+                                                                    />
+                                                                    <input
+                                                                        type="hidden"
+                                                                        name="license_id"
+                                                                        t-attf-value="#{license.id}"
+                                                                    />
+                                                                    <button
+                                                                        class="btn btn-success"
+                                                                        style="margin-right:15px;margin-top:3px;"
+                                                                    >
+                                                                        Deactivate
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                            <td
+                                                                style="font-size: x-small;font-family: monospace;"
+                                                            >
+                                                                <span
+                                                                    t-esc="hardware_id.info"
+                                                                />
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
