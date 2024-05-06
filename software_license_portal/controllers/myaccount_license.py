@@ -33,14 +33,14 @@ class LicenseCustomerPortal(CustomerPortal):
             raise
         return license_id
 
-    def _get_searchbar_sortings(self):
+    def _get_software_license_searchbar_sortings(self):
         return {
             "date": {"label": _("Newest"), "order": "create_date desc"},
             "serial": {"label": _("Serial"), "order": "serial"},
             "application": {"label": _("Application"), "order": "application_id"},
         }
 
-    def _get_searchbar_inputs(self):
+    def _get_software_license_searchbar_inputs(self):
         # search input (text)
         return {
             "serial": {"input": "serial", "label": _("Search in Serials")},
@@ -54,12 +54,12 @@ class LicenseCustomerPortal(CustomerPortal):
             },
         }
 
-    def _get_searchbar_meta_inputs(self):
+    def _get_software_license_searchbar_meta_inputs(self):
         return {
             "all": {"input": "all", "label": _("Search in All")},
         }
 
-    def _get_searchbar_filters(self):
+    def _get_software_license_searchbar_filters(self):
         return {"all": {"label": _("All"), "domain": []}}
 
     @http.route(
@@ -86,9 +86,9 @@ class LicenseCustomerPortal(CustomerPortal):
             include_pass_licenses=False,
         )
 
-        searchbar_sortings = self._get_searchbar_sortings()
-        searchbar_inputs = self._get_searchbar_inputs()
-        searchbar_meta_inputs = self._get_searchbar_meta_inputs()
+        searchbar_sortings = self._get_software_license_searchbar_sortings()
+        searchbar_inputs = self._get_software_license_searchbar_inputs()
+        searchbar_meta_inputs = self._get_software_license_searchbar_meta_inputs()
 
         if search and search_in:
             search_domain = []
@@ -103,7 +103,7 @@ class LicenseCustomerPortal(CustomerPortal):
             domain += search_domain
         searchbar_inputs.update(searchbar_meta_inputs)
 
-        searchbar_filters = self._get_searchbar_filters()
+        searchbar_filters = self._get_software_license_searchbar_filters()
 
         # default sort by order
         if not sortby:

@@ -32,14 +32,14 @@ class LicensePassCustomerPortal(CustomerPortal):
             raise
         return pass_id
 
-    def _get_searchbar_sortings(self):
+    def _get_software_pass_searchbar_sortings(self):
         return {
             "date": {"label": _("Newest"), "order": "create_date desc"},
             "serial": {"label": _("Serial"), "order": "serial"},
             "pack": {"label": _("Pack"), "order": "pack_id"},
         }
 
-    def _get_searchbar_inputs(self):
+    def _get_software_pass_searchbar_inputs(self):
         # search input (text)
         return {
             "serial": {"input": "serial", "label": _("Search in Serials")},
@@ -50,12 +50,12 @@ class LicensePassCustomerPortal(CustomerPortal):
             },
         }
 
-    def _get_searchbar_meta_inputs(self):
+    def _get_software_pass_searchbar_meta_inputs(self):
         return {
             "all": {"input": "all", "label": _("Search in All")},
         }
 
-    def _get_searchbar_filters(self):
+    def _get_software_pass_searchbar_filters(self):
         return {"all": {"label": _("All"), "domain": []}}
 
     @http.route(
@@ -81,9 +81,9 @@ class LicensePassCustomerPortal(CustomerPortal):
             request_partner_id=request.env.user.partner_id,
         )
 
-        searchbar_sortings = self._get_searchbar_sortings()
-        searchbar_inputs = self._get_searchbar_inputs()
-        searchbar_meta_inputs = self._get_searchbar_meta_inputs()
+        searchbar_sortings = self._get_software_pass_searchbar_sortings()
+        searchbar_inputs = self._get_software_pass_searchbar_inputs()
+        searchbar_meta_inputs = self._get_software_pass_searchbar_meta_inputs()
 
         if search and search_in:
             search_domain = []
@@ -98,7 +98,7 @@ class LicensePassCustomerPortal(CustomerPortal):
             domain += search_domain
         searchbar_inputs.update(searchbar_meta_inputs)
 
-        searchbar_filters = self._get_searchbar_filters()
+        searchbar_filters = self._get_software_pass_searchbar_filters()
 
         # default sort by order
         if not sortby:
