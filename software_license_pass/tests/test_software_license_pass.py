@@ -138,37 +138,37 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(lic_exported_vals["pass"], pass_basic1.name)
 
     def test_06_license_pass_state_without_pass(self):
-        pass_basic1 = self.env.ref("software_license_pass.pass_basic1")
-        self.assertEqual(pass_basic1.state, "draft")
-        license_id = pass_basic1.license_ids[0]
+        pass_basic2 = self.env.ref("software_license_pass.pass_basic2")
+        self.assertEqual(pass_basic2.state, "draft")
+        license_id = pass_basic2.license_ids[0]
         self.assertEqual(license_id.pass_state, "draft")
         license_id.with_context(override_from_pass=True).pass_id = False
-        self.assertEqual(pass_basic1.state, "draft")
+        self.assertEqual(pass_basic2.state, "draft")
         self.assertFalse(license_id.pass_state)
 
     def test_07_pass_send(self):
-        pass_basic1 = self.env.ref("software_license_pass.pass_basic1")
+        pass_basic2 = self.env.ref("software_license_pass.pass_basic2")
         # remove responsible
-        pass_basic1.user_id = False
-        self.assertEqual(pass_basic1.state, "draft")
-        license_id = pass_basic1.license_ids[0]
+        pass_basic2.user_id = False
+        self.assertEqual(pass_basic2.state, "draft")
+        license_id = pass_basic2.license_ids[0]
         self.assertEqual(license_id.pass_state, "draft")
-        action = pass_basic1.with_user(self.pass_user).action_send()
+        action = pass_basic2.with_user(self.pass_user).action_send()
         wizard = (
             self.env[action["res_model"]].with_context(action["context"]).create({})
         )
         wizard.action_send_mail()
-        self.assertEqual(pass_basic1.state, "sent")
+        self.assertEqual(pass_basic2.state, "sent")
         self.assertEqual(license_id.pass_state, "sent")
-        self.assertEqual(pass_basic1.user_id, self.pass_user)
+        self.assertEqual(pass_basic2.user_id, self.pass_user)
 
     def test_08_pass_cancel(self):
-        pass_basic1 = self.env.ref("software_license_pass.pass_basic1")
-        self.assertEqual(pass_basic1.state, "draft")
-        license_id = pass_basic1.license_ids[0]
+        pass_basic2 = self.env.ref("software_license_pass.pass_basic2")
+        self.assertEqual(pass_basic2.state, "draft")
+        license_id = pass_basic2.license_ids[0]
         self.assertEqual(license_id.pass_state, "draft")
-        pass_basic1.action_cancel()
-        self.assertEqual(pass_basic1.state, "cancel")
+        pass_basic2.action_cancel()
+        self.assertEqual(pass_basic2.state, "cancel")
         self.assertEqual(license_id.pass_state, "cancel")
 
     def test_09_license_activation(self):

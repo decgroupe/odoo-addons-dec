@@ -3,6 +3,7 @@
 
     <record model="software.license.pass" id="pass_basic1">
         <field name="pack_id" ref="sl_pack_basic" />
+        <field name="state">sent</field>
         <!-- Azure Interior -->
         <field name="partner_id" ref="base.res_partner_12" />
         <!-- Brandon Freeman -->
@@ -20,6 +21,7 @@
 
     <record model="software.license.pass" id="pass_mid1">
         <field name="pack_id" ref="sl_pack_mid" />
+        <field name="state">sent</field>
         <field name="expiration_date" eval="datetime.now()+relativedelta(days=15)" />
         <!-- Lumber Inc -->
         <field name="partner_id" ref="base.res_partner_18" />
@@ -42,6 +44,7 @@
 
     <record model="software.license.pass" id="pass_premium3">
         <field name="pack_id" ref="sl_pack_premium" />
+        <field name="state">sent</field>
         <field name="expiration_date" eval="datetime.now()+relativedelta(days=30)" />
         <field name="max_allowed_hardware" eval="10" />
         <!-- Ready Mat -->
