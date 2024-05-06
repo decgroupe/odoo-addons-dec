@@ -104,19 +104,6 @@ class LicenseCustomerPortal(CustomerPortal):
         searchbar_inputs.update(searchbar_meta_inputs)
 
         searchbar_filters = self._get_searchbar_filters()
-        # search filters (by application)
-        # for app in request.env['software.application'].search(
-        #     [('portal_published', '=', True)]
-        # ):
-        #     searchbar_filters.update(
-        #         {
-        #             str(app.id):
-        #                 {
-        #                     'label': app.name,
-        #                     'domain': [('application_id', '=', app.id)]
-        #                 }
-        #         }
-        #     )
 
         # default sort by order
         if not sortby:
