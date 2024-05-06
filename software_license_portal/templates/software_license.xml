@@ -39,6 +39,33 @@
         </xpath>
     </template>
 
+    <template id="software_license_portal.license_row_layout">
+        <tr>
+            <td>
+                <t t-esc="license.sudo().partner_id._get_contact_type_emoji()" />
+            </td>
+            <td>
+                <a t-attf-href="/my/license/#{license.id}">
+                    <t t-esc="license.serial" />
+                </a>
+            </td>
+            <td>
+                <small>
+                    <b>
+                        <t t-esc="license.application_id.name" />
+                    </b>
+                    <t t-esc="license.application_id.info" />
+                </small>
+            </td>
+            <td>
+                <span t-field="license.create_date" />
+            </td>
+            <td>
+                <span t-field="license.expiration_date" />
+            </td>
+        </tr>
+    </template>
+
     <template id="software_license_portal.portal_my_licenses" name="My licenses">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />
@@ -49,55 +76,154 @@
                     <p>There is no license linked to your account.</p>
             </t>
             <div t-if="licenses" class="panel panel-default">
-                <div class="table-responsive"><table
+                <div class="table-responsive">
+                    <table
                         name="licenses"
                         class="table table-hover o_portal_my_doc_table"
                     >
-                    <thead>
-                        <tr class="active">
-                            <th>Owner</th>
-                            <th>Serial</th>
-                            <th>Application</th>
-                            <th>Create Date</th>
-                            <th>Expiration Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="licenses" t-as="license">
-                            <tr>
-                                <td>
-                                    <t
-                                            t-esc="license.sudo().partner_id._get_contact_type_emoji()"
-                                        />
-                                </td>
-                                <td>
-                                    <a t-attf-href="/my/license/#{license.id}">
-                                        <t t-esc="license.serial" />
-                                    </a>
-                                </td>
-                                <td>
-                                    <small>
-                                        <b>
-                                            <t t-esc="license.application_id.name" />
-                                        </b>
-                                        <t t-esc="license.application_id.info" />
-                                    </small>
-                                </td>
-                                <td>
-                                    <span t-field="license.create_date" />
-                                </td>
-                                <td>
-                                    <span t-field="license.expiration_date" />
-                                </td>
+                        <thead>
+                            <tr class="active">
+                                <th>Owner</th>
+                                <th>Serial</th>
+                                <th>Application</th>
+                                <th>Create Date</th>
+                                <th>Expiration Date</th>
                             </tr>
-                        </t>
-                    </tbody>
-                </table></div>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="licenses" t-as="license">
+                                <t
+                                    t-call="software_license_portal.license_row_layout"
+                                />
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
                 <div t-if="pager" class="o_portal_pager text-center">
                     <t t-call="portal.pager" />
                 </div>
             </div>
         </t>
+    </template>
+
+    <template id="software_license_portal.portal_software_license_page_title">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>
+                    <t t-call='portal.record_pager' />
+                    <span t-field="license.serial" />
+                </h4>
+            </div>
+        </div>
+    </template>
+
+    <template id="software_license_portal.portal_software_license_page_details">
+        <div class="row">
+            <div class="col-md-6">
+                <strong>Application:</strong> <t
+                    t-esc="license.application_id.name"
+                /> <t t-esc="license.application_id.info" /><br />
+                <strong>Create Date:</strong> <span t-field="license.create_date" /><br
+                />
+            </div>
+            <div class="col-md-6">
+                <t t-if="license.expiration_date">
+                    <strong>Expiration Date:</strong> <span
+                        t-field="license.expiration_date"
+                    /><br />
+                </t>
+                <t t-if="license.max_allowed_hardware">
+                    <strong>Maximum Activation Count:</strong> <span
+                        t-field="license.max_allowed_hardware"
+                    /><br />
+                </t>
+                <t t-if="license.max_allowed_hardware > 0">
+                    <strong>Remaining Activations:</strong> <span
+                        t-esc="license.get_remaining_activation()"
+                    /><br />
+                </t>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </template>
+
+    <template
+        id="software_license_portal.portal_software_license_page_hardware_identifiers"
+    >
+        <div class="row mt8">
+            <div class="col-md-12">
+                <h4 class="page-header">Hardware Identifiers</h4>
+                <div class="table-responsive">
+                    <table
+                        name="hardware_identifiers"
+                        class="table table-hover o_portal_my_doc_table"
+                    >
+                        <thead>
+                            <tr class="active">
+                                <th>Unique ID</th>
+                                <th>Last activation</th>
+                                <th>Action</th>
+                                <th>Informations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="license.hardware_ids" t-as="hardware_id">
+                                <t
+                                    t-call="software_license_portal.portal_software_license_page_hardware_identifier_row_layout"
+                                />
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template
+        id="software_license_portal.portal_software_license_page_hardware_identifier_row_layout"
+    >
+        <tr>
+            <td>
+                <span t-esc="hardware_id.name" />
+            </td>
+            <td>
+                <span t-field="hardware_id.validation_date" />
+            </td>
+            <td>
+                <form
+                    method="POST"
+                    t-if="True"
+                    t-attf-action="/my/license/deactivate"
+                    style="display:inline;"
+                >
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        t-att-value="request.csrf_token()"
+                    />
+                    <input
+                        type="hidden"
+                        name="hardware_id"
+                        t-attf-value="#{hardware_id.id}"
+                    />
+                    <input
+                        type="hidden"
+                        name="license_id"
+                        t-attf-value="#{license.id}"
+                    />
+                    <button
+                        class="btn btn-success"
+                        style="margin-right:15px;margin-top:3px;"
+                    >
+                        Deactivate
+                    </button>
+                </form>
+            </td>
+            <td style="font-size: x-small;font-family: monospace;">
+                <span t-esc="hardware_id.info" />
+            </td>
+        </tr>
     </template>
 
     <template
@@ -108,125 +234,20 @@
             <div class="container">
                 <div class="panel panel-default">
                     <div class="panel-heading mt32">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4>
-                                    <t t-call='portal.record_pager' />
-                                    <span t-field="license.serial" />
-                                </h4>
-                            </div>
-                        </div>
+                        <t
+                            t-call="software_license_portal.portal_software_license_page_title"
+                        />
                     </div>
 
                     <div class="panel-body">
                         <div class="mb8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <strong>Application:</strong> <t
-                                        t-esc="license.application_id.name"
-                                    /> <t t-esc="license.application_id.info" /><br />
-                                    <strong>Create Date:</strong> <span
-                                        t-field="license.create_date"
-                                    /><br />
-                                </div>
-                                <div class="col-md-6">
-                                    <t t-if="license.expiration_date">
-                                        <strong>Expiration Date:</strong> <span
-                                            t-field="license.expiration_date"
-                                        /><br />
-                                    </t>
-                                    <t t-if="license.max_allowed_hardware">
-                                        <strong>Maximum Activation Count:</strong> <span
-                                            t-field="license.max_allowed_hardware"
-                                        /><br />
-                                    </t>
-                                    <t t-if="license.max_allowed_hardware > 0">
-                                        <strong>Remaining Activations:</strong> <span
-                                            t-esc="license.get_remaining_activation()"
-                                        /><br />
-                                    </t>
-                                </div>
-                                <div class="col-md-6">
-                                </div>
-                            </div>
+                            <t
+                                t-call="software_license_portal.portal_software_license_page_details"
+                            />
                             <t t-if="license.hardware_ids">
-                                <div class="row mt8">
-                                    <div class="col-md-12">
-                                        <h4
-                                            class="page-header"
-                                        >Hardware Identifiers</h4>
-                                        <div class="table-responsive">
-                                            <table name="hardware_identifiers"
-                                                class="table table-hover o_portal_my_doc_table"
-                                            >
-                                                <thead>
-                                                    <tr class="active">
-                                                        <th>Unique ID</th>
-                                                        <th>Last activation</th>
-                                                        <th>Action</th>
-                                                        <th>Informations</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <t
-                                                        t-foreach="license.hardware_ids"
-                                                        t-as="hardware_id"
-                                                    >
-                                                        <tr>
-                                                            <td>
-                                                                <span
-                                                                    t-esc="hardware_id.name"
-                                                                />
-                                                            </td>
-                                                            <td>
-                                                                <span
-                                                                    t-field="hardware_id.validation_date"
-                                                                />
-                                                            </td>
-                                                            <td>
-                                                                <form
-                                                                    method="POST"
-                                                                    t-if="True"
-                                                                    t-attf-action="/my/license/deactivate"
-                                                                    style="display:inline;"
-                                                                >
-                                                                    <input
-                                                                        type="hidden"
-                                                                        name="csrf_token"
-                                                                        t-att-value="request.csrf_token()"
-                                                                    />
-                                                                    <input
-                                                                        type="hidden"
-                                                                        name="hardware_id"
-                                                                        t-attf-value="#{hardware_id.id}"
-                                                                    />
-                                                                    <input
-                                                                        type="hidden"
-                                                                        name="license_id"
-                                                                        t-attf-value="#{license.id}"
-                                                                    />
-                                                                    <button
-                                                                        class="btn btn-success"
-                                                                        style="margin-right:15px;margin-top:3px;"
-                                                                    >
-                                                                        Deactivate
-                                                                    </button>
-                                                                </form>
-                                                            </td>
-                                                            <td
-                                                                style="font-size: x-small;font-family: monospace;"
-                                                            >
-                                                                <span
-                                                                    t-esc="hardware_id.info"
-                                                                />
-                                                            </td>
-                                                        </tr>
-                                                    </t>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                                <t
+                                    t-call="software_license_portal.portal_software_license_page_hardware_identifiers"
+                                />
                             </t>
                             <t t-else="">
                                 <div
