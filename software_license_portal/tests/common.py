@@ -3,6 +3,8 @@
 
 import json
 
+from lxml import html
+
 import odoo.tests
 from odoo.tests import new_test_user
 
@@ -33,7 +35,10 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
             context=ctx,
         )
         self.partner_portal = self.portal_user.partner_id
-        # self.partner_portal.parent_id = self.company.partner_id
+
+    def html_doc(self, response):
+        """Get an HTML LXML document."""
+        return html.fromstring(response.text)
 
     def _in_portal(self, user_id):
         return self.env.ref("base.group_portal") in user_id.groups_id
@@ -52,14 +57,18 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
         )
         return wizard_id.action_apply()
 
-    def partner_authenticate(self, partner_id, new_password):
+    def partner_authenticate(self, partner_id, custom_password=False):
         user_id = partner_id.user_ids and partner_id.user_ids[0] or False
         if not user_id:
             self._give_portal_access(partner_id)
         user_id = partner_id.user_ids and partner_id.user_ids[0] or False
         # override password
-        user_id.password = new_password
-        return self.authenticate(user_id.email, new_password)
+        if custom_password:
+            user_id.password = custom_password
+        else:
+            # otherwise use login as password
+            user_id.password = user_id.email
+        return self.authenticate(user_id.email, custom_password or user_id.email)
 
     def _get_common_payload_with_telemetry(self, device_name=False, domain_name=False):
         system_info = {}

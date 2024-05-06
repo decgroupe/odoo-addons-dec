@@ -138,7 +138,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
     def test_08_get_licenses_per_hardware(self):
         # like test_07 but retry as Brandon Freeman from Azure Interior
         partner_id = self.env.ref("base.res_partner_address_15")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         # get per hardware
         res = self._api_get_licenses_per_hardware("6a:32:bb:7f:36:14")
         self.assertEqual(len(res), 1)
@@ -154,7 +154,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
     def test_09_get_licenses_per_identifier(self):
         # like test_07 but retry as Brandon Freeman from Azure Interior
         partner_id = self.env.ref("base.res_partner_address_15")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         # get per identifier
         res = self._api_get_licenses_per_identifier(1001)
         self.assertIn("0DAY-0001", res)
@@ -185,7 +185,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         }
         # try as Brandon Freeman from Azure Interior
         partner_id = self.env.ref("base.res_partner_address_15")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         # use wildcard
         res = self._api_get_licenses_per_hardware("*")
         self.assert_hardwares_per_serial_data(
@@ -194,7 +194,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         )
         # try as Nicole Ford from Azure Interior
         partner_id = self.env.ref("base.res_partner_address_16")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         # use wildcard
         res = self._api_get_licenses_per_hardware("*")
         self.assert_hardwares_per_serial_data(
@@ -203,7 +203,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         )
         # try as Azure Interior
         partner_id = self.env.ref("base.res_partner_12")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         # use wildcard
         res = self._api_get_licenses_per_hardware("*")
         self.assert_hardwares_per_serial_data(
@@ -231,7 +231,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         )
         # try as Azure Interior
         partner_id = self.env.ref("base.res_partner_12")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         # use wildcard
         res = self._api_get_licenses_per_hardware("*")
         self.assert_hardwares_per_serial_data(
@@ -240,7 +240,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         )
         # try as Brandon Freeman from Azure Interior
         partner_id = self.env.ref("base.res_partner_address_15")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         # use wildcard
         res = self._api_get_licenses_per_hardware("*")
         self.assert_hardwares_per_serial_data(
@@ -251,7 +251,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
     def test_12_get_all_licenses(self):
         # try as Brandon Freeman from Azure Interior
         partner_id = self.env.ref("base.res_partner_address_15")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         res = self._api_get_licenses()
         self.assertIn("0DAY-0001", res)
         self.assertIn("BG-A02", res)
@@ -306,7 +306,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         self.assertIsNone(res)
         # get licenses as Ready Mat
         partner_id = self.env.ref("base.res_partner_4")
-        self.partner_authenticate(partner_id, "password")
+        self.partner_authenticate(partner_id)
         res = self._api_get_licenses_per_hardware("device_uuid_1")
         self.assertIn(lic_serial1, res)
         self.assert_license_data(
