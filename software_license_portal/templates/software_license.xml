@@ -40,12 +40,15 @@
     </template>
 
     <template id="software_license_portal.license_row_layout">
-        <tr>
+        <tr class="tr_slp_license card-body">
             <td>
                 <t t-esc="license.sudo().partner_id._get_contact_type_emoji()" />
             </td>
             <td>
-                <a t-attf-href="/my/license/#{license.id}">
+                <a
+                    t-attf-href="/my/license/#{license.id}"
+                    t-attf-class="tr_slp_license_link"
+                >
                     <t t-esc="license.serial" />
                 </a>
             </td>
@@ -73,7 +76,7 @@
                     <t t-set="title">Licenses</t>
             </t>
             <t t-if="not licenses">
-                    <p>There is no license linked to your account.</p>
+                <p>There is no license linked to your account.</p>
             </t>
             <div t-if="licenses" class="panel panel-default">
                 <div class="table-responsive">
@@ -82,7 +85,7 @@
                         class="table table-hover o_portal_my_doc_table"
                     >
                         <thead>
-                            <tr class="active">
+                            <tr class="active card-header">
                                 <th>Owner</th>
                                 <th>Serial</th>
                                 <th>Application</th>
@@ -160,7 +163,7 @@
                         class="table table-hover o_portal_my_doc_table"
                     >
                         <thead>
-                            <tr class="active">
+                            <tr class="active card-header">
                                 <th>Unique ID</th>
                                 <th>Last activation</th>
                                 <th>Action</th>
@@ -184,7 +187,7 @@
         id="software_license_portal.portal_software_license_page_hardware_identifier_row_layout"
     >
         <tr>
-            <td>
+            <td class="tr_slp_license_hardware_identifier_name">
                 <span t-esc="hardware_id.name" />
             </td>
             <td>
@@ -233,13 +236,13 @@
         <t t-call="portal.portal_layout">
             <div class="container">
                 <div class="panel panel-default">
-                    <div class="panel-heading mt32">
+                    <div class="panel-heading card-header">
                         <t
                             t-call="software_license_portal.portal_software_license_page_title"
                         />
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body card-body">
                         <div class="mb8">
                             <t
                                 t-call="software_license_portal.portal_software_license_page_details"

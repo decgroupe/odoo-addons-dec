@@ -40,7 +40,7 @@
     </template>
 
     <template id="software_license_portal.license_pass_row_layout">
-        <tr>
+        <tr class="tr_slp_license_pass card-body">
             <td>
                 <t t-esc="license_pass.sudo().partner_id._get_contact_type_emoji()" />
             </td>
@@ -48,7 +48,10 @@
                 <span t-field="license_pass.name" />
             </td>
             <td>
-                <a t-attf-href="/my/pass/#{license_pass.id}">
+                <a
+                    t-attf-href="/my/pass/#{license_pass.id}"
+                    t-attf-class="tr_slp_license_pass_link"
+                >
                     <t t-esc="license_pass.serial" />
                 </a>
             </td>
@@ -85,7 +88,7 @@
                         class="table table-hover o_portal_my_doc_table"
                     >
                         <thead>
-                            <tr class="active">
+                            <tr class="active card-header">
                                 <th>Owner</th>
                                 <th>Ref.</th>
                                 <th>Serial</th>
@@ -164,7 +167,7 @@
                         class="table table-hover o_portal_my_doc_table"
                     >
                         <thead>
-                            <tr class="active">
+                            <tr class="active card-header">
                                 <th>Unique ID</th>
                                 <th>Device Name</th>
                                 <th />
@@ -189,8 +192,8 @@
     <template
         id="software_license_portal.portal_software_pass_page_hardware_group_row_layout"
     >
-        <tr>
-            <td>
+        <tr class="tr_slp_license_pass_hardware_group">
+            <td class="tr_slp_license_pass_hardware_group_name">
                 <span t-esc="hardware_group_id.name" />
             </td>
             <td>
@@ -219,7 +222,7 @@
                         t-attf-value="#{hardware_group_id.name}"
                     />
                     <button
-                        class="btn btn-success pull-right"
+                        class="btn btn-success pull-right tr_slp_license_pass_hardware_group_button"
                         style="margin-right:15px;margin-top:3px;"
                     >
                         Deactivate
@@ -243,21 +246,27 @@
                     class="alert alert-warning text-center mt-4"
                 >There is no activated hardware on this pass.</div>
             </t>
-            <h4 class="page-header">List of available applications</h4>
-            <ul>
-                <t t-foreach="license_pass.license_ids" t-as="license_id">
-                    <t t-if="license_id.application_id.product_id">
-                        <li>
-                            <img
-                                t-attf-src="/web/image?model=software.application&amp;field=image&amp;id=#{license_id.application_id.id}"
-                                width="30"
-                                height="20"
-                            />
-                            <span t-field="license_id.application_id.product_id" />
-                        </li>
+            <t
+                t-set="application_ids"
+                t-value="license_pass.license_ids.mapped('application_id')"
+            />
+            <t t-if="application_ids.mapped('product_id')">
+                <h4 class="page-header">List of available applications</h4>
+                <ul>
+                    <t t-foreach="application_ids" t-as="application_id">
+                        <t t-if="application_id.product_id">
+                            <li>
+                                <img
+                                    t-attf-src="/web/image?model=software.application&amp;field=image&amp;id=#{application_id.id}"
+                                    width="30"
+                                    height="20"
+                                />
+                                <span t-field="application_id.product_id" />
+                            </li>
+                        </t>
                     </t>
-                </t>
-            </ul>
+                </ul>
+            </t>
         </div>
     </template>
 
@@ -268,12 +277,12 @@
         <t t-call="portal.portal_layout">
             <div class="container">
                 <div class="panel panel-default">
-                    <div class="panel-heading mt32">
+                    <div class="panel-heading card-header">
                         <t
                             t-call="software_license_portal.portal_software_pass_page_title"
                         />
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body card-body">
                         <t
                             t-call="software_license_portal.portal_software_pass_page_body"
                         />

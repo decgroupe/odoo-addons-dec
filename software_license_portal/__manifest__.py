@@ -11,6 +11,7 @@
         "partner_identification_base", # for emojis
     ],
     "data": [
+        'views/assets.xml',
         "security/ir.model.access.csv",
         "security/software_license.xml",
         "views/software_application.xml",

@@ -181,7 +181,20 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         ):
             self.assertHardwareIdentifierTable(el, data[i])
 
-    def test_10_mypasses(self):
+    def test_03_mylicense_tour(self):
+        license_id = self.env.ref("software_license.sl_brickgame3")
+        self.assertEqual(len(license_id.hardware_ids), 1)
+        # Azure Interior, Brandon Freeman
+        partner_id = self.env.ref("base.res_partner_address_15")
+        self.partner_authenticate(partner_id)
+        self.start_tour(
+            "/my/licenses",
+            "mylicense_tour",
+            login="brandon.freeman55@example.com",
+        )
+        self.assertEqual(len(license_id.hardware_ids), 0)
+
+    def test_04_mypasses(self):
         data = [
             {
                 "owner": "🏢",
@@ -201,7 +214,7 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         for i, el in enumerate(doc.xpath("//table[@name='passes']//tbody/tr")):
             self.assertPassTable(el, data[i])
 
-    def test_11_mypass(self):
+    def test_05_mypass(self):
         pass_id = self.env.ref("software_license_pass.pass_premium3")
         data = [
             {
@@ -234,21 +247,33 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         for i, el in enumerate(doc.xpath("//table[@name='hardware_groups']//tbody/tr")):
             self.assertHardwareGroupTable(el, data[i])
 
-    def test_12_mypass_tour(self):
+    def test_06_mypass_tour(self):
+        pass_id = self.env.ref("software_license_pass.pass_premium3")
+        self.assertEqual(len(pass_id.hardware_group_ids), 2)
         # Ready Mat
         with self.assertRaisesRegex(AccessDenied, "Access Denied"), self.cr.savepoint():
             self.start_tour(
                 "/my/passes",
                 "mypass_tour",
-                login="info@deltapc.example.com",
+                login="ready.mat28@example.com",
             )
         # Give portal access if needed
         partner_id = self.env.ref("base.res_partner_4")
-        self.partner_authenticate(partner_id, partner_id.email)
+        self.partner_authenticate(partner_id)
         self.start_tour(
             "/my/passes",
             "mypass_tour",
-            login="info@deltapc.example.com",
+            login="ready.mat28@example.com",
         )
-        print(1)
+        self.assertEqual(len(pass_id.hardware_group_ids), 1)
+
+    def test_07_mypass_no_hardware_tour(self):
+        # Azure Interior, Brandon Freeman
+        partner_id = self.env.ref("base.res_partner_address_15")
+        self.partner_authenticate(partner_id)
+        self.start_tour(
+            "/my/passes",
+            "mypass_no_hardware_tour",
+            login="brandon.freeman55@example.com",
+        )
 
