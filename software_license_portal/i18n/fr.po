@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:45+0000\n"
-"PO-Revision-Date: 2024-04-17 09:52+0200\n"
+"POT-Creation-Date: 2024-05-07 07:56+0000\n"
+"PO-Revision-Date: 2024-05-07 09:58+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,16 +15,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_details
 msgid ""
 "<br/>\n"
-"                                    <strong>Create Date:</strong>"
+"                <strong>Create Date:</strong>"
 msgstr ""
 "<br/>\n"
-"                                    <strong>Date de création :</strong>"
+"                <strong>Date de création :</strong>"
 
 #. module: software_license_portal
 #: model_terms:ir.ui.view,arch_db:software_license_portal.software_application_form_view
@@ -32,40 +32,40 @@ msgid "<span class=\"o_stat_text\">Portal</span>"
 msgstr "<span class=\"o_stat_text\">Portail</span>"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_details
 msgid "<strong>Application:</strong>"
-msgstr "<strong>Application :</strong>"
+msgstr "<strong>Application :</strong>"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_details
 msgid "<strong>Create Date:</strong>"
-msgstr "<strong>Date de création :</strong>"
+msgstr "<strong>Date de création :</strong>"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_details
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_details
 msgid "<strong>Expiration Date:</strong>"
-msgstr "<strong>Date d'expiration :</strong>"
+msgstr "<strong>Date d'expiration :</strong>"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_details
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_details
 msgid "<strong>Maximum Activation Count:</strong>"
-msgstr "<strong>Nombre maximum d’activations :</strong>"
+msgstr "<strong>Nombre maximum d’activations :</strong>"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_details
 msgid "<strong>Pack:</strong>"
-msgstr "<strong>Pack :</strong>"
+msgstr "<strong>Pack :</strong>"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_details
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_details
 msgid "<strong>Remaining Activations:</strong>"
-msgstr "<strong>Activations restantes :</strong>"
+msgstr "<strong>Activations restantes :</strong>"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_hardware_identifiers
 msgid "Action"
 msgstr "Action"
 
@@ -95,13 +95,13 @@ msgid "Create Date"
 msgstr "Date de création"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_hardware_identifier_row_layout
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_hardware_group_row_layout
 msgid "Deactivate"
 msgstr "Désactiver"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_hardware_groups
 msgid "Device Name"
 msgstr "Nom de l'appareil"
 
@@ -119,8 +119,8 @@ msgid "Expiration Date"
 msgstr "Date d'expiration"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_hardware_identifiers
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_hardware_groups
 msgid "Hardware Identifiers"
 msgstr "Identificateurs matériels"
 
@@ -138,7 +138,7 @@ msgid "In Portal"
 msgstr "Dans le portail"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_hardware_identifiers
 msgid "Informations"
 msgstr "Informations"
 
@@ -150,7 +150,7 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_hardware_identifiers
 msgid "Last activation"
 msgstr "Dernière activation"
 
@@ -167,7 +167,7 @@ msgid "Licenses"
 msgstr "Licences"
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_body
 msgid "List of available applications"
 msgstr "Liste des applications disponibles"
 
@@ -256,7 +256,7 @@ msgid "There is no activated hardware on this license."
 msgstr "Il n'y a pas de matériel activé sur cette licence."
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_body
 msgid "There is no activated hardware on this pass."
 msgstr "Il n'y a pas de matériel activé sur ce pass."
 
@@ -271,8 +271,8 @@ msgid "There is no pass linked to your account."
 msgstr "Il n'y a pas de pass lié à votre compte."
 
 #. module: software_license_portal
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page
-#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_license_page_hardware_identifiers
+#: model_terms:ir.ui.view,arch_db:software_license_portal.portal_software_pass_page_hardware_groups
 msgid "Unique ID"
 msgstr "ID unique"
 
