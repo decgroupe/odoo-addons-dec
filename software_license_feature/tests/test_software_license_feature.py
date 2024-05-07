@@ -21,6 +21,7 @@ def MockDebugRequest(env):
     )
     with contextlib.ExitStack() as s:
         odoo.http._request_stack.push(request)
+        s.callback(odoo.http._request_stack.pop)
         yield request
 
 
