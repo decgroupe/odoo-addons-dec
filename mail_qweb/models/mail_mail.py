@@ -22,7 +22,7 @@ class MailMail(models.AbstractModel):
         return rec
 
     def _premailer_apply_transform(self, html):
-        if not html.strip():
+        if not html or html and not html.strip():
             return html
         premailer = Premailer(html=html, **self._get_premailer_options())
         return premailer.transform()
