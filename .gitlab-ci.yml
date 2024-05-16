@@ -1,0 +1,17 @@
+services:
+  - name: postgres:9.6
+    alias: postgres
+
+variables:
+  # https://docs.gitlab.com/runner/configuration/feature-flags.html
+  FF_TIMESTAMPS: 1
+  # PostgreSQL
+  POSTGRES_USER: odoo
+  POSTGRES_PASSWORD: odoo
+  POSTGRES_DB: odoo
+
+job:
+  image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.8-ocb14.0-dec:latest
+  script:
+    - oca_install_addons
+    - manifestoo -d . check-licenses
