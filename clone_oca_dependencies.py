@@ -126,7 +126,7 @@ if __name__ == '__main__':
         deps_checkout_dir = osp.join(os.environ['HOME'], 'dependencies')
         if not osp.exists(deps_checkout_dir):
             os.makedirs(deps_checkout_dir)
-        build_dir = os.environ['TRAVIS_BUILD_DIR']
+        build_dir = os.environ['CI_PROJECT_DIR']
     elif len(sys.argv) == 2 or len(sys.argv) > 3:
         print(__doc__)
         sys.exit(1)
