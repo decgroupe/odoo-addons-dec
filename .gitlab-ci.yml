@@ -13,5 +13,7 @@ variables:
 job:
   image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.8-ocb14.0-dec:latest
   script:
+    - sleep 3600 || true
+    - python3 ./clone_oca_dependencies.py
     - oca_install_addons
     - manifestoo -d . check-licenses
