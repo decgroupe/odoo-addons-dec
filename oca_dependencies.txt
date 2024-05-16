@@ -1,0 +1,27 @@
+account-analytic
+account-financial-tools
+aeroo https://github.com/decgroupe/aeroo_reports 14.0-dec
+akretion-odoo-usability https://github.com/decgroupe/odoo-usability 14.0-dec
+crm https://github.com/decgroupe/crm 14.0-dec
+deltatech https://github.com/decgroupe/deltatech 14.0-dec
+helpdesk https://github.com/decgroupe/helpdesk 14.0-dec
+knowledge
+l10n-france https://github.com/decgroupe/l10n-france 14.0-dec
+manufacture https://github.com/decgroupe/manufacture 14.0-dec
+odoo_appstore https://github.com/decgroupe/odoo_appstore 14.0
+odoo_dhtmlxgantt https://github.com/decgroupe/odoo_dhtmlxgantt 14.0-dev
+partner-contact
+product-attribute https://github.com/decgroupe/product-attribute 14.0-dec
+product-pack https://github.com/decgroupe/product-pack 14.0-dec
+project
+purchase-workflow https://github.com/decgroupe/purchase-workflow 14.0-dec
+queue
+sale-workflow https://github.com/decgroupe/sale-workflow 14.0-dec
+server-auth https://github.com/decgroupe/server-auth 14.0-dec
+server-tools https://github.com/decgroupe/server-tools 14.0-dec
+server-ux
+social https://github.com/decgroupe/social 14.0-dec
+stock-logistics-warehouse https://github.com/decgroupe/stock-logistics-warehouse 14.0-dec
+stock-logistics-workflow https://github.com/decgroupe/stock-logistics-workflow 14.0-dec
+timesheet https://github.com/decgroupe/timesheet 14.0-dec
+web https://github.com/decgroupe/web 14.0-dec
