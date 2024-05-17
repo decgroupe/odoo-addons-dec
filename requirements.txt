@@ -1,0 +1,4 @@
+# generated with my hands
+semver
+pycryptodome
+key-generator
