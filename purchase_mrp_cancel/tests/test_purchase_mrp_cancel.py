@@ -44,6 +44,11 @@ class TestPurchaseMrpCancelTests(TestStockActionTestsCommon):
             product, self.stock_location, qty
         )
 
+    def _get_stock_qty(self, product):
+        return self.env["stock.quant"]._get_available_quantity(
+            product, self.stock_location
+        )
+
     def setUp(self):
         super().setUp()
         self.purchase_model = self.env["purchase.order"]
@@ -68,8 +73,8 @@ class TestPurchaseMrpCancelTests(TestStockActionTestsCommon):
 
     def test_01_cancel(self):
         # force quantities to zero
-        self._set_stock_qty(self.product13, 0)
-        self._set_stock_qty(self.product16, 0)
+        self._set_stock_qty(self.product13, -self.product13.qty_available)
+        self._set_stock_qty(self.product16, -self.product16.qty_available)
         product_id = self.env.ref("product.product_product_3")
         bom_id = self.bom_model.search(
             [("product_tmpl_id", "=", product_id.product_tmpl_id.id)]
@@ -77,7 +82,7 @@ class TestPurchaseMrpCancelTests(TestStockActionTestsCommon):
         self.assertTrue(bom_id)
         production_id = self._generate_mo(product_id, bom_id)
         production_id.action_confirm()
-        # self.assertEqual(production_id.purchase_order_count, 2)
+        self.assertEqual(production_id.purchase_order_count, 2)
         # test cancel without propagation
         mo_line_p13 = self._get_mo_line(production_id, self.product13)
         self.assertEqual(mo_line_p13.procure_method, "make_to_order")
