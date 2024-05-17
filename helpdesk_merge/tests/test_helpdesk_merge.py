@@ -26,12 +26,6 @@ class TestHelpdeskMerge(TransactionCase):
             groups="base.group_user,helpdesk_mgmt.group_helpdesk_user",
             context=ctx,
         )
-        self.user = new_test_user(
-            self.env,
-            login="helpdesk_merge-user",
-            groups="base.group_user,helpdesk_mgmt.group_helpdesk_user",
-            context=ctx,
-        )
 
     def test_01_merge(self):
         # get a first ticket reference
