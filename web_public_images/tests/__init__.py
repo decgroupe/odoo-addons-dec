@@ -1,1 +1,1 @@
-from . import test_web_base_view
+from . import test_web_public_images
