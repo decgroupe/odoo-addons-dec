@@ -19,6 +19,8 @@ class TestProductLegacyRoutes(TransactionCase):
             xml_id="stock_mts_mto_rule.route_mto_mts",
             route_name=_("Make To Order + Make To Stock"),
         )
+        # enable MTO route
+        self.route_mto.active = True
 
     def _create_product_wmethods(self, procure_method, supply_method):
         product_id = self.env["product.product"].create(
