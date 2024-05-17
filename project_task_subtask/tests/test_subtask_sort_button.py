@@ -3,10 +3,9 @@
 # License MIT (https://opensource.org/licenses/MIT).
 
 import odoo.tests
+from odoo.tests.common import tagged
 
-
-@odoo.tests.common.at_install(True)
-@odoo.tests.common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestUi(odoo.tests.HttpCase):
     def test_01_subtask_sort_button(self):
         self.env["ir.module.module"].search(
