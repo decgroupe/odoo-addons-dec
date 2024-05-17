@@ -65,6 +65,8 @@ class SoftwareLicense(models.Model):
 
     @api.depends("feature_ids")
     def _compute_system(self):
+        if self.env.context.get("module") == "software_license_legacy":
+            return
         property_system = self.env.ref(SYSTEM)
         value_system_classic = self.env.ref(CLASSIC)
         value_system_cave = self.env.ref(CAVE)
