@@ -55,6 +55,7 @@ class MrpProduction(models.Model):
             "progress": self.env.ref("mrp_stage.stage_progress"),
             "issue": self.env.ref("mrp_stage.stage_issue"),
             "dispatch_ready": self.env.ref("mrp_stage.stage_dispatch_ready"),
+            "to_close": self.env.ref("mrp_stage.stage_done"),
             "done": self.env.ref("mrp_stage.stage_done"),
             "cancel": self.env.ref("mrp_stage.stage_cancel"),
         }
