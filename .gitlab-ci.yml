@@ -9,15 +9,40 @@ variables:
   POSTGRES_USER: odoo
   POSTGRES_PASSWORD: odoo
   POSTGRES_DB: odoo
+  VERSION: "14.0"
+
 
 job:
+  tags:
+    - _odoo
+  cache:
+    paths:
+      - /root/.cache/pip
+  timeout: 2h
   image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.8-ocb14.0-dec:latest
   script:
     # Add nano command
     - apt install -y nano
     # Add killall command
     - apt install -y psmisc 
-    - sleep 3600 || true
+    # Install dependencies (old way using oca_dependencies.txt)
     - python3 ./clone_oca_dependencies.py
+    # Force install of older lxml 
+    - pip install lxml==4.6.5
+    # Install aerolib to venv
+    - git clone https://github.com/decgroupe/aeroolib.git /tmp/aeroolib
+    - pip install -e /tmp/aeroolib
+    # - cd /opt/odoo
+    # Install addons and dependencies (new way using setuptool)
     - oca_install_addons
-    - manifestoo -d . check-licenses
+    # Check licenses
+    # - manifestoo -d . check-licenses
+    # Check development status
+    # - manifestoo -d . check-dev-status --default-dev-status=Beta
+    # Initialize test db
+    - oca_init_test_database
+    # Exclude some modules
+    - EXCLUDE=product_create_prefill
+    # Run tests with coverage
+    - oca_run_tests
+    - sleep 8h || true

@@ -32,9 +32,11 @@ import os
 import os.path as osp
 import subprocess
 import logging
-
+import shutil
 
 _logger = logging.getLogger()
+_logger.setLevel(logging.INFO)
+_logger.addHandler(logging.StreamHandler())
 
 
 def parse_depfile(depfile, owner='OCA'):
@@ -80,12 +82,29 @@ def git_checkout(deps_checkout_dir, reponame, url, branch, commit=False):
     return checkout_dir
 
 
+def move_module_to_dir(checkout_dir, dest_dir):
+    if not osp.isdir(checkout_dir):
+        return
+    for addon in os.listdir(checkout_dir):
+        if addon.startswith("."):
+            continue
+        src_path = osp.join(checkout_dir, addon)
+        if osp.isdir(src_path):
+            dst_path = osp.join(dest_dir, addon)
+            if osp.isdir(dst_path):
+                _logger.error('%s already exists', dst_path)
+            else:
+                _logger.info('Moving %s to %s', src_path, dst_path)
+                shutil.move(src_path, dst_path)
+
+
 def run(deps_checkout_dir, build_dir):
     dependencies = []
     processed = set()
     depfilename = osp.join(build_dir, 'oca_dependencies.txt')
     dependencies.append(depfilename)
     reqfilenames = []
+    checkout_dirs = []
     if osp.isfile(osp.join(build_dir, 'requirements.txt')):
         reqfilenames.append(osp.join(build_dir, 'requirements.txt'))
     for repo in os.listdir(deps_checkout_dir):
@@ -109,6 +128,7 @@ def run(deps_checkout_dir, build_dir):
             processed.add(depname)
             checkout_dir = git_checkout(deps_checkout_dir, depname,
                                         url, branch, commit)
+            checkout_dirs.append(checkout_dir)
             new_dep_filename = osp.join(checkout_dir, 'oca_dependencies.txt')
             reqfilename = osp.join(checkout_dir, 'requirements.txt')
             if osp.isfile(reqfilename):
@@ -119,6 +139,8 @@ def run(deps_checkout_dir, build_dir):
         command = ['pip', 'install', '-Ur', reqfilename]
         _logger.info('Calling %s', ' '.join(command))
         subprocess.check_call(command)
+    for checkout_dir in checkout_dirs:
+        move_module_to_dir(checkout_dir, os.environ["ADDONS_PATH"])
 
 
 if __name__ == '__main__':
