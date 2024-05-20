@@ -24,6 +24,16 @@ class TestMrpProductionRequestActionView(SavepointCase):
             groups="base.group_user",
             context=ctx,
         )
+        # [FURN_7800] Desk Combination
+        cls.request1 = cls.env["mrp.production.request"].create({
+            "product_id": cls.env.ref("product.product_product_3").id,
+            "bom_id": cls.env.ref("mrp.mrp_bom_manufacture").id,
+        })
+        # [FURN_9666] Table
+        cls.request2 = cls.env["mrp.production.request"].create({
+            "product_id": cls.env.ref("mrp.product_product_computer_desk").id,
+            "bom_id": cls.env.ref("mrp.mrp_bom_desk").id,
+        })
 
     def _test_action_view(self, res_ids, res_model):
         # any base user should be allowed to get this action
