@@ -126,7 +126,9 @@ class TestProcurementException(common.TransactionCase):
                 # "seller_ids": [(6, 0, [supplier_info1.id])],
             }
         )
-        with self.assertRaises(UserError), self.cr.savepoint():
+        # we don't use `self.cr.savepoint()` here in order to be able to get activities
+        # from our test's transaction
+        with self.assertRaises(UserError):
             self._create_make_procurement(
                 product_nosupplier_local_id,
                 15.00,
@@ -173,7 +175,9 @@ class TestProcurementException(common.TransactionCase):
                 "route_ids": [(6, 0, [self.route_manufacture.id, self.route_mto.id])],
             }
         )
-        with self.assertRaises(UserError), self.cr.savepoint():
+        # we don't use `self.cr.savepoint()` here in order to be able to get activities
+        # from our test's transaction
+        with self.assertRaises(UserError):
             self._create_make_procurement(
                 product_nobom_id,
                 15.00,
