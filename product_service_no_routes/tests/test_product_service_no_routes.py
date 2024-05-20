@@ -33,7 +33,8 @@ class TestProductServiceNoRoutes(TransactionCase):
                 "You can not change the type of a product that was already used",
             ), self.cr.savepoint():
                 product.type = "service"
-
+        # unset existing buy route
+        self.product13.route_ids = False
         self.assertFalse(self.product13.route_ids)
         self.assertFalse(self.product13.product_variant_id.route_ids)
         _internal_test(self.product13)
