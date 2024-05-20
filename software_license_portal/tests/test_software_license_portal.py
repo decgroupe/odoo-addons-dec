@@ -212,9 +212,10 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         )
 
     def test_11_get_licenses_per_hardware_wildcard(self):
+        SERIAL = "N1W9F-6U49E-RW9TL-443F4"
         hardwares_per_serial = {
             # owned by Azure Interior
-            "N1W9F-6U49E-RW9TL-443F4": [
+            SERIAL: [
                 "device_uuid_1",
             ],
         }
@@ -223,6 +224,8 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         # force pass state owned by Azure Interior
         pass_basic1.state = "sent"
         newage_lic = pass_basic1.license_ids[0]
+        # force license serial since it is dynamically generated from demo pass data
+        newage_lic.serial = SERIAL
         self._api_activate(
             newage_lic.application_id.identifier,
             pass_basic1.serial,
