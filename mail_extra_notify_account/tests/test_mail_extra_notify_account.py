@@ -1,8 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
+import logging
 
 from odoo.addons.mail_extra_notify.tests.common import TestMailExtraNotifyCommon, tagged
+
+_logger = logging.getLogger(__name__)
 
 
 @tagged("post_install", "-at_install")
@@ -10,8 +13,17 @@ class TestMailExtraNotifyAccount(TestMailExtraNotifyCommon):
 
     def setUp(self):
         super().setUp()
-        invoice_id_xml_id = "l10n_generic_coa.demo_invoice_followup"
-        self.invoice_id = self.env.ref(invoice_id_xml_id)
+        admin = self.env.ref("base.user_admin")
+        generic_coa = self.env.ref(
+            "l10n_generic_coa.configurable_chart_template", raise_if_not_found=False
+        )
+        if (
+            not admin.company_id.chart_template_id
+            or admin.company_id.chart_template_id != generic_coa
+        ):
+            _logger.info("Generic coa not found.")
+            return
+        self.invoice_id = self.env.ref("l10n_generic_coa.demo_invoice_followup")
         self.invoice_id.invoice_origin = "SO240123"
 
     def test_01_assigned_invoice_more_informations(self):
@@ -26,7 +38,7 @@ class TestMailExtraNotifyAccount(TestMailExtraNotifyCommon):
             self.assertEqual(len(mail_id), 1)
             self.assertEqual(
                 mail_id.subject,
-                "You have been assigned to INV/2024/04/0002",
+                "You have been assigned to %s" % self.invoice_id.name_get()[0][1],
             )
             self.assertIn("Origin", mail_id.body)
             self.assertIn("Status", mail_id.body)
@@ -50,7 +62,7 @@ class TestMailExtraNotifyAccount(TestMailExtraNotifyCommon):
             self.assertEqual(len(mail_id), 1)
             self.assertEqual(
                 mail_id.subject,
-                "INV/2024/04/0002: To Do assigned to you",
+                "%s: To Do assigned to you" % self.invoice_id.name_get()[0][1],
             )
             self.assertIn("Origin", mail_id.body)
             self.assertIn("Status", mail_id.body)
