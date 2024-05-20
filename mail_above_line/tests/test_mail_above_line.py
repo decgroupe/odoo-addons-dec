@@ -19,7 +19,9 @@ class TestMailAboveLine(SavepointCase, MailCase):
         # Azure Interior, Brandon Freeman
         self.partner_id = self.env.ref("base.res_partner_address_15")
         # assign an activity to this partner
-        _activity_id, msg_id = self._assign_activity(self.partner_id, self.user1)
+        _activity_id, msg_id = self._assign_activity_to_user(
+            self.partner_id, self.user1
+        )
         self.msg_activity_notification_id = msg_id
 
     def _assign_activity_to_user(self, partner_id, user_id):
