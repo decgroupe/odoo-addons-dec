@@ -27,7 +27,7 @@ job:
     # Add killall command
     - apt install -y psmisc 
     # Install dependencies (old way using oca_dependencies.txt)
-    - python3 ./clone_oca_dependencies.py
+    - oca_clone_dependencies
     # Force install of older lxml 
     - pip install lxml==4.6.5
     # Install aerolib to venv
@@ -46,4 +46,4 @@ job:
     - EXCLUDE=product_create_prefill,website_sale_product_public_code,mail_activity_team_schedule,mail_activity_schedule_dhxgantt,project_schedule,mrp_schedule,sale_timesheet_project_schedule,web_report_workflow,account_report_qweb,sale_report_qweb
     # Run tests with coverage
     - oca_run_tests
-    - sleep 8h || true
+    # - sleep 8h || true
