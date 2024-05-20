@@ -51,7 +51,7 @@ class MailActivityMixin(models.AbstractModel):
             activity_ids._link_to_mail_activity_redirection(mail_activity_redirection)
         return activity_ids
 
-    def activity_schedule_with_view(
+    def _activity_schedule_with_view(
         self,
         act_type_xmlid="",
         date_deadline=None,
@@ -63,10 +63,10 @@ class MailActivityMixin(models.AbstractModel):
         """Basic hook to keep a value of the original xmlid before its use for
         rendering.
         """
-        _logger.debug("activity_schedule_with_view")
+        _logger.debug("_activity_schedule_with_view")
         # Store views_or_xmlid for possible use in activity_schedule
         act_values["stored_views_or_xmlid"] = views_or_xmlid
-        return super().activity_schedule_with_view(
+        return super()._activity_schedule_with_view(
             act_type_xmlid,
             date_deadline,
             summary,
