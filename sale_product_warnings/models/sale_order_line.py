@@ -50,9 +50,12 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         rec = super().create(vals)
         if rec.product_id.state == "review":
+            order_state = dict(
+                rec.order_id._fields["state"]._description_selection(self.env)
+            ).get(rec.order_id.state)
             rec.order_id.with_context(
                 mail_activity_noautofollow=True
-            ).activity_schedule_with_view(
+            )._activity_schedule_with_view(
                 "sale_product_warnings.mail_activity_data_review",
                 user_id=rec.product_id.responsible_id.id
                 or rec.order_id.user_id.id
@@ -60,13 +63,9 @@ class SaleOrderLine(models.Model):
                 views_or_xmlid="sale_product_warnings.exception_product_review",
                 render_context={
                     "product_id": rec.product_id,
-                    "product_state": dict(
-                        rec.product_id._fields["state"]._description_selection(self.env)
-                    ).get(rec.product_id.state),
+                    "product_state": rec.product_id.product_state_id.name,
                     "order_id": rec.order_id,
-                    "order_state": dict(
-                        rec.order_id._fields["state"]._description_selection(self.env)
-                    ).get(rec.order_id.state),
+                    "order_state": order_state,
                 },
             )
         return rec
