@@ -25,9 +25,9 @@ class TestMailExtraNotifyCRM(TestMailExtraNotifyCommon):
             # get latest email
             mail_id = self.Mail.search([]) - existing_mail_ids
             self.assertEqual(len(mail_id), 1)
-            self.assertIn(
-                "You have been assigned to 5 VP Chairs",
+            self.assertEqual(
                 mail_id.subject,
+                "You have been assigned to %s" % self.lead_id.name_get()[0][1],
             )
             self.assertIn("Customer", mail_id.body)
             self.assertIn("Delivery Address", mail_id.body)
@@ -49,9 +49,9 @@ class TestMailExtraNotifyCRM(TestMailExtraNotifyCommon):
             # get latest email
             mail_id = self.Mail.search([]) - existing_mail_ids
             self.assertEqual(len(mail_id), 1)
-            self.assertIn(
-                "5 VP Chairs: To Do assigned to you",
+            self.assertEqual(
                 mail_id.subject,
+                "%s: To Do assigned to you" % self.lead_id.name_get()[0][1],
             )
             self.assertIn("Customer", mail_id.body)
             self.assertIn("Delivery Address", mail_id.body)
