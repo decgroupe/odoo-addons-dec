@@ -47,3 +47,8 @@ job:
     # Run tests with coverage
     - oca_run_tests
     # - sleep 8h || true
+  artifacts:
+    paths:
+      - /tmp/odoo
+    expire_in: 3 day
+    when: always
