@@ -25,12 +25,12 @@ class MailActivityMixin(models.AbstractModel):
             note = note.decode("utf-8")
         for redirection in redirections:
             if redirection.user_id and redirection.match(
-                self._name,
-                act_type_xmlid,
-                act_values.get("activity_type_id"),
-                act_values.get("user_id"),
-                act_values.get("stored_views_or_xmlid"),
-                note,
+                model_name=self._name,
+                type_xmlid=act_type_xmlid,
+                type_id=act_values.get("activity_type_id"),
+                user_id=act_values.get("user_id"),
+                qweb_template_xmlid=act_values.get("stored_views_or_xmlid"),
+                note=note,
             ):
                 _logger.info(
                     _("Activity redirected to %s by rule %s")
@@ -43,6 +43,8 @@ class MailActivityMixin(models.AbstractModel):
                 mail_activity_redirection = redirection
                 # Stop after first match
                 break
+        if "stored_views_or_xmlid" in act_values:
+            act_values.pop("stored_views_or_xmlid")
         activity_ids = super().activity_schedule(
             act_type_xmlid, date_deadline, summary, note, **act_values
         )
