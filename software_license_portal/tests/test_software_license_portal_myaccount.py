@@ -249,6 +249,11 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
 
     def test_06_mypass_tour(self):
         pass_id = self.env.ref("software_license_pass.pass_premium3")
+        # Ready Mat
+        partner_id = self.env.ref("base.res_partner_4")
+        # Restore default email if needed because of CRM demo
+        # (ready.mat28@example.com -> info@deltapc.example.com )
+        partner_id.email = "ready.mat28@example.com"
         self.assertEqual(len(pass_id.hardware_group_ids), 2)
         # Ready Mat
         with self.assertRaisesRegex(AccessDenied, "Access Denied"), self.cr.savepoint():
@@ -258,7 +263,6 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
                 login="ready.mat28@example.com",
             )
         # Give portal access if needed
-        partner_id = self.env.ref("base.res_partner_4")
         self.partner_authenticate(partner_id)
         self.start_tour(
             "/my/passes",
