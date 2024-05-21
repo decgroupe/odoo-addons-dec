@@ -94,7 +94,6 @@ class ProductTemplate(models.Model):
         self._propagate_uom_change_to_orderpoints(uom_id, product_ids)
         self._propagate_uom_change_to_packagings(uom_id, product_ids)
         self._propagate_uom_change_to_stockmoves(uom_id, product_ids)
-        self._propagate_uom_change_to_pricehistories(uom_id, product_ids)
 
     def _propagate_uom_change_to_quants(self, uom_id, product_ids):
         """Convert quants quantities
@@ -166,25 +165,6 @@ class ProductTemplate(models.Model):
             _logger.debug("Old price = %f", move.price_unit)
             move.price_unit = current_uom_id._compute_price(move.price_unit, uom_id)
             _logger.debug("New price = %f", move.price_unit)
-
-    def _propagate_uom_change_to_pricehistories(self, uom_id, product_ids):
-        """Convert prodcut price histories
-
-        Args:
-            uom_id ([uom.uom]): Future UoM that will replace current one
-            product_ids ([product.product]): Source recordset
-        """
-        price_ids = self.env["product.price.history"].search(
-            [("product_id", "in", product_ids.ids)]
-        )
-        for price_id in price_ids:
-            current_uom_id = price_id.product_id.uom_id
-            price_id.product_uom_qty = current_uom_id._compute_quantity(
-                price_id.product_uom_qty, uom_id
-            )
-            _logger.debug("Old price = %f", price_id.cost)
-            price_id.cost = current_uom_id._compute_price(price_id.cost, uom_id)
-            _logger.debug("New price = %f", price_id.cost)
 
     def _propagate_uom_po_change(self, uom_po_id):
         product_ids = self.with_context(active_test=False).mapped("product_variant_ids")
