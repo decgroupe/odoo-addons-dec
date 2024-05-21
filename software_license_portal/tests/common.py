@@ -2,11 +2,14 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2024
 
 import json
+import logging
 
 from lxml import html
 
 import odoo.tests
 from odoo.tests import new_test_user
+
+_logger = logging.getLogger(__name__)
 
 
 class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
@@ -68,7 +71,9 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
         else:
             # otherwise use login as password
             user_id.password = user_id.email
-        return self.authenticate(user_id.email, custom_password or user_id.email)
+        res = self.authenticate(user_id.email, custom_password or user_id.email)
+        _logger.info("Session => %s" % res)
+        return res
 
     def _get_common_payload_with_telemetry(self, device_name=False, domain_name=False):
         system_info = {}
