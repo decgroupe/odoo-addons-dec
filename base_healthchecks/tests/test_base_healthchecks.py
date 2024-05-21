@@ -7,6 +7,7 @@ import requests
 
 import odoo.exceptions
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class TestBaseHealthchecks(TransactionCase):
@@ -101,7 +102,8 @@ class TestBaseHealthchecks(TransactionCase):
         ) as post:
             post.side_effect = requests.HTTPError("Fake HTTP Error")
             post.return_value = None
-            self.server_action.run()
+            with mute_logger("odoo.addons.base_healthchecks.models.healthchecks_ping"):
+                self.server_action.run()
             # check that only two calls have been made
             self.assertEqual(len(post.mock_calls), 2)
             # check first call is start
