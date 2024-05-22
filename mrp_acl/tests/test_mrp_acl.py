@@ -1,9 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
+from odoo.exceptions import AccessError
 from odoo.tests import new_test_user
 from odoo.tests.common import SavepointCase
-from odoo.exceptions import AccessError
+from odoo.tools import mute_logger
 
 
 class TestProjectAcl(SavepointCase):
@@ -55,9 +56,10 @@ class TestProjectAcl(SavepointCase):
         with self.assertRaisesRegex(
             AccessError, r"Manufacturing\/Administrator"
         ), self.cr.savepoint():
-            self.bom1.with_user(self.production_user).with_context(
-                bypass_supermanager_check=True
-            ).write({"code": "123"})
+            with mute_logger("odoo.models.write"):
+                self.bom1.with_user(self.production_user).with_context(
+                    bypass_supermanager_check=True
+                ).write({"code": "123"})
 
     def test_02_create_production_as_production_manager(self):
         with self.assertRaisesRegex(AccessError, r"Super-Manager"), self.cr.savepoint():
