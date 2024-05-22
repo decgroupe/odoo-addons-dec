@@ -19,7 +19,7 @@ class MailMessageSubtype(models.Model):
         res = pack_ids
         if model_name and not self.env.context.get("manual_message_subscribe"):
             domain = [("excluded_res_model_ids.model", "=", model_name)]
-            excluded_ids = self.search(domain)
+            excluded_ids = self.sudo().search(domain)
             if excluded_ids.ids:
                 filtered_array_ids = []
                 for ids in pack_ids:
