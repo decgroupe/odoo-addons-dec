@@ -69,8 +69,10 @@ class ProcurementGroup(models.Model):
                 "res_id": product_id.id,
                 "res_model_id": model_product_product.id,
             }
-            _logger.debug(activity_data)
-            MailActivity.create(activity_data)
+            _logger.info(activity_data)
+            activity_id = MailActivity.create(activity_data)
+            # call flush to ensure computed fields (like res_model) are written to DB
+            activity_id.flush()
             return True
         else:
             return False
