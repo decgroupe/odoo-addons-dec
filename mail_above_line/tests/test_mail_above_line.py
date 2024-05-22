@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
 from odoo.addons.mail.tests.common import MailCase
-from odoo.addons.mail_above_line.tests.common import MSG_REPLY
+from odoo.addons.mail_above_line.tests.common import MSG_REPLY, MAIL_EMPTY_BODY_TEMPLATE
 from odoo.tests import tagged
 from odoo.tests.common import SavepointCase
 from odoo.tools import mute_logger
@@ -64,3 +64,24 @@ class TestMailAboveLine(SavepointCase, MailCase):
         self.assertEqual(self.partner_id.id, record_id)
         self.assertNotIn("##- Please type your reply above this line -##", msg_id.body)
         self.assertIn("##- Content Removed -##", msg_id.body)
+
+
+    @mute_logger("odoo.addons.mail.models.mail_thread")
+    def test_02_empty_body(self):
+        incoming_message = MAIL_EMPTY_BODY_TEMPLATE.format(
+            subject="Reply To",
+            email_from="xyz@widget.com",
+            to="contact@yourcompany.com",
+            cc="",
+            msg_id="<10476358-b3de-4336-9fd0-e8e689075945@anothercompany.com>",
+            references=self.msg_activity_notification_id.message_id,
+            in_reply_to=self.msg_activity_notification_id.message_id,
+            extra="",
+        )
+        prev_msg_ids = self.partner_id.message_ids
+        record_id = self.env["mail.thread"].message_process(None, incoming_message)
+        msg_id = self.partner_id.message_ids - prev_msg_ids
+        self.assertEqual(1, len(msg_id))
+        self.assertEqual(self.partner_id.id, record_id)
+        self.assertNotIn("##- Content Removed -##", msg_id.body)
+        self.assertEqual(msg_id.body, "")

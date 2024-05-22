@@ -26,6 +26,8 @@ class MailThread(models.AbstractModel):
         return super().message_post(message_type=message_type, **kwargs)
 
     def _remove_everything_except_above_this_line(self, body):
+        if body == "":
+            return body
         REGEX_PATTERN = r"\#\#- .* -\#\#"
         PLACEHOLDER = lxml.html.fromstring("<i>##- %s -##</i>" % _("Content Removed"))
         try:
