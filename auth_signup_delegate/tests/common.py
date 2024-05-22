@@ -21,9 +21,14 @@ class TestAuthSignupDelegateControllerBase(HttpCase):
         if give_portal_access:
             self.partner.email = "partner@domain.com"
             self.partner.give_portal_access()
+            user_id = self.partner.user_ids
             if signup_complete:
                 # invalidate signup token
                 self.partner.signup_cancel()
+                # most important, set a login date to update user's state from
+                # new to active (note that this function is tagged api.model)
+                self.env["res.users"].with_user(user_id)._update_last_login()
+                self.assertEqual(user_id.state, "active")
 
     def _get_crsf_token(self):
         # Get csrf_token
