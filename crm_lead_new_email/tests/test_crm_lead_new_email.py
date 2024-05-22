@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
 from odoo.addons.mail.tests.common import MailCase
-from odoo.addons.crm_lead_new_email.tests.common import MSG_CONTACT
+from odoo.addons.crm_lead_new_email.tests.common import MSG_CONTACT, MAIL_TEMPLATE
 from odoo.tests import tagged
 from odoo.tests.common import SavepointCase
 from odoo.tools import mute_logger
@@ -53,3 +53,20 @@ class TestCrmLeadNewEmail(SavepointCase, MailCase):
             "✨ New Lead: Need information about your products", mail_id.subject
         )
         self.assertNotIn('No match found for "Xan Yin Zu (myhostname)"', mail_id.body)
+
+    @mute_logger("odoo.addons.mail.models.mail_thread")
+    def test_03_incoming_html_body(self):
+        subject = "Need information about your products"
+        incoming_message = MAIL_TEMPLATE.format(
+            subject=subject,
+            email_from="xyz@widget.com",
+            to="contact@yourcompany.com",
+            cc="",
+            msg_id="<58976bdf-e97b-4c3a-a103-2888d10615fd@widget.com>",
+            extra="",
+        )
+        record_id = self.env["mail.thread"].message_process(None, incoming_message)
+        lead_id = self.env["crm.lead"].browse(record_id)
+        self.assertEqual(lead_id.name, subject)
+        # ensure html is converted to plaintext
+        self.assertNotIn("</body>", lead_id.description)

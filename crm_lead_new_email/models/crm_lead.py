@@ -4,6 +4,7 @@
 import logging
 
 from odoo import api, fields, models
+from odoo.tools import html2plaintext
 
 _logger = logging.getLogger(__name__)
 
@@ -31,7 +32,7 @@ class CrmLead(models.Model):
         if custom_values is None:
             custom_values = {}
         defaults = {}
-        if msg_dict.get("body"):
-            defaults["description"] = msg_dict.get("body")
+        if msg_dict.get("body") and "description" not in defaults:
+            defaults["description"] = html2plaintext(msg_dict.get("body"))
         defaults.update(custom_values)
         return super().message_new(msg_dict, custom_values=defaults)
