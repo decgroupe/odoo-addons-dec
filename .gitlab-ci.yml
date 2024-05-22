@@ -45,9 +45,20 @@ job:
     # - INCLUDE=procurement_exception
     # Run tests with coverage
     - oca_run_tests
+    # Output coverage console report
+    - coverage report
+    # Generate coverage HTML report to htmlcov directory
+    - coverage html
+    # Generate coverage.xml cobertura report
+    - coverage xml
     # - sleep 8h || true
   artifacts:
     paths:
       - /tmp/odoo
+      - htmlcov
     expire_in: 3 day
     when: always
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
