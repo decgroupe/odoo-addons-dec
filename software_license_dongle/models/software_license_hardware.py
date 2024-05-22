@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 try:
     from . import _key14
 except ImportError as e:
-    _logger.error("Please create `_key14.py`")
+    _logger.warning("Please create `_key14.py`")
 
 
 class SoftwareLicenseHardware(models.Model):
