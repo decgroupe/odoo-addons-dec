@@ -600,7 +600,7 @@
                     <t t-raw="message.subject" />
                 </t>
                 <t t-else="">
-                    <t t-raw="record.name" />
+                    <t t-raw="record_name" />
                 </t>
             </t>
             <t t-set="header_message">
