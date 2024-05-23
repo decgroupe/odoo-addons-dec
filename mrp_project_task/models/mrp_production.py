@@ -117,29 +117,4 @@ class MrpProduction(models.Model):
         generated task.
         """
         raise NotImplementedError()
-        # purchase_to_notify_map = {
-        # }  # map PO -> recordset of POL as {purchase.order: set(mrp.production)}
 
-        # purchase_order_lines = self.env['purchase.order.line'].search(
-        #     [
-        #         ('id', 'in', self.mapped('purchase_line_ids').ids),
-        #         ('state', '!=', 'cancel')
-        #     ]
-        # )
-        # for purchase_line in purchase_order_lines:
-        #     purchase_to_notify_map.setdefault(
-        #         purchase_line.order_id, self.env['purchase.order.line']
-        #     )
-        #     purchase_to_notify_map[purchase_line.order_id] |= purchase_line
-
-        # for purchase_order, purchase_lines in purchase_to_notify_map.items():
-        #     purchase_order.activity_schedule_with_view(
-        #         'mail.mail_activity_data_warning',
-        #         user_id=purchase_order.user_id.id or self.env.uid,
-        #         views_or_xmlid=
-        #         'mrp_purchase.exception_purchase_on_mrp_cancellation',
-        #         render_context={
-        #             'production_orders': purchase_lines.mapped('production_id'),
-        #             'purchase_order_lines': purchase_lines,
-        #         }
-        #     )
