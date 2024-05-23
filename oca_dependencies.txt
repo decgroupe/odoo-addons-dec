@@ -1,13 +1,23 @@
 account-analytic
 account-financial-tools
+account-invoice-reporting
+account-invoicing
 aeroo https://github.com/decgroupe/aeroo_reports 14.0-dec
 akretion-odoo-usability https://github.com/decgroupe/odoo-usability 14.0-dec
+credit-control
 crm https://github.com/decgroupe/crm 14.0-dec
 deltatech https://github.com/decgroupe/deltatech 14.0-dec
+field-service
 helpdesk https://github.com/decgroupe/helpdesk 14.0-dec
+e-commerce https://github.com/decgroupe/e-commerce 14.0-dec
+hr
+hr-holidays
 knowledge
 l10n-france https://github.com/decgroupe/l10n-france 14.0-dec
+management-system
 manufacture https://github.com/decgroupe/manufacture 14.0-dec
+mis-builder
+mis-builder-contrib
 odoo_appstore https://github.com/decgroupe/odoo_appstore 14.0
 odoo_dhtmlxgantt https://github.com/decgroupe/odoo_dhtmlxgantt 14.0-dev
 partner-contact
@@ -18,10 +28,15 @@ purchase-workflow https://github.com/decgroupe/purchase-workflow 14.0-dec
 queue
 sale-workflow https://github.com/decgroupe/sale-workflow 14.0-dec
 server-auth https://github.com/decgroupe/server-auth 14.0-dec
+server-backend
+server-brand
+server-env
 server-tools https://github.com/decgroupe/server-tools 14.0-dec
 server-ux
 social https://github.com/decgroupe/social 14.0-dec
+stock-logistics-reporting
 stock-logistics-warehouse https://github.com/decgroupe/stock-logistics-warehouse 14.0-dec
 stock-logistics-workflow https://github.com/decgroupe/stock-logistics-workflow 14.0-dec
 timesheet https://github.com/decgroupe/timesheet 14.0-dec
 web https://github.com/decgroupe/web 14.0-dec
+website
