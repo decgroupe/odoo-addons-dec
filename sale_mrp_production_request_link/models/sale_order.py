@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -41,14 +41,26 @@ class SaleOrder(models.Model):
         be attached.
         """
         for production_request in self.mapped("production_request_ids"):
-            production_request.activity_schedule_with_view(
-                "mail.mail_activity_data_warning",
-                user_id=production_request.assigned_to.id
-                or production_request.requested_by.id
-                or self.env.uid,
-                views_or_xmlid="sale_mrp_production_request_link."
-                "exception_production_request_on_sale_cancellation",
-                render_context={
-                    "sale_orders": self,
-                },
-            )
+            if (
+                production_request.state in ("draft", "to_approve")
+                and not production_request.mrp_production_ids
+            ):
+                production_request.button_cancel()
+                production_request.message_post(
+                    body=_(
+                        "Automatic cancellation following cancellation of the sell "
+                        "order"
+                    )
+                )
+            else:
+                production_request._activity_schedule_with_view(
+                    "mail.mail_activity_data_warning",
+                    user_id=production_request.assigned_to.id
+                    or production_request.requested_by.id
+                    or self.env.uid,
+                    views_or_xmlid="sale_mrp_production_request_link."
+                    "exception_production_request_on_sale_cancellation",
+                    render_context={
+                        "sale_orders": self,
+                    },
+                )
