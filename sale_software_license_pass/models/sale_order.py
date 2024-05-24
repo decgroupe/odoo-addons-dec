@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -41,8 +41,14 @@ class SaleOrder(models.Model):
         for license_pass_id in self.mapped("license_pass_ids"):
             if license_pass_id.state == "draft":
                 license_pass_id.action_cancel()
+                license_pass_id.message_post(
+                    body=_(
+                        "Automatic cancellation following cancellation of the sell "
+                        "order"
+                    )
+                )
             else:
-                license_pass_id.activity_schedule_with_view(
+                license_pass_id._activity_schedule_with_view(
                     "mail.mail_activity_data_warning",
                     user_id=license_pass_id.user_id.id or self.env.uid,
                     views_or_xmlid="sale_software_license_pass."

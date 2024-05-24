@@ -21,7 +21,7 @@ class ProductTemplate(models.Model):
     def write(self, vals):
         """We remove from product.product to avoid error."""
         _vals = vals.copy()
-        if vals.get("license_pack_id", False):
+        if "license_pack_id" in vals:
             self.product_variant_ids.write(
                 {"license_pack_id": vals.get("license_pack_id")}
             )

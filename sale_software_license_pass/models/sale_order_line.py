@@ -1,10 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
+import logging
 from datetime import timedelta
 
 from odoo import api, fields, models
 from odoo.tools import float_compare
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrderLine(models.Model):
@@ -108,7 +111,18 @@ class SaleOrderLine(models.Model):
             )
         )
         for line_id in line_ids:
-            line_id._create_application_pass()
+            license_pass_ids = line_id.license_pass_ids.filtered(
+                lambda lp: (lp.state != "cancel")
+            )
+            if not license_pass_ids or self.env.context.get(
+                "force_create_application_pass"
+            ):
+                line_id._create_application_pass()
+            else:
+                _logger.warning(
+                    "Pass already exists for this line: %s",
+                    license_pass_ids.mapped("display_name"),
+                )
         return super()._timesheet_service_generation()
 
     @api.depends("license_pass_ids.state", "license_pass_ids.max_allowed_hardware")

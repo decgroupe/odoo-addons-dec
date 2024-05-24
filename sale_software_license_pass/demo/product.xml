@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="product.product" id="product_premium_pass">
+        <field name="name">Premium Pass</field>
+        <field name="type">service</field>
+        <field name="default_code">PASS_09001</field>
+        <field name="list_price" eval="250" />
+        <field name="uom_id" ref="software_license_pass.product_uom_year_seat1" />
+        <field name="uom_po_id" ref="software_license_pass.product_uom_year_seat1" />
+        <field name="service_policy">delivered_manual</field>
+        <field name="service_tracking">create_application_pass</field>
+        <field name="license_pack_id" ref="software_license_pass.sl_pack_premium" />
+        <field name="sale_ok" eval="True" />
+        <field name="purchase_ok" eval="False" />
+        <field
+            name="image_1920"
+            type="base64"
+            file="sale_software_license_pass/static/img/premium_pass.png"
+        />
+    </record>
+
+    <record model="product.product" id="product_freemium_pass">
+        <field name="name">Freemium Pass (Almost)</field>
+        <field name="type">service</field>
+        <field name="default_code">PASS_09002</field>
+        <field name="list_price" eval="0.99" />
+        <field name="uom_id" ref="software_license_pass.product_uom_seat_year1" />
+        <field name="uom_po_id" ref="software_license_pass.product_uom_seat_year1" />
+        <field name="service_policy">delivered_manual</field>
+        <field name="service_tracking">create_application_pass</field>
+        <field name="license_pack_id" ref="software_license_pass.sl_pack_premium" />
+        <field name="sale_ok" eval="True" />
+        <field name="purchase_ok" eval="False" />
+        <field
+            name="image_1920"
+            type="base64"
+            file="sale_software_license_pass/static/img/premium_pass.png"
+        />
+    </record>
+
+</odoo>

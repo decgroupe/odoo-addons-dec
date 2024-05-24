@@ -15,5 +15,9 @@
         "views/sale_order.xml",
         "data/mail_template.xml",
     ],
+    "demo": [
+        "demo/product.xml",
+        "demo/sale_order.xml",
+    ],
     "installable": True,
 }

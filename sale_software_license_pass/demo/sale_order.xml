@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="sale.order" id="premiumpass_so">
+        <field name="partner_id" ref="base.res_partner_10" />
+        <field name="state">draft</field>
+        <field name="user_id" ref="base.user_admin" />
+        <field
+            name="date_order"
+            eval="(datetime.now()-relativedelta(days=65)).strftime('%Y-%m-%d %H:%M:%S')"
+        />
+    </record>
+
+    <!-- Sale order line with Year(s)/seat unit -->
+    <record model="sale.order.line" id="premiumpass_so_line1">
+        <field name="order_id" ref="premiumpass_so" />
+        <field name="sequence" eval="10" />
+        <field name="price_unit" eval="250.0" />
+        <field name="name">[PASS_09001] Premium Pass</field>
+        <field
+            name="product_id"
+            ref="sale_software_license_pass.product_premium_pass"
+        />
+        <field name="product_uom_qty" eval="3.0" />
+        <field name="product_uom" ref="software_license_pass.product_uom_year_seat1" />
+        <field name="is_service" eval="True" />
+        <field name="qty_delivered_method">manual</field>
+    </record>
+
+    <!-- Confirm Sale Order -->
+    <function
+        model="sale.order"
+        name="action_confirm"
+        eval="[[ref('premiumpass_so')]]"
+    />
+
+    <record model="sale.order" id="freemiumpass_so">
+        <field name="partner_id" ref="base.res_partner_10" />
+        <field name="state">draft</field>
+        <field name="user_id" ref="base.user_admin" />
+        <field
+            name="date_order"
+            eval="(datetime.now()-relativedelta(days=65)).strftime('%Y-%m-%d %H:%M:%S')"
+        />
+    </record>
+
+    <!-- Sale order line with Seat(s)/year unit -->
+    <record model="sale.order.line" id="freemiumpass_so_line1">
+        <field name="order_id" ref="freemiumpass_so" />
+        <field name="sequence" eval="10" />
+        <field name="price_unit" eval="0.99" />
+        <field name="name">[PASS_09002] Freemium Pass</field>
+        <field
+            name="product_id"
+            ref="sale_software_license_pass.product_freemium_pass"
+        />
+        <field name="product_uom_qty" eval="2.0" />
+        <field name="product_uom" ref="software_license_pass.product_uom_seat_year1" />
+        <field name="is_service" eval="True" />
+        <field name="qty_delivered_method">manual</field>
+    </record>
+
+</odoo>
