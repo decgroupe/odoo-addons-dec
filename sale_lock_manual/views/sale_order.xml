@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_order_form">
+        <field name="name">sale.order.form@sale_lock_manual</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('sale_lock_manual.group_manual_done_setting'))]"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//form//header//button[@name='action_draft']" position="after">
+                <button
+                    name="action_done"
+                    type="object"
+                    string="Lock"
+                    states="sale"
+                    help="If the sale is locked, you can not modify it anymore. However, you will still be able to invoice or deliver."
+                    groups="sales_team.group_sale_manager"
+                />
+                <button
+                    name="action_unlock"
+                    type="object"
+                    string="Unlock"
+                    states="done"
+                    groups="sales_team.group_sale_manager"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
