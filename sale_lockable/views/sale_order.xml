@@ -6,6 +6,23 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    style="height: 40px; margin-bottom:0px;"
+                    attrs="{'invisible':
+                    [
+                        ('|'),
+                        ('state', '!=', 'draft'),
+                        ('&amp;'),
+                            ('state', '=', 'draft'),
+                            ('locked_draft', '=', False),
+                    ]}"
+                >
+                    This sale order is currently <strong>locked</strong> by its owner.
+                </div>
+            </xpath>
             <xpath expr="//button[@name='action_cancel']" position="before">
                 <button
                     name="action_draft_lock"
@@ -28,6 +45,8 @@
                     attrs="{'invisible':
                         [
                             ('|'),
+                            ('state', '!=', 'draft'),
+                            ('&amp;'),
                                 ('state', '=', 'draft'),
                                 ('locked_draft', '=', False),
                         ]}"

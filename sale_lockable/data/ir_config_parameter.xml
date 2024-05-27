@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="lockable_fields" model="ir.config_parameter">
+        <field name="key">sale_lockable.fields</field>
+        <field
+            name="value"
+        >state,user_id,team_id,partner_id,date_order,order_line,sale_order_option_ids</field>
+    </record>
+
+</odoo>
