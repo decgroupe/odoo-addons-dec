@@ -32,9 +32,14 @@ class SoftwareLicense(models.Model):
             ("partner_id", "child_of", partner_id.id),
             ("portal_published", "=", True),
             ("application_id.type", "=", "inhouse"),
-            ("pass_state", "in", (False, "sent")),
         ]
-        if not include_pass_licenses:
+        if include_pass_licenses:
+            res += [
+                ("|"),
+                ("pass_state", "=", "sent"),
+                ("pass_id", "=", False),
+            ]
+        else:
             res.append(("pass_id", "=", False))
         return res
 
