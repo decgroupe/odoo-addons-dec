@@ -15,6 +15,11 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
     def setUp(self):
         super().setUp()
 
+    def assertPortalDoc(self, el, data):
+        self.assertIn(data["text"], el.text)
+        span = el.xpath(".//span[hasclass('badge-pill')]")[0]
+        self.assertIn(data["count"], span.text)
+
     def assertLicenseTable(self, el, data):
         license_link = el.xpath(".//a")
         self.assertEqual(len(license_link), 1)
@@ -65,12 +70,12 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
 
     def assertHardwareIdentifierTable(self, el, data):
         tds = el.xpath(".//td")
-        self.assertEqual(len(tds), 4)
+        self.assertEqual(len(tds), 5)
         # unique id
         unique_id = tds[0].text_content()
         self.assertIn(data["unique_id"], unique_id)
         # has expiration date
-        last_activation_date = tds[1].text_content().strip()
+        last_activation_date = tds[2].text_content().strip()
         if data["has_last_activation_date"]:
             self.assertTrue(last_activation_date)
         else:
@@ -116,6 +121,27 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
             data["action_args"]["hardware_name"],
         )
 
+    def test_01_my(self):
+        data = [
+            {
+                "text": "Licenses",
+                "count": "2",
+            },
+            {
+                "text": "Passes",
+                "count": "1",
+            },
+        ]
+        partner_id = self.env.ref("base.res_partner_address_15")
+        self.partner_authenticate(partner_id)
+        response = self.url_open("/my")
+        self.assertEqual(response.status_code, 200)
+        doc = self.html_doc(response)
+        elements = doc.xpath("//div[hasclass('o_portal_docs')]//a")
+        self.assertEqual(len(elements), len(data))
+        for i, el in enumerate(elements):
+            self.assertPortalDoc(el, data[i])
+
     def test_01_mylicenses(self):
         data = [
             {
@@ -140,7 +166,9 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         response = self.url_open("/my/licenses")
         self.assertEqual(response.status_code, 200)
         doc = self.html_doc(response)
-        for i, el in enumerate(doc.xpath("//table[@name='licenses']//tbody/tr")):
+        elements = doc.xpath("//table[@name='licenses']//tbody/tr")
+        self.assertEqual(len(elements), len(data))
+        for i, el in enumerate(elements):
             self.assertLicenseTable(el, data[i])
 
     def test_02_mylicense(self):
@@ -176,9 +204,9 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         response = self.url_open(f"/my/license/{license_id.id}")
         self.assertEqual(response.status_code, 200)
         doc = self.html_doc(response)
-        for i, el in enumerate(
-            doc.xpath("//table[@name='hardware_identifiers']//tbody/tr")
-        ):
+        elements = doc.xpath("//table[@name='hardware_identifiers']//tbody/tr")
+        self.assertEqual(len(elements), len(data))
+        for i, el in enumerate(elements):
             self.assertHardwareIdentifierTable(el, data[i])
 
     def test_03_mylicense_tour(self):
@@ -211,7 +239,9 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         response = self.url_open("/my/passes")
         self.assertEqual(response.status_code, 200)
         doc = self.html_doc(response)
-        for i, el in enumerate(doc.xpath("//table[@name='passes']//tbody/tr")):
+        elements = doc.xpath("//table[@name='passes']//tbody/tr")
+        self.assertEqual(len(elements), len(data))
+        for i, el in enumerate(elements):
             self.assertPassTable(el, data[i])
 
     def test_05_mypass(self):
@@ -244,7 +274,9 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         response = self.url_open(f"/my/pass/{pass_id.id}")
         self.assertEqual(response.status_code, 200)
         doc = self.html_doc(response)
-        for i, el in enumerate(doc.xpath("//table[@name='hardware_groups']//tbody/tr")):
+        elements = doc.xpath("//table[@name='hardware_groups']//tbody/tr")
+        self.assertEqual(len(elements), len(data))
+        for i, el in enumerate(elements):
             self.assertHardwareGroupTable(el, data[i])
 
     def test_06_mypass_tour(self):
@@ -280,4 +312,3 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
             "mypass_no_hardware_tour",
             login="brandon.freeman55@example.com",
         )
-

@@ -165,6 +165,7 @@
                         <thead>
                             <tr class="active card-header">
                                 <th>Unique ID</th>
+                                <th>Device FQDN</th>
                                 <th>Last activation</th>
                                 <th>Action</th>
                                 <th>Informations</th>
@@ -189,6 +190,9 @@
         <tr>
             <td class="tr_slp_license_hardware_identifier_name">
                 <span t-esc="hardware_id.name" />
+            </td>
+            <td>
+                <span t-field="hardware_id.device_fqdn" />
             </td>
             <td>
                 <span t-field="hardware_id.validation_date" />
