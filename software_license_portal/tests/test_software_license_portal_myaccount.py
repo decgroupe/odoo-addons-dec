@@ -137,7 +137,9 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         response = self.url_open("/my")
         self.assertEqual(response.status_code, 200)
         doc = self.html_doc(response)
-        elements = doc.xpath("//div[hasclass('o_portal_docs')]//a")
+        elements = doc.xpath(
+            "//div[hasclass('o_portal_docs')]//a[@title='Licenses' or @title='Passes']"
+        )
         self.assertEqual(len(elements), len(data))
         for i, el in enumerate(elements):
             self.assertPortalDoc(el, data[i])
