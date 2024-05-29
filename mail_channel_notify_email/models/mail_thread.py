@@ -10,18 +10,19 @@ class MailThread(models.AbstractModel):
 
     # yapf: disable
     def _notify_compute_recipients(self, message, msg_vals):
+        """Hook Odoo computation in order to re-add partner with
+        `notification_type=inbox`when the channel has `email_send` enabled.
+        Please note that duplicates should not exists as the `exept_partner` is here
+        to avoid that.
+        /!\ Only the SQL query has been edited
+        """
         recipient_data = super()._notify_compute_recipients(message, msg_vals)
-
-        # hook Odoo computation in order to re-add partner with `notification_type=inbox`
-        # when the channel has `email_send` enabled.
-        # only the SQL query is edited
         author_id = msg_vals.get('author_id') or message.author_id.id
         email_cids = [r['id'] for r in recipient_data['channels'] if r['notif'] == 'email']
         if email_cids:
             email_from = msg_vals.get('email_from') or message.email_from
             email_from = self.env['res.partner']._parse_partner_name(email_from)[1]
             exept_partner = [r['id'] for r in recipient_data['partners']]
-            exept_partner.append(0)
             if author_id:
                 exept_partner.append(author_id)
 
@@ -33,7 +34,7 @@ class MailThread(models.AbstractModel):
                                 and c.email_send
                                 and (p.email != ANY(%s) or p.email is null)
                                 and c.id = ANY(%s)
-                                and p.id != ANY(%s)"""
+                                and not p.id = ANY(%s)"""
 
             self.env.cr.execute(sql_query, (([email_from], ), (email_cids, ), (exept_partner, )))
             for partner_id in self._cr.fetchall():
