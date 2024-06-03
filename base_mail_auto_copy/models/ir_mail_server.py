@@ -51,7 +51,7 @@ class IrMailServer(models.Model):
             mail_server = False
         return mail_server
 
-    def update_cc_addresses(self, mail_server, message):
+    def _update_cc_addresses(self, mail_server, message):
         if mail_server.auto_cc_addresses:
             if not message.get("Cc"):
                 message["Cc"] = mail_server.auto_cc_addresses
@@ -59,7 +59,7 @@ class IrMailServer(models.Model):
                 del message["Cc"]  # avoid multiple Cc: headers!
                 message["Cc"] += "," + mail_server.auto_cc_addresses
 
-    def update_bcc_addresses(self, mail_server, message):
+    def _update_bcc_addresses(self, mail_server, message):
         auto_bcc_addresses = mail_server.auto_bcc_addresses
 
         if mail_server.auto_add_sender:
@@ -155,8 +155,8 @@ class IrMailServer(models.Model):
     ):
         mail_server = self.get_mail_server(mail_server_id, smtp_server)
         if mail_server:
-            self.update_cc_addresses(mail_server, message)
-            self.update_bcc_addresses(mail_server, message)
+            self._update_cc_addresses(mail_server, message)
+            self._update_bcc_addresses(mail_server, message)
 
         self._debug_outgoing_message(message)
         message_id = super(IrMailServer, self).send_email(
