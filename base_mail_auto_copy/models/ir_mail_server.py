@@ -5,6 +5,7 @@ import logging
 
 from odoo import api, fields, models
 from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
+from odoo.tools.config import to_list
 
 _logger = logging.getLogger(__name__)
 
@@ -16,6 +17,11 @@ class IrMailServer(models.Model):
         string="Auto add sender",
         help="Automatically add sender to the list of hidden recipients",
         default=True,
+    )
+    ignored_aas_addresses = fields.Text(
+        string="Ignored addresses",
+        help="Comma-separated list of addresses ignored by 'Auto add sender' parameter",
+        default=lambda self: self.env.company.email,
     )
     auto_cc_addresses = fields.Text(
         string="Auto CC addresses",
@@ -68,15 +74,33 @@ class IrMailServer(models.Model):
                     mail_message_id.email_from
                 )
                 if from_rfc2822[0] == channel_email_from_rfc2822[0]:
-                    _logger.info("Do not add %s to BCC - R1", from_rfc2822[0])
+                    _logger.info(
+                        "Do not add %s to BCC (reason: Channel alias is ignored)",
+                        from_rfc2822[0],
+                    )
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
+                # ignore mails from our ignore static list
+                if mail_server.ignored_aas_addresses and from_rfc2822[0] in to_list(
+                    mail_server.ignored_aas_addresses
+                ):
+                    _logger.info(
+                        "Do not add %s to BCC (reason: Mail is statically ignored)",
+                        from_rfc2822[0],
+                    )
+                    ignore_auto_add_sender = True
+            if not ignore_auto_add_sender:
+                # check if email is sent by a user (internal or portal) and if this
+                # user also wants to receive a copy
                 partner_id = self.env["res.partner"].search(
                     [("email", "=", from_rfc2822[0]), ("user_ids", "!=", False)],
                     limit=1,
                 )
                 if partner_id and not partner_id.copy_sent_email:
-                    _logger.info("Do not add %s to BCC - R2", from_rfc2822[0])
+                    _logger.info(
+                        "Do not add %s to BCC (reason: User don't want a copy)",
+                        from_rfc2822[0],
+                    )
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 if not auto_bcc_addresses:

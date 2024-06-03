@@ -9,6 +9,7 @@
             <sheet position="inside">
                 <group string="Auto Copy" colspan="4">
                     <field name="auto_add_sender" />
+                    <field name="ignored_aas_addresses" />
                     <field name="auto_cc_addresses" />
                     <field name="auto_bcc_addresses" />
                 </group>
