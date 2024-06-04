@@ -4,7 +4,7 @@
 from unittest.mock import patch
 
 from odoo.addons.base.models.ir_mail_server import IrMailServer
-from odoo.tests import  tagged
+from odoo.tests import tagged
 from .common import TestBaseMailAutoCopyCommon, MSG_CONTACT
 
 
@@ -212,6 +212,9 @@ class TestBaseMailAutoCopyPost(TestBaseMailAutoCopyCommon):
     """
 
     def test_01_disable_cc_when_channel(self):
+        # modules_ids = self.env["ir.module.module"].search([("state", "=", "installed")])
+        # print(",".join(sorted(modules_ids.mapped("name"))))
+
         user_john = self._create_user("john@example.com")
         user_john.copy_sent_email = True
         user_jane = self._create_user("jane@example.com")
@@ -263,13 +266,16 @@ class TestBaseMailAutoCopyPost(TestBaseMailAutoCopyCommon):
         mail_id = message_id.mail_ids
         self.assertEqual(len(mail_id), 1)
         self.assertFalse(mail_id.email_to)
-        print(mail_id.recipient_ids.mapped("email"))
+        # when `mail_channel_notify_email` is installed, user with inbox notifications
+        # will be enforced to recipient list
         self.assertGreaterEqual(len(mail_id.recipient_ids), 1)
         self.assertIn("jane@example.com", mail_id.recipient_ids.mapped("email"))
 
         # recreate raw message from this mail and process it like if it was received
         # on the catchall mailbox
-        incoming_message1 = self._build_email_from_mail(mail_id)
+        incoming_message1 = self._build_email_from_mail(
+            mail_id, to="general_email@mycompany.com"
+        )
         try:
             self._mail_unlink_disabled()
             # keep a trace of existing mail
@@ -288,7 +294,9 @@ class TestBaseMailAutoCopyPost(TestBaseMailAutoCopyCommon):
 
         # recreate again a raw message from this mail and process it like if it was
         # also received on the catchall mailbox
-        incoming_message2 = self._build_email_from_mail(loop_mail_id)
+        incoming_message2 = self._build_email_from_mail(
+            loop_mail_id, to="general_email@mycompany.com"
+        )
         try:
             self._mail_unlink_disabled()
             # keep a trace of existing mail

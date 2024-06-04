@@ -106,10 +106,10 @@ class TestBaseMailAutoCopyCommon(TransactionCase):
         # restore original method
         self.Mail._revert_method("unlink")
 
-    def _build_email_from_mail(self, mail_id):
+    def _build_email_from_mail(self, mail_id, to=False):
         message = self.env["ir.mail_server"].build_email(
             email_from=mail_id.email_from,
-            email_to=mail_id.email_to,
+            email_to=mail_id.email_to or to,
             subject=mail_id.subject,
             body=mail_id.body,
             reply_to=mail_id.reply_to,
