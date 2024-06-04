@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:54+0000\n"
-"PO-Revision-Date: 2023-11-28 11:33+0100\n"
+"POT-Creation-Date: 2024-06-04 13:00+0000\n"
+"PO-Revision-Date: 2024-06-04 15:01+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,6 +18,25 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: base_mail_auto_copy
+#: model:mail.template,body_html:base_mail_auto_copy.test_template
+msgid ""
+"<html>\n"
+"                <head></head>\n"
+"                <body>\n"
+"                    <p>Hello World</p>\n"
+"                </body>\n"
+"            </html>\n"
+"        "
+msgstr ""
+"<html>\n"
+"                <head></head>\n"
+"                <body>\n"
+"                    <p>Bonjour le monde</p>\n"
+"                </body>\n"
+"            </html>\n"
+"        "
+
+#. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_bcc_addresses
 msgid "Auto BCC addresses"
 msgstr "Copie cachée automatique à (BCC)"
@@ -25,7 +44,7 @@ msgstr "Copie cachée automatique à (BCC)"
 #. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__auto_cc_addresses
 msgid "Auto CC addresses"
-msgstr "Copie automatique à (BCC)"
+msgstr "Copie automatique à (CC)"
 
 #. module: base_mail_auto_copy
 #: model_terms:ir.ui.view,arch_db:base_mail_auto_copy.ir_mail_server_form_view
@@ -44,6 +63,14 @@ msgstr ""
 "Ajouter automatiquement l’expéditeur à la liste des destinataires masqués"
 
 #. module: base_mail_auto_copy
+#: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__ignored_aas_addresses
+msgid ""
+"Comma-separated list of addresses ignored by 'Auto add sender' parameter"
+msgstr ""
+"Liste d'adresses séparées par des virgules et ignorées par le paramètre "
+"\"Ajouter automatiquement l'expéditeur\""
+
+#. module: base_mail_auto_copy
 #: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__auto_bcc_addresses
 msgid "Comma-separated list of auto Bcc addresses"
 msgstr "Liste séparée par des virgules des adresses Cci automatiques"
@@ -59,36 +86,27 @@ msgid "Contact"
 msgstr "Contact"
 
 #. module: base_mail_auto_copy
-#: model:ir.model,name:base_mail_auto_copy.model_mail_channel
-msgid "Discussion Channel"
-msgstr "Canal de discussion"
-
-#. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__display_name
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel__display_name
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail__display_name
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_message__display_name
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_thread__display_name
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__display_name
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: base_mail_auto_copy
+#: model:ir.model,name:base_mail_auto_copy.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion par courriel"
+
+#. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__id
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel__id
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail__id
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_message__id
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_thread__id
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__id
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__id
 msgid "ID"
 msgstr "ID"
-
-#. module: base_mail_auto_copy
-#: model:ir.model.fields,help:base_mail_auto_copy.field_ir_mail_server__xid
-#: model:ir.model.fields,help:base_mail_auto_copy.field_mail_channel__xid
-#: model:ir.model.fields,help:base_mail_auto_copy.field_mail_mail__xid
-#: model:ir.model.fields,help:base_mail_auto_copy.field_res_partner__xid
-#: model:ir.model.fields,help:base_mail_auto_copy.field_res_users__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: base_mail_auto_copy
 #: model:ir.model.fields,help:base_mail_auto_copy.field_res_partner__copy_sent_email
@@ -99,9 +117,14 @@ msgstr ""
 "envoyés"
 
 #. module: base_mail_auto_copy
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__ignored_aas_addresses
+msgid "Ignored addresses"
+msgstr "Adresses ignorées"
+
+#. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server____last_update
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel____last_update
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail____last_update
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_message____last_update
+#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_thread____last_update
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner____last_update
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users____last_update
 msgid "Last Modified on"
@@ -113,9 +136,14 @@ msgid "Mail Server"
 msgstr "Serveur d'email"
 
 #. module: base_mail_auto_copy
-#: model:ir.model,name:base_mail_auto_copy.model_mail_mail
-msgid "Outgoing Mails"
-msgstr "Courriels à envoyer"
+#: model:ir.model,name:base_mail_auto_copy.model_mail_message
+msgid "Message"
+msgstr "Message"
+
+#. module: base_mail_auto_copy
+#: model:mail.template,subject:base_mail_auto_copy.test_template
+msgid "My Template Subject"
+msgstr "Mon modèle de sujet"
 
 #. module: base_mail_auto_copy
 #: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__copy_sent_email
@@ -128,11 +156,14 @@ msgstr "Recevoir une copie de tous mes e-mails"
 msgid "Users"
 msgstr "Utilisateurs"
 
-#. module: base_mail_auto_copy
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__xid
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_channel__xid
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_mail__xid
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__xid
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Discussion Channel"
+#~ msgstr "Canal de discussion"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Outgoing Mails"
+#~ msgstr "Courriels à envoyer"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
