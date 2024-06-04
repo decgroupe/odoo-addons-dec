@@ -13,6 +13,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+test-constraints.txt
 
 # Experimental modules
 project_dhx_gantt

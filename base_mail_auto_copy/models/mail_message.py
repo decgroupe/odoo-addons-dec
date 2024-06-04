@@ -13,8 +13,8 @@ class MailMessage(models.AbstractModel):
 
     def _ensure_create_values(self, vals_list):
         """When filling default values, upstream will check for existing key in values
-        dictionnary, but don't care if this value exists and is False. The purpose of
-        this function is to delete False values from the dictionnary to ensure valid
+        dictionary, but don't care if this value exists and is False. The purpose of
+        this function is to delete False values from the dictionary to ensure valid
         default values will be filled by ./odoo/addons/mail/models/mail_message.py
         """
         for values in vals_list:

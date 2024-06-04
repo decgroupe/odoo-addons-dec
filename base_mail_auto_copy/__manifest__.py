@@ -11,5 +11,8 @@
         "views/ir_mail_server.xml",
         "views/res_users.xml",
     ],
+    "demo": [
+        "demo/data.xml",
+    ],
     "installable": True,
 }

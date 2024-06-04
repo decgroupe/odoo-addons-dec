@@ -56,8 +56,12 @@ class IrMailServer(models.Model):
             if not message.get("Cc"):
                 message["Cc"] = mail_server.auto_cc_addresses
             else:
+                # reassigning to message doesn't overwrite the existing mail header,
+                # it adds another (this behaviour is by design)
+                cc = message["Cc"].split(",")
                 del message["Cc"]  # avoid multiple Cc: headers!
-                message["Cc"] += "," + mail_server.auto_cc_addresses
+                cc += mail_server.auto_cc_addresses.split(",")
+                message["Cc"] = ",".join(cc)
 
     def _update_bcc_addresses(self, mail_server, message):
         auto_bcc_addresses = mail_server.auto_bcc_addresses
@@ -67,27 +71,23 @@ class IrMailServer(models.Model):
             mail_message_id = self._get_mail_message(message)
             ignore_auto_add_sender = False
             from_rfc2822 = extract_rfc2822_addresses(message["From"])
+            reason = "Unknown"
             if mail_message_id.model == "mail.channel":
-                # Do not automatically add sender to bcc if the message comes
+                # do not automatically add sender to bcc if the message comes
                 # from a channel
                 channel_email_from_rfc2822 = extract_rfc2822_addresses(
                     mail_message_id.email_from
                 )
+                # this comparison should be always true
                 if from_rfc2822[0] == channel_email_from_rfc2822[0]:
-                    _logger.info(
-                        "Do not add %s to BCC (reason: Channel alias is ignored)",
-                        from_rfc2822[0],
-                    )
+                    reason = "Message from channel is ignored"
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 # ignore mails from our ignore static list
                 if mail_server.ignored_aas_addresses and from_rfc2822[0] in to_list(
                     mail_server.ignored_aas_addresses
                 ):
-                    _logger.info(
-                        "Do not add %s to BCC (reason: Mail is statically ignored)",
-                        from_rfc2822[0],
-                    )
+                    reason = "Mail is statically ignored"
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 # check if email is sent by a user (internal or portal) and if this
@@ -96,13 +96,17 @@ class IrMailServer(models.Model):
                     [("email", "=", from_rfc2822[0]), ("user_ids", "!=", False)],
                     limit=1,
                 )
-                if partner_id and not partner_id.copy_sent_email:
-                    _logger.info(
-                        "Do not add %s to BCC (reason: User don't want a copy)",
-                        from_rfc2822[0],
-                    )
+                if not partner_id:
+                    reason = "Unknown user"
                     ignore_auto_add_sender = True
-            if not ignore_auto_add_sender:
+                elif partner_id and not partner_id.copy_sent_email:
+                    reason = "User don't want a copy"
+                    ignore_auto_add_sender = True
+            if ignore_auto_add_sender:
+                _logger.info(
+                    "Do not add %s to BCC (reason: %s)", from_rfc2822[0], reason
+                )
+            else:
                 if not auto_bcc_addresses:
                     auto_bcc_addresses = message["From"]
                 else:
@@ -115,8 +119,12 @@ class IrMailServer(models.Model):
             if not message.get("Bcc"):
                 message["Bcc"] = auto_bcc_addresses
             else:
+                # reassigning to message doesn't overwrite the existing mail header,
+                # it adds another (this behaviour is by design)
+                bcc = message["Bcc"].split(",")
                 del message["Bcc"]  # avoid multiple Bcc: headers!
-                message["Bcc"] += "," + auto_bcc_addresses
+                bcc += auto_bcc_addresses.split(",")
+                message["Bcc"] = ",".join(bcc)
 
     @api.model
     def _debug_outgoing_message(self, message):
