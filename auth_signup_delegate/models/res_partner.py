@@ -34,7 +34,7 @@ class ResPartner(models.Model):
             self.sudo().delegate_signup_token,
         )
 
-    def give_portal_access(self):
+    def give_portal_access(self, force=False):
         PortalWizard = self.env["portal.wizard"]
         PortalWizardUser = self.env["portal.wizard.user"]
         # unset active_id/active_ids otherwise wizard.user_ids will be filled with
@@ -51,7 +51,7 @@ class ResPartner(models.Model):
                     self.env.ref("base.group_portal")
                     in partner_id.user_ids[0].groups_id
                 )
-            if not already_in_portal:
+            if force or not already_in_portal:
                 vals = {
                     "wizard_id": wizard_id.id,
                     "partner_id": partner_id.id,
