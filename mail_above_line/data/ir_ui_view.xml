@@ -14,9 +14,11 @@
             }
         </style>
         <xpath expr="//table[@id='table_root']" position="before">
-            <div
-                id="reply_above_warning"
-            >##- Please type your reply above this line -##</div>
+            <t t-if="not do_not_reply">
+                <div
+                    id="reply_above_warning"
+                >##- Please type your reply above this line -##</div>
+            </t>
         </xpath>
     </template>
 
