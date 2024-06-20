@@ -7,6 +7,20 @@ from odoo import api, models
 class ResUsers(models.Model):
     _inherit = "res.users"
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        # base class will set the active status to its own partner, to avoid a bouncing
+        # effect, archive change propagation is disabled here
+        users = super(ResUsers, self.with_context(user_archive_change=True)).create(
+            vals_list
+        )
+        return users
+
+    def toggle_active(self):
+        super(
+            ResUsers, self.with_context(toggle_active_from_users=True)
+        ).toggle_active()
+
     def _notify_login_sync(self, previous_login, new_login):
         self.ensure_one()
         template_id = self.env.ref("res_users_login_sync.email_template_login_edit")

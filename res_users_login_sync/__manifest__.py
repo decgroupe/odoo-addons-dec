@@ -6,6 +6,7 @@
     "category": "Base",
     "depends": [
         "base",
+        "portal",
         "mail_qweb",
     ],
     "data": [

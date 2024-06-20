@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <template id="res_users_login_sync.user_archive_change">
+        <div class="alert alert-warning" role="alert">
+            <p>
+                ⚠️ This partner and its related user's account have been <b
+                    t-esc="action"
+                /> by <t t-esc="current_user.display_name" />
+            </p>
+            <ul>
+                <t t-foreach="users" t-as="user">
+                    <li>
+                        <a
+                            href="#"
+                            data-oe-model="res.users"
+                            t-att-data-oe-id="user.id"
+                        >
+                            <t t-esc="user.login" />
+                        </a>
+                    </li>
+                </t>
+            </ul>
+        </div>
+    </template>
+
     <template id="res_users_login_sync.login_sync_warning_template">
         <div>
             <div class="alert alert-warning" role="alert">
