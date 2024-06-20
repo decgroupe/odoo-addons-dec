@@ -48,7 +48,7 @@ class ProcurementGroup(models.Model):
                 with self._cr.savepoint():
                     self._action_confirm_one_move(move)
             except UserError as error:
-                self._log_exception(product_id, error.name)
+                self._log_exception(product_id, error.name, self.env.user)
         if use_new_cursor:
             self._cr.commit()
 
