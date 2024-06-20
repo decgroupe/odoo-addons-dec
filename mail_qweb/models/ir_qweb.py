@@ -14,9 +14,16 @@ class IrQWeb(models.AbstractModel):
 
     @api.model
     def _render(self, id_or_xml_id, values=None, **options):
-        _logger.debug(
-            "Rendering QWeb %s with: %s", id_or_xml_id, pprint.pformat(values)
-        )
+        view_name = id_or_xml_id
+        if type(view_name) == int:
+            view_xmlid = self.env["ir.model.data"].sudo().search(
+                [
+                    ("res_id", "=", id_or_xml_id),
+                    ("model", "=", "ir.ui.view"),
+                ]
+            )
+            view_name = "%s.%s (%d)" % (view_xmlid.module, view_xmlid.name, view_name)
+        _logger.debug("Rendering QWeb %s with: %s", view_name, pprint.pformat(values))
         res = super(IrQWeb, self)._render(id_or_xml_id, values=values, **options)
         return res
 
