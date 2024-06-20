@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:45+0000\n"
-"PO-Revision-Date: 2024-04-17 07:45+0000\n"
+"POT-Creation-Date: 2024-06-20 12:38+0000\n"
+"PO-Revision-Date: 2024-06-20 12:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,6 +80,14 @@ msgid ""
 msgstr ""
 
 #. module: res_users_login_sync
+#: code:addons/res_users_login_sync/models/res_partner.py:0
+#, python-format
+msgid ""
+"Only administrators are allowed to archive/unarchive internal users from "
+"their partner!"
+msgstr ""
+
+#. module: res_users_login_sync
 #: model:ir.model,name:res_users_login_sync.model_res_users
 msgid "Users"
 msgstr ""
@@ -90,6 +98,28 @@ msgid "Your login is now set to"
 msgstr ""
 
 #. module: res_users_login_sync
+#: code:addons/res_users_login_sync/models/res_partner.py:0
+#, python-format
+msgid "archived"
+msgstr ""
+
+#. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
 msgid "but its login is still"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.user_archive_change
+msgid "by"
+msgstr ""
+
+#. module: res_users_login_sync
+#: code:addons/res_users_login_sync/models/res_partner.py:0
+#, python-format
+msgid "unarchived"
+msgstr ""
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.user_archive_change
+msgid "⚠️ This partner and its related user's account have been"
 msgstr ""

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:45+0000\n"
-"PO-Revision-Date: 2023-11-28 14:31+0100\n"
+"POT-Creation-Date: 2024-06-20 12:38+0000\n"
+"PO-Revision-Date: 2024-06-20 14:40+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
@@ -28,7 +28,8 @@ msgid ""
 "<strong>⚠️ User login not in sync with contact e-mail.</strong>\n"
 "                The contact email is now"
 msgstr ""
-"<strong>⚠️ L'identifiant de l'utilisateur n'est pas synchronisé avec l'e-mail du contact.</strong>\n"
+"<strong>⚠️ L'identifiant de l'utilisateur n'est pas synchronisé avec l'e-"
+"mail du contact.</strong>\n"
 "                L'e-mail de contact est maintenant"
 
 #. module: res_users_login_sync
@@ -91,6 +92,16 @@ msgstr ""
 "été envoyée à votre ancien identifiant"
 
 #. module: res_users_login_sync
+#: code:addons/res_users_login_sync/models/res_partner.py:0
+#, python-format
+msgid ""
+"Only administrators are allowed to archive/unarchive internal users from "
+"their partner!"
+msgstr ""
+"Seuls les administrateurs sont autorisés à archiver/désarchiver les "
+"utilisateurs internes de leur partenaire !"
+
+#. module: res_users_login_sync
 #: model:ir.model,name:res_users_login_sync.model_res_users
 msgid "Users"
 msgstr "Utilisateurs"
@@ -101,9 +112,31 @@ msgid "Your login is now set to"
 msgstr "Votre identifiant est maintenant défini en tant que"
 
 #. module: res_users_login_sync
+#: code:addons/res_users_login_sync/models/res_partner.py:0
+#, python-format
+msgid "archived"
+msgstr "archivé"
+
+#. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
 msgid "but its login is still"
 msgstr "mais son identifiant est toujours"
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.user_archive_change
+msgid "by"
+msgstr "par"
+
+#. module: res_users_login_sync
+#: code:addons/res_users_login_sync/models/res_partner.py:0
+#, python-format
+msgid "unarchived"
+msgstr "désarchivé"
+
+#. module: res_users_login_sync
+#: model_terms:ir.ui.view,arch_db:res_users_login_sync.user_archive_change
+msgid "⚠️ This partner and its related user's account have been"
+msgstr "⚠️ Ce partenaire et le compte utilisateur correspondant ont été"
 
 #~ msgid "ID of the record defined in xml file"
 #~ msgstr "ID de l'enregistrement défini dans le fichier xml"
