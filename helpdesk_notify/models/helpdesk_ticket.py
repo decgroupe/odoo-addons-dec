@@ -40,4 +40,6 @@ class HelpdeskTicket(models.Model):
         )
 
     def _should_notify_new_ticket(self):
-        return self.env.context.get("fetchmail_cron_running", False)
+        return self.env.context.get(
+            "fetchmail_cron_running", False
+        ) or self.env.context.get("force_helpdesk_notify", False)
