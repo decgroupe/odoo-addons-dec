@@ -12,7 +12,7 @@
                     string="Convert to Ticket"
                     type="object"
                     context="{}"
-                    attrs="{}"
+                    attrs="{'invisible': ['|', ('type', '=', 'opportunity'), ('active', '=', False)]}"
                 />
             </xpath>
         </field>
