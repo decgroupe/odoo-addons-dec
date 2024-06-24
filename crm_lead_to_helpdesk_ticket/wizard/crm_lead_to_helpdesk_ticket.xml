@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="ir.ui.view" id="crm_lead_to_helpdesk_ticket_view_form">
+        <field name="name">crm.lead.to.helpdesk.ticket.form</field>
+        <field name="model">crm.lead.to.helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Convert to Helpdesk Ticket">
+                <div class="alert alert-warning">
+                    <group>
+                        <field name="lead_close" />
+                    </group>
+                </div>
+                <group>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <field name="description" />
+                    <group>
+                        <field name="category_id" />
+                        <field name="team_id" />
+                        <field name="user_ids" invisible="1" />
+                        <field name="user_id" />
+                    </group>
+                    <group>
+
+                        <field name="partner_id" />
+                        <field name="partner_name" />
+                        <field name="partner_email" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_create_ticket"
+                        string="Create Ticket"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_crm_lead_to_helpdesk_ticket">
+        <field name="name">Convert to ticket</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.lead.to.helpdesk.ticket</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_lead_to_helpdesk_ticket_view_form" />
+        <field name="target">new</field>
+    </record>
+
+</odoo>

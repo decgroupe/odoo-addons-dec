@@ -1,0 +1,180 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_lead_to_helpdesk_ticket
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-24 07:53+0000\n"
+"PO-Revision-Date: 2024-06-24 09:53+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: code:addons/crm_lead_to_helpdesk_ticket/wizard/crm_lead_to_helpdesk_ticket.py:0
+#, python-format
+msgid "A new ticket has been created: "
+msgstr "Un nouveau ticket a été créé : "
+
+#. module: crm_lead_to_helpdesk_ticket
+#: code:addons/crm_lead_to_helpdesk_ticket/wizard/crm_lead_to_helpdesk_ticket.py:0
+#, python-format
+msgid "A user (or at least a team) is required!"
+msgstr "Un utilisateur (ou au moins une équipe) est nécessaire !"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: code:addons/crm_lead_to_helpdesk_ticket/wizard/crm_lead_to_helpdesk_ticket.py:0
+#, python-format
+msgid "An email is required!"
+msgstr "Un courriel est nécessaire !"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__user_id
+msgid "Assigned user"
+msgstr "Utilisateur assigné"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__lead_id
+msgid "Associated Lead"
+msgstr "Ticket associé"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model_terms:ir.ui.view,arch_db:crm_lead_to_helpdesk_ticket.crm_lead_to_helpdesk_ticket_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__category_id
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__lead_close
+msgid "Close"
+msgstr "Fermer"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,help:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__lead_close
+msgid "Close this lead immediatly (mark as lost)"
+msgstr "Fermer immédiatement cette piste (la marquer comme perdue)"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__partner_id
+msgid "Contact"
+msgstr "Contact"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model,name:crm_lead_to_helpdesk_ticket.model_crm_lead_to_helpdesk_ticket
+msgid "Convert Lead to Helpdesk Ticket"
+msgstr "Convertir une piste en ticket d'assistance"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model_terms:ir.ui.view,arch_db:crm_lead_to_helpdesk_ticket.crm_lead_to_helpdesk_ticket_view_form
+msgid "Convert to Helpdesk Ticket"
+msgstr "Convertir en ticket d'assistance"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model_terms:ir.ui.view,arch_db:crm_lead_to_helpdesk_ticket.crm_lead_view_form
+msgid "Convert to Ticket"
+msgstr "Convertir en ticket"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.actions.act_window,name:crm_lead_to_helpdesk_ticket.act_crm_lead_to_helpdesk_ticket
+msgid "Convert to ticket"
+msgstr "Convertir en ticket"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model_terms:ir.ui.view,arch_db:crm_lead_to_helpdesk_ticket.crm_lead_to_helpdesk_ticket_view_form
+msgid "Create Ticket"
+msgstr "Créer un ticket"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__description
+msgid "Description"
+msgstr "Description"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead__display_name
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__partner_email
+msgid "Email"
+msgstr "Courriel"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead__id
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__id
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead____last_update
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__write_uid
+msgid "Last Updated by"
+msgstr "Modifié par"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__write_date
+msgid "Last Updated on"
+msgstr "Modifié le"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model,name:crm_lead_to_helpdesk_ticket.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Piste/opportunité"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__partner_name
+msgid "Partner Name"
+msgstr "Nom du partenaire"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__team_id
+msgid "Team"
+msgstr "Équipe"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: code:addons/crm_lead_to_helpdesk_ticket/wizard/crm_lead_to_helpdesk_ticket.py:0
+#, python-format
+msgid "This ticket has been created from: "
+msgstr "Ce ticket a été créé à partir de : "
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__ticket_id
+msgid "Ticket"
+msgstr "Ticket"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__name
+msgid "Title"
+msgstr "Intitulé"
+
+#. module: crm_lead_to_helpdesk_ticket
+#: model:ir.model.fields,field_description:crm_lead_to_helpdesk_ticket.field_crm_lead_to_helpdesk_ticket__user_ids
+msgid "Users"
+msgstr "Utilisateurs"

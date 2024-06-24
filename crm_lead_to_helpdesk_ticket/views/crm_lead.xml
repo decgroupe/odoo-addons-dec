@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_lead_view_form">
+        <field name="name">crm.lead.form.opportunity@crm_lead_to_helpdesk_ticket</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='toggle_active']" position="before">
+                <button
+                    name="action_convert_to_helpdesk_ticket"
+                    string="Convert to Ticket"
+                    type="object"
+                    context="{}"
+                    attrs="{}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
