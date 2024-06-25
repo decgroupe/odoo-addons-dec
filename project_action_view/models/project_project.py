@@ -36,7 +36,8 @@ class ProjectProject(models.Model):
             action["res_id"] = self.ids[0]
         return action
 
-    def action_view_tasks(self):
+    def action_view_all_tasks(self):
+        """ WARNING: A built-in `action_view_tasks` function already exists  """
         action = self.mapped("task_ids").action_view()
         action["context"] = {}
         return action
