@@ -22,7 +22,7 @@
                         >
                             <field name="name" />
                             <field name="recolor" invisible='True' />
-                            <field name="user_id" />
+                            <field name="user_id" domain="[('share', '=', False)]" />
                             <field name="state" />
                             <field name="note" />
                             <field name="hide_button" invisible='True' />
