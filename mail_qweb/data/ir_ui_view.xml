@@ -650,11 +650,10 @@
                     <t t-foreach="tracking_values" t-as="tracking">
                         <li><t t-esc="tracking[0]" />: <t
                                 t-esc="tracking[1]"
-                            /> -&gt; <t t-esc="tracking[2]" /></li>
+                            /> &#11106; <t t-esc="tracking[2]" /></li>
                     </t>
                 </ul>
             </t>
-
             <t
                 t-set="content_message_bottom_cc"
                 t-if="notification_group_name and notification_group_name not in ('customer','portal','portal_customer')"
