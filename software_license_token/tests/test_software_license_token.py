@@ -126,6 +126,8 @@ class TestSoftwareLicenseToken(TransactionCase):
     @freeze_time("2023-12-10 15:00:00")
     def test_06_license_activation_details(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
+        # remove all existing activation to avoid time inconsistency
+        fitness_lic1.hardware_ids.unlink()
         fitness_lic1.expiration_date = fields.Datetime.now() + relativedelta(days=180)
         hardware_id = fitness_lic1.activate("my_device_uuid")
         _filter = ["my_device_uuid"]
