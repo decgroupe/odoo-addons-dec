@@ -1,17 +1,35 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2024
 
-import pprint
-import json
-
-from odoo import fields, http
+from odoo import http
+from odoo.exceptions import UserError
 from odoo.http import request
 from odoo.tools.translate import _
 
+SUCCESS = 0
+ERROR = 1
 
 URL_BASE_V1 = "/api/maintenance/v1"
 URL_VAR_SERIAL = "/serial/<string:equipement_serial>"
 URL_VAR_IDENTIFIER = "/id/<string:unique_identifier>"
+
+GENERIC_ERROR = {
+    "result": ERROR,
+    "message_id": "GENERIC_ERROR",
+    "message": "",
+}
+
+REQUEST_CREATED = {
+    "result": SUCCESS,
+    "message_id": "REQUEST_CREATED",
+    "message": "a new request has been created.",
+}
+
+REQUEST_UPDATED = {
+    "result": SUCCESS,
+    "message_id": "REQUEST_UPDATED",
+    "message": "an existing request has been updated.",
+}
 
 
 class MaintenanceController(http.Controller):
@@ -44,15 +62,24 @@ class MaintenanceController(http.Controller):
         )
         if request_id:
             request_id._remote_update(request.params, ip_addr)
+            msg = REQUEST_UPDATED.copy()
+            msg["request_id"] = request_id.id
         else:
-            request_id = (
-                request.env["maintenance.request"]
-                .sudo()
-                ._remote_create(
-                    equipement_serial, unique_identifier, request.params, ip_addr
+            try:
+                request_id = (
+                    request.env["maintenance.request"]
+                    .sudo()
+                    ._remote_create(
+                        equipement_serial, unique_identifier, request.params, ip_addr
+                    )
                 )
-            )
-        return {"request_id": request_id.id}
+                msg = REQUEST_CREATED.copy()
+                msg["request_id"] = request_id.id
+            except UserError as e:
+                msg = GENERIC_ERROR.copy()
+                msg["message"] = str(e)
+                msg["request_id"] = False
+        return msg
 
     def _get_ip_from_request(self, req):
         ip_addr = req.httprequest.environ.get("HTTP_X_FORWARDED_FOR")
