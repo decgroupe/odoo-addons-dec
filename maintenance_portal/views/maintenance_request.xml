@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="maintenance_request_form_view">
+        <field name="name">maintenance.request.form@maintenance_portal</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+        <field name="arch" type="xml">
+            <field name="equipment_id" position="before">
+                <field
+                    name="unique_identifier"
+                    groups="maintenance.group_equipment_manager"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
