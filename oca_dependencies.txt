@@ -14,6 +14,7 @@ hr
 hr-holidays
 knowledge
 l10n-france https://github.com/decgroupe/l10n-france 14.0-dec
+maintenance
 management-system
 manufacture https://github.com/decgroupe/manufacture 14.0-dec
 mis-builder

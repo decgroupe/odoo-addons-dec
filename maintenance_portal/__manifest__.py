@@ -4,7 +4,7 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
-        "maintenance",
+        "base_maintenance",
         "auth_api_key",
     ],
     "data": [
