@@ -258,3 +258,31 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
         self.assertIn(identifier, av_data)
         self.assertEqual(av_data[identifier]["result"], result)
         self.assertEqual(av_data[identifier]["message_id"], message_id)
+
+    def _debug_pass_hardware(self, pass_id):
+        log = []
+
+        def _log(msg, *args):
+            log.append(msg % (args))
+
+        _log("Debug Pass Hardware %s - %s", pass_id, pass_id.get_xml_id())
+        _log("Hardware IDs (%d)", len(pass_id.hardware_ids))
+        for hw_id in pass_id.hardware_ids:
+            _log(
+                "  - %s %s (%s) - %s \n    %s - %s",
+                hw_id.display_name,
+                hw_id.device_fqdn,
+                hw_id.license_id.partner_id.display_name,
+                hw_id.get_xml_id(),
+                hw_id.license_id.display_name,
+                hw_id.license_id.get_xml_id(),
+            )
+        _log("Hardware Groups (%d)", len(pass_id.hardware_group_ids))
+        for hwg_id in pass_id.hardware_group_ids:
+            _log(
+                "  - %s %s - %s",
+                hwg_id.display_name,
+                hwg_id.device_fqdn,
+                hwg_id.get_xml_id(),
+            )
+        _logger.info("\n".join(log))

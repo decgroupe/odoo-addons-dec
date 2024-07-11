@@ -2,11 +2,15 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2024
 
 
+import logging
+
 import odoo.tests
-from odoo.exceptions import UserError, AccessDenied
 from odoo.addons.software_license_portal.tests.common import (
     TestSoftwareLicensePortalBase,
 )
+from odoo.exceptions import AccessDenied, UserError
+
+_logger = logging.getLogger(__name__)
 
 
 @odoo.tests.tagged("post_install", "-at_install")
@@ -283,6 +287,7 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
 
     def test_06_mypass_tour(self):
         pass_id = self.env.ref("software_license_pass.pass_premium3")
+        self._debug_pass_hardware(pass_id)
         # Ready Mat
         partner_id = self.env.ref("base.res_partner_4")
         # Restore default email if needed because of CRM demo
@@ -298,11 +303,14 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
             )
         # Give portal access if needed
         self.partner_authenticate(partner_id)
+        # This tour will deactivate hardware "ab99c8ef7899f" from pass with
+        # serial "9NENW-Y2XZT-3GA9C-0CD61"
         self.start_tour(
             "/my/passes",
             "mypass_tour",
             login="ready.mat28@example.com",
         )
+        self._debug_pass_hardware(pass_id)
         self.assertEqual(len(pass_id.hardware_group_ids), 1)
 
     def test_07_mypass_no_hardware_tour(self):
