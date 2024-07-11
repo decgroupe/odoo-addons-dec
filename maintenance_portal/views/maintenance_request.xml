@@ -9,7 +9,7 @@
             <field name="equipment_id" position="before">
                 <field
                     name="unique_identifier"
-                    groups="maintenance.group_equipment_manager"
+                    groups="base.group_no_one"
                 />
             </field>
         </field>

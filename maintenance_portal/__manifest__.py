@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "base_maintenance",
+        "base_maintenance_group",
         "auth_api_key",
     ],
     "data": [
