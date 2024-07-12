@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="maintenance_request_search_view">
+        <field name="name">maintenance.request.form@maintenance_archive</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_search" />
+        <field name="arch" type="xml">
+            <filter name="inactive" position="attributes">
+                <attribute name="domain">[
+                    '|',
+                    ('active', '=', False),
+                    ('archive', '=', True)
+                ]</attribute>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

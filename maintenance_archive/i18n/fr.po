@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* maintenance_archive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-12 14:06+0000\n"
+"PO-Revision-Date: 2024-07-12 16:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: maintenance_archive
+#: model:ir.model.fields,field_description:maintenance_archive.field_maintenance_request__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: maintenance_archive
+#: model:ir.model.fields,field_description:maintenance_archive.field_maintenance_request__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: maintenance_archive
+#: model:ir.model.fields,field_description:maintenance_archive.field_maintenance_request__id
+msgid "ID"
+msgstr "ID"
+
+#. module: maintenance_archive
+#: model:ir.model.fields,field_description:maintenance_archive.field_maintenance_request____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: maintenance_archive
+#: model:ir.model,name:maintenance_archive.model_maintenance_request
+msgid "Maintenance Request"
+msgstr "Demande de maintenance"
+
+#. module: maintenance_archive
+#: model:ir.model.fields,help:maintenance_archive.field_maintenance_request__active
+msgid ""
+"Set active to false to hide the maintenance request without deleting it."
+msgstr ""
+"Attribuez la valeur \"False\" à Active pour masquer la demande de "
+"maintenance sans la supprimer."
