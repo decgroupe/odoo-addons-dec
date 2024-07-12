@@ -7,6 +7,7 @@
         "base_maintenance",
         "base_maintenance_group",
         "auth_api_key",
+        "maintenance_archive",
     ],
     "data": [
         "views/maintenance_request.xml",

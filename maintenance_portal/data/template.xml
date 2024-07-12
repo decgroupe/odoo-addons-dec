@@ -3,7 +3,7 @@
 
     <template id="maintenance_portal.request_create">
         <p>Request created from <t t-esc="ip_addr" /></p>
-        <p if="user and assigned_reason">
+        <p t-if="user and assigned_reason">
             <t t-esc="user.display_name" /> has been assigned because: <t
                 t-esc="assigned_reason"
             />
@@ -19,6 +19,13 @@
                 </li>
             </t>
         </ul>
+    </template>
+
+    <template id="maintenance_portal.request_close">
+        <p>Request closed from <t t-esc="ip_addr" /></p>
+        <p t-if="closed_reason">
+            This request has been closed because: <t t-esc="closed_reason" />
+        </p>
     </template>
 
     <template id="maintenance_portal.request_ping">

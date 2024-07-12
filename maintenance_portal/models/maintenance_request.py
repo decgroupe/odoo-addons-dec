@@ -35,6 +35,33 @@ class MaintenanceRequest(models.Model):
                 )
         return user_id, reason
 
+    def _create_default_activity(self, user_id):
+        self.ensure_one()
+        self.with_context(
+            mail_activity_noautofollow=True,
+        ).activity_schedule(
+            act_type_xmlid="maintenance.mail_act_maintenance_request",
+            note=_("🚨 Auto: To Process"),
+            user_id=user_id.id,
+        )
+
+    def _get_default_activity(self):
+        self.ensure_one()
+        act_type_xmlid = self.env.ref("maintenance.mail_act_maintenance_request")
+        domain = [
+            ("id", "in", self.activity_ids.ids),
+            ("activity_type_id", "=", act_type_xmlid.id),
+        ]
+        activity_id = self.env["mail.activity"].search(domain)
+        return activity_id
+
+    def _close_default_activity(self):
+        self.ensure_one()
+        activity_id = self._get_default_activity()
+        # only close activity if there is one and only one
+        if len(activity_id) == 1:
+            activity_id.unlink()
+
     @api.model
     def _remote_create(self, equipment_serial, unique_identifier, data, ip_addr):
         equipment_id = self.env["maintenance.equipment"].search(
@@ -61,13 +88,7 @@ class MaintenanceRequest(models.Model):
         if user_id:
             if user_id != request_id.user_id:
                 request_id.user_id = user_id
-            request_id.with_context(
-                mail_activity_noautofollow=True,
-            ).activity_schedule(
-                act_type_xmlid="maintenance.mail_act_maintenance_request",
-                note=_("🚨 Auto: To Process"),
-                user_id=user_id.id,
-            )
+            request_id._create_default_activity(user_id)
         request_id.message_post_with_view(
             views_or_xmlid="maintenance_portal.request_create",
             values={
@@ -103,4 +124,25 @@ class MaintenanceRequest(models.Model):
                 },
                 subtype_id=self.env.ref("mail.mt_note").id,
             )
+        # recreate default activity if needed
+        activity_id = self._get_default_activity()
+        if not activity_id:
+            user_id, _user_assigned_reason = self._get_activity_user()
+            if user_id:
+                self._create_default_activity(user_id)
 
+    def _remote_close(self, data, ip_addr):
+        self.ensure_one()
+        post_values = {
+            "ip_addr": ip_addr,
+        }
+        if data.get("closed_reason"):
+            post_values["closed_reason"] = data.get("closed_reason")
+        self.message_post_with_view(
+            views_or_xmlid="maintenance_portal.request_close",
+            values=post_values,
+            subtype_id=self.env.ref("mail.mt_note").id,
+        )
+        # not needed since odoo delete all activities on archived documents
+        self._close_default_activity()
+        self.archive_equipment_request()

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-11 12:20+0000\n"
-"PO-Revision-Date: 2024-07-11 14:24+0200\n"
+"POT-Creation-Date: 2024-07-12 14:09+0000\n"
+"PO-Revision-Date: 2024-07-12 16:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -27,8 +27,7 @@ msgstr "Nom affiché"
 #, python-format
 msgid "Equipment with serial %(equipment_serial)s not found"
 msgstr ""
-"L'équipement avec le numéro de série %(equipment_serial)s n'a pas été "
-"trouvé"
+"L'équipement avec le numéro de série %(equipment_serial)s n'a pas été trouvé"
 
 #. module: maintenance_portal
 #: model:ir.model.fields,field_description:maintenance_portal.field_maintenance_request__id
@@ -46,6 +45,11 @@ msgid "Maintenance Request"
 msgstr "Demande de maintenance"
 
 #. module: maintenance_portal
+#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_close
+msgid "Request closed from"
+msgstr "Demande clôturée depuis"
+
+#. module: maintenance_portal
 #: model_terms:ir.ui.view,arch_db:maintenance_portal.request_create
 msgid "Request created from"
 msgstr "Demande créée depuis"
@@ -59,6 +63,11 @@ msgstr "Ping sur demande depuis"
 #: model_terms:ir.ui.view,arch_db:maintenance_portal.request_update
 msgid "Request updated from"
 msgstr "Demande mise à jour depuis"
+
+#. module: maintenance_portal
+#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_close
+msgid "This request has been closed because:"
+msgstr "Cette demande a été clôturée car :"
 
 #. module: maintenance_portal
 #: code:addons/maintenance_portal/models/maintenance_request.py:0
@@ -96,12 +105,17 @@ msgstr ""
 "de maintenance"
 
 #. module: maintenance_portal
+#: model:ir.model.fields,field_description:maintenance_portal.field_maintenance_request__unique_identifier
+msgid "Unique Identifier"
+msgstr ""
+
+#. module: maintenance_portal
 #: model_terms:ir.ui.view,arch_db:maintenance_portal.request_create
 msgid "has been assigned because:"
-msgstr "a été assignée parce que :"
+msgstr "a été assignée parce que :"
 
 #. module: maintenance_portal
 #: code:addons/maintenance_portal/models/maintenance_request.py:0
 #, python-format
 msgid "🚨 Auto: To Process"
-msgstr "🚨 Auto : À traiter"
+msgstr "🚨 Auto : À traiter"

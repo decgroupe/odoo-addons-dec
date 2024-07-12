@@ -19,6 +19,12 @@ GENERIC_ERROR = {
     "message": "",
 }
 
+REQUEST_NOT_FOUND = {
+    "result": ERROR,
+    "message_id": "REQUEST_NOT_FOUND",
+    "message": "no existing active request found.",
+}
+
 REQUEST_CREATED = {
     "result": SUCCESS,
     "message_id": "REQUEST_CREATED",
@@ -29,6 +35,12 @@ REQUEST_UPDATED = {
     "result": SUCCESS,
     "message_id": "REQUEST_UPDATED",
     "message": "an existing request has been updated.",
+}
+
+REQUEST_CLOSED = {
+    "result": SUCCESS,
+    "message_id": "REQUEST_CLOSED",
+    "message": "an existing request has been closed.",
 }
 
 
@@ -79,6 +91,29 @@ class MaintenanceController(http.Controller):
                 msg = GENERIC_ERROR.copy()
                 msg["message"] = str(e)
                 msg["request_id"] = False
+        return msg
+
+
+    @http.route(
+        URL_BASE_V1 + URL_VAR_SERIAL + URL_VAR_IDENTIFIER + "/CloseRequest",
+        type="json",
+        methods=["POST"],
+        auth="api_key",
+        csrf=False,
+    )
+    def close_maintenance_request(
+        self, equipement_serial, unique_identifier, **kwargs
+    ):
+        ip_addr = self._get_ip_from_request(request)
+        request_id = self._get_maintenance_request_id(
+            equipement_serial, unique_identifier
+        )
+        if request_id:
+            request_id._remote_close(request.params, ip_addr)
+            msg = REQUEST_CLOSED.copy()
+            msg["request_id"] = request_id.id
+        else:
+            msg = REQUEST_NOT_FOUND.copy()
         return msg
 
     def _get_ip_from_request(self, req):

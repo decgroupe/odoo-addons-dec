@@ -44,7 +44,9 @@ class TestMaintenancePortalBase(odoo.tests.HttpCase):
         # replace slashes in serial has it it not supported by werkzeug actually
         self.equipment_id.serial_no = "MT-122-11112222"
 
-    def _api_maintenance_request(self, serial, identifier, payload, headers=False):
+    def _api_maintenance_action(
+        self, serial, identifier, action, payload, headers=False
+    ):
         if not headers:
             headers = {}
         headers.update(
@@ -54,7 +56,7 @@ class TestMaintenancePortalBase(odoo.tests.HttpCase):
             }
         )
         resp = self.url_open(
-            f"/api/maintenance/v1/serial/{serial}/id/{identifier}/Request",
+            f"/api/maintenance/v1/serial/{serial}/id/{identifier}/{action}",
             data=json.dumps(payload),
             headers=headers,
         )
@@ -63,3 +65,21 @@ class TestMaintenancePortalBase(odoo.tests.HttpCase):
         self.assertEqual(resp_payload.get("jsonrpc"), "2.0")
         res = resp_payload.get("result")
         return res
+
+    def _api_maintenance_request(self, serial, identifier, payload, headers=False):
+        return self._api_maintenance_action(
+            serial=serial,
+            identifier=identifier,
+            action="Request",
+            payload=payload,
+            headers=headers,
+        )
+
+    def _api_maintenance_close(self, serial, identifier, payload, headers=False):
+        return self._api_maintenance_action(
+            serial=serial,
+            identifier=identifier,
+            action="CloseRequest",
+            payload=payload,
+            headers=headers,
+        )
