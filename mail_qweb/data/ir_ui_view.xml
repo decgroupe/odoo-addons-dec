@@ -667,7 +667,7 @@
         </t>
     </template>
     <template id="mail.message_notification_email">
-        <t t-call="mail_qweb.message_notification_email"/>
+        <t t-call="mail_qweb.message_notification_email" />
     </template>
 
     <!-- Override Odoo's default mail notification border layout -->
@@ -675,7 +675,7 @@
     <template id="mail_qweb.mail_notification_borders">
     </template>
     <template id="mail.mail_notification_borders">
-        <t t-call="mail_qweb.mail_notification_borders"/>
+        <t t-call="mail_qweb.mail_notification_borders" />
     </template>
 
     <!-- Custom empty layout: To replace fallback layout.
@@ -709,11 +709,14 @@
         </t>
     </template>
     <template id="mail.mail_notification_light">
-        <t t-call="mail_qweb.mail_notification_light"/>
+        <t t-call="mail_qweb.mail_notification_light" />
     </template>
 
     <!-- Override Odoo's « Pay Now » mail notification layout -->
-    <template id="mail_qweb.mail_notification_paynow" inherit_id="mail.mail_notification_paynow">
+    <template
+        id="mail_qweb.mail_notification_paynow"
+        inherit_id="mail.mail_notification_paynow"
+    >
         <xpath expr="//t" position="replace">
 
             <t t-call="mail_qweb.view_email_template_notification">
@@ -789,7 +792,7 @@
         </div>
     </template>
     <template id="mail.message_user_assigned">
-        <t t-call="mail_qweb.message_user_assigned"/>
+        <t t-call="mail_qweb.message_user_assigned" />
     </template>
 
     <!-- Override Odoo's « Activity has been assigned to you ... » mail notification content -->
@@ -853,7 +856,7 @@
         </div>
     </template>
     <template id="mail.message_activity_assigned">
-        <t t-call="mail_qweb.message_activity_assigned"/>
+        <t t-call="mail_qweb.message_activity_assigned" />
     </template>
 
     <template id="mail_qweb.message_activity_done">
@@ -945,7 +948,7 @@
         </div>
     </template>
     <template id="mail.message_activity_done">
-        <t t-call="mail_qweb.message_activity_done"/>
+        <t t-call="mail_qweb.message_activity_done" />
     </template>
 
     <!-- Mail gateway templates (refusing catchall@ and bounce@) -->
@@ -968,7 +971,7 @@
         </t>
     </template>
     <template id="mail.mail_bounce_catchall">
-        <t t-call="mail_qweb.mail_bounce_catchall"/>
+        <t t-call="mail_qweb.mail_bounce_catchall" />
     </template>
 
     <!-- Mail bounce alias mail template. Note that the body is filled by
@@ -984,7 +987,7 @@
         </t>
     </template>
     <template id="mail.mail_bounce_alias_security">
-        <t t-call="mail_qweb.mail_bounce_alias_security"/>
+        <t t-call="mail_qweb.mail_bounce_alias_security" />
     </template>
 
 </odoo>

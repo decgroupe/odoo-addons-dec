@@ -3,10 +3,30 @@
 
 import logging
 
-from odoo import models, tools
+from odoo import _,fields, models, tools
+from odoo.addons.mail.models.mail_render_mixin import format_date
 
 _logger = logging.getLogger(__name__)
 
+def remaining_days(record, date, date_format=False, lang_code=False):
+    now = fields.Date.context_today(record)
+    # now = fields.Date.today()
+    diff = date - now
+    if abs(diff.days) > 99:
+        value = format_date(record.env, date, date_format, lang_code)
+    elif diff.days == 0:
+        value = _("Today")
+    elif diff.days < 0:
+        if diff.days == -1:
+            value = _("Yesterday")
+        else:
+            value =_('%d days ago') % (-diff.days)
+    else:
+        if diff.days == -1:
+            value = _("Tomorrow")
+        else:
+            value =_('In %d days') % (diff.days)
+    return value
 
 class MailTemplate(models.Model):
     _inherit = "mail.template"
@@ -18,6 +38,7 @@ class MailTemplate(models.Model):
                 # we also need the mail subject in our custom templates
                 "subject": self._render_field("subject", record.ids)[record.id],
                 "is_html_empty": tools.is_html_empty,
+                "remaining_days": lambda date, date_format=False, lang_code=False: remaining_days(self, date, date_format, lang_code) ,
                 "access_link": hasattr(record, "_notify_get_action_link")
                 and record._notify_get_action_link("view")
                 or False,

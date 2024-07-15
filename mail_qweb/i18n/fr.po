@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:45+0000\n"
-"PO-Revision-Date: 2024-04-16 16:51+0200\n"
+"POT-Creation-Date: 2024-07-15 09:30+0000\n"
+"PO-Revision-Date: 2024-07-15 11:31+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "%d days ago"
+msgstr "il y a %d jours"
 
 #. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_done
@@ -95,6 +101,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "In %d days"
+msgstr "Dans %d jours"
+
+#. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.view_email_template_part_also_notified
 msgid "Internal Users"
 msgstr "Utilisateurs internes"
@@ -158,6 +170,18 @@ msgid "To close for"
 msgstr "À fermer pour"
 
 #. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "Tomorrow"
+msgstr "Demain"
+
+#. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_assigned
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_done
 msgid "Type"
@@ -172,18 +196,22 @@ msgid "View"
 msgstr "Voir"
 
 #. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "Yesterday"
+msgstr "Hier"
+
+#. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_user_assigned
 msgid "You have been assigned to"
 msgstr "Vous avez été assigné à"
 
 #. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.view_email_template_part_footer
-msgid ""
-"You have received this email to notify you of important changes to your "
-"account and services."
+msgid "You have received this email to notify you of important changes to your account and services."
 msgstr ""
-"Cet e-mail vous a été envoyé pour vous informer de modifications importantes"
-" apportées à votre compte et aux services que vous utilisez."
+"Cet e-mail vous a été envoyé pour vous informer de modifications importantes apportées à votre "
+"compte et aux services que vous utilisez."
 
 #. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_assigned
@@ -193,11 +221,11 @@ msgstr "vous a assigné une activité :"
 #. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.mail_bounce_catchall
 msgid ""
-"cannot be processed. This address is exclusively used to collect replies and"
-" should not be used to directly contact"
+"cannot be processed. This address is exclusively used to collect replies and should not be used to "
+"directly contact"
 msgstr ""
-"ne peut être traitée. Cette adresse est exclusivement utilisée pour "
-"collecter les réponses et ne doit pas être utilisée pour un contact direct"
+"ne peut être traitée. Cette adresse est exclusivement utilisée pour collecter les réponses et ne "
+"doit pas être utilisée pour un contact direct"
 
 #. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.view_email_template_part_partners_avatar

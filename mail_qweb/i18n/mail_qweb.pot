@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:45+0000\n"
-"PO-Revision-Date: 2024-04-17 07:45+0000\n"
+"POT-Creation-Date: 2024-07-15 09:30+0000\n"
+"PO-Revision-Date: 2024-07-15 09:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "%d days ago"
+msgstr ""
 
 #. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_done
@@ -91,6 +97,12 @@ msgid "ID"
 msgstr ""
 
 #. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "In %d days"
+msgstr ""
+
+#. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.view_email_template_part_also_notified
 msgid "Internal Users"
 msgstr ""
@@ -154,6 +166,18 @@ msgid "To close for"
 msgstr ""
 
 #. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "Today"
+msgstr ""
+
+#. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "Tomorrow"
+msgstr ""
+
+#. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_assigned
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_done
 msgid "Type"
@@ -165,6 +189,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_assigned
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_user_assigned
 msgid "View"
+msgstr ""
+
+#. module: mail_qweb
+#: code:addons/mail_qweb/models/mail_template.py:0
+#, python-format
+msgid "Yesterday"
 msgstr ""
 
 #. module: mail_qweb
