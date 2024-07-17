@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="mail_activity_reminder.view_email_template_activity_reminder">
+        <t t-call="mail_qweb.view_email_template_notification">
+            <t t-set="do_not_reply" t-value="True" />
+            <t t-set="notified_user" t-value="object" />
+            <t t-set="content_subject">
+                <t t-esc="email_subject" />
+            </t>
+            <t t-set="content_message">
+                <t t-set="token" t-value="ctx.get('token')" />
+                <div style="text-align:left;">
+                    <!-- <t t-esc="ctx" /> -->
+                    <t t-if="ctx.get('group_next_activity_ids')">
+                        <h1 class="alert alert-info">Upcoming Activities</h1>
+                        <t t-call="mail_activity_reminder.table_group_activities">
+                            <t
+                                t-set="group_activity_ids"
+                                t-value="ctx.get('group_next_activity_ids')"
+                            />
+                        </t>
+                    </t>
+                    <t t-if="ctx.get('group_late_activity_ids')">
+                        <h1 class="alert alert-warning">Overdue Activities</h1>
+                        <t t-call="mail_activity_reminder.table_group_activities">
+                            <t
+                                t-set="group_activity_ids"
+                                t-value="ctx.get('group_late_activity_ids')"
+                            />
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="mail_activity_reminder.table_group_activities">
+        <style>
+            .table_group_activities {
+                border: none;
+                border-collapse: collapse;
+                margin-top: 8px;
+                width: 100%;
+                align: center;
+            }
+            thead .tr_tga {
+                font-size: large;
+            }
+            thead .tr_tga th {
+                padding-bottom: 8px;
+            }
+            .tr_tga_group_name {
+                height: 50px;
+                vertical-align: bottom;
+            }
+            .td_tga_group_name {
+                padding: 10px;
+            }
+            .td_tga_group_name img {
+                vertical-align: sub;
+            }
+            .tr_tga_group_content {
+                border-top: thin solid #dadce0;
+            }
+            .td_tga_group_content {
+                padding: 5px;
+                width: 100%;
+                vertical-align: top;
+            }
+            .td_tga_group_content_link {
+                color: rgba(0,0,0,0.87);
+            }
+            .td_tga_img_avatar {
+                width: 16px;
+                height: 16px;
+                vertical-align: sub;
+                border-radius: 50%;
+            }
+            .td_tga_group_content_summary {
+                padding-left: 8px;
+                margin-top: 4px;
+            }
+            .td_tga_group_deadline {
+                padding: 3px;
+                vertical-align: top;
+                min-width: 80px;
+                text-align: right;
+            }
+            .snooze-grid {
+                display: grid;
+            }
+            .snooze-grid a {
+                text-decoration:none;
+                color: white;
+            }
+            div .snooze {
+                color: white;
+                padding: 1px 2px;
+                margin-top: 2px;
+                text-align: center;
+                border-radius: 5px;
+                font-size: 10px;
+            }
+            div .snooze-1w {
+                background-color: Tomato;
+            }
+            div .snooze-1m {
+                background-color: LightSlateGrey;
+            }
+            div .snooze-1y {
+                background-color: LightSeaGreen;
+            }
+            .action {
+                text-decoration: none;
+                color: white;
+                padding: 1px 2px;
+                margin-top: 2px;
+                margin-right: 5px;
+                text-align: center;
+                border-radius: 5px;
+                font-size: 10px;
+            }
+            .action a {
+                color: white;
+            }
+            .action-grid {
+                display: grid;
+                max-width: 250px;
+                margin-top: 5px;
+            }
+            .action-grid .action-close {
+                grid-column: 1/1;
+                background-color: LightSeaGreen;
+            }
+            .action-grid .action-cancel {
+                grid-column: 2/2;
+                background-color: Grey;
+            }
+        </style>
+        <table t-if="group_activity_ids" border="0" class="table_group_activities">
+            <thead>
+                <tr class="tr_tga">
+                    <th scope="col">Document</th>
+                    <th scope="col">Deadline</th>
+                </tr>
+            </thead>
+            <t t-foreach="group_activity_ids" t-as="activity_type_id">
+                <tr class="tr_tga_group_name">
+                    <td class="td_tga_group_name" colspan="4">
+                        <img
+                            t-attf-src="/mail_activity_reminder/static/img/{{activity_type_id.icon}}.png"
+                            t-attf-alt="{{activity_type_id.icon}}"
+                        />
+                        <b t-esc="activity_type_id.display_name" />
+                    </td>
+                </tr>
+                <tr
+                    t-foreach="group_activity_ids[activity_type_id]"
+                    t-as="activity"
+                    class="tr_tga_group_content"
+                >
+                    <td class="td_tga_group_content">
+                        <div>
+                            <t t-if="activity.team_user_id">
+                                <img
+                                    class="td_tga_img_avatar"
+                                    t-attf-src="/web/image/res.users/{{activity.team_user_id.id}}/image_128"
+                                    t-attf-alt="{{activity.team_user_id.display_name}}"
+                                    width="20"
+                                    height="20"
+                                />
+                            </t>
+                            <t t-else="">
+                                <img
+                                    class="td_tga_img_avatar"
+                                    t-attf-src="/web/image/mail.activity.team/{{activity.team_id.id}}/image_128"
+                                    t-attf-alt="{{activity.team_id.display_name}}"
+                                    width="20"
+                                    height="20"
+                                />
+                            </t>
+                            <a
+                                t-esc="activity.res_model_id.name"
+                                t-attf-href="/web#id=#{activity.res_id}&amp;view_type=form&amp;model=#{activity.res_model}"
+                                target="_blank"
+                                class="td_tga_group_content_link"
+                            />:
+                            <span t-esc="activity.res_name" />
+                            <br />
+                            <div
+                                t-if="activity.summary"
+                                class="td_tga_group_content_summary"
+                            >
+                                <small t-esc="activity.summary" />
+                            </div>
+                            <div
+                                t-if="not is_html_empty(activity.note)"
+                                t-raw="activity.note"
+                                class="td_tga_group_content_note"
+                            />
+                        </div>
+                        <div class="action-grid">
+                            <a
+                                t-attf-href="/reminder/activity/#{activity.id}/close?token=#{token}"
+                                target="_blank"
+                                class="action action-close"
+                            >
+                                <img
+                                    t-attf-src="/mail_activity_reminder/static/img/actions/fa-check.png"
+                                    width="12"
+                                    height="12"
+                                    style="vertical-align: sub;"
+                                /> Close
+                            </a>
+                            <a
+                                t-attf-href="/reminder/activity/#{activity.id}/cancel?token=#{token}"
+                                target="_blank"
+                                class="action action-cancel"
+                            >
+                                <img
+                                    t-attf-src="/mail_activity_reminder/static/img/actions/fa-times.png"
+                                    width="12"
+                                    height="12"
+                                    style="vertical-align: sub;"
+                                /> Cancel
+                            </a>
+                        </div>
+                    </td>
+                    <td class="td_tga_group_deadline">
+                        <span t-att-title="format_date(activity.date_deadline)">
+                            <small t-esc="remaining_days(activity.date_deadline)" />
+                        </span>
+                        <div class="snooze-grid">
+                            <a
+                                t-attf-href="/reminder/activity/#{activity.id}/snooze/1w/?token=#{token}"
+                                target="_blank"
+                                title="Snooze 1 week (7 days)"
+                            >
+                                <div class="snooze snooze-1w">
+                                    <img
+                                        t-attf-src="/mail_activity_reminder/static/img/actions/fa-bell-slash.png"
+                                        width="12"
+                                        height="12"
+                                        style="vertical-align: sub;"
+                                    /> Week
+                                </div>
+                            </a>
+                            <a
+                                t-attf-href="/reminder/activity/#{activity.id}/snooze/1m/?token=#{token}"
+                                target="_blank"
+                                title="Snooze 1 month (±30 days)"
+                            >
+                                <div class="snooze snooze-1m">
+                                    <img
+                                        t-attf-src="/mail_activity_reminder/static/img/actions/fa-bell-slash.png"
+                                        width="12"
+                                        height="12"
+                                        style="vertical-align: sub;"
+                                    /> Month
+                                </div>
+                            </a>
+                            <a
+                                t-attf-href="/reminder/activity/#{activity.id}/snooze/1y/?token=#{token}"
+                                target="_blank"
+                                title="Snooze 1 year (±365 days)"
+                            >
+                                <div class="snooze snooze-1y">
+                                    <img
+                                        t-attf-src="/mail_activity_reminder/static/img/actions/fa-bell-slash.png"
+                                        width="12"
+                                        height="12"
+                                        style="vertical-align: sub;"
+                                    /> Year
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </t>
+        </table>
+    </template>
+
+</odoo>

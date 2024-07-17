@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="email_template_activity_reminder" model="mail.template">
+        <field name="name">Activity Reminder</field>
+        <field name="model_id" ref="base.model_res_users" />
+        <field name="email_from">${object.user_id.email_formatted |safe}</field>
+        <field name="email_to">${object.user_id.email}</field>
+        <field name="auto_delete" eval="True" />
+        <field name="subject">Activity Reminder</field>
+        <field name="body_type">qweb</field>
+        <field name="body_view_id" ref="view_email_template_activity_reminder" />
+    </record>
+
+</odoo>

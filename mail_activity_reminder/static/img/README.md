@@ -1,0 +1,1 @@
+Generate 16px font awesome icons from https://fa2png.app/ 
