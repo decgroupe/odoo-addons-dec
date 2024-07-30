@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_rate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-29 12:52+0000\n"
+"PO-Revision-Date: 2024-07-29 15:02+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__xid
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order_line__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__invoicing_rate
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__invoicing_rate
+msgid "Invoicing Rate"
+msgstr "Taux de facturation"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: sale_invoice_rate
+#: model:ir.model,name:sale_invoice_rate.model_sale_order
+msgid "Sales Order"
+msgstr "Commandes clients"
+
+#. module: sale_invoice_rate
+#: model:ir.model,name:sale_invoice_rate.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxexcl
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxincl
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxincl
+msgid "Taxed Amount to Invoice (based on ordered quantities)"
+msgstr "Montant TTC à facturer (en fonction des quantités commandées)"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxexcl
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxexcl
+msgid "To Invoice (excl. taxes)"
+msgstr "À facturer (HT)"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxincl
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxincl
+msgid "To Invoice (incl. taxes)"
+msgstr "À facturer (TTC)"
+
+#. module: sale_invoice_rate
+#: model_terms:ir.ui.view,arch_db:sale_invoice_rate.order_tree_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_rate.quotation_tree_view
+msgid "Total Amount To Invoice (excl. taxes)"
+msgstr "Montant total à facturer (HT)"
+
+#. module: sale_invoice_rate
+#: model_terms:ir.ui.view,arch_db:sale_invoice_rate.order_tree_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_rate.quotation_tree_view
+msgid "Total Amount To Invoice (incl. taxes)"
+msgstr "Montant total à facturer (TTC)"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxexcl
+msgid "Untaxed Amount to Invoice (based on ordered quantities)"
+msgstr "Montant HT à facturer (en fonction des quantités commandées)"
+
+#. module: sale_invoice_rate
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__xid
+#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__xid
+msgid "XML-ID"
+msgstr "XML-ID"

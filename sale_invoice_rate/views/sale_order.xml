@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_order_form">
+        <field name="name">sale.order.form@sale_invoice_rate</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree//field[@name='company_id']"
+                position="after"
+            >
+                <field name="amount_to_invoice_ordqty_taxexcl" optional="hide" />
+                <field name="amount_to_invoice_ordqty_taxincl" optional="hide" />
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="after">
+                <field
+                    name="amount_to_invoice_ordqty_taxexcl"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field
+                    name="amount_to_invoice_ordqty_taxincl"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="order_tree_view">
+        <field name="name">sale.order.tree@sale_invoice_rate</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="amount_untaxed" position="after">
+                <field
+                    name="amount_to_invoice_ordqty_taxexcl"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    sum="Total Amount To Invoice (excl. taxes)"
+                    optional="hide"
+                />
+            </field>
+            <field name="amount_total" position="after">
+                <field
+                    name="amount_to_invoice_ordqty_taxincl"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    sum="Total Amount To Invoice (incl. taxes)"
+                    optional="hide"
+                />
+            </field>
+            <field name="invoice_status" position="after">
+                <field
+                    name="invoicing_rate"
+                    widget="progressbar"
+                    optional="hide"
+                    attrs="{
+                    'invisible': [
+                        ('state', 'not in', ['sale', 'done', 'cancel'])
+                    ]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="quotation_tree_view">
+        <field name="name">sale.order.tree@sale_invoice_rate</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="amount_untaxed" position="after">
+                <field
+                    name="amount_to_invoice_ordqty_taxexcl"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    sum="Total Amount To Invoice (excl. taxes)"
+                    optional="hide"
+                />
+            </field>
+            <field name="amount_total" position="after">
+                <field
+                    name="amount_to_invoice_ordqty_taxincl"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    sum="Total Amount To Invoice (incl. taxes)"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
