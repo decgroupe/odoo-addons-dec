@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_xml_data">
+        <field name="name">&lt;XML/&gt;</field>
+        <field name="sequence" eval="10"/>
+        <field name="action" ref="act_window_xml_data"/>
+        <field name="parent_id" ref="base.menu_administration"/>
+    </record>
+
+</odoo>
