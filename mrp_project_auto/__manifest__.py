@@ -7,6 +7,7 @@
         "project_identification",
         "mrp_project",
         "mrp_sale",
+        "mrp_timesheet",
     ],
     "data": [
         "views/mrp_production.xml",

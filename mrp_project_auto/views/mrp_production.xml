@@ -12,7 +12,7 @@
         <field name="name">mrp.production.form@mrp_project_auto</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="inherit_id" ref="mrp_timesheet.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='project_id']" position="after">
                 <div
@@ -35,5 +35,5 @@
             </xpath>
         </field>
     </record>
-    
+
 </odoo>
