@@ -202,7 +202,7 @@
                         </div>
                         <div class="action-grid">
                             <a
-                                t-attf-href="/reminder/activity/#{activity.id}/close?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/close?token=#{token}"
                                 target="_blank"
                                 class="action action-close"
                             >
@@ -214,7 +214,7 @@
                                 /> Close
                             </a>
                             <a
-                                t-attf-href="/reminder/activity/#{activity.id}/cancel?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/cancel?token=#{token}"
                                 target="_blank"
                                 class="action action-cancel"
                             >
@@ -233,7 +233,7 @@
                         </span>
                         <div class="snooze-grid">
                             <a
-                                t-attf-href="/reminder/activity/#{activity.id}/snooze/1w/?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/week?token=#{token}"
                                 target="_blank"
                                 title="Snooze 1 week (7 days)"
                             >
@@ -247,7 +247,7 @@
                                 </div>
                             </a>
                             <a
-                                t-attf-href="/reminder/activity/#{activity.id}/snooze/1m/?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/month?token=#{token}"
                                 target="_blank"
                                 title="Snooze 1 month (±30 days)"
                             >
@@ -261,7 +261,7 @@
                                 </div>
                             </a>
                             <a
-                                t-attf-href="/reminder/activity/#{activity.id}/snooze/1y/?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/year?token=#{token}"
                                 target="_blank"
                                 title="Snooze 1 year (±365 days)"
                             >
