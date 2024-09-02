@@ -6,6 +6,7 @@
     "depends": [
         "mrp",
         "mrp_stage",
+        "mrp_partner",
         "mrp_supply_progress",
         "purchase_stock",
     ],
