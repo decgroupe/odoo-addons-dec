@@ -1,1 +1,1 @@
-from . import test_sale_order_invoice_amount
+from . import test_sale_invoice_rate

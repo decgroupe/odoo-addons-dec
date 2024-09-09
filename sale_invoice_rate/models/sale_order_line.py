@@ -42,6 +42,8 @@ class SaleOrderLine(models.Model):
             if line.state in ["sale", "done"]:
                 price_excluded = 0.0
                 price_included = 0.0
+                # contrary to original built-in function, we don't care about the
+                # product's `invoice_policy` (order, delivered)
                 uom_qty_to_consider = line.product_uom_qty
                 price_reduce = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
                 if line.tax_id:
