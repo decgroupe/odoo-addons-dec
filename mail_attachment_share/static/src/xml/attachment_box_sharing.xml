@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+
+    <t t-inherit="mail.AttachmentBox" t-inherit-mode="extension">
+        <xpath expr="//button[@t-on-click='_onClickAdd']" position="after">
+            <button
+                type="button"
+                class="o_AttachmentBox_buttonShare btn btn-link"
+                t-on-click="_onClickShare"
+            >
+                <i class="fa fa-paperclip" />
+                Share
+            </button>
+        </xpath>
+    </t>
+
+</templates>
