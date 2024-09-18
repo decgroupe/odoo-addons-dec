@@ -372,8 +372,15 @@ class SoftwareLicensePass(models.Model):
             rec.license_count = len(rec.license_ids)
             rec.hardware_count = len(rec.license_ids.hardware_ids)
 
-    @api.depends("license_ids", "license_ids.hardware_ids")
+    @api.depends(
+        "license_ids",
+        "license_ids.hardware_ids",
+        "license_ids.hardware_ids.name",
+        "license_ids.hardware_ids.device_fqdn",
+        "license_ids.hardware_ids.pass_id",
+    )
     def _compute_hardware_group_ids(self):
+        _logger.debug("Processing _compute_hardware_group_ids")
         hardware_data = self.env["software.license.hardware"].read_group(
             domain=[("pass_id", "in", self.ids)],
             fields=["name"],

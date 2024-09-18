@@ -388,3 +388,28 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         res = self._api_batch_deactivate("device_uuid_unknown", payload={})
         self.assertEqual(res["result"], ERROR)
         self.assertEqual(res["message_id"], "HARDWARE_NOT_FOUND")
+
+    def test_15_ensure_hardware_group_computation(self):
+        pass_prm3 = self.env.ref("software_license_pass.pass_premium3")
+        # remove all existing activation
+        pass_prm3.license_ids.hardware_ids.unlink()
+        self.assertFalse(pass_prm3.hardware_group_ids)
+        # force pass state owned by Azure Interior
+        pass_prm3.state = "sent"
+        payload = self._get_common_payload_with_telemetry(device_name="device_name")
+        # use pass serial only (license serials cannot be used for AVD)
+        payload["params"]["data"] = {
+            "1000": "9NENW-Y2XZT-3GA9C-0CD61",  # New Age
+            "1001": "9NENW-Y2XZT-3GA9C-0CD61",  # MyFitnessApp
+            "2000": "9NENW-Y2XZT-3GA9C-0CD61",  # Calm
+        }
+        # activate fake device
+        self._api_batch_activate("device_uuid_1", payload)
+        pass_prm3.invalidate_cache()
+        # ensure that only one group has been created for the couple:
+        # - (device_uuid_1, device_name)
+        # instead of having:
+        # - (device_uuid_1, False)
+        # - (device_uuid_1, device_name)
+        # both linked to same hardware activations
+        self.assertEqual(len(pass_prm3.hardware_group_ids), 1)

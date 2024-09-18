@@ -1,8 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
+import logging
 
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareLicenseHardwareGroup(models.Model):
@@ -37,6 +40,18 @@ class SoftwareLicenseHardwareGroup(models.Model):
         string="Last Validation Date",
         compute="_compute_hardwares",
     )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            _logger.debug("Create hardware group: %s", vals)
+        records = super().create(vals_list)
+        return records
+
+    def unlink(self):
+        for rec in self:
+            _logger.debug("Delete hardware group: %s", rec)
+        return super().unlink()
 
     @api.depends(
         "pass_id",
