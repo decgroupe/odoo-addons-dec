@@ -316,7 +316,7 @@ class GitlabService(models.AbstractModel):
         sign_in_page_tree = html.fromstring(sign_in_page)
 
         crsf_input = sign_in_page_tree.xpath(
-            "//div[@id='login-pane']//form/input[@name='authenticity_token']"
+            "//form[@action='/users/auth/gitlab']/input[@name='authenticity_token']"
         )
         if crsf_input:
             crsf_token = crsf_input[0].value
