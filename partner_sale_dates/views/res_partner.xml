@@ -18,7 +18,8 @@
         <field name="name">res.partner.form@partner_sale_dates</field>
         <field name="model">res.partner</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="inherit_id" ref="sale.res_partner_view_buttons" />
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
         <field name="arch" type="xml">
             <!-- Button name was "%(sale.act_res_partner_2_sale_order)d" in 12.0
             and changed to "action_view_sale_order" in 13.0 -->
