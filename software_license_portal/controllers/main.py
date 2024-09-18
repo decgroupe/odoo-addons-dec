@@ -185,8 +185,8 @@ class SoftwareLicenseController(http.Controller):
         elif license_id.check_max_activation_reached(hardware_name=hardware):
             return SERIAL_TOO_MANY_ACTIVATION
         else:
-            hardware_id = license_id.activate(hardware)
-            hardware_id.info = self._get_request_info(request)
+            info = self._get_request_info(request)
+            hardware_id = license_id.activate(hardware, info)
             msg = SERIAL_ACTIVATED_ON_HARDWARE.copy()
             # common data will contain the validated license string
             self._append_common_data(license_id, hardware_id, msg)
