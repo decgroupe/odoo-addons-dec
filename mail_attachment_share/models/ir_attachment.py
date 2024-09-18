@@ -4,7 +4,7 @@
 import uuid
 
 from odoo import api, fields, models
-
+from ..controllers.main import SHARING_URL
 
 class Attachment(models.Model):
     _inherit = "ir.attachment"
@@ -38,7 +38,7 @@ class Attachment(models.Model):
     @api.depends("sharing_token")
     def _compute_sharing_link(self):
         base_url = self.env["ir.config_parameter"].get_param("web.base.url")
-        attachment_url = base_url + "/web/attachments/token/"
+        attachment_url = base_url + SHARING_URL + "/"
         for rec in self:
             if rec.sharing_token:
                 rec.sharing_link = attachment_url + rec.sharing_token

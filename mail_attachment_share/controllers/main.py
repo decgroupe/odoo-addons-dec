@@ -11,11 +11,14 @@ from odoo.addons.web.controllers.main import _serialize_exception
 from odoo.http import request
 from odoo.tools import html_escape
 
+SHARING_URL = "/web/attachments/token"
+
 
 class AttachmentSharingController(http.Controller):
 
-    @http.route("/web/attachments/token/<string:token>", type="http", auth="none")
+    @http.route(SHARING_URL + "/<string:token>", type="http", auth="none")
     def get_shared_attachments(self, token, **kwargs):
+        return_code = 200
         try:
             attachment_ids = (
                 request.env["ir.attachment"]
@@ -36,12 +39,15 @@ class AttachmentSharingController(http.Controller):
                         ],
                     )
             else:
+                return_code = 404
                 raise Exception("Attachment(s) not found")
         except Exception as e:
             se = _serialize_exception(e)
             error = {
-                "code": 200,
+                "code": return_code,
                 "message": "Odoo Server Error",
                 "data": se,
             }
-            return request.make_response(html_escape(json.dumps(error)))
+            response = request.make_response(html_escape(json.dumps(error)))
+            response.status_code = return_code
+            return response
