@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mail_attachment_share
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-19 07:41+0000\n"
+"PO-Revision-Date: 2024-09-19 09:42+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: mail_attachment_share
+#: model:ir.model,name:mail_attachment_share.model_ir_attachment
+msgid "Attachment"
+msgstr "Pièce jointe"
+
+#. module: mail_attachment_share
+#: model_terms:ir.ui.view,arch_db:mail_attachment_share.attachment_sharing_wizard_view
+msgid "Attachment Sharing"
+msgstr "Partage de pièces jointes"
+
+#. module: mail_attachment_share
+#: model:ir.actions.act_window,name:mail_attachment_share.action_attachment_sharing
+#: model:ir.model,name:mail_attachment_share.model_attachment_sharing
+msgid "Attachment Sharing Wizard"
+msgstr "Assistant de partage de pièces jointes"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__attachment_ids
+#: model_terms:ir.ui.view,arch_db:mail_attachment_share.attachment_sharing_tree_view
+msgid "Attachments"
+msgstr "Pièces jointes"
+
+#. module: mail_attachment_share
+#: model_terms:ir.ui.view,arch_db:mail_attachment_share.attachment_sharing_wizard_view
+msgid "Close"
+msgstr "Fermer"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__display_name
+#: model:ir.model.fields,field_description:mail_attachment_share.field_ir_attachment__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__id
+#: model:ir.model.fields,field_description:mail_attachment_share.field_ir_attachment__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,help:mail_attachment_share.field_attachment_sharing__xid
+#: model:ir.model.fields,help:mail_attachment_share.field_ir_attachment__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing____last_update
+#: model:ir.model.fields,field_description:mail_attachment_share.field_ir_attachment____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__write_date
+msgid "Last Updated on"
+msgstr "Dernière modification le"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_ir_attachment__sharing_link
+msgid "Link"
+msgstr "Lien"
+
+#. module: mail_attachment_share
+#. openerp-web
+#: code:addons/mail_attachment_share/static/src/xml/attachment_box_sharing.xml:0
+#, python-format
+msgid "Share"
+msgstr "Partager"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_ir_attachment__sharing_token
+msgid "Token"
+msgstr "Jeton"
+
+#. module: mail_attachment_share
+#: model:ir.model.fields,field_description:mail_attachment_share.field_attachment_sharing__xid
+#: model:ir.model.fields,field_description:mail_attachment_share.field_ir_attachment__xid
+msgid "XML-ID"
+msgstr "XML-ID"
