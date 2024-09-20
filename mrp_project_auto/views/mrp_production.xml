@@ -22,7 +22,7 @@
                     style="margin-right: 15px;"
                     attrs="{'invisible': [('|'), ('allow_timesheets', '=', True), ('project_id', '!=', False)]}"
                 >
-                        <button
+                    <button
                         name="action_create_project"
                         string="Create a Project to use Timesheets"
                         context="{'override_project_id':True}"
