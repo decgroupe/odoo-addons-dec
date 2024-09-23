@@ -23,7 +23,7 @@ class PurchaseOrderLine(models.Model):
         help="Production order that created this line",
     )
     bom_line_id = fields.Many2one(
-        "mrp.bom.line",
+        comodel_name="mrp.bom.line",
         string="Line of the Bill of Material",
     )
 
@@ -31,3 +31,16 @@ class PurchaseOrderLine(models.Model):
     def _compute_production_id(self):
         for p in self:
             p.production_id = p.production_ids[:1].id
+
+    # Inherit addons/purchase_stock/models/purchase.py:PurchaseOrderLine
+    def _prepare_purchase_order_line_from_procurement(
+        self, product_id, product_qty, product_uom, company_id, values, po
+    ):
+        res = super()._prepare_purchase_order_line_from_procurement(
+            product_id, product_qty, product_uom, company_id, values, po
+        )
+        if "production_id" in values:
+            res["production_ids"] = [(6, 0, values["production_id"].ids)]
+        if "bom_line_id" in values:
+            res["bom_line_id"] = values["bom_line_id"].id
+        return res

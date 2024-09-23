@@ -30,7 +30,7 @@ class PurchaseOrder(models.Model):
                     prod_to_notify_map[purchase_line.production_id] |= purchase_line
 
         for production, purchase_lines in prod_to_notify_map.items():
-            production.activity_schedule_with_view(
+            production._activity_schedule_with_view(
                 "mail.mail_activity_data_warning",
                 user_id=production.user_id.id or self.env.uid,
                 views_or_xmlid="mrp_purchase.exception_mrp_on_purchase_cancellation",

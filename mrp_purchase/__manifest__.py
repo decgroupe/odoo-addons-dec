@@ -4,8 +4,9 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
+        "mrp",
+        "stock",
         "purchase_subcontracted_service",
-        "mrp_production_service",
     ],
     "data": [
         "data/mail_activity_template.xml",
