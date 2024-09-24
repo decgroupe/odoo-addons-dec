@@ -79,6 +79,8 @@ class MrpProduction(models.Model):
         return res
 
     def _create_services(self):
+        if not self.bom_id:
+            return
         factor = (
             self.product_uom_id._compute_quantity(
                 self.product_qty, self.bom_id.product_uom_id

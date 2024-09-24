@@ -114,3 +114,19 @@ class TestMrpPurchase(TestMrpPurchaseCommon):
             "Exception(s) occurred on the production order(s)",
             new_activity_ids.note,
         )
+
+    def test_06_no_bom(self):
+        production_id = self._generate_mo(self.p1, self.env["mrp.bom"], 2.0)
+        # manually create a raw stock move
+        self.env["stock.move"].create(
+            {
+                "name": "MyTestRawStockMove",
+                "product_id": self.stock_product.id,
+                "product_uom": self.stock_product.uom_id.id,
+                "raw_material_production_id": production_id.id,
+                "location_id": self.ref("stock.stock_location_stock"),
+                "location_dest_id": self.ref("stock.stock_location_output"),
+            }
+        )
+        production_id.action_confirm()
+        self.assertEqual(production_id.state, "confirmed")
