@@ -58,7 +58,7 @@ class SaleOrder(models.Model):
                 for task_id in all_task_ids:
                     # If the task stage is cancel or done, consider its
                     # progress as 100%
-                    if task_id.stage_id.fold:
+                    if task_id.stage_id.is_closed:
                         total_progress += 100
                     else:
                         total_progress += task_id.progress
