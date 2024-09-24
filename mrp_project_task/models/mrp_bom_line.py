@@ -20,6 +20,8 @@ class MrpBomLine(models.Model):
                 product_uom_qty, company_time_uom_id
             )
         else:
+            # fallback to default unit in case of the company created its own
+            # incompatible unit
             uom_hour = self.env.ref("uom.product_uom_hour")
             if (
                 uom_hour

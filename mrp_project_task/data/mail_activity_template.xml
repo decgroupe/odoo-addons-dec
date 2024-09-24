@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="exception_task_on_mrp_cancellation"
+        name="Message: Alert on project tasks when production orders are cancelled"
+    >
+        <div>
+            <p>
+                Exception(s) occurred on the production order(s):
+                <t t-foreach="production_orders" t-as="production_order">
+                    <a
+                        href="#"
+                        data-oe-model="mrp.production"
+                        t-att-data-oe-id="production_order.id"
+                    ><t t-esc="production_order.name" /></a>
+                </t>.
+                Manual actions may be needed.
+            </p>
+            <div class="mt16">
+                <p>Exception(s):</p>
+                <ul t-foreach="tasks" t-as="task">
+                    <li>
+                        <a
+                            href="#"
+                            data-oe-model="project.task"
+                            t-att-data-oe-id="task.id"
+                        >
+                            cancelled
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+</odoo>

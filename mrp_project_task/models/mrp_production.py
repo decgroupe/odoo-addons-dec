@@ -1,7 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
+import logging
+
 from odoo import _, api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class MrpProduction(models.Model):
@@ -42,12 +46,12 @@ class MrpProduction(models.Model):
     def _compute_task_progress(self):
         self.task_progress = 100
         for rec in self.filtered("task_ids"):
-            active_task_ids = rec.task_ids.filtered(lambda x: x.stage_id.fold is False)
+            active_task_ids = rec.task_ids.filtered(
+                lambda x: x.stage_id.is_closed is False
+            )
             if active_task_ids:
                 value = sum(active_task_ids.mapped("progress")) / len(active_task_ids)
-            else:
-                value = 100
-            rec.task_progress = value
+                rec.task_progress = value
 
     @api.depends("task_ids")
     def _compute_task_count(self):
@@ -64,7 +68,7 @@ class MrpProduction(models.Model):
         self.ensure_one()
         planned_hours = bom_line._convert_qty_company_hours()
         title = "%s: %s" % (self.name or "", bom_line.display_name)
-        description = bom_line.landmark or ""
+        description = ""  # bom_line.landmark or ""
         return {
             "name": title,
             "planned_hours": planned_hours,
@@ -72,21 +76,20 @@ class MrpProduction(models.Model):
             "email_from": self.partner_id.email,
             "description": description,
             "project_id": self.project_id.id,
-            "exclude_from_sale_order": True,
             "production_id": self.id,
             "bom_line_id": bom_line.id,
             "company_id": self.company_id.id,
             "user_id": False,  # force non assigned task, as created as sudo()
         }
 
-    def _create_task(self, bom_line, dict):
+    def _create_task(self, bom_line, line_data):
         """Generate task for the given so line, and link it.
         :param project: record of project.project in which the task should be created
         :return task: record of the created task
         """
-        values = self._create_task_prepare_values(bom_line, dict)
+        values = self._create_task_prepare_values(bom_line, line_data)
         task = self.env["project.task"].sudo().create(values)
-        self.write({"task_id": task.id})
+        # self.write({"task_id": task.id}) ???
         # post message on task
         task_msg = _("This task has been created from: ") + (
             "<a href=# data-oe-model=mrp.production data-oe-id=%d>%s</a> (%s)"
@@ -94,17 +97,18 @@ class MrpProduction(models.Model):
         task.message_post(body=task_msg)
         return task
 
-    def _action_launch_procurement_rule(self, bom_line, dict):
+    def _action_launch_procurement_rule(self, bom_line, line_data):
+        """This function is initially defined in `mrp_purchase` module"""
         self.ensure_one()
         if (
             self.project_id
             and bom_line.product_id.type == "service"
             and bom_line.product_id.service_tracking == "task_in_project"
         ):
-            self._create_task(bom_line, dict)
+            self._create_task(bom_line, line_data)
             res = True
         else:
-            res = super()._action_launch_procurement_rule(bom_line, dict)
+            res = super()._action_launch_procurement_rule(bom_line, line_data)
         return res
 
     def action_cancel(self):
@@ -116,5 +120,21 @@ class MrpProduction(models.Model):
         """If some MO are cancelled, we need to put an activity on their
         generated task.
         """
-        raise NotImplementedError()
-
+        task_ids = self.env["project.task"].search(
+            [
+                ("id", "in", self.mapped("task_ids").ids),
+                "|",
+                ("stage_id", "=", False),
+                ("stage_id.is_closed", "=", False),
+            ]
+        )
+        for task_id in task_ids:
+            task_id._activity_schedule_with_view(
+                "mail.mail_activity_data_warning",
+                user_id=task_id.user_id.id or self.env.uid,
+                views_or_xmlid="mrp_project_task.exception_task_on_mrp_cancellation",
+                render_context={
+                    "production_orders": task_id.production_id,
+                    "tasks": task_id,
+                },
+            )
