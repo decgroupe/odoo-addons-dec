@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Production-specific activities, for automatic generation mainly -->
+
+        <record id="mail_act_notification_cancel" model="mail.activity.type">
+            <field name="name">Cancel Request</field>
+            <field name="icon">fa-wrench</field>
+            <field name="res_model_id" ref="mrp.model_mrp_production" />
+        </record>
+
+        <record id="mail_act_notification_close" model="mail.activity.type">
+            <field name="name">Close Request</field>
+            <field name="icon">fa-wrench</field>
+            <field name="res_model_id" ref="mrp.model_mrp_production" />
+        </record>
+
+    </data>
+</odoo>

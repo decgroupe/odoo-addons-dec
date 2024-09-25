@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production.form@mrp_portal</field>
+        <field name="model">mrp.production</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <page name="miscellaneous" position="after">
+                <page string="Remote" name="remote">
+                    <group>
+                        <group>
+                            <field name="name_digits" string="Digits" />
+                            <field name="name_digits_checksum" string="Checksum" />
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

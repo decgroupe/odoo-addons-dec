@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="mrp_portal.production_update_producing_quantity">
+        <p>Producing quantity updated from <t t-esc="ip_addr" />:</p>
+        <ul>
+            <li>
+                <t t-esc="old_value" /> 🡒 <t t-esc="new_value" />
+            </li>
+        </ul>
+    </template>
+
+    <template id="mrp_portal.production_notify_close">
+        <p>Close request notification from <t t-esc="ip_addr" /></p>
+    </template>
+
+    <template id="mrp_portal.production_notify_cancel">
+        <p>Cancel request notification from <t t-esc="ip_addr" /></p>
+    </template>
+
+</odoo>
