@@ -122,7 +122,7 @@ class TestMaintenancePortal(TestMaintenancePortalBase):
         )
         self.assertGreaterEqual(res.get("request_id"), 1)
         request_id = self.env["maintenance.request"].browse(res.get("request_id"))
-        self.assertIn("1.1.1.1", request_id.message_ids[0].description)
+        self.assertIn("1.1.1.1", request_id.message_ids[0].body)
 
     def test_03_invalid_equipment(self):
         query_identifier = "test_03"
