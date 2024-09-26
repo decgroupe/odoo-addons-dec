@@ -11,7 +11,7 @@
                 <page string="Remote" name="remote">
                     <group>
                         <group>
-                            <field name="identifier" string="Digits" />
+                            <field name="identifier" string="Identifier" />
                             <field name="identifier_checksum" string="Checksum" />
                         </group>
                     </group>
