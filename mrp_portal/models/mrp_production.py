@@ -18,20 +18,23 @@ def _checksum(value):
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    name_digits = fields.Char(
-        compute="_compute_name_digits",
+    identifier = fields.Char(
+        compute="_compute_identifier",
         store=True,
     )
-    name_digits_checksum = fields.Char(
-        compute="_compute_name_digits",
+    identifier_checksum = fields.Integer(
+        compute="_compute_identifier",
         store=True,
     )
 
     @api.depends("name")
-    def _compute_name_digits(self):
+    def _compute_identifier(self):
         for rec in self:
-            rec.name_digits = re.sub("[^0-9]", "", rec.name)
-            rec.name_digits_checksum = _checksum(rec.name_digits)
+            rec.identifier = re.sub("[^0-9]", "", rec.name)
+            if rec.identifier:
+                rec.identifier_checksum = _checksum(rec.identifier)
+            else:
+                rec.identifier_checksum = -1
 
     def _get_action_type_xmlid(self, action):
         if action == "close":

@@ -3,6 +3,7 @@
 
 import json
 import logging
+import pprint
 
 from lxml import html
 
@@ -83,7 +84,7 @@ class TestMrpPortalBase(odoo.tests.HttpCase):
         mo = mo_form.save()
         return mo
 
-    def _api_mrp_action(self, code, action, payload, headers=False):
+    def _api_mrp_action(self, identifier, action, payload, headers=False):
         if not headers:
             headers = {}
         headers.update(
@@ -93,7 +94,7 @@ class TestMrpPortalBase(odoo.tests.HttpCase):
             }
         )
         resp = self.url_open(
-            f"/api/mrp/v1/code/{code}/{action}",
+            f"/api/mrp/v1/identifier/{identifier}/{action}",
             data=json.dumps(payload),
             headers=headers,
         )
@@ -103,37 +104,47 @@ class TestMrpPortalBase(odoo.tests.HttpCase):
         res = resp_payload.get("result")
         return res
 
-    def _api_mrp_update_quantity(self, code, payload, headers=False):
+    def _api_mrp_update_quantity(self, identifier, payload, headers=False):
         return self._api_mrp_action(
-            code=code,
+            identifier=identifier,
             action="UpdateQuantity",
             payload=payload,
             headers=headers,
         )
 
-    def _api_mrp_notify_done(self, code, payload, headers=False):
+    def _api_mrp_notify_done(self, identifier, payload, headers=False):
         return self._api_mrp_action(
-            code=code,
+            identifier=identifier,
             action="NotifyDone",
             payload=payload,
             headers=headers,
         )
 
-    def _api_mrp_notify_cancel(self, code, payload, headers=False):
+    def _api_mrp_notify_cancel(self, identifier, payload, headers=False):
         return self._api_mrp_action(
-            code=code,
+            identifier=identifier,
             action="NotifyCancel",
             payload=payload,
             headers=headers,
         )
 
+    def assertChecksumInvalid(self, res):
+        _logger.debug(pprint.pformat(res))
+        self.assertEqual(res["result"], 1)
+        self.assertEqual(res["message_id"], "MRP_IDENTIFIER_CHECKSUM_INVALID")
+        self.assertEqual(res["message"], "invalid checksum.")
+        self.assertIn("computed_checksum", res)
+        self.assertNotIn("production_id", res)
+
     def assertOrderNotFound(self, res):
+        _logger.debug(pprint.pformat(res))
         self.assertEqual(res["result"], 1)
         self.assertEqual(res["message_id"], "MRP_ORDER_NOT_FOUND")
         self.assertEqual(res["message"], "no existing production order found.")
         self.assertNotIn("production_id", res)
 
     def assertOrderNotReady(self, res, production_id, state):
+        _logger.debug(pprint.pformat(res))
         self.assertEqual(res["result"], 1)
         self.assertEqual(res["message_id"], "MRP_ORDER_NOT_READY")
         self.assertEqual(res["message"], "production order not ready.")
@@ -141,6 +152,7 @@ class TestMrpPortalBase(odoo.tests.HttpCase):
         self.assertEqual(res["state"], state)
 
     def assertOrderQuantityUpdated(self, res, production_id, state):
+        _logger.debug(pprint.pformat(res))
         self.assertEqual(res["result"], 0)
         self.assertEqual(res["message_id"], "MRP_ORDER_QUANTITY_UPDATED")
         self.assertEqual(res["message"], "quantity has been updated.")
@@ -148,6 +160,7 @@ class TestMrpPortalBase(odoo.tests.HttpCase):
         self.assertEqual(res["state"], state)
 
     def assertOrderNotificationCreated(self, res, production_id, state):
+        _logger.debug(pprint.pformat(res))
         self.assertEqual(res["result"], 0)
         self.assertEqual(res["message_id"], "MRP_NOTIFICATION_CREATED")
         self.assertEqual(res["message"], "a notification has been created.")

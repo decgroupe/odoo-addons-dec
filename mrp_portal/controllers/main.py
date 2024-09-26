@@ -1,21 +1,31 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2024
 
+import logging
+
 from odoo import http
 from odoo.exceptions import UserError
 from odoo.http import request
 from odoo.tools.translate import _
 
+from ..models.mrp_production import _checksum
+
 SUCCESS = 0
 ERROR = 1
 
 URL_BASE_V1 = "/api/mrp/v1"
-URL_VAR_CODE = "/code/<string:code>"
+URL_VAR_IDENTIFIER = "/identifier/<string:identifier>"
 
 GENERIC_ERROR = {
     "result": ERROR,
     "message_id": "GENERIC_ERROR",
     "message": "",
+}
+
+MRP_IDENTIFIER_CHECKSUM_INVALID = {
+    "result": ERROR,
+    "message_id": "MRP_IDENTIFIER_CHECKSUM_INVALID",
+    "message": "invalid checksum.",
 }
 
 MRP_ORDER_NOT_FOUND = {
@@ -42,6 +52,8 @@ MRP_NOTIFICATION_CREATED = {
     "message": "a notification has been created.",
 }
 
+_logger = logging.getLogger(__name__)
+
 
 class MrpController(http.Controller):
     """Http Controller for MRP"""
@@ -56,63 +68,64 @@ class MrpController(http.Controller):
             ip_addr = req.httprequest.remote_addr
         return ip_addr
 
-    def _get_production_id(self, code):
-        domain = [
-            ("name", "=", code),
-        ]
+    def _get_production_id(self, identifier, checksum=False, name=False):
+        domain = [("identifier", "=", identifier)]
+        if checksum:
+            domain += [("identifier_checksum", "=", checksum)]
+        if name:
+            domain += [("name", "=", name)]
         production_id = request.env["mrp.production"].sudo().search(domain, limit=1)
+        if not production_id:
+            domain = [("name", "=", identifier)]
+            production_id = request.env["mrp.production"].sudo().search(domain, limit=1)
+            if production_id:
+                _logger.warning(
+                    "Use identifier `%s` instead of name `%s`",
+                    production_id.identifier,
+                    identifier,
+                )
         return production_id
 
     def _get_production_not_ready_states(self):
         return ["draft", "done", "cancel"]
 
-    @http.route(
-        URL_BASE_V1 + URL_VAR_CODE + "/UpdateQuantity",
-        type="json",
-        methods=["POST"],
-        auth="api_key",
-        csrf=False,
-    )
-    def update_production_quantity(self, code, **kwargs):
+    def _validate_production_identifier_checksum(self, identifier, checksum):
+        return _checksum(identifier) == checksum
+
+    def _run_production_remote_action(self, identifier, action, **kwargs):
         ip_addr = self._get_ip_from_request(request)
-        try:
-            production_id = self._get_production_id(code)
-            if production_id:
-                if production_id.state in self._get_production_not_ready_states():
-                    msg = MRP_ORDER_NOT_READY.copy()
-                else:
+        checksum = kwargs.get("checksum", False)
+        name = kwargs.get("name", False)
+
+        # ensure given checksum is valid
+        if checksum:
+            computed_checksum = _checksum(identifier)
+            if computed_checksum != checksum:
+                msg = MRP_IDENTIFIER_CHECKSUM_INVALID.copy()
+                msg.update(
+                    {
+                        "computed_checksum": computed_checksum,
+                    }
+                )
+                return msg
+
+        production_id = self._get_production_id(identifier, checksum, name)
+        if production_id:
+            if production_id.state in self._get_production_not_ready_states():
+                msg = MRP_ORDER_NOT_READY.copy()
+            else:
+                if action == "update_quantity":
                     quantity = request.params.get("value")
                     production_id._remote_update_producing_quantity(quantity, ip_addr)
                     msg = MRP_ORDER_QUANTITY_UPDATED.copy()
-                msg.update(
-                    {
-                        "state": production_id.state,
-                        "production_id": production_id.id,
-                    }
-                )
-            else:
-                msg = MRP_ORDER_NOT_FOUND.copy()
-        except UserError as e:
-            msg = GENERIC_ERROR.copy()
-            msg["message"] = str(e)
-        return msg
-
-    @http.route(
-        URL_BASE_V1 + URL_VAR_CODE + "/NotifyDone",
-        type="json",
-        methods=["POST"],
-        auth="api_key",
-        csrf=False,
-    )
-    def notify_done_production_order(self, code, **kwargs):
-        ip_addr = self._get_ip_from_request(request)
-        production_id = self._get_production_id(code)
-        if production_id:
-            if production_id.state in self._get_production_not_ready_states():
-                msg = MRP_ORDER_NOT_READY.copy()
-            else:
-                production_id._remote_notify_done(ip_addr)
-                msg = MRP_NOTIFICATION_CREATED.copy()
+                elif action == "notify_done":
+                    production_id._remote_notify_done(ip_addr)
+                    msg = MRP_NOTIFICATION_CREATED.copy()
+                elif action == "notify_cancel":
+                    production_id._remote_notify_cancel(ip_addr)
+                    msg = MRP_NOTIFICATION_CREATED.copy()
+                else:
+                    raise ValueError(f"Action `{action}` not supported")
             msg.update(
                 {
                     "state": production_id.state,
@@ -121,30 +134,49 @@ class MrpController(http.Controller):
             )
         else:
             msg = MRP_ORDER_NOT_FOUND.copy()
+            if name:
+                msg.update({"name": name})
+
         return msg
 
     @http.route(
-        URL_BASE_V1 + URL_VAR_CODE + "/NotifyCancel",
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + "/UpdateQuantity",
         type="json",
         methods=["POST"],
         auth="api_key",
         csrf=False,
     )
-    def notify_cancel_production_order(self, code, **kwargs):
-        ip_addr = self._get_ip_from_request(request)
-        production_id = self._get_production_id(code)
-        if production_id:
-            if production_id.state in self._get_production_not_ready_states():
-                msg = MRP_ORDER_NOT_READY.copy()
-            else:
-                production_id._remote_notify_cancel(ip_addr)
-                msg = MRP_NOTIFICATION_CREATED.copy()
-            msg.update(
-                {
-                    "state": production_id.state,
-                    "production_id": production_id.id,
-                }
-            )
-        else:
-            msg = MRP_ORDER_NOT_FOUND.copy()
-        return msg
+    def update_production_quantity(self, identifier, **kwargs):
+        return self._run_production_remote_action(
+            identifier,
+            "update_quantity",
+            **kwargs,
+        )
+
+    @http.route(
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + "/NotifyDone",
+        type="json",
+        methods=["POST"],
+        auth="api_key",
+        csrf=False,
+    )
+    def notify_done_production_order(self, identifier, **kwargs):
+        return self._run_production_remote_action(
+            identifier,
+            "notify_done",
+            **kwargs,
+        )
+
+    @http.route(
+        URL_BASE_V1 + URL_VAR_IDENTIFIER + "/NotifyCancel",
+        type="json",
+        methods=["POST"],
+        auth="api_key",
+        csrf=False,
+    )
+    def notify_cancel_production_order(self, identifier, **kwargs):
+        return self._run_production_remote_action(
+            identifier,
+            "notify_cancel",
+            **kwargs,
+        )

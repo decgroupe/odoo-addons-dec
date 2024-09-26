@@ -7,11 +7,11 @@
             <div class="row mt32 mb32">
                 <div class="col-3">
                     <strong>Digits:</strong><br/>
-                    <span t-field="o.name_digits"/>
+                    <span t-field="o.identifier"/>
                 </div>
                 <div class="col-3">
                     <strong>Checksum:</strong><br/>
-                    <span t-field="o.name_digits_checksum"/>
+                    <span t-field="o.identifier_checksum"/>
                 </div>
             </div>
         </xpath>
