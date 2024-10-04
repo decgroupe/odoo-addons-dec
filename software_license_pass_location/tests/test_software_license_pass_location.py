@@ -5,8 +5,11 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSoftwareLicensePassLocation(TransactionCase):
+
     def setUp(self):
         super().setUp()
+        self.pass_model = self.env["software.license.pass"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("partner_zip_id", self.pass_model._fields)
+        self.assertIn("partner_city_id", self.pass_model._fields)
