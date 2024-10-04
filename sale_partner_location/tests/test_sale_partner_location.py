@@ -5,8 +5,11 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSalePartnerLocation(TransactionCase):
+
     def setUp(self):
         super().setUp()
+        self.sale_order_model = self.env["sale.order"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("partner_shipping_zip_id", self.sale_order_model._fields)
+        self.assertIn("partner_shipping_country_id", self.sale_order_model._fields)
