@@ -33,6 +33,12 @@ class MaintenanceRequest(models.Model):
                     "This user is the leader of the team assigned to the equipment "
                     "of this maintenance request"
                 )
+            if not user_id and self.equipment_id.category_id:
+                user_id = self.equipment_id.category_id.technician_user_id
+                reason = _(
+                    "This user is the technician of this equipment's category "
+                    "of this maintenance request"
+                )
         return user_id, reason
 
     def _create_default_activity(self, user_id):
@@ -89,12 +95,16 @@ class MaintenanceRequest(models.Model):
             if user_id != request_id.user_id:
                 request_id.user_id = user_id
             request_id._create_default_activity(user_id)
+        updated_data = {}
+        if request_id.description:
+            updated_data["Description"] = request_id.description
         request_id.message_post_with_view(
             views_or_xmlid="maintenance_portal.request_create",
             values={
                 "ip_addr": ip_addr,
                 "user": user_id,
                 "assigned_reason": user_assigned_reason,
+                "data": updated_data,
             },
             subtype_id=self.env.ref("mail.mt_note").id,
         )

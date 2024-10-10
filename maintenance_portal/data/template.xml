@@ -3,6 +3,13 @@
 
     <template id="maintenance_portal.request_create">
         <p>Request created from <t t-esc="ip_addr" /></p>
+        <ul>
+            <t t-foreach="data" t-as="item">
+                <li>
+                    <t t-esc="item" />: <t t-esc="data[item]" />
+                </li>
+            </t>
+        </ul>
         <p t-if="user and assigned_reason">
             <t t-esc="user.display_name" /> has been assigned because: <t
                 t-esc="assigned_reason"
