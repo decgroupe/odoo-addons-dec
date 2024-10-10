@@ -92,6 +92,7 @@ class MrpProduction(models.Model):
                 subtype_id=self.env.ref("mail.mt_note").id,
             )
             self.qty_producing = qty
+            self._set_qty_producing()
 
     def _remote_notify(self, action, ip_addr):
         self.ensure_one()
