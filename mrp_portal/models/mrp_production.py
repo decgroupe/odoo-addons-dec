@@ -27,6 +27,18 @@ class MrpProduction(models.Model):
         store=True,
     )
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        rec_ids = super(MrpProduction, self).create(vals_list)
+        rec_ids._subscribe_users()
+        return rec_ids
+
+    def _subscribe_users(self):
+        """ Auto-subscribe assigned user to a production order """
+        for rec in self:
+            if rec.user_id and rec.user_id != self.env.user:
+                rec.message_subscribe(partner_ids=rec.user_id.partner_id.ids)
+
     @api.depends("name")
     def _compute_identifier(self):
         for rec in self:
