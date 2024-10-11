@@ -4,9 +4,10 @@
 from urllib.parse import quote_plus
 
 import odoo.tests
+from odoo.tools.misc import mute_logger
 
-from .common import TestMrpPortalBase
 from ..models.mrp_production import _checksum
+from .common import TestMrpPortalBase
 
 
 @odoo.tests.tagged("post_install", "-at_install")
@@ -148,15 +149,15 @@ class TestMrpPortal(TestMrpPortalBase):
         self.assertEqual(_checksum(240100), 4)
         self.assertEqual(_checksum(240623), 31)
         self.assertEqual(_checksum(240999), 63)
-        payload = self._get_common_payload({"checksum":233})
+        payload = self._get_common_payload({"checksum": 233})
         res = self._api_mrp_notify_done(quote_plus("0001"), payload)
         self.assertChecksumInvalid(res)
-        payload = self._get_common_payload({"checksum":1})
+        payload = self._get_common_payload({"checksum": 1})
         res = self._api_mrp_notify_done(quote_plus("0001"), payload)
         self.assertOrderNotFound(res)
 
     def test_07_identifier_with_name(self):
-        payload = self._get_common_payload({"name":"MO_0001"})
+        payload = self._get_common_payload({"name": "MO_0001"})
         res = self._api_mrp_notify_done(quote_plus("0001"), payload)
         self.assertOrderNotFound(res)
         prod1_id = self._generate_mo(self.p1, self.bom, 50.0)
@@ -168,7 +169,6 @@ class TestMrpPortal(TestMrpPortalBase):
         res = self._api_mrp_notify_done(quote_plus("0002"), payload)
         self.assertOrderNotFound(res)
         self.assertIn("name", res)
-        print(res)
 
     def test_08_ipaddress_header(self):
         self.production_id.action_confirm()
@@ -179,3 +179,20 @@ class TestMrpPortal(TestMrpPortalBase):
             headers={"X_FORWARDED_FOR": "1.1.1.1"},
         )
         self.assertIn("1.1.1.1", self.production_id.message_ids[0].body)
+
+    def test_10_user_lang(self):
+        # load language
+        with mute_logger("odoo.addons.base.models.ir_translation"):
+            self.env["base.language.install"].create(
+                {"lang": "fr_FR", "overwrite": True}
+            ).lang_install()
+        # set user language to french
+        self.api_user.lang = "fr_FR"
+        # notify done
+        self.production_id.action_confirm()
+        payload = self._get_common_payload({})
+        res = self._api_mrp_notify_done(quote_plus("123456789"), payload)
+        self.production_id.invalidate_cache()
+        self.assertOrderNotificationCreated(res, self.production_id, "confirmed")
+        activity_id = self.production_id.activity_ids
+        self.assertRegex(activity_id.note, "À traiter")

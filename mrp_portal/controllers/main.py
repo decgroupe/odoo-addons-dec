@@ -55,6 +55,20 @@ MRP_NOTIFICATION_CREATED = {
 _logger = logging.getLogger(__name__)
 
 
+def get_context():
+    """Merge current user settings (lang, timezone) in current context since no
+    session exists to set them when using an API key.
+        - Default context {'lang': 'en_US'} miss the timezone and is set to English.
+        - We use this assertion to force replace current context values with the ones
+        from user's default context.
+    """
+    if "tz" not in request.env.context:
+        default_context = request.env["res.users"].context_get()
+        if default_context:
+            return dict(request.env.context, **default_context)
+    return dict(request.env.context)
+
+
 class MrpController(http.Controller):
     """Http Controller for MRP"""
 
@@ -69,15 +83,24 @@ class MrpController(http.Controller):
         return ip_addr
 
     def _get_production_id(self, identifier, checksum=False, name=False):
+
+        def __get_production_id(domain):
+            return (
+                request.env["mrp.production"]
+                .with_context(**get_context())
+                .sudo()
+                .search(domain, limit=1)
+            )
+
         domain = [("identifier", "=", identifier)]
         if checksum:
             domain += [("identifier_checksum", "=", checksum)]
         if name:
             domain += [("name", "=", name)]
-        production_id = request.env["mrp.production"].sudo().search(domain, limit=1)
+        production_id = __get_production_id(domain)
         if not production_id:
             domain = [("name", "=", identifier)]
-            production_id = request.env["mrp.production"].sudo().search(domain, limit=1)
+            production_id = __get_production_id(domain)
             if production_id:
                 _logger.warning(
                     "Use identifier `%s` instead of name `%s`",
