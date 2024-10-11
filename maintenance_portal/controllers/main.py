@@ -44,6 +44,20 @@ REQUEST_CLOSED = {
 }
 
 
+def get_context():
+    """Merge current user settings (lang, timezone) in current context since no
+    session exists to set them when using an API key.
+        - Default context {'lang': 'en_US'} miss the timezone and is set to English.
+        - We use this assertion to force replace current context values with the ones
+        from user's default context.
+    """
+    if "tz" not in request.env.context:
+        default_context = request.env["res.users"].context_get()
+        if default_context:
+            return dict(request.env.context, **default_context)
+    return dict(request.env.context)
+
+
 class MaintenanceController(http.Controller):
     """Http Controller for Maintenance System"""
 
@@ -55,7 +69,12 @@ class MaintenanceController(http.Controller):
             ("unique_identifier", "=", unique_identifier),
             ("stage_id.done", "=", False),
         ]
-        request_id = request.env["maintenance.request"].sudo().search(domain, limit=1)
+        request_id = (
+            request.env["maintenance.request"]
+            .with_context(**get_context())
+            .sudo()
+            .search(domain, limit=1)
+        )
         return request_id
 
     @http.route(
@@ -80,6 +99,7 @@ class MaintenanceController(http.Controller):
             try:
                 request_id = (
                     request.env["maintenance.request"]
+                    .with_context(**get_context())
                     .sudo()
                     ._remote_create(
                         equipement_serial, unique_identifier, request.params, ip_addr
@@ -93,7 +113,6 @@ class MaintenanceController(http.Controller):
                 msg["request_id"] = False
         return msg
 
-
     @http.route(
         URL_BASE_V1 + URL_VAR_SERIAL + URL_VAR_IDENTIFIER + "/CloseRequest",
         type="json",
@@ -101,9 +120,7 @@ class MaintenanceController(http.Controller):
         auth="api_key",
         csrf=False,
     )
-    def close_maintenance_request(
-        self, equipement_serial, unique_identifier, **kwargs
-    ):
+    def close_maintenance_request(self, equipement_serial, unique_identifier, **kwargs):
         ip_addr = self._get_ip_from_request(request)
         request_id = self._get_maintenance_request_id(
             equipement_serial, unique_identifier

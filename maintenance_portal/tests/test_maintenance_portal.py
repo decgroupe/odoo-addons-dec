@@ -4,6 +4,7 @@
 from urllib.parse import quote_plus
 
 import odoo.tests
+from odoo.tools.misc import mute_logger
 
 from .common import TestMaintenancePortalBase
 
@@ -191,3 +192,20 @@ class TestMaintenancePortal(TestMaintenancePortalBase):
         )
         self.assertEqual(res["message_id"], "REQUEST_NOT_FOUND")
         self.assertEqual(res["message"], "no existing active request found.")
+
+    def test_10_user_lang(self):
+        # load language
+        with mute_logger('odoo.addons.base.models.ir_translation'):
+            self.env["base.language.install"].create({"lang": "fr_FR", "overwrite": True}).lang_install()
+        # set user language to french
+        self.api_user.lang = "fr_FR"
+        # create
+        payload = self._get_create_update_payload()
+        res = self._api_maintenance_request(
+            quote_plus("MT-122-11112222"),
+            quote_plus("test_10"),
+            payload,
+        )
+        request_id = self.env["maintenance.request"].browse(res.get("request_id"))
+        activity_id = request_id.activity_ids
+        self.assertRegex(activity_id.note, "À traiter")
