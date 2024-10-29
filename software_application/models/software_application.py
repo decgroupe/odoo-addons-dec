@@ -86,7 +86,9 @@ class SoftwareApplication(models.Model):
             if rec.env.context.get("bin_size"):
                 rec.image = rec.attachment_image
             else:
-                rec.image = tools.image_process(rec.attachment_image, size=(300, 200))
+                rec.image = tools.image_process(
+                    rec.attachment_image, size=(300, 200), quality=40
+                )
 
     def _inverse_image(self):
         self.ensure_one()

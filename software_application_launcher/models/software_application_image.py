@@ -70,7 +70,7 @@ class SoftwareApplicationImage(models.Model):
                 rec.resized_image = rec.image
             elif rec.resize_x and rec.resize_y:
                 rec.resized_image = tools.image_process(
-                    rec.image, size=(rec.resize_x, rec.resize_y)
+                    rec.image, size=(rec.resize_x, rec.resize_y), quality=30
                 )
             else:
                 rec.resized_image = rec.image
