@@ -36,7 +36,7 @@ class RefVersion(models.Model):
     )
     datetime = fields.Datetime(
         string="Modification date",
-        default=fields.Datetime.now,
+        default=lambda self: self._default_datetime(),
     )
     author_id = fields.Many2one(
         comodel_name="res.users",
@@ -47,3 +47,6 @@ class RefVersion(models.Model):
         comodel_name="ref.reference",
         string="Reference",
     )
+
+    def _default_datetime(self):
+        return fields.Datetime.now()
