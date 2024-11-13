@@ -25,6 +25,14 @@ class SaleOrder(models.Model):
     def action_view_application_pass(self):
         return self.license_pass_ids.action_view()
 
+    def _action_confirm(self):
+        result = super()._action_confirm()
+        for order in self:
+            order.order_line.sudo().with_company(
+                order.company_id
+            )._application_pass_generation()
+        return result
+
     def action_cancel(self):
         result = super(SaleOrder, self).action_cancel()
         # When a sale person cancel a SO, he might not have the rights to write
