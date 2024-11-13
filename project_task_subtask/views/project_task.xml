@@ -20,11 +20,11 @@
                             decoration-success="state == 'done'"
                             decoration-info="state == 'waiting'"
                         >
-                            <field name="name" />
+                            <field name="name" widget="text"/>
                             <field name="recolor" invisible='True' />
                             <field name="user_id" domain="[('share', '=', False)]" />
-                            <field name="state" />
-                            <field name="note" />
+                            <field name="state" optional="show"/>
+                            <field name="note" optional="hide"/>
                             <field name="hide_button" invisible='True' />
                             <button
                                 name="change_state_done"
@@ -54,17 +54,8 @@
                                 icon="fa-ban"
                                 attrs="{'invisible': [ '|',('state', '=', 'cancelled'), ('hide_button', '=', True)]}"
                             />
-                            <field name="reviewer_id" />
-                            <field name="deadline" />
-                            <button
-                                name="action_delete"
-                                title="Delete"
-                                type="object"
-                                attrs="{'invisible': [('state', '!=', 'cancelled')]}"
-                                groups="base.group_no_one"
-                                icon="fa-trash-o"
-                            >
-                            </button>
+                            <field name="reviewer_id" optional="hide"/>
+                            <field name="deadline" optional="hide"/>
                         </tree>
                     </field>
                 </group>
