@@ -38,6 +38,19 @@ class SaleOrder(models.Model):
             "partner_id": self.partner_id.id,
             "type_id": contract_type_id.id,
             "user_id": self.user_id.id,
+            # `allow_timesheets` default is already True from
+            # hr_timesheet/models/project.py
+            "allow_timesheets": True,
+            # force billable to ensure proper `qty_delivered` computation on sale oder
+            # lines, otherwise `so_line` will not be computed properly on analytic
+            # account lines
+            "allow_billable": True,
+            "bill_type": "customer_project",
+            "pricing_type": "fixed_rate",
+            # when billable is enabled, a sale order should be provided to ensure
+            # valid data from tasks. This value is enforced even if the sale order is
+            # in a quotation state
+            "sale_order_id": self.id,
         }
 
     def action_create_project(self):
