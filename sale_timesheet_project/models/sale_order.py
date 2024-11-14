@@ -15,13 +15,18 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         self.action_create_project()
         res = super(SaleOrder, self)._action_confirm()
-        self._sync_project_dates()
+        self._sync_project()
         return res
 
-    def _sync_project_dates(self):
+    def _sync_project(self):
         for rec in self.filtered("project_id"):
             rec.project_id.sudo().write(
                 {
+                    # when billable is enabled, a sale order should be provided to
+                    # ensure valid data from tasks. This value should be set only when
+                    # the quotation is converted to a sale order
+                    "sale_order_id": self.id,
+                    # sync dates
                     "date_start": rec.date_order.date(),
                     "date": rec.expected_last_date.date(),
                 }
@@ -47,10 +52,6 @@ class SaleOrder(models.Model):
             "allow_billable": True,
             "bill_type": "customer_project",
             "pricing_type": "fixed_rate",
-            # when billable is enabled, a sale order should be provided to ensure
-            # valid data from tasks. This value is enforced even if the sale order is
-            # in a quotation state
-            "sale_order_id": self.id,
         }
 
     def action_create_project(self):

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <record model="ir.ui.view" id="project_task_form">
+        <field name="name">project.task.form@sale_timesheet_project</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <field name="sale_line_id" position="before">
+                <field name="exclude_from_sale_order"/>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="project_task_search">
         <field name="name">project.task.search.form@sale_timesheet_project</field>
         <field name="model">project.task</field>
