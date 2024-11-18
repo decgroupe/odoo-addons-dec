@@ -15,7 +15,7 @@ class ProductTemplate(models.Model):
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
         # If name starts with a wilcard, then clear arg domain
-        if name.startswith("*"):
+        if name and name.startswith("*"):
             name = name[1:]
             args = False
         if not args:
@@ -29,7 +29,12 @@ class ProductTemplate(models.Model):
 
     @api.model
     def append_extra_search(self, model, name, name_search_result, limit=100):
-        result = self.append_public_code_search(model, name, name_search_result, limit)
+        if self.env.context.get("search_public_code"):
+            result = self.append_public_code_search(
+                model, name, name_search_result, limit
+            )
+        else:
+            result = name_search_result
         return result
 
     @api.model
