@@ -56,7 +56,6 @@ class User(models.Model):
         template_id = self.env.ref(
             "mail_activity_reminder.email_template_activity_reminder"
         )
-        self.generate_new_activity_reminder_access_token()
         for user in self:
             group_late_activity_ids = user._get_group_activity_ids(
                 [("date_deadline", "<", fields.Date.context_today(self))],
@@ -66,13 +65,15 @@ class User(models.Model):
                 [("date_deadline", ">=", fields.Date.context_today(self))],
                 order="date_deadline asc",
             )
-            ctx = {
-                "token": user.activity_reminder_access_token,
-                "group_late_activity_ids": group_late_activity_ids,
-                "group_next_activity_ids": group_next_activity_ids,
-            }
-            template_id.with_context(**ctx).send_mail(
-                self.id,
-                force_send=True,
-                email_values={"email_to": user.email_formatted},
-            )
+            if group_late_activity_ids or group_next_activity_ids:
+                user.generate_new_activity_reminder_access_token()
+                ctx = {
+                    "token": user.activity_reminder_access_token,
+                    "group_late_activity_ids": group_late_activity_ids,
+                    "group_next_activity_ids": group_next_activity_ids,
+                }
+                template_id.with_context(**ctx).send_mail(
+                    self.id,
+                    force_send=True,
+                    email_values={"email_to": user.email_formatted},
+                )

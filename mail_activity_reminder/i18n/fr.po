@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 15:11+0000\n"
-"PO-Revision-Date: 2024-07-15 17:12+0200\n"
+"POT-Creation-Date: 2024-11-27 15:10+0000\n"
+"PO-Revision-Date: 2024-11-27 16:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -38,6 +38,30 @@ msgid "Activity Reminder Access Token"
 msgstr "Jeton d'accès au rappel d'activités"
 
 #. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/controllers/main.py:0
+#, python-format
+msgid "Activity cancelled"
+msgstr "Activité annulée"
+
+#. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/controllers/main.py:0
+#, python-format
+msgid "Activity closed"
+msgstr "Activité clôturée"
+
+#. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/controllers/main.py:0
+#, python-format
+msgid "Activity not found"
+msgstr "Activité non trouvée"
+
+#. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/controllers/main.py:0
+#, python-format
+msgid "Activity's new deadline is %s"
+msgstr "La nouvelle échéance de l'activité est fixée au %s"
+
+#. module: mail_activity_reminder
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder.table_group_activities
 msgid "Cancel"
 msgstr "Annuler"
@@ -51,6 +75,12 @@ msgstr "Fermer"
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder.table_group_activities
 msgid "Deadline"
 msgstr "Echéance"
+
+#. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/models/mail_activity.py:0
+#, python-format
+msgid "Deadline extended to %s"
+msgstr "Échéance repoussée au %s"
 
 #. module: mail_activity_reminder
 #: model:ir.model.fields,field_description:mail_activity_reminder.field_mail_activity__display_name
@@ -77,6 +107,18 @@ msgstr "ID"
 #: model:ir.model.fields,help:mail_activity_reminder.field_res_users__xid
 msgid "ID of the record defined in xml file"
 msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/models/mail_activity.py:0
+#, python-format
+msgid "Invalid time unit code"
+msgstr "Unité de temps incorrecte"
+
+#. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/controllers/main.py:0
+#, python-format
+msgid "Invalid token"
+msgstr "Jeton non valide"
 
 #. module: mail_activity_reminder
 #: model:ir.model.fields,field_description:mail_activity_reminder.field_mail_activity____last_update
@@ -116,6 +158,16 @@ msgid "Snooze 1 year (±365 days)"
 msgstr "Repousser d'1 an (±365 jours)"
 
 #. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/controllers/main.py:0
+#, python-format
+msgid ""
+"This activity has probably been closed by you or someone in your team since "
+"this reminder was sent."
+msgstr ""
+"Cette activité a probablement été clôturée par vous ou un membre de votre "
+"équipe depuis l'envoi de ce rappel."
+
+#. module: mail_activity_reminder
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder.view_email_template_activity_reminder
 msgid "Upcoming Activities"
 msgstr "Activités à venir"
@@ -141,6 +193,12 @@ msgstr "XML-ID"
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder.table_group_activities
 msgid "Year"
 msgstr "Année"
+
+#. module: mail_activity_reminder
+#: code:addons/mail_activity_reminder/controllers/main.py:0
+#, python-format
+msgid "You have probably received a new reminder since this one."
+msgstr "Vous avez probablement reçu un nouveau rappel depuis celui-ci."
 
 #. module: mail_activity_reminder
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder.table_group_activities

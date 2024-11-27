@@ -29,7 +29,7 @@ class MailActivity(models.Model):
         elif unit == "y" or unit == "year":
             delta = relativedelta(years=value)
         else:
-            raise UserError(_("Invalid unit code"))
+            raise UserError(_("Invalid time unit code"))
         for rec in self:
             previous_deadline = rec.date_deadline
             if rec.date_deadline < today:
@@ -37,15 +37,16 @@ class MailActivity(models.Model):
             else:
                 date_deadline = rec.date_deadline + delta
 
-            notify_txt = "<small><br /> - Deadline extended from %s" % format_date(
+            notify_txt = _("Deadline extended to %s") % format_date(
                 self.env, previous_deadline
             )
+            notify_html = "<small><br /> - %s</small>" % (notify_txt)
             root = lxml.html.fromstring(rec.note)
             if (node := root.xpath(".")) and node[0].tag == "p":
-                node[0].insert(0, lxml.etree.XML(notify_txt))
+                node[0].insert(0, lxml.etree.XML(notify_html))
                 note = lxml.etree.tostring(root, pretty_print=False, encoding="UTF-8")
             else:
-                note += notify_txt
+                note += notify_html
             rec.write(
                 {
                     "date_deadline": date_deadline,
