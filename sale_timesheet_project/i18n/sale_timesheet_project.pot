@@ -6,14 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:31+0000\n"
-"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"POT-Creation-Date: 2024-11-27 11:08+0000\n"
+"PO-Revision-Date: 2024-11-27 11:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_timesheet_project
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_project_task__allow_billable
+msgid "Allow Billable"
+msgstr ""
+
+#. module: sale_timesheet_project
+#: model:ir.model.fields,help:sale_timesheet_project.field_project_task__exclude_from_sale_order
+msgid ""
+"Checking this would exclude this task to be automatically linked to a sale "
+"line"
+msgstr ""
 
 #. module: sale_timesheet_project
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_project_project__contract_ids
@@ -47,19 +59,25 @@ msgstr ""
 
 #. module: sale_timesheet_project
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_project_project__display_name
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_project_task__display_name
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_timesheet_project
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_project_project__id
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_project_task__id
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order_line__id
 msgid "ID"
 msgstr ""
 
 #. module: sale_timesheet_project
 #: model:ir.model.fields,help:sale_timesheet_project.field_project_project__xid
+#: model:ir.model.fields,help:sale_timesheet_project.field_project_task__xid
 #: model:ir.model.fields,help:sale_timesheet_project.field_sale_order__xid
+#: model:ir.model.fields,help:sale_timesheet_project.field_sale_order_line__xid
 msgid "ID of the record defined in xml file"
 msgstr ""
 
@@ -70,8 +88,15 @@ msgstr ""
 
 #. module: sale_timesheet_project
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_project_project____last_update
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_project_task____last_update
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order_line____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_timesheet_project
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_project_task__exclude_from_sale_order
+msgid "Non-billable (excluded from order)"
 msgstr ""
 
 #. module: sale_timesheet_project
@@ -86,6 +111,11 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_timesheet_project
+#: model:ir.model,name:sale_timesheet_project.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_timesheet_project
 #: model:ir.model.fields,help:sale_timesheet_project.field_sale_order__project_id
 msgid "Select a non billable project on which tasks can be created."
 msgstr ""
@@ -96,12 +126,19 @@ msgid "Show contracts related to this project"
 msgstr ""
 
 #. module: sale_timesheet_project
+#: model:ir.model,name:sale_timesheet_project.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: sale_timesheet_project
 #: model_terms:ir.ui.view,arch_db:sale_timesheet_project.project_task_search
 msgid "To invoice"
 msgstr ""
 
 #. module: sale_timesheet_project
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_project_project__xid
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_project_task__xid
 #: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order__xid
+#: model:ir.model.fields,field_description:sale_timesheet_project.field_sale_order_line__xid
 msgid "XML-ID"
 msgstr ""
