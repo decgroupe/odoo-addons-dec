@@ -8,7 +8,7 @@ class Project(models.Model):
     _inherit = "project.project"
 
     contract_date_order = fields.Datetime(
-        string='Contract Confirmation Date',
+        string="Contract Confirmation Date",
         help="Date on which the contract was confirmed.",
         compute="_compute_contract_date_order",
         store=True,
@@ -19,8 +19,8 @@ class Project(models.Model):
         string="Contract",
     )
     contract_count = fields.Integer(
-        compute='_compute_contract_count',
-        string='Contract Count',
+        compute="_compute_contract_count",
+        string="Contract Count",
         default=0,
         store=False,
     )
@@ -39,6 +39,6 @@ class Project(models.Model):
                 rec.contract_date_order = False
 
     def action_view_contracts(self):
-        action = self.mapped('contract_ids').action_view()
-        action['context'] = {}
+        action = self.mapped("contract_ids").action_view()
+        action["context"] = {}
         return action

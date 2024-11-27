@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
                     "sale_order_id": self.id,
                     # sync dates
                     "date_start": rec.date_order.date(),
-                    "date": rec.expected_last_date.date(),
+                    "date": rec.expected_last_date and rec.expected_last_date.date(),
                 }
             )
 
@@ -65,10 +65,7 @@ class SaleOrder(models.Model):
         for rec in self:
             if not rec.project_id or self.env.context.get("override_project_id"):
                 project_data = rec._get_create_project_data()
-                domain = [
-                    ("name", "=", project_data["name"]),
-                    ("partner_id", "=", project_data["partner_id"]),
-                ]
+                domain = [("name", "=", project_data["name"])]
                 if not self.env.context.get("ignore_partner_id"):
                     domain += [("partner_id", "=", project_data["partner_id"])]
                 project_id = Project.with_context(
@@ -78,6 +75,9 @@ class SaleOrder(models.Model):
                     # Create project as SUPER_USER
                     project_id = Project.sudo().create(project_data)
                 rec.project_id = project_id
+                self.env.add_to_compute(project_id._fields["contract_ids"], project_id)
+                # rec.write({"project_id": project_id.id})
+                # project_id.recompute()
             # Assign same analytic account
             rec.analytic_account_id = rec.project_id.analytic_account_id
 
@@ -85,5 +85,6 @@ class SaleOrder(models.Model):
     def _compute_visible_project(self):
         super()._compute_visible_project()
         for order in self.filtered(lambda x: not x.visible_project):
+            # override builtin logic to always display existing projects
             if order.project_id:
                 order.visible_project = True
