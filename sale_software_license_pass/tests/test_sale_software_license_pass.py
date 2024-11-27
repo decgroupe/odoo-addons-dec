@@ -79,6 +79,7 @@ class TestSaleSoftwareLicensePass(TransactionCase):
         self.assertIn("Manual actions may be needed.", new_activity_ids.note)
         self.assertEqual(self.premiumpass_so_line1.qty_delivered, 3.0)
         pass_id.action_cancel()
+        self.assertEqual(pass_id.state, "cancel")
         self.assertEqual(self.premiumpass_so_line1.qty_delivered, 0.0)
 
     def test_04_unset_create_application_pass_from_product_form(self):

@@ -176,6 +176,8 @@ class SaleOrderLine(models.Model):
             ):
                 if pass_ids.ids:
                     line_id.qty_delivered = line_id.product_uom_qty
+                else:
+                    line_id.qty_delivered = 0
 
     @api.depends("product_id.service_tracking")
     def _compute_is_application_pass(self):
