@@ -100,8 +100,8 @@
                         />
                     </td>
                     <td>
-                        <a t-if="user_avatar.login">
-                            <t t-esc="user_avatar.login" />
+                        <a t-if="user_avatar.email">
+                            <t t-esc="user_avatar.email" />
                         </a>
                     </td>
                 </tr>
