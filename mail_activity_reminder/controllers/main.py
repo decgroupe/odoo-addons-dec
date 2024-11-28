@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2024
 
-from odoo import http
+from odoo import http, fields
 from odoo.exceptions import UserError
 from odoo.http import request
 from odoo.tools.translate import _
@@ -126,14 +126,18 @@ class MailActivityReminderController(http.Controller):
         auth="public",
         csrf=False,
     )
-    def activity_snooze(self, activity_id, value, unit, token=None, **kwargs):
+    def activity_snooze(
+        self, activity_id, value, unit, token=None, date=None, **kwargs
+    ):
         user_id = self._get_user_id(token)
         if user_id:
-            activity_id = self._get_activity_id(activity_id)
+            activity_id = self._get_activity_id(activity_id).with_user(user_id)
             if activity_id.exists():
+                previous_deadline = activity_id.date_deadline
                 activity_id.action_snooze(unit, value)
-                message = _("Activity's new deadline is %s") % format_date(
-                    user_id.env, activity_id.date_deadline
+                message = _("New deadline is %s (was %s)") % (
+                    format_date(user_id.env, activity_id.date_deadline),
+                    format_date(user_id.env, previous_deadline),
                 )
                 return self._render_activity_reminder_message_activity_update(
                     message,

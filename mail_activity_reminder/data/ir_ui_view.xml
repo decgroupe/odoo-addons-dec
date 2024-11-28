@@ -233,7 +233,7 @@
                         </span>
                         <div class="snooze-grid">
                             <a
-                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/week?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/week?token=#{token}&amp;date=#{ctx.get('fields').Date.to_string(activity.date_deadline)}"
                                 target="_blank"
                                 title="Snooze 1 week (7 days)"
                             >
@@ -247,7 +247,7 @@
                                 </div>
                             </a>
                             <a
-                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/month?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/month?token=#{token}&amp;date=#{ctx.get('fields').Date.to_string(activity.date_deadline)}"
                                 target="_blank"
                                 title="Snooze 1 month (±30 days)"
                             >
@@ -261,7 +261,7 @@
                                 </div>
                             </a>
                             <a
-                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/year?token=#{token}"
+                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/snooze/1/year?token=#{token}&amp;date=#{ctx.get('fields').Date.to_string(activity.date_deadline)}"
                                 target="_blank"
                                 title="Snooze 1 year (±365 days)"
                             >

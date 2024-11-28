@@ -71,6 +71,7 @@ class User(models.Model):
                     "token": user.activity_reminder_access_token,
                     "group_late_activity_ids": group_late_activity_ids,
                     "group_next_activity_ids": group_next_activity_ids,
+                    "fields": fields,
                 }
                 template_id.with_context(**ctx).send_mail(
                     self.id,

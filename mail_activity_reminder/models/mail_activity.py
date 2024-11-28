@@ -6,7 +6,7 @@ from datetime import date
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, models
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import format_date
 import lxml
@@ -17,7 +17,7 @@ _logger = logging.getLogger(__name__)
 class MailActivity(models.Model):
     _inherit = "mail.activity"
 
-    def action_snooze(self, unit, value):
+    def action_snooze(self, unit, value, from_date=None):
         self.ensure_one()
         today = date.today()
         if unit == "d" or unit == "day":
@@ -31,14 +31,19 @@ class MailActivity(models.Model):
         else:
             raise UserError(_("Invalid time unit code"))
         for rec in self:
-            previous_deadline = rec.date_deadline
-            if rec.date_deadline < today:
+            if from_date:
+                previous_deadline = fields.Date.to_date(from_date)
+            else:
+                previous_deadline = rec.date_deadline
+            if previous_deadline < today:
                 date_deadline = today + delta
             else:
-                date_deadline = rec.date_deadline + delta
+                date_deadline = previous_deadline + delta
 
-            notify_txt = _("Deadline extended to %s") % format_date(
-                self.env, previous_deadline
+            notify_txt = _("Deadline extended from %s to %s (by %s)") % (
+                format_date(self.env, previous_deadline),
+                format_date(self.env, date_deadline),
+                self.env.user.name,
             )
             notify_html = "<small><br /> - %s</small>" % (notify_txt)
             root = lxml.html.fromstring(rec.note)
