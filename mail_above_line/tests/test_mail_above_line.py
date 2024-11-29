@@ -2,7 +2,11 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
 from odoo.addons.mail.tests.common import MailCase
-from odoo.addons.mail_above_line.tests.common import MSG_REPLY, MAIL_EMPTY_BODY_TEMPLATE
+from odoo.addons.mail_above_line.tests.common import (
+    MSG_REPLY,
+    MSG_FORWARD,
+    MAIL_EMPTY_BODY_TEMPLATE,
+)
 from odoo.tests import tagged
 from odoo.tests.common import SavepointCase
 from odoo.tools import mute_logger
@@ -52,7 +56,7 @@ class TestMailAboveLine(SavepointCase, MailCase):
     @mute_logger("odoo.addons.mail.models.mail_thread")
     def test_01_incoming_reply(self):
         # replace Message-Id to ensure that odoo will route our incoming e-mail as a
-        # reply to the acitivty assigned notification
+        # reply to the activity assigned notification
         incoming_message = MSG_REPLY.replace(
             "<673696096375914.1713787777.469944715499878-openerp-message-notify@myhostname>",
             self.msg_activity_notification_id.message_id,
@@ -65,9 +69,26 @@ class TestMailAboveLine(SavepointCase, MailCase):
         self.assertNotIn("##- Please type your reply above this line -##", msg_id.body)
         self.assertIn("##- Content Removed -##", msg_id.body)
 
+    @mute_logger("odoo.addons.mail.models.mail_thread")
+    def test_02_forwarded_reply(self):
+        # replace Message-Id to ensure that odoo will route our incoming e-mail as a
+        # reply to the activity assigned notification
+        incoming_message = MSG_FORWARD.replace(
+            "<397355214398470.1732872371.046740531921387-openerp-16-mail.channel@myhostname>",
+            self.msg_activity_notification_id.message_id,
+        )
+        prev_msg_ids = self.partner_id.message_ids
+        record_id = self.env["mail.thread"].message_process(None, incoming_message)
+        msg_id = self.partner_id.message_ids - prev_msg_ids
+        self.assertEqual(1, len(msg_id))
+        self.assertEqual(self.partner_id.id, record_id)
+        # ensure tag line is still there
+        self.assertIn("##- Please type your reply above this line -##", msg_id.body)
+        # ensure content has not been replaced
+        self.assertNotIn("##- Content Removed -##", msg_id.body)
 
     @mute_logger("odoo.addons.mail.models.mail_thread")
-    def test_02_empty_body(self):
+    def test_03_empty_body(self):
         incoming_message = MAIL_EMPTY_BODY_TEMPLATE.format(
             subject="Reply To",
             email_from="xyz@widget.com",

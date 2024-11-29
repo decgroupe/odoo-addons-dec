@@ -3,7 +3,7 @@
 
 MSG_REPLY = """Return-Path: <xyz@yourcompany.com>
 Delivered-To: catchall@yourcompany.com
-Received: from mail.dec.sarl ([172.22.1.253])
+Received: from mail.yourcompany.com ([172.22.1.253])
 	by 61dce9569fa8 with LMTP
 	id iPF/ODBdJma9JAAADgVovQ
 	(envelope-from <xyz@yourcompany.com>)
@@ -297,6 +297,158 @@ style="text-decoration:none; color:rgba(0, 0, 0, 0.54)"
 </html>
 
 --------------bPDwBJk9DeCRDXFrVxq502a4--
+"""
+
+MSG_FORWARD = """Return-Path: <xyz@yourcompany.com>
+Delivered-To: catchall@yourcompany.com
+Received: from mail.yourcompany.com ([172.22.1.253])
+	by 190be7286e5c with LMTP
+	id UHcYDFzFSWc6GAEAP5HATA
+	(envelope-from <xyz@yourcompany.com>)
+	for <catchall@yourcompany.com>; Fri, 29 Nov 2024 14:45:00 +0100
+X-Original-To: catchall@yourcompany.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C2124BF7C2
+	for <catchall@yourcompany.com>; Fri, 29 Nov 2024 14:44:57 +0100 (CET)
+Content-Type: multipart/alternative;
+ boundary="------------BOpg2d3RRZpQH6NoJ3U2FrgT"
+Message-ID: <213bc5ba-e53d-4c4a-8b08-6b8c1efd67cb@yourcompany.com>
+Date: Fri, 29 Nov 2024 14:44:52 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Fwd: Customer support request
+References: <397355214398470.1732872371.046740531921387-openerp-16-mail.channel@myhostname>
+Content-Language: en-US
+To: catchall@yourcompany.com
+From: "Xan Yin Zu (myhostname)" <xyz@yourcompany.com>
+In-Reply-To: <397355214398470.1732872371.046740531921387-openerp-16-mail.channel@myhostname>
+X-Last-TLS-Session-Version: TLSv1.3
+
+This is a multi-part message in MIME format.
+--------------BOpg2d3RRZpQH6NoJ3U2FrgT
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Please, take a look on this customer message
+
+
+
+-------- Forwarded Message --------
+Subject: 	[RAD]
+Date: 	Fri, 29 Nov 2024 09:26:11 -0000
+From: 	Administrator <cto@yourcompany.com>
+Reply-To: 	ComRD <rad@yourcompany.com>, Administrator
+<cto@yourcompany.com>
+To: 	ComRD <rad@yourcompany.com>
+
+
+
+##- Please type your reply above this line -##
+
+
+	This is the original message
+
+
+
+______________________________
+#comrd <http://myhostname.yourcompany.com/groups/com-rd-16> |
+rad@yourcompany.com
+--------------BOpg2d3RRZpQH6NoJ3U2FrgT
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Please, take a look on this customer message<br>
+    </p>
+    <div class="moz-forward-container"><br>
+      <br>
+      -------- Forwarded Message --------
+      <table class="moz-email-headers-table" cellspacing="0"
+        cellpadding="0" border="0">
+        <tbody>
+          <tr>
+            <th valign="BASELINE" nowrap="nowrap" align="RIGHT">Subject:
+            </th>
+            <td>[RAD]</td>
+          </tr>
+          <tr>
+            <th valign="BASELINE" nowrap="nowrap" align="RIGHT">Date: </th>
+            <td>Fri, 29 Nov 2024 09:26:11 -0000</td>
+          </tr>
+          <tr>
+            <th valign="BASELINE" nowrap="nowrap" align="RIGHT">From: </th>
+            <td>Administrator <a class="moz-txt-link-rfc2396E" href="mailto:cto@yourcompany.com">&lt;cto@yourcompany.com&gt;</a></td>
+          </tr>
+          <tr>
+            <th valign="BASELINE" nowrap="nowrap" align="RIGHT">Reply-To:
+            </th>
+            <td>ComRD <a class="moz-txt-link-rfc2396E" href="mailto:rad@yourcompany.com">&lt;rad@yourcompany.com&gt;</a>,
+              Administrator <a class="moz-txt-link-rfc2396E" href="mailto:cto@yourcompany.com">&lt;cto@yourcompany.com&gt;</a></td>
+          </tr>
+          <tr>
+            <th valign="BASELINE" nowrap="nowrap" align="RIGHT">To: </th>
+            <td>ComRD <a class="moz-txt-link-rfc2396E" href="mailto:rad@yourcompany.com">&lt;rad@yourcompany.com&gt;</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <div id="reply_above_warning"
+style="font-family:Roboto-Regular, Helvetica, Arial, sans-serif; font-size:10px; text-align:center; color:rgba(0, 0, 0, 0.54)"
+        align="center">##- Please type your reply above this line -##</div>
+      <table id="table_root"
+        style="min-width:248px; margin:0; padding:0" width="100%"
+        lang="en" height="100%" cellspacing="0" cellpadding="0"
+        border="0">
+        <tbody>
+          <tr style="height:32px" height="32">
+            <td><br>
+            </td>
+          </tr>
+          <tr align="center">
+            <td>
+              <div>
+                <table class="table_content"
+style="padding-bottom:20px; max-width:516px; min-width:220px"
+                  cellspacing="0" cellpadding="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td style="width:8px" width="8"><br>
+                      </td>
+                      <td>This is the original message</td>
+                      <td style="width:8px" width="8"><br>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br>
+            </td>
+          </tr>
+          <tr style="height:32px" height="32">
+            <td><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      ______________________________<br>
+      <small> <a
+          href="http://myhostname.yourcompany.com/groups/com-rd-16"
+          moz-do-not-send="true">#com-rd</a> | <a
+          href="mailto:rad@yourcompany.com" moz-do-not-send="true"
+          class="moz-txt-link-freetext">rad@yourcompany.com</a> </small> <img
+src="http://myhostname.yourcompany.com/mail/tracking/open/db/160139/0ded1ca49c1c4078841febc47182ccab/blank.gif"
+        alt="" data-odoo-tracking-email="160139" moz-do-not-send="true">
+    </div>
+  </body>
+</html>
+
+--------------BOpg2d3RRZpQH6NoJ3U2FrgT--
 """
 
 

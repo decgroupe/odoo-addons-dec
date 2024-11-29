@@ -30,17 +30,33 @@ class MailThread(models.AbstractModel):
             return body
         REGEX_PATTERN = r"\#\#- .* -\#\#"
         PLACEHOLDER = lxml.html.fromstring("<i>##- %s -##</i>" % _("Content Removed"))
+        # pattern used to detect a forwarded message (GMail, Thunderbird)
+        FORWARDED_MESSAGE = r"--- Forwarded [Mm]essage ---"
         try:
             root = lxml.html.fromstring(body)
         except ValueError:
-            # In case the email client sent XHTML, fromstring will fail because 'Unicode strings
-            # with encoding declaration are not supported'.
+            # In case the email client sent XHTML, fromstring will fail because
+            # 'Unicode strings with encoding declaration are not supported'.
             root = lxml.html.fromstring(body.encode("utf-8"))
 
         to_replace = []
         for node in root.iter():
-            if node.text:
-                matches = re.search(REGEX_PATTERN, node.text)
+            # create a combination of node.text and node.tail otherwise we could miss
+            # data with standalone tags like `br`: <div>TEXT<br>TAIL</div>
+            node_text = node.text
+            if node.tail:
+                if node_text:
+                    node_text += node.tail
+                else:
+                    node_text = node.tail
+            node_text = node_text.replace("\n", "").strip()
+            if node_text:
+                # if this message appears to be forwarded then stop replacing
+                # message next content
+                matches = re.search(FORWARDED_MESSAGE, node_text)
+                if matches and matches.group(0):
+                    break
+                matches = re.search(REGEX_PATTERN, node_text)
                 if matches and matches.group(0):
                     # our text parent node is probably the blockquote
                     if node.getparent() is not None:
