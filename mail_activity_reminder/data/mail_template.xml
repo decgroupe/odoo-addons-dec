@@ -10,6 +10,7 @@
         <field name="subject">Activity Reminder</field>
         <field name="body_type">qweb</field>
         <field name="body_view_id" ref="view_email_template_activity_reminder" />
+        <field name="lang">${object.user_id.lang}</field>
     </record>
 
 </odoo>
