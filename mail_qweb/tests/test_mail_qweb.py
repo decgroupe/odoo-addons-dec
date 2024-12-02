@@ -148,3 +148,20 @@ class TestMailQweb(SavepointCase):
 
         finally:
             self.mail_unlink_enabled()
+
+    def test_03_empty_message(self):
+        try:
+            self.mail_unlink_disabled()
+            # create record and subscribe our user to all possible subtypes
+            obj_id = self.env["fake.model"].create({"name": "myrecord"})
+            all_subtype_ids = self.env["mail.message.subtype"].search([])
+            obj_id.message_subscribe(
+                [self.user.partner_id.id], subtype_ids=all_subtype_ids.ids
+            )
+            # empty messages should not raised any exceptions
+            self._message_post(obj_id, body=False)
+            self._message_post(obj_id, body="")
+            self._message_post(obj_id, body=" ")
+            self._message_post(obj_id, body=" \n\n ")
+        finally:
+            self.mail_unlink_enabled()
