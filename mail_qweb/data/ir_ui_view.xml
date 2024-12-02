@@ -243,7 +243,6 @@
                 color:rgba(0,0,0,0.87);
                 line-height:20px;
                 padding-top:20px;
-                text-align:center;
             }
             #content_message ul {
                 text-align:left;
@@ -307,7 +306,11 @@
                 color:rgba(0,0,0,0.64);
             }
         </style>
-        <div t-if="content_message" id="content_message">
+        <div
+            t-if="content_message"
+            id="content_message"
+            t-attf-style="text-align:#{content_message_align or 'center'};"
+        >
             <t t-raw="content_message" />
             <div id="content_message_action" t-if="content_message_action">
             <t t-raw="content_message_action" />

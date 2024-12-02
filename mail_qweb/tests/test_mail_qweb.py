@@ -31,9 +31,14 @@ class TestMailQweb(SavepointCase):
         cls.loader.backup_registry()
 
         # The fake class is imported here !! After the backup_registry
-        from .models import FakeModelWithoutName
+        from .models import FakeModel, FakeModelWithoutName
 
-        cls.loader.update_registry((FakeModelWithoutName,))
+        cls.loader.update_registry(
+            (
+                FakeModel,
+                FakeModelWithoutName,
+            )
+        )
         cls.Mail = cls.env["mail.mail"]
 
     @classmethod
@@ -79,7 +84,7 @@ class TestMailQweb(SavepointCase):
             # udpate trace of existing mail
             existing_mail_ids = self.Mail.search([])
             # post another message
-            obj_id.message_post(body="Hello world",record_name="Custom Name")
+            obj_id.message_post(body="Hello world", record_name="Custom Name")
             # get latest email
             mail_id = self.Mail.search([]) - existing_mail_ids
             self.assertEqual(len(mail_id), 1)
@@ -87,5 +92,59 @@ class TestMailQweb(SavepointCase):
                 mail_id.subject,
                 "Custom Name",
             )
+        finally:
+            self.mail_unlink_enabled()
+
+    def _message_post(self, record_id, body):
+        """Help to post a new message and get the corresponding email in return"""
+        # keep a trace of existing mail
+        existing_mail_ids = self.Mail.search([])
+        # post basic message
+        record_id.message_post(body=body)
+        # get latest email
+        mail_id = self.Mail.search([]) - existing_mail_ids
+        self.assertEqual(len(mail_id), 1)
+        return mail_id
+
+    def test_02_content_alignment(self):
+        try:
+            self.mail_unlink_disabled()
+            # create record and subscribe our user to all possible subtypes
+            obj_id = self.env["fake.model"].create({"name": "myrecord"})
+            all_subtype_ids = self.env["mail.message.subtype"].search([])
+            obj_id.message_subscribe(
+                [self.user.partner_id.id], subtype_ids=all_subtype_ids.ids
+            )
+            # basic message
+            mail_id = self._message_post(
+                obj_id, body="Please take a look on this simple message"
+            )
+            # big message with more than 128 characters
+            mail_id = self._message_post(
+                obj_id,
+                body="Please take a look on this big message with a lot of characters."
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in "
+                "metus nec erat auctor volutpat eget id nibh. Etiam sodales justo nec "
+                "orci euismod, eu rutrum mauris vulputate. Curabitur iaculis purus "
+                "lectus, ut tincidunt odio euismod sed. Vestibulum vel nulla eget odio "
+                "aliquet congue. Vestibulum pharetra a nisl a varius.",
+            )
+            # basic message with basic text format
+            mail_id = self._message_post(
+                obj_id,
+                body="Please take a <b>look</b> on this <i>simple message</i>"
+                "<br /> Some text is in bold",
+            )
+            # basic message with advanced html text formatting
+            mail_id = self._message_post(
+                obj_id,
+                body="Please take a <b>look</b> on this <i>simple message</i>"
+                "<br /> Some text can be in: <br />"
+                "<ul>"
+                "<li>bold</li>"
+                "<li>italic</li>"
+                "</ul>",
+            )
+
         finally:
             self.mail_unlink_enabled()

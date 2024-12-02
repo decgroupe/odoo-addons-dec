@@ -2,8 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2024
 
 import logging
-
-
+import lxml
 from odoo import api, models
 
 _logger = logging.getLogger(__name__)
@@ -94,7 +93,30 @@ class MailThread(models.AbstractModel):
         if "object" not in res:
             res["object"] = res["record"]
         res["recipients_groups_data"] = msg_vals["recipients_groups_data"]
+        res["content_message_align"] = self._get_notify_content_message_align(message)
         return res
+
+    def _get_notify_content_message_align(self, message):
+        """Detect if center alignment should be enabled (based of length of text,
+        format complexity, etc.)"""
+        align = "left"
+        root = lxml.html.fromstring(message.body)
+        for node in root.iter():
+            rawtext_length = len(node.text_content())
+            subtag_count = 0
+            for subnodes in node.getchildren():
+                if subnodes.tag not in ("b", "i", "u", "font", "span", "br"):
+                    subtag_count += 1
+            # basic message, without specific formatting
+            if subtag_count == 0:
+                # short message
+                if rawtext_length <= 128:
+                    align = "center"
+                else:
+                    align = "justify"
+            # don't go deeper
+            break
+        return align
 
     def message_notify(
         self,
