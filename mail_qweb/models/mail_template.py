@@ -8,6 +8,7 @@ from odoo.addons.mail.models.mail_render_mixin import format_date
 
 _logger = logging.getLogger(__name__)
 
+
 def remaining_days(record, date, date_format=False, lang_code=False):
     now = fields.Date.context_today(record)
     # now = fields.Date.today()
@@ -20,13 +21,14 @@ def remaining_days(record, date, date_format=False, lang_code=False):
         if diff.days == -1:
             value = _("Yesterday")
         else:
-            value =_('%d days ago') % (-diff.days)
+            value = _("%d days ago") % (-diff.days)
     else:
-        if diff.days == -1:
+        if diff.days == 1:
             value = _("Tomorrow")
         else:
-            value =_('In %d days') % (diff.days)
+            value = _("In %d days") % (diff.days)
     return value
+
 
 class MailTemplate(models.Model):
     _inherit = "mail.template"

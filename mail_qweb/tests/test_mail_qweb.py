@@ -3,10 +3,14 @@
 
 import logging
 
+from freezegun import freeze_time
 from odoo_test_helper import FakeModelLoader
 
+from odoo import fields
 from odoo.tests import new_test_user
 from odoo.tests.common import SavepointCase
+
+from ..models.mail_template import remaining_days
 
 _test_logger = logging.getLogger("odoo.tests")
 
@@ -165,3 +169,41 @@ class TestMailQweb(SavepointCase):
             self._message_post(obj_id, body=" \n\n ")
         finally:
             self.mail_unlink_enabled()
+
+    @freeze_time("2024-12-02 11:00:00")
+    def test_04_remaining_days(self):
+        """Use Odoo standard for date formatting: '%Y-%m-%d'"""
+        obj_id = self.env["fake.model"].create({"name": "myrecord"})
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2024-08-24")), "08/24/2024"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2024-08-25")), "99 days ago"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2024-09-01")), "92 days ago"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2024-12-01")), "Yesterday"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2024-12-02")), "Today"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2024-12-03")), "Tomorrow"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2024-12-04")), "In 2 days"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2025-02-28")), "In 88 days"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2025-02-28")), "In 88 days"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2025-03-11")), "In 99 days"
+        )
+        self.assertEqual(
+            remaining_days(obj_id, fields.Date.to_date("2025-03-12")), "03/12/2025"
+        )
