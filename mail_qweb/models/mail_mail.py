@@ -22,7 +22,14 @@ class MailMail(models.AbstractModel):
         return rec
 
     def _premailer_apply_transform(self, html):
-        if not html or html and not html.strip():
+        no_inline_css = self.env.context.get("no_inline_css", False)
+        if not no_inline_css and "mail_template_id" in self.env.context:
+            mail_template_id = self.env["mail.template"].browse(
+                self.env.context.get("mail_template_id")
+            )
+            if mail_template_id.exists():
+                no_inline_css = mail_template_id.no_inline_css
+        if no_inline_css or not html or html and not html.strip():
             return html
         premailer = Premailer(html=html, **self._get_premailer_options())
         return premailer.transform()

@@ -14,6 +14,13 @@ from ..models.mail_template import remaining_days
 
 _test_logger = logging.getLogger("odoo.tests")
 
+TOMATO_TEMPLATE = """<?xml version="1.0"?>
+<t t-name="mail_qweb.view_email_template_test">
+    <style>.tomato {background-color: Tomato;}</style>
+    <div class="tomato"><t t-esc="subject"/></div>
+    <div><t t-raw="ctx.get('email_message')"/></div>
+</t>"""
+
 
 class TestMailQweb(SavepointCase):
 
@@ -63,6 +70,29 @@ class TestMailQweb(SavepointCase):
             login="myuser@mycompany.com",
             groups="base.group_user",
             context=ctx,
+        )
+        # mail qweb template and its view
+        self.mail_view_id = self.env["ir.ui.view"].create(
+            {
+                "name": "mail_qweb.view_email_template_test",
+                "type": "qweb",
+                "arch_base": '<?xml version="1.0"?>'
+                '<t t-name="mail_qweb.view_email_template_test">'
+                "</t>",
+            }
+        )
+        self.mail_template_id = self.env["mail.template"].create(
+            {
+                "name": "Custom template",
+                "model_id": self.env.ref("base.model_res_users").id,
+                "email_from": "${object.user_id.email_formatted |safe}",
+                "email_to": "${object.user_id.email}",
+                "auto_delete": True,
+                "subject": "Template Test",
+                "body_type": "qweb",
+                "body_view_id": self.mail_view_id.id,
+                "lang": "${object.user_id.lang}",
+            }
         )
 
     def test_01_model_without_name(self):
@@ -207,3 +237,85 @@ class TestMailQweb(SavepointCase):
         self.assertEqual(
             remaining_days(obj_id, fields.Date.to_date("2025-03-12")), "03/12/2025"
         )
+
+    def test_05_send_qweb_mail_template_with_inline_css(self):
+        ctx = {"email_message": "This is the message"}
+        try:
+            self.mail_unlink_disabled()
+            self.mail_view_id.arch_base = TOMATO_TEMPLATE
+            mail_id = self.mail_template_id.with_context(**ctx).send_mail(
+                self.user.id,
+                force_send=True,
+                email_values={"email_to": self.user.email},
+            )
+            mail_id = self.env["mail.mail"].browse(mail_id)
+            clean_body = " ".join(mail_id.body_html.split())
+            self.assertEqual(
+                clean_body,
+                "<html> <head></head> <body> "
+                '<div class="tomato" style="background-color:Tomato" bgcolor="Tomato">'
+                "Template Test</div> "
+                "<div>This is the message</div> "
+                "</body> </html>",
+            )
+        finally:
+            self.mail_unlink_enabled()
+
+    def test_06_send_qweb_mail_template_without_inline_css(self):
+
+        def mail_it():
+            mail_id = self.mail_template_id.with_context(**ctx).send_mail(
+                self.user.id,
+                force_send=True,
+                email_values={"email_to": self.user.email},
+            )
+            mail_id = self.env["mail.mail"].browse(mail_id)
+            # remove extra spaces and new line characters
+            clean_body = " ".join(mail_id.body_html.split())
+            self.assertEqual(
+                clean_body,
+                "<style>.tomato {background-color: Tomato;}</style> "
+                '<div class="tomato">Template Test</div> '
+                "<div>This is the message</div>",
+            )
+
+        ctx = {"email_message": "This is the message"}
+        try:
+            self.mail_unlink_disabled()
+            self.mail_view_id.arch_base = TOMATO_TEMPLATE
+            self.mail_template_id.no_inline_css = True
+            mail_it()
+            # re-enable inline css but user context to disable it
+            self.mail_template_id.no_inline_css = False
+            ctx["no_inline_css"] = True
+            mail_it()
+        finally:
+            self.mail_unlink_enabled()
+
+    def test_07_send_qweb_mail_template_with_local_links(self):
+        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        self.assertTrue(base_url.startswith("http"))
+        ctx = {
+            "email_message": '<a href="/downloads/package.zip">Click me to download this archive</a>'
+        }
+        try:
+            self.mail_unlink_disabled()
+            self.mail_view_id.arch_base = TOMATO_TEMPLATE
+            mail_id = self.mail_template_id.with_context(**ctx).send_mail(
+                self.user.id,
+                force_send=True,
+                email_values={"email_to": self.user.email},
+            )
+            mail_id = self.env["mail.mail"].browse(mail_id)
+            clean_body = " ".join(mail_id.body_html.split())
+            self.assertEqual(
+                clean_body,
+                "<html> <head></head> <body> "
+                '<div class="tomato" style="background-color:Tomato" bgcolor="Tomato">'
+                "Template Test</div> "
+                '<div><a href="%s/downloads/package.zip">'
+                "Click me to download this archive</a></div> "
+                "</body> </html>" % (base_url),
+            )
+        finally:
+            self.mail_unlink_enabled()

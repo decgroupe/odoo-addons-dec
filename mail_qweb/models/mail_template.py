@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _,fields, models, tools
+from odoo import _, fields, models, tools
 from odoo.addons.mail.models.mail_render_mixin import format_date
 
 _logger = logging.getLogger(__name__)
@@ -33,6 +33,19 @@ def remaining_days(record, date, date_format=False, lang_code=False):
 class MailTemplate(models.Model):
     _inherit = "mail.template"
 
+    no_inline_css = fields.Boolean(
+        string="No inline CSS",
+        help="If checked, all styles will be kept as-is and no premailer will "
+        "be processed",
+    )
+
+    def _premailer_apply_transform(self, html):
+        no_inline_css = self.env.context.get("no_inline_css", self.no_inline_css)
+        if no_inline_css:
+            return html
+        else:
+            return super()._premailer_apply_transform(html)
+
     def _render_qweb_body_eval_context(self, record):
         render_context = super()._render_qweb_body_eval_context(record)
         render_context.update(
@@ -40,7 +53,9 @@ class MailTemplate(models.Model):
                 # we also need the mail subject in our custom templates
                 "subject": self._render_field("subject", record.ids)[record.id],
                 "is_html_empty": tools.is_html_empty,
-                "remaining_days": lambda date, date_format=False, lang_code=False: remaining_days(self, date, date_format, lang_code) ,
+                "remaining_days": lambda date, date_format=False, lang_code=False: remaining_days(
+                    self, date, date_format, lang_code
+                ),
                 "access_link": hasattr(record, "_notify_get_action_link")
                 and record._notify_get_action_link("view")
                 or False,
@@ -87,9 +102,14 @@ class MailTemplate(models.Model):
         """When `notif_layout` is `False`, no `_render_template_postprocess` is
         called. That's why we need to override `generate_email`
         """
+        self.ensure_one()
         return super(
             MailTemplate,
-            self.with_context(force_replace_local_links=not notif_layout),
+            self.with_context(
+                # keep trace of the template
+                mail_template_id=self.id,
+                force_replace_local_links=not notif_layout,
+            ),
         ).send_mail(res_id, force_send, raise_exception, email_values, notif_layout)
 
     def generate_email(self, res_ids, fields=None):
