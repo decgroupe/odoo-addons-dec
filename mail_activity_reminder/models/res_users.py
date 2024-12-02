@@ -42,7 +42,7 @@ class User(models.Model):
     def _get_group_activity_ids(self, domain, order):
         self.ensure_one()
         activity_ids = self.env["mail.activity"].search(
-            domain=self._get_reminder_base_domain() + domain, order=order
+            args=self._get_reminder_base_domain() + domain, order=order
         )
         group_activity_ids = {
             activity_type_id: []
