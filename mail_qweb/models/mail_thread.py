@@ -100,22 +100,25 @@ class MailThread(models.AbstractModel):
         """Detect if center alignment should be enabled (based of length of text,
         format complexity, etc.)"""
         align = "left"
-        root = lxml.html.fromstring(message.body)
-        for node in root.iter():
-            rawtext_length = len(node.text_content())
-            subtag_count = 0
-            for subnodes in node.getchildren():
-                if subnodes.tag not in ("b", "i", "u", "font", "span", "br"):
-                    subtag_count += 1
-            # basic message, without specific formatting
-            if subtag_count == 0:
-                # short message
-                if rawtext_length <= 128:
-                    align = "center"
-                else:
-                    align = "justify"
-            # don't go deeper
-            break
+        html = message.body
+        # ensure html is not empty
+        if html and html.strip():
+            root = lxml.html.fromstring(html)
+            for node in root.iter():
+                rawtext_length = len(node.text_content())
+                subtag_count = 0
+                for subnodes in node.getchildren():
+                    if subnodes.tag not in ("b", "i", "u", "font", "span", "br"):
+                        subtag_count += 1
+                # basic message, without specific formatting
+                if subtag_count == 0:
+                    # short message
+                    if rawtext_length <= 128:
+                        align = "center"
+                    else:
+                        align = "justify"
+                # don't go deeper
+                break
         return align
 
     def message_notify(
