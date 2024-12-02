@@ -49,7 +49,8 @@ class MailThread(models.AbstractModel):
                     node_text += node.tail
                 else:
                     node_text = node.tail
-            node_text = node_text.replace("\n", "").strip()
+            if node_text:
+                node_text = node_text.replace("\n", "").strip()
             if node_text:
                 # if this message appears to be forwarded then stop replacing
                 # message next content
