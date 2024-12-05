@@ -87,9 +87,7 @@
                 min-width: 80px;
                 text-align: right;
             }
-            .snooze-grid {
-                display: grid;
-            }
+            .snooze-grid { }
             .snooze-grid a {
                 text-decoration:none;
                 color: white;
@@ -124,17 +122,16 @@
             .action a {
                 color: white;
             }
-            .action-grid {
-                display: grid;
-                max-width: 250px;
+            .action-table {
+                width: 250px;
                 margin-top: 5px;
             }
-            .action-grid .action-close {
-                grid-column: 1/1;
+            .action-table .action-close {
+                display: block;
                 background-color: LightSeaGreen;
             }
-            .action-grid .action-cancel {
-                grid-column: 2/2;
+            .action-table .action-cancel {
+                display: block;
                 background-color: Grey;
             }
         </style>
@@ -200,32 +197,38 @@
                                 class="td_tga_group_content_note"
                             />
                         </div>
-                        <div class="action-grid">
-                            <a
-                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/close?token=#{token}"
-                                target="_blank"
-                                class="action action-close"
-                            >
-                                <img
-                                    t-attf-src="/mail_activity_reminder/static/img/actions/fa-check.png"
-                                    width="12"
-                                    height="12"
-                                    style="vertical-align: sub;"
-                                /> Close
-                            </a>
-                            <a
-                                t-attf-href="/api/reminder/v1/activity/#{activity.id}/cancel?token=#{token}"
-                                target="_blank"
-                                class="action action-cancel"
-                            >
-                                <img
-                                    t-attf-src="/mail_activity_reminder/static/img/actions/fa-times.png"
-                                    width="12"
-                                    height="12"
-                                    style="vertical-align: sub;"
-                                /> Cancel
-                            </a>
-                        </div>
+                        <table class="action-table">
+                            <tr>
+                                <td>
+                                    <a
+                                        t-attf-href="/api/reminder/v1/activity/#{activity.id}/close?token=#{token}"
+                                        target="_blank"
+                                        class="action action-close"
+                                    >
+                                        <img
+                                            t-attf-src="/mail_activity_reminder/static/img/actions/fa-check.png"
+                                            width="12"
+                                            height="12"
+                                            style="vertical-align: sub;"
+                                        /> Close
+                                    </a>
+                                </td>
+                                <td>
+                                    <a
+                                        t-attf-href="/api/reminder/v1/activity/#{activity.id}/cancel?token=#{token}"
+                                        target="_blank"
+                                        class="action action-cancel"
+                                    >
+                                        <img
+                                            t-attf-src="/mail_activity_reminder/static/img/actions/fa-times.png"
+                                            width="12"
+                                            height="12"
+                                            style="vertical-align: sub;"
+                                        /> Cancel
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                     <td class="td_tga_group_deadline">
                         <span t-att-title="format_date(activity.date_deadline)">
