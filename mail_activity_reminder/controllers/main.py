@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 from odoo.http import request
 from odoo.tools.translate import _
 from odoo.tools.misc import format_date
+from odoo.addons.base_controller_user.controllers.main import HttpControllerUser
 
 SUCCESS = 0
 ERROR = 1
@@ -15,7 +16,7 @@ URL_VAR_ACTIVITY = "/activity/<int:activity_id>"
 URL_VAR_SNOOZE = "/snooze/<int:value>/<string:unit>"
 
 
-class MailActivityReminderController(http.Controller):
+class MailActivityReminderController(HttpControllerUser):
     """Http Controller for Mail Activity Reminder"""
 
     #######################################################################
@@ -25,6 +26,11 @@ class MailActivityReminderController(http.Controller):
             ("activity_reminder_access_token", "=", token),
         ]
         user_id = request.env["res.users"].sudo().search(domain, limit=1)
+        if user_id:
+            # fix translation issues
+            user_id = self._update_user_with_context(
+                user_id, override_request_user=True
+            )
         return user_id
 
     def _get_activity_id(self, activity_id):

@@ -6,6 +6,7 @@
     "website": "https://github.com/OCA/social",
     "license": "AGPL-3",
     "depends": [
+        "base_controller_user",
         "mail_activity_board",
         "mail_qweb",
         "mail_activity_team",
