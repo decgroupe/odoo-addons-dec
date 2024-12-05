@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 09:30+0000\n"
-"PO-Revision-Date: 2024-07-15 09:30+0000\n"
+"POT-Creation-Date: 2024-12-05 10:23+0000\n"
+"PO-Revision-Date: 2024-12-05 10:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,21 @@ msgid "ID"
 msgstr ""
 
 #. module: mail_qweb
+#: model:ir.model.fields,help:mail_qweb.field_ir_qweb__xid
+#: model:ir.model.fields,help:mail_qweb.field_ir_ui_view__xid
+#: model:ir.model.fields,help:mail_qweb.field_mail_mail__xid
+#: model:ir.model.fields,help:mail_qweb.field_mail_template__xid
+#: model:ir.model.fields,help:mail_qweb.field_mail_thread__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: mail_qweb
+#: model:ir.model.fields,help:mail_qweb.field_mail_template__no_inline_css
+msgid ""
+"If checked, all styles will be kept as-is and no premailer will be processed"
+msgstr ""
+
+#. module: mail_qweb
 #: code:addons/mail_qweb/models/mail_template.py:0
 #, python-format
 msgid "In %d days"
@@ -114,6 +129,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:mail_qweb.field_mail_template____last_update
 #: model:ir.model.fields,field_description:mail_qweb.field_mail_thread____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: mail_qweb
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_template__no_inline_css
+msgid "No inline CSS"
 msgstr ""
 
 #. module: mail_qweb
@@ -189,6 +209,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_assigned
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_user_assigned
 msgid "View"
+msgstr ""
+
+#. module: mail_qweb
+#: model:ir.model.fields,field_description:mail_qweb.field_ir_qweb__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_ir_ui_view__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_mail__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_template__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_thread__xid
+msgid "XML-ID"
 msgstr ""
 
 #. module: mail_qweb

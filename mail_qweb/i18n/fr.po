@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 09:30+0000\n"
-"PO-Revision-Date: 2024-07-15 11:31+0200\n"
+"POT-Creation-Date: 2024-12-05 10:23+0000\n"
+"PO-Revision-Date: 2024-12-05 11:25+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -101,6 +101,22 @@ msgid "ID"
 msgstr "ID"
 
 #. module: mail_qweb
+#: model:ir.model.fields,help:mail_qweb.field_ir_qweb__xid
+#: model:ir.model.fields,help:mail_qweb.field_ir_ui_view__xid
+#: model:ir.model.fields,help:mail_qweb.field_mail_mail__xid
+#: model:ir.model.fields,help:mail_qweb.field_mail_template__xid
+#: model:ir.model.fields,help:mail_qweb.field_mail_thread__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: mail_qweb
+#: model:ir.model.fields,help:mail_qweb.field_mail_template__no_inline_css
+msgid "If checked, all styles will be kept as-is and no premailer will be processed"
+msgstr ""
+"Si cette case est cochée, tous les styles seront conservés tels quels et aucun process premailer ne "
+"sera exécuté"
+
+#. module: mail_qweb
 #: code:addons/mail_qweb/models/mail_template.py:0
 #, python-format
 msgid "In %d days"
@@ -119,6 +135,11 @@ msgstr "Utilisateurs internes"
 #: model:ir.model.fields,field_description:mail_qweb.field_mail_thread____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
+
+#. module: mail_qweb
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_template__no_inline_css
+msgid "No inline CSS"
+msgstr "Pas de CSS intégré"
 
 #. module: mail_qweb
 #: model_terms:ir.ui.view,arch_db:mail_qweb.message_activity_assigned
@@ -196,6 +217,15 @@ msgid "View"
 msgstr "Voir"
 
 #. module: mail_qweb
+#: model:ir.model.fields,field_description:mail_qweb.field_ir_qweb__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_ir_ui_view__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_mail__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_template__xid
+#: model:ir.model.fields,field_description:mail_qweb.field_mail_thread__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: mail_qweb
 #: code:addons/mail_qweb/models/mail_template.py:0
 #, python-format
 msgid "Yesterday"
@@ -241,9 +271,3 @@ msgstr "Notification"
 #: model_terms:ir.ui.view,arch_db:mail_qweb.view_email_template_notification
 msgid "{{env.user.company_id.name}}"
 msgstr ""
-
-#~ msgid "ID of the record defined in xml file"
-#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#~ msgid "XML-ID"
-#~ msgstr "XML-ID"
