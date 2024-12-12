@@ -106,7 +106,16 @@ class MailThread(models.AbstractModel):
                 rawtext_length = len(node.text_content())
                 subtag_count = 0
                 for subnodes in node.getchildren():
-                    if subnodes.tag not in ("b", "i", "u", "font", "span", "br"):
+                    if subnodes.tag not in (
+                        "b",
+                        "i",
+                        "u",
+                        "font",
+                        "span",
+                        "br",
+                        "a",
+                        "small",
+                    ):
                         subtag_count += 1
                 # basic message, without specific formatting
                 if subtag_count == 0:
