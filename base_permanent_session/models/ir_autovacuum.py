@@ -22,8 +22,9 @@ class AutoVacuum(models.AbstractModel):
                 continue
             if session.session_token and session.permanent:
                 session_filename = store.get_session_filename(sid)
+                store.save(session)
                 # use touch instead of `store.save(session)` to speed-up process
-                Path(session_filename).touch()
+                # Path(session_filename).touch()
                 _logger.debug(
                     "Session %s updated (%s)",
                     session_filename,

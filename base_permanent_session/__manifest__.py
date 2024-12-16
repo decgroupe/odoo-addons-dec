@@ -6,6 +6,7 @@
     "depends": [
         "base",
         "web",
+        "base_deterministic_session_gc_extended", # to ensure proper GC
     ],
     "data": [
         "data/ir_cron.xml",
