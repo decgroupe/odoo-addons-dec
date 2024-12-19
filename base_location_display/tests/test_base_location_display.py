@@ -21,12 +21,12 @@ class TestBaseLocationDisplay(TransactionCase):
         self.state = self.env["res.country.state"].create(
             {
                 "name": "Pays de la Loire",
-                "code": "52",
+                "code": "52dc2b4632",
                 "country_id": self.country.id,
             }
         )
 
-    def test_01_(self):
+    def test_01_name_format(self):
         self.assertEqual(
             self.city.zip_ids[0].display_name,
             "53000 Laval, France",
@@ -42,4 +42,3 @@ class TestBaseLocationDisplay(TransactionCase):
             self.city.zip_ids[0].display_name,
             "53000 Laval, France",
         )
-        print(1)
