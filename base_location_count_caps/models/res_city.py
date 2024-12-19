@@ -26,7 +26,9 @@ class ResCity(models.Model):
     @api.depends("name")
     def _compute_caps(self):
         for rec in self:
-            alpha_count = sum(1 for c in rec.name if c.upper() in ascii_uppercase)
+            # for c in rec.name:
+            #     print(c, c.isalpha(), c.isupper())
+            alpha_count = sum(1 for c in rec.name if c.isalpha())
             rec.caps_count = sum(1 for c in rec.name if c.isupper())
             rec.caps_ratio = rec.caps_count / alpha_count
 
@@ -47,6 +49,8 @@ class ResCity(models.Model):
             orderby=orderby,
             lazy=lazy,
         )
+        # drop all results where count < 1 because the purpose of the `normalized_name`
+        # field is to identify duplicates
         if "normalized_name" in groupby:
             filtered_res = []
             for value in res:
