@@ -5,8 +5,9 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "base_location",
-        "base_country_no_state",
     ],
-    "data": [],
+    "data": [
+        "views/res_country.xml",
+    ],
     "installable": True,
 }

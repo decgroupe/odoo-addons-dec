@@ -7,4 +7,7 @@ from odoo import fields, models
 class ResCountry(models.Model):
     _inherit = "res.country"
 
-    hide_state = fields.Boolean("Hide State")
+    hide_state = fields.Boolean(
+        string="Hide State",
+        help="If checked, states will not be displayed on city zips",
+    )
