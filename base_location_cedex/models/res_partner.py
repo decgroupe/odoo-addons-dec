@@ -7,10 +7,10 @@ from odoo import _, api, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    @api.onchange("zip_id")
-    def _onchange_zip_id(self):
-        if hasattr(super(), "_onchange_zip_id"):
-            super()._onchange_zip_id()
-        if self.zip_id and self.zip_id.cedex:
-            vals = {"city": self.zip_id.format_city_name_with_cedex()}
-            self.update(vals)
+    @api.depends("zip_id")
+    def _compute_city(self):
+        if hasattr(super(), "_compute_city"):
+            super()._compute_city()  # pragma: no cover
+        for record in self:
+            if record.zip_id and record.zip_id.cedex:
+                record.city = self.zip_id.format_city_name_with_cedex()

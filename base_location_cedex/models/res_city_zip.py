@@ -5,8 +5,8 @@ from odoo import _, fields, models
 
 
 class ResCityZip(models.Model):
-    _inherit = "res.city.zip"
 
+    _inherit = "res.city.zip"
     cedex = fields.Char()
 
     _sql_constraints = [
