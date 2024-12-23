@@ -14,9 +14,9 @@
                     <field
                         name="migration_ids"
                         context="{
-                        'migration_ids':migration_ids, 
-                        'active_id':active_id, 
-                        'active_model':active_model,
+                            'migration_ids':migration_ids,
+                            'active_id':active_id,
+                            'active_model':active_model,
                         }"
                     >
                         <tree editable="bottom" string="Migrations">
@@ -28,58 +28,6 @@
                         </tree>
                     </field>
                 </page>
-            </xpath>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="ir_module_module_tree_view">
-        <field name="name">ir.module.module.tree@base_module_migration_tracking</field>
-        <field name="model">ir.module.module</field>
-        <field name="inherit_id" ref="base.module_tree" />
-        <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='name']" position="after">
-                <field
-                    name="mig_12_status"
-                    options='{"bg_color": "mig_12_color;"}'
-                    class="d_mig_status"
-                />
-                <field name="mig_12_color" invisible="1" />
-                <field
-                    name="mig_13_status"
-                    options='{"bg_color": "mig_13_color;"}'
-                    class="d_mig_status"
-                />
-                <field name="mig_13_color" invisible="1" />
-                <field
-                    name="mig_14_status"
-                    options='{"bg_color": "mig_14_color;"}'
-                    class="d_mig_status"
-                />
-                <field name="mig_14_color" invisible="1" />
-                <field
-                    name="mig_15_status"
-                    options='{"bg_color": "mig_15_color;"}'
-                    class="d_mig_status"
-                />
-                <field name="mig_15_color" invisible="1" />
-                <field
-                    name="mig_16_status"
-                    options='{"bg_color": "mig_16_color;"}'
-                    class="d_mig_status"
-                />
-                <field name="mig_16_color" invisible="1" />
-                <field
-                    name="mig_17_status"
-                    options='{"bg_color": "mig_17_color;"}'
-                    class="d_mig_status"
-                />
-                <field name="mig_17_color" invisible="1" />
-                <field
-                    name="mig_18_status"
-                    options='{"bg_color": "mig_18_color;"}'
-                    class="d_mig_status"
-                />
-                <field name="mig_18_color" invisible="1" />
             </xpath>
         </field>
     </record>
