@@ -229,13 +229,13 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         self.assertEqual(len(license_id.hardware_ids), 0)
 
     def test_04_mypasses(self):
+        pass_basic1 = self.env.ref("software_license_pass.pass_basic1")
         data = [
             {
                 "owner": "🏢",
-                "ref": "AP/240100",
+                "ref": pass_basic1.name,
                 "has_serial_text": True,
-                "href": "/my/pass/%d"
-                % self.env.ref("software_license_pass.pass_basic1").id,
+                "href": "/my/pass/%d" % pass_basic1.id,
                 "pack": "Basic",
                 "has_expiration_date": False,
             },
