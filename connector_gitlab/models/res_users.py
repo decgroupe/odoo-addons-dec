@@ -51,6 +51,7 @@ class ResUsers(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if "password" in vals:
-            self._create_or_update_gitlab_user(vals.get("password"))
+        if self.env["gitlab.service"].connector_enabled():
+            if "password" in vals:
+                self._create_or_update_gitlab_user(vals.get("password"))
         return res

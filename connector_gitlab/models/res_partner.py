@@ -18,14 +18,15 @@ class ResPartner(models.Model):
             for rec in self:
                 previous_emails[rec.id] = rec.email
         res = super().write(vals)
-        if "email" in vals or "name" in vals:
-            for rec in self.filtered("user_ids"):
-                user_id = rec.user_ids
-                user_id.ensure_one()
-                previous_email = previous_emails.get(rec.id, False)
-                if previous_email:
-                    user_id = user_id.with_context(search_email=previous_email)
-                user_id._create_or_update_gitlab_user()
+        if self.env["gitlab.service"].connector_enabled():
+            if "email" in vals or "name" in vals:
+                for rec in self.filtered("user_ids"):
+                    user_id = rec.user_ids
+                    user_id.ensure_one()
+                    previous_email = previous_emails.get(rec.id, False)
+                    if previous_email:
+                        user_id = user_id.with_context(search_email=previous_email)
+                    user_id._create_or_update_gitlab_user()
         return res
 
     def _signup_done(self):

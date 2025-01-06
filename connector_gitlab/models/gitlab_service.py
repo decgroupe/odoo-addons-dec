@@ -10,6 +10,7 @@ from lxml import html
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import str2bool
 
 _logger = logging.getLogger(__name__)
 
@@ -22,6 +23,11 @@ PROVIDER = "odoo"
 class GitlabService(models.AbstractModel):
     _name = "gitlab.service"
     _description = "GitLab Service"
+
+    def connector_enabled(self):
+        ICP = self.env["ir.config_parameter"].sudo()
+        value = str2bool(ICP.get_param("gitlab.connector_enabled"))
+        return value
 
     def _get_token_preuri(self):
         ICP = self.env["ir.config_parameter"].sudo()
