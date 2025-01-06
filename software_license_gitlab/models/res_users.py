@@ -11,13 +11,6 @@ _logger = logging.getLogger(__name__)
 class ResUsers(models.Model):
     _inherit = "res.users"
 
-    user_gitlab_resource_id = fields.Many2one(
-        related="partner_id.user_gitlab_resource_id",
-        string="GitLab User",
-        inherited=True,
-        readonly=False,
-    )
-
     def _get_gitlab_project_uids(self):
         self.ensure_one()
         SoftwareLicense = self.env["software.license"]
@@ -85,9 +78,5 @@ class ResUsers(models.Model):
         user_uid = super()._create_or_update_gitlab_user(password)
         if user_uid:
             self._set_access_to_gitlab_projects()
+        return user_uid
 
-    def write(self, vals):
-        res = super().write(vals)
-        if "password" in vals:
-            self._create_or_update_gitlab_user(vals.get("password"))
-        return res
