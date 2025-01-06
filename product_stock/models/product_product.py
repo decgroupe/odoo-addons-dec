@@ -27,6 +27,22 @@ class Product(models.Model):
             rec.last_move_date = move_id.date
 
     @api.model
+    def search_need_inventory_update(self, inventory_start_date):
+        query = """
+            SELECT product_id
+            FROM stock_move
+            WHERE product_id NOT IN (
+                SELECT product_id
+                FROM stock_inventory_line
+                WHERE create_date > %s
+            )
+            GROUP BY product_id;
+        """
+        self._cr.execute(query, (tuple(inventory_start_date), ))
+        ids = list(map(lambda x: x[0], self._cr.fetchall()))
+        return ids
+
+    @api.model
     def search_inventory_done_at_location(self, create_date, location_id):
         query = """
             SELECT product_id
