@@ -9,15 +9,14 @@ class IrModelData(models.Model):
     _inherit = "ir.model.data"
 
     @api.model
-    def modelid_to_xmlid(
-        self, model_name, model_id, module, name, noupdate=False, replace=False
-    ):
-        record = self.env[model_name].browse(model_id)
+    def id_to_xmlid(self, model, id, module, name, noupdate=False, replace=False):
+        record = self.env[model].browse(id)
         xml_id = self.record_to_xmlid(record, module, name, noupdate, replace)
         return xml_id.id
 
     @api.model
     def record_to_xmlid(self, record, module, name, noupdate=False, replace=False):
+        record.ensure_one()
         rec = self.env["ir.model.data"]
         if replace:
             xml_ids = self.sudo().search(
