@@ -14,15 +14,26 @@ class ResCompany(models.Model):
         "defined, having the display on footer checkbox set.",
     )
 
-    @api.depends("bank_ids")
+    @api.depends(
+        "bank_ids",
+        "bank_ids.footer",
+        "bank_ids.bank_name",
+        "bank_ids.display_name",
+        "bank_ids.bank_bic",
+    )
     def _compute_bank_footer(self):
         for company in self:
             r = []
-            for bank in company.bank_ids:
-                if bank.footer:
-                    n = "{}: {} - {}".format(
-                        bank.bank_name, bank.display_name, bank.bank_bic
-                    )
+            for partner_bank in company.bank_ids:
+                if partner_bank.footer:
+                    if partner_bank.bank_id:
+                        n = "{}: {} - {}".format(
+                            partner_bank.bank_name,
+                            partner_bank.display_name,
+                            partner_bank.bank_bic,
+                        )
+                    else:
+                        n = partner_bank.display_name
                     r.append(n)
             res = " | ".join(r)
             company.report_bank_footer = res
