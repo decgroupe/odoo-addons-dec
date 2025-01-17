@@ -16,7 +16,9 @@ class CrmLead(models.Model):
             lost_stage_id = self._stage_find(domain=[("probability", "<=", 0)])
             won_stage_id = self._stage_find(domain=[("probability", ">=", 100)])
             if vals.get("stage_id") == lost_stage_id.id:
+                # archive
                 self.with_context(set_stage=True).action_set_lost()
             elif vals.get("stage_id") == won_stage_id.id:
+                # unarchive and set an `is_won` stage
                 self.with_context(set_stage=True).action_set_won()
         return super().write(vals)

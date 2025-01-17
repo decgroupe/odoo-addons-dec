@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* crm_lead_action_ondrag
+# 	* crm_lead_stage_actions
 #
 msgid ""
 msgstr ""
@@ -17,32 +17,32 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. module: crm_lead_action_ondrag
-#: model:ir.model.fields,field_description:crm_lead_action_ondrag.field_crm_lead__display_name
+#. module: crm_lead_stage_actions
+#: model:ir.model.fields,field_description:crm_lead_stage_actions.field_crm_lead__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: crm_lead_action_ondrag
-#: model:ir.model.fields,field_description:crm_lead_action_ondrag.field_crm_lead__id
+#. module: crm_lead_stage_actions
+#: model:ir.model.fields,field_description:crm_lead_stage_actions.field_crm_lead__id
 msgid "ID"
 msgstr "ID"
 
-#. module: crm_lead_action_ondrag
-#: model:ir.model.fields,help:crm_lead_action_ondrag.field_crm_lead__xid
+#. module: crm_lead_stage_actions
+#: model:ir.model.fields,help:crm_lead_stage_actions.field_crm_lead__xid
 msgid "ID of the record defined in xml file"
 msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: crm_lead_action_ondrag
-#: model:ir.model.fields,field_description:crm_lead_action_ondrag.field_crm_lead____last_update
+#. module: crm_lead_stage_actions
+#: model:ir.model.fields,field_description:crm_lead_stage_actions.field_crm_lead____last_update
 msgid "Last Modified on"
 msgstr "Dernière Modification le"
 
-#. module: crm_lead_action_ondrag
-#: model:ir.model,name:crm_lead_action_ondrag.model_crm_lead
+#. module: crm_lead_stage_actions
+#: model:ir.model,name:crm_lead_stage_actions.model_crm_lead
 msgid "Lead/Opportunity"
 msgstr "Piste/opportunité"
 
-#. module: crm_lead_action_ondrag
-#: model:ir.model.fields,field_description:crm_lead_action_ondrag.field_crm_lead__xid
+#. module: crm_lead_stage_actions
+#: model:ir.model.fields,field_description:crm_lead_stage_actions.field_crm_lead__xid
 msgid "XML-ID"
 msgstr "XML-ID"
