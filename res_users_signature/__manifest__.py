@@ -7,6 +7,7 @@
     "depends": [
         "base",
         "hr",
+        "partner_fax",
     ],
     "data": [
         "views/res_users_signature_template.xml",
