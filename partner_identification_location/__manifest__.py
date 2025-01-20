@@ -6,6 +6,7 @@
     "depends": [
         "partner_identification_base",
         "base_location",
+        "base_location_display",
     ],
     "installable": True,
 }

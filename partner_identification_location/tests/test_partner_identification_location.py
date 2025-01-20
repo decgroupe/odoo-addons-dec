@@ -27,7 +27,11 @@ class TestPartnerIdentificationLocation(TestPartnerIdentificationBaseCommon):
     def _set_partner_zip_id(self, partner):
         partner.zip_id = self.zip_id
 
-    def test_01_partner_name_get(self):
+    def test_01_zip_name_format(self):
+        # ensure `base_location_display` module behaviour
+        self.assertEqual(self.zip_id.display_name, "75001 London, United Kingdom")
+
+    def test_02_partner_name_get(self):
         partner = self._create_default_partner()
         ctx = {"name_search": True}
         self._set_partner_company(partner)
@@ -44,14 +48,14 @@ class TestPartnerIdentificationLocation(TestPartnerIdentificationBaseCommon):
         self._set_partner_zip_id(partner)
         self.assertEqual(
             partner.with_context(**ctx).name_get()[0][1],
-            "🏢 Bob → (🗺️ 75001, London, United Kingdom) 📧 bob@leponge.com",
+            "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com",
         )
         self.assertEqual(
             partner.with_context(**ctx, idf_no_location=True).name_get()[0][1],
             "🏢 Bob → 📧 bob@leponge.com",
         )
 
-    def test_02_partner_name_search(self):
+    def test_03_partner_name_search(self):
         partner = self._create_default_partner()
         self._set_partner_company(partner)
         self._set_partner_email(partner)
@@ -59,12 +63,12 @@ class TestPartnerIdentificationLocation(TestPartnerIdentificationBaseCommon):
         res = self.model_partner.name_search(name="Bob")
         self.assertEqual(res[0][0], partner.id)
         self.assertEqual(
-            res[0][1], "🏢 Bob → (🗺️ 75001, London, United Kingdom) 📧 bob@leponge.com"
+            res[0][1], "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com"
         )
         res = self.model_partner.name_search(
-            name="🏢 Bob → (🗺️ 75001, London, United Kingdom) 📧 bob@leponge.com"
+            name="🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com"
         )
         self.assertEqual(res[0][0], partner.id)
         self.assertEqual(
-            res[0][1], "🏢 Bob → (🗺️ 75001, London, United Kingdom) 📧 bob@leponge.com"
+            res[0][1], "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com"
         )
