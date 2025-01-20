@@ -33,7 +33,7 @@ class CrmLead(models.Model):
     def _prepare_number(self, values=None):
         seq = self.env["ir.sequence"]
         if values and "company_id" in values:
-            seq = seq.with_context(force_company=values["company_id"])
+            seq = seq.with_company(values['company_id'])
         return seq.next_by_code("crm.lead.sequence") or "/"
 
     def _init_number(self, vals=None):
