@@ -7,5 +7,9 @@
         "crm",
         "crm_stage_probability",
     ],
+    "data": [
+        "data/crm_stage.xml",
+        "views/crm_stage.xml",
+    ],
     "installable": True,
 }

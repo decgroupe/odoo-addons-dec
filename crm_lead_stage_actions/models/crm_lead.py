@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import api, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -12,31 +12,47 @@ class CrmLead(models.Model):
     _inherit = "crm.lead"
 
     def write(self, vals):
-        if vals.get("stage_id") and not "set_stage" in self._context:
-            lost_stage_id = self._stage_find(domain=[("probability", "<=", 0)])
-            won_stage_id = self._stage_find(domain=[("probability", ">=", 100)])
+        enforce_date_closed = False
+        if vals.get("stage_id"):
+            lost_stage_id = self._stage_find(domain=[("is_lost", "=", True)])
+            won_stage_id = self._stage_find(domain=[("is_won", "=", True)])
             if vals.get("stage_id") == lost_stage_id.id:
                 # archive
-                self.with_context(set_stage=True).action_set_lost()
+                self.action_set_lost()
+                enforce_date_closed = True
             elif vals.get("stage_id") == won_stage_id.id:
                 # unarchive and set an `is_won` stage
-                self.with_context(set_stage=True).action_set_won()
-        return super().write(vals)
+                self.action_set_won()
+        return super(
+            CrmLead, self.with_context(enforce_date_closed=enforce_date_closed)
+        ).write(vals)
 
     def action_set_lost(self, **additional_values):
-        res = super().action_set_lost(**additional_values)
-        for lead in self:
-            # Set lost stage when probability is set to 0
-            stage_id = lead._stage_find(domain=[("probability", "<=", 0)])
-            if stage_id and stage_id != lead.stage_id:
-                lead.write({"stage_id": stage_id.id})
-        return res
+        if self.env.context.get("action_set"):
+            return False
+        else:
+            lost_stage_id = self._stage_find(domain=[("is_lost", "=", True)])
+            additional_values["stage_id"] = lost_stage_id.id
+
+            res = super(CrmLead, self.with_context(action_set=True)).action_set_lost(
+                **additional_values
+            )
+            return res
+
+    def action_set_won(self):
+        if self.env.context.get("action_set"):
+            return False
+        else:
+            res = super(CrmLead, self.with_context(action_set=True)).action_set_won()
+            return res
+
+    def _handle_won_lost(self, vals):
+        # use this handle to hook write and set the `date_closed`
+        if self.env.context.get("enforce_date_closed"):
+            vals["date_closed"] = fields.Datetime.now()
+        return super()._handle_won_lost(vals)
 
     @api.model
     def _onchange_stage_id_values(self, stage_id):
         vals = super()._onchange_stage_id_values(stage_id)
-        # When probability is set to 0, always set active to false, that way
-        # date_closed will be set
-        if "probability" in vals and vals.get("probability") <= 0:
-            vals["active"] = False
         return vals
