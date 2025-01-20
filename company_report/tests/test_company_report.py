@@ -12,7 +12,7 @@ class TestCompanyReport(TransactionCase):
         self.cm = self.env["res.company"]
 
     def test_01_(self):
-        company_id = self.cm.search([])
+        company_id = self.cm.search([], limit=1)
         self.assertTrue(company_id.exists())
         # no footer until enabled
         self.assertFalse(company_id.report_bank_footer)
