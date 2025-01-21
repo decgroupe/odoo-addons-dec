@@ -56,7 +56,7 @@ class CrmLead(models.Model):
     @api.depends("name", "number", "email_from", "partner_id", "partner_id.name")
     def _compute_names(self):
         for rec in self:
-            rec.complete_name = "{} {}".format(rec.number, rec.name)
+            rec.complete_name = "[{}] {}".format(rec.number, rec.name)
             rec.search_name = rec.complete_name
             if rec.email_from:
                 rec.search_name = "{} {}".format(rec.search_name, rec.email_from)

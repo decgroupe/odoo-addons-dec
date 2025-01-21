@@ -58,7 +58,7 @@ class TestCrmLeadNumber(TransactionCase):
             }
         )
         # search using computed `search_name`
-        lead_ids = self.model_crm.name_search(name="%s InsideVR: XRDevice" % (number))
+        lead_ids = self.model_crm.name_search(name="[%s] InsideVR: XRDevice" % (number))
         self.assertEqual(len(lead_ids), 1)
         self.assertEqual(lead_ids[0][0], opportunity_id.id)
         # search using computed `search_name`
