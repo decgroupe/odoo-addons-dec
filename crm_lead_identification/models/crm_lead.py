@@ -17,6 +17,9 @@ class CrmLead(models.Model):
     def name_search(self, name, args=None, operator="ilike", limit=100):
         if SEARCH_SEPARATOR in name:
             name = name.partition(SEARCH_SEPARATOR)[0]
+        # remove possible emoji from stage name
+        if name and not name[0].isalpha() and name[0] not in ("[", "]"):
+            name = name[1:].strip()
         names = super(CrmLead, self.with_context(name_search=True)).name_search(
             name=name, args=args, operator=operator, limit=limit
         )
