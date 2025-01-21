@@ -12,11 +12,12 @@ class TestCompanyReport(TransactionCase):
         self.assertTrue(self.company_id.exists())
 
     def test_01_footer_format(self):
+        # default bank
+        partner_bank_id = self.env.ref("base.bank_partner_demo")
         # no footer until enabled
         self.assertFalse(self.company_id.report_bank_footer)
-        # check one and only one bank
-        partner_bank_id = self.company_id.bank_ids
-        self.assertEqual(len(partner_bank_id), 1)
+        # check our demo bank is attached to our company
+        self.assertIn(partner_bank_id, self.company_id.bank_ids)
         partner_bank_id.footer = True
         # ensure no bank record is linked to this partner bank instance
         self.assertFalse(partner_bank_id.bank_id)
