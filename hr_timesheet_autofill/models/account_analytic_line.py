@@ -52,107 +52,115 @@ class AccountAnalyticLine(models.Model):
             access_rights_uid=access_rights_uid,
         )
 
+    def _log_autofill_query(self, msg, log_id=False):  # pragma: no cover
+        # Use a new cursor to avoid rollback that could be caused by
+        # an upper method
+        try:
+            db_registry = registry(self._cr.dbname)
+            with db_registry.cursor() as cr:
+                env = api.Environment(cr, SUPERUSER_ID, {})
+                path = "autofill_name_search by %s" % (self.env.user.name)
+                data = {
+                    "name": self._name,
+                    "type": "server",
+                    "dbname": self._cr.dbname,
+                    "level": "DEBUG",
+                    "message": msg,
+                    "path": path,
+                    "func": "name_search",
+                    "line": 1,
+                }
+                if log_id:
+                    env["ir.logging"].browse(log_id).sudo().write(data)
+                    return log_id
+                else:
+                    data["func"] += " in progress ..."
+                    ir_logging = env["ir.logging"].sudo().create(data)
+                    return ir_logging.id
+        except psycopg2.Error:
+            pass
+
+    def _pre_autofill_name_search(self, autofill_fields, text, args=None):
+        if args is None:
+            args = []
+        else:
+            args = args.copy()
+        # To avoid long-waiting query, we first search for all lines owned
+        # by this user. It has better performance than making a long AND
+        # query including user_id
+        domain = [
+            ("user_id", "=", self.env.uid),
+            ("project_id", "!=", False),
+        ]
+        owned_ids = self.env["account.analytic.line"].search(domain)
+        args.append(("id", "in", owned_ids.ids))
+        # Execute normal search
+        if len(text) > 2:
+            extra_args = []
+            for value in text.split():
+                # only search for text parts with at least 3 characters
+                if len(value) > 2:
+                    value_args = []
+                    for fname in autofill_fields:
+                        value_args = expression.OR(
+                            [value_args, [(fname, "ilike", value)]]
+                        )
+                    extra_args = expression.AND([extra_args, value_args])
+            if extra_args:
+                args = expression.AND([args, extra_args])
+                text = ""
+        return text, args
+
+    def _post_autofill_name_search(self, autofill_fields, name_search_res):
+        # Add line details to quickly identify its content
+        autofill_fields.remove("name")
+        result = []
+        for item in name_search_res:
+            rec = self.browse(item[0])[0]
+            name = str(item[1])
+            extra_name = []
+            for fname in autofill_fields:
+                fvalue = rec[fname]
+                val = False
+                # case when field is probably a m2o field
+                if hasattr(fvalue, "display_name"):
+                    val = fvalue.display_name or ""
+                # remaining cases for other fields
+                elif fvalue:
+                    val = str(fvalue)
+                if val and val not in extra_name:
+                    extra_name.append(val)
+            name = "{}: {}".format(" / ".join(extra_name), name)
+            result.append((item[0], name))
+        return result
+
     @api.model
     def name_search(self, name, args=None, operator="ilike", limit=100):
-
-        def log_query(msg, id=False):  # pragma: no cover
-            # Use a new cursor to avoid rollback that could be caused by
-            # an upper method
-            try:
-                db_registry = registry(self._cr.dbname)
-                with db_registry.cursor() as cr:
-                    env = api.Environment(cr, SUPERUSER_ID, {})
-                    path = "autofill_name_search by %s" % (self.env.user.name)
-                    data = {
-                        "name": self._name,
-                        "type": "server",
-                        "dbname": self._cr.dbname,
-                        "level": "DEBUG",
-                        "message": msg,
-                        "path": path,
-                        "func": "name_search",
-                        "line": 1,
-                    }
-                    if id:
-                        env["ir.logging"].browse(id).sudo().write(data)
-                        return id
-                    else:
-                        data["func"] += " in progress ..."
-                        ir_logging = env["ir.logging"].sudo().create(data)
-                        return ir_logging.id
-            except psycopg2.Error:
-                pass
-
         # Make a search for all autofill fields and clear default name arg to
         # avoid `expression.AND` collision
         if self.env.context.get("autofill_name_search"):
             if _logger.isEnabledFor(logging.DEBUG):  # pragma: no cover
                 bench = Bench().start()
-            # To avoid long-waiting query, we first search for all lines owned
-            # by this user. It has better performance than making a long AND
-            # query including user_id
-            domain = [
-                ("user_id", "=", self.env.uid),
-                ("project_id", "!=", False),
-            ]
-            owned_ids = self.env["account.analytic.line"].search(domain)
-            if args is None:
-                args = []
-            args.append(("id", "in", owned_ids.ids))
-            # Execute normal search
             autofill_fields = self.get_autofill_fields()
-            if len(name) > 2:
-                extra_args = []
-                for value in name.split():
-                    # only search for text parts with at least 3 characters
-                    if len(value) > 2:
-                        value_args = []
-                        for fname in autofill_fields:
-                            value_args = expression.OR(
-                                [value_args, [(fname, "ilike", value)]]
-                            )
-                        extra_args = expression.AND([extra_args, value_args])
-                if extra_args:
-                    args = expression.AND([args, extra_args])
-                    name = ""
+            name, args = self._pre_autofill_name_search(autofill_fields, name, args)
             if _logger.isEnabledFor(logging.DEBUG):  # pragma: no cover
-                log_id = log_query("Autofill query: {} in progress".format(args))
-
+                log_id = self._log_autofill_query(
+                    "Autofill query: {} in progress".format(args)
+                )
         # Make a search with default criteria
-        names = super().name_search(
+        name_search_res = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-
-        if _logger.isEnabledFor(logging.DEBUG):  # pragma: no cover
-            if self.env.context.get("autofill_name_search"):
-                duration = bench.stop().duration()
-                log_query("Autofill query: {} in {}s".format(args, duration), log_id)
-
         if self.env.context.get("autofill_name_search"):
-            autofill_fields = self.get_autofill_fields()
-            # Add line details to quickly identify its content
-            autofill_fields.remove("name")
-            result = []
-            for item in names:
-                rec = self.browse(item[0])[0]
-                name = str(item[1])
-                extra_name = []
-                for fname in autofill_fields:
-                    fvalue = rec[fname]
-                    val = False
-                    # case when field is probably a m2o field
-                    if hasattr(fvalue, "display_name"):
-                        val = fvalue.display_name or ""
-                    # remaining cases for other fields
-                    elif fvalue:
-                        val = str(fvalue)
-                    if val and val not in extra_name:
-                        extra_name.append(val)
-                name = "{}: {}".format(" / ".join(extra_name), name)
-                result.append((item[0], name))
-            return result
-        else:
-            return names
+            if _logger.isEnabledFor(logging.DEBUG):  # pragma: no cover
+                duration = bench.stop().duration()
+                self._log_autofill_query(
+                    "Autofill query: {} in {}s".format(args, duration), log_id
+                )
+            name_search_res = self._post_autofill_name_search(
+                autofill_fields, name_search_res
+            )
+        return name_search_res
 
     @api.model
     def get_autofill_fields(self):
