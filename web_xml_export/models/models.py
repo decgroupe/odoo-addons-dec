@@ -67,7 +67,7 @@ class BaseModel(models.BaseModel):
                         "res_id": rec.id,
                     }
                 )
-                # Manually add this XML-ID to the list of loaded data, otherwise it will
+                # Manualy add this XML-ID to the list of loaded data, otherwise it will
                 # be deleted in `_process_end`
                 self.pool.loaded_xmlids.add(rec.xid)
 

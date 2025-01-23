@@ -53,7 +53,7 @@ class AccountAnalyticLine(models.Model):
         )
 
     def _log_autofill_query(self, msg, log_id=False):  # pragma: no cover
-        # Use a new cursor to avoid rollback that could be caused by
+        # use a new cursor to avoid rollback that could be caused by
         # an upper method
         try:
             db_registry = registry(self._cr.dbname)
@@ -85,7 +85,7 @@ class AccountAnalyticLine(models.Model):
             args = []
         else:
             args = args.copy()
-        # To avoid long-waiting query, we first search for all lines owned
+        # to avoid long-waiting query, we first search for all lines owned
         # by this user. It has better performance than making a long AND
         # query including user_id
         domain = [
@@ -94,21 +94,20 @@ class AccountAnalyticLine(models.Model):
         ]
         owned_ids = self.env["account.analytic.line"].search(domain)
         args.append(("id", "in", owned_ids.ids))
-        # Execute normal search
-        if len(text) > 2:
-            extra_args = []
-            for value in text.split():
-                # only search for text parts with at least 3 characters
-                if len(value) > 2:
-                    value_args = []
-                    for fname in autofill_fields:
-                        value_args = expression.OR(
-                            [value_args, [(fname, "ilike", value)]]
-                        )
-                    extra_args = expression.AND([extra_args, value_args])
-            if extra_args:
-                args = expression.AND([args, extra_args])
-                text = ""
+        # execute normal search
+        extra_args = []
+        for value in text.split():
+            # only search for text parts with at least 3 characters
+            if len(value) >= 3:
+                value_args = []
+                for fname in autofill_fields:
+                    value_args = expression.OR(
+                        [value_args, [(fname, "ilike", value)]]
+                    )
+                extra_args = expression.AND([extra_args, value_args])
+        if extra_args:
+            args = expression.AND([args, extra_args])
+            text = ""
         return text, args
 
     def _post_autofill_name_search(self, autofill_fields, name_search_res):
@@ -136,7 +135,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator="ilike", limit=100):
-        # Make a search for all autofill fields and clear default name arg to
+        # make a search for all autofill fields and clear default name arg to
         # avoid `expression.AND` collision
         if self.env.context.get("autofill_name_search"):
             if _logger.isEnabledFor(logging.DEBUG):  # pragma: no cover
@@ -147,7 +146,7 @@ class AccountAnalyticLine(models.Model):
                 log_id = self._log_autofill_query(
                     "Autofill query: {} in progress".format(args)
                 )
-        # Make a search with default criteria
+        # make a search with default criteria
         name_search_res = super().name_search(
             name=name, args=args, operator=operator, limit=limit
         )
