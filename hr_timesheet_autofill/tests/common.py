@@ -1,10 +1,21 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2025
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestHrTimesheetAutofillCommon(TransactionCase):
+
+    def _get_timesheet_form(self):
+        """Enforce default view because two primary views with same sequence (1)
+        exists for `account.analytic.line` model:
+        - analytic.view_account_analytic_line_form
+        - hr_timesheet.hr_timesheet_line_form
+        """
+        return Form(
+            self.analytic_line_model,
+            view="hr_timesheet.hr_timesheet_line_form",
+        )
 
     def _get_default_autofill_context(self):
         # re-use autofill_* context defined in XML views

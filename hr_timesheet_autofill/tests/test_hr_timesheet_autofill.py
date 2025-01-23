@@ -1,7 +1,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2025
 
-from odoo.tests.common import Form
 from odoo.addons.hr_timesheet_autofill.tests.common import TestHrTimesheetAutofillCommon
 
 from unittest.mock import patch
@@ -10,14 +9,7 @@ from unittest.mock import patch
 class TestHrTimesheetAutofill(TestHrTimesheetAutofillCommon):
 
     def test_01_autofill(self):
-        # enforce default view because two primary views with same sequence (1)
-        # exists for `account.analytic.line` model:
-        # - analytic.view_account_analytic_line_form
-        # - hr_timesheet.hr_timesheet_line_form
-        analytic_line_form = Form(
-            self.analytic_line_model,
-            view="hr_timesheet.hr_timesheet_line_form",
-        )
+        analytic_line_form = self._get_timesheet_form()
         self.assertFalse(analytic_line_form.autofill_from_analytic_line_id)
         self.assertFalse(analytic_line_form.project_id)
         self.assertFalse(analytic_line_form.task_id)
