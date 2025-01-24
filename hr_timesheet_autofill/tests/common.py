@@ -30,6 +30,8 @@ class TestHrTimesheetAutofillCommon(TransactionCase):
         self.analytic_line_model = self.env["account.analytic.line"]
         self.user_admin = self.env.ref("base.user_admin")
         self.user_marc = self.env.ref("base.user_demo")
+        self.employee_admin = self.env.ref("hr.employee_admin")
+        self.employee_marc = self.env.ref("hr.employee_qdp")
         # 'Research & Development' / 'Document management' > 'On Site Visit'
         self.al_48 = self.env.ref("hr_timesheet.account_analytic_line_48")
         # 'Office Design' / 'Room 1: Decoration' > 'On Site Visit'

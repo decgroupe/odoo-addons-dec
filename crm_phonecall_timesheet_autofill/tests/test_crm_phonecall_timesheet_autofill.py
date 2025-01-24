@@ -8,18 +8,18 @@ class TestCrmPhonecallTimesheetAutofill(TestHrTimesheetAutofillCommon):
 
     def setUp(self):
         super().setUp()
+        # Client Feedback and Next Steps
         phonecall_id = self.env.ref("crm_phonecall_timesheet.call_5")
+        # Office Design
+        project_id = self.env.ref("project.project_project_1")
         # create timehseet entry for this phonecall
         self.al_id = self.env["account.analytic.line"].create(
             {
                 "name": "Call with our customer",
-                # Office Design
-                "project_id": self.env.ref("project.project_project_1").id,
-                # Client Feedback and Next Steps
+                "project_id": project_id.id,
                 "phonecall_id": phonecall_id.id,
-                "employee_id": self.env.ref("hr.employee_admin").id,
-                # one hour
-                "unit_amount": 1,
+                "employee_id": self.employee_admin.id,
+                "unit_amount": 1,  # one hour
                 "date": phonecall_id.date,
             }
         )
