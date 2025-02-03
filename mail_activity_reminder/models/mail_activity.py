@@ -51,7 +51,7 @@ class MailActivity(models.Model):
                 node[0].insert(0, lxml.etree.XML(notify_html))
                 note = lxml.etree.tostring(root, pretty_print=False, encoding="UTF-8")
             else:
-                note += notify_html
+                note = rec.note + notify_html
             rec.write(
                 {
                     "date_deadline": date_deadline,
