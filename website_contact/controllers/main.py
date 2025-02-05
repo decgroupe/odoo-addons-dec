@@ -134,7 +134,7 @@ class WebsiteContactController(http.Controller):
             .search([("email", "ilike", kw.get("email"))], limit=1)
         )
         team_id = request.env["helpdesk.ticket.team"].sudo()
-        category = kw.get("category")
+        category = int(kw.get("category", 0))
         if category:
             team_ids = team_id.search([("category_ids", "in", [category])])
             if len(team_ids) == 1:
