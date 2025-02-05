@@ -12,6 +12,13 @@
             <field name="info" position="after">
                 <field name="validation_date" />
                 <field name="validity_days" />
+                <button
+                    name="action_download_license_file"
+                    title="Download license file (*.lic)"
+                    type="object"
+                    class="btn-primary"
+                    icon="fa-download"
+                />
             </field>
         </field>
     </record>

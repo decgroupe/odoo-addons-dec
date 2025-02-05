@@ -65,20 +65,13 @@ class SoftwareLicenseHardware(models.Model):
             expiration_date = min(expiration_date, self.license_id.expiration_date)
         return expiration_date
 
-    def get_license_string(self):
-        """Validate now and generate an updated license string (with encrypted data)"""
-        self.ensure_one()
-        self.validation_date = fields.datetime.now()
-
+    def _get_license_data(self):
         # create a header to help identify this license file when opening it
         # with a text editor
-        lic_file = [
-            "# {0} License (id: {1})".format(
-                self.license_id.application_id.name,
-                self.license_id.application_id.identifier,
-            )
-        ]
-
+        header = "# {0} License (id: {1})".format(
+            self.license_id.application_id.name,
+            self.license_id.application_id.identifier,
+        )
         # base data
         base = self._prepare_export_vals()
         # convert python dict to json string
@@ -112,10 +105,53 @@ class SoftwareLicenseHardware(models.Model):
             f.seek(0)
             stream_length = f.getbuffer().nbytes
             # convert encrypted binary content to base64 string
-            lic_file.append(base64.encodebytes(f.read(stream_length)).decode())
+            enc_data = base64.encodebytes(f.read(stream_length)).decode()
             f.close()
         else:
-            lic_file.append(base64.b64encode(data).decode())
+            # use encodebytes instead of b64encode to ensure line-split every
+            # 76 characters (base64.MAXLINESIZE)
+            enc_data = base64.encodebytes(data).decode()
 
-        # Return a ready to use license string to write as a file
-        return "\n".join(lic_file)
+        # return header and encrypted data
+        return header, enc_data
+
+    def get_license_string(self):
+        """Validate now and generate an updated license string (with encrypted data)"""
+        self.ensure_one()
+        self.validation_date = fields.datetime.now()
+        header, enc_data = self._get_license_data()
+        # return a ready to use license string to write as a file
+        res = "\n".join([header, enc_data])
+        return res
+
+    def _create_license_file_attachment(self):
+        self.ensure_one()
+        app_id = self.license_id.application_id.identifier
+        # delete existing license attachments
+        name = str(app_id) + ".lic"
+        domain = [
+            ("name", "=", name),
+            ("res_model", "=", self._name),
+            ("res_id", "=", self.id),
+        ]
+        attachment_ids = self.env["ir.attachment"].search(domain)
+        attachment_ids.unlink()
+        # create a new license attachment
+        licstr = self.get_license_string()
+        data = {
+            "type": "binary",
+            "name": str(app_id) + ".lic",
+            "datas": base64.b64encode(licstr.encode("utf-8")),
+            "mimetype": "application/txt",
+            "res_model": self._name,
+            "res_id": self.id,
+        }
+        return self.env["ir.attachment"].create(data)
+
+    def action_download_license_file(self):
+        attachment_id = self._create_license_file_attachment()
+        download_url = "/web/content/" + str(attachment_id.id) + "?download=true"
+        return {
+            "type": "ir.actions.act_url",
+            "url": download_url,
+        }
