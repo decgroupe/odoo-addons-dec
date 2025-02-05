@@ -5,7 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "crm_timesheet",
-        "hr_timesheet_calendar",
+        "hr_timesheet_calendar", # includes hr_timesheet_autofill
         "project_crm_link",
     ],
     "data": [
