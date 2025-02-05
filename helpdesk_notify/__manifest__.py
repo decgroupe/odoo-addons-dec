@@ -5,6 +5,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "helpdesk_mgmt",
+        "email_template_qweb",
     ],
     "data": [
         "data/ir_ui_view.xml",
