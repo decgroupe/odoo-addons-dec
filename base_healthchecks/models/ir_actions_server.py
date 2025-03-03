@@ -24,15 +24,15 @@ class IrActionsServer(models.Model):
             "cron_running": self.env.get("cron_running", False),
             "action_names": [rec.name for rec in self.sudo()],
         }
-        for rec in self.filtered("ping_url"):
+        for rec in self.sudo().filtered("ping_url"):
             hc.action_ping_start(rec.ping_url, data)
         try:
             res = super(IrActionsServer, self).run()
-            for rec in self.filtered("ping_url"):
+            for rec in self.sudo().filtered("ping_url"):
                 hc.action_ping(rec.ping_url, data)
         except Exception as e:
             data["exception"] = str(e)
-            for rec in self.filtered("ping_url"):
+            for rec in self.sudo().filtered("ping_url"):
                 hc.action_ping_fail(rec.ping_url, data)
             raise e
         return res
