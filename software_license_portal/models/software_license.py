@@ -1,7 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareLicense(models.Model):
@@ -46,4 +50,5 @@ class SoftwareLicense(models.Model):
     def deactivate(self, hardware_id):
         self.ensure_one()
         hardware_id = self.env["software.license.hardware"].browse(hardware_id)
+        _logger.info("Deactivate: Deleting hardware ID: %s", hardware_id.display_name)
         hardware_id.unlink()

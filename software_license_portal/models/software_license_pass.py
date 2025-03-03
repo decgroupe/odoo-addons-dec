@@ -1,7 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
+import logging
+
 from odoo import api, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareLicensePass(models.Model):
@@ -24,4 +28,13 @@ class SoftwareLicensePass(models.Model):
         hardware_ids = self.license_ids.mapped("hardware_ids").filtered(
             lambda x: x.name == hardware_name
         )
+        if hardware_ids:
+            for hardware_id in hardware_ids:
+                _logger.info(
+                    "Deactivate: Deleting hardware ID: %s", hardware_id.display_name
+                )
+        else:
+            _logger.warning(
+                "Deactivate: Hardware ID not found: %s", hardware_name
+            )
         hardware_ids.unlink()
