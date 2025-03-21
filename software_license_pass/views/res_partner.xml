@@ -13,7 +13,7 @@
                     name="action_view_pass"
                     type="object"
                     widget="statinfo"
-                    icon="fa-bars"
+                    solid_icon="fa-passport"
                     attrs="{'invisible': [('pass_count', '=', 0)]}"
                 >
                     <div class="o_form_field o_stat_info">

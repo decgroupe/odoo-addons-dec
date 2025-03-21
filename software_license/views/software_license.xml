@@ -36,7 +36,7 @@
                             name="action_view_hardwares"
                             type="object"
                             widget="statinfo"
-                            icon="fa-bars"
+                            solid_icon="fa-microchip"
                             attrs="{'invisible': [('hardware_count', '=', 0)]}"
                         >
                             <div class="o_form_field o_stat_info">

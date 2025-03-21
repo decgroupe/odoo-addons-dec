@@ -11,7 +11,7 @@
                     type="object"
                     name="action_view_application_pass"
                     class="oe_stat_button"
-                    icon="fa-spinner"
+                    solid_icon="fa-passport"
                     attrs="{'invisible': [('license_pass_count', '=', 0)]}"
                 >
                     <field

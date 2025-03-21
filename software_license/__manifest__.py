@@ -4,6 +4,7 @@
     "website": "https://www.decgroupe.com",
     "depends": [
         "software_application",
+        "base_fontawesome",
     ],
     "data": [
         "security/ir.model.access.csv",

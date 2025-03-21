@@ -87,7 +87,7 @@
                             name="action_view_licenses"
                             type="object"
                             widget="statinfo"
-                            icon="fa-bars"
+                            solid_icon="fa-id-card"
                             attrs="{'invisible': [('license_count', '=', 0)]}"
                         >
                             <div class="o_form_field o_stat_info">
@@ -102,7 +102,7 @@
                             name="action_view_hardwares"
                             type="object"
                             widget="statinfo"
-                            icon="fa-bars"
+                            solid_icon="fa-microchip"
                             attrs="{'invisible': [('hardware_count', '=', 0)]}"
                         >
                             <div class="o_form_field o_stat_info">
