@@ -201,6 +201,5 @@ class SoftwareLicense(models.Model):
             ]
         if serial:
             domain += [("activation_identifier", "=", serial)]
-        if domain:
-            license_ids = license_ids.search(domain, limit=limit)
+        license_ids = license_ids.search(domain, limit=limit)
         return license_ids

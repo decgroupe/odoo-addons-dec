@@ -57,3 +57,13 @@ class TestSoftwareLicenseActionView(SavepointCase):
 
     def test_03_software_license_hardware_action_view(self):
         self._test_action_view_sm_records(self.model_software_license_hardware)
+
+    def test_04_software_license_action_view_empty(self):
+        action_view_res = self.env["software.license"].action_view()
+        action_view_base_res = self.env["software.license"].action_view_base()
+        self.assertEqual(action_view_res, action_view_base_res)
+
+    def test_05_software_license_hardware_action_view_empty(self):
+        action_view_res = self.env["software.license.hardware"].action_view()
+        action_view_base_res = self.env["software.license.hardware"].action_view_base()
+        self.assertEqual(action_view_res, action_view_base_res)

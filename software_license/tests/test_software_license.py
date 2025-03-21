@@ -40,11 +40,16 @@ class TestSoftwareLicense(TransactionCase):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
         current_hardware_ids = fitness_lic1.hardware_ids
         self.assertEqual(len(fitness_lic1.hardware_ids), 2)
-        fitness_lic1.activate("9d:24:26:52:12:81")
+        hardware_id = fitness_lic1.activate("9d:24:26:52:12:81")
         self.assertEqual(len(fitness_lic1.hardware_ids), 3)
         added_hardware_id = fitness_lic1.hardware_ids - current_hardware_ids
         self.assertTrue(added_hardware_id)
         self.assertEqual(added_hardware_id.name, "9d:24:26:52:12:81")
+        self.assertEqual(added_hardware_id, hardware_id)
+        # test activation with same hardware
+        hardware_id = fitness_lic1.activate("9d:24:26:52:12:81")
+        self.assertFalse(hardware_id)
+        self.assertFalse(hardware_id.exists())
 
     def test_04_license_create_and_duplicate(self):
         newage_app = self.env.ref("software_application.sa_newage")
@@ -60,6 +65,9 @@ class TestSoftwareLicense(TransactionCase):
         newage_lic2 = newage_lic1.copy()
         self.assertEqual(newage_lic2.serial, "TEST03 (copy)")
         self.assertEqual(newage_lic2.display_name, "[New Age] TEST03 (copy)")
+        newage_lic3 = newage_lic2.copy({"serial": "TEST03bis"})
+        self.assertEqual(newage_lic3.serial, "TEST03bis")
+        self.assertEqual(newage_lic3.display_name, "[New Age] TEST03bis")
 
     def test_05_license_activation(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
@@ -94,8 +102,14 @@ class TestSoftwareLicense(TransactionCase):
             identifier="1001", serial="0DAY-0001"
         )
         self.assertEqual(len(license_ids), 1)
+        license_ids = self.software_license.get_license_ids(
+            identifier=False, serial="0DAY-0001"
+        )
+        self.assertEqual(len(license_ids), 1)
 
     def test_07_search_hardware(self):
+        hardware_ids = self.software_license_hardware.get_hardware_ids(hardware=False)
+        self.assertFalse(hardware_ids)
         hardware_ids = self.software_license_hardware.get_hardware_ids(
             hardware="11:ec:09:af:b6:8c"
         )
@@ -179,12 +193,21 @@ class TestSoftwareLicense(TransactionCase):
                 }
             }""",
         )
-        self.assertEqual(hardware_id.device_name, "PC-ReadyMat1")
-        self.assertEqual(hardware_id.device_domain, False)
-        self.assertEqual(hardware_id.device_fqdn, "PC-ReadyMat1")
-        # partial network information
+        # empty telemetry and missing `SystemInfo` node
         hardware_id = fitness_lic1.activate(
             "device_uuid_5",
+            info="""{
+                "telemetry": {
+                    "NetworkInformation": {}
+                }
+            }""",
+        )
+        self.assertEqual(hardware_id.device_name, False)
+        self.assertEqual(hardware_id.device_domain, False)
+        self.assertEqual(hardware_id.device_fqdn, False)
+        # partial network information
+        hardware_id = fitness_lic1.activate(
+            "device_uuid_6",
             info="""{
                 "telemetry": {
                     "NetworkInformation": {
@@ -199,4 +222,17 @@ class TestSoftwareLicense(TransactionCase):
         self.assertEqual(hardware_id.device_name, "PC-ReadyMat1")
         self.assertEqual(hardware_id.device_domain, "ad.readymat.com")
         self.assertEqual(hardware_id.device_fqdn, "PC-ReadyMat1.ad.readymat.com")
-        print(1)
+        # testing get_hardwares_dict
+        hardwares_dict = fitness_lic1.get_hardwares_dict()
+        self.assertEqual(len(hardwares_dict), 8)
+        self.assertIn("6a:32:bb:7f:36:14", hardwares_dict)
+        self.assertIn("13:bd:17:6b:03:46", hardwares_dict)
+        self.assertIn("device_uuid_1", hardwares_dict)
+        self.assertIn("device_uuid_2", hardwares_dict)
+        self.assertIn("device_uuid_3", hardwares_dict)
+        self.assertIn("device_uuid_4", hardwares_dict)
+        self.assertIn("device_uuid_5", hardwares_dict)
+        self.assertIn("device_uuid_6", hardwares_dict)
+        hardwares_dict = fitness_lic1.get_hardwares_dict(filter_names=["device_uuid_1"])
+        self.assertEqual(len(hardwares_dict), 1)
+        self.assertIn("device_uuid_1", hardwares_dict)
