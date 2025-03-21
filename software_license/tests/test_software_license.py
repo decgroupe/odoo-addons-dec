@@ -236,3 +236,37 @@ class TestSoftwareLicense(TransactionCase):
         hardwares_dict = fitness_lic1.get_hardwares_dict(filter_names=["device_uuid_1"])
         self.assertEqual(len(hardwares_dict), 1)
         self.assertIn("device_uuid_1", hardwares_dict)
+
+    def test_09_license_from_partner(self):
+        # Azure Interior
+        az_id = self.env.ref("base.res_partner_12")
+        # Azure Interior, Brandon Freeman
+        bf_id = self.env.ref("base.res_partner_address_15")
+        # Azure Interior, Nicole Ford
+        nf_id = self.env.ref("base.res_partner_address_16")
+        # Azure Interior, Colleen Diaz
+        cd_id = self.env.ref("base.res_partner_address_28")
+        # check assigned licenses count for each partner
+        az_license_ids = self.software_license.search([("partner_id", "=", az_id.id)])
+        self.assertEqual(len(az_license_ids), 0)
+        bf_license_ids = self.software_license.search([("partner_id", "=", bf_id.id)])
+        self.assertEqual(len(bf_license_ids), 2)
+        nf_license_ids = self.software_license.search([("partner_id", "=", nf_id.id)])
+        self.assertEqual(len(nf_license_ids), 1)
+        cd_license_ids = self.software_license.search([("partner_id", "=", cd_id.id)])
+        self.assertEqual(len(cd_license_ids), 0)
+        all_license_ids = (
+            az_license_ids + bf_license_ids + nf_license_ids + cd_license_ids
+        )
+        # check license count from partner's form view
+        self.assertEqual(all_license_ids, az_id.license_ids)
+        self.assertEqual(all_license_ids, bf_id.license_ids)
+        self.assertEqual(all_license_ids, nf_id.license_ids)
+        self.assertEqual(all_license_ids, cd_id.license_ids)
+        # will now consider Azure Interior is no more a company
+        az_id.is_company = False
+        self.assertEqual(all_license_ids, az_id.license_ids)
+        self.assertEqual(bf_license_ids, bf_id.license_ids)
+        self.assertEqual(nf_license_ids, nf_id.license_ids)
+        self.assertEqual(cd_license_ids, cd_id.license_ids)
+
