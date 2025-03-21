@@ -16,9 +16,9 @@
 
     <record model="ir.ui.menu" id="menu_software_license_template">
         <field name="name">License Template</field>
-        <field name="sequence" eval="12" />
+        <field name="sequence" eval="8" />
         <field name="action" ref="act_window_software_license_template" />
-        <field name="parent_id" ref="menu_software_licensing" />
+        <field name="parent_id" ref="software.menu_configuration" />
     </record>
 
 </odoo>
