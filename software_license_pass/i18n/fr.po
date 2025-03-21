@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-07 07:55+0000\n"
-"PO-Revision-Date: 2024-05-07 09:57+0200\n"
+"POT-Creation-Date: 2025-03-21 14:30+0000\n"
+"PO-Revision-Date: 2025-03-21 15:31+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. module: software_license_pass
 #: model:mail.template,subject:software_license_pass.email_template_pass_send
@@ -71,6 +71,11 @@ msgstr "<span class=\"o_stat_text\">Identifiants matériels</span>"
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 msgid "<span class=\"o_stat_text\">Licenses</span>"
 msgstr "<span class=\"o_stat_text\">Licences</span>"
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.view_partner_form
+msgid "<span class=\"o_stat_text\">Passes</span>"
+msgstr "<span class=\"o_stat_text\">Pass</span>"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_needaction
@@ -197,6 +202,11 @@ msgstr ""
 "licences"
 
 #. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_contact_id
 msgid "Contact Partner"
 msgstr "Partenaire de contact"
@@ -238,6 +248,7 @@ msgid "Device FQDN"
 msgstr "FQDN de l'appareil"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__display_name
@@ -325,6 +336,7 @@ msgid "Here is your"
 msgstr "Voici votre"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__id
@@ -423,6 +435,7 @@ msgstr ""
 "{}"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group____last_update
@@ -565,6 +578,8 @@ msgid "Number of Licenses"
 msgstr "Nombre de Licences"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__pass_count
+#: model:ir.model.fields,field_description:software_license_pass.field_res_users__pass_count
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__pass_count
 msgid "Number of Passes"
 msgstr "Nombre de Pass"
@@ -645,6 +660,8 @@ msgid "Pass State"
 msgstr "État du Pass"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__pass_ids
+#: model:ir.model.fields,field_description:software_license_pass.field_res_users__pass_ids
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__pass_ids
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_form_view
 msgid "Passes"
@@ -829,6 +846,7 @@ msgstr "Envoyer par email"
 
 #. module: software_license_pass
 #: model:ir.model.fields.selection,name:software_license_pass.selection__software_license_pass__state__sent
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Sent"
 msgstr "Envoyé"
 
@@ -888,6 +906,7 @@ msgstr "Ce pass vous permet d'activer"
 
 #. module: software_license_pass
 #: model:ir.model.fields.selection,name:software_license_pass.selection__software_license_pass__state__draft
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "To Send"
 msgstr "À Envoyer"
 
@@ -1697,8 +1716,8 @@ msgstr "jusqu'à"
 #~ "unfenced_commercial_partner_id.name})\n"
 #~ "                    % endif\n"
 #~ "                    <br/><br/>\n"
-#~ "                    Here is your ${ctx['model_description']} <strong>"
-#~ "${object.name}</strong>\n"
+#~ "                    Here is your ${ctx['model_description']} "
+#~ "<strong>${object.name}</strong>\n"
 #~ "                    % if object.origin:\n"
 #~ "                        (with reference: ${object.origin})\n"
 #~ "                    % endif\n"
@@ -1710,8 +1729,8 @@ msgstr "jusqu'à"
 #~ "                        <ul>\n"
 #~ "                        % for license_id in object.license_ids:\n"
 #~ "                            <li>\n"
-#~ "                                <span style=\"margin-left:5px\">"
-#~ "${license_id.application_id.name}</span>\n"
+#~ "                                <span style=\"margin-"
+#~ "left:5px\">${license_id.application_id.name}</span>\n"
 #~ "                    % if license_id.application_id.product_name:\n"
 #~ "                        <span style=\"margin-left:5px\">${license_id."
 #~ "application_id.product_name}</span>\n"
@@ -1748,8 +1767,8 @@ msgstr "jusqu'à"
 #~ "unfenced_commercial_partner_id.name})\n"
 #~ "                    % endif\n"
 #~ "                    <br/><br/>\n"
-#~ "                    Voici votre ${ctx['model_description']} <strong>"
-#~ "${object.name}</strong>\n"
+#~ "                    Voici votre ${ctx['model_description']} "
+#~ "<strong>${object.name}</strong>\n"
 #~ "                    % if object.origin:\n"
 #~ "                        (avec comme référence: ${object.origin})\n"
 #~ "                    % endif\n"
@@ -1761,8 +1780,8 @@ msgstr "jusqu'à"
 #~ "                        <ul>\n"
 #~ "                        % for license_id in object.license_ids:\n"
 #~ "                            <li>\n"
-#~ "                                <span style=\"margin-left:5px\">"
-#~ "${license_id.application_id.name}</span>\n"
+#~ "                                <span style=\"margin-"
+#~ "left:5px\">${license_id.application_id.name}</span>\n"
 #~ "                    % if license_id.application_id.product_name:\n"
 #~ "                        <span style=\"margin-left:5px\">${license_id."
 #~ "application_id.product_name}</span>\n"

@@ -355,3 +355,133 @@ class TestSoftwareLicensePass(TransactionCase):
         with Form(pass_prm3) as pass_form:
             pass_form.partner_id = self.env.ref("base.res_partner_3")
         self.assertFalse(pass_prm3.partner_referral_id)
+
+    def test_20_pass_from_partner(self):
+        # Azure Interior
+        az_id = self.env.ref("base.res_partner_12")
+        # Azure Interior, Brandon Freeman
+        bf_id = self.env.ref("base.res_partner_address_15")
+        # Azure Interior, Nicole Ford
+        nf_id = self.env.ref("base.res_partner_address_16")
+        # Azure Interior, Colleen Diaz
+        cd_id = self.env.ref("base.res_partner_address_28")
+        # check assigned passes count for each partner
+        az_pass_ids = self.license_pass.search([("partner_id", "=", az_id.id)])
+        self.assertEqual(len(az_pass_ids), 1)
+        bf_pass_ids = self.license_pass.search([("partner_id", "=", bf_id.id)])
+        self.assertEqual(len(bf_pass_ids), 1)
+        nf_pass_ids = self.license_pass.search([("partner_id", "=", nf_id.id)])
+        self.assertEqual(len(nf_pass_ids), 0)
+        cd_pass_ids = self.license_pass.search([("partner_id", "=", cd_id.id)])
+        self.assertEqual(len(cd_pass_ids), 0)
+        all_pass_ids = az_pass_ids + bf_pass_ids + nf_pass_ids + cd_pass_ids
+        # check pass count from partner's form view
+        self.assertEqual(all_pass_ids, az_id.pass_ids)
+        self.assertEqual(all_pass_ids, bf_id.pass_ids)
+        self.assertEqual(all_pass_ids, nf_id.pass_ids)
+        self.assertEqual(all_pass_ids, cd_id.pass_ids)
+        # will now consider Azure Interior is no more a company
+        az_id.is_company = False
+        self.assertEqual(all_pass_ids, az_id.pass_ids)
+        self.assertEqual(bf_pass_ids, bf_id.pass_ids)
+        self.assertEqual(nf_pass_ids, nf_id.pass_ids)
+        self.assertEqual(cd_pass_ids, cd_id.pass_ids)
+        # check pass state
+        az_id.invalidate_cache()
+        default_passe_ids = az_id.pass_ids
+        self.assertEqual(len(default_passe_ids), 2)
+        az_id.invalidate_cache()
+        pass_ids = az_id.with_context(pass_sent_only=True).pass_ids
+        self.assertEqual(len(pass_ids), 1)
+
+    def test_21_license_from_partner(self):
+        # Azure Interior
+        az_id = self.env.ref("base.res_partner_12")
+        # Azure Interior, Brandon Freeman
+        bf_id = self.env.ref("base.res_partner_address_15")
+        # Azure Interior, Nicole Ford
+        nf_id = self.env.ref("base.res_partner_address_16")
+        # check Brandon status
+        bf_id.invalidate_cache()
+        default_license_ids = bf_id.license_ids
+        self.assertEqual(len(default_license_ids), 3)
+        bf_id.invalidate_cache()
+        all_license_ids = bf_id.with_context(include_pass_licenses=True).license_ids
+        self.assertEqual(len(all_license_ids), 7)
+        bf_id.invalidate_cache()
+        nopass_license_ids = bf_id.with_context(include_pass_licenses=False).license_ids
+        self.assertEqual(len(nopass_license_ids), 3)
+        # check Nicole status
+        nf_id.invalidate_cache()
+        default_license_ids = nf_id.license_ids
+        self.assertEqual(len(default_license_ids), 3)
+        nf_id.invalidate_cache()
+        all_license_ids = nf_id.with_context(include_pass_licenses=True).license_ids
+        self.assertEqual(len(all_license_ids), 7)
+        nf_id.invalidate_cache()
+        nopass_license_ids = nf_id.with_context(include_pass_licenses=False).license_ids
+        self.assertEqual(len(nopass_license_ids), 3)
+        # check Azure status
+        az_id.invalidate_cache()
+        default_license_ids = az_id.license_ids
+        self.assertEqual(len(default_license_ids), 3)
+        az_id.invalidate_cache()
+        all_license_ids = az_id.with_context(include_pass_licenses=True).license_ids
+        self.assertEqual(len(all_license_ids), 7)
+        az_id.invalidate_cache()
+        nopass_license_ids = az_id.with_context(include_pass_licenses=False).license_ids
+        self.assertEqual(len(nopass_license_ids), 3)
+        # will now consider Azure Interior is no more a company
+        az_id.is_company = False
+        # check new Brandon status
+        bf_id.invalidate_cache()
+        default_license_ids = bf_id.license_ids
+        self.assertEqual(len(default_license_ids), 2)
+        bf_id.invalidate_cache()
+        all_license_ids = bf_id.with_context(include_pass_licenses=True).license_ids
+        self.assertEqual(len(all_license_ids), 5)
+        bf_id.invalidate_cache()
+        nopass_license_ids = bf_id.with_context(include_pass_licenses=False).license_ids
+        self.assertEqual(len(nopass_license_ids), 2)
+        # check new Nicole status
+        nf_id.invalidate_cache()
+        default_license_ids = nf_id.license_ids
+        self.assertEqual(len(default_license_ids), 1)
+        nf_id.invalidate_cache()
+        all_license_ids = nf_id.with_context(include_pass_licenses=True).license_ids
+        self.assertEqual(len(all_license_ids), 1)
+        nf_id.invalidate_cache()
+        nopass_license_ids = nf_id.with_context(include_pass_licenses=False).license_ids
+        self.assertEqual(len(nopass_license_ids), 1)
+        # check new Azure status
+        az_id.invalidate_cache()
+        default_license_ids = az_id.license_ids
+        self.assertEqual(len(default_license_ids), 3)
+        az_id.invalidate_cache()
+        all_license_ids = az_id.with_context(include_pass_licenses=True).license_ids
+        self.assertEqual(len(all_license_ids), 7)
+        az_id.invalidate_cache()
+        nopass_license_ids = az_id.with_context(include_pass_licenses=False).license_ids
+        self.assertEqual(len(nopass_license_ids), 3)
+
+    def test_22_license_from_partner_pass_state(self):
+        # Lumber Inc
+        li_id = self.env.ref("base.res_partner_18")
+        # Lumber Inc, Lorraine Douglas
+        ld_id = self.env.ref("base.res_partner_address_30")
+        # check Lumber Inc status
+        li_id.invalidate_cache()
+        default_license_ids = li_id.license_ids
+        self.assertEqual(len(default_license_ids), 0)
+        li_id.invalidate_cache()
+        all_license_ids = li_id.with_context(include_pass_licenses=True).license_ids
+        self.assertEqual(len(all_license_ids), 5)
+        li_id.invalidate_cache()
+        nopass_license_ids = li_id.with_context(include_pass_licenses=False).license_ids
+        self.assertEqual(len(nopass_license_ids), 0)
+        li_id.invalidate_cache()
+        all_sent_license_ids = li_id.with_context(
+            include_pass_licenses=True, pass_sent_only=True
+        ).license_ids
+        self.assertEqual(len(all_sent_license_ids), 2)
+        print(1)

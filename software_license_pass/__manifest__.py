@@ -15,6 +15,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/assets.xml",
+        "views/res_partner.xml",
         "views/software_license_pass.xml",
         "views/software_license.xml",
         "views/software_license_hardware.xml",

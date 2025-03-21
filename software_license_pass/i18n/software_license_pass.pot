@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-07 07:56+0000\n"
-"PO-Revision-Date: 2024-05-07 07:56+0000\n"
+"POT-Creation-Date: 2025-03-21 14:30+0000\n"
+"PO-Revision-Date: 2025-03-21 14:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,6 +57,11 @@ msgstr ""
 #. module: software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
 msgid "<span class=\"o_stat_text\">Licenses</span>"
+msgstr ""
+
+#. module: software_license_pass
+#: model_terms:ir.ui.view,arch_db:software_license_pass.view_partner_form
+msgid "<span class=\"o_stat_text\">Passes</span>"
 msgstr ""
 
 #. module: software_license_pass
@@ -181,6 +186,11 @@ msgid "Compilation dynamically generated from licenses hardware identifiers"
 msgstr ""
 
 #. module: software_license_pass
+#: model:ir.model,name:software_license_pass.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__partner_contact_id
 msgid "Contact Partner"
 msgstr ""
@@ -222,6 +232,7 @@ msgid "Device FQDN"
 msgstr ""
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__display_name
@@ -307,6 +318,7 @@ msgid "Here is your"
 msgstr ""
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__id
@@ -395,6 +407,7 @@ msgid ""
 msgstr ""
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware____last_update
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group____last_update
@@ -537,6 +550,8 @@ msgid "Number of Licenses"
 msgstr ""
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__pass_count
+#: model:ir.model.fields,field_description:software_license_pass.field_res_users__pass_count
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__pass_count
 msgid "Number of Passes"
 msgstr ""
@@ -617,6 +632,8 @@ msgid "Pass State"
 msgstr ""
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__pass_ids
+#: model:ir.model.fields,field_description:software_license_pass.field_res_users__pass_ids
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__pass_ids
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pack_form_view
 msgid "Passes"
@@ -801,6 +818,7 @@ msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields.selection,name:software_license_pass.selection__software_license_pass__state__sent
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "Sent"
 msgstr ""
 
@@ -852,6 +870,7 @@ msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields.selection,name:software_license_pass.selection__software_license_pass__state__draft
+#: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_search_view
 msgid "To Send"
 msgstr ""
 

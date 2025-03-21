@@ -38,3 +38,11 @@ class ResPartner(models.Model):
                 )
             if not rec.inherit_commercial_partner and not rec.is_company:
                 rec.commercial_partner_id = rec
+
+    def _commercial_sync_from_company(self):
+        super()._commercial_sync_from_company()
+        if self == self.commercial_partner_id and "vat" in self._commercial_fields():
+            for rec in self.filtered(lambda x: not x.inherit_commercial_partner):
+                # clear VAT
+                if rec.vat and rec.vat == rec.parent_id.vat:
+                    rec.vat = False

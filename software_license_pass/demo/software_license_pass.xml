@@ -57,6 +57,16 @@
         <field name="partner_id" ref="base.res_partner_4" />
     </record>
 
+    <record model="software.license.pass" id="pass_premium4">
+        <field name="pack_id" ref="sl_pack_premium" />
+        <field name="serial">7DVU3-E4PZ7-U6RIA-367A5</field>
+        <field name="state">draft</field>
+        <field name="expiration_date" eval="datetime.now()+relativedelta(days=30)" />
+        <field name="max_allowed_hardware" eval="10" />
+        <!-- Azure Interior, Brandon Freeman -->
+        <field name="partner_id" ref="base.res_partner_address_15" />
+    </record>
+
     <function
         model="software.license.pass"
         name="action_resync_with_pack"
@@ -67,6 +77,7 @@
             ref('software_license_pass.pass_premium1'),
             ref('software_license_pass.pass_premium2'),
             ref('software_license_pass.pass_premium3'),
+            ref('software_license_pass.pass_premium4'),
         ]]"
     />
 

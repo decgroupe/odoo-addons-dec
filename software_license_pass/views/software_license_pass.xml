@@ -9,7 +9,13 @@
                 <field name="name" decoration-bf="1" />
                 <field name="serial" class="d_software_license_pass_serial" />
                 <field name="partner_id" widget="many2one_avatar" />
-                <field name="product_id" optional="show" />
+                <field
+                    name="partner_referral_id"
+                    widget="many2one_avatar"
+                    optional="hide"
+                />
+                <field name="product_id" optional="hidr" />
+                <field name="pack_id" optional="show" />
                 <field name="max_allowed_hardware" />
                 <field name="hardware_group_count" optional="hide" />
                 <field name="activity_ids" widget="list_activity" optional="show" />
@@ -163,13 +169,39 @@
         <field name="arch" type="xml">
             <search string="License">
                 <field name="name" />
-                <field name="partner_id" />
+                <field
+                    name="partner_id"
+                    filter_domain="[
+                        '|',
+                        ('partner_id', 'ilike', self),
+                        ('partner_referral_id', 'ilike', self),
+                    ]"
+                />
+                <field name="serial" filter_domain="" />
+                <field
+                    name="hardware_group_ids"
+                    filter_domain="[
+                        '|',
+                        ('hardware_group_ids.name', 'ilike', self),
+                        ('hardware_group_ids.device_fqdn', 'ilike', self),
+                    ]"
+                />
                 <filter
                     string="Archived"
                     name="inactive"
                     domain="[('active','=',False)]"
                 />
-                <field name="serial" filter_domain="" />
+                <separator />
+                <filter
+                    name="filter_draft"
+                    string="To Send"
+                    domain="[('state','=','draft')]"
+                />
+                <filter
+                    name="filter_sent"
+                    string="Sent"
+                    domain="[('state','=','sent')]"
+                />
                 <group string="Group By" name="groupby">
                     <filter
                         string="Partner"

@@ -23,6 +23,11 @@ class SoftwareLicense(models.Model):
             res["validity_days"] = 365
         return res
 
+    def _get_license_default_domain(self):
+        res = super()._get_license_default_domain()
+        res.append(("portal_published", "=", True))
+        return res
+
     @api.model
     def _get_license_default_portal_domain(
         self, request_partner_id, include_pass_licenses
