@@ -23,7 +23,7 @@ class SoftwareLicenseHardware(models.Model):
     )
     validity_days = fields.Integer(
         string="Validity (Days)",
-        default=2,
+        default=365,
         required=True,
         help="The license file data can be used to internally validate an "
         "activation until this delay is reached. After this, a new validation "
