@@ -23,8 +23,12 @@ class ResPartner(models.Model):
     def _compute_license(self):
         for rec in self:
             domain = rec._get_license_default_domain()
-            rec.license_ids = self.env["software.license"].search(domain)
-            rec.license_count = len(rec.license_ids)
+            if domain:
+                rec.license_ids = self.env["software.license"].search(domain)
+                rec.license_count = len(rec.license_ids)
+            else:
+                rec.license_ids = False
+                rec.license_count = 0
 
     def action_view_licenses(self):
         return self.with_context(active_test=False).license_ids.action_view()
@@ -37,12 +41,16 @@ class ResPartner(models.Model):
         if not partner_id:
             partner_id = self
         # with an `on_change` event, we need to get database ID from origin
-        if isinstance(partner_id.id, models.NewId) and partner_id._origin:
+        if isinstance(partner_id.id, models.NewId):
+            # note that pid can be `False` if `partner_id` is a new record (no origin)
             pid = partner_id._origin.id
         else:
             pid = partner_id.id
-        res = [
-            ("partner_id", "child_of", pid),
-            ("application_id.type", "=", "inhouse"),
-        ]
+        if pid:
+            res = [
+                ("partner_id", "child_of", pid),
+                ("application_id.type", "=", "inhouse"),
+            ]
+        else:
+            res = []
         return res
