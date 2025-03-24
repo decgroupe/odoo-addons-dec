@@ -21,8 +21,12 @@ class ResPartner(models.Model):
     def _compute_pass(self):
         for rec in self:
             domain = rec._get_pass_default_domain()
-            rec.pass_ids = self.env["software.license.pass"].search(domain)
-            rec.pass_count = len(rec.pass_ids)
+            if domain:
+                rec.pass_ids = self.env["software.license.pass"].search(domain)
+                rec.pass_count = len(rec.pass_ids)
+            else:
+                rec.pass_ids = False
+                rec.pass_count = 0
 
     def action_view_pass(self):
         return self.with_context(active_test=False).pass_ids.action_view()
@@ -35,13 +39,17 @@ class ResPartner(models.Model):
         if not partner_id:
             partner_id = self
         # with an `on_change` event, we need to get database ID from origin
-        if isinstance(partner_id.id, models.NewId) and partner_id._origin:
+        if isinstance(partner_id.id, models.NewId):
+            # note that pid can be `False` if `partner_id` is a new record (no origin)
             pid = partner_id._origin.id
         else:
             pid = partner_id.id
-        res = [("partner_id", "child_of", pid)]
-        if self.env.context.get("pass_sent_only"):
-            res.append(("state", "=", "sent"))
+        if pid:
+            res = [("partner_id", "child_of", pid)]
+            if self.env.context.get("pass_sent_only"):
+                res.append(("state", "=", "sent"))
+        else:
+            res = []
         return res
 
     def _compute_license(self):
