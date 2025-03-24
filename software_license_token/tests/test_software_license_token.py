@@ -37,11 +37,22 @@ class TestSoftwareLicenseToken(TransactionCase):
         self.assertFalse(brickgame_app.public_key)
 
     @freeze_time("2023-11-13 11:45:20")
-    def test_02_activate_hardware(self):
+    def test_02a_activate_hardware(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
         self.assertEqual(fitness_lic1.get_remaining_activation(), 2)
         added_hardware_id = fitness_lic1.activate("9d:24:26:52:12:81")
         self.assertEqual(fitness_lic1.get_remaining_activation(), 1)
+        self.assertEqual(
+            added_hardware_id.validation_date, datetime(2023, 11, 13, 11, 45, 20)
+        )
+
+    @freeze_time("2023-11-13 11:45:20")
+    def test_02b_activate_hardware(self):
+        # test activation on app without key pairs
+        brickgame_lic1 = self.env.ref("software_license.sl_brickgame1")
+        self.assertEqual(brickgame_lic1.get_remaining_activation(), 1)
+        added_hardware_id = brickgame_lic1.activate("9d:24:26:52:12:81")
+        self.assertEqual(brickgame_lic1.get_remaining_activation(), 0)
         self.assertEqual(
             added_hardware_id.validation_date, datetime(2023, 11, 13, 11, 45, 20)
         )
@@ -124,7 +135,7 @@ class TestSoftwareLicenseToken(TransactionCase):
         self.assertEqual(hw_exported_vals["expiration_date"], "2023-12-08 12:00:00")
 
     @freeze_time("2023-12-10 15:00:00")
-    def test_06_license_activation_details(self):
+    def test_06a_license_activation_details(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
         # remove all existing activation to avoid time inconsistency
         fitness_lic1.hardware_ids.unlink()
@@ -138,8 +149,27 @@ class TestSoftwareLicenseToken(TransactionCase):
         self.assertEqual(my_data["validity_days"], 180)
         self.assertEqual(my_data["validation_expiration_date"], "2024-06-07 15:00:00")
         license_string = hardware_id.get_license_string()
-        # check license header (remaining data is encrypted)
+        # check license header (remaining data is base64 encoded encrypted data)
         self.assertRegex(license_string, r"# MyFitnessApp License \(id: 1001\)")
+
+    @freeze_time("2023-12-10 15:00:00")
+    def test_06b_license_activation_details(self):
+        # test activation on app without key pairs
+        brickgame_lic1 = self.env.ref("software_license.sl_brickgame1")
+        # remove all existing activation to avoid time inconsistency
+        brickgame_lic1.hardware_ids.unlink()
+        # brickgame_lic1.expiration_date = fields.Datetime.now() + relativedelta(days=180)
+        hardware_id = brickgame_lic1.activate("my_device_uuid")
+        _filter = ["my_device_uuid"]
+        hw_data = brickgame_lic1.get_hardwares_dict(_filter)
+        my_data = hw_data["my_device_uuid"]
+        self.assertEqual(my_data["hardware_identifier"], "my_device_uuid")
+        self.assertEqual(my_data["date"], "2023-12-10 15:00:00")
+        self.assertEqual(my_data["validity_days"], 365)
+        self.assertEqual(my_data["validation_expiration_date"], "2024-12-09 15:00:00")
+        license_string = hardware_id.get_license_string()
+        # check license header (remaining data is base64 encoded readable data)
+        self.assertRegex(license_string, r"# The Brick Game License \(id: 1002\)")
 
     def test_07_install_mode(self):
         # in install_mode, constraints must be ignored

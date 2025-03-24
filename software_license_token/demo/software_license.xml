@@ -6,4 +6,8 @@
         <field name="expiration_date" eval="datetime.now()+relativedelta(days=30)" />
     </record>
 
+    <record model="software.license" id="software_license.sl_brickgame2">
+        <field name="max_allowed_hardware" eval="10" />
+    </record>
+
 </odoo>

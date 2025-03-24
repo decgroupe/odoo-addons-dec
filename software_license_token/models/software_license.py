@@ -79,6 +79,8 @@ class SoftwareLicense(models.Model):
 
     def _prepare_hardware_activation_vals(self, hardware):
         res = super()._prepare_hardware_activation_vals(hardware)
+        # override default `validity_days` (1 year) by computing the remaining
+        # days until the expiration date
         if self.expiration_date:
             res["validity_days"] = (self.expiration_date - fields.Datetime.now()).days
         return res
