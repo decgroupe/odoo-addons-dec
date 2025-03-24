@@ -9,6 +9,7 @@
         "l10n_fr_department",
         "l10n_fr_department_oversea",
         "partner_fax",
+        "web_xml_export", # needed for initial loading of `res_partner_academy.xml` data
     ],
     "data": [
         "security/model_security.xml",
