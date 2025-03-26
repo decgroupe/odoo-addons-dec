@@ -6,6 +6,7 @@
     "depends": [
         "helpdesk_mgmt",
         "email_template_qweb",
+        "mail_qweb",
     ],
     "data": [
         "data/ir_ui_view.xml",
