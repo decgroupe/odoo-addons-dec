@@ -26,9 +26,6 @@ class HelpdeskTicket(models.Model):
                 emails = []
                 for user_id in team_id.user_ids:
                     emails.append(user_id.partner_id.email_formatted)
-                    # self.message_subscribe(
-                    #     partner_ids=user_id.partner_id.ids
-                    # )
                 self.send_user_internal_mail(emails)
 
     def send_user_internal_mail(self, emails):
@@ -40,6 +37,10 @@ class HelpdeskTicket(models.Model):
         )
 
     def _should_notify_new_ticket(self):
-        return self.env.context.get(
-            "fetchmail_cron_running", False
-        ) or self.env.context.get("force_helpdesk_notify", False)
+        _should_notify = self.env.context.get("fetchmail_cron_running", False)
+        if not _should_notify:
+            _should_notify = self.env.context.get("force_helpdesk_notify", False)
+        if not _should_notify:
+            # require: [IMP] helpdesk_mgmt: Help to know if a ticket is created from portal
+            _should_notify = self.env.context.get("portal_ticket", False)
+        return _should_notify
