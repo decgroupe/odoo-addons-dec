@@ -6,6 +6,7 @@
     "depends": [
         "helpdesk_mgmt",
         "helpdesk_notify",
+        "project",
     ],
     "data": [],
     "installable": True,
