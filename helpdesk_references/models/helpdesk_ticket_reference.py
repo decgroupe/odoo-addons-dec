@@ -3,16 +3,6 @@
 
 from odoo import api, fields, models
 
-APPLICABLE_MODELS = [
-    "purchase.order",
-    "purchase.order.line",
-    "sale.order",
-    "sale.order.line",
-    "product.product",
-    "mrp.production",
-    "mrp.bom",
-]
-
 
 class HelpdeskTicketReference(models.Model):
     _name = "helpdesk.ticket.reference"
@@ -30,6 +20,22 @@ class HelpdeskTicketReference(models.Model):
         required=True,
     )
 
+    def _get_applicable_models(self):
+        return [
+            "helpdesk.ticket",
+            # soft support for `product` module
+            "product.product",
+            # soft support for `purchase` module
+            "purchase.order",
+            "purchase.order.line",
+            # soft support for `sale` module
+            "sale.order",
+            "sale.order.line",
+            # soft support for `mrp` module
+            "mrp.production",
+            "mrp.bom",
+        ]
+
     @api.model
     def _selection_model(self):
         def _translate(src):
@@ -46,6 +52,6 @@ class HelpdeskTicketReference(models.Model):
 
         return [
             (x, _translate(self.env[x]._description))
-            for x in APPLICABLE_MODELS
+            for x in self._get_applicable_models()
             if x in self.env
         ]
