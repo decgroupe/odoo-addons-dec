@@ -34,7 +34,7 @@ class AccountAnalyticLine(models.Model):
         groups="mrp.group_mrp_user",
     )
     production_product_name = fields.Char(
-        related="production_product_id.name",
+        related="production_product_id.display_name",
         store=True,
         compute_sudo=True,
     )
@@ -54,7 +54,6 @@ class AccountAnalyticLine(models.Model):
     def onchange_production_id(self):
         if not self.production_id:
             return
-        self.product_id = self.production_id.product_id
         if not self.project_id and self.production_id.project_id:
             self.project_id = self.production_id.project_id
 
