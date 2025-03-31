@@ -36,21 +36,6 @@ class TestCrmTimesheetAutofill(TestHrTimesheetAutofillCommon):
         self.al_ids = self.al1 | self.al2
 
     def test_01_search(self):
-
-        def search_for(text, al_ids=False, exclude_ids=False):
-            res_ids = (
-                self.analytic_line_model.with_user(self.user_admin)
-                .with_context(**self._get_default_autofill_context())
-                .name_search(text)
-            )
-            # extract id from the name get tuple (id, display_name) and browse data
-            analytic_line_ids = self.analytic_line_model.browse([x[0] for x in res_ids])
-            for al_id in al_ids:
-                if exclude_ids and al_id in exclude_ids:
-                    self.assertNotIn(al_id, analytic_line_ids)
-                else:
-                    self.assertIn(al_id, analytic_line_ids)
-
-        search_for("office", self.al_ids)
-        search_for("contact", self.al_ids, self.al2)
-        search_for("quotation", self.al_ids, self.al1)
+        self._search_for("office", self.al_ids)
+        self._search_for("contact", self.al_ids, self.al2)
+        self._search_for("quotation", self.al_ids, self.al1)
