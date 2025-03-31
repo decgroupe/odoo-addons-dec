@@ -19,6 +19,8 @@ class TestHelpdeskPublic(odoo.tests.HttpCase):
             data=json.dumps(payload),
             headers={"Content-Type": "application/json"},
         )
+        self.assertEqual(response.status_code, 200, "API should return 200")
+        self.assertIn("result", response.json())
         return response
 
     def _create_and_get_ticket(self, data):
@@ -30,14 +32,28 @@ class TestHelpdeskPublic(odoo.tests.HttpCase):
         self.assertEqual(len(ticket_id), 1, "Only one ticket should be created")
         return ticket_id
 
-    def test_01_new_ticket_basic(self):
+    def test_01a_new_ticket_basic(self):
+        # generate some partners without email to test the ticket creation and its
+        # internal `_retrieve_partner_from_email` method
+        Partner = self.env["res.partner"]
+        for i in range(3):
+            Partner.create({"name": "partner%d" % i})
         data = {
             "subject": "New Ticket",
-            "description": "This is a test ticket from test_01",
+            "description": "This is a test ticket from test_01a",
         }
         ticket_id = self._create_and_get_ticket(data)
         self.assertEqual(ticket_id.name, "New Ticket")
-        self.assertRegex(ticket_id.description, r"This is a test ticket from test_01")
+        self.assertRegex(ticket_id.description, r"This is a test ticket from test_01a")
+
+    def test_01b_new_ticket_basic(self):
+        data = {
+            "subject": "New Ticket",
+            "description": "This is a test ticket from test_01b",
+        }
+        ticket_id = self._create_and_get_ticket(data)
+        self.assertEqual(ticket_id.name, "New Ticket")
+        self.assertRegex(ticket_id.description, r"This is a test ticket from test_01b")
 
     def test_02_new_ticket_with_channel(self):
         data = {

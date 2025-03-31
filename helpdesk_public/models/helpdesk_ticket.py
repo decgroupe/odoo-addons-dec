@@ -9,21 +9,25 @@ class HelpdeskTicket(models.Model):
 
     @api.model
     def _retrieve_partner_from_email(self, vals):
-        if "partner_email" in vals and not "partner_id" in vals:
+        """Retrieve the partner from the email if not set"""
+        partner_email = vals.get("partner_email")
+        if partner_email and not "partner_id" in vals:
             partner_id = (
                 self.env["res.partner"]
                 .sudo()
-                .search([("email", "=", vals.get("partner_email"))])
+                .search([("email", "=", partner_email)])
             )
             vals["partner_id"] = partner_id.id
 
     @api.model
     def _retrieve_user_from_project(self, vals):
-        if "project_id" in vals and not "user_id" in vals:
+        """Retrieve the user from the project if not set"""
+        project_raw_id = vals.get("project_id")
+        if project_raw_id and not "user_id" in vals:
             project_id = (
                 self.env["project.project"]
                 .sudo()
-                .search([("id", "=", vals.get("project_id"))])
+                .search([("id", "=", project_raw_id)])
             )
             vals["user_id"] = project_id.user_id.id
 
