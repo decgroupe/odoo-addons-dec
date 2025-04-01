@@ -19,7 +19,7 @@ class ProjectProject(models.Model):
     )
     label_productions = fields.Char(
         string="Use Productions as",
-        default=lambda s: _("Productions"),
+        default=lambda self: self and _("Productions"),
         translate=True,
         help="Gives label to productions on project's kanban view.",
     )
