@@ -4,7 +4,7 @@
     "author": "DEC",
     "website": "https://www.decgroupe.com",
     "depends": [
-        "mrp_project",
+        "mrp_project_auto",
         "mrp_partner",
         "mrp_identification",
         "mrp_stage",

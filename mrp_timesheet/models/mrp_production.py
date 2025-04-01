@@ -53,6 +53,12 @@ class MrpProduction(models.Model):
         return res
 
     @api.model
+    def _attach_to_project(self, project_id):
+        res = super()._attach_to_project(project_id)
+        res["allow_timesheets"] = True
+        return res
+
+    @api.model
     def _default_allow_timesheets(self):
         return False
 

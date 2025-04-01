@@ -16,14 +16,15 @@ class MrpProduction(models.Model):
                 # `_generate_moves` function but all this code has been refactored.
                 project_id = self._create_or_retrieve_project(vals)
                 if project_id:
-                    vals.update(
-                        {
-                            "project_id": project_id.id,
-                            "allow_timesheets": True,
-                        }
-                    )
+                    vals.update(self._attach_to_project(project_id))
         production_ids = super(MrpProduction, self).create(vals_list)
         return production_ids
+
+    @api.model
+    def _attach_to_project(self, project_id):
+        return {
+            "project_id": project_id.id,
+        }
 
     @api.model
     def default_get(self, default_fields):
@@ -86,9 +87,4 @@ class MrpProduction(models.Model):
             data = rec.sudo().read(load=False)[0]
             project_id = self._create_or_retrieve_project(data)
             if project_id:
-                rec.write(
-                    {
-                        "project_id": project_id.id,
-                        "allow_timesheets": True,
-                    }
-                )
+                rec.write(self._attach_to_project(project_id))
