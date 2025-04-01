@@ -55,10 +55,14 @@ class TestMrpProjectAutoCommon(TestMrpCommon):
             }
         )
 
-    def _generate_mo(self, product, bom, qty=1.0):
+    def _generate_mo(self, product, bom, qty=1.0, **kwargs):
         mo_form = Form(self.env["mrp.production"])
         mo_form.product_id = product
         mo_form.bom_id = bom
         mo_form.product_qty = qty
+        if kwargs:
+            for key, value in kwargs.items():
+                if hasattr(mo_form, key):
+                    setattr(mo_form, key, value)
         mo = mo_form.save()
         return mo
