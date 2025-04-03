@@ -38,13 +38,13 @@ job:
     # - manifestoo -d . check-licenses
     # Check development status
     # - manifestoo -d . check-dev-status --default-dev-status=Beta
-    # Initialize test db
-    - oca_init_test_database
     # Config server wide modules
     - echo "server_wide_modules=base,web,queue_job,base_module_list,dbfilter_from_header,db_from_header,base_deterministic_session_gc" >> /etc/odoo.cfg
     # Exclude some modules
     - EXCLUDE=product_create_prefill,website_sale_product_public_code,mail_activity_team_schedule,mail_activity_schedule_dhxgantt,project_schedule,mrp_schedule,sale_timesheet_project_schedule,web_report_workflow,account_report_qweb,sale_report_qweb,l10n_fr_hr_expense_easy
     # - INCLUDE=procurement_exception
+    # Initialize test db
+    - oca_init_test_database
     # Run tests with coverage ()
     # - oca_run_tests || (echo "CI is now in sleep mode for 1 hour, you can go to '/builds/erp/odoo-addons/dec/public' and run 'odoo shell -d odoo' to debug current status" ; sleep 1h; (exit 1) )
     - oca_run_tests
