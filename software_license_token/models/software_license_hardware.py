@@ -115,10 +115,21 @@ class SoftwareLicenseHardware(models.Model):
         # return header and encrypted data
         return header, enc_data
 
-    def get_license_string(self):
-        """Validate now and generate an updated license string (with encrypted data)"""
-        self.ensure_one()
+    def validate(self):
+        """Validate now (should be done before generating a license string)"""
+        res = super().validate()
         self.validation_date = fields.datetime.now()
+        # override default `validity_days` (1 year) by computing the remaining
+        # days until the license expiration date
+        if self.license_id.expiration_date:
+            self.validity_days = (
+                self.license_id.expiration_date - self.validation_date
+            ).days
+        return res
+
+    def get_license_string(self):
+        """Generate an updated license string (with encrypted data)"""
+        self.ensure_one()
         header, enc_data = self._get_license_data()
         # return a ready to use license string to write as a file
         res = "\n".join([header, enc_data])

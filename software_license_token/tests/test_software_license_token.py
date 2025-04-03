@@ -121,9 +121,9 @@ class TestSoftwareLicenseToken(TransactionCase):
     def test_05_license_activation(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
         # override existing demo data to have valid dates
-        fitness_lic1.hardware_ids.write({
-            "validation_date": fields.Datetime.now() + relativedelta(days=2)
-        })
+        fitness_lic1.hardware_ids.write(
+            {"validation_date": fields.Datetime.now() + relativedelta(days=2)}
+        )
         fitness_lic1.expiration_date = fields.Datetime.now() + relativedelta(days=7)
         self.assertEqual(fitness_lic1.activation_identifier, fitness_lic1.serial)
         # test exported values (even if comes from a private function)
@@ -134,42 +134,86 @@ class TestSoftwareLicenseToken(TransactionCase):
         hw_exported_vals = fitness_activation1._prepare_export_vals()
         self.assertEqual(hw_exported_vals["expiration_date"], "2023-12-08 12:00:00")
 
-    @freeze_time("2023-12-10 15:00:00")
-    def test_06a_license_activation_details(self):
+    def test_06a_license_with_expiration_date_activation_details(self):
         fitness_lic1 = self.env.ref("software_license.sl_myfitnessapp1")
         # remove all existing activation to avoid time inconsistency
         fitness_lic1.hardware_ids.unlink()
-        fitness_lic1.expiration_date = fields.Datetime.now() + relativedelta(days=180)
-        hardware_id = fitness_lic1.activate("my_device_uuid")
-        _filter = ["my_device_uuid"]
-        hw_data = fitness_lic1.get_hardwares_dict(_filter)
-        my_data = hw_data["my_device_uuid"]
-        self.assertEqual(my_data["hardware_identifier"], "my_device_uuid")
-        self.assertEqual(my_data["date"], "2023-12-10 15:00:00")
-        self.assertEqual(my_data["validity_days"], 180)
-        self.assertEqual(my_data["validation_expiration_date"], "2024-06-07 15:00:00")
-        license_string = hardware_id.get_license_string()
-        # check license header (remaining data is base64 encoded encrypted data)
-        self.assertRegex(license_string, r"# MyFitnessApp License \(id: 1001\)")
+        with freeze_time("2023-12-10 15:00:00"):
+            fitness_lic1.expiration_date = fields.Datetime.now() + relativedelta(
+                days=180
+            )
+            hardware_id = fitness_lic1.activate("my_device_uuid")
+            _filter = ["my_device_uuid"]
+            hw_data = fitness_lic1.get_hardwares_dict(_filter)
+            my_data = hw_data["my_device_uuid"]
+            self.assertEqual(my_data["hardware_identifier"], "my_device_uuid")
+            self.assertEqual(my_data["date"], "2023-12-10 15:00:00")
+            self.assertEqual(my_data["validity_days"], 180)
+            self.assertEqual(
+                my_data["validation_expiration_date"], "2024-06-07 15:00:00"
+            )
+            license_string = hardware_id.get_license_string()
+            # check license header (remaining data is base64 encoded encrypted data)
+            self.assertRegex(license_string, r"# MyFitnessApp License \(id: 1001\)")
+        # validate the same device after 10 days
+        with freeze_time("2023-12-20 15:00:00"):
+            hardware_id.validate()
+            hw_data = fitness_lic1.get_hardwares_dict([hardware_id.name])
+            my_data = hw_data[hardware_id.name]
+            self.assertEqual(my_data["date"], "2023-12-20 15:00:00")
+            self.assertEqual(my_data["validity_days"], 170)
+            self.assertEqual(
+                my_data["validation_expiration_date"], "2024-06-07 15:00:00"
+            )
+        # re-validate the same device after 200 days
+        with freeze_time("2024-07-20 15:00:00"):
+            with self.assertRaisesRegex(
+                ValidationError, r"Expiration date reached"
+            ), self.cr.savepoint():
+                hardware_id.validate()
 
-    @freeze_time("2023-12-10 15:00:00")
-    def test_06b_license_activation_details(self):
+    def test_06b_license_without_expiration_date_activation_details(self):
         # test activation on app without key pairs
         brickgame_lic1 = self.env.ref("software_license.sl_brickgame1")
         # remove all existing activation to avoid time inconsistency
         brickgame_lic1.hardware_ids.unlink()
-        # brickgame_lic1.expiration_date = fields.Datetime.now() + relativedelta(days=180)
-        hardware_id = brickgame_lic1.activate("my_device_uuid")
-        _filter = ["my_device_uuid"]
-        hw_data = brickgame_lic1.get_hardwares_dict(_filter)
-        my_data = hw_data["my_device_uuid"]
-        self.assertEqual(my_data["hardware_identifier"], "my_device_uuid")
-        self.assertEqual(my_data["date"], "2023-12-10 15:00:00")
-        self.assertEqual(my_data["validity_days"], 365)
-        self.assertEqual(my_data["validation_expiration_date"], "2024-12-09 15:00:00")
-        license_string = hardware_id.get_license_string()
-        # check license header (remaining data is base64 encoded readable data)
-        self.assertRegex(license_string, r"# The Brick Game License \(id: 1002\)")
+        self.assertFalse(brickgame_lic1.expiration_date)
+        with freeze_time("2023-12-10 15:00:00"):
+            hardware_id = brickgame_lic1.activate("my_device_uuid")
+            _filter = ["my_device_uuid"]
+            hw_data = brickgame_lic1.get_hardwares_dict(_filter)
+            my_data = hw_data["my_device_uuid"]
+            self.assertEqual(my_data["hardware_identifier"], "my_device_uuid")
+            self.assertEqual(my_data["date"], "2023-12-10 15:00:00")
+            self.assertEqual(my_data["validity_days"], 365)
+            self.assertEqual(
+                my_data["validation_expiration_date"], "2024-12-09 15:00:00"
+            )
+            license_string = hardware_id.get_license_string()
+            # check license header (remaining data is base64 encoded readable data)
+            self.assertRegex(license_string, r"# The Brick Game License \(id: 1002\)")
+        # enforce validity days to 2 days
+        hardware_id.validity_days = 2
+        # validate the same device after 10 days
+        with freeze_time("2023-12-20 15:00:00"):
+            hardware_id.validate()
+            hw_data = brickgame_lic1.get_hardwares_dict([hardware_id.name])
+            my_data = hw_data[hardware_id.name]
+            self.assertEqual(my_data["date"], "2023-12-20 15:00:00")
+            self.assertEqual(my_data["validity_days"], 2)
+            self.assertEqual(
+                my_data["validation_expiration_date"], "2023-12-22 15:00:00"
+            )
+        # re-validate the same device after 10000 days
+        with freeze_time("2054-05-20 15:00:00"):
+            hardware_id.validate()
+            hw_data = brickgame_lic1.get_hardwares_dict([hardware_id.name])
+            my_data = hw_data[hardware_id.name]
+            self.assertEqual(my_data["date"], "2054-05-20 15:00:00")
+            self.assertEqual(my_data["validity_days"], 2)
+            self.assertEqual(
+                my_data["validation_expiration_date"], "2054-05-22 15:00:00"
+            )
 
     def test_07_install_mode(self):
         # in install_mode, constraints must be ignored
