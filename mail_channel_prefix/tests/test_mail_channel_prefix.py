@@ -58,13 +58,44 @@ class TestMailChannelPrefix(TransactionCase):
                 "Subject must not be altered: %s" % subject,
             )
 
-    def test_03_post_message(self):
+    def test_03_post_message_no_prefix_no_subject(self):
+        self.channel_general.subject_prefix = False
+        self.channel_general.message_post(subject="", body="test")
+        last_message_id = self.channel_general.message_ids[0]
+        self.assertFalse(last_message_id.subject)
+
+    def test_04_post_message_no_prefix_spaceonly_subject(self):
+        self.channel_general.subject_prefix = False
+        self.channel_general.message_post(subject="   ", body="test")
+        last_message_id = self.channel_general.message_ids[0]
+        self.assertFalse(last_message_id.subject)
+
+    def test_05_post_message_no_prefix(self):
+        self.channel_general.subject_prefix = False
+        self.channel_general.message_post(subject="Re: test", body="test")
+        last_message_id = self.channel_general.message_ids[0]
+        self.assertEqual(last_message_id.subject, "test")
+
+    def test_06_post_message_prefix_no_subject(self):
+        self.channel_general.subject_prefix = "[GENERAL]"
+        self.channel_general.message_post(subject="", body="test")
+        last_message_id = self.channel_general.message_ids[0]
+        self.assertEqual(last_message_id.subject, "[GENERAL]")
+
+    def test_06_post_message_prefix_spaceonly_subject(self):
+        self.channel_general.subject_prefix = "[GENERAL]"
+        self.channel_general.message_post(subject="   ", body="test")
+        last_message_id = self.channel_general.message_ids[0]
+        self.assertEqual(last_message_id.subject, "[GENERAL]")
+
+    def test_08_post_message_prefix_subject(self):
         self.channel_general.subject_prefix = "[GENERAL]"
         self.channel_general.message_post(subject="Re: test", body="test")
         last_message_id = self.channel_general.message_ids[0]
-        self.assertEqual(
-            last_message_id.subject,
-            "[GENERAL] test",
-            "Subject not prefixed: %s" % last_message_id.subject,
-        )
-        print(1)
+        self.assertEqual(last_message_id.subject, "[GENERAL] test")
+
+    def test_09_post_message_prefix_subject_prefixed(self):
+        self.channel_general.subject_prefix = "[GENERAL]"
+        self.channel_general.message_post(subject="[GENERAL] Re: test", body="test")
+        last_message_id = self.channel_general.message_ids[0]
+        self.assertEqual(last_message_id.subject, "[GENERAL] Re: test")
