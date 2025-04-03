@@ -186,6 +186,7 @@ class SoftwareLicenseController(http.Controller):
             return SERIAL_TOO_MANY_ACTIVATION
         else:
             info = self._get_request_info(request)
+            # activate and internally validate the license for this hardware
             hardware_id = license_id.activate(hardware, info)
             msg = SERIAL_ACTIVATED_ON_HARDWARE.copy()
             # common data will contain the validated license string
@@ -236,6 +237,7 @@ class SoftwareLicenseController(http.Controller):
             return SERIAL_NOT_ACTIVATED_ON_HARDWARE
         else:
             hardware_id.info = self._get_request_info(request)
+            hardware_id.validate()
             msg = SERIAL_UPDATED_ON_HARDWARE.copy()
             # common data will contain the validated license string
             self._append_common_data(license_id, hardware_id, msg)
