@@ -1,7 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
+import logging
+
 from odoo import _, api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareLicense(models.Model):
@@ -154,8 +158,17 @@ class SoftwareLicense(models.Model):
             vals = self._prepare_hardware_activation_vals(hardware)
             if info:
                 vals["info"] = info
-            return Hardware.create(vals)
+            hardware_id = Hardware.create(vals)
+            hardware_id.validate()
+            return hardware_id
         else:
+            _logger.warning(
+                "Hardware %s already registered for license %s: "
+                "activation and validation skipped (registry loaded = %s)",
+                hardware,
+                self.serial,
+                self.env.registry.loaded,
+            )
             return Hardware
 
     @api.depends("serial")

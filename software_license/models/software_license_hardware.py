@@ -112,3 +112,9 @@ class SoftwareLicenseHardware(models.Model):
                 domain += [("license_id.activation_identifier", "=", serial)]
             hardware_ids = hardware_ids.search(domain, limit=limit)
         return hardware_ids
+
+    def validate(self):
+        """Update validation data."""
+        # note that this method don't do anything until inherited by other modules
+        self.ensure_one()
+        return self
