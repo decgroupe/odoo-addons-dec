@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2021
 
 
+import re
 from odoo import api, fields, models
 
 
@@ -10,11 +11,10 @@ class MailChannel(models.AbstractModel):
 
     subject_prefix = fields.Char(string="Subject's Prefix", help="【MAIL】")
 
+    @api.model
     def _remove_subject_client_prefix(self, subject):
-        for prefix in ["Re", "RE", "Fw", "FW", "Fwd", "FWD", ":"]:
-            if subject.startswith(prefix):
-                subject = subject.replace(prefix, "", 1).strip()
-        return subject
+        res = re.sub(r"^(Re|RE|Fw|FW|Fwd|FWD)\s?:\s?", "", subject).strip()
+        return res
 
     def _add_subject_channel_prefix(self, subject):
         if self.subject_prefix:
