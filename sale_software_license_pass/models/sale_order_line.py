@@ -132,6 +132,8 @@ class SaleOrderLine(models.Model):
         sale_pass_data = self._get_sale_application_pass_data(today)
         vals.update(sale_pass_data)
         pass_id.write(vals)
+        # create a to-send activity
+        pass_id._create_to_send_activity(self, user_id=self.order_id.user_id.id)
         return pass_id
 
     def _application_pass_generation(self):
