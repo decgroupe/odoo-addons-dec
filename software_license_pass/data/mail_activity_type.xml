@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="mail.activity.type" id="mail_activity_to_send">
+        <field name="name">To Send</field>
+        <field name="icon">fa-paper-plane</field>
+        <field name="delay_count">5</field>
+        <field name="res_model_id" ref="software_license_pass.model_software_license_pass" />
+    </record>
+
+</odoo>

@@ -146,7 +146,7 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(pass_basic2.state, "draft")
         self.assertFalse(license_id.pass_state)
 
-    def test_07_pass_send(self):
+    def test_07a_pass_send(self):
         pass_basic2 = self.env.ref("software_license_pass.pass_basic2")
         # remove responsible
         pass_basic2.user_id = False
@@ -161,6 +161,25 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(pass_basic2.state, "sent")
         self.assertEqual(license_id.pass_state, "sent")
         self.assertEqual(pass_basic2.user_id, self.pass_user)
+
+    def test_07b_pass_send_with_activity(self):
+        pass_basic2 = self.env.ref("software_license_pass.pass_basic2")
+        activity_id = pass_basic2.with_user(self.pass_user)._create_to_send_activity()
+        self.assertTrue(activity_id.exists())
+        # remove responsible
+        pass_basic2.user_id = False
+        self.assertEqual(pass_basic2.state, "draft")
+        license_id = pass_basic2.license_ids[0]
+        self.assertEqual(license_id.pass_state, "draft")
+        action = pass_basic2.with_user(self.pass_user).action_send()
+        wizard = (
+            self.env[action["res_model"]].with_context(action["context"]).create({})
+        )
+        wizard.action_send_mail()
+        self.assertEqual(pass_basic2.state, "sent")
+        self.assertEqual(license_id.pass_state, "sent")
+        self.assertEqual(pass_basic2.user_id, self.pass_user)
+        self.assertFalse(activity_id.exists())
 
     def test_08_pass_cancel(self):
         pass_basic2 = self.env.ref("software_license_pass.pass_basic2")

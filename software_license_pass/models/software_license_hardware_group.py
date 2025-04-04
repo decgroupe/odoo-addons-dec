@@ -12,6 +12,7 @@ class SoftwareLicenseHardwareGroup(models.Model):
     """Group of all identical hardwares (by name)"""
 
     _name = "software.license.hardware.group"
+    _description = "License Hardware Group"
 
     pass_id = fields.Many2one(
         comodel_name="software.license.pass",

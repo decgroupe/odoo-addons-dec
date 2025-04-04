@@ -27,6 +27,7 @@
         "data/ir_ui_view.xml",
         "data/mail_template.xml",
         "data/uom.xml",
+        "data/mail_activity_type.xml",
     ],
     "demo": [
         "demo/software_license_pack.xml",

@@ -294,6 +294,10 @@ class SoftwareLicensePass(models.Model):
                 partner_ids |= self.env["res.partner"].browse(ids)
             # portal access is given only once
             partner_ids.give_portal_access()
+            # set existing activity as done (unset context to avoid a recursion)
+            self.with_context(mark_as_sent=False).activity_feedback(
+                ["software_license_pass.mail_activity_to_send"]
+            )
         return super(
             SoftwareLicensePass, self.with_context(mail_post_autofollow=True)
         ).message_post(**kwargs)
@@ -332,6 +336,21 @@ class SoftwareLicensePass(models.Model):
             "target": "new",
             "context": ctx,
         }
+
+    def _override_to_send_activity_values(self, origin, act_values):
+        return None
+
+    def _create_to_send_activity(self, origin=None, **act_values):
+        self.ensure_one()
+        self._override_to_send_activity_values(origin, act_values)
+        activity_id = self.with_context(
+            mail_activity_noautofollow=True,
+        ).activity_schedule(
+            act_type_xmlid="software_license_pass.mail_activity_to_send",
+            note=_("🚨 Auto: To Send"),
+            **act_values,
+        )
+        return activity_id
 
     def _prepare_license_vals(self, pack_line_id):
         self.ensure_one()
