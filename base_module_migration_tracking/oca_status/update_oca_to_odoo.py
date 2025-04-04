@@ -86,6 +86,65 @@ def update_or_create_migration(odoo, module, version, new_data):
         migration = odoo.env["ir.module.migration"].create(new_data)
 
 
+def get_module_migration_data_from_repo(module_name, module_url):
+    response = requests.head(module_url, allow_redirects=True, timeout=REQUEST_TIMEOUT)
+    if response.status_code == 200:
+        print(f"[+] Module {module_name} is available at {module_url}.")
+        data = {
+            "state": "migrated",
+            "note": "Migrated to OCA repository",
+            "repo_address": module_url,
+        }
+        return data
+    else:
+        print(f"[-] Module {module_name} not available at {module_url}.")
+        return None
+
+
+def get_module_migration_data_from_pr(
+    module_name, module_url, repo_name, version, github_token
+):
+    # caching the pull request data to avoid multiple requests
+    update_pr_cache(repo_name, version, github_token)
+    if repo_name not in pr_cache:
+        print(f"[-] No PR cache for {repo_name}.")
+        return None
+    for pr in pr_cache[repo_name]:
+        title = pr["title"]
+        base = pr["base"]["ref"]
+        if (
+            "[MIG]" in title.upper() or "[OU-ADD]" in title.upper()
+        ) and module_name in title.lower():
+            # module is referenced in a pull request
+            print(f"[+] Module {module_name} is referenced in a PR. {base}")
+            data = {
+                "state": "migrated",
+                "note": "Review",
+                "repo_address": module_url,
+                "pr_address": pr["html_url"],
+            }
+            return data
+    print(f"[-] Module {module_name} not referenced in any PR.")
+    return None
+
+
+def get_module_default_migration_data(module_name, module_url, repo_url, version):
+    # module is not referenced in a pull request
+    print(f"[-] Module {module_name} not referenced in any PR.")
+    help_notes = [
+        "- Check module status from issue named [Migration to version %d.0] at %s"
+        % (version, repo_url + "/issues"),
+        "- Check if migration exists with wrong name or closed status at %s"
+        % (repo_url + "/pulls?q=is:pr"),
+    ]
+    data = {
+        "state": "todo",
+        "note": "\n".join(help_notes),
+        "repo_address": module_url,
+    }
+    return data
+
+
 def github_to_odoo(version, host, port, db_name, user, password, github_token=None):
     """Convert the dictionary to Odoo format."""
     # prepare the connection to the server
@@ -107,61 +166,22 @@ def github_to_odoo(version, host, port, db_name, user, password, github_token=No
     print(module_ids)
     for module in modules:
         repo_name = get_repo_name(module.website)
-        # caching the pull request data to avoid multiple requests
-        update_pr_cache(repo_name, version, github_token)
         # execute an HEAD request to the module URL
         # to check if the module is available
         repo_url = f"https://github.com/OCA/{repo_name}/tree/{version}.0"
         module_url = f"{repo_url}/{module.name}"
-        response = requests.head(
-            module_url, allow_redirects=True, timeout=REQUEST_TIMEOUT
-        )
-        if response.status_code == 200:
-            print(f"[+] Module {module.name} is available at {module_url}.")
-            data = {
-                "state": "migrated",
-                "note": "Migrated to OCA repository",
-                "repo_address": module_url,
-            }
-            update_or_create_migration(odoo, module, version, data)
-        else:
-            print(f"[-] Module {module.name} not available at {module_url}.")
-            found = False
+        data = get_module_migration_data_from_repo(module.name, module_url)
+        if data is None:
             # search if the module is referenced in the pull request cache
-            if repo_name not in pr_cache:
-                print(f"[-] No PR cache for {repo_name}.")
-                continue
-            for pr in pr_cache[repo_name]:
-                title = pr["title"]
-                base = pr["base"]["ref"]
-                same_version = base == "%d.0" % version
-                if "[MIG]" in title.upper() and module.name in title and same_version:
-                    found = True
-                    # module is referenced in a pull request
-                    print(f"[+] Module {module.name} is referenced in a PR.")
-                    data = {
-                        "state": "migrated",
-                        "note": "Review",
-                        "repo_address": module_url,
-                        "pr_address": pr["html_url"],
-                    }
-                    update_or_create_migration(odoo, module, version, data)
-                    break
-            if not found:
+            data = get_module_migration_data_from_pr(
+                module.name, module_url, repo_name, version, github_token
+            )
+            if data is None:
                 # module is not referenced in a pull request
-                print(f"[-] Module {module.name} not referenced in any PR.")
-                help_notes = [
-                    "- Check module status from issue named [Migration to version %d.0] at %s"
-                    % (version, repo_url + "/issues"),
-                    "- Check if migration exists with wrong name or closed status at %s"
-                    % (repo_url + "/pulls?q=is:pr"),
-                ]
-                data = {
-                    "state": "todo",
-                    "note": "\n".join(help_notes),
-                    "repo_address": module_url,
-                }
-                update_or_create_migration(odoo, module, version, data)
+                data = get_module_default_migration_data(
+                    module.name, module_url, repo_url, version
+                )
+        update_or_create_migration(odoo, module, version, data)
 
 
 if __name__ == "__main__":

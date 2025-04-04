@@ -1,7 +1,16 @@
+import os
+import sys
 import re
 import argparse
 import pprint
 import odoorpc
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__) + "/..")
+# print(SCRIPT_DIR)
+# print(os.path.dirname(SCRIPT_DIR))
+sys.path.append(os.path.dirname(SCRIPT_DIR) + "/..")
+
+from oca_status import update_oca_to_odoo
 
 # Define the mapping for the "state" column
 status_mapping = {
@@ -63,7 +72,7 @@ def rst_to_dict(file_path):
     return modules_status
 
 
-def dict_to_odoo(data, version, host, port, db_name, user, password):
+def dict_to_odoo(data, version, host, port, db_name, user, password, github_token=None):
     """Convert the dictionary to Odoo format."""
     # prepare the connection to the server
     odoo = odoorpc.ODOO(host, port=port)
@@ -79,31 +88,31 @@ def dict_to_odoo(data, version, host, port, db_name, user, password):
             limit=1,
         )
         if not module_id:
-            print(f"[-] Module {module_name} not found in Odoo.")
+            print(f"[-] Module {module_name} not found in this Odoo database.")
         else:
-            migration_updated = False
+            migration = False
             # m_data["note"] = "*" + m_data["note"]
             module = odoo.env["ir.module.module"].browse(module_id)
-            for migration in module.migration_ids:
+            for _migration in module.migration_ids:
                 new_data = {
                     "state": m_data["state"],
                     "note": m_data["note"],
                 }
-                if migration.version == version:
-                    mig_data = migration.read(["state", "note"])[0]
+                if _migration.version == version:
+                    mig_data = _migration.read(["state", "note"])[0]
                     mig_data.pop("id", None)
                     # compare both dictionaries
-                    if (mig_data == new_data):
+                    if mig_data == new_data:
                         pass
                     else:
                         # Update the existing migration record
                         print(f"[*] Updating migration record for {module_name}...")
-                        migration.write(new_data)
-                    migration_updated = True
-            if not migration_updated:
+                        _migration.write(new_data)
+                    migration = _migration
+            if not migration:
                 # Create a new migration record if it doesn't exist
                 print(f"[+] Creating new migration record for {module_name}...")
-                migration = odoo.env["ir.module.migration"].create(
+                migration_id = odoo.env["ir.module.migration"].create(
                     {
                         "module_id": module.id,
                         "version": version,
@@ -111,6 +120,17 @@ def dict_to_odoo(data, version, host, port, db_name, user, password):
                         "note": m_data["note"],
                     }
                 )
+                migration = odoo.env["ir.module.migration"].browse(migration_id)
+            if migration.state == "todo":
+                repo_name = "OpenUpgrade"
+                repo_url = f"https://github.com/OCA/{repo_name}/tree/{version}.0"
+                module_url = f"{repo_url}/openupgrade_scripts/scripts/{module.name}"
+                # search if the module is referenced in the pull request cache.
+                data = update_oca_to_odoo.get_module_migration_data_from_pr(
+                    module.name, module_url, repo_name, version, github_token
+                )
+                if data:
+                    migration.write(data)
 
 
 if __name__ == "__main__":
@@ -119,11 +139,32 @@ if __name__ == "__main__":
         description="Convert .rst table to Python dictionary."
     )
 
-    parser.add_argument("file", help="Path to the .rst file to be processed.")
-    parser.add_argument("--host", help="Odoo Host Address")
-    parser.add_argument("--port", type=int, help="Odoo Port Number")
-    parser.add_argument("--database", help="Odoo Database")
-    parser.add_argument("--user", help="Odoo Username")
+    parser.add_argument(
+        "file",
+        help="Path to the .rst file to be processed.",
+    )
+    parser.add_argument(
+        "--host",
+        help="Odoo Host Address",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        help="Odoo Port Number",
+    )
+    parser.add_argument(
+        "--database",
+        help="Odoo Database",
+    )
+    parser.add_argument(
+        "--user",
+        help="Odoo Username",
+    )
+    parser.add_argument(
+        "--github-token",
+        help="Github Token for authentication (optional). "
+        "https://github.com/settings/tokens",
+    )
 
     args = parser.parse_args()
     # extract version number from the filename
@@ -143,5 +184,12 @@ if __name__ == "__main__":
         if all(odoo_args):
             password = input("Password for '%s': " % args.user)
             dict_to_odoo(
-                data, version, args.host, args.port, args.database, args.user, password
+                data,
+                version,
+                args.host,
+                args.port,
+                args.database,
+                args.user,
+                password,
+                args.github_token,
             )
