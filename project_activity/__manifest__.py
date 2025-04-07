@@ -7,6 +7,7 @@
         "project_mail_chatter",
     ],
     "data": [
+        "data/mail_activity_type.xml",
         "views/project_project.xml",
     ],
     "installable": True,

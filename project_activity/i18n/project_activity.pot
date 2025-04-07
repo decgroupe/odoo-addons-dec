@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:28+0000\n"
-"PO-Revision-Date: 2023-11-28 10:28+0000\n"
+"POT-Creation-Date: 2025-04-07 15:29+0000\n"
+"PO-Revision-Date: 2025-04-07 15:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,7 @@ msgstr ""
 
 #. module: project_activity
 #: model:ir.model.fields,field_description:project_activity.field_project_project__display_name
+#: model:ir.model.fields,field_description:project_activity.field_project_task__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -47,12 +48,8 @@ msgstr ""
 
 #. module: project_activity
 #: model:ir.model.fields,field_description:project_activity.field_project_project__id
+#: model:ir.model.fields,field_description:project_activity.field_project_task__id
 msgid "ID"
-msgstr ""
-
-#. module: project_activity
-#: model:ir.model.fields,help:project_activity.field_project_project__xid
-msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: project_activity
@@ -67,6 +64,7 @@ msgstr ""
 
 #. module: project_activity
 #: model:ir.model.fields,field_description:project_activity.field_project_project____last_update
+#: model:ir.model.fields,field_description:project_activity.field_project_task____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -110,16 +108,33 @@ msgid ""
 msgstr ""
 
 #. module: project_activity
+#: model:ir.model,name:project_activity.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: project_activity
+#: model:mail.activity.type,name:project_activity.mail_activity_to_assign
+msgid "To Assign"
+msgstr ""
+
+#. module: project_activity
+#: model:mail.activity.type,name:project_activity.mail_activity_to_plan
+msgid "To Plan"
+msgstr ""
+
+#. module: project_activity
 #: model:ir.model.fields,help:project_activity.field_project_project__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: project_activity
-#: model:ir.model.fields,field_description:project_activity.field_project_project__xid
-msgid "XML-ID"
+#: code:addons/project_activity/models/project_task.py:0
+#, python-format
+msgid "🚨 Auto: This task must be assigned"
 msgstr ""
 
 #. module: project_activity
-#: model:ir.model.fields,field_description:project_activity.field_project_project__activity_team_user_ids
-msgid "test field"
+#: code:addons/project_activity/models/project_task.py:0
+#, python-format
+msgid "🚨 Auto: This task must be planned"
 msgstr ""
