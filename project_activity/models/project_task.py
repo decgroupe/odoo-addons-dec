@@ -32,29 +32,23 @@ class ProjectTask(models.Model):
             self.activity_feedback(["project_activity.mail_activity_to_plan"])
         return super().write(vals)
 
-    def _override_activity_values(self, act_type_xmlid, origin, act_values):
-        return None
-
-    def _create_activity(self, act_type_xmlid, note, origin=None, **act_values):
+    def _create_activity(self, act_type_xmlid, note, **act_values):
         self.ensure_one()
-        self._override_activity_values(act_type_xmlid, origin, act_values)
         activity_id = self.with_context(
             mail_activity_noautofollow=True,
         ).activity_schedule(act_type_xmlid=act_type_xmlid, note=note, **act_values)
         return activity_id
 
-    def create_to_assign_activity(self, origin=None, **act_values):
+    def create_to_assign_activity(self, **act_values):
         return self._create_activity(
             act_type_xmlid="project_activity.mail_activity_to_assign",
             note=_("🚨 Auto: This task must be assigned"),
-            origin=origin,
             **act_values
         )
 
-    def create_to_plan_activity(self, origin=None, **act_values):
+    def create_to_plan_activity(self, **act_values):
         return self._create_activity(
             act_type_xmlid="project_activity.mail_activity_to_plan",
             note=_("🚨 Auto: This task must be planned"),
-            origin=origin,
             **act_values
         )
