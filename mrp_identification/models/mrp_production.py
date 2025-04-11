@@ -16,6 +16,21 @@ class MrpProduction(models.Model):
         names = super(MrpProduction, self.with_context(name_search=True)).name_search(
             name=name, args=args, operator=operator, limit=limit
         )
+        # if returned names are empty, launch a new search on products
+        if not names and name and not args and operator == "ilike":
+            args = [
+                "|",
+                ("partner_zip_id", operator, name),
+                "|",
+                ("bom_id.code", operator, name),
+                "|",
+                ("product_id.default_code", operator, name),
+                ("product_id.name", operator, name),
+            ]
+            name = ""
+            names = super(MrpProduction, self.with_context(name_search=True)).name_search(
+                name=name, args=args, operator=operator, limit=limit
+            )
         return names
 
     def name_get(self):
@@ -30,7 +45,10 @@ class MrpProduction(models.Model):
         res = []
         for rec in self:
             identification = " ".join(rec._get_name_identifications())
-            name = "%s%s %s" % (rec.name, SEARCH_SEPARATOR, identification)
+            if identification:
+                name = "%s%s %s" % (rec.name, SEARCH_SEPARATOR, identification)
+            else:
+                name = rec.name
             res.append((rec.id, name))
         return res
 
