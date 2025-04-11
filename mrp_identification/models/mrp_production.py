@@ -13,6 +13,12 @@ class MrpProduction(models.Model):
     def name_search(self, name, args=None, operator="ilike", limit=100):
         if SEARCH_SEPARATOR in name:
             name = name.partition(SEARCH_SEPARATOR)[0]
+            # remove 'stage' emoji
+            if name and not name[0].isalpha():
+                # we cannot rely on the length of the emoji because it can be 1 or
+                # more characters (invisible for variation). Instead we partition the
+                # string to remove the emoji
+                name = name.partition(" ")[2]
         names = super(MrpProduction, self.with_context(name_search=True)).name_search(
             name=name, args=args, operator=operator, limit=limit
         )
@@ -49,6 +55,9 @@ class MrpProduction(models.Model):
                 name = "%s%s %s" % (rec.name, SEARCH_SEPARATOR, identification)
             else:
                 name = rec.name
+            # add suport for `mrp_stage`
+            if rec.stage_id and rec.stage_id.emoji:
+                name = "%s %s" % (rec.stage_id.emoji, name)
             res.append((rec.id, name))
         return res
 
