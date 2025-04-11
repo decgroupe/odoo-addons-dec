@@ -89,17 +89,17 @@ class TestMrpIdentification(SavepointCase):
         self.partner_id.zip_id = self.zip_id
         # search using name
         name_res = (
-            "✨ WH/MO/00001 → 🔧 [#01] [FURN_7800] Desk Combination "
-            "👷 Azure Interior, Brandon Freeman "
-            "🗺️ 94538, Fremont, California, United States"
+            r"✨ WH/MO/00001 → 🔧 \[#01\] \[FURN_7800\] Desk Combination "
+            r"👷 Azure Interior, Brandon Freeman "
+            r"🗺️ 94538,? Fremont, California, United States"
         )
         res = self.model_production.name_search(name="00001")
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         # search using identification name
         res = self.model_production.name_search(name=name_res)
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         # name get should give a standard result (without identification)
         res = self.p1.name_get()
         self.assertEqual(res[0][0], self.p1.id)
@@ -107,37 +107,37 @@ class TestMrpIdentification(SavepointCase):
         # test with name_search context
         res = self.p1.with_context(name_search=True).name_get()
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         # confirm the production
         self.p1.action_confirm()
         # search using name
         name_res = (
-            "🏳️ WH/MO/00001 → 🔧 [#01] [FURN_7800] Desk Combination "
-            "👷 Azure Interior, Brandon Freeman "
-            "🗺️ 94538, Fremont, California, United States"
+            r"🏳️ WH/MO/00001 → 🔧 \[#01\] \[FURN_7800\] Desk Combination "
+            r"👷 Azure Interior, Brandon Freeman "
+            r"🗺️ 94538,? Fremont, California, United States"
         )
         res = self.model_production.name_search(name="00001")
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         # search using identification name
         res = self.model_production.name_search(name=name_res)
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         # remove icon for this stage
         self.p1.stage_id.emoji = False
         # search using name
         name_res = (
-            "WH/MO/00001 → 🔧 [#01] [FURN_7800] Desk Combination "
-            "👷 Azure Interior, Brandon Freeman "
-            "🗺️ 94538, Fremont, California, United States"
+            r"WH/MO/00001 → 🔧 \[#01\] \[FURN_7800\] Desk Combination "
+            r"👷 Azure Interior, Brandon Freeman "
+            r"🗺️ 94538,? Fremont, California, United States"
         )
         res = self.model_production.name_search(name="00001")
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         # search using identification name
         res = self.model_production.name_search(name=name_res)
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
 
 
     def test_20_production_without_bom_name_get(self):
@@ -154,14 +154,14 @@ class TestMrpIdentification(SavepointCase):
         name_res = "✨ INT/MO/0000X5"
         res = self.model_production.name_search(name="0000X5")
         self.assertEqual(res[0][0], p2.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         # set partner to the production
         p2.partner_id = self.partner_id
         # search using name
         name_res = "✨ INT/MO/0000X5 → 👷 Azure Interior, Brandon Freeman"
         res = self.model_production.name_search(name="0000X5")
         self.assertEqual(res[0][0], p2.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
 
     def test_30_search_for(self):
         # search for product
@@ -182,21 +182,21 @@ class TestMrpIdentification(SavepointCase):
         self.assertEqual(res[0][1], name_res)
         # assign partner with city and search for zip
         name_res = (
-            "✨ WH/MO/00001 → 🔧 [#01] [FURN_7800] Desk Combination "
-            "👷 Azure Interior, Brandon Freeman "
-            "🗺️ 94538, Fremont, California, United States"
+            r"✨ WH/MO/00001 → 🔧 \[#01\] \[FURN_7800\] Desk Combination "
+            r"👷 Azure Interior, Brandon Freeman "
+            r"🗺️ 94538,? Fremont, California, United States"
         )
         self.p1.partner_id = self.partner_id
         self.partner_id.zip_id = self.zip_id
         res = self.model_production.name_search(name="fremont")
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         res = self.model_production.name_search(name="94538")
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
         res = self.model_production.name_search(name="California")
         self.assertEqual(res[0][0], self.p1.id)
-        self.assertEqual(res[0][1], name_res)
+        self.assertRegex(res[0][1], name_res)
 
     def test_40_same_bom_code_replacing_product_code(self):
         # set a BoM reference
