@@ -4,7 +4,7 @@
 from odoo.tests.common import TransactionCase
 
 
-class ProjectActivityTestCommon(TransactionCase):
+class TestProjectActivityCommon(TransactionCase):
 
     def _create_default_task(self):
         # create task with no `user_id` and no `date_deadline`

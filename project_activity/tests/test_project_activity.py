@@ -3,10 +3,10 @@
 
 from odoo import fields
 
-from .common import ProjectActivityTestCommon
+from .common import TestProjectActivityCommon
 
 
-class TestProjectActivity(ProjectActivityTestCommon):
+class TestProjectActivity(TestProjectActivityCommon):
 
     def test_01_create_task_without_activities(self):
         task_id = self._create_default_task()
