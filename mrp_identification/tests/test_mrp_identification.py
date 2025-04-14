@@ -150,6 +150,9 @@ class TestMrpIdentification(SavepointCase):
                 "bom_id": False,
             }
         )
+        # force stage to draft because other modules may override stage computation
+        # behavior (auto-complete production order when BoM is not set)
+        p2.stage_id = self.env.ref("mrp_stage.stage_draft")
         # search using name
         name_res = "✨ INT/MO/0000X5"
         res = self.model_production.name_search(name="0000X5")
