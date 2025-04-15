@@ -30,35 +30,6 @@ class PurchaseOrder(models.Model):
         removed_line._check_pack_line_unlink()
 
     def write(self, vals):
-        if "order_line" in vals:
-            disable_pack_line_unlink = False
-            # find all lines that will be deleted using the command "2:UNLINK"
-            to_delete_ids = [e[1] for e in vals["order_line"] if e[0] == 2]
-            # search all existing pack lines that are children of these deleted lines
-            subpacks_to_delete_ids = (
-                self.env["purchase.order.line"]
-                .search(
-                    [("id", "child_of", to_delete_ids), ("id", "not in", to_delete_ids)]
-                )
-                .ids
-            )
-            # hook the current write data and replace any existing command with
-            # "2:UNLINK"
-            if subpacks_to_delete_ids:
-                # manually convert tuples to lists to keep compatibilty with odoo Form
-                # test
-                vals["order_line"] = [list(x) for x in vals["order_line"]]
-                for cmd in vals["order_line"]:
-                    if cmd[1] in subpacks_to_delete_ids:
-                        if cmd[0] != 2:
-                            cmd[0] = 2
-                            disable_pack_line_unlink = True
-                        subpacks_to_delete_ids.remove(cmd[1])
-                for to_delete_id in subpacks_to_delete_ids:
-                    vals["order_line"].append([2, to_delete_id, False])
-            # add a context variable to disable the automatic deletion of the pack lines
-            if disable_pack_line_unlink:
-                self = self.with_context(disable_pack_line_unlink=True)
         return super(PurchaseOrder, self).write(vals)
 
     def _create_picking(self):

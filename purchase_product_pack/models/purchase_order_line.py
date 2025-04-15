@@ -96,16 +96,12 @@ class PurchaseOrderLine(models.Model):
         """Remove previously the pack children lines for avoiding issues in
         the cache.
         """
-
-        if not self.env.context.get(
-            "disable_pack_line_unlink"
-        ) and not self.env.context.get("force_pack_line_unlink"):
+        if not self.env.context.get("bypass_check_pack_line"):
             self._check_pack_line_unlink()
         children = self.mapped("pack_child_line_ids")
         if children:
             children._pre_unlink()
-            if not self.env.context.get("disable_pack_line_unlink"):
-                children.with_context(force_pack_line_unlink=True).unlink()
+            children.with_context(bypass_check_pack_line=True).unlink()
         return super().unlink()
 
     def _pre_unlink(self):
@@ -119,16 +115,18 @@ class PurchaseOrderLine(models.Model):
                 record.move_dest_ids.unlink()
 
     def _check_pack_line_unlink(self):
-        if self.filtered(
+        undeletable_lines = self.filtered(
             lambda x: x.pack_parent_line_id
             and not x.pack_parent_line_id.product_id.pack_modifiable
-        ):
+        )
+        if undeletable_lines:
             raise UserError(
                 _(
-                    "You cannot delete this line because is part of a pack in"
-                    " this purchase order. In order to delete this line you need to"
-                    " delete the pack itself"
+                    "You cannot delete these lines because they are part of a pack in"
+                    " this purchase order:\n %s\n\n"
+                    "To remove these lines, you need to delete the pack itself"
                 )
+                % ("\n".join(undeletable_lines.mapped("name")))
             )
 
     def _is_editable(self):
@@ -150,7 +148,7 @@ class PurchaseOrderLine(models.Model):
         if not self._origin._is_editable():
             raise UserError(
                 _(
-                    "You can not change this line because is part of a pack"
+                    "You cannot edit this line because it is part of a pack"
                     " included in this order"
                 )
             )
