@@ -1,10 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2025
 
-from odoo.addons.project_activity.tests.common import ProjectActivityTestCommon
+from odoo.addons.project_activity.tests.common import TestProjectActivityCommon
 
 
-class TestProjectAutoActivity(ProjectActivityTestCommon):
+class TestProjectAutoActivity(TestProjectActivityCommon):
 
     def setUp(self):
         super().setUp()
