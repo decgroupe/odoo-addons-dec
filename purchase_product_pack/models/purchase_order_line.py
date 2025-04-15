@@ -3,10 +3,12 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.fields import first
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
+    _parent_name = "pack_parent_line_id"
 
     pack_type = fields.Selection(
         related="product_id.pack_type",
@@ -23,41 +25,59 @@ class PurchaseOrderLine(models.Model):
         "purchase.order.line",
         "Pack",
         help="The pack that contains this product.",
-        ondelete="cascade",
+        # ondelete="set null",
     )
     pack_child_line_ids = fields.One2many(
         "purchase.order.line", "pack_parent_line_id", "Lines in pack"
     )
     pack_modifiable = fields.Boolean(help="The parent pack is modifiable")
 
+    do_no_expand_pack_lines = fields.Boolean(
+        compute="_compute_do_no_expand_pack_lines",
+        help=(
+            "This is a technical field in order to check if pack lines has "
+            "to be expanded"
+        ),
+    )
+
+    @api.depends_context("update_prices", "update_pricelist")
+    def _compute_do_no_expand_pack_lines(self):
+        do_not_expand = self.env.context.get("update_prices") or self.env.context.get(
+            "update_pricelist", False
+        )
+        self.update(
+            {
+                "do_no_expand_pack_lines": do_not_expand,
+            }
+        )
+
     def expand_pack_line(self, write=False):
         self.ensure_one()
         # if we are using update_pricelist or checking out on ecommerce we
         # only want to update prices
-        do_not_expand = self._context.get("update_prices") or self._context.get(
-            "update_pricelist", False
-        )
+        vals_list = []
         if self.product_id.pack_ok and self.pack_type == "detailed":
             for subline in self.product_id.get_pack_lines():
                 vals = subline.get_purchase_order_line_vals(self, self.order_id)
                 vals["sequence"] = self.sequence
                 if write:
-                    existing_subline = self.search(
-                        [
-                            ("product_id", "=", subline.product_id.id),
-                            ("pack_parent_line_id", "=", self.id),
-                        ],
-                        limit=1,
+                    existing_subline = first(
+                        self.pack_child_line_ids.filtered(
+                            lambda child, pack_line=subline: child.product_id
+                            == pack_line.product_id
+                        )
                     )
                     # if subline already exists we update, if not we create
                     if existing_subline:
-                        if do_not_expand:
+                        if self.do_no_expand_pack_lines:
                             vals.pop("product_qty")
                         existing_subline.write(vals)
-                    elif not do_not_expand:
-                        self.create(vals)
+                    elif not self.do_no_expand_pack_lines:
+                        vals_list.append(vals)
                 else:
-                    self.create(vals)
+                    vals_list.append(vals)
+            if vals_list:
+                self.create(vals_list)
 
     @api.model
     def create(self, vals):
@@ -76,15 +96,21 @@ class PurchaseOrderLine(models.Model):
         """Remove previously the pack children lines for avoiding issues in
         the cache.
         """
+
+        if not self.env.context.get(
+            "disable_pack_line_unlink"
+        ) and not self.env.context.get("force_pack_line_unlink"):
+            self._check_pack_line_unlink()
         children = self.mapped("pack_child_line_ids")
         if children:
             children._pre_unlink()
-            children.unlink()
+            if not self.env.context.get("disable_pack_line_unlink"):
+                children.with_context(force_pack_line_unlink=True).unlink()
         return super().unlink()
 
     def _pre_unlink(self):
         """Delete existing moves before calling unlink (because some modules
-        like 'purchase_stock_cancel'could already have unset the link with
+        like 'purchase_stock_cancel' could already have unset the link with
         'move_dest_ids').
         """
         for record in self:
@@ -92,17 +118,32 @@ class PurchaseOrderLine(models.Model):
                 record.move_dest_ids._action_cancel()
                 record.move_dest_ids.unlink()
 
+    def _check_pack_line_unlink(self):
+        if self.filtered(
+            lambda x: x.pack_parent_line_id
+            and not x.pack_parent_line_id.product_id.pack_modifiable
+        ):
+            raise UserError(
+                _(
+                    "You cannot delete this line because is part of a pack in"
+                    " this purchase order. In order to delete this line you need to"
+                    " delete the pack itself"
+                )
+            )
+
     def _is_editable(self):
-        if hasattr(super(), "_is_editable"):
-            res = super()._is_editable()
-        else:
-            res = True
+        res = True
         if res and self.pack_parent_line_id and not self.pack_modifiable:
             res = False
         return res
 
     @api.onchange(
-        "product_id", "product_qty", "product_uom", "price_unit", "name", "taxes_id"
+        "product_id",
+        "product_qty",
+        "product_uom",
+        "price_unit",
+        "name",
+        "taxes_id",
     )
     def check_pack_line_modify(self):
         """Do not let to edit a purchase order line if this one belongs to pack"""

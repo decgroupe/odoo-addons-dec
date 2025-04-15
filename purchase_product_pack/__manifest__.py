@@ -6,6 +6,7 @@
     "depends": [
         "purchase",
         "purchase_stock",
+        "purchase_line_procurement_group",
         "product_pack",
         "stock_auto_validate",
         "mrp_product_pack",

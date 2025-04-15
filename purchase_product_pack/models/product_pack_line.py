@@ -38,3 +38,7 @@ class ProductPackLine(models.Model):
             }
         )
         return vals
+
+    def get_standard_price(self):
+        self.ensure_one()
+        return self.product_id.standard_price * self.quantity
