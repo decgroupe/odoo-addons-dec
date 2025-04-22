@@ -261,7 +261,6 @@ class TestPurchaseProductPack(SavepointCase):
         self.purchase_order.order_line[0].unlink()
         # check that the pack and all its components are removed
         self.assertEqual(len(self.purchase_order.order_line), 0)
-        print(1)
 
     def test_09_try_removing_pack_line_using_form(self):
         product_cp = self.env.ref("product_pack.product_pack_cpu_detailed_components")
@@ -289,4 +288,28 @@ class TestPurchaseProductPack(SavepointCase):
             order_form.order_line.remove(0)
         # check that the pack and all its components are removed
         self.assertEqual(len(self.purchase_order.order_line), 0)
-        print(1)
+
+    def test_10_purchase_copy(self):
+        product_tp = self.env.ref("product_pack.product_pack_cpu_detailed_totalized")
+        # forced update of the pack standard price (_update_pack_standard_price)
+        product_tp.pack_type = "detailed"
+        line = self.PurchaseOrderLine.create(
+            {
+                "order_id": self.purchase_order.id,
+                "name": product_tp.name,
+                "product_id": product_tp.id,
+                "product_qty": 1,
+            }
+        )
+        # after create, there will be four lines
+        self.assertEqual(len(self.purchase_order.order_line), 4)
+        # create a copy of the purchase order
+        purchase_copy = self.purchase_order.copy()
+        # check that the pack line and all its components are created
+        self.assertEqual(len(purchase_copy.order_line), 4)
+        # check that the pack line and all its components are the same as the
+        # original purchase order
+        self.assertEqual(
+            purchase_copy.order_line.mapped("product_id"),
+            self.purchase_order.order_line.mapped("product_id")
+        )

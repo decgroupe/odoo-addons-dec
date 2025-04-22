@@ -30,6 +30,8 @@ class PurchaseOrderLine(models.Model):
     pack_child_line_ids = fields.One2many(
         "purchase.order.line", "pack_parent_line_id", "Lines in pack"
     )
+    # this value is copied from the product template when the pack is expanded
+    # via `get_purchase_order_line_vals`
     pack_modifiable = fields.Boolean(help="The parent pack is modifiable")
 
     do_no_expand_pack_lines = fields.Boolean(

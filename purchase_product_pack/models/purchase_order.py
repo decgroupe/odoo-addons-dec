@@ -11,10 +11,13 @@ class PurchaseOrder(models.Model):
     def copy(self, default=None):
         purchase_copy = super().copy(default)
         # we unlink pack lines that should not be copied
+        # FIXME: this is not a good idea to do this: instead we should let the ORM copy
+        # the lines with same values an disabling the automatic expansion of the pack,
+        # this future fix should also be done in in `sale_product_pack` module
         pack_copied_lines = purchase_copy.order_line.filtered(
             lambda l: l.pack_parent_line_id.order_id == self
         )
-        pack_copied_lines.unlink()
+        pack_copied_lines.with_context(bypass_check_pack_line=True).unlink()
         return purchase_copy
 
     @api.onchange("order_line")
