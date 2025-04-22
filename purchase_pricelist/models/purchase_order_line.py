@@ -44,20 +44,12 @@ class PurchaseOrderLine(models.Model):
         )
         return res
 
-    def _is_editable(self):
-        return True
-
     # _onchange_quantity is inspired from the 'sale.order.line'
     # product_id_change function
-    @api.onchange("product_qty", "product_uom")
+    @api.onchange("product_qty", "product_uom", "company_id")
     def _onchange_quantity(self):
         super()._onchange_quantity()
-        if (
-            self._is_editable()  # purchase_product_pack compatibility
-            and self.product_id
-            and self.order_id.pricelist_id
-            and self.order_id.partner_id
-        ):
+        if self.product_id and self.order_id.pricelist_id and self.order_id.partner_id:
             self.price_unit = self._get_price_unit_by_quantity(
                 self.order_id,
                 self.product_id,
