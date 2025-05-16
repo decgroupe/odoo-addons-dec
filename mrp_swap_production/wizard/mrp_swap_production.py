@@ -3,6 +3,7 @@
 
 import logging
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -102,12 +103,12 @@ class MrpSwapProduction(models.TransientModel):
         cache_value = obj[name]
         if isinstance(cache_value, models.Model):
             for value in cache_value:
-                _logger_print("-", name, value, value.name_get())
+                _logger_print("  -", name, value, value.name_get())
         else:
-            _logger_print(name, cache_value)
+            _logger_print("-", name, cache_value)
 
         if not cache_value:
-            _logger_print(name, "is empty", cache_value)
+            _logger_print("-", name, "is empty ⚠️", cache_value)
 
     @api.model
     def swap_fields(self, name, this, other):
@@ -131,23 +132,48 @@ class MrpSwapProduction(models.TransientModel):
         self.log_field(name, this)
         self.log_field(name, other)
 
+    def _pre_swap_production_check(self, moa_id, mob_id):
+        for field in self._get_fields_that_must_be_identical()["mrp.production"]:
+            if moa_id[field] != mob_id[field]:
+                raise UserError(
+                    _("`%s` value must be identical for %s and %s")
+                    % (field, moa_id.display_name, mob_id.display_name)
+                )
+
+        self._pre_swap_production_request_check(
+            moa_id.mrp_production_request_id,
+            mob_id.mrp_production_request_id,
+        )
+
+        self._check_allowed_timesheet_swap(moa_id, mob_id)
+        self._check_allowed_timesheet_swap(mob_id, moa_id)
+
+    def _pre_swap_production_request_check(self, pra_id, prb_id):
+        if not pra_id and not prb_id:
+            # ignore if both orders are not issued from a production request
+            return
+        if (pra_id and not prb_id) or (prb_id and not pra_id):
+            raise UserError(
+                _("Both production orders must be issued from a production request")
+            )
+
     def swap_production(self, moa_id, mob_id, swap_final_moves=False):
         _logger_print(
-            "Swaping",
+            "Swapping",
             moa_id.name_get(),
             "as THIS with",
             mob_id.name_get(),
             "as OTHER",
         )
 
-        for field in self._get_fields_that_must_be_identical()["mrp.production"]:
-            if moa_id[field] != mob_id[field]:
-                raise Exception(_("%s must be the same") % (field))
-
         self.swap_fields("origin", moa_id, mob_id)
         self.swap_fields("sale_order_id", moa_id, mob_id)
         self.swap_fields("partner_id", moa_id, mob_id)
-        self.swap_fields("date_planned_start", moa_id, mob_id)
+        self.swap_fields(
+            "date_planned_start",
+            moa_id.with_context(force_date=True),
+            mob_id.with_context(force_date=True),
+        )
         self.swap_fields("date_planned_finished", moa_id, mob_id)
         self.swap_fields("note", moa_id, mob_id)
         self.swap_fields(
@@ -172,20 +198,67 @@ class MrpSwapProduction(models.TransientModel):
 
         self.message_post_swap(moa_id, mob_id)
 
+    def _check_allowed_timesheet_swap(self, production_id, other_production_id):
+        if production_id.timesheet_ids and not production_id.project_id:
+            raise UserError(
+                _("Production order %s with timesheet entries must have a project")
+                % (production_id.display_name)
+            )
+
+        if (
+            production_id.timesheet_ids
+            and production_id.project_id
+            and not production_id.allow_timesheets
+        ):
+            raise UserError(
+                _(
+                    "Production order %s with timesheet entries must have "
+                    "`allow_timesheets` enabled"
+                )
+                % (production_id.display_name)
+            )
+
+        if (
+            production_id.timesheet_ids
+            and production_id.project_id
+            and not other_production_id.project_id
+        ):
+            raise UserError(
+                _("Production order %s must have a project")
+                % (other_production_id.display_name)
+            )
+
     @api.model
     def update_timesheet_project(self, production_id):
-        for al in production_id.timesheet_ids:
-            if al.task_id:
-                al.task_id.project_id = production_id.project_id
-            al.project_id = production_id.project_id
+        _logger_print(
+            "Updating timesheets of production order", production_id.display_name
+        )
+        task_ids = production_id.timesheet_ids.mapped("task_id")
+        _logger_print(
+            "Assigning project_id to task_ids", production_id.project_id, task_ids
+        )
+        task_ids.write({"project_id": production_id.project_id.id})
+        _logger_print(
+            "Assigning project_id to timesheet_ids",
+            production_id.project_id,
+            production_id.timesheet_ids,
+        )
+        production_id.timesheet_ids.write({"project_id": production_id.project_id.id})
 
     @api.model
     def swap_production_request_content(self, pra_id, prb_id, swap_final_moves):
+        if not pra_id and not prb_id:
+            # ignore if both orders are not issued from a production request
+            return
+
         for field in self._get_fields_that_must_be_identical()[
             "mrp.production.request"
         ]:
             if pra_id[field] != pra_id[field]:
-                raise Exception(_("%s must be the same") % (field))
+                raise UserError(
+                    _("`%s` value must be identical for %s and %s")
+                    % (field, pra_id.display_name, prb_id.display_name)
+                )
 
         self.swap_fields("sale_order_id", pra_id, prb_id)
         self.swap_fields("partner_id", pra_id, prb_id)
@@ -224,6 +297,11 @@ class MrpSwapProduction(models.TransientModel):
 
     def do_swap(self):
         self.ensure_one()
+        for line in self.swap_line_ids:
+            self._pre_swap_production_check(
+                line.from_production_id,
+                line.to_production_id,
+            )
         for line in self.swap_line_ids:
             self.swap_production(
                 line.from_production_id,

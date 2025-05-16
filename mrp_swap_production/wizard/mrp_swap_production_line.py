@@ -6,7 +6,7 @@ from odoo import fields, models
 
 class MrpSwapProductionLine(models.TransientModel):
     _name = "mrp.swap.production.line"
-    _description = "Line for swaping two manufacturing orders"
+    _description = "Line for swapping two manufacturing orders"
 
     product_id = fields.Many2one(
         comodel_name="product.product",

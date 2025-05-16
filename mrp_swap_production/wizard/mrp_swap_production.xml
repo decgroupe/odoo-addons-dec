@@ -39,7 +39,20 @@
         </field>
     </record>
 
-    <act_window
+    <record model="ir.actions.act_window" id="act_window_swap_production">
+        <field name="name">🧙‍♂️ Swap this manufacturing order ...</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production" />
+        <field name="binding_view_types">form</field>
+        <field name="res_model">mrp.swap.production</field>
+        <field name="view_mode">form</field>
+        <field
+            name="groups_id"
+            eval="[(4, ref('mrp_swap_production.group_swap_production'))]"
+        />
+        <field name="target">new</field>
+    </record>
+
+    <!-- <act_window
         id="act_window_swap_production"
         name="🧙‍♂️ Swap this manufacturing order ..."
         binding_model="mrp.production"
@@ -52,6 +65,6 @@
             'default_this_production_id': active_id,
         }"
     >
-    </act_window>
+    </act_window> -->
 
 </odoo>
