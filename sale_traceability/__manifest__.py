@@ -9,5 +9,5 @@
         "security/ir_module_category.xml",
         "views/sale_order.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -16,7 +16,7 @@
     "qweb": [
         "static/src/xml/mail_activity_gantt_template.xml",
     ],
-    "installable": True,
+    "installable": False,
     # 'force_post_init_hook': True,
     # 'post_init_hook': 'post_init_hook',
 }

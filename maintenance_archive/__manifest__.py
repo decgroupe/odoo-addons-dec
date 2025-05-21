@@ -9,5 +9,5 @@
     "data": [
         "views/maintenance_request.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -13,5 +13,5 @@
         "views/product_supplierinfo.xml",
         "views/product_pricelist_item.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -19,5 +19,5 @@
         "data/res_partner.xml",
         "data/res_partner_academy.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

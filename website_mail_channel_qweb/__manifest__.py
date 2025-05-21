@@ -8,5 +8,5 @@
         "website_mail_channel",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

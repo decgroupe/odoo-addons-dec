@@ -12,5 +12,5 @@
         "views/ref_reference.xml",
         "views/ref_attribute.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

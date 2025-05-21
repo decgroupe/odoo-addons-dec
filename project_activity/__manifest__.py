@@ -10,5 +10,5 @@
         "data/mail_activity_type.xml",
         "views/project_project.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

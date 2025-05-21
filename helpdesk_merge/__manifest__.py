@@ -12,5 +12,5 @@
         "security/ir.model.access.csv",
         "wizard/merge_helpdesk_ticket.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

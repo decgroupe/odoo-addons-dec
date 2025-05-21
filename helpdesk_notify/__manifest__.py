@@ -12,5 +12,5 @@
         "data/ir_ui_view.xml",
         "data/mail_template.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

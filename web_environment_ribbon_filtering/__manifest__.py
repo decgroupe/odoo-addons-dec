@@ -7,5 +7,5 @@
         "web_environment_ribbon",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

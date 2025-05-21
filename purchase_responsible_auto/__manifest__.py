@@ -7,5 +7,5 @@
         "purchase",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

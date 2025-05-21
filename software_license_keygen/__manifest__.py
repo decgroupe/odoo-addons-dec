@@ -19,5 +19,5 @@
     "demo": [
         "demo/software_application.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

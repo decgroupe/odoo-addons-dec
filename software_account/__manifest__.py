@@ -15,5 +15,5 @@
         "views/software_account_supplier.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

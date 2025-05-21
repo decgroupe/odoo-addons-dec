@@ -23,5 +23,5 @@
         "wizard/reference_generate_material_cost_report.xml",
         "wizard/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -18,6 +18,6 @@
         "views/mail_activity_type.xml",
         "views/mrp_production_stage.xml",
     ],
-    "installable": True,
+    "installable": False,
     "post_init_hook": "post_init_hook",
 }

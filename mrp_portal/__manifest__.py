@@ -14,5 +14,5 @@
         "views/mrp_production.xml",
         "report/mrp_report.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

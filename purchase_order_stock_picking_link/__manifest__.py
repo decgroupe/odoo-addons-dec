@@ -9,5 +9,5 @@
     "data": [
         "views/purchase_order.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

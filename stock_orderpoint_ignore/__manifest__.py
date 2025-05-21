@@ -8,5 +8,5 @@
         "product_legacy_routes",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

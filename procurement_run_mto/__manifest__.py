@@ -12,5 +12,5 @@
         "procurement_log",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

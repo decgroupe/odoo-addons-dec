@@ -7,5 +7,5 @@
         "project_activity",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

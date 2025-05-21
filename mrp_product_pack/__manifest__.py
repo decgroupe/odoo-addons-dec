@@ -9,5 +9,5 @@
         "product_pack",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

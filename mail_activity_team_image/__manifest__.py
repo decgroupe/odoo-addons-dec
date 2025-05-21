@@ -15,5 +15,5 @@
     "qweb": [
         "static/src/xml/activity.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

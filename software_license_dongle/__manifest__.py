@@ -11,5 +11,5 @@
         "views/software_license.xml",
         "views/software_license_hardware.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

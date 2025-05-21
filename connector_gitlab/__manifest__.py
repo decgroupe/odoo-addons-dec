@@ -13,5 +13,5 @@
         "views/gitlab_resource.xml",
         "views/res_users.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

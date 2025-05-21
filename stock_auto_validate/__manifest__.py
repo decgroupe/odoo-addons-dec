@@ -9,5 +9,5 @@
     "data": [
         "views/stock_move.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

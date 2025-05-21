@@ -10,5 +10,5 @@
         "views/res_company.xml",
         "views/res_partner_bank.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

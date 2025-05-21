@@ -14,5 +14,5 @@
         "data/mrp_distribute_timesheet_reason.xml",
         "wizard/mrp_distribute_timesheet.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

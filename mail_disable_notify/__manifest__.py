@@ -6,5 +6,5 @@
     "depends": [
         "mail",
     ],
-    "installable": True,
+    "installable": False,
 }

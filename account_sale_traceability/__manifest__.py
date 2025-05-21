@@ -15,5 +15,5 @@
         "views/account_move_line.xml",
         "views/sale_order.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

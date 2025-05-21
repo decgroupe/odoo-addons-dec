@@ -7,5 +7,5 @@
         "document_page",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

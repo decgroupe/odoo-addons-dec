@@ -12,5 +12,5 @@
         "views/mrp_production.xml",
         "views/project.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

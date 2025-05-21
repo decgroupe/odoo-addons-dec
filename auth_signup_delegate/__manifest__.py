@@ -15,5 +15,5 @@
         "templates/delegate_signup.xml",
         "wizard/res_partner_signup_delegate.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

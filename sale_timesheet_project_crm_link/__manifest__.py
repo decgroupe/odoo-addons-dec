@@ -9,5 +9,5 @@
         "project_crm_link",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

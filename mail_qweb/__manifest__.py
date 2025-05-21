@@ -15,5 +15,5 @@
         "wizard/mail_compose_message.xml",
         "views/mail_template.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

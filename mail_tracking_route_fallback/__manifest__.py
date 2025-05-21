@@ -7,5 +7,5 @@
         "mail_tracking",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

@@ -11,5 +11,5 @@
         "views/assets.xml",
         "wizard/mrp_consume.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

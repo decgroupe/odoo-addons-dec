@@ -11,5 +11,5 @@
         "security/model_security.xml",
         "views/sale_order.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

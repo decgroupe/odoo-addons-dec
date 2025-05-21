@@ -14,5 +14,5 @@
         "views/software_application_image.xml",
         "data/software_tag.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

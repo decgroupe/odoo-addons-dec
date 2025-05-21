@@ -7,5 +7,5 @@
         "mrp_production_request",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

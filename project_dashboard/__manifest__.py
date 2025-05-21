@@ -18,5 +18,5 @@
     "qweb": [
         "static/src/xml/dashboard_actions.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -11,5 +11,5 @@
     "data": [
         "views/account_analytic_line.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

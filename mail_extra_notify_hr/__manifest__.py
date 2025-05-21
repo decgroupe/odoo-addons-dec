@@ -8,5 +8,5 @@
         "hr_expense",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

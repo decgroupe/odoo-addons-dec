@@ -8,5 +8,5 @@
         "hr_timesheet_autofill",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

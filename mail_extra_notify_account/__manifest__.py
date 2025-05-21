@@ -10,5 +10,5 @@
         "sale", # for partner_shipping_id field
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

@@ -8,5 +8,5 @@
         "mrp_bom_supplier",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

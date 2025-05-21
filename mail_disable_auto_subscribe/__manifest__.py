@@ -10,5 +10,5 @@
         "views/mail_message_subtype.xml",
         "views/res_users.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

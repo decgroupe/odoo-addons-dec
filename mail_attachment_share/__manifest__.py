@@ -15,5 +15,5 @@
     "qweb": [
         "static/src/xml/attachment_box_sharing.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

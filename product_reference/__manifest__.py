@@ -50,5 +50,5 @@
         "demo/ref_categories.xml",
         "demo/ref_references.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

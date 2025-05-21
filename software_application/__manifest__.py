@@ -25,5 +25,5 @@
         "demo/software_tag.xml",
         "demo/software_application.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

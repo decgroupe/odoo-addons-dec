@@ -12,5 +12,5 @@
         "security/ir.model.access.csv",
         "wizard/merge_stock_move.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

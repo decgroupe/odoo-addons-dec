@@ -10,5 +10,5 @@
     "data": [
         "views/project_task.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

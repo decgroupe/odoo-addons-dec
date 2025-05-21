@@ -8,5 +8,5 @@
         "procurement_run_manufacture_warnings",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

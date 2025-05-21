@@ -7,5 +7,5 @@
         "product_analytic",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

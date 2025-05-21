@@ -14,5 +14,5 @@
         "data/mail_activity.xml",
         "data/mail_activity_template.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

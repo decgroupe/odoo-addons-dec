@@ -9,5 +9,5 @@
     "data": [
         "views/partner.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

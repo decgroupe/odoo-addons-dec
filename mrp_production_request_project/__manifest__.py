@@ -9,5 +9,5 @@
         "sale_mrp_production_request_link",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

@@ -8,5 +8,5 @@
         "web",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

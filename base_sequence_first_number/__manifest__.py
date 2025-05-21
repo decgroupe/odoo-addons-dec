@@ -10,5 +10,5 @@
     "data": [
         "views/ir_sequence.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

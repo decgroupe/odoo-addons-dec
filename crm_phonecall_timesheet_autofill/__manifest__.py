@@ -7,5 +7,5 @@
         "crm_phonecall_timesheet",
         "hr_timesheet_autofill",
     ],
-    "installable": True,
+    "installable": False,
 }

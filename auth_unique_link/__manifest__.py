@@ -18,5 +18,5 @@
         "views/assets.xml",
         "wizard/res_partner_impersonate.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

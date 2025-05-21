@@ -15,5 +15,5 @@
     "qweb": [
         "static/src/xml/mail_activity_my.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -10,5 +10,5 @@
     "data": [
         "views/website_sale.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

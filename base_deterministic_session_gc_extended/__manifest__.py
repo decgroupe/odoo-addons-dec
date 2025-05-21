@@ -7,6 +7,6 @@
         "base_deterministic_session_gc",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
     "auto_install": True,
 }

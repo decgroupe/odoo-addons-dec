@@ -8,5 +8,5 @@
         "base_location",
         "base_location_display",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -12,5 +12,5 @@
     "data": [
         "views/mrp_production.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

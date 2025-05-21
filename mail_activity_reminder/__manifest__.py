@@ -18,5 +18,5 @@
         "views/res_users.xml",
     ],
     "qweb": [],
-    "installable": True,
+    "installable": False,
 }

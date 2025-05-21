@@ -11,5 +11,5 @@
         "sale_timesheet",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

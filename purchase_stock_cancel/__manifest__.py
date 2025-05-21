@@ -10,6 +10,6 @@
     "data": [
         "views/purchase_order.xml",
     ],
-    "installable": True,
+    "installable": False,
     "pre_init_hook": "rename_module",
 }

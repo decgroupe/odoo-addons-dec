@@ -9,5 +9,5 @@
     "data": [
         "security/mrp_security.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

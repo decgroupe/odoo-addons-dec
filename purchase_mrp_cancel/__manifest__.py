@@ -9,5 +9,5 @@
         "purchase_stock_cancel",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

@@ -8,5 +8,5 @@
         "stock",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

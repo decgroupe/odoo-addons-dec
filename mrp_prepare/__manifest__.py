@@ -7,5 +7,5 @@
         "mrp",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

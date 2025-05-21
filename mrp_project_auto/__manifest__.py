@@ -9,5 +9,5 @@
         "mrp_sale",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

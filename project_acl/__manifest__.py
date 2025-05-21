@@ -9,5 +9,5 @@
     "data": [
         "security/project_security.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

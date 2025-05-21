@@ -12,6 +12,6 @@
         "views/project_task.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
     "post_init_hook": "post_init_hook",
 }

@@ -9,5 +9,5 @@
     "data": [
         "views/ir_mail_server.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

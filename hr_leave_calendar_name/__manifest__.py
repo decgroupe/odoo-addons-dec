@@ -9,5 +9,5 @@
     "data": [
         "views/hr_leave_type.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

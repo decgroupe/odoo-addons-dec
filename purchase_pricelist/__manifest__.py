@@ -17,5 +17,5 @@
         "views/res_partner.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

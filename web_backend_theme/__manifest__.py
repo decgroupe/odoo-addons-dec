@@ -14,6 +14,6 @@
     "qweb": [
         "static/src/components/chatter_topbar/chatter_topbar.xml",
     ],
-    "installable": True,
+    "installable": False,
     "application": True,
 }

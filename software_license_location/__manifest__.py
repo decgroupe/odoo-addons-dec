@@ -11,5 +11,5 @@
         "views/assets.xml",
         "views/software_license.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

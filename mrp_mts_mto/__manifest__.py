@@ -8,5 +8,5 @@
         "stock_mts_mto_rule", # stock-logistics-warehouse OCA module
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

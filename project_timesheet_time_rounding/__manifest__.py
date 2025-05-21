@@ -7,5 +7,5 @@
         "project_timesheet_time_control",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

@@ -19,5 +19,5 @@
         "views/project_task.xml",
         "data/mail_activity_template.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

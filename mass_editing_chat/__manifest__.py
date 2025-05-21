@@ -9,5 +9,5 @@
         "wizard/mass_editing_wizard.xml",
         "demo/mass_editing.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -9,5 +9,5 @@
     "data": [
         "views/res_city_zip.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -9,5 +9,5 @@
         "stock_actions",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

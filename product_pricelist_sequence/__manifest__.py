@@ -10,7 +10,7 @@
         "views/product_pricelist.xml",
         "views/product_pricelist_item.xml",
     ],
-    "installable": True,
+    "installable": False,
     "pre_init_hook": "rename_module",
 
 }

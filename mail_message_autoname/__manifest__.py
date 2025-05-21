@@ -7,5 +7,5 @@
         "mail",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

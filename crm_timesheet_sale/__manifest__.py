@@ -11,5 +11,5 @@
         "views/account_analytic_line.xml",
         "views/crm_lead.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

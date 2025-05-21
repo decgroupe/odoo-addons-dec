@@ -8,5 +8,5 @@
         "product_autoset_ok",
     ],
     "data": ["views/product_template.xml"],
-    "installable": True,
+    "installable": False,
 }

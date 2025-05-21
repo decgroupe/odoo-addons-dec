@@ -11,5 +11,5 @@
         "security/res_groups.xml",
         "views/res_users.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

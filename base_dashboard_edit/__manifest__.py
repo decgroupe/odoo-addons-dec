@@ -12,5 +12,5 @@
         "views/ir_ui_view_views.xml",
     ],
     "demo": [],
-    "installable": True,
+    "installable": False,
 }

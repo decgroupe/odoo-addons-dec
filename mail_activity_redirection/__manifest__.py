@@ -15,5 +15,5 @@
         "views/mail_activity_redirection.xml",
         "views/res_config_settings.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

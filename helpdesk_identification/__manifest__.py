@@ -7,5 +7,5 @@
         "helpdesk_mgmt",
         "helpdesk_partner_location",
     ],
-    "installable": True,
+    "installable": False,
 }

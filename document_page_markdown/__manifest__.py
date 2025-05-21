@@ -11,5 +11,5 @@
         "views/document_page.xml",
         "views/document_page_history.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

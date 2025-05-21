@@ -10,5 +10,5 @@
     "data": [
         "data/mail.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

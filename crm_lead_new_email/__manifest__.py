@@ -13,5 +13,5 @@
         "data/mail_template.xml",
         "data/base_automation.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

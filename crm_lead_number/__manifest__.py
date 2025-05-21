@@ -12,6 +12,6 @@
         "data/ir_actions_server.xml",
         "views/crm_lead.xml",
     ],
-    "installable": True,
+    "installable": False,
     "post_init_hook": "post_init_hook",
 }

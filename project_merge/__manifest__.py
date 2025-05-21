@@ -18,5 +18,5 @@
         "data/mail_template_project.xml",
         "data/mail_template_task.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -10,5 +10,5 @@
     ],
     "data": [],
     "qweb": [],
-    "installable": True,
+    "installable": False,
 }

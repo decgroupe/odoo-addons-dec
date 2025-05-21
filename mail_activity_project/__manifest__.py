@@ -13,5 +13,5 @@
         "views/mail_activity.xml",
     ],
     "qweb": [],
-    "installable": True,
+    "installable": False,
 }

@@ -11,6 +11,6 @@
     "data": [
         "views/mrp_production.xml",
     ],
-    "installable": True,
+    "installable": False,
     "pre_init_hook": "rename_module",
 }

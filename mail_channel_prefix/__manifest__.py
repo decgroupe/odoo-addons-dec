@@ -9,5 +9,5 @@
     "data": [
         "views/mail_channel.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

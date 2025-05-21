@@ -10,5 +10,5 @@
         "wizard/wizard_run.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": True,
+    "installable": False,
 }

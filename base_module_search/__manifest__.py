@@ -9,5 +9,5 @@
     "data": [
         "views/ir_module.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

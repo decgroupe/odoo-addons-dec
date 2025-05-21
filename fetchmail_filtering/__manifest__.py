@@ -9,5 +9,5 @@
     "data": [
         "views/fetchmail_server.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

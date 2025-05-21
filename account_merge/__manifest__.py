@@ -14,5 +14,5 @@
         "wizard/merge_account_tax.xml",
         "wizard/merge_account_account_tag.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

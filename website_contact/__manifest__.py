@@ -17,5 +17,5 @@
         "templates/website_contact.xml",
         "templates/website_page_contactus.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

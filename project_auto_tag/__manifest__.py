@@ -7,5 +7,5 @@
         "project",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

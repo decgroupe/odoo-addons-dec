@@ -8,5 +8,5 @@
         "base_xmlid",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

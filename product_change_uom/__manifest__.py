@@ -10,5 +10,5 @@
     "data": [
         "security/res_groups.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

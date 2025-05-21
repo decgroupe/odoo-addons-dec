@@ -11,5 +11,5 @@
         "views/assets.xml",
     ],
     "qweb": [],
-    "installable": True,
+    "installable": False,
 }

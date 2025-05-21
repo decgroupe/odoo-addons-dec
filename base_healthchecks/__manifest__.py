@@ -12,5 +12,5 @@
         "security/ir.model.access.csv",
         "views/ir_cron.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

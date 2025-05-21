@@ -11,5 +11,5 @@
         "views/helpdesk_ticket_reference.xml",
         "views/helpdesk_ticket.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

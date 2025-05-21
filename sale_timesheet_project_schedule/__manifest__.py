@@ -9,5 +9,5 @@
         "project_schedule",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

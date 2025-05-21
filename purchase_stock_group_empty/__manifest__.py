@@ -7,5 +7,5 @@
         "purchase_stock",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

@@ -13,5 +13,5 @@
         "views/sale_order.xml",
         "views/stock_move.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

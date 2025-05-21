@@ -8,5 +8,5 @@
         "views/stock_move.xml",
         "views/stock_picking.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

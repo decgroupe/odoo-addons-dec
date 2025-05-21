@@ -13,5 +13,5 @@
         "views/maintenance_request.xml",
         "data/template.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

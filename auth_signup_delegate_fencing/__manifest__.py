@@ -8,5 +8,5 @@
         "partner_commercial_fencing",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

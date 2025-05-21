@@ -10,5 +10,5 @@
     "data": [
         "views/document_page.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

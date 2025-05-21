@@ -15,5 +15,5 @@
         "wizard/replace_bom_components.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": True,
+    "installable": False,
 }

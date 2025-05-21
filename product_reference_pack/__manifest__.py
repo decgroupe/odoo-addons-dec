@@ -15,5 +15,5 @@
         "views/ref_pack.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

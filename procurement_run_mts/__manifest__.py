@@ -11,5 +11,5 @@
         "stock_orderpoint_traceability",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

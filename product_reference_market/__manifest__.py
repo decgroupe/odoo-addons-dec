@@ -12,5 +12,5 @@
         "views/ref_market.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

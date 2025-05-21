@@ -14,5 +14,5 @@
         "data/product_category.xml",
         "data/product_product.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

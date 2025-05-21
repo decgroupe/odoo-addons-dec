@@ -8,5 +8,5 @@
         "account_analytic_parent",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

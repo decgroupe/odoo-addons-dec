@@ -9,5 +9,5 @@
     "data": [
         "views/res_company.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

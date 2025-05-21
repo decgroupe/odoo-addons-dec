@@ -12,5 +12,5 @@
         "views/ref_log.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

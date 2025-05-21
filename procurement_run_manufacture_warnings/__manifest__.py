@@ -13,5 +13,5 @@
         "procurement_exception",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

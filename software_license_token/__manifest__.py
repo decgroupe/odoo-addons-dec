@@ -21,5 +21,5 @@
         "demo/software_application.xml",
         "demo/software_license.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

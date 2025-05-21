@@ -11,5 +11,5 @@
         "views/stock_warehouse_orderpoint.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": True,
+    "installable": False,
 }

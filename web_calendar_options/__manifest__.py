@@ -12,5 +12,5 @@
     "qweb": [
         "static/src/xml/web_calendar.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

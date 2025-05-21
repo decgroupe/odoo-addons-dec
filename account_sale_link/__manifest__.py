@@ -14,5 +14,5 @@
     "data": [
         "views/account_invoice.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

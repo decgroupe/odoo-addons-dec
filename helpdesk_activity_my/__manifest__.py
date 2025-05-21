@@ -11,5 +11,5 @@
     "data": [
         "views/helpdesk_ticket.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

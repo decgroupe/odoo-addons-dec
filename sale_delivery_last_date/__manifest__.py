@@ -10,5 +10,5 @@
         "views/sale_order.xml",
     ],
     "pre_init_hook": "rename_module",
-    "installable": True,
+    "installable": False,
 }

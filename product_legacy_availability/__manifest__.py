@@ -11,5 +11,5 @@
         "views/product_template.xml",
         "views/product_product.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

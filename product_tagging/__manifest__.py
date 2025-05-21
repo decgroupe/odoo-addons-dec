@@ -11,5 +11,5 @@
         "views/tagging_tags.xml",
         "views/product_template.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

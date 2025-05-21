@@ -12,5 +12,5 @@
         "purchase_action_view",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

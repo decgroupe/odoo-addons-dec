@@ -8,5 +8,5 @@
         "mrp_partner_location",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

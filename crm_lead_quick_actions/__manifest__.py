@@ -9,5 +9,5 @@
     "data": [
         "views/crm_lead.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

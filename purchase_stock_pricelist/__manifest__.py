@@ -8,5 +8,5 @@
         "purchase_pricelist",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

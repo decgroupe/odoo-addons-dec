@@ -13,5 +13,5 @@
         "views/account_invoice.xml",
         "wizard/account_invoice_update.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

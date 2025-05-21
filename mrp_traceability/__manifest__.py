@@ -19,7 +19,7 @@
         "views/mrp_production.xml",
         "views/stock_picking.xml",
     ],
-    "installable": True,
+    "installable": False,
     "post_init_hook": "post_init_hook",
     "force_post_init_hook": True,
 }

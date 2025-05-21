@@ -9,5 +9,5 @@
     "data": [
         "views/res_country.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

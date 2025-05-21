@@ -8,5 +8,5 @@
         "product_pricelist_supplierinfo",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

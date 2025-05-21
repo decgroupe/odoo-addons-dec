@@ -12,5 +12,5 @@
         "wizard/crm_lead_to_helpdesk_ticket.xml",
         "views/crm_lead.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

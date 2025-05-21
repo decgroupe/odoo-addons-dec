@@ -33,5 +33,5 @@
         "demo/software_license_pack.xml",
         "demo/software_license_pass.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

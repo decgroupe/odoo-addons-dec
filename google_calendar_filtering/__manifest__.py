@@ -7,5 +7,5 @@
         "google_calendar",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

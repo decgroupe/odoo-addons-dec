@@ -9,5 +9,5 @@
     "data": [
         "views/assets.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

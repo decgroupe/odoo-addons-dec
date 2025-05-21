@@ -9,5 +9,5 @@
     "data": [
         "security/hr_holidays_security.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

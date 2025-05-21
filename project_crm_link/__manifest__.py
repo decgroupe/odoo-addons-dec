@@ -17,5 +17,5 @@
         "views/project_project.xml",
         "views/crm_lead.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

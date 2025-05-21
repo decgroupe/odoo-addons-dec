@@ -10,5 +10,5 @@
         "product_prices",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

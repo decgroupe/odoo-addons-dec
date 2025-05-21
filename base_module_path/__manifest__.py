@@ -11,5 +11,5 @@
         "views/assets.xml",
         "views/ir_module.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

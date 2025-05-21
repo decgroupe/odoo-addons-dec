@@ -11,6 +11,6 @@
         "data/software_license_feature.xml",
         "views/software_license.xml",
     ],
-    "installable": True,
+    "installable": False,
     "post_init_hook": "post_init_hook",
 }

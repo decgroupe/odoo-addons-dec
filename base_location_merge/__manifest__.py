@@ -17,5 +17,5 @@
         "demo/res_city.xml",
         "demo/res_city_zip.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

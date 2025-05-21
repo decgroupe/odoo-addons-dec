@@ -9,5 +9,5 @@
         "onchange_helper",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

@@ -12,5 +12,5 @@
         "wizard/purchase_order_split.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": True,
+    "installable": False,
 }

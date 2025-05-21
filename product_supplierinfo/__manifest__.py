@@ -9,5 +9,5 @@
     "data": [
         "views/product_supplierinfo.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

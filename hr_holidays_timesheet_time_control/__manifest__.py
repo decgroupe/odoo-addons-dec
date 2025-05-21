@@ -7,5 +7,5 @@
         "project_timesheet_holidays",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

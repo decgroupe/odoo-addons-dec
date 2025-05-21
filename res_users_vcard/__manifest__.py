@@ -9,5 +9,5 @@
         "hr",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
 }

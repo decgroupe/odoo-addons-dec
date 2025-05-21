@@ -9,5 +9,5 @@
     "data": [
         "views/product_template.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

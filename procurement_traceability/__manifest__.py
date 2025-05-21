@@ -25,5 +25,5 @@
         "views/purchase_order.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

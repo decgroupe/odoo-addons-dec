@@ -11,5 +11,5 @@
         "views/mrp_production_request.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": True,
+    "installable": False,
 }
