@@ -6,6 +6,7 @@
     "depends": [
         "mrp_timesheet",
         "sale_mrp_production_request_link",
+        "sale_management",
     ],
     "data": [
         "security/ir.model.access.csv",
