@@ -2,7 +2,7 @@
     "name": "Sale Software License (pass)",
     "version": "14.0.1.1.0",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "sale_timesheet",
         "sale_project",

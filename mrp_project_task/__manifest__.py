@@ -2,7 +2,7 @@
     "name": "Manufacturing Project Task",
     "version": "14.0.1.0.0",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "mrp_project",
         "mrp_purchase",  # because of _action_launch_procurement_rule

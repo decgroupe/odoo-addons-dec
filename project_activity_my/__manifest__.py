@@ -2,7 +2,7 @@
     "name": "Project My Activities",
     "version": "14.0.1.0.0",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "project",
         "project_activity",

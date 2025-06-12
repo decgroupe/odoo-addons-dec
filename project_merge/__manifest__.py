@@ -2,7 +2,7 @@
     "name": "Merge Projects",
     "version": "14.0.1.0.0",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "project",
         "project_list", # needed otherwise the merge action is not visible

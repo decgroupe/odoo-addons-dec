@@ -11,7 +11,7 @@
     "version": "14.0.1.0.0",
     "application": False,
     "author": "DEC" "IT-Projects LLC, Manaev Rafael",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "license": "Other OSI approved licence",  # MIT
     "depends": ["base", "project"],
     "external_dependencies": {"python": [], "bin": []},

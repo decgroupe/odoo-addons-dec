@@ -2,7 +2,7 @@
     "name": "Manufacturing Swap Production",
     "version": "14.0.1.0.0",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "mrp_timesheet",
         "sale_mrp_production_request_link",

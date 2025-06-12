@@ -2,7 +2,7 @@
     "name": "Software License (keygen)",
     "version": "14.0.1.0.0",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "external_dependencies": {
         "python": [
             "key_generator",  # pip install key-generator

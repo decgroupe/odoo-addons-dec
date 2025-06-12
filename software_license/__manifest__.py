@@ -1,7 +1,7 @@
 {
     "name": "Software License",
     "version": "14.0.1.0.1",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "software_application",
         "base_fontawesome",

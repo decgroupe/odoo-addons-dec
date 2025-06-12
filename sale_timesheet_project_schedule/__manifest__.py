@@ -2,7 +2,7 @@
     "name": "Sale Timesheet Project Schedule",
     "version": "14.0.1.0.0",
     "author": "DECn",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "category": "Schedule",
     "depends": [
         "sale_timesheet_project",

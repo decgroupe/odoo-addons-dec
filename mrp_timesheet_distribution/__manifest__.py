@@ -2,7 +2,7 @@
     "name": "Manufacturing Timesheet Distribution",
     "version": "14.0.1.0.0",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "mrp_timesheet_time_control",
         "mrp_project_task",
