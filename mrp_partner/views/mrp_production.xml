@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_tree_view">
         <field name="name">mrp.production.tree@mrp_partner</field>
         <field name="model">mrp.production</field>
@@ -55,15 +54,15 @@
                 <field name="partner_id" />
                 <field name="commercial_partner_id" />
             </xpath>
-            <xpath expr="//kanban//templates//div[@name='body']" position="inside">
-                <small name="partner">
-                    <div t-if="record.commercial_partner_id.raw_value">
-                        <i class="fa fa-truck" />
-                        <t t-raw="record.commercial_partner_id.value" />
-                    </div>
-                </small>
+            <xpath expr="//kanban//templates//div[@name='secondary']" position="inside">
+                <div name="partner" t-if="record.commercial_partner_id.raw_value">
+                    <small name="partner">
+                        <i class="fa fa-truck" title="Commercial Partner" />
+                        <span>&amp;nbsp;</span>
+                        <field name="commercial_partner_id" />
+                    </small>
+                </div>
             </xpath>
         </field>
     </record>
-
 </odoo>
