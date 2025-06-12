@@ -22,8 +22,8 @@ class ProductTemplate(models.Model):
         elif len(self.ids) > 1:
             tree = self.env.ref("product.product_template_tree_view")
             action["domain"] = [("id", "in", self.ids)]
-            action["views"] = [(tree.id, "tree"), (form.id, "form")]
-            action["view_mode"] = "tree,form"
+            action["views"] = [(tree.id, "list"), (form.id, "form")]
+            action["view_mode"] = "list,form"
         else:
             action["views"] = [(form.id, "form")]
             action["view_mode"] = "form"

@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="product_template_form_view">
         <field name="name">product.template.form@product_action_view</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
-        <field name="priority" eval="1000" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     class="oe_stat_button"
                     name="action_view_template"
                     type="object"
-                    attrs="{'invisible': [('is_product_variant', '=', False)]}"
+                    invisible="not is_product_variant"
                     widget="statinfo"
                     string="Template"
                     icon="fa-tree"
-                >
-                </button>
+                />
                 <button
                     class="oe_stat_button"
                     name="action_view_variants"
                     type="object"
-                    attrs="{'invisible': [('is_product_variant', '=', True)]}"
+                    invisible="is_product_variant"
                     icon="fa-code-fork"
                 >
                     <field
@@ -34,5 +31,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
