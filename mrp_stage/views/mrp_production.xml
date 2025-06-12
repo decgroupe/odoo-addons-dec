@@ -93,8 +93,9 @@
                 group_create="false"
                 group_edit="false"
                 group_delete="false"
-                columns_draggable="false"
+                groups_draggable="false"
                 records_draggable="false"
+                highlight_color="kanban_color"
             >
                 <field name="state" />
                 <field name="stage_id" />
@@ -105,148 +106,83 @@
                 <field name="user_id" />
                 <field name="date_start" />
                 <field name="date_finished" />
-                <field name="message_needaction_counter" />
                 <field name="activity_ids" />
                 <field name="activity_state" />
-                <!--
-                <progressbar field="kanban_state" colors='{"done": "success", "blocked": "danger"}'/>
-                -->
                 <templates>
-                    <t t-name="kanban-box">
-                        <div
-                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.kanban_color.raw_value)} oe_kanban_card oe_kanban_global_click"
+                    <t t-name="menu">
+                        <t
+                            t-if="['confirmed', 'planned'].includes(record.state.raw_value)"
                         >
-                            <div class="oe_kanban_content">
-                                <div class="o_kanban_record_top">
-                                    <div class="o_kanban_record_headings">
-                                        <strong class="o_kanban_record_title">
-                                            <field name="name" />
-                                        </strong>
-                                        <br />
-                                        <small
-                                            class="o_kanban_record_subtitle text-muted"
-                                        >
-                                            <t
-                                                t-if="record.date_finished.raw_value and record.date_finished.raw_value lt (new Date())"
-                                                t-set="red"
-                                            >oe_kanban_text_red</t>
-                                            <span t-attf-class="#{red || ''}">
-                                                <i>
-                                                    <field name="date_finished" />
-                                                </i>
-                                            </span>
-                                            <!--
-                                                <t t-if="record.email_from.raw_value">
-                                                    <span>
-                                                        <field name="email_from"/>
-                                                    </span>
-                                                </t>
-                                            -->
-                                        </small>
-                                        <small>
-                                            <field name="bom_id" />
-                                        </small>
-                                    </div>
-                                    <div class="oe_kanban_top_right">
-                                        <img
-                                            t-att-src="kanban_image('product.product', 'image_128', record.product_id.raw_value)"
-                                            alt="Product"
-                                        />
-                                    </div>
-                                    <div
-                                        class="o_dropdown_kanban dropdown"
-                                        groups="base.group_user"
-                                    >
-                                        <a
-                                            role="button"
-                                            class="dropdown-toggle o-no-caret btn"
-                                            data-toggle="dropdown"
-                                            data-display="static"
-                                            href="#"
-                                            aria-label="Dropdown menu"
-                                            title="Dropdown menu"
-                                        >
-                                            <span class="fa fa-ellipsis-v" />
-                                        </a>
-                                        <div class="dropdown-menu" role="menu">
-                                            <t
-                                                t-if="record.state.raw_value == 'confirmed' or record.state.raw_value == 'planned'"
-                                            >
-                                                <a
-                                                    name="action_start"
-                                                    role="menuitem"
-                                                    type="object"
-                                                    class="dropdown-item"
-                                                ><i
-                                                    class="fa fa-caret-right"
-                                                /> Start</a>
-                                            </t>
-                                            <a
-                                                name="action_assign_to_me"
-                                                role="menuitem"
-                                                type="object"
-                                                class="dropdown-item"
-                                            >Assign to Me</a>
-                                            <a
-                                                t-if="widget.editable"
-                                                role="menuitem"
-                                                type="edit"
-                                                class="dropdown-item"
-                                            >Edit</a>
-                                            <div
-                                                role="separator"
-                                                class="dropdown-divider"
-                                            />
-                                            <ul
-                                                class="oe_kanban_colorpicker"
-                                                data-field="kanban_color"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="o_kanban_record_body" name="body">
-                                    <!-- <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/> -->
-                                </div>
-                                <div class="o_kanban_record_progress" name="progress" />
-                                <div class="o_kanban_record_bottom">
-                                    <div class="oe_kanban_bottom_left">
-                                        <field
-                                            name="activity_ids"
-                                            widget="kanban_activity"
-                                        />
+                            <a
+                                role="menuitem"
+                                name="action_start"
+                                type="object"
+                                class="dropdown-item"
+                            ><i class="fa fa-caret-right" /> Start</a>
+                        </t>
+                        <a
+                            role="menuitem"
+                            name="action_assign_to_me"
+                            type="object"
+                            class="dropdown-item"
+                        >Assign to Me</a>
+                        <t t-if="widget.editable">
+                            <a
+                                role="menuitem"
+                                type="open"
+                                class="dropdown-item"
+                            >Edit</a>
+                        </t>
+                        <t t-if="widget.deletable">
+                            <a
+                                role="menuitem"
+                                type="delete"
+                                class="dropdown-item"
+                            >Delete</a>
+                        </t>
+                        <field name="kanban_color" widget="kanban_color_picker" />
+                    </t>
+                    <t t-name="card">
+                        <div class="d-flex gap-1" name="main">
+                            <div class="d-flex flex-column min-w-0 lh-sm">
+                                <field class="fw-bold fs-5" name="name" />
+                                <small>
+                                    <i>
                                         <t
-                                            t-if="record.message_needaction_counter.raw_value"
-                                        >
-                                            <span
-                                                role="alert"
-                                                class='oe_kanban_mail_new'
-                                                title='Unread Messages'
-                                            >
-                                                <i
-                                                    class='fa fa-comments'
-                                                    role="img"
-                                                    aria-label="Unread Messages"
-                                                />
-                                                <t
-                                                    t-out="record.message_needaction_counter.raw_value"
-                                                />
-                                            </span>
-                                        </t>
-                                    </div>
-                                    <div class="oe_kanban_bottom_right">
-                                        <img
-                                            t-att-src="kanban_image('res.users', 'image_128', record.user_id.raw_value)"
-                                            t-att-title="record.user_id.value"
-                                            t-att-alt="record.user_id.value"
-                                            width="24"
-                                            height="24"
-                                            class="oe_kanban_avatar"
-                                        />
-                                    </div>
-                                </div>
+                                            t-if="luxon.DateTime.fromISO(record.date_finished.raw_value) &lt; luxon.DateTime.local()"
+                                            t-set="date_finished_class"
+                                        >text-danger</t>
+                                        <span t-att-class="date_finished_class">
+                                            <field name="date_finished" />
+                                        </span>
+                                    </i>
+                                </small>
+                                <small>
+                                    <field name="bom_id" />
+                                </small>
                             </div>
-                            <div class="oe_clear" />
+                            <field
+                                name="product_id"
+                                widget="image"
+                                options="{'preview_image': 'image_128'}"
+                            />
+                            <widget
+                                name="web_ribbon"
+                                title="Done"
+                                invisible="state != 'done'"
+                            />
                         </div>
+                        <div name="secondary" />
+                        <div name="progress" class="o_kanban_record_progress" />
+                        <footer class="pt-1">
+                            <field name="activity_ids" widget="kanban_activity" />
+                            <field
+                                name="user_id"
+                                widget="many2one_avatar_user"
+                                domain="[('share', '=', False)]"
+                                class="ms-auto"
+                            />
+                        </footer>
                     </t>
                 </templates>
             </kanban>

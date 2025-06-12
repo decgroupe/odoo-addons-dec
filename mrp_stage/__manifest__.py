@@ -6,7 +6,6 @@
     "website": "https://decgroupe.com",
     "depends": [
         "mrp",
-        # "web_kanban_draggable",
         "web_ir_actions_act_multi",
     ],
     "data": [
@@ -18,6 +17,11 @@
         "views/mail_activity_type.xml",
         "views/mrp_production_stage.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "mrp_stage/static/src/scss/kanban_view.scss",
+        ],
+    },
     "installable": True,
     "post_init_hook": "post_init_hook",
 }
