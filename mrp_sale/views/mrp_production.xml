@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <record model="ir.ui.view" id="mrp_production_form_view">
+        <field name="name">mrp.production.form@mrp_sale</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='miscellaneous']//field[@name='origin']"
+                position="after"
+            >
+                <field name="sale_order_id" readonly="1" />
+            </xpath>
+        </field>
+    </record>
 
     <record model="ir.ui.view" id="mrp_production_staged_kanban_view">
-        <field name="name">mrp.production.kanban@mrp_partner</field>
+        <field name="name">mrp.production.kanban@mrp_sale</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp_stage.mrp_production_staged_kanban_view" />
         <field name="priority">14</field>
@@ -10,7 +23,7 @@
             <xpath expr="//kanban/field[@name='name']" position="after">
                 <field name="sale_order_id" />
             </xpath>
-            <xpath expr="//kanban//templates//div[@name='body']" position="inside">
+            <xpath expr="//kanban//templates//div[@name='secondary']" position="inside">
                 <div name="origin">
                     <span class="text-muted">
                         <field name="sale_order_id" />
@@ -20,4 +33,14 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="mrp_production_filter_view">
+        <field name="name">mrp.production.filter@mrp_sale</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="sale_order_id" />
+            </xpath>
+        </field>
+    </record>
 </odoo>

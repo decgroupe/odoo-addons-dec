@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
-"PO-Revision-Date: 2023-11-28 13:48+0100\n"
+"POT-Creation-Date: 2026-06-03 10:40+0000\n"
+"PO-Revision-Date: 2026-06-03 15:11+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,47 +15,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
-
-#. module: mrp_sale
-#: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:mrp_sale.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mrp_sale
-#: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__id
-#: model:ir.model.fields,field_description:mrp_sale.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_sale
-#: model:ir.model.fields,help:mrp_sale.field_mrp_production__xid
-#: model:ir.model.fields,help:mrp_sale.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_sale
-#: model:ir.model.fields,field_description:mrp_sale.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:mrp_sale.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_sale
 #: model:ir.model,name:mrp_sale.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
+msgid "Manufacturing Order"
+msgstr "Fabrication"
+
+#. module: mrp_sale
+#: model:ir.model.fields,field_description:mrp_sale.field_sale_order__production_ids
+msgid "Production"
+msgstr "Fabrication"
+
+#. module: mrp_sale
+#: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__sale_order_id
+msgid "Sale Order"
+msgstr "Commande client"
 
 #. module: mrp_sale
 #: model:ir.model,name:mrp_sale.model_sale_order
 msgid "Sales Order"
-msgstr "Commande client"
+msgstr "Commandes clients"
 
 #. module: mrp_sale
-#: model:ir.model.fields,field_description:mrp_sale.field_mrp_production__xid
-#: model:ir.model.fields,field_description:mrp_sale.field_sale_order__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model:ir.model.fields,help:mrp_sale.field_mrp_production__sale_order_id
+msgid "Source Sale Order"
+msgstr "Commande client d'origine"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"
