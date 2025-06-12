@@ -1,5 +1,5 @@
 services:
-  - name: postgres:9.6
+  - name: postgres:12
     alias: postgres
 
 variables:
@@ -9,7 +9,7 @@ variables:
   POSTGRES_USER: odoo
   POSTGRES_PASSWORD: odoo
   POSTGRES_DB: odoo
-  VERSION: "14.0"
+  VERSION: "18.0"
 
 job:
   tags:
@@ -18,20 +18,14 @@ job:
     paths:
       - /root/.cache/pip
   timeout: 2h
-  image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.8-ocb14.0-dec:latest
+  image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.12-ocb18.0-dec:latest
   script:
     # Add nano command
     - apt install -y nano
     # Add killall command
-    - apt install -y psmisc 
+    - apt install -y psmisc
     # Install dependencies (old way using oca_dependencies.txt)
     - oca_clone_dependencies
-    # Force install of older lxml 
-    - pip install lxml==4.6.5
-    # Install aerolib to venv
-    - git clone https://github.com/decgroupe/aeroolib.git /tmp/aeroolib
-    - pip install -e /tmp/aeroolib
-    # - cd /opt/odoo
     # Install addons and dependencies (new way using setuptool)
     - oca_install_addons
     # Check licenses
@@ -39,10 +33,12 @@ job:
     # Check development status
     # - manifestoo -d . check-dev-status --default-dev-status=Beta
     # Config server wide modules
-    - echo "server_wide_modules=base,web,queue_job,base_module_list,dbfilter_from_header,db_from_header,base_deterministic_session_gc" >> /etc/odoo.cfg
+    - echo "server_wide_modules=base,web" >> /etc/odoo.cfg
     # Exclude some modules
     - EXCLUDE=product_create_prefill,website_sale_product_public_code,mail_activity_team_schedule,mail_activity_schedule_dhxgantt,project_schedule,mrp_schedule,sale_timesheet_project_schedule,web_report_workflow,account_report_qweb,sale_report_qweb,l10n_fr_hr_expense_easy
     # - INCLUDE=procurement_exception
+    # Disable "DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs"
+    - JUPYTER_PLATFORM_DIRS=1
     # Initialize test db
     - oca_init_test_database
     # Run tests with coverage ()
