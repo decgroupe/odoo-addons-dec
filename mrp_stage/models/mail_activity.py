@@ -11,26 +11,24 @@ class MailActivity(models.Model):
     def action_done(self):
         super().action_done()
         # OCA modules needed:
-        # - web_ir_actions_act_view_reload
         # - web_ir_actions_act_multi
         return {
             "type": "ir.actions.act_multi",
             "actions": [
                 {"type": "ir.actions.act_window_close"},
-                {"type": "ir.actions.act_view_reload"},
+                {"type": "ir.actions.client", "tag": "soft_reload"},
             ],
         }
 
     def action_close_dialog(self):
         super().action_close_dialog()
         # OCA modules needed:
-        # - web_ir_actions_act_view_reload
         # - web_ir_actions_act_multi
         return {
             "type": "ir.actions.act_multi",
             "actions": [
                 {"type": "ir.actions.act_window_close"},
-                {"type": "ir.actions.act_view_reload"},
+                {"type": "ir.actions.client", "tag": "soft_reload"},
             ],
         }
 

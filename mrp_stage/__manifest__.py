@@ -8,7 +8,6 @@
         "mrp",
         # "web_kanban_draggable",
         "web_ir_actions_act_multi",
-        "web_ir_actions_act_view_reload",
     ],
     "data": [
         "security/ir.model.access.csv",

@@ -129,10 +129,7 @@ class MrpProduction(models.Model):
                 "date_start": datetime.now(),
             }
         )
-        # OCA module needed: web_ir_actions_act_view_reload
-        return {
-            "type": "ir.actions.act_view_reload",
-        }
+        return {"type": "ir.actions.client", "tag": "soft_reload"}
 
     def action_on_hold(self):
         self.ensure_one()
@@ -143,10 +140,7 @@ class MrpProduction(models.Model):
                 "state": "confirmed",
             }
         )
-        # OCA module needed: web_ir_actions_act_view_reload
-        return {
-            "type": "ir.actions.act_view_reload",
-        }
+        return {"type": "ir.actions.client", "tag": "soft_reload"}
 
     def _allow_auto_start(self):
         self.ensure_one()
