@@ -2,10 +2,10 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
 from odoo.tests import new_test_user
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestStockActionView(SavepointCase):
+class TestStockActionView(TransactionCase):
     """ """
 
     @classmethod
@@ -46,11 +46,12 @@ class TestStockActionView(SavepointCase):
         self.assertIn("res_id", action_single)
         # check action for multiple records
         action_multiple = self._test_action_view(res_ids, model._name)
-        self.assertIn("tree", action_multiple["view_mode"])
+        self.assertIn("list", action_multiple["view_mode"])
         self.assertIn("domain", action_multiple)
         self.assertIn("views", action_multiple)
 
     def test_01_procurement_group_action_view(self):
+        self.model_procurement_group.create([{"name": "PG#001"}, {"name": "PG#002"}])
         self._test_action_view_sm_records(self.model_procurement_group)
 
     def test_02_stock_move_action_view(self):

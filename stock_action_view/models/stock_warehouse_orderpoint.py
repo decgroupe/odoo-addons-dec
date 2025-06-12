@@ -17,7 +17,7 @@ class StockWarehouseOrderpoint(models.Model):
         if not self.ids:
             pass
         elif len(self.ids) > 1:
-            action["view_mode"] = "tree,form"
+            action["view_mode"] = "list,form"
             action["domain"] = [("id", "in", self.ids)]
         else:
             form = self.env.ref("stock.view_warehouse_orderpoint_form")

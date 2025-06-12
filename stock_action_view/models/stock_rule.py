@@ -17,7 +17,7 @@ class StockRule(models.Model):
         if not self.ids:
             pass
         elif len(self.ids) > 1:
-            action["view_mode"] = "tree,form"
+            action["view_mode"] = "list,form"
             action["domain"] = [("id", "in", self.ids)]
         else:
             form = self.env.ref("stock.view_stock_rule_form")

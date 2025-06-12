@@ -9,9 +9,7 @@ class StockMove(models.Model):
 
     @api.model
     def action_view_base(self):
-        action = self.env["ir.actions.actions"]._for_xml_id(
-            "stock.stock_move_action"
-        )
+        action = self.env["ir.actions.actions"]._for_xml_id("stock.stock_move_action")
         return action
 
     def action_view(self):

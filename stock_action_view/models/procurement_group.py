@@ -14,7 +14,7 @@ class ProcurementGroup(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "procurement.group",
             "target": "current",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
         }
 
     def action_view(self):
@@ -25,8 +25,8 @@ class ProcurementGroup(models.Model):
         elif len(self.ids) > 1:
             # tree = self.env.ref("???")
             action["domain"] = [("id", "in", self.ids)]
-            action["views"] = [(False, "tree"), (form.id, "form")]
-            action["view_mode"] = "tree,form"
+            action["views"] = [(False, "list"), (form.id, "form")]
+            action["view_mode"] = "list,form"
         else:
             action["views"] = [(form.id, "form")]
             action["res_id"] = self.ids[0]
