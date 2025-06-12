@@ -6,7 +6,6 @@ from .common import TestMrpProductionRequestActionViewCommon
 
 
 class TestMrpProductionRequestActionView(TestMrpProductionRequestActionViewCommon):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
