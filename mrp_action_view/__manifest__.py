@@ -1,8 +1,9 @@
 {
     "name": "Manufacturing Action View",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "mrp",
         "product_action_view",
@@ -11,5 +12,5 @@
         "views/mrp_bom.xml",
         "views/mrp_production.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
