@@ -9,9 +9,7 @@ class ProjectTask(models.Model):
 
     @api.model
     def action_view_base(self):
-        action = self.env["ir.actions.actions"]._for_xml_id(
-            "project.action_view_task"
-        )
+        action = self.env["ir.actions.actions"]._for_xml_id("project.action_view_task")
         return action
 
     def action_view(self):

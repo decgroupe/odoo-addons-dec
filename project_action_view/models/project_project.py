@@ -17,10 +17,10 @@ class ProjectProject(models.Model):
             "domain": [("id", "in", self.ids)],
             "views": [
                 (view_kanban_id.id, "kanban"),
-                (view_list_id.id, "tree"),
+                (view_list_id.id, "list"),
                 (view_form_id.id, "form"),
             ],
-            "view_mode": "kanban,tree,form",
+            "view_mode": "kanban,list,form",
             "name": _("Projects"),
             "res_model": "project.project",
         }
@@ -37,7 +37,7 @@ class ProjectProject(models.Model):
         return action
 
     def action_view_all_tasks(self):
-        """ WARNING: A built-in `action_view_tasks` function already exists  """
+        """WARNING: A built-in `action_view_tasks` function already exists"""
         action = self.mapped("task_ids").action_view()
         action["context"] = {}
         return action
