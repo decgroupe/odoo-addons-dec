@@ -1,8 +1,9 @@
 {
-    "name": "Manufacturing Picked Rate",
-    "version": "14.0.1.0.0",
+    "name": "Manufacturing Supply Progress",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "mrp",
         "mrp_partner",
@@ -13,6 +14,5 @@
         "data/mrp_production_stage.xml",
         "views/mrp_production.xml",
     ],
-    "pre_init_hook": "rename_module",
-    "installable": False,
+    "installable": True,
 }

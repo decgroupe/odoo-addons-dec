@@ -16,7 +16,7 @@ class StockMove(models.Model):
 
     @api.depends(
         "state",
-        "reserved_availability",
+        "quantity",
         "product_uom_qty",
         "procure_method",
         "move_orig_ids",
@@ -32,5 +32,5 @@ class StockMove(models.Model):
                 ):
                     move.received = True
             elif move.procure_method == "make_to_stock":
-                reserved = move.reserved_availability == move.product_uom_qty
+                reserved = move.quantity >= move.product_uom_qty
                 move.received = reserved
