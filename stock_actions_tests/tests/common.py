@@ -2,8 +2,6 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2023
 
 from odoo.addons.stock_actions.tests.common import TestStockActionCommon
-from odoo.exceptions import UserError
-from odoo.tests import new_test_user
 
 
 class TestStockActionTestsCommon(TestStockActionCommon):
@@ -16,7 +14,7 @@ class TestStockActionTestsCommon(TestStockActionCommon):
         cls.route_buy = cls.warehouse_1.buy_pull_id.route_id
 
     def setUp(self):
-        super(TestStockActionTestsCommon, self).setUp()
+        super().setUp()
         self.assertTrue(self.route_mto.active)
         default_route_manufacture = self.env.ref("mrp.route_warehouse0_manufacture")
         default_route_buy = self.env.ref("purchase_stock.route_warehouse0_buy")

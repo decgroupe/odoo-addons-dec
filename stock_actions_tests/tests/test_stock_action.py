@@ -1,8 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2023
 
-from odoo.addons.stock_actions_tests.tests.common import TestStockActionTestsCommon
 from odoo.exceptions import UserError
+
+from odoo.addons.stock_actions_tests.tests.common import TestStockActionTestsCommon
 
 
 class TestStockActionTests(TestStockActionTestsCommon):
@@ -13,7 +14,7 @@ class TestStockActionTests(TestStockActionTestsCommon):
         super().setUpClass()
 
     def setUp(self):
-        super(TestStockActionTests, self).setUp()
+        super().setUp()
 
     def test_01_no_route(self):
         move = self._create_mto_customer_move()
@@ -28,10 +29,11 @@ class TestStockActionTests(TestStockActionTestsCommon):
                 ]
             }
         )
-        with self.assertRaisesRegex(
-            UserError, "No rule has been found to replenish.*"
-        ), self.cr.savepoint():
-            move.action_confirm()
+        with (
+            self.assertRaisesRegex(UserError, "No rule has been found to replenish.*"),
+            self.cr.savepoint(),
+        ):
+            move.with_context(silent_UserError=True).action_confirm()
 
     def test_02_mto_route(self):
         move = self._create_mto_customer_move()
@@ -48,10 +50,11 @@ class TestStockActionTests(TestStockActionTestsCommon):
                 ]
             }
         )
-        with self.assertRaisesRegex(
-            UserError, "No rule has been found to replenish.*"
-        ), self.cr.savepoint():
-            move.action_confirm()
+        with (
+            self.assertRaisesRegex(UserError, "No rule has been found to replenish.*"),
+            self.cr.savepoint(),
+        ):
+            move.with_context(silent_UserError=True).action_confirm()
 
     def test_03_mto_plus_buy_routes_nosupplier(self):
         move = self._create_mto_customer_move()
@@ -69,11 +72,14 @@ class TestStockActionTests(TestStockActionTestsCommon):
                 ]
             }
         )
-        with self.assertRaisesRegex(
-            UserError,
-            "There is no matching vendor price to generate the purchase order.*",
-        ), self.cr.savepoint():
-            move.action_confirm()
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                "There is no matching vendor price to generate the purchase order.*",
+            ),
+            self.cr.savepoint(),
+        ):
+            move.with_context(silent_UserError=True).action_confirm()
 
     def test_04_mto_plus_manufacture_routes_nobom(self):
         move = self._create_mto_customer_move()
@@ -91,18 +97,17 @@ class TestStockActionTests(TestStockActionTestsCommon):
                 ]
             }
         )
-        with self.assertRaisesRegex(
-            UserError,
-            "There is no Bill of Material of type manufacture or kit found.*",
-        ), self.cr.savepoint():
-            move.action_confirm()
+        # since [FIX] mrp: remove bom requirement for manufacture replenishment
+        # a BoM is no more required therefore no error should be raised
+        move.action_confirm()
+        self.assertEqual(move.state, "waiting")
 
     def test_05_mto_plus_buy_routes(self):
         move = self._create_mto_customer_move()
         vendor = self.env["res.partner"].create({"name": "Nice Vendor"})
         supplier_info = self.env["product.supplierinfo"].create(
             {
-                "name": vendor.id,
+                "partner_id": vendor.id,
                 "price": 50,
             }
         )
@@ -128,7 +133,7 @@ class TestStockActionTests(TestStockActionTestsCommon):
         self.assertEqual(move.state, "waiting")
         self.assertFalse(move.is_cancellable)
         # check that this move is now linked to a purchase order
-        self.assertTrue(move.created_purchase_line_id)
+        self.assertTrue(move.created_purchase_line_ids)
 
     def test_06_mto_plus_manufacture_routes(self):
         move = self._create_mto_customer_move()
@@ -154,6 +159,7 @@ class TestStockActionTests(TestStockActionTestsCommon):
                 "sequence": 1,
             }
         )
+        bom_id.ensure_one()
         # move should be cancellable from UI while not confirmed
         self.assertTrue(move.is_cancellable)
         move.action_confirm()
