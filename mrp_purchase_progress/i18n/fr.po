@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
-"PO-Revision-Date: 2023-11-28 13:49+0100\n"
+"POT-Creation-Date: 2026-06-03 10:38+0000\n"
+"PO-Revision-Date: 2026-06-03 15:11+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,37 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_purchase_progress
 #: model_terms:ir.ui.view,arch_db:mrp_purchase_progress.mrp_production_staged_kanban_view
-msgid "<i class=\"fa fa-shopping-cart\"/> <span>Purchase Progress</span>"
-msgstr "<i class=\"fa fa-shopping-cart\"/> <span>Avancements des achats</span>"
-
-#. module: mrp_purchase_progress
-#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mrp_purchase_progress
-#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_purchase_progress
-#: model:ir.model.fields,help:mrp_purchase_progress.field_mrp_production__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_purchase_progress
-#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgid ""
+"<i class=\"fa fa-shopping-cart\"/>\n"
+"                            <span>&amp;nbsp;</span>\n"
+"                            <span>Purchase Progress</span>"
+msgstr ""
+"<i class=\"fa fa-shopping-cart\"/>\n"
+"                            <span>&amp;nbsp;</span>\n"
+"                            <span>Avancements des achats</span>"
 
 #. module: mrp_purchase_progress
 #: model:ir.model,name:mrp_purchase_progress.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
+msgid "Manufacturing Order"
+msgstr "Fabrication"
 
 #. module: mrp_purchase_progress
 #: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__purchase_progress
@@ -63,18 +49,26 @@ msgid "Show Purchase Progress"
 msgstr "Afficher la progression des achats"
 
 #. module: mrp_purchase_progress
-#: model:ir.model.fields,field_description:mrp_purchase_progress.field_mrp_production__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: mrp_purchase_progress
 #: model:ir.actions.server,name:mrp_purchase_progress.action_update_purchase_progress
 msgid "⚡️ Update Purchase Progress"
 msgstr "⚡️ Mettre à jour la progression des achats"
 
 #. module: mrp_purchase_progress
 #: model:ir.actions.server,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress_ir_actions_server
-#: model:ir.cron,cron_name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
-#: model:ir.cron,name:mrp_purchase_progress.ir_cron_scheduler_purchase_progress
 msgid "🚧 Production: Compute Purchase Progress"
 msgstr "🚧 Fabrication: Calculer l'avancement des achats"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

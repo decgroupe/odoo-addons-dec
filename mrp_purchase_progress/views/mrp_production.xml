@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!--
     <record model="ir.ui.view" id="mrp_production_tree_view">
         <field name="name">mrp.production.tree@mrp_purchase_progress</field>
@@ -11,7 +10,7 @@
                 <field name="purchase_progress" widget="progressbar" />
             </field>
         </field>
-    </record> 
+    </record>
     -->
 
     <record model="ir.ui.view" id="mrp_production_form_view">
@@ -51,8 +50,9 @@
                     <t t-set="p" t-value="record.purchase_progress.raw_value" />
                     <div class="kanban_progress">
                         <div class="progress_info">
-                            <i class="fa fa-shopping-cart" /> <span
-                            >Purchase Progress</span>
+                            <i class="fa fa-shopping-cart" />
+                            <span>&amp;nbsp;</span>
+                            <span>Purchase Progress</span>
                         </div>
                         <div
                             class="o_kanban_counter_progress progress kanban_progress_bar"
@@ -60,16 +60,14 @@
                             <div
                                 class="progress-bar o_bar_has_records kanban_progress_bar_done"
                                 t-attf-style="width: #{p}%; background-color: #0ea657"
-                            >
-                            </div>
+                            />
                         </div>
                         <div class="kanban_completion"> <t
-                                t-esc="record.purchase_progress.value"
-                            />% </div>
+                            t-esc="record.purchase_progress.value"
+                        />% </div>
                     </div>
                 </t>
             </xpath>
         </field>
     </record>
-
 </odoo>

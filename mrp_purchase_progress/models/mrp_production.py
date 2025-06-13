@@ -3,7 +3,7 @@
 
 from datetime import timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
@@ -28,8 +28,8 @@ class MrpProduction(models.Model):
                 lambda x: x.state != "cancel"
                 and x.procure_method == "make_to_order"
                 and (
-                    x.created_purchase_line_id.id
-                    or x.move_orig_ids.purchase_line_id.ids
+                    x.created_purchase_line_ids.ids
+                    or x.move_orig_ids.purchase_line_id.id
                 )
             )
             if all_move_ids:

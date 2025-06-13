@@ -1,1 +1,0 @@
-Analyse stock moves to find out if they are waiting for another move (meaning a purchase one in most cases)
