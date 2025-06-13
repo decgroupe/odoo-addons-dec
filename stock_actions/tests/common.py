@@ -1,9 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2023
 
-from odoo.addons.stock.tests.common2 import TestStockCommon
-from odoo.exceptions import UserError
-from odoo.tests import new_test_user
+from odoo.addons.stock.tests.common import TestStockCommon
 
 
 class TestStockActionCommon(TestStockCommon):
@@ -23,10 +21,11 @@ class TestStockActionCommon(TestStockCommon):
         cls.unit_uom_id = cls.env.ref("uom.product_uom_unit")
 
     def setUp(self):
-        super(TestStockActionCommon, self).setUp()
-        self.partner = self.env["res.partner"].create({"name": "Deco Addict"})
+        super().setUp()
+        self.partner = self.env["res.partner"].create({"name": "Stock Addict"})
         self.product = self.product_3.with_user(self.user_stock_manager)
-        self.product.type = "product"
+        self.product.type = "consu"
+        self.product.is_storable = True
 
     def _send_to_customer(self, product, product_uom_qty, **values):
         location_id = self.warehouse_1.lot_stock_id
@@ -35,7 +34,6 @@ class TestStockActionCommon(TestStockCommon):
         picking_out = self.env["stock.picking"].create(
             {
                 "partner_id": self.partner.id,
-                "picking_type_id": self.env.ref("stock.picking_type_out").id,
                 "location_id": location_id.id,
                 "location_dest_id": location_dest_id.id,
                 # really important to set the right picking type, otherwise the
@@ -66,6 +64,6 @@ class TestStockActionCommon(TestStockCommon):
         )
         if done:
             receive_move.action_confirm()
-            receive_move.quantity_done = product_uom_qty
+            receive_move.quantity = product_uom_qty
             receive_move.action_done()
         return receive_move

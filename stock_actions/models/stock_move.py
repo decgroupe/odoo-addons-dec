@@ -2,8 +2,10 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
 import logging
+
 from odoo import api, fields, models
-from odoo.addons.tools_miscellaneous.tools.console_helper import dim, bold
+
+from odoo.addons.tools_miscellaneous.tools.console_helper import dim
 
 _logger = logging.getLogger(__name__)
 
@@ -33,7 +35,7 @@ class StockMove(models.Model):
     def _compute_action_reassign_visible(self):
         for move in self:
             visible = (
-                move.quantity_done < move.product_uom_qty
+                move.quantity < move.product_uom_qty
                 and not move.is_locked
                 and move.state in self._get_reassignable_states()
             )
@@ -146,6 +148,7 @@ class StockMove(models.Model):
         Outputs:
             - 'done'
         """
+        self.picked = True
         self._action_done()
 
     @api.model
@@ -155,7 +158,7 @@ class StockMove(models.Model):
     def _compute_action_set_mto_visible(self):
         for move in self:
             visible = (
-                move.quantity_done == 0
+                move.quantity == 0
                 and not move.is_locked
                 and move.state in self._get_mtoable_states()
                 and move.procure_method == "make_to_stock"
@@ -198,4 +201,4 @@ class StockMove(models.Model):
             values.get("procure_method"), "procure_method", "Procure method"
         )
         self._log_attr_value_write(values.get("state"), "state", "State")
-        return super(StockMove, self).write(values)
+        return super().write(values)

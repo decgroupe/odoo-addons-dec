@@ -2,9 +2,6 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2023
 
 from odoo.addons.stock_actions.tests.common import TestStockActionCommon
-from odoo.exceptions import UserError
-from odoo.tests import new_test_user
-from odoo.tests.common import SavepointCase
 
 
 class TestStockAction(TestStockActionCommon):
@@ -15,7 +12,7 @@ class TestStockAction(TestStockActionCommon):
         super().setUpClass()
 
     def setUp(self):
-        super(TestStockAction, self).setUp()
+        super().setUp()
 
     def test_01_validate_stock_move_reassignable_states(self):
         """Tests that all hard-coded states match existing ones"""
