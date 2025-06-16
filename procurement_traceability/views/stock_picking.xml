@@ -10,7 +10,7 @@
                 <field name="group_id" />
             </field>
             <xpath
-                expr="//field[@name='move_ids_without_package']/tree"
+                expr="//field[@name='move_ids_without_package']/list"
                 position="attributes"
             >
                 <attribute name="default_order">group_id, product_id</attribute>

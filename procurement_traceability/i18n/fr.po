@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:26+0000\n"
+"POT-Creation-Date: 2026-06-03 10:44+0000\n"
 "PO-Revision-Date: 2023-11-28 14:00+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
@@ -18,34 +18,9 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "General"
 msgstr "Général"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__id
-msgid "ID"
-msgstr "ID"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,help:procurement_traceability.field_procurement_group__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__mrp_production_ids
-msgid "Mrp Production"
-msgstr "Production"
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__orderpoint_ids
@@ -80,64 +55,8 @@ msgstr "Groupe d'approvisionnement"
 #. module: procurement_traceability
 #: model:ir.actions.act_window,name:procurement_traceability.act_window_procurement_group
 #: model:ir.ui.menu,name:procurement_traceability.menu_procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_tree_view
 msgid "Procurements"
 msgstr "Approvisionnements"
-
-#. module: procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Production Orders"
-msgstr "Ordre de production"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__mrp_production_count
-msgid "Production count"
-msgstr "Nombre de fabrication"
-
-#. module: procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Productions"
-msgstr "Productions"
-
-#. module: procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Purchase Lines"
-msgstr "Lignes d'achat"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_ids
-msgid "Purchase Order"
-msgstr "Achat"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_line_ids
-msgid "Purchase Order Line"
-msgstr "Ligne de commande d'achat"
-
-#. module: procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Purchase Order Lines"
-msgstr "Lignes d'achats"
-
-#. module: procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Purchase Orders"
-msgstr "Achats"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_count
-msgid "Purchase count"
-msgstr "Nombre d'achats"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__purchase_order_line_count
-msgid "Purchase lines count"
-msgstr "Nombre de lignes d'achats"
-
-#. module: procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Purchases"
-msgstr "Achats"
 
 #. module: procurement_traceability
 #: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__stock_move_ids
@@ -165,22 +84,6 @@ msgid "Routes"
 msgstr "Routes"
 
 #. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__sale_order_ids
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Sale Orders"
-msgstr "Ventes"
-
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__sale_order_count
-msgid "Sale count"
-msgstr "Nombre de ventes"
-
-#. module: procurement_traceability
-#: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
-msgid "Sales"
-msgstr "Vente"
-
-#. module: procurement_traceability
 #: model_terms:ir.ui.view,arch_db:procurement_traceability.procurement_group_form_view
 msgid "Stock Moves"
 msgstr "Mouvements de stocks"
@@ -200,10 +103,65 @@ msgstr "Nombre de règles de stock"
 msgid "Traceability"
 msgstr "Traçabilité"
 
-#. module: procurement_traceability
-#: model:ir.model.fields,field_description:procurement_traceability.field_procurement_group__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Mrp Production"
+#~ msgstr "Production"
+
+#~ msgid "Production Orders"
+#~ msgstr "Ordre de production"
+
+#~ msgid "Production count"
+#~ msgstr "Nombre de fabrication"
+
+#~ msgid "Productions"
+#~ msgstr "Productions"
+
+#~ msgid "Purchase Lines"
+#~ msgstr "Lignes d'achat"
+
+#~ msgid "Purchase Order"
+#~ msgstr "Achat"
+
+#~ msgid "Purchase Order Line"
+#~ msgstr "Ligne de commande d'achat"
+
+#~ msgid "Purchase Order Lines"
+#~ msgstr "Lignes d'achats"
+
+#~ msgid "Purchase Orders"
+#~ msgstr "Achats"
+
+#~ msgid "Purchase count"
+#~ msgstr "Nombre d'achats"
+
+#~ msgid "Purchase lines count"
+#~ msgstr "Nombre de lignes d'achats"
+
+#~ msgid "Purchases"
+#~ msgstr "Achats"
+
+#~ msgid "Sale Orders"
+#~ msgstr "Ventes"
+
+#~ msgid "Sale count"
+#~ msgstr "Nombre de ventes"
+
+#~ msgid "Sales"
+#~ msgstr "Vente"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Stock Move"
 #~ msgstr "Mouvement de stock"
