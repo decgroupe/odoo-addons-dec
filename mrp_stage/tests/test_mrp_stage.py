@@ -1,6 +1,4 @@
-from odoo import fields
-from odoo.exceptions import AccessError, UserError
-from odoo.tests.common import Form, TransactionCase, tagged
+from odoo.tests.common import TransactionCase, tagged
 from odoo.tools import mute_logger
 
 

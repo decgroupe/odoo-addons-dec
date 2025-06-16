@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2022
 
-from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo import api, fields, models
 
 
 class ProductionStage(models.Model):
@@ -48,7 +48,7 @@ class ProductionStage(models.Model):
         res = []
         for rec in self:
             if rec.emoji:
-                name = "%s %s" % (rec.emoji, rec.name)
+                name = f"{rec.emoji} {rec.name}"
             else:
                 name = rec.name
             res.append((rec.id, name))

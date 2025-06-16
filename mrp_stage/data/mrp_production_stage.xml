@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record id="stage_draft" model="mrp.production.stage">
         <field name="name">Draft</field>
         <field name="code">draft</field>
@@ -58,5 +57,4 @@
         <field name="fold" eval="True" />
         <field name="todo" eval="False" />
     </record>
-
 </odoo>

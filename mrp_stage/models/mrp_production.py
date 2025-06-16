@@ -3,7 +3,7 @@
 
 from datetime import datetime
 
-from odoo import SUPERUSER_ID, _, api, fields, models
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
@@ -39,7 +39,7 @@ class MrpProduction(models.Model):
 
     # Used for Kanban grouped_by view
     @api.model
-    def _read_group_stage_ids(self, stages, domain, order):
+    def _read_group_stage_ids(self, stages, domain):
         stage_ids = self.env["mrp.production.stage"].search([])
         return stages or stage_ids
 

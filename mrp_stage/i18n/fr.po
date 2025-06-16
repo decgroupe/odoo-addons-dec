@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
-"PO-Revision-Date: 2023-11-28 13:50+0100\n"
+"POT-Creation-Date: 2026-06-03 10:39+0000\n"
+"PO-Revision-Date: 2026-06-03 15:12+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,17 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "<i class=\"fa fa-caret-right\"/> Start"
 msgstr "<i class=\"fa fa-caret-right\"/> Démarrer"
-
-#. module: mrp_stage
-#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
-msgid "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
-msgstr "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
 
 #. module: mrp_stage
 #: model:ir.model,name:mrp_stage.model_mail_activity
@@ -62,11 +57,11 @@ msgstr "Nomenclature"
 #. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production__bom_id
 msgid ""
-"Bill of Materials allow you to define the list of required components to make a "
-"finished product."
+"Bills of Materials, also called recipes, are used to autocomplete components and "
+"work order instructions."
 msgstr ""
-"Les nomenclatures vous permettent de définir une liste des composants requis "
-"pour fabriquer un produit fini."
+"Les nomenclatures, également appelées recettes, sont utilisées pour "
+"automatiquement compléter les composants et les instructions des bons de travail."
 
 #. module: mrp_stage
 #: model:mrp.production.stage,name:mrp_stage.stage_cancel
@@ -109,20 +104,23 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: mrp_stage
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
+msgid "Delete"
+msgstr "Supprimer"
+
+#. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__description
 msgid "Description"
 msgstr "Description"
 
 #. module: mrp_stage
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__display_name
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__display_name
-#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: mrp_stage
 #: model:mrp.production.stage,name:mrp_stage.stage_done
+#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
 msgid "Done"
 msgstr "Terminé"
 
@@ -130,11 +128,6 @@ msgstr "Terminé"
 #: model:mrp.production.stage,name:mrp_stage.stage_draft
 msgid "Draft"
 msgstr "Brouillon"
-
-#. module: mrp_stage
-#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
-msgid "Dropdown menu"
-msgstr "Menu déroulant"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
@@ -147,23 +140,12 @@ msgid "Folded in Kanban"
 msgstr "Repliée dans la vue Kanban"
 
 #. module: mrp_stage
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__id
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__id
-#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__id
 msgid "ID"
 msgstr "ID"
 
 #. module: mrp_stage
-#: model:ir.model.fields,help:mrp_stage.field_mail_activity__xid
-#: model:ir.model.fields,help:mrp_stage.field_mail_activity_type__xid
-#: model:ir.model.fields,help:mrp_stage.field_mrp_production__xid
-#: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_stage
-#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__emoji
+#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__symbol
 msgid "Icon"
 msgstr "Icône"
 
@@ -179,14 +161,6 @@ msgid "Issue"
 msgstr "Incident"
 
 #. module: mrp_stage
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity____last_update
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type____last_update
-#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: mrp_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
@@ -197,14 +171,14 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: mrp_stage
+#: model:ir.model,name:mrp_stage.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Fabrication"
+
+#. module: mrp_stage
 #: model:ir.actions.act_window,name:mrp_stage.act_mrp_production_staged
 msgid "Manufacturing Orders"
 msgstr "Fabrications"
-
-#. module: mrp_stage
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__res_model_model
-msgid "Model Technical Name"
-msgstr "Nom technique du modèle"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_filter_view
@@ -212,20 +186,9 @@ msgid "My Orders"
 msgstr "Mes fabrications"
 
 #. module: mrp_stage
-#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
-msgid "Product"
-msgstr "Article"
-
-#. module: mrp_stage
-#: model:ir.model,name:mrp_stage.model_mrp_production
-msgid "Production Order"
-msgstr "Fabrication"
-
-#. module: mrp_stage
 #: model:ir.model,name:mrp_stage.model_mrp_production_stage
 #: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__production_stage_id
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
-#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_tree_view
 msgid "Production Stage"
 msgstr "Étape de fabrication"
 
@@ -285,8 +248,8 @@ msgstr "Cette étape est considérée comme ayant des actions nécessaires"
 #. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production_stage__fold
 msgid ""
-"This stage is folded in the kanban view when there are no records in that stage "
-"to display."
+"This stage is folded in the kanban view when there are no records in that stage to "
+"display."
 msgstr ""
 "Cette étape est repliée dans la vue Kanban quand il n'y a pas de dossier à "
 "afficher dans cette étape."
@@ -308,45 +271,66 @@ msgid "Unique lowercase string identifier"
 msgstr "Identifiant unique de chaîne de caractères minuscules"
 
 #. module: mrp_stage
-#: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
-msgid "Unread Messages"
-msgstr "Messages non lus"
-
-#. module: mrp_stage
 #: model:ir.model.fields,help:mrp_stage.field_mrp_production__stage_todo
 msgid ""
 "Used as a filter to only display production order linked to stages with to-do "
 "actions"
 msgstr ""
-"Utilisé comme un filtre pour afficher uniquement les ordres de production liés "
-"aux étapes avec des actions à faire"
-
-#. module: mrp_stage
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity__xid
-#: model:ir.model.fields,field_description:mrp_stage.field_mail_activity_type__xid
-#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production__xid
-#: model:ir.model.fields,field_description:mrp_stage.field_mrp_production_stage__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+"Utilisé comme un filtre pour afficher uniquement les ordres de production liés aux "
+"étapes avec des actions à faire"
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_stage_form_view
 msgid ""
-"You can also add a description to help your coworkers understand the meaning "
-"and purpose of the stage."
+"You can also add a description to help your coworkers understand the meaning and "
+"purpose of the stage."
 msgstr ""
-"Vous pouvez aussi ajouter une description pour aider vos co-équipiers à "
-"comprendre la signification et le but de cette étape."
+"Vous pouvez aussi ajouter une description pour aider vos co-équipiers à comprendre "
+"la signification et le but de cette étape."
 
 #. module: mrp_stage
 #: model_terms:ir.ui.view,arch_db:mrp_stage.mrp_production_staged_kanban_view
-msgid "oe_kanban_text_red"
+msgid "text-danger"
 msgstr ""
 
 #. module: mrp_stage
 #: model:ir.actions.server,name:mrp_stage.action_recompute_stage
 msgid "⚡️ Recompute Stage Assignment"
 msgstr "⚡️ Recalculer l'affectation d'étape"
+
+#~ msgid "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
+#~ msgstr "<i class=\"fa fa-comments\" role=\"img\" aria-label=\"Unread Messages\"/>"
+
+#~ msgid ""
+#~ "Bill of Materials allow you to define the list of required components to make a "
+#~ "finished product."
+#~ msgstr ""
+#~ "Les nomenclatures vous permettent de définir une liste des composants requis "
+#~ "pour fabriquer un produit fini."
+
+#~ msgid "Dropdown menu"
+#~ msgstr "Menu déroulant"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Model Technical Name"
+#~ msgstr "Nom technique du modèle"
+
+#~ msgid "Product"
+#~ msgstr "Article"
+
+#~ msgid "Production Order"
+#~ msgstr "Fabrication"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Messages non lus"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Planned"
 #~ msgstr "Planifiée"
