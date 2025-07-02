@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="website_rewrite_form_view" model="ir.ui.view">
+        <field name="name">website.rewrite.form@website_redirection_mgmt</field>
+        <field name="model">website.rewrite</field>
+        <field name="inherit_id" ref="website.view_website_rewrite_form" />
+        <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group[1]" position="attributes">
+                <attribute name="string">Redirection</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group/group[1]" position="after">
+                <group string="Classification" name="classification">
+                    <field name="group_id" />
+                    <field name="content_source_ids" widget="many2many_tags" />
+                    <field name="content_target_id" />
+                    <field name="look" />
+                    <field
+                        name="tag_ids"
+                        widget="many2many_tags"
+                        options="{'color_field': 'color'}"
+                    />
+                </group>
+                <group string="Notes" name="notes">
+                    <field name="note"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_rewrite_tree_view">
+        <field name="name">website.rewrite.list@website_redirection_mgmt</field>
+        <field name="model">website.rewrite</field>
+        <field name="inherit_id" ref="website.action_website_rewrite_tree" />
+        <field name="arch" type="xml">
+            <field name="website_id" position="before">
+                <field
+                    string="Sources"
+                    name="content_source_ids"
+                    widget="many2many_tags"
+                    optional="show"
+                />
+                <field name="content_target_id" string="Target" optional="show" />
+                <field
+                    name="tag_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="rewrite_search_view">
+        <field name="name">website.rewrite.search@website_redirection_mgmt</field>
+        <field name="model">website.rewrite</field>
+        <field name="inherit_id" ref="website.view_rewrite_search" />
+        <field name="arch" type="xml">
+            <field name="url_from" position="before">
+                <field name="group_id" />
+                <field name="content_source_ids" />
+                <field name="content_target_id" />
+                <field name="tag_ids" />
+            </field>
+            <filter name="group_by_type" position="before">
+                <filter
+                    string="Group"
+                    name="group_by_group_id"
+                    domain="[]"
+                    context="{'group_by': 'group_id'}"
+                />
+                <filter
+                    string="Content Target"
+                    name="group_by_content_target_id"
+                    domain="[]"
+                    context="{'group_by': 'content_target_id'}"
+                />
+                <separator />
+            </filter>
+        </field>
+    </record>
+
+</odoo>
