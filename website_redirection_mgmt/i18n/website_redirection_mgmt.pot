@@ -1,0 +1,183 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_redirection_mgmt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-02 13:38+0000\n"
+"PO-Revision-Date: 2025-07-02 13:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_redirection_mgmt
+#: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.website_rewrite_form_view
+msgid "Classification"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields.selection,name:website_redirection_mgmt.selection__website_rewrite__look__clickable_image
+msgid "Clickable Image"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields.selection,name:website_redirection_mgmt.selection__website_rewrite__look__clickable_link
+msgid "Clickable Link"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__content_source_ids
+msgid "Content Sources"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__content_target_id
+#: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.rewrite_search_view
+msgid "Content Target"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__display_name
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.rewrite_search_view
+msgid "Group"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__group_id
+msgid "Grouping"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__id
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__id
+msgid "ID"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite____last_update
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__look
+msgid "Look"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__name
+msgid "Name"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__note
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__note
+msgid "Note"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.website_rewrite_form_view
+msgid "Notes"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite__look
+msgid "Physical representation of the link"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.website_rewrite_form_view
+msgid "Redirection"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields.selection,name:website_redirection_mgmt.selection__website_rewrite__look__scannable_qrcode
+msgid "Scannable QR Code"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.website_rewrite_tree_view
+msgid "Sources"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__tag_ids
+msgid "Tags"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.website_rewrite_tree_view
+msgid "Target"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite__content_source_ids
+msgid ""
+"These are the sources of the link, e.g. Search Engine, another domain, or "
+"name of email list"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite_group__note
+msgid "This is a note to help you remember the purpose of this group."
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite__note
+msgid "This is a note to help you remember the purpose of this link."
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite__group_id
+msgid "This is the grouping of the link, e.g. Campaign, Project, etc."
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite_group__name
+msgid "This is the name of the group"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite__content_target_id
+msgid "This is the target of the link, e.g. Image, Video, etc."
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model,name:website_redirection_mgmt.model_website_rewrite_group
+msgid "Website Rewrite Group"
+msgstr ""
+
+#. module: website_redirection_mgmt
+#: model:ir.model,name:website_redirection_mgmt.model_website_rewrite
+msgid "Website rewrite"
+msgstr ""
