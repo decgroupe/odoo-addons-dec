@@ -11,6 +11,8 @@
     ],
     "data": [
         "wizard/mass_editing_wizard.xml",
+    ],
+    "demo": [
         "demo/mass_editing.xml",
     ],
     "installable": True,
