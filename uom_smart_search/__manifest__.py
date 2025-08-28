@@ -7,7 +7,7 @@
     "depends": [
         "uom",
     ],
-    "data": [
+    "demo": [
         "demo/data.xml",
     ],
     "installable": True,
