@@ -29,7 +29,10 @@ class ProductSupplierinfo(models.Model):
             price_uom = self.env["uom.uom"].browse(uom_id)
         else:
             price_uom = product_id.uom_id
-        res = product_id.uom_po_id._compute_price(self.price, price_uom)
+        uom_po_id = product_id.uom_po_id
+        if not uom_po_id and product_id._origin.uom_po_id:
+            uom_po_id = product_id._origin.uom_po_id
+        res = uom_po_id._compute_price(self.price, price_uom)
         # Ignore NewId because `_compute_price_rule_get_items` use raw SQL
         if not isinstance(self.id, models.NewId):
             pricelist = self.name.property_product_pricelist_purchase
