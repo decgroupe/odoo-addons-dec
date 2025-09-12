@@ -48,7 +48,9 @@ class SaleOrder(models.Model):
             if line_count > 0:
                 sale.sent_rate = sent_count * 100 / line_count
 
-    @api.depends("tasks_ids", "tasks_ids.progress", "tasks_ids.stage_id")
+    # FIXME: `tasks_ids` is not a stored field, so it should not be used in
+    # depends: "odoo.osv.expression: Non-stored field sale.order.tasks_ids cannot be searched"
+    # @api.depends("tasks_ids", "tasks_ids.progress", "tasks_ids.stage_id")
     def _compute_task_rate(self):
         self.task_rate = 100
         for sale in self:
