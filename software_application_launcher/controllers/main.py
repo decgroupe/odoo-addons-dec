@@ -5,10 +5,10 @@ from odoo import http
 from odoo.http import request
 from odoo.tools.translate import _
 
-URL_BASE_V1 = "/api/launcher/v1"
-URL_MANIFEST = URL_BASE_V1 + "/Manifest"
-URL_MANIFEST_IMAGES = URL_MANIFEST + "/Images"
-URL_MANIFEST_IDENTIFIER = URL_MANIFEST + "/identifier/<int:identifier>"
+URL_V1_BASE = "/api/launcher/v1"
+URL_V1_MANIFEST = URL_V1_BASE + "/Manifest"
+URL_V1_MANIFEST_IMAGES = URL_V1_MANIFEST + "/Images"
+URL_V1_MANIFEST_IDENTIFIER = URL_V1_MANIFEST + "/identifier/<int:identifier>"
 
 
 class SoftwareApplicationLauncherController(http.Controller):
@@ -16,7 +16,7 @@ class SoftwareApplicationLauncherController(http.Controller):
 
     #######################################################################
 
-    def _get_manifest(self, with_tooltips=False, extra_domain=False):
+    def _sal_api_v1_get_manifest(self, with_tooltips=False, extra_domain=False):
         res = {
             "version": 2,
             "applications": [],
@@ -36,33 +36,33 @@ class SoftwareApplicationLauncherController(http.Controller):
         return res
 
     @http.route(
-        URL_MANIFEST,
+        URL_V1_MANIFEST,
         type="json",
         methods=["POST"],
         auth="api_key",
         csrf=False,
     )
-    def get_manifest(self, **kwargs):
+    def sal_api_v1_get_manifest(self, **kwargs):
         domain = []
-        return self._get_manifest(extra_domain=domain)
+        return self._sal_api_v1_get_manifest(extra_domain=domain)
 
     @http.route(
-        URL_MANIFEST_IMAGES,
+        URL_V1_MANIFEST_IMAGES,
         type="json",
         methods=["POST"],
         auth="api_key",
         csrf=False,
     )
-    def get_manifest_with_images(self, **kwargs):
-        return self._get_manifest(with_tooltips=True)
+    def sal_api_v1_get_manifest_with_images(self, **kwargs):
+        return self._sal_api_v1_get_manifest(with_tooltips=True)
 
     @http.route(
-        URL_MANIFEST_IDENTIFIER,
+        URL_V1_MANIFEST_IDENTIFIER,
         type="json",
         methods=["POST"],
         auth="api_key",
         csrf=False,
     )
-    def get_manifest_from_identifier(self, identifier, **kwargs):
+    def sal_api_v1_get_manifest_from_identifier(self, identifier, **kwargs):
         domain = [("identifier", "=", identifier)]
-        return self._get_manifest(with_tooltips=True, extra_domain=domain)
+        return self._sal_api_v1_get_manifest(with_tooltips=True, extra_domain=domain)
