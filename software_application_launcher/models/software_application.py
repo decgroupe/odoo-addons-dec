@@ -7,6 +7,25 @@ from odoo import api, fields, models
 class SoftwareApplication(models.Model):
     _inherit = "software.application"
 
+    # Add a new type to set this application as a launcher that can handle other
+    # applications as a software library manager
+    type = fields.Selection(
+        selection_add=[
+            (
+                "launcher",
+                "Launcher",
+            )
+        ],
+        ondelete={"launcher": "set default"},
+    )
+    application_ids = fields.Many2many(
+        comodel_name="software.application",
+        relation="software_asset_application_rel",
+        column1="launcher_id",
+        column2="app_id",
+        string="Applications",
+        domain=[("type", "=", "inhouse")],
+    )
     corner_image = fields.Binary(
         string="Corner Image",
         attachment=True,
@@ -48,18 +67,6 @@ class SoftwareApplication(models.Model):
                     }
                 )
         return super().write(vals)
-
-    @api.model
-    def _get_launcher_manifest_domain(self):
-        return [
-            "|",
-            ("type", "=", "resource"),
-            "&",
-            ("type", "=", "inhouse"),
-            "|",
-            ("identifier", ">=", 1000),  # public applications only
-            ("identifier", "=", 998),  # special case for the launcher itself
-        ]
 
     def _get_launcher_manifest_entry(self, with_tooltips=False):
         self.ensure_one()
