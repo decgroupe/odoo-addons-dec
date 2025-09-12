@@ -25,13 +25,21 @@ class SoftwareApplicationLauncherController(http.Controller):
             "resources": [],
         }
         SoftwareApplication = request.env["software.application"]
-        domain = SoftwareApplication._get_launcher_manifest_domain()
+        # since API V1 is now deprecated, the default domain is now hard-coded to
+        # match old behavior (when launcher type did not exist)
+        domain = [
+            "|",
+            ("type", "in", ["launcher", "resource"]),
+            "&",
+            ("type", "=", "inhouse"),
+            ("identifier", ">=", 1000),  # public applications only
+        ]
         if extra_domain:
             domain += extra_domain
         asset_ids = SoftwareApplication.search(domain)
         for asset_id in asset_ids:
             entry = asset_id._get_launcher_manifest_entry(with_tooltips=with_tooltips)
-            if asset_id.type == "inhouse":
+            if asset_id.type in ["inhouse", "launcher"]:
                 res["applications"].append(entry)
             elif asset_id.type == "resource":
                 res["resources"].append(entry)

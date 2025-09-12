@@ -43,7 +43,7 @@
 
     <record model="software.application" id="sa_spacelauncher">
         <field name="name">Space-Launcher</field>
-        <field name="type">inhouse</field>
+        <field name="type">launcher</field>
         <field name="identifier" eval="998"/>
         <field
             name="image"

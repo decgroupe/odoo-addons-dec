@@ -13,11 +13,12 @@
         "security/ir.model.access.csv",
         "views/software_application.xml",
         "views/software_application_image.xml",
+        "views/menu.xml",
         "data/software_tag.xml",
     ],
     "demo": [
-        "demo/software_application.xml",
         "demo/software_tag.xml",
+        "demo/software_application.xml",
     ],
     "installable": True,
 }
