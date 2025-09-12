@@ -1,0 +1,16 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="titleFlat">
+  <title id="titleFlat">Space-Launcher Flat Icon</title>
+  <circle cx="128" cy="128" r="120" fill="#0D1B2A"/>
+  <path d="M60 156c32 38 108 48 140 6" stroke="#35D6F2" stroke-width="14" stroke-linecap="round" stroke-opacity="0.85"/>
+  <path d="M128 84c-9 11-16 26-18 42-2 15 2 28 8 42h20c6-14 10-27 8-42-2-16-9-31-18-42z" fill="#FFFFFF"/>
+  <path d="M112 140c-5 6-9 13-10 20 7-2 15-8 18-14l-8-6z" fill="#7A5FFF"/>
+  <path d="M144 140c5 6 9 13 10 20-7-2-15-8-18-14l8-6z" fill="#35D6F2"/>
+  <circle cx="128" cy="128" r="11" fill="#142B3D"/>
+  <circle cx="128" cy="128" r="7" fill="#35D6F2"/>
+  <path d="M124 168c-5 9-3 18 4 24 7-6 9-15 4-24h-8z" fill="#FF9E42"/>
+  <circle cx="82" cy="74" r="3" fill="#F5F9FF"/>
+  <circle cx="176" cy="70" r="3" fill="#F5F9FF"/>
+  <circle cx="196" cy="122" r="2" fill="#F5F9FF"/>
+  <circle cx="68" cy="132" r="2" fill="#F5F9FF"/>
+  <circle cx="154" cy="172" r="2" fill="#F5F9FF"/>
+</svg>

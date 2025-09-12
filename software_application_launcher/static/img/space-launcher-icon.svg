@@ -1,0 +1,84 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Space-Launcher Icon</title>
+  <desc id="desc">Circular space themed icon with stylized rocket launching upward and orbital arc trail.</desc>
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#142B3D"/>
+      <stop offset="60%" stop-color="#0D1B2A"/>
+      <stop offset="100%" stop-color="#07111A"/>
+    </radialGradient>
+    <linearGradient id="rocketBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D9E4FF"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFED89"/>
+      <stop offset="45%" stop-color="#FF9E42"/>
+      <stop offset="100%" stop-color="#FF4FA3"/>
+    </linearGradient>
+    <linearGradient id="trailGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7A5FFF" stop-opacity="0.9"/>
+      <stop offset="65%" stop-color="#35D6F2" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feBlend in="SourceGraphic" in2="b" mode="screen"/>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0 0.85  0 0 0 0.35 0"/>
+      <feBlend in="SourceGraphic" in2="g" mode="screen"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="120" fill="url(#bgGrad)"/>
+
+  <!-- Stars -->
+  <g fill="#F5F9FF" opacity="0.85">
+    <circle cx="84" cy="70" r="2"/>
+    <circle cx="170" cy="66" r="2.5"/>
+    <circle cx="196" cy="118" r="1.8"/>
+    <circle cx="62" cy="132" r="1.6"/>
+    <circle cx="110" cy="186" r="2.2"/>
+    <circle cx="154" cy="170" r="1.4"/>
+    <circle cx="140" cy="100" r="1.4"/>
+    <circle cx="104" cy="112" r="1.2"/>
+  </g>
+
+  <!-- Orbital arc / trail -->
+  <path d="M52 160c34 40 116 52 152 8" stroke="url(#trailGrad)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" filter="url(#glow)"/>
+  <path d="M60 154c30 38 108 48 140 6" stroke="#35D6F2" stroke-opacity="0.25" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Rocket group -->
+  <g filter="url(#softGlow)">
+    <!-- Flame -->
+    <path d="M124 168c-5 10-4 20 4 28 8-8 9-18 4-28h-8z" fill="url(#flameGrad)"/>
+    <path d="M128 168c-4 6-3 12 0 17 3-5 4-11 0-17z" fill="#FF4FA3" opacity="0.55"/>
+
+    <!-- Rocket body -->
+    <path d="M128 80c-10 12-18 27-20 44-2 16 2 30 8 44h24c6-14 10-28 8-44-2-17-10-32-20-44z" fill="url(#rocketBody)"/>
+    <path d="M128 80c-10 12-18 27-20 44-2 16 2 30 8 44h2c-6-15-10-29-8-44 2-17 10-32 20-44h-2z" fill="#C5D6F7" opacity="0.55"/>
+
+    <!-- Nose highlight -->
+    <path d="M128 80c4 5 8 12 11 20-3-4-7-7-11-7s-8 3-11 7c3-8 7-15 11-20z" fill="#FFFFFF" opacity="0.7"/>
+
+    <!-- Fin left -->
+    <path d="M108 138c-6 6-10 14-10 22 8-2 16-8 20-16l-10-6z" fill="#7A5FFF"/>
+    <!-- Fin right -->
+    <path d="M148 138c6 6 10 14 10 22-8-2-16-8-20-16l10-6z" fill="#35D6F2"/>
+
+    <!-- Window -->
+    <circle cx="128" cy="126" r="12" fill="#142B3D"/>
+    <circle cx="128" cy="126" r="8" fill="#35D6F2"/>
+    <circle cx="131" cy="122" r="4" fill="#FFFFFF" opacity="0.9"/>
+  </g>
+
+  <!-- Subtle upward motion accent (small particles) -->
+  <g fill="#FF9E42" opacity="0.7">
+    <circle cx="122" cy="182" r="2"/>
+    <circle cx="134" cy="188" r="1.6"/>
+    <circle cx="126" cy="194" r="1.2"/>
+  </g>
+</svg>

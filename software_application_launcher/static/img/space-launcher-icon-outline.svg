@@ -1,0 +1,10 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="10" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="titleOutline">
+  <title id="titleOutline">Space-Launcher Outline Icon</title>
+  <circle cx="128" cy="128" r="118"/>
+  <path d="M60 156c32 38 108 48 140 6"/>
+  <path d="M128 84c-18 24-26 62-10 100h20c16-38 8-76-10-100z"/>
+  <circle cx="128" cy="128" r="14"/>
+  <path d="M112 140c-6 7-10 15-10 22 8-2 16-8 20-16l-10-6z"/>
+  <path d="M144 140c6 7 10 15 10 22-8-2-16-8-20-16l10-6z"/>
+  <path d="M124 168c-4 10-3 20 4 28 7-8 8-18 4-28h-8z"/>
+</svg>

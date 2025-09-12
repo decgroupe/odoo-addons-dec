@@ -1,0 +1,22 @@
+<svg width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="vt vd" xmlns="http://www.w3.org/2000/svg">
+  <title id="vt">Securia Vault Icon</title>
+  <desc id="vd">Circular vault door with stylized S suggesting controlled access.</desc>
+  <defs>
+    <radialGradient id="vaultGrad" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2FBF88" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#123B63"/>
+    </radialGradient>
+  </defs>
+  <circle cx="128" cy="128" r="104" fill="url(#vaultGrad)"/>
+  <circle cx="128" cy="128" r="104" fill="none" stroke="#0E2A3E" stroke-width="8" opacity="0.35"/>
+  <!-- S path as cut -->
+  <path d="M164 88c-10-9-27-14-42-10-13 3-20 12-14 20 8 11 35 9 49 21 19 16 8 46-25 53-18 4-38 0-52-9"
+        fill="none" stroke="#F5F7FA" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Dial ticks -->
+  <g stroke="#E8EEF5" stroke-width="4" stroke-linecap="round" opacity="0.55">
+    <line x1="128" y1="20" x2="128" y2="36"/>
+    <line x1="128" y1="220" x2="128" y2="236"/>
+    <line x1="20" y1="128" x2="36" y2="128"/>
+    <line x1="220" y1="128" x2="236" y2="128"/>
+  </g>
+</svg>

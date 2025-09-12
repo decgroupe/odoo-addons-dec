@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="software.application" id="res_spacelauncher_userguide">
+        <field name="name">Space-Launcher's Userguide</field>
+        <field name="type">resource</field>
+    </record>
+
+    <record model="software.application.release" id="res_spacelauncher_userguide_r0">
+        <field
+            name="application_id"
+            ref="software_application_launcher.res_spacelauncher_userguide"
+        />
+        <field name="version">1.0.0</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/resource/spacelauncher/userguide.pdf</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application" id="res_spacelauncher_quickstart">
+        <field name="name">Space-Launcher's Quickstart</field>
+        <field name="type">resource</field>
+    </record>
+
+    <record model="software.application.release" id="res_spacelauncher_quickstart_r0">
+        <field
+            name="application_id"
+            ref="software_application_launcher.res_spacelauncher_quickstart"
+        />
+        <field name="version">1.0.0</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/resource/spacelauncher/quickstart.pdf</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=2)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application" id="sa_spacelauncher">
+        <field name="name">Space-Launcher</field>
+        <field name="type">inhouse</field>
+        <field name="identifier" eval="998"/>
+        <field
+            name="image"
+            type="base64"
+            file="software_application_launcher/static/img/space-launcher-icon.svg"
+        />
+        <field
+            name="resource_ids"
+            eval="[
+                (4, ref('software_application_launcher.res_spacelauncher_userguide')),
+                (4, ref('software_application_launcher.res_spacelauncher_quickstart')),
+            ]"
+        />
+        <field
+            name="tag_ids"
+            eval="[
+                (4, ref('software_application.tag_pegi7')),
+                (4, ref('software_application_launcher.tag_launcher')),
+            ]"
+        />
+    </record>
+
+    <record model="software.application.release" id="sa_spacelauncher_r0">
+        <field
+            name="application_id"
+            ref="software_application_launcher.sa_spacelauncher"
+        />
+        <field name="version">1.0.0</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/launchpad/spacelauncher/setup_1.0.0.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=10)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application.release" id="sa_spacelauncher_r1">
+        <field
+            name="application_id"
+            ref="software_application_launcher.sa_spacelauncher"
+        />
+        <field name="version">2.0.0</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/launchpad/spacelauncher/setup_2.0.0.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=5)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application.release" id="sa_spacelauncher_r2">
+        <field
+            name="application_id"
+            ref="software_application_launcher.sa_spacelauncher"
+        />
+        <field name="version">2.0.1</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/launchpad/spacelauncher/setup_2.0.1.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=4)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application.release" id="sa_spacelauncher_r3">
+        <field
+            name="application_id"
+            ref="software_application_launcher.sa_spacelauncher"
+        />
+        <field name="version">3.1.0</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/launchpad/spacelauncher/setup_3.1.0.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(weeks=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application.release" id="sa_spacelauncher_r4">
+        <field
+            name="application_id"
+            ref="software_application_launcher.sa_spacelauncher"
+        />
+        <field name="version">3.1.1</field>
+        <field
+            name="url"
+        >https://cdn.mydomain.com/launchpad/spacelauncher/setup_3.1.1.exe</field>
+        <field
+            name="date"
+            eval="(DateTime.today() - relativedelta(days=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+
+    <record model="software.application" id="sa_securia">
+        <field name="name">Securia Privacy</field>
+        <field name="type">inhouse</field>
+        <field name="info">This application is private and should not be visible externally (e.g., in portal or API).</field>
+        <field name="identifier" eval="100"/>
+        <field
+            name="image"
+            type="base64"
+            file="software_application_launcher/static/img/securia-privacy-icon.svg"
+        />
+        <field
+            name="tag_ids"
+            eval="[
+                (4, ref('software_application.tag_pegi7')),
+                (4, ref('software_application_launcher.tag_tool')),
+            ]"
+        />
+    </record>
+
+</odoo>

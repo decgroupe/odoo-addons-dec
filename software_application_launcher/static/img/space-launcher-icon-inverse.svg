@@ -1,0 +1,12 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="titleInverse">
+  <title id="titleInverse">Space-Launcher Inverse Icon</title>
+  <rect width="256" height="256" rx="56" fill="#F5F9FF"/>
+  <circle cx="128" cy="128" r="92" fill="#142B3D"/>
+  <path d="M66 154c28 34 94 42 122 4" stroke="#7A5FFF" stroke-width="12" stroke-linecap="round" stroke-opacity="0.9"/>
+  <path d="M128 90c-9 11-16 25-18 40s2 27 8 40h20c6-13 10-25 8-40s-9-29-18-40z" fill="#FFFFFF"/>
+  <path d="M112 142c-5 6-8 12-9 18 6-2 13-7 16-12l-7-6z" fill="#7A5FFF"/>
+  <path d="M144 142c5 6 8 12 9 18-6-2-13-7-16-12l7-6z" fill="#35D6F2"/>
+  <circle cx="128" cy="132" r="10" fill="#142B3D"/>
+  <circle cx="128" cy="132" r="6" fill="#35D6F2"/>
+  <path d="M124 172c-4 8-3 16 4 22 7-6 8-14 4-22h-8z" fill="#FF9E42"/>
+</svg>
