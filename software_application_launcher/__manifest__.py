@@ -7,6 +7,7 @@
         "software_application",
         "software_license",
         "website_sale",  # for css styles
+        "auth_api_key",  # for API key authentication
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -14,5 +15,9 @@
         "views/software_application_image.xml",
         "data/software_tag.xml",
     ],
-    "installable": False,
+    "demo": [
+        "demo/software_application.xml",
+        "demo/software_tag.xml",
+    ],
+    "installable": True,
 }
