@@ -15,6 +15,8 @@ class SoftwareApplicationLauncherController(http.Controller):
     """Http Controller for Software Application Launcher"""
 
     #######################################################################
+    # API V1
+    #######################################################################
 
     def _sal_api_v1_get_manifest(self, with_tooltips=False, extra_domain=False):
         res = {
