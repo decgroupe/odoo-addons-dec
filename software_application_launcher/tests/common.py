@@ -17,6 +17,13 @@ API_KEY = "d5b27d10-3db6-47b4-ab7e-412cd4418f6b"
 
 class TestSoftwareApplicationLauncherBase(odoo.tests.HttpCase):
 
+    def assertManifestStructure(self, manifest):
+        self.assertIsInstance(manifest, dict)
+        self.assertIn("applications", manifest)
+        self.assertIsInstance(manifest["applications"], list)
+        self.assertIn("resources", manifest)
+        self.assertIsInstance(manifest["resources"], list)
+
     def setUp(self):
         super().setUp()
         ctx = {
@@ -55,3 +62,14 @@ class TestSoftwareApplicationLauncherBase(odoo.tests.HttpCase):
         res = resp_payload.get("result")
         return res
 
+    def _api_v2_get_manifest(self, launcher_identifier):
+        resp = self.url_open(
+            f"/api/launcher/v2/identifier/{launcher_identifier}/Manifest",
+            data=json.dumps({}),
+            headers={"Content-Type": "application/json", "Api-Key": API_KEY},
+        )
+        self.assertEqual(resp.status_code, 200)
+        resp_payload = json.loads(resp.text)
+        self.assertEqual(resp_payload.get("jsonrpc"), "2.0")
+        res = resp_payload.get("result")
+        return res
