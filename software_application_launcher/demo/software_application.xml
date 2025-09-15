@@ -51,6 +51,13 @@
             file="software_application_launcher/static/img/space-launcher-icon.svg"
         />
         <field
+            name="application_ids"
+            eval="[
+                (4, ref('software_application.sa_myfitnessapp')),
+                (4, ref('software_application.sa_calm')),
+            ]"
+        />
+        <field
             name="resource_ids"
             eval="[
                 (4, ref('software_application_launcher.res_spacelauncher_userguide')),
@@ -141,6 +148,11 @@
         />
     </record>
 
+    <record model="software.application" id="res_securia_userguide">
+        <field name="name">Securia Privacy's Userguide</field>
+        <field name="type">resource</field>
+    </record>
+
     <record model="software.application" id="sa_securia">
         <field name="name">Securia Privacy</field>
         <field name="type">inhouse</field>
@@ -150,6 +162,12 @@
             name="image"
             type="base64"
             file="software_application_launcher/static/img/securia-privacy-icon.svg"
+        />
+        <field
+            name="resource_ids"
+            eval="[
+                (4, ref('software_application_launcher.res_securia_userguide')),
+            ]"
         />
         <field
             name="tag_ids"

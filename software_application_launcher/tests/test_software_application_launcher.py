@@ -121,13 +121,10 @@ class TestSoftwareApplicationLauncher(TestSoftwareApplicationLauncherBase):
 
     def test_01_api_v1_get_manifest(self):
         manifest = self._api_v1_get_manifest()
-        pprint(manifest)
         # check the structure of the manifest
-        self.assertIsInstance(manifest, dict)
-        self.assertIn("applications", manifest)
-        self.assertIsInstance(manifest["applications"], list)
-        self.assertIn("resources", manifest)
-        self.assertIsInstance(manifest["resources"], list)
+        self.assertManifestStructure(manifest)
+        # check version is 2
+        self.assertEqual(manifest.get("version"), 2)
         # aggregate all applications names
         app_names = [app["name"] for app in manifest["applications"]]
         # check some known applications
@@ -148,3 +145,46 @@ class TestSoftwareApplicationLauncher(TestSoftwareApplicationLauncherBase):
         resource_names = [res["name"] for res in manifest["resources"]]
         self.assertIn("Space-Launcher's Quickstart", resource_names)
         self.assertIn("Space-Launcher's Userguide", resource_names)
+
+    def test_10_api_v2_get_manifest(self):
+        spacelauncher = self.env.ref("software_application_launcher.sa_spacelauncher")
+        manifest = self._api_v2_get_manifest(spacelauncher.identifier)
+        # check the structure of the manifest
+        self.assertManifestStructure(manifest)
+        # check their is no version attribute
+        self.assertFalse("version" in manifest)
+        # aggregate all applications names
+        app_names = [app["name"] for app in manifest["applications"]]
+        # check that only specific applications are listed
+        self.assertCountEqual(
+            app_names,
+            [
+                "Space-Launcher",
+                "MyFitnessApp",
+                "Calm",
+            ],
+        )
+        # check the manifest entry for Space-Launcher
+        self._check_app_space_launcher_manifest_entry(
+            self._get_app_by_name(manifest, "Space-Launcher")
+        )
+        # also check that only resources attached to one of these apps are listed
+        resource_names = [res["name"] for res in manifest["resources"]]
+        self.assertCountEqual(
+            resource_names,
+            [
+                "Space-Launcher's Quickstart",
+                "Space-Launcher's Userguide",
+                "MyFitnessApp's Userguide",
+            ],
+        )
+
+    def test_11_api_v2_get_manifest_invalid_identifier(self):
+        manifest = self._api_v2_get_manifest(10)
+        # check the structure of the manifest
+        self.assertManifestStructure(manifest)
+        # check their is no version attribute
+        self.assertFalse("version" in manifest)
+        # ensure empty lists
+        self.assertEqual(manifest["applications"], [])
+        self.assertEqual(manifest["resources"], [])
