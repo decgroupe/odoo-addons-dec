@@ -56,6 +56,12 @@ class SoftwareApplication(models.Model):
         "in with an account with a valid license.",
     )
 
+    @api.model
+    def allowed_types_for_resources(self):
+        res = super().allowed_types_for_resources()
+        res.append("launcher")
+        return res
+
     def write(self, vals):
         if "type" in vals:
             if vals.get("type") == "other":
