@@ -52,7 +52,13 @@ class SoftwareApplication(models.Model):
     @api.model
     def _get_launcher_manifest_domain(self):
         return [
-            ("type", "in", ["inhouse", "resource"]),
+            "|",
+            ("type", "=", "resource"),
+            "&",
+            ("type", "=", "inhouse"),
+            "|",
+            ("identifier", ">=", 1000),  # public applications only
+            ("identifier", "=", 998),  # special case for the launcher itself
         ]
 
     def _get_launcher_manifest_entry(self, with_tooltips=False):
