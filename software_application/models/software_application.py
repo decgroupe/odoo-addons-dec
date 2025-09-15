@@ -97,6 +97,10 @@ class SoftwareApplication(models.Model):
             value = value.encode("ascii")
         self.attachment_image = tools.image_process(value, size=(300, 200))
 
+    @api.model
+    def allowed_types_for_resources(self):
+        return ["inhouse"]
+
     def write(self, vals):
         if "type" in vals:
             if vals.get("type") == "other":
@@ -106,7 +110,7 @@ class SoftwareApplication(models.Model):
                         "tag_ids": [(6, 0, [])],
                     }
                 )
-            if vals.get("type") != "inhouse":
+            if vals.get("type") not in self.allowed_types_for_resources():
                 vals.update(
                     {
                         "resource_ids": [(6, 0, [])],
