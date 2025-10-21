@@ -1,6 +1,6 @@
 {
     "name": "Purchase product Pack",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0", # Check OCA repository for version 18.0 before migrating
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -16,5 +16,5 @@
         "security/ir.model.access.csv",
         "views/purchase_order.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

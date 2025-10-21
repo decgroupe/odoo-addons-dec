@@ -164,7 +164,7 @@ class PurchaseOrderLine(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "product.product",
             "view_type": "form",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": domain,
         }
 
