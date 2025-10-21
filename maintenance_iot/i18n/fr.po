@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 12:39+0000\n"
-"PO-Revision-Date: 2024-10-10 14:40+0200\n"
+"POT-Creation-Date: 2025-10-21 14:42+0000\n"
+"PO-Revision-Date: 2025-10-21 16:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,29 +15,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.7\n"
 
 #. module: maintenance_iot
-#: model:ir.model.fields,field_description:maintenance_iot.field_maintenance_request__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: maintenance_iot
+#. odoo-python
 #: code:addons/maintenance_iot/models/maintenance_request.py:0
-#, python-format
 msgid "Equipment with serial %(equipment_serial)s not found"
 msgstr ""
 "L'équipement avec le numéro de série %(equipment_serial)s n'a pas été trouvé"
-
-#. module: maintenance_iot
-#: model:ir.model.fields,field_description:maintenance_iot.field_maintenance_request__id
-msgid "ID"
-msgstr "ID"
-
-#. module: maintenance_iot
-#: model:ir.model.fields,field_description:maintenance_iot.field_maintenance_request____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: maintenance_iot
 #: model:ir.model,name:maintenance_iot.model_maintenance_request
@@ -70,14 +55,14 @@ msgid "This request has been closed because:"
 msgstr "Cette demande a été clôturée car :"
 
 #. module: maintenance_iot
+#. odoo-python
 #: code:addons/maintenance_iot/models/maintenance_request.py:0
-#, python-format
 msgid "This user is assigned to this maintenance request"
 msgstr "Cet utilisateur est affecté à cette demande de maintenance"
 
 #. module: maintenance_iot
+#. odoo-python
 #: code:addons/maintenance_iot/models/maintenance_request.py:0
-#, python-format
 msgid ""
 "This user is the leader of the team assigned to the equipment of this "
 "maintenance request"
@@ -86,8 +71,8 @@ msgstr ""
 "demande de maintenance"
 
 #. module: maintenance_iot
+#. odoo-python
 #: code:addons/maintenance_iot/models/maintenance_request.py:0
-#, python-format
 msgid ""
 "This user is the leader of the team assigned to this maintenance request"
 msgstr ""
@@ -95,21 +80,21 @@ msgstr ""
 "maintenance"
 
 #. module: maintenance_iot
+#. odoo-python
 #: code:addons/maintenance_iot/models/maintenance_request.py:0
-#, python-format
 msgid ""
 "This user is the technician assigned to the equipment of this maintenance "
 "request"
 msgstr ""
-"Cet utilisateur est le technicien affecté à l'équipement de cette demande "
-"de maintenance"
+"Cet utilisateur est le technicien affecté à l'équipement de cette demande de"
+" maintenance"
 
 #. module: maintenance_iot
+#. odoo-python
 #: code:addons/maintenance_iot/models/maintenance_request.py:0
-#, python-format
 msgid ""
-"This user is the technician of this equipment's category of this "
-"maintenance request"
+"This user is the technician of this equipment's category of this maintenance"
+" request"
 msgstr ""
 "Cet utilisateur est le technicien de la catégorie de cet équipement pour "
 "cette demande de maintenance"
@@ -125,7 +110,16 @@ msgid "has been assigned because:"
 msgstr "a été assignée parce que :"
 
 #. module: maintenance_iot
+#. odoo-python
 #: code:addons/maintenance_iot/models/maintenance_request.py:0
-#, python-format
 msgid "🚨 Auto: To Process"
 msgstr "🚨 Auto : À traiter"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"

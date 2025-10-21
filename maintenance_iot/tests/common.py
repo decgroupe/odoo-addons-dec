@@ -4,8 +4,6 @@
 import json
 import logging
 
-from lxml import html
-
 import odoo.tests
 from odoo.tests import new_test_user
 
@@ -15,7 +13,6 @@ API_KEY = "d5b27d10-3db6-47b4-ab7e-412cd4418f6b"
 
 
 class TestMaintenanceIoTBase(odoo.tests.HttpCase):
-
     def setUp(self):
         super().setUp()
         ctx = {
@@ -38,6 +35,13 @@ class TestMaintenanceIoTBase(odoo.tests.HttpCase):
                 "user_id": self.api_user.id,
                 "key": API_KEY,
             }
+        )
+        self.technician_user = new_test_user(
+            self.env,
+            login="technician-user",
+            password="technician-user",
+            groups="maintenance.group_equipment_manager",
+            context=ctx,
         )
         # Samsung Monitor 15", serial => MT/122/11112222
         self.equipment_id = self.env.ref("maintenance.equipment_monitor1")
@@ -63,6 +67,10 @@ class TestMaintenanceIoTBase(odoo.tests.HttpCase):
         self.assertEqual(resp.status_code, 200)
         resp_payload = json.loads(resp.text)
         self.assertEqual(resp_payload.get("jsonrpc"), "2.0")
+        if "error" in resp_payload:
+            message = resp_payload["error"]["data"].get("message")
+            debug = resp_payload["error"]["data"].get("debug")
+            _logger.error("API %s Error:\n%s\n%s", action, message, debug)
         res = resp_payload.get("result")
         return res
 

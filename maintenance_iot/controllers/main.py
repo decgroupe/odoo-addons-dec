@@ -4,7 +4,6 @@
 from odoo import http
 from odoo.exceptions import UserError
 from odoo.http import request
-from odoo.tools.translate import _
 
 SUCCESS = 0
 ERROR = 1
@@ -51,11 +50,12 @@ def get_context():
         - We use this assertion to force replace current context values with the ones
         from user's default context.
     """
+    res = dict(request.env.context)
     if "tz" not in request.env.context:
         default_context = request.env["res.users"].context_get()
         if default_context:
-            return dict(request.env.context, **default_context)
-    return dict(request.env.context)
+            res = dict(request.env.context, **default_context)
+    return res
 
 
 class MaintenanceController(http.Controller):

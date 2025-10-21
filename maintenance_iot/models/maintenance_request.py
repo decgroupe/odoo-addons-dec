@@ -80,16 +80,18 @@ class MaintenanceRequest(models.Model):
                     equipment_serial=equipment_serial,
                 )
             )
-        request_id = self.create(
-            {
-                "name": data.get("name"),
-                "unique_identifier": unique_identifier,
-                "equipment_id": equipment_id.id,
-                "maintenance_type": data.get("maintenance_type"),
-                "description": data.get("description"),
-                "priority": data.get("priority"),
-            }
-        )
+        request_data = {
+            "name": data.get("name"),
+            "unique_identifier": unique_identifier,
+            "equipment_id": equipment_id.id,
+            "maintenance_type": data.get("maintenance_type"),
+            "description": data.get("description"),
+            "priority": data.get("priority"),
+        }
+        # add user only if provided (otherwise _compute_user_id will handle it)
+        if data.get("user_id") is not None:
+            request_data["user_id"] = data.get("user_id")
+        request_id = self.create(request_data)
         user_id, user_assigned_reason = request_id._get_activity_user()
         if user_id:
             if user_id != request_id.user_id:
@@ -98,9 +100,9 @@ class MaintenanceRequest(models.Model):
         updated_data = {}
         if request_id.description:
             updated_data["Description"] = request_id.description
-        request_id.message_post_with_view(
-            views_or_xmlid="maintenance_iot.request_create",
-            values={
+        request_id.message_post_with_source(
+            "maintenance_iot.request_create",
+            render_values={
                 "ip_addr": ip_addr,
                 "user": user_id,
                 "assigned_reason": user_assigned_reason,
@@ -114,22 +116,22 @@ class MaintenanceRequest(models.Model):
         self.ensure_one()
         updated_data = {}
         for key in data:
-            if data[key] != self[key]:
+            if key in self and data[key] != self[key]:
                 updated_data[key] = data[key]
         if updated_data:
-            self.update(data)
-            self.message_post_with_view(
-                views_or_xmlid="maintenance_iot.request_update",
-                values={
+            self.update(updated_data)
+            self.message_post_with_source(
+                "maintenance_iot.request_update",
+                render_values={
                     "ip_addr": ip_addr,
                     "data": updated_data,
                 },
                 subtype_id=self.env.ref("mail.mt_note").id,
             )
         else:
-            self.message_post_with_view(
-                views_or_xmlid="maintenance_iot.request_ping",
-                values={
+            self.message_post_with_source(
+                "maintenance_iot.request_ping",
+                render_values={
                     "ip_addr": ip_addr,
                 },
                 subtype_id=self.env.ref("mail.mt_note").id,
@@ -148,9 +150,9 @@ class MaintenanceRequest(models.Model):
         }
         if data.get("closed_reason"):
             post_values["closed_reason"] = data.get("closed_reason")
-        self.message_post_with_view(
-            views_or_xmlid="maintenance_iot.request_close",
-            values=post_values,
+        self.message_post_with_source(
+            "maintenance_iot.request_close",
+            render_values=post_values,
             subtype_id=self.env.ref("mail.mt_note").id,
         )
         # not needed since odoo delete all activities on archived documents

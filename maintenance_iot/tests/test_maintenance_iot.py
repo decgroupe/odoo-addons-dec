@@ -11,7 +11,6 @@ from .common import TestMaintenanceIoTBase
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestMaintenanceIoT(TestMaintenanceIoTBase):
-
     def setUp(self):
         super().setUp()
 
@@ -58,7 +57,7 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
         self.assertTrue(request_id.exists())
         self.assertEqual(request_id.name, "Title of my request")
         self.assertEqual(request_id.maintenance_type, "corrective")
-        self.assertEqual(request_id.description, "Description of the issue")
+        self.assertHTMLEqual(request_id.description, "<p>Description of the issue</p>")
         self.assertMaintenanceAutoActivity(request_id.activity_ids)
         # update with same query identifier
         payload["params"]["name"] = "Different title for my request"
@@ -70,7 +69,7 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
         self.assertEqual(res["message_id"], "REQUEST_UPDATED")
         self.assertEqual(res["message"], "an existing request has been updated.")
         self.assertEqual(res["request_id"], request_id.id)
-        request_id.invalidate_cache()
+        request_id.invalidate_recordset()
         self.assertEqual(res.get("request_id"), request_id.id)
         self.assertEqual(request_id.name, "Different title for my request")
         # another update without changing the payload => ping
@@ -82,7 +81,7 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
         self.assertEqual(res["message_id"], "REQUEST_UPDATED")
         self.assertEqual(res["message"], "an existing request has been updated.")
         self.assertEqual(res["request_id"], request_id.id)
-        request_id.invalidate_cache()
+        request_id.invalidate_recordset()
         self.assertEqual(res.get("request_id"), request_id.id)
         # update with different query identifier => create
         query_identifier = "test_01b"
@@ -119,7 +118,7 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
             quote_plus("MT-122-11112222"),
             quote_plus(query_identifier),
             payload,
-            headers={"X_FORWARDED_FOR": "1.1.1.1"},
+            headers={"X-FORWARDED-FOR": "1.1.1.1"},
         )
         self.assertGreaterEqual(res.get("request_id"), 1)
         request_id = self.env["maintenance.request"].browse(res.get("request_id"))
@@ -179,7 +178,7 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
             payload,
         )
         self.assertEqual(res["message_id"], "REQUEST_CLOSED")
-        self.assertEqual(res["message"], 'an existing request has been closed.')
+        self.assertEqual(res["message"], "an existing request has been closed.")
         self.assertEqual(res["request_id"], request_id.id)
 
     def test_06_close_unknown_request(self):
@@ -195,11 +194,19 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
 
     def test_10_user_lang(self):
         # load language
-        with mute_logger('odoo.addons.base.models.ir_translation'):
-            self.env["base.language.install"].create({"lang": "fr_FR", "overwrite": True}).lang_install()
+        with mute_logger("odoo.addons.base.models.ir_translation"):
+            self.env["base.language.install"].create(
+                {
+                    "overwrite": True,
+                    "lang_ids": [(6, 0, [self.env.ref("base.lang_fr").id])],
+                }
+            ).lang_install()
         # set user language to french
         self.api_user.lang = "fr_FR"
-        # create
+        # force other user language to english and assign this user as technician
+        # for this equipment (default request's user is computed by `_compute_user_id`)
+        self.technician_user.lang = "en_US"
+        self.equipment_id.technician_user_id = self.technician_user
         payload = self._get_create_update_payload()
         res = self._api_maintenance_request(
             quote_plus("MT-122-11112222"),
@@ -208,4 +215,5 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
         )
         request_id = self.env["maintenance.request"].browse(res.get("request_id"))
         activity_id = request_id.activity_ids
+        # ensure activity note is in french
         self.assertRegex(activity_id.note, "À traiter")
