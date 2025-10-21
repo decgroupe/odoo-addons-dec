@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="city_tree_view">
+        <field
+            name="name"
+        >res.city.zip.tree@l10n_fr_base_address_city_department</field>
+        <field name="model">res.city</field>
+        <field name="inherit_id" ref="base_address_city.view_city_tree" />
+        <field name="arch" type="xml">
+            <field name="country_id" position="before">
+                <field name="department_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
