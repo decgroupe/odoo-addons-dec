@@ -7,11 +7,11 @@ import odoo.tests
 from odoo.tools.misc import mute_logger
 
 from ..models.mrp_production import _checksum
-from .common import TestMrpPortalBase
+from .common import TestMrpIoTBase
 
 
 @odoo.tests.tagged("post_install", "-at_install")
-class TestMrpPortal(TestMrpPortalBase):
+class TestMrpIoT(TestMrpIoTBase):
 
     def setUp(self):
         super().setUp()

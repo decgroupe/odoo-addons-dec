@@ -50,9 +50,9 @@ class MrpProduction(models.Model):
 
     def _get_action_type_xmlid(self, action):
         if action == "close":
-            return "mrp_portal.mail_act_notification_close"
+            return "mrp_iot.mail_act_notification_close"
         elif action == "cancel":
-            return "mrp_portal.mail_act_notification_cancel"
+            return "mrp_iot.mail_act_notification_cancel"
         else:
             raise Exception("Action must be in close or cancel")
 
@@ -95,7 +95,7 @@ class MrpProduction(models.Model):
         self.ensure_one()
         if self.qty_producing != qty:
             self.message_post_with_view(
-                views_or_xmlid=f"mrp_portal.production_update_producing_quantity",
+                views_or_xmlid=f"mrp_iot.production_update_producing_quantity",
                 values={
                     "ip_addr": ip_addr,
                     "old_value": self.qty_producing,
@@ -109,7 +109,7 @@ class MrpProduction(models.Model):
     def _remote_notify(self, action, ip_addr):
         self.ensure_one()
         self.message_post_with_view(
-            views_or_xmlid=f"mrp_portal.production_notify_{action}",
+            views_or_xmlid=f"mrp_iot.production_notify_{action}",
             values={
                 "ip_addr": ip_addr,
             },

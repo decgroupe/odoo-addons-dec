@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mrp_portal
+# 	* mrp_iot
 #
 msgid ""
 msgstr ""
@@ -17,90 +17,90 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. module: mrp_portal
-#: model_terms:ir.ui.view,arch_db:mrp_portal.report_mrporder
+#. module: mrp_iot
+#: model_terms:ir.ui.view,arch_db:mrp_iot.report_mrporder
 msgid "<strong>Checksum:</strong><br/>"
 msgstr "<strong>Somme de contrôle :</strong><br/>"
 
-#. module: mrp_portal
-#: model_terms:ir.ui.view,arch_db:mrp_portal.report_mrporder
+#. module: mrp_iot
+#: model_terms:ir.ui.view,arch_db:mrp_iot.report_mrporder
 msgid "<strong>Identifier:</strong><br/>"
 msgstr "<strong>Identifiant :</strong><br/>"
 
-#. module: mrp_portal
-#: model:mail.activity.type,name:mrp_portal.mail_act_notification_cancel
+#. module: mrp_iot
+#: model:mail.activity.type,name:mrp_iot.mail_act_notification_cancel
 msgid "Cancel Request"
 msgstr "Demande d'annulation"
 
-#. module: mrp_portal
-#: model_terms:ir.ui.view,arch_db:mrp_portal.production_notify_cancel
+#. module: mrp_iot
+#: model_terms:ir.ui.view,arch_db:mrp_iot.production_notify_cancel
 msgid "Cancel request notification from"
 msgstr "Notification de demande d'annulation depuis"
 
-#. module: mrp_portal
-#: model_terms:ir.ui.view,arch_db:mrp_portal.mrp_production_form_view
+#. module: mrp_iot
+#: model_terms:ir.ui.view,arch_db:mrp_iot.mrp_production_form_view
 msgid "Checksum"
 msgstr "Somme de contrôle"
 
-#. module: mrp_portal
-#: model:mail.activity.type,name:mrp_portal.mail_act_notification_close
+#. module: mrp_iot
+#: model:mail.activity.type,name:mrp_iot.mail_act_notification_close
 msgid "Close Request"
 msgstr "Demande de fermeture"
 
-#. module: mrp_portal
-#: model_terms:ir.ui.view,arch_db:mrp_portal.production_notify_close
+#. module: mrp_iot
+#: model_terms:ir.ui.view,arch_db:mrp_iot.production_notify_close
 msgid "Close request notification from"
 msgstr "Notification de demande de fermeture depuis"
 
-#. module: mrp_portal
-#: model:ir.model.fields,field_description:mrp_portal.field_mrp_production__display_name
+#. module: mrp_iot
+#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: mrp_portal
-#: model:ir.model.fields,field_description:mrp_portal.field_mrp_production__id
+#. module: mrp_iot
+#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production__id
 msgid "ID"
 msgstr "ID"
 
-#. module: mrp_portal
-#: model:ir.model.fields,field_description:mrp_portal.field_mrp_production__identifier
-#: model_terms:ir.ui.view,arch_db:mrp_portal.mrp_production_form_view
+#. module: mrp_iot
+#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production__identifier
+#: model_terms:ir.ui.view,arch_db:mrp_iot.mrp_production_form_view
 msgid "Identifier"
 msgstr "Identifiant"
 
-#. module: mrp_portal
-#: model:ir.model.fields,field_description:mrp_portal.field_mrp_production__identifier_checksum
+#. module: mrp_iot
+#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production__identifier_checksum
 msgid "Identifier Checksum"
 msgstr "Somme de contrôle de l'identifiant"
 
-#. module: mrp_portal
-#: model:ir.model.fields,field_description:mrp_portal.field_mrp_production____last_update
+#. module: mrp_iot
+#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
-#. module: mrp_portal
-#: model_terms:ir.ui.view,arch_db:mrp_portal.production_update_producing_quantity
+#. module: mrp_iot
+#: model_terms:ir.ui.view,arch_db:mrp_iot.production_update_producing_quantity
 msgid "Producing quantity updated from"
 msgstr "Quantité produite mise à jour depuis"
 
-#. module: mrp_portal
-#: model:ir.model,name:mrp_portal.model_mrp_production
+#. module: mrp_iot
+#: model:ir.model,name:mrp_iot.model_mrp_production
 msgid "Production Order"
 msgstr "Fabrication"
 
-#. module: mrp_portal
-#: model_terms:ir.ui.view,arch_db:mrp_portal.mrp_production_form_view
+#. module: mrp_iot
+#: model_terms:ir.ui.view,arch_db:mrp_iot.mrp_production_form_view
 msgid "Remote"
 msgstr "À distance"
 
-#. module: mrp_portal
-#: code:addons/mrp_portal/models/mrp_production.py:0
+#. module: mrp_iot
+#: code:addons/mrp_iot/models/mrp_production.py:0
 #, python-format
 msgid "This user is assigned to this production order"
 msgstr "Cet utilisateur est affecté à cette fabrication"
 
-#. module: mrp_portal
-#: code:addons/mrp_portal/models/mrp_production.py:0
+#. module: mrp_iot
+#: code:addons/mrp_iot/models/mrp_production.py:0
 #, python-format
 msgid "🚨 Auto: To Process"
 msgstr "🚨 Auto : À traiter"
