@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* maintenance_portal
+# 	* maintenance_iot
 #
 msgid ""
 msgstr ""
@@ -17,66 +17,66 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. module: maintenance_portal
-#: model:ir.model.fields,field_description:maintenance_portal.field_maintenance_request__display_name
+#. module: maintenance_iot
+#: model:ir.model.fields,field_description:maintenance_iot.field_maintenance_request__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: maintenance_portal
-#: code:addons/maintenance_portal/models/maintenance_request.py:0
+#. module: maintenance_iot
+#: code:addons/maintenance_iot/models/maintenance_request.py:0
 #, python-format
 msgid "Equipment with serial %(equipment_serial)s not found"
 msgstr ""
 "L'équipement avec le numéro de série %(equipment_serial)s n'a pas été trouvé"
 
-#. module: maintenance_portal
-#: model:ir.model.fields,field_description:maintenance_portal.field_maintenance_request__id
+#. module: maintenance_iot
+#: model:ir.model.fields,field_description:maintenance_iot.field_maintenance_request__id
 msgid "ID"
 msgstr "ID"
 
-#. module: maintenance_portal
-#: model:ir.model.fields,field_description:maintenance_portal.field_maintenance_request____last_update
+#. module: maintenance_iot
+#: model:ir.model.fields,field_description:maintenance_iot.field_maintenance_request____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
-#. module: maintenance_portal
-#: model:ir.model,name:maintenance_portal.model_maintenance_request
+#. module: maintenance_iot
+#: model:ir.model,name:maintenance_iot.model_maintenance_request
 msgid "Maintenance Request"
 msgstr "Demande de maintenance"
 
-#. module: maintenance_portal
-#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_close
+#. module: maintenance_iot
+#: model_terms:ir.ui.view,arch_db:maintenance_iot.request_close
 msgid "Request closed from"
 msgstr "Demande clôturée depuis"
 
-#. module: maintenance_portal
-#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_create
+#. module: maintenance_iot
+#: model_terms:ir.ui.view,arch_db:maintenance_iot.request_create
 msgid "Request created from"
 msgstr "Demande créée depuis"
 
-#. module: maintenance_portal
-#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_ping
+#. module: maintenance_iot
+#: model_terms:ir.ui.view,arch_db:maintenance_iot.request_ping
 msgid "Request ping from"
 msgstr "Ping sur demande depuis"
 
-#. module: maintenance_portal
-#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_update
+#. module: maintenance_iot
+#: model_terms:ir.ui.view,arch_db:maintenance_iot.request_update
 msgid "Request updated from"
 msgstr "Demande mise à jour depuis"
 
-#. module: maintenance_portal
-#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_close
+#. module: maintenance_iot
+#: model_terms:ir.ui.view,arch_db:maintenance_iot.request_close
 msgid "This request has been closed because:"
 msgstr "Cette demande a été clôturée car :"
 
-#. module: maintenance_portal
-#: code:addons/maintenance_portal/models/maintenance_request.py:0
+#. module: maintenance_iot
+#: code:addons/maintenance_iot/models/maintenance_request.py:0
 #, python-format
 msgid "This user is assigned to this maintenance request"
 msgstr "Cet utilisateur est affecté à cette demande de maintenance"
 
-#. module: maintenance_portal
-#: code:addons/maintenance_portal/models/maintenance_request.py:0
+#. module: maintenance_iot
+#: code:addons/maintenance_iot/models/maintenance_request.py:0
 #, python-format
 msgid ""
 "This user is the leader of the team assigned to the equipment of this "
@@ -85,8 +85,8 @@ msgstr ""
 "Cet utilisateur est le chef de l'équipe affectée à l'équipement de cette "
 "demande de maintenance"
 
-#. module: maintenance_portal
-#: code:addons/maintenance_portal/models/maintenance_request.py:0
+#. module: maintenance_iot
+#: code:addons/maintenance_iot/models/maintenance_request.py:0
 #, python-format
 msgid ""
 "This user is the leader of the team assigned to this maintenance request"
@@ -94,8 +94,8 @@ msgstr ""
 "Cet utilisateur est le chef de l'équipe affectée à cette demande de "
 "maintenance"
 
-#. module: maintenance_portal
-#: code:addons/maintenance_portal/models/maintenance_request.py:0
+#. module: maintenance_iot
+#: code:addons/maintenance_iot/models/maintenance_request.py:0
 #, python-format
 msgid ""
 "This user is the technician assigned to the equipment of this maintenance "
@@ -104,8 +104,8 @@ msgstr ""
 "Cet utilisateur est le technicien affecté à l'équipement de cette demande "
 "de maintenance"
 
-#. module: maintenance_portal
-#: code:addons/maintenance_portal/models/maintenance_request.py:0
+#. module: maintenance_iot
+#: code:addons/maintenance_iot/models/maintenance_request.py:0
 #, python-format
 msgid ""
 "This user is the technician of this equipment's category of this "
@@ -114,18 +114,18 @@ msgstr ""
 "Cet utilisateur est le technicien de la catégorie de cet équipement pour "
 "cette demande de maintenance"
 
-#. module: maintenance_portal
-#: model:ir.model.fields,field_description:maintenance_portal.field_maintenance_request__unique_identifier
+#. module: maintenance_iot
+#: model:ir.model.fields,field_description:maintenance_iot.field_maintenance_request__unique_identifier
 msgid "Unique Identifier"
 msgstr "Identifiant unique"
 
-#. module: maintenance_portal
-#: model_terms:ir.ui.view,arch_db:maintenance_portal.request_create
+#. module: maintenance_iot
+#: model_terms:ir.ui.view,arch_db:maintenance_iot.request_create
 msgid "has been assigned because:"
 msgstr "a été assignée parce que :"
 
-#. module: maintenance_portal
-#: code:addons/maintenance_portal/models/maintenance_request.py:0
+#. module: maintenance_iot
+#: code:addons/maintenance_iot/models/maintenance_request.py:0
 #, python-format
 msgid "🚨 Auto: To Process"
 msgstr "🚨 Auto : À traiter"

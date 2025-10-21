@@ -99,7 +99,7 @@ class MaintenanceRequest(models.Model):
         if request_id.description:
             updated_data["Description"] = request_id.description
         request_id.message_post_with_view(
-            views_or_xmlid="maintenance_portal.request_create",
+            views_or_xmlid="maintenance_iot.request_create",
             values={
                 "ip_addr": ip_addr,
                 "user": user_id,
@@ -119,7 +119,7 @@ class MaintenanceRequest(models.Model):
         if updated_data:
             self.update(data)
             self.message_post_with_view(
-                views_or_xmlid="maintenance_portal.request_update",
+                views_or_xmlid="maintenance_iot.request_update",
                 values={
                     "ip_addr": ip_addr,
                     "data": updated_data,
@@ -128,7 +128,7 @@ class MaintenanceRequest(models.Model):
             )
         else:
             self.message_post_with_view(
-                views_or_xmlid="maintenance_portal.request_ping",
+                views_or_xmlid="maintenance_iot.request_ping",
                 values={
                     "ip_addr": ip_addr,
                 },
@@ -149,7 +149,7 @@ class MaintenanceRequest(models.Model):
         if data.get("closed_reason"):
             post_values["closed_reason"] = data.get("closed_reason")
         self.message_post_with_view(
-            views_or_xmlid="maintenance_portal.request_close",
+            views_or_xmlid="maintenance_iot.request_close",
             values=post_values,
             subtype_id=self.env.ref("mail.mt_note").id,
         )

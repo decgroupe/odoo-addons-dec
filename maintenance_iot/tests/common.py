@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 API_KEY = "d5b27d10-3db6-47b4-ab7e-412cd4418f6b"
 
 
-class TestMaintenancePortalBase(odoo.tests.HttpCase):
+class TestMaintenanceIoTBase(odoo.tests.HttpCase):
 
     def setUp(self):
         super().setUp()

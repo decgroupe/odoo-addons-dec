@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <template id="maintenance_portal.request_create">
+    <template id="maintenance_iot.request_create">
         <p>Request created from <t t-esc="ip_addr" /></p>
         <ul>
             <t t-foreach="data" t-as="item">
@@ -12,12 +11,12 @@
         </ul>
         <p t-if="user and assigned_reason">
             <t t-esc="user.display_name" /> has been assigned because: <t
-                t-esc="assigned_reason"
-            />
+            t-esc="assigned_reason"
+        />
         </p>
     </template>
 
-    <template id="maintenance_portal.request_update">
+    <template id="maintenance_iot.request_update">
         <p>Request updated from <t t-esc="ip_addr" />:</p>
         <ul>
             <t t-foreach="data" t-as="item">
@@ -28,15 +27,14 @@
         </ul>
     </template>
 
-    <template id="maintenance_portal.request_close">
+    <template id="maintenance_iot.request_close">
         <p>Request closed from <t t-esc="ip_addr" /></p>
         <p t-if="closed_reason">
             This request has been closed because: <t t-esc="closed_reason" />
         </p>
     </template>
 
-    <template id="maintenance_portal.request_ping">
+    <template id="maintenance_iot.request_ping">
         <p>Request ping from <t t-esc="ip_addr" /></p>
     </template>
-
 </odoo>

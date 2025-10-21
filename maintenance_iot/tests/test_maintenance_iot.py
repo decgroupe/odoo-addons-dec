@@ -6,11 +6,11 @@ from urllib.parse import quote_plus
 import odoo.tests
 from odoo.tools.misc import mute_logger
 
-from .common import TestMaintenancePortalBase
+from .common import TestMaintenanceIoTBase
 
 
 @odoo.tests.tagged("post_install", "-at_install")
-class TestMaintenancePortal(TestMaintenancePortalBase):
+class TestMaintenanceIoT(TestMaintenanceIoTBase):
 
     def setUp(self):
         super().setUp()
