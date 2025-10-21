@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 14:06+0000\n"
+"POT-Creation-Date: 2026-06-03 10:30+0000\n"
 "PO-Revision-Date: 2024-07-12 16:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,21 +23,6 @@ msgid "Active"
 msgstr "Actif"
 
 #. module: maintenance_archive
-#: model:ir.model.fields,field_description:maintenance_archive.field_maintenance_request__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: maintenance_archive
-#: model:ir.model.fields,field_description:maintenance_archive.field_maintenance_request__id
-msgid "ID"
-msgstr "ID"
-
-#. module: maintenance_archive
-#: model:ir.model.fields,field_description:maintenance_archive.field_maintenance_request____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: maintenance_archive
 #: model:ir.model,name:maintenance_archive.model_maintenance_request
 msgid "Maintenance Request"
 msgstr "Demande de maintenance"
@@ -49,3 +34,12 @@ msgid ""
 msgstr ""
 "Attribuez la valeur \"False\" à Active pour masquer la demande de "
 "maintenance sans la supprimer."
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"

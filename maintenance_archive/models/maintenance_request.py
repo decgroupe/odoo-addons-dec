@@ -19,6 +19,5 @@ class MaintenanceRequest(models.Model):
             vals["active"] = not vals["archive"]
         elif "active" in vals:
             vals["archive"] = not vals["active"]
-        active = vals.get("active")
         res = super().write(vals)
         return res

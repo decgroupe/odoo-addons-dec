@@ -1,13 +1,14 @@
 {
     "name": "Maintenance Archive",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
-    "website": "https://www.decgroupe.com",
+    "website": "https://decgroupe.com",
     "depends": [
         "maintenance",
     ],
     "data": [
         "views/maintenance_request.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
