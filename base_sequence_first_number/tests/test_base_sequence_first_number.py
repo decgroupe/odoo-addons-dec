@@ -28,11 +28,10 @@ class TestSequence(common.TransactionCase):
         )
         xrange = sequence.date_range_ids
         self.assertTrue(xrange)
-        xrange.invalidate_cache()
+        xrange.invalidate_recordset()
         self.assertEqual(xrange.number_next_actual, 101)
         self.assertEqual(
             "00101", sequence.with_context(ir_sequence_date=self.date).next_by_id()
         )
-        xrange.invalidate_cache()
+        xrange.invalidate_recordset()
         self.assertEqual(xrange.number_next_actual, 102)
-
