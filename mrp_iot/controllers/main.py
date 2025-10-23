@@ -4,9 +4,7 @@
 import logging
 
 from odoo import http
-from odoo.exceptions import UserError
 from odoo.http import request
-from odoo.tools.translate import _
 
 from ..models.mrp_production import _checksum
 
@@ -62,11 +60,12 @@ def get_context():
         - We use this assertion to force replace current context values with the ones
         from user's default context.
     """
+    res = dict(request.env.context)
     if "tz" not in request.env.context:
         default_context = request.env["res.users"].context_get()
         if default_context:
-            return dict(request.env.context, **default_context)
-    return dict(request.env.context)
+            res = dict(request.env.context, **default_context)
+    return res
 
 
 class MrpController(http.Controller):
@@ -83,7 +82,6 @@ class MrpController(http.Controller):
         return ip_addr
 
     def _get_production_id(self, identifier, checksum=False, name=False):
-
         def __get_production_id(domain):
             return (
                 request.env["mrp.production"]

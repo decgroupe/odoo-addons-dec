@@ -12,7 +12,6 @@ from .common import TestMrpIoTBase
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestMrpIoT(TestMrpIoTBase):
-
     def setUp(self):
         super().setUp()
 
@@ -27,7 +26,7 @@ class TestMrpIoT(TestMrpIoTBase):
         self.assertEqual(self.production_id.qty_producing, 0.0)
         payload = self._get_common_payload({"value": 10.0})
         res = self._api_mrp_update_quantity(quote_plus("123456789"), payload)
-        self.production_id.invalidate_cache()
+        self.production_id.invalidate_recordset()
         self.assertOrderQuantityUpdated(res, self.production_id, "to_close")
         self.assertEqual(self.production_id.qty_producing, 10.0)
 
@@ -35,7 +34,7 @@ class TestMrpIoT(TestMrpIoTBase):
         self.production_id.action_confirm()
         payload = self._get_common_payload({})
         res = self._api_mrp_notify_done(quote_plus("123456789"), payload)
-        self.production_id.invalidate_cache()
+        self.production_id.invalidate_recordset()
         self.assertOrderNotificationCreated(res, self.production_id, "confirmed")
         self.assertProductionAutoActivity(self.production_id.activity_ids)
 
@@ -43,7 +42,7 @@ class TestMrpIoT(TestMrpIoTBase):
         self.production_id.action_confirm()
         payload = self._get_common_payload({})
         res = self._api_mrp_notify_cancel(quote_plus("123456789"), payload)
-        self.production_id.invalidate_cache()
+        self.production_id.invalidate_recordset()
         self.assertOrderNotificationCreated(res, self.production_id, "confirmed")
         self.assertProductionAutoActivity(self.production_id.activity_ids)
 
@@ -63,25 +62,25 @@ class TestMrpIoT(TestMrpIoTBase):
         self.assertEqual(alt_production_id.state, "confirmed")
         # update quantity 10/50
         res = self._api_mrp_update_quantity(quote_plus("0001"), payload)
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertEqual(alt_production_id.qty_producing, 10.0)
         self.assertOrderQuantityUpdated(res, alt_production_id, "progress")
         # update quantity 50/50
         payload = self._get_common_payload({"value": 50.0})
         res = self._api_mrp_update_quantity(quote_plus("0001"), payload)
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertEqual(alt_production_id.qty_producing, 50.0)
         self.assertOrderQuantityUpdated(res, alt_production_id, "to_close")
         # mark as done (force consumed product)
-        alt_production_id.move_raw_ids.write({"quantity_done": 1.0})
-        action = alt_production_id.with_context(
+        alt_production_id.move_raw_ids.write({"quantity": 1.0})
+        _action = alt_production_id.with_context(
             skip_consumption=True
         ).button_mark_done()
         self.assertEqual(alt_production_id.state, "done")
         # update quantity 45/50
         payload = self._get_common_payload({"value": 45.0})
         res = self._api_mrp_update_quantity(quote_plus("0001"), payload)
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertEqual(alt_production_id.qty_producing, 50.0)
         self.assertOrderNotReady(res, alt_production_id, "done")
 
@@ -107,11 +106,11 @@ class TestMrpIoT(TestMrpIoTBase):
         self.assertFalse(alt_production_id.activity_ids)
         res = self._api_mrp_notify_done(quote_plus("0001"), payload)
         self.assertOrderNotificationCreated(res, alt_production_id, "progress")
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertEqual(len(alt_production_id.activity_ids), 1)
         res = self._api_mrp_notify_cancel(quote_plus("0001"), payload)
         self.assertOrderNotificationCreated(res, alt_production_id, "progress")
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertEqual(len(alt_production_id.activity_ids), 1)
         # delete previously created activities
         alt_production_id._delete_notify_activities()
@@ -120,17 +119,17 @@ class TestMrpIoT(TestMrpIoTBase):
         self.assertFalse(alt_production_id.activity_ids)
         res = self._api_mrp_notify_done(quote_plus("0001"), payload)
         self.assertOrderNotificationCreated(res, alt_production_id, "to_close")
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertEqual(len(alt_production_id.activity_ids), 1)
         res = self._api_mrp_notify_cancel(quote_plus("0001"), payload)
         self.assertOrderNotificationCreated(res, alt_production_id, "to_close")
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertEqual(len(alt_production_id.activity_ids), 1)
         # delete previously created activities
         alt_production_id._delete_notify_activities()
         # mark as done (force consumed product)
-        alt_production_id.move_raw_ids.write({"quantity_done": 1.0})
-        action = alt_production_id.with_context(
+        alt_production_id.move_raw_ids.write({"quantity": 1.0})
+        _action = alt_production_id.with_context(
             skip_consumption=True
         ).button_mark_done()
         self.assertEqual(alt_production_id.state, "done")
@@ -138,11 +137,11 @@ class TestMrpIoT(TestMrpIoTBase):
         # notification are now ignored
         res = self._api_mrp_notify_done(quote_plus("0001"), payload)
         self.assertOrderNotReady(res, alt_production_id, "done")
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertFalse(alt_production_id.activity_ids)
         res = self._api_mrp_notify_cancel(quote_plus("0001"), payload)
         self.assertOrderNotReady(res, alt_production_id, "done")
-        alt_production_id.invalidate_cache()
+        alt_production_id.invalidate_recordset()
         self.assertFalse(alt_production_id.activity_ids)
 
     def test_06_checksum(self):
@@ -173,10 +172,10 @@ class TestMrpIoT(TestMrpIoTBase):
     def test_08_ipaddress_header(self):
         self.production_id.action_confirm()
         payload = self._get_common_payload({})
-        res = self._api_mrp_notify_cancel(
+        _res = self._api_mrp_notify_cancel(
             quote_plus("123456789"),
             payload,
-            headers={"X_FORWARDED_FOR": "1.1.1.1"},
+            headers={"X-FORWARDED-FOR": "1.1.1.1"},
         )
         self.assertIn("1.1.1.1", self.production_id.message_ids[0].body)
 
@@ -184,7 +183,10 @@ class TestMrpIoT(TestMrpIoTBase):
         # load language
         with mute_logger("odoo.addons.base.models.ir_translation"):
             self.env["base.language.install"].create(
-                {"lang": "fr_FR", "overwrite": True}
+                {
+                    "overwrite": True,
+                    "lang_ids": [(6, 0, [self.env.ref("base.lang_fr").id])],
+                }
             ).lang_install()
         # set user language to french
         self.api_user.lang = "fr_FR"
@@ -192,7 +194,7 @@ class TestMrpIoT(TestMrpIoTBase):
         self.production_id.action_confirm()
         payload = self._get_common_payload({})
         res = self._api_mrp_notify_done(quote_plus("123456789"), payload)
-        self.production_id.invalidate_cache()
+        self.production_id.invalidate_recordset()
         self.assertOrderNotificationCreated(res, self.production_id, "confirmed")
         activity_id = self.production_id.activity_ids
         self.assertRegex(activity_id.note, "À traiter")

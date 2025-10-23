@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 13:05+0000\n"
-"PO-Revision-Date: 2024-10-10 15:06+0200\n"
+"POT-Creation-Date: 2026-06-03 10:34+0000\n"
+"PO-Revision-Date: 2026-06-03 14:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,17 +15,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_iot
 #: model_terms:ir.ui.view,arch_db:mrp_iot.report_mrporder
-msgid "<strong>Checksum:</strong><br/>"
-msgstr "<strong>Somme de contrôle :</strong><br/>"
+msgid ""
+"<strong>Checksum:</strong>\n"
+"                    <br/>"
+msgstr ""
+"<strong>Somme de contrôle :</strong>\n"
+"                   <br/>"
 
 #. module: mrp_iot
 #: model_terms:ir.ui.view,arch_db:mrp_iot.report_mrporder
-msgid "<strong>Identifier:</strong><br/>"
-msgstr "<strong>Identifiant :</strong><br/>"
+msgid ""
+"<strong>Identifier:</strong>\n"
+"                    <br/>"
+msgstr ""
+"<strong>Identifiant :</strong>\n"
+"                   <br/>"
 
 #. module: mrp_iot
 #: model:mail.activity.type,name:mrp_iot.mail_act_notification_cancel
@@ -53,16 +61,6 @@ msgid "Close request notification from"
 msgstr "Notification de demande de fermeture depuis"
 
 #. module: mrp_iot
-#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mrp_iot
-#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_iot
 #: model:ir.model.fields,field_description:mrp_iot.field_mrp_production__identifier
 #: model_terms:ir.ui.view,arch_db:mrp_iot.mrp_production_form_view
 msgid "Identifier"
@@ -74,9 +72,9 @@ msgid "Identifier Checksum"
 msgstr "Somme de contrôle de l'identifiant"
 
 #. module: mrp_iot
-#: model:ir.model.fields,field_description:mrp_iot.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#: model:ir.model,name:mrp_iot.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Fabrication"
 
 #. module: mrp_iot
 #: model_terms:ir.ui.view,arch_db:mrp_iot.production_update_producing_quantity
@@ -84,26 +82,30 @@ msgid "Producing quantity updated from"
 msgstr "Quantité produite mise à jour depuis"
 
 #. module: mrp_iot
-#: model:ir.model,name:mrp_iot.model_mrp_production
-msgid "Production Order"
-msgstr "Fabrication"
-
-#. module: mrp_iot
 #: model_terms:ir.ui.view,arch_db:mrp_iot.mrp_production_form_view
 msgid "Remote"
 msgstr "À distance"
 
 #. module: mrp_iot
+#. odoo-python
 #: code:addons/mrp_iot/models/mrp_production.py:0
-#, python-format
 msgid "This user is assigned to this production order"
 msgstr "Cet utilisateur est affecté à cette fabrication"
 
 #. module: mrp_iot
+#. odoo-python
 #: code:addons/mrp_iot/models/mrp_production.py:0
-#, python-format
 msgid "🚨 Auto: To Process"
 msgstr "🚨 Auto : À traiter"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "Production Notification"
 #~ msgstr "Notification de fabrication"

@@ -3,8 +3,8 @@
 
 
 import re
+
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
 
 
 def _checksum(value):
@@ -29,12 +29,12 @@ class MrpProduction(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        rec_ids = super(MrpProduction, self).create(vals_list)
+        rec_ids = super().create(vals_list)
         rec_ids._subscribe_users()
         return rec_ids
 
     def _subscribe_users(self):
-        """ Auto-subscribe assigned user to a production order """
+        """Auto-subscribe assigned user to a production order"""
         for rec in self:
             if rec.user_id and rec.user_id != self.env.user:
                 rec.message_subscribe(partner_ids=rec.user_id.partner_id.ids)
@@ -94,9 +94,9 @@ class MrpProduction(models.Model):
     def _remote_update_producing_quantity(self, qty, ip_addr):
         self.ensure_one()
         if self.qty_producing != qty:
-            self.message_post_with_view(
-                views_or_xmlid=f"mrp_iot.production_update_producing_quantity",
-                values={
+            self.message_post_with_source(
+                "mrp_iot.production_update_producing_quantity",
+                render_values={
                     "ip_addr": ip_addr,
                     "old_value": self.qty_producing,
                     "new_value": qty,
@@ -108,9 +108,9 @@ class MrpProduction(models.Model):
 
     def _remote_notify(self, action, ip_addr):
         self.ensure_one()
-        self.message_post_with_view(
-            views_or_xmlid=f"mrp_iot.production_notify_{action}",
-            values={
+        self.message_post_with_source(
+            f"mrp_iot.production_notify_{action}",
+            render_values={
                 "ip_addr": ip_addr,
             },
             subtype_id=self.env.ref("mail.mt_note").id,

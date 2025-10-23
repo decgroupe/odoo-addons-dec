@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_iot</field>
         <field name="model">mrp.production</field>
@@ -19,5 +18,4 @@
             </page>
         </field>
     </record>
-
 </odoo>

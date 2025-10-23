@@ -5,8 +5,6 @@ import json
 import logging
 import pprint
 
-from lxml import html
-
 import odoo.tests
 from odoo.tests import Form, new_test_user
 
@@ -16,7 +14,6 @@ API_KEY = "d5b27d10-3db6-47b4-ab7e-412cd4418f6b"
 
 
 class TestMrpIoTBase(odoo.tests.HttpCase):
-
     def setUp(self):
         super().setUp()
         ctx = {
@@ -44,13 +41,15 @@ class TestMrpIoTBase(odoo.tests.HttpCase):
         self.p1 = self.product_model.create(
             {
                 "name": "101",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         self.stock_product = self.product_model.create(
             {
                 "name": "Stockable Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         # Create bill of materials
@@ -101,6 +100,10 @@ class TestMrpIoTBase(odoo.tests.HttpCase):
         self.assertEqual(resp.status_code, 200)
         resp_payload = json.loads(resp.text)
         self.assertEqual(resp_payload.get("jsonrpc"), "2.0")
+        if "error" in resp_payload:
+            message = resp_payload["error"]["data"].get("message")
+            debug = resp_payload["error"]["data"].get("debug")
+            _logger.error("API %s Error:\n%s\n%s", action, message, debug)
         res = resp_payload.get("result")
         return res
 
