@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="wizard_create_items_form_view">
+        <field name="name">create.items.wizard.form@wizard_create_items</field>
+        <field name="model">create.items.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Items">
+                <group name="references" />
+                <group name="raw">
+                    <field name="content" widget="html" options="{'codeview': true}" />
+                    <field name="content_separator" />
+                    <div />
+                    <button
+                        name="action_parse_content"
+                        string="Update Preview"
+                        type="object"
+                        icon="fa-refresh"
+                        groups="base.group_no_one"
+                    />
+                </group>
+                <notebook>
+                    <page string="Preview">
+                        <field name="line_ids">
+                            <list editable="bottom">
+                                <field name="identifier" />
+                                <field name="name" />
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        name="action_create_items"
+                        string="Create"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

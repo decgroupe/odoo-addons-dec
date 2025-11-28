@@ -1,0 +1,151 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wizard_create_items
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-01 08:57+0000\n"
+"PO-Revision-Date: 2025-12-01 08:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wizard_create_items
+#: model_terms:ir.ui.view,arch_db:wizard_create_items.wizard_create_items_form_view
+msgid "Cancel"
+msgstr ""
+
+#. module: wizard_create_items
+#: model_terms:ir.ui.view,arch_db:wizard_create_items.wizard_create_items_form_view
+msgid "Create"
+msgstr ""
+
+#. module: wizard_create_items
+#: model_terms:ir.ui.view,arch_db:wizard_create_items.wizard_create_items_form_view
+msgid "Create Items"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model,name:wizard_create_items.model_create_items_wizard_line
+msgid "Create Items Wizard Line"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model,name:wizard_create_items.model_create_items_wizard
+msgid "Create Items from List"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__create_uid
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__create_date
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__display_name
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,help:wizard_create_items.field_create_items_wizard__content
+msgid ""
+"Enter content as a table (1st column: identifier, 2nd column: name), an HTML"
+" list (<ul> or <ol> with <li> tags), as lines starting with '-', or simply "
+"as one item per line."
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__id
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__id
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__identifier
+msgid "ID"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__line_ids
+msgid "Items to Generate"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__write_uid
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__write_date
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__content
+msgid "List"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__name
+msgid "Name"
+msgstr ""
+
+#. module: wizard_create_items
+#. odoo-python
+#: code:addons/wizard_create_items/wizards/create_items.py:0
+msgid ""
+"No data could be parsed from the provided content. Please ensure you have "
+"entered items as an HTML list, lines starting with '-', or one item per "
+"line."
+msgstr ""
+
+#. module: wizard_create_items
+#. odoo-python
+#: code:addons/wizard_create_items/wizards/create_items.py:0
+msgid "Please enter at least one item."
+msgstr ""
+
+#. module: wizard_create_items
+#: model_terms:ir.ui.view,arch_db:wizard_create_items.wizard_create_items_form_view
+msgid "Preview"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__content_separator
+msgid "Separator"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,help:wizard_create_items.field_create_items_wizard__content_separator
+msgid "The separator between identifier and name in the provided content."
+msgstr ""
+
+#. module: wizard_create_items
+#: model_terms:ir.ui.view,arch_db:wizard_create_items.wizard_create_items_form_view
+msgid "Update Preview"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,help:wizard_create_items.field_create_items_wizard_line__name
+msgid "You can rename the item before creation."
+msgstr ""
+
+#. module: wizard_create_items
+#: model:ir.model.fields,help:wizard_create_items.field_create_items_wizard_line__identifier
+msgid "You can set an identifier for the item before creation."
+msgstr ""
