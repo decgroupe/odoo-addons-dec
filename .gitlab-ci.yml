@@ -18,7 +18,7 @@ job:
     paths:
       - /root/.cache/pip
   timeout: 2h
-  image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.12-ocb18.0-dec:latest
+  image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.10-ocb18.0-dec:latest
   script:
     # Add nano command
     - apt install -y nano
