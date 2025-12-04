@@ -29,6 +29,10 @@ job:
     - manifestoo -v tree
     # Install dependencies (old way using oca_dependencies.txt)
     - oca_clone_dependencies
+    # Install custom dependencies (using pip not pipx that must only be used for executables)
+    - pip install lxml[html_clean]
+    - pip install cryptography==42.0.8
+    - pip install pyopenssl==24.1.0
     # Retry manifestoo to ensure nothing is broken after dependencies installation
     - manifestoo -v tree
     # Install addons and dependencies (new way using setuptool)
