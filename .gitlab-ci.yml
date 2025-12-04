@@ -24,8 +24,13 @@ job:
     - apt install -y nano
     # Add killall command
     - apt install -y psmisc
+    # Check manifestoo works correctly in verbose mode
+    # (Note that script can be edited at this path: ~/.local/pipx/venvs/manifestoo/lib/python3.10/site-packages/manifestoo# nano addons_path.py)
+    - manifestoo -v tree
     # Install dependencies (old way using oca_dependencies.txt)
     - oca_clone_dependencies
+    # Retry manifestoo to ensure nothing is broken after dependencies installation
+    - manifestoo -v tree
     # Install addons and dependencies (new way using setuptool)
     - oca_install_addons
     # Check licenses
