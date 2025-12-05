@@ -22,7 +22,7 @@
                     <page string="Preview">
                         <field name="line_ids">
                             <list editable="bottom">
-                                <field name="identifier" />
+                                <field name="identifier" string="ID" />
                                 <field name="name" />
                             </list>
                         </field>

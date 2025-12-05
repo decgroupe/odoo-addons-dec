@@ -96,7 +96,7 @@ class CreateItemsWizardLine(models.TransientModel):
         ondelete="cascade",
     )
     identifier = fields.Char(
-        string="ID",
+        string="Identifier",
         help="You can set an identifier for the item before creation.",
     )
     name = fields.Char(

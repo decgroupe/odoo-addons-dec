@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-01 08:57+0000\n"
-"PO-Revision-Date: 2025-12-01 09:57+0100\n"
+"POT-Creation-Date: 2025-12-05 14:42+0000\n"
+"PO-Revision-Date: 2025-12-05 15:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -74,9 +74,14 @@ msgstr ""
 #. module: wizard_create_items
 #: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__id
 #: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__id
-#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__identifier
+#: model_terms:ir.ui.view,arch_db:wizard_create_items.wizard_create_items_form_view
 msgid "ID"
 msgstr "ID"
+
+#. module: wizard_create_items
+#: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard_line__identifier
+msgid "Identifier"
+msgstr "Identifiant"
 
 #. module: wizard_create_items
 #: model:ir.model.fields,field_description:wizard_create_items.field_create_items_wizard__line_ids
