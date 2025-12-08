@@ -9,7 +9,7 @@ class Lead2OpportunityPartner(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        result = super(Lead2OpportunityPartner, self).default_get(fields)
-        if not "user_id" in result:
+        result = super().default_get(fields)
+        if "user_id" not in result:
             result["user_id"] = self.env.user.id
         return result
