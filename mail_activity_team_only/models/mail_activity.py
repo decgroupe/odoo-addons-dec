@@ -8,9 +8,10 @@ from odoo import api, models
 class MailActivity(models.Model):
     _inherit = "mail.activity"
 
-    @api.model
-    def create(self, values):
+    @api.model_create_multi
+    def create(self, vals_list):
         if self.env.context.get("unset_activity_default_user"):
-            values["user_id"] = False
-        activity = super(MailActivity, self).create(values)
-        return activity
+            for vals in vals_list:
+                vals["user_id"] = False
+        activity_ids = super().create(vals_list)
+        return activity_ids

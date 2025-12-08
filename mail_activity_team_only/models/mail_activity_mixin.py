@@ -18,5 +18,5 @@ class MailActivityMixin(models.AbstractModel):
             date_deadline=date_deadline,
             summary=summary,
             note=note,
-            **act_values
+            **act_values,
         )

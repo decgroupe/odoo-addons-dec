@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:21+0000\n"
+"POT-Creation-Date: 2026-06-03 10:26+0000\n"
 "PO-Revision-Date: 2023-11-28 11:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,32 +27,17 @@ msgstr "Activité"
 msgid "Activity Mixin"
 msgstr "Combinaison d'activités"
 
-#. module: mail_activity_team_only
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity__display_name
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity_mixin__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: mail_activity_team_only
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity__id
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity_mixin__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: mail_activity_team_only
-#: model:ir.model.fields,help:mail_activity_team_only.field_mail_activity__xid
-#: model:ir.model.fields,help:mail_activity_team_only.field_mail_activity_mixin__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: mail_activity_team_only
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity____last_update
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity_mixin____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
 
-#. module: mail_activity_team_only
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity__xid
-#: model:ir.model.fields,field_description:mail_activity_team_only.field_mail_activity_mixin__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
