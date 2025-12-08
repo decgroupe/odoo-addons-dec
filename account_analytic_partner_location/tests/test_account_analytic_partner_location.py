@@ -6,7 +6,6 @@ from odoo.tests import common
 
 
 class TestAccountAnalyticPartnerLocation(common.TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.analytic_line_model = self.env["account.analytic.line"]
