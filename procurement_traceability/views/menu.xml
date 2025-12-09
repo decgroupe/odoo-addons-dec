@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.menu" id="menu_traceability">
         <field name="name">Traceability</field>
         <field name="sequence" eval="100" />
@@ -13,5 +12,4 @@
         <field name="action" ref="act_window_procurement_group" />
         <field name="parent_id" ref="menu_traceability" />
     </record>
-
 </odoo>

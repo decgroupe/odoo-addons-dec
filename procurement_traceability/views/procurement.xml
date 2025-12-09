@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="procurement_group_tree_view">
         <field name="name">procurement.group.list@procurement_traceability</field>
         <field name="model">procurement.group</field>
@@ -10,7 +9,6 @@
             <list>
                 <field name="name" />
                 <field name="move_type" />
-                <field name="sale_id" />
                 <field name="partner_id" />
             </list>
         </field>
@@ -27,55 +25,8 @@
                     <div class="oe_button_box" name="button_box">
                         <button
                             type="object"
-                            name="action_view_sale_orders"
-                            class="oe_stat_button"
-                            icon="fa-pencil-square-o"
-                        >
-                            <field
-                                name="sale_order_count"
-                                widget="statinfo"
-                                string="Sales"
-                            />
-                        </button>
-                        <button
-                            type="object"
-                            name="action_view_purchase_orders"
-                            class="oe_stat_button"
-                            icon="fa-shopping-cart"
-                        >
-                            <field
-                                name="purchase_order_count"
-                                widget="statinfo"
-                                string="Purchases"
-                            />
-                        </button>
-                        <button
-                            type="object"
-                            name="action_view_purchase_order_lines"
-                            class="oe_stat_button"
-                            icon="fa-shopping-cart"
-                        >
-                            <field
-                                name="purchase_order_line_count"
-                                widget="statinfo"
-                                string="Purchase Lines"
-                            />
-                        </button>
-                        <button
-                            type="object"
-                            name="action_view_mrp_productions"
-                            class="oe_stat_button"
-                            icon="fa-wrench"
-                        >
-                            <field
-                                name="mrp_production_count"
-                                widget="statinfo"
-                                string="Productions"
-                            />
-                        </button>
-                        <button
-                            type="object"
                             name="action_view_pickings"
+                            invisible="picking_count == 0"
                             class="oe_stat_button"
                             icon="fa-truck"
                         >
@@ -88,6 +39,7 @@
                         <button
                             type="object"
                             name="action_view_stock_moves"
+                            invisible="stock_move_count == 0"
                             class="oe_stat_button"
                             icon="fa-arrows-v"
                         >
@@ -100,6 +52,7 @@
                         <button
                             type="object"
                             name="action_view_orderpoints"
+                            invisible="orderpoint_count == 0"
                             class="oe_stat_button"
                             icon="fa-refresh"
                         >
@@ -112,6 +65,7 @@
                         <button
                             type="object"
                             name="action_view_stock_rules"
+                            invisible="stock_rule_count == 0"
                             class="oe_stat_button"
                             icon="fa-cogs"
                         >
@@ -124,57 +78,36 @@
                     </div>
                     <notebook>
                         <page string="General">
-                            <group>
+                            <group name="general">
                                 <field name="name" />
                                 <field name="move_type" />
-                                <field name="sale_id" />
                                 <field name="partner_id" />
                             </group>
                         </page>
                         <page
-                            string="Sale Orders"
-                            invisible="not sale_order_ids"
-                        >
-                            <field name="sale_order_ids" />
-                        </page>
-                        <page
-                            string="Purchase Orders"
-                            invisible="not purchase_order_ids"
-                        >
-                            <field name="purchase_order_ids" />
-                        </page>
-                        <page
-                            string="Purchase Order Lines"
-                            invisible="not purchase_order_line_ids"
-                        >
-                            <field name="purchase_order_line_ids" />
-                        </page>
-                        <page
-                            string="Production Orders"
-                            invisible="not mrp_production_ids"
-                        >
-                            <field name="mrp_production_ids" />
-                        </page>
-                        <page
                             string="Pickings"
+                            name="pickings"
                             invisible="not picking_ids"
                         >
                             <field name="picking_ids" />
                         </page>
                         <page
                             string="Stock Moves"
+                            name="stock_moves"
                             invisible="not stock_move_ids"
                         >
                             <field name="stock_move_ids" />
                         </page>
                         <page
                             string="Reordering Rules"
+                            name="orderpoints"
                             invisible="not orderpoint_ids"
                         >
                             <field name="orderpoint_ids" />
                         </page>
                         <page
                             string="Routes"
+                            name="routes"
                             invisible="not stock_rule_ids"
                         >
                             <field name="stock_rule_ids" />
@@ -187,6 +120,7 @@
 
     <record model="ir.actions.act_window" id="act_window_procurement_group">
         <field name="name">Procurements</field>
+        <field name="path">procurements</field>
         <field name="res_model">procurement.group</field>
         <field name="view_mode">form,list</field>
         <field name="view_id" ref="procurement_group_tree_view" />
@@ -211,5 +145,4 @@
         <field name="view_id" ref="procurement_group_form_view" />
         <field name="act_window_id" ref="act_window_procurement_group" />
     </record>
-
 </odoo>

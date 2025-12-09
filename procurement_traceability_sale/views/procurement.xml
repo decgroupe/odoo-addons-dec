@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="procurement_group_tree_view">
+        <field name="name">procurement.group.list@procurement_traceability_sale</field>
+        <field name="model">procurement.group</field>
+        <field name="type">list</field>
+        <field
+            name="inherit_id"
+            ref="procurement_traceability.procurement_group_tree_view"
+        />
+        <field name="arch" type="xml">
+            <field name="move_type" position="after">
+                <field name="sale_id" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="procurement_group_form_view">
+        <field name="name">procurement.group.form@procurement_traceability_sale</field>
+        <field name="model">procurement.group</field>
+        <field name="type">form</field>
+        <field
+            name="inherit_id"
+            ref="procurement_traceability.procurement_group_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_sale_orders"
+                    invisible="sale_order_count == 0"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                >
+                    <field name="sale_order_count" widget="statinfo" string="Sales" />
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Sale Orders" invisible="not sale_order_ids">
+                    <field name="sale_order_ids" />
+                </page>
+            </xpath>
+            <xpath
+                expr="//page/group[@name='general']/field[@name='move_type']"
+                position="after"
+            >
+                <field name="sale_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

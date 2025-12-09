@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="procurement_group_form_view">
+        <field
+            name="name"
+        >procurement.group.form@procurement_traceability_purchase</field>
+        <field name="model">procurement.group</field>
+        <field name="type">form</field>
+        <field
+            name="inherit_id"
+            ref="procurement_traceability.procurement_group_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_purchase_orders"
+                    invisible="purchase_order_count == 0"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                >
+                    <field
+                        name="purchase_order_count"
+                        widget="statinfo"
+                        string="Purchases"
+                    />
+                </button>
+                <button
+                    type="object"
+                    name="action_view_purchase_order_lines"
+                    invisible="purchase_order_line_count == 0"
+                    class="oe_stat_button"
+                    icon="fa-shopping-cart"
+                >
+                    <field
+                        name="purchase_order_line_count"
+                        widget="statinfo"
+                        string="Purchase Lines"
+                    />
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Purchase Orders" invisible="not purchase_order_ids">
+                    <field name="purchase_order_ids" />
+                </page>
+                <page
+                    string="Purchase Order Lines"
+                    invisible="not purchase_order_line_ids"
+                >
+                    <field name="purchase_order_line_ids" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

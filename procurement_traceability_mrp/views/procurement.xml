@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="procurement_group_form_view">
+        <field name="name">procurement.group.form@procurement_traceability_mrp</field>
+        <field name="model">procurement.group</field>
+        <field name="type">form</field>
+        <field
+            name="inherit_id"
+            ref="procurement_traceability.procurement_group_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_mrp_productions"
+                    invisible="mrp_production_count == 0"
+                    class="oe_stat_button"
+                    icon="fa-wrench"
+                >
+                    <field
+                        name="mrp_production_count"
+                        widget="statinfo"
+                        string="Productions"
+                    />
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Production Orders" invisible="not mrp_production_ids">
+                    <field name="mrp_production_ids" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

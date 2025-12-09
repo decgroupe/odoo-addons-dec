@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* procurement_traceability_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-03 10:45+0000\n"
+"PO-Revision-Date: 2026-06-03 15:26+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: procurement_traceability_purchase
+#: model:ir.model,name:procurement_traceability_purchase.model_procurement_group
+msgid "Procurement Group"
+msgstr "Groupe d'approvisionnement"
+
+#. module: procurement_traceability_purchase
+#: model_terms:ir.ui.view,arch_db:procurement_traceability_purchase.procurement_group_form_view
+msgid "Purchase Lines"
+msgstr "Lignes d'achat"
+
+#. module: procurement_traceability_purchase
+#: model:ir.model.fields,field_description:procurement_traceability_purchase.field_procurement_group__purchase_order_ids
+msgid "Purchase Order"
+msgstr "Commande fournisseur"
+
+#. module: procurement_traceability_purchase
+#: model:ir.model.fields,field_description:procurement_traceability_purchase.field_procurement_group__purchase_order_line_ids
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: procurement_traceability_purchase
+#: model_terms:ir.ui.view,arch_db:procurement_traceability_purchase.procurement_group_form_view
+msgid "Purchase Order Lines"
+msgstr "Lignes de commande d'achat"
+
+#. module: procurement_traceability_purchase
+#: model_terms:ir.ui.view,arch_db:procurement_traceability_purchase.procurement_group_form_view
+msgid "Purchase Orders"
+msgstr "Commandes d'achat"
+
+#. module: procurement_traceability_purchase
+#: model:ir.model.fields,field_description:procurement_traceability_purchase.field_procurement_group__purchase_order_count
+msgid "Purchase count"
+msgstr "Nombre d'achats"
+
+#. module: procurement_traceability_purchase
+#: model:ir.model.fields,field_description:procurement_traceability_purchase.field_procurement_group__purchase_order_line_count
+msgid "Purchase lines count"
+msgstr "Nombre de lignes d'achats"
+
+#. module: procurement_traceability_purchase
+#: model_terms:ir.ui.view,arch_db:procurement_traceability_purchase.procurement_group_form_view
+msgid "Purchases"
+msgstr "Achats"

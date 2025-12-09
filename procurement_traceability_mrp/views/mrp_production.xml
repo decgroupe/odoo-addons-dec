@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_tree_view">
-        <field name="name">mrp.production.tree@procurement_traceability</field>
+        <field name="name">mrp.production.tree@procurement_traceability_mrp</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
         <field name="arch" type="xml">
@@ -13,7 +12,7 @@
     </record>
 
     <record model="ir.ui.view" id="mrp_production_form_view">
-        <field name="name">mrp.production.form@procurement_traceability</field>
+        <field name="name">mrp.production.form@procurement_traceability_mrp</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
@@ -25,5 +24,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
