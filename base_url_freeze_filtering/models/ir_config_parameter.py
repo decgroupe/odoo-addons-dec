@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.tools import ormcache
 from odoo.tools.config import config, to_list
 
@@ -11,6 +11,7 @@ _logger = logging.getLogger(__name__)
 
 WEB_BASE_URL_FREEZE = "web.base.url.freeze"
 DB_URL_FREEZE_ALLOWEDLIST = "db_url_freeze_allowedlist"
+
 
 class IrConfigParameter(models.Model):
     _inherit = "ir.config_parameter"

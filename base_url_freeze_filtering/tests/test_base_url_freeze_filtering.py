@@ -9,7 +9,6 @@ from odoo.tools.misc import str2bool
 
 
 class TestBaseUrlFreezeFiltering(TransactionCase):
-
     def setUp(self):
         super().setUp()
 
