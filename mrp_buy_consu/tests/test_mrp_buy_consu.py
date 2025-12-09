@@ -1,17 +1,30 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2023
 
-from odoo.tests import Form, new_test_user
+from odoo import Command
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
 class TestMrpBuyConsu(TransactionCase):
     """ """
 
-    def _create_product(self, name, type, route_ids=[]):
-        return self.env["product.product"].create(
-            {"name": name, "type": type, "route_ids": route_ids}
-        )
+    def _create_product(self, name, product_type, route_ids=None):
+        if route_ids is None:
+            route_ids = []
+        vals = {
+            "name": name,
+            "route_ids": route_ids,
+        }
+        if product_type == "product":
+            vals["type"] = "consu"
+            vals["is_storable"] = True
+        elif product_type == "consu":
+            vals["type"] = "consu"
+            vals["is_storable"] = False
+        else:
+            vals["type"] = product_type
+        return self.env["product.product"].create(vals)
 
     def _generate_mo(self, product, bom, qty=1.0):
         mo_form = Form(self.env["mrp.production"])
@@ -20,6 +33,13 @@ class TestMrpBuyConsu(TransactionCase):
         mo_form.product_qty = qty
         mo = mo_form.save()
         return mo
+        # return self.env["mrp.production"].create(
+        #     {
+        #         "product_id": product.id,
+        #         "bom_id": bom.id,
+        #         "product_qty": qty,
+        #     }
+        # )
 
     def setUp(self):
         super().setUp()
@@ -35,24 +55,29 @@ class TestMrpBuyConsu(TransactionCase):
         route_mto = self.warehouse.mto_pull_id.route_id
         route_mto.active = True
 
+        # enable multi-locations otherwise location_id cannot be changed on moves
+        # using Form since field is missing without this group
+        self.env.user.groups_id |= self.env.ref("stock.group_stock_multi_locations")
+
         # create a fake route since buy route is not available here
-        route_fakebuy = self.env["stock.location.route"].create(
+        route_fakebuy = self.env["stock.route"].create(
             {
                 "name": "Buy (Fake)",
                 "product_selectable": True,
             }
         )
-        route_fakebuy_rule0 = self.env["stock.rule"].create(
+        _route_fakebuy_rule0 = self.env["stock.rule"].create(
             {
                 "route_id": route_fakebuy.id,
-                "name": "Buy Rule (simple tranfert)",
+                "name": "Buy Rule (simple transfert)",
                 "action": "pull",
                 # San Francisco: Receipts
                 "picking_type_id": self.env.ref("stock.picking_type_in").id,
                 # Partner Locations/Vendors
                 "location_src_id": self.env.ref("stock.stock_location_suppliers").id,
                 # WH/Stock
-                "location_id": self.env.ref("stock.stock_location_stock").id,
+                "location_dest_id": self.env.ref("stock.stock_location_stock").id,
+                "location_dest_from_rule": True,
                 "procure_method": "make_to_stock",
                 "warehouse_id": self.warehouse.id,
                 "company_id": self.warehouse.company_id.id,
@@ -83,36 +108,28 @@ class TestMrpBuyConsu(TransactionCase):
                 "product_qty": 1.0,
                 "type": "normal",
                 "bom_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_a.id,
                             "product_qty": 1.0,
                             "buy_consumable": False,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_b.id,
                             "product_qty": 1.0,
                             "buy_consumable": False,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_a.id,
                             "product_qty": 1.0,
                             "buy_consumable": True,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_b.id,
                             "product_qty": 1.0,
@@ -141,9 +158,12 @@ class TestMrpBuyConsu(TransactionCase):
         self.assertEqual(move_a_buy.bom_line_id.buy_consumable, True)
         self.assertEqual(move_b_buy.product_id, self.product_b)
         self.assertEqual(move_b_buy.bom_line_id.buy_consumable, True)
+        # ensure right locations
+        self.assertEqual(move_a.location_id.name, "Production")
+        self.assertEqual(move_b.location_id.name, "Production")
         # ensure buyable and consumable moves have same locations
-        self.assertEqual(move_a.location_id, move_a.location_dest_id)
-        self.assertEqual(move_b.location_id, move_b.location_dest_id)
+        self.assertEqual(move_a.location_id.name, move_a.location_dest_id.name)
+        self.assertEqual(move_b.location_id.name, move_b.location_dest_id.name)
         # ensure procure method has been kept
         self.assertEqual(move_a.procure_method, "make_to_stock")
         self.assertEqual(move_b.procure_method, "make_to_stock")

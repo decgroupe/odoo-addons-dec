@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_buy_consu</field>
         <field name="model">mrp.production</field>
@@ -9,16 +8,16 @@
         <field name="priority" eval="50" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='move_raw_ids']/tree/field[@name='has_move_lines']"
+                expr="//field[@name='move_raw_ids']/list/field[@name='location_dest_id']"
                 position="after"
             >
                 <field
                     name="procure_method"
-                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                    readonly="state != 'draft'"
                     groups="stock.group_adv_location"
+                    optional="hide"
                 />
             </xpath>
         </field>
     </record>
-
 </odoo>

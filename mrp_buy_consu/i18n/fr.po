@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:22+0000\n"
-"PO-Revision-Date: 2023-11-28 13:41+0100\n"
+"POT-Creation-Date: 2026-06-03 10:33+0000\n"
+"PO-Revision-Date: 2026-06-03 14:54+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,21 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
-
-#. module: mrp_buy_consu
-#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_type
-msgid ""
-"A storable product is a product for which you manage stock. The Inventory "
-"app has to be installed.\n"
-"A consumable product is a product for which stock is not managed.\n"
-"A service is a non-material product you provide."
-msgstr ""
-"Un produit stockable est un produit dont on gère le stock. L'application "
-"\"Inventaire\" doit être installée. \n"
-"Un produit consommable, d'un autre côté, est un produit pour lequel le "
-"stock n'est pas géré.\n"
-"Un service est un produit immatériel que vous fournissez."
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_buy_consu
 #: model:ir.model,name:mrp_buy_consu.model_mrp_bom_line
@@ -42,22 +28,14 @@ msgid "Buy"
 msgstr "Acheter"
 
 #. module: mrp_buy_consu
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__display_name
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mrp_buy_consu
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__id
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_buy_consu
-#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__xid
-#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_production__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_type
+msgid ""
+"Goods are tangible materials and merchandise you provide.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"Les biens sont des matériaux tangibles et des marchandises que vous "
+"fournissez.\n"
+"Un service est un produit non matériel que vous fournissez."
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__product_small_supply
@@ -73,20 +51,9 @@ msgid "Is Consumable"
 msgstr "Est consommable"
 
 #. module: mrp_buy_consu
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line____last_update
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
-
-#. module: mrp_buy_consu
 #: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_type
 msgid "Product Type"
 msgstr "Type d'article"
-
-#. module: mrp_buy_consu
-#: model:ir.model,name:mrp_buy_consu.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
 
 #. module: mrp_buy_consu
 #: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__product_small_supply
@@ -94,12 +61,41 @@ msgid "Small Supply"
 msgstr "Petite fourniture"
 
 #. module: mrp_buy_consu
+#: model:ir.model,name:mrp_buy_consu.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: mrp_buy_consu
 #: model:ir.model.fields,help:mrp_buy_consu.field_mrp_bom_line__buy_consumable
 msgid "Used to force buying a consumable product."
 msgstr "Utilisé pour forcer l’achat d’un produit consommable."
 
-#. module: mrp_buy_consu
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_bom_line__xid
-#: model:ir.model.fields,field_description:mrp_buy_consu.field_mrp_production__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid ""
+#~ "A storable product is a product for which you manage stock. The "
+#~ "Inventory app has to be installed.\n"
+#~ "A consumable product is a product for which stock is not managed.\n"
+#~ "A service is a non-material product you provide."
+#~ msgstr ""
+#~ "Un produit stockable est un produit dont on gère le stock. L'application "
+#~ "\"Inventaire\" doit être installée. \n"
+#~ "Un produit consommable, d'un autre côté, est un produit pour lequel le "
+#~ "stock n'est pas géré.\n"
+#~ "Un service est un produit immatériel que vous fournissez."
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "Production Order"
+#~ msgstr "Ordre de fabrication"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
