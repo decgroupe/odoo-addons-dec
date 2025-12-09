@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:54+0000\n"
+"POT-Creation-Date: 2026-06-03 09:56+0000\n"
 "PO-Revision-Date: 2023-11-28 11:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -23,21 +23,6 @@ msgid "Addons Path"
 msgstr "Chemin d'accès aux modules complémentaires"
 
 #. module: base_module_path
-#: model:ir.model.fields,field_description:base_module_path.field_ir_module_module__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: base_module_path
-#: model:ir.model.fields,field_description:base_module_path.field_ir_module_module__id
-msgid "ID"
-msgstr "ID"
-
-#. module: base_module_path
-#: model:ir.model.fields,field_description:base_module_path.field_ir_module_module____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: base_module_path
 #: model:ir.model,name:base_module_path.model_ir_module_module
 msgid "Module"
 msgstr "Module"
@@ -51,3 +36,12 @@ msgstr "Chemin"
 #: model:ir.actions.server,name:base_module_path.action_recompute_path
 msgid "Recompute path"
 msgstr "Recalculer le chemin"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
