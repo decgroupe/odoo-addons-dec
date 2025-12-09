@@ -11,19 +11,93 @@ variables:
   POSTGRES_DB: odoo
   VERSION: "18.0"
 
-job:
+stages:
+  - lint
+  - test
+
+pre-commit:
+  stage: lint
   tags:
     - _odoo
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    PRE_COMMIT_HOME: "$CI_PROJECT_DIR/.cache/pre-commit"
+    RUFF_CACHE_DIR: "$CI_PROJECT_DIR/.cache/ruff"
   cache:
+    key: "lint-cache-${CI_COMMIT_REF_SLUG}"
     paths:
-      - /root/.cache/pip
+      - .cache/pip
+      - .cache/pre-commit
+      - .cache/ruff
+  image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.10-ocb18.0-dec:latest
+  script:
+    - pip install pre-commit
+    - pre-commit run --all-files --show-diff-on-failure
+
+odoo_tests_module:
+  stage: test
+  tags:
+    - _odoo
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  cache:
+    key: "test-cache-${CI_COMMIT_REF_SLUG}"
+    paths:
+      - .cache/pip
   timeout: 2h
   image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.10-ocb18.0-dec:latest
   script:
-    # Add nano command
-    - apt install -y nano
-    # Add killall command
-    - apt install -y psmisc
+    # Disable "DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs"
+    - JUPYTER_PLATFORM_DIRS=1
+    # Add nano, killall commands
+    - apt install -y nano psmisc
+    # Install dependencies (old way using oca_dependencies.txt)
+    - oca_clone_dependencies
+    # Install custom dependencies (using pip not pipx that must only be used for executables)
+    - pip install lxml[html_clean]
+    - pip install cryptography==42.0.8
+    - pip install pyopenssl==24.1.0
+    # Install addons and dependencies (new way using setuptool)
+    - oca_install_addons
+    # Config (server wide modules, log handler for test stats)
+    - echo "server_wide_modules=base,web" >> /etc/odoo.cfg
+    - echo "log_handler=odoo.tests.stats:DEBUG,odoo.cli.server:DEBUG" >> /etc/odoo.cfg
+    ####################################################################################
+    # test module extracted from commit title: [FIX] module_name: ... / [IMP] module_name: ...
+    - MODULE_FROM_COMMIT=$(echo "$CI_COMMIT_TITLE" | sed -nE
+      's/^\[(FIX|IMP|MIG)\][[:space:]]+([a-z][a-z0-9_]*)\:.*$/\2/p')
+    - |
+      if [ -n "$MODULE_FROM_COMMIT" ]; then
+        echo "module extracted from commit title: $MODULE_FROM_COMMIT"
+        if manifestoo -d . list | grep -Fxq "$MODULE_FROM_COMMIT"; then
+          echo "module found in manifestoo, running targeted tests with INCLUDE=$MODULE_FROM_COMMIT"
+          export INCLUDE="$MODULE_FROM_COMMIT"
+          oca_init_test_database
+          oca_run_tests
+        else
+          echo "module '$MODULE_FROM_COMMIT' not found in manifestoo list, skipping targeted run"
+        fi
+      else
+        echo "no [FIX]/[IMP] module pattern found in commit title, skipping targeted run"
+      fi
+
+odoo_tests_all:
+  stage: test
+  tags:
+    - _odoo
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  cache:
+    key: "test-cache-${CI_COMMIT_REF_SLUG}"
+    paths:
+      - .cache/pip
+  timeout: 2h
+  image: docker-registry.decgroupe.com/erp/oca/oca-ci/py3.10-ocb18.0-dec:latest
+  script:
+    # Disable "DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs"
+    - JUPYTER_PLATFORM_DIRS=1
+    # Add nano, killall commands
+    - apt install -y nano psmisc
     # Check manifestoo works correctly in verbose mode
     # (Note that script can be edited at this path: ~/.local/pipx/venvs/manifestoo/lib/python3.10/site-packages/manifestoo# nano addons_path.py)
     - manifestoo -v tree
@@ -41,28 +115,28 @@ job:
     # - manifestoo -d . check-licenses
     # Check development status
     # - manifestoo -d . check-dev-status --default-dev-status=Beta
-    # Config server wide modules
+    # Config (server wide modules, log handler for test stats)
     - echo "server_wide_modules=base,web" >> /etc/odoo.cfg
+    - echo "screenshots=$CI_PROJECT_DIR/odoo_tests" >> /etc/odoo.cfg
+    - echo "log_handler=odoo.tests.stats:DEBUG,odoo.cli.server:DEBUG" >> /etc/odoo.cfg
     # Exclude some modules
     - EXCLUDE=product_create_prefill,website_sale_product_public_code,mail_activity_team_schedule,mail_activity_schedule_dhxgantt,project_schedule,mrp_schedule,sale_timesheet_project_schedule,web_report_workflow,account_report_qweb,sale_report_qweb,l10n_fr_hr_expense_easy
-    # - INCLUDE=procurement_exception
-    # Disable "DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs"
-    - JUPYTER_PLATFORM_DIRS=1
+    # - INCLUDE=software_license_portal
     # Initialize test db
     - oca_init_test_database
     # Run tests with coverage ()
     # - oca_run_tests || (echo "CI is now in sleep mode for 1 hour, you can go to '/builds/erp/odoo-addons/dec/public' and run 'odoo shell -d odoo' to debug current status" ; sleep 1h; (exit 1) )
     - oca_run_tests
     # Output coverage console report
-    - coverage report
+    - coverage report --ignore-errors
     # Generate coverage HTML report to htmlcov directory
-    - coverage html
+    - coverage html --ignore-errors
     # Generate coverage.xml cobertura report
-    - coverage xml
+    - coverage xml --ignore-errors
     # - sleep 8h || true
   artifacts:
     paths:
-      - /tmp/odoo
+      - odoo_tests
       - htmlcov
     expire_in: 3 day
     when: always
