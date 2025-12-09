@@ -17,7 +17,7 @@ class TestProductServiceNoRoutes(TransactionCase):
             "stock.product_cable_management_box_product_template"
         )
         # Create a fake route since buy or manufacture routes are not available here
-        self.fake_route = self.env["stock.location.route"].create(
+        self.fake_route = self.env["stock.route"].create(
             {
                 "name": "Fake route -> none",
                 "product_selectable": True,
@@ -28,11 +28,17 @@ class TestProductServiceNoRoutes(TransactionCase):
         def _internal_test(product):
             product.route_ids += self.fake_route
             self.assertTrue(product.route_ids)
-            with self.assertRaisesRegex(
-                UserError,
-                "You can not change the type of a product that was already used",
-            ), self.cr.savepoint():
+            # https://github.com/odoo/odoo/pull/239284
+            # [FIX] stock: Ensure that "is_storable" is properly computed
+            with (
+                self.assertRaisesRegex(
+                    UserError,
+                    "You can not change the inventory tracking of a product.*",
+                ),
+                self.cr.savepoint(),
+            ):
                 product.type = "service"
+
         # unset existing buy route
         self.product13.route_ids = False
         self.assertFalse(self.product13.route_ids)
@@ -53,7 +59,26 @@ class TestProductServiceNoRoutes(TransactionCase):
         _internal_test(self.delivery01)
         _internal_test(self.delivery01.product_variant_id)
 
-    def test_03_change_stockable_to_service(self):
+    def test_03_change_stockable_already_used_to_service(self):
+        def _internal_test(product):
+            self.assertFalse(product.route_ids)
+            product.route_ids += self.fake_route
+            self.assertTrue(product.route_ids)
+            # https://github.com/odoo/odoo/pull/239284
+            # [FIX] stock: Ensure that "is_storable" is properly computed
+            with (
+                self.assertRaisesRegex(
+                    UserError,
+                    "You can not change the inventory tracking of a product.*",
+                ),
+                self.cr.savepoint(),
+            ):
+                product.type = "service"
+
+        _internal_test(self.productCM)
+        _internal_test(self.productCM.product_variant_id)
+
+    def test_04_change_stockable_to_service(self):
         def _internal_test(product):
             self.assertFalse(product.route_ids)
             product.route_ids += self.fake_route
@@ -61,10 +86,11 @@ class TestProductServiceNoRoutes(TransactionCase):
             product.type = "service"
             self.assertFalse(product.route_ids)
 
-        _internal_test(self.productCM)
-        _internal_test(self.productCM.product_variant_id)
+        self.product13.is_storable = True
+        _internal_test(self.product13)
+        _internal_test(self.product13.product_variant_id)
 
-    def test_04_create_service_with_route(self):
+    def test_05_create_service_with_route(self):
         myservice = self.env["product.product"].create(
             {
                 "name": "My Super Service",

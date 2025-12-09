@@ -7,12 +7,13 @@ from odoo import api, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    @api.model
-    def create(self, vals):
-        product = super().create(vals)
-        if vals.get("type") == "service":
-            product.unset_route_ids()
-        return product
+    @api.model_create_multi
+    def create(self, vals_list):
+        product_ids = super().create(vals_list)
+        for product_id in product_ids:
+            if product_id.type == "service":
+                product_id.unset_route_ids()
+        return product_ids
 
     def write(self, vals):
         res = super().write(vals)
