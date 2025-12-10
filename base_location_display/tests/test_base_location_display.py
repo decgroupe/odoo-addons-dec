@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestBaseLocationDisplay(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.country = self.env.ref("base.fr")

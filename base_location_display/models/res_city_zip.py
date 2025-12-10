@@ -15,7 +15,7 @@ class ResCityZip(models.Model):
 
     def format_name(self):
         self.ensure_one()
-        return "{} {}".format(self.name, self.city_id.name)
+        return f"{self.name} {self.city_id.name}"
 
     @api.depends(
         "name",
