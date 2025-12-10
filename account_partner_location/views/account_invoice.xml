@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="invoice_tree_view">
         <field name="name">account.invoice.tree@account_partner_location</field>
         <field name="model">account.move</field>
@@ -36,5 +35,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

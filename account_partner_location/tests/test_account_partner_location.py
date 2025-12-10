@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestAccountPartnerLocation(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.account_move_model = self.env["account.move"]
