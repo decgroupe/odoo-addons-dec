@@ -1,6 +1,7 @@
 {
     "name": "Sale Partner Location",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "category": "Sales",
@@ -9,8 +10,12 @@
         "base_location",
     ],
     "data": [
-        "views/assets.xml",
         "views/sale_order.xml",
     ],
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "sale_partner_location/static/src/css/style.scss",
+        ],
+    },
+    "installable": True,
 }
