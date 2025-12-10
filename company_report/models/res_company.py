@@ -18,7 +18,7 @@ class ResCompany(models.Model):
         "bank_ids",
         "bank_ids.footer",
         "bank_ids.bank_name",
-        "bank_ids.display_name",
+        "bank_ids.acc_number",
         "bank_ids.bank_bic",
     )
     def _compute_bank_footer(self):
@@ -27,10 +27,9 @@ class ResCompany(models.Model):
             for partner_bank in company.bank_ids:
                 if partner_bank.footer:
                     if partner_bank.bank_id:
-                        n = "{}: {} - {}".format(
-                            partner_bank.bank_name,
-                            partner_bank.display_name,
-                            partner_bank.bank_bic,
+                        n = (
+                            f"{partner_bank.bank_name}: "
+                            f"{partner_bank.acc_number} - {partner_bank.bank_bic}"
                         )
                     else:
                         n = partner_bank.display_name

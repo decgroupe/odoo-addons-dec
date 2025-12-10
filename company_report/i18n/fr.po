@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:55+0000\n"
+"POT-Creation-Date: 2026-06-03 09:56+0000\n"
 "PO-Revision-Date: 2023-11-28 11:38+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -33,12 +33,6 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: company_report
-#: model:ir.model.fields,field_description:company_report.field_res_company__display_name
-#: model:ir.model.fields,field_description:company_report.field_res_partner_bank__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: company_report
 #: model:ir.model.fields,field_description:company_report.field_res_partner_bank__footer
 msgid "Display on Reports"
 msgstr "Afficher sur les rapports"
@@ -58,18 +52,6 @@ msgid "Footer"
 msgstr "Bas de page"
 
 #. module: company_report
-#: model:ir.model.fields,field_description:company_report.field_res_company__id
-#: model:ir.model.fields,field_description:company_report.field_res_partner_bank__id
-msgid "ID"
-msgstr "ID"
-
-#. module: company_report
-#: model:ir.model.fields,field_description:company_report.field_res_company____last_update
-#: model:ir.model.fields,field_description:company_report.field_res_partner_bank____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: company_report
 #: model:ir.model.fields,help:company_report.field_res_company__report_bank_footer
 msgid ""
 "This field is computed automatically based on bank accounts defined, having "
@@ -83,3 +65,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:company_report.company_form_view
 msgid "e.g. Opening hours, bank accounts (one per line)"
 msgstr "Par ex. Heures d'ouverture, comptes bancaires (un par ligne)"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"

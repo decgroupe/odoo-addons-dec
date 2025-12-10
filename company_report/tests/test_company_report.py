@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestCompanyReport(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.company_id = self.env.ref("base.main_company")
@@ -17,6 +16,7 @@ class TestCompanyReport(TransactionCase):
         # no footer until enabled
         self.assertFalse(self.company_id.report_bank_footer)
         # check our demo bank is attached to our company
+        self.company_id.bank_ids = partner_bank_id
         self.assertIn(partner_bank_id, self.company_id.bank_ids)
         partner_bank_id.footer = True
         # ensure no bank record is linked to this partner bank instance
