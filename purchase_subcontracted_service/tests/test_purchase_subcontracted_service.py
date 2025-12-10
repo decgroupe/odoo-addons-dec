@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseSubcontractedService(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.product_model = self.env["product.product"]
@@ -19,7 +18,7 @@ class TestPurchaseSubcontractedService(TransactionCase):
                         0,
                         0,
                         {
-                            "name": self.supplier.id,
+                            "partner_id": self.supplier.id,
                             "price": 100.0,
                         },
                     )
@@ -47,8 +46,3 @@ class TestPurchaseSubcontractedService(TransactionCase):
         self.assertTrue(self.service.product_tmpl_id.service_to_purchase)
         self.service.property_subcontracted_service = False
         self.assertFalse(self.service.service_to_purchase)
-
-    # def test4(self):
-    #     self.service.unidades = 4
-    #     self.service.property_subcontracted_service = True
-    #     print(self.service.unidades)

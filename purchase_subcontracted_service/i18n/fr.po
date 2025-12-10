@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"POT-Creation-Date: 2026-06-03 10:59+0000\n"
 "PO-Revision-Date: 2023-11-28 14:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,31 +18,30 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: purchase_subcontracted_service
-#: model:ir.model.fields,field_description:purchase_subcontracted_service.field_procurement_group__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#: model:ir.model,name:purchase_subcontracted_service.model_product_template
+msgid "Product"
+msgstr "Produit"
 
 #. module: purchase_subcontracted_service
-#: model:ir.model.fields,field_description:purchase_subcontracted_service.field_procurement_group__id
-msgid "ID"
-msgstr "ID"
+#: model:ir.model.fields,field_description:purchase_subcontracted_service.field_product_product__property_subcontracted_service
+#: model:ir.model.fields,field_description:purchase_subcontracted_service.field_product_template__property_subcontracted_service
+msgid "Subcontracted Service"
+msgstr "Service sous-traité"
 
-#. module: purchase_subcontracted_service
-#: model:ir.model.fields,help:purchase_subcontracted_service.field_procurement_group__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: purchase_subcontracted_service
-#: model:ir.model.fields,field_description:purchase_subcontracted_service.field_procurement_group____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: purchase_subcontracted_service
-#: model:ir.model,name:purchase_subcontracted_service.model_procurement_group
-msgid "Procurement Group"
-msgstr "Groupe d'approvisionnement"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: purchase_subcontracted_service
-#: model:ir.model.fields,field_description:purchase_subcontracted_service.field_procurement_group__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Procurement Group"
+#~ msgstr "Groupe d'approvisionnement"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

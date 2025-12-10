@@ -1,1 +1,0 @@
-Override `subcontracted_service` behaviour in order to use the existing `service_to_purchase` field".
