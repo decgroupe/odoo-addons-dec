@@ -13,7 +13,7 @@ class TestAccountSaleLink(TransactionCase):
         for line in so.order_line:
             line.qty_delivered = line.product_uom_qty
         invoice_id = so._create_invoices()
-        self.env["account.move"].invalidate_cache()
+        self.env["account.move"].invalidate_model()
         return invoice_id
 
     def test_01_link(self):
