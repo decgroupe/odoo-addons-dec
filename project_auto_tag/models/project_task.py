@@ -1,18 +1,19 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2025
 
-from odoo import _, api, models
+from odoo import api, models
 
 
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        if self._need_auto_tag(vals):
-            rec._auto_tag()
-        return rec
+    @api.model_create_multi
+    def create(self, vals_list):
+        task_ids = super().create(vals_list)
+        for task_id, vals in zip(task_ids, vals_list, strict=True):
+            if self._need_auto_tag(vals):
+                task_id._auto_tag()
+        return task_ids
 
     def write(self, vals):
         res = super().write(vals)
