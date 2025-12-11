@@ -1,12 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2024
 
-from odoo.tests.common import TransactionCase
 from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestBaseLocationCedex(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.country = self.env.ref("base.fr")

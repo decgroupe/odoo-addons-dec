@@ -5,7 +5,6 @@ from odoo import _, fields, models
 
 
 class ResCityZip(models.Model):
-
     _inherit = "res.city.zip"
     cedex = fields.Char()
 
@@ -28,10 +27,10 @@ class ResCityZip(models.Model):
         self.ensure_one()
         if not prefix:
             prefix = self.city_id.name
-        res = prefix
+        city_name = prefix
         if self.cedex:
             if self.cedex.lower() in ("cedex", ".", "-", "_"):
-                res = _("{} Cedex").format(res)
+                city_name = _(f"{city_name} Cedex")
             else:
-                res = _("{} Cedex {}").format(res, self.cedex)
-        return res
+                city_name = _(f"{city_name} Cedex {self.cedex}")
+        return city_name
