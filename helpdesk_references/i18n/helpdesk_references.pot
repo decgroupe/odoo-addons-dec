@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:14+0000\n"
-"PO-Revision-Date: 2023-11-28 10:14+0000\n"
+"POT-Creation-Date: 2026-06-03 10:20+0000\n"
+"PO-Revision-Date: 2026-06-03 10:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: helpdesk_references
-#: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket__display_name
 #: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference__display_name
 msgid "Display Name"
 msgstr ""
@@ -37,21 +36,8 @@ msgid "Helpdesk Ticket"
 msgstr ""
 
 #. module: helpdesk_references
-#: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket__id
 #: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference__id
 msgid "ID"
-msgstr ""
-
-#. module: helpdesk_references
-#: model:ir.model.fields,help:helpdesk_references.field_helpdesk_ticket__xid
-#: model:ir.model.fields,help:helpdesk_references.field_helpdesk_ticket_reference__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: helpdesk_references
-#: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket____last_update
-#: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: helpdesk_references
@@ -74,7 +60,6 @@ msgstr ""
 
 #. module: helpdesk_references
 #: model:ir.actions.act_window,name:helpdesk_references.act_window_helpdesk_ticket_reference
-#: model_terms:ir.ui.view,arch_db:helpdesk_references.helpdesk_ticket_reference_tree_view
 #: model_terms:ir.ui.view,arch_db:helpdesk_references.ticket_view_form
 msgid "References"
 msgstr ""
@@ -82,10 +67,4 @@ msgstr ""
 #. module: helpdesk_references
 #: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference__ticket_id
 msgid "Ticket"
-msgstr ""
-
-#. module: helpdesk_references
-#: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket__xid
-#: model:ir.model.fields,field_description:helpdesk_references.field_helpdesk_ticket_reference__xid
-msgid "XML-ID"
 msgstr ""

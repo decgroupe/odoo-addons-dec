@@ -1,12 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2025
 
-from odoo.tests.common import TransactionCase
 from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestHelpdeskReferences(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.ticket5 = self.env.ref("helpdesk_mgmt.helpdesk_ticket_5")

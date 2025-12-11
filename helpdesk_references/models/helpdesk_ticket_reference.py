@@ -15,7 +15,7 @@ class HelpdeskTicketReference(models.Model):
     )
 
     model_ref_id = fields.Reference(
-        selection="_selection_model",
+        selection=lambda self: self._selection_model(),
         string="Reference",
         required=True,
     )
@@ -38,20 +38,18 @@ class HelpdeskTicketReference(models.Model):
 
     @api.model
     def _selection_model(self):
-        def _translate(src):
-            """Custom translate function since we need to get
-            model._description translation but the default gettext _ alias
-            only search for `code` and `sql_constraint` translations
+        def _translate(model):
+            """Custom translate function since we need to get model._description
+            translation
             """
-            res = (
-                self.env["ir.translation"]
-                .sudo()
-                ._get_source(None, ("model", "model_terms"), self.env.lang, src)
-            )
-            return res
+            ir_model_id = self.env["ir.model"].search([("model", "=", model)], limit=1)
+            if ir_model_id:
+                description = ir_model_id.name
+            else:
+                description = self.env[model]._description
+            return f"{description} ({model})"
 
-        return [
-            (x, _translate(self.env[x]._description))
-            for x in self._get_applicable_models()
-            if x in self.env
+        res = [
+            (x, _translate(x)) for x in self._get_applicable_models() if x in self.env
         ]
+        return res

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="helpdesk_ticket_reference_tree_view">
         <field name="name">helpdesk.ticket.reference.tree@helpdesk_references</field>
         <field name="model">helpdesk.ticket.reference</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="model_ref_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -16,7 +15,9 @@
         <field name="model">helpdesk.ticket.reference</field>
         <field name="arch" type="xml">
             <form string="Reference">
-                <field name="model_ref_id" />
+                <group>
+                    <field name="model_ref_id" />
+                </group>
             </form>
         </field>
     </record>
@@ -26,5 +27,4 @@
         <field name="res_model">helpdesk.ticket.reference</field>
         <field name="view_id" ref="helpdesk_ticket_reference_tree_view" />
     </record>
-
 </odoo>
