@@ -10,18 +10,18 @@ SUPERMANAGER_GROUP = "project_acl.group_project_supermanager"
 class Project(models.Model):
     _inherit = "project.project"
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         if (
             self.env.context.get("bypass_supermanager_check")
-            or self.user_has_groups(SUPERMANAGER_GROUP)
+            or self.env.user.has_groups(SUPERMANAGER_GROUP)
             or self.env.is_superuser()
         ):
             pass
         else:
             self._raise_not_supermanager()
-        project = super(Project, self).create(vals)
-        return project
+        project_ids = super().create(vals_list)
+        return project_ids
 
     @api.model
     def _get_supermanagers(self):
@@ -36,5 +36,5 @@ class Project(models.Model):
         if managers:
             message += ["", _("Please contact one of them to do it for you:")]
             for manager in managers:
-                message += ["- %s" % (manager,)]
+                message += [f"- {manager}"]
         raise AccessError("\n".join(message))

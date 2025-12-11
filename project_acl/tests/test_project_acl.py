@@ -1,14 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
-from odoo.tests import new_test_user
-from odoo.tests.common import SavepointCase
 from odoo.exceptions import AccessError
+from odoo.tests import new_test_user
+from odoo.tests.common import TransactionCase
 
 
-class TestProjectAcl(SavepointCase):
-    """ """
-
+class TestProjectAcl(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -45,9 +43,10 @@ class TestProjectAcl(SavepointCase):
             )
         # in bypass mode, the standard access error should be raised because a project
         # user do not have rights to create projects
-        with self.assertRaisesRegex(
-            AccessError, r"Project\/Administrator"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(AccessError, r"Project\/Administrator"),
+            self.cr.savepoint(),
+        ):
             project_id = (
                 self.project_model.with_user(self.project_user)
                 .with_context(bypass_supermanager_check=True)
