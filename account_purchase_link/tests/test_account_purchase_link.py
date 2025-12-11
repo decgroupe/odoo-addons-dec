@@ -13,7 +13,7 @@ class TestAccountPurchaseLink(TransactionCase):
         for line in po.order_line:
             line.qty_received = line.product_qty
         action_view_invoice = po.action_create_invoice()
-        self.env["account.move"].invalidate_cache()
+        self.env["account.move"].invalidate_model()
         return action_view_invoice
 
     def test_01_link(self):
