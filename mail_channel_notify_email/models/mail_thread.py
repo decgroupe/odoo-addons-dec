@@ -8,13 +8,14 @@ from odoo import models
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
-    # yapf: disable
+    # fmt: off
+    # ruff: disable[E501]
     def _notify_compute_recipients(self, message, msg_vals):
         """Hook Odoo computation in order to re-add partner with
         `notification_type=inbox`when the channel has `email_send` enabled.
         Please note that duplicates should not exists as the `exept_partner` is here
         to avoid that.
-        /!\ Only the SQL query has been edited
+        !!! Only the SQL query has been edited !!!
         """
         recipient_data = super()._notify_compute_recipients(message, msg_vals)
         author_id = msg_vals.get('author_id') or message.author_id.id
@@ -42,4 +43,4 @@ class MailThread(models.AbstractModel):
                 recipient_data['partners'].append({'id': partner_id[0], 'share': True, 'active': True, 'notif': 'email', 'type': 'channel_email', 'groups': []})
 
         return recipient_data
-    # yapf: enable
+    # fmt: on

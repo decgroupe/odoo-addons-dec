@@ -3,8 +3,9 @@
 
 from functools import partial
 
-from odoo.addons.mail.tests.common import MailCommon
 from odoo.tests import new_test_user
+
+from odoo.addons.mail.tests.common import MailCommon
 
 mail_new_test_user = partial(
     new_test_user,
@@ -25,7 +26,7 @@ class TestMailChannelNotifyEmail(MailCommon):
             channel.write(
                 {"channel_last_seen_partner_ids": [(0, 0, {"partner_id": partner.id})]}
             )
-        channel.invalidate_cache()
+        channel.invalidate_recordset()
 
     def _leave_channel(self, channel, partners):
         for partner in partners:
@@ -33,7 +34,7 @@ class TestMailChannelNotifyEmail(MailCommon):
 
     @classmethod
     def setUpClass(cls):
-        super(TestMailChannelNotifyEmail, cls).setUpClass()
+        super().setUpClass()
         cls.user_jasmine = mail_new_test_user(
             cls.env,
             login="jasmine",
@@ -55,22 +56,22 @@ class TestMailChannelNotifyEmail(MailCommon):
             signature="--\nAladdin",
         )
 
-        cls.general_channel_with_email = cls.env["mail.channel"].create(
+        cls.general_channel_with_email = cls.env["discuss.channel"].create(
             {
                 "name": "General (YES)",
                 "description": "General Mailing-List for MyTestCompany",
-                "alias_name": "general_email",
-                "public": "groups",
-                "email_send": True,
+                # "alias_name": "general_email",
+                # "public": "groups",
+                # "email_send": True,
             }
         )
-        cls.general_channel_no_email = cls.env["mail.channel"].create(
+        cls.general_channel_no_email = cls.env["discuss.channel"].create(
             {
                 "name": "General (NO)",
                 "description": "General Odoo's Channel for MyTestCompany",
-                "alias_name": "general_odoo",
-                "public": "groups",
-                "email_send": False,
+                # "alias_name": "general_odoo",
+                # "public": "groups",
+                # "email_send": False,
             }
         )
 
