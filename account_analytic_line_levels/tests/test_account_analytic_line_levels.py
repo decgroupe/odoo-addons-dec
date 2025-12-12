@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2023
 
 from datetime import datetime
+
 from dateutil.relativedelta import relativedelta
 
 from odoo.tests import common
@@ -12,30 +13,44 @@ class TestAccountAnalyticLineLevels(common.TransactionCase):
         super().setUp()
         self.analytic_account_model = self.env["account.analytic.account"]
         self.analytic_line_model = self.env["account.analytic.line"]
+
+        self.analytic_plan_model = self.env["account.analytic.plan"]
+        # Create an analytic plan
+        self.plan = self.analytic_plan_model.create(
+            {
+                "name": "Test Plan with 4 levels",
+                "default_applicability": "optional",
+            }
+        )
+
         self.line_integration_task = self.env.ref("account_analytic_line_levels.aal_it")
         self.line_online_publish = self.env.ref("account_analytic_line_levels.aal_op")
 
         self.account_al0 = self.analytic_account_model.create(
             {
                 "name": "Account A (level0)",
+                "plan_id": self.plan.id,
             }
         )
         self.account_al1 = self.analytic_account_model.create(
             {
                 "name": "Account A (level1)",
                 "parent_id": self.account_al0.id,
+                "plan_id": self.plan.id,
             }
         )
         self.account_al2 = self.analytic_account_model.create(
             {
                 "name": "Account A (level2)",
                 "parent_id": self.account_al1.id,
+                "plan_id": self.plan.id,
             }
         )
         self.account_al3 = self.analytic_account_model.create(
             {
                 "name": "Account A (level3)",
                 "parent_id": self.account_al2.id,
+                "plan_id": self.plan.id,
             }
         )
 
