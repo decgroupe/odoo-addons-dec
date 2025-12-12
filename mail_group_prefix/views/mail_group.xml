@@ -5,8 +5,8 @@
         <field name="model">mail.group</field>
         <field name="inherit_id" ref="mail_group.mail_group_view_form" />
         <field name="arch" type="xml">
-            <field name="email_send" position="after">
-                <field name="subject_prefix" attrs="{'invisible': []}" />
+            <field name="description" position="after">
+                <field name="subject_prefix" />
             </field>
         </field>
     </record>

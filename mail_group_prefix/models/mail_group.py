@@ -21,9 +21,9 @@ class MailGroup(models.AbstractModel):
         if self.subject_prefix:
             if subject:
                 if not subject.startswith(self.subject_prefix):
-                    subject = "%s %s" % (self.subject_prefix, subject)
+                    subject = f"{self.subject_prefix} {subject}"
             else:
-                subject = "%s" % (self.subject_prefix)
+                subject = self.subject_prefix
         return subject
 
     @api.returns("mail.message", lambda value: value.id)
