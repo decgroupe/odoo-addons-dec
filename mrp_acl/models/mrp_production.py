@@ -22,5 +22,5 @@ class MrpProduction(models.Model):
         if managers:
             message += ["", _("Please contact one of them to do it for you:")]
             for manager in managers:
-                message += ["- %s" % (manager,)]
+                message += [f"- {manager}"]
         raise AccessError("\n".join(message))

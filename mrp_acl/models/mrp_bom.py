@@ -13,7 +13,7 @@ class MrpBom(models.Model):
         if "code" in vals:
             if (
                 self.env.context.get("bypass_supermanager_check")
-                or self.user_has_groups(mrp_production.SUPERMANAGER_GROUP)
+                or self.env.user.has_groups(mrp_production.SUPERMANAGER_GROUP)
                 or self.env.is_superuser()
             ):
                 pass

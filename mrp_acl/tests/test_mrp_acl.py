@@ -3,11 +3,11 @@
 
 from odoo.exceptions import AccessError
 from odoo.tests import new_test_user
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
 
-class TestProjectAcl(SavepointCase):
+class TestProjectAcl(TransactionCase):
     """ """
 
     @classmethod
@@ -53,9 +53,10 @@ class TestProjectAcl(SavepointCase):
             self.bom1.with_user(self.production_user).write({"code": "123"})
         # in bypass mode, the standard access error should be raised because a
         # production user do not have rights to edit BoM
-        with self.assertRaisesRegex(
-            AccessError, r"Manufacturing\/Administrator"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(AccessError, r"Manufacturing\/Administrator"),
+            self.cr.savepoint(),
+        ):
             with mute_logger("odoo.models.write"):
                 self.bom1.with_user(self.production_user).with_context(
                     bypass_supermanager_check=True
