@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:22+0000\n"
-"PO-Revision-Date: 2023-11-28 10:22+0000\n"
+"POT-Creation-Date: 2026-06-03 10:31+0000\n"
+"PO-Revision-Date: 2026-06-03 10:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,41 +26,11 @@ msgid "Bill of Material"
 msgstr ""
 
 #. module: mrp_bom_order
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_bom__display_name
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_production__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: mrp_bom_order
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_bom__id
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_production__id
-msgid "ID"
-msgstr ""
-
-#. module: mrp_bom_order
-#: model:ir.model.fields,help:mrp_bom_order.field_mrp_bom__xid
-#: model:ir.model.fields,help:mrp_bom_order.field_mrp_production__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: mrp_bom_order
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_bom____last_update
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_production____last_update
-msgid "Last Modified on"
+#: model:ir.model,name:mrp_bom_order.model_mrp_production
+msgid "Manufacturing Order"
 msgstr ""
 
 #. module: mrp_bom_order
 #: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_production__newer_bom_id
 msgid "Newer BoM"
-msgstr ""
-
-#. module: mrp_bom_order
-#: model:ir.model,name:mrp_bom_order.model_mrp_production
-msgid "Production Order"
-msgstr ""
-
-#. module: mrp_bom_order
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_bom__xid
-#: model:ir.model.fields,field_description:mrp_bom_order.field_mrp_production__xid
-msgid "XML-ID"
 msgstr ""

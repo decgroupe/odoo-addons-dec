@@ -37,7 +37,7 @@ class TestMrpBomOrder(TransactionCase):
         self.assertFalse(production_id.newer_bom_id)
 
     def test_02_new_bom_lower_sequence(self):
-        bom_v2 = self._create_bom(self.myproduct, "MPV2", 0)
+        _bom_v2 = self._create_bom(self.myproduct, "MPV2", 0)
         production_id = self._generate_mo(self.myproduct, self.mybom_v1)
         self.assertFalse(production_id.newer_bom_id)
 

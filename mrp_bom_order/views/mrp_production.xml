@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_bom_order</field>
         <field name="model">mrp.production</field>
@@ -13,7 +12,7 @@
                     class="alert alert-warning"
                     role="alert"
                     style="margin-right: 15px;"
-                    attrs="{'invisible': [('newer_bom_id', '=', False)]}"
+                    invisible="not newer_bom_id"
                 >
                     <span>⚠️ A newer Bill of Materials exists for this product: </span>
                     <field name="newer_bom_id" />
@@ -21,5 +20,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
