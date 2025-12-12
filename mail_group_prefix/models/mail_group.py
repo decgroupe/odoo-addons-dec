@@ -3,11 +3,12 @@
 
 
 import re
+
 from odoo import api, fields, models
 
 
-class MailChannel(models.AbstractModel):
-    _inherit = "mail.channel"
+class MailGroup(models.AbstractModel):
+    _inherit = "mail.group"
 
     subject_prefix = fields.Char(string="Subject's Prefix", help="【MAIL】")
 

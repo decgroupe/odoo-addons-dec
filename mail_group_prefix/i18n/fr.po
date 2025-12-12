@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mail_channel_prefix
+# 	* mail_group_prefix
 #
 msgid ""
 msgstr ""
@@ -17,37 +17,37 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. module: mail_channel_prefix
-#: model:ir.model,name:mail_channel_prefix.model_mail_channel
+#. module: mail_group_prefix
+#: model:ir.model,name:mail_group_prefix.model_discuss_channel
 msgid "Discussion Channel"
 msgstr "Canal de discussion"
 
-#. module: mail_channel_prefix
-#: model:ir.model.fields,field_description:mail_channel_prefix.field_mail_channel__display_name
+#. module: mail_group_prefix
+#: model:ir.model.fields,field_description:mail_group_prefix.field_discuss_channel__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
-#. module: mail_channel_prefix
-#: model:ir.model.fields,field_description:mail_channel_prefix.field_mail_channel__id
+#. module: mail_group_prefix
+#: model:ir.model.fields,field_description:mail_group_prefix.field_discuss_channel__id
 msgid "ID"
 msgstr "ID"
 
-#. module: mail_channel_prefix
-#: model:ir.model.fields,help:mail_channel_prefix.field_mail_channel__xid
+#. module: mail_group_prefix
+#: model:ir.model.fields,help:mail_group_prefix.field_discuss_channel__xid
 msgid "ID of the record defined in xml file"
 msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: mail_channel_prefix
-#: model:ir.model.fields,field_description:mail_channel_prefix.field_mail_channel____last_update
+#. module: mail_group_prefix
+#: model:ir.model.fields,field_description:mail_group_prefix.field_discuss_channel____last_update
 msgid "Last Modified on"
 msgstr "Dernière Modification le"
 
-#. module: mail_channel_prefix
-#: model:ir.model.fields,field_description:mail_channel_prefix.field_mail_channel__subject_prefix
+#. module: mail_group_prefix
+#: model:ir.model.fields,field_description:mail_group_prefix.field_discuss_channel__subject_prefix
 msgid "Subject's Prefix"
 msgstr "Préfixe du sujet"
 
-#. module: mail_channel_prefix
-#: model:ir.model.fields,field_description:mail_channel_prefix.field_mail_channel__xid
+#. module: mail_group_prefix
+#: model:ir.model.fields,field_description:mail_group_prefix.field_discuss_channel__xid
 msgid "XML-ID"
 msgstr "XML-ID"

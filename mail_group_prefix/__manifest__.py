@@ -1,13 +1,14 @@
 {
-    "name": "Mail Channel Prefix",
+    "name": "Mail Group Prefix",
     "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "mail",
+        "mail_group",
     ],
     "data": [
-        "views/mail_channel.xml",
+        "views/mail_group.xml",
     ],
     "installable": True,
 }
