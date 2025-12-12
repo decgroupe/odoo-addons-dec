@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -41,15 +41,15 @@ class MrpProduction(models.Model):
     def _clean_alias_name(self, alias_name):
         return alias_name.replace("/", "")
 
-    @api.model
-    def create(self, vals):
-        production = super(MrpProduction, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        production_ids = super().create(vals_list)
         if not self.env.context.get("no_mail_alias_autocreate", False):
-            production.sudo().autocreate_mail_alias()
-        return production
+            production_ids.sudo().autocreate_mail_alias()
+        return production_ids
 
     def write(self, vals):
         res = super().write(vals)
-        if not "alias_name" in vals:
+        if "alias_name" not in vals:
             self.sudo().autocreate_mail_alias()
         return res

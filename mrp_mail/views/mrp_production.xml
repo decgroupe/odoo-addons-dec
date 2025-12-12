@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_mail</field>
         <field name="model">mrp.production</field>
@@ -8,11 +7,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//notebook[last()]" position="inside">
-                <page
-                    name="emails"
-                    string="Email"
-                    attrs="{'invisible': [('alias_domain', '=', False)]}"
-                >
+                <page name="emails" string="Email" invisible="not alias_domain">
                     <group name="group_alias">
                         <label for="alias_name" string="Email Alias" />
                         <div name="alias_def">
@@ -28,10 +23,10 @@
                                 style="display: inline;"
                             >
                                 <field name="alias_name" class="oe_inline" />@<field
-                                    name="alias_domain"
-                                    class="oe_inline"
-                                    readonly="1"
-                                />
+                                name="alias_domain"
+                                class="oe_inline"
+                                readonly="1"
+                            />
                             </div>
                         </div>
                         <field
@@ -44,5 +39,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

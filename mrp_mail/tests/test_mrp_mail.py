@@ -56,4 +56,3 @@ class TestMrpMail(TransactionCase):
         production_id.name = "WH/MO/87654321/alt"
         self.assertEqual(production_id.alias_name, "whmo87654321alt")
         self.assertEqual(production_id.alias_force_thread_id, production_id.id)
-        print(1)

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:23+0000\n"
-"PO-Revision-Date: 2023-11-28 10:23+0000\n"
+"POT-Creation-Date: 2026-06-03 10:33+0000\n"
+"PO-Revision-Date: 2026-06-03 10:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,28 +38,38 @@ msgid "Alias Contact Security"
 msgstr ""
 
 #. module: mrp_mail
+#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_domain_id
+msgid "Alias Domain"
+msgstr ""
+
+#. module: mrp_mail
+#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_domain
+msgid "Alias Domain Name"
+msgstr ""
+
+#. module: mrp_mail
+#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_full_name
+msgid "Alias Email"
+msgstr ""
+
+#. module: mrp_mail
 #: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_name
 msgid "Alias Name"
 msgstr ""
 
 #. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_domain
-msgid "Alias domain"
+#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_status
+msgid "Alias Status"
+msgstr ""
+
+#. module: mrp_mail
+#: model:ir.model.fields,help:mrp_mail.field_mrp_production__alias_status
+msgid "Alias status assessed on the last message received."
 msgstr ""
 
 #. module: mrp_mail
 #: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_model_id
 msgid "Aliased Model"
-msgstr ""
-
-#. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__create_uid
-msgid "Created by"
-msgstr ""
-
-#. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__create_date
-msgid "Created on"
 msgstr ""
 
 #. module: mrp_mail
@@ -73,23 +83,19 @@ msgid "Default Values"
 msgstr ""
 
 #. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: mrp_mail
 #: model_terms:ir.ui.view,arch_db:mrp_mail.mrp_production_form_view
 msgid "Email"
 msgstr ""
 
 #. module: mrp_mail
+#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_email
 #: model_terms:ir.ui.view,arch_db:mrp_mail.mrp_production_form_view
 msgid "Email Alias"
 msgstr ""
 
 #. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__id
-msgid "ID"
+#: model:ir.model.fields,help:mrp_mail.field_mrp_production__alias_domain
+msgid "Email domain e.g. 'example.com' in 'odoo@example.com'"
 msgstr ""
 
 #. module: mrp_mail
@@ -97,11 +103,6 @@ msgstr ""
 msgid ""
 "ID of the parent record holding the alias (example: project holding the task"
 " creation alias)"
-msgstr ""
-
-#. module: mrp_mail
-#: model:ir.model.fields,help:mrp_mail.field_mrp_production__xid
-msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: mrp_mail
@@ -119,18 +120,13 @@ msgid ""
 msgstr ""
 
 #. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production____last_update
-msgid "Last Modified on"
+#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_incoming_local
+msgid "Local-part based incoming detection"
 msgstr ""
 
 #. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__write_uid
-msgid "Last Updated by"
-msgstr ""
-
-#. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__write_date
-msgid "Last Updated on"
+#: model:ir.model,name:mrp_mail.model_mrp_production
+msgid "Manufacturing Order"
 msgstr ""
 
 #. module: mrp_mail
@@ -139,11 +135,6 @@ msgid ""
 "Optional ID of a thread (record) to which all incoming messages will be "
 "attached, even if they did not reply to it. If set, this will disable the "
 "creation of new records completely."
-msgstr ""
-
-#. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_user_id
-msgid "Owner"
 msgstr ""
 
 #. module: mrp_mail
@@ -174,11 +165,6 @@ msgid ""
 msgstr ""
 
 #. module: mrp_mail
-#: model:ir.model,name:mrp_mail.model_mrp_production
-msgid "Production Order"
-msgstr ""
-
-#. module: mrp_mail
 #: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__alias_force_thread_id
 msgid "Record Thread ID"
 msgstr ""
@@ -196,18 +182,4 @@ msgstr ""
 msgid ""
 "The name of the email alias, e.g. 'jobs' if you want to catch emails for "
 "<jobs@example.odoo.com>"
-msgstr ""
-
-#. module: mrp_mail
-#: model:ir.model.fields,help:mrp_mail.field_mrp_production__alias_user_id
-msgid ""
-"The owner of records created upon receiving emails on this alias. If this "
-"field is not set the system will attempt to find the right owner based on "
-"the sender (From) address, or will use the Administrator account if no "
-"system user is found for that address."
-msgstr ""
-
-#. module: mrp_mail
-#: model:ir.model.fields,field_description:mrp_mail.field_mrp_production__xid
-msgid "XML-ID"
 msgstr ""
