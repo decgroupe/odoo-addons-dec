@@ -8,9 +8,11 @@ class TestPartnerCommercialFencing(TransactionCase):
     def setUp(self):
         super().setUp()
 
-    def _create_partner(self, name, vals={}):
+    def _create_partner(self, name, vals=None):
+        if vals is None:
+            vals = {}
         Partner = self.env["res.partner"]
-        if not "name" in vals:
+        if "name" not in vals:
             vals["name"] = name
         return Partner.create(vals)
 

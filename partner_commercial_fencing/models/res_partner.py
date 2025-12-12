@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2022
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
@@ -28,7 +28,7 @@ class ResPartner(models.Model):
         "parent_id.inherit_commercial_partner",
     )
     def _compute_commercial_partner(self):
-        super()._compute_commercial_partner()
+        res = super()._compute_commercial_partner()
         for rec in self:
             if rec.is_company or not rec.parent_id:
                 rec.unfenced_commercial_partner_id = rec.commercial_partner_id
@@ -38,11 +38,13 @@ class ResPartner(models.Model):
                 )
             if not rec.inherit_commercial_partner and not rec.is_company:
                 rec.commercial_partner_id = rec
+        return res
 
     def _commercial_sync_from_company(self):
-        super()._commercial_sync_from_company()
+        res = super()._commercial_sync_from_company()
         if self == self.commercial_partner_id and "vat" in self._commercial_fields():
             for rec in self.filtered(lambda x: not x.inherit_commercial_partner):
                 # clear VAT
                 if rec.vat and rec.vat == rec.parent_id.vat:
                     rec.vat = False
+        return res

@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-07 12:37+0000\n"
+"POT-Creation-Date: 2026-06-03 10:41+0000\n"
 "PO-Revision-Date: 2023-11-28 13:56+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -21,16 +21,6 @@ msgstr ""
 #: model:ir.model,name:partner_commercial_fencing.model_res_partner
 msgid "Contact"
 msgstr "Contact"
-
-#. module: partner_commercial_fencing
-#: model:ir.model.fields,field_description:partner_commercial_fencing.field_res_partner__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: partner_commercial_fencing
-#: model:ir.model.fields,field_description:partner_commercial_fencing.field_res_partner__id
-msgid "ID"
-msgstr "ID"
 
 #. module: partner_commercial_fencing
 #: model:ir.model.fields,help:partner_commercial_fencing.field_res_partner__inherit_commercial_partner
@@ -49,12 +39,16 @@ msgid "Inherit commercial contact from the parent/company"
 msgstr "Hérite son contact commercial depuis le parent ou la société"
 
 #. module: partner_commercial_fencing
-#: model:ir.model.fields,field_description:partner_commercial_fencing.field_res_partner____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: partner_commercial_fencing
 #: model:ir.model.fields,field_description:partner_commercial_fencing.field_res_partner__unfenced_commercial_partner_id
 #: model:ir.model.fields,field_description:partner_commercial_fencing.field_res_users__unfenced_commercial_partner_id
 msgid "Unfenced Commercial Entity"
 msgstr "Entité commerciale (non cloisonnée)"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"

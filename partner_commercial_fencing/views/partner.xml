@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="partner_form_view">
         <field name="name">res.partner.form@partner_commercial_fencing</field>
         <field name="model">res.partner</field>
@@ -8,10 +7,7 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='parent_id']/parent::div" position="after">
-                <div
-                    name="inherit_commercial_partner"
-                    attrs="{'invisible': [('is_company', '=', True)]}"
-                >
+                <div name="inherit_commercial_partner" invisible="is_company">
                     <field name="inherit_commercial_partner" class="o_light_label" />
                     <label for="inherit_commercial_partner" />
                 </div>
@@ -35,5 +31,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

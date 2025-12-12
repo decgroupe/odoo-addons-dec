@@ -1,1 +1,0 @@
-Add an option to hide business documents in portal to specific contacts
