@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestBaseLocationCountCaps(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.country = self.env.ref("base.fr")
@@ -80,10 +79,12 @@ class TestBaseLocationCountCaps(TransactionCase):
         self.assertEqual(self.city6.caps_count, 17)
         self.assertAlmostEqual(self.city6.caps_ratio, 1.0)
 
-        domain = []  # empty domain, search all active records
-        fields = {"id", "name", "normalized_name"}
+        domain = [("id", "in", self.city_ids.ids)]  # search only our city records
         groupby = ["normalized_name"]
-        city_group = self.env["res.city"].read_group(domain, fields, groupby)
-        self.assertEqual(len(city_group), 1)
-        self.assertEqual(city_group[0]["normalized_name"], "argentreduplessis")
-        self.assertEqual(city_group[0]["normalized_name_count"], 5)
+        aggregates = ["name:count", "id:recordset"]
+        city_group = self.env["res.city"]._read_group(domain, groupby, aggregates)
+        self.assertEqual(len(city_group), 2)
+        self.assertEqual(city_group[0][0], "abbevillelesconflans")
+        self.assertEqual(city_group[0][1], 1)  # count of name
+        self.assertEqual(city_group[1][0], "argentreduplessis")
+        self.assertEqual(city_group[1][1], 5)  # count of name

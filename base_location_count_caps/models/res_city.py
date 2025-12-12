@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2020
 
-from string import ascii_lowercase, ascii_uppercase
+from string import ascii_lowercase
 
 from odoo import api, fields, models
 from odoo.tools import remove_accents
