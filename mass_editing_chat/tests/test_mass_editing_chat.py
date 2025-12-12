@@ -7,9 +7,7 @@ from odoo.tests import common
 
 
 @common.tagged("-at_install", "post_install")
-class TestMassEditingChat(common.SavepointCase):
-    """ """
-
+class TestMassEditingChat(common.TransactionCase):
     def setUp(self):
         super().setUp()
         self.mass_editing_partner_note = self.env.ref(
@@ -21,13 +19,8 @@ class TestMassEditingChat(common.SavepointCase):
             active_model=items._name,
             active_ids=items.ids,
         ).run()
-        wizard = (
-            self.env[action["res_model"]]
-            .with_context(
-                literal_eval(action["context"]),
-            )
-            .create(vals)
-        )
+        ctx = literal_eval(action["context"])
+        wizard = self.env[action["res_model"]].with_context(**ctx).create(vals)
         wizard.button_apply()
         return wizard
 

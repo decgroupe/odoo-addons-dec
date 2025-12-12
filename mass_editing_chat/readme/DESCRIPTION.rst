@@ -1,1 +1,0 @@
-Add a new field to add a message to the chatter when supported by the model.
