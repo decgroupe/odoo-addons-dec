@@ -20,12 +20,12 @@ class ResCity(models.Model):
                     if not common_prefix:
                         common_prefix = other_prefix
                     elif other_prefix != common_prefix:
-                        if not other_prefix in to_split:
+                        if other_prefix not in to_split:
                             to_split[other_prefix] = []
                         to_split[other_prefix].append(zip_id)
             if not to_split:
                 continue
-            for prefix, zip_ids in to_split.items():
+            for _prefix, zip_ids in to_split.items():
                 new_city_id = rec.copy(default={"zip_ids": False})
                 for zip_id in zip_ids:
                     zip_id.city_id = new_city_id

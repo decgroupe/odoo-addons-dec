@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestBaseLocationSplit(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.city0a = self.env["res.city"].create(
