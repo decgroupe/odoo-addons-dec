@@ -1,8 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2023
 
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
-from odoo.tests.common import Form
 
 
 class TestCrmLeadPartnerLocation(TransactionCase):
@@ -24,6 +24,7 @@ class TestCrmLeadPartnerLocation(TransactionCase):
             view_id = self.env.ref(form_xmlid).id
         else:
             view_id = False
+        # pylint: disable=context-overridden
         crm_form = Form(self.env["crm.lead"].with_context({}), view=view_id)
         crm_form.partner_id = self.partner_id
         lead_id = crm_form.save()

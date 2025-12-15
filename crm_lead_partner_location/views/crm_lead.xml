@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="crm_case_oppor_tree_view">
-        <field name="name">crm.lead.tree.opportunity@crm_lead_partner_location</field>
+        <field name="name">crm.lead.list.opportunity@crm_lead_partner_location</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='partner_id']" position="after">
+            <xpath expr="//list/field[@name='partner_id']" position="after">
                 <field name="partner_shipping_id" />
                 <field name="partner_shipping_zip_id" string="ZIP Location" />
             </xpath>
-            <xpath expr="//tree/field[@name='country_id']" position="replace">
+            <xpath expr="//list/field[@name='country_id']" position="replace">
                 <field name="partner_shipping_country_id" string="Country" />
             </xpath>
         </field>
@@ -71,20 +71,25 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
         <field name="arch" type="xml">
-            <xpath expr="//kanban/field[@name='partner_id']" position="after">
+            <xpath expr="//kanban/progressbar" position="before">
                 <field name="partner_shipping_id" />
                 <field name="partner_shipping_zip_id" />
             </xpath>
-            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+            <xpath
+                expr="//kanban//templates//field[@name='partner_id']"
+                position="after"
+            >
                 <div class="my-1">
                     <small name="partner_shipping_id">
                         <div t-if="record.partner_shipping_id.raw_value">
-                            <i class="fa fa-truck" />
-                            <t t-raw="record.partner_shipping_id.value" />
+                            <i class="fa fa-truck" />&amp;nbsp;<t
+                            t-out="record.partner_shipping_id.value"
+                        />
                         </div>
                         <div t-if="record.partner_shipping_zip_id.raw_value">
-                            <i class="fa fa-map-marker" />
-                            <t t-raw="record.partner_shipping_zip_id.value" />
+                            <i class="fa fa-map-marker" />&amp;nbsp;<t
+                            t-out="record.partner_shipping_zip_id.value"
+                        />
                         </div>
                     </small>
                 </div>
@@ -102,5 +107,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
         # Note that this code is finally useless because shipping field is
         # overriden in the `onchange_partner_id` event.
         # Take a look on the `address_get` function in `res_partner.py`
-        result = super(SaleOrder, self).default_get(fields)
+        result = super().default_get(fields)
         opportunity_id = self.env["crm.lead"].browse(
             result.get("opportunity_id", False)
         )
