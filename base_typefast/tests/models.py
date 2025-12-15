@@ -42,16 +42,15 @@ class FakeModelCustomNameGet(models.Model):
     _inherit = ["typefast.mixin"]
     _name = "fake.model.custom.name.get"
     _typefast_options = {
-        "source": "name_get",
+        "source": "display_name",
     }
 
     name = fields.Char(required=True)
     prefix = fields.Char(required=True)
     suffix = fields.Char(required=True)
 
-    def name_get(self):
-        result = []
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
         for rec in self:
-            name = "%s %s %s" % (rec.prefix, rec.name, rec.suffix)
-            result.append((rec.id, name))
-        return result
+            rec.display_name = f"{rec.prefix} {rec.name} {rec.suffix}"
+        return res

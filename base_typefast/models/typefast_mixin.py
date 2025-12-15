@@ -11,7 +11,7 @@ class TypefastMixin(models.AbstractModel):
     _name = "typefast.mixin"
     _description = "Typefast Mixin"
     _typefast_options = {
-        "source": "rec_name", # or name_get
+        "source": "rec_name",  # or display_name
         "strip": True,
     }
 
@@ -30,8 +30,8 @@ class TypefastMixin(models.AbstractModel):
                     rec.typefast_name = rec[self._rec_name]
                 elif field_type == "many2one":
                     rec.typefast_name = rec[self._rec_name].display_name
-            elif self._typefast_options.get("source") == "name_get":
-                rec.typefast_name = rec.name_get()[0][1]
+            elif self._typefast_options.get("source") == "display_name":
+                rec.typefast_name = rec.display_name
 
             if rec.typefast_name and self._typefast_options.get("strip"):
                 # Strip everything but alphanumeric chars from the name
@@ -55,14 +55,6 @@ class TypefastMixin(models.AbstractModel):
         return name, args
 
     @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
+    def name_search(self, name, args=None, operator="ilike", limit=100):
         name, args = self._prepare_typefast_search(name, args, operator)
-        return super()._name_search(
-            name=name,
-            args=args,
-            operator=operator,
-            limit=limit,
-            name_get_uid=name_get_uid,
-        )
+        return super().name_search(name=name, args=args, operator=operator, limit=limit)

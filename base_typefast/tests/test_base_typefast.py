@@ -5,15 +5,12 @@ import logging
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo import fields
-from odoo.tests import new_test_user
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 _test_logger = logging.getLogger("odoo.tests")
 
 
-class TestBaseTypefast(SavepointCase):
-
+class TestBaseTypefast(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -25,9 +22,9 @@ class TestBaseTypefast(SavepointCase):
         from .models import (
             FakeModel,
             FakeModelCharName,
+            FakeModelCustomNameGet,
             FakeModelIntName,
             FakeModelM2oName,
-            FakeModelCustomNameGet,
         )
 
         cls.loader.update_registry(
@@ -93,7 +90,7 @@ class TestBaseTypefast(SavepointCase):
         self.assertEqual(
             fake_model._typefast_options,
             {
-                "source": "name_get",
+                "source": "display_name",
             },
         )
         self.assertEqual(obj_id.typefast_name, "Mr Bob Junior")
@@ -112,18 +109,21 @@ class TestBaseTypefast(SavepointCase):
         r2 = fake_model.create({"name": "HelloKitty", "value": 1})
         r3 = fake_model.create({"name": "Hel lo Jo Wick"})
         r4 = fake_model.create({"name": "🚀 By Guys", "value": 1})
-        rec_ids = list(fake_model._name_search("hello"))
+        search_res = fake_model.name_search("hello")
+        rec_ids = [res[0] for res in search_res]
         self.assertIn(r1.id, rec_ids)
         self.assertIn(r2.id, rec_ids)
         self.assertIn(r3.id, rec_ids)
         self.assertNotIn(r4.id, rec_ids)
         # search with specific operator (everything other than ilike should disable
         # typefast behaviour)
-        rec_ids = list(fake_model._name_search("hello", operator="="))
+        search_res = list(fake_model.name_search("hello", operator="="))
+        rec_ids = [res[0] for res in search_res]
         self.assertFalse(rec_ids)
         # search with specific domain
         domain = [("value", "=", "1")]
-        rec_ids = list(fake_model._name_search("hello", args=domain))
+        search_res = list(fake_model.name_search("hello", args=domain))
+        rec_ids = [res[0] for res in search_res]
         self.assertIn(r1.id, rec_ids)
         self.assertIn(r2.id, rec_ids)
         self.assertNotIn(r3.id, rec_ids)
