@@ -6,66 +6,57 @@ from odoo import api, models
 
 class UoM(models.Model):
     _inherit = "uom.uom"
-    _name_search_order = "factor desc, name"
+    _name_search_order = "factor DESC, name"
 
     @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        res = super().name_search(name=name, args=args, operator=operator, limit=limit)
         if not args:
             args = []
 
-        uom_ids = []
         if name:
+            records = self.env["uom.uom"]
             positive_operators = ["=", "ilike", "=ilike", "like", "=like"]
             if operator in positive_operators:
-                uom_ids = list(
-                    self._search(
-                        args + [("name", "=ilike", name)],
-                        limit=limit,
-                        access_rights_uid=name_get_uid,
-                        order=self._name_search_order,
-                    )
-                )
-
-            if not limit or len(uom_ids) < limit:
-                limit2 = (limit - len(uom_ids)) if limit else False
-                uom2_ids = list(
-                    self._search(
-                        args
-                        + [
-                            ("name", "=ilike", name + "%"),
-                            ("id", "not in", uom_ids),
-                        ],
-                        limit=limit2,
-                        access_rights_uid=name_get_uid,
-                        order=self._name_search_order,
-                    )
-                )
-                uom_ids.extend(uom2_ids)
-
-            if not limit or len(uom_ids) < limit and operator != "=ilike":
-                limit3 = (limit - len(uom_ids)) if limit else False
-                uom3_ids = list(
-                    self._search(
-                        args
-                        + [
-                            ("name", operator, name),
-                            ("id", "not in", uom_ids),
-                        ],
-                        limit=limit3,
-                        access_rights_uid=name_get_uid,
-                        order=self._name_search_order,
-                    )
-                )
-                uom_ids.extend(uom3_ids)
-        else:
-            uom_ids = list(
-                self._search(
-                    args,
+                records = self.search_fetch(
+                    args + [("name", "=ilike", name)],
+                    field_names=[],
                     limit=limit,
-                    access_rights_uid=name_get_uid,
+                    order=self._name_search_order,
                 )
-            )
-        # print(list(self.browse(uom_ids).mapped("name")))
-        return uom_ids
+            # bonus searches (step 1)
+            if not limit or len(records) < limit:
+                bonus_limit = (limit - len(records)) if limit else False
+                bonus_records = self.search_fetch(
+                    args
+                    + [
+                        ("name", "=ilike", name + "%"),
+                        ("id", "not in", records.ids),
+                    ],
+                    field_names=[],
+                    limit=bonus_limit,
+                    order=self._name_search_order,
+                )
+                records |= bonus_records
+
+            # bonus searches (step 2)
+            if not limit or len(records) < limit and operator != "=ilike":
+                bonus_limit = (limit - len(records)) if limit else False
+                bonus_records = self.search_fetch(
+                    args
+                    + [
+                        ("name", operator, name),
+                        ("id", "not in", records.ids),
+                    ],
+                    field_names=[],
+                    limit=bonus_limit,
+                    order=self._name_search_order,
+                )
+                records |= bonus_records
+
+            if records:
+                # same code from base implementation of name_search
+                return [(record.id, record.display_name) for record in records.sudo()]
+
+        # fallback to super implementation
+        return res
