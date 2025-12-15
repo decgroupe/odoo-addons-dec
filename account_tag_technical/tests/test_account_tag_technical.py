@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2023
 
 import contextlib
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 import odoo
 from odoo.tests import new_test_user
@@ -43,12 +43,13 @@ class TestAccountTagTechnical(TransactionCase):
 
     def test_01_technical_name(self):
         tag_financing = self.env.ref("account.account_tag_financing")
-        tech_name = tag_financing.with_user(self.user).name_get()[0][1]
+        tech_name = tag_financing.with_user(self.user).display_name
         self.assertEqual(tech_name, "Financing Activities")
         # enable technical group (not needed since base_user depends on it)
         self.env.ref("base.group_no_one").write({"users": [(4, self.user.id)]})
-        self.assertTrue(self.user.has_group("base.group_no_one"))
+        self.assertFalse(self.user.has_group("base.group_no_one"))
         # retry with debug mode enabled in mocked http request
         with MockDebugRequest(self.env):
-            tech_name = tag_financing.with_user(self.user).name_get()[0][1]
+            self.assertTrue(self.user.has_group("base.group_no_one"))
+            tech_name = tag_financing.with_user(self.user).display_name
         self.assertEqual(tech_name, "Financing Activities [account_tag_financing]")
