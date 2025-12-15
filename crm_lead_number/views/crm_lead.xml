@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="crm_case_oppor_tree_view">
-        <field name="name">crm.lead.tree.opportunity@crm_lead_number</field>
+        <field name="name">crm.lead.list.opportunity@crm_lead_number</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
         <field name="arch" type="xml">
@@ -31,7 +30,7 @@
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
         <field name="arch" type="xml">
             <xpath
-                expr="//div[@class='oe_kanban_content']//field[@name='name']"
+                expr="//kanban//t[@t-name='card']//field[@name='name']"
                 position="before"
             >
                 <small>
@@ -56,12 +55,9 @@
                         ('number', 'ilike', self),
                         ('name', 'ilike', self)
                     ]"
-                >
-                </field>
+                />
                 <separator />
             </field>
         </field>
     </record>
-
-
 </odoo>

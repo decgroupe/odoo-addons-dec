@@ -10,8 +10,7 @@ _logger = logging.getLogger(__name__)
 
 class CrmLead(models.Model):
     _inherit = "crm.lead"
-    _rec_name_get = "complete_name"
-    _rec_name_search = "search_name"
+    _rec_names_search = ["search_name"]
 
     number = fields.Char(
         string="Opportunity Number",
@@ -33,7 +32,7 @@ class CrmLead(models.Model):
     def _prepare_number(self, values=None):
         seq = self.env["ir.sequence"]
         if values and "company_id" in values:
-            seq = seq.with_company(values['company_id'])
+            seq = seq.with_company(values["company_id"])
         return seq.next_by_code("crm.lead.sequence") or "/"
 
     def _init_number(self, vals=None):
@@ -41,11 +40,12 @@ class CrmLead(models.Model):
             if self.number == "/":
                 self.number = self._prepare_number(vals)
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        record._init_number(vals)
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for rec, vals in zip(records, vals_list, strict=True):
+            rec._init_number(vals)
+        return records
 
     def write(self, vals):
         res = super().write(vals)
@@ -56,30 +56,23 @@ class CrmLead(models.Model):
     @api.depends("name", "number", "email_from", "partner_id", "partner_id.name")
     def _compute_names(self):
         for rec in self:
-            rec.complete_name = "[{}] {}".format(rec.number, rec.name)
+            rec.complete_name = f"[{rec.number}] {rec.name}"
             rec.search_name = rec.complete_name
             if rec.email_from:
-                rec.search_name = "{} {}".format(rec.search_name, rec.email_from)
+                rec.search_name = f"{rec.search_name} {rec.email_from}"
             if rec.partner_id:
-                rec.search_name = "{} {}".format(
-                    rec.search_name, rec.partner_id.display_name
-                )
+                rec.search_name = f"{rec.search_name} {rec.partner_id.display_name}"
 
-    def name_get(self):
-        cls = type(self)
-        original_rec_name = cls._rec_name
-        cls._rec_name = cls._rec_name_get
-        result = super(CrmLead, self).name_get()
-        cls._rec_name = original_rec_name
-        return result
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
+        for rec in self:
+            rec.display_name = rec.complete_name
+        return res
 
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
-        cls = type(self)
-        original_rec_name = cls._rec_name
-        cls._rec_name = self._rec_name_search
-        result = super().name_search(
+        # Search over `_rec_names_search` fields
+        result = super(CrmLead, self.with_context(name_search=True)).name_search(
             name=name, args=args, operator=operator, limit=limit
         )
-        cls._rec_name = original_rec_name
         return result

@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestCrmLeadNumber(TransactionCase):
-
     def _get_next_number(self):
         # should be identical to self.crm_lead._prepare_number()
         return self.sequence.get_next_char(self.sequence.number_next_actual)
@@ -58,7 +57,7 @@ class TestCrmLeadNumber(TransactionCase):
             }
         )
         # search using computed `search_name`
-        lead_ids = self.model_crm.name_search(name="[%s] InsideVR: XRDevice" % (number))
+        lead_ids = self.model_crm.name_search(name=f"[{number}] InsideVR: XRDevice")
         self.assertEqual(len(lead_ids), 1)
         self.assertEqual(lead_ids[0][0], opportunity_id.id)
         # search using computed `search_name`
