@@ -5,8 +5,7 @@ from odoo.tests.common import TransactionCase
 
 
 class TestCrmLeadIdentification(TransactionCase):
-
-    def _append_emoji_to_stages(self):
+    def _append_symbol_to_stages(self):
         self.stage_new.name = "✨ " + self.stage_new.name
         self.stage_proposition.name = "✨ " + self.stage_proposition.name
         self.stage_qualified.name = "🏁 " + self.stage_qualified.name
@@ -39,12 +38,6 @@ class TestCrmLeadIdentification(TransactionCase):
         self.case_19.number = "SLD/19"
         self.case_17.number = "SLD/17"
         self.case_15.number = "SLD/15"
-        # (29, '[/] Club Office More Desks') crm_case_29
-        # (22, '[LD/00010] 5 VP Chairs → 🏢 Azure Interior') crm_case_22
-        # (19, '[LD/00007] Customizable Desk → 🏢 Azure Interior') crm_case_19
-        # (17, '[LD/00005] Balmer Inc: Potential Distributor') crm_case_17
-        # (15, '[LD/00003] Info about services → 🏢 Deco Addict') crm_case_15
-        # (13, '[LD/00001] Quote for 12 Tables') crm_case_13
         self.lead_ids = (
             self.case_13
             + self.case_29
@@ -54,56 +47,57 @@ class TestCrmLeadIdentification(TransactionCase):
             + self.case_15
         )
 
-    def test_01_name_get(self):
+    def assertNameSearch(self, lead, name, expected_result):
+        self.model_crm.invalidate_model(["display_name"])
+        res = self.model_crm.name_search(name=name)
+        if not expected_result:
+            self.assertFalse(res)
+            return
+        self.assertEqual(res[0][0], lead.id)
+        self.assertEqual(res[0][1], expected_result)
 
-        ctx = {"name_search": True}
-        self.assertEqual(
-            self.case_13.name_get()[0][1],
+    def assertDisplayName(self, lead, context, normal_name, identification_name):
+        self.model_crm.invalidate_model(["display_name"])
+        self.assertEqual(lead.display_name, normal_name)
+        self.model_crm.invalidate_model(["display_name"])
+        self.assertEqual(lead.with_context(**context).display_name, identification_name)
+
+    def test_01_display_name(self):
+        self.assertDisplayName(
+            self.case_13,
+            {"name_search": True},
+            "[SLD/13] Quote for 12 Tables",
             "[SLD/13] Quote for 12 Tables",
         )
-        self.assertEqual(
-            self.case_13.with_context(**ctx).name_get()[0][1],
-            "[SLD/13] Quote for 12 Tables",
-        )
-        self.assertEqual(
-            self.case_29.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_29,
+            {"name_search": True},
+            "[SLD/29] Club Office More Desks",
             "[SLD/29] Club Office More Desks",
         )
-        self.assertEqual(
-            self.case_29.with_context(**ctx).name_get()[0][1],
-            "[SLD/29] Club Office More Desks",
-        )
-        self.assertEqual(
-            self.case_22.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_22,
+            {"name_search": True},
             "[SLD/22] 5 VP Chairs",
-        )
-        self.assertEqual(
-            self.case_22.with_context(**ctx).name_get()[0][1],
             "[SLD/22] 5 VP Chairs → 🏢 Azure Interior",
         )
-        self.assertEqual(
-            self.case_19.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_19,
+            {"name_search": True},
             "[SLD/19] Customizable Desk",
-        )
-        self.assertEqual(
-            self.case_19.with_context(**ctx).name_get()[0][1],
             "[SLD/19] Customizable Desk → 🏢 Azure Interior",
         )
-        self.assertEqual(
-            self.case_17.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_17,
+            {"name_search": True},
+            "[SLD/17] Balmer Inc: Potential Distributor",
             "[SLD/17] Balmer Inc: Potential Distributor",
         )
-        self.assertEqual(
-            self.case_17.with_context(**ctx).name_get()[0][1],
-            "[SLD/17] Balmer Inc: Potential Distributor",
-        )
-        self.assertEqual(
-            self.case_15.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_15,
+            {"name_search": True},
             "[SLD/15] Info about services",
-        )
-        self.assertEqual(
-            self.case_15.with_context(**ctx).name_get()[0][1],
-            "[SLD/15] Info about services → 🏢 Deco Addict",
+            "[SLD/15] Info about services → 🏢 Acme Corporation",
         )
 
     def test_02_name_search(self):
@@ -112,74 +106,61 @@ class TestCrmLeadIdentification(TransactionCase):
         self.assertIn(self.case_22.id, res_ids)
         self.assertIn(self.case_19.id, res_ids)
         res = self.model_crm.name_search(
-            name="[SLD/15] Info about services → 🏢 Deco Addict"
+            name="[SLD/15] Info about services → 🏢 Acme Corporation"
         )
         res_ids = [x[0] for x in res]
         self.assertEqual(len(res_ids), 1)
         self.assertIn(self.case_15.id, res_ids)
         pass
 
-    def test_03_name_get_with_emoji_in_stage(self):
-        self._append_emoji_to_stages()
+    def test_03_display_name_with_symbol_in_stage(self):
+        self._append_symbol_to_stages()
         # same as test_01
-        ctx = {"name_search": True}
-        self.assertEqual(
-            self.case_13.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_13,
+            {"name_search": True},
             "[SLD/13] Quote for 12 Tables",
-        )
-        self.assertEqual(
-            self.case_13.with_context(**ctx).name_get()[0][1],
             "✨ [SLD/13] Quote for 12 Tables",
         )
-        self.assertEqual(
-            self.case_29.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_29,
+            {"name_search": True},
             "[SLD/29] Club Office More Desks",
-        )
-        self.assertEqual(
-            self.case_29.with_context(**ctx).name_get()[0][1],
             "🏁 [SLD/29] Club Office More Desks",
         )
-        self.assertEqual(
-            self.case_22.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_22,
+            {"name_search": True},
             "[SLD/22] 5 VP Chairs",
-        )
-        self.assertEqual(
-            self.case_22.with_context(**ctx).name_get()[0][1],
             "✨ [SLD/22] 5 VP Chairs → 🏢 Azure Interior",
         )
-        self.assertEqual(
-            self.case_19.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_19,
+            {"name_search": True},
             "[SLD/19] Customizable Desk",
-        )
-        self.assertEqual(
-            self.case_19.with_context(**ctx).name_get()[0][1],
             "✨ [SLD/19] Customizable Desk → 🏢 Azure Interior",
         )
-        self.assertEqual(
-            self.case_17.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_17,
+            {"name_search": True},
             "[SLD/17] Balmer Inc: Potential Distributor",
-        )
-        self.assertEqual(
-            self.case_17.with_context(**ctx).name_get()[0][1],
             "🏁 [SLD/17] Balmer Inc: Potential Distributor",
         )
-        self.assertEqual(
-            self.case_15.name_get()[0][1],
+        self.assertDisplayName(
+            self.case_15,
+            {"name_search": True},
             "[SLD/15] Info about services",
-        )
-        self.assertEqual(
-            self.case_15.with_context(**ctx).name_get()[0][1],
-            "🏁 [SLD/15] Info about services → 🏢 Deco Addict",
+            "🏁 [SLD/15] Info about services → 🏢 Acme Corporation",
         )
 
-    def test_04_name_search_with_emoji_in_stage(self):
-        self._append_emoji_to_stages()
+    def test_04_name_search_with_symbol_in_stage(self):
+        self._append_symbol_to_stages()
         res = self.model_crm.name_search(name="Azure Interior")
         res_ids = [x[0] for x in res]
         self.assertIn(self.case_22.id, res_ids)
         self.assertIn(self.case_19.id, res_ids)
         res = self.model_crm.name_search(
-            name="🏁 [SLD/15] Info about services → 🏢 Deco Addict"
+            name="🏁 [SLD/15] Info about services → 🏢 Acme Corporation"
         )
         res_ids = [x[0] for x in res]
         self.assertEqual(len(res_ids), 1)
