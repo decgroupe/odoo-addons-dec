@@ -3,36 +3,26 @@
 
 import ipaddress
 import logging
-import re
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import AccessDenied, UserError
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
-
-from odoo.addons import base
 
 
 class ResUsers(models.Model):
     _inherit = "res.users"
 
     local_password = fields.Char(
-        inverse="_set_local_password",
+        inverse="_set_local_password",  # pylint: disable=method-inverse
         copy=False,
         help="This password can only be used from a private IP address",
     )
 
-    def __init__(self, pool, cr):
-        """Override of __init__ to add access rights on new fields.
-        Access rights are disabled by default, but allowed on some
-        specific fields defined in self.SELF_{READ/WRITE}ABLE_FIELDS.
-        """
-        init_res = super().__init__(pool, cr)
-        type(self).SELF_WRITEABLE_FIELDS = list(
-            set(self.SELF_WRITEABLE_FIELDS + ["local_password"])
-        )
-        return init_res
+    @property
+    def SELF_WRITEABLE_FIELDS(self):
+        return super().SELF_WRITEABLE_FIELDS + ["local_password"]
 
     def _get_ip_address(self):
         ip_addr = (
@@ -51,13 +41,13 @@ class ResUsers(models.Model):
         self.env.cr.execute(
             "UPDATE res_users SET local_password=%s WHERE id=%s", (pw, uid)
         )
-        self.invalidate_cache(["local_password"], [uid])
+        self.invalidate_model(["local_password"], [uid])
 
     def _clear_local_password(self, uid):
         self.env.cr.execute(
             "UPDATE res_users SET local_password=NULL WHERE id=%s", (uid,)
         )
-        self.invalidate_cache(["local_password"], [uid])
+        self.invalidate_model(["local_password"], [uid])
 
     def _check_local_password(self, pw):
         if pw and len(pw) < 4:
@@ -78,30 +68,38 @@ class ResUsers(models.Model):
                 self._check_local_password(pw)
                 self._set_encrypted_local_password(user.id, ctx.hash(pw))
 
-    def _check_credentials(self, password, env):
+    def _check_credentials(self, credential, env):
         try:
             ip_address = self._get_ip_address()
             is_local = ip_address and ipaddress.ip_address(ip_address).is_private
-            return super(
+            res = super(
                 ResUsers, self.with_context(bypass_mfa=is_local)
-            )._check_credentials(password, env)
+            )._check_credentials(credential, env)
+            return res
         except AccessDenied as e:
             valid = False
             # Verifies the local password, possibly updating the stored hash if needed
-            if self.user_has_groups("auth_local_password.group_local_password"):
+            if self.env.user.has_group("auth_local_password.group_local_password"):
                 self.env.cr.execute(
                     "SELECT COALESCE(local_password, '') " "FROM res_users WHERE id=%s",
                     [self.env.user.id],
                 )
                 [hashed] = self.env.cr.fetchone()
                 valid, replacement = self._crypt_context().verify_and_update(
-                    password, hashed
+                    credential["password"], hashed
                 )
                 if replacement is not None:
                     self._set_encrypted_local_password(self.env.user.id, replacement)
-                if valid and not is_local:
-                    raise AccessDenied(
-                        _("Cannot use a local password from Internet")
-                    ) from e
+                if valid:
+                    if not is_local:
+                        raise AccessDenied(
+                            _("Cannot use a local password from Internet")
+                        ) from e
+                    else:
+                        return {
+                            "uid": self.env.user.id,
+                            "auth_method": "local_password",
+                            "mfa": "skip",
+                        }
             if not valid:
                 raise

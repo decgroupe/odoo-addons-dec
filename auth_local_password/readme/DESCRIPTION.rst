@@ -1,1 +1,0 @@
-Allow use of a secondary password (PIN) when local
