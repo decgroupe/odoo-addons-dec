@@ -9,7 +9,15 @@ class IrModelData(models.Model):
     _inherit = "ir.model.data"
 
     @api.model
-    def id_to_xmlid(self, model, id, module, name, noupdate=False, replace=False):
+    def id_to_xmlid(
+        self,
+        model,
+        id,
+        module,
+        name,
+        noupdate=False,
+        replace=False,
+    ):  # pylint: disable=redefined-builtin
         record = self.env[model].browse(id)
         xml_id = self.record_to_xmlid(record, module, name, noupdate, replace)
         return xml_id.id
@@ -58,7 +66,7 @@ class IrModelData(models.Model):
     def get_xmlid_as_string(self, record):
         module, name = self.get_xmlid(record)
         if module and name:
-            return "%s.%s" % (module, name)
+            return f"{module}.{name}"
         else:
             return None
 

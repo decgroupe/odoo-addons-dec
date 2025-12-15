@@ -7,7 +7,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestBaseXmlid(TransactionCase):
-
     def _get_model_data(self, record):
         return self.imd.search(
             [("model", "=", record._name), ("res_id", "=", record.id)]
