@@ -1,22 +1,22 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
-import re
-from odoo import _, api, models
+from odoo import api, models
 
 SEARCH_SEPARATOR = "→"
-EMOJI_COMPANY = "🏢"
-EMOJI_CONTACT = "👷"
+SYMBOL_COMPANY = "🏢"
+SYMBOL_CONTACT = "👷"
+
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    def _get_contact_type_emoji(self):
+    def _get_contact_type_symbol(self):
         self.ensure_one()
         if self.is_company:
-            res = EMOJI_COMPANY
+            res = SYMBOL_COMPANY
         else:
-            res = EMOJI_CONTACT
+            res = SYMBOL_CONTACT
         return res
 
     def _get_name_location_identification(self):
@@ -28,47 +28,54 @@ class ResPartner(models.Model):
             res.append(self.city)
         return " ".join(res).strip()
 
-    def _get_name_identifications(self):
+    def _get_name_identifications(self, base_name):
         self.ensure_one()
-        res = [("%s %s") % (self._get_contact_type_emoji(), self.name)]
+        res = [f"{self._get_contact_type_symbol()} {base_name}"]
         # Add city and zip to quickly identify a partner
         location = self._get_name_location_identification()
         if location and not self.env.context.get("idf_no_location"):
-            res.append(("(%s)") % (location))
+            res.append(f"({location})")
         if self.email and not self.env.context.get("idf_no_email"):
-            res.append(("📧 %s") % (self.email,))
+            res.append(f"📧 {self.email}")
         if len(res) > 1:
             res.insert(1, SEARCH_SEPARATOR)
         return res
 
-    def _compute_display_name(self):
-        # ensure name_search is disabled when storing display name
-        super(ResPartner, self.with_context(name_search=False))._compute_display_name()
+    def _clean_name_identification(self, name):
+        if name and SEARCH_SEPARATOR in name:
+            name = name.partition(SEARCH_SEPARATOR)[0].strip()
+        if name and (
+            name.startswith(SYMBOL_COMPANY) or name.startswith(SYMBOL_CONTACT)
+        ):
+            name = name[1:].strip()
+        return name
 
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
-        if SEARCH_SEPARATOR in name:
-            name = name.partition(SEARCH_SEPARATOR)[0].strip()
-        if name.startswith(EMOJI_COMPANY) or name.startswith(EMOJI_CONTACT):
-            name = name[1:].strip()
-        # WARNING: Odoo overrides `_name_search`
+        # it is important to clean the name from identification to avoid issues
+        # with other modules that would alter the name_search behavior (typefast)
         names = super(ResPartner, self.with_context(name_search=True)).name_search(
-            name=name, args=args, operator=operator, limit=limit
+            name=self._clean_name_identification(name),
+            args=args,
+            operator=operator,
+            limit=limit,
         )
         return names
 
-    def name_get(self):
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
         if self.env.context.get("name_search"):
-            return self.name_get_from_search()
-        else:
-            return super().name_get()
+            for rec in self:
+                rec.display_name = " ".join(
+                    rec._get_name_identifications(rec.display_name)
+                )
+        return res
 
-    @api.depends("name")
-    def name_get_from_search(self):
-        """Custom naming to quickly identify a production order"""
-        res = []
-        for rec in self:
-            identification = " ".join(rec._get_name_identifications())
-            name = identification
-            res.append((rec.id, name))
+    def _search_display_name(self, operator, value):
+        if self.env.context.get("name_search"):
+            # this steps is only a fallback in case of a direct call, the real cleaning
+            # is done in name_search, but we want to be sure that the search is clean
+            # in any case
+            value = self._clean_name_identification(value)
+        res = super()._search_display_name(operator, value)
         return res
