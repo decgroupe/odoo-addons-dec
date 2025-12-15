@@ -1,14 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2025
 
-from odoo.tests.common import TransactionCase
 from odoo.addons.partner_identification_base.tests.common import (
     TestPartnerIdentificationBaseCommon,
 )
 
 
 class TestPartnerIdentificationLocation(TestPartnerIdentificationBaseCommon):
-
     def setUp(self):
         super().setUp()
         self.city_id = self.env["res.city"].create(
@@ -31,27 +29,35 @@ class TestPartnerIdentificationLocation(TestPartnerIdentificationBaseCommon):
         # ensure `base_location_display` module behaviour
         self.assertEqual(self.zip_id.display_name, "75001 London, United Kingdom")
 
-    def test_02_partner_name_get(self):
+    def test_02_partner_display_name(self):
         partner = self._create_default_partner()
-        ctx = {"name_search": True}
+        # Without location
         self._set_partner_company(partner)
         self._set_partner_email(partner)
-        self.assertEqual(partner.name_get()[0][1], "Bob")
-        self.assertEqual(
-            partner.with_context(**ctx).name_get()[0][1],
+        self.assertDisplayName(
+            partner,
+            {"name_search": True},
+            "Bob",
             "🏢 Bob → 📧 bob@leponge.com",
         )
-        self.assertEqual(
-            partner.with_context(**ctx, idf_no_email=True).name_get()[0][1],
+        self.assertDisplayName(
+            partner,
+            {"name_search": True, "idf_no_email": True},
+            "Bob",
             "🏢 Bob",
         )
+        # Now with location
         self._set_partner_zip_id(partner)
-        self.assertEqual(
-            partner.with_context(**ctx).name_get()[0][1],
+        self.assertDisplayName(
+            partner,
+            {"name_search": True},
+            "Bob",
             "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com",
         )
-        self.assertEqual(
-            partner.with_context(**ctx, idf_no_location=True).name_get()[0][1],
+        self.assertDisplayName(
+            partner,
+            {"name_search": True, "idf_no_location": True},
+            "Bob",
             "🏢 Bob → 📧 bob@leponge.com",
         )
 
@@ -60,15 +66,13 @@ class TestPartnerIdentificationLocation(TestPartnerIdentificationBaseCommon):
         self._set_partner_company(partner)
         self._set_partner_email(partner)
         self._set_partner_zip_id(partner)
-        res = self.model_partner.name_search(name="Bob")
-        self.assertEqual(res[0][0], partner.id)
-        self.assertEqual(
-            res[0][1], "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com"
+        self.assertNameSearch(
+            partner,
+            "Bob",
+            "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com",
         )
-        res = self.model_partner.name_search(
-            name="🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com"
-        )
-        self.assertEqual(res[0][0], partner.id)
-        self.assertEqual(
-            res[0][1], "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com"
+        self.assertNameSearch(
+            partner,
+            "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com",
+            "🏢 Bob → (🗺️ 75001 London, United Kingdom) 📧 bob@leponge.com",
         )

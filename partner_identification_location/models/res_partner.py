@@ -10,5 +10,5 @@ class ResPartner(models.Model):
     def _get_name_location_identification(self):
         res = super()._get_name_location_identification()
         if self.zip_id:
-            res = "🗺️ %s" % (self.zip_id.display_name)
+            res = f"🗺️ {self.zip_id.display_name}"
         return res
