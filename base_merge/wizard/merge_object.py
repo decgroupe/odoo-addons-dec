@@ -77,6 +77,24 @@ class MergeObject(models.TransientModel):
     # Update method. Core methods to merge steps
     # ----------------------------------------
 
+    def _ensure_unique_externalid(self, src_objects, dst_object):
+        external_ids = (src_objects + dst_object)._get_external_ids()
+        if external_ids:
+            if dst_object.id in external_ids:
+                # our destination record already have an external ID,
+                # keep it and discard all others
+                external_ids.pop(dst_object.id)
+            else:
+                # one source record already have an external ID,
+                # keep one and discard all others
+                external_ids.popitem()
+        if external_ids:
+            domain = [
+                ("model", "=", self._model_merge),
+                ("res_id", "in", list(external_ids.keys())),
+            ]
+            self.env["ir.model.data"].sudo().search(domain).unlink()
+
     def _get_fk_on(self, table):
         """return a list of many2one relation with the given table.
         :param table : the name of the sql table to return relations
@@ -364,12 +382,11 @@ class MergeObject(models.TransientModel):
         # invalidation before recompute using `self.env.cache.invalidate()`
         Object.flush_model()
 
-    def _merge(self, object_ids, dst_object=None, extra_checks=True):
+    def _merge(self, object_ids, dst_object=None, unique_xmlid=False):
         """private implementation of merge object
         :param object_ids : ids of object to merge
         :param dst_object : record of destination res.object
-        :param extra_checks: pass False to bypass extra sanity check
-            (e.g. email address)
+        :param unique_xmlid: pass True to ensure only that one XML-ID will be mapped
         """
         PARAM = "base_merge.merge_objects_max_number"
         Object = self.env[self._model_merge]
@@ -412,6 +429,8 @@ class MergeObject(models.TransientModel):
         _logger.info("dst_object: %s", dst_object.id)
 
         # call sub methods to do the merge
+        if unique_xmlid:
+            self._ensure_unique_externalid(src_objects, dst_object)
         self._update_foreign_keys(src_objects, dst_object)
         self._update_reference_fields(src_objects, dst_object)
         self._update_values(src_objects, dst_object)
