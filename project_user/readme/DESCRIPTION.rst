@@ -1,1 +1,0 @@
-Add self-assign actions.

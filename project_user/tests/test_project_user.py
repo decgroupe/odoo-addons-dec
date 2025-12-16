@@ -1,14 +1,15 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2024
 
+from odoo import Command
 from odoo.exceptions import AccessError
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
+
 from odoo.addons.mail.tests.common import mail_new_test_user
-from odoo.tests.common import Form
 
 
 class TestProjectUser(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.project_model = self.env["project.project"]
@@ -29,14 +30,14 @@ class TestProjectUser(TransactionCase):
 
     def test_01_default_task_user(self):
         project_id = self.env.ref("project.project_project_1")
-        project_id.default_task_user_id = self.user_jasmine
+        project_id.default_task_user_ids = [Command.set([self.user_jasmine.id])]
         task_form = Form(self.task_model.with_context(default_project_id=project_id.id))
         self.assertEqual(task_form.project_id, project_id)
-        self.assertEqual(task_form.user_id, self.user_jasmine)
+        self.assertEqual(task_form.user_ids.ids, self.user_jasmine.ids)
         task_form.name = "A new task"
         task_id = task_form.save()
         self.assertEqual(task_id.project_id, project_id)
-        self.assertEqual(task_id.user_id, self.user_jasmine)
+        self.assertEqual(task_id.user_ids, self.user_jasmine)
 
     def test_02_project_assign_to_me(self):
         project_id = self.env.ref("project.project_project_1")
@@ -51,9 +52,11 @@ class TestProjectUser(TransactionCase):
             project_id.with_user(self.user_jasmine).action_assign_to_me()
 
     def test_03_task_assign_to_me(self):
-        task_id = self.env.ref("project.project_task_6")
-        self.assertEqual(task_id.user_id, self.user_admin)
+        task_id = self.env.ref("project.project_1_task_7")
+        self.assertEqual(task_id.user_ids, self.user_admin)
         task_id.action_assign_to_me()
-        self.assertEqual(task_id.user_id, self.user_root)
+        self.assertEqual(task_id.user_ids, self.user_root | self.user_admin)
         task_id.with_user(self.user_jasmine).action_assign_to_me()
-        self.assertEqual(task_id.user_id, self.user_jasmine)
+        self.assertEqual(
+            task_id.user_ids, self.user_root | self.user_admin | self.user_jasmine
+        )
