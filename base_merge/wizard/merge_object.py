@@ -45,8 +45,6 @@ class MergeObject(models.TransientModel):
     _model_merge = "merge.dummy"
     _table_merge = "merge_dummy"
 
-    group_by_name = fields.Boolean("Name")
-
     state = fields.Selection(
         [("option", "Option"), ("selection", "Selection"), ("finished", "Finished")],
         readonly=True,
@@ -55,13 +53,10 @@ class MergeObject(models.TransientModel):
         default="option",
     )
 
-    number_group = fields.Integer("Group of Objects", readonly=True)
     current_line_id = fields.Many2one("merge.object.line", string="Current Line")
     line_ids = fields.One2many("merge.object.line", "wizard_id", string="Lines")
     object_ids = fields.Many2many(_model_merge, string="Objects")
     dst_object_id = fields.Many2one(_model_merge, string="Destination Object")
-
-    maximum_group = fields.Integer("Maximum of Group of Objects")
 
     @api.model
     def default_get(self, fields_list):
