@@ -439,6 +439,9 @@ class MergeObject(models.TransientModel):
         self._log_merge_operation(src_objects, dst_object)
 
         # delete source object, since they are merged
+        self._delete_source_objects(src_objects)
+
+    def _delete_source_objects(self, src_objects):
         src_objects.unlink()
 
     def _log_merge_operation(self, src_objects, dst_object):
