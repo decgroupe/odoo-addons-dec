@@ -1,14 +1,15 @@
 {
     "name": "Project Activity",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "project_mail_chatter",
+        "project",  # project_mail_chatter functionality is now native
+        "project_task_stage_state",
     ],
     "data": [
         "data/mail_activity_type.xml",
-        "views/project_project.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

@@ -1,18 +1,16 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="mail.activity.type" id="mail_activity_to_assign">
         <field name="name">To Assign</field>
         <field name="icon">fa-user-plus</field>
         <field name="delay_count">2</field>
-        <field name="res_model_id" ref="project.model_project_task" />
+        <field name="res_model">project.task</field>
     </record>
 
     <record model="mail.activity.type" id="mail_activity_to_plan">
         <field name="name">To Plan</field>
         <field name="icon">fa-calendar-plus-o</field>
         <field name="delay_count">14</field>
-        <field name="res_model_id" ref="project.model_project_task" />
+        <field name="res_model">project.task</field>
     </record>
-
 </odoo>
