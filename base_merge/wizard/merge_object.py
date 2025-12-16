@@ -103,9 +103,13 @@ class MergeObject(models.TransientModel):
 
     @api.model
     def _update_foreign_keys(self, src_objects, dst_object):
-        """Update all foreign key from the src_object to dst_object. All many2one fields will be updated.
-        :param src_objects : merge source res.object recordset (does not include destination one)
-        :param dst_object : record of destination res.object
+        """Update all foreign key from the src_object to dst_object.
+        All many2one fields will be updated.
+
+        Args:
+            src_objects (_type_): merge source res.object recordset
+                (does not include destination one)
+            dst_object (_type_): record of destination res.object
         """
         _logger.debug(
             "_update_foreign_keys for dst_object: %s for src_objects: %s",
@@ -117,18 +121,14 @@ class MergeObject(models.TransientModel):
         Object = self.env[self._model_merge]
         relations = self._get_fk_on(self._table_merge)
 
-        self.flush()
+        self.env.invalidate_all()
 
         for table, column in relations:
             if "merge_object_" in table:  # ignore two tables
                 continue
 
             # get list of columns of current table (exept the current fk column)
-            # pylint: disable=E8103
-            query = (
-                "SELECT column_name FROM information_schema.columns WHERE table_name LIKE '%s'"
-                % (table)
-            )
+            query = f"SELECT column_name FROM information_schema.columns WHERE table_name LIKE '{table}'"  # noqa: E501
             self._cr.execute(query, ())
             columns = []
             for data in self._cr.fetchall():
@@ -155,7 +155,7 @@ class MergeObject(models.TransientModel):
                             WHERE
                                 "%(column)s" = %%s AND
                                 ___tu.%(value)s = ___tw.%(value)s
-                        )"""
+                        )"""  # noqa: UP031
                     % query_dic
                 )
                 for src_object in src_objects:
@@ -165,9 +165,11 @@ class MergeObject(models.TransientModel):
             else:
                 try:
                     with mute_logger("odoo.sql_db"), self._cr.savepoint():
-                        query = (
-                            'UPDATE "%(table)s" SET "%(column)s" = %%s WHERE "%(column)s" IN %%s'
-                            % query_dic
+                        query = """
+                            UPDATE "{table}"
+                            SET "{column}" = %s
+                            WHERE "{column}" IN %s""".format(
+                            **query_dic
                         )
                         self._cr.execute(
                             query,
@@ -190,25 +192,27 @@ class MergeObject(models.TransientModel):
                                                 cycle.id != cycle.parent_id
                                 )
                                 SELECT id FROM cycle WHERE id = parent_id AND id = %%s
-                            """
+                            """  # noqa: UP031
                                 % query_dic
                             )
                             self._cr.execute(query, (dst_object.id,))
 
                 except psycopg2.Error:
                     # updating fails, most likely due to a violated unique constraint
-                    # keeping record with nonexistent object_id is useless, better delete it
-                    query = (
-                        'DELETE FROM "%(table)s" WHERE "%(column)s" IN %%s' % query_dic
+                    # keeping record with nonexistent object_id is useless, better
+                    # delete it
+                    query = 'DELETE FROM "{table}" WHERE "{column}" IN %s'.format(
+                        **query_dic
                     )
                     self._cr.execute(query, (tuple(src_objects.ids),))
 
-        self.invalidate_cache()
+        self.env.invalidate_all()
 
     @api.model
     def _update_reference_fields(self, src_objects, dst_object):
         """Update all reference fields from the src_object to dst_object.
-        :param src_objects : merge source res.object recordset (does not include destination one)
+        :param src_objects : merge source res.object recordset
+            (does not include destination one)
         :param dst_object : record of destination res.object
         """
         _logger.debug(
@@ -228,10 +232,9 @@ class MergeObject(models.TransientModel):
                 with (
                     mute_logger("odoo.sql_db"),
                     self._cr.savepoint(),
-                    self.env.clear_upon_failure(),
                 ):
                     records.sudo().write({field_id: dst_object.id})
-                    records.flush()
+                    records.env.flush_all()
             except psycopg2.Error:
                 # updating fails, most likely due to a violated unique constraint
                 # keeping record with nonexistent object_id is useless, better delete it
@@ -250,7 +253,9 @@ class MergeObject(models.TransientModel):
             update_records("mail.message", src=scr_object)
             update_records("ir.model.data", src=scr_object)
 
-        records = self.env["ir.model.fields"].search([("ttype", "=", "reference")])
+        records = (
+            self.env["ir.model.fields"].sudo().search([("ttype", "=", "reference")])
+        )
         for record in records.sudo():
             try:
                 Model = self.env[record.model]
@@ -264,14 +269,14 @@ class MergeObject(models.TransientModel):
 
             for src_object in src_objects:
                 records_ref = Model.sudo().search(
-                    [(record.name, "=", "%s,%d" % (self._model_merge, src_object.id))]
+                    [(record.name, "=", f"{self._model_merge},{src_object.id}")]
                 )
                 values = {
-                    record.name: "%s,%d" % (self._model_merge, dst_object.id),
+                    record.name: f"{self._model_merge},{dst_object.id}",
                 }
                 records_ref.sudo().write(values)
 
-        self.flush()
+        self.env.flush_all()
 
     def _get_summable_fields(self):
         """Returns the list of fields that should be summed when merging objects"""
@@ -346,38 +351,34 @@ class MergeObject(models.TransientModel):
                 self.env.add_to_compute(field, obj)
         # In a testing environment (shell) it is necessary to call cache
         # invalidation before recompute using `self.env.cache.invalidate()`
-        Object.recompute()
+        Object.flush_model()
 
     def _merge(self, object_ids, dst_object=None, extra_checks=True):
         """private implementation of merge object
         :param object_ids : ids of object to merge
         :param dst_object : record of destination res.object
-        :param extra_checks: pass False to bypass extra sanity check (e.g. email address)
+        :param extra_checks: pass False to bypass extra sanity check
+            (e.g. email address)
         """
-
+        PARAM = "base_merge.merge_objects_max_number"
         Object = self.env[self._model_merge]
         object_ids = Object.browse(object_ids).exists()
         if len(object_ids) < 2:
             return
         params = self.env["ir.config_parameter"].sudo()
         try:
-            max_no_objects = int(
-                params.get_param("deltatech_merge.merge_objects_max_number", default=3)
-            )
+            max_no_objects = int(params.get_param(PARAM, default=3))
         except Exception:
+            max_num = params.get_param(PARAM)
             raise UserError(
-                _(
-                    "Invalid system parameter value (deltatech_merge.merge_objects_max_number): %s"
-                )
-                % params.get_param("deltatech_merge.merge_objects_max_number")
-            )
+                _(f"Invalid system parameter value ({PARAM}): {max_num}")
+            ) from None
         if len(object_ids) > max_no_objects:
             raise UserError(
                 _(
-                    "For safety reasons, you cannot merge more than %s objects together."
+                    f"For safety reasons, you cannot merge more than {max_no_objects} objects together."  # noqa: E501
                     " You can re-open the wizard several times if needed."
                 )
-                % max_no_objects
             )
 
         # check if the list of objects to merge contains child/parent relation
@@ -422,71 +423,13 @@ class MergeObject(models.TransientModel):
     # Helpers
     # ----------------------------------------
 
-    # @api.model
-    # def _generate_query(self, fields, maximum_group=100):
-    #     """Build the SQL query on res.object table to group them according to given criteria
-    #     :param fields : list of column names to group by the objects
-    #     :param maximum_group : limit of the query
-    #     """
-    #     # make the list of column to group by in sql query
-    #     sql_fields = []
-    #     for field in fields:
-    #         if field in ["email", "name"]:
-    #             sql_fields.append("lower(%s)" % field)
-    #         elif field in ["vat"]:
-    #             sql_fields.append("replace(%s, ' ', '')" % field)
-    #         else:
-    #             sql_fields.append(field)
-    #     group_fields = ", ".join(sql_fields)
-    #
-    #     # where clause : for given group by columns, only keep the 'not null' record
-    #     filters = []
-    #     for field in fields:
-    #         if field in ["email", "name", "vat"]:
-    #             filters.append((field, "IS NOT", "NULL"))
-    #     criteria = " AND ".join("{} {} {}".format(field, operator, value) for field, operator, value in filters)
-    #
-    #     # build the query
-    #     text = [
-    #         "SELECT min(id), array_agg(id)",
-    #         "FROM %s" % self._table_merge,
-    #     ]
-    #
-    #     if criteria:
-    #         text.append("WHERE %s" % criteria)
-    #
-    #     text.extend(["GROUP BY %s" % group_fields, "HAVING COUNT(*) >= 2", "ORDER BY min(id)"])
-    #
-    #     if maximum_group:
-    #         text.append(
-    #             "LIMIT %s" % maximum_group,
-    #         )
-    #
-    #     return " ".join(text)
-
-    # @api.model
-    # def _compute_selected_groupby(self):
-    #     """Returns the list of field names the object can be grouped (as merge
-    #     criteria) according to the option checked on the wizard
-    #     """
-    #     groups = []
-    #     group_by_prefix = "group_by_"
-    #
-    #     for field_name in self._fields:
-    #         if field_name.startswith(group_by_prefix):
-    #             if getattr(self, field_name, False):
-    #                 groups.append(field_name[len(group_by_prefix) :])
-    #
-    #     if not groups:
-    #         raise UserError(_("You have to specify a filter for your selection."))
-    #
-    #     return groups
-
     @api.model
     def _object_use_in(self, aggr_ids, models):
         """Check if there is no occurence of this group of object in the selected model
-        :param aggr_ids : stringified list of object ids separated with a comma (sql array_agg)
-        :param models : dict mapping a model name with its foreign key with res_object table
+        :param aggr_ids : stringified list of object ids separated with a comma
+            (sql array_agg)
+        :param models : dict mapping a model name with its foreign key with res_object
+            table
         """
         return any(
             self.env[model].search_count([(field, "in", aggr_ids)])
@@ -495,7 +438,8 @@ class MergeObject(models.TransientModel):
 
     @api.model
     def _get_ordered_object(self, object_ids):
-        """Helper : returns a `res.object` recordset ordered by create_date/active fields
+        """Helper : returns a `res.object` recordset ordered by create_date/active
+        fields
         :param object_ids : list of object ids to sort
         """
         return (
@@ -508,9 +452,10 @@ class MergeObject(models.TransientModel):
         )
 
     def _compute_models(self):
-        """Compute the different models needed by the system if you want to exclude some objects."""
+        """Compute the different models needed by the system if you want to exclude
+        some objects.
+        """
         model_mapping = {}
-
         return model_mapping
 
     # ----------------------------------------
@@ -518,17 +463,21 @@ class MergeObject(models.TransientModel):
     # ----------------------------------------
 
     def action_skip(self):
-        """Skip this wizard line. Don't compute any thing, and simply redirect to the new step."""
+        """Skip this wizard line. Don't compute any thing, and simply redirect to the
+        new step.
+        """
         if self.current_line_id:
             self.current_line_id.unlink()
         return self._action_next_screen()
 
     def _action_next_screen(self):
-        """return the action of the next screen ; this means the wizard is set to treat the
-        next wizard line. Each line is a subset of object that can be merged together.
-        If no line left, the end screen will be displayed (but an action is still returned).
+        """Return the action of the next screen ; this means the wizard is set to treat
+        the next wizard line. Each line is a subset of object that can be merged
+        together.
+        If no line left, the end screen will be displayed (but an action is still
+        returned).
         """
-        self.invalidate_cache()  # FIXME: is this still necessary?
+        self.env.invalidate_all()  # FIXME: is this still necessary?
         values = {}
         if self.line_ids:
             # in this case, we try to find the next record.
@@ -558,79 +507,6 @@ class MergeObject(models.TransientModel):
             "view_mode": "form",
             "target": "new",
         }
-
-    # def _process_query(self, query):
-    #     """Execute the select request and write the result in this wizard
-    #     :param query : the SQL query used to fill the wizard line
-    #     """
-    #     self.ensure_one()
-    #     model_mapping = self._compute_models()
-    #
-    #     # group object query
-    #     self._cr.execute(query)
-    #
-    #     counter = 0
-    #     for min_id, aggr_ids in self._cr.fetchall():
-    #         # To ensure that the used objects are accessible by the user
-    #         objects = self.env[self._model_merge].search([("id", "in", aggr_ids)])
-    #         if len(objects) < 2:
-    #             continue
-    #
-    #         # exclude object according to options
-    #         if model_mapping and self._object_use_in(objects.ids, model_mapping):
-    #             continue
-    #
-    #         self.env["merge.object.line"].create({"wizard_id": self.id, "min_id": min_id, "aggr_ids": objects.ids})
-    #         counter += 1
-    #
-    #     self.write({"state": "selection", "number_group": counter})
-    #
-    #     _logger.info("counter: %s", counter)
-
-    # def action_start_manual_process(self):
-    #     """Start the process 'Merge with Manual Check'. Fill the wizard according to the group_by and exclude
-    #     options, and redirect to the first step (treatment of first wizard line). After, for each subset of
-    #     object to merge, the wizard will be actualized.
-    #         - Compute the selected groups (with duplication)
-    #         - If the user has selected the 'exclude_xxx' fields, avoid the objects
-    #     """
-    #     self.ensure_one()
-    #     groups = self._compute_selected_groupby()
-    #     query = self._generate_query(groups, self.maximum_group)
-    #     self._process_query(query)
-    #     return self._action_next_screen()
-
-    # def action_start_automatic_process(self):
-    #     """Start the process 'Merge Automatically'. This will fill the wizard with the same mechanism as 'Merge
-    #     with Manual Check', but instead of refreshing wizard with the current line, it will automatically process
-    #     all lines by merging object grouped according to the checked options.
-    #     """
-    #     self.ensure_one()
-    #     self.action_start_manual_process()  # here we don't redirect to the next screen, since it is automatic process
-    #
-    #     self.write({"state": "finished"})
-    #     return {
-    #         "type": "ir.actions.act_window",
-    #         "res_model": self._name,
-    #         "res_id": self.id,
-    #         "view_mode": "form",
-    #         "target": "new",
-    #     }
-
-    # def parent_migration_process_cb(self):
-    #     self.ensure_one()
-    #     return {
-    #         "type": "ir.actions.act_window",
-    #         "res_model": self._name,
-    #         "res_id": self.id,
-    #         "view_mode": "form",
-    #         "target": "new",
-    #     }
-
-    # def action_update_all_process(self):
-    #     self.ensure_one()
-    #
-    #     return self._action_next_screen()
 
     def action_merge(self):
         """Merge Object button. Merge the selected objects, and redirect to
