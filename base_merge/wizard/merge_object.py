@@ -11,7 +11,7 @@ import psycopg2
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import mute_logger, is_html_empty
+from odoo.tools import is_html_empty, mute_logger
 
 _logger = logging.getLogger("merge.object")
 
@@ -24,7 +24,6 @@ class MergeDummy(models.TransientModel):
 
 
 class MergeObjectLine(models.TransientModel):
-
     _name = "merge.object.line"
     _description = "Merge Object Line"
     _order = "min_id asc"
@@ -66,7 +65,7 @@ class MergeObject(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(MergeObject, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         active_ids = self.env.context.get("active_ids")
         if self.env.context.get("active_model") == self._model_merge and active_ids:
             res["state"] = "selection"
@@ -109,7 +108,9 @@ class MergeObject(models.TransientModel):
         :param dst_object : record of destination res.object
         """
         _logger.debug(
-            "_update_foreign_keys for dst_object: %s for src_objects: %s", dst_object.id, str(src_objects.ids)
+            "_update_foreign_keys for dst_object: %s for src_objects: %s",
+            dst_object.id,
+            str(src_objects.ids),
         )
 
         # find the many2one relation to a object
@@ -124,7 +125,10 @@ class MergeObject(models.TransientModel):
 
             # get list of columns of current table (exept the current fk column)
             # pylint: disable=E8103
-            query = "SELECT column_name FROM information_schema.columns WHERE table_name LIKE '%s'" % (table)
+            query = (
+                "SELECT column_name FROM information_schema.columns WHERE table_name LIKE '%s'"
+                % (table)
+            )
             self._cr.execute(query, ())
             columns = []
             for data in self._cr.fetchall():
@@ -155,11 +159,16 @@ class MergeObject(models.TransientModel):
                     % query_dic
                 )
                 for src_object in src_objects:
-                    self._cr.execute(query, (dst_object.id, src_object.id, dst_object.id))
+                    self._cr.execute(
+                        query, (dst_object.id, src_object.id, dst_object.id)
+                    )
             else:
                 try:
                     with mute_logger("odoo.sql_db"), self._cr.savepoint():
-                        query = 'UPDATE "%(table)s" SET "%(column)s" = %%s WHERE "%(column)s" IN %%s' % query_dic
+                        query = (
+                            'UPDATE "%(table)s" SET "%(column)s" = %%s WHERE "%(column)s" IN %%s'
+                            % query_dic
+                        )
                         self._cr.execute(
                             query,
                             (
@@ -189,7 +198,9 @@ class MergeObject(models.TransientModel):
                 except psycopg2.Error:
                     # updating fails, most likely due to a violated unique constraint
                     # keeping record with nonexistent object_id is useless, better delete it
-                    query = 'DELETE FROM "%(table)s" WHERE "%(column)s" IN %%s' % query_dic
+                    query = (
+                        'DELETE FROM "%(table)s" WHERE "%(column)s" IN %%s' % query_dic
+                    )
                     self._cr.execute(query, (tuple(src_objects.ids),))
 
         self.invalidate_cache()
@@ -200,15 +211,25 @@ class MergeObject(models.TransientModel):
         :param src_objects : merge source res.object recordset (does not include destination one)
         :param dst_object : record of destination res.object
         """
-        _logger.debug("_update_reference_fields for dst_object: %s for src_objects: %r", dst_object.id, src_objects.ids)
+        _logger.debug(
+            "_update_reference_fields for dst_object: %s for src_objects: %r",
+            dst_object.id,
+            src_objects.ids,
+        )
 
         def update_records(model, src, field_model="model", field_id="res_id"):
             Model = self.env[model] if model in self.env else None
             if Model is None:
                 return
-            records = Model.sudo().search([(field_model, "=", self._model_merge), (field_id, "=", src.id)])
+            records = Model.sudo().search(
+                [(field_model, "=", self._model_merge), (field_id, "=", src.id)]
+            )
             try:
-                with mute_logger("odoo.sql_db"), self._cr.savepoint(), self.env.clear_upon_failure():
+                with (
+                    mute_logger("odoo.sql_db"),
+                    self._cr.savepoint(),
+                    self.env.clear_upon_failure(),
+                ):
                     records.sudo().write({field_id: dst_object.id})
                     records.flush()
             except psycopg2.Error:
@@ -242,7 +263,9 @@ class MergeObject(models.TransientModel):
                 continue
 
             for src_object in src_objects:
-                records_ref = Model.sudo().search([(record.name, "=", "%s,%d" % (self._model_merge, src_object.id))])
+                records_ref = Model.sudo().search(
+                    [(record.name, "=", "%s,%d" % (self._model_merge, src_object.id))]
+                )
                 values = {
                     record.name: "%s,%d" % (self._model_merge, dst_object.id),
                 }
@@ -260,7 +283,11 @@ class MergeObject(models.TransientModel):
         :param src_objects : recordset of source res.object
         :param dst_object : record of destination res.object
         """
-        _logger.debug("_update_values for dst_object: %s for src_objects: %r", dst_object.id, src_objects.ids)
+        _logger.debug(
+            "_update_values for dst_object: %s for src_objects: %r",
+            dst_object.id,
+            src_objects.ids,
+        )
 
         model_fields = dst_object.fields_get().keys()
         summable_fields = self._get_summable_fields()
@@ -270,7 +297,7 @@ class MergeObject(models.TransientModel):
                 return item.id
             else:
                 return item
-            
+
         def has_value(field, item, column):
             if field.type == "html":
                 return not is_html_empty(item[column])
@@ -298,18 +325,21 @@ class MergeObject(models.TransientModel):
                 dst_object.write({"parent_id": parent_id})
             except ValidationError:
                 _logger.info(
-                    "Skip recursive object hierarchies for parent_id %s of object: %s", parent_id, dst_object.id
+                    "Skip recursive object hierarchies for parent_id %s of object: %s",
+                    parent_id,
+                    dst_object.id,
                 )
 
     @api.model
     def _update_computed_fields(self, dst_object):
-        """Update stored computed fields of dst_object.
+        """Update stored (and readonly) computed fields of dst_object.
+        Note that non-readonly fields are excluded to avoid erasing user data
         :param dst_object : record of destination res.object
         """
         Object = self.env[self._model_merge]
         for field_name in Object._fields:
             field = Object._fields[field_name]
-            if field.compute and field.store:
+            if field.compute and field.store and field.readonly:
                 obj = dst_object
                 if field.compute_sudo:
                     obj = obj.sudo()
@@ -331,10 +361,14 @@ class MergeObject(models.TransientModel):
             return
         params = self.env["ir.config_parameter"].sudo()
         try:
-            max_no_objects = int(params.get_param("deltatech_merge.merge_objects_max_number", default=3))
+            max_no_objects = int(
+                params.get_param("deltatech_merge.merge_objects_max_number", default=3)
+            )
         except Exception:
             raise UserError(
-                _("Invalid system parameter value (deltatech_merge.merge_objects_max_number): %s")
+                _(
+                    "Invalid system parameter value (deltatech_merge.merge_objects_max_number): %s"
+                )
                 % params.get_param("deltatech_merge.merge_objects_max_number")
             )
         if len(object_ids) > max_no_objects:
@@ -350,7 +384,9 @@ class MergeObject(models.TransientModel):
         if "parent_id" in Object._fields:
             child_ids = self.env[self._model_merge]
             for object_id in object_ids:
-                child_ids |= Object.search([("id", "child_of", [object_id.id])]) - object_id
+                child_ids |= (
+                    Object.search([("id", "child_of", [object_id.id])]) - object_id
+                )
             if object_ids & child_ids:
                 raise UserError(_("You cannot merge a object with one of his parent."))
 
@@ -375,7 +411,12 @@ class MergeObject(models.TransientModel):
         src_objects.unlink()
 
     def _log_merge_operation(self, src_objects, dst_object):
-        _logger.info("(uid = %s) merged the objects %r with %s", self._uid, src_objects.ids, dst_object.id)
+        _logger.info(
+            "(uid = %s) merged the objects %r with %s",
+            self._uid,
+            src_objects.ids,
+            dst_object.id,
+        )
 
     # ----------------------------------------
     # Helpers
@@ -447,7 +488,10 @@ class MergeObject(models.TransientModel):
         :param aggr_ids : stringified list of object ids separated with a comma (sql array_agg)
         :param models : dict mapping a model name with its foreign key with res_object table
         """
-        return any(self.env[model].search_count([(field, "in", aggr_ids)]) for model, field in models.items())
+        return any(
+            self.env[model].search_count([(field, "in", aggr_ids)])
+            for model, field in models.items()
+        )
 
     @api.model
     def _get_ordered_object(self, object_ids):
@@ -494,12 +538,16 @@ class MergeObject(models.TransientModel):
                 {
                     "current_line_id": current_line.id,
                     "object_ids": [(6, 0, current_object_ids)],
-                    "dst_object_id": self._get_ordered_object(current_object_ids)[-1].id,
+                    "dst_object_id": self._get_ordered_object(current_object_ids)[
+                        -1
+                    ].id,
                     "state": "selection",
                 }
             )
         else:
-            values.update({"current_line_id": False, "object_ids": [], "state": "finished"})
+            values.update(
+                {"current_line_id": False, "object_ids": [], "state": "finished"}
+            )
 
         self.write(values)
 

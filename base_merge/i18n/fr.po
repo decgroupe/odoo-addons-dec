@@ -1,0 +1,147 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-03 10:13+0000\n"
+"PO-Revision-Date: 2026-06-03 14:25+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: base_merge
+#. odoo-python
+#: code:addons/base_merge/wizard/merge_object.py:0
+msgid " You can re-open the wizard several times if needed."
+msgstr " Vous pouvez rouvrir l'assistant autant de fois que nécessaire."
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_dummy__create_uid
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__create_uid
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_dummy__create_date
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__create_date
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__current_line_id
+msgid "Current Line"
+msgstr "Ligne actuelle"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__dst_object_id
+msgid "Destination Object"
+msgstr "Objet de destination"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_dummy__display_name
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__display_name
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: base_merge
+#: model:ir.model.fields.selection,name:base_merge.selection__merge_object_wizard__state__finished
+msgid "Finished"
+msgstr "Terminé"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_dummy__id
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__id
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__aggr_ids
+msgid "Ids"
+msgstr "Ids"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_dummy__write_uid
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__write_uid
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Modifié par"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_dummy__write_date
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__write_date
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__write_date
+msgid "Last Updated on"
+msgstr "Modifié le"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__line_ids
+msgid "Lines"
+msgstr "Lignes"
+
+#. module: base_merge
+#: model:ir.model,name:base_merge.model_merge_dummy
+msgid "Merge Object Dummy"
+msgstr "Objet de fusion factice"
+
+#. module: base_merge
+#: model:ir.model,name:base_merge.model_merge_object_line
+msgid "Merge Object Line"
+msgstr "Ligne d'objet de fusion"
+
+#. module: base_merge
+#: model:ir.model,name:base_merge.model_merge_object_wizard
+msgid "Merge Object Wizard"
+msgstr "Assistant de fusion d'objets"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__min_id
+msgid "MinID"
+msgstr "MinID"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_dummy__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__object_ids
+msgid "Objects"
+msgstr "Objets"
+
+#. module: base_merge
+#: model:ir.model.fields.selection,name:base_merge.selection__merge_object_wizard__state__option
+msgid "Option"
+msgstr "Option"
+
+#. module: base_merge
+#: model:ir.model.fields.selection,name:base_merge.selection__merge_object_wizard__state__selection
+msgid "Selection"
+msgstr "Sélection"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_wizard__state
+msgid "State"
+msgstr "État"
+
+#. module: base_merge
+#: model:ir.model.fields,field_description:base_merge.field_merge_object_line__wizard_id
+msgid "Wizard"
+msgstr "Assistant"
+
+#. module: base_merge
+#. odoo-python
+#: code:addons/base_merge/wizard/merge_object.py:0
+msgid "You cannot merge an object with one of his parent."
+msgstr "Vous ne pouvez pas fusionner un objet avec l'un de ses parents."
