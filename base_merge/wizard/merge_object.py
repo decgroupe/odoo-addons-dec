@@ -6,12 +6,13 @@ import functools
 import itertools
 import logging
 from ast import literal_eval
+from collections import defaultdict
 
 import psycopg2
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import is_html_empty, mute_logger
+from odoo.tools import SQL, is_html_empty, mute_logger
 
 _logger = logging.getLogger("merge.object")
 
@@ -181,9 +182,7 @@ class MergeObject(models.TransientModel):
                         query = """
                             UPDATE "{table}"
                             SET "{column}" = %s
-                            WHERE "{column}" IN %s""".format(
-                            **query_dic
-                        )
+                            WHERE "{column}" IN %s""".format(**query_dic)
                         self._cr.execute(
                             query,
                             (
@@ -254,10 +253,7 @@ class MergeObject(models.TransientModel):
                 [(field_model, "=", self._model_merge), (field_id, "=", src.id)]
             )
             try:
-                with (
-                    mute_logger("odoo.sql_db"),
-                    self._cr.savepoint(),
-                ):
+                with mute_logger("odoo.sql_db"), self._cr.savepoint():
                     records.sudo().write({field_id: dst_object.id})
                     records.env.flush_all()
             except psycopg2.Error:
@@ -288,7 +284,7 @@ class MergeObject(models.TransientModel):
                 # unknown model or field => skip
                 continue
 
-            if field.compute is not None:
+            if Model._abstract or field.compute is not None:
                 continue
 
             for src_object in src_objects:
@@ -300,7 +296,88 @@ class MergeObject(models.TransientModel):
                 }
                 records_ref.sudo().write(values)
 
+        # company_dependent fields referring the merged records
+        for field in self.env.registry.many2one_company_dependents[dst_object._name]:
+            self.env.cr.execute(
+                SQL(
+                    """
+                UPDATE %(table)s
+                SET %(field)s = (
+                    SELECT jsonb_object_agg(key,
+                        CASE
+                            WHEN value::int IN %(src_record_ids)s
+                            THEN %(dest_record_id)s
+                            ELSE value::int
+                        END
+                    )
+                    FROM jsonb_each_text(%(field)s)
+                )
+                WHERE %(field)s IS NOT NULL
+                """,
+                    table=SQL.identifier(self.env[field.model_name]._table),
+                    field=SQL.identifier(field.name),
+                    src_record_ids=tuple(src_objects.ids),
+                    dest_record_id=dst_object.id,
+                )
+            )
+
+        # merge the fallback values for company dependent many2one fields
+        self.env.cr.execute(
+            SQL(
+                """
+            UPDATE ir_default
+            SET json_value =
+                CASE
+                    WHEN json_value::int IN %(src_record_ids)s
+                    THEN %(dest_record_id)s
+                    ELSE json_value
+                END
+            FROM ir_model_fields f
+            WHERE f.id = ir_default.field_id
+            AND f.company_dependent
+            AND f.relation = %(model_name)s
+            AND f.ttype = 'many2one'
+            AND json_value ~ '^[0-9]+$';
+            """,
+                src_record_ids=tuple(src_objects.ids),
+                dest_record_id=str(dst_object.id),
+                model_name=dst_object._name,
+            )
+        )
+
         self.env.flush_all()
+
+        # company_dependent fields of merged records
+        with self._cr.savepoint():
+            for fname, field in dst_object._fields.items():
+                if field.company_dependent:
+                    self.env.execute_query(
+                        SQL(
+                            # use the specific company dependent value of sources
+                            # to fill the non-specific value of destination. Source
+                            # values for rows with larger id have higher priority
+                            # when aggregated
+                            """
+                        WITH source AS (
+                            SELECT %(field)s
+                            FROM  %(table)s
+                            WHERE id IN %(source_ids)s
+                            ORDER BY id
+                        ), source_agg AS (
+                            SELECT jsonb_object_agg(key, value) AS value
+                            FROM  source, jsonb_each(%(field)s)
+                        )
+                        UPDATE %(table)s
+                        SET %(field)s = source_agg.value || COALESCE(%(table)s.%(field)s, '{}'::jsonb)
+                        FROM source_agg
+                        WHERE id = %(destination_id)s AND source_agg.value IS NOT NULL
+                        """,  # noqa: E501
+                            table=SQL.identifier(dst_object._table),
+                            field=SQL.identifier(fname),
+                            destination_id=dst_object.id,
+                            source_ids=tuple(src_objects.ids),
+                        )
+                    )
 
     def _get_summable_fields(self):
         """Returns the list of fields that should be summed when merging objects"""
@@ -335,15 +412,27 @@ class MergeObject(models.TransientModel):
 
         # get all fields that are not computed or x2many
         values = dict()
+        values_by_company = defaultdict(dict)  # {company: vals}
+
         for column in model_fields:
             field = dst_object._fields[column]
             if field.type not in ("many2many", "one2many") and field.compute is None:
                 for item in itertools.chain(src_objects, [dst_object]):
                     if has_value(field, item, column):
+                        if field.type == "reference":
+                            values[column] = item[column]
                         if column in summable_fields and values.get(column):
                             values[column] += write_serializer(item[column])
                         else:
                             values[column] = write_serializer(item[column])
+            elif field.company_dependent and column in summable_fields:
+                # sum the values of objects for each company; use sudo() to
+                # compute the sum on all companies, including forbidden ones
+                objects = (src_objects + dst_object).sudo()
+                for company in self.env["res.company"].sudo().search([]):
+                    values_by_company[company][column] = sum(
+                        objects.with_company(company).mapped(column)
+                    )
         # remove fields that can not be updated (id and parent_id)
         values.pop("id", None)
         parent_id = values.pop("parent_id", None)
@@ -412,7 +501,7 @@ class MergeObject(models.TransientModel):
                     Object.search([("id", "child_of", [object_id.id])]) - object_id
                 )
             if object_ids & child_ids:
-                raise UserError(_("You cannot merge a object with one of his parent."))
+                raise UserError(_("You cannot merge an object with one of his parent."))
 
         # remove dst_object from objects to merge
         if dst_object and dst_object in object_ids:
