@@ -6,47 +6,11 @@
         <field name='arch' type='xml'>
             <form string='🧙‍♂️ Merge Wizard'>
                 <sheet>
-                    <field name="state" invisible="1" />
-                    <p
-                        class="oe_grey"
-                        invisible="state != 'option'"
-                    >
-                        Select the list of fields used to search for
-                        duplicated records. If you select several fields,
-                        Odoo will propose you to merge only those having
-                        all these fields in common. (not one of the fields).
-                    </p>
-                    <group
-                        invisible="state not in ('selection', 'finished') or number_group == 0"
-                    >
-                        <field name="number_group" />
-                    </group>
-                    <group
-                        string="Search duplicates based on duplicated data in"
-                        invisible="state != 'option'"
-                    >
-                        <field name='group_by_name' />
-                    </group>
-                    <separator
-                        string="Options"
-                        invisible="state != 'option'"
-                    />
-                    <group
-                        invisible="state not in ('option','finished')"
-                    >
-                        <field
-                            name='maximum_group'
-                            readonly="state == 'finished'"
-                        />
-                    </group>
                     <separator
                         string="Merge the following records"
                         invisible="state in ('option', 'finished')"
                     />
-                    <group
-                        invisible="state in ('option', 'finished')"
-                        col="1"
-                    >
+                    <group invisible="state in ('option', 'finished')" col="1">
                         <p class="oe_grey">
                             Selected records will be merged together.
                             All documents linked to one of these record
