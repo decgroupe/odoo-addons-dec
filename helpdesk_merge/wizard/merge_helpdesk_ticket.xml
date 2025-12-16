@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="merge_helpdesk_ticket_wizard_form" model="ir.ui.view">
         <field name='name'>merge.helpdesk.ticket.wizard.form@helpdesk_merge</field>
         <field name='model'>merge.helpdesk.ticket.wizard</field>
@@ -10,7 +9,7 @@
                     <field name="state" invisible="1" />
                     <p
                         class="oe_grey"
-                        attrs="{'invisible': [('state', '!=', ('option'))]}"
+                        invisible="state != 'option'"
                     >
                         Select the list of fields used to search for
                         duplicated records. If you select several fields,
@@ -18,34 +17,34 @@
                         all these fields in common. (not one of the fields).
                     </p>
                     <group
-                        attrs="{'invisible': ['|', ('state', 'not in', ('selection', 'finished')), ('number_group', '=', 0)]}"
+                        invisible="state not in ('selection', 'finished') or number_group == 0"
                     >
                         <field name="number_group" />
                     </group>
                     <group
                         string="Search duplicates based on duplicated data in"
-                        attrs="{'invisible': [('state', 'not in', ('option',))]}"
+                        invisible="state != 'option'"
                     >
                         <field name='group_by_name' />
                     </group>
                     <separator
                         string="Options"
-                        attrs="{'invisible': [('state', 'not in', ('option',))]}"
+                        invisible="state != 'option'"
                     />
                     <group
-                        attrs="{'invisible': [('state', 'not in', ('option','finished'))]}"
+                        invisible="state not in ('option','finished')"
                     >
                         <field
                             name='maximum_group'
-                            attrs="{'readonly': [('state', 'in', ('finished'))]}"
+                            readonly="state == 'finished'"
                         />
                     </group>
                     <separator
                         string="Merge the following records"
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
+                        invisible="state in ('option', 'finished')"
                     />
                     <group
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
+                        invisible="state in ('option', 'finished')"
                         col="1"
                     >
                         <p class="oe_grey">
@@ -58,7 +57,7 @@
                             <field
                                 name="dst_object_id"
                                 domain="[('id', 'in', object_ids or False)]"
-                                attrs="{'required': [('state', '=', 'selection')]}"
+                                required="state == 'selection'"
                             />
                         </group>
                         <field name="object_ids" nolabel="1" />
@@ -70,27 +69,27 @@
                         string='Merge Records'
                         class='oe_highlight'
                         type='object'
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished' ))]}"
+                        invisible="state in ('option', 'finished')"
                     />
                     <button
                         name='action_skip'
                         string='Skip these records'
                         type='object'
-                        attrs="{'invisible': [('state', '!=', 'selection')]}"
+                        invisible="state != 'selection'"
                     />
                     <button
                         special="cancel"
                         string="Cancel"
                         type="object"
                         class="btn btn-secondary oe_inline"
-                        attrs="{'invisible': [('state', '=', 'finished')]}"
+                        invisible="state == 'finished'"
                     />
                     <button
                         special="cancel"
                         string="Close"
                         type="object"
                         class="btn btn-secondary oe_inline"
-                        attrs="{'invisible': [('state', '!=', 'finished')]}"
+                        invisible="state != 'finished'"
                     />
                 </footer>
             </form>
@@ -110,5 +109,4 @@
         />
         <field name="target">new</field>
     </record>
-
 </odoo>

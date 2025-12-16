@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:14+0000\n"
+"POT-Creation-Date: 2026-06-03 09:58+0000\n"
 "PO-Revision-Date: 2023-11-28 11:48+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -53,11 +53,6 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: helpdesk_merge
-#: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__number_group
-msgid "Group of Objects"
-msgstr "Groupe d’objets"
-
-#. module: helpdesk_merge
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__dst_object_id
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__object_ids
 msgid "Helpdesk Ticket"
@@ -67,16 +62,6 @@ msgstr "Ticket d'assistance"
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__id
 msgid "ID"
 msgstr "ID"
-
-#. module: helpdesk_merge
-#: model:ir.model.fields,help:helpdesk_merge.field_merge_helpdesk_ticket_wizard__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: helpdesk_merge
-#: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: helpdesk_merge
 #: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__write_uid
@@ -94,11 +79,6 @@ msgid "Lines"
 msgstr "Lignes"
 
 #. module: helpdesk_merge
-#: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__maximum_group
-msgid "Maximum of Group of Objects"
-msgstr "Limite Maximum du Groupe d'Objets"
-
-#. module: helpdesk_merge
 #: model:ir.model,name:helpdesk_merge.model_merge_helpdesk_ticket_wizard
 msgid "Merge Helpdesk Ticket Wizard"
 msgstr "Assistant de fusion des tickets"
@@ -112,34 +92,6 @@ msgstr "Fusionner les enregistrements"
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
 msgid "Merge the following records"
 msgstr "Fusionner les enregistrements suivants"
-
-#. module: helpdesk_merge
-#: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__group_by_name
-msgid "Name"
-msgstr "Nom"
-
-#. module: helpdesk_merge
-#: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
-msgid "Options"
-msgstr "Options"
-
-#. module: helpdesk_merge
-#: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
-msgid "Search duplicates based on duplicated data in"
-msgstr "Recherche de doublons basés sur les données dupliquées dans"
-
-#. module: helpdesk_merge
-#: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
-msgid ""
-"Select the list of fields used to search for\n"
-"                        duplicated records. If you select several fields,\n"
-"                        Odoo will propose you to merge only those having\n"
-"                        all these fields in common. (not one of the fields)."
-msgstr ""
-"Sélectionnez la liste des champs utilisés pour chercher\n"
-"                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
-"                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
-"                        tous ces champs en commun (pas uniquement l'un des champs)."
 
 #. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
@@ -170,15 +122,13 @@ msgid "State"
 msgstr "État"
 
 #. module: helpdesk_merge
-#: model:ir.model.fields,field_description:helpdesk_merge.field_merge_helpdesk_ticket_wizard__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: helpdesk_merge
+#. odoo-python
 #: code:addons/helpdesk_merge/wizard/merge_helpdesk_ticket.py:0
-#, python-format
-msgid "You don't have the right to merge tickets. Please contact an Administrator."
-msgstr "Vous n'avez pas le droit de fusionner des tickets. Veuillez contacter un administrateur."
+msgid ""
+"You don't have the right to merge tickets. Please contact an Administrator."
+msgstr ""
+"Vous n'avez pas le droit de fusionner des tickets. Veuillez contacter un "
+"administrateur."
 
 #. module: helpdesk_merge
 #: model_terms:ir.ui.view,arch_db:helpdesk_merge.merge_helpdesk_ticket_wizard_form
@@ -189,6 +139,41 @@ msgstr "🧙‍♂️ Assistant de fusion"
 #: model:ir.actions.act_window,name:helpdesk_merge.action_helpdesk_ticket_merge
 msgid "🧙‍♂️ Merge ..."
 msgstr "🧙‍♂️ Fusionner ..."
+
+#~ msgid "Group of Objects"
+#~ msgstr "Groupe d’objets"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Maximum of Group of Objects"
+#~ msgstr "Limite Maximum du Groupe d'Objets"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Search duplicates based on duplicated data in"
+#~ msgstr "Recherche de doublons basés sur les données dupliquées dans"
+
+#~ msgid ""
+#~ "Select the list of fields used to search for\n"
+#~ "                        duplicated records. If you select several fields,\n"
+#~ "                        Odoo will propose you to merge only those having\n"
+#~ "                        all these fields in common. (not one of the fields)."
+#~ msgstr ""
+#~ "Sélectionnez la liste des champs utilisés pour chercher\n"
+#~ "                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
+#~ "                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
+#~ "                        tous ces champs en commun (pas uniquement l'un des champs)."
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Finished"
 #~ msgstr "Terminé"
