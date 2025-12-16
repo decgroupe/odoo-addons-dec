@@ -1,18 +1,19 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2025
 
-from odoo import _, api, models
+from odoo import api, models
 
 
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        if self._need_auto_activity(vals):
-            rec._auto_activity()
-        return rec
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
+        for rec, vals in zip(record_ids, vals_list, strict=True):
+            if self._need_auto_activity(vals):
+                rec._auto_activity()
+        return record_ids
 
     @api.model
     def _need_auto_activity(self, vals):

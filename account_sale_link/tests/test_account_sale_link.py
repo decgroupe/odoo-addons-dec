@@ -18,6 +18,12 @@ class TestAccountSaleLink(TransactionCase):
 
     def test_01_link(self):
         so = self.env.ref("sale.sale_order_3")
+        so.project_id = self.env["project.project"].create(
+            {
+                "name": "Project for Sale Order 3 to ensure "
+                "compatibility with 'sale_timesheet' module"
+            }
+        )
         invoice_id = self._confirm_sale_order(so)
         self.assertTrue(invoice_id.exists())
         self.assertEqual(len(invoice_id.sale_order_ids), 1)
