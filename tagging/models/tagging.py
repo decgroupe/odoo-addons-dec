@@ -3,7 +3,7 @@
 import string
 import unicodedata
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 SEPARATOR = "-"
 SAFE_CHARS = string.ascii_letters + string.digits + SEPARATOR

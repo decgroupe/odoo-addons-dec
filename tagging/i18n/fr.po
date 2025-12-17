@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"POT-Creation-Date: 2026-06-03 11:15+0000\n"
 "PO-Revision-Date: 2023-11-28 15:15+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -58,11 +58,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: tagging
-#: model:ir.model.fields,field_description:tagging.field_tagging_tags____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: tagging
 #: model:ir.model.fields,field_description:tagging.field_tagging_tags__write_uid
 msgid "Last Updated by"
 msgstr "Dernière modification par"
@@ -95,7 +90,6 @@ msgstr "Mot clé"
 #: model:ir.ui.menu,name:tagging.menu_action_tags
 #: model_terms:ir.ui.view,arch_db:tagging.tags_form
 #: model_terms:ir.ui.view,arch_db:tagging.tags_search
-#: model_terms:ir.ui.view,arch_db:tagging.tags_tree
 msgid "Tags"
 msgstr "Mots clés"
 
@@ -105,11 +99,12 @@ msgid "Text"
 msgstr "Text"
 
 #. module: tagging
-#: code:addons/tagging/models/tagging.py:0
 #: model:ir.model.constraint,message:tagging.constraint_tagging_tags_tagging_tags_name_unique
-#, python-format
 msgid "The tag names must be unique!"
 msgstr "Le nom du mot clé doit être unique!"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "Short Description"
 #~ msgstr "Description courte"
