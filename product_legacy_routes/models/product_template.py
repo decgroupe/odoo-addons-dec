@@ -38,35 +38,43 @@ class ProductTemplate(models.Model):
     @api.model
     def _get_buy_route(self):
         # buy: purchase_stock.route_warehouse0_buy -> _get_buy_route
-        buy_route = self.env["stock.warehouse"]._find_global_route(
+        buy_route = self.env["stock.warehouse"]._find_or_create_global_route(
             xml_id="purchase_stock.route_warehouse0_buy",
             route_name=_("Buy"),
+            create=False,  # ignored when raise_if_not_found enabled
+            raise_if_not_found=True,
         )
         return buy_route
 
     @api.model
     def _get_produce_route(self):
         # manufacture: mrp.route_warehouse0_manufacture
-        produce_route = self.env["stock.warehouse"]._find_global_route(
+        produce_route = self.env["stock.warehouse"]._find_or_create_global_route(
             xml_id="mrp.route_warehouse0_manufacture",
             route_name=_("Manufacture"),
+            create=False,  # ignored when raise_if_not_found enabled
+            raise_if_not_found=True,
         )
         return produce_route
 
     @api.model
     def _get_mto_route(self):
         # make_to_order: stock.route_warehouse0_mto
-        mto_route = self.env["stock.warehouse"]._find_global_route(
+        mto_route = self.env["stock.warehouse"]._find_or_create_global_route(
             xml_id="stock.route_warehouse0_mto",
             route_name=_("Make To Order"),
+            create=False,  # ignored when raise_if_not_found enabled
+            raise_if_not_found=True,
         )
         return mto_route
 
     @api.model
     def _get_mto_mts_route(self):
-        mto_mts_route = self.env["stock.warehouse"]._find_global_route(
+        mto_mts_route = self.env["stock.warehouse"]._find_or_create_global_route(
             xml_id="stock_mts_mto_rule.route_mto_mts",
             route_name=_("Make To Order + Make To Stock"),
+            create=False,  # ignored when raise_if_not_found enabled
+            raise_if_not_found=True,
         )
         return mto_mts_route
 
@@ -77,12 +85,12 @@ class ProductTemplate(models.Model):
         for product in self:
             if (
                 produce_route in product.route_ids
-                and not buy_route in product.route_ids
+                and buy_route not in product.route_ids
             ):
                 product.supply_method = "produce"
             elif (
                 buy_route in product.route_ids
-                and not produce_route in product.route_ids
+                and produce_route not in product.route_ids
             ):
                 product.supply_method = "buy"
 

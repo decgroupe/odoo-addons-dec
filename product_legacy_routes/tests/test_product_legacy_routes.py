@@ -15,9 +15,11 @@ class TestProductLegacyRoutes(TransactionCase):
         self.route_mto = warehouse.mto_pull_id.route_id
         self.route_buy = warehouse.buy_pull_id.route_id
         self.route_manufacture = warehouse.manufacture_pull_id.route_id
-        self.route_mto_mts = self.env["stock.warehouse"]._find_global_route(
+        self.route_mto_mts = self.env["stock.warehouse"]._find_or_create_global_route(
             xml_id="stock_mts_mto_rule.route_mto_mts",
             route_name=_("Make To Order + Make To Stock"),
+            create=False,  # ignored when raise_if_not_found enabled
+            raise_if_not_found=True,
         )
         # enable MTO route
         self.route_mto.active = True
@@ -26,7 +28,8 @@ class TestProductLegacyRoutes(TransactionCase):
         product_id = self.env["product.product"].create(
             {
                 "name": "Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": self.unit_uom_id.id,
                 "procure_method": procure_method,
                 "supply_method": supply_method,
@@ -38,7 +41,8 @@ class TestProductLegacyRoutes(TransactionCase):
         product_id = self.env["product.product"].create(
             {
                 "name": "Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": self.unit_uom_id.id,
                 "route_ids": [(6, 0, route_ids.ids)],
             }

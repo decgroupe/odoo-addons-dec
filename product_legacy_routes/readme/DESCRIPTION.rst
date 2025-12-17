@@ -1,1 +1,0 @@
-Forward port of legacy procure and supply methods
