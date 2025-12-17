@@ -13,7 +13,7 @@
 # from DEC SARL.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class TaggingTag(models.Model):

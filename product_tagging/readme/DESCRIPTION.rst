@@ -1,1 +1,0 @@
-Tagging support for products
