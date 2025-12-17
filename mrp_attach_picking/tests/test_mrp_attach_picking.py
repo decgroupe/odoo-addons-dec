@@ -1,9 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2023
 
-from odoo.addons.mrp.tests.common import TestMrpCommon
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
+
+from odoo.addons.mrp.tests.common import TestMrpCommon
 
 
 class TestMrpAttachPicking(TestMrpCommon):
@@ -14,6 +15,10 @@ class TestMrpAttachPicking(TestMrpCommon):
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.partner = self.env["res.partner"].create({"name": "MyPartner"})
+
+        # disable lot tracking on product (used in `mrp.mrp_production_3` BoM)
+        table_leg = self.env.ref("mrp.product_product_computer_desk_leg")
+        table_leg.tracking = "none"
 
     def _create_customer_move(self, product, qty):
         location_src_id = self.stock_location
@@ -55,6 +60,7 @@ class TestMrpAttachPicking(TestMrpCommon):
             new_production.action_confirm()
         if opt_done_mo:
             np = Form(new_production)
+            new_production.action_confirm()
             np.qty_producing = np.product_qty
             np.save()
             new_production.action_generate_serial()
@@ -80,7 +86,7 @@ class TestMrpAttachPicking(TestMrpCommon):
             "active_model": new_production._name,
             "active_id": new_production.id,
         }
-        wizard_form = Form(self.attach_picking_wizard_model.with_context(ctx))
+        wizard_form = Form(self.attach_picking_wizard_model.with_context(**ctx))
         wizard_form.move_id = move_ids and move_ids[0]
         wizard_id = wizard_form.save()
         wizard_id.do_attach()
@@ -95,15 +101,19 @@ class TestMrpAttachPicking(TestMrpCommon):
         self.assertEqual(new_production.move_finished_ids.move_dest_ids, customer_move)
 
     def test_01_attach_without_move(self):
-        with self.assertRaisesRegex(
-            AssertionError, "move_id is a required field"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(AssertionError, "move_id is a required field"),
+            self.cr.savepoint(),
+        ):
             self._run_common_test(opt_find_move=False)
 
     def test_02_attach_draft_mo(self):
-        with self.assertRaisesRegex(
-            ValidationError, "None of the production finished moves can be linked"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                ValidationError, "None of the production finished moves can be linked"
+            ),
+            self.cr.savepoint(),
+        ):
             self._run_common_test(opt_confirm_mo=False)
 
     def test_03_attach(self):

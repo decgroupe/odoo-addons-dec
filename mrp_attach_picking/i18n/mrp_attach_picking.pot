@@ -4,22 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:22+0000\n"
-"PO-Revision-Date: 2023-11-28 10:22+0000\n"
+"POT-Creation-Date: 2026-06-03 10:31+0000\n"
+"PO-Revision-Date: 2026-06-03 10:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: mrp_attach_picking
-#: code:addons/mrp_attach_picking/wizard/mrp_attach_picking.py:0
-#, python-format
-msgid "A valid stock move must be selected."
-msgstr ""
 
 #. module: mrp_attach_picking
 #: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_production__allow_attach_picking
@@ -34,7 +28,7 @@ msgstr ""
 
 #. module: mrp_attach_picking
 #: model_terms:ir.ui.view,arch_db:mrp_attach_picking.mrp_production_form_view
-msgid "Attach to an existing picking order"
+msgid "Attach to picking"
 msgstr ""
 
 #. module: mrp_attach_picking
@@ -59,26 +53,12 @@ msgstr ""
 
 #. module: mrp_attach_picking
 #: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__display_name
-#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_production__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: mrp_attach_picking
 #: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__id
-#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_production__id
 msgid "ID"
-msgstr ""
-
-#. module: mrp_attach_picking
-#: model:ir.model.fields,help:mrp_attach_picking.field_mrp_attach_picking__xid
-#: model:ir.model.fields,help:mrp_attach_picking.field_mrp_production__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: mrp_attach_picking
-#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking____last_update
-#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_production____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: mrp_attach_picking
@@ -92,13 +72,18 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: mrp_attach_picking
+#: model:ir.model,name:mrp_attach_picking.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: mrp_attach_picking
 #: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__move_id
 msgid "Move"
 msgstr ""
 
 #. module: mrp_attach_picking
+#. odoo-python
 #: code:addons/mrp_attach_picking/wizard/mrp_attach_picking.py:0
-#, python-format
 msgid "None of the production finished moves can be linked."
 msgstr ""
 
@@ -108,9 +93,13 @@ msgid "Product"
 msgstr ""
 
 #. module: mrp_attach_picking
-#: model:ir.model,name:mrp_attach_picking.model_mrp_production
 #: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__production_id
 msgid "Production Order"
+msgstr ""
+
+#. module: mrp_attach_picking
+#: model_terms:ir.ui.view,arch_db:mrp_attach_picking.mrp_production_form_view
+msgid "Select an existing picking order"
 msgstr ""
 
 #. module: mrp_attach_picking
@@ -123,10 +112,4 @@ msgstr ""
 #. module: mrp_attach_picking
 #: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__product_uom_qty
 msgid "Total Quantity"
-msgstr ""
-
-#. module: mrp_attach_picking
-#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_attach_picking__xid
-#: model:ir.model.fields,field_description:mrp_attach_picking.field_mrp_production__xid
-msgid "XML-ID"
 msgstr ""

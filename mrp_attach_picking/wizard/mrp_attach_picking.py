@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 
 class MrpAttachPicking(models.TransientModel):
