@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:30+0000\n"
-"PO-Revision-Date: 2023-11-28 10:30+0000\n"
+"POT-Creation-Date: 2026-06-03 11:02+0000\n"
+"PO-Revision-Date: 2026-06-03 11:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,40 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_lockable
+#. odoo-python
 #: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "%s is currently locked, you are not allowed to make changes to %s"
-msgstr ""
-
-#. module: sale_lockable
-#: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
 msgid "A salesperson must be set before locking a sale order"
 msgstr ""
 
 #. module: sale_lockable
 #: model_terms:ir.ui.view,arch_db:sale_lockable.sale_order_form_view
 msgid "Allow Changes"
-msgstr ""
-
-#. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_lockable
-#: model:ir.model.fields,help:sale_lockable.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_lockable
@@ -63,15 +37,9 @@ msgid "Locked"
 msgstr ""
 
 #. module: sale_lockable
+#. odoo-python
 #: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "Locked by {}"
-msgstr ""
-
-#. module: sale_lockable
-#: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "Only %s is able to lock/unlock this object"
+msgid "Only %s or an Administrator can lock/unlock this quotation"
 msgstr ""
 
 #. module: sale_lockable
@@ -90,12 +58,18 @@ msgid "Same User"
 msgstr ""
 
 #. module: sale_lockable
-#: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "Unlocked by {}"
+#: model_terms:ir.ui.view,arch_db:sale_lockable.sale_order_form_view
+msgid "This sale order is currently <strong>locked</strong> by its owner."
 msgstr ""
 
 #. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order__xid
-msgid "XML-ID"
+#. odoo-python
+#: code:addons/sale_lockable/models/sale_order.py:0
+msgid "⛔ Locked by {}"
+msgstr ""
+
+#. module: sale_lockable
+#. odoo-python
+#: code:addons/sale_lockable/models/sale_order.py:0
+msgid "✅ Unlocked by {}"
 msgstr ""

@@ -1,9 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
-from odoo import fields, models, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.config import config, to_list
+from odoo.tools.config import to_list
 
 
 class SaleOrder(models.Model):
@@ -65,11 +65,13 @@ class SaleOrder(models.Model):
     def _check_lock_changes(self, vals, fields):
         """Check if someone is trying to modify a locked quotation"""
         self.ensure_one()
-        if self.locked_draft and not "locked_draft" in vals:
+        if self.locked_draft and "locked_draft" not in vals:
             translated_fields = [fields[k]["string"] for k in fields]
             raise UserError(
-                _("%s is currently locked, you are not allowed to make changes to %s")
-                % (self.name, ", ".join(translated_fields))
+                _(
+                    f"{self.name} is currently locked, you are not allowed to make "
+                    f"changes to {', '.join(translated_fields)}"
+                )
             )
 
     def _can_edit_locked(self):

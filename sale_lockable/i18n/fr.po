@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:30+0000\n"
-"PO-Revision-Date: 2023-11-28 14:36+0100\n"
+"POT-Creation-Date: 2026-06-03 11:02+0000\n"
+"PO-Revision-Date: 2026-06-03 16:00+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,19 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: sale_lockable
+#. odoo-python
 #: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "%s is currently locked, you are not allowed to make changes to %s"
-msgstr ""
-"%s est actuellement verrouillé, vous n'êtes pas autorisé à faire des "
-"modifications sur %s"
-
-#. module: sale_lockable
-#: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
 msgid "A salesperson must be set before locking a sale order"
 msgstr ""
 "Un vendeur doit être assigné avant de pouvoir verrouiller une commande"
@@ -36,26 +28,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_lockable.sale_order_form_view
 msgid "Allow Changes"
 msgstr "Autoriser les modifications"
-
-#. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_lockable
-#: model:ir.model.fields,help:sale_lockable.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: sale_lockable
 #: model_terms:ir.ui.view,arch_db:sale_lockable.sale_order_form_view
@@ -68,16 +40,12 @@ msgid "Locked"
 msgstr "Bloqué"
 
 #. module: sale_lockable
+#. odoo-python
 #: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "Locked by {}"
-msgstr "Verrouillé par {}"
-
-#. module: sale_lockable
-#: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "Only %s is able to lock/unlock this object"
-msgstr "Seul %s est autorisé à verrouiller/déverrouiller ce devis"
+msgid "Only %s or an Administrator can lock/unlock this quotation"
+msgstr ""
+"Seul %s ou un Administrateur sont autorisé à verrouiller/déverrouiller ce "
+"devis"
 
 #. module: sale_lockable
 #: model:ir.model.fields,help:sale_lockable.field_sale_order__locked_draft
@@ -97,12 +65,41 @@ msgid "Same User"
 msgstr "Même utilisateur"
 
 #. module: sale_lockable
-#: code:addons/sale_lockable/models/sale_order.py:0
-#, python-format
-msgid "Unlocked by {}"
-msgstr "Déverrouillé par {}"
+#: model_terms:ir.ui.view,arch_db:sale_lockable.sale_order_form_view
+msgid "This sale order is currently <strong>locked</strong> by its owner."
+msgstr ""
+"Cette commande de vente est actuellement <strong>verrouillée</strong> par "
+"son propriétaire."
 
 #. module: sale_lockable
-#: model:ir.model.fields,field_description:sale_lockable.field_sale_order__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#. odoo-python
+#: code:addons/sale_lockable/models/sale_order.py:0
+msgid "⛔ Locked by {}"
+msgstr "⛔ Verrouillé par {}"
+
+#. module: sale_lockable
+#. odoo-python
+#: code:addons/sale_lockable/models/sale_order.py:0
+msgid "✅ Unlocked by {}"
+msgstr "✅ Déverrouillé par {}"
+
+#, python-format
+#~ msgid "%s is currently locked, you are not allowed to make changes to %s"
+#~ msgstr ""
+#~ "%s est actuellement verrouillé, vous n'êtes pas autorisé à faire des "
+#~ "modifications sur %s"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

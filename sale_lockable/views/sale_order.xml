@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_lockable</field>
         <field name="model">sale.order</field>
@@ -11,14 +10,7 @@
                     class="alert alert-warning"
                     role="alert"
                     style="height: 40px; margin-bottom:0px;"
-                    attrs="{'invisible':
-                    [
-                        ('|'),
-                        ('state', '!=', 'draft'),
-                        ('&amp;'),
-                            ('state', '=', 'draft'),
-                            ('locked_draft', '=', False),
-                    ]}"
+                    invisible="state != 'draft' or (state == 'draft' and locked_draft == False)"
                 >
                     This sale order is currently <strong>locked</strong> by its owner.
                 </div>
@@ -27,33 +19,17 @@
                 <button
                     name="action_draft_lock"
                     type="object"
-                    attrs="{'invisible':
-                        [
-                            ('|'),
-                                ('state', '!=', 'draft'),
-                                ('&amp;'),
-                                    ('state', '=', 'draft'),
-                                    ('locked_draft', '=', True),
-                        ]}"
+                    invisible="state != 'draft' or (state == 'draft' and locked_draft == True)"
                     string="Lock Changes"
-                >
-                </button>
+                />
                 <button
                     name="action_draft_unlock"
                     type="object"
                     disabled="[('same_user', '=', False)]"
-                    attrs="{'invisible':
-                        [
-                            ('|'),
-                            ('state', '!=', 'draft'),
-                            ('&amp;'),
-                                ('state', '=', 'draft'),
-                                ('locked_draft', '=', False),
-                        ]}"
+                    invisible="state != 'draft' or (state == 'draft' and locked_draft == False)"
                     class="btn btn-warning"
                     string="Allow Changes"
-                >
-                </button>
+                />
             </xpath>
             <xpath expr="//field[@name='validity_date']" position="before">
                 <field name="locked_draft" invisible="1" />
@@ -61,5 +37,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
