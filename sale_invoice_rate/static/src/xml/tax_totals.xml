@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="account.TaxTotalsField" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-foreach='subtotal.tax_groups']" position="before">
+            <tr t-if="'amount_to_invoice_ordqty_taxexcl' in totals">
+                <td class="o_td_label">
+                    <label
+                        class="o_form_label o_tax_total_label"
+                    >To Invoice (excl. taxes)</label>
+                </td>
+                <td class="o_list_monetary">
+                    <span
+                        t-out="formatMonetary(totals['amount_to_invoice_ordqty_taxexcl'])"
+                    />
+                </td>
+            </tr>
+        </xpath>
+        <xpath expr="//span[@name='amount_total']/../.." position="after">
+            <tr t-if="'amount_to_invoice_ordqty_taxincl' in totals">
+                <td class="o_td_label">
+                    <label
+                        class="o_form_label o_tax_total_label"
+                    >To Invoice (incl. taxes)</label>
+                </td>
+                <td class="o_list_monetary">
+                    <span
+                        t-out="formatMonetary(totals['amount_to_invoice_ordqty_taxincl'])"
+                    />
+                </td>
+            </tr>
+        </xpath>
+    </t>
+</templates>

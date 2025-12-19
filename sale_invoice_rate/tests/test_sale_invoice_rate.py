@@ -1,12 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2024
 
-from odoo.tests import SavepointCase
-from odoo.tests.common import Form
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleInvoiceRate(SavepointCase):
-
+class TestSaleInvoiceRate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

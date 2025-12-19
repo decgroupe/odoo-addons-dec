@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 12:52+0000\n"
+"POT-Creation-Date: 2026-06-03 11:02+0000\n"
 "PO-Revision-Date: 2024-07-29 15:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,34 +18,10 @@ msgstr ""
 "X-Generator: Poedit 3.4.4\n"
 
 #. module: sale_invoice_rate
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: sale_invoice_rate
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_invoice_rate
-#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__xid
-#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: sale_invoice_rate
 #: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__invoicing_rate
 #: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__invoicing_rate
 msgid "Invoicing Rate"
 msgstr "Taux de facturation"
-
-#. module: sale_invoice_rate
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: sale_invoice_rate
 #: model:ir.model,name:sale_invoice_rate.model_sale_order
@@ -58,19 +34,22 @@ msgid "Sales Order Line"
 msgstr "Ligne de bons de commande"
 
 #. module: sale_invoice_rate
-#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxexcl
 #: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxincl
 #: model:ir.model.fields,help:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxincl
 msgid "Taxed Amount to Invoice (based on ordered quantities)"
 msgstr "Montant TTC à facturer (en fonction des quantités commandées)"
 
 #. module: sale_invoice_rate
+#. odoo-javascript
+#: code:addons/sale_invoice_rate/static/src/xml/tax_totals.xml:0
 #: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxexcl
 #: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxexcl
 msgid "To Invoice (excl. taxes)"
 msgstr "À facturer (HT)"
 
 #. module: sale_invoice_rate
+#. odoo-javascript
+#: code:addons/sale_invoice_rate/static/src/xml/tax_totals.xml:0
 #: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxincl
 #: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxincl
 msgid "To Invoice (incl. taxes)"
@@ -89,12 +68,22 @@ msgid "Total Amount To Invoice (incl. taxes)"
 msgstr "Montant total à facturer (TTC)"
 
 #. module: sale_invoice_rate
+#: model:ir.model.fields,help:sale_invoice_rate.field_sale_order__amount_to_invoice_ordqty_taxexcl
 #: model:ir.model.fields,help:sale_invoice_rate.field_sale_order_line__amount_to_invoice_ordqty_taxexcl
 msgid "Untaxed Amount to Invoice (based on ordered quantities)"
 msgstr "Montant HT à facturer (en fonction des quantités commandées)"
 
-#. module: sale_invoice_rate
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order__xid
-#: model:ir.model.fields,field_description:sale_invoice_rate.field_sale_order_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

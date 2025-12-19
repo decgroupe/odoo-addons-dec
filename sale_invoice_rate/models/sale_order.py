@@ -28,8 +28,10 @@ class SaleOrder(models.Model):
 
     # is_downpayment??
 
-    @api.depends("order_line.amount_to_invoice_ordqty_taxexcl")
-    @api.depends("order_line.amount_to_invoice_ordqty_taxincl")
+    @api.depends(
+        "order_line.amount_to_invoice_ordqty_taxexcl",
+        "order_line.amount_to_invoice_ordqty_taxincl",
+    )
     def _compute_amount_to_invoice_ordqty(self):
         """Compute the total invoice amount for each sales order."""
         result = self.env["sale.order.line"].read_group(
@@ -61,3 +63,19 @@ class SaleOrder(models.Model):
                     rec.amount_total - rec.amount_to_invoice_ordqty_taxincl
                 )
                 rec.invoicing_rate = amount_invoiced / rec.amount_total * 100
+
+    @api.depends(
+        "amount_to_invoice_ordqty_taxexcl",
+        "amount_to_invoice_ordqty_taxincl",
+    )
+    def _compute_tax_totals(self):
+        """Compute totals for sale orders for tax group widget."""
+        res = super()._compute_tax_totals()
+        for order in self:
+            order.tax_totals["amount_to_invoice_ordqty_taxexcl"] = (
+                order.amount_to_invoice_ordqty_taxexcl
+            )
+            order.tax_totals["amount_to_invoice_ordqty_taxincl"] = (
+                order.amount_to_invoice_ordqty_taxincl
+            )
+        return res

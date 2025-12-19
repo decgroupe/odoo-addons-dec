@@ -24,8 +24,8 @@ class SaleOrderLine(models.Model):
 
     @api.depends(
         "state",
-        "price_reduce",
         "product_id",
+        "tax_id",
         "invoice_lines",
         "invoice_lines.price_total",
         "qty_delivered",
@@ -65,19 +65,19 @@ class SaleOrderLine(models.Model):
                 # move_id's 'state is "posted" (contrary to `taxed_amount_invoiced`)
                 amount_excluded = 0
                 amount_included = 0
-                for l in line.invoice_lines:
+                for invoice_line in line.invoice_lines:
                     amount = (
-                        l.currency_id._convert(
-                            l.price_unit,
+                        invoice_line.currency_id._convert(
+                            invoice_line.price_unit,
                             line.currency_id,
                             line.company_id,
-                            l.date or fields.Date.today(),
+                            invoice_line.date or fields.Date.today(),
                             round=False,
                         )
-                        * l.quantity
+                        * invoice_line.quantity
                     )
-                    if l.tax_ids:
-                        values = l.tax_ids.compute_all(amount)
+                    if invoice_line.tax_ids:
+                        values = invoice_line.tax_ids.compute_all(amount)
                         amount_excluded += values["total_excluded"]
                         amount_included += values["total_included"]
                     else:
