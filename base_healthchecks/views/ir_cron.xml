@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ir_cron_view_form">
         <field name="name">ir.cron.view.form@base_healthchecks</field>
         <field name="model">ir.cron</field>
@@ -12,12 +11,10 @@
                         <group name="primary">
                             <field name="ping_url" />
                         </group>
-                        <group name="secondary">
-                        </group>
+                        <group name="secondary" />
                     </group>
                 </page>
             </xpath>
         </field>
     </record>
-
 </odoo>

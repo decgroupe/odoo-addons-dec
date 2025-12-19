@@ -1,6 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2023
 
+import logging
 from unittest.mock import patch
 
 import requests
@@ -8,6 +9,8 @@ import requests
 import odoo.exceptions
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
+
+_logger = logging.getLogger(__name__)
 
 
 class TestBaseHealthchecks(TransactionCase):
@@ -26,7 +29,7 @@ class TestBaseHealthchecks(TransactionCase):
         url = "https://ping.mydomain.com/token/123456"
         self.server_action.ping_url = url
         with patch(
-            "odoo.addons.base_healthchecks.models.healthchecks_ping" ".requests.post"
+            "odoo.addons.base_healthchecks.models.healthchecks_ping.requests.post"
         ) as post:
             post.return_value = None
             self.server_action.run()
@@ -40,15 +43,15 @@ class TestBaseHealthchecks(TransactionCase):
     def test_02_action_exception(self):
         url = "https://ping.mydomain.com/token/123456"
         self.server_action.ping_url = url
-        self.server_action.code = "raise Warning('Fake Error')"
+        self.server_action.code = "raise UserError('Fake Error')"
         with patch(
-            "odoo.addons.base_healthchecks.models.healthchecks_ping" ".requests.post"
+            "odoo.addons.base_healthchecks.models.healthchecks_ping.requests.post"
         ) as post:
             post.return_value = None
             try:
                 self.server_action.run()
-            except odoo.exceptions.Warning as e:
-                pass
+            except odoo.exceptions.UserError as e:
+                _logger.info("Caught expected exception: %s", e)
             # check that only two calls have been made
             self.assertEqual(len(post.mock_calls), 2)
             # check first call is start
@@ -61,7 +64,7 @@ class TestBaseHealthchecks(TransactionCase):
         url = ICP.get_param("healthchecks.url")
         cron = self.env.ref("base_healthchecks.ir_cron_healthchecks")
         with patch(
-            "odoo.addons.base_healthchecks.models.healthchecks_ping" ".requests.post"
+            "odoo.addons.base_healthchecks.models.healthchecks_ping.requests.post"
         ) as post:
             post.return_value = None
             cron.method_direct_trigger()
@@ -75,13 +78,13 @@ class TestBaseHealthchecks(TransactionCase):
         self.server_action.ping_url = url
         self.server_action.code = "ping_log('Custom message')"
         with patch(
-            "odoo.addons.base_healthchecks.models.healthchecks_ping" ".requests.post"
+            "odoo.addons.base_healthchecks.models.healthchecks_ping.requests.post"
         ) as post:
             post.return_value = None
             try:
                 self.server_action.run()
-            except odoo.exceptions.Warning as e:
-                pass
+            except Exception as e:
+                _logger.info("Caught expected exception: %s", e)
             # check that exactly three calls have been made
             self.assertEqual(len(post.mock_calls), 3)
             # check first call is start
@@ -98,7 +101,7 @@ class TestBaseHealthchecks(TransactionCase):
         url = "https://ping.mydomain.com/token/123456"
         self.server_action.ping_url = url
         with patch(
-            "odoo.addons.base_healthchecks.models.healthchecks_ping" ".requests.post"
+            "odoo.addons.base_healthchecks.models.healthchecks_ping.requests.post"
         ) as post:
             post.side_effect = requests.HTTPError("Fake HTTP Error")
             post.return_value = None

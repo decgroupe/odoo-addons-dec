@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 14:12+0000\n"
-"PO-Revision-Date: 2022-11-16 15:14+0100\n"
+"POT-Creation-Date: 2026-06-03 09:55+0000\n"
+"PO-Revision-Date: 2026-06-03 14:22+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping__create_uid
@@ -29,8 +29,6 @@ msgstr "Créé le"
 
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping__display_name
-#: model:ir.model.fields,field_description:base_healthchecks.field_ir_actions_server__display_name
-#: model:ir.model.fields,field_description:base_healthchecks.field_ir_cron__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -46,17 +44,8 @@ msgstr "Healthchecks Ping"
 
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping__id
-#: model:ir.model.fields,field_description:base_healthchecks.field_ir_actions_server__id
-#: model:ir.model.fields,field_description:base_healthchecks.field_ir_cron__id
 msgid "ID"
 msgstr "ID"
-
-#. module: base_healthchecks
-#: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping____last_update
-#: model:ir.model.fields,field_description:base_healthchecks.field_ir_actions_server____last_update
-#: model:ir.model.fields,field_description:base_healthchecks.field_ir_cron____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: base_healthchecks
 #: model:ir.model.fields,field_description:base_healthchecks.field_healthchecks_ping__write_uid
@@ -81,12 +70,13 @@ msgstr "Actions planifiées"
 
 #. module: base_healthchecks
 #: model:ir.model,name:base_healthchecks.model_ir_actions_server
-msgid "Server Action"
-msgstr "Action du serveur"
+msgid "Server Actions"
+msgstr "Actions du serveur"
 
 #. module: base_healthchecks
 #: model:ir.actions.server,name:base_healthchecks.ir_cron_healthchecks_ir_actions_server
-#: model:ir.cron,cron_name:base_healthchecks.ir_cron_healthchecks
-#: model:ir.cron,name:base_healthchecks.ir_cron_healthchecks
 msgid "🩹 Healthchecks: Ping server"
 msgstr "🩹 Healthchecks: Ping serveur"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"

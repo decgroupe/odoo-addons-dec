@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ class IrActionsServer(models.Model):
         for rec in self.sudo().filtered("ping_url"):
             hc.action_ping_start(rec.ping_url, data)
         try:
-            res = super(IrActionsServer, self).run()
+            res = super().run()
             for rec in self.sudo().filtered("ping_url"):
                 hc.action_ping(rec.ping_url, data)
         except Exception as e:
@@ -42,7 +42,7 @@ class IrActionsServer(models.Model):
         """Extend the default evaluation to context in order to allow the use of
         `ping_log` from custom actions (eg: directly written from the backend)
         """
-        eval_context = super(IrActionsServer, self)._get_eval_context(action=action)
+        eval_context = super()._get_eval_context(action=action)
         # Note that action should always be set for a `ir.actions.server`
         if action:
             hc = self.env["healthchecks.ping"]

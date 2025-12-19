@@ -1,7 +1,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2021
 
-import json
 import logging
 import socket
 
@@ -23,6 +22,7 @@ def urljoin(*args):
 
 class HealthchecksPing(models.Model):
     "Static class to make ping to an healthchecks.io server"
+
     _name = "healthchecks.ping"
     _description = "Healthchecks Ping"
 
@@ -36,7 +36,7 @@ class HealthchecksPing(models.Model):
             res = requests.post(url, timeout=10, json=post_data)
         except requests.RequestException as e:
             # Log ping failure here...
-            _logger.error("Fail to ping %s: %s" % (url, e))
+            _logger.error(f"Fail to ping {url}: {e}")
         return res
 
     @api.model
