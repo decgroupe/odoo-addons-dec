@@ -179,4 +179,4 @@ workflow_myc/static/img/banniere_nocache.png" width=3D"480"></a></td>
         </div></div></div></div>
 
 --0000000000009489150614ca9b38--
-"""
+"""  # noqa: E501

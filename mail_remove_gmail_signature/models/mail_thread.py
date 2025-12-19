@@ -15,7 +15,7 @@ class MailThread(models.AbstractModel):
 
     def _message_belong_to_us(self, message):
         res = False
-        email_from = tools.decode_message_header(message, "From")
+        email_from = tools.mail.decode_message_header(message, "From")
         email_from = parseaddr(email_from)[1]
         email_domain = email_from.partition("@")[2]
         catchall_domain_lowered = (
@@ -54,8 +54,8 @@ class MailThread(models.AbstractModel):
         try:
             root = lxml.html.fromstring(body)
         except ValueError:
-            # In case the email client sent XHTML, fromstring will fail because 'Unicode strings
-            # with encoding declaration are not supported'.
+            # In case the email client sent XHTML, fromstring will fail because
+            # 'Unicode strings with encoding declaration are not supported'.
             root = lxml.html.fromstring(body.encode("utf-8"))
 
         postprocessed = False

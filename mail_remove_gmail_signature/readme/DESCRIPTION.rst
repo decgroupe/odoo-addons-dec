@@ -1,1 +1,0 @@
-We don't need our company signature as we already know each other

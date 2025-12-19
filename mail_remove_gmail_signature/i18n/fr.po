@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:22+0000\n"
+"POT-Creation-Date: 2026-06-03 10:30+0000\n"
 "PO-Revision-Date: 2023-11-28 12:01+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,31 +18,21 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: mail_remove_gmail_signature
-#: model:ir.model.fields,field_description:mail_remove_gmail_signature.field_mail_thread__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mail_remove_gmail_signature
 #: model:ir.model,name:mail_remove_gmail_signature.model_mail_thread
 msgid "Email Thread"
 msgstr "Discussion par courriel"
 
-#. module: mail_remove_gmail_signature
-#: model:ir.model.fields,field_description:mail_remove_gmail_signature.field_mail_thread__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: mail_remove_gmail_signature
-#: model:ir.model.fields,help:mail_remove_gmail_signature.field_mail_thread__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: mail_remove_gmail_signature
-#: model:ir.model.fields,field_description:mail_remove_gmail_signature.field_mail_thread____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: mail_remove_gmail_signature
-#: model:ir.model.fields,field_description:mail_remove_gmail_signature.field_mail_thread__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
