@@ -6,8 +6,10 @@ import logging
 import psycopg2
 
 from odoo import SUPERUSER_ID, api, fields, models, registry
-from odoo.addons.tools_miscellaneous.tools.bench import Bench
 from odoo.osv import expression
+from odoo.tools import Query
+
+from odoo.addons.tools_miscellaneous.tools.bench import Bench
 
 _logger = logging.getLogger(__name__)
 
@@ -21,36 +23,19 @@ class AccountAnalyticLine(models.Model):
         help="Help to pre-fill timesheet using another entry",
     )
 
-    @api.model
-    def create(self, vals):
-        # remove analytic line reference that was used to pre-fill data
-        if "autofill_from_analytic_line_id" in vals:
-            vals.pop("autofill_from_analytic_line_id")
-        res = super().create(vals)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            # remove analytic line reference that was used to pre-fill data
+            if "autofill_from_analytic_line_id" in vals:
+                vals.pop("autofill_from_analytic_line_id")
+        rec_ids = super().create(vals_list)
+        return rec_ids
 
-    @api.model
-    def _search(
-        self,
-        args,
-        offset=0,
-        limit=None,
-        order=None,
-        count=False,
-        access_rights_uid=None,
-    ):
-        """Override _search instead of search to also override
-        name_search order
-        """
+    def _search(self, domain, offset=0, limit=None, order=None) -> Query:
+        """Override _search instead of search to also override name_search order"""
         order = self.env.context.get("autofill_search_order", order)
-        return super()._search(
-            args,
-            offset=offset,
-            limit=limit,
-            order=order,
-            count=count,
-            access_rights_uid=access_rights_uid,
-        )
+        return super()._search(domain, offset=offset, limit=limit, order=order)
 
     def _log_autofill_query(self, msg, log_id=False):  # pragma: no cover
         # use a new cursor to avoid rollback that could be caused by
@@ -59,7 +44,7 @@ class AccountAnalyticLine(models.Model):
             db_registry = registry(self._cr.dbname)
             with db_registry.cursor() as cr:
                 env = api.Environment(cr, SUPERUSER_ID, {})
-                path = "autofill_name_search by %s" % (self.env.user.name)
+                path = f"autofill_name_search by {self.env.user.name}"
                 data = {
                     "name": self._name,
                     "type": "server",
@@ -78,33 +63,24 @@ class AccountAnalyticLine(models.Model):
                     ir_logging = env["ir.logging"].sudo().create(data)
                     return ir_logging.id
         except psycopg2.Error:
-            pass
+            _logger.info(
+                f"Cannot log autofill query message '{msg}' due to database error"
+            )
 
     def _pre_autofill_name_search(self, autofill_fields, text, args=None):
         if args is None:
             args = []
         else:
             args = args.copy()
-        # to avoid long-waiting query, we first search for all lines owned
-        # by this user. It has better performance than making a long AND
-        # query including user_id
-        domain = [
-            ("user_id", "=", self.env.uid),
-            ("project_id", "!=", False),
-        ]
-        owned_ids = self.env["account.analytic.line"].search(domain)
-        args.append(("id", "in", owned_ids.ids))
-        # execute normal search
         extra_args = []
         for value in text.split():
             # only search for text parts with at least 3 characters
             if len(value) >= 3:
                 value_args = []
                 for fname in autofill_fields:
-                    value_args = expression.OR(
-                        [value_args, [(fname, "ilike", value)]]
-                    )
-                extra_args = expression.AND([extra_args, value_args])
+                    value_args.append([(fname, "ilike", value)])
+                if value_args:
+                    extra_args = expression.AND([extra_args, expression.OR(value_args)])
         if extra_args:
             args = expression.AND([args, extra_args])
             text = ""
@@ -116,7 +92,7 @@ class AccountAnalyticLine(models.Model):
         result = []
         for item in name_search_res:
             rec = self.browse(item[0])[0]
-            name = str(item[1])
+            name = f"{rec.name} | {rec.user_id.name}, {rec.employee_id.name}"
             extra_name = []
             for fname in autofill_fields:
                 fvalue = rec[fname]
@@ -143,9 +119,7 @@ class AccountAnalyticLine(models.Model):
             autofill_fields = self.get_autofill_fields()
             name, args = self._pre_autofill_name_search(autofill_fields, name, args)
             if _logger.isEnabledFor(logging.DEBUG):  # pragma: no cover
-                log_id = self._log_autofill_query(
-                    "Autofill query: {} in progress".format(args)
-                )
+                log_id = self._log_autofill_query(f"Autofill query: {args} in progress")
         # make a search with default criteria
         name_search_res = super().name_search(
             name=name, args=args, operator=operator, limit=limit
@@ -154,7 +128,7 @@ class AccountAnalyticLine(models.Model):
             if _logger.isEnabledFor(logging.DEBUG):  # pragma: no cover
                 duration = bench.stop().duration()
                 self._log_autofill_query(
-                    "Autofill query: {} in {}s".format(args, duration), log_id
+                    f"Autofill query: {args} in {duration}s", log_id
                 )
             name_search_res = self._post_autofill_name_search(
                 autofill_fields, name_search_res

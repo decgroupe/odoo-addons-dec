@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:19+0000\n"
-"PO-Revision-Date: 2023-11-28 10:19+0000\n"
+"POT-Creation-Date: 2026-06-03 10:22+0000\n"
+"PO-Revision-Date: 2026-06-03 10:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,6 @@ msgstr ""
 
 #. module: hr_timesheet_autofill
 #: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__autofill_from_analytic_line_id
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_hr_timesheet_switch__autofill_from_analytic_line_id
 msgid "Auto-fill"
 msgstr ""
 
@@ -37,32 +36,6 @@ msgid "Date"
 msgstr ""
 
 #. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: hr_timesheet_autofill
 #: model:ir.model.fields,help:hr_timesheet_autofill.field_account_analytic_line__autofill_from_analytic_line_id
-#: model:ir.model.fields,help:hr_timesheet_autofill.field_hr_timesheet_switch__autofill_from_analytic_line_id
 msgid "Help to pre-fill timesheet using another entry"
-msgstr ""
-
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__id
-msgid "ID"
-msgstr ""
-
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,help:hr_timesheet_autofill.field_account_analytic_line__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__xid
-msgid "XML-ID"
 msgstr ""

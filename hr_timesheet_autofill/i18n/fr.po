@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:19+0000\n"
-"PO-Revision-Date: 2023-11-28 11:54+0100\n"
+"POT-Creation-Date: 2026-06-03 10:22+0000\n"
+"PO-Revision-Date: 2026-06-03 14:40+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: hr_timesheet_autofill
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_autofill.hr_timesheet_line_form_view
@@ -29,42 +29,30 @@ msgstr "Ligne analytique"
 
 #. module: hr_timesheet_autofill
 #: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__autofill_from_analytic_line_id
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_hr_timesheet_switch__autofill_from_analytic_line_id
 msgid "Auto-fill"
 msgstr "Remplissage automatique"
 
 #. module: hr_timesheet_autofill
 #: model_terms:ir.ui.view,arch_db:hr_timesheet_autofill.hr_timesheet_line_form_view
 msgid "Date"
-msgstr "Date "
-
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Date"
 
 #. module: hr_timesheet_autofill
 #: model:ir.model.fields,help:hr_timesheet_autofill.field_account_analytic_line__autofill_from_analytic_line_id
-#: model:ir.model.fields,help:hr_timesheet_autofill.field_hr_timesheet_switch__autofill_from_analytic_line_id
 msgid "Help to pre-fill timesheet using another entry"
 msgstr "Aide à pré-remplir la feuille de temps à l’aide d’une autre entrée"
 
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,help:hr_timesheet_autofill.field_account_analytic_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: hr_timesheet_autofill
-#: model:ir.model.fields,field_description:hr_timesheet_autofill.field_account_analytic_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

@@ -1,6 +1,7 @@
 {
     "name": "HR Timesheet Auto-fill",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -8,8 +9,12 @@
         "project_timesheet_time_control",
     ],
     "data": [
-        "views/assets.xml",
         "views/account_analytic_line.xml",
     ],
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "hr_timesheet_autofill/static/src/scss/style.scss",
+        ],
+    },
+    "installable": True,
 }
