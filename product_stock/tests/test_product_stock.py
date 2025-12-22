@@ -6,11 +6,10 @@ import random
 
 from freezegun import freeze_time
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestProductStock(SavepointCase):
-
+class TestProductStock(TransactionCase):
     def _now(self):
         now = datetime.datetime.now().replace(microsecond=0)
         return now
@@ -41,7 +40,7 @@ class TestProductStock(SavepointCase):
         stock_inventory = cls.env["stock.inventory"].create(
             {"name": "Inventory adjustment"}
         )
-        for product, qty in zip(products, quantities):
+        for product, qty in zip(products, quantities, strict=False):
             cls.env["stock.inventory.line"].create(
                 {
                     "product_id": product.id,

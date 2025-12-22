@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- TODO: [MIG] 13.0: Check if still necessary -->
     <record model="ir.ui.view" id="product_procurement_button_form_view_">
         <field name="name">product.product.procurement@product_stock</field>
@@ -10,5 +9,4 @@
             <data />
         </field>
     </record>
-
 </odoo>

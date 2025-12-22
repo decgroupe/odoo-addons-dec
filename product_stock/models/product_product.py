@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class Product(models.Model):
@@ -137,10 +137,7 @@ class Product(models.Model):
             )
             if rec.last_inventory_line_id:
                 rec.last_inventory_date = rec.last_inventory_line_id.inventory_id.date
-                rec.last_inventory_quantity = "{} {}".format(
-                    rec.last_inventory_line_id.product_qty,
-                    rec.last_inventory_line_id.product_uom_id.name,
-                )
+                rec.last_inventory_quantity = f"{rec.last_inventory_line_id.product_qty} {rec.last_inventory_line_id.product_uom_id.name}"
             else:
                 rec.last_inventory_date = False
                 rec.last_inventory_quantity = False
