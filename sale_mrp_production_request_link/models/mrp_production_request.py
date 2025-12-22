@@ -13,27 +13,28 @@ class MrpProductionRequest(models.Model):
         string="Source Sale Order",
     )
 
-    @api.model
-    def create(self, values):
-        # Same logic than sale_mrp_link
-        if "origin" in values:
-            # Checking first if this comes from a 'sale.order'
-            sale_id = self.env["sale.order"].search(
-                [("name", "=", values["origin"])], limit=1
-            )
-            if sale_id:
-                values["sale_order_id"] = sale_id.id
-                if sale_id.client_order_ref:
-                    values["origin"] = sale_id.client_order_ref
-            else:
-                # Checking if this production request comes from a route
-                production_id = self.env["mrp.production"].search(
-                    [("name", "=", values["origin"])]
+    @api.model_create_multi
+    def create(self, vals_list):
+        # same logic than sale_mrp_link
+        for vals in vals_list:
+            if "origin" in vals:
+                # checking first if this comes from a 'sale.order'
+                sale_id = self.env["sale.order"].search(
+                    [("name", "=", vals["origin"])], limit=1
                 )
-                # If so, use the 'sale_order_id' from the parent production
-                values["sale_order_id"] = production_id.sale_order_id.id
-
-        return super().create(values)
+                if sale_id:
+                    vals["sale_order_id"] = sale_id.id
+                    if sale_id.client_order_ref:
+                        vals["origin"] = sale_id.client_order_ref
+                else:
+                    # checking if this production request comes from a route
+                    production_id = self.env["mrp.production"].search(
+                        [("name", "=", vals["origin"])]
+                    )
+                    # if so, use the 'sale_order_id' from the parent production
+                    vals["sale_order_id"] = production_id.sale_order_id.id
+        record_ids = super().create(vals_list)
+        return record_ids
 
     def button_approved(self):
         self.write({"assigned_to": self.env.uid})

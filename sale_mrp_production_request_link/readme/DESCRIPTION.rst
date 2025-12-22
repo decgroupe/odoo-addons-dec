@@ -1,1 +1,0 @@
-Show manufacturing production requests generated from sale orders and create activities when sale orders are cancelled.

@@ -1,13 +1,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2024
 
-from dateutil.relativedelta import relativedelta
 from datetime import datetime
+
+from dateutil.relativedelta import relativedelta
+
 from odoo.tests.common import TransactionCase
 
 
 class TestSaleMrpProductionRequestLink(TransactionCase):
-
     def _set_stock_qty(self, product, qty):
         self.env["stock.quant"]._update_available_quantity(
             product, self.stock_location, qty

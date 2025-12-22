@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_request_form_view">
         <field
             name="name"
@@ -15,9 +14,9 @@
             <field name="bom_id" position="after">
                 <field name="sale_order_id" readonly="1" />
             </field>
-            <field name="message_follower_ids" position="after">
+            <!-- <field name="message_follower_ids" position="after">
                 <field name="activity_ids" widget="mail_activity" />
-            </field>
+            </field> -->
         </field>
     </record>
 
@@ -52,5 +51,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

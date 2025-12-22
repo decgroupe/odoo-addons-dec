@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"POT-Creation-Date: 2026-06-03 11:02+0000\n"
 "PO-Revision-Date: 2023-11-28 14:36+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -49,10 +49,10 @@ msgid "Activity Type Icon"
 msgstr "Icône de type d’activité"
 
 #. module: sale_mrp_production_request_link
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_mrp_production_request__display_name
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom d'affichage"
+#. odoo-python
+#: code:addons/sale_mrp_production_request_link/models/sale_order.py:0
+msgid "Automatic cancellation following cancellation of the sell order"
+msgstr ""
 
 #. module: sale_mrp_production_request_link
 #: model_terms:ir.ui.view,arch_db:sale_mrp_production_request_link.exception_production_request_on_sale_cancellation
@@ -65,18 +65,6 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr "Icône Font Awesome ex: fa-tasks"
 
 #. module: sale_mrp_production_request_link
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_mrp_production_request__id
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_mrp_production_request_link
-#: model:ir.model.fields,help:sale_mrp_production_request_link.field_mrp_production_request__xid
-#: model:ir.model.fields,help:sale_mrp_production_request_link.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: sale_mrp_production_request_link
 #: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_mrp_production_request__activity_exception_icon
 msgid "Icon"
 msgstr "Icône"
@@ -85,12 +73,6 @@ msgstr "Icône"
 #: model:ir.model.fields,help:sale_mrp_production_request_link.field_mrp_production_request__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr "Icône pour indiquer une activité d'exception."
-
-#. module: sale_mrp_production_request_link
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_mrp_production_request____last_update
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: sale_mrp_production_request_link
 #: model:ir.model,name:sale_mrp_production_request_link.model_mrp_production_request
@@ -162,12 +144,24 @@ msgid "Type of the exception activity on record."
 msgstr "Type d'activité d'exception enregistrée"
 
 #. module: sale_mrp_production_request_link
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_mrp_production_request__xid
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_sale_order__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model:ir.model,name:sale_mrp_production_request_link.model_mrp_production_request_create_mo
+msgid "Wizard to create Manufacturing Orders"
+msgstr "Assistant pour créer des ordres de fabrication"
 
-#. module: sale_mrp_production_request_link
-#: model:ir.model.fields,field_description:sale_mrp_production_request_link.field_mrp_production_request__activity_team_user_ids
-msgid "test field"
-msgstr "champ de test"
+#~ msgid "Display Name"
+#~ msgstr "Nom d'affichage"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
+
+#~ msgid "test field"
+#~ msgstr "champ de test"
