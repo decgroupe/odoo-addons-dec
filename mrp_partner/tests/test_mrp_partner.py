@@ -7,6 +7,8 @@ from odoo.tests.common import TransactionCase
 class TestMrpPartner(TransactionCase):
     def setUp(self):
         super().setUp()
+        self.production_model = self.env["mrp.production"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("partner_id", self.production_model._fields)
+        self.assertIn("commercial_partner_id", self.production_model._fields)
