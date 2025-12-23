@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_tree_view">
         <field name="name">mrp.production.tree@mrp_partner_location</field>
         <field name="model">mrp.production</field>
@@ -51,16 +50,15 @@
             <xpath expr="//kanban/field[@name='name']" position="after">
                 <field name="partner_zip_id" />
             </xpath>
-            <xpath
-                expr="//kanban//templates//div[@name='body']/small[@name='partner']"
-                position="inside"
-            >
-                <div t-if="record.partner_zip_id.raw_value">
-                    <i class="fa fa-map-marker" />
-                    <t t-raw="record.partner_zip_id.value" />
+            <xpath expr="//kanban//templates//div[@name='partner']" position="inside">
+                <div name="partner" t-if="record.partner_zip_id.raw_value">
+                    <small name="partner_location">
+                        <i class="fa fa-map-marker" title="Partner ZIP Location" />
+                        <span>&amp;nbsp;</span>
+                        <field name="partner_zip_id" />
+                    </small>
                 </div>
             </xpath>
         </field>
     </record>
-
 </odoo>

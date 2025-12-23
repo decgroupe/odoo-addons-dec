@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMrpPartnerLocation(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.production_model = self.env["mrp.production"]
