@@ -5,7 +5,6 @@ from odoo.addons.hr_timesheet_autofill.tests.common import TestHrTimesheetAutofi
 
 
 class TestMrpTimesheetAutofill(TestHrTimesheetAutofillCommon):
-
     def setUp(self):
         super().setUp()
         # WH/MO/00001
@@ -30,7 +29,7 @@ class TestMrpTimesheetAutofill(TestHrTimesheetAutofillCommon):
                 "production_id": production_id.id,
                 "employee_id": self.employee_admin.id,
                 "unit_amount": 1,  # one hour
-                "date": production_id.date_planned_start,
+                "date": production_id.date_start,
             }
         )
         self.al2 = self.env["account.analytic.line"].create(
@@ -40,7 +39,7 @@ class TestMrpTimesheetAutofill(TestHrTimesheetAutofillCommon):
                 "production_id": production_id.id,
                 "employee_id": self.employee_admin.id,
                 "unit_amount": 1,  # one hour
-                "date": production_id.date_planned_start,
+                "date": production_id.date_start,
             }
         )
         self.al3 = self.env["account.analytic.line"].create(
@@ -50,7 +49,7 @@ class TestMrpTimesheetAutofill(TestHrTimesheetAutofillCommon):
                 "production_id": production_id.id,
                 "employee_id": self.employee_admin.id,
                 "unit_amount": 1,  # one hour
-                "date": production_id.date_planned_start,
+                "date": production_id.date_start,
             }
         )
         self.al_ids = self.al1 | self.al2 | self.al3
@@ -69,4 +68,3 @@ class TestMrpTimesheetAutofill(TestHrTimesheetAutofillCommon):
         self._search_for("FURN_7800", self.al_ids)
         self._search_for("desk", self.al_ids)
         self._search_for("[FURN_7800] Desk Combination", self.al_ids)
-
