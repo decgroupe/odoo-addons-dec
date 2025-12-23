@@ -8,7 +8,7 @@
                 <field name="sequence" widget="handle" groups="base.group_no_one" />
                 <field name="name" />
                 <field name="code" />
-                <field name="emoji" />
+                <field name="symbol" />
                 <field name="fold" />
                 <field name="todo" />
             </list>
@@ -25,7 +25,7 @@
                         <group>
                             <field name="name" />
                             <field name="code" />
-                            <field name="emoji" />
+                            <field name="symbol" />
                             <field
                                 name="activity_type_id"
                                 domain="[('res_model', '=', 'mrp.production')]"

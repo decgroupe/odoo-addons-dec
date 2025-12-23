@@ -12,7 +12,6 @@
         "security/ir.model.access.csv",
         "data/mail_activity_type.xml",
         "data/mrp_production_stage.xml",
-        # "views/assets.xml", FIXME: assets.xml is not used in Odoo 18
         "views/mrp_production.xml",
         "views/mail_activity_type.xml",
         "views/mrp_production_stage.xml",

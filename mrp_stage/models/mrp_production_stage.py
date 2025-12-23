@@ -19,7 +19,7 @@ class ProductionStage(models.Model):
         required=True,
         help="Unique lowercase string identifier",
     )
-    emoji = fields.Char(
+    symbol = fields.Char(
         string="Icon",
         translate=False,
     )
@@ -43,13 +43,13 @@ class ProductionStage(models.Model):
         ("code_uniq", "unique (code)", "Code must be unique !"),
     ]
 
-    @api.depends("name", "emoji")
-    def name_get(self):
-        res = []
+    @api.depends("name", "symbol")
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
         for rec in self:
-            if rec.emoji:
-                name = f"{rec.emoji} {rec.name}"
+            if rec.symbol:
+                name = f"{rec.symbol} {rec.name}"
             else:
                 name = rec.name
-            res.append((rec.id, name))
+            rec.display_name = name
         return res
