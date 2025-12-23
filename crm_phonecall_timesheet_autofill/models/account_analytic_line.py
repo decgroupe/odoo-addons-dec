@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class AccountAnalyticLine(models.Model):

@@ -1,15 +1,26 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2025
 
+import time
+
 from odoo.addons.hr_timesheet_autofill.tests.common import TestHrTimesheetAutofillCommon
 
 
 class TestCrmPhonecallTimesheetAutofill(TestHrTimesheetAutofillCommon):
-
     def setUp(self):
         super().setUp()
         # Client Feedback and Next Steps
-        phonecall_id = self.env.ref("crm_phonecall_timesheet.call_5")
+        phonecall_id = self.env["crm.phonecall"].create(
+            {
+                "date": time.strftime("%Y-%m-02 09:45:42"),
+                "opportunity_id": self.env.ref("crm.crm_case_1").id,
+                "user_id": self.env.ref("base.user_demo").id,
+                "name": "Client Feedback and Next Steps",
+                "state": "done",
+                "partner_phone": "+49 170 1234567",
+                "direction": "in",
+            }
+        )
         # Office Design
         project_id = self.env.ref("project.project_project_1")
         # create timesheet entry for this phonecall
