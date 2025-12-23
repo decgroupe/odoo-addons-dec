@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="project_project_filter_view">
         <field name="name">project.project.select@project_identification</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project_project_filter" />
         <field name="arch" type="xml">
             <xpath
-                expr="//filter[@name='followed_by_me']/following-sibling::separator"
-                position="after"
+                expr="//filter[@name='late_milestones']/following-sibling::separator"
+                position="before"
             >
                 <filter
                     string="Is a Contract"
@@ -34,9 +33,7 @@
         <field name="name">Contracts</field>
         <field name="res_model">project.project</field>
         <field name="domain">[]</field>
-        <field
-            name="context"
-        >{'search_default_is_contract': 1, 'search_default_filter_task_todo': 1}</field>
+        <field name="context">{'search_default_is_contract': 1}</field>
         <field name="view_mode">kanban,form</field>
         <field name="view_id" ref="project.view_project_kanban" />
         <field name="search_view_id" ref="project.view_project_project_filter" />
@@ -52,9 +49,17 @@
 
     <record model="ir.actions.act_window.view" id="open_view_contract_all_tree">
         <field name="act_window_id" ref="open_view_contract_all" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="sequence">2</field>
         <field name="view_id" ref="project.view_project" />
     </record>
 
+    <!-- Add "is_not_contract" and "my_projects" to existing context -->
+    <record model="ir.actions.act_window" id="project.open_view_project_all">
+        <field name="context">{
+            'display_milestone_deadline': True,
+            'search_default_is_not_contract': 1,
+            'search_default_my_projects': 1,
+        }</field>
+    </record>
 </odoo>

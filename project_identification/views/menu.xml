@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.menu" id="menu_contracts_and_projects">
         <field name="name">Contracts &amp; Projects</field>
         <field name="sequence" eval="5" />
@@ -22,5 +21,4 @@
         <field name="action" ref="open_view_contract_all" />
         <field name="parent_id" ref="menu_contracts_and_projects" />
     </record>
-
 </odoo>

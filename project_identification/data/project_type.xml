@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="time_tracking_type" model="project.type">
         <field name="name">⏱️</field>
         <field
@@ -16,5 +15,4 @@
         <field name="project_ok" eval="True" />
         <field name="task_ok" eval="False" />
     </record>
-
 </odoo>
