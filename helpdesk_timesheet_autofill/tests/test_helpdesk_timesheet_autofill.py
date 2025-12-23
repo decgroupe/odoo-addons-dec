@@ -5,7 +5,6 @@ from odoo.addons.hr_timesheet_autofill.tests.common import TestHrTimesheetAutofi
 
 
 class TestHelpdeskTimesheetAutofill(TestHrTimesheetAutofillCommon):
-
     def setUp(self):
         super().setUp()
         # Office Design
