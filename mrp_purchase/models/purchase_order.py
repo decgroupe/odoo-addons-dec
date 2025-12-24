@@ -1,14 +1,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-from odoo import api, models
+from odoo import models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def button_cancel(self):
-        result = super(PurchaseOrder, self).button_cancel()
+        result = super().button_cancel()
         self.sudo()._activity_cancel_on_production()
         return result
 
@@ -18,9 +18,8 @@ class PurchaseOrder(models.Model):
         by several MO, when cancelling one PO, many next activities can
         be schedulded on different MO.
         """
-        prod_to_notify_map = (
-            {}
-        )  # map MO -> recordset of PO as {mrp.production: set(purchase.order.line)}
+        # map MO -> recordset of PO as {mrp.production: set(purchase.order.line)}
+        prod_to_notify_map = {}
         for order in self:
             for purchase_line in order.order_line:
                 if purchase_line.production_id:

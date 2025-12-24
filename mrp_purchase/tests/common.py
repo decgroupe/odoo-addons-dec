@@ -7,9 +7,8 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMrpPurchaseCommon(TransactionCase):
-
     def setUp(self):
-        super(TestMrpPurchaseCommon, self).setUp()
+        super().setUp()
 
         # Create products
         self.obj_warehouse = self.env["stock.warehouse"]
@@ -28,7 +27,8 @@ class TestMrpPurchaseCommon(TransactionCase):
         self.p1 = self.product_model.create(
             {
                 "name": "101",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         self.service = self.product_model.create(
@@ -40,7 +40,7 @@ class TestMrpPurchaseCommon(TransactionCase):
                         0,
                         0,
                         {
-                            "name": self.supplier.id,
+                            "partner_id": self.supplier.id,
                             "price": 100.0,
                         },
                     )
@@ -50,7 +50,8 @@ class TestMrpPurchaseCommon(TransactionCase):
         self.stock_product = self.product_model.create(
             {
                 "name": "Stockable Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         self.service.property_subcontracted_service = True

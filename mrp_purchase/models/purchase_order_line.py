@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class PurchaseOrderLine(models.Model):
@@ -34,13 +34,32 @@ class PurchaseOrderLine(models.Model):
 
     # Inherit addons/purchase_stock/models/purchase.py:PurchaseOrderLine
     def _prepare_purchase_order_line_from_procurement(
-        self, product_id, product_qty, product_uom, company_id, values, po
+        self,
+        product_id,
+        product_qty,
+        product_uom,
+        location_dest_id,
+        name,
+        origin,
+        company_id,
+        values,
+        po,
     ):
         res = super()._prepare_purchase_order_line_from_procurement(
-            product_id, product_qty, product_uom, company_id, values, po
+            product_id,
+            product_qty,
+            product_uom,
+            location_dest_id,
+            name,
+            origin,
+            company_id,
+            values,
+            po,
         )
         if "production_id" in values:
-            res["production_ids"] = [(6, 0, values["production_id"].ids)]
-        if "bom_line_id" in values:
-            res["bom_line_id"] = values["bom_line_id"].id
+            res["production_ids"] = [Command.set(values["production_id"].ids)]
+        # use service_bom_line_id to avoid collision with the bom_line_id (integer)
+        # set from `_prepare_procurement_values` (addons/mrp/models/stock_move.py)
+        if "service_bom_line_id" in values:
+            res["bom_line_id"] = values["service_bom_line_id"].id
         return res

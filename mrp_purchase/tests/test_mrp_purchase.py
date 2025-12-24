@@ -3,13 +3,13 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2024
 
 from odoo.tests import Form
+
 from .common import TestMrpPurchaseCommon
 
 
 class TestMrpPurchase(TestMrpPurchaseCommon):
-
     def setUp(self):
-        super(TestMrpPurchase, self).setUp()
+        super().setUp()
         # Create bom lines
         self.bom_line_model.create(
             {

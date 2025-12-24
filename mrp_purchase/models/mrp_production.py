@@ -23,20 +23,20 @@ class MrpProduction(models.Model):
         location = self.location_src_id
         return {
             "company_id": self.company_id,
-            "date_planned": self.date_planned_start,
-            "warehouse_id": location.get_warehouse(),
+            "date_planned": self.date_start,  # was date_planned_start
+            "warehouse_id": location.warehouse_id,
             "group_id": self.procurement_group_id,
             "production_id": self,
-            "bom_line_id": bom_line,
+            "service_bom_line_id": bom_line,
         }
 
     def _post_bom_line_procurement_fail(self, bom_line):
         if not self.env.context.get("procurement_fail_no_notify"):
             message = _(
-                "The procurement workflow for this line is not supported: "
-                "<a href=# data-oe-model=mrp.bom.line "
-                "data-oe-id=%d>%s</a>"
-            ) % (bom_line.id, bom_line.display_name)
+                f"The procurement workflow for this line is not supported: "
+                f"<a href=# data-oe-model=mrp.bom.line "
+                f"data-oe-id={bom_line.id}></a>{bom_line.display_name}"
+            )
             self.message_post(body=message)
 
     @api.model
@@ -107,9 +107,8 @@ class MrpProduction(models.Model):
         impact different purchase, we only want one activity to be
         attached.
         """
-        purchase_to_notify_map = (
-            {}
-        )  # map PO -> recordset of POL as {purchase.order: set(mrp.production)}
+        # map PO -> recordset of POL as {purchase.order: set(mrp.production)}
+        purchase_to_notify_map = {}
 
         purchase_order_lines = self.env["purchase.order.line"].search(
             [
