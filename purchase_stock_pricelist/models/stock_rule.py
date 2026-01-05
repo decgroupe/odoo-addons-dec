@@ -13,11 +13,9 @@ class StockRule(models.Model):
         vals = super()._update_purchase_order_line(
             product_id, product_qty, product_uom, company_id, values, line
         )
-        vals["price_unit"] = line._get_price_unit_by_quantity(
-            line.order_id,
-            product_id,
-            vals["product_qty"],
-            product_uom,
-            line.taxes_id,
-        )
+        if line.order_id.pricelist_id and line.price_unit:
+            # remove updated price from vals since the right value has already
+            # been set in "_prepare_purchase_order_line" method of
+            # "purchase.order.line" model
+            vals.pop("price_unit", None)
         return vals

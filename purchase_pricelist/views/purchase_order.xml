@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="purchase_order_form_view">
         <field name="name">purchase.order.form@purchase_pricelist</field>
         <field name="model">purchase.order</field>
@@ -11,15 +10,13 @@
                     name="action_recompute_all_lines"
                     string="Recompute Prices"
                     type="object"
-                    attrs="{'invisible': [('state', 'in', ['to approve', 'purchase', 'done', 'cancel'])]}"
+                    invisible="state in ['to approve', 'purchase', 'done', 'cancel']"
                     icon=""
-                >
-                </button>
+                />
             </button>
             <field name="date_order" position="after">
-                <field name="pricelist_id" />
+                <field name="pricelist_id" readonly="state not in ['draft', 'sent']" />
             </field>
         </field>
     </record>
-
 </odoo>

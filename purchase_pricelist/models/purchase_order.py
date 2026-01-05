@@ -12,38 +12,26 @@ class PurchaseOrder(models.Model):
     pricelist_id = fields.Many2one(
         comodel_name="product.pricelist",
         string="Pricelist",
+        compute="_compute_pricelist_id",
+        store=True,
+        readonly=False,
+        precompute=True,
         check_company=True,  # Unrequired company
-        required=False,
-        readonly=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
-        domain="[('type', '=', 'purchase'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        domain="[('type', '=', 'purchase'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]",  # noqa: E501
         tracking=1,
         help="Pricelist for current purchase order.",
     )
 
-    @api.model
-    def create(self, vals):
-        # Make sure 'pricelist_id' is defined
-        if any(f not in vals for f in ["pricelist_id"]):
-            partner = self.env["res.partner"].browse(vals.get("partner_id"))
-            vals["pricelist_id"] = vals.setdefault(
-                "pricelist_id",
-                partner.property_product_pricelist_purchase
-                and partner.property_product_pricelist_purchase.id,
-            )
-        return super().create(vals)
-
-    @api.onchange("partner_id", "company_id")
-    def onchange_partner_id(self):
-        super().onchange_partner_id()
-        # Assign purchase pricelist from the partner property field
-        if self.partner_id:
-            values = {
-                "pricelist_id": self.partner_id.property_product_pricelist_purchase
-                and self.partner_id.property_product_pricelist_purchase.id
-                or False,
-            }
-            self.update(values)
+    @api.depends("partner_id", "company_id")
+    def _compute_pricelist_id(self):
+        for order in self:
+            if order.state != "draft":
+                continue
+            if not order.partner_id:
+                order.pricelist_id = False
+                continue
+            order = order.with_company(order.company_id)
+            order.pricelist_id = order.partner_id.property_product_pricelist_purchase
 
     @api.onchange("pricelist_id")
     def onchange_pricelist_id(self):
@@ -52,4 +40,4 @@ class PurchaseOrder(models.Model):
     def action_recompute_all_lines(self):
         for order in self:
             for line in order.order_line:
-                line._onchange_quantity()
+                line._compute_price_unit_and_date_planned_and_name()

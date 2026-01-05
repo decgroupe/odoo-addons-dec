@@ -1,69 +1,85 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import api, models
+from odoo import api, fields, models
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools.float_utils import float_round
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    # _get_display_price is inspired from the 'sale.order.line'
-    # same name function
-    @api.model
-    def _get_display_price(self, product, pricelist_id):
-        # For purchase pricelists, we don't care about the discount_policy
-        # We always return the discounted price
-        product = product.with_context(pricelist=pricelist_id.id)
-        return product.price
+    def _compute_price_unit_and_date_planned_and_name(self):
+        ids_to_super = set()
+        for line in self:
+            if not line.product_id or line.invoice_lines or not line.company_id:
+                continue
+            if line.order_id.pricelist_id:
+                price_unit = self._get_price_unit(
+                    line.partner_id,
+                    line.order_id.pricelist_id,
+                    line.product_id,
+                    line.product_qty,
+                    line.product_uom,
+                    line.taxes_id,
+                    line.order_id.company_id,
+                )
+                # use same rounding as in purchase module
+                line.price_unit = float_round(
+                    price_unit,
+                    precision_digits=max(
+                        line.currency_id.decimal_places,
+                        self.env["decimal.precision"].precision_get("Product Price"),
+                    ),
+                )
+                # reuse exact same code to get "date_planned"
+                params = line._get_select_sellers_params()
+                seller = line.product_id._select_seller(
+                    partner_id=line.partner_id,
+                    quantity=line.product_qty,
+                    date=line.order_id.date_order
+                    and line.order_id.date_order.date()
+                    or fields.Date.context_today(line),
+                    uom_id=line.product_uom,
+                    params=params,
+                )
+                line.date_planned = line._get_date_planned(seller).strftime(
+                    DEFAULT_SERVER_DATETIME_FORMAT
+                )
+            else:
+                ids_to_super.add(line.id)
+        # call super only for lines not managed by pricelist
+        res = super(
+            PurchaseOrderLine, self.browse(ids_to_super)
+        )._compute_price_unit_and_date_planned_and_name()
+        return res
 
     @api.model
-    def _get_price_unit(self, product_id, pricelist_id, taxes_id, company_id):
-        res = self.env["account.tax"]._fix_tax_included_price_company(
-            self._get_display_price(product_id, pricelist_id),
+    def _get_price_unit(
+        self,
+        supplier_id,
+        pricelist_id,
+        product_id,
+        product_uom_qty,
+        product_uom_id,
+        taxes_id,
+        company_id,
+    ):
+        price = pricelist_id.with_context(
+            force_filter_supplier_id=supplier_id
+        )._get_product_price(product_id, product_uom_qty, uom=product_uom_id)
+        price_unit = self.env["account.tax"]._fix_tax_included_price_company(
+            price,
             product_id.supplier_taxes_id,
             taxes_id,
             company_id,
         )
-        return res
-
-    @api.model
-    def _get_price_unit_by_quantity(
-        self, order_id, product_id, product_uom_qty, product_uom_id, taxes_id
-    ):
-        product = product_id.with_context(
-            lang=order_id.partner_id.lang,
-            partner=order_id.partner_id,
-            quantity=product_uom_qty,
-            date=order_id.date_order,
-            pricelist=order_id.pricelist_id.id,
-            uom=product_uom_id.id,
-            fiscal_position=self.env.context.get("fiscal_position"),
-        )
-        res = self._get_price_unit(
-            product, order_id.pricelist_id, taxes_id, order_id.company_id
-        )
-        return res
-
-    # _onchange_quantity is inspired from the 'sale.order.line'
-    # product_id_change function
-    @api.onchange("product_qty", "product_uom", "company_id")
-    def _onchange_quantity(self):
-        super()._onchange_quantity()
-        if self.product_id and self.order_id.pricelist_id and self.order_id.partner_id:
-            self.price_unit = self._get_price_unit_by_quantity(
-                self.order_id,
-                self.product_id,
-                self.product_uom_qty,
-                self.product_uom,
-                self.taxes_id,
-            )
-
-    def _suggest_quantity(self):
-        super()._suggest_quantity()
+        return price_unit
 
     def _prepare_purchase_order_line(
         self, product_id, product_qty, product_uom, company_id, supplier, po
     ):
+        # Note that this method is called only when creating a PO from procurement
         res = super()._prepare_purchase_order_line(
             product_id, product_qty, product_uom, company_id, supplier, po
         )
@@ -71,8 +87,14 @@ class PurchaseOrderLine(models.Model):
             taxes_id = self.env["account.tax"]
             if res.get("taxes_id") and len(res["taxes_id"][0]) == 3:
                 taxes_id = taxes_id.browse(res["taxes_id"][0][2])
-            price_unit = self.env["purchase.order.line"]._get_price_unit_by_quantity(
-                po, product_id, product_qty, product_uom, taxes_id
+            price_unit = self._get_price_unit(
+                supplier.partner_id,
+                po.pricelist_id,
+                product_id,
+                product_qty,
+                product_uom,
+                taxes_id,
+                company_id=po.company_id,
             )
             res["price_unit"] = price_unit
         return res

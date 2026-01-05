@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
-"PO-Revision-Date: 2023-11-28 14:28+0100\n"
+"POT-Creation-Date: 2026-06-03 10:58+0000\n"
+"PO-Revision-Date: 2026-06-03 15:54+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_res_partner
@@ -23,55 +23,11 @@ msgid "Contact"
 msgstr "Contact"
 
 #. module: purchase_pricelist
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__display_name
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product__display_name
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__display_name
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order__display_name
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line__display_name
-#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__display_name
-#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: purchase_pricelist
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__id
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product__id
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__id
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order__id
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line__id
-#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__id
-#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_pricelist
-#: model:ir.model.fields,help:purchase_pricelist.field_product_pricelist__xid
-#: model:ir.model.fields,help:purchase_pricelist.field_product_product__xid
-#: model:ir.model.fields,help:purchase_pricelist.field_product_supplierinfo__xid
-#: model:ir.model.fields,help:purchase_pricelist.field_purchase_order__xid
-#: model:ir.model.fields,help:purchase_pricelist.field_purchase_order_line__xid
-#: model:ir.model.fields,help:purchase_pricelist.field_res_partner__xid
-#: model:ir.model.fields,help:purchase_pricelist.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: purchase_pricelist
 #: model:ir.model.fields,help:purchase_pricelist.field_sale_order__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
-"Si vous modifiez la liste de prix; seules les lignes de bon de commande "
-"ajoutées après cette modification seront affectées. "
-
-#. module: purchase_pricelist
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist____last_update
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product____last_update
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo____last_update
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line____last_update
-#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner____last_update
-#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+"Si vous modifiez la liste de prix, seules les lignes récemment ajoutées "
+"seront concernées."
 
 #. module: purchase_pricelist
 #: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__list_price
@@ -125,8 +81,8 @@ msgstr "Les listes de prix sont gérées sur"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_product_product
-msgid "Product"
-msgstr "Article"
+msgid "Product Variant"
+msgstr "Variante d'article"
 
 #. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_purchase_order
@@ -166,6 +122,12 @@ msgid "Sales Order"
 msgstr "Commande client"
 
 #. module: purchase_pricelist
+#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__specific_property_product_pricelist_purchase
+#: model:ir.model.fields,field_description:purchase_pricelist.field_res_users__specific_property_product_pricelist_purchase
+msgid "Specific Property Product Pricelist Purchase"
+msgstr "Liste de prix d'achat des produits à propriétés spécifiques"
+
+#. module: purchase_pricelist
 #: model:ir.model,name:purchase_pricelist.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "Liste de prix du fournisseur"
@@ -196,20 +158,24 @@ msgid "Type"
 msgstr "Type"
 
 #. module: purchase_pricelist
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_pricelist__xid
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_product__xid
-#: model:ir.model.fields,field_description:purchase_pricelist.field_product_supplierinfo__xid
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order__xid
-#: model:ir.model.fields,field_description:purchase_pricelist.field_purchase_order_line__xid
-#: model:ir.model.fields,field_description:purchase_pricelist.field_res_partner__xid
-#: model:ir.model.fields,field_description:purchase_pricelist.field_sale_order__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: purchase_pricelist
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist.partner_property_form_view
 msgid "the parent company"
 msgstr "la société parente"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Pricelist for current sales order."
 #~ msgstr "Liste de prix du bon de commande actuel."

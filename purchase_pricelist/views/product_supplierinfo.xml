@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="product_supplierinfo_tree_view2">
-        <field name="name">product.supplierinfo.tree.view2@purchase_pricelist</field>
+        <field name="name">product.supplierinfo.list.view2@purchase_pricelist</field>
         <field name="model">product.supplierinfo</field>
         <field name="inherit_id" ref="purchase.product_supplierinfo_tree_view2" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="editable" />
             </xpath>
             <xpath expr="//field[@name='price']" position="after">
@@ -14,5 +13,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

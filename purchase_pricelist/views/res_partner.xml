@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_partner_property_form">
-        <field name="name">res.partner.product.property.form.inherit@purchase_pricelist</field>
+        <field
+            name="name"
+        >res.partner.product.property.form.inherit@purchase_pricelist</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="product.view_partner_property_form"/>
+        <field name="inherit_id" ref="product.view_partner_property_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='property_product_pricelist']" position="attributes">
+            <xpath
+                expr="//field[@name='property_product_pricelist']"
+                position="attributes"
+            >
                 <attribute name="context">
                     {'default_type' : 'sale'}
                 </attribute>
@@ -18,33 +22,28 @@
         <field name="name">res.partner@purchase_pricelist</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('purchase_pricelist.group_purchase_pricelist'))]"
-        />
-        <field name="arch" type="xml"> 
+        <field name="arch" type="xml">
             <group name="purchase" position="inside">
                 <field
                     name="property_product_pricelist_purchase"
                     groups="purchase_pricelist.group_purchase_pricelist"
                     context="{'default_type': 'purchase'}"
-                    attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}"
+                    invisible="not is_company or parent_id != False"
                 />
                 <div
                     name="parent_pricelists"
                     groups="purchase_pricelist.group_purchase_pricelist"
                     colspan="2"
-                    attrs="{'invisible': ['|',('is_company','=',True),('parent_id','=',False)]}"
+                    invisible="not is_company or parent_id != False"
                 >
                     <p>Pricelists are managed on <button
-                            name="open_commercial_entity"
-                            type="object"
-                            string="the parent company"
-                            class="oe_link"
-                        /></p>
+                        name="open_commercial_entity"
+                        type="object"
+                        string="the parent company"
+                        class="oe_link"
+                    /></p>
                 </div>
             </group>
         </field>
     </record>
-
 </odoo>

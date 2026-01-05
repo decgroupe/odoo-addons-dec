@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="group_purchase_pricelist" model="res.groups">
         <field name="name">Purchase Pricelists</field>
         <field name="category_id" ref="base.module_category_hidden" />
-        <field name="implied_ids" eval="[(4, ref('product.group_sale_pricelist'))]" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('product.group_product_pricelist'))]"
+        />
         <field
             name="users"
             eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
         />
     </record>
-
 </odoo>
