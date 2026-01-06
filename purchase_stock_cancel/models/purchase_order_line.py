@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2020
 
-from odoo import _, models
+from odoo import models
 from odoo.tools.misc import formatLang
 
 
@@ -9,17 +9,17 @@ class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
     def _get_cancellation_message(self):
-        return ("%s ⟶ %s × %s") % (
+        return ("%s ⟶ %s × %s") % (  # noqa: UP031
             self.product_id.display_name,
             formatLang(self.env, self.product_qty),
             self.product_uom.display_name,
         )
 
-    def _get_propagation_emoji(self, propagate):
-        if propagate == True:
+    def _get_propagation_symbol(self, propagate):
+        if propagate:
             res = "🚫"
             self.mapped("move_dest_ids").action_cancel_downstream()
-        elif propagate == False:
+        else:
             res = "🗑️"
         return res
 
@@ -28,12 +28,12 @@ class PurchaseOrderLine(models.Model):
         this case, but our downstream cancel action is make the propagation deeper.
         """
         propagate = self.env.context.get("propagate")
-        emoji = "?"
-        if propagate is True:
-            emoji = self._get_propagation_emoji(True)
+        symbol = "?"
+        if propagate:
+            symbol = self._get_propagation_symbol(True)
             self.mapped("move_dest_ids").action_cancel_downstream()
-        elif propagate is False:
-            emoji = self._get_propagation_emoji(False)
+        else:
+            symbol = self._get_propagation_symbol(False)
             # if we don't want to propagate the cancellation, then we muste override
             # the odoo built-in value
             self.filtered(lambda line: line.propagate_cancel).write(
@@ -45,7 +45,8 @@ class PurchaseOrderLine(models.Model):
         # to `make_to_stock` via odoo/addons/purchase_stock/models/purchase.py
         # ::PurchaseOrderLine.unlink()
         for line in self:
-            msg = _("%s Line deleted: %s") % (emoji, line._get_cancellation_message())
+            cancellation_message = line._get_cancellation_message()
+            msg = self.env._(f"{symbol} Line deleted: {cancellation_message}")
             line.order_id.message_post(body=msg)
             line.unlink()
         # also cancel empty purchase orders
@@ -57,24 +58,24 @@ class PurchaseOrderLine(models.Model):
         - 2) Cancel and propagate: The move is also cancelled
         """
         if move.state == "cancel":
-            res = _(
+            res = self.env._(
                 "Move <small>%d</small> for <small>%s</small> has also been "
                 "<b>cancelled</b> after %s cancellation propagation from <b>%s</b>"
             ) % (
                 move.id,
                 move.product_id.display_name,
-                self._get_propagation_emoji(True),
+                self._get_propagation_symbol(True),
                 self.order_id.display_name,
             )
         elif move.procure_method == "make_to_stock":
-            res = _(
+            res = self.env._(
                 "Procure method of move <small>%d</small> for <small>%s</small> "
                 "has been set to «<b>%s</b>» after %s cancellation from <b>%s</b>"
             ) % (
                 move.id,
                 move.product_id.display_name,
-                _("make_to_stock"),
-                self._get_propagation_emoji(False),
+                self.env._("make_to_stock"),
+                self._get_propagation_symbol(False),
                 self.order_id.display_name,
             )
         return res
@@ -99,16 +100,16 @@ class PurchaseOrderLine(models.Model):
                 message = line._get_move_notification(move)
                 move_owner_id = self._get_move_owner(move)
                 if move_owner_id:
-                    if not move_owner_id in notify_messages:
+                    if move_owner_id not in notify_messages:
                         notify_messages[move_owner_id] = []
                     notify_messages[move_owner_id].append(message)
         # write a notification on each picking/production
         for move_owner_id, messages in notify_messages.items():
             msg_list = ""
             for m in messages:
-                msg_list += "<li>{}</li>".format(m)
-            body = _("Some move(s) have changed:")
-            body += "<ul>{}</ul>".format(msg_list)
+                msg_list += f"<li>{m}</li>"
+            body = self.env._("Some move(s) have changed:")
+            body += f"<ul>{msg_list}</ul>"
             move_owner_id.message_post(body=body)
 
     def write(self, vals):
@@ -138,4 +139,4 @@ class PurchaseOrderLine(models.Model):
             # note that it is like writing 'created_purchase_line_id': False
             # for each move in move_dest_ids
             line.write({"move_dest_ids": [(5, 0, 0)]})
-        return super(PurchaseOrderLine, self).unlink()
+        return super().unlink()

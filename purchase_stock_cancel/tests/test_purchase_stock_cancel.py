@@ -1,9 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2023
 
-from odoo.addons.stock_actions.tests.common import TestStockActionCommon
 from odoo.exceptions import UserError
 from odoo.tests import new_test_user
+
+from odoo.addons.stock_actions.tests.common import TestStockActionCommon
 
 
 class TestPurchaseStockCancel(TestStockActionCommon):
@@ -41,10 +42,10 @@ class TestPurchaseStockCancel(TestStockActionCommon):
     def test_02_propagate_cancel_on_validated_po(self):
         order = self.env.ref("purchase_stock.purchase_order_8")
         self.assertEqual(order.state, "purchase")
-        self.assertEqual(len(order.order_line), 1)
+        self.assertEqual(len(order.order_line), 2)
         line1 = order.order_line[0]
         exception_regex = (
-            r"Cannot delete a purchase order line which is in state 'purchase'."
+            r"Cannot delete a purchase order line which is in state .Purchase Order."
         )
         with self.assertRaisesRegex(UserError, exception_regex), self.cr.savepoint():
             line1.with_context(propagate=True).action_propagate_cancel()
@@ -75,7 +76,7 @@ class TestPurchaseStockCancel(TestStockActionCommon):
         picking_id = customer_move.picking_id
         picking_id.action_confirm()
         self.assertEqual(customer_move.state, "waiting")
-        line = customer_move.created_purchase_line_id
+        line = customer_move.created_purchase_line_ids
         self.assertTrue(line.exists())
         # Use the dedicated purchase user for this action
         line.with_user(self.purchase_manager).with_context(
@@ -91,7 +92,7 @@ class TestPurchaseStockCancel(TestStockActionCommon):
         picking_id = customer_move.picking_id
         picking_id.action_confirm()
         self.assertEqual(customer_move.state, "waiting")
-        line = customer_move.created_purchase_line_id
+        line = customer_move.created_purchase_line_ids
         self.assertTrue(line.exists())
         # Use the dedicated purchase user for this action
         line.with_user(self.purchase_manager).with_context(

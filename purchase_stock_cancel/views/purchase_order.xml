@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="purchase_order_form_view">
         <field name="name">purchase.order.form@purchase_stock_cancel</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
                 <button
                     name="action_propagate_cancel"
                     title="Delete purchase line"
@@ -17,8 +16,7 @@
                     context="{'propagate':False}"
                     states="draft,to approve,sent"
                     icon="fa-trash"
-                >
-                </button>
+                />
                 <button
                     name="action_propagate_cancel"
                     title="Delete purchase line and propagate cancelation"
@@ -29,10 +27,8 @@
                     context="{'propagate':True}"
                     states="draft,to approve,sent"
                     icon="fa-ban"
-                >
-                </button>
+                />
             </xpath>
         </field>
     </record>
-
 </odoo>
