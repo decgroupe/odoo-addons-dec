@@ -1,6 +1,7 @@
 {
     "name": "Product Pricelist Sequence",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -10,7 +11,5 @@
         "views/product_pricelist.xml",
         "views/product_pricelist_item.xml",
     ],
-    "installable": False,
-    "pre_init_hook": "rename_module",
-
+    "installable": True,
 }

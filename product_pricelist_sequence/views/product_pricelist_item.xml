@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="product_pricelist_item_tree_view_from_product">
+    <!-- <record model="ir.ui.view" id="product_pricelist_item_tree_view_from_product">
         <field
             name="name"
         >product.pricelist.item.tree@product_pricelist_sequence</field>
@@ -15,7 +14,7 @@
                 <field name="sequence" />
             </field>
         </field>
-    </record>
+    </record> -->
 
     <record model="ir.ui.view" id="product_pricelist_item_tree_view">
         <field name="name">product.pricelist.item.tree@product_pricelist</field>
@@ -33,13 +32,17 @@
         <field name="model">product.pricelist.item</field>
         <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//h1" position="after">
-                <field name="note" />
-            </xpath>
-            <field name="applied_on" position="before">
-                <field name="sequence" />
-            </field>
+            <group name="pricelist_rule_computation" position="before">
+                <group name="pricelist_sequence">
+                    <group>
+                        <field name="note" />
+                    </group>
+                    <group>
+                        <field name="sequence" />
+                    </group>
+                </group>
+            </group>
+            <field name="display_applied_on" position="before" />
         </field>
     </record>
-
 </odoo>

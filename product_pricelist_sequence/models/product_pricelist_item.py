@@ -12,7 +12,8 @@ class ProductPricelistItem(models.Model):
         string="Rule Name",
         help="Explicit rule name for this pricelist line.",
     )
-
+    # WARNING: do not set an handle widget for this field in XML views, the user must
+    # be in control of the sequence value
     sequence = fields.Integer(
         string="Sequence",
         required=True,
@@ -21,20 +22,11 @@ class ProductPricelistItem(models.Model):
         "The evaluation gives highest priority to lowest sequence.",
     )
 
-    @api.depends(
-        "categ_id",
-        "product_tmpl_id",
-        "product_id",
-        "compute_price",
-        "fixed_price",
-        "pricelist_id",
-        "percent_price",
-        "price_discount",
-        "price_surcharge",
-        "note",
-    )
-    def _get_pricelist_item_name_price(self):
-        super()._get_pricelist_item_name_price()
+    @api.depends("note")
+    @api.depends("applied_on", "categ_id", "product_tmpl_id", "product_id")
+    def _compute_name(self):
+        res = super()._compute_name()
         for rec in self:
             if rec.note:
-                rec.name = ("%s 🢒 %s") % (rec.note, rec.name)
+                rec.name = f"{rec.note} 🢒 {rec.name}"
+        return res
