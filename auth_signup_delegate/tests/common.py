@@ -33,11 +33,11 @@ class TestAuthSignupDelegateControllerBase(HttpCase):
     def _get_crsf_token(self):
         # Get csrf_token
         self.authenticate(None, None)
-        csrf_token = http.WebRequest.csrf_token(self)
+        csrf_token = http.Request.csrf_token(self)
         return csrf_token
 
     def _get_delegate_url(self):
-        return "/signup/delegate/%s" % (self.partner.delegate_signup_token)
+        return f"/signup/delegate/{self.partner.delegate_signup_token}"
 
     def _get_contact_vals(self):
         return {

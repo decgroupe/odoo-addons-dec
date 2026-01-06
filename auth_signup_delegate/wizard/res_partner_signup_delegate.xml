@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="res_partner_signup_delegate_form_view">
         <field name="name">res.partner.signup.delegate@auth_signup_delegate</field>
         <field name="model">res.partner.signup.delegate</field>
         <field name="arch" type="xml">
             <form string="Select Options">
-                <p
-                    name="tooltip_unavailable"
-                    class="oe_grey"
-                    attrs="{'invisible': [('user_id', '!=', False)]}"
-                >
+                <p name="tooltip_unavailable" class="oe_grey" invisible="not user_id">
                     This partner is <b>not</b> in the <b>Portal</b> group.<br />
                     <b>Give him a portal access first.</b>
                 </p>
-                <p
-                    name="tooltip_available"
-                    class="oe_grey"
-                    attrs="{'invisible': [('user_id', '=', False)]}"
-                >
+                <p name="tooltip_available" class="oe_grey" invisible="not user_id">
                     Use these <b>informations</b> for maintenance/testing only.
                 </p>
-                <group name="main" attrs="{'invisible': [('user_id', '=', False)]}">
-                    <field name="user_id" invisible="1" />
-                    <field name="token" invisible="1"/>
-                    <field name="url" attrs="{'invisible': ['|', ('user_id', '=', False), ('token', '=', False)]}"/>
+                <group name="main" invisible="not user_id">
+                    <field name="url" invisible="not user_id or not token_ready" />
                 </group>
                 <footer>
                     <button
@@ -33,27 +22,24 @@
                         name="action_init_signup_delegation"
                         type="object"
                         default_focus="1"
-                        attrs="{'invisible': ['|', ('user_id', '=', False), ('token', '!=', False)]}"
+                        invisible="not user_id or token_ready"
                         context="{}"
-                    >
-                    </button>
+                    />
                     <button
                         class="btn-primary"
                         string="Cancel Sign-up Delegation"
                         name="action_cancel_signup_delegation"
                         type="object"
                         default_focus="1"
-                        attrs="{'invisible': ['|', ('user_id', '=', False), ('token', '=', False)]}"
+                        invisible="not user_id or not token_ready"
                         context="{}"
-                    >
-                    </button>
+                    />
                     <button
                         class="btn-secondary"
                         string="Close"
                         special="cancel"
                         context="{}"
-                    >
-                    </button>
+                    />
                 </footer>
             </form>
         </field>
@@ -82,5 +68,4 @@
         />
         <field name="target">new</field>
     </record>
-    
 </odoo>

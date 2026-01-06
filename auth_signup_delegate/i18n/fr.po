@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-16 11:33+0000\n"
-"PO-Revision-Date: 2024-04-16 13:40+0200\n"
+"POT-Creation-Date: 2026-06-03 09:55+0000\n"
+"PO-Revision-Date: 2026-06-03 14:20+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.account_not_activated
@@ -62,18 +62,20 @@ msgid "Contact"
 msgstr "Contact"
 
 #. module: auth_signup_delegate
+#. odoo-python
 #: code:addons/auth_signup_delegate/controllers/main.py:0
-#, python-format
-msgid "Contact %s (%s) already have an access to the Portal."
-msgstr "Le contact %s (%s) a déjà accès au portail."
+msgid "Contact %(name)s (%(email)s) already have an access to the Portal."
+msgstr "Le contact %(name)s (%(email)s) a déjà accès au portail."
 
 #. module: auth_signup_delegate
+#. odoo-python
 #: code:addons/auth_signup_delegate/controllers/main.py:0
-#, python-format
 msgid ""
-"Contact %s has been created and a confirmation e-mail has been sent to %s"
+"Contact %(name)s has been created and a confirmation e-mail has been sent "
+"to %(email)s"
 msgstr ""
-"Le contact %s a été créé et un e-mail de confirmation a été envoyé à %s"
+"Le contact %(name)s a été créé et un e-mail de confirmation a été envoyé à %"
+"(email)s"
 
 #. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
@@ -92,7 +94,7 @@ msgstr "Créé le"
 
 #. module: auth_signup_delegate
 #: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__delegate_signup_token
-#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__token
+#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__token_ready
 #: model:ir.model.fields,field_description:auth_signup_delegate.field_res_users__delegate_signup_token
 msgid "Delegate Sign-up Token"
 msgstr "Jeton de délégation d'inscription"
@@ -108,7 +110,6 @@ msgid "Delegated Sign-up URL"
 msgstr "URL d'inscription déléguée"
 
 #. module: auth_signup_delegate
-#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__display_name
 #: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
@@ -129,20 +130,13 @@ msgid "Generate a Sign-up Delegation Token"
 msgstr "Générer un jeton de délégation d'inscription"
 
 #. module: auth_signup_delegate
-#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__id
 #: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__id
 msgid "ID"
 msgstr "ID"
 
 #. module: auth_signup_delegate
-#: model:ir.model.fields,help:auth_signup_delegate.field_res_partner__xid
-#: model:ir.model.fields,help:auth_signup_delegate.field_res_partner_signup_delegate__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: auth_signup_delegate
+#. odoo-python
 #: code:addons/auth_signup_delegate/controllers/main.py:0
-#, python-format
 msgid "Invalid Token"
 msgstr "Jeton non valide"
 
@@ -150,12 +144,6 @@ msgstr "Jeton non valide"
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
 msgid "Jane Doe"
 msgstr "Michel Blanc"
-
-#. module: auth_signup_delegate
-#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner____last_update
-#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: auth_signup_delegate
 #: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__write_uid
@@ -168,8 +156,8 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: auth_signup_delegate
+#. odoo-python
 #: code:addons/auth_signup_delegate/controllers/main.py:0
-#, python-format
 msgid "Multiple contacts already exists with this email, please contact us."
 msgstr ""
 "Plusieurs contacts existent déjà avec cet e-mail, veuillez nous contacter."
@@ -209,8 +197,8 @@ msgid "Sign-up Delegate"
 msgstr "Délégué l'inscription"
 
 #. module: auth_signup_delegate
+#. odoo-python
 #: code:addons/auth_signup_delegate/controllers/main.py:0
-#, python-format
 msgid ""
 "This email already exists for a contact that is not a member of your "
 "company. You cannot grant him a portal access."
@@ -240,12 +228,6 @@ msgid "User"
 msgstr "Utilisateur"
 
 #. module: auth_signup_delegate
-#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner__xid
-#: model:ir.model.fields,field_description:auth_signup_delegate.field_res_partner_signup_delegate__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: auth_signup_delegate
 #: model_terms:ir.ui.view,arch_db:auth_signup_delegate.create_contact
 msgid "jane.doe@example.com"
 msgstr "michel.blanc@example.com"
@@ -254,3 +236,12 @@ msgstr "michel.blanc@example.com"
 #: model:ir.actions.act_window,name:auth_signup_delegate.act_window_res_partner_signup_delegate
 msgid "🧙‍♂️ Sign-up Delegation ..."
 msgstr "🧙‍♂️ Délégation d'inscription ..."
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

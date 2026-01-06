@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2023
 
 from odoo.tests.common import tagged
+
 from odoo.addons.auth_signup_delegate.tests.common import (
     TestAuthSignupDelegateControllerBase,
 )
@@ -73,7 +74,7 @@ class TestAuthSignupDelegateController(TestAuthSignupDelegateControllerBase):
             "Contact.*has been created and a confirmation e-mail has been sent",
         )
         # invalidate cache because http have its own cursor
-        self.partner.invalidate_cache()
+        self.partner.invalidate_recordset()
         self.assertEqual(len(self.partner.child_ids), 1)
 
     def test_06_new_contact_that_already_exist(self):

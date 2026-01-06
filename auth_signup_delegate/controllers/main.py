@@ -33,8 +33,10 @@ class DelegateAuthSignup(http.Controller):
             # user state is computed from `auth_signup` module
             # when last login date is set then user state is `active` otherwise `new`
             if not user_id or not user_id.active or user_id.state == "new":
-                template = request.env.ref("auth_signup_delegate.account_not_activated")
-                error = template._render({"partner": partner_id}, engine="ir.qweb")
+                error = request.env["ir.qweb"]._render(
+                    "auth_signup_delegate.account_not_activated",
+                    {"partner": partner_id},
+                )
                 partner_id = False
             if partner_id and http.request.httprequest.method == "POST":
                 contact_id = Partner.search([("email", "=", kw.get("email"))])
@@ -73,10 +75,11 @@ class DelegateAuthSignup(http.Controller):
                     if already_in_portal:
                         raise UserError(
                             _(
-                                "Contact %s (%s) already have an access "
-                                "to the Portal."
+                                "Contact %(name)s (%(email)s) already have an access "
+                                "to the Portal.",
+                                name=contact_id.name,
+                                email=contact_id.email,
                             )
-                            % (contact_id.name, contact_id.email)
                         )
                 else:
                     vals = {
@@ -90,13 +93,15 @@ class DelegateAuthSignup(http.Controller):
                 # Use the partner's user to give portal access
                 contact_id.with_user(user_id).give_portal_access()
                 message = _(
-                    "Contact %s has been created and a "
-                    "confirmation e-mail has been sent to %s"
-                ) % (contact_id.name, contact_id.email)
+                    "Contact %(name)s has been created and a "
+                    "confirmation e-mail has been sent to %(email)s",
+                    name=contact_id.name,
+                    email=contact_id.email,
+                )
                 kw["name"] = False
                 kw["email"] = "".join(kw.get("email").partition("@")[1:])
         except UserError as e:
-            error = plaintext2html(e.name)
+            error = plaintext2html(str(e))
         except werkzeug.exceptions.NotFound:
             error = _("Invalid Token")
         except Exception as e:

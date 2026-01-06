@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2021
 
-from odoo import fields, models, api, _
+from odoo import api, fields, models
 
 
 class ResPartnerSignupDelegate(models.TransientModel):
@@ -13,15 +13,19 @@ class ResPartnerSignupDelegate(models.TransientModel):
         string="User",
         readonly=True,
     )
-    token = fields.Char(
+    token_ready = fields.Boolean(
         string="Delegate Sign-up Token",
-        related="user_id.delegate_signup_token",
-        readonly=True,
+        compute="_compute_token_ready",
     )
     url = fields.Char(
         string="Delegated Sign-up URL",
         readonly=True,
     )
+
+    def _compute_token_ready(self):
+        for rec in self:
+            token = rec.user_id.sudo().partner_id.delegate_signup_token
+            rec.token_ready = bool(token)
 
     @api.model
     def default_get(self, fields):
@@ -51,7 +55,7 @@ class ResPartnerSignupDelegate(models.TransientModel):
         self.user_id.partner_id.sudo().delegate_signup_cancel()
         return self._reopen()
 
-    def _reopen(self, id=False):
+    def _reopen(self, res_id=False):
         view_id = self.env.ref(
             "auth_signup_delegate.res_partner_signup_delegate_form_view"
         )
@@ -62,7 +66,7 @@ class ResPartnerSignupDelegate(models.TransientModel):
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "view_type": "form",
-            "res_id": id or self.id,
+            "res_id": res_id or self.id,
             "res_model": self._name,
             "view_id": view_id.id,
             "name": act_window.name,

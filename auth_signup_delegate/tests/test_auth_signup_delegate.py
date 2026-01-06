@@ -2,7 +2,8 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2023
 
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestAuthSignupDelegate(TransactionCase):
@@ -18,7 +19,7 @@ class TestAuthSignupDelegate(TransactionCase):
     def _in_portal(self, partner_id):
         res = False
         if partner_id.user_ids:
-            res = self.env.ref("base.group_portal") in partner_id.user_ids[0].groups_id
+            res = partner_id.user_ids._is_portal()
         return res
 
     def _create_wizard(self, partner_id):
@@ -32,9 +33,8 @@ class TestAuthSignupDelegate(TransactionCase):
 
     def test_01_give_portal_access(self):
         self.assertFalse(self._in_portal(self.partner))
-        with self.assertRaisesRegex(
-            UserError, "Some contacts don't have a valid email"
-        ), self.cr.savepoint():
+        msg = r'The contact "New Partner" does not have a valid email'
+        with self.assertRaisesRegex(UserError, msg), self.cr.savepoint():
             self.partner.give_portal_access()
         self.partner.email = "partner@domain.com"
         self.partner.give_portal_access()

@@ -1,7 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import api, fields, models, api
+from odoo import Command, fields, models
+
 from odoo.addons.auth_signup.models.res_partner import random_token
 
 
@@ -29,34 +30,20 @@ class ResPartner(models.Model):
 
     def get_delegate_signup_url(self):
         self.ensure_one()
-        return "%s/signup/delegate/%s" % (
-            self.env["ir.config_parameter"].sudo().get_param("web.base.url"),
-            self.sudo().delegate_signup_token,
-        )
+        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        token = self.sudo().delegate_signup_token
+        return f"{base_url}/signup/delegate/{token}"
 
     def give_portal_access(self, force=False):
         PortalWizard = self.env["portal.wizard"]
-        PortalWizardUser = self.env["portal.wizard.user"]
         # unset active_id/active_ids otherwise wizard.user_ids will be filled with
         # garbage (because not check for `active_model` in `_default_user_ids`)
         wizard_id = (
             PortalWizard.with_context(active_id=False, active_ids=False)
             .sudo()
-            .create({})
+            .create({"partner_ids": [Command.set(self.ids)]})
         )
-        for partner_id in self:
-            already_in_portal = False
-            if partner_id.user_ids:
-                already_in_portal = (
-                    self.env.ref("base.group_portal")
-                    in partner_id.user_ids[0].groups_id
-                )
-            if force or not already_in_portal:
-                vals = {
-                    "wizard_id": wizard_id.id,
-                    "partner_id": partner_id.id,
-                    "email": partner_id.email,
-                    "in_portal": True,
-                }
-                wizard_user_id = PortalWizardUser.sudo().create(vals)
-        return wizard_id.action_apply()
+        for wizard_user_id in wizard_id.user_ids:
+            if not wizard_user_id.is_portal:
+                wizard_user_id.action_grant_access()
+        return None
