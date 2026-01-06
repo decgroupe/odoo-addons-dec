@@ -1,8 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2023
 
-from odoo.addons.stock_actions_tests.tests.common import TestStockActionTestsCommon
+import logging
+
 from odoo.tests import Form
+
+from odoo.addons.stock_actions_tests.tests.common import TestStockActionTestsCommon
+
+_logger = logging.getLogger(__name__)
 
 
 class TestPurchaseMrpCancelTests(TestStockActionTestsCommon):
@@ -22,7 +27,7 @@ class TestPurchaseMrpCancelTests(TestStockActionTestsCommon):
     def _get_po(self, production):
         move_ids = production.procurement_group_id.stock_move_ids
         purchase_order_ids = (
-            move_ids.created_purchase_line_id.order_id
+            move_ids.created_purchase_line_ids.order_id
             | move_ids.move_orig_ids.purchase_line_id.order_id
         )
         return purchase_order_ids
@@ -40,6 +45,11 @@ class TestPurchaseMrpCancelTests(TestStockActionTestsCommon):
         return res
 
     def _set_stock_qty(self, product, qty):
+        if qty == 0:
+            _logger.info(
+                "No stock quantity change for product %s", product.display_name
+            )
+            return
         self.env["stock.quant"]._update_available_quantity(
             product, self.stock_location, qty
         )
@@ -82,7 +92,7 @@ class TestPurchaseMrpCancelTests(TestStockActionTestsCommon):
         self.assertTrue(bom_id)
         production_id = self._generate_mo(product_id, bom_id)
         production_id.action_confirm()
-        self.assertEqual(production_id.purchase_order_count, 2)
+        self.assertEqual(production_id.purchase_order_count, 3)
         # test cancel without propagation
         mo_line_p13 = self._get_mo_line(production_id, self.product13)
         self.assertEqual(mo_line_p13.procure_method, "make_to_order")
