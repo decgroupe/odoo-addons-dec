@@ -9,12 +9,8 @@ class TestPurchaseStockPricelist(TestPurchasePricelistCommon):
 
     def setUp(self):
         super().setUp()
-        self.stock_location = self.env["ir.model.data"].xmlid_to_object(
-            "stock.stock_location_stock"
-        )
-        self.customer_location = self.env["ir.model.data"].xmlid_to_object(
-            "stock.stock_location_customers"
-        )
+        self.stock_location = self.env.ref("stock.stock_location_stock")
+        self.customer_location = self.env.ref("stock.stock_location_customers")
 
     def _create_move(self, name, product_id, loc_src, loc_dst):
         move_id = self.env["stock.move"].create(
