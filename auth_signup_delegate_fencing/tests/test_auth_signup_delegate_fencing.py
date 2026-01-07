@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2023
 
 from odoo.tests.common import tagged
+
 from odoo.addons.auth_signup_delegate.tests.common import (
     TestAuthSignupDelegateControllerBase,
 )
@@ -27,7 +28,7 @@ class TestAuthSignupDelegateFencing(TestAuthSignupDelegateControllerBase):
             "Contact.*has been created and a confirmation e-mail has been sent",
         )
         # invalidate cache because http have its own cursor
-        self.partner.invalidate_cache()
+        self.partner.invalidate_recordset()
         self.assertEqual(len(self.partner.child_ids), 1)
         new_contact_id = self.partner.child_ids[0]
         # check that the new contact cannot access its parent data
