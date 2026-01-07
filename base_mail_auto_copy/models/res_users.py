@@ -8,14 +8,6 @@ from odoo import models
 class ResUsers(models.Model):
     _inherit = "res.users"
 
-    def __init__(self, pool, cr):
-        """Override of __init__ to add access rights on new fields.
-        Access rights are disabled by default, but allowed
-        on some specific fields defined in
-        self.SELF_{READ/WRITE}ABLE_FIELDS.
-        """
-        init_res = super().__init__(pool, cr)
-        type(self).SELF_WRITEABLE_FIELDS = list(
-            set(self.SELF_WRITEABLE_FIELDS + ["copy_sent_email"])
-        )
-        return init_res
+    @property
+    def SELF_WRITEABLE_FIELDS(self):
+        return super().SELF_WRITEABLE_FIELDS + ["copy_sent_email"]

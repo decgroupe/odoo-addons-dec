@@ -6,14 +6,15 @@ import email.policy
 import logging
 from unittest.mock import patch
 
-from odoo.addons.base.models.ir_mail_server import IrMailServer
 from odoo.tests import new_test_user
 from odoo.tests.common import TransactionCase
 
+from odoo.addons.base.models.ir_mail_server import IrMailServer
+
 _test_logger = logging.getLogger("odoo.tests")
 
-class TestBaseMailAutoCopyCommon(TransactionCase):
 
+class TestBaseMailAutoCopyCommon(TransactionCase):
     def setUp(self):
         super().setUp()
         self.Mail = self.env["mail.mail"]
@@ -62,7 +63,7 @@ class TestBaseMailAutoCopyCommon(TransactionCase):
             autospec=True,
             wraps=IrMailServer,
             side_effect=_ir_mail_server_send_email,
-        ) as ir_mail_server_send_email_mock:
+        ) as _ir_mail_server_send_email_mock:
             res = self.env["ir.mail_server"].send_email(msg)
         return res
 
@@ -81,30 +82,12 @@ class TestBaseMailAutoCopyCommon(TransactionCase):
         )
         return user
 
-    def _join_channel(self, channel, partners):
-        for partner in partners:
-            channel.write(
-                {"channel_last_seen_partner_ids": [(0, 0, {"partner_id": partner.id})]}
-            )
-        channel.invalidate_cache()
-
     def _get_message_from_john_to_jane(self):
         msg = email.message.EmailMessage(policy=email.policy.SMTP)
         msg["From"] = '"John Doe" <john@example.com>'
         msg["To"] = '"Jane Doe" <jane@example.com>'
         msg["Message-Id"] = self.MESSAGE_ID
         return msg
-
-    def _mail_unlink_disabled(self):
-        # disable automatic mail-deletion
-        def unlink(self):
-            _test_logger.warning("Unlink disabled for `mail.mail`")
-
-        self.Mail._patch_method("unlink", unlink)
-
-    def _mail_unlink_enabled(self):
-        # restore original method
-        self.Mail._revert_method("unlink")
 
     def _build_email_from_mail(self, mail_id, to=False):
         message = self.env["ir.mail_server"].build_email(
@@ -119,6 +102,7 @@ class TestBaseMailAutoCopyCommon(TransactionCase):
             subtype_alternative="plain",
         )
         return message
+
 
 MSG_CONTACT = """Return-Path: xyz@widget.com
 Delivered-To: catchall@yourcompany.com
@@ -142,4 +126,4 @@ Can you contact me at xyz@widget.com ?
 
 Thank you
 
-"""
+"""  # noqa: E501

@@ -4,8 +4,9 @@
 import logging
 
 from odoo import api, fields, models
-from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
 from odoo.tools.config import to_list
+
+from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
 
 _logger = logging.getLogger(__name__)
 
@@ -72,15 +73,15 @@ class IrMailServer(models.Model):
             ignore_auto_add_sender = False
             from_rfc2822 = extract_rfc2822_addresses(message["From"])
             reason = "Unknown"
-            if mail_message_id.model == "mail.channel":
+            if mail_message_id.model in ("mail.channel", "mail.group"):
                 # do not automatically add sender to bcc if the message comes
-                # from a channel
+                # from a channel or a mail group
                 channel_email_from_rfc2822 = extract_rfc2822_addresses(
                     mail_message_id.email_from
                 )
                 # this comparison should be always true
                 if from_rfc2822[0] == channel_email_from_rfc2822[0]:
-                    reason = "Message from channel is ignored"
+                    reason = "Message from channel or mail group is ignored"
                     ignore_auto_add_sender = True
             if not ignore_auto_add_sender:
                 # ignore mails from our ignore static list
@@ -167,7 +168,7 @@ class IrMailServer(models.Model):
             self._update_bcc_addresses(mail_server, message)
 
         self._debug_outgoing_message(message)
-        message_id = super(IrMailServer, self).send_email(
+        message_id = super().send_email(
             message,
             mail_server_id=mail_server_id,
             smtp_server=smtp_server,

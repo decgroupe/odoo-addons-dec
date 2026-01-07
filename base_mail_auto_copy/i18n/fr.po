@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 13:00+0000\n"
-"PO-Revision-Date: 2024-06-04 15:01+0200\n"
+"POT-Creation-Date: 2026-06-03 09:56+0000\n"
+"PO-Revision-Date: 2026-06-03 14:24+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,25 +15,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: base_mail_auto_copy
 #: model:mail.template,body_html:base_mail_auto_copy.test_template
 msgid ""
-"<html>\n"
-"                <head></head>\n"
+"\n"
+"                \n"
 "                <body>\n"
 "                    <p>Hello World</p>\n"
 "                </body>\n"
-"            </html>\n"
-"        "
+"            "
 msgstr ""
-"<html>\n"
-"                <head></head>\n"
+"\n"
+"                \n"
 "                <body>\n"
-"                    <p>Bonjour le monde</p>\n"
+"                    <p>Bonjour tout le monde</p>\n"
 "                </body>\n"
-"            </html>\n"
 "        "
 
 #. module: base_mail_auto_copy
@@ -86,27 +84,9 @@ msgid "Contact"
 msgstr "Contact"
 
 #. module: base_mail_auto_copy
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__display_name
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_message__display_name
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_thread__display_name
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__display_name
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: base_mail_auto_copy
 #: model:ir.model,name:base_mail_auto_copy.model_mail_thread
 msgid "Email Thread"
 msgstr "Discussion par courriel"
-
-#. module: base_mail_auto_copy
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server__id
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_message__id
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_thread__id
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner__id
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users__id
-msgid "ID"
-msgstr "ID"
 
 #. module: base_mail_auto_copy
 #: model:ir.model.fields,help:base_mail_auto_copy.field_res_partner__copy_sent_email
@@ -122,15 +102,6 @@ msgid "Ignored addresses"
 msgstr "Adresses ignorées"
 
 #. module: base_mail_auto_copy
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_ir_mail_server____last_update
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_message____last_update
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_mail_thread____last_update
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_partner____last_update
-#: model:ir.model.fields,field_description:base_mail_auto_copy.field_res_users____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: base_mail_auto_copy
 #: model:ir.model,name:base_mail_auto_copy.model_ir_mail_server
 msgid "Mail Server"
 msgstr "Serveur d'email"
@@ -139,6 +110,11 @@ msgstr "Serveur d'email"
 #: model:ir.model,name:base_mail_auto_copy.model_mail_message
 msgid "Message"
 msgstr "Message"
+
+#. module: base_mail_auto_copy
+#: model:mail.template,name:base_mail_auto_copy.test_template
+msgid "My Template Name"
+msgstr "Mon nom de modèle"
 
 #. module: base_mail_auto_copy
 #: model:mail.template,subject:base_mail_auto_copy.test_template
@@ -153,8 +129,17 @@ msgstr "Recevoir une copie de tous mes e-mails"
 
 #. module: base_mail_auto_copy
 #: model:ir.model,name:base_mail_auto_copy.model_res_users
-msgid "Users"
-msgstr "Utilisateurs"
+msgid "User"
+msgstr "Utilisateur"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "Discussion Channel"
 #~ msgstr "Canal de discussion"

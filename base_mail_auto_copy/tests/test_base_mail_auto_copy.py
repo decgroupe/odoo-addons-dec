@@ -1,15 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2024
 
-from unittest.mock import patch
 
-from odoo.addons.base.models.ir_mail_server import IrMailServer
 from odoo.tests import tagged
-from .common import TestBaseMailAutoCopyCommon, MSG_CONTACT
+
+from .common import MSG_CONTACT, TestBaseMailAutoCopyCommon
 
 
 class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
-
     def setUp(self):
         super().setUp()
 
@@ -212,105 +210,54 @@ class TestBaseMailAutoCopyPost(TestBaseMailAutoCopyCommon):
     """
 
     def test_01_disable_cc_when_channel(self):
-        # modules_ids = self.env["ir.module.module"].search([("state", "=", "installed")])
-        # print(",".join(sorted(modules_ids.mapped("name"))))
-
+        """BCC auto-copy must be disabled when email originates from a mail group."""
         user_john = self._create_user("john@example.com")
         user_john.copy_sent_email = True
         user_jane = self._create_user("jane@example.com")
-        general_channel_with_email = self.env["mail.channel"].create(
+        # create a mail group and add john and jane as members
+        mail_group = self.env["mail.group"].create(
             {
                 "name": "General (YES)",
                 "description": "General Mailing-List for MyTestCompany",
-                "alias_name": "general_email",
-                "public": "groups",
-                "email_send": True,
+                "access_mode": "public",
             }
         )
-
-        self._join_channel(general_channel_with_email, user_john.partner_id)
-        self._join_channel(general_channel_with_email, user_jane.partner_id)
-
-        send_email_origin = IrMailServer.send_email
-
-        def _ir_mail_server_send_email(model, message, *args, **kwargs):
-            self.assertNotIn("Bcc", message)
-            self.assertNotIn("Cc", message)
-            self.assertEqual(
-                message["From"],
-                '"john@example.com (base.group_user)" <john@example.com>',
-            )
-            self.assertEqual(
-                message["To"],
-                '"jane@example.com (base.group_user)" <jane@example.com>',
-            )
-            return send_email_origin(model, message, *args, **kwargs)
-
-        # patch `send_mail` to check content
-        with patch.object(
-            IrMailServer,
-            "send_email",
-            autospec=True,
-            wraps=IrMailServer,
-            side_effect=_ir_mail_server_send_email,
-        ) as ir_mail_server_send_email_mock:
-            message_id = general_channel_with_email.with_user(
-                user_john.id
-            ).message_post(
-                body="Test",
-                message_type="comment",
-                subtype_xmlid="mail.mt_comment",
-                mail_auto_delete=False,
-            )
-
+        self.env["mail.group.member"].create(
+            [
+                {
+                    "mail_group_id": mail_group.id,
+                    "partner_id": user_john.partner_id.id,
+                },
+                {
+                    "mail_group_id": mail_group.id,
+                    "partner_id": user_jane.partner_id.id,
+                },
+            ]
+        )
+        # get mail server and verify auto_add_sender is enabled
+        mail_server = self._get_mail_server()
+        self.assertTrue(mail_server.auto_add_sender)
+        # post message from john: group notifies jane (john is skipped as author)
+        message_id = mail_group.message_post(
+            author_id=user_john.partner_id.id,
+            email_from=user_john.partner_id.email_formatted,
+            body="Test",
+            subject="Test Subject",
+        )
+        # exactly one outgoing mail should be created for jane
         mail_id = message_id.mail_ids
         self.assertEqual(len(mail_id), 1)
-        self.assertFalse(mail_id.email_to)
-        # when `mail_channel_notify_email` is installed, user with inbox notifications
-        # will be enforced to recipient list
-        self.assertGreaterEqual(len(mail_id.recipient_ids), 1)
-        self.assertIn("jane@example.com", mail_id.recipient_ids.mapped("email"))
+        self.assertEqual(mail_id.email_to, user_jane.email)
 
-        # recreate raw message from this mail and process it like if it was received
-        # on the catchall mailbox
-        incoming_message1 = self._build_email_from_mail(
-            mail_id, to="general_email@mycompany.com"
-        )
-        try:
-            self._mail_unlink_disabled()
-            # keep a trace of existing mail
-            existing_mail_ids = self.Mail.search([])
-            # process message
-            res = self.env["mail.thread"].message_process(
-                None, bytes(incoming_message1)
-            )
-            self.assertEqual(type(res), int)
-            self.assertEqual(res, general_channel_with_email.id)
-            # get latest email
-            loop_mail_id = self.Mail.search([]) - existing_mail_ids
-            self.assertEqual(len(loop_mail_id), 1)
-        finally:
-            self._mail_unlink_enabled()
+        # build raw email; even with copy_sent_email=True for john, auto-BCC must
+        # be suppressed because the message originates from a mail group
+        def check(message):
+            self.assertNotIn("Bcc", message)
+            self.assertNotIn("Cc", message)
 
-        # recreate again a raw message from this mail and process it like if it was
-        # also received on the catchall mailbox
-        incoming_message2 = self._build_email_from_mail(
-            loop_mail_id, to="general_email@mycompany.com"
-        )
-        try:
-            self._mail_unlink_disabled()
-            # keep a trace of existing mail
-            existing_mail_ids = self.Mail.search([])
-            # process message
-            res = self.env["mail.thread"].message_process(
-                None, bytes(incoming_message2)
-            )
-            self.assertEqual(res, False)
-            # get latest email
-            unwanted_mail_id = self.Mail.search([]) - existing_mail_ids
-            self.assertEqual(len(unwanted_mail_id), 0)
-        finally:
-            self._mail_unlink_enabled()
+        msg = self._build_email_from_mail(mail_id, to=user_jane.email)
+        res = self._send_email(msg, check)
+        self.assertEqual(res, mail_id.message_id)
 
     def test_02_send_mail_from_template(self):
         # brandon.freeman55@example.com
