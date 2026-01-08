@@ -1,14 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2024
 
-import base64
 
-from .common import TestMailAttachmentCommon
 from ..controllers.main import SHARING_URL
+from .common import TestMailAttachmentCommon
 
 
 class TestMailAttachmentShare(TestMailAttachmentCommon):
-
     def setUp(self):
         super().setUp()
 
@@ -20,7 +18,7 @@ class TestMailAttachmentShare(TestMailAttachmentCommon):
         self.assertIsNone(action)
         # but token must be set
         self.assertTrue(self.attachment_id.sharing_token)
-        url = self.base_url + SHARING_URL + "/" + self.attachment_id.sharing_token
+        url = self.web_base_url + SHARING_URL + "/" + self.attachment_id.sharing_token
         self.assertEqual(self.attachment_id.sharing_link, url)
 
     def test_02_generate_sharing_token_from_wizard(self):
@@ -55,7 +53,7 @@ class TestMailAttachmentShare(TestMailAttachmentCommon):
         self.assertEqual(action["target"], "new")
         # and token must be set
         self.assertTrue(self.attachment_id.sharing_token)
-        url = self.base_url + SHARING_URL + "/" + self.attachment_id.sharing_token
+        url = self.web_base_url + SHARING_URL + "/" + self.attachment_id.sharing_token
         self.assertEqual(self.attachment_id.sharing_link, url)
 
     def test_03_create_wizard_unrelated(self):

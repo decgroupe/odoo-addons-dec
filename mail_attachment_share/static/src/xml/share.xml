@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <xpath expr="//AttachmentList//..//FileUploader//button" position="after">
+            <button
+                class="btn btn-link"
+                type="button"
+                t-att-disabled="!state.thread.hasWriteAccess"
+                t-on-click="_onShareLink"
+            >
+                <i class="fa fa-paperclip" /> Share a link
+            </button>
+        </xpath>
+    </t>
+</templates>

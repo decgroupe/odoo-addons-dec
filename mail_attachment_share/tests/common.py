@@ -7,10 +7,9 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMailAttachmentCommon(TransactionCase):
-
     def setUp(self):
         super().setUp()
-        self.base_url = self.env["ir.config_parameter"].get_param("web.base.url")
+        self.web_base_url = self.env["ir.config_parameter"].get_param("web.base.url")
         self.attachment = self.env["ir.attachment"]
         bin_data = base64.b64encode(b"\xff data")
         self.attachment_id = self.attachment.create(

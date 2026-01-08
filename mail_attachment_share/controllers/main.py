@@ -7,7 +7,6 @@ import json
 import werkzeug
 
 from odoo import http
-from odoo.addons.web.controllers.main import _serialize_exception
 from odoo.http import request
 from odoo.tools import html_escape
 
@@ -15,7 +14,6 @@ SHARING_URL = "/web/attachments/token"
 
 
 class AttachmentSharingController(http.Controller):
-
     @http.route(SHARING_URL + "/<string:token>", type="http", auth="none")
     def get_shared_attachments(self, token, **kwargs):
         return_code = 200
@@ -42,7 +40,7 @@ class AttachmentSharingController(http.Controller):
                 return_code = 404
                 raise Exception("Attachment(s) not found")
         except Exception as e:
-            se = _serialize_exception(e)
+            se = http.serialize_exception(e)
             error = {
                 "code": return_code,
                 "message": "Odoo Server Error",

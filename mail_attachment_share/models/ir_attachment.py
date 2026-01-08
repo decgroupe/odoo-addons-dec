@@ -4,7 +4,9 @@
 import uuid
 
 from odoo import api, fields, models
+
 from ..controllers.main import SHARING_URL
+
 
 class Attachment(models.Model):
     _inherit = "ir.attachment"
@@ -21,7 +23,7 @@ class Attachment(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        records = super(Attachment, self).create(vals_list)
+        records = super().create(vals_list)
         # records._generate_sharing_token()
         return records
 

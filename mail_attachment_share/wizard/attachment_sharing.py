@@ -16,7 +16,7 @@ class AttachmentSharing(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        res = super(AttachmentSharing, self).default_get(fields)
+        res = super().default_get(fields)
         context = self._context or {}
         res_model = context.get("default_res_model")
         res_id = context.get("default_res_id")
@@ -30,11 +30,11 @@ class AttachmentSharing(models.TransientModel):
 
         return res
 
-    def _reopen(self, id=False):
+    def _reopen(self, res_id=False):
         return {
             "type": "ir.actions.act_window",
             "view_mode": "form",
-            "res_id": id or self.id,
+            "res_id": res_id or self.id,
             "res_model": self._name,
             "target": "new",
             "context": {

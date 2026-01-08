@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="attachment_sharing_tree_view">
         <field name="name">ir.attachment.sharing</field>
         <field name="model">ir.attachment</field>
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <tree string="Attachments" create="false" delete="false">
+            <list create="false" delete="false">
                 <field name="name" />
                 <field name="file_size" />
                 <field name="create_date" />
                 <button
                     name="action_generate_sharing_token_from_wizard"
                     string=""
+                    title="Generate Sharing Link"
                     type="object"
                     icon="fa-share"
-                    attrs="{'invisible': [('sharing_link', '!=', False)]}"
+                    invisible="sharing_link"
                     context="{'wizard_id':parent.id}"
-                >
-                </button>
-                <field name="sharing_link" widget="CopyClipboardChar" />
-            </tree>
+                />
+                <field
+                    name="sharing_link"
+                    string="Public Sharing Link"
+                    widget="CopyClipboardURL"
+                />
+            </list>
         </field>
     </record>
 
@@ -33,7 +36,7 @@
                     <sheet>
                         <field
                             name="attachment_ids"
-                            context="{'tree_view_ref':'mail_attachment_share.attachment_sharing_tree_view'}"
+                            context="{'list_view_ref':'mail_attachment_share.attachment_sharing_tree_view'}"
                             options="{'no_create_edit': True, 'no_quick_create': True}"
                         />
                     </sheet>
@@ -52,5 +55,4 @@
         <field name="view_id" ref="attachment_sharing_wizard_view" />
         <field name="target">new</field>
     </record>
-
 </odoo>
