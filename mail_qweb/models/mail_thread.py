@@ -2,8 +2,10 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2024
 
 import logging
+
 import lxml
-from odoo import api, models
+
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -11,84 +13,166 @@ _logger = logging.getLogger(__name__)
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
-    def _notify_classify_recipients(self, recipient_data, model_name, msg_vals=None):
+    # was named `_notify_get_groups` in Odoo 14.0
+    def _notify_get_recipients_groups(self, message, model_description, msg_vals=None):
+        """Override to keep track of partners notified by email for
+        mail templates using QWeb.
+        """
+        res = super()._notify_get_recipients_groups(
+            message, model_description, msg_vals=msg_vals
+        )
+        # res example: (see function documentation in
+        # odoo/addons/mail/models/mail_thread.py)
+        #
+        # ['user', <function MailThread._notify_get_recipients_groups.<locals>.<lambda> at 0x7f0978ce1c60>, {'active': True, 'has_button_access': True}],  # noqa: E501
+        # ['portal', <function MailThread._notify_get_recipients_groups.<locals>.<lambda> at 0x7f0978ce1d00>, {'active': False, 'has_button_access': False}],  # noqa: E501
+        # ['follower', <function MailThread._notify_get_recipients_groups.<locals>.<lambda> at 0x7f0978ce19e0>, {'active': False, 'has_button_access': False}],  # noqa: E501
+        # ['customer', <function MailThread._notify_get_recipients_groups.<locals>.<lambda> at 0x7f0978ce1a80>, {'active': True, 'has_button_access': False}]  # noqa: E501
+        return res
+
+    # TODO: Write a test for this method
+    # was named `_notify_classify_recipients` in Odoo 14.0
+    def _notify_get_recipients_classify(
+        self, message, recipients_data, model_description, msg_vals=None
+    ):
         """The purpose of this hook is to make a copy of `recipients` data because this
         value will be dropped (using pop) before template rendering.
+        TODO: Check if this is still true in Odoo 18
         """
-        res = super()._notify_classify_recipients(
-            recipient_data=recipient_data, model_name=model_name, msg_vals=msg_vals
+        # recipients_data example:
+        # [
+        #     {
+        #         "active": True,
+        #         "id": 250,
+        #         "is_follower": True,
+        #         "lang": "en_US",
+        #         "groups": {1, 7},
+        #         "notif": "email",
+        #         "share": False,
+        #         "uid": 197,
+        #         "ushare": False,
+        #         "type": "user",
+        #     }
+        # ]
+        res = super()._notify_get_recipients_classify(
+            message, recipients_data, model_description, msg_vals=msg_vals
         )
+
+        # res example: (see function documentation in
+        # odoo/addons/mail/models/mail_thread.py)
+        # [
+        #     {
+        #         "active": True,
+        #         "has_button_access": True,
+        #         "actions": [],
+        #         "notification_group_name": "user",
+        #         "recipients": [240],
+        #         "button_access": {
+        #             "url": "http://localhost:8018/mail/view?model=fake.model.without.name&res_id=1",  # noqa: E501
+        #             "title": "View fake.model.without.name",
+        #         },
+        #     }
+        # ]
         for group_data in res:
             recipient_ids = group_data["recipients"]
+            group_data["_origin"] = "mail_qweb"
             group_data["_recipients"] = self.env["res.partner"].browse(recipient_ids)
             group_data["_notif_mode"] = {}
-            for r in recipient_data:
+            for r in recipients_data:
                 if r["id"] in recipient_ids:
                     group_data["_notif_mode"][r["id"]] = r["notif"]
         return res
 
-    def _notify_record_by_email(
+    # TODO: Write a test for this method
+    # was named `_notify_record_by_email` in Odoo 14.0
+    def _notify_thread_by_email(
         self,
         message,
         recipients_data,
         msg_vals=False,
+        mail_auto_delete=True,  # mail.mail
         model_description=False,
-        mail_auto_delete=True,
-        check_existing=False,
+        force_email_company=False,
+        force_email_lang=False,  # rendering
+        subtitles=None,  # rendering
+        resend_existing=False,
         force_send=True,
-        send_after_commit=True,
-        **kwargs
+        send_after_commit=True,  # email send
+        **kwargs,
     ):
         """Add a list of textual recipients to the template context in order to
         to write who are notified of this message
         """
-        partners_data = recipients_data["partners"]
+        # partners_data = recipients_data["partners"]
         model = msg_vals.get("model") if msg_vals else message.model
         model_name = model_description or (
             self._fallback_lang().env["ir.model"]._get(model).display_name
             if model
             else False
         )  # one query for display name
-        recipients_groups_data = self._notify_classify_recipients(
-            partners_data, model_name, msg_vals=msg_vals
+        recipients_groups_data = self._notify_get_recipients_classify(
+            message, recipients_data, model_name, msg_vals=msg_vals
         )
         if not msg_vals:
             msg_vals = {}
         msg_vals["recipients_groups_data"] = recipients_groups_data
-        return super()._notify_record_by_email(
+        return super()._notify_thread_by_email(
             message,
             recipients_data,
             msg_vals=msg_vals,
-            model_description=model_description,
             mail_auto_delete=mail_auto_delete,
-            check_existing=check_existing,
+            model_description=model_description,
+            force_email_company=force_email_company,
+            force_email_lang=force_email_lang,
+            subtitles=subtitles,
+            resend_existing=resend_existing,
             force_send=force_send,
             send_after_commit=send_after_commit,
-            **kwargs
+            **kwargs,
         )
 
-    @api.model
-    def _notify_prepare_template_context(
-        self, message, msg_vals, model_description=False, mail_auto_delete=True
+    # TODO: Write a test for this method
+    # was named `_notify_prepare_template_context` in Odoo 14.0
+    def _notify_by_email_prepare_rendering_context(
+        self,
+        message,
+        msg_vals=False,
+        model_description=False,
+        force_email_company=False,
+        force_email_lang=False,
     ):
         """All default template values are set from this function:
+        # message
+        - is_discussion: boolean
         - message: mail.message
-        - signature: char
-        - website_url: char
-        - company: res.company
+        - subtype: mail.message.subtype
+        - tracking_values: list
+        # record
         - model_description: char
         - record: module.model
         - record_name: char
-        - tracking_values: list
-        - is_discussion: boolean
-        - subtype: mail.message.subtype
+        - subtitles
+        # user / environment
+        - author_user
+        - company: res.company
+        - email_add_signature
         - lang: char
+        - signature: char
+        - website_url: char
+        # tools
+        - is_html_empty
+        # display
+        - email_notification_force_header
+        - email_notification_force_footer
+        - email_notification_allow_header
+        - email_notification_allow_footer
         """
-        res = super()._notify_prepare_template_context(
+        res = super()._notify_by_email_prepare_rendering_context(
             message,
-            msg_vals,
-            model_description,
-            mail_auto_delete,
+            msg_vals=msg_vals,
+            model_description=model_description,
+            force_email_company=force_email_company,
+            force_email_lang=force_email_lang,
         )
         if "object" not in res:
             res["object"] = res["record"]
@@ -130,18 +214,22 @@ class MailThread(models.AbstractModel):
             _logger.debug("Failure parsing this HTML:\n%s", message.body)
         return align
 
+    # TODO: Write a test for this method
     def message_notify(
         self,
         *,
-        partner_ids=False,
-        parent_id=False,
-        model=False,
-        res_id=False,
-        author_id=None,
-        email_from=None,
         body="",
         subject=False,
-        **kwargs
+        author_id=None,
+        email_from=None,
+        model=False,
+        res_id=False,
+        subtype_xmlid=None,
+        subtype_id=False,
+        partner_ids=False,
+        attachments=None,
+        attachment_ids=None,
+        **kwargs,
     ):
         """Odoo's shortcut to notify subscribers of messages without publishing on the
         chat."""
@@ -151,14 +239,17 @@ class MailThread(models.AbstractModel):
         ):
             # force signature for light template
             kwargs["add_sign"] = True
-        super().message_notify(
-            partner_ids=partner_ids,
-            parent_id=parent_id,
-            model=model,
-            res_id=res_id,
-            author_id=author_id,
-            email_from=email_from,
+        return super().message_notify(
             body=body,
             subject=subject,
-            **kwargs
+            author_id=author_id,
+            email_from=email_from,
+            model=model,
+            res_id=res_id,
+            subtype_xmlid=subtype_xmlid,
+            subtype_id=subtype_id,
+            partner_ids=partner_ids,
+            attachments=attachments,
+            attachment_ids=attachment_ids,
+            **kwargs,
         )

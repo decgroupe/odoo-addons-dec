@@ -1,12 +1,12 @@
 {
     "name": "Mail QWeb",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "mail",
         "mail_inline_css",
-        "email_template_qweb",
         "partner_company_type",
         "web_public_images",
     ],
@@ -15,5 +15,5 @@
         "wizard/mail_compose_message.xml",
         "views/mail_template.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

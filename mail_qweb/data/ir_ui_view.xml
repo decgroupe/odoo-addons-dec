@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <template id="mail_qweb.view_email_template_part_partners_avatar">
         <style>
             .table_avatar {
@@ -47,10 +46,8 @@
                             />
                         </td>
                         <td class="td_partner">
-                            <a t-if="partner">
-                                <a t-attf-href="mailto:{{partner.email_formatted}}"><t
-                                        t-esc="partner.display_name"
-                                    /></a>
+                            <a t-attf-href="mailto:{{partner.email_formatted}}">
+                                <t t-esc="partner.display_name" />
                             </a>
                         </td>
                         <td class="td_notify">
@@ -161,31 +158,24 @@
 
             <t t-if="company">
                 <div>
-                    <t t-esc="'%s %d' % ('©', datetime.datetime.now().year)" />
                     <t t-esc="company.name" />
                     <t t-esc="company.partner_id.partner_company_type_id.shortcut" />,
                     <a>
-                        <t
-                            t-if="company.partner_id.street"
-                            t-esc="company.partner_id.street"
-                        />
-                        <t
-                            t-if="company.partner_id.street2"
-                            t-esc="company.partner_id.street2"
-                        />
-                        <t
-                            t-if="company.partner_id.zip"
-                            t-esc="company.partner_id.zip"
-                        />
-                        <t
-                            t-if="company.partner_id.city"
-                            t-esc="company.partner_id.city"
-                        />
-                        <t
-                            t-if="company.partner_id.country_id"
-                            t-esc="company.partner_id.country_id.code"
-                        />
-                    </a>
+                    <t
+                        t-if="company.partner_id.street"
+                        t-esc="company.partner_id.street"
+                    />
+                    <t
+                        t-if="company.partner_id.street2"
+                        t-esc="company.partner_id.street2"
+                    />
+                    <t t-if="company.partner_id.zip" t-esc="company.partner_id.zip" />
+                    <t t-if="company.partner_id.city" t-esc="company.partner_id.city" />
+                    <t
+                        t-if="company.partner_id.country_id"
+                        t-esc="company.partner_id.country_id.code"
+                    />
+                </a>
 
                     <br />
                     <a href="/contact">Contact Us</a>
@@ -194,15 +184,15 @@
                     </t>
                     <t t-if="company.website"> |
                         <a
-                            t-att-href="'%s' % company.website"
-                            t-esc="company.website"
-                        />
+                    t-att-href="'%s' % company.website"
+                    t-esc="company.website"
+                />
                     </t>
                     <t t-if="company.email"> |
                         <a
-                            t-att-href="'mailto:%s' % company.email"
-                            t-esc="company.email"
-                        />
+                    t-att-href="'mailto:%s' % company.email"
+                    t-esc="company.email"
+                />
                     </t>
 
                 </div>
@@ -212,26 +202,28 @@
 
     <template id="mail_qweb.view_email_template_part_also_notified">
         <p class="notify_title">Also notified (<t
-                t-esc="notification_group_name"
-            />):</p>
+            t-esc="notification_group_name"
+        />):</p>
         <t t-foreach="recipients_groups_data" t-as="recipients_group_data">
-            <p
-                class="notify_group"
-                t-if="recipients_group_data['notification_group_name'] == 'user'"
-            >Internal Users</p>
-            <p
-                class="notify_group"
-                t-if="recipients_group_data['notification_group_name'] in ('portal', 'portal_customer')"
-            >Portal Users</p>
-            <p
-                class="notify_group"
-                t-if="recipients_group_data['notification_group_name'] == 'customer'"
-            >External Partners</p>
-            <t t-set="partners" t-value="recipients_group_data['_recipients']" />
-            <t t-set="notifs" t-value="recipients_group_data['_notif_mode']" />
-            <div>
-                <t t-call="mail_qweb.view_email_template_part_partners_avatar" />
-            </div>
+            <t t-if="recipients_group_data['_origin'] == 'mail_qweb'">
+                <p
+                    class="notify_group"
+                    t-if="recipients_group_data['notification_group_name'] == 'user'"
+                >Internal Users</p>
+                <p
+                    class="notify_group"
+                    t-if="recipients_group_data['notification_group_name'] in ('portal', 'portal_customer')"
+                >Portal Users</p>
+                <p
+                    class="notify_group"
+                    t-if="recipients_group_data['notification_group_name'] == 'customer'"
+                >External Partners</p>
+                <t t-set="partners" t-value="recipients_group_data['_recipients']" />
+                <t t-set="notifs" t-value="recipients_group_data['_notif_mode']" />
+                <div>
+                    <t t-call="mail_qweb.view_email_template_part_partners_avatar" />
+                </div>
+            </t>
         </t>
     </template>
 
@@ -313,7 +305,7 @@
         >
             <t t-raw="content_message" />
             <div id="content_message_action" t-if="content_message_action">
-            <t t-raw="content_message_action" />
+                <t t-raw="content_message_action" />
             </div>
         </div>
         <div
@@ -582,7 +574,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div>
                     </td>
                 </tr>
@@ -591,7 +582,6 @@
                 </tr>
             </tbody>
         </table>
-
     </template>
 
     <!-- Override Odoo's default mail notification layout -->
@@ -641,8 +631,8 @@
                         <t t-foreach="actions" t-as="action">
                             |
                             <a t-att-href="action['url']">
-                                <t t-esc="action['title']" />
-                            </a>
+                            <t t-esc="action['title']" />
+                        </a>
                         </t>
                     </t>
                 </div>
@@ -652,8 +642,8 @@
                 <ul t-if="tracking_values">
                     <t t-foreach="tracking_values" t-as="tracking">
                         <li><t t-esc="tracking[0]" />: <t
-                                t-esc="tracking[1]"
-                            /> &#11106; <t t-esc="tracking[2]" /></li>
+                            t-esc="tracking[1]"
+                        /> &#11106; <t t-esc="tracking[2]" /></li>
                     </t>
                 </ul>
             </t>
@@ -669,16 +659,9 @@
             </t>
         </t>
     </template>
-    <template id="mail.message_notification_email">
+    <!-- Override Odoo's default mail notification layout -->
+    <template id="mail.mail_notification_layout">
         <t t-call="mail_qweb.message_notification_email" />
-    </template>
-
-    <!-- Override Odoo's default mail notification border layout -->
-    <!-- USELESS: Not used anywhere -->
-    <template id="mail_qweb.mail_notification_borders">
-    </template>
-    <template id="mail.mail_notification_borders">
-        <t t-call="mail_qweb.mail_notification_borders" />
     </template>
 
     <!-- Custom empty layout: To replace fallback layout.
@@ -706,7 +689,10 @@
                 <t t-call="mail_qweb.view_email_template_part_also_notified" />
             </t>
             <!-- Contrary to original light template, signature is also added -->
-            <t t-set="content_message_signature" t-if="not is_html_empty(signature)">
+            <t
+                t-set="content_message_signature"
+                t-if="signature and not is_html_empty(signature)"
+            >
                 <t t-raw="signature" />
             </t>
         </t>
@@ -716,6 +702,7 @@
     </template>
 
     <!-- Override Odoo's « Pay Now » mail notification layout -->
+    <!-- FIXME: rework to match new layout: mail.mail_notification_layout_with_responsible_signature
     <template
         id="mail_qweb.mail_notification_paynow"
         inherit_id="mail.mail_notification_paynow"
@@ -723,7 +710,7 @@
         <xpath expr="//t" position="replace">
 
             <t t-call="mail_qweb.view_email_template_notification">
-                <!-- Copy/paste variables init from original view -->
+                <!- Copy/paste variables init from original view ->
                 <t
                     t-set="access_action"
                     t-value="record.with_context(force_website=True).get_access_action()"
@@ -774,11 +761,12 @@
             </t>
         </xpath>
     </template>
+    -->
 
     <!-- Override Odoo's « You have been assigned To ... » mail notification content -->
     <template id="mail_qweb.message_user_assigned">
         <p>
-            <t t-esc="object.user_id.name" />,<br />
+            <t t-esc="assignee_name" />,<br />
             <span>
                 You have been assigned to <b t-esc="model_description or 'document'" />:
                 <br />
@@ -795,6 +783,7 @@
         </div>
     </template>
     <template id="mail.message_user_assigned">
+        <t t-set="assignee_name" t-value="object.user_id.sudo().name" />
         <t t-call="mail_qweb.message_user_assigned" />
     </template>
 
@@ -863,15 +852,16 @@
     </template>
 
     <template id="mail_qweb.message_activity_done">
-
         <div>
             <p>
                 Activity done: <span
-                    t-attf-class="fa #{activity.activity_type_id.icon} fa-fw"
-                /><span t-field="activity.activity_type_id.name" />
-                <t t-if="display_assignee"><small> (originally assigned to <span
-                            t-field="activity.user_id.name"
-                        />)</small></t>
+                t-attf-class="fa #{activity.activity_type_id.icon} fa-fw"
+            /><span t-field="activity.activity_type_id.name" />
+                <t t-if="display_assignee">
+                <small> (originally assigned to <span
+                    t-field="activity.user_id.name"
+                />)</small>
+            </t>
             </p>
 
             <div t-if="feedback">
@@ -947,7 +937,6 @@
                     </td>
                 </tr>
             </table>
-
         </div>
     </template>
     <template id="mail.message_activity_done">
@@ -960,16 +949,20 @@
             <t t-set="content_message">
                 <p>Hello <i t-esc="message['email_from']" />,</p>
                 <p>The email sent to <t
-                        t-esc="message['to']"
-                    /> cannot be processed. This address is exclusively used to collect replies and should not be used to directly contact <b
-                        t-esc="res_company.name"
-                    />.
+                    t-esc="message['to']"
+                /> cannot be processed. This address is exclusively used to collect replies and should not be used to directly contact <b
+                    t-esc="res_company.name"
+                />.
                 </p>
                 <p>Please contact us using <a
-                        t-att-href="'mailto:%s' % res_company.email"
-                    ><t t-esc="res_company.email" /></a>
+                    t-att-href="'mailto:%s' % res_company.email"
+                >
+                    <t t-esc="res_company.email" />
+                </a>
                 </p>
-                <blockquote><t t-raw="message['body']" /></blockquote>
+                <blockquote>
+                    <t t-raw="message['body']" />
+                </blockquote>
             </t>
         </t>
     </template>
@@ -985,12 +978,13 @@
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="content_message">
                 <t t-raw="body" />
-                <blockquote><t t-raw="message['body']" /></blockquote>
+                <blockquote>
+                    <t t-raw="message['body']" />
+                </blockquote>
             </t>
         </t>
     </template>
     <template id="mail.mail_bounce_alias_security">
         <t t-call="mail_qweb.mail_bounce_alias_security" />
     </template>
-
 </odoo>

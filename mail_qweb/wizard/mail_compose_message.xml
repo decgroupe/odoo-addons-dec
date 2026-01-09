@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="email_compose_message_wizard_form">
         <field name="name">mail.compose.message.form@mail_qweb</field>
         <field name="model">mail.compose.message</field>
@@ -12,5 +11,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

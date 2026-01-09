@@ -7,6 +7,10 @@ class FakeModel(models.Model):
 
     name = fields.Char(required=True)
 
+    # override to avoid having a default subject based on the name field
+    def _message_compute_subject(self):
+        return False
+
 
 class FakeModelWithoutName(models.Model):
     _name = "fake.model.without.name"
@@ -14,3 +18,7 @@ class FakeModelWithoutName(models.Model):
     _rec_name = "serial"
 
     serial = fields.Char(required=True)
+
+    # override to avoid having a default subject based on the name field
+    def _message_compute_subject(self):
+        return False

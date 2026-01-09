@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="email_template_form_view">
         <field name="name">mail.template.form@mail_qweb</field>
         <field name="model">mail.template</field>
         <field name="inherit_id" ref="mail.email_template_form" />
         <field name="arch" type="xml">
-            <field name="body_view_arch" position="after">
+            <field name="body_html" position="after">
                 <field name="no_inline_css" />
             </field>
         </field>
     </record>
-
 </odoo>

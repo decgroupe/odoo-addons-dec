@@ -13,13 +13,14 @@ _logger = logging.getLogger(__name__)
 class MailMail(models.AbstractModel):
     _inherit = "mail.mail"
 
-    @api.model
-    def create(self, vals):
-        rec = super(MailMail, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
         # Module `mail_inline_css` does not transform emails when they are created from
         # `message_post`, that's why we are copying its premailer functions
-        rec.body_html = self._premailer_apply_transform(rec.body_html)
-        return rec
+        for rec, _vals in zip(record_ids, vals_list, strict=True):
+            rec.body_html = self._premailer_apply_transform(rec.body_html)
+        return record_ids
 
     def _premailer_apply_transform(self, html):
         no_inline_css = self.env.context.get("no_inline_css", False)
