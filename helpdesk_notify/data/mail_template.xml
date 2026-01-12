@@ -1,19 +1,18 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record id="created_ticket_internal_template" model="mail.template">
         <field name="name">Helpdesk Created Ticket Unassigned Notification Email</field>
         <field name="model_id" ref="helpdesk_mgmt.model_helpdesk_ticket" />
         <field
             name="email_from"
-        >${object.team_id.alias_id.display_name or object.company_id.partner_id.email}</field>
-        <field name="subject">The ticket ${object.number} has been created.</field>
+        >{{ object.team_id.alias_id.display_name or object.company_id.partner_id.email }}</field>
+        <field name="subject">The ticket {{ object.number }} has been created.</field>
         <field name="auto_delete" eval="True" />
         <field
             name="lang"
-        >${object.partner_id.lang or object.company_id.partner_id.lang}</field>
-        <field name="body_type">qweb</field>
-        <field name="body_view_id" ref="view_created_ticket_internal_template" />
+        >{{ object.partner_id.lang or object.company_id.partner_id.lang }}</field>
+        <field name="body_html" type="html">
+            <t t-call="helpdesk_notify.view_created_ticket_internal_template" />
+        </field>
     </record>
-
 </odoo>

@@ -1,21 +1,24 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
         if self._should_notify_new_ticket():
-            rec._notify_new_ticket(
-                team_id=self.env["helpdesk.ticket.team"].browse(vals.get("team_id")),
-                assigned_user_id=self.env["res.users"].browse(vals.get("user_id")),
-            )
-        return rec
+            for rec, vals in zip(record_ids, vals_list, strict=True):
+                rec._notify_new_ticket(
+                    team_id=self.env["helpdesk.ticket.team"].browse(
+                        vals.get("team_id")
+                    ),
+                    assigned_user_id=self.env["res.users"].browse(vals.get("user_id")),
+                )
+        return record_ids
 
     def _notify_new_ticket(self, team_id, assigned_user_id):
         self.ensure_one()
@@ -41,6 +44,11 @@ class HelpdeskTicket(models.Model):
         if not _should_notify:
             _should_notify = self.env.context.get("force_helpdesk_notify", False)
         if not _should_notify:
-            # require: [IMP] helpdesk_mgmt: Help to know if a ticket is created from portal
+            # require our commit
+            # [IMP] helpdesk_mgmt: Help to know if a ticket is created from portal
             _should_notify = self.env.context.get("portal_ticket", False)
         return _should_notify
+
+    def get_access_link(self):
+        # _notify_get_action_link is not callable from email template
+        return self._notify_get_action_link("view")
