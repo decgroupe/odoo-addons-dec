@@ -23,7 +23,7 @@ Can you contact me at xyz@widget.com ?
 
 Thank you
 
-"""
+"""  # noqa: E501
 
 # Copy from odoo/addons/test_mail/data/test_mail_data.py
 MAIL_TEMPLATE = """Return-Path: <whatever-2a840@postmaster.twitter.com>
@@ -66,4 +66,4 @@ Content-Transfer-Encoding: quoted-printable
  </body>
 </html>
 ------=_Part_4200734_24778174.1344608186754--
-"""
+"""  # noqa: E501

@@ -1,14 +1,26 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
+    <record model="ir.actions.server" id="automation_action_send_email">
+        <field name="name">Send email: New Lead</field>
+        <field name="model_id" ref="crm.model_crm_lead" />
+        <field name="state">mail_post</field>
+        <field
+            name="template_id"
+            ref="crm_lead_new_email.mail_template_new_email_lead"
+        />
+    </record>
 
-    <record model="base.automation" id="action_send_email">
+    <record model="base.automation" id="automation_send_email">
         <field name="active" eval="True" />
         <field name="name">New Lead Warning</field>
         <field name="model_id" ref="crm.model_crm_lead" />
         <field name="trigger">on_create</field>
-        <field name="state">email</field>
         <field name="filter_domain">[["type","=","lead"]]</field>
-        <field name="template_id" ref="crm_lead_new_email.mail_template_new_email_lead" />
+        <field
+            name="action_server_ids"
+            eval="[Command.set([
+                ref('crm_lead_new_email.automation_action_send_email')
+            ])]"
+        />
     </record>
-
 </odoo>

@@ -1,22 +1,19 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record model="mail.template" id="mail_template_new_email_lead">
         <field name="name">New Lead</field>
         <field name="model_id" ref="crm.model_crm_lead" />
         <field
             name="email_from"
-        >${'noreply@'+ object.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain")}</field>
-        <field
-            name="email_to"
-        >${'crm@'+ object.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain")}</field>
-        <field name="subject">✨ New Lead: ${object.name}</field>
+        >{{ 'noreply@'+ object.company_id.alias_domain_name }}</field>
+        <field name="email_to">{{ 'crm@'+ object.company_id.alias_domain_name }}</field>
+        <field name="subject">✨ New Lead: {{ object.name }}</field>
         <field name="auto_delete" eval="True" />
         <field
             name="lang"
-        >${object.partner_id.lang or object.company_id.partner_id.lang}</field>
-        <field name="body_type">qweb</field>
-        <field name="body_view_id" ref="view_mail_template_new_email_lead" />
+        >{{ object.partner_id.lang or object.company_id.partner_id.lang }}</field>
+        <field name="body_html" type="html">
+            <t t-call="crm_lead_new_email.view_mail_template_new_email_lead" />
+        </field>
     </record>
-
 </odoo>

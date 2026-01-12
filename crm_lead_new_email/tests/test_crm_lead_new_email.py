@@ -1,34 +1,46 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
-from odoo.addons.mail.tests.common import MailCase
-from odoo.addons.crm_lead_new_email.tests.common import MSG_CONTACT, MAIL_TEMPLATE
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
+
+from odoo.addons.crm_lead_new_email.tests.common import MAIL_TEMPLATE, MSG_CONTACT
+from odoo.addons.mail.tests.common import MailCase
 
 
 @tagged("mail_thread", "mail_gateway", "post_install", "-at_install")
-class TestCrmLeadNewEmail(SavepointCase, MailCase):
-    def setUp(self):
-        super().setUp()
-        self.env["ir.config_parameter"].sudo().set_param(
-            "mail.catchall.domain", "yourcompany.com"
+class TestCrmLeadNewEmail(TransactionCase, MailCase):
+    """Test CRM Lead New Email functionalities"""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Create company default alias domain (replacing `mail.catchall.domain` param)
+        cls.env["mail.alias.domain"].create(
+            {
+                "name": "yourcompany.com",
+                "bounce_alias": "bounce",
+                "catchall_alias": "catchall",
+            }
         )
-        self.env["mail.alias"].create(
+        cls.env["mail.alias"].create(
             {
                 "alias_name": "contact",
-                "alias_model_id": self.env["ir.model"]._get("crm.lead").id,
-                "alias_parent_model_id": self.env["ir.model"]._get("crm.team").id,
+                "alias_model_id": cls.env["ir.model"]._get("crm.lead").id,
+                "alias_parent_model_id": cls.env["ir.model"]._get("crm.team").id,
                 "alias_defaults": "{'type': 'lead', 'company_id':1}",
             }
         )
+
+    def setUp(self):
+        super().setUp()
 
     @mute_logger("odoo.addons.mail.models.mail_thread")
     def test_01_incoming_reply_from_unknown_contact(self):
         incoming_message = MSG_CONTACT
         prev_mail_ids = self.env["mail.mail"].search([])
-        record_id = self.env["mail.thread"].message_process(None, incoming_message)
+        _record_id = self.env["mail.thread"].message_process(None, incoming_message)
         mail_id = self.env["mail.mail"].search([]) - prev_mail_ids
         self.assertEqual(
             "✨ New Lead: Need information about your products", mail_id.subject
@@ -39,7 +51,7 @@ class TestCrmLeadNewEmail(SavepointCase, MailCase):
 
     @mute_logger("odoo.addons.mail.models.mail_thread")
     def test_02_incoming_reply_from_known_contact(self):
-        partner_id = self.env["res.partner"].create(
+        _partner_id = self.env["res.partner"].create(
             {
                 "name": "Xan Yin Zu",
                 "email": "xyz@widget.com",
@@ -47,7 +59,7 @@ class TestCrmLeadNewEmail(SavepointCase, MailCase):
         )
         incoming_message = MSG_CONTACT
         prev_mail_ids = self.env["mail.mail"].search([])
-        record_id = self.env["mail.thread"].message_process(None, incoming_message)
+        _record_id = self.env["mail.thread"].message_process(None, incoming_message)
         mail_id = self.env["mail.mail"].search([]) - prev_mail_ids
         self.assertEqual(
             "✨ New Lead: Need information about your products", mail_id.subject

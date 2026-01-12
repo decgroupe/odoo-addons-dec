@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <template id="crm_lead_new_email.view_mail_template_new_email_lead">
         <t t-call="mail_qweb.view_email_template_notification">
-
             <t t-set="content_warning" t-if="not object.partner_id">
                 <strong>No match found for <t t-esc="object.email_from" />:</strong>
                 It is advisable to create a contact associated with this email to enable automatic recognition of incoming messages.
@@ -29,5 +27,4 @@
             </t>
         </t>
     </template>
-
 </odoo>
