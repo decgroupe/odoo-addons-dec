@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template id="mail_extra_notify.more_informations">
         <t t-if="extra_values">
             <p>
                 More informations:
                 <ul>
-                    <li t-foreach="extra_values" t-as="extra" t-att-name="extra[0]">
+                <li t-foreach="extra_values" t-as="extra" t-att-name="extra[0]">
                         <small>
-                            <t t-esc="extra[1]" />
-                        </small>:
+                    <t t-esc="extra[1]" />
+                </small>:
                         <b>
-                            <t t-esc="extra_value" />
-                        </b>
+                    <t t-esc="extra_value" />
+                </b>
                     </li>
-                </ul>
+            </ul>
             </p>
         </t>
     </template>
@@ -36,5 +35,4 @@
             <t t-call="mail_extra_notify.more_informations" />
         </xpath>
     </template>
-
 </odoo>

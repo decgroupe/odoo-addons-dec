@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:44+0000\n"
-"PO-Revision-Date: 2024-04-17 09:46+0200\n"
+"POT-Creation-Date: 2026-06-03 10:28+0000\n"
+"PO-Revision-Date: 2026-06-03 14:45+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mail_extra_notify
 #: model:ir.model,name:mail_extra_notify.model_base
@@ -23,29 +23,31 @@ msgid "Base"
 msgstr "Base"
 
 #. module: mail_extra_notify
-#: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#: model:ir.model,name:mail_extra_notify.model_res_partner
+msgid "Contact"
+msgstr "Contact"
 
 #. module: mail_extra_notify
-#: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mail_extra_notify
-#: model:ir.model.fields,field_description:mail_extra_notify.field_ir_ui_view____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: mail_extra_notify
-#: model_terms:ir.ui.view,arch_db:mail_extra_notify.message_user_assigned
+#: model_terms:ir.ui.view,arch_db:mail_extra_notify.more_informations
 msgid "More informations:"
 msgstr "Plus d'informations :"
 
 #. module: mail_extra_notify
-#: model:ir.model,name:mail_extra_notify.model_ir_ui_view
-msgid "View"
-msgstr "Vue"
+#: model:ir.model,name:mail_extra_notify.model_ir_qweb
+msgid "Qweb"
+msgstr "Qweb"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "View"
+#~ msgstr "Vue"
 
 #~ msgid "ID of the record defined in xml file"
 #~ msgstr "ID de l'enregistrement défini dans le fichier xml"

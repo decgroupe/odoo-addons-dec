@@ -7,10 +7,9 @@ from odoo import models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    def _get_assigned_extra_values(self, type):
+    def _get_assigned_extra_values(self, assigned_type):
         self.ensure_one()
         res = {}
-
         if self.email:
             key, value = self._get_assigned_extra_field_value(
                 self,

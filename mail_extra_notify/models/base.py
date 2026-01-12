@@ -4,7 +4,7 @@
 from datetime import datetime
 
 from odoo import models
-from odoo.tools import format_datetime
+from odoo.tools import format_amount, format_datetime
 
 
 def format_currency_amount(amount, currency_id):
@@ -18,21 +18,24 @@ def format_currency_amount(amount, currency_id):
 class Base(models.AbstractModel):
     _inherit = "base"
 
-    def _get_assigned_extra_field_value(self, model, field_name):
-        IrTranslation = self.env["ir.translation"]
-        field_name_translated = IrTranslation.get_field_string(model._name)[field_name]
+    def _get_assigned_extra_field_value(self, model, field_name, currency_field=None):
+        IrModelFields = self.env["ir.model.fields"]
+        # IrModelFieldsUs = self.with_context(lang='en_US').env['ir.model.fields']
+        field_name_translated = IrModelFields.get_field_string(model._name)[field_name]
         key = (field_name, field_name_translated)
         value = model[field_name]
         field = model._fields[field_name]
         if isinstance(value, models.Model):
             if value:
-                value = value.name_get()[0][1]
+                value = value.display_name
             else:
                 value = False
         elif isinstance(value, datetime):
             value = format_datetime(self.env, value, self.env.user.tz)
         elif isinstance(value, float):
-            if field.type == "monetary":
-                currency_id = model[field.currency_field]
-                value = format_currency_amount(value, currency_id)
+            if field.type == "monetary" and field.currency_field:
+                currency_field = field.currency_field or currency_field
+                if currency_field:
+                    currency_id = model[currency_field]
+                    value = format_amount(model.env, value, currency_id)
         return key, value
