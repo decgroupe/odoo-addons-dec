@@ -1,23 +1,29 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
+from odoo.tests import tagged
+from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
+
 from odoo.addons.mail.tests.common import MailCase
 from odoo.addons.mail_above_line.tests.common import (
-    MSG_REPLY,
-    MSG_FORWARD,
     MAIL_EMPTY_BODY_TEMPLATE,
+    MSG_FORWARD,
+    MSG_REPLY,
 )
-from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
-from odoo.tools import mute_logger
 
 
 @tagged("mail_thread", "mail_gateway")
-class TestMailAboveLine(SavepointCase, MailCase):
+class TestMailAboveLine(TransactionCase, MailCase):
     def setUp(self):
         super().setUp()
-        self.env["ir.config_parameter"].sudo().set_param(
-            "mail.catchall.domain", "yourcompany.com"
+        # Create company default alias domain (replacing `mail.catchall.domain` param)
+        self.env["mail.alias.domain"].create(
+            {
+                "name": "yourcompany.com",
+                "bounce_alias": "bounce",
+                "catchall_alias": "catchall",
+            }
         )
         self.user1 = self.env.ref("base.user_demo")
         # Azure Interior, Brandon Freeman

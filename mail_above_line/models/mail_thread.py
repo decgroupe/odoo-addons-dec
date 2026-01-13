@@ -2,10 +2,11 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
 import logging
-import lxml
 import re
 
-from odoo import _, api, models
+import lxml
+
+from odoo import api, models
 from odoo.tools import pycompat
 
 _logger = logging.getLogger(__name__)
@@ -29,7 +30,9 @@ class MailThread(models.AbstractModel):
         if body == "":
             return body
         REGEX_PATTERN = r"\#\#- .* -\#\#"
-        PLACEHOLDER = lxml.html.fromstring("<i>##- %s -##</i>" % _("Content Removed"))
+        PLACEHOLDER = lxml.html.fromstring(
+            "<i>##- %s -##</i>" % self.env._("Content Removed")  # noqa: UP031
+        )
         # pattern used to detect a forwarded message (GMail, Thunderbird)
         FORWARDED_MESSAGE = r"--- Forwarded [Mm]essage ---"
         try:

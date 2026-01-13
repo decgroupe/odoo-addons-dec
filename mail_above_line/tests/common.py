@@ -297,7 +297,7 @@ style="text-decoration:none; color:rgba(0, 0, 0, 0.54)"
 </html>
 
 --------------bPDwBJk9DeCRDXFrVxq502a4--
-"""
+"""  # noqa: E501
 
 MSG_FORWARD = """Return-Path: <xyz@yourcompany.com>
 Delivered-To: catchall@yourcompany.com
@@ -449,7 +449,7 @@ src="http://myhostname.yourcompany.com/mail/tracking/open/db/160139/0ded1ca49c1c
 </html>
 
 --------------BOpg2d3RRZpQH6NoJ3U2FrgT--
-"""
+"""  # noqa: E501
 
 
 MAIL_EMPTY_BODY_TEMPLATE = """Return-Path: <whatever-2a840@postmaster.twitter.com>

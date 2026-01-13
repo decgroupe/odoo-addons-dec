@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:44+0000\n"
+"POT-Creation-Date: 2026-06-03 10:24+0000\n"
 "PO-Revision-Date: 2024-04-17 09:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,30 +23,24 @@ msgid "##- Please type your reply above this line -##"
 msgstr "##- Veuillez rédiger votre réponse au-dessus de cette ligne -##"
 
 #. module: mail_above_line
+#. odoo-python
 #: code:addons/mail_above_line/models/mail_thread.py:0
-#, python-format
 msgid "Content Removed"
 msgstr "Contenu supprimé"
-
-#. module: mail_above_line
-#: model:ir.model.fields,field_description:mail_above_line.field_mail_thread__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
 
 #. module: mail_above_line
 #: model:ir.model,name:mail_above_line.model_mail_thread
 msgid "Email Thread"
 msgstr "Discussion par courriel"
 
-#. module: mail_above_line
-#: model:ir.model.fields,field_description:mail_above_line.field_mail_thread__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: mail_above_line
-#: model:ir.model.fields,field_description:mail_above_line.field_mail_thread____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
 
 #~ msgid "ID of the record defined in xml file"
 #~ msgstr "ID de l'enregistrement défini dans le fichier xml"
