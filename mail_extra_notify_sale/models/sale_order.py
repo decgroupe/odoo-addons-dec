@@ -7,7 +7,7 @@ from odoo import models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def _get_assigned_extra_values(self, type):
+    def _get_assigned_extra_values(self, assigned_type):
         self.ensure_one()
         res = {}
 
@@ -33,6 +33,7 @@ class SaleOrder(models.Model):
         key, value = self._get_assigned_extra_field_value(
             self,
             "amount_total",
+            "currency_id",
         )
         res[key] = value
         return res
