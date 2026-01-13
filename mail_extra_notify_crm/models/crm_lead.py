@@ -7,7 +7,7 @@ from odoo import models
 class Lead(models.Model):
     _inherit = "crm.lead"
 
-    def _get_assigned_extra_values(self, type):
+    def _get_assigned_extra_values(self, assigned_type):
         self.ensure_one()
         res = {}
 
@@ -46,7 +46,7 @@ class Lead(models.Model):
                     self,
                     "probability",
                 )
-                res[key] = ("%s (%s%%)") % (res[key], value)
+                res[key] = f"{res[key]} ({value}%)"
         if self.date_deadline:
             key, value = self._get_assigned_extra_field_value(
                 self,
