@@ -22,7 +22,6 @@
                         <field name="user_id" />
                     </group>
                     <group>
-
                         <field name="partner_id" />
                         <field name="partner_name" />
                         <field name="partner_email" />
@@ -49,5 +48,4 @@
         <field name="view_id" ref="crm_lead_to_helpdesk_ticket_view_form" />
         <field name="target">new</field>
     </record>
-
 </odoo>

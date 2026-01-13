@@ -46,26 +46,26 @@ class CrmLeadToHelpdeskTicket(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
-        result = super(CrmLeadToHelpdeskTicket, self).default_get(fields)
+        result = super().default_get(fields)
         active_id = self._context.get("active_id")
         active_model = self._context.get("active_model")
         if active_model == "crm.lead" and active_id:
             lead_id = self.env["crm.lead"].browse(active_id)[0]
             result["lead_id"] = lead_id.id
-            if not "name" in result:
+            if "name" not in result:
                 result["name"] = lead_id.name
-            if not "description" in result:
+            if "description" not in result:
                 result["description"] = lead_id.description
                 if not result["description"] and lead_id.original_message_id.body:
-                    result["description"] = "<u>%s:</u> <blockquote>%s</blockquote>" % (
+                    result["description"] = "<u>%s:</u> <blockquote>%s</blockquote>" % (  # noqa: UP031
                         lead_id.original_message_id.email_from,
                         lead_id.original_message_id.body,
                     )
-            if not "partner_id" in result:
+            if "partner_id" not in result:
                 result["partner_id"] = lead_id.partner_id.id
-            if not "partner_name" in result:
+            if "partner_name" not in result:
                 result["partner_name"] = lead_id.partner_name
-            if not "partner_email" in result:
+            if "partner_email" not in result:
                 result["partner_email"] = lead_id.email_from
                 if not result["partner_email"]:
                     result["partner_email"] = lead_id.original_message_id.email_from

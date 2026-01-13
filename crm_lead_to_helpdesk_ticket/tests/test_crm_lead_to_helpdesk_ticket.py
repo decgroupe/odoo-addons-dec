@@ -1,14 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2024
 
-from odoo.tests.common import TransactionCase, Form
 from odoo.exceptions import ValidationError
+from odoo.tests import Form
 
 from odoo.addons.crm.tests import common as crm_common
 
 
 class TestCrmLeadToHelpdeskTicket(crm_common.TestCrmCommon):
-
     def setUp(self):
         super().setUp()
 
@@ -22,7 +21,7 @@ class TestCrmLeadToHelpdeskTicket(crm_common.TestCrmCommon):
             "active_model": lead_id._name,
             "active_id": lead_id.id,
         }
-        wizard_form = Form(self.env["crm.lead.to.helpdesk.ticket"].with_context(ctx))
+        wizard_form = Form(self.env["crm.lead.to.helpdesk.ticket"].with_context(**ctx))
         wizard_id = wizard_form.save()
         return wizard_id
 
