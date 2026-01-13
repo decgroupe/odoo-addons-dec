@@ -2,18 +2,25 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2024
 
 
-from odoo.addons.mail_extra_notify.tests.common import TestMailExtraNotifyCommon, tagged
+from odoo.tools.misc import clean_context
+
 from odoo.addons.mail.tests.common import mail_new_test_user
+from odoo.addons.mail_extra_notify.tests.common import TestMailExtraNotifyCommon, tagged
 
 
 @tagged("post_install", "-at_install")
 class TestMailExtraNotifyHr(TestMailExtraNotifyCommon):
-
     def setUp(self):
         super().setUp()
         sheet_id_xml_id = "hr_expense.travel_ny_sheet"
         # duplicate existing approved sheet to a new draft one
         self.sheet_id = self.env.ref(sheet_id_xml_id).copy()
+        # clear sheet context to avoid side effects (remove `mail_create_nosubscribe`
+        # and `mail_auto_subscribe_no_notify` to ensure a call to `message_notify`)
+        context = clean_context(self.env.context)
+        # pylint: disable=W8121
+        self.sheet_id = self.sheet_id.with_context(context)
+        # create expense manager user
         self.expense_user_manager = mail_new_test_user(
             self.env,
             name="Expense manager",
@@ -25,8 +32,7 @@ class TestMailExtraNotifyHr(TestMailExtraNotifyCommon):
         )
 
     def test_01_assigned_sheet_more_informations(self):
-        try:
-            self.mail_unlink_disabled()
+        with self.patch_mail_unlink():
             # keep a trace of existing mail
             existing_mail_ids = self.Mail.search([])
             # set salesperson
@@ -39,16 +45,13 @@ class TestMailExtraNotifyHr(TestMailExtraNotifyCommon):
                 "You have been assigned to Commercial Travel at New York",
             )
             self.assertIn("Employee", mail_id.body)
-        finally:
-            self.mail_unlink_enabled()
 
     def test_02_assigned_activity_more_informations(self):
-        try:
-            self.mail_unlink_disabled()
+        with self.patch_mail_unlink():
             # keep a trace of existing mail
             existing_mail_ids = self.Mail.search([])
             # assign an activity
-            activity_id = self.sheet_id.activity_schedule(
+            _activity_id = self.sheet_id.activity_schedule(
                 act_type_xmlid="mail.mail_activity_data_todo",
                 note="Please check this",
                 user_id=self.expense_user_manager.id,
@@ -58,8 +61,6 @@ class TestMailExtraNotifyHr(TestMailExtraNotifyCommon):
             self.assertEqual(len(mail_id), 1)
             self.assertEqual(
                 mail_id.subject,
-                "Commercial Travel at New York: To Do assigned to you",
+                '"Commercial Travel at New York: To-Do" assigned to you',
             )
             self.assertIn("Employee", mail_id.body)
-        finally:
-            self.mail_unlink_enabled()
