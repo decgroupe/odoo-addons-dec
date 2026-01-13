@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2021
 
-from odoo import fields, models, api, _
+from odoo import api, fields, models
 
 
 class ResPartnerImpersonate(models.TransientModel):
@@ -59,14 +59,14 @@ class ResPartnerImpersonate(models.TransientModel):
         )
         return self._reopen()
 
-    def _reopen(self, id=False):
+    def _reopen(self, res_id=False):
         view_id = self.env.ref("auth_unique_link.res_partner_impersonate_form_view")
         act_window = self.env.ref("auth_unique_link.act_window_res_partner_impersonate")
         return {
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "view_type": "form",
-            "res_id": id or self.id,
+            "res_id": res_id or self.id,
             "res_model": self._name,
             "view_id": view_id.id,
             "name": act_window.name,

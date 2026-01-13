@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:44+0000\n"
-"PO-Revision-Date: 2024-04-17 07:44+0000\n"
+"POT-Creation-Date: 2026-06-03 10:11+0000\n"
+"PO-Revision-Date: 2026-06-03 10:11+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: auth_unique_link
-#: model_terms:ir.ui.view,arch_db:auth_unique_link.view_mail_template_signin_link_basic
-msgid "012345"
+#: model_terms:ir.ui.view,arch_db:auth_unique_link.login
+msgid "<span>Simple Code (6-digits)</span>"
 msgstr ""
 
 #. module: auth_unique_link
-#: model_terms:ir.ui.view,arch_db:auth_unique_link.login
-msgid "<span>Simple Code (6-digits)</span>"
+#: model:mail.template,body_html:auth_unique_link.mail_template_signin_link
+msgid ""
+"<t t-call=\"auth_unique_link.view_mail_template_signin_link\"/>\n"
+"        "
+msgstr ""
+
+#. module: auth_unique_link
+#: model:mail.template,body_html:auth_unique_link.mail_template_signin_link_basic
+msgid ""
+"<t t-call=\"auth_unique_link.view_mail_template_signin_link_basic\"/>\n"
+"        "
 msgstr ""
 
 #. module: auth_unique_link
@@ -57,7 +66,6 @@ msgstr ""
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__display_name
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -88,7 +96,6 @@ msgstr ""
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__id
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__id
 msgid "ID"
 msgstr ""
 
@@ -103,15 +110,9 @@ msgid "Impersonate Portal User"
 msgstr ""
 
 #. module: auth_unique_link
+#. odoo-python
 #: code:addons/auth_unique_link/controllers/main.py:0
-#, python-format
 msgid "Invalid/expired token or invalid login"
-msgstr ""
-
-#. module: auth_unique_link
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate____last_update
-#: model:ir.model.fields,field_description:auth_unique_link.field_res_users____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: auth_unique_link
@@ -126,13 +127,14 @@ msgstr ""
 
 #. module: auth_unique_link
 #: model:mail.template,subject:auth_unique_link.mail_template_signin_link
-msgid "Log in to ${object.company_id.name}"
+msgid "Log in to {{ object.company_id.name }}"
 msgstr ""
 
 #. module: auth_unique_link
 #: model:mail.template,subject:auth_unique_link.mail_template_signin_link_basic
 msgid ""
-"Log in to ${object.company_id.name} [${object.sudo().signin_link_token}]"
+"Log in to {{ object.company_id.name }} [{{ object.sudo().signin_link_token "
+"}}]"
 msgstr ""
 
 #. module: auth_unique_link
@@ -147,7 +149,13 @@ msgstr ""
 
 #. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__token
+#: model:mail.template,name:auth_unique_link.mail_template_signin_link_basic
 msgid "Sign-In Code"
+msgstr ""
+
+#. module: auth_unique_link
+#: model:mail.template,name:auth_unique_link.mail_template_signin_link
+msgid "Sign-In Link"
 msgstr ""
 
 #. module: auth_unique_link
@@ -166,6 +174,11 @@ msgid "Signin Link Token"
 msgstr ""
 
 #. module: auth_unique_link
+#: model:ir.model.fields,field_description:auth_unique_link.field_res_users__signin_link_token_failures
+msgid "Signin Link Token Failures"
+msgstr ""
+
+#. module: auth_unique_link
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_users__signin_link_valid
 msgid "Signin Link Token is Valid"
 msgstr ""
@@ -176,14 +189,14 @@ msgid "Signin URL"
 msgstr ""
 
 #. module: auth_unique_link
+#. odoo-python
 #: code:addons/auth_unique_link/models/res_users.py:0
-#, python-format
 msgid "Signin link token '%s' is no longer valid"
 msgstr ""
 
 #. module: auth_unique_link
+#. odoo-python
 #: code:addons/auth_unique_link/models/res_users.py:0
-#, python-format
 msgid "Signin link token '%s' is not valid"
 msgstr ""
 
@@ -195,8 +208,8 @@ msgid ""
 msgstr ""
 
 #. module: auth_unique_link
+#. odoo-python
 #: code:addons/auth_unique_link/controllers/main.py:0
-#, python-format
 msgid "Unknown email address."
 msgstr ""
 
@@ -211,13 +224,9 @@ msgid "Use these <b>credentials</b> for a maintenance login."
 msgstr ""
 
 #. module: auth_unique_link
+#: model:ir.model,name:auth_unique_link.model_res_users
 #: model:ir.model.fields,field_description:auth_unique_link.field_res_partner_impersonate__user_id
 msgid "User"
-msgstr ""
-
-#. module: auth_unique_link
-#: model:ir.model,name:auth_unique_link.model_res_users
-msgid "Users"
 msgstr ""
 
 #. module: auth_unique_link
@@ -226,15 +235,15 @@ msgid "We will email you a magic sign in link."
 msgstr ""
 
 #. module: auth_unique_link
+#. odoo-python
 #: code:addons/auth_unique_link/controllers/main.py:0
-#, python-format
 msgid ""
 "We've sent you an email with login instructions. Please check your inbox!"
 msgstr ""
 
 #. module: auth_unique_link
+#. odoo-python
 #: code:addons/auth_unique_link/models/res_users.py:0
-#, python-format
 msgid ""
 "You must have an email address in your User Preferences to send emails."
 msgstr ""

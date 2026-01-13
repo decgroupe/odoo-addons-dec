@@ -54,7 +54,7 @@ class ResUsers(models.Model):
     @api.depends("signin_link_token", "signin_link_expiration")
     def _compute_signin_link_valid(self):
         dt = now()
-        for rec, rec_sudo in zip(self, self.sudo()):
+        for rec, rec_sudo in zip(self, self.sudo(), strict=False):
             rec.signin_link_valid = bool(rec_sudo.signin_link_token) and (
                 not rec_sudo.signin_link_expiration
                 or dt <= rec_sudo.signin_link_expiration
@@ -70,7 +70,8 @@ class ResUsers(models.Model):
                 "token": rec.sudo().signin_link_token,
             }
             rec.signin_link_url = werkzeug.urls.url_join(
-                base_url, "/web/%s?%s" % (route, werkzeug.urls.url_encode(query))
+                base_url,
+                "/web/%s?%s" % (route, werkzeug.urls.url_encode(query)),  # noqa: UP031
             )
 
     def signin_link_cancel(self):
@@ -118,7 +119,7 @@ class ResUsers(models.Model):
         domain = [("signin_link_token", "=", token)]
         if uid:
             domain.append(["id", "=", uid])
-        user = self.search(domain, limit=1)
+        user = self.sudo().search(domain, limit=1)
         if not user:
             if raise_exception:
                 raise UserError(_("Signin link token '%s' is not valid") % token)
@@ -147,7 +148,8 @@ class ResUsers(models.Model):
         if not self.env.user.email:
             raise UserError(
                 _(
-                    "You must have an email address in your User Preferences to send emails."
+                    "You must have an email address in your "
+                    "User Preferences to send emails."
                 )
             )
 
@@ -174,10 +176,13 @@ class ResUsers(models.Model):
 
         return True
 
-    def _check_credentials(self, password, env):
+    def _check_credentials(self, credential, env):
         try:
-            return super(ResUsers, self)._check_credentials(password, env)
+            return super()._check_credentials(credential, env)
         except AccessDenied:
+            if not (credential["type"] == "password" and credential.get("password")):
+                raise
+            password = credential.get("password")
             res = self._signin_link_retrieve_user(
                 token=password, uid=self.env.uid, check_validity=True
             )

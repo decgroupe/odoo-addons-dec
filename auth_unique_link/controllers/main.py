@@ -3,12 +3,11 @@
 
 import logging
 
-import werkzeug
-
 import odoo
 from odoo import _, http
-from odoo.addons.web.controllers.main import Home, ensure_db, SIGN_UP_REQUEST_PARAMS
 from odoo.http import request
+
+from odoo.addons.web.controllers.home import SIGN_UP_REQUEST_PARAMS, Home, ensure_db
 
 _logger = logging.getLogger(__name__)
 
@@ -22,7 +21,7 @@ class AuthUniqueLink(Home):
     @http.route()
     def web_login(self, *args, **kw):
         login_success = request.params.get("login_success", False)
-        response = super(AuthUniqueLink, self).web_login(*args, **kw)
+        response = super().web_login(*args, **kw)
         request.params["login_success"] = login_success
         return response
 
@@ -63,10 +62,13 @@ class AuthUniqueLink(Home):
         user_id = request.env["res.users"].sudo().search(domain, limit=1)
         if user_id:
             basic = request.params.get("basic", False)
-            user_id.with_user(odoo.SUPERUSER_ID).sudo()._send_signin_link_email(basic=basic)
+            user_id.with_user(odoo.SUPERUSER_ID).sudo()._send_signin_link_email(
+                basic=basic
+            )
             # Create a context dictionary on a function level that will be
-            # used by the translate function
-            context = {"lang": user_id.lang}
+            # used by the translate function (frame introspection)
+            # FIXME: Probably not working anymore with Odoo 18.0
+            context = {"lang": user_id.lang}  # noqa: F841
             return {
                 "link_success": _(
                     "We've sent you an email with login instructions. "
@@ -87,11 +89,7 @@ class AuthUniqueLink(Home):
         }
         res = self._send_signin_link(request.params["email"])
         query.update(res)
-        response = http.local_redirect(
-            path="/web/login",
-            query=query,
-            keep_hash=True,
-        )
+        response = request.redirect_query("/web/login", query=query)
         return response
 
     @http.route(

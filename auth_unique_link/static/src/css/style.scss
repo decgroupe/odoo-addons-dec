@@ -6,22 +6,23 @@
 #login-sep {
     background: #ddd;
     position: absolute;
-    top: 10%;
-    right: -1px;
-    height: 80%;
+    top: 6em;
+    right: 50%;
+    height: 12em;
     width: 1px;
 
     div {
         position: absolute;
         top: 40%;
-        width: 40px;
-        left: -20px;
+        width: 50px;
+        margin-left: -25px;
+        height: 32px;
         text-align: center;
         background: #fff;
         font-style: italic;
         color: #666;
         font-size: 12px;
-        padding: 8px 0;
+        padding: 8px 8px;
     }
 }
 
@@ -42,7 +43,6 @@
         top: -9px;
         background: #fff;
     }
-
 }
 
 @media (min-width: 768px) {

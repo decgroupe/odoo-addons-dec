@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- This template is only used when "website" module is not installed -->
     <template
         id="auth_unique_link.login_layout"
@@ -19,6 +18,7 @@
         id="auth_unique_link.login"
         inherit_id="web.login"
         name="Magic Login buttons"
+        priority="100"
     >
         <xpath expr="//form" position="attributes">
             <attribute name="id">login-form</attribute>
@@ -33,7 +33,7 @@
                             t-attf-action="/web/login_link{{ '?debug' if debug else '' }}"
                             method="post"
                         >
-                        <!-- <t t-debug="pdb"/> -->
+                            <!-- <t t-debug="pdb"/> -->
                             <input
                                 type="hidden"
                                 name="csrf_token"
@@ -104,7 +104,6 @@
                                 name="redirect"
                                 t-att-value="redirect"
                             />
-
                         </form>
                     </div>
                     <div id="login-sep" class="d-none d-sm-block">
@@ -123,7 +122,5 @@
                 </div>
             </div>
         </xpath>
-
     </template>
-
 </odoo>

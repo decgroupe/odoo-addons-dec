@@ -4,11 +4,11 @@
 
 from lxml import html
 from werkzeug.test import Client
-from werkzeug.wrappers import BaseResponse
+from werkzeug.wrappers import Response
 
-
-from odoo.service import wsgi_server
+from odoo import http
 from odoo.tests import common, tagged
+
 from .common import TestAuthUniqueLinkCommon
 
 
@@ -17,11 +17,23 @@ class TestAuthUniqueLinkUI(common.HttpCase, TestAuthUniqueLinkCommon):
     """ """
 
     def get_request(self, url, data=None):
-        return self.test_client.get(url, query_string=data, follow_redirects=True)
+        headers = {
+            "X-Odoo-Testing": "1",
+        }
+        return self.test_client.get(
+            url, query_string=data, follow_redirects=True, headers=headers
+        )
 
     def post_request(self, url, data=None):
+        headers = {
+            "X-Odoo-Testing": "1",
+        }
         return self.test_client.post(
-            url, data=data, follow_redirects=True, environ_base=self.werkzeug_environ
+            url,
+            data=data,
+            follow_redirects=True,
+            environ_base=self.werkzeug_environ,
+            headers=headers,
         )
 
     def html_doc(self, response):
@@ -51,8 +63,8 @@ class TestAuthUniqueLinkUI(common.HttpCase, TestAuthUniqueLinkCommon):
             self.dbname = env.cr.dbname
 
         self.werkzeug_environ = {"REMOTE_ADDR": "127.0.0.1"}
-        self.test_client = Client(wsgi_server.application, BaseResponse)
-        self.test_client.get("/web/session/logout")
+        self.test_client = Client(http.root, Response)
+        self.get_request("/web/session/logout")
 
     def _test_login_link(self, email):
         response = self.get_request("/web/login")
@@ -67,7 +79,6 @@ class TestAuthUniqueLinkUI(common.HttpCase, TestAuthUniqueLinkCommon):
         response = self.post_request("/web/login_link/", data=data)
         doc = self.html_doc(response)
         return doc
-
 
     def test_01_login_link_success(self):
         doc = self._test_login_link(self.user_email_with_portal_access)

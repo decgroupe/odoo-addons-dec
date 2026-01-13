@@ -1,6 +1,7 @@
 {
     "name": "Auth Unique Link",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -15,8 +16,12 @@
         "data/ir_ui_view.xml",
         "data/mail_template.xml",
         "templates/login_templates.xml",
-        "views/assets.xml",
         "wizard/res_partner_impersonate.xml",
     ],
-    "installable": False,
+    "assets": {
+        "web.assets_frontend": [
+            "auth_unique_link/static/src/css/style.scss",
+        ],
+    },
+    "installable": True,
 }

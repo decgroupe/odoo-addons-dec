@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2024
 
 
+from odoo import Command
 from odoo.tests import common
 
 
@@ -13,21 +14,21 @@ class TestAuthUniqueLinkCommon(common.TransactionCase):
         self.public_user = self.env.ref("base.public_user")
 
     def _in_portal(self, user_id):
-        return self.env.ref("base.group_portal") in user_id.groups_id
+        return user_id._is_portal()
 
     def _give_portal_access(self, partner_id):
         PortalWizard = self.env["portal.wizard"]
-        PortalWizardUser = self.env["portal.wizard.user"]
-        wizard_id = PortalWizard.sudo().create({})
-        wizard_user_id = PortalWizardUser.sudo().create(
-            {
-                "wizard_id": wizard_id.id,
-                "partner_id": partner_id.id,
-                "email": partner_id.email,
-                "in_portal": True,
-            }
+        # unset active_id/active_ids otherwise wizard.user_ids will be filled with
+        # garbage (because not check for `active_model` in `_default_user_ids`)
+        wizard_id = (
+            PortalWizard.with_context(active_id=False, active_ids=False)
+            .sudo()
+            .create({"partner_ids": [Command.set(partner_id.ids)]})
         )
-        return wizard_id.action_apply()
+        for wizard_user_id in wizard_id.user_ids:
+            if not wizard_user_id.is_portal:
+                wizard_user_id.action_grant_access()
+        return None
 
     def _get_user_with_portal_access(self, partner_xml_id):
         # get a demo partner
@@ -49,7 +50,7 @@ class TestAuthUniqueLinkCommon(common.TransactionCase):
         self.assertFalse(wizard_id.token)
         wizard_id.action_generate_new_signin_link()
         # invalidate cache to force related field update
-        wizard_id.invalidate_cache()
+        wizard_id.invalidate_recordset()
         # ensure a token is properly generated
         self.assertNotIsInstance(wizard_id.token, bool)
         self.assertIsInstance(wizard_id.token, str)
