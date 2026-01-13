@@ -7,7 +7,7 @@ from odoo import models
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-    def _get_assigned_extra_values(self, type):
+    def _get_assigned_extra_values(self, assigned_type):
         self.ensure_one()
         res = {}
 

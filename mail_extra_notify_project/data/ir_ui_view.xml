@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+    Override Odoo's « You have been assigned To ... », this is a specific override
+    for project mail notification content.
+    `assignee_name` variable is set in Task._task_message_auto_subscribe_notify(...)
+    -->
+    <template id="project.project_message_user_assigned">
+        <t t-call="mail_qweb.message_user_assigned" />
+    </template>
+</odoo>

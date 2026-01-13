@@ -1,6 +1,7 @@
 {
     "name": "Mail Extra Notify (Project)",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -9,6 +10,8 @@
         "project_partner_location",
         "sale_timesheet",
     ],
-    "data": [],
-    "installable": False,
+    "data": [
+        "data/ir_ui_view.xml",
+    ],
+    "installable": True,
 }
