@@ -2,8 +2,6 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2021
 
 import logging
-import werkzeug
-import base64
 
 import odoo.http as http
 from odoo.http import request

@@ -7,9 +7,21 @@ import odoo.tests
 
 
 class TestHelpdeskPublic(odoo.tests.HttpCase):
+    "Test Helpdesk Public API"
 
     def setUp(self):
         super().setUp()
+        # Create company default alias domain (replacing `mail.catchall.domain` param)
+        # needed otherwise an error will be raised when creating a ticket:
+        #   AssertionError: Malformed 'Return-Path' or 'From' address:
+        #   'general-alias-for-tickets' - It should contain one valid plain ASCII email
+        self.env["mail.alias.domain"].create(
+            {
+                "name": "yourcompany.com",
+                "bounce_alias": "bounce",
+                "catchall_alias": "catchall",
+            }
+        )
 
     def _api_new_ticket(self, data):
         """Create a new ticket using the API."""
