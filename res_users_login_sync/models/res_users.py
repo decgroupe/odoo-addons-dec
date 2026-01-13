@@ -17,7 +17,7 @@ class ResUsers(models.Model):
         return users
 
     def toggle_active(self):
-        super(
+        return super(
             ResUsers, self.with_context(toggle_active_from_users=True)
         ).toggle_active()
 

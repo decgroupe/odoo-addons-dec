@@ -1,31 +1,30 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2024
 
-import re
 
+from odoo import Command
 from odoo.exceptions import AccessError
 from odoo.tests import new_test_user
 from odoo.tests.common import TransactionCase
 
 
 class TestResUsersLoginSync(TransactionCase):
-
     def _in_portal(self, user_id):
-        return self.env.ref("base.group_portal") in user_id.groups_id
+        return user_id._is_portal()
 
     def _give_portal_access(self, partner_id):
         PortalWizard = self.env["portal.wizard"]
-        PortalWizardUser = self.env["portal.wizard.user"]
-        wizard_id = PortalWizard.sudo().create({})
-        wizard_user_id = PortalWizardUser.sudo().create(
-            {
-                "wizard_id": wizard_id.id,
-                "partner_id": partner_id.id,
-                "email": partner_id.email,
-                "in_portal": True,
-            }
+        # unset active_id/active_ids otherwise wizard.user_ids will be filled with
+        # garbage (because not check for `active_model` in `_default_user_ids`)
+        wizard_id = (
+            PortalWizard.with_context(active_id=False, active_ids=False)
+            .sudo()
+            .create({"partner_ids": [Command.set(partner_id.ids)]})
         )
-        return wizard_id.action_apply()
+        for wizard_user_id in wizard_id.user_ids:
+            if not wizard_user_id.is_portal:
+                wizard_user_id.action_grant_access()
+        return None
 
     def setUp(self):
         super().setUp()
@@ -46,7 +45,11 @@ class TestResUsersLoginSync(TransactionCase):
         # Azure Interior, Brandon Freeman
         partner_id = self.env.ref("base.res_partner_address_15")
         self._give_portal_access(partner_id)
-        with self.assertRaisesRegex(AccessError, r"You are not allowed to modify"):
+        with self.assertRaisesRegex(
+            AccessError,
+            r"The requested operation cannot be "
+            r"completed due to security restrictions",
+        ):
             partner_id.with_user(self.user).action_archive()
 
     def test_02_archive_change_from_partner(self):
@@ -84,7 +87,7 @@ class TestResUsersLoginSync(TransactionCase):
     def test_04_try_archive_partner_from_internal_user(self):
         # YourCompany, Marc Demo
         partner_id = self.env.ref("base.partner_demo")
-        partner_user_id = partner_id.user_ids
+        _partner_user_id = partner_id.user_ids
         self.user.groups_id += self.env.ref("base.group_partner_manager")
         # try action archive from partner
         with self.assertRaisesRegex(
@@ -97,7 +100,7 @@ class TestResUsersLoginSync(TransactionCase):
     def test_05_try_unarchive_partner_from_internal_user(self):
         # YourCompany, Marc Demo
         partner_id = self.env.ref("base.partner_demo")
-        partner_user_id = partner_id.user_ids
+        _partner_user_id = partner_id.user_ids
         partner_id.action_archive()
         self.user.groups_id += self.env.ref("base.group_partner_manager")
         # try action unarchive from partner
@@ -107,4 +110,3 @@ class TestResUsersLoginSync(TransactionCase):
             "from their partner!",
         ):
             partner_id.with_user(self.user).action_unarchive()
-

@@ -15,7 +15,9 @@ class ResPartner(models.Model):
         ):
             # we use sudo to change archive status, that's why we need to check that
             # the user have minimum rights on contact editing
-            archive_change_allowed = self.user_has_groups("base.group_partner_manager")
+            archive_change_allowed = self.env.user.has_group(
+                "base.group_partner_manager"
+            )
             self_ca = self.with_context(user_archive_change=True)
             if archive_change_allowed:
                 self_ca = self_ca.sudo()
@@ -42,9 +44,9 @@ class ResPartner(models.Model):
             )
 
     def _post_archive_change(self, user_ids, action):
-        self.message_post_with_view(
-            views_or_xmlid="res_users_login_sync.user_archive_change",
-            values={
+        self.message_post_with_source(
+            "res_users_login_sync.user_archive_change",
+            render_values={
                 "action": action,
                 "current_user": self.env.user,
                 "users": user_ids,
@@ -81,7 +83,7 @@ class ResPartner(models.Model):
         return res
 
     def _sync_login(self, previous_emails):
-        sync_allowed = self.user_has_groups(
+        sync_allowed = self.env.user.has_group(
             "res_users_login_sync.group_user_login_sync"
         )
         for rec in self.filtered("user_ids"):

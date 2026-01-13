@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 12:38+0000\n"
-"PO-Revision-Date: 2024-06-20 14:40+0200\n"
+"POT-Creation-Date: 2026-06-03 11:00+0000\n"
+"PO-Revision-Date: 2026-06-03 15:57+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
@@ -33,6 +33,13 @@ msgstr ""
 "                L'e-mail de contact est maintenant"
 
 #. module: res_users_login_sync
+#: model:mail.template,body_html:res_users_login_sync.email_template_login_edit
+msgid ""
+"<t t-call=\"res_users_login_sync.view_email_template_login_edit\"/>\n"
+"        "
+msgstr ""
+
+#. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.login_sync_warning_template
 msgid ""
 "Ask your odoo administrator to make this change or ask him to give you the "
@@ -48,27 +55,14 @@ msgid "Contact"
 msgstr "Contact"
 
 #. module: res_users_login_sync
-#: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner__display_name
-#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
 msgid "Go to My Account"
 msgstr "Accéder à mon Compte"
 
 #. module: res_users_login_sync
-#: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner__id
-#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users__id
-msgid "ID"
-msgstr "ID"
-
-#. module: res_users_login_sync
-#: model:ir.model.fields,field_description:res_users_login_sync.field_res_partner____last_update
-#: model:ir.model.fields,field_description:res_users_login_sync.field_res_users____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#: model:mail.template,name:res_users_login_sync.email_template_login_edit
+msgid "Login Edit"
+msgstr "Modification de l'identifiant"
 
 #. module: res_users_login_sync
 #: model:mail.template,subject:res_users_login_sync.email_template_login_edit
@@ -92,8 +86,8 @@ msgstr ""
 "été envoyée à votre ancien identifiant"
 
 #. module: res_users_login_sync
+#. odoo-python
 #: code:addons/res_users_login_sync/models/res_partner.py:0
-#, python-format
 msgid ""
 "Only administrators are allowed to archive/unarchive internal users from "
 "their partner!"
@@ -103,8 +97,8 @@ msgstr ""
 
 #. module: res_users_login_sync
 #: model:ir.model,name:res_users_login_sync.model_res_users
-msgid "Users"
-msgstr "Utilisateurs"
+msgid "User"
+msgstr "Utilisateur"
 
 #. module: res_users_login_sync
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.view_email_template_login_edit
@@ -112,8 +106,8 @@ msgid "Your login is now set to"
 msgstr "Votre identifiant est maintenant défini en tant que"
 
 #. module: res_users_login_sync
+#. odoo-python
 #: code:addons/res_users_login_sync/models/res_partner.py:0
-#, python-format
 msgid "archived"
 msgstr "archivé"
 
@@ -128,8 +122,8 @@ msgid "by"
 msgstr "par"
 
 #. module: res_users_login_sync
+#. odoo-python
 #: code:addons/res_users_login_sync/models/res_partner.py:0
-#, python-format
 msgid "unarchived"
 msgstr "désarchivé"
 
@@ -137,6 +131,15 @@ msgstr "désarchivé"
 #: model_terms:ir.ui.view,arch_db:res_users_login_sync.user_archive_change
 msgid "⚠️ This partner and its related user's account have been"
 msgstr "⚠️ Ce partenaire et le compte utilisateur correspondant ont été"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "ID of the record defined in xml file"
 #~ msgstr "ID de l'enregistrement défini dans le fichier xml"

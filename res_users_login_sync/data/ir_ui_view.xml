@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <template id="res_users_login_sync.view_email_template_login_edit">
         <t t-set="notified_user" t-value="object" />
         <t t-set="new_login" t-value="env.context.get('new_login')" />
@@ -11,12 +10,12 @@
             <t t-set="content_message">
                 <t t-if="new_login">
                     Your login is now set to <t t-esc="new_login" />
-                    <br/>
+                    <br />
                     <small>
-                        <t t-if="previous_login">
+                    <t t-if="previous_login">
                         (replacing <t t-esc="previous_login" />)
                         </t>
-                    </small>
+                </small>
                 </t>
             </t>
             <t t-set="content_message_action">
@@ -33,7 +32,5 @@
                 Note that for security reason, a copy of this notification has been sent to your old and your new login
             </t>
         </t>
-
     </template>
-
 </odoo>
