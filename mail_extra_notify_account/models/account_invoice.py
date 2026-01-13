@@ -7,7 +7,7 @@ from odoo import models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    def _get_assigned_extra_values(self, type):
+    def _get_assigned_extra_values(self, assigned_type):
         self.ensure_one()
         res = {}
 
