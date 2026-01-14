@@ -1,18 +1,18 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2022
 
-from odoo import _, api, fields, models, service
-
+from odoo import api, fields, models, service
 
 # TODO: Use odoo 15+ new class: odoo/odoo/fields.py:Command instead
 # according to odoo/fields.py:_RelationalMulti.convert_to_cache
-X2M_CREATE =  0
-X2M_UPDATE =  1
-X2M_DELETE =  2
-X2M_UNLINK =  3
-X2M_LINK =  4
+X2M_CREATE = 0
+X2M_UPDATE = 1
+X2M_DELETE = 2
+X2M_UNLINK = 3
+X2M_LINK = 4
 X2M_CLEAR = 5
 X2M_SET = 6
+
 
 class IrModuleMigration(models.Model):
     _name = "ir.module.migration"
@@ -22,15 +22,8 @@ class IrModuleMigration(models.Model):
     def _default_version(self):
         res = 0
         if "migration_ids" in self.env.context:
-            for x2m_cmd, rec_id, rec_data in self.env.context.get("migration_ids"):
-                if x2m_cmd == X2M_DELETE:
-                    continue
-                # case when item is new/edited
-                if isinstance(rec_data, dict):
-                    if rec_data.get("version", 0) > res:
-                        res = rec_data.get("version")
-                # case when item is already in database and has not been edited
-                elif isinstance(rec_id, int) and rec_id > 0:
+            for rec_id in self.env.context.get("migration_ids"):
+                if isinstance(rec_id, int):
                     migration_id = self.browse(rec_id)
                     if migration_id.version > res:
                         res = migration_id.version
@@ -73,11 +66,11 @@ class IrModuleMigration(models.Model):
         help="Pull-request address",
     )
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
         self.env["ir.module.module"]._crud_mig_fields()
-        return rec
+        return record_ids
 
     def write(self, vals):
         res = super().write(vals)

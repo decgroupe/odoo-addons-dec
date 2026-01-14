@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:54+0000\n"
-"PO-Revision-Date: 2023-11-28 11:33+0100\n"
+"POT-Creation-Date: 2026-06-03 09:56+0000\n"
+"PO-Revision-Date: 2026-06-03 14:26+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,82 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_12_status
-msgid "12"
-msgstr "12"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_13_status
-msgid "13"
-msgstr "13"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_14_status
-msgid "14"
-msgstr "14"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_15_status
-msgid "15"
-msgstr "15"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_16_status
-msgid "16"
-msgstr "16"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_17_status
-msgid "17"
-msgstr "17"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_18_status
-msgid "18"
-msgstr "18"
+"X-Generator: Poedit 3.8\n"
 
 #. module: base_module_migration_tracking
 #: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__adopted
 msgid "Adopted"
 msgstr "Adopté"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_12_color
-msgid "Color (12)"
-msgstr "Couleur (12)"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_13_color
-msgid "Color (13)"
-msgstr "Couleur (13)"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_14_color
-msgid "Color (14)"
-msgstr "Couleur (14)"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_15_color
-msgid "Color (15)"
-msgstr "Couleur (15)"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_16_color
-msgid "Color (16)"
-msgstr "Couleur (16)"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_17_color
-msgid "Color (17)"
-msgstr "Couleur (17)"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__mig_18_color
-msgid "Color (18)"
-msgstr "Couleur (18)"
 
 #. module: base_module_migration_tracking
 #: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__create_uid
@@ -104,21 +34,13 @@ msgstr "Créé le"
 
 #. module: base_module_migration_tracking
 #: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__display_name
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: base_module_migration_tracking
 #: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__id
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__id
 msgid "ID"
 msgstr "ID"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,help:base_module_migration_tracking.field_ir_module_migration__xid
-#: model:ir.model.fields,help:base_module_migration_tracking.field_ir_module_module__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: base_module_migration_tracking
 #: model:ir.actions.server,name:base_module_migration_tracking.action_init_migration_status
@@ -129,12 +51,6 @@ msgstr "Initialiser l'état de la migration"
 #: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__installed
 msgid "Installed"
 msgstr "Installé"
-
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration____last_update
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: base_module_migration_tracking
 #: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__write_uid
@@ -158,7 +74,6 @@ msgstr "Migration"
 
 #. module: base_module_migration_tracking
 #: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__migration_ids
-#: model_terms:ir.ui.view,arch_db:base_module_migration_tracking.ir_module_module_form_view
 msgid "Migrations"
 msgstr "Migrations"
 
@@ -172,6 +87,11 @@ msgstr "Module"
 #: model:ir.model,name:base_module_migration_tracking.model_ir_module_migration
 msgid "Module Migration"
 msgstr "Migration de module"
+
+#. module: base_module_migration_tracking
+#: model:ir.model.fields.selection,name:base_module_migration_tracking.selection__ir_module_migration__state__uninstalled
+msgid "Not Installed"
+msgstr "Non installé"
 
 #. module: base_module_migration_tracking
 #: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__note
@@ -218,8 +138,53 @@ msgstr "À faire"
 msgid "Version"
 msgstr "Version"
 
-#. module: base_module_migration_tracking
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_migration__xid
-#: model:ir.model.fields,field_description:base_module_migration_tracking.field_ir_module_module__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "12"
+#~ msgstr "12"
+
+#~ msgid "13"
+#~ msgstr "13"
+
+#~ msgid "14"
+#~ msgstr "14"
+
+#~ msgid "15"
+#~ msgstr "15"
+
+#~ msgid "16"
+#~ msgstr "16"
+
+#~ msgid "17"
+#~ msgstr "17"
+
+#~ msgid "18"
+#~ msgstr "18"
+
+#~ msgid "Color (12)"
+#~ msgstr "Couleur (12)"
+
+#~ msgid "Color (13)"
+#~ msgstr "Couleur (13)"
+
+#~ msgid "Color (14)"
+#~ msgstr "Couleur (14)"
+
+#~ msgid "Color (15)"
+#~ msgstr "Couleur (15)"
+
+#~ msgid "Color (16)"
+#~ msgstr "Couleur (16)"
+
+#~ msgid "Color (17)"
+#~ msgstr "Couleur (17)"
+
+#~ msgid "Color (18)"
+#~ msgstr "Couleur (18)"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

@@ -2,9 +2,17 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2022
 
 import logging
-from odoo import _, api, fields, models
-from odoo.addons.tools_miscellaneous.tools.material_design_colors import *
 
+from odoo import api, fields, models
+
+from odoo.addons.tools_miscellaneous.tools.material_design_colors import (
+    INDIGO,
+    LIGHTGREEN,
+    ORANGE,
+    RED,
+    TEAL,
+    YELLOW,
+)
 
 MIG_FIELD_PREFIX = "x_mig_"
 MIG_VIEW_PREFIX = "ir.module.module.tree@base_module_migration_tracking#x_mig_"
@@ -22,19 +30,29 @@ class IrModule(models.Model):
         string="Migrations",
     )
 
-    @api.depends("migration_ids", "migration_ids.state", "migration_ids.pr_address")
-    def _compute_mig_x(self):
+    # random_value = fields.Char(string="Random Value", compute="_compute_random_value")
+
+    # def _compute_random_value(self):
+    #     for rec in self:
+    #         rec.random_value = str(
+    #             hash(str(rec.id) + rec.display_name + str(self.env.cr.now()))
+    #         )  # nosec
+
+    @api.depends("migration_ids.state", "migration_ids.pr_address")
+    def _compute_mig_x_status(self):
         # set default value for all records
-        for field in [f for f in self._fields if f.startswith(MIG_FIELD_PREFIX)]:
+        for field in [
+            f
+            for f in self._fields
+            if f.startswith(MIG_FIELD_PREFIX) and f.endswith("_status")
+        ]:
             self[field] = False
         for rec in self:
             for migration_id in rec.migration_ids:
                 status = self._get_mig_status_field_name(migration_id.version)
-                color = self._get_mig_color_field_name(migration_id.version)
-                if status in rec._fields and color in rec._fields:
+                if status in rec._fields:
                     if migration_id.pr_address:
                         rec[status] = migration_id.pr_address
-                        rec[color] = ORANGE["500"][0]
                     else:
                         state = dict(
                             migration_id._fields["state"]._description_selection(
@@ -42,6 +60,23 @@ class IrModule(models.Model):
                             )
                         ).get(migration_id.state)
                         rec[status] = state or "?"
+
+    @api.depends("migration_ids.state", "migration_ids.pr_address")
+    def _compute_mig_x_color(self):
+        # set default value for all records
+        for field in [
+            f
+            for f in self._fields
+            if f.startswith(MIG_FIELD_PREFIX) and f.endswith("_color")
+        ]:
+            self[field] = False
+        for rec in self:
+            for migration_id in rec.migration_ids:
+                color = self._get_mig_color_field_name(migration_id.version)
+                if color in rec._fields:
+                    if migration_id.pr_address:
+                        rec[color] = ORANGE["500"][0]
+                    else:
                         if not migration_id.state:
                             rec[color] = INDIGO["100"][0]
                         elif migration_id.state == "todo":
@@ -66,8 +101,10 @@ class IrModule(models.Model):
 
     def _crud_mig_fields(self):
         """CREATE/UPDATE/DELETE migration fields and views"""
-        res = self.env["ir.module.migration"].read_group([], ["version"], ["version"])
-        versions = [r["version"] for r in res]
+        data = self.env["ir.module.migration"]._read_group(
+            domain=[], groupby=["version"], aggregates=["__count"]
+        )
+        versions = [r[0] for r in data]
         valid_fields = []
         valid_views = []
         for version in versions:
@@ -108,7 +145,7 @@ class IrModule(models.Model):
             status_field = self.create_computed_field(
                 name=name,
                 description=self._get_mig_status_field_description(version),
-                compute="self._compute_mig_x()",
+                compute="self._compute_mig_x_status()",
             )
         else:
             status_field = self.env["ir.model.fields"]._get(self._name, name)
@@ -121,7 +158,7 @@ class IrModule(models.Model):
             color_field = self.create_computed_field(
                 name=name,
                 description=self._get_mig_color_field_description(version),
-                compute="self._compute_mig_x()",
+                compute="self._compute_mig_x_color()",
             )
         else:
             color_field = self.env["ir.model.fields"]._get(self._name, name)
@@ -151,20 +188,20 @@ class IrModule(models.Model):
             data = {
                 "name": self._get_mig_view_name(version),
                 "model": self._name,
-                "type": "tree",
+                "type": "list",
                 "inherit_id": self.env.ref("base.module_tree").id,
                 "priority": 1000 - version,
                 "arch": """
-                        <xpath expr="//tree/field[@name='name']" position="after">
+                        <xpath expr="//list/field[@name='name']" position="after">
                             <field
                                 name="%(status_field_name)s"
                                 options='{"bg_color": "%(color_field_name)s"}'
                                 class="d_mig_status"
                                 optional="show"
                             />
-                            <field name="%(color_field_name)s" invisible="1" />
+                            <field name="%(color_field_name)s" column_invisible="1" />
                         </xpath>
-                    """
+                    """  # noqa: UP031
                 % {
                     "status_field_name": self._get_mig_status_field_name(version),
                     "color_field_name": self._get_mig_color_field_name(version),
@@ -176,20 +213,20 @@ class IrModule(models.Model):
 
     @api.model
     def _get_mig_view_name(self, version):
-        return "%s%d_view" % (MIG_VIEW_PREFIX, version)
+        return f"{MIG_VIEW_PREFIX}{version}_view"
 
     @api.model
     def _get_mig_status_field_name(self, version):
-        return "%s%d_status" % (MIG_FIELD_PREFIX, version)
+        return f"{MIG_FIELD_PREFIX}{version}_status"
 
     @api.model
     def _get_mig_color_field_name(self, version):
-        return "%s%d_color" % (MIG_FIELD_PREFIX, version)
+        return f"{MIG_FIELD_PREFIX}{version}_color"
 
     @api.model
     def _get_mig_status_field_description(self, version):
-        return "%d" % (version)
+        return f"{version}"
 
     @api.model
     def _get_mig_color_field_description(self, version):
-        return "%d (color)" % (version)
+        return f"{version} (color)"

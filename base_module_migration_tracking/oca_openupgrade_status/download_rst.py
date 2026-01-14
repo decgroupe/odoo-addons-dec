@@ -1,3 +1,6 @@
+# ruff: noqa: UP031
+# pylint: disable=W8116
+
 import requests
 
 OPENUPGRADE_ROOT = "https://raw.githubusercontent.com/OCA/OpenUpgrade/refs/heads"

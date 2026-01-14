@@ -1,8 +1,10 @@
-from random import uniform
-import re
+# ruff: noqa: UP031
+# pylint: disable=W8116
+
 import argparse
-import pprint
+from random import uniform
 from time import sleep
+
 import odoorpc
 import requests
 
@@ -168,7 +170,7 @@ def github_to_odoo(version, host, port, db_name, user, password, github_token=No
         repo_name = get_repo_name(module.website)
         # execute an HEAD request to the module URL
         # to check if the module is available
-        repo_url = f"https://github.com/OCA/{repo_name}/tree/{version}.0"
+        repo_url = f"https://github.com/OCA/{repo_name}/list/{version}.0"
         module_url = f"{repo_url}/{module.name}"
         data = get_module_migration_data_from_repo(module.name, module_url)
         if data is None:

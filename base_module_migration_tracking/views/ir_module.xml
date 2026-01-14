@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!--
+    <record model="ir.ui.view" id="ir_module_module_tree_view">
+        <field name="name">ir.module.module.tree@base_module_migration_tracking</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='name']" position="before">
+                <field name="random_value" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    -->
 
     <record model="ir.ui.view" id="ir_module_module_form_view">
         <field name="name">ir.module.module.fom@base_module_migration_tracking</field>
@@ -13,19 +25,15 @@
                 <page string="Migration" name="migration_tracking">
                     <field
                         name="migration_ids"
-                        context="{
-                            'migration_ids':migration_ids,
-                            'active_id':active_id,
-                            'active_model':active_model,
-                        }"
+                        context="{'migration_ids':migration_ids}"
                     >
-                        <tree editable="bottom" string="Migrations">
+                        <list editable="bottom">
                             <field name="version" />
                             <field name="state" />
                             <field name="note" />
                             <field name="pr_address" widget="url" />
                             <field name="repo_address" widget="url" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
@@ -40,5 +48,4 @@
         <field name="activity_user_type">specific</field>
         <field name="code">action = records.action_init_migration_status()</field>
     </record>
-
 </odoo>

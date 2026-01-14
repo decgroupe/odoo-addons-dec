@@ -1,8 +1,12 @@
-import os
-import sys
-import re
+# ruff: noqa: UP031
+# pylint: disable=W8116
+
 import argparse
+import os
 import pprint
+import re
+import sys
+
 import odoorpc
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__) + "/..")
@@ -10,7 +14,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__) + "/..")
 # print(os.path.dirname(SCRIPT_DIR))
 sys.path.append(os.path.dirname(SCRIPT_DIR) + "/..")
 
-from oca_status import update_oca_to_odoo
+from oca_status import update_oca_to_odoo  # noqa: E402
 
 # Define the mapping for the "state" column
 status_mapping = {
@@ -33,7 +37,7 @@ def determine_state(status, tag):
 def load_table_rows_from_rst(file_path):
     """Load table rows from a .rst file."""
     table_rows = []
-    with open(file_path, "r", encoding="utf-8") as file:
+    with open(file_path, encoding="utf-8") as file:
         for line in file:
             # Only process lines that look like table rows
             if line.startswith("|"):
@@ -42,7 +46,6 @@ def load_table_rows_from_rst(file_path):
 
 
 def rst_to_dict(file_path):
-
     # Load the table rows from the specified .rst file
     table_rows = load_table_rows_from_rst(file_path)
 
@@ -123,7 +126,7 @@ def dict_to_odoo(data, version, host, port, db_name, user, password, github_toke
                 migration = odoo.env["ir.module.migration"].browse(migration_id)
             if migration.state == "todo":
                 repo_name = "OpenUpgrade"
-                repo_url = f"https://github.com/OCA/{repo_name}/tree/{version}.0"
+                repo_url = f"https://github.com/OCA/{repo_name}/list/{version}.0"
                 module_url = f"{repo_url}/openupgrade_scripts/scripts/{module.name}"
                 # search if the module is referenced in the pull request cache.
                 data = update_oca_to_odoo.get_module_migration_data_from_pr(

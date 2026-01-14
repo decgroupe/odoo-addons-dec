@@ -1,14 +1,33 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2024
 
+import contextlib
 from unittest import mock
 
 import odoo.service.common
 from odoo.release import RELEASE_LEVELS_DISPLAY
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
+from odoo.tools.misc import DotDict
+
+
+@contextlib.contextmanager
+def MockDebugRequest(env):
+    request = mock.Mock(
+        db=None,
+        env=env,
+        session=DotDict(
+            debug=True,
+        ),
+    )
+    with contextlib.ExitStack() as s:
+        odoo.http._request_stack.push(request)
+        s.callback(odoo.http._request_stack.pop)
+        yield request
 
 
 class TestBaseModuleMigrationTracking(TransactionCase):
+    """Test the 'base_module_migration_tracking' module."""
 
     def setUp(self):
         super().setUp()
@@ -69,34 +88,46 @@ class TestBaseModuleMigrationTracking(TransactionCase):
         self.assertEqual(len(self.module_web_studio.migration_ids), 0)
 
     def test_02_form(self):
-        module_base_form = Form(self.module_base)
+        # Get view with debug mode enabled in mocked http request
+        def open_module_base_form():
+            with MockDebugRequest(self.env):
+                self.assertTrue(self.env.user.has_group("base.group_no_one"))
+                return Form(
+                    self.module_base,
+                    view="base_module_migration_tracking.ir_module_module_form_view",
+                )
+
+        module_base_form = open_module_base_form()
         self.assertEqual(len(module_base_form.migration_ids), 0)
         # set value
         with module_base_form.migration_ids.new() as mig_line_form:
             mig_line_form.version = 10
             mig_line_form.state = "installed"
         with module_base_form.migration_ids.new() as mig_line_form:
-            self.assertEqual(mig_line_form.version, 11)
+            self.assertEqual(mig_line_form.version, 50)
             mig_line_form.version = 11
             mig_line_form.state = "installed"
         # re-add same version
         with module_base_form.migration_ids.new() as mig_line_form:
-            self.assertEqual(mig_line_form.version, 12)
+            self.assertEqual(mig_line_form.version, 50)
             mig_line_form.version = 11
             mig_line_form.state = "todo"
+        module_base_form.save()
+        self.assertEqual(len(self.module_base.migration_ids), 3)
+        # reopen form
+        module_base_form = open_module_base_form()
         # add "big" version
         with module_base_form.migration_ids.new() as mig_line_form:
             self.assertEqual(mig_line_form.version, 12)
             mig_line_form.version = 25
         module_base_form.save()
-        self.assertEqual(len(self.module_base.migration_ids), 4)
         # edit first line
-        module_base_form = Form(self.module_base)
+        module_base_form = open_module_base_form()
         with module_base_form.migration_ids.edit(0) as mig_line_form:
             mig_line_form.version = 14
         module_base_form.save()
         # remove last line
-        module_base_form = Form(self.module_base)
+        module_base_form = open_module_base_form()
         module_base_form.migration_ids.remove(3)
         # add new migration
         with module_base_form.migration_ids.new() as mig_line_form:
@@ -109,9 +140,9 @@ class TestBaseModuleMigrationTracking(TransactionCase):
         # check views
         domain = []
         modules = self.env["ir.module.module"].search(domain)
-        # use `load_all_views` to force loading all views from `get_inheriting_views_arch`
-        view_infos = modules.with_context(load_all_views=True).fields_view_get(
-            view_type="tree"
+        # use `load_all_views` to force loading all views from `_get_inheriting_views`
+        view_infos = modules.with_context(load_all_views=True).get_view(
+            view_type="list"
         )
         arch = view_infos["arch"]
         self.assertIn('<field name="x_mig_11_status"', arch)
@@ -176,4 +207,3 @@ class TestBaseModuleMigrationTracking(TransactionCase):
             self.module_base.x_mig_20_status, "https://git.com/myproject/PR/123456"
         )
         self.assertEqual(self.module_base.x_mig_20_color, "#FF9800")
-        print(1)
