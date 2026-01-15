@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.menu" id="menu_software">
         <field name="name">Software</field>
         <field name="sequence" eval="110" />
@@ -18,5 +17,4 @@
             eval="[(6,0, [ref('software.group_software_manager')])]"
         />
     </record>
-
 </odoo>
