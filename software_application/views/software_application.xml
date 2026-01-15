@@ -1,103 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="software_application_tree_view" >
+    <record model="ir.ui.view" id="software_application_tree_view">
         <field name="name">software.application.tree@software_application</field>
         <field name="model">software.application</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="image" string=" " widget="image" class="d_tree_image"/>
-                <field name="name"/>
-                <field name="product_name"/>
-                <field name="info"/>
-                <field name="tag_ids" widget="many2many_tags"/>
-            </tree>
+            <list>
+                <field name="image" string=" " widget="image" class="d_tree_image" />
+                <field name="name" />
+                <field name="product_name" />
+                <field name="info" />
+                <field name="tag_ids" widget="many2many_tags" />
+            </list>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_application_resource_tree_view" >
-        <field name="name">software.application.tree#resource@software_application</field>
+    <record model="ir.ui.view" id="software_application_resource_tree_view">
+        <field
+            name="name"
+        >software.application.tree#resource@software_application</field>
         <field name="model">software.application</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="image" string=" " widget="image" class="d_tree_image"/>
-                <field name="name" string="Name"/>
-                <field name="product_name"/>
-                <field name="info"/>
-                <field name="tag_ids" widget="many2many_tags"/>
-            </tree>
+            <list>
+                <field name="image" string=" " widget="image" class="d_tree_image" />
+                <field name="name" string="Name" />
+                <field name="product_name" />
+                <field name="info" />
+                <field name="tag_ids" widget="many2many_tags" />
+            </list>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_application_other_tree_view" >
+    <record model="ir.ui.view" id="software_application_other_tree_view">
         <field name="name">software.application.tree#other@software_application</field>
         <field name="model">software.application</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="image" string=" " widget="image" class="d_tree_image"/>
-                <field name="name" string="Name"/>
-                <field name="info"/>
-            </tree>
+            <list>
+                <field name="image" string=" " widget="image" class="d_tree_image" />
+                <field name="name" string="Name" />
+                <field name="info" />
+            </list>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="software_application_form_view" >
+    <record model="ir.ui.view" id="software_application_form_view">
         <field name="name">software.application.form@software_application</field>
         <field name="model">software.application</field>
         <field name="arch" type="xml">
             <form string="Application">
-                <header>
-                </header>
+                <header />
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-
-            <field name="active" invisible="1" />
-            <widget
-                name="web_ribbon"
-                title="Archived"
-                bg_color="bg-danger"
-                attrs="{'invisible': [('active', '=', True)]}"
-            />
-
-                    </div>
-                    <field name="image" widget="image" nolabel="1" class="oe_avatar"/>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_button_box" name="button_box" />
+                    <field
+                        name="attachment_image"
+                        widget="image"
+                        options="{'preview_image': 'attachment_image'}"
+                        class="oe_avatar"
+                    />
                     <div name="title" class="oe_title">
-                        <label for="name" class="oe_edit_only" attrs="{'invisible': [('type', '=', 'resource')]}"/>
-                        <label for="name" class="oe_edit_only" attrs="{'invisible': [('type', '!=', 'resource')]}" string="Name" />
+                        <label
+                            for="name"
+                            class="oe_edit_only"
+                            invisible="type == 'resource'"
+                        />
+                        <label
+                            for="name"
+                            class="oe_edit_only"
+                            invisible="type != 'resource'"
+                            string="Name"
+                        />
                         <h1>
-                            <field name="name"/>
+                            <field name="name" />
                         </h1>
                     </div>
                     <group name="main">
                         <group name="primary">
-                            <field name="product_id" attrs="{'invisible': [('type', '=', 'other')]}"/>
-                            <field name="product_name" attrs="{'invisible':[('product_id','=',False)]}"/>
-                            <field name="product_description" attrs="{'invisible':[('product_id','=',False)]}"/>
-                            <field name="website" widget="url" attrs="{'invisible':[('product_id','=',False)]}"/>
+                            <field name="product_id" invisible="type == 'other'" />
+                            <field name="product_name" invisible="not product_id" />
+                            <field
+                                name="product_description"
+                                invisible="not product_id"
+                            />
+                            <field
+                                name="website"
+                                widget="url"
+                                invisible="not product_id"
+                            />
                         </group>
                         <group name="secondary">
-                            <field name="type"/>
+                            <field name="type" />
                             <field
                                 name="tag_ids"
                                 placeholder="Tags..."
                                 widget="many2many_tags"
-                                attrs="{'invisible': [('type', '=', 'other')]}"
-                                options="{'color_field': 'color'}">
-                            </field>
+                                invisible="type == 'other'"
+                                options="{'color_field': 'color'}"
+                            />
                         </group>
                     </group>
                     <notebook>
-                        <page string="Releases" name="releases" attrs="{'invisible': [('type', '=', 'other')]}">
-                            <field name="release_ids" context="{'default_application_id': id, 'release_ids': release_ids,}"/>
+                        <page
+                            string="Releases"
+                            name="releases"
+                            invisible="type == 'other'"
+                        >
+                            <field
+                                name="release_ids"
+                                context="{
+                                    'default_application_id': id,
+                                    'release_ids': release_ids
+                                }"
+                            />
                         </page>
                         <page string="Resources" name="resources">
                             <group name="main">
-                                <field name="resource_ids" context="{'default_type': 'resource'}" attrs="{'invisible': [('type', '!=', 'inhouse')]}"/>
+                                <field
+                                    name="resource_ids"
+                                    context="{'default_type': 'resource'}"
+                                    invisible="type != 'inhouse'"
+                                />
                             </group>
                         </page>
                         <page string="Informations" name="general">
                             <group name="info">
-                                <field name="info" placeholder="Real name of the application, eg: Ubuntu 20.04"/>
+                                <field
+                                    name="info"
+                                    placeholder="Real name of the application, eg: Ubuntu 20.04"
+                                />
                             </group>
                         </page>
                     </notebook>
@@ -111,81 +145,98 @@
         <field name="model">software.application</field>
         <field name="arch" type="xml">
             <search string="Applications">
-                <field name="info"/>
+                <field name="info" />
             </search>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_software_application_inhouse" >
+    <record model="ir.actions.act_window" id="act_window_software_application_inhouse">
         <field name="name">In-House Apps</field>
         <field name="res_model">software.application</field>
-        <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="software_application_tree_view"/>
-        <field name="search_view_id" ref="software_application_search_view"/>
+        <field name="view_mode">form,list</field>
+        <field name="view_id" ref="software_application_tree_view" />
+        <field name="search_view_id" ref="software_application_search_view" />
         <field name="domain">[('type', '=', 'inhouse')]</field>
         <field name="context">{'default_type': 'inhouse'}</field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_inhouse_tree" >
-        <field name="sequence" eval="1"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="software_application_tree_view"/>
-        <field name="act_window_id" ref="act_window_software_application_inhouse"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_inhouse_tree"
+    >
+        <field name="sequence" eval="1" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="software_application_tree_view" />
+        <field name="act_window_id" ref="act_window_software_application_inhouse" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_inhouse_form" >
-        <field name="sequence" eval="2"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_inhouse_form"
+    >
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="software_application_form_view"/>
-        <field name="act_window_id" ref="act_window_software_application_inhouse"/>
+        <field name="view_id" ref="software_application_form_view" />
+        <field name="act_window_id" ref="act_window_software_application_inhouse" />
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_software_application_resource" >
+    <record model="ir.actions.act_window" id="act_window_software_application_resource">
         <field name="name">Resources</field>
         <field name="res_model">software.application</field>
-        <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="software_application_resource_tree_view"/>
-        <field name="search_view_id" ref="software_application_search_view"/>
+        <field name="view_mode">form,list</field>
+        <field name="view_id" ref="software_application_resource_tree_view" />
+        <field name="search_view_id" ref="software_application_search_view" />
         <field name="domain">[('type', '=', 'resource')]</field>
         <field name="context">{'default_type': 'resource'}</field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_resource_tree" >
-        <field name="sequence" eval="1"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="software_application_resource_tree_view"/>
-        <field name="act_window_id" ref="act_window_software_application_resource"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_resource_tree"
+    >
+        <field name="sequence" eval="1" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="software_application_resource_tree_view" />
+        <field name="act_window_id" ref="act_window_software_application_resource" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_resource_form" >
-        <field name="sequence" eval="2"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_resource_form"
+    >
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="software_application_form_view"/>
-        <field name="act_window_id" ref="act_window_software_application_resource"/>
+        <field name="view_id" ref="software_application_form_view" />
+        <field name="act_window_id" ref="act_window_software_application_resource" />
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_software_application_other" >
+    <record model="ir.actions.act_window" id="act_window_software_application_other">
         <field name="name">Other Apps</field>
         <field name="res_model">software.application</field>
-        <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="software_application_other_tree_view"/>
-        <field name="search_view_id" ref="software_application_search_view"/>
+        <field name="view_mode">form,list</field>
+        <field name="view_id" ref="software_application_other_tree_view" />
+        <field name="search_view_id" ref="software_application_search_view" />
         <field name="domain">[('type', '=', 'other')]</field>
         <field name="context">{'default_type': 'other'}</field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_other_tree" >
-        <field name="sequence" eval="1"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="software_application_other_tree_view"/>
-        <field name="act_window_id" ref="act_window_software_application_other"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_other_tree"
+    >
+        <field name="sequence" eval="1" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="software_application_other_tree_view" />
+        <field name="act_window_id" ref="act_window_software_application_other" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_other_form" >
-        <field name="sequence" eval="2"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_other_form"
+    >
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="software_application_form_view"/>
-        <field name="act_window_id" ref="act_window_software_application_other"/>
+        <field name="view_id" ref="software_application_form_view" />
+        <field name="act_window_id" ref="act_window_software_application_other" />
     </record>
-
 </odoo>

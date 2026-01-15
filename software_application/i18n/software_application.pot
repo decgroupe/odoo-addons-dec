@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:31+0000\n"
-"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"POT-Creation-Date: 2026-06-03 11:07+0000\n"
+"PO-Revision-Date: 2026-06-03 11:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,6 @@ msgstr ""
 #. module: software_application
 #: model:ir.actions.act_window,name:software_application.act_window_software_tag
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_search_view
-#: model_terms:ir.ui.view,arch_db:software_application.software_application_tree_view
 msgid "Applications"
 msgstr ""
 
@@ -90,6 +89,11 @@ msgstr ""
 msgid ""
 "By linking this application to a product, sales informations like "
 "description will be used in communications to customers"
+msgstr ""
+
+#. module: software_application
+#: model:product.template,name:software_application.product_calm_product_template
+msgid "Calm"
 msgstr ""
 
 #. module: software_application
@@ -139,8 +143,8 @@ msgid "Download URL"
 msgstr ""
 
 #. module: software_application
+#. odoo-python
 #: code:addons/software_application/models/software_application_release.py:0
-#, python-format
 msgid "Fixes"
 msgstr ""
 
@@ -149,13 +153,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_application.field_software_application_release__id
 #: model:ir.model.fields,field_description:software_application.field_software_tag__id
 msgid "ID"
-msgstr ""
-
-#. module: software_application
-#: model:ir.model.fields,help:software_application.field_software_application__xid
-#: model:ir.model.fields,help:software_application.field_software_application_release__xid
-#: model:ir.model.fields,help:software_application.field_software_tag__xid
-msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: software_application
@@ -170,14 +167,7 @@ msgid "Image"
 msgstr ""
 
 #. module: software_application
-#: model:ir.model.fields,help:software_application.field_software_application__image
-msgid "Image of the application (automatically resized to 300 x 200)."
-msgstr ""
-
-#. module: software_application
-#: code:addons/software_application/models/software_application.py:0
 #: model:ir.model.fields.selection,name:software_application.selection__software_application__type__inhouse
-#, python-format
 msgid "In-House Application"
 msgstr ""
 
@@ -194,16 +184,9 @@ msgid "Informations"
 msgstr ""
 
 #. module: software_application
+#. odoo-python
 #: code:addons/software_application/models/software_application_release.py:0
-#, python-format
 msgid "Known Issues"
-msgstr ""
-
-#. module: software_application
-#: model:ir.model.fields,field_description:software_application.field_software_application____last_update
-#: model:ir.model.fields,field_description:software_application.field_software_application_release____last_update
-#: model:ir.model.fields,field_description:software_application.field_software_tag____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: software_application
@@ -268,15 +251,8 @@ msgid "Name"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:0
 #: model:ir.model.fields.selection,name:software_application.selection__software_application__type__other
-#, python-format
 msgid "Other Application"
-msgstr ""
-
-#. module: software_application
-#: model_terms:ir.ui.view,arch_db:software_application.software_application_other_tree_view
-msgid "Other Applications"
 msgstr ""
 
 #. module: software_application
@@ -298,6 +274,31 @@ msgid ""
 msgstr ""
 
 #. module: software_application
+#: model:software.tag,name:software_application.tag_pegi12
+msgid "Pegi 12"
+msgstr ""
+
+#. module: software_application
+#: model:software.tag,name:software_application.tag_pegi16
+msgid "Pegi 16"
+msgstr ""
+
+#. module: software_application
+#: model:software.tag,name:software_application.tag_pegi18
+msgid "Pegi 18"
+msgstr ""
+
+#. module: software_application
+#: model:software.tag,name:software_application.tag_pegi3
+msgid "Pegi 3"
+msgstr ""
+
+#. module: software_application
+#: model:software.tag,name:software_application.tag_pegi7
+msgid "Pegi 7"
+msgstr ""
+
+#. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application_release__version_prerelease
 msgid "Pre-release"
 msgstr ""
@@ -310,6 +311,11 @@ msgstr ""
 #. module: software_application
 #: model:ir.model.fields,field_description:software_application.field_software_application__product_id
 msgid "Related Product"
+msgstr ""
+
+#. module: software_application
+#: model:product.template,description_sale:software_application.product_calm_product_template
+msgid "Relaxing Application for your Smartphone"
 msgstr ""
 
 #. module: software_application
@@ -332,14 +338,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_application.field_software_application__release_ids
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_release_search_view
-#: model_terms:ir.ui.view,arch_db:software_application.software_application_release_tree_view
 msgid "Releases"
 msgstr ""
 
 #. module: software_application
-#: code:addons/software_application/models/software_application.py:0
 #: model:ir.model.fields.selection,name:software_application.selection__software_application__type__resource
-#, python-format
 msgid "Resource"
 msgstr ""
 
@@ -348,7 +351,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_application.field_software_application__resource_ids
 #: model:ir.ui.menu,name:software_application.menu_software_application_resource
 #: model_terms:ir.ui.view,arch_db:software_application.software_application_form_view
-#: model_terms:ir.ui.view,arch_db:software_application.software_application_resource_tree_view
 msgid "Resources"
 msgstr ""
 
@@ -381,7 +383,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_application.field_software_application__tag_ids
 #: model:ir.ui.menu,name:software_application.menu_software_tag
 #: model_terms:ir.ui.view,arch_db:software_application.software_tag_search_view
-#: model_terms:ir.ui.view,arch_db:software_application.software_tag_tree_view
 msgid "Tags"
 msgstr ""
 
@@ -392,7 +393,7 @@ msgstr ""
 
 #. module: software_application
 #: model:ir.model.fields,help:software_application.field_software_application__attachment_image
-msgid "Technical field used to store the image in the database"
+msgid "Technical field used to store the image in the database (real size)"
 msgstr ""
 
 #. module: software_application
@@ -403,6 +404,11 @@ msgstr ""
 #. module: software_application
 #: model:ir.model.constraint,message:software_application.constraint_software_application_release_app_version_uniq
 msgid "The release version must be unique per application !"
+msgstr ""
+
+#. module: software_application
+#: model:ir.model.fields,help:software_application.field_software_application__image
+msgid "Thumbnail image of the application (resized to 320x240)."
 msgstr ""
 
 #. module: software_application
@@ -437,32 +443,25 @@ msgid "Website of the application"
 msgstr ""
 
 #. module: software_application
+#. odoo-python
 #: code:addons/software_application/models/software_application_release.py:0
-#, python-format
 msgid "What's New"
 msgstr ""
 
 #. module: software_application
-#: model:ir.model.fields,field_description:software_application.field_software_application__xid
-#: model:ir.model.fields,field_description:software_application.field_software_application_release__xid
-#: model:ir.model.fields,field_description:software_application.field_software_tag__xid
-msgid "XML-ID"
-msgstr ""
-
-#. module: software_application
+#. odoo-python
 #: code:addons/software_application/models/software_application_release.py:0
-#, python-format
 msgid "fix"
 msgstr ""
 
 #. module: software_application
+#. odoo-python
 #: code:addons/software_application/models/software_application_release.py:0
-#, python-format
 msgid "issue"
 msgstr ""
 
 #. module: software_application
+#. odoo-python
 #: code:addons/software_application/models/software_application_release.py:0
-#, python-format
 msgid "new"
 msgstr ""

@@ -1,50 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_application_release_tree_view">
-        <field name="name">software.application.release.tree@software_application</field>
+        <field
+            name="name"
+        >software.application.release.tree@software_application</field>
         <field name="model">software.application.release</field>
         <field name="arch" type="xml">
-            <tree create="true" delete="true">
-                <field name="version"/>
-                <field name="date"/>
-                <field name="url" widget="url"/>
-            </tree>
+            <list create="true" delete="true">
+                <field name="version" />
+                <field name="date" />
+                <field name="url" widget="url" />
+            </list>
         </field>
     </record>
 
     <record model="ir.ui.view" id="software_application_release_form_view">
-        <field name="name">software.application.release.form@software_application</field>
+        <field
+            name="name"
+        >software.application.release.form@software_application</field>
         <field name="model">software.application.release</field>
         <field name="arch" type="xml">
             <form string="Release">
-                <header>
-                </header>
+                <header />
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                    </div>
+                    <div class="oe_button_box" name="button_box" />
                     <group name="title">
-                        <div class="oe_title"></div>
+                        <div class="oe_title" />
                     </group>
                     <group name="main">
                         <group name="primary">
-                            <field name="version"/>
-                            <field name="version_major"/>
-                            <field name="version_minor"/>
-                            <field name="version_patch"/>
-                            <field name="version_prerelease"/>
-                            <field name="version_build"/>
+                            <field name="version" />
+                            <field name="version_major" />
+                            <field name="version_minor" />
+                            <field name="version_patch" />
+                            <field name="version_prerelease" />
+                            <field name="version_build" />
                         </group>
                         <group name="secondary">
-                            <field name="date"/>
+                            <field name="date" />
                         </group>
                     </group>
                     <group name="main_large" colspan="4">
-                        <field name="url" widget="url" colspan="2"/>
+                        <field name="url" widget="url" colspan="2" />
                     </group>
                     <notebook>
                         <page string="Content" name="content">
-                            <field name="content"/>
+                            <field name="content" />
                         </page>
                     </notebook>
                 </sheet>
@@ -53,13 +54,15 @@
     </record>
 
     <record model="ir.ui.view" id="software_application_release_search_view">
-        <field name="name">software.application.release.search@software_application</field>
+        <field
+            name="name"
+        >software.application.release.search@software_application</field>
         <field name="model">software.application.release</field>
         <field name="arch" type="xml">
             <search string="Releases">
-                <field name="version"/>
-                <field name="content"/>
-                <field name="url"/>
+                <field name="version" />
+                <field name="content" />
+                <field name="url" />
             </search>
         </field>
     </record>
@@ -67,23 +70,28 @@
     <record model="ir.actions.act_window" id="act_window_software_application_release">
         <field name="name">Releases</field>
         <field name="res_model">software.application.release</field>
-        <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="software_application_release_tree_view"/>
-        <field name="search_view_id" ref="software_application_release_search_view"/>
+        <field name="view_mode">form,list</field>
+        <field name="view_id" ref="software_application_release_tree_view" />
+        <field name="search_view_id" ref="software_application_release_search_view" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_release_tree">
-        <field name="sequence" eval="1"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="software_application_release_tree_view"/>
-        <field name="act_window_id" ref="act_window_software_application_release"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_release_tree"
+    >
+        <field name="sequence" eval="1" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="software_application_release_tree_view" />
+        <field name="act_window_id" ref="act_window_software_application_release" />
     </record>
 
-    <record model="ir.actions.act_window.view" id="act_window_view_software_application_release_form">
-        <field name="sequence" eval="2"/>
+    <record
+        model="ir.actions.act_window.view"
+        id="act_window_view_software_application_release_form"
+    >
+        <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="software_application_release_form_view"/>
-        <field name="act_window_id" ref="act_window_software_application_release"/>
+        <field name="view_id" ref="software_application_release_form_view" />
+        <field name="act_window_id" ref="act_window_software_application_release" />
     </record>
-
 </odoo>

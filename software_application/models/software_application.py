@@ -1,7 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import _, api, fields, models, tools
+import logging
+
+from odoo import fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareApplication(models.Model):
@@ -46,16 +50,17 @@ class SoftwareApplication(models.Model):
         inverse_name="application_id",
         string="Releases",
     )
-    image = fields.Binary(
+    image = fields.Image(
         string="Image",
-        compute="_compute_image",
-        inverse="_inverse_image",
-        help="Image of the application (automatically resized to 300 x 200).",
+        related="attachment_image",
+        max_width=320,
+        max_height=240,
+        store=True,
+        help="Thumbnail image of the application (resized to 320x240).",
     )
-    attachment_image = fields.Binary(
+    attachment_image = fields.Image(
         string="Launcher Image",
-        attachment=True,
-        help="Technical field used to store the image in the database",
+        help="Technical field used to store the image in the database (real size)",
     )
     tag_ids = fields.Many2many(
         comodel_name="software.tag",
@@ -79,23 +84,6 @@ class SoftwareApplication(models.Model):
         string="Resources",
         domain=[("type", "=", "resource")],
     )
-
-    @api.depends("attachment_image")
-    def _compute_image(self):
-        for rec in self:
-            if rec.env.context.get("bin_size"):
-                rec.image = rec.attachment_image
-            else:
-                rec.image = tools.image_process(
-                    rec.attachment_image, size=(300, 200), quality=40
-                )
-
-    def _inverse_image(self):
-        self.ensure_one()
-        value = self.image
-        if isinstance(value, str):
-            value = value.encode("ascii")
-        self.attachment_image = tools.image_process(value, size=(300, 200))
 
     def write(self, vals):
         if "type" in vals:

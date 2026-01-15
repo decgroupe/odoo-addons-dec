@@ -5,7 +5,8 @@ from datetime import date
 
 from freezegun import freeze_time
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestSoftwareApplication(TransactionCase):
@@ -110,7 +111,7 @@ class TestSoftwareApplication(TransactionCase):
         self.assertEqual(len(fitness_app.tag_ids), 0)
 
     def test_08_application_image(self):
-        base64_1x1_png = b"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC"
+        base64_1x1_png = b"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC"  # noqa: E501
         fitness_app = self.env.ref("software_application.sa_myfitnessapp")
-        fitness_app.image = base64_1x1_png
+        fitness_app.attachment_image = base64_1x1_png
         self.assertEqual(fitness_app.attachment_image, fitness_app.image)

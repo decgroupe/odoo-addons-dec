@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="software.application" id="res_myfitnessapp_userguide">
         <field name="name">MyFitnessApp's Userguide</field>
         <field name="type">resource</field>
@@ -11,9 +10,12 @@
         <field name="type">inhouse</field>
         <field
             name="resource_ids"
-            eval="[(4, ref('software_application.res_myfitnessapp_userguide')),]"
+            eval="[Command.link(ref('software_application.res_myfitnessapp_userguide'))]"
         />
-        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi7')),]" />
+        <field
+            name="tag_ids"
+            eval="[Command.link(ref('software_application.tag_pegi7'))]"
+        />
     </record>
 
     <record model="software.application.release" id="sa_myfitnessapp_r0">
@@ -50,7 +52,10 @@
             file="software_application/static/img/calm.png"
         />
         <field name="product_id" ref="product_calm" />
-        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi3')),]" />
+        <field
+            name="tag_ids"
+            eval="[Command.link(ref('software_application.tag_pegi3'))]"
+        />
     </record>
 
     <record model="software.application.release" id="sa_calm_r0">
@@ -69,14 +74,19 @@
         <field
             name="info"
         >New Age is our internal codename for our new top secret application</field>
-        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi16')),]" />
+        <field
+            name="tag_ids"
+            eval="[Command.link(ref('software_application.tag_pegi16'))]"
+        />
     </record>
 
     <record model="software.application" id="sa_brickgame">
         <field name="name">The Brick Game</field>
         <field name="type">inhouse</field>
         <field name="info">2D Arcade Game</field>
-        <field name="tag_ids" eval="[(4, ref('software_application.tag_pegi3')),]" />
+        <field
+            name="tag_ids"
+            eval="[Command.link(ref('software_application.tag_pegi3'))]"
+        />
     </record>
-
 </odoo>

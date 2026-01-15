@@ -1,38 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.menu" id="menu_software_asset">
         <field name="name">Assets</field>
-        <field name="sequence" eval="20"/>
-        <field name="parent_id" ref="software.menu_software"/>
+        <field name="sequence" eval="20" />
+        <field name="parent_id" ref="software.menu_software" />
     </record>
 
     <record model="ir.ui.menu" id="menu_software_application_inhouse">
         <field name="name">In-House Apps</field>
-        <field name="sequence" eval="10"/>
-        <field name="action" ref="act_window_software_application_inhouse"/>
-        <field name="parent_id" ref="menu_software_asset"/>
+        <field name="sequence" eval="10" />
+        <field name="action" ref="act_window_software_application_inhouse" />
+        <field name="parent_id" ref="menu_software_asset" />
     </record>
 
     <record model="ir.ui.menu" id="menu_software_application_resource">
         <field name="name">Resources</field>
-        <field name="sequence" eval="15"/>
-        <field name="action" ref="act_window_software_application_resource"/>
-        <field name="parent_id" ref="menu_software_asset"/>
+        <field name="sequence" eval="15" />
+        <field name="action" ref="act_window_software_application_resource" />
+        <field name="parent_id" ref="menu_software_asset" />
     </record>
 
     <record model="ir.ui.menu" id="menu_software_application_other">
         <field name="name">Other Apps</field>
-        <field name="sequence" eval="20"/>
-        <field name="action" ref="act_window_software_application_other"/>
-        <field name="parent_id" ref="menu_software_asset"/>
+        <field name="sequence" eval="20" />
+        <field name="action" ref="act_window_software_application_other" />
+        <field name="parent_id" ref="menu_software_asset" />
     </record>
 
     <record model="ir.ui.menu" id="menu_software_tag">
         <field name="name">Tags</field>
-        <field name="sequence" eval="5"/>
-        <field name="action" ref="act_window_software_tag"/>
-        <field name="parent_id" ref="software.menu_configuration"/>
+        <field name="sequence" eval="5" />
+        <field name="action" ref="act_window_software_tag" />
+        <field name="parent_id" ref="software.menu_configuration" />
     </record>
-
 </odoo>

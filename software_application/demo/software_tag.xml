@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="software.tag" id="tag_pegi3">
         <field name="name">Pegi 3</field>
     </record>
@@ -20,5 +19,4 @@
     <record model="software.tag" id="tag_pegi18">
         <field name="name">Pegi 18</field>
     </record>
-
 </odoo>

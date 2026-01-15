@@ -189,22 +189,32 @@ class SoftwareApplicationRelease(models.Model):
     def _get_default_version(self):
         res = "1.0.0"
         if "release_ids" in self.env.context:
+            # find the highest semver version among the given release_ids
             sem_ver = False
-            for o2m in self.env.context.get("release_ids"):
-                version = False
-                is_real_id = isinstance(o2m[1], int) and o2m[1] > 0
-                is_new_id = isinstance(o2m[1], int) and o2m[1] == 0
-                is_virtual_id = isinstance(o2m[1], str)
-                if is_real_id:
-                    rec_id = o2m[1]
-                    version = self.browse(rec_id).version
-                elif (is_new_id or is_virtual_id) and isinstance(o2m[2], dict):
-                    rec_data = o2m[2]
+            # add support for module `base_default` and its "edit_values" context
+            release_ids_onchange = (
+                self.env.context.get("edit_values", {})
+                .get("application_id", {})
+                .get("release_ids", {})
+            )
+            # 1: process onchange commands
+            for rec_id in release_ids_onchange:
+                if isinstance(rec_id, list | tuple) and len(rec_id) == 3:
+                    _command, _virtual_id, rec_data = rec_id
                     version = rec_data.get("version", False)
-                if version:
                     cur_sem_ver = semver.VersionInfo.parse(version)
                     if not sem_ver or cur_sem_ver > sem_ver:
                         sem_ver = cur_sem_ver
+            # 2: process real record ids
+            for rec_id in self.env.context.get("release_ids"):
+                is_real_id = isinstance(rec_id, int) and rec_id > 0
+                if is_real_id:
+                    rec_id = rec_id
+                    version = self.browse(rec_id).version
+                    cur_sem_ver = semver.VersionInfo.parse(version)
+                    if not sem_ver or cur_sem_ver > sem_ver:
+                        sem_ver = cur_sem_ver
+            # bump the major version
             if sem_ver:
                 res = str(sem_ver.bump_major())
         return res
@@ -216,8 +226,8 @@ class SoftwareApplicationRelease(models.Model):
     def _get_default_content_items(self, name="item", count=1):
         items = []
         for i in range(count):
-            items.append("<li><p>%s %d</p></li>" % (name, i + 1))
-        return "<ul>%s</ul>" % "".join(items)
+            items.append(f"<li><p>{name} {i + 1}</p></li>")
+        return f"<ul>{''.join(items)}</ul>"
 
     def _get_default_content_titles(self):
         return [
@@ -231,11 +241,7 @@ class SoftwareApplicationRelease(models.Model):
         content = []
         for title, item_name in self._get_default_content_titles():
             content.append(
-                "<h2>%s</h2>%s"
-                % (
-                    title,
-                    self._get_default_content_items(item_name, 3),
-                )
+                f"<h2>{title}</h2>{self._get_default_content_items(item_name, 3)}"
             )
         return "".join(content)
 
