@@ -1,6 +1,7 @@
 {
-    "name": "Product Location", # Replace with deltatech_stock_inventory ?
-    "version": "14.0.1.0.0",
+    "name": "Product Location",  # Replace with deltatech_stock_inventory ?
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -9,5 +10,5 @@
     "data": [
         "views/product_template.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
