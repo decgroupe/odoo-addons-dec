@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_feature_tree_view">
         <field
             name="name"
         >software.license.feature.tree@software_license_feature</field>
         <field name="model">software.license.feature</field>
         <field name="arch" type="xml">
-            <tree create="true" delete="true">
+            <list create="true" delete="true">
                 <field name="sequence" widget="handle" />
                 <field name="property_id" />
                 <field name="customizable" invisible="1" />
@@ -16,20 +15,16 @@
                     string="Value (List)"
                     domain="[('property_id', '=', property_id)]"
                     context="{'default_property_id': property_id}"
-                    attrs="{
-                        'invisible': [('customizable', '=', True)],
-                        'required': [('customizable', '!=', True)],
-                    }"
+                    invisible="customizable == True"
+                    required="not customizable"
                 />
                 <field
                     name="value"
                     string="Value (Input)"
-                    attrs="{
-                        'invisible': [('customizable', '!=', True)],
-                        'required': [('customizable', '=', True)],
-                    }"
+                    invisible="not customizable"
+                    required="customizable == True"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -44,9 +39,9 @@
         />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="editable">bottom</attribute>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -69,17 +64,13 @@
                     <field
                         name="value_id"
                         domain="[('property_id', '=', property_id)]"
-                        attrs="{
-                            'invisible': [('customizable', '=', True)],
-                            'required': [('customizable', '!=', True)],
-                        }"
+                        invisible="customizable == True"
+                        required="not customizable"
                     />
                     <field
                         name="value"
-                        attrs="{
-                            'invisible': [('customizable', '!=', True)],
-                            'required': [('customizable', '=', True)],
-                        }"
+                        invisible="not customizable"
+                        required="customizable == True"
                     />
                 </group>
             </form>
@@ -91,5 +82,4 @@
         <field name="res_model">software.license.feature</field>
         <field name="view_id" ref="software_license_feature_tree_view" />
     </record>
-
 </odoo>

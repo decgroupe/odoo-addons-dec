@@ -24,14 +24,13 @@ class SoftwareLicenseFeatureValue(models.Model):
         self.ensure_one()
         res = self.name
         # WARNING: This will also checks for request.session.debug
-        if self.user_has_groups("base.group_no_one"):
-            res = ("%s (%s)") % (res, self.property_id.name)
+        if self.env.user.has_group("base.group_no_one"):
+            res = f"{res} ({self.property_id.name})"
         return res
 
     @api.depends("name", "property_id.name")
-    def name_get(self):
-        result = []
+    def _compute_display_name(self):
+        result = super()._compute_display_name()
         for rec in self:
-            name = rec._name_get()
-            result.append((rec.id, name))
+            rec.display_name = rec._name_get()
         return result

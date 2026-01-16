@@ -63,8 +63,10 @@ class SoftwareLicenseFeature(models.Model):
                         raise_missing_error = True
                 if raise_missing_error:
                     raise UserError(
-                        _("Missing value for property {} : {}").format(
-                            vals.get("sequence", 0), property_id.name
+                        _(
+                            "Missing value for property %(sequence)s : %(prop_name)s",
+                            sequence=vals.get("sequence", 0),
+                            prop_name=property_id.name,
                         )
                     )
         records = super().create(vals_list)

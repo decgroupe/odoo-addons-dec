@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:31+0000\n"
-"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"POT-Creation-Date: 2026-06-03 11:08+0000\n"
+"PO-Revision-Date: 2026-06-03 11:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,6 @@ msgid ""
 msgstr ""
 
 #. module: software_license_feature
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license__display_name
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__display_name
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__display_name
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value__display_name
@@ -68,24 +67,14 @@ msgstr ""
 #: model:ir.actions.act_window,name:software_license_feature.act_window_software_license_feature
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license__feature_ids
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_form_view
-#: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_tree_view
 msgid "Features"
 msgstr ""
 
 #. module: software_license_feature
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license__id
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__id
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__id
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value__id
 msgid "ID"
-msgstr ""
-
-#. module: software_license_feature
-#: model:ir.model.fields,help:software_license_feature.field_software_license__xid
-#: model:ir.model.fields,help:software_license_feature.field_software_license_feature__xid
-#: model:ir.model.fields,help:software_license_feature.field_software_license_feature_property__xid
-#: model:ir.model.fields,help:software_license_feature.field_software_license_feature_value__xid
-msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: software_license_feature
@@ -100,14 +89,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__customizable
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__customizable
 msgid "Is Customizable ?"
-msgstr ""
-
-#. module: software_license_feature
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license____last_update
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature____last_update
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property____last_update
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: software_license_feature
@@ -131,9 +112,9 @@ msgid "License"
 msgstr ""
 
 #. module: software_license_feature
+#. odoo-python
 #: code:addons/software_license_feature/models/software_license_feature.py:0
-#, python-format
-msgid "Missing value for property {} : {}"
+msgid "Missing value for property %(sequence)s : %(prop_name)s"
 msgstr ""
 
 #. module: software_license_feature
@@ -151,7 +132,6 @@ msgstr ""
 #. module: software_license_feature
 #: model:ir.actions.act_window,name:software_license_feature.act_window_software_license_feature_property
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_property_form_view
-#: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_property_tree_view
 msgid "Properties"
 msgstr ""
 
@@ -200,14 +180,5 @@ msgstr ""
 #: model:ir.actions.act_window,name:software_license_feature.act_window_software_license_feature_value
 #: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__value_ids
 #: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_value_form_view
-#: model_terms:ir.ui.view,arch_db:software_license_feature.software_license_feature_value_tree_view
 msgid "Values"
-msgstr ""
-
-#. module: software_license_feature
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license__xid
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature__xid
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_property__xid
-#: model:ir.model.fields,field_description:software_license_feature.field_software_license_feature_value__xid
-msgid "XML-ID"
 msgstr ""

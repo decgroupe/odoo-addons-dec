@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_form_view">
         <field name="name">software.license.form@software_license_feature</field>
         <field name="model">software.license</field>
@@ -12,17 +11,16 @@
                     string="Sync Features"
                     help="Synchronize features defined as template in application"
                     type="object"
-                    attrs="{'invisible': [('type', '!=', 'standard')]}"
+                    invisible="type != 'standard'"
                     class="btn-primary"
-                >
-                </button>
+                />
             </header>
             <group name="main" position="after">
                 <group name="features">
                     <field
                         name="feature_ids"
                         context="{
-                            'tree_view_ref': 'software_license_feature.software_license_feature_editable_tree_view',
+                            'list_view_ref': 'software_license_feature.software_license_feature_editable_tree_view',
                             'form_view_ref': 'software_license_feature.software_license_feature_form_view'
                         }"
                     />
@@ -30,5 +28,4 @@
             </group>
         </field>
     </record>
-
 </odoo>

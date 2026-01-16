@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_feature_value_tree_view">
         <field
             name="name"
         >software.license.feature.value.tree@software_license_feature</field>
         <field name="model">software.license.feature.value</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="property_id" invisible="1" />
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -37,5 +36,4 @@
         <field name="res_model">software.license.feature.value</field>
         <field name="view_id" ref="software_license_feature_value_tree_view" />
     </record>
-
 </odoo>

@@ -6,7 +6,8 @@ from unittest.mock import Mock
 
 import odoo
 from odoo.exceptions import UserError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 from odoo.tools.misc import DotDict
 
 
@@ -72,9 +73,10 @@ class TestSoftwareLicenseFeature(TransactionCase):
         self.assertEqual(len(lic3_form.feature_ids), 3)
         # features are added but no value is set, check that the `required` keyword
         # set in the view is working properly
-        with self.assertRaisesRegex(
-            AssertionError, "is a required field"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(AssertionError, "is a required field"),
+            self.cr.savepoint(),
+        ):
             lic3_form.save()
         # set edition value
         with lic3_form.feature_ids.edit(0) as feature_line_form:
@@ -100,7 +102,7 @@ class TestSoftwareLicenseFeature(TransactionCase):
             # check that the previous property value has been correctly unset
             self.assertFalse(feature_line_form.value_id)
             feature_line_form.value = 2025
-        fitness_lic3 = lic3_form.save()
+        _fitness_lic3 = lic3_form.save()
 
     def test_03_create_feature(self):
         brickgame_lic1 = self.env.ref("software_license.sl_brickgame1")
@@ -110,9 +112,10 @@ class TestSoftwareLicenseFeature(TransactionCase):
             "sequence": 0,
             "property_id": self.env.ref("software_license_feature.feature_edition").id,
         }
-        with self.assertRaisesRegex(
-            UserError, r"Missing value for property .* Edition"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(UserError, r"Missing value for property .* Edition"),
+            self.cr.savepoint(),
+        ):
             self.feature_model.create(data1)
         data1["value_id"] = (
             self.env.ref("software_license_feature.feature_edition_prop_silver").id,
@@ -123,7 +126,7 @@ class TestSoftwareLicenseFeature(TransactionCase):
         self.assertEqual(feature1_id.value_id.display_name, "Silver")
         # retry with debug mode enabled in mocked http request
         with MockDebugRequest(self.env):
-            feature1_id.value_id.invalidate_cache()
+            feature1_id.value_id.invalidate_recordset()
             self.assertEqual(feature1_id.value_id.display_name, "Silver (Edition)")
         # sub-test with missing `value`
         data2 = {
@@ -131,9 +134,10 @@ class TestSoftwareLicenseFeature(TransactionCase):
             "sequence": 1,
             "property_id": self.env.ref("software_license_feature.feature_year").id,
         }
-        with self.assertRaisesRegex(
-            UserError, r"Missing value for property .* Year"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(UserError, r"Missing value for property .* Year"),
+            self.cr.savepoint(),
+        ):
             self.feature_model.create(data2)
         data2["value"] = 1998
         feature2_id = self.feature_model.create(data2)

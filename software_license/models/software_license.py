@@ -128,7 +128,7 @@ class SoftwareLicense(models.Model):
         hardware_ids = self.hardware_ids
         # Apply filtering to select only wanted hardware identifiers
         if filter_names:
-            hardware_ids = hardware_ids.filtered(lambda l: l.name in filter_names)
+            hardware_ids = hardware_ids.filtered(lambda hw: hw.name in filter_names)
         for hardware_id in hardware_ids:
             hardware_data = hardware_id._prepare_export_vals(include_license_data=False)
             res[hardware_id.name] = hardware_data
