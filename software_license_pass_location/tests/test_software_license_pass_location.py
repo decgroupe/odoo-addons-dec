@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSoftwareLicensePassLocation(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.pass_model = self.env["software.license.pass"]
