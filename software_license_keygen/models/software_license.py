@@ -16,15 +16,17 @@ LENGTH = 5
 class SoftwareLicense(models.Model):
     _inherit = "software.license"
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         if self.env.context.get("force_generate_serial"):
-            if vals.get("type") == "standard" and not vals.get("serial"):
-                vals["serial"] = self._generate_serial()
-        license_id = super().create(vals)
-        if license_id.serial == self._get_default_serial():
-            license_id.onchange_application_id()
-        return license_id
+            for vals in vals_list:
+                if vals.get("type") == "standard" and not vals.get("serial"):
+                    vals["serial"] = self._generate_serial()
+        license_ids = super().create(vals_list)
+        for license_id, _vals in zip(license_ids, vals_list, strict=True):
+            if license_id.serial == self._get_default_serial():
+                license_id.onchange_application_id()
+        return license_ids
 
     @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
@@ -33,7 +35,7 @@ class SoftwareLicense(models.Model):
             default = {}
         if not default.get("serial") and self.application_id.auto_generate_serial:
             default.update(serial=self._generate_serial())
-        return super(SoftwareLicense, self).copy(default)
+        return super().copy(default)
 
     @api.onchange("application_id")
     def onchange_application_id(self):
@@ -53,7 +55,7 @@ class SoftwareLicense(models.Model):
         # List of characters that will be excluded from the generator
         excluded_chars = ["O"]
         # List of characters that will be used by the generator
-        extras = [c for c in string.ascii_uppercase if not c in excluded_chars]
+        extras = [c for c in string.ascii_uppercase if c not in excluded_chars]
         # Generate the key using the current timestamp as the seed
         key_custom = (
             generate(
@@ -77,5 +79,5 @@ class SoftwareLicense(models.Model):
         key_checksum = key_signature[0:LENGTH].upper()
 
         # The checksum is added at the end of the key
-        serial = "{}{}{}".format(key_custom, SEPARATOR, key_checksum)
+        serial = f"{key_custom}{SEPARATOR}{key_checksum}"
         return serial

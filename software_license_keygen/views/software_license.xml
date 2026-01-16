@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_form_view">
         <field name="name">software.license.form@software_license_keygen</field>
         <field name="model">software.license</field>
@@ -12,12 +11,10 @@
                     string="Generate Serial"
                     help="Create a random pre-formatted serial"
                     type="object"
-                    attrs="{'invisible': ['|', ('id', '=', False), ('type', '!=', 'standard')]}"
+                    invisible="not id or type != 'standard'"
                     class="btn-primary oe_edit_only"
-                >
-                </button>
+                />
             </field>
         </field>
     </record>
-
 </odoo>
