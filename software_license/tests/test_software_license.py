@@ -269,4 +269,3 @@ class TestSoftwareLicense(TransactionCase):
         self.assertEqual(bf_license_ids, bf_id.license_ids)
         self.assertEqual(nf_license_ids, nf_id.license_ids)
         self.assertEqual(cd_license_ids, cd_id.license_ids)
-

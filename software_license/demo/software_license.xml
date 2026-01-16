@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="software.license" id="sl_myfitnessapp_tpl1">
         <field name="application_id" ref="software_application.sa_myfitnessapp" />
         <field name="type">template</field>
@@ -95,5 +94,4 @@
         <field name="name">0d:cc:49:c5:10:86</field>
         <field name="info">{}</field>
     </record>
-
 </odoo>

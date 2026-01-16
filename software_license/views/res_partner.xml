@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_partner_form">
         <field name="name">res.partner.form@software_license</field>
         <field name="model">res.partner</field>
@@ -14,7 +13,7 @@
                     type="object"
                     widget="statinfo"
                     solid_icon="fa-id-card"
-                    attrs="{'invisible': [('license_count', '=', 0)]}"
+                    invisible="not license_count"
                 >
                     <div class="o_form_field o_stat_info">
                         <span class="o_stat_value">
@@ -26,5 +25,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

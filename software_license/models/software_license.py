@@ -99,18 +99,17 @@ class SoftwareLicense(models.Model):
             default = {}
         if not default.get("serial"):
             default.update(serial=_("%s (copy)") % (self.serial))
-        return super(SoftwareLicense, self).copy(default)
+        return super().copy(default)
 
     def _name_get(self):
         self.ensure_one()
-        return ("[%s] %s") % (self.application_id.name, self.serial)
+        return f"[{self.application_id.name}] {self.serial}"
 
     @api.depends("serial", "application_id.name")
-    def name_get(self):
-        result = []
+    def _compute_display_name(self):
+        result = super()._compute_display_name()
         for rec in self:
-            name = rec._name_get()
-            result.append((rec.id, name))
+            rec.display_name = rec._name_get()
         return result
 
     def _prepare_export_vals(self, include_activation_identifier=True):

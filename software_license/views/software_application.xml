@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_application_tree_view">
         <field name="name">software.application.tree@software_license</field>
         <field name="model">software.application</field>
@@ -29,31 +28,24 @@
                     string="Create License Template"
                     help="Create a new license and assign it as the template"
                     type="object"
-                    attrs="{'invisible': [
-                        '|',
-                        ('type', '!=', 'inhouse'),
-                        ('template_id', '!=', False),
-                    ]}"
+                    invisible="type != 'inhouse' or template_id != False"
                     class="btn-primary"
-                >
-                </button>
+                />
             </header>
             <page name="releases" position="after">
-                <page
-                    string="Licensing"
-                    name="licensing"
-                    attrs="{'invisible': [('type', '=', 'other')]}"
-                >
+                <page string="Licensing" name="licensing" invisible="type == 'other'">
                     <group name="main">
                         <group name="primary">
                             <field name="identifier" />
                             <field
                                 name="template_id"
-                                context="{'default_type': 'template', 'default_application_id': id}"
+                                context="{
+                                    'default_type': 'template',
+                                    'default_application_id': id
+                                }"
                             />
                         </group>
-                        <group name="secondary">
-                        </group>
+                        <group name="secondary" />
                     </group>
                 </page>
             </page>
@@ -73,5 +65,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
