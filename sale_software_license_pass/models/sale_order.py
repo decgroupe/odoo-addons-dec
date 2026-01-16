@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
         return result
 
     def action_cancel(self):
-        result = super(SaleOrder, self).action_cancel()
+        result = super().action_cancel()
         # When a sale person cancel a SO, he might not have the rights to write
         # on AP. But we need the system to create an activity on the AP (so
         # 'write' access), hence the `sudo`.

@@ -7,7 +7,6 @@ from odoo.addons.software_license_pass.tests.common import (
 
 
 class TestSaleSoftwareLicensePassActionView(TestSoftwareLicensePassActionViewCommon):
-
     def setUp(self):
         super().setUp()
         self.premiumpass_so = self.env.ref("sale_software_license_pass.premiumpass_so")

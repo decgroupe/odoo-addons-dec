@@ -1,15 +1,15 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2024
 
-from odoo.tests.common import TransactionCase, Form
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestSaleSoftwareLicensePass(TransactionCase):
-
     def _send_pass(self, pass_id):
         action = pass_id.action_send()
         wizard = (
-            self.env[action["res_model"]].with_context(action["context"]).create({})
+            self.env[action["res_model"]].with_context(**action["context"]).create({})
         )
         wizard.action_send_mail()
 
@@ -33,12 +33,35 @@ class TestSaleSoftwareLicensePass(TransactionCase):
         )
 
     def test_01_action_confirm_multiple(self):
+        """
+        Since Odoo 18.0, it is no more possible to confirm already confirmed
+        sale orders, so we mock the error message to be able to test the confirmation
+        of already confirmed SOs. Note that this is only for test purpose, in real
+        life this should never happen.
+        """
+
+        # override the `_confirmation_error_message` method to always return False
+        def confirmation_error_message(self):
+            return False
+
+        self.patch(
+            type(self.env["sale.order"]),
+            "_confirmation_error_message",
+            confirmation_error_message,
+        )
+
+        # the SO is already confirmed in the demo data, so the application pass is
+        # already created
         self.assertEqual(len(self.premiumpass_so.license_pass_ids), 1)
+        # reconfirming the SO should not create another pass
         self.premiumpass_so.action_confirm()
         self.assertEqual(len(self.premiumpass_so.license_pass_ids), 1)
+        # but forcing the creation should create another pass even if the SO is
+        # already confirmed
         self.premiumpass_so.with_context(
             force_create_application_pass=True
         ).action_confirm()
+        # now there should be 2 passes
         self.assertEqual(len(self.premiumpass_so.license_pass_ids), 2)
 
     def test_02_cancel_sale_order_with_draft_pass(self):

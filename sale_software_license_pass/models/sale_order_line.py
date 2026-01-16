@@ -39,20 +39,21 @@ class SaleOrderLine(models.Model):
                 # if the SO line creates a pass when the sale has already been
                 # confirmed, post a message on the order
                 if len(line.license_pass_ids) == 1:
-                    record_link = "<a href=# data-oe-model=%s data-oe-id=%d>%s</a>" % (
+                    record_link = "<a href=# data-oe-model=%s data-oe-id=%d>%s</a>" % (  # noqa: UP031
                         line.license_pass_ids._name,
                         line.license_pass_ids.id,
                         line.license_pass_ids.name,
                     )
-                    msg_body = _("Pass Created (%s): %s") % (
-                        line.product_id.name,
-                        record_link,
+                    msg_body = _(
+                        "Pass Created (%(product_name)s): %(link)s",
+                        product_name=line.product_id.name,
+                        link=record_link,
                     )
                     line.order_id.message_post(body=msg_body)
         return lines
 
     def write(self, vals):
-        result = super(SaleOrderLine, self).write(vals)
+        result = super().write(vals)
         # Changing the ordered quantity should change the maximum allowed of
         # hardware, whatever the SO state. It will be blocked by the super in
         # case of a locked sale order.
@@ -156,14 +157,15 @@ class SaleOrderLine(models.Model):
     @api.depends("product_id")
     def _compute_qty_delivered_method(self):
         """Automatically select dedicated method to compute delivered quantities."""
-        super(SaleOrderLine, self)._compute_qty_delivered_method()
+        res = super()._compute_qty_delivered_method()
         line_ids = self.filtered(lambda sol: sol.is_application_pass)
         for line in line_ids:
             line.qty_delivered_method = "application_pass"
+        return res
 
     @api.depends("license_pass_ids.state", "license_pass_ids.max_allowed_hardware")
     def _compute_qty_delivered(self):
-        super(SaleOrderLine, self)._compute_qty_delivered()
+        res = super()._compute_qty_delivered()
         line_ids = self.filtered(lambda sol: sol.is_application_pass)
         for line_id in line_ids:
             pass_ids = line_id.license_pass_ids.filtered(lambda x: x.state == "sent")
@@ -180,6 +182,7 @@ class SaleOrderLine(models.Model):
                     line_id.qty_delivered = line_id.product_uom_qty
                 else:
                     line_id.qty_delivered = 0
+        return res
 
     @api.depends("product_id.service_tracking")
     def _compute_is_application_pass(self):

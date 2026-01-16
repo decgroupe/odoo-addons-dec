@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="sale.order" id="premiumpass_so">
         <field name="partner_id" ref="base.res_partner_10" />
         <field name="state">draft</field>
@@ -59,5 +58,4 @@
         <field name="is_service" eval="True" />
         <field name="qty_delivered_method">manual</field>
     </record>
-
 </odoo>

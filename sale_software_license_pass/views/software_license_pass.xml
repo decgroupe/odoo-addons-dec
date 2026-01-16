@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_pass_tree_view">
-        <field name="name">software.license.pass.tree_pass@sale_software_license_pass</field>
+        <field
+            name="name"
+        >software.license.pass.tree_pass@sale_software_license_pass</field>
         <field name="model">software.license.pass</field>
         <field
             name="inherit_id"
@@ -34,5 +35,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

@@ -15,7 +15,7 @@ class ProductTemplate(models.Model):
         selection_add=[
             ("create_application_pass", "Create an application pass"),
         ],
-        ondelete={"block_confirm": "set default"},
+        ondelete={"create_application_pass": "set default"},
     )
 
     def write(self, vals):

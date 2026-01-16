@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template
         id="exception_application_pass_sale_cancellation"
         name="Message: Alert on application passes when sales orders are cancelled"
     >
-<div>
-    <p>
+        <div>
+            <p>
         Exception(s) occurred on the sale order(s):
         <t t-foreach="sale_orders" t-as="sale_order">
-            <a href="#" data-oe-model="sale.order" t-att-data-oe-id="sale_order.id">
-                <t t-esc="sale_order.name" />
-            </a>
-        </t>.
+                <a href="#" data-oe-model="sale.order" t-att-data-oe-id="sale_order.id">
+                    <t t-esc="sale_order.name" />
+                </a>
+            </t>.
         <br />
         Manual actions may be needed.
     </p>
-</div>
+        </div>
     </template>
-
 </odoo>
