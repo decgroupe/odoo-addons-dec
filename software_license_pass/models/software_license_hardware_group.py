@@ -66,7 +66,7 @@ class SoftwareLicenseHardwareGroup(models.Model):
         for rec in self:
             if rec.pass_id.hardware_ids:
                 rec.hardware_ids = rec.pass_id.hardware_ids.filtered(
-                    lambda x: x.name == rec.name
+                    lambda x, name=rec.name: x.name == name
                 )
                 if rec.hardware_ids:
                     rec.hardware_count = len(rec.hardware_ids)

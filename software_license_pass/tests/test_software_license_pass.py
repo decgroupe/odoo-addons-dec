@@ -8,7 +8,7 @@ from freezegun import freeze_time
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import new_test_user, Form
+from odoo.tests import Form, new_test_user
 from odoo.tests.common import TransactionCase
 
 
@@ -51,7 +51,7 @@ class TestSoftwareLicensePass(TransactionCase):
         pack_basic = self.env.ref("software_license_pass.sl_pack_basic")
         self.assertEqual(pack_basic.pass_count, 2)
         # add line to basic pack
-        line_id = self.pack_line.create(
+        _line_id = self.pack_line.create(
             {
                 "pack_id": pack_basic.id,
                 "application_id": self.env.ref("software_application.sa_brickgame").id,
@@ -72,11 +72,14 @@ class TestSoftwareLicensePass(TransactionCase):
 
         def try_edit(license_id, field_name, value):
             self.assertIn(field_name, self.software_license.PASS_LOCKED_FIELDS)
-            with self.assertRaisesRegex(
-                UserError,
-                r"It is forbidden to update these license's fields "
-                "when owned by a pass.*\n%s" % (field_name,),
-            ), self.cr.savepoint():
+            with (
+                self.assertRaisesRegex(
+                    UserError,
+                    rf"It is forbidden to update these license's fields "
+                    rf"when owned by a pass.*\n{field_name}",
+                ),
+                self.cr.savepoint(),
+            ):
                 license_id.write({field_name: value})
 
         self.assertEqual(len(self.software_license.PASS_LOCKED_FIELDS), 5)
@@ -102,18 +105,24 @@ class TestSoftwareLicensePass(TransactionCase):
         pass_basic1 = self.env.ref("software_license_pass.pass_basic1")
         license_id = pass_basic1.license_ids[0]
         # try delete with basic pass user
-        with self.assertRaisesRegex(
-            UserError,
-            r"It is forbidden to delete a license own by a pass.*\n%s"
-            % (pass_basic1.name,),
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                rf"It is forbidden to delete a "
+                rf"license own by a pass.*\n{pass_basic1.name}",
+            ),
+            self.cr.savepoint(),
+        ):
             license_id.with_user(self.pass_user).unlink()
         # try delete with manager pass user
-        with self.assertRaisesRegex(
-            UserError,
-            r"It is forbidden to delete a license own by a pass.*\n%s"
-            % (pass_basic1.name,),
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                rf"It is forbidden to delete a "
+                rf"license own by a pass.*\n{pass_basic1.name}",
+            ),
+            self.cr.savepoint(),
+        ):
             license_id.with_user(self.pass_manager).unlink()
         # try delete with super-manager pass user
         license_id.with_user(self.pass_supermanager).unlink()
@@ -126,7 +135,7 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertNotEqual(license_serial, pass_serial)
         self.assertEqual(
             license_id.display_name,
-            "[New Age] %s (%s for Basic)" % (license_serial, pass_serial),
+            f"[New Age] {license_serial} ({pass_serial} for Basic)",
         )
 
     def test_05_license_activation(self):
@@ -155,7 +164,7 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(license_id.pass_state, "draft")
         action = pass_basic2.with_user(self.pass_user).action_send()
         wizard = (
-            self.env[action["res_model"]].with_context(action["context"]).create({})
+            self.env[action["res_model"]].with_context(**action["context"]).create({})
         )
         wizard.action_send_mail()
         self.assertEqual(pass_basic2.state, "sent")
@@ -173,7 +182,7 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(license_id.pass_state, "draft")
         action = pass_basic2.with_user(self.pass_user).action_send()
         wizard = (
-            self.env[action["res_model"]].with_context(action["context"]).create({})
+            self.env[action["res_model"]].with_context(**action["context"]).create({})
         )
         wizard.action_send_mail()
         self.assertEqual(pass_basic2.state, "sent")
@@ -233,14 +242,20 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(pass_lic1.get_remaining_activation(), 1)
         self.assertEqual(pass_lic2.get_remaining_activation(), 2)
         # ..
-        with self.assertRaisesRegex(
-            ValidationError, r"Maximum hardware identifier count reached for pass"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                ValidationError, r"Maximum hardware identifier count reached for pass"
+            ),
+            self.cr.savepoint(),
+        ):
             pass_lic1.activate("device_uuid_4/3")
         self.assertEqual(pass_lic1.get_remaining_activation(), 1)
-        with self.assertRaisesRegex(
-            ValidationError, r"Maximum hardware identifier count reached for pass"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                ValidationError, r"Maximum hardware identifier count reached for pass"
+            ),
+            self.cr.savepoint(),
+        ):
             pass_lic1.activate("device_uuid_4/3")
         # check unlimited activation
         fitness_app = self.env.ref("software_application.sa_myfitnessapp")
@@ -275,7 +290,7 @@ class TestSoftwareLicensePass(TransactionCase):
         pass_lic2.activate("device_uuid_3/3")
         # duplicate existing pass
         new_pass1 = pass_prm1.copy()
-        self.assertEqual(new_pass1.serial, "%s (copy)" % (pass_prm1.serial))
+        self.assertEqual(new_pass1.serial, f"{pass_prm1.serial} (copy)")
         self.assertEqual(len(new_pass1.license_ids), 0)
 
     @freeze_time("2023-12-01 12:00:00")
@@ -357,11 +372,14 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(pass_prm3.partner_id, self.env.ref("base.res_partner_4"))
         # Ready Mat, Edith Sanchez
         pass_prm3.partner_referral_id = self.env.ref("base.res_partner_address_14")
-        with self.assertRaisesRegex(
-            ValidationError,
-            r"The referral partner must be a hierarchical "
-            "descendant of the main partner!",
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                ValidationError,
+                r"The referral partner must be a hierarchical "
+                "descendant of the main partner!",
+            ),
+            self.cr.savepoint(),
+        ):
             # Gemini Furniture, Soham Palmer
             pass_prm3.partner_referral_id = self.env.ref("base.res_partner_address_11")
 
@@ -406,10 +424,10 @@ class TestSoftwareLicensePass(TransactionCase):
         self.assertEqual(nf_pass_ids, nf_id.pass_ids)
         self.assertEqual(cd_pass_ids, cd_id.pass_ids)
         # check pass state
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         default_passe_ids = az_id.pass_ids
         self.assertEqual(len(default_passe_ids), 2)
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         pass_ids = az_id.with_context(pass_sent_only=True).pass_ids
         self.assertEqual(len(pass_ids), 1)
 
@@ -421,65 +439,65 @@ class TestSoftwareLicensePass(TransactionCase):
         # Azure Interior, Nicole Ford
         nf_id = self.env.ref("base.res_partner_address_16")
         # check Brandon status
-        bf_id.invalidate_cache()
+        bf_id.invalidate_recordset()
         default_license_ids = bf_id.license_ids
         self.assertEqual(len(default_license_ids), 3)
-        bf_id.invalidate_cache()
+        bf_id.invalidate_recordset()
         all_license_ids = bf_id.with_context(include_pass_licenses=True).license_ids
         self.assertEqual(len(all_license_ids), 7)
-        bf_id.invalidate_cache()
+        bf_id.invalidate_recordset()
         nopass_license_ids = bf_id.with_context(include_pass_licenses=False).license_ids
         self.assertEqual(len(nopass_license_ids), 3)
         # check Nicole status
-        nf_id.invalidate_cache()
+        nf_id.invalidate_recordset()
         default_license_ids = nf_id.license_ids
         self.assertEqual(len(default_license_ids), 3)
-        nf_id.invalidate_cache()
+        nf_id.invalidate_recordset()
         all_license_ids = nf_id.with_context(include_pass_licenses=True).license_ids
         self.assertEqual(len(all_license_ids), 7)
-        nf_id.invalidate_cache()
+        nf_id.invalidate_recordset()
         nopass_license_ids = nf_id.with_context(include_pass_licenses=False).license_ids
         self.assertEqual(len(nopass_license_ids), 3)
         # check Azure status
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         default_license_ids = az_id.license_ids
         self.assertEqual(len(default_license_ids), 3)
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         all_license_ids = az_id.with_context(include_pass_licenses=True).license_ids
         self.assertEqual(len(all_license_ids), 7)
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         nopass_license_ids = az_id.with_context(include_pass_licenses=False).license_ids
         self.assertEqual(len(nopass_license_ids), 3)
         # will now consider Azure Interior is no more a company
         az_id.is_company = False
         # check new Brandon status
-        bf_id.invalidate_cache()
+        bf_id.invalidate_recordset()
         default_license_ids = bf_id.license_ids
         self.assertEqual(len(default_license_ids), 2)
-        bf_id.invalidate_cache()
+        bf_id.invalidate_recordset()
         all_license_ids = bf_id.with_context(include_pass_licenses=True).license_ids
         self.assertEqual(len(all_license_ids), 5)
-        bf_id.invalidate_cache()
+        bf_id.invalidate_recordset()
         nopass_license_ids = bf_id.with_context(include_pass_licenses=False).license_ids
         self.assertEqual(len(nopass_license_ids), 2)
         # check new Nicole status
-        nf_id.invalidate_cache()
+        nf_id.invalidate_recordset()
         default_license_ids = nf_id.license_ids
         self.assertEqual(len(default_license_ids), 1)
-        nf_id.invalidate_cache()
+        nf_id.invalidate_recordset()
         all_license_ids = nf_id.with_context(include_pass_licenses=True).license_ids
         self.assertEqual(len(all_license_ids), 1)
-        nf_id.invalidate_cache()
+        nf_id.invalidate_recordset()
         nopass_license_ids = nf_id.with_context(include_pass_licenses=False).license_ids
         self.assertEqual(len(nopass_license_ids), 1)
         # check new Azure status
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         default_license_ids = az_id.license_ids
         self.assertEqual(len(default_license_ids), 3)
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         all_license_ids = az_id.with_context(include_pass_licenses=True).license_ids
         self.assertEqual(len(all_license_ids), 7)
-        az_id.invalidate_cache()
+        az_id.invalidate_recordset()
         nopass_license_ids = az_id.with_context(include_pass_licenses=False).license_ids
         self.assertEqual(len(nopass_license_ids), 3)
 
@@ -487,20 +505,19 @@ class TestSoftwareLicensePass(TransactionCase):
         # Lumber Inc
         li_id = self.env.ref("base.res_partner_18")
         # Lumber Inc, Lorraine Douglas
-        ld_id = self.env.ref("base.res_partner_address_30")
+        _ld_id = self.env.ref("base.res_partner_address_30")
         # check Lumber Inc status
-        li_id.invalidate_cache()
+        li_id.invalidate_recordset()
         default_license_ids = li_id.license_ids
         self.assertEqual(len(default_license_ids), 0)
-        li_id.invalidate_cache()
+        li_id.invalidate_recordset()
         all_license_ids = li_id.with_context(include_pass_licenses=True).license_ids
         self.assertEqual(len(all_license_ids), 5)
-        li_id.invalidate_cache()
+        li_id.invalidate_recordset()
         nopass_license_ids = li_id.with_context(include_pass_licenses=False).license_ids
         self.assertEqual(len(nopass_license_ids), 0)
-        li_id.invalidate_cache()
+        li_id.invalidate_recordset()
         all_sent_license_ids = li_id.with_context(
             include_pass_licenses=True, pass_sent_only=True
         ).license_ids
         self.assertEqual(len(all_sent_license_ids), 2)
-        print(1)

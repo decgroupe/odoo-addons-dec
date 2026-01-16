@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_hardware_group_tree_view">
         <field
             name="name"
         >software.license.hardware.group.tree@software_license_pass</field>
         <field name="model">software.license.hardware.group</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="device_fqdn" />
                 <field name="last_validation_date" />
@@ -19,7 +18,7 @@
                     confirm="Are you sure you want deactivate this hardware identifier?"
                     icon="fa-trash"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -30,11 +29,9 @@
         <field name="model">software.license.hardware.group</field>
         <field name="arch" type="xml">
             <form string="Hardware Group">
-                <header>
-                </header>
+                <header />
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                    </div>
+                    <div class="oe_button_box" name="button_box" />
                     <group name="title">
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only" />
@@ -85,7 +82,7 @@
     >
         <field name="name">Hardware Groups</field>
         <field name="res_model">software.license.hardware.group</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field name="view_id" ref="software_license_hardware_group_tree_view" />
         <field
             name="search_view_id"
@@ -98,7 +95,7 @@
         id="act_window_view_software_license_hardware_group_tree"
     >
         <field name="sequence" eval="1" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="software_license_hardware_group_tree_view" />
         <field name="act_window_id" ref="act_window_software_license_hardware_group" />
     </record>
@@ -112,5 +109,4 @@
         <field name="view_id" ref="software_license_hardware_group_form_view" />
         <field name="act_window_id" ref="act_window_software_license_hardware_group" />
     </record>
-
 </odoo>

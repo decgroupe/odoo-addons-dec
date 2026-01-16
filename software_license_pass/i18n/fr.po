@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-04 14:17+0000\n"
-"PO-Revision-Date: 2025-04-04 16:17+0200\n"
+"POT-Creation-Date: 2026-06-03 11:09+0000\n"
+"PO-Revision-Date: 2026-06-03 16:13+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,26 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: software_license_pass
-#: model:mail.template,subject:software_license_pass.email_template_pass_send
-msgid ""
-"${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or "
-"'n/a' })"
-msgstr ""
-"${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or "
-"'n/d' })"
-
-#. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license.py:0
-#, python-format
-msgid "%s (%s for %s)"
-msgstr "%s (%s pour %s)"
+msgid "%(name)s (%(pass_serial)s for %(pack_name)s)"
+msgstr "%(name)s (%(pass_serial)s pour %(pack_name)s)"
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "%s (copy)"
 msgstr "%s (copie)"
 
@@ -76,6 +67,13 @@ msgstr "<span class=\"o_stat_text\">Licences</span>"
 #: model_terms:ir.ui.view,arch_db:software_license_pass.view_partner_form
 msgid "<span class=\"o_stat_text\">Passes</span>"
 msgstr "<span class=\"o_stat_text\">Pass</span>"
+
+#. module: software_license_pass
+#: model:mail.template,body_html:software_license_pass.email_template_pass_send
+msgid ""
+"<t t-call=\"software_license_pass.view_email_template_pass_send\"/>\n"
+"        "
+msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_needaction
@@ -136,12 +134,17 @@ msgid "Application Packs"
 msgstr "Pack d'applications"
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
 #: model:ir.model,name:software_license_pass.model_software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
-#, python-format
 msgid "Application Pass"
 msgstr "Pass d'applications"
+
+#. module: software_license_pass
+#: model:mail.template,name:software_license_pass.email_template_pass_send
+msgid "Application Pass: Send by email"
+msgstr "Pass d'applications: Envoyer par e-mail"
 
 #. module: software_license_pass
 #: model:ir.actions.act_window,name:software_license_pass.act_window_software_license_pass
@@ -248,9 +251,6 @@ msgid "Device FQDN"
 msgstr "FQDN de l'appareil"
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__display_name
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license__display_name
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__display_name
@@ -281,11 +281,6 @@ msgstr "Fonctionnalités"
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_follower_ids
 msgid "Followers"
 msgstr "Abonnés"
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Abonnés (Canaux)"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_partner_ids
@@ -331,14 +326,16 @@ msgid "Hardware identifiers attached to our licences"
 msgstr "Identifiants matériels attachés aux licences"
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.view_email_template_pass_send
 msgid "Here is your"
 msgstr "Voici votre"
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__id
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license__id
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__id
@@ -368,7 +365,6 @@ msgstr "Identifiant ou FQDN"
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_needaction
-#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si coché, de nouveaux messages demandent votre attention."
 
@@ -414,8 +410,8 @@ msgid "Is Follower"
 msgstr "Est un abonné"
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license.py:0
-#, python-format
 msgid ""
 "It is forbidden to delete a license own by a pass:\n"
 "{}"
@@ -424,8 +420,8 @@ msgstr ""
 "{}"
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license.py:0
-#, python-format
 msgid ""
 "It is forbidden to update these license's fields when owned by a pass:\n"
 "{}"
@@ -433,17 +429,6 @@ msgstr ""
 "Il est interdit de mettre à jour ces champs de licences lorsqu'elles sont "
 "détenues par un pass :\n"
 "{}"
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_res_partner____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__write_uid
@@ -505,18 +490,13 @@ msgid "Line of the pack used to generate this license"
 msgstr "Ligne du pack utilisée pour générer cette licence"
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Pièce jointe principale"
-
-#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__max_allowed_hardware
 msgid "Maximum Activation Count"
 msgstr "Nombre maximum d’activations"
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "Maximum hardware identifier count reached for pass %s"
 msgstr "Nombre maximal d’identificateurs matériels atteint pour le pass %s"
 
@@ -541,8 +521,8 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "New"
 msgstr "Nouveau"
 
@@ -596,18 +576,13 @@ msgstr "Nombre d'erreurs"
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nombre de messages exigeant une action"
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Nombre de messages avec des erreurs d'envoi"
-
-#. module: software_license_pass
-#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Nombre de messages non lus"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license__pack_id
@@ -891,8 +866,8 @@ msgstr ""
 "Planifiée : activités futures."
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid ""
 "The referral partner must be a hierarchical descendant of the main partner!"
 msgstr ""
@@ -925,16 +900,6 @@ msgstr "Type d'activité d'exception enregistrée."
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__serial
 msgid "Unique serial used as an authorization identifier"
 msgstr "Numéro de série unique utilisé comme identifiant d'autorisation"
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_unread
-msgid "Unread Messages"
-msgstr "Messages non lus"
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Compteur de messages non lus"
 
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__website_message_ids
@@ -1702,10 +1667,41 @@ msgid "up to"
 msgstr "jusqu'à"
 
 #. module: software_license_pass
+#: model:mail.template,subject:software_license_pass.email_template_pass_send
+msgid ""
+"{{ object.company_id.name }} {{ ctx['model_description'] }} (Ref "
+"{{ object.name or 'n/a'  }})"
+msgstr ""
+"{{ object.company_id.name }} {{ ctx['model_description'] }} (Réf. "
+"{{ object.name ou « n/a » }})"
+
+#. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "🚨 Auto: To Send"
 msgstr "🚨 Auto : À Envoyer"
+
+#, python-format
+#~ msgid "%s (%s for %s)"
+#~ msgstr "%s (%s pour %s)"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Abonnés (Canaux)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Pièce jointe principale"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Nombre de messages non lus"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Messages non lus"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Compteur de messages non lus"
 
 #~ msgid "${(object.name or '').replace('/','_')}"
 #~ msgstr "${(object.name or '').replace('/','_')}"
@@ -1714,40 +1710,41 @@ msgstr "🚨 Auto : À Envoyer"
 #~ "<div style=\"margin: 0px; padding: 0px;\">\n"
 #~ "                <p style=\"margin: 0px; padding: 0px; font-size: 13px;"
 #~ "\">\n"
-#~ "                    Dear ${object.partner_referral_id.name or object."
-#~ "partner_id.name}\n"
+#~ "                    Dear ${object.partner_referral_id.name or "
+#~ "object.partner_id.name}\n"
 #~ "                    % if object.partner_id.unfenced_commercial_partner_id "
-#~ "and object.partner_id.unfenced_commercial_partner_id != object."
-#~ "partner_id:\n"
-#~ "                        (${object.partner_id."
-#~ "unfenced_commercial_partner_id.name})\n"
+#~ "and object.partner_id.unfenced_commercial_partner_id != "
+#~ "object.partner_id:\n"
+#~ "                        ($"
+#~ "{object.partner_id.unfenced_commercial_partner_id.name})\n"
 #~ "                    % endif\n"
 #~ "                    <br/><br/>\n"
-#~ "                    Here is your ${ctx['model_description']} "
-#~ "<strong>${object.name}</strong>\n"
+#~ "                    Here is your ${ctx['model_description']} <strong>$"
+#~ "{object.name}</strong>\n"
 #~ "                    % if object.origin:\n"
 #~ "                        (with reference: ${object.origin})\n"
 #~ "                    % endif\n"
 #~ "                    from ${object.company_id.name}.\n"
 #~ "                    <br/>\n"
 #~ "                    <p>\n"
-#~ "                        This pass allows you to activate up to ${object."
-#~ "max_allowed_hardware} devices and to access following applications:\n"
+#~ "                        This pass allows you to activate up to $"
+#~ "{object.max_allowed_hardware} devices and to access following "
+#~ "applications:\n"
 #~ "                        <ul>\n"
 #~ "                        % for license_id in object.license_ids:\n"
 #~ "                            <li>\n"
-#~ "                                <span style=\"margin-"
-#~ "left:5px\">${license_id.application_id.name}</span>\n"
+#~ "                                <span style=\"margin-left:5px\">$"
+#~ "{license_id.application_id.name}</span>\n"
 #~ "                    % if license_id.application_id.product_name:\n"
-#~ "                        <span style=\"margin-left:5px\">${license_id."
-#~ "application_id.product_name}</span>\n"
+#~ "                        <span style=\"margin-left:5px\">$"
+#~ "{license_id.application_id.product_name}</span>\n"
 #~ "                    % endif\n"
 #~ "                </li>\n"
 #~ "            % endfor\n"
 #~ "            </ul>\n"
 #~ "            % if object.expiration_date:\n"
-#~ "            <i>This access will be valid until ${format_date(object."
-#~ "expiration_date)}.</i>\n"
+#~ "            <i>This access will be valid until $"
+#~ "{format_date(object.expiration_date)}.</i>\n"
 #~ "            <br/>\n"
 #~ "            % endif\n"
 #~ "            <br/>\n"
@@ -1765,40 +1762,41 @@ msgstr "🚨 Auto : À Envoyer"
 #~ "<div style=\"margin: 0px; padding: 0px;\">\n"
 #~ "                <p style=\"margin: 0px; padding: 0px; font-size: 13px;"
 #~ "\">\n"
-#~ "                    Bonjour ${object.partner_referral_id.name or object."
-#~ "partner_id.name}\n"
+#~ "                    Bonjour ${object.partner_referral_id.name or "
+#~ "object.partner_id.name}\n"
 #~ "                    % if object.partner_id.unfenced_commercial_partner_id "
-#~ "and object.partner_id.unfenced_commercial_partner_id != object."
-#~ "partner_id:\n"
-#~ "                        (${object.partner_id."
-#~ "unfenced_commercial_partner_id.name})\n"
+#~ "and object.partner_id.unfenced_commercial_partner_id != "
+#~ "object.partner_id:\n"
+#~ "                        ($"
+#~ "{object.partner_id.unfenced_commercial_partner_id.name})\n"
 #~ "                    % endif\n"
 #~ "                    <br/><br/>\n"
-#~ "                    Voici votre ${ctx['model_description']} "
-#~ "<strong>${object.name}</strong>\n"
+#~ "                    Voici votre ${ctx['model_description']} <strong>$"
+#~ "{object.name}</strong>\n"
 #~ "                    % if object.origin:\n"
 #~ "                        (avec comme référence: ${object.origin})\n"
 #~ "                    % endif\n"
 #~ "                    from ${object.company_id.name}.\n"
 #~ "                    <br/>\n"
 #~ "                    <p>\n"
-#~ "                        Ce « pass » permet d'activer jusqu'à ${object."
-#~ "max_allowed_hardware} appareils et d'accéder aux applications suivantes:\n"
+#~ "                        Ce « pass » permet d'activer jusqu'à $"
+#~ "{object.max_allowed_hardware} appareils et d'accéder aux applications "
+#~ "suivantes:\n"
 #~ "                        <ul>\n"
 #~ "                        % for license_id in object.license_ids:\n"
 #~ "                            <li>\n"
-#~ "                                <span style=\"margin-"
-#~ "left:5px\">${license_id.application_id.name}</span>\n"
+#~ "                                <span style=\"margin-left:5px\">$"
+#~ "{license_id.application_id.name}</span>\n"
 #~ "                    % if license_id.application_id.product_name:\n"
-#~ "                        <span style=\"margin-left:5px\">${license_id."
-#~ "application_id.product_name}</span>\n"
+#~ "                        <span style=\"margin-left:5px\">$"
+#~ "{license_id.application_id.product_name}</span>\n"
 #~ "                    % endif\n"
 #~ "                </li>\n"
 #~ "            % endfor\n"
 #~ "            </ul>\n"
 #~ "            % if object.expiration_date:\n"
-#~ "            <i>Cet accès sera valide jusqu'au ${format_date(object."
-#~ "expiration_date)}.</i>\n"
+#~ "            <i>Cet accès sera valide jusqu'au $"
+#~ "{format_date(object.expiration_date)}.</i>\n"
 #~ "            <br/>\n"
 #~ "            % endif\n"
 #~ "            <br/>\n"

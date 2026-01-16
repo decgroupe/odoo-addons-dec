@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_pack_line_form_view">
         <field name="name">software.license.pack.line.form@software_license_pass</field>
         <field name="model">software.license.pack.line</field>
@@ -10,12 +9,12 @@
                     <field name="application_id" />
                     <field
                         name="license_template_id"
-                        context="{'default_type': 'template', 'default_application_id': application_id}"
+                        context="{
+                            'default_type': 'template',
+                            'default_application_id': application_id
+                        }"
                     />
-                    <field
-                        name="feature_ids"
-                        attrs="{'invisible': [('license_template_id', '=', False)]}"
-                    />
+                    <field name="feature_ids" invisible="not license_template_id" />
                 </group>
             </form>
         </field>
@@ -25,14 +24,16 @@
         <field name="name">software.license.pack.line.tree@software_license_pass</field>
         <field name="model">software.license.pack.line</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="application_id" />
                 <field
                     name="license_template_id"
-                    context="{'default_type': 'template', 'default_application_id': application_id}"
+                    context="{
+                        'default_type': 'template',
+                        'default_application_id': application_id
+                    }"
                 />
-            </tree>
+            </list>
         </field>
     </record>
-
 </odoo>

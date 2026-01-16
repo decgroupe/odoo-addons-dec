@@ -14,12 +14,12 @@ class SoftwareLicenseHardware(models.Model):
         store=True,
     )
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        if record.license_id.pass_id:
-            record.license_id.pass_id._check_max_allowed_hardware()
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
+        for rec, _vals in zip(record_ids, vals_list, strict=True):
+            rec.license_id.pass_id._check_max_allowed_hardware()
+        return record_ids
 
     def write(self, vals):
         res = super().write(vals)

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-04 14:17+0000\n"
-"PO-Revision-Date: 2025-04-04 14:17+0000\n"
+"POT-Creation-Date: 2026-06-03 11:09+0000\n"
+"PO-Revision-Date: 2026-06-03 11:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,21 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: software_license_pass
-#: model:mail.template,subject:software_license_pass.email_template_pass_send
-msgid ""
-"${object.company_id.name} ${ctx['model_description']} (Ref ${object.name or "
-"'n/a' })"
-msgstr ""
-
-#. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license.py:0
-#, python-format
-msgid "%s (%s for %s)"
+msgid "%(name)s (%(pass_serial)s for %(pack_name)s)"
 msgstr ""
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "%s (copy)"
 msgstr ""
 
@@ -62,6 +55,13 @@ msgstr ""
 #. module: software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.view_partner_form
 msgid "<span class=\"o_stat_text\">Passes</span>"
+msgstr ""
+
+#. module: software_license_pass
+#: model:mail.template,body_html:software_license_pass.email_template_pass_send
+msgid ""
+"<t t-call=\"software_license_pass.view_email_template_pass_send\"/>\n"
+"        "
 msgstr ""
 
 #. module: software_license_pass
@@ -122,11 +122,16 @@ msgid "Application Packs"
 msgstr ""
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
 #: model:ir.model,name:software_license_pass.model_software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.software_license_pass_form_view
-#, python-format
 msgid "Application Pass"
+msgstr ""
+
+#. module: software_license_pass
+#: model:mail.template,name:software_license_pass.email_template_pass_send
+msgid "Application Pass: Send by email"
 msgstr ""
 
 #. module: software_license_pass
@@ -232,9 +237,6 @@ msgid "Device FQDN"
 msgstr ""
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__display_name
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license__display_name
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__display_name
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__display_name
@@ -262,11 +264,6 @@ msgstr ""
 #. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: software_license_pass
@@ -313,14 +310,16 @@ msgid "Hardware identifiers attached to our licences"
 msgstr ""
 
 #. module: software_license_pass
+#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: software_license_pass
 #: model_terms:ir.ui.view,arch_db:software_license_pass.view_email_template_pass_send
 msgid "Here is your"
 msgstr ""
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_res_partner__id
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license__id
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack__id
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line__id
@@ -350,7 +349,6 @@ msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_needaction
-#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -391,30 +389,19 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license.py:0
-#, python-format
 msgid ""
 "It is forbidden to delete a license own by a pass:\n"
 "{}"
 msgstr ""
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license.py:0
-#, python-format
 msgid ""
 "It is forbidden to update these license's fields when owned by a pass:\n"
 "{}"
-msgstr ""
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_res_partner____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_hardware_group____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pack_line____last_update
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: software_license_pass
@@ -475,18 +462,13 @@ msgid "Line of the pack used to generate this license"
 msgstr ""
 
 #. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_main_attachment_id
-msgid "Main Attachment"
-msgstr ""
-
-#. module: software_license_pass
 #: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__max_allowed_hardware
 msgid "Maximum Activation Count"
 msgstr ""
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "Maximum hardware identifier count reached for pass %s"
 msgstr ""
 
@@ -511,10 +493,8 @@ msgid "Name"
 msgstr ""
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#: code:addons/software_license_pass/models/software_license_pass.py:0
-#: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "New"
 msgstr ""
 
@@ -568,17 +548,12 @@ msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: software_license_pass
-#: model:ir.model.fields,help:software_license_pass.field_software_license_pass__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: software_license_pass
@@ -857,8 +832,8 @@ msgid ""
 msgstr ""
 
 #. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid ""
 "The referral partner must be a hierarchical descendant of the main partner!"
 msgstr ""
@@ -888,16 +863,6 @@ msgstr ""
 #. module: software_license_pass
 #: model:ir.model.fields,help:software_license_pass.field_software_license_pass__serial
 msgid "Unique serial used as an authorization identifier"
-msgstr ""
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: software_license_pass
-#: model:ir.model.fields,field_description:software_license_pass.field_software_license_pass__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: software_license_pass
@@ -1666,7 +1631,14 @@ msgid "up to"
 msgstr ""
 
 #. module: software_license_pass
+#: model:mail.template,subject:software_license_pass.email_template_pass_send
+msgid ""
+"{{ object.company_id.name }} {{ ctx['model_description'] }} (Ref {{ "
+"object.name or 'n/a'  }})"
+msgstr ""
+
+#. module: software_license_pass
+#. odoo-python
 #: code:addons/software_license_pass/models/software_license_pass.py:0
-#, python-format
 msgid "🚨 Auto: To Send"
 msgstr ""

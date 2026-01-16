@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="software.license.pack" id="sl_pack_basic">
         <field name="name">Basic</field>
     </record>
@@ -43,5 +42,4 @@
         <field name="pack_id" ref="sl_pack_premium" />
         <field name="application_id" ref="software_application.sa_newage" />
     </record>
-
 </odoo>

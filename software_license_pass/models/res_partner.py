@@ -54,7 +54,7 @@ class ResPartner(models.Model):
 
     def _compute_license(self):
         # self_nopass = self.with_context(include_pass_licenses=False)
-        return super(ResPartner, self)._compute_license()
+        return super()._compute_license()
 
     def _get_license_default_domain(self):
         res = super()._get_license_default_domain()
@@ -73,4 +73,3 @@ class ResPartner(models.Model):
             # exclude licenses from passes
             res.append(("pass_id", "=", False))
         return res
-

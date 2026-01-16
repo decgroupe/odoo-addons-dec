@@ -5,7 +5,6 @@ from .common import TestSoftwareLicensePassActionViewCommon
 
 
 class TestSoftwareLicensePassActionView(TestSoftwareLicensePassActionViewCommon):
-
     def test_01_software_license_pass_action_view(self):
         self._test_action_view_sm_records(self.model_software_license_pass)
 

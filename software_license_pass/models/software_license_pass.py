@@ -172,14 +172,15 @@ class SoftwareLicensePass(models.Model):
         ),
     ]
 
-    @api.model
-    def create(self, values):
-        if not values.get("name", False) or values["name"] == _("New"):
-            values["name"] = self.env["ir.sequence"].next_by_code(
-                "software.license.pass"
-            ) or _("New")
-        app_pass = super(SoftwareLicensePass, self).create(values)
-        return app_pass
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("name", False) or vals["name"] == _("New"):
+                vals["name"] = self.env["ir.sequence"].next_by_code(
+                    "software.license.pass"
+                ) or _("New")
+        record_ids = super().create(vals_list)
+        return record_ids
 
     def write(self, vals):
         self._batch_license_write(vals)
@@ -192,7 +193,7 @@ class SoftwareLicensePass(models.Model):
             default = {}
         if not default.get("serial"):
             default.update(serial=_("%s (copy)") % (self.serial))
-        return super(SoftwareLicensePass, self).copy(default)
+        return super().copy(default)
 
     def _batch_license_write(self, vals):
         licenses_vals = {}
@@ -317,7 +318,7 @@ class SoftwareLicensePass(models.Model):
         form_id = self.env.ref("mail.email_compose_message_wizard_form", False)
         ctx = {
             "default_model": "software.license.pass",
-            "default_res_id": self.id,
+            "default_res_ids": [self.id],
             "default_use_template": bool(template_id.id),
             "default_template_id": template_id.id,
             "default_composition_mode": "comment",
@@ -400,18 +401,13 @@ class SoftwareLicensePass(models.Model):
     )
     def _compute_hardware_group_ids(self):
         _logger.debug("Processing _compute_hardware_group_ids")
-        hardware_data = self.env["software.license.hardware"].read_group(
+        hardware_data = self.env["software.license.hardware"]._read_group(
             domain=[("pass_id", "in", self.ids)],
-            fields=["name"],
             groupby=["name", "device_fqdn", "pass_id"],
-            lazy=False,
+            aggregates=["__count"],
         )
         for rec in self:
-            local_data = [
-                (d["name"], d["device_fqdn"])
-                for d in hardware_data
-                if d["pass_id"][0] == rec.id
-            ]
+            local_data = [(d[0], d[1]) for d in hardware_data if d[2].id == rec.id]
             to_remove = self.env["software.license.hardware.group"]
             for hardware_group_id in rec.hardware_group_ids:
                 couple = (hardware_group_id.name, hardware_group_id.device_fqdn)

@@ -45,7 +45,7 @@ class SoftwareLicense(models.Model):
     def _check_pass_editing(self, vals):
         if self.env.context.get("override_from_pass"):
             return
-        for rec in self.filtered("pass_id"):
+        for _rec in self.filtered("pass_id"):
             locked_fields = []
             for key in list(vals):
                 if key in self.PASS_LOCKED_FIELDS:
@@ -63,7 +63,7 @@ class SoftwareLicense(models.Model):
         return super().write(vals)
 
     def unlink(self):
-        if not self.user_has_groups("software.group_software_supermanager"):
+        if not self.env.user.has_group("software.group_software_supermanager"):
             license_id_from_pass = self.filtered("pass_id")
             if license_id_from_pass:
                 pass_names = [x.name for x in license_id_from_pass.mapped("pass_id")]
@@ -78,7 +78,12 @@ class SoftwareLicense(models.Model):
         res = super()._name_get()
         if self.pack_id:
             pack_name = self.pack_id.display_name
-            res = _("%s (%s for %s)") % (res, self.pass_id.serial, pack_name)
+            res = _(
+                "%(name)s (%(pass_serial)s for %(pack_name)s)",
+                name=res,
+                pass_serial=self.pass_id.serial,
+                pack_name=pack_name,
+            )
         return res
 
     def _get_template_id(self):
@@ -91,9 +96,10 @@ class SoftwareLicense(models.Model):
 
     @api.depends("pass_id", "pass_id.serial")
     def _compute_activation_identifier(self):
-        super()._compute_activation_identifier()
+        res = super()._compute_activation_identifier()
         for rec in self.filtered("pass_id"):
             rec.activation_identifier = rec.pass_id.serial
+        return res
 
     @api.depends("pass_id", "pass_id.state")
     def _compute_pass_state(self):
