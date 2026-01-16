@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2023
 
-from odoo import _, api, fields, models
+from odoo import fields, models
 
 
 class SoftwareLicense(models.Model):
