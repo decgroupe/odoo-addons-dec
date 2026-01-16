@@ -7,7 +7,6 @@ import odoo.tests
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestSoftwareLicenseTokenHttp(odoo.tests.HttpCase):
-
     def setUp(self):
         super().setUp()
 
@@ -31,13 +30,13 @@ class TestSoftwareLicenseTokenHttp(odoo.tests.HttpCase):
         attachment_id = self._get_attachment(added_hardware_id)[0]
         self.assertEqual(
             action["url"],
-            "/web/content/%d?download=true" % attachment_id.id,
+            f"/web/content/{attachment_id.id}?download=true",
         )
         res_binary = self.url_open(action["url"])
         # real status is 403 but this route hookthe result using `_response_by_status`
         self.assertEqual(res_binary.status_code, 404)
         # for public access, we need an access token
         attachment_id.generate_access_token()
-        public_url = action["url"] + "&access_token=%s" % attachment_id.access_token
+        public_url = action["url"] + f"&access_token={attachment_id.access_token}"
         res_binary = self.url_open(public_url)
         self.assertEqual(res_binary.status_code, 200)

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_hardware_tree_view">
         <field name="name">software.license.hardware.tree@software_license_token</field>
         <field name="model">software.license.hardware</field>
@@ -37,5 +36,4 @@
             </group>
         </field>
     </record>
-
 </odoo>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_license_tree_view">
         <field name="name">software.license.tree@software_license_token</field>
         <field name="model">software.license</field>
@@ -21,16 +20,9 @@
         <field name="inherit_id" ref="software_license.software_license_form_view" />
         <field name="arch" type="xml">
             <group name="primary" position="inside">
-                <field
-                    name="max_allowed_hardware"
-                    attrs="{'invisible': [('type', '!=', 'standard')]}"
-                />
-                <field
-                    name="expiration_date"
-                    attrs="{'invisible': [('type', '!=', 'standard')]}"
-                />
+                <field name="max_allowed_hardware" invisible="type != 'standard'" />
+                <field name="expiration_date" invisible="type != 'standard'" />
             </group>
         </field>
     </record>
-
 </odoo>

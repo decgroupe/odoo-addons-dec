@@ -30,12 +30,13 @@ class SoftwareLicenseHardware(models.Model):
         "will be required to continue using the application.",
     )
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        record.license_id._check_max_allowed_hardware()
-        record.license_id._check_expiration_date()
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
+        license_ids = record_ids.mapped("license_id")
+        license_ids._check_max_allowed_hardware()
+        license_ids._check_expiration_date()
+        return record_ids
 
     def write(self, vals):
         res = super().write(vals)
@@ -68,10 +69,7 @@ class SoftwareLicenseHardware(models.Model):
     def _get_license_data(self):
         # create a header to help identify this license file when opening it
         # with a text editor
-        header = "# {0} License (id: {1})".format(
-            self.license_id.application_id.name,
-            self.license_id.application_id.identifier,
-        )
+        header = f"# {self.license_id.application_id.name} License (id: {self.license_id.application_id.identifier})"  # noqa: E501
         # base data
         base = self._prepare_export_vals()
         # convert python dict to json string
@@ -84,7 +82,6 @@ class SoftwareLicenseHardware(models.Model):
 
         # append encrypted data only if the application owns a public key
         if self.license_id.application_id.public_key:
-
             key = RSA.import_key(self.license_id.application_id.public_key)
             session_key = get_random_bytes(16)
 

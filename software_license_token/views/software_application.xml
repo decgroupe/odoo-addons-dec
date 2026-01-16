@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_application_form_view">
         <field name="name">software.application.form@software_license_token</field>
         <field name="model">software.application</field>
@@ -15,23 +14,12 @@
                     string="Generate Keys"
                     help="Create a new public/private key pair"
                     type="object"
-                    attrs="{'invisible': [
-                        '|',
-                            ('type', '!=', 'inhouse'),
-                            '&amp;',
-                                ('private_key', '!=', False),
-                                ('public_key', '!=', False),
-                    ]}"
+                    invisible="type != 'inhouse' or (private_key and public_key)"
                     class="btn-primary"
-                >
-                </button>
+                />
             </header>
             <page name="licensing" position="after">
-                <page
-                    name="token"
-                    string="Keys"
-                    attrs="{'invisible': [('type', '!=', 'inhouse')]}"
-                >
+                <page name="token" string="Keys" invisible="type != 'inhouse'">
                     <group name="key_pair">
                         <field
                             name="private_key"
@@ -48,5 +36,4 @@
             </page>
         </field>
     </record>
-
 </odoo>

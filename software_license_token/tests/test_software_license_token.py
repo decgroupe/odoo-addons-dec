@@ -70,9 +70,13 @@ class TestSoftwareLicenseToken(TransactionCase):
             "in the list of activated hardware.",
         )
         self.assertTrue(fitness_lic1.check_max_activation_reached("uuid_random"))
-        with self.assertRaisesRegex(
-            ValidationError, r"Maximum hardware identifier count reached for license"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                ValidationError,
+                r"Maximum hardware identifier count reached for license",
+            ),
+            self.cr.savepoint(),
+        ):
             fitness_lic1.activate("device_uuid_5/4")
         # check unlimited activation
         fitness_app = self.env.ref("software_application.sa_myfitnessapp")
@@ -104,9 +108,10 @@ class TestSoftwareLicenseToken(TransactionCase):
             }
         )
         self.assertTrue(fitness_lic3.check_expired())
-        with self.assertRaisesRegex(
-            ValidationError, r"Expiration date reached"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(ValidationError, r"Expiration date reached"),
+            self.cr.savepoint(),
+        ):
             fitness_lic3.activate("my_device_uuid")
         fitness_lic4 = self.software_license.create(
             {
@@ -167,9 +172,10 @@ class TestSoftwareLicenseToken(TransactionCase):
             )
         # re-validate the same device after 200 days
         with freeze_time("2024-07-20 15:00:00"):
-            with self.assertRaisesRegex(
-                ValidationError, r"Expiration date reached"
-            ), self.cr.savepoint():
+            with (
+                self.assertRaisesRegex(ValidationError, r"Expiration date reached"),
+                self.cr.savepoint(),
+            ):
                 hardware_id.validate()
 
     def test_06b_license_without_expiration_date_activation_details(self):
@@ -229,18 +235,23 @@ class TestSoftwareLicenseToken(TransactionCase):
                 {"validation_date": _12hours_ago}
             )
         # expiration date constraint
-        with self.assertRaisesRegex(
-            ValidationError, r"Expiration date reached"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(ValidationError, r"Expiration date reached"),
+            self.cr.savepoint(),
+        ):
             fitness_lic1._check_expiration_date()
         self.assertIsNone(
             fitness_lic1.with_context(install_mode=True)._check_expiration_date()
         )
         # max allowed hardware constraint
         fitness_lic1.max_allowed_hardware = 1
-        with self.assertRaisesRegex(
-            ValidationError, r"Maximum hardware identifier count reached for license"
-        ), self.cr.savepoint():
+        with (
+            self.assertRaisesRegex(
+                ValidationError,
+                r"Maximum hardware identifier count reached for license",
+            ),
+            self.cr.savepoint(),
+        ):
             fitness_lic1._check_max_allowed_hardware()
         self.assertIsNone(
             fitness_lic1.with_context(install_mode=True)._check_max_allowed_hardware()

@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="software.application" id="software_application.sa_myfitnessapp">
         <field name="private_key">-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAuWmRjH7Sd6+CXLWbyUmGmXjymy3OWxdEZqRmYDeGwCe8Fz4I
@@ -39,5 +38,4 @@ JY6wl2qui/0RqXPIzmhL7Jjv/rP523H18ph0B756IdQxFjVZ6gddWB27KMMmIPoo
 TwIDAQAB
 -----END PUBLIC KEY-----</field>
     </record>
-
 </odoo>
