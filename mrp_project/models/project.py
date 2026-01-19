@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class ProjectProject(models.Model):
@@ -19,7 +19,7 @@ class ProjectProject(models.Model):
     )
     label_productions = fields.Char(
         string="Use Productions as",
-        default=lambda self: self and _("Productions"),
+        default=lambda s: s.env._("Productions"),
         translate=True,
         help="Gives label to productions on project's kanban view.",
     )
@@ -38,3 +38,16 @@ class ProjectProject(models.Model):
                     lambda p: p.state not in ("done", "cancel")
                 )
             )
+
+    def action_view_productions(self):
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "mrp.mrp_production_action"
+        )
+        if self.production_count > 1:
+            action["domain"] = [("id", "in", self.production_ids.ids)]
+        else:
+            action["views"] = [
+                (self.env.ref("mrp.mrp_production_form_view").id, "form")
+            ]
+            action["res_id"] = self.production_ids.id
+        return action

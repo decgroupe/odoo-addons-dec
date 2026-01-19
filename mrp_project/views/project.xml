@@ -1,18 +1,20 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record model="ir.ui.view" id="edit_project_form_view">
         <field name="name">project.project.form@mrp_project</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project" />
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_view_all_rating']" position="before">
+            <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     class="oe_stat_button"
-                    type="action"
+                    type="object"
                     icon="fa-wrench"
-                    name="%(production_action_from_project)d"
-                    context="{'search_default_project_id': active_id, 'default_project_id': active_id}"
+                    name="action_view_productions"
+                    context="{
+                        'search_default_project_id': id,
+                        'default_project_id': id
+                    }"
                 >
                     <field
                         string="Productions"
@@ -21,15 +23,12 @@
                     />
                 </button>
             </xpath>
-            <xpath expr="//div[@name='options_active']" position="inside">
-                <div>
-                    <label
-                        for="label_productions"
-                        class="oe_inline"
-                        string="Name of productions :"
-                    />
-                    <field name="label_productions" class="oe_inline oe_input_align" />
-                </div>
+            <xpath expr="//field[@name='label_tasks']" position="after">
+                <field
+                    name="label_productions"
+                    string="Name of the Productions"
+                    placeholder="e.g. Productions"
+                />
             </xpath>
         </field>
     </record>
@@ -39,23 +38,20 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project_kanban" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='task_count']" position="after">
-                <field name="production_count" />
-                <field name="label_productions" />
-            </xpath>
-            <xpath expr="//a[hasclass('o_project_kanban_box')]" position="after">
+            <xpath expr="//a[@name='action_view_tasks']" position="after">
                 <a
-                    class="o_project_kanban_box"
-                    name="%(production_action_from_project)d"
-                    type="action"
-                    context="{'search_default_project_id': active_id, 'default_project_id': active_id}"
+                    class="o_project_kanban_box me-1"
+                    name="action_view_productions"
+                    type="object"
+                    context="{
+                        'search_default_project_id': id,
+                        'default_project_id': id
+                    }"
                 >
-                    <span class="o_value">
-                        <t t-esc="record.production_count.value" />
-                    </span>
-                    <span class="o_label">
-                        <t t-esc="record.label_productions.value" />
-                    </span>
+                    <div>
+                        <field name="production_count" class="o_value" />
+                        <field name="label_productions" class="ms-1" />
+                    </div>
                 </a>
             </xpath>
         </field>
@@ -75,5 +71,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

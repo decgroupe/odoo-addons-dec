@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:23+0000\n"
-"PO-Revision-Date: 2023-11-28 13:47+0100\n"
+"POT-Creation-Date: 2026-06-03 10:37+0000\n"
+"PO-Revision-Date: 2026-06-03 15:08+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,13 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
-
-#. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:mrp_project.field_project_project__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_project
 #: model:ir.model.fields,help:mrp_project.field_project_project__label_productions
@@ -29,27 +23,14 @@ msgid "Gives label to productions on project's kanban view."
 msgstr "Indique l'étiquette donnée aux fabrications dans la vue kanban du projet."
 
 #. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__id
-#: model:ir.model.fields,field_description:mrp_project.field_project_project__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_project
-#: model:ir.model.fields,help:mrp_project.field_mrp_production__xid
-#: model:ir.model.fields,help:mrp_project.field_project_project__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:mrp_project.field_project_project____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+#: model:ir.model,name:mrp_project.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Fabrication"
 
 #. module: mrp_project
 #: model_terms:ir.ui.view,arch_db:mrp_project.edit_project_form_view
-msgid "Name of productions :"
-msgstr "Nom de fabrication :"
+msgid "Name of the Productions"
+msgstr "Nom de fabrication :"
 
 #. module: mrp_project
 #: model_terms:ir.ui.view,arch_db:mrp_project.view_project_search
@@ -57,21 +38,20 @@ msgid "Open Productions"
 msgstr "Avec fabrications en cours"
 
 #. module: mrp_project
+#: model:account.analytic.account,name:mrp_project.analytic_production
+msgid "Production"
+msgstr "Fabrication"
+
+#. module: mrp_project
 #: model:ir.model.fields,field_description:mrp_project.field_project_project__production_count
 msgid "Production Count"
 msgstr "Nombre de fabrication"
 
 #. module: mrp_project
-#: model:ir.model,name:mrp_project.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
-
-#. module: mrp_project
+#. odoo-python
 #: code:addons/mrp_project/models/project.py:0
-#: model:ir.actions.act_window,name:mrp_project.production_action_from_project
 #: model:ir.model.fields,field_description:mrp_project.field_project_project__production_ids
 #: model_terms:ir.ui.view,arch_db:mrp_project.edit_project_form_view
-#, python-format
 msgid "Productions"
 msgstr "Fabrications"
 
@@ -92,10 +72,24 @@ msgid "Use Productions as"
 msgstr "Remplacer Fabrications par"
 
 #. module: mrp_project
-#: model:ir.model.fields,field_description:mrp_project.field_mrp_production__xid
-#: model:ir.model.fields,field_description:mrp_project.field_project_project__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model_terms:ir.ui.view,arch_db:mrp_project.edit_project_form_view
+msgid "e.g. Productions"
+msgstr "ex: Fabrications"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Task"
 #~ msgstr "Tâche"
