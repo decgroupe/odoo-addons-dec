@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
-"PO-Revision-Date: 2023-11-28 10:24+0000\n"
+"POT-Creation-Date: 2026-06-03 10:41+0000\n"
+"PO-Revision-Date: 2026-06-03 10:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,38 +16,28 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_warnings
+#. odoo-python
 #: code:addons/mrp_warnings/models/mrp_production.py:0
-#, python-format
-msgid "Cannot manufacture product {}, because of following error(s):{}"
+msgid "%(product_name)s is archived"
 msgstr ""
 
 #. module: mrp_warnings
-#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move__display_name
-msgid "Display Name"
+#. odoo-python
+#: code:addons/mrp_warnings/models/mrp_production.py:0
+msgid "%(product_name)s is obsolete"
 msgstr ""
 
 #. module: mrp_warnings
-#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production__id
-#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move__id
-msgid "ID"
-msgstr ""
-
-#. module: mrp_warnings
-#: model:ir.model.fields,help:mrp_warnings.field_mrp_production__xid
-#: model:ir.model.fields,help:mrp_warnings.field_stock_move__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: mrp_warnings
-#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move____last_update
-msgid "Last Modified on"
+#. odoo-python
+#: code:addons/mrp_warnings/models/mrp_production.py:0
+msgid ""
+"Cannot manufacture product %(product_name)s, because of following "
+"error(s):%(errors)s"
 msgstr ""
 
 #. module: mrp_warnings
 #: model:ir.model,name:mrp_warnings.model_mrp_production
-msgid "Production Order"
+msgid "Manufacturing Order"
 msgstr ""
 
 #. module: mrp_warnings
@@ -56,25 +46,7 @@ msgid "Stock Move"
 msgstr ""
 
 #. module: mrp_warnings
-#: model:ir.model.fields,field_description:mrp_warnings.field_mrp_production__xid
-#: model:ir.model.fields,field_description:mrp_warnings.field_stock_move__xid
-msgid "XML-ID"
-msgstr ""
-
-#. module: mrp_warnings
+#. odoo-python
 #: code:addons/mrp_warnings/models/stock_move.py:0
-#, python-format
-msgid "You cannot produce a zero quantity for %s"
-msgstr ""
-
-#. module: mrp_warnings
-#: code:addons/mrp_warnings/models/mrp_production.py:0
-#, python-format
-msgid "{} is archived"
-msgstr ""
-
-#. module: mrp_warnings
-#: code:addons/mrp_warnings/models/mrp_production.py:0
-#, python-format
-msgid "{} is obsolete"
+msgid "You cannot produce a zero quantity for %(stock_move_name)s"
 msgstr ""
