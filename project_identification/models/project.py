@@ -67,9 +67,9 @@ class Project(models.Model):
         res = super()._search_display_name(operator, value)
         return res
 
-    def _get_name_identifications(self, base_name):
+    def _get_name_identifications(self, base_name=None):
         self.ensure_one()
-        res = [base_name]
+        res = [base_name or self.display_name]
         if self.type_id:
             res.append(self.type_id.complete_name)
         if len(res) > 1:

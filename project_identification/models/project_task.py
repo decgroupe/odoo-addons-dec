@@ -58,9 +58,9 @@ class ProjectTask(models.Model):
         res = super()._search_display_name(operator, value)
         return res
 
-    def _get_name_identifications(self, base_name):
+    def _get_name_identifications(self, base_name=None):
         self.ensure_one()
-        res = [base_name]
+        res = [base_name or self.display_name]
         # Add project to quickly identify a task
         project_id = self.project_id
         if project_id:
