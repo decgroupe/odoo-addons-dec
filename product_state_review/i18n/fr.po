@@ -7,10 +7,10 @@
 # guillaume bauer <guillaume.bauer@syentys.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 14:09+0100\n"
+"POT-Creation-Date: 2026-06-03 10:52+0000\n"
+"PO-Revision-Date: 2026-06-03 15:41+0200\n"
 "Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -18,32 +18,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
-
-#. module: product_state_review
-#: model:ir.model.fields,field_description:product_state_review.field_product_template__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: product_state_review
-#: model:ir.model.fields,field_description:product_state_review.field_product_template__id
-msgid "ID"
-msgstr "ID"
-
-#. module: product_state_review
-#: model:ir.model.fields,help:product_state_review.field_product_template__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+"X-Generator: Poedit 3.8\n"
 
 #. module: product_state_review
 #: model:product.state,name:product_state_review.product_state_quotation
 msgid "In Quotation"
 msgstr "En devis"
-
-#. module: product_state_review
-#: model:ir.model.fields,field_description:product_state_review.field_product_template____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: product_state_review
 #: model:product.state,name:product_state_review.product_state_review
@@ -52,13 +32,23 @@ msgstr "À réviser"
 
 #. module: product_state_review
 #: model:ir.model,name:product_state_review.model_product_template
-msgid "Product Template"
-msgstr "Modèle de produit"
+msgid "Product"
+msgstr "Article"
 
-#. module: product_state_review
-#: model:ir.model.fields,field_description:product_state_review.field_product_template__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "End of Lifecycle"
 #~ msgstr "En fin de vie"

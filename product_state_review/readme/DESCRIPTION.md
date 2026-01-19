@@ -1,0 +1,1 @@
+Add more states on product template

@@ -1,15 +1,14 @@
 {
     "name": "Product State (Quotation/Review)",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "product_state",
-        "product_state_active",
     ],
     "data": [
         "data/product_state.xml",
     ],
-    "installable": False,
-    "post_init_hook": "post_init_hook",
+    "installable": True,
 }
