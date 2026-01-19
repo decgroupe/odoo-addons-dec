@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"POT-Creation-Date: 2026-06-03 10:51+0000\n"
+"PO-Revision-Date: 2026-06-03 10:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,93 +16,40 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_seller
-#: model:ir.model.fields,field_description:product_seller.field_product_template__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: product_seller
-#: model:ir.model.fields,field_description:product_seller.field_product_template__id
-msgid "ID"
-msgstr ""
-
-#. module: product_seller
-#: model:ir.model.fields,help:product_seller.field_product_template__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: product_seller
-#: model:ir.model.fields,field_description:product_seller.field_product_template____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: product_seller
-#: model:ir.model.fields,field_description:product_seller.field_product_product__seller_id
-#: model:ir.model.fields,field_description:product_seller.field_product_template__seller_id
-msgid "Main Supplier"
-msgstr ""
-
-#. module: product_seller
-#: model:ir.model.fields,help:product_seller.field_product_product__seller_id
-#: model:ir.model.fields,help:product_seller.field_product_template__seller_id
-msgid "Main Supplier who has highest priority in Supplier List."
-msgstr ""
-
-#. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_template__main_seller_id
 msgid "Main Vendor"
 msgstr ""
 
 #. module: product_seller
-#: model:ir.model.fields,help:product_seller.field_product_product__seller_product_code
-#: model:ir.model.fields,help:product_seller.field_product_template__seller_product_code
-msgid "Main supplier product code"
-msgstr ""
-
-#. module: product_seller
-#: model:ir.model.fields,help:product_seller.field_product_product__seller_product_name
-#: model:ir.model.fields,help:product_seller.field_product_template__seller_product_name
-msgid "Main supplier product name"
-msgstr ""
-
-#. module: product_seller
 #: model:ir.model,name:product_seller.model_product_template
-msgid "Product Template"
+msgid "Product"
 msgstr ""
 
 #. module: product_seller
-#: model:ir.model.fields,field_description:product_seller.field_product_product__seller_info_id
-#: model:ir.model.fields,field_description:product_seller.field_product_template__seller_info_id
-msgid "Seller Info"
+#: model:ir.model.fields,field_description:product_seller.field_product_product__seller_id
+#: model:ir.model.fields,field_description:product_seller.field_product_template__seller_id
+msgid "Seller"
 msgstr ""
 
 #. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_product__seller_delay
 #: model:ir.model.fields,field_description:product_seller.field_product_template__seller_delay
-msgid "Supplier Lead Time"
-msgstr ""
-
-#. module: product_seller
-#: model:ir.model.fields,help:product_seller.field_product_product__seller_delay
-#: model:ir.model.fields,help:product_seller.field_product_template__seller_delay
-msgid ""
-"This is the average delay in days between the purchase order confirmation "
-"and the reception of goods for this product and for the default supplier. It"
-" is used by the scheduler to order requests based on reordering delays."
+msgid "Seller Delay"
 msgstr ""
 
 #. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_product__seller_product_code
 #: model:ir.model.fields,field_description:product_seller.field_product_template__seller_product_code
-msgid "Vendor Product Code"
+msgid "Seller Product Code"
 msgstr ""
 
 #. module: product_seller
 #: model:ir.model.fields,field_description:product_seller.field_product_product__seller_product_name
 #: model:ir.model.fields,field_description:product_seller.field_product_template__seller_product_name
-msgid "Vendor Product Name"
+msgid "Seller Product Name"
 msgstr ""
 
 #. module: product_seller
-#: model:ir.model.fields,field_description:product_seller.field_product_template__xid
-msgid "XML-ID"
+#: model:ir.model,name:product_seller.model_product_supplierinfo
+msgid "Supplier Pricelist"
 msgstr ""
