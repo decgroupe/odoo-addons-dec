@@ -3,7 +3,7 @@
 
 from datetime import timedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.tests import common
 
@@ -14,7 +14,6 @@ class TestProcurementRunManufactureWarnings(common.TransactionCase):
     def setUp(self):
         super().setUp()
         self.warehouse1 = self.env.ref("stock.warehouse0")
-
         self.route_mto = self.warehouse1.mto_pull_id.route_id
         self.route_manufacture = self.warehouse1.manufacture_pull_id.route_id
         self.unit_uom_id = self.env.ref("uom.product_uom_unit")
@@ -26,8 +25,7 @@ class TestProcurementRunManufactureWarnings(common.TransactionCase):
         order_values = {
             "warehouse_id": warehouse_id,
             "action": "pull_push",
-            "date_planned": date_planned
-            or fields.Datetime.to_string(fields.datetime.now() + timedelta(days=10)),
+            "date_planned": date_planned or fields.datetime.now() + timedelta(days=10),
             # 10 days added to current date of procurement to get future schedule date
             # and order date of purchase order.
             "group_id": self.env["procurement.group"],
@@ -47,18 +45,21 @@ class TestProcurementRunManufactureWarnings(common.TransactionCase):
             ]
         )
 
-    def test_manufacture_inactive_product(self):
-        """ """
+    def test_01_manufacture_inactive_product(self):
+        """Test manufacture of an archived product AND with empty BOM"""
         product_inactive_id = self.env["product.product"].create(
             {
                 "active": False,
-                "name": "Product",
-                "type": "product",
+                "name": "Product #01",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": self.unit_uom_id.id,
-                "route_ids": [(6, 0, [self.route_manufacture.id, self.route_mto.id])],
+                "route_ids": [
+                    Command.set([self.route_manufacture.id, self.route_mto.id])
+                ],
             }
         )
-        bom_id = self.env["mrp.bom"].create(
+        _bom_id = self.env["mrp.bom"].create(
             {
                 "product_tmpl_id": product_inactive_id.product_tmpl_id.id,
                 "product_uom_id": self.unit_uom_id.id,
@@ -74,12 +75,10 @@ class TestProcurementRunManufactureWarnings(common.TransactionCase):
             )
         except UserError as user_error:
             self.assertTrue(
-                "Cannot manufacture product %s, because it is archived"
-                % (product_inactive_id.name)
-                in user_error.name
+                f"Cannot manufacture product {product_inactive_id.name}, "
+                "because it is archived" in str(user_error)
             )
             self.assertTrue(
                 "Please add at least one component to this Bill of Material"
-                in user_error.name
+                in str(user_error)
             )
-            print(user_error)

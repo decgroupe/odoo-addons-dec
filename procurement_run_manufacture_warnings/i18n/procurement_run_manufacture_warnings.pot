@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:26+0000\n"
-"PO-Revision-Date: 2023-11-28 10:26+0000\n"
+"POT-Creation-Date: 2026-06-03 10:43+0000\n"
+"PO-Revision-Date: 2026-06-03 10:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,45 +16,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: procurement_run_manufacture_warnings
+#. odoo-python
 #: code:addons/procurement_run_manufacture_warnings/models/stock_rule.py:0
-#, python-format
 msgid ""
-"Bill of Material %s is empty for the product %s. Please add at least one "
-"component to this Bill of Material."
+"Bill of Material %(bom)s is empty for the product %(product)s.\n"
+"Please add at least one component to this Bill of Material."
 msgstr ""
 
 #. module: procurement_run_manufacture_warnings
+#. odoo-python
 #: code:addons/procurement_run_manufacture_warnings/models/stock_rule.py:0
-#, python-format
-msgid "Cannot manufacture product %s, because it is archived. "
+msgid "Cannot manufacture product %(name)s, because it is archived. "
 msgstr ""
 
 #. module: procurement_run_manufacture_warnings
+#. odoo-python
 #: code:addons/procurement_run_manufacture_warnings/models/stock_rule.py:0
-#, python-format
 msgid ""
-"Cannot manufacture product %s, state is \"%s\". Please change its state to "
-"\"%s\" or \"%s\"."
-msgstr ""
-
-#. module: procurement_run_manufacture_warnings
-#: model:ir.model.fields,field_description:procurement_run_manufacture_warnings.field_stock_rule__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: procurement_run_manufacture_warnings
-#: model:ir.model.fields,field_description:procurement_run_manufacture_warnings.field_stock_rule__id
-msgid "ID"
-msgstr ""
-
-#. module: procurement_run_manufacture_warnings
-#: model:ir.model.fields,help:procurement_run_manufacture_warnings.field_stock_rule__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: procurement_run_manufacture_warnings
-#: model:ir.model.fields,field_description:procurement_run_manufacture_warnings.field_stock_rule____last_update
-msgid "Last Modified on"
+"Cannot manufacture product %(name)s, state is \"%(state)s\".\n"
+"Please change its state to \"%(draft)s\" or \"%(sellable)s\"."
 msgstr ""
 
 #. module: procurement_run_manufacture_warnings
@@ -63,6 +43,9 @@ msgid "Stock Rule"
 msgstr ""
 
 #. module: procurement_run_manufacture_warnings
-#: model:ir.model.fields,field_description:procurement_run_manufacture_warnings.field_stock_rule__xid
-msgid "XML-ID"
+#. odoo-python
+#: code:addons/procurement_run_manufacture_warnings/models/stock_rule.py:0
+msgid ""
+"There is no Bill of Material found for the product %(name)s. Please define a"
+" Bill of Material for this product."
 msgstr ""
