@@ -3,9 +3,10 @@
 
 import re
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.exceptions import ValidationError
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
-from odoo.exceptions import UserError, ValidationError
 
 
 class TestSaleProductWarnings(TransactionCase):
@@ -32,12 +33,11 @@ class TestSaleProductWarnings(TransactionCase):
             "product_state_review.product_state_review"
         )
         self.assertEqual(len(self.so_2.activity_ids), 0)
-        so_line = self._create_so_line(self.so_2, self.product_9)
+        _so_line = self._create_so_line(self.so_2, self.product_9)
         activity_id = self.so_2.activity_ids
         self.assertEqual(len(activity_id), 1)
         note_parts = [
-            r"Please review the following product that was added to %s"
-            % (self.so_2.name),
+            rf"Please review the following product that was added to {self.so_2.name}",
             r"\[E-COM10\] Pedal Bin",
         ]
         self._assert_activity_note(activity_id, note_parts)
@@ -47,7 +47,7 @@ class TestSaleProductWarnings(TransactionCase):
             "product_state_review.product_state_quotation"
         )
         self.assertEqual(len(self.so_2.activity_ids), 0)
-        so_line = self._create_so_line(self.so_2, self.product_9)
+        _so_line = self._create_so_line(self.so_2, self.product_9)
         activity_id = self.so_2.activity_ids
         self.assertEqual(len(activity_id), 0)
 
@@ -55,11 +55,12 @@ class TestSaleProductWarnings(TransactionCase):
         self.product_9.product_state_id = self.env.ref(
             "product_state_review.product_state_review"
         )
+        self.product_9.responsible_id = False
         with Form(self.so_2) as so_form:
             with so_form.order_line.new() as sol_form:
                 with mute_logger("odoo.tests.common.onchange"):
                     sol_form.product_id = self.product_9
-                    warning = sol_form._perform_onchange(["product_id"])["warning"]
+                    warning = sol_form._perform_onchange("product_id")["warning"]
                     self.assertEqual("Warning for Pedal Bin", warning["title"])
                     self.assertRegex(
                         warning["message"], r"This product needs to be reviewed"
@@ -73,15 +74,17 @@ class TestSaleProductWarnings(TransactionCase):
         self.product_9.product_state_id = self.env.ref(
             "product_state_review.product_state_quotation"
         )
+        self.product_9.responsible_id = False
         with Form(self.so_2) as so_form:
             with so_form.order_line.new() as sol_form:
                 with mute_logger("odoo.tests.common.onchange"):
                     sol_form.product_id = self.product_9
-                    warning = sol_form._perform_onchange(["product_id"])["warning"]
+                    warning = sol_form._perform_onchange("product_id")["warning"]
                     self.assertEqual("Warning for Pedal Bin", warning["title"])
                     self.assertRegex(
                         warning["message"],
-                        r"This product is currently in quotation, prices may not be correct",
+                        r"This product is currently in quotation, "
+                        r"prices may not be correct",
                     )
                     self.assertRegex(warning["message"], r"No internal notes")
                     self.assertRegex(
@@ -96,7 +99,7 @@ class TestSaleProductWarnings(TransactionCase):
             with so_form.order_line.new() as sol_form:
                 with mute_logger("odoo.tests.common.onchange"):
                     sol_form.product_id = self.product_9
-                    warning = sol_form._perform_onchange(["product_id"])["warning"]
+                    warning = sol_form._perform_onchange("product_id")["warning"]
                     self.assertEqual("Warning for Pedal Bin", warning["title"])
                     self.assertRegex(warning["message"], r"Obsolete product")
                     self.assertRegex(warning["message"], r"No internal notes")
@@ -110,14 +113,21 @@ class TestSaleProductWarnings(TransactionCase):
                 with mute_logger("odoo.tests.common.onchange"):
                     sol_form.product_id = self.product_9
                     self.assertNotIn(
-                        "warning", sol_form._perform_onchange(["product_id"])
+                        "warning", sol_form._perform_onchange("product_id")
                     )
 
     def test_07_blocking_message(self):
         self.env.user.groups_id = [(4, self.env.ref("sale.group_warning_sale").id)]
-        self.product_9.sale_line_warn = "block_confirm"
-        self.product_9.sale_line_warn_msg = "This is a test message"
+        self.product_9.write(
+            {
+                "sale_line_warn": "block_confirm",
+                "sale_line_warn_msg": "This is a test message",
+            }
+        )
+        # confirm the sale order first
         self.so_2.action_confirm()
+        # edit confirmed sale order to trigger the blocking warning by adding a new
+        # product line
         with self.assertRaisesRegex(
             ValidationError,
             re.compile(
@@ -128,3 +138,4 @@ class TestSaleProductWarnings(TransactionCase):
             with Form(self.so_2) as so_form:
                 with so_form.order_line.new() as sol_form:
                     sol_form.product_id = self.product_9
+            # the warning is raised on save, when exiting the "with" context

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:30+0000\n"
-"PO-Revision-Date: 2023-11-28 10:30+0000\n"
+"POT-Creation-Date: 2026-06-03 11:04+0000\n"
+"PO-Revision-Date: 2026-06-03 11:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,59 +26,31 @@ msgid "Block Confirmation Message"
 msgstr ""
 
 #. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__display_name
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__display_name
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/product_product.py:0
-#, python-format
 msgid "Following products are blocking!"
 msgstr ""
 
 #. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__id
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__id
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_product_warnings
-#: model:ir.model.fields,help:sale_product_warnings.field_product_product__xid
-#: model:ir.model.fields,help:sale_product_warnings.field_product_template__xid
-#: model:ir.model.fields,help:sale_product_warnings.field_sale_order_line__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product____last_update
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template____last_update
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid "No internal notes"
 msgstr ""
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid "No responsible for this product"
 msgstr ""
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid ""
 "Obsolete product!\n"
 " (This product must not be sold anymore.)\n"
 "\n"
-" %s"
+" %(description)s"
 msgstr ""
 
 #. module: sale_product_warnings
@@ -87,7 +59,7 @@ msgid "Please review the following product that was added to"
 msgstr ""
 
 #. module: sale_product_warnings
-#: model:ir.model,name:sale_product_warnings.model_product_product
+#: model:ir.model,name:sale_product_warnings.model_product_template
 msgid "Product"
 msgstr ""
 
@@ -97,8 +69,13 @@ msgid "Product Review"
 msgstr ""
 
 #. module: sale_product_warnings
-#: model:ir.model,name:sale_product_warnings.model_product_template
-msgid "Product Template"
+#: model:ir.model,name:sale_product_warnings.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_product_warnings
+#: model:ir.model,name:sale_product_warnings.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_product_warnings
@@ -118,36 +95,29 @@ msgid ""
 msgstr ""
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid ""
 "This product is currently in quotation, prices may not be correct:\n"
 "\n"
-" - %s \n"
+" - %(description)s \n"
 "\n"
-" - You can take contact with \"%s\""
+" - You can take contact with \"%(responsible)s\""
 msgstr ""
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid ""
 "This product needs to be reviewed:\n"
 "\n"
-" - %s \n"
+" - %(description)s \n"
 "\n"
-" - Please contact \"%s\""
+" - Please contact \"%(responsible)s\""
 msgstr ""
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid "Warning for %s"
-msgstr ""
-
-#. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__xid
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__xid
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__xid
-msgid "XML-ID"
 msgstr ""

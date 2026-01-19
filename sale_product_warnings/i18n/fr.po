@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:30+0000\n"
-"PO-Revision-Date: 2023-11-28 14:38+0100\n"
+"POT-Creation-Date: 2026-06-03 11:04+0000\n"
+"PO-Revision-Date: 2026-06-03 16:03+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: sale_product_warnings
 #: model_terms:ir.ui.view,arch_db:sale_product_warnings.exception_product_review
@@ -28,64 +28,36 @@ msgid "Block Confirmation Message"
 msgstr "Message bloquant de confirmation"
 
 #. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__display_name
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__display_name
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/product_product.py:0
-#, python-format
 msgid "Following products are blocking!"
 msgstr "Les articles suivants sont bloquants !"
 
 #. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__id
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__id
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_product_warnings
-#: model:ir.model.fields,help:sale_product_warnings.field_product_product__xid
-#: model:ir.model.fields,help:sale_product_warnings.field_product_template__xid
-#: model:ir.model.fields,help:sale_product_warnings.field_sale_order_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product____last_update
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template____last_update
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid "No internal notes"
 msgstr "Pas de notes internes"
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid "No responsible for this product"
 msgstr "Pas de responsable assigné pour cet article"
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid ""
 "Obsolete product!\n"
 " (This product must not be sold anymore.)\n"
 "\n"
-" %s"
+" %(description)s"
 msgstr ""
 "Article obsolète\n"
-" (Ce article ne doit plus être vendu.)\n"
+" (Cet article ne doit plus être vendu.)\n"
 "\n"
-" %s"
+" %(description)s"
 
 #. module: sale_product_warnings
 #: model_terms:ir.ui.view,arch_db:sale_product_warnings.exception_product_review
@@ -93,7 +65,7 @@ msgid "Please review the following product that was added to"
 msgstr "Merci de réviser l'article suivant qui a été ajouté à"
 
 #. module: sale_product_warnings
-#: model:ir.model,name:sale_product_warnings.model_product_product
+#: model:ir.model,name:sale_product_warnings.model_product_template
 msgid "Product"
 msgstr "Article"
 
@@ -103,9 +75,14 @@ msgid "Product Review"
 msgstr "Révision d'article"
 
 #. module: sale_product_warnings
-#: model:ir.model,name:sale_product_warnings.model_product_template
-msgid "Product Template"
-msgstr "Modèle d'article"
+#: model:ir.model,name:sale_product_warnings.model_product_product
+msgid "Product Variant"
+msgstr "Variante d'article"
+
+#. module: sale_product_warnings
+#: model:ir.model,name:sale_product_warnings.model_sale_order
+msgid "Sales Order"
+msgstr "Commandes clients"
 
 #. module: sale_product_warnings
 #: model:ir.model,name:sale_product_warnings.model_sale_order_line
@@ -128,58 +105,63 @@ msgstr ""
 "suivant."
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid ""
 "This product is currently in quotation, prices may not be correct:\n"
 "\n"
-" - %s \n"
+" - %(description)s \n"
 "\n"
-" - You can take contact with \"%s\""
+" - You can take contact with \"%(responsible)s\""
 msgstr ""
 "Cet article est en Devis, les prix peuvent ne pas être corrects:\n"
 "\n"
-" - %s \n"
+" - %(description)s \n"
 "\n"
-" - Vous pouvez prendre contact avec \"%s\""
+" - Vous pouvez prendre contact avec \"%(responsible)s\""
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid ""
 "This product needs to be reviewed:\n"
 "\n"
-" - %s \n"
+" - %(description)s \n"
 "\n"
-" - Please contact \"%s\""
+" - Please contact \"%(responsible)s\""
 msgstr ""
 "Cet article doit être révisé:\n"
 "\n"
-" - %s \n"
+" - %(description)s \n"
 "\n"
-" - Merci de contacter \"%s\""
+" - Merci de contacter \"%(responsible)s\""
 
 #. module: sale_product_warnings
+#. odoo-python
 #: code:addons/sale_product_warnings/models/sale_order_line.py:0
-#, python-format
 msgid "Warning for %s"
 msgstr "Avertissement pour %s"
 
-#. module: sale_product_warnings
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_product__xid
-#: model:ir.model.fields,field_description:sale_product_warnings.field_product_template__xid
-#: model:ir.model.fields,field_description:sale_product_warnings.field_sale_order_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Blocking Message"
 #~ msgstr "Message Bloquant"
 
 #~ msgid "No Message"
 #~ msgstr "Aucun Message"
-
-#~ msgid "Sale Order"
-#~ msgstr "Commande client"
 
 #~ msgid "Warning"
 #~ msgstr "Avertissement"
