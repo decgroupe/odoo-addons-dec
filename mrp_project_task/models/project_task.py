@@ -16,14 +16,12 @@ class ProjectTask(models.Model):
         comodel_name="mrp.bom.line",
         string="Line of the Bill of Material",
     )
-    # To remove when manual reassigment is finished
-    origin = fields.Char(string="Legacy Origin")
 
-    def _get_name_identifications(self):
-        res = super()._get_name_identifications()
+    def _get_name_identifications(self, base_name=None):
+        res = super()._get_name_identifications(base_name)
         # Add production to quickly identify a task
         production_id = self.production_id
         if production_id:
-            production_name = "%s %s" % ("🔧", production_id.name)
+            production_name = f"🔧 {production_id.name}"
             res.append(production_name)
         return res

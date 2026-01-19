@@ -37,7 +37,7 @@ class MrpProduction(models.Model):
 
     task_progress = fields.Float(
         compute="_compute_task_progress",
-        group_operator="avg",
+        aggregator="avg",
         store=True,
         string="Progress",
     )
@@ -46,9 +46,9 @@ class MrpProduction(models.Model):
     def _compute_task_progress(self):
         self.task_progress = 100
         for rec in self.filtered("task_ids"):
-            active_task_ids = rec.task_ids.filtered(
-                lambda x: x.stage_id.is_closed is False
-            )
+            # needs "project_task_stage_state" OCA module to ensure that task state
+            # will be updated according to stage own's state
+            active_task_ids = rec.task_ids.filtered(lambda x: x.is_closed is False)
             if active_task_ids:
                 value = sum(active_task_ids.mapped("progress")) / len(active_task_ids)
                 rec.task_progress = value
@@ -64,22 +64,21 @@ class MrpProduction(models.Model):
         action["context"] = {}
         return action
 
-    def _create_task_prepare_values(self, bom_line, dict):
+    def _create_task_prepare_values(self, bom_line, data: dict):
         self.ensure_one()
-        planned_hours = bom_line._convert_qty_company_hours()
-        title = "%s: %s" % (self.name or "", bom_line.display_name)
+        allocated_hours = bom_line._convert_qty_company_hours()
+        title = "{}: {}".format(self.name or "", bom_line.display_name)
         description = ""  # bom_line.landmark or ""
         return {
             "name": title,
-            "planned_hours": planned_hours,
+            "allocated_hours": allocated_hours,
             "partner_id": self.partner_id.id,
-            "email_from": self.partner_id.email,
             "description": description,
             "project_id": self.project_id.id,
             "production_id": self.id,
             "bom_line_id": bom_line.id,
             "company_id": self.company_id.id,
-            "user_id": False,  # force non assigned task, as created as sudo()
+            "user_ids": False,  # force non assigned task, as created as sudo()
         }
 
     def _create_task(self, bom_line, line_data):
@@ -123,15 +122,13 @@ class MrpProduction(models.Model):
         task_ids = self.env["project.task"].search(
             [
                 ("id", "in", self.mapped("task_ids").ids),
-                "|",
-                ("stage_id", "=", False),
-                ("stage_id.is_closed", "=", False),
+                ("is_closed", "=", False),
             ]
         )
         for task_id in task_ids:
             task_id._activity_schedule_with_view(
                 "mail.mail_activity_data_warning",
-                user_id=task_id.user_id.id or self.env.uid,
+                user_id=task_id.user_ids.id or self.env.uid,
                 views_or_xmlid="mrp_project_task.exception_task_on_mrp_cancellation",
                 render_context={
                     "production_orders": task_id.production_id,

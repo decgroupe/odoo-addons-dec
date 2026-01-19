@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_project_task</field>
         <field name="model">mrp.production</field>
@@ -13,17 +12,13 @@
                     name="action_view_task"
                     class="oe_stat_button"
                     icon="fa-tasks"
-                    attrs="{'invisible': [('task_count', '=', 0)]}"
+                    invisible="not task_count"
                 >
                     <field name="task_count" widget="statinfo" string="Tasks" />
                 </button>
             </xpath>
             <xpath expr="//field[@name='move_raw_ids']/parent::page" position="after">
-                <page
-                    string="Tasks"
-                    name="tasks"
-                    attrs="{'invisible': [('task_ids', '=', [])]}"
-                >
+                <page string="Tasks" name="tasks" invisible="not task_count">
                     <field name="task_ids" />
                 </page>
             </xpath>
@@ -44,7 +39,8 @@
                     <t t-set="p" t-value="record.task_progress.raw_value" />
                     <div class="kanban_progress">
                         <div class="progress_info">
-                            <i class="fa fa-puzzle-piece" /> <span>Task Progress</span>
+                            <i class="fa fa-puzzle-piece" />
+                            <span>Task Progress</span>
                         </div>
                         <div
                             class="o_kanban_counter_progress progress kanban_progress_bar"
@@ -52,16 +48,14 @@
                             <div
                                 class="progress-bar o_bar_has_records kanban_progress_bar_done"
                                 t-attf-style="width: #{p}%;"
-                            >
-                            </div>
+                            />
                         </div>
                         <div class="kanban_completion"> <t
-                                t-esc="record.task_progress.value"
-                            />% </div>
+                            t-esc="record.task_progress.value"
+                        />% </div>
                     </div>
                 </t>
             </xpath>
         </field>
     </record>
-
 </odoo>

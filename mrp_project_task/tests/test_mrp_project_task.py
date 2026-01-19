@@ -1,12 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2024
 
-from odoo.tests.common import TransactionCase
 from odoo.addons.mrp_purchase.tests.common import TestMrpPurchaseCommon
 
 
 class TestMrpProjectTask(TestMrpPurchaseCommon):
-
     def setUp(self):
         super().setUp()
         self.product_uom_hour = self.env.ref("uom.product_uom_hour")
@@ -60,7 +58,7 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         )
 
     def test_01_no_tracking_set(self):
-        bom_line_id = self._add_bom_line(self.service_in_project_no_tracking)
+        _bom_line_id = self._add_bom_line(self.service_in_project_no_tracking)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         self.assertEqual(production_id.task_count, 0)
         self.assertEqual(production_id.task_progress, 100)
@@ -72,7 +70,7 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         self.assertEqual(production_id.task_progress, 100)
 
     def test_02_wrong_unit_category(self):
-        bom_line_id = self._add_bom_line(self.service_in_project)
+        _bom_line_id = self._add_bom_line(self.service_in_project)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         production_id.name = "MO/TEST/02"
         self.assertEqual(production_id.task_count, 0)
@@ -83,13 +81,13 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         self.assertEqual(production_id.task_progress, 0)
         task_id = production_id.task_ids
         # as fallback, we consider quantities are hours
-        self.assertEqual(task_id.planned_hours, 1.0)
+        self.assertEqual(task_id.allocated_hours, 1.0)
         # naming check
         name_identifications = production_id.task_ids._get_name_identifications()
         self.assertIn("🔧 MO/TEST/02", name_identifications)
 
     def test_03_same_unit_category_as_company(self):
-        bom_line_id = self._add_bom_line(self.service_in_project_days)
+        _bom_line_id = self._add_bom_line(self.service_in_project_days)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         production_id.name = "MO/TEST/03"
         self.assertEqual(production_id.task_count, 0)
@@ -100,7 +98,7 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         self.assertEqual(production_id.task_progress, 0)
         task_id = production_id.task_ids
         # quantities were converted from days to hours
-        self.assertEqual(task_id.planned_hours, 8.0)
+        self.assertEqual(task_id.allocated_hours, 8.0)
         # naming check
         name_identifications = production_id.task_ids._get_name_identifications()
         self.assertIn("🔧 MO/TEST/03", name_identifications)
@@ -117,7 +115,7 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
                 "category_id": categ_unit.id,
             }
         )
-        bom_line_id = self._add_bom_line(self.service_in_project_days)
+        _bom_line_id = self._add_bom_line(self.service_in_project_days)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         production_id.name = "MO/TEST/04"
         self.assertEqual(production_id.task_count, 0)
@@ -128,13 +126,13 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         self.assertEqual(production_id.task_progress, 0)
         task_id = production_id.task_ids
         # quantities were converted from days to hours
-        self.assertEqual(task_id.planned_hours, 8.0)
+        self.assertEqual(task_id.allocated_hours, 8.0)
         # naming check
         name_identifications = production_id.task_ids._get_name_identifications()
         self.assertIn("🔧 MO/TEST/04", name_identifications)
 
     def test_05_same_unit_as_company(self):
-        bom_line_id = self._add_bom_line(self.service_in_project_hours)
+        _bom_line_id = self._add_bom_line(self.service_in_project_hours)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         production_id.name = "MO/TEST/05"
         self.assertEqual(production_id.task_count, 0)
@@ -145,13 +143,13 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         self.assertEqual(production_id.task_progress, 0)
         task_id = production_id.task_ids
         # quantities are hours
-        self.assertEqual(task_id.planned_hours, 1.0)
+        self.assertEqual(task_id.allocated_hours, 1.0)
         # naming check
         name_identifications = production_id.task_ids._get_name_identifications()
         self.assertIn("🔧 MO/TEST/05", name_identifications)
 
     def test_06_action_view_task_single(self):
-        bom_line_id = self._add_bom_line(self.service_in_project_hours)
+        _bom_line_id = self._add_bom_line(self.service_in_project_hours)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         production_id.project_id = self.project_id
         production_id.action_confirm()
@@ -164,8 +162,8 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         self.assertEqual(action["type"], "ir.actions.act_window")
 
     def test_07_action_view_task_multiple(self):
-        bom_line_id1 = self._add_bom_line(self.service_in_project_hours)
-        bom_line_id2 = self._add_bom_line(self.service_in_project_hours)
+        _bom_line_id1 = self._add_bom_line(self.service_in_project_hours)
+        _bom_line_id2 = self._add_bom_line(self.service_in_project_hours)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         production_id.project_id = self.project_id
         production_id.action_confirm()
@@ -179,7 +177,7 @@ class TestMrpProjectTask(TestMrpPurchaseCommon):
         self.assertIn("domain", action)
 
     def test_08_cancel_production_order(self):
-        bom_line_id = self._add_bom_line(self.service_in_project_hours)
+        _bom_line_id = self._add_bom_line(self.service_in_project_hours)
         production_id = self._generate_mo(self.p1, self.bom, 3.0)
         production_id.project_id = self.project_id
         production_id.action_confirm()
