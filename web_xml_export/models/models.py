@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2023
 
 import io
+import logging
 import string
 import unicodedata
 import uuid
@@ -23,6 +24,9 @@ def unaccent(txt):
     return "".join([c for c in nfkd_form if not unicodedata.combining(c)])
 
 
+_logger = logging.getLogger(__name__)
+
+
 class BaseModel(models.BaseModel):
     _inherit = "base"
 
@@ -35,7 +39,7 @@ class BaseModel(models.BaseModel):
 
     def _compute_xid(self):
         """Also note that `ir.model.data` owns two methods `xmlid_to_object` and
-        `xmlid_to_res_id` to retrieve this data
+        `_xmlid_to_res_id` to retrieve this data
         """
         xml_ids, model_datas = (
             self.env["ir.model.data"].sudo().res_id_to_xmlid(self._name, self.ids)
@@ -85,16 +89,23 @@ class BaseModel(models.BaseModel):
                 filter(lambda x: x in SAFE_CHARS, unaccent(record_name).lower())
             )
             name = "".join(name)
-        except:
+        except Exception as e:
+            _logger.exception(
+                "Failed to compute XML record human name for record %s:%s: %s",
+                self._name,
+                res_id,
+                e,
+            )
             name = ""
         if name and res_id:
-            name = "%d%s%s" % (res_id, SEPARATOR * 2, name)
+            name = f"{res_id}{SEPARATOR * 2}{name}"
         else:
-            # Fallback to default Odoo naming implementation
+            # Fallback to default Odoo naming implementation (see `__ensure_xml_id`
+            # from `odoo/models.py`)
             name = SEPARATOR + uuid.uuid4().hex[:8]
-        return "%s_%s" % (self._table, name)
+        return f"{self._table}_{name}"
 
-    def ensure_human_xml_id(self, skip=False):
+    def _ensure_human_xml_id(self, skip=False):
         """Improved version of `__ensure_xml_id` from `./odoo/odoo/models.py`
         Create missing external ids for records in ``self``, and return an
         iterator of pairs ``(record, xmlid)`` for the records in ``self``.
@@ -109,8 +120,8 @@ class BaseModel(models.BaseModel):
 
         if not self._is_an_ordinary_table():
             raise Exception(
-                "You can not export the column ID of model %s, because the "
-                "table %s is not an ordinary table." % (self._name, self._table)
+                f"You can not export the column ID of model {self._name}, because the "
+                f"table {self._table} is not an ordinary table."
             )
 
         cr = self.env.cr
@@ -126,7 +137,7 @@ class BaseModel(models.BaseModel):
 
         def to_xid(record_id):
             (module, name) = xids[record_id]
-            return ("%s.%s" % (module, name)) if module else name
+            return (f"{module}.{name}") if module else name
 
         # create missing xml ids
         missing = self.filtered(lambda r: r.id not in xids)
@@ -144,7 +155,7 @@ class BaseModel(models.BaseModel):
                 cr.copy_from(
                     io.StringIO(
                         "\n".join(
-                            "%s\t%s\t%s\t%d"
+                            "%s\t%s\t%s\t%d"  # noqa: UP031
                             % (
                                 MODENAME,
                                 record._name,
@@ -159,6 +170,6 @@ class BaseModel(models.BaseModel):
                 )
             finally:
                 psycopg2.extensions.set_wait_callback(callback)
-            self.env["ir.model.data"].invalidate_cache(fnames=fields)
+            self.env["ir.model.data"].invalidate_model(fields)
 
         return ((record, to_xid(record.id)) for record in self)
