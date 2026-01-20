@@ -10,8 +10,13 @@ class AccountAnalyticLine(models.Model):
     production_id = fields.Many2one(
         comodel_name="mrp.production",
         string="Production",
-        domain=[("project_id", "!=", False)],
+        domain="production_id_domain",
         groups="mrp.group_mrp_user",
+    )
+    production_id_domain = fields.Binary(
+        string="Production Domain",
+        help="Dynamic domain used for the `production_id` field",
+        compute="_compute_production_id_domain",
     )
     production_partner_id = fields.Many2one(
         comodel_name="res.partner",
@@ -57,12 +62,10 @@ class AccountAnalyticLine(models.Model):
         if not self.project_id and self.production_id.project_id:
             self.project_id = self.production_id.project_id
 
-    @api.onchange("project_id")
-    def _onchange_project_id(self):
-        res = super()._onchange_project_id()
-        if "domain" in res:
-            filter = []
-            if self.project_id:
-                filter = [("project_id", "=", self.project_id.id)]
-            res["domain"]["production_id"] = filter
-        return res
+    @api.depends("project_id")
+    def _compute_production_id_domain(self):
+        for rec in self:
+            domain = [("project_id", "!=", False)]
+            if rec.project_id:
+                domain.append(("project_id", "=", rec.project_id.id))
+            rec.production_id_domain = domain

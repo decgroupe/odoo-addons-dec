@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record model="mrp.production" id="mrp_production_1">
+        <field name="name">MO/TMS_TEST/01</field>
+        <field name="product_id" ref="mrp.product_product_computer_desk" />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="product_qty">1</field>
+        <field
+            name="date_start"
+            eval="(DateTime.today() + relativedelta(days=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+        <field name="bom_id" ref="mrp.mrp_bom_desk" />
+    </record>
+
+    <record model="mrp.production" id="mrp_production_2">
+        <field name="name">MO/TMS_TEST/02</field>
+        <field name="product_id" ref="mrp.product_product_computer_desk" />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="product_qty">1</field>
+        <field
+            name="date_start"
+            eval="(DateTime.today() + relativedelta(days=-2)).strftime('%Y-%m-%d %H:%M')"
+        />
+        <field name="bom_id" ref="mrp.mrp_bom_desk" />
+    </record>
+
+    <record model="mrp.production" id="mrp_production_3">
+        <field name="name">MO/TMS_TEST/03</field>
+        <field name="product_id" ref="mrp.product_product_computer_desk" />
+        <field name="product_uom_id" ref="uom.product_uom_unit" />
+        <field name="product_qty">1</field>
+        <field
+            name="date_start"
+            eval="(DateTime.today() + relativedelta(days=3)).strftime('%Y-%m-%d %H:%M')"
+        />
+        <field name="bom_id" ref="mrp.mrp_bom_desk" />
+    </record>
+
+    <function
+        model="mrp.production"
+        name="action_create_project"
+        eval="[[
+            ref('mrp_timesheet.mrp_production_1'),
+            ref('mrp_timesheet.mrp_production_2'),
+            ref('mrp_timesheet.mrp_production_3'),
+        ]]"
+    />
+
+    <function
+        model="mrp.production"
+        name="action_confirm"
+        eval="[[
+            ref('mrp_timesheet.mrp_production_1'),
+            ref('mrp_timesheet.mrp_production_2'),
+        ]]"
+    />
+</odoo>

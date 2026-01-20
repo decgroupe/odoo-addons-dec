@@ -3,15 +3,14 @@
 
 from odoo.tests import Form
 
-from odoo.addons.mrp_project_auto.tests.common import TestMrpProjectAutoCommon
+from .common import TestMrpTimesheetBase
 
 
-class TestMrpTimesheet(TestMrpProjectAutoCommon):
+class TestMrpTimesheet(TestMrpTimesheetBase):
+    """Tests for MRP Timesheet module."""
 
     def setUp(self):
         super().setUp()
-        self.production_user.action_create_employee()
-        self.production_employee = self.production_user.employee_id
 
     def test_01_auto_project_from_orm(self):
         prod1_id = self.production_model.with_user(self.production_user).create(
@@ -56,14 +55,14 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
         self.assertEqual(prod1_id.state, "draft")
         self.assertTrue(prod1_id.project_id)
         # create a first timesheet entry for this production
-        al1 = self.env["account.analytic.line"].create(
+        _al1 = self.env["account.analytic.line"].create(
             {
                 "name": "Picking products from stock",
                 "project_id": prod1_id.project_id.id,
                 "production_id": prod1_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 1,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         # even with a timesheet entry, the production order is still in draft state
@@ -74,20 +73,22 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
         self.assertEqual(prod1_id.state, "draft")
         # confirm the production order
         prod1_id.action_confirm()
+        self.assertEqual(prod1_id.state, "confirmed")
         # also force all stock moves to be done to ensure compatibility with
         # `mrp_supply_progress`
         for move in prod1_id.move_raw_ids:
             move.state = "done"
-        self.assertEqual(prod1_id.state, "confirmed")
+            self.assertTrue(move.picked)
+        self.assertEqual(prod1_id.state, "progress")
         # create a second timesheet entry for this production
-        al2 = self.env["account.analytic.line"].create(
+        _al2 = self.env["account.analytic.line"].create(
             {
                 "name": "Mounting drawer into desk",
                 "project_id": prod1_id.project_id.id,
                 "production_id": prod1_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 1,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         # the state is automatically updated to "In Progress" because the production
@@ -97,14 +98,14 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
         self.assertAlmostEqual(prod1_id.progress, 66.67, places=2)
         self.assertEqual(prod1_id.state, "progress")
         # create a third timesheet entry for this production
-        al3 = self.env["account.analytic.line"].create(
+        _al3 = self.env["account.analytic.line"].create(
             {
                 "name": "Boxing for shipment",
                 "project_id": prod1_id.project_id.id,
                 "production_id": prod1_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 2,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         self.assertEqual(prod1_id.total_hours, 4)
@@ -125,7 +126,7 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
                 "production_id": prod1_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 1,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         # create a second timesheet entry for this production
@@ -136,13 +137,13 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
                 "production_id": prod1_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 1,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         self.assertEqual(prod1_id.total_hours, 2)
         # manually change the project associated to the production order
         new_project_id = self.env["project.project"].create(
-            {"name": "Another project for %s" % prod1_id.name}
+            {"name": f"Another project for {prod1_id.name}"}
         )
         prod1_id.project_id = new_project_id
         # ensure that the project_id of the timesheet entries is updated
@@ -151,10 +152,10 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
         # now reassign the project_id to the original project but using an ignore key
         # that should avoid the automatic update of the project_id of the timesheet
         # entries
-        prod1_id.with_context(ignore_constrains_project_timesheets=True).project_id = (
-            prod1_project_id
-        )
-        # and check that timehseet entries are not updated
+        prod1_id.with_context(
+            ignore_constrains_project_timesheets=True
+        ).project_id = prod1_project_id
+        # and check that timesheet entries are not updated
         self.assertEqual(al1.project_id, new_project_id)
         self.assertEqual(al2.project_id, new_project_id)
 
@@ -169,7 +170,7 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
                 "production_id": prod1_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 1,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         another_project_id = self.env["project.project"].create(
@@ -182,7 +183,7 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
                 "project_id": another_project_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 1,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         al3 = self.env["account.analytic.line"].create(
@@ -191,14 +192,14 @@ class TestMrpTimesheet(TestMrpProjectAutoCommon):
                 "project_id": another_project_id.id,
                 "employee_id": self.production_employee.id,
                 "unit_amount": 1,  # one hour
-                "date": prod1_id.date_planned_start,
+                "date": prod1_id.date_start,
             }
         )
         self.assertRegex(al1.production_identification, r"\[E-COM07\] Large Cabinet")
         self.assertFalse(al2.production_identification)
         # assign production order to the unrelated timesheet entry (using UI)
         al2_form = Form(al2, view="mrp_timesheet.hr_timesheet_line_form_view")
-        al2_form.project_id = self.env["project.project"] # mandatory unset
+        al2_form.project_id = self.env["project.project"]  # mandatory unset
         al2_form.production_id = prod1_id
         al2_form.save()
         self.assertEqual(

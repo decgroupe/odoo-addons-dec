@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2021
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
@@ -17,7 +17,7 @@ class MrpProduction(models.Model):
     )
     progress = fields.Float(
         compute="_compute_progress_hours",
-        group_operator="avg",
+        aggregator="avg",
         store=True,
         string="Progress",
     )
@@ -39,14 +39,25 @@ class MrpProduction(models.Model):
         string="Total Hours",
     )
 
-    @api.model
-    def create(self, values):
-        if not values.get("allow_timesheets") is True:
-            self_ctx = self.with_context(mrp_project_auto_disable=True)
-        else:
-            self_ctx = self
-        production_id = super(MrpProduction, self_ctx).create(values)
-        return production_id
+    @api.model_create_multi
+    def create(self, vals_list):
+        # split vals_list in two lists:
+        # one with allow_timesheets True, the other False or not set
+        allow_timesheets_list = []
+        no_allow_timesheets_list = []
+        for vals in vals_list:
+            if vals.get("allow_timesheets") is True:
+                allow_timesheets_list.append(vals)
+            else:
+                no_allow_timesheets_list.append(vals)
+        record_ids = self.env["mrp.production"]
+        if no_allow_timesheets_list:
+            record_ids |= super(
+                MrpProduction, self.with_context(mrp_project_auto_disable=True)
+            ).create(no_allow_timesheets_list)
+        if allow_timesheets_list:
+            record_ids |= super().create(allow_timesheets_list)
+        return record_ids
 
     def write(self, vals):
         res = super().write(vals)
@@ -73,8 +84,6 @@ class MrpProduction(models.Model):
             rec.total_hours = sum(rec.timesheet_ids.mapped("unit_amount"))
             # automatically set state to "In Progress" if a timesheet input
             # is added to this production order
-            print("total_hours", rec.total_hours)
-            print("_allow_auto_start", rec._allow_auto_start())
             if rec.total_hours > 0 and rec._allow_auto_start():
                 rec.action_start()
 
