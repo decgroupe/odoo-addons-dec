@@ -1,0 +1,60 @@
+# Copyright (C) DEC SARL, Inc - All Rights Reserved.
+# Written by Yann Papouin <ypa at decgroupe.com>, Jan 2026
+
+from odoo.tests import new_test_user
+from odoo.tests.common import TransactionCase
+
+
+class TestMailActionView(TransactionCase):
+    """ """
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.model = cls.env["mail.activity"]
+        ctx = {
+            "mail_create_nolog": True,
+            "mail_create_nosubscribe": True,
+            "mail_notrack": True,
+            "no_reset_password": True,
+        }
+        cls.user = new_test_user(
+            cls.env,
+            login="action_view-user",
+            groups="base.group_user,base.group_partner_manager",
+            context=ctx,
+        )
+        # Install "contacts" module
+        module = cls.env["ir.module.module"].search([("name", "=", "contacts")])
+        module.button_install()
+
+    def _test_action_view(self, res_ids, res_model):
+        # any base user should be allowed to get this action
+        action = res_ids.with_user(self.user).action_view()
+        self.assertEqual(action["res_model"], res_model)
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        return action
+
+    def _test_action_view_sm_records(self, model):
+        """Test for single or multiple records"""
+        res_ids = model.search([])
+        self.assertGreaterEqual(len(res_ids), 2)
+        # check action for a single record
+        action_single = self._test_action_view(res_ids[0], model._name)
+        self.assertIn("form", action_single["view_mode"])
+        self.assertIn("res_id", action_single)
+        # check action for multiple records
+        action_multiple = self._test_action_view(res_ids, model._name)
+        self.assertIn("list", action_multiple["view_mode"])
+        self.assertIn("domain", action_multiple)
+        self.assertIn("views", action_multiple)
+
+    def test_01_action_view(self):
+        # Azure Interior, Brandon Freeman
+        self.partner_id = self.env.ref("base.res_partner_address_15")
+        # schedule some activities for this partner
+        for note in ["Activity #1", "Activity #2", "Activity #3"]:
+            self.partner_id.with_user(self.user).activity_schedule(
+                "mail.mail_activity_data_todo", note=note, automated=False
+            )
+        self._test_action_view_sm_records(self.model)

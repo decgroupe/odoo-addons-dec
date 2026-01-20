@@ -9,18 +9,18 @@ class MailActivity(models.Model):
 
     @api.model
     def action_view_base(self):
-        # Alternative of `mail.mail_activity_action`
+        # Alternative to `mail.mail_activity_action`
         action = {
             "type": "ir.actions.act_window",
-            "name": "My Action Name",
+            "name": "Activity Overview",
             "display_name": "Activities",
             "res_model": "mail.activity",
             "context": "{}",
             "domain": "[]",
             "filter": False,
             "target": "current",
-            "view_mode": "form",
-            "view_type": "form",
+            "view_mode": "list,form",
+            "views": [],
         }
         return action
 
