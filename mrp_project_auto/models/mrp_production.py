@@ -12,12 +12,12 @@ class MrpProduction(models.Model):
         for vals in vals_list:
             if not self.env.context.get("mrp_project_auto_disable"):
                 # Project must be created before any moves to be propagated
-                # to sub-production. It Odoo 12.0, it was previously done in a
+                # to sub-production. In Odoo 12.0, it was previously done in a
                 # `_generate_moves` function but all this code has been refactored.
                 project_id = self._create_or_retrieve_project(vals)
                 if project_id:
                     vals.update(self._attach_to_project(project_id))
-        production_ids = super(MrpProduction, self).create(vals_list)
+        production_ids = super().create(vals_list)
         return production_ids
 
     @api.model

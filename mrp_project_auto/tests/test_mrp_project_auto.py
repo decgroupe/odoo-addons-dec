@@ -5,7 +5,6 @@ from .common import TestMrpProjectAutoCommon
 
 
 class TestMrpProjectAuto(TestMrpProjectAutoCommon):
-
     def setUp(self):
         super().setUp()
 

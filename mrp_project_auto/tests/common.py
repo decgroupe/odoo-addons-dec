@@ -1,13 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2024
 
-from odoo.tests import Form
-from odoo.tests import new_test_user
+from odoo import Command
+from odoo.tests import Form, new_test_user
+
 from odoo.addons.mrp.tests.common import TestMrpCommon
 
 
 class TestMrpProjectAutoCommon(TestMrpCommon):
-
     def setUp(self):
         super().setUp()
         self.production_model = self.env["mrp.production"]
@@ -27,13 +27,15 @@ class TestMrpProjectAutoCommon(TestMrpCommon):
         product_to_use_1 = self.env["product.product"].create(
             {
                 "name": "Pr1",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         product_to_use_2 = self.env["product.product"].create(
             {
                 "name": "Pr2",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         self.product1_bom = self.env["mrp.bom"].create(
@@ -41,15 +43,11 @@ class TestMrpProjectAutoCommon(TestMrpCommon):
                 "product_id": self.product1.id,
                 "product_tmpl_id": self.product1.product_tmpl_id.id,
                 "bom_line_ids": [
-                    (
-                        0,
-                        0,
-                        {"product_id": product_to_use_1.id, "product_qty": 1},
+                    Command.create(
+                        {"product_id": product_to_use_1.id, "product_qty": 1}
                     ),
-                    (
-                        0,
-                        0,
-                        {"product_id": product_to_use_2.id, "product_qty": 1},
+                    Command.create(
+                        {"product_id": product_to_use_2.id, "product_qty": 1}
                     ),
                 ],
             }
