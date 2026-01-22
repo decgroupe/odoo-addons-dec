@@ -8,5 +8,5 @@ class TestWebBaseView(TransactionCase):
     def setUp(self):
         super().setUp()
 
-    # def test_01_(self):
-    #     pass
+    def test_01_nothing(self):
+        pass
