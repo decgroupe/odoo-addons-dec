@@ -11,6 +11,19 @@ class ProductTemplate(models.Model):
         action = self.env["ir.actions.actions"]._for_xml_id(
             "product_pricelist_analysis.act_window_product_pricelist_item"
         )
-        action["context"] = dict(self.env.context)
-        action["context"]["search_default_product_tmpl_id"] = self.id
+        context = dict(self.env.context)
+        context.update(
+            {
+                "search_default_product_tmpl_id": self.id,
+                "default_applied_on": "1_product",
+            }
+        )
+        action["context"] = context
+        return action
+
+    def open_pricelist_rules(self):
+        action = super().open_pricelist_rules()
+        # override odoo default action to use our custom one
+        # default action is very restrivtive and show only rules with fixed price
+        action = self.action_view_pricelist_items()
         return action

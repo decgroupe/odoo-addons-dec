@@ -34,10 +34,10 @@
         <field name="arch" type="xml">
             <group name="pricelist_rule_computation" position="before">
                 <group name="pricelist_sequence">
-                    <group>
+                    <group name="note">
                         <field name="note" />
                     </group>
-                    <group>
+                    <group name="sequence">
                         <field name="sequence" />
                     </group>
                 </group>

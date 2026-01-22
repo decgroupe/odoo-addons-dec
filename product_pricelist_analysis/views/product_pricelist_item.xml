@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="product_pricelist_item_tree_view_from_product">
+    <record model="ir.ui.view" id="product_pricelist_item_list_view">
         <field
             name="name"
         >product.pricelist.item.tree@product_pricelist_analysis</field>
@@ -10,32 +9,60 @@
             name="inherit_id"
             ref="product.product_pricelist_item_tree_view_from_product"
         />
+        <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <!-- Disable editable list view: Force form to create/edit -->
+            <xpath expr="//list" position="attributes">
                 <attribute name="editable" />
             </xpath>
-            <field name="name" position="attributes">
-                <attribute name="string" />
-            </field>
+            <!-- Show rule's category -->
             <field name="categ_id" position="attributes">
-                <attribute name="invisible">0</attribute>
+                <attribute name="column_invisible">False</attribute>
                 <attribute name="string">Category</attribute>
             </field>
+            <!-- Show rule's product template -->
             <field name="product_tmpl_id" position="attributes">
-                <attribute name="invisible" />
-                <attribute name="string">Product Template</attribute>
+                <attribute name="column_invisible">False</attribute>
+                <attribute name="string">Template</attribute>
             </field>
+            <!-- Show rule's fixed price -->
             <field name="fixed_price" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="column_invisible">False</attribute>
             </field>
+            <!-- Show rule's applied_on price -->
+            <field name="applied_on" position="attributes">
+                <attribute name="column_invisible">False</attribute>
+            </field>
+            <!-- Move Category and Product Template before Product Variant -->
+            <field name="product_id" position="before">
+                <field name="categ_id" position="move" />
+                <field name="product_tmpl_id" position="move" />
+            </field>
+            <!-- Add and rearrange pricelist item rule-related fields -->
             <field name="fixed_price" position="after">
                 <field name="price" string="Price" />
                 <field name="base" />
                 <field name="base_pricelist_id" />
-                <field name="price_discount" />
-                <field name="applied_on" />
+                <field name="price_discount" string="Discount" />
+                <field name="applied_on" position="move" />
                 <field name="compute_price" />
-                <field name="min_quantity" position="move"/>
+                <field name="min_quantity" position="move" />
+            </field>
+            <!-- Set optional="show" on fields not relevant for analysis views. -->
+            <field name="base_pricelist_id" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="price_discount" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="applied_on" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="compute_price" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="min_quantity" position="attributes">
+                <attribute name="optional">show</attribute>
             </field>
         </field>
     </record>
@@ -50,8 +77,11 @@
             ref="product_pricelist_sequence.product_pricelist_item_form_view"
         />
         <field name="arch" type="xml">
-            <xpath expr="//h1" position="before">
-                <field name="pricelist_id" />
+            <xpath expr="//group[@name='note']" position="before">
+                <group name="pricelist" colspan="4">
+                    <field name="pricelist_id" />
+                    <separator />
+                </group>
             </xpath>
         </field>
     </record>
@@ -68,10 +98,7 @@
                 <field name="product_tmpl_id" />
                 <field name="product_id" groups="product.group_product_variant" />
                 <separator />
-                <filter
-                    string="Sale Pricelist"
-                    name="filter_pricelist_sale"
-                />
+                <filter string="Sale Pricelist" name="filter_pricelist_sale" />
                 <separator />
                 <filter
                     string="Permanent"
@@ -103,7 +130,7 @@
                         string="Variant"
                         name="groupby_product_variant"
                         context="{'group_by':'product_id'}"
-                    /> <!-- groups="product.group_product_variant"/> -->
+                    />
                 </group>
             </search>
         </field>
@@ -112,7 +139,7 @@
     <record model="ir.actions.act_window" id="act_window_product_pricelist_item">
         <field name="name">Pricelist Items</field>
         <field name="res_model">product.pricelist.item</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field name="search_view_id" ref="product_pricelist_item_search_view" />
         <field name="context">
                 {
@@ -126,9 +153,15 @@
         id="act_window_view_product_pricelist_item_tree"
     >
         <field name="sequence" eval="1" />
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="product_pricelist_item_tree_view_from_product" />
-        <field name="act_window_id" ref="act_window_product_pricelist_item" />
+        <field name="view_mode">list</field>
+        <field
+            name="view_id"
+            ref="product_pricelist_analysis.product_pricelist_item_list_view"
+        />
+        <field
+            name="act_window_id"
+            ref="product_pricelist_analysis.act_window_product_pricelist_item"
+        />
     </record>
 
     <record
@@ -137,8 +170,13 @@
     >
         <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="product_pricelist_item_form_view" />
-        <field name="act_window_id" ref="act_window_product_pricelist_item" />
+        <field
+            name="view_id"
+            ref="product_pricelist_analysis.product_pricelist_item_form_view"
+        />
+        <field
+            name="act_window_id"
+            ref="product_pricelist_analysis.act_window_product_pricelist_item"
+        />
     </record>
-
 </odoo>

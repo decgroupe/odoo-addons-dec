@@ -1,6 +1,7 @@
 {
     "name": "Product Pricelist Analysis",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -10,7 +11,6 @@
     "data": [
         "views/product_pricelist_item.xml",
         "views/product_pricelist.xml",
-        "views/product_template.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
