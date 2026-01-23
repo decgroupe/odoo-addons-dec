@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProductSupplierinfo(models.Model):
@@ -34,12 +34,13 @@ class ProductSupplierinfo(models.Model):
         product_id = self.product_id or self.product_tmpl_id
         # Convert quantities to default product UoM
         qty = self.product_uom._compute_quantity(self.min_qty or 1.0, product_id.uom_id)
-        partner = self.name
-        hkey = (product_id, qty, partner)
-        if not self.name.property_product_pricelist_purchase:
-            msg = (
-                "No purchase pricelist found for seller '%s'"
-                "(missing 'property_product_pricelist_purchase')" % (self.display_name)
+        uom = product_id.uom_id
+        hkey = (product_id, qty, uom)
+        if not self.partner_id.property_product_pricelist_purchase:
+            msg = self.env._(
+                "No purchase pricelist found for seller '%(seller)s' "
+                "(missing 'property_product_pricelist_purchase')",
+                seller=self.display_name,
             )
             self.env["product.pricelist"].with_context(history=history)._addto_history(
                 hkey, message=msg, action="end"
@@ -52,18 +53,20 @@ class ProductSupplierinfo(models.Model):
 
     def _compute_list_price(self):
         history = {}
-        super(
+        res = super(
             ProductSupplierinfo, self.with_context(history=history)
         )._compute_list_price()
         for rec in self:
             rec.list_price_graph, rec.list_price_steps = rec._get_graph_steps(history)
+        return res
 
     def _compute_list_price_unit(self):
         history = {}
-        super(
+        res = super(
             ProductSupplierinfo, self.with_context(history=history)
         )._compute_list_price_unit()
         for rec in self:
             rec.list_price_unit_graph, rec.list_price_unit_steps = rec._get_graph_steps(
                 history
             )
+        return res

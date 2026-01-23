@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
-"PO-Revision-Date: 2023-11-28 14:19+0100\n"
+"POT-Creation-Date: 2026-06-03 10:58+0000\n"
+"PO-Revision-Date: 2026-06-03 15:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute,name:purchase_pricelist_analysis.product_attribute_basket
+msgid "Basket 🧺"
+msgstr "Corbeille 🧺"
 
 #. module: purchase_pricelist_analysis
 #: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__list_price_graph
@@ -38,44 +43,48 @@ msgid "Computation Steps (Default UoM)"
 msgstr "Étapes de calcul (UdM par défaut)"
 
 #. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: purchase_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist_analysis.product_supplierinfo_form_view
 msgid "Graph"
 msgstr "Graphe"
 
 #. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_pricelist_analysis
-#: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
-
-#. module: purchase_pricelist_analysis
 #: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_unit_graph
 msgid "Mermaid type graph to explain seller price computation (Default UoM)"
-msgstr "Graphique de type Mermaid pour expliquer le calcul du prix du vente fournisseur (UdM par défaut)"
+msgstr ""
+"Graphique de type Mermaid pour expliquer le calcul du prix du vente "
+"fournisseur (UdM par défaut)"
 
 #. module: purchase_pricelist_analysis
 #: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_graph
 msgid "Mermaid type graph to explain seller price computation (Purchase UoM)"
-msgstr "Graphique de type Mermaid pour expliquer le calcul du prix du vente fournisseur (UdM d'achat)"
+msgstr ""
+"Graphique de type Mermaid pour expliquer le calcul du prix du vente "
+"fournisseur (UdM d'achat)"
+
+#. module: purchase_pricelist_analysis
+#. odoo-python
+#: code:addons/purchase_pricelist_analysis/models/product_supplierinfo.py:0
+msgid ""
+"No purchase pricelist found for seller '%(seller)s' (missing "
+"'property_product_pricelist_purchase')"
+msgstr ""
+"Aucune liste de prix d'achat n'a été trouvée pour le vendeur « %"
+"(seller)s » (élément « property_product_pricelist_purchase » manquant)"
 
 #. module: purchase_pricelist_analysis
 #: model:ir.ui.menu,name:purchase_pricelist_analysis.menu_pricelist_items
 msgid "Pricelist items"
 msgstr "Règles de prix"
+
+#. module: purchase_pricelist_analysis
+#: model:product.template,name:purchase_pricelist_analysis.product_template_a
+msgid "Product A"
+msgstr "Produit A"
+
+#. module: purchase_pricelist_analysis
+#: model:product.template,name:purchase_pricelist_analysis.product_template_b
+msgid "Product B"
+msgstr "Produit B"
 
 #. module: purchase_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist_analysis.product_pricelist_item_search_view
@@ -90,14 +99,51 @@ msgstr "Liste de prix du fournisseur"
 #. module: purchase_pricelist_analysis
 #: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_unit_steps
 msgid "Text enumeration to explain seller price computation (Default UoM)"
-msgstr "Enumération de texte pour expliquer le calcul du prix du vente fournisseur (UdM par défaut)"
+msgstr ""
+"Enumération de texte pour expliquer le calcul du prix du vente fournisseur "
+"(UdM par défaut)"
 
 #. module: purchase_pricelist_analysis
 #: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__list_price_steps
 msgid "Text enumeration to explain seller price computation (Purchase UoM)"
-msgstr "Enumération de texte pour expliquer le calcul du prix du vente fournisseur (UdM d'achat)"
+msgstr ""
+"Enumération de texte pour expliquer le calcul du prix du vente fournisseur "
+"(UdM d'achat)"
 
 #. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_basket_value1
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_version_value1
+msgid "V1"
+msgstr "V1"
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_basket_value2
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_version_value2
+msgid "V2"
+msgstr "V2"
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_basket_value3
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_version_value3
+msgid "V3"
+msgstr "V3"
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute,name:purchase_pricelist_analysis.product_attribute_version
+msgid "Version 🧺"
+msgstr "Version 🧺"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

@@ -4,16 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
-"PO-Revision-Date: 2023-11-28 10:29+0000\n"
+"POT-Creation-Date: 2026-06-03 10:58+0000\n"
+"PO-Revision-Date: 2026-06-03 10:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute,name:purchase_pricelist_analysis.product_attribute_basket
+msgid "Basket 🧺"
+msgstr ""
 
 #. module: purchase_pricelist_analysis
 #: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__list_price_graph
@@ -36,28 +41,8 @@ msgid "Computation Steps (Default UoM)"
 msgstr ""
 
 #. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: purchase_pricelist_analysis
 #: model_terms:ir.ui.view,arch_db:purchase_pricelist_analysis.product_supplierinfo_form_view
 msgid "Graph"
-msgstr ""
-
-#. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__id
-msgid "ID"
-msgstr ""
-
-#. module: purchase_pricelist_analysis
-#: model:ir.model.fields,help:purchase_pricelist_analysis.field_product_supplierinfo__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_pricelist_analysis
@@ -71,8 +56,26 @@ msgid "Mermaid type graph to explain seller price computation (Purchase UoM)"
 msgstr ""
 
 #. module: purchase_pricelist_analysis
+#. odoo-python
+#: code:addons/purchase_pricelist_analysis/models/product_supplierinfo.py:0
+msgid ""
+"No purchase pricelist found for seller '%(seller)s' (missing "
+"'property_product_pricelist_purchase')"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
 #: model:ir.ui.menu,name:purchase_pricelist_analysis.menu_pricelist_items
 msgid "Pricelist items"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:product.template,name:purchase_pricelist_analysis.product_template_a
+msgid "Product A"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:product.template,name:purchase_pricelist_analysis.product_template_b
+msgid "Product B"
 msgstr ""
 
 #. module: purchase_pricelist_analysis
@@ -96,6 +99,24 @@ msgid "Text enumeration to explain seller price computation (Purchase UoM)"
 msgstr ""
 
 #. module: purchase_pricelist_analysis
-#: model:ir.model.fields,field_description:purchase_pricelist_analysis.field_product_supplierinfo__xid
-msgid "XML-ID"
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_basket_value1
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_version_value1
+msgid "V1"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_basket_value2
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_version_value2
+msgid "V2"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_basket_value3
+#: model:product.attribute.value,name:purchase_pricelist_analysis.product_attribute_version_value3
+msgid "V3"
+msgstr ""
+
+#. module: purchase_pricelist_analysis
+#: model:product.attribute,name:purchase_pricelist_analysis.product_attribute_version
+msgid "Version 🧺"
 msgstr ""

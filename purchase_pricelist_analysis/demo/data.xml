@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Create attribute/values for variants -->
+    <record model="product.attribute" id="product_attribute_version">
+        <field name="name">Version 🧺</field>
+        <field name="create_variant">always</field>
+    </record>
+    <record model="product.attribute.value" id="product_attribute_version_value1">
+        <field name="name">V1</field>
+        <field name="sequence">1</field>
+        <field name="attribute_id" ref="product_attribute_version" />
+        <field name="default_extra_price" eval="1.0" />
+    </record>
+    <record model="product.attribute.value" id="product_attribute_version_value2">
+        <field name="name">V2</field>
+        <field name="sequence">2</field>
+        <field name="attribute_id" ref="product_attribute_version" />
+        <field name="default_extra_price" eval="2.0" />
+    </record>
+    <record model="product.attribute.value" id="product_attribute_version_value3">
+        <field name="name">V3</field>
+        <field name="sequence">3</field>
+        <field name="attribute_id" ref="product_attribute_version" />
+        <field name="default_extra_price" eval="3.0" />
+    </record>
+
+    <data noupdate="1">
+        <!-- Create Product A -->
+        <record model="product.template" id="product_template_a">
+            <field name="name">Product A</field>
+            <field name="type">consu</field>
+            <field name="default_code">PROD_A</field>
+            <field name="list_price">100.0</field>
+            <field name="standard_price">80.0</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field
+                name="attribute_line_ids"
+                eval="[
+                Command.clear(),
+                Command.create({
+                    'attribute_id': ref('product_attribute_version'),
+                    'value_ids': [
+                        Command.set([
+                            ref('product_attribute_version_value1'),
+                            ref('product_attribute_version_value2'),
+                            ref('product_attribute_version_value3')
+                        ])
+                    ]
+                })
+            ]"
+            />
+        </record>
+
+        <!-- Create Product B -->
+        <record model="product.template" id="product_template_b">
+            <field name="name">Product B</field>
+            <field name="type">consu</field>
+            <field name="default_code">PROD_B</field>
+            <field name="list_price">200.0</field>
+            <field name="standard_price">150.0</field>
+            <field name="uom_id" ref="uom.product_uom_unit" />
+            <field name="uom_po_id" ref="uom.product_uom_unit" />
+            <field
+                name="attribute_line_ids"
+                eval="[
+                Command.clear(),
+                Command.create({
+                    'attribute_id': ref('product_attribute_version'),
+                    'value_ids': [
+                        Command.set([
+                            ref('product_attribute_version_value1'),
+                            ref('product_attribute_version_value2')
+                        ])
+                    ]
+                })
+            ]"
+            />
+        </record>
+    </data>
+
+    <!-- Set internal reference to each variant -->
+    <function model="product.product" name="write">
+        <value
+            model="product.product"
+            eval="obj().env.ref('purchase_pricelist_analysis.product_template_a').product_variant_ids[0].id"
+        />
+        <value eval="{'default_code': 'PA-V1'}" />
+    </function>
+    <function model="product.product" name="write">
+        <value
+            model="product.product"
+            eval="obj().env.ref('purchase_pricelist_analysis.product_template_a').product_variant_ids[1].id"
+        />
+        <value eval="{'default_code': 'PA-V2'}" />
+    </function>
+    <function model="product.product" name="write">
+        <value
+            model="product.product"
+            eval="obj().env.ref('purchase_pricelist_analysis.product_template_a').product_variant_ids[2].id"
+        />
+        <value eval="{'default_code': 'PA-V3'}" />
+    </function>
+    <function model="product.product" name="write">
+        <value
+            model="product.product"
+            eval="obj().env.ref('purchase_pricelist_analysis.product_template_b').product_variant_ids[0].id"
+        />
+        <value eval="{'default_code': 'PB-V1'}" />
+    </function>
+    <function model="product.product" name="write">
+        <value
+            model="product.product"
+            eval="obj().env.ref('purchase_pricelist_analysis.product_template_b').product_variant_ids[1].id"
+        />
+        <value eval="{'default_code': 'PB-V2'}" />
+    </function>
+
+    <!-- Create Vendor Alpha -->
+    <!-- Create Vendor Beta -->
+</odoo>

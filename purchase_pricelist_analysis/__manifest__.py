@@ -1,10 +1,12 @@
 {
     "name": "Purchase Pricelist Analysis",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "purchase_pricelist",
+        "product_pricelist_history",
         "product_pricelist_analysis",
         "web_widget_mermaid",
     ],
@@ -13,5 +15,8 @@
         "views/product_supplierinfo.xml",
         "views/product_pricelist_item.xml",
     ],
-    "installable": False,
+    "demo": [
+        "demo/data.xml",
+    ],
+    "installable": True,
 }
