@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 14:05+0100\n"
+"POT-Creation-Date: 2026-06-03 10:48+0000\n"
+"PO-Revision-Date: 2026-06-03 15:33+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,103 +15,85 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: product_pricelist_history
-#: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
 msgid "Base price is {}"
 msgstr "Le prix de référence est {}"
 
 #. module: product_pricelist_history
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist__display_name
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist_item__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: product_pricelist_history
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist__id
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist_item__id
-msgid "ID"
-msgstr "ID"
-
-#. module: product_pricelist_history
-#: model:ir.model.fields,help:product_pricelist_history.field_product_pricelist__xid
-#: model:ir.model.fields,help:product_pricelist_history.field_product_pricelist_item__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: product_pricelist_history
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist____last_update
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist_item____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
-
-#. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
 msgid "No rules loaded at this step"
 msgstr "Aucune règle chargée à cette étape"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
-msgid "Parse rule [{}] {}"
-msgstr "Analyse de la règle [{}] {}"
+msgid "No suitable rule found"
+msgstr "Aucune règle correspondante n'a été trouvée"
 
 #. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist.py:0
+msgid "Parse rule [%(rule_id)d] %(rule_name)s"
+msgstr "Analyse de la règle [%(rule_id)d] %(rule_name)s"
+
+#. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
-#, python-format
 msgid "Price (fixed) set to {}"
 msgstr "Le prix (fixe) est {}"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
-#, python-format
 msgid "Price (percentage) set to {}"
 msgstr "Le prix (pourcentage) est {}"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
-#, python-format
-msgid "Price discounted to {} ({}%)"
-msgstr "Le prix remisé est {} ({}%)"
+msgid "Price discounted to %(price)d (%(discount)d%%)"
+msgstr "Le prix remisé est %(price)d (%(discount)d%%)"
 
 #. module: product_pricelist_history
-#: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
-msgid "Price is based on \"{}\""
-msgstr "Le prix de référence est \"{}\""
-
-#. module: product_pricelist_history
-#: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
-msgid "Price is based on another pricelist: {}"
-msgstr "Le prix de référence se  base sur une autre liste de prix: {}"
-
-#. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
-#, python-format
+msgid "Price is based on \"%(rule_base)s\""
+msgstr "Le prix est basé sur \"%(rule_base)s\""
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid "Price is based on another pricelist: %(pricelist)s"
+msgstr "Le prix est basé sur une autre liste de prix: %(pricelist)s"
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
 msgid "Price rounded to {}"
 msgstr "Prix arrondie à {}"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
-#, python-format
-msgid "Price surcharge applied {} (+{})"
-msgstr "Supplément de prix appliqué {} (+{})"
+msgid "Price surcharge applied %(price)d (+%(surcharge)d)"
+msgstr "Supplément de prix appliqué %(price)d (+%(surcharge)d)"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
-#, python-format
-msgid "Price updated (maximum margin) to {}"
-msgstr "Prix mis à jour (selon la limite de marge maximum) à {}"
+msgid "Price updated (maximum margin) to %(price)d"
+msgstr "Prix mis à jour (selon la limite de marge maximum) à %(price)d"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
-#, python-format
-msgid "Price updated (minimum margin) to {}"
-msgstr "Prix mis à jour (selon la limite de marge minimum) à {}"
+msgid "Price updated (minimum margin) to %(price)d"
+msgstr "Prix mis à jour (selon la limite de marge minimum) à %(price)d"
 
 #. module: product_pricelist_history
 #: model:ir.model,name:product_pricelist_history.model_product_pricelist
@@ -124,46 +106,130 @@ msgid "Pricelist Rule"
 msgstr "Règle des listes des prix"
 
 #. module: product_pricelist_history
-#: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
-msgid "Quantity is {}"
-msgstr "La quantité est de {}"
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid ""
+"Product category %(product_category)s does not match rule category %"
+"(rule_category)s"
+msgstr ""
+"La catégorie d'articles %(product_category)s ne correspond pas à la catégorie "
+"de la règle %(rule_category)s"
 
 #. module: product_pricelist_history
-#: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
-msgid "Returns {} {}"
-msgstr "Retourne {} {}"
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid ""
+"Product template %(product_template)s does not match rule template %"
+"(rule_template)s"
+msgstr ""
+"Le modèle d'article %(product_template)s ne correspond pas au modèle de la "
+"règle %(rule_template)s"
 
 #. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid ""
+"Product template %(product_template)s does not match rule variant %"
+"(rule_variant)s"
+msgstr ""
+"Le modèle d'article %(product_template)s ne correspond pas à la variante de la "
+"règle %(rule_variant)s"
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid ""
+"Product variant %(product_variant)s does not match rule template %"
+"(rule_template)s"
+msgstr ""
+"La variante d'article %(product_variant)s ne correspond pas au modèle de la "
+"règle %(rule_template)s"
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid ""
+"Product variant %(product_variant)s does not match rule variant %"
+"(rule_variant)s"
+msgstr ""
+"La variante d'article %(product_variant)s ne correspond pas à la variante de "
+"la règle %(rule_variant)s"
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid "Quantity %(quantity)d is less than min_quantity %(min_quantity)d"
+msgstr ""
+"La quantité %(quantity)d est inférieure à la quantité minimale %(min_quantity)d"
+
+#. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
+msgid "Quantity is %(quantity)d"
+msgstr "La quantité est de %(quantity)d"
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist.py:0
+msgid "Returns %(price)s %(rule_name)s"
+msgstr "Retourne %(price)s %(rule_name)s"
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist_item.py:0
+msgid "Rule %(rule_id)d ignored: %(msg)s"
+msgstr "Règle %(rule_id)d ignorée: %(msg)s"
+
+#. module: product_pricelist_history
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist.py:0
 msgid "Using {}"
 msgstr "Utilisation de {}"
 
 #. module: product_pricelist_history
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist__xid
-#: model:ir.model.fields,field_description:product_pricelist_history.field_product_pricelist_item__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#. odoo-python
+#: code:addons/product_pricelist_history/models/product_pricelist.py:0
+msgid "with rule [%(rule_id)d] %(rule_name)s"
+msgstr "avec la règle [%(rule_id)d] %(rule_name)s"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
-msgid "with rule [{}] {}"
-msgstr "avec la règle [{}] {}"
-
-#. module: product_pricelist_history
-#: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
 msgid "without any rule"
 msgstr "sans aucune règle"
 
 #. module: product_pricelist_history
+#. odoo-python
 #: code:addons/product_pricelist_history/models/product_pricelist.py:0
-#, python-format
 msgid "{} rule(s) loaded"
 msgstr "{} règle(s) chargée(s)"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#, python-format
+#~ msgid "Parse rule [{}] {}"
+#~ msgstr "Analyse de la règle [{}] {}"
+
+#, python-format
+#~ msgid "Returns {} {}"
+#~ msgstr "Retourne {} {}"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
+
+#, python-format
+#~ msgid "with rule [{}] {}"
+#~ msgstr "avec la règle [{}] {}"
 
 #~ msgid "Base price is now {} ({})"
 #~ msgstr "Le prix de référence est maintenant {} ({})"
@@ -171,8 +237,12 @@ msgstr "{} règle(s) chargée(s)"
 #~ msgid "Explicit rule name for this pricelist line."
 #~ msgstr "Nom explicite pour cette ligne de la liste de prix."
 
-#~ msgid "Gives the order in which the pricelist items will be checked. The evaluation gives highest priority to lowest sequence."
-#~ msgstr "Donne l'ordre dans lequel les entrées de la liste de prix sont vérifiées. L'évaluation donne la plus grande priorité à la séquence la plus petite."
+#~ msgid ""
+#~ "Gives the order in which the pricelist items will be checked. The "
+#~ "evaluation gives highest priority to lowest sequence."
+#~ msgstr ""
+#~ "Donne l'ordre dans lequel les entrées de la liste de prix sont vérifiées. "
+#~ "L'évaluation donne la plus grande priorité à la séquence la plus petite."
 
 #~ msgid "Rule Name"
 #~ msgstr "Nom de la règle"
