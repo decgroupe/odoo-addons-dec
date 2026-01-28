@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="product_price_graph_view">
         <field name="name">Show product prices computation graph</field>
         <field name="model">product.price.graph</field>
@@ -10,12 +9,12 @@
                 <group>
                     <field name="product_id" invisible="1" />
                 </group>
-                    <field
+                <field
                     name="default_sell_price_graph"
                     widget="mermaid"
                     invisible="not context.get('sell_price', False)"
                 />
-                    <field
+                <field
                     name="default_purchase_price_graph_po_uom"
                     widget="mermaid"
                     invisible="not context.get('purchase_price', False)"
@@ -34,5 +33,4 @@
         <field name="view_id" ref="product_prices.product_price_graph_view" />
         <field name="target">new</field>
     </record>
-
 </odoo>

@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="product_template_form_view">
         <field name="name">product.template.form@product_prices</field>
         <field name="model">product.template</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <label for="list_price" position="before">
                 <separator string="Sell price" colspan="2" />
             </label>
-            <div name="pricing" position="after">
-                <field
-                    name="pricelist_bypass"
-                    attrs="{'invisible':[('sale_ok','!=',True)]}"
-                />
+            <div name="list_price_uom" position="after">
+                <field name="pricelist_bypass" invisible="not sale_ok" />
                 <field
                     name="pricelist_bypass_item"
-                    attrs="{'invisible':['|', ('sale_ok','!=',True), ('pricelist_bypass','!=',True)]}"
+                    invisible="not sale_ok or not pricelist_bypass"
                     groups="base.group_erp_manager"
                 />
-                <label
-                    for="default_sell_price"
-                    attrs="{'invisible':[('sale_ok','!=',True)]}"
-                />
-                <div
-                    name="default_sell_price"
-                    attrs="{'invisible':[('sale_ok','!=',True)]}"
-                >
-                    <field name="default_sell_price" class="default_price" />
+                <label for="default_sell_price" invisible="not sale_ok" />
+                <div name="default_sell_price" invisible="not sale_ok">
+                    <field
+                        name="default_sell_price"
+                        class="default_price oe_inline"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                    />
                     <button
                         icon="fa-sitemap"
                         name="open_price_graph"
@@ -36,24 +32,27 @@
                         type="object"
                         context="{'sell_price':True}"
                         class="oe_inline"
-
                     />
                 </div>
                 <label
                     for="price_write_uid"
                     string="Edited"
                     groups="base.group_erp_manager"
-                    attrs="{'invisible':[('price_write_uid','=',False)]}"
+                    invisible="not price_write_uid"
                 />
                 <div
                     name="price_write_editor"
                     groups="base.group_erp_manager"
-                    attrs="{'invisible':[('price_write_uid','=',False)]}"
+                    invisible="not price_write_uid"
                 >
-                    <field name="price_write_date" nolabel="1" readonly="1" /> by <field
-                        name="price_write_uid"
+                    <field
+                        name="price_write_date"
+                        class="oe_inline"
+                        nolabel="1"
                         readonly="1"
                     />
+                    <span> by </span>
+                    <field name="price_write_uid" class="oe_inline" readonly="1" />
                 </div>
             </div>
             <label for="standard_price" position="before">
@@ -64,44 +63,41 @@
                     for="standard_price"
                     string="Purchase Price (PO) / Cost Price (MO)"
                     groups="base.group_user"
-                    attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
-                    style="min-width: 220px;"
-                >
-                </label>
+                    invisible="product_variant_count != 1 and not is_product_variant"
+                />
             </label>
             <div name="standard_price_uom" position="after">
                 <field name="same_uom" invisible="1" />
                 <field
                     name="standard_price_po_uom"
                     widget='monetary'
-                    attrs="
-                        {'invisible':
-                            ['|',
-                                ('purchase_ok', '!=', True),
-                                ('same_uom', '=', True)]
-                        }"
+                    invisible="not purchase_ok or same_uom"
+                    options="{'currency_field': 'cost_currency_id', 'field_digits': True}"
                 />
                 <label
                     for="default_purchase_price_po_uom"
                     string="Purchase Prices"
-                    attrs="{'invisible':[('purchase_ok','!=',True)]}"
+                    invisible="not purchase_ok"
                 />
-                <div
-                    name="default_purchase_price"
-                    attrs="{'invisible':[('purchase_ok','!=',True)]}"
-                >
+                <div name="default_purchase_price" invisible="not purchase_ok">
                     <div>
-                        <small><field
+                        <small>
+                            <field
                                 name="default_purchase_price"
                                 nolabel="1"
-                                attrs="{'invisible':[('same_uom','=',True)]}"
+                                invisible="same_uom"
                                 class="default_price"
-                            /></small>
+                                widget="monetary"
+                                options="{'currency_field': 'cost_currency_id'}"
+                            />
+                        </small>
                     </div>
-                    <div>
+                    <div class="">
                         <field
                             name="default_purchase_price_po_uom"
-                            class="default_price"
+                            class="default_price oe_inline"
+                            widget="monetary"
+                            options="{'currency_field': 'cost_currency_id'}"
                         />
                         <button
                             name="open_price_graph"
@@ -117,24 +113,27 @@
                     for="standard_price_write_uid"
                     string="Edited"
                     groups="base.group_erp_manager"
-                    attrs="{'invisible':[('standard_price_write_uid','=',False)]}"
+                    invisible="not standard_price_write_uid"
                 />
                 <div
                     name="standard_price_write_editor"
                     groups="base.group_erp_manager"
-                    attrs="{'invisible':[('standard_price_write_uid','=',False)]}"
+                    invisible="not standard_price_write_uid"
                 >
                     <field
                         name="standard_price_write_date"
+                        class="oe_inline"
                         nolabel="1"
                         readonly="1"
-                    /> by <field name="standard_price_write_uid" readonly="1" />
+                    />
+                    <span> by </span>
+                    <field
+                        name="standard_price_write_uid"
+                        class="oe_inline"
+                        readonly="1"
+                    />
                 </div>
             </div>
-            <field name="uom_id" position="before">
-                <separator string="Unit of Measure" colspan="2" />
-            </field>
         </field>
     </record>
-
 </odoo>

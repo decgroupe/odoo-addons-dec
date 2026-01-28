@@ -5,7 +5,6 @@ import logging
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import float_compare, float_round
 from odoo.tools.progressbar import progressbar as pb
 
 _logger = logging.getLogger(__name__)
@@ -16,7 +15,7 @@ class ProductTemplate(models.Model):
 
     # Override digit field to increase precision and track changes
     standard_price = fields.Float(
-        digits="Purchase Price",
+        # digits="Purchase Price",
         tracking=True,
     )
     # Override to track changes
@@ -25,10 +24,10 @@ class ProductTemplate(models.Model):
     standard_price_po_uom = fields.Float(
         string="Cost (Purchase UoM)",
         compute="_compute_standard_price_po_uom",
-        inverse="_set_standard_price_po_uom",
-        digits="Product Price",
+        inverse="_set_standard_price_po_uom",  # pylint: disable=C8110
+        min_display_digits="Product Price",
         groups="base.group_user",
-        help='Same field than standard_price but expressed in "Purchase Unit '
+        help='Same field than `standard_price` but expressed in "Purchase Unit '
         'of Measure".',
     )
     # Used only to hide standard_price_po_uom field from view if not needed
@@ -39,10 +38,11 @@ class ProductTemplate(models.Model):
         help='Are "Default Unit of Measure" and "Purchase Unit of Measure" '
         "identical ?",
     )
-    default_purchase_price = fields.Monetary(
+    default_purchase_price = fields.Float(  # was Monetary
         compute="_compute_default_purchase_price",
         string="Purchase Price (Default UoM)",
-        digits="Purchase Price",
+        # digits="Purchase Price",
+        min_display_digits="Product Price",
         help="Purchase price based on default seller pricelist computed with "
         '"Default Unit of Measure"',
     )
@@ -50,10 +50,11 @@ class ProductTemplate(models.Model):
         compute="_compute_default_purchase_price",
         string="Purchase Price Graph (Default UoM)",
     )
-    default_purchase_price_po_uom = fields.Monetary(
+    default_purchase_price_po_uom = fields.Float(  # was Monetary
         compute="_compute_default_purchase_price",
         string="Purchase Price",
-        digits="Purchase Price",
+        # digits="Purchase Price",
+        min_display_digits="Product Price",
         help="Purchase price based on default seller pricelist computed with "
         '"Purchase Unit of Measure"',
     )
@@ -61,10 +62,10 @@ class ProductTemplate(models.Model):
         compute="_compute_default_purchase_price",
         string="Purchase Price Graph",
     )
-    default_sell_price = fields.Monetary(
+    default_sell_price = fields.Float(  # was Monetary
         compute="_compute_default_sell_price",
         string="Sell Price",
-        digits="Product Price",
+        min_display_digits="Product Price",
         help="Sell price based on default sell pricelist",
     )
     default_sell_price_graph = fields.Char(
@@ -108,7 +109,7 @@ class ProductTemplate(models.Model):
                 product.standard_price,
                 product.uom_po_id,
             )
-            _logger.debug("New standard_price_po_uom = {}".format(price))
+            _logger.debug(f"New standard_price_po_uom = {price}")
             product.standard_price_po_uom = price
 
     def _set_standard_price_po_uom(self):
@@ -118,7 +119,7 @@ class ProductTemplate(models.Model):
                 product.standard_price_po_uom,
                 product.uom_id,
             )
-            _logger.debug("New standard_price = {}".format(price))
+            _logger.debug(f"New standard_price = {price}")
             product.standard_price = price
 
     @api.depends("uom_id", "uom_po_id")
@@ -131,7 +132,7 @@ class ProductTemplate(models.Model):
         self._compute_default_purchase_price()
 
     @api.depends(
-        "seller_id",
+        "main_seller_id",
         "standard_price",
         "uom_id",
         "uom_po_id",
@@ -149,8 +150,12 @@ class ProductTemplate(models.Model):
                 rec.default_purchase_price_po_uom = seller_id.list_price
                 rec.default_purchase_price_graph_po_uom = seller_id.list_price_graph
             else:
-                msg = "No default seller assigned to this product (missing 'main_seller_id')"
-                graph = []
+                msg = (
+                    "No default seller assigned to this product "
+                    "(missing 'main_seller_id')"
+                )
+                msg = "no seller"
+                graph = ["flowchart", f'A["{msg}"]']
                 rec.default_purchase_price = rec.standard_price
                 rec.default_purchase_price_graph = "\n".join(graph)
                 rec.default_purchase_price_po_uom = rec.standard_price_po_uom
@@ -181,7 +186,7 @@ class ProductTemplate(models.Model):
                     )
                 )
                 if pricelist:
-                    product.default_sell_price = pricelist.get_product_price(
+                    product.default_sell_price = pricelist._get_product_price(
                         product, qty, partner, uom_id=product.uom_id.id
                     )
 
@@ -231,6 +236,13 @@ class ProductTemplate(models.Model):
         PricelistItem = self.env["product.pricelist.item"]
         for product_tmpl_id in self:
             pricelists = Pricelist.search(self._get_pricelist_search_domain())
+            if not pricelists:
+                raise UserError(
+                    _(
+                        "No sale pricelist found!, you must create at least "
+                        "one sale pricelist to use by-pass functionality"
+                    )
+                )
             pricelist_items = PricelistItem.search(
                 self._get_pricelist_items_search_domain(pricelists)
             )

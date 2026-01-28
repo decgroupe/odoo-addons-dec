@@ -1,6 +1,7 @@
 {
     "name": "Product prices",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -14,10 +15,14 @@
         "purchase_pricelist_analysis",
     ],
     "data": [
-        "views/assets.xml",
         "views/product_template.xml",
         "wizard/product_price_graph.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "product_prices/static/src/scss/style.scss",
+        ],
+    },
+    "installable": True,
 }

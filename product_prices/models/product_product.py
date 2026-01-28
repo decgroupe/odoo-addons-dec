@@ -11,7 +11,7 @@ class ProductProduct(models.Model):
 
     # Override digit field to increase precision and track changes
     standard_price = fields.Float(
-        digits="Purchase Price",
+        # digits="Purchase Price",
         tracking=True,
     )
 
