@@ -1,36 +1,30 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
-from odoo import fields, models
+from odoo import api, fields, models
 
-
-def production_request_state_to_emoji(state):
-    res = state
-    if res == "draft":
-        res = "🏳️"
-    elif res == "to_approve":
-        res = "⏳"
-    elif res == "approved":
-        res = "🚧"
-    elif res == "done":
-        res = "✅"
-    elif res == "cancel":
-        res = "❌"
-    return res
+PRODUCTION_REQUEST_STATE_SYMBOLS = {
+    "draft": "🏳️",
+    "to_approve": "⏳",
+    "approved": "🚧",
+    "done": "✅",
+    "cancel": "❌",
+}
 
 
 class ProductionRequest(models.Model):
     _inherit = "mrp.production.request"
 
-    state_emoji = fields.Char(compute="_compute_state_emoji")
+    state_symbol = fields.Char(compute="_compute_state_symbol")
 
-    def _compute_state_emoji(self):
+    @api.depends("state")
+    def _compute_state_symbol(self):
         for rec in self:
-            rec.state_emoji = production_request_state_to_emoji(rec.state)
+            rec.state_symbol = PRODUCTION_REQUEST_STATE_SYMBOLS.get(rec.state, "")
 
     def get_head_desc(self):
         p = self.sudo()
         state = dict(p._fields["state"]._description_selection(self.env)).get(p.state)
-        head = "⚙️{0}".format(p.name)
-        desc = "{0}{1}".format(p.state_emoji, state)
+        head = f"⚙️{p.name}"
+        desc = f"{p.state_symbol}{state}"
         return head, desc

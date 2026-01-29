@@ -1,13 +1,14 @@
 {
     "name": "Stock Manufacturing Traceability",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "stock",
-        "mrp",
         "mrp_production_request",
         "mrp_production_request_action_view",
+        "mrp_traceability",
         "stock_traceability",
         "stock_orderpoint_traceability",
     ],
@@ -15,5 +16,5 @@
         "views/stock_picking.xml",
         "views/stock_move.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

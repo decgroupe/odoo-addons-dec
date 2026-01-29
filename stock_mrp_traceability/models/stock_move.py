@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
 from odoo import api, fields, models
+
 from odoo.addons.tools_miscellaneous.tools.html_helper import format_hd
 
 
@@ -16,12 +17,13 @@ class StockMove(models.Model):
     )
 
     def _get_mto_status(self, html=False):
+        super_res = super()._get_mto_status(html)
         res = []
         if self.created_mrp_production_request_id:
             head, desc = self.created_mrp_production_request_id.get_head_desc()
             res.append(format_hd(head, desc, html))
         else:
-            res.extend(super()._get_mto_status(html))
+            res.extend(super_res)
         return res
 
     def _get_mto_pick_status(self, html=False):
@@ -80,8 +82,7 @@ class StockMove(models.Model):
 
     @api.depends(
         "procure_method",
-        "product_type",
-        "created_purchase_line_id",
+        "created_purchase_line_ids",
         "move_orig_ids.purchase_line_id",
         "move_orig_ids.production_id",
     )
@@ -93,6 +94,7 @@ class StockMove(models.Model):
                 move.pick_status = move.get_mrp_status(html=True)
 
     def action_view_created_item(self):
+        super_action = super().action_view_created_item()
         if self.created_mrp_production_request_id:
             if self.created_mrp_production_request_id.mrp_production_ids:
                 action = (
@@ -101,12 +103,13 @@ class StockMove(models.Model):
             else:
                 action = self.created_mrp_production_request_id.action_view()
         else:
-            action = super().action_view_created_item()
+            action = super_action
         return action
 
     def is_action_view_created_item_visible(self):
         self.ensure_one()
+        super_res = super().is_action_view_created_item_visible()
         res = self.created_mrp_production_request_id
         if not res:
-            res = super().is_action_view_created_item_visible()
+            res = super_res
         return res
