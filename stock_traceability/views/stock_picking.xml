@@ -1,62 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
+    <!--
     <record model="ir.ui.view" id="picking_form_view">
         <field name="name">stock.picking.form@stock_traceability</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                expr="//field[@name='move_ids_without_package']/list/field[@name='product_id']"
                 position="before"
             >
                 <field name="id" widget="widget_id" groups="base.group_erp_manager" />
             </xpath>
             <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                expr="//field[@name='move_ids_without_package']/list/field[@name='product_id']"
                 position="after"
             >
                 <field
                     name="procure_method"
-                    attrs="{
-                        'readonly': [
-                            ('|'),
-                                ('state', 'in', ['draft', 'cancel', 'partially_available', 'assigned', 'done']),
-                                ('procure_method', '=', 'make_to_order'),
-                        ],
-                        'column_invisible': [
-                            ('parent.picking_type_code', '=', 'incoming')
-                        ],
-                        'invisible': [
-                            ('picking_code', '=', 'incoming'),
-                        ]
-                    }"
+                    groups="base.group_erp_manager"
+                    readonly="state in ['draft', 'cancel', 'partially_available', 'assigned', 'done'] or procure_method == 'make_to_order'"
+                    column_invisible="parent.picking_type_code == 'incoming'"
+                    invisible="picking_type_code == 'incoming'"
                     force_save="1"
-                >
-                </field>
-                <field name="move_orig_ids" groups="base.group_no_one" optional="hide"/>
-                <field name="move_dest_ids" groups="base.group_no_one" optional="hide"/>
+                />
+                <field
+                    name="move_orig_ids"
+                    groups="base.group_no_one"
+                    optional="hide"
+                />
+                <field
+                    name="move_dest_ids"
+                    groups="base.group_no_one"
+                    optional="hide"
+                />
                 <field
                     name="product_supplier_code"
-                    attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
+                    column_invisible="parent.picking_type_code != 'incoming'"
                 />
                 <field
                     name="product_supplier_name"
-                    attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
+                    column_invisible="parent.picking_type_code != 'incoming'"
                 />
-                <field name="tree_fg_color" invisible="1" />
-                <field name="tree_bg_color" invisible="1" />
-            </xpath>
-            <xpath
-                expr="//field[@name='move_ids_without_package']/tree"
-                position="attributes"
-            >
-                <attribute
-                    name="colors"
-                >color_field: tree_fg_color; bg_color_field: tree_bg_color</attribute>
             </xpath>
         </field>
     </record>
+-->
 
     <record model="ir.ui.view" id="edit_procure_method_picking_form_view">
         <field
@@ -66,11 +55,9 @@
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                expr="//field[@name='move_ids_without_package']/list/field[@name='product_id']"
                 position="after"
-            >
-            </xpath>
+            />
         </field>
     </record>
-
 </odoo>

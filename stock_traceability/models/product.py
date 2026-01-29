@@ -3,25 +3,24 @@
 
 from odoo import fields, models
 
-
-def product_type_to_emoji(product_type):
-    res = product_type
-    if res == "product":
-        res = "➕"
-    elif res == "consu":
-        res = "🧃"
-    elif res == "service":
-        res = "🛎️"
-    return res
+PRODUCT_TYPE_SYMBOLS = {
+    "product": "➕",
+    "consu": "🧃",
+    "service": "🛎️",
+    "combo": "🧩",
+}
 
 
 class Product(models.Model):
     _inherit = "product.template"
 
-    type_emoji = fields.Char(
-        compute="_compute_type_emoji",
+    type_symbol = fields.Char(
+        compute="_compute_type_symbol",
     )
 
-    def _compute_type_emoji(self):
+    def _compute_type_symbol(self):
         for rec in self:
-            rec.type_emoji = product_type_to_emoji(rec.type)
+            product_type = rec.type
+            if product_type == "consu" and rec.is_storable:
+                product_type = "product"
+            rec.type_symbol = PRODUCT_TYPE_SYMBOLS.get(product_type, "")

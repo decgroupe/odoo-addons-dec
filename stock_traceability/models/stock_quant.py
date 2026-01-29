@@ -30,6 +30,9 @@ class StockQuant(models.Model):
                 product_id, location_id, quantity, lot_id, package_id, owner_id, strict
             )
         except UserError as user_error:
-            _logger.warning("%s (%f)", user_error.name, quantity)
+            # Log the error with the quantity that caused it
+            _logger.warning(
+                "_update_reserved_quantity: %s (%f)", user_error.name, quantity
+            )
             raise user_error
         return reserved_quants

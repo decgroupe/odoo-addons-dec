@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- This view was a copy/paste from the one existing `view_move_picking_form` in 12.0 -->
     <!-- Its purpose weas to be a base for inheriting -->
     <record id="view_move_picking_form" model="ir.ui.view">
         <field name="name">stock.move.form</field>
         <field name="model">stock.move</field>
-        <field eval="20" name="priority" />
+        <field name="priority" eval="20" />
         <field name="arch" type="xml">
             <form string="Stock Moves">
                 <header>
@@ -43,7 +42,7 @@
                     <group string="Conditions">
                         <field
                             name="procure_method"
-                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            readonly="state != 'draft'"
                             groups="stock.group_adv_location"
                         />
                         <field name="create_date" invisible="1" />
@@ -57,9 +56,9 @@
                     <group
                         name="quants_grp"
                         string="Reserved"
-                        attrs="{'invisible': [('state', '=', 'draft')]}"
+                        invisible="state == 'draft'"
                     >
-                    <!-- [MIG] 14.0: Missing field
+                        <!-- [MIG] 14.0: Missing field
                     <field name="string_availability_info"/>
                     -->
                     </group>
@@ -84,15 +83,7 @@
                 <field name="name" />
                 <field name="picking_id" />
                 <field name="picking_code" invisible="1" />
-                <field
-                    name="procure_method"
-                    attrs="{
-                        'invisible': [
-                            ('picking_code', '=', 'incoming'),
-                        ]
-                    }"
-                >
-                </field>
+                <field name="procure_method" invisible="picking_code == 'incoming'" />
             </xpath>
             <xpath expr="//field[@name='location_dest_id']" position="after">
                 <field name="group_id" />
@@ -108,7 +99,6 @@
         <field name="name">stock.move.picking.form#admin@stock_traceability</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock_traceability.view_move_picking_form" />
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
             <form position="inside">
                 <div
@@ -123,8 +113,8 @@
                         string="Open Advanced Form View"
                         type="object"
                         class="btn-primary"
-                    >
-                    </button>
+                        groups="base.group_erp_manager"
+                    />
                     <a data-action="discard" data-dismiss="modal" href="#">Close</a>
                 </footer>
             </form>
@@ -160,11 +150,11 @@
         </field>
     </record>
 
-
     <record model="ir.ui.view" id="stock_move_form_view">
         <field name="name">stock.move.form@stock_traceability</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_move_form" />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <form position="inside">
                 <div
@@ -177,12 +167,18 @@
                 expr="//group[@name='main_grp_col2']//field[@name='name']"
                 position="before"
             >
-                <label for="quantity_done" string="Done/Reserved" />
+                <label for="quantity" string="Done/Reserved" />
                 <div class="o_row">
-                    <span><field name="quantity_done" readonly="1" nolabel="1" /></span>
+                    <span>
+                        <field name="quantity" readonly="1" nolabel="1" />
+                    </span>
                     <span> / </span>
-                    <span><field name="reserved_availability" nolabel="1" /></span>
-                    <span><field name="product_uom" readonly="1" nolabel="1" /></span>
+                    <span>
+                        <span>reserved_availability field ?</span>
+                    </span>
+                    <span>
+                        <field name="product_uom" readonly="1" nolabel="1" />
+                    </span>
                 </div>
             </xpath>
 
@@ -190,7 +186,7 @@
                 <group name="main_origin_grp" colspan="2">
                     <group name="origin_grp_col1">$0</group>
                     <group name="origin_grp_col2">
-                        <field name="created_purchase_line_id" />
+                        <field name="created_purchase_line_ids" />
                     </group>
                 </group>
             </xpath>
@@ -202,15 +198,7 @@
 
             <xpath expr="//field[@name='product_id']" position="before">
                 <field name="picking_code" invisible="1" />
-                <field
-                    name="procure_method"
-                    attrs="{
-                        'invisible': [
-                            ('picking_code', '=', 'incoming'),
-                        ]
-                    }"
-                >
-                </field>
+                <field name="procure_method" invisible="picking_code == 'incoming'" />
             </xpath>
 
             <xpath
@@ -221,14 +209,14 @@
             </xpath>
 
             <xpath
-                expr="//group[@name='linked_group']/field[@name='move_orig_ids']/tree/field[@name='location_id']"
+                expr="//group[@name='linked_group']/field[@name='move_orig_ids']/list/field[@name='location_id']"
                 position="before"
             >
                 <field name="name" />
                 <field name="picking_id" />
             </xpath>
             <xpath
-                expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_id']"
+                expr="//group[@name='linked_group']/field[@name='move_dest_ids']/list/field[@name='location_id']"
                 position="before"
             >
                 <field name="name" />
@@ -236,13 +224,13 @@
             </xpath>
 
             <xpath
-                expr="//group[@name='linked_group']/field[@name='move_orig_ids']/tree/field[@name='location_dest_id']"
+                expr="//group[@name='linked_group']/field[@name='move_orig_ids']/list/field[@name='location_dest_id']"
                 position="after"
             >
                 <field name="product_id" />
             </xpath>
             <xpath
-                expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_dest_id']"
+                expr="//group[@name='linked_group']/field[@name='move_dest_ids']/list/field[@name='location_dest_id']"
                 position="after"
             >
                 <field name="product_id" />
@@ -254,7 +242,6 @@
         <field name="name">stock.move.form#admin@stock_traceability</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock_traceability.stock_move_form_view" />
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
             <form position="inside">
                 <div
@@ -269,19 +256,19 @@
                 expr="//group[@name='main_grp']/group[@name='main_grp_col1']/field[@name='reference']"
                 position="before"
             >
-                <field name="id" widget="widget_id" />
+                <field name="id" widget="widget_id" groups="base.group_erp_manager" />
             </xpath>
             <xpath
-                expr="//group[@name='linked_group']/field[@name='move_orig_ids']/tree/field[@name='location_id']"
+                expr="//group[@name='linked_group']/field[@name='move_orig_ids']/list/field[@name='location_id']"
                 position="before"
             >
-                <field name="id" widget="widget_id" />
+                <field name="id" widget="widget_id" groups="base.group_erp_manager" />
             </xpath>
             <xpath
-                expr="//group[@name='linked_group']/field[@name='move_dest_ids']/tree/field[@name='location_id']"
+                expr="//group[@name='linked_group']/field[@name='move_dest_ids']/list/field[@name='location_id']"
                 position="before"
             >
-                <field name="id" widget="widget_id" />
+                <field name="id" widget="widget_id" groups="base.group_erp_manager" />
             </xpath>
             <form position="inside">
                 <footer>
@@ -289,6 +276,7 @@
                         string="Save"
                         special="save"
                         class="oe_highlight oe_edit_only"
+                        groups="base.group_erp_manager"
                     />
                     <!-- stock_actions module must be installed -->
                     <button
@@ -296,26 +284,18 @@
                         string="Check Assign"
                         type="object"
                         class="btn-primary"
-                        attrs="{
-                            'invisible': [
-                                ('state', 'in', ('done','cancel')),
-                            ]
-                        }"
-                    >
-                    </button>
+                        groups="base.group_erp_manager"
+                        invisible="state in ('done','cancel')"
+                    />
                     <!-- stock_actions module must be installed -->
                     <button
                         name="action_recompute_state"
                         string="Recompute State"
                         type="object"
                         class="btn-primary"
-                        attrs="{
-                            'invisible': [
-                                ('state', 'in', ('done','cancel')),
-                            ]
-                        }"
-                    >
-                    </button>
+                        groups="base.group_erp_manager"
+                        invisible="state in ('done','cancel')"
+                    />
                     <!-- stock_actions module must be installed -->
                     <button
                         name="action_cancel"
@@ -323,13 +303,9 @@
                         type="object"
                         confirm="Are you sure that you want to cancel this move ?"
                         class="btn-danger"
-                        attrs="{
-                            'invisible': [
-                                ('state', 'in', ('done','cancel')),
-                            ]
-                        }"
-                    >
-                    </button>
+                        groups="base.group_erp_manager"
+                        invisible="state in ('done','cancel')"
+                    />
                     <a data-action="discard" data-dismiss="modal" href="#">Close</a>
                 </footer>
             </form>
@@ -340,10 +316,8 @@
         <field name="name">stock.move.operations.form@stock_traceability</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_stock_move_operations" />
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
-            <form position="inside">
-            </form>
+            <data />
         </field>
     </record>
 
@@ -353,12 +327,13 @@
         >stock.move.line.operations.tree#admin@stock_traceability</field>
         <field name="model">stock.move.line</field>
         <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='product_uom_qty']" position="attributes">
-                <!-- DO NOT ENABLE THIS: never set reserved manually using UI -->
-                <!-- <attribute name="readonly">0</attribute> -->
+            <!--
+            <xpath expr="//field[@name='reserved_uom_qty']" position="attributes">
+                DO NOT ENABLE THIS: never set reserved manually using UI
+                <attribute name="readonly">0</attribute>
             </xpath>
+            -->
             <xpath expr="//field[@name='product_uom_id']" position="attributes">
                 <attribute name="force_save">1</attribute>
             </xpath>
@@ -370,8 +345,9 @@
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_move_tree" />
         <field name="mode">primary</field>
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='product_id']" position="replace">
+            <xpath expr="//list/field[@name='product_id']" position="replace">
                 <field name="product_tmpl_id" />
             </xpath>
         </field>
@@ -382,6 +358,7 @@
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock.view_move_search" />
         <field name="mode">primary</field>
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <xpath expr="//search//field[@name='product_id']" position="replace">
                 <field name="product_tmpl_id" />
@@ -397,7 +374,7 @@
         <field name="name">Moves</field>
         <field name="res_model">stock.move</field>
         <field name="binding_model_id" ref="product.model_product_template" />
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="stock_traceability.tmpl_move_tree_view" />
         <field name="search_view_id" ref="stock_traceability.tmpl_move_search_view" />
         <field name="target">current</field>
@@ -405,5 +382,4 @@
             name="context"
         >{'search_default_product_tmpl_id': active_id, 'default_product_tmpl_id': active_id}</field>
     </record>
-
 </odoo>

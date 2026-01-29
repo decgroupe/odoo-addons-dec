@@ -1,6 +1,7 @@
 {
     "name": "Stock Traceability",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -14,14 +15,20 @@
         "mail",
         "mail_action_view",
         "product_location",
+        "product_small_supply",
         "product_supplierinfo_picking",
-        "web_tree_dynamic_colored_field",
+        "stock_picking_colored",
         "web_base_view",
     ],
     "data": [
-        "views/assets.xml",
         "views/stock_picking.xml",
         "views/stock_move.xml",
     ],
-    "installable": False,
+    "assets": {
+        "web.assets_tests": [],
+        "web.assets_backend": [
+            "stock_traceability/static/src/scss/style.scss",
+        ],
+    },
+    "installable": True,
 }

@@ -1,53 +1,49 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
-from odoo import fields, models
+from odoo import api, fields, models
 
-
-def production_state_to_emoji(state):
-    res = state
-    if res == "confirmed":
-        res = "🏳️"
-    elif res == "planned":
-        res = "📅"
-    elif res == "progress":
-        res = "🚧"
-    elif res == "done":
-        res = "✅"
-    elif res == "cancel":
-        res = "❌"
-    return res
+PRODUCTION_STATE_SYMBOLS = {
+    "draft": "✨",
+    "confirmed": "🏳️",
+    "planned": "📅",  # FIXME: state removed from Odoo 18.0
+    "progress": "🚧",
+    "done": "✅",
+    "to_close": "🛑",
+    "cancel": "❌",
+}
 
 
 class Production(models.Model):
     _inherit = "mrp.production"
 
-    state_emoji = fields.Char(compute="_compute_state_emoji")
+    state_symbol = fields.Char(compute="_compute_state_symbol")
 
-    def _compute_state_emoji(self):
+    @api.depends("state")
+    def _compute_state_symbol(self):
         for rec in self:
-            rec.state_emoji = production_state_to_emoji(rec.state)
+            rec.state_symbol = PRODUCTION_STATE_SYMBOLS.get(rec.state, "")
 
     def get_head_desc(self):
         # Soft dependency to `mrp_stage` module
         if hasattr(self, "stage_id"):
             state = self.stage_id.name
             code = self.stage_id.code
-            emoji = self.stage_id.emoji
+            symbol = self.stage_id.symbol
         else:
             state = dict(self._fields["state"]._description_selection(self.env)).get(
                 self.state
             )
             code = self.state
-            emoji = self.state_emoji
+            symbol = self.state_symbol
 
         # Soft dependency to `mrp_timesheet` module
         if hasattr(self, "progress") and code == "progress":
-            state = "{0} {1:.0f}%".format(state, self.progress)
+            state = f"{state} {self.progress:.0f}%"
         # Soft dependency to `mrp_supply_progress` module
         elif hasattr(self, "supply_progress") and code == "supplying":
-            state = "{0} {1:.0f}%".format(state, self.supply_progress)
+            state = f"{state} {self.supply_progress:.0f}%"
 
-        head = "🔧{0}".format(self.name)
-        desc = "{0}{1}".format(emoji, state)
+        head = f"🔧{self.name}"
+        desc = f"{symbol}{state}"
         return head, desc
