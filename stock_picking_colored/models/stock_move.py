@@ -118,8 +118,10 @@ class StockMove(models.Model):
             colors = {}
             for i, group in enumerate(move_group):
                 group_id, _count = group
-                colors[group_id.id] = LIST_COLORS[i % len(LIST_COLORS)]
-            # Apply group colors per record
+                # only assign colors to moves with a group
+                if group_id:
+                    colors[group_id.id] = LIST_COLORS[i % len(LIST_COLORS)]
+            # apply group colors per record
             for record in self:
                 if record.group_id.id in colors:
                     record.list_bg_color = colors[record.group_id.id][0]
