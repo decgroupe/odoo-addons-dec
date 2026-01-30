@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record model="res.partner.academy" id="partner_academy.aca_aix_marseille">
+    <record model="res.partner.academy" id="aca_aix_marseille">
         <field name="name">Aix-Marseille</field>
         <field
             name="department_ids"
@@ -19,7 +19,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_amiens">
+    <record model="res.partner.academy" id="aca_amiens">
         <field name="name">Amiens</field>
         <field
             name="department_ids"
@@ -34,7 +34,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_nordpasdecalais" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_besancon">
+    <record model="res.partner.academy" id="aca_besancon">
         <field name="name">Besançon</field>
         <field
             name="department_ids"
@@ -50,7 +50,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_bourgogne" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_bordeaux">
+    <record model="res.partner.academy" id="aca_bordeaux">
         <field name="name">Bordeaux</field>
         <field
             name="department_ids"
@@ -67,7 +67,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_clermont_ferrand">
+    <record model="res.partner.academy" id="aca_clermont_ferrand">
         <field name="name">Clermont-Ferrand</field>
         <field
             name="department_ids"
@@ -83,7 +83,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_corse">
+    <record model="res.partner.academy" id="aca_corse">
         <field name="name">Corse</field>
         <field
             name="department_ids"
@@ -97,7 +97,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_corse" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_creteil">
+    <record model="res.partner.academy" id="aca_creteil">
         <field name="name">Créteil</field>
         <field
             name="department_ids"
@@ -112,7 +112,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_dijon">
+    <record model="res.partner.academy" id="aca_dijon">
         <field name="name">Dijon</field>
         <field
             name="department_ids"
@@ -128,7 +128,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_bourgogne" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_grenoble">
+    <record model="res.partner.academy" id="aca_grenoble">
         <field name="name">Grenoble</field>
         <field
             name="department_ids"
@@ -145,7 +145,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_guadeloupe">
+    <record model="res.partner.academy" id="aca_guadeloupe">
         <field name="name">Guadeloupe</field>
         <field
             name="department_ids"
@@ -161,7 +161,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_guyane">
+    <record model="res.partner.academy" id="aca_guyane">
         <field name="name">Guyane</field>
         <field
             name="department_ids"
@@ -177,7 +177,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_la_reunion">
+    <record model="res.partner.academy" id="aca_la_reunion">
         <field name="name">La Réunion</field>
         <field
             name="department_ids"
@@ -193,7 +193,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_lille">
+    <record model="res.partner.academy" id="aca_lille">
         <field name="name">Lille</field>
         <field
             name="department_ids"
@@ -207,7 +207,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_nordpasdecalais" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_limoges">
+    <record model="res.partner.academy" id="aca_limoges">
         <field name="name">Limoges</field>
         <field
             name="department_ids"
@@ -222,7 +222,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_lyon">
+    <record model="res.partner.academy" id="aca_lyon">
         <field name="name">Lyon</field>
         <field
             name="department_ids"
@@ -237,7 +237,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_martinique">
+    <record model="res.partner.academy" id="aca_martinique">
         <field name="name">Martinique</field>
         <field
             name="department_ids"
@@ -253,7 +253,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_mayotte">
+    <record model="res.partner.academy" id="aca_mayotte">
         <field name="name">Mayotte</field>
         <field
             name="department_ids"
@@ -269,7 +269,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_montpellier">
+    <record model="res.partner.academy" id="aca_montpellier">
         <field name="name">Montpellier</field>
         <field
             name="department_ids"
@@ -289,7 +289,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_nancy_metz">
+    <record model="res.partner.academy" id="aca_nancy_metz">
         <field name="name">Nancy-Metz</field>
         <field
             name="department_ids"
@@ -305,7 +305,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_nantes">
+    <record model="res.partner.academy" id="aca_nantes">
         <field name="name">Nantes</field>
         <field
             name="department_ids"
@@ -322,7 +322,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_paysdelaloire" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_nice">
+    <record model="res.partner.academy" id="aca_nice">
         <field name="name">Nice</field>
         <field
             name="department_ids"
@@ -341,7 +341,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_normandie_rouen_caen">
+    <record model="res.partner.academy" id="aca_normandie_rouen_caen">
         <field name="name">Normandie (Rouen-Caen)</field>
         <field
             name="department_ids"
@@ -358,7 +358,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_bassenormandie" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_noumea">
+    <record model="res.partner.academy" id="aca_noumea">
         <field name="name">Noumea</field>
         <field name="email_domain">ac-noumea.nc</field>
         <field
@@ -367,7 +367,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_orleans_tours">
+    <record model="res.partner.academy" id="aca_orleans_tours">
         <field name="name">Orléans-Tours</field>
         <field
             name="department_ids"
@@ -385,7 +385,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_centre" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_paris">
+    <record model="res.partner.academy" id="aca_paris">
         <field name="name">Paris</field>
         <field
             name="department_ids"
@@ -398,7 +398,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_poitiers">
+    <record model="res.partner.academy" id="aca_poitiers">
         <field name="name">Poitiers</field>
         <field
             name="department_ids"
@@ -414,7 +414,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_polynesie">
+    <record model="res.partner.academy" id="aca_polynesie">
         <field name="name">Polynésie</field>
         <field name="email_domain">ac-polynesie.pf</field>
         <field
@@ -423,7 +423,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_reims">
+    <record model="res.partner.academy" id="aca_reims">
         <field name="name">Reims</field>
         <field
             name="department_ids"
@@ -439,7 +439,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_rennes">
+    <record model="res.partner.academy" id="aca_rennes">
         <field name="name">Rennes</field>
         <field
             name="department_ids"
@@ -455,7 +455,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_bretagne" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_strasbourg">
+    <record model="res.partner.academy" id="aca_strasbourg">
         <field name="name">Strasbourg</field>
         <field
             name="department_ids"
@@ -469,7 +469,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_toulouse">
+    <record model="res.partner.academy" id="aca_toulouse">
         <field name="name">Toulouse</field>
         <field
             name="department_ids"
@@ -492,7 +492,7 @@
         />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_versailles">
+    <record model="res.partner.academy" id="aca_versailles">
         <field name="name">Versailles</field>
         <field
             name="department_ids"
@@ -508,7 +508,7 @@
         <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
     </record>
 
-    <record model="res.partner.academy" id="partner_academy.aca_wallis_et_futuna">
+    <record model="res.partner.academy" id="aca_wallis_et_futuna">
         <field name="name">Wallis et Futuna</field>
         <field name="email_domain">ac-wf.wf</field>
         <field name="partner_id" ref="partner_academy.vice_rectorat_wallis_futuna" />

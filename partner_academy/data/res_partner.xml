@@ -56,11 +56,6 @@
             type="base64"
             file="partner_academy/static/img/rectorat_orleans_tours.png"
         />
-        <field
-            name="image_1920"
-            type="base64"
-            file="partner_academy/static/img/rectorat_orleans_tours.png"
-        />
     </record>
 
     <record model="res.partner" id="rectorat_aix_marseille">
