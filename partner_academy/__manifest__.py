@@ -1,6 +1,7 @@
 {
     "name": "Partner Academy",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -9,7 +10,6 @@
         "l10n_fr_department",
         "l10n_fr_department_oversea",
         "partner_fax",
-        "web_xml_export", # needed for initial loading of `res_partner_academy.xml` data
     ],
     "data": [
         "security/model_security.xml",
@@ -19,5 +19,5 @@
         "data/res_partner.xml",
         "data/res_partner_academy.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

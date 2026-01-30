@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.module.category" id="module_category_partner_academy">
         <field name="name">Academy</field>
         <field name="sequence">90</field>
@@ -8,8 +7,11 @@
 
     <record model="res.groups" id="group_academy_user">
         <field name="name">User</field>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
-        <field name="category_id" ref="partner_academy.module_category_partner_academy"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field
+            name="category_id"
+            ref="partner_academy.module_category_partner_academy"
+        />
     </record>
 
     <record model="res.groups" id="base.group_user">
@@ -18,9 +20,14 @@
 
     <record model="res.groups" id="group_academy_manager">
         <field name="name">Administrator</field>
-        <field name="category_id" ref="partner_academy.module_category_partner_academy"/>
-        <field name="implied_ids" eval="[(4, ref('group_academy_user'))]"/>
-        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field
+            name="category_id"
+            ref="partner_academy.module_category_partner_academy"
+        />
+        <field name="implied_ids" eval="[(4, ref('group_academy_user'))]" />
+        <field
+            name="users"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
     </record>
-
 </odoo>

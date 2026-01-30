@@ -1,14 +1,13 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="res_partner_academy_tree_view">
         <field name="name">res.partner.academy.tree@partner_academy</field>
         <field name="model">res.partner.academy</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="name" decoration-bf="1"/>
+            <list>
+                <field name="name" decoration-bf="1" />
                 <field name="state_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -22,11 +21,10 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <field name="logo" widget="image" class="oe_avatar" />
                     <div class="oe_title">
-                        <field name="active" invisible="1" />
                         <label for="name" class="oe_edit_only" />
                         <h1>
                             <field name="name" />
@@ -53,7 +51,7 @@
         <field name="name">Academy</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner.academy</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new National Education Academy
@@ -71,5 +69,4 @@
         parent="contacts.res_partner_menu_config"
         sequence="4"
     />
-
 </odoo>

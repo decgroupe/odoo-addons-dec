@@ -1,1 +1,0 @@
-Add an academy field to partner used to group educational partners.

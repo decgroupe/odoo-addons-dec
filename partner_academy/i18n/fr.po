@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
+"POT-Creation-Date: 2026-06-03 10:41+0000\n"
 "PO-Revision-Date: 2023-11-28 13:58+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -19,7 +19,6 @@ msgstr ""
 
 #. module: partner_academy
 #: model:ir.ui.menu,name:partner_academy.res_partner_academy_menu
-#: model_terms:ir.ui.view,arch_db:partner_academy.res_partner_academy_tree_view
 msgid "Academies"
 msgstr "Académies"
 
@@ -89,7 +88,6 @@ msgid "Departments of this academy"
 msgstr "Départements de cette académie"
 
 #. module: partner_academy
-#: model:ir.model.fields,field_description:partner_academy.field_res_partner__display_name
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
@@ -109,15 +107,14 @@ msgstr "Domaine des e-mails"
 #: model:ir.model.fields,help:partner_academy.field_res_partner_academy__email_domain
 msgid ""
 "Filling this domain (part after the @) will help to quickly identify a "
-"partner academy using its e-mail suffix.Please note that multiple domains can "
-"be added (separated by a single-space)."
+"partner academy using its e-mail suffix.Please note that multiple domains "
+"can be added (separated by a single-space)."
 msgstr ""
 "Remplir ce domaine (la partie après le @) aidera à identifier rapidement "
 "l'académie d'un partenaire en utilisant son suffixe e-mail. Veuillez noter "
 "que plusieurs domaines peuvent être ajoutés (séparés par un espace)."
 
 #. module: partner_academy
-#: model:ir.model.fields,field_description:partner_academy.field_res_partner__id
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__id
 msgid "ID"
 msgstr "ID"
@@ -127,12 +124,6 @@ msgstr "ID"
 #: model:ir.model.fields,help:partner_academy.field_res_partner_academy__xid
 msgid "ID of the record defined in xml file"
 msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: partner_academy
-#: model:ir.model.fields,field_description:partner_academy.field_res_partner____last_update
-#: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__write_uid
@@ -150,8 +141,8 @@ msgid ""
 "Manage academies to better classify partners for tracking and analysis "
 "purposes."
 msgstr ""
-"Gérez les académies pour mieux classer les partenaires à des fins de suivi et "
-"d'analyse."
+"Gérez les académies pour mieux classer les partenaires à des fins de suivi "
+"et d'analyse."
 
 #. module: partner_academy
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__name
@@ -184,6 +175,9 @@ msgstr "Utilisateur"
 #: model:ir.model.fields,field_description:partner_academy.field_res_partner_academy__xid
 msgid "XML-ID"
 msgstr "XML-ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid ""
 #~ "This field holds the image used as avatar for this contact, limited to "

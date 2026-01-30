@@ -1,10 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
-
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9496__rectorat_de_lacademie_montpellier"
-    >
+    <record model="res.partner" id="rectorat_montpellier">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Montpellier</field>
         <field name="street">31, rue de l'Université</field>
@@ -23,13 +19,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_montpellier.jpg"
         />
-        <field name="xid">partner_academy.rectorat_montpellier</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9484__rectorat_de_lacademie_damiens"
-    >
+    <record model="res.partner" id="rectorat_amiens">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie d'Amiens</field>
         <field name="street">20 boulevard d'Alsace-Lorraine</field>
@@ -46,13 +38,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_amiens.png"
         />
-        <field name="xid">partner_academy.rectorat_amiens</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4276__rectorat_de_lacademie_dorleans_tours"
-    >
+    <record model="res.partner" id="rectorat_orleans_tours">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie d'Orléans-Tours</field>
         <field name="street">21, rue Saint Etienne</field>
@@ -73,13 +61,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_orleans_tours.png"
         />
-        <field name="xid">partner_academy.rectorat_orleans_tours</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9483__rectorat_de_lacademie_de_aix_marseille"
-    >
+    <record model="res.partner" id="rectorat_aix_marseille">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Aix-Marseille</field>
         <field name="street">Place Lucien Paye</field>
@@ -98,13 +82,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_aix_marseille.jpg"
         />
-        <field name="xid">partner_academy.rectorat_aix_marseille</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9482__rectorat_de_lacademie_de_besancon"
-    >
+    <record model="res.partner" id="rectorat_besancon">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Besançon</field>
         <field name="street">10 rue de la Convention</field>
@@ -120,13 +100,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_besancon.png"
         />
-        <field name="xid">partner_academy.rectorat_besancon</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4862__rectorat_de_lacademie_de_bordeaux"
-    >
+    <record model="res.partner" id="rectorat_bordeaux">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Bordeaux</field>
         <field name="street">94-114 Rue Georges Bonnac</field>
@@ -142,13 +118,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_bordeaux.png"
         />
-        <field name="xid">partner_academy.rectorat_bordeaux</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9485__rectorat_de_lacademie_de_clermont_ferrand"
-    >
+    <record model="res.partner" id="rectorat_clermont_ferrand">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Clermont-Ferrand</field>
         <field name="street">3 avenue Vercingétorix 63033 Clermont-Ferrand cedex</field>
@@ -164,13 +136,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_clermont_ferrand.png"
         />
-        <field name="xid">partner_academy.rectorat_clermont_ferrand</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9486__rectorat_de_lacademie_de_corse"
-    >
+    <record model="res.partner" id="rectorat_corse">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Corse</field>
         <field name="street">Boulevard Pascal Rossini</field>
@@ -187,13 +155,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_corse.jpg"
         />
-        <field name="xid">partner_academy.rectorat_corse</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9487__rectorat_de_lacademie_de_creteil"
-    >
+    <record model="res.partner" id="rectorat_creteil">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Créteil</field>
         <field name="street">4, rue Georges Enesco</field>
@@ -209,13 +173,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_creteil.jpg"
         />
-        <field name="xid">partner_academy.rectorat_creteil</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4533__rectorat_de_lacademie_de_dijon"
-    >
+    <record model="res.partner" id="rectorat_dijon">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Dijon</field>
         <field name="street">2 G rue général Dlaborde</field>
@@ -230,13 +190,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_dijon.jpg"
         />
-        <field name="xid">partner_academy.rectorat_dijon</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9488__rectorat_de_lacademie_de_grenoble"
-    >
+    <record model="res.partner" id="rectorat_grenoble">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Grenoble</field>
         <field name="street">7 place Bir-Hakeim</field>
@@ -252,13 +208,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_grenoble.jpg"
         />
-        <field name="xid">partner_academy.rectorat_grenoble</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9489__rectorat_de_lacademie_de_guadeloupe"
-    >
+    <record model="res.partner" id="rectorat_guadeloupe">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Guadeloupe</field>
         <field name="street">Parc d'activités la Providence</field>
@@ -278,13 +230,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_guadeloupe.png"
         />
-        <field name="xid">partner_academy.rectorat_guadeloupe</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9490__rectorat_de_lacademie_de_guyane"
-    >
+    <record model="res.partner" id="rectorat_guyane">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Guyane</field>
         <field name="street">Route de Baduel</field>
@@ -303,13 +251,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_guyane.jpg"
         />
-        <field name="xid">partner_academy.rectorat_guyane</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9493__rectorat_de_lacademie_de_la_reunion"
-    >
+    <record model="res.partner" id="rectorat_la_reunion">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de La Réunion</field>
         <field name="street">24, avenue Georges Brassens</field>
@@ -328,13 +272,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_la_reunion.jpg"
         />
-        <field name="xid">partner_academy.rectorat_la_reunion</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9491__rectorat_de_lacademie_de_lille"
-    >
+    <record model="res.partner" id="rectorat_lille">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Lille</field>
         <field name="street">144 rue de Bavay</field>
@@ -350,13 +290,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_lille.jpg"
         />
-        <field name="xid">partner_academy.rectorat_lille</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9494__rectorat_de_lacademie_de_limoges"
-    >
+    <record model="res.partner" id="rectorat_limoges">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Limoges</field>
         <field name="street">13 rue François Chénieux</field>
@@ -371,13 +307,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_limoges.jpg"
         />
-        <field name="xid">partner_academy.rectorat_limoges</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9495__rectorat_de_lacademie_de_lyon"
-    >
+    <record model="res.partner" id="rectorat_lyon">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Lyon</field>
         <field name="street">92, rue de Marseille</field>
@@ -393,13 +325,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_lyon.jpg"
         />
-        <field name="xid">partner_academy.rectorat_lyon</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9492__rectorat_de_lacademie_de_martinique"
-    >
+    <record model="res.partner" id="rectorat_martinique">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Martinique</field>
         <field name="street">Les Hauts de Terreville</field>
@@ -417,13 +345,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_martinique.jpg"
         />
-        <field name="xid">partner_academy.rectorat_martinique</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9501__rectorat_de_lacademie_de_mayotte"
-    >
+    <record model="res.partner" id="rectorat_mayotte">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Mayotte</field>
         <field name="street2">BP 76</field>
@@ -442,13 +366,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_mayotte.png"
         />
-        <field name="xid">partner_academy.rectorat_mayotte</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4237__rectorat_de_lacademie_de_nancy_metz"
-    >
+    <record model="res.partner" id="rectorat_nancy_metz">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Nancy-Metz</field>
         <field name="street">2 Rue Philippe de Gueldres</field>
@@ -462,13 +382,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_nancy_metz.png"
         />
-        <field name="xid">partner_academy.rectorat_nancy_metz</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9497__rectorat_de_lacademie_de_nantes"
-    >
+    <record model="res.partner" id="rectorat_nantes">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Nantes</field>
         <field name="street">4, rue de la Houssinière</field>
@@ -484,13 +400,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_nantes.jpg"
         />
-        <field name="xid">partner_academy.rectorat_nantes</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9498__rectorat_de_lacademie_de_nice"
-    >
+    <record model="res.partner" id="rectorat_nice">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Nice</field>
         <field name="street">53, avenue Cap de Croix</field>
@@ -508,13 +420,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_nice.jpg"
         />
-        <field name="xid">partner_academy.rectorat_nice</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_5312__rectorat_de_lacademie_de_normandie"
-    >
+    <record model="res.partner" id="rectorat_normandie">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Normandie</field>
         <field name="street">168 Rue Caponière</field>
@@ -528,13 +436,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_normandie.jpg"
         />
-        <field name="xid">partner_academy.rectorat_normandie</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4150__rectorat_de_lacademie_de_paris"
-    >
+    <record model="res.partner" id="rectorat_paris">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Paris</field>
         <field name="street">94, Avenue Gambetta</field>
@@ -550,13 +454,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_paris.png"
         />
-        <field name="xid">partner_academy.rectorat_paris</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4998__rectorat_de_lacademie_de_poitiers"
-    >
+    <record model="res.partner" id="rectorat_poitiers">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Poitiers</field>
         <field name="street">22 rue Guillaume VII le Troubadour</field>
@@ -572,13 +472,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_poitiers.jpg"
         />
-        <field name="xid">partner_academy.rectorat_poitiers</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9499__rectorat_de_lacademie_de_reims"
-    >
+    <record model="res.partner" id="rectorat_reims">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Reims</field>
         <field name="street">1, rue Navier</field>
@@ -593,13 +489,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_reims.jpg"
         />
-        <field name="xid">partner_academy.rectorat_reims</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4554__rectorat_de_lacademie_de_rennes"
-    >
+    <record model="res.partner" id="rectorat_rennes">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Rennes</field>
         <field name="street">96 rue d'Antrain</field>
@@ -616,13 +508,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_rennes.jpg"
         />
-        <field name="xid">partner_academy.rectorat_rennes</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_12062__rectorat_de_lacademie_de_rouen"
-    >
+    <record model="res.partner" id="rectorat_rouen">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Rouen</field>
         <field name="street">25 rue de Fontenelle</field>
@@ -637,13 +525,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_normandie.jpg"
         />
-        <field name="xid">partner_academy.rectorat_rouen</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4277__rectorat_de_lacademie_de_strasbourg"
-    >
+    <record model="res.partner" id="rectorat_strasbourg">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Strasbourg</field>
         <field name="street">6, rue de la Toussaint</field>
@@ -658,13 +542,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_strasbourg.jpg"
         />
-        <field name="xid">partner_academy.rectorat_strasbourg</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_4178__rectorat_de_lacademie_de_toulouse"
-    >
+    <record model="res.partner" id="rectorat_toulouse">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Toulouse</field>
         <field name="street">Place Saint Jacques</field>
@@ -682,13 +562,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_toulouse.jpg"
         />
-        <field name="xid">partner_academy.rectorat_toulouse</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9366__rectorat_de_lacademie_de_versailles"
-    >
+    <record model="res.partner" id="rectorat_versailles">
         <field name="is_company" eval="True" />
         <field name="name">Rectorat de l'académie de Versailles</field>
         <field name="street">3 Boulevard de Lesseps</field>
@@ -703,13 +579,9 @@
             type="base64"
             file="partner_academy/static/img/rectorat_versailles.jpg"
         />
-        <field name="xid">partner_academy.rectorat_versailles</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9504__vice_rectorat_de_polynesie_francaise"
-    >
+    <record model="res.partner" id="vice_rectorat_polynesie_francaise">
         <field name="is_company" eval="True" />
         <field name="name">Vice-Rectorat de Polynésie Française</field>
         <field name="street">25 avenue Pierre LOTI</field>
@@ -725,13 +597,9 @@
             type="base64"
             file="partner_academy/static/img/vice_rectorat_polynesie_francaise.jpg"
         />
-        <field name="xid">partner_academy.vice_rectorat_polynesie_francaise</field>
     </record>
 
-    <record
-        model="res.partner"
-        id="xml_export.res_partner_9502__vice_rectorat_de_la_nouvelle_caledonie"
-    >
+    <record model="res.partner" id="vice_rectorat_nouvelle_caledonie">
         <field name="is_company" eval="True" />
         <field name="name">Vice-Rectorat de la Nouvelle-Calédonie</field>
         <field name="street">1, avenue des Frères Carcopino</field>
@@ -746,10 +614,9 @@
             type="base64"
             file="partner_academy/static/img/vice_rectorat_nouvelle_caledonie.jpg"
         />
-        <field name="xid">partner_academy.vice_rectorat_nouvelle_caledonie</field>
     </record>
 
-    <record model="res.partner" id="__export__.res_partner_9503_de6995d4">
+    <record model="res.partner" id="vice_rectorat_wallis_futuna">
         <field name="is_company" eval="True" />
         <field name="name">Vice-Rectorat des îles Wallis et Futuna</field>
         <field name="street">BP244</field>
@@ -764,7 +631,5 @@
             type="base64"
             file="partner_academy/static/img/vice_rectorat_wallis_futuna.jpg"
         />
-        <field name="xid">partner_academy.vice_rectorat_wallis_futuna</field>
     </record>
-
 </odoo>

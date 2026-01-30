@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-        
     <record model="ir.ui.view" id="view_partner_form_partner_academy">
         <field name="name">res.partner.form@partner_academy</field>
         <field name="model">res.partner</field>
@@ -12,5 +11,4 @@
             </field>
         </field>
     </record>
-
 </odoo>

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_25__aix_marseille"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_aix_marseille">
         <field name="name">Aix-Marseille</field>
         <field
             name="department_ids"
@@ -17,14 +13,13 @@
         />
         <field name="email_domain">ac-aix-marseille.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_aix_marseille" />
-        <field name="xid">partner_academy.aca_aix_marseille</field>
         <field
             name="state_id"
             ref="l10n_fr_state.res_country_state_provencealpescotedazur"
         />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_14__amiens">
+    <record model="res.partner.academy" id="partner_academy.aca_amiens">
         <field name="name">Amiens</field>
         <field
             name="department_ids"
@@ -36,14 +31,10 @@
         />
         <field name="email_domain">ac-amiens.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_amiens" />
-        <field name="xid">partner_academy.aca_amiens</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_nordpasdecalais" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_19__besancon"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_besancon">
         <field name="name">Besançon</field>
         <field
             name="department_ids"
@@ -56,14 +47,10 @@
         />
         <field name="email_domain">ac-besancon.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_besancon" />
-        <field name="xid">partner_academy.aca_besancon</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_bourgogne" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_13__bordeaux"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_bordeaux">
         <field name="name">Bordeaux</field>
         <field
             name="department_ids"
@@ -77,14 +64,10 @@
         />
         <field name="email_domain">ac-bordeaux.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_bordeaux" />
-        <field name="xid">partner_academy.aca_bordeaux</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_8__clermont_ferrand"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_clermont_ferrand">
         <field name="name">Clermont-Ferrand</field>
         <field
             name="department_ids"
@@ -97,11 +80,10 @@
         />
         <field name="email_domain">ac-clermont.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_clermont_ferrand" />
-        <field name="xid">partner_academy.aca_clermont_ferrand</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_20__corse">
+    <record model="res.partner.academy" id="partner_academy.aca_corse">
         <field name="name">Corse</field>
         <field
             name="department_ids"
@@ -112,11 +94,10 @@
         />
         <field name="email_domain">ac-corse.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_corse" />
-        <field name="xid">partner_academy.aca_corse</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_corse" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_3__creteil">
+    <record model="res.partner.academy" id="partner_academy.aca_creteil">
         <field name="name">Créteil</field>
         <field
             name="department_ids"
@@ -128,11 +109,10 @@
         />
         <field name="email_domain">ac-creteil.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_creteil" />
-        <field name="xid">partner_academy.aca_creteil</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_16__dijon">
+    <record model="res.partner.academy" id="partner_academy.aca_dijon">
         <field name="name">Dijon</field>
         <field
             name="department_ids"
@@ -145,14 +125,10 @@
         />
         <field name="email_domain">ac-dijon.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_dijon" />
-        <field name="xid">partner_academy.aca_dijon</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_bourgogne" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_10__grenoble"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_grenoble">
         <field name="name">Grenoble</field>
         <field
             name="department_ids"
@@ -166,14 +142,10 @@
         />
         <field name="email_domain">ac-grenoble.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_grenoble" />
-        <field name="xid">partner_academy.aca_grenoble</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_5__guadeloupe"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_guadeloupe">
         <field name="name">Guadeloupe</field>
         <field
             name="department_ids"
@@ -183,14 +155,13 @@
         />
         <field name="email_domain">ac-guadeloupe.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_guadeloupe" />
-        <field name="xid">partner_academy.aca_guadeloupe</field>
         <field
             name="state_id"
             ref="l10n_fr_department_oversea.res_country_state_guadeloupe"
         />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_23__guyane">
+    <record model="res.partner.academy" id="partner_academy.aca_guyane">
         <field name="name">Guyane</field>
         <field
             name="department_ids"
@@ -200,17 +171,13 @@
         />
         <field name="email_domain">ac-guyane.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_guyane" />
-        <field name="xid">partner_academy.aca_guyane</field>
         <field
             name="state_id"
             ref="l10n_fr_department_oversea.res_country_state_guyane"
         />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_15__la_reunion"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_la_reunion">
         <field name="name">La Réunion</field>
         <field
             name="department_ids"
@@ -220,14 +187,13 @@
         />
         <field name="email_domain">ac-reunion.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_la_reunion" />
-        <field name="xid">partner_academy.aca_la_reunion</field>
         <field
             name="state_id"
             ref="l10n_fr_department_oversea.res_country_state_reunion"
         />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_17__lille">
+    <record model="res.partner.academy" id="partner_academy.aca_lille">
         <field name="name">Lille</field>
         <field
             name="department_ids"
@@ -238,11 +204,10 @@
         />
         <field name="email_domain">ac-lille.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_lille" />
-        <field name="xid">partner_academy.aca_lille</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_nordpasdecalais" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_21__limoges">
+    <record model="res.partner.academy" id="partner_academy.aca_limoges">
         <field name="name">Limoges</field>
         <field
             name="department_ids"
@@ -254,11 +219,10 @@
         />
         <field name="email_domain">ac-limoges.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_limoges" />
-        <field name="xid">partner_academy.aca_limoges</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_30__lyon">
+    <record model="res.partner.academy" id="partner_academy.aca_lyon">
         <field name="name">Lyon</field>
         <field
             name="department_ids"
@@ -270,14 +234,10 @@
         />
         <field name="email_domain">ac-lyon.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_lyon" />
-        <field name="xid">partner_academy.aca_lyon</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_auvergne" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_12__martinique"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_martinique">
         <field name="name">Martinique</field>
         <field
             name="department_ids"
@@ -287,14 +247,13 @@
         />
         <field name="email_domain">ac-martinique.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_martinique" />
-        <field name="xid">partner_academy.aca_martinique</field>
         <field
             name="state_id"
             ref="l10n_fr_department_oversea.res_country_state_martinique"
         />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_33__mayotte">
+    <record model="res.partner.academy" id="partner_academy.aca_mayotte">
         <field name="name">Mayotte</field>
         <field
             name="department_ids"
@@ -304,17 +263,13 @@
         />
         <field name="email_domain">ac-mayotte.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_mayotte" />
-        <field name="xid">partner_academy.aca_mayotte</field>
         <field
             name="state_id"
             ref="l10n_fr_department_oversea.res_country_state_mayotte"
         />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_32__montpellier"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_montpellier">
         <field name="name">Montpellier</field>
         <field
             name="department_ids"
@@ -328,17 +283,13 @@
         />
         <field name="email_domain">ac-montpellier.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_montpellier" />
-        <field name="xid">partner_academy.aca_montpellier</field>
         <field
             name="state_id"
             ref="l10n_fr_state.res_country_state_languedocroussillon"
         />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_29__nancy_metz"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_nancy_metz">
         <field name="name">Nancy-Metz</field>
         <field
             name="department_ids"
@@ -351,11 +302,10 @@
         />
         <field name="email_domain">ac-nancy-metz.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_nancy_metz" />
-        <field name="xid">partner_academy.aca_nancy_metz</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_4__nantes">
+    <record model="res.partner.academy" id="partner_academy.aca_nantes">
         <field name="name">Nantes</field>
         <field
             name="department_ids"
@@ -369,11 +319,10 @@
         />
         <field name="email_domain">ac-nantes.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_nantes" />
-        <field name="xid">partner_academy.aca_nantes</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_paysdelaloire" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_9__nice">
+    <record model="res.partner.academy" id="partner_academy.aca_nice">
         <field name="name">Nice</field>
         <field
             name="department_ids"
@@ -386,17 +335,13 @@
         />
         <field name="email_domain">ac-nice.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_nice" />
-        <field name="xid">partner_academy.aca_nice</field>
         <field
             name="state_id"
             ref="l10n_fr_state.res_country_state_provencealpescotedazur"
         />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_7__normandie_rouen_caen"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_normandie_rouen_caen">
         <field name="name">Normandie (Rouen-Caen)</field>
         <field
             name="department_ids"
@@ -410,24 +355,19 @@
         />
         <field name="email_domain">ac-caen.fr ac-rouen.fr ac-normandie.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_normandie" />
-        <field name="xid">partner_academy.aca_normandie_rouen_caen</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_bassenormandie" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_34__noumea">
+    <record model="res.partner.academy" id="partner_academy.aca_noumea">
         <field name="name">Noumea</field>
         <field name="email_domain">ac-noumea.nc</field>
         <field
             name="partner_id"
             ref="partner_academy.vice_rectorat_nouvelle_caledonie"
         />
-        <field name="xid">partner_academy.aca_noumea</field>
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_28__orleans_tours"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_orleans_tours">
         <field name="name">Orléans-Tours</field>
         <field
             name="department_ids"
@@ -442,11 +382,10 @@
         />
         <field name="email_domain">ac-orleans-tours.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_orleans_tours" />
-        <field name="xid">partner_academy.aca_orleans_tours</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_centre" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_22__paris">
+    <record model="res.partner.academy" id="partner_academy.aca_paris">
         <field name="name">Paris</field>
         <field
             name="department_ids"
@@ -456,11 +395,10 @@
         />
         <field name="email_domain">ac-paris.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_paris" />
-        <field name="xid">partner_academy.aca_paris</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_1__poitiers">
+    <record model="res.partner.academy" id="partner_academy.aca_poitiers">
         <field name="name">Poitiers</field>
         <field
             name="department_ids"
@@ -473,24 +411,19 @@
         />
         <field name="email_domain">ac-poitiers.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_poitiers" />
-        <field name="xid">partner_academy.aca_poitiers</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_aquitaine" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_36__polynesie"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_polynesie">
         <field name="name">Polynésie</field>
         <field name="email_domain">ac-polynesie.pf</field>
         <field
             name="partner_id"
             ref="partner_academy.vice_rectorat_polynesie_francaise"
         />
-        <field name="xid">partner_academy.aca_polynesie</field>
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_24__reims">
+    <record model="res.partner.academy" id="partner_academy.aca_reims">
         <field name="name">Reims</field>
         <field
             name="department_ids"
@@ -503,11 +436,10 @@
         />
         <field name="email_domain">ac-reims.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_reims" />
-        <field name="xid">partner_academy.aca_reims</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
     </record>
 
-    <record model="res.partner.academy" id="xml_export.res_partner_academy_31__rennes">
+    <record model="res.partner.academy" id="partner_academy.aca_rennes">
         <field name="name">Rennes</field>
         <field
             name="department_ids"
@@ -520,14 +452,10 @@
         />
         <field name="email_domain">ac-rennes.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_rennes" />
-        <field name="xid">partner_academy.aca_rennes</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_bretagne" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_11__strasbourg"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_strasbourg">
         <field name="name">Strasbourg</field>
         <field
             name="department_ids"
@@ -538,14 +466,10 @@
         />
         <field name="email_domain">ac-strasbourg.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_strasbourg" />
-        <field name="xid">partner_academy.aca_strasbourg</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_alsace" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_18__toulouse"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_toulouse">
         <field name="name">Toulouse</field>
         <field
             name="department_ids"
@@ -562,17 +486,13 @@
         />
         <field name="email_domain">ac-toulouse.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_toulouse" />
-        <field name="xid">partner_academy.aca_toulouse</field>
         <field
             name="state_id"
             ref="l10n_fr_state.res_country_state_languedocroussillon"
         />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_26__versailles"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_versailles">
         <field name="name">Versailles</field>
         <field
             name="department_ids"
@@ -585,18 +505,12 @@
         />
         <field name="email_domain">ac-versailles.fr</field>
         <field name="partner_id" ref="partner_academy.rectorat_versailles" />
-        <field name="xid">partner_academy.aca_versailles</field>
         <field name="state_id" ref="l10n_fr_state.res_country_state_iledefrance" />
     </record>
 
-    <record
-        model="res.partner.academy"
-        id="xml_export.res_partner_academy_35__wallis_et_futuna"
-    >
+    <record model="res.partner.academy" id="partner_academy.aca_wallis_et_futuna">
         <field name="name">Wallis et Futuna</field>
         <field name="email_domain">ac-wf.wf</field>
         <field name="partner_id" ref="partner_academy.vice_rectorat_wallis_futuna" />
-        <field name="xid">partner_academy.aca_wallis_et_futuna</field>
     </record>
-
 </odoo>

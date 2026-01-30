@@ -20,7 +20,7 @@ class TestPartnerAcademy(common.TransactionCase):
     def test_02_email_onchange_set_academy_multiple_domain(self):
         for domain in ("ac-caen.fr", "ac-rouen.fr", "ac-normandie.fr"):
             new_partner = Form(self.env["res.partner"])
-            new_partner.email = "teacher@%s" % (domain)
+            new_partner.email = f"teacher@{domain}"
             self.assertEqual(
                 new_partner.academy_id,
                 self.env.ref("partner_academy.aca_normandie_rouen_caen"),
