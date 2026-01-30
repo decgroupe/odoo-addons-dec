@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <!--
+    `stock.MovesListRenderer.RecordRow` inherits from `web.ListRenderer.RecordRow`
+    in primary mode: so it breaks the chain of inheritance and the
+    `web_tree_dynamic_colored_field` becomes ineffective. To fix this, we re-inherit
+    in extension mode from `stock.MovesListRenderer.RecordRow`.
+
+    But what about the javaScript code?
+    ###################################
+    The `web_tree_dynamic_colored_field` module also provides a JS file that extends
+    the `ListRenderer` to add the `getDynamicColoredStyle` method. Since the
+    `stock.MovesListRenderer` inherits from `web.ListRenderer`, the method is also
+    available in `stock.MovesListRenderer`.
+    Therefore, by re-inheriting `stock.MovesListRenderer.RecordRow` in extension mode
+    here, we can use the `getDynamicColoredStyle` method as intended.
+    -->
+
+    <t
+        t-name="stock_picking_colored.ListRenderer.RecordRow"
+        t-inherit-mode="extension"
+        t-inherit="stock.MovesListRenderer.RecordRow"
+    >
+        <xpath
+            expr="//t[@t-if=&quot;column.type === 'field'&quot;]//td"
+            position="attributes"
+        >
+            <attribute
+                name="t-attf-style"
+            >{{getDynamicColoredStyle(column, record)}}</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-if=&quot;column.type === 'button_group'&quot;]//td"
+            position="attributes"
+        >
+            <attribute
+                name="t-attf-style"
+            >{{getDynamicColoredStyle(column, record)}}</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-if=&quot;column.type === 'opendetailsop'&quot;]//td"
+            position="attributes"
+        >
+            <attribute
+                name="t-attf-style"
+            >{{getDynamicColoredStyle(column, record)}}</attribute>
+        </xpath>
+    </t>
+
+</templates>

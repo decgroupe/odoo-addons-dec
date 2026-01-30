@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="picking_form_view">
+        <field name="name">stock.picking.form@stock_picking_colored</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/list/field[@name='product_id']"
+                position="after"
+            >
+                <field name="list_fg_color" column_invisible="1" />
+                <field name="list_bg_color" column_invisible="1" />
+                <!-- <field name="group_id" /> -->
+                <!-- <field name="state" /> -->
+                <!-- <field name="name" /> -->
+            </xpath>
+            <xpath
+                expr="//field[@name='move_ids_without_package']/list"
+                position="attributes"
+            >
+                <attribute
+                    name="colors"
+                >fg_color_field: list_fg_color; bg_color_field: list_bg_color</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
