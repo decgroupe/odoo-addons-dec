@@ -33,10 +33,8 @@ class StockMove(models.Model):
             auto_validated_moves._do_unreserve()
         else:
             for move in auto_validated_moves:
-                # Apply logic from addons/stock/wizard/stock_immediate_transfer.py
-                # and process every move lines
-                for move_line in move.move_line_ids:
-                    move_line.qty_done = move_line.product_uom_qty
+                move.quantity = move.product_uom_qty
+                move.picked = True
             # Finally call action_done
             if auto_validated_moves:
                 auto_validated_moves._action_done()
