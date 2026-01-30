@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="purchase_order_filter_view">
         <field name="name">request.quotation.select@purchase_typefast</field>
         <field name="model">purchase.order</field>
@@ -13,9 +12,9 @@
                         ('typefast_name', 'ilike', self),
                         '|',
                             ('name', 'ilike', self),
-                            '|', 
+                            '|',
                                 ('origin', 'ilike', self),
-                                '|', 
+                                '|',
                                     ('partner_ref', 'ilike', self),
                                     ('partner_id', 'child_of', self)
                 ]
@@ -23,5 +22,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
