@@ -35,7 +35,7 @@ class StockMove(models.Model):
             sequence = 1
 
         for move in self:
-            if not move.id in updated_ids:
+            if move.id not in updated_ids:
                 # If the move is a part of pack but its parent sequence
                 # has not been updated yet, then ignore it. It will be
                 # updated by its parent when procvessing its
