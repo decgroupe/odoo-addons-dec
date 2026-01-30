@@ -8,9 +8,9 @@ class MrpBom(models.Model):
     _name = "mrp.bom"
     _inherit = ["mrp.bom", "typefast.mixin"]
     _typefast_options = {
-        "source": "name_get",
+        "source": "display_name",
     }
 
     @api.depends("code")
     def _compute_typefast(self):
-        super()._compute_typefast()
+        return super()._compute_typefast()

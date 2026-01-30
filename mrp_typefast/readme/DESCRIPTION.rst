@@ -1,1 +1,0 @@
-Remove all non-alphabetical characters to search for a production order by its name.
