@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="picking_internal_search_view">
         <field name="name">stock.picking.search@stock_typefast</field>
         <field name="model">stock.picking</field>
@@ -19,5 +18,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
