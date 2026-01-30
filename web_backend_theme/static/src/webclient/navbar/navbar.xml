@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.NavBar" t-inherit-mode="extension">
+        <xpath expr="./header/nav/DropdownItem" position="attributes">
+            <attribute name="t-esc" remove="currentApp.name" />
+        </xpath>
+        <xpath expr="./header/nav/DropdownItem" position="inside">
+            <img
+                style="height: 1.8em;"
+                t-if="currentApp.webIconData"
+                class="o_app_icon ms-2 me-2"
+                t-attf-src="{{currentApp.webIconData}}"
+            />
+            <t t-esc="currentApp.name" />
+        </xpath>
+        <xpath expr="./header/nav/DropdownItem" position="after">
+            <div class="ms-3" />
+        </xpath>
+    </t>
+
+    <!--
+    Add a caret icon before the section name in the navbar if it owns a dropdown menu.
+    -->
+    <t t-inherit="web.NavBar.SectionsMenu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown/button/span" position="before">
+            <i class="fa fa-caret-down me-1" aria-hidden="true" />
+        </xpath>
+    </t>
+
+    <!--
+    Add a menu ("hamburger") icon before the section name in the dropdown if it is a
+    section separator.
+    -->
+    <t t-inherit="web.NavBar.SectionsMenu.Dropdown.MenuSlot" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('dropdown-menu_group')]" position="attributes">
+            <attribute name="t-esc" remove="item.name" />
+        </xpath>
+        <xpath expr="//div[hasclass('dropdown-menu_group')]" position="inside">
+            <i class="fa fa-bars" aria-hidden="true" /> <t t-esc="item.name" />
+        </xpath>
+    </t>
+
+</templates>

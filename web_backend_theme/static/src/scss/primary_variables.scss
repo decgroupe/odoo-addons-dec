@@ -1,39 +1,57 @@
-$gray-base: #000;
-$gray-darker: lighten($gray-base, 13.5%);
-$gray-dark: #666;
-$gray: #777;
-$gray-light: #aea79f;
-$gray-lighter: lighten($gray-base, 93.5%);
+/* Copyright 2026 DEC
+ * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
 
-// Change colors here
-
-// Odoo EE colors
-//------------------------
-$brand-primary: #714b67;
-$brand-secondary: #017e84;
-//------------------------
-
-// odoo/addons/web/static/src/scss/primary_variables.scss
-$o-community-color: $brand-primary;
-$o-brand-odoo: $o-community-color;
-$o-brand-primary: $brand-secondary;
-
-$o-brand-lightsecondary: #f6f7fa;
-
-$brand-primary-dark: darken($brand-primary, 10%);
-$brand-secondary-dark: darken($brand-secondary, 10%);
+// Global sans-serif fonts stack
+$o-system-fonts: (
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    "Helvetica Neue",
+    Ubuntu,
+    "Noto Sans",
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji"
+) !default;
 
 // Colors
-$o-enterprise-color: $brand-primary;
-$o-enterprise-primary-color: $brand-secondary;
+// This is BS default
+$o-white: #ffffff !default;
+$o-black: #000000 !default;
 
-$o-navbar-height-desktop: 40px;
-$o-navbar-height-mobile: 46px;
+$o-community-color: #714b67 !default;
+$o-enterprise-color: #714b67 !default;
+$o-enterprise-action-color: #017e84 !default;
 
-$o-navbar-height: $o-navbar-height-desktop;
+$o-brand-odoo: $o-community-color !default;
+$o-brand-primary: $o-community-color !default;
 
-$o-tooltip-color: #eee;
+$o-action: $o-enterprise-action-color !default;
 
-// Kanban
+// == Buttons
+// Map of customized values for each button. If a button's design is defined
+// here, the relative values will take priority over default BS ones.
+// Notice: each map's entry is passed directly to the Bootstrap mixin, meaning
+// that all states must be defined, there can't be omissions.
+$o-btns-bs-override: () !default;
+$o-btns-bs-override: map-merge(
+    (
+        "primary": (
+            background: $o-enterprise-action-color,
+            border: $o-brand-primary,
+            color: $o-white,
 
-$o-kanban-default-record-width: 350px;
+            hover-background: darken($o-enterprise-action-color, 10%),
+            hover-border: darken($o-brand-primary, 20%),
+            hover-color: $o-white,
+
+            active-background: darken($o-enterprise-action-color, 20%),
+            active-border: darken($o-brand-primary, 20%),
+            active-color: $o-white,
+        ),
+    ),
+    $o-btns-bs-override
+);

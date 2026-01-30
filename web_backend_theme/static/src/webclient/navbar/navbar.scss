@@ -1,0 +1,18 @@
+.o_main_navbar {
+    // White background for application Name
+    .o_menu_brand {
+        font-variant: small-caps;
+        font-size: 16px;
+        background-color: $o-control-panel-background-color;
+        color: var(--body-color);
+    }
+
+    .o_menu_sections {
+        .dropdown-toggle {
+            font-variant: small-caps;
+        }
+        .o_nav_entry {
+            font-weight: bold;
+        }
+    }
+}

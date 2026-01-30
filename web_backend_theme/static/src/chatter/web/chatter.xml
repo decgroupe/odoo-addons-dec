@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <!-- Move the "Send Message" button after the "Activities" button -->
+        <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="after">
+            <xpath
+                expr="//button[hasclass('o-mail-Chatter-sendMessage')]"
+                position="move"
+            />
+        </xpath>
+        <!-- Add a margin to the right of the "Activities" button -->
+        <xpath
+            expr="//button[hasclass('o-mail-Chatter-activity')]"
+            position="attributes"
+        >
+            <attribute name="class" add="me-1" separator=" " />
+        </xpath>
+        <!-- Add a margin to the right of the "Send Message" button -->
+        <xpath
+            expr="//button[hasclass('o-mail-Chatter-sendMessage')]"
+            position="attributes"
+        >
+            <attribute name="class" add="btn-info" separator=" " />
+        </xpath>
+    </t>
+
+</templates>
