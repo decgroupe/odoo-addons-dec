@@ -4,12 +4,11 @@
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "purchase",
+        "purchase_mrp",
         "purchase_stock",
         "purchase_line_procurement_group",
         "product_pack",
         "stock_auto_validate",
-        "mrp_product_pack",
         "stock_picking_line_auto_fill",
     ],
     "data": [
