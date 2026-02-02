@@ -1,98 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2020
 
-from odoo import _, api, fields, models
+from odoo import Command, models
 from odoo.exceptions import UserError
-from odoo.fields import first
 
 
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
     _parent_name = "pack_parent_line_id"
-
-    pack_type = fields.Selection(
-        related="product_id.pack_type",
-    )
-    pack_component_price = fields.Selection(
-        related="product_id.pack_component_price",
-    )
-
-    # Fields for common packs
-    pack_depth = fields.Integer(
-        "Depth", help="Depth of the product if it is part of a pack."
-    )
-    pack_parent_line_id = fields.Many2one(
-        "purchase.order.line",
-        "Pack",
-        help="The pack that contains this product.",
-        # ondelete="set null",
-    )
-    pack_child_line_ids = fields.One2many(
-        "purchase.order.line", "pack_parent_line_id", "Lines in pack"
-    )
-    # this value is copied from the product template when the pack is expanded
-    # via `get_purchase_order_line_vals`
-    pack_modifiable = fields.Boolean(help="The parent pack is modifiable")
-
-    do_no_expand_pack_lines = fields.Boolean(
-        compute="_compute_do_no_expand_pack_lines",
-        help=(
-            "This is a technical field in order to check if pack lines has "
-            "to be expanded"
-        ),
-    )
-
-    @api.depends_context("update_prices", "update_pricelist")
-    def _compute_do_no_expand_pack_lines(self):
-        do_not_expand = self.env.context.get("update_prices") or self.env.context.get(
-            "update_pricelist", False
-        )
-        self.update(
-            {
-                "do_no_expand_pack_lines": do_not_expand,
-            }
-        )
-
-    def expand_pack_line(self, write=False):
-        self.ensure_one()
-        # if we are using update_pricelist or checking out on ecommerce we
-        # only want to update prices
-        vals_list = []
-        if self.product_id.pack_ok and self.pack_type == "detailed":
-            for subline in self.product_id.get_pack_lines():
-                vals = subline.get_purchase_order_line_vals(self, self.order_id)
-                vals["sequence"] = self.sequence
-                if write:
-                    existing_subline = first(
-                        self.pack_child_line_ids.filtered(
-                            lambda child, pack_line=subline: child.product_id
-                            == pack_line.product_id
-                        )
-                    )
-                    # if subline already exists we update, if not we create
-                    if existing_subline:
-                        if self.do_no_expand_pack_lines:
-                            vals.pop("product_qty")
-                        existing_subline.write(vals)
-                    elif not self.do_no_expand_pack_lines:
-                        vals_list.append(vals)
-                else:
-                    vals_list.append(vals)
-            if vals_list:
-                self.create(vals_list)
-
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        record.expand_pack_line()
-        return record
-
-    def write(self, vals):
-        res = super().write(vals)
-        if "product_id" in vals or "product_qty" in vals:
-            for record in self:
-                record.expand_pack_line(write=True)
-        return res
 
     def unlink(self):
         """Remove previously the pack children lines for avoiding issues in
@@ -122,51 +37,15 @@ class PurchaseOrderLine(models.Model):
             and not x.pack_parent_line_id.product_id.pack_modifiable
         )
         if undeletable_lines:
+            po_lines = "\n".join(undeletable_lines.mapped("name"))
             raise UserError(
-                _(
+                self.env._(
                     "You cannot delete these lines because they are part of a pack in"
-                    " this purchase order:\n %s\n\n"
-                    "To remove these lines, you need to delete the pack itself"
-                )
-                % ("\n".join(undeletable_lines.mapped("name")))
-            )
-
-    def _is_editable(self):
-        res = True
-        if res and self.pack_parent_line_id and not self.pack_modifiable:
-            res = False
-        return res
-
-    @api.onchange(
-        "product_id",
-        "product_qty",
-        "product_uom",
-        "price_unit",
-        "name",
-        "taxes_id",
-    )
-    def check_pack_line_modify(self):
-        """Do not let to edit a purchase order line if this one belongs to pack"""
-        if not self._origin._is_editable():
-            raise UserError(
-                _(
-                    "You cannot edit this line because it is part of a pack"
-                    " included in this order"
+                    " this purchase order:\n %(po_lines)s\n\n"
+                    "To remove these lines, you need to delete the pack itself",
+                    po_lines=po_lines,
                 )
             )
-
-    def action_open_parent_pack_product_view(self):
-        domain = [
-            ("id", "in", self.mapped("pack_parent_line_id").mapped("product_id").ids)
-        ]
-        return {
-            "name": _("Parent Product"),
-            "type": "ir.actions.act_window",
-            "res_model": "product.product",
-            "view_type": "form",
-            "view_mode": "list,form",
-            "domain": domain,
-        }
 
     def _get_pack_line_move_data(self, move):
         self.ensure_one()
@@ -176,7 +55,7 @@ class PurchaseOrderLine(models.Model):
             "product_uom": self.product_id.uom_id.id,
             "product_uom_qty": self.product_uom_qty,
             "name": self.name,
-            "created_purchase_line_id": self.id,
+            "created_purchase_line_ids": [Command.link(self.id)],
             # Copy parent move data
             "company_id": move.company_id.id,
             "picking_id": move.picking_id.id,

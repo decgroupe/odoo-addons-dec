@@ -1,6 +1,6 @@
-=====================
-Purchase product Pack
-=====================
+=========================
+Purchase MRP Product Pack
+=========================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -13,13 +13,63 @@ Purchase product Pack
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/github-DEC%2Fodoo--addons--dec-lightgray.png?logo=github
-    :target: https://github.com/DEC/odoo-addons-dec/tree/18.0/purchase_product_pack
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+.. |badge3| image:: https://img.shields.io/badge/github-DEC%2Fodoo--addons--dec-lightgray.png?logo=github
+    :target: https://github.com/DEC/odoo-addons-dec/tree/18.0/purchase_mrp_product_pack
     :alt: DEC/odoo-addons-dec
 
-|badge1| |badge2|
+|badge1| |badge2| |badge3|
 
-Purchase product packs.
+This module makes purchase flows work correctly when purchased products
+are packs used by manufacturing.
+
+- It creates stock moves for each pack component when incoming pickings
+  are generated from purchase orders.
+- It keeps move sequencing consistent for manufacturing raw material
+  moves, including nested pack components.
+- It automatically marks parent pack moves as done when only component
+  products are physically received.
+- It propagates the procurement group and formats child line labels in
+  purchase order pack lines.
+- It prevents deleting protected child pack lines directly and shows an
+  explicit error message when this is not allowed.
+
+Technical details
+-----------------
+
+**Purchase picking and pack move creation**
+
+``purchase.order`` overrides ``_create_picking()`` to create pack child
+stock moves before standard picking creation and to force parent pack
+moves done afterward. It also collects related ``mrp.production``
+records and refreshes raw move sequences.
+
+**Pack purchase order line lifecycle**
+
+``purchase.order.line`` extends unlink behavior to remove child lines
+safely, cancel and delete linked destination moves when needed, enforce
+pack line delete rules, and build child move values from parent move
+data.
+
+**Stock move hierarchy and sequencing**
+
+``stock.move`` adds ``pack_parent_move_id``, ``pack_child_move_ids``,
+and computed ``pack_level``, then overrides ``_update_sequence()`` to
+handle recursive sequence updates across pack move trees while avoiding
+duplicate updates.
+
+**MRP raw move ordering**
+
+``mrp.production`` adds ``update_move_raw_sequences()`` to sort raw
+moves and apply the custom stock move sequence update.
+
+**Pack line purchase values**
+
+``product.pack.line`` overrides ``get_purchase_order_line_vals()`` to
+inject ``procurement_group_id`` from the purchase order and prefix
+generated line names according to pack depth.
 
 **Table of contents**
 
@@ -42,7 +92,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/DEC/odoo-addons-dec/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/DEC/odoo-addons-dec/issues/new?body=module:%20purchase_product_pack%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/DEC/odoo-addons-dec/issues/new?body=module:%20purchase_mrp_product_pack%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -62,6 +112,6 @@ Contributors
 Maintainers
 -----------
 
-This module is part of the `DEC/odoo-addons-dec <https://github.com/DEC/odoo-addons-dec/tree/18.0/purchase_product_pack>`_ project on GitHub.
+This module is part of the `DEC/odoo-addons-dec <https://github.com/DEC/odoo-addons-dec/tree/18.0/purchase_mrp_product_pack>`_ project on GitHub.
 
 You are welcome to contribute.

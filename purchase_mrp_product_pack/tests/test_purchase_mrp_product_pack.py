@@ -3,13 +3,13 @@
 
 import re
 
+from odoo import Command
 from odoo.exceptions import UserError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
 class TestPurchaseMrpProductPack(TransactionCase):
-
     def _get_component_prices_sum(self, product_pack):
         component_prices = 0.0
         for pack_line in product_pack.get_pack_lines():
@@ -20,23 +20,23 @@ class TestPurchaseMrpProductPack(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        pricelist = cls.env["product.pricelist"].create(
-            {
-                "name": "Test",
-                "company_id": cls.env.company.id,
-                "item_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "applied_on": "3_global",
-                            "compute_price": "formula",
-                            "base": "list_price",
-                        },
-                    )
-                ],
-            }
-        )
+        # pricelist = cls.env["product.pricelist"].create(
+        #     {
+        #         "name": "Test",
+        #         "company_id": cls.env.company.id,
+        #         "item_ids": [
+        #             (
+        #                 0,
+        #                 0,
+        #                 {
+        #                     "applied_on": "3_global",
+        #                     "compute_price": "formula",
+        #                     "base": "list_price",
+        #                 },
+        #             )
+        #         ],
+        #     }
+        # )
         cls.purchase_order = cls.env["purchase.order"].create(
             {
                 "company_id": cls.env.company.id,
@@ -236,7 +236,7 @@ class TestPurchaseMrpProductPack(TransactionCase):
 
     def test_08_try_removing_pack_line_using_orm(self):
         product_cp = self.env.ref("product_pack.product_pack_cpu_detailed_components")
-        pack_line = self.PurchaseOrderLine.create(
+        _pack_line = self.PurchaseOrderLine.create(
             {
                 "order_id": self.purchase_order.id,
                 "name": product_cp.name,
@@ -247,15 +247,18 @@ class TestPurchaseMrpProductPack(TransactionCase):
         # check that the pack line and all its components are created
         self.assertEqual(len(self.purchase_order.order_line), 4)
         # try to remove the last line
-        with self.assertRaisesRegex(
-            UserError,
-            re.compile(
-                r"You cannot delete these lines because they are part of a pack in "
-                r"this purchase order:.*"
-                r"To remove these lines, you need to delete the pack itself",
-                re.MULTILINE | re.IGNORECASE | re.DOTALL,
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                re.compile(
+                    r"You cannot delete these lines because they are part of a pack in "
+                    r"this purchase order:.*"
+                    r"To remove these lines, you need to delete the pack itself",
+                    re.MULTILINE | re.IGNORECASE | re.DOTALL,
+                ),
             ),
-        ), self.cr.savepoint():
+            self.cr.savepoint(),
+        ):
             po = self.purchase_order.with_context(silent_UserError=True)
             po.order_line[3].unlink()
         # try to remove the first line (the pack itself)
@@ -271,15 +274,18 @@ class TestPurchaseMrpProductPack(TransactionCase):
         # check that the pack line and all its components are created
         self.assertEqual(len(self.purchase_order.order_line), 4)
         # try to remove the last line
-        with self.assertRaisesRegex(
-            UserError,
-            re.compile(
-                r"You cannot delete these lines because they are part of a pack in "
-                r"this purchase order:.*"
-                r"To remove these lines, you need to delete the pack itself",
-                re.MULTILINE | re.IGNORECASE | re.DOTALL,
+        with (
+            self.assertRaisesRegex(
+                UserError,
+                re.compile(
+                    r"You cannot delete this line because .* part of a pack in "
+                    r"this purchase order.*"
+                    r"In order to delete this line you need to delete the pack itself",
+                    re.MULTILINE | re.IGNORECASE | re.DOTALL,
+                ),
             ),
-        ), self.cr.savepoint():
+            self.cr.savepoint(),
+        ):
             with Form(
                 self.purchase_order.with_context(silent_UserError=True)
             ) as order_form:
@@ -294,7 +300,7 @@ class TestPurchaseMrpProductPack(TransactionCase):
         product_tp = self.env.ref("product_pack.product_pack_cpu_detailed_totalized")
         # forced update of the pack standard price (_update_pack_standard_price)
         product_tp.pack_type = "detailed"
-        line = self.PurchaseOrderLine.create(
+        _line = self.PurchaseOrderLine.create(
             {
                 "order_id": self.purchase_order.id,
                 "name": product_tp.name,
@@ -312,5 +318,162 @@ class TestPurchaseMrpProductPack(TransactionCase):
         # original purchase order
         self.assertEqual(
             purchase_copy.order_line.mapped("product_id"),
-            self.purchase_order.order_line.mapped("product_id")
+            self.purchase_order.order_line.mapped("product_id"),
+        )
+
+    def test_11_mto_pack_purchase_flow(self):
+        # enable mto and gather main routes/warehouse
+        mto_route = self.env.ref("stock.route_warehouse0_mto")
+        mto_route.active = True
+        buy_route = self.env.ref("purchase_stock.route_warehouse0_buy")
+        manufacture_route = self.env.ref("mrp.route_warehouse0_manufacture")
+        # create a new vendor that will supply the pack and its components
+        vendor = self.env["res.partner"].create({"name": "Pack Vendor"})
+        # create buyable components that will be part of the pack
+        component_a = self.env["product.product"].create(
+            {
+                "name": "Pack component A",
+                "type": "consu",
+                "is_storable": True,
+                "purchase_ok": True,
+                "route_ids": [Command.link(buy_route.id)],
+                "seller_ids": [
+                    Command.create(
+                        {
+                            "partner_id": vendor.id,
+                            "price": 10,
+                        }
+                    )
+                ],
+            }
+        )
+        component_b = self.env["product.product"].create(
+            {
+                "name": "Pack component B",
+                "type": "consu",
+                "is_storable": True,
+                "purchase_ok": True,
+                "route_ids": [Command.link(buy_route.id)],
+                "seller_ids": [
+                    Command.create(
+                        {
+                            "partner_id": vendor.id,
+                            "price": 15,
+                        }
+                    )
+                ],
+            }
+        )
+        # create the purchasable pack composed of the two components
+        purchasable_pack = self.env["product.product"].create(
+            {
+                "name": "Purchased pack",
+                "type": "consu",
+                "is_storable": True,
+                "pack_ok": True,
+                "pack_type": "detailed",
+                "pack_component_price": "totalized",
+                "purchase_ok": True,
+                "route_ids": [Command.set([buy_route.id, mto_route.id])],
+                "seller_ids": [Command.create({"partner_id": vendor.id, "price": 25})],
+                "pack_line_ids": [
+                    Command.create({"product_id": component_a.id, "quantity": 1.0}),
+                    Command.create({"product_id": component_b.id, "quantity": 1.0}),
+                ],
+            }
+        )
+        # reference extra bom items already in demo data
+        bolt = self.env.ref("mrp.product_product_computer_desk_bolt")
+        screw = self.env.ref("mrp.product_product_computer_desk_screw")
+        # finished product will be manufactured using the pack and two demo items
+        final_product = self.env["product.product"].create(
+            {
+                "name": "Finished product with pack",
+                "type": "consu",
+                "is_storable": True,
+                "route_ids": [
+                    Command.link(manufacture_route.id),
+                    Command.link(mto_route.id),
+                ],
+            }
+        )
+
+        # bom includes the purchasable pack plus two consumable components
+        final_product_bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": final_product.product_tmpl_id.id,
+                "product_uom_id": final_product.uom_id.id,
+                "product_qty": 1,
+                "bom_line_ids": [
+                    Command.create(
+                        {
+                            "product_id": purchasable_pack.id,
+                            "product_uom_id": purchasable_pack.uom_id.id,
+                            "product_qty": 1,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "product_id": bolt.id,
+                            "product_uom_id": bolt.uom_id.id,
+                            "product_qty": 1,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "product_id": screw.id,
+                            "product_uom_id": screw.uom_id.id,
+                            "product_qty": 1,
+                        }
+                    ),
+                ],
+            }
+        )
+        # plan the manufacturing order to generate raw moves
+        production = self.env["mrp.production"].create(
+            {
+                "product_id": final_product.id,
+                "product_uom_id": final_product.uom_id.id,
+                "product_qty": 1,
+                "bom_id": final_product_bom.id,
+            }
+        )
+        production.action_confirm()
+        production.button_plan()
+        # ensure the pack raw move is present
+        pack_move = production.move_raw_ids.filtered(
+            lambda move: move.product_id == purchasable_pack
+        )
+        self.assertTrue(pack_move)
+        # ensure that only 3 stock moves are present (pack + 2 consumables)
+        self.assertEqual(len(production.move_raw_ids), 3)
+        # a purchase order must be created for the pack
+        purchase_order = self.env["purchase.order"].search(
+            [("order_line.product_id", "=", purchasable_pack.id)],
+            limit=1,
+        )
+        self.assertTrue(purchase_order)
+        purchase_order.button_confirm()
+        # child moves should be created for pack components
+        production.invalidate_recordset()
+        pack_child_moves = production.move_raw_ids.filtered(
+            lambda move: move.pack_parent_move_id
+        )
+        self.assertEqual(
+            set(pack_child_moves.mapped("product_id")),
+            {component_a, component_b},
+        )
+        self.assertEqual(len(production.move_raw_ids), 5)
+        # receive the purchase and mark done
+        picking = purchase_order.picking_ids
+        self.assertEqual(len(picking), 1)
+        picking.action_assign()
+        for move in picking.move_ids:
+            move._set_quantity_done(move.product_uom_qty)
+        picking.button_validate()
+        # after reception, components should be assignable to the MO
+        production.action_assign()
+        self.assertEqual(production.reservation_state, "assigned")
+        self.assertTrue(
+            all(move.state in {"assigned", "done"} for move in pack_child_moves)
         )

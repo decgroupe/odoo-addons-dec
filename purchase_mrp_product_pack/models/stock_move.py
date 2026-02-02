@@ -38,8 +38,7 @@ class StockMove(models.Model):
             if move.id not in updated_ids:
                 # If the move is a part of pack but its parent sequence
                 # has not been updated yet, then ignore it. It will be
-                # updated by its parent when procvessing its
-                # pack_child_move_ids
+                # updated by its parent when processing its `pack_child_move_ids`
                 if (
                     move.pack_parent_move_id
                     and move.pack_parent_move_id.id not in updated_ids
