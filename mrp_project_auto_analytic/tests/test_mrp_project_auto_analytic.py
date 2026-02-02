@@ -5,7 +5,6 @@ from odoo.addons.mrp_project_auto.tests.common import TestMrpProjectAutoCommon
 
 
 class TestMrpProjectAutoAnalytic(TestMrpProjectAutoCommon):
-
     def setUp(self):
         super().setUp()
 
@@ -21,4 +20,4 @@ class TestMrpProjectAutoAnalytic(TestMrpProjectAutoCommon):
         self.assertTrue(prod1_id.project_id)
         project_id = prod1_id.project_id
         self.assertEqual(project_id.name, "WH/MO/12345678")
-        self.assertEqual(project_id.analytic_account_id.parent_id, analytic_production)
+        self.assertEqual(project_id.account_id.parent_id, analytic_production)

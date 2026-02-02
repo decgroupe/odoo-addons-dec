@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-20 08:49+0000\n"
-"PO-Revision-Date: 2024-09-20 10:49+0200\n"
+"POT-Creation-Date: 2026-06-03 10:37+0000\n"
+"PO-Revision-Date: 2026-06-03 15:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,24 +15,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.4\n"
-
-#. module: mrp_project_auto_analytic
-#: model:ir.model.fields,field_description:mrp_project_auto_analytic.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mrp_project_auto_analytic
-#: model:ir.model.fields,field_description:mrp_project_auto_analytic.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_project_auto_analytic
-#: model:ir.model.fields,field_description:mrp_project_auto_analytic.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_project_auto_analytic
 #: model:ir.model,name:mrp_project_auto_analytic.model_mrp_production
-msgid "Production Order"
+msgid "Manufacturing Order"
 msgstr "Fabrication"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"

@@ -10,9 +10,13 @@ class MrpProduction(models.Model):
     @api.model
     def _create_project(self, data):
         project_id = super()._create_project(data)
-        # Set a default analytic parent account but only for projects created
-        # from this function
-        project_id.analytic_account_id.write(
-            {"parent_id": self.env.ref("mrp_project.analytic_production").id}
-        )
+        # set a default analytic parent account but only for projects created
+        # from this function (note that the analytic account is normally created by the
+        # `hr_timesheet` module when `allow_timesheets` is enabled on the project)
+        if not project_id.account_id:
+            project_id._create_analytic_account()
+        if project_id.account_id:
+            project_id.account_id.write(
+                {"parent_id": self.env.ref("mrp_project.analytic_production").id}
+            )
         return project_id
