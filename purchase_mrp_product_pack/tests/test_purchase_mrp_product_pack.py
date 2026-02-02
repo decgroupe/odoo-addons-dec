@@ -3,11 +3,12 @@
 
 import re
 
-from odoo.tests.common import Form, SavepointCase
 from odoo.exceptions import UserError
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
-class TestPurchaseProductPack(SavepointCase):
+class TestPurchaseMrpProductPack(TransactionCase):
 
     def _get_component_prices_sum(self, product_pack):
         component_prices = 0.0
