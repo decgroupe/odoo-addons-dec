@@ -8,11 +8,6 @@ class StockWarehouseOrderpoint(models.Model):
     _inherit = "stock.warehouse.orderpoint"
 
     def get_head_desc(self):
-        head = "🧮{0}".format(self.name)
-        # WARNING: the string character is a non-breaking space
-        desc = "{} ≤ 𝜕 ≤ {} ↗ ×{}".format(
-            self.product_min_qty,
-            self.product_max_qty,
-            self.qty_multiple,
-        )
+        head = f"🧮{self.name}"
+        desc = f"{self.product_min_qty} ≤ 𝜕 ≤ {self.product_max_qty} ↗ ×{self.qty_multiple}"  # noqa: E501
         return head, desc
