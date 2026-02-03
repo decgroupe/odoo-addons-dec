@@ -11,11 +11,17 @@ class MrpBomLine(models.Model):
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Supplier",
+        domain="[('id', 'in', seller_partner_ids)]",
     )
     seller_id = fields.Many2one(
         comodel_name="product.supplierinfo",
         string="Seller",
         compute="_compute_supplier_info",
+    )
+    seller_partner_ids = fields.Many2many(
+        comodel_name="res.partner",
+        string="Suppliers",
+        compute="_compute_seller_partners",
     )
     delay = fields.Integer(
         string="Delay",
@@ -26,22 +32,23 @@ class MrpBomLine(models.Model):
         "be purchased.",
     )
 
-    def _get_supplierinfo(self):
+    def _compute_seller_partners(self):
+        for rec in self:
+            rec.seller_partner_ids = rec.product_id.seller_ids.mapped("partner_id")
+
+    @api.depends("partner_id", "product_id", "product_uom_id", "product_qty")
+    def _compute_supplier_info(self):
         """Given a BoM line, return the supplierinfo that matches
         with product and partner, if exist"""
-        self.ensure_one()
-        supplier_id = self.partner_id
-        if not supplier_id:
-            supplier_id = self.product_id.main_seller_id.name
-        seller_id = self.product_id.with_context(
-            uom=self.product_uom_id.id
-        )._select_seller(partner_id=supplier_id, quantity=self.product_qty)
-        return seller_id
-
-    @api.depends("partner_id", "product_uom_id", "product_qty")
-    def _compute_supplier_info(self):
         for rec in self:
-            rec.seller_id = rec._get_supplierinfo()
+            # `_get_supplierinfo` merged to `_compute_supplier_info`
+            supplier_id = rec.partner_id
+            if not supplier_id:
+                supplier_id = rec.product_id.main_seller_id.partner_id
+            seller_id = rec.product_id.with_context(
+                uom=rec.product_uom_id.id
+            )._select_seller(partner_id=supplier_id, quantity=rec.product_qty)
+            rec.seller_id = seller_id
 
     @api.depends("product_id.supply_method", "product_id.procure_method", "seller_id")
     def _compute_delay(self):

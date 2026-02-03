@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:22+0000\n"
-"PO-Revision-Date: 2023-11-28 13:42+0100\n"
+"POT-Creation-Date: 2026-06-03 10:32+0000\n"
+"PO-Revision-Date: 2026-06-03 14:52+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
-
-#. module: mrp_bom_supplier
-#: model:ir.model,name:mrp_bom_supplier.model_mrp_bom
-msgid "Bill of Material"
-msgstr "Nomenclature"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_bom_supplier
 #: model:ir.model,name:mrp_bom_supplier.model_mrp_bom_line
@@ -33,37 +28,9 @@ msgid "Delay"
 msgstr "Délai"
 
 #. module: mrp_bom_supplier
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom__display_name
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__display_name
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mrp_bom_supplier
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom__id
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__id
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_bom_supplier
-#: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_bom__xid
-#: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_bom_line__xid
-#: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_production__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_bom_supplier
 #: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__landmark
 msgid "Landmark"
 msgstr "Repère"
-
-#. module: mrp_bom_supplier
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom____last_update
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line____last_update
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: mrp_bom_supplier
 #: model:ir.model.fields,help:mrp_bom_supplier.field_mrp_bom_line__delay
@@ -75,14 +42,9 @@ msgstr ""
 "livraison en jours si le produit doit être acheté."
 
 #. module: mrp_bom_supplier
-#: model:ir.model,name:mrp_bom_supplier.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
-
-#. module: mrp_bom_supplier
 #: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__seller_id
 msgid "Seller"
-msgstr "Fournisseur"
+msgstr "Vendeur"
 
 #. module: mrp_bom_supplier
 #: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__partner_id
@@ -90,11 +52,30 @@ msgid "Supplier"
 msgstr "Fournisseur"
 
 #. module: mrp_bom_supplier
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom__xid
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__xid
-#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_production__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model:ir.model.fields,field_description:mrp_bom_supplier.field_mrp_bom_line__seller_partner_ids
+msgid "Suppliers"
+msgstr "Fournisseurs"
+
+#~ msgid "Bill of Material"
+#~ msgstr "Nomenclature"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Production Order"
+#~ msgstr "Ordre de fabrication"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Name"
 #~ msgstr "Nom"

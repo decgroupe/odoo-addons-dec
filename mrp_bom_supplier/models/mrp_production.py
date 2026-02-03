@@ -3,7 +3,9 @@
 
 import datetime
 
-from odoo import _, api, fields, models
+from dateutil.relativedelta import relativedelta
+
+from odoo import api, fields, models
 
 
 class MrpProduction(models.Model):
@@ -12,10 +14,14 @@ class MrpProduction(models.Model):
     @api.model
     def _update_earliest_date_planned(self, values):
         res = {}
+        company_id = self.env["res.company"].browse(
+            values.get("company_id", self.env.company.id)
+        )
+        manufacturing_lead = company_id.manufacturing_lead
         max_delay = 0
-        date_start = fields.Datetime.to_datetime(values.get("date_planned_start"))
+        date_start = fields.Datetime.to_datetime(values.get("date_start"))
         if date_start is None:
-            date_start = self._get_default_date_planned_start()
+            date_start = self._get_default_date_start()
         # get max delay from BoM
         bom_id = self.env["mrp.bom"].browse(values.get("bom_id"))
         if bom_id and bom_id.bom_line_ids:
@@ -25,48 +31,44 @@ class MrpProduction(models.Model):
             # TODO: use mapped values["move_raw_ids"][0][2]['product_id'] delays
             pass
         if max_delay:
-            min_date_start = datetime.datetime.now() + datetime.timedelta(
-                days=max_delay
-            )
+            min_date_start = datetime.datetime.now() + relativedelta(days=max_delay)
             if min_date_start > date_start:
-                res["date_planned_start"] = min_date_start
-        date_finished = fields.Datetime.to_datetime(values.get("date_planned_finished"))
+                date_start = min_date_start
+        date_finished = fields.Datetime.to_datetime(values.get("date_finished"))
         if date_finished is None:
-            date_finished = self._get_default_date_planned_finished()
-        # recompute finished date only if start date has been updated
-        if "date_planned_start" in res:
-            # keep only mandatory values
-            data = {k: values[k] for k in ["product_id", "company_id"]}
-            # use start date from our computation
-            data["date_planned_start"] = res["date_planned_start"]
-            # play @api.onchange (_onchange_date_planned_start)
-            vals = self.env["mrp.production"].play_onchanges(
-                data, ["date_planned_start"]
-            )
-            res["date_planned_finished"] = vals["date_planned_finished"]
+            date_finished = self._get_default_date_finished()
+
+        if date_start:
+            min_date_finished = date_start
+            if bom_id and bom_id.produce_delay:
+                min_date_finished += relativedelta(days=bom_id.produce_delay)
+            if manufacturing_lead:
+                min_date_finished += relativedelta(days=manufacturing_lead)
+            if not date_finished or (
+                date_finished and min_date_finished > date_finished
+            ):
+                date_finished = min_date_finished
+
+        if date_start:
+            res["date_start"] = date_start
+        if date_finished:
+            res["date_finished"] = date_finished
+
         return res
 
-    @api.model
-    def create(self, values):
-        earliest_dates = self._update_earliest_date_planned(values)
-        if earliest_dates:
-            values.update(earliest_dates)
-            # TODO: also update dates in `move_raw_ids`
-        production = super(MrpProduction, self).create(values)
-        return production
-
-    def write(self, vals):
-        if "date_planned_start" in vals:
-            data = vals.copy()
-            data.update(
-                {
-                    "company_id": self.company_id.id,
-                    "product_id": self.product_id.id,
-                    "bom_id": self.bom_id.id,
-                }
-            )
-            earliest_dates = self._update_earliest_date_planned(data)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            earliest_dates = self._update_earliest_date_planned(vals)
             if earliest_dates:
                 vals.update(earliest_dates)
-        res = super(MrpProduction, self).write(vals)
+        record_ids = super().create(vals_list)
+        return record_ids
+
+    def write(self, vals):
+        if "date_start" in vals:
+            earliest_dates = self._update_earliest_date_planned(vals.copy())
+            if earliest_dates:
+                vals.update(earliest_dates)
+        res = super().write(vals)
         return res
