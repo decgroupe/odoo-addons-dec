@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 13:52+0000\n"
-"PO-Revision-Date: 2022-11-15 14:53+0100\n"
+"POT-Creation-Date: 2026-06-03 10:50+0000\n"
+"PO-Revision-Date: 2026-06-03 15:38+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_configuration
 msgid "Configuration"
 msgstr "Configuration"
+
+#. module: product_reference_management
+#: model:res.groups,name:product_reference_management.group_ref_manager
+msgid "Manager"
+msgstr "Gestionnaire"
 
 #. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_product_reference
@@ -33,18 +38,8 @@ msgid "REF Manager"
 msgstr "REF Manager"
 
 #. module: product_reference_management
-#: model:res.groups,name:product_reference_management.group_ref_manager
-msgid "Reference Manager"
-msgstr "Gestionnaire des références"
-
-#. module: product_reference_management
-#: model:res.groups,name:product_reference_management.group_ref_user
-msgid "Reference User"
-msgstr "Utilisateur des références"
-
-#. module: product_reference_management
 #: model:ir.module.category,name:product_reference_management.module_category_reference
-msgid "Reference management"
+msgid "Reference Management"
 msgstr "Gestion des références"
 
 #. module: product_reference_management
@@ -56,3 +51,14 @@ msgstr "Références"
 #: model:ir.ui.menu,name:product_reference_management.menu_reporting
 msgid "Reporting"
 msgstr "Suivi d'activité"
+
+#. module: product_reference_management
+#: model:res.groups,name:product_reference_management.group_ref_user
+msgid "User"
+msgstr "Utilisateur"
+
+#~ msgid "Reference Manager"
+#~ msgstr "Gestionnaire des références"
+
+#~ msgid "Reference User"
+#~ msgstr "Utilisateur des références"

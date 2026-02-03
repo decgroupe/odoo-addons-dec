@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"POT-Creation-Date: 2026-06-03 10:50+0000\n"
+"PO-Revision-Date: 2026-06-03 10:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,11 @@ msgid "Configuration"
 msgstr ""
 
 #. module: product_reference_management
+#: model:res.groups,name:product_reference_management.group_ref_manager
+msgid "Manager"
+msgstr ""
+
+#. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_product_reference
 msgid "Products"
 msgstr ""
@@ -31,18 +36,8 @@ msgid "REF Manager"
 msgstr ""
 
 #. module: product_reference_management
-#: model:res.groups,name:product_reference_management.group_ref_manager
-msgid "Reference Manager"
-msgstr ""
-
-#. module: product_reference_management
-#: model:res.groups,name:product_reference_management.group_ref_user
-msgid "Reference User"
-msgstr ""
-
-#. module: product_reference_management
 #: model:ir.module.category,name:product_reference_management.module_category_reference
-msgid "Reference management"
+msgid "Reference Management"
 msgstr ""
 
 #. module: product_reference_management
@@ -53,4 +48,9 @@ msgstr ""
 #. module: product_reference_management
 #: model:ir.ui.menu,name:product_reference_management.menu_reporting
 msgid "Reporting"
+msgstr ""
+
+#. module: product_reference_management
+#: model:res.groups,name:product_reference_management.group_ref_user
+msgid "User"
 msgstr ""
