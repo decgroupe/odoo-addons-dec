@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"POT-Creation-Date: 2026-06-03 11:01+0000\n"
 "PO-Revision-Date: 2023-11-28 14:32+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -21,26 +21,6 @@ msgstr ""
 #: model:ir.model.fields,help:sale_delivery_last_date.field_sale_order__effective_last_date
 msgid "Completion date of the last delivery order."
 msgstr "Date d’achèvement du dernier bon de livraison."
-
-#. module: sale_delivery_last_date
-#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: sale_delivery_last_date
-#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_delivery_last_date
-#: model:ir.model.fields,help:sale_delivery_last_date.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: sale_delivery_last_date
-#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: sale_delivery_last_date
 #: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__effective_last_date
@@ -66,7 +46,17 @@ msgstr ""
 msgid "Sales Order"
 msgstr "Commande client"
 
-#. module: sale_delivery_last_date
-#: model:ir.model.fields,field_description:sale_delivery_last_date.field_sale_order__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

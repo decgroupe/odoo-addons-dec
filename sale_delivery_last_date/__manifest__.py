@@ -1,14 +1,15 @@
 {
     "name": "Sale Delivery Last Date",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "sale_stock",
+        "sale_order_line_effective_date",
     ],
     "data": [
         "views/sale_order.xml",
     ],
-    "pre_init_hook": "rename_module",
-    "installable": False,
+    "installable": True,
 }
