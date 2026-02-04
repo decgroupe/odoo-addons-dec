@@ -6,7 +6,6 @@
     "website": "https://decgroupe.com",
     "depends": [
         "mrp",
-        # "mrp_prepare",
         "onchange_helper",
         "product_legacy_routes",  # needed for `supply_method` depends
         "product_seller",  # needed for `main_seller_id` (delay computation)

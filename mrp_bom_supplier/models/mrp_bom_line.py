@@ -52,16 +52,18 @@ class MrpBomLine(models.Model):
 
     @api.depends("product_id.supply_method", "product_id.procure_method", "seller_id")
     def _compute_delay(self):
+        self.delay = 0
         for rec in self:
+            # always consider that a stockable product is available immediately
             if rec.product_id.procure_method == "make_to_order":
                 if rec.product_id.supply_method == "buy":
                     rec.delay = rec.seller_id.delay
                 elif rec.product_id.supply_method == "produce":
-                    rec.delay = rec.product_id.produce_delay
-            elif rec.product_id.procure_method == "make_to_stock":
-                rec.delay = 0
-            else:
-                rec.delay = 0
+                    bom_id = self.env["mrp.bom"]._bom_find(rec.product_id)[
+                        rec.product_id
+                    ]
+                    if bom_id:
+                        rec.delay = bom_id.produce_delay
 
     def _inverse_delay(self):
         for rec in self:
@@ -70,4 +72,8 @@ class MrpBomLine(models.Model):
                     if rec.seller_id:
                         rec.seller_id.delay = rec.delay
                 elif rec.product_id.supply_method == "produce":
-                    rec.product_id.produce_delay = rec.delay
+                    bom_id = self.env["mrp.bom"]._bom_find(rec.product_id)[
+                        rec.product_id
+                    ]
+                    if bom_id:
+                        bom_id.produce_delay = rec.delay
