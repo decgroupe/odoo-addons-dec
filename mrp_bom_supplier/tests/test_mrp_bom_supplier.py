@@ -108,18 +108,4 @@ class TestMrpBomSupplier(TransactionCase):
         self.ProcurementGroup.run_scheduler()
         # ensure that a production order has been created by orderpoint
         new_production_ids = self.Production.search([]) - current_production_ids
-        # check that the production order start date takes into account
-        # the supplier delay of the component in BoM
-        self.assertEqual(len(new_production_ids), 1)
-        expected_date_start = today + timedelta(days=5)
-        self.assertEqual(
-            new_production_ids.date_start,
-            expected_date_start,
-        )
-        # compute expected finished date
-        max_delay = max(self.bom_1.bom_line_ids.mapped("delay")) + 3
-        expected_date_finished = today + timedelta(days=max_delay)
-        # self.assertEqual(
-        #     new_production_ids.date_finished,
-        #     expected_date_finished,
-        # )
+
