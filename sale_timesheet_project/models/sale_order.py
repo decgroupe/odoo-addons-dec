@@ -1,20 +1,18 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2021
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    # Field initially defined in `sale_project` module
-    project_id = fields.Many2one(
-        copy=False,
-    )
+    # The "project_id = fields.Many2one()" is defined in `sale_project` module and
+    # now with "copy=False" since Odoo 18.0
 
     def _action_confirm(self):
         self.action_create_project()
-        res = super(SaleOrder, self)._action_confirm()
+        res = super()._action_confirm()
         self._sync_project()
         return res
 
@@ -25,7 +23,7 @@ class SaleOrder(models.Model):
                     # when billable is enabled, a sale order should be provided to
                     # ensure valid data from tasks. This value should be set only when
                     # the quotation is converted to a sale order
-                    "sale_order_id": self.id,
+                    "sale_order_id": rec.id,
                     # sync dates
                     "date_start": rec.date_order.date(),
                     "date": rec.expected_last_date and rec.expected_last_date.date(),
@@ -50,7 +48,6 @@ class SaleOrder(models.Model):
             # lines, otherwise `so_line` will not be computed properly on analytic
             # account lines
             "allow_billable": True,
-            "bill_type": "customer_project",
             "pricing_type": "fixed_rate",
         }
 
@@ -75,16 +72,15 @@ class SaleOrder(models.Model):
                     # Create project as SUPER_USER
                     project_id = Project.sudo().create(project_data)
                 rec.project_id = project_id
-                self.env.add_to_compute(project_id._fields["contract_ids"], project_id)
-                # rec.write({"project_id": project_id.id})
-                # project_id.recompute()
-            # Assign same analytic account
-            rec.analytic_account_id = rec.project_id.analytic_account_id
+            # Assign same analytic account (analytic_account_id has been removed
+            # from sale order model in Odoo 18.0)
+            # rec.analytic_account_id = rec.project_id.account_id
 
     @api.depends("project_id")
     def _compute_visible_project(self):
-        super()._compute_visible_project()
+        res = super()._compute_visible_project()
         for order in self.filtered(lambda x: not x.visible_project):
             # override builtin logic to always display existing projects
             if order.project_id:
                 order.visible_project = True
+        return res

@@ -1,0 +1,77 @@
+Auto-create project on validate and add a button to create a timesheet before validating
+the sale order.
+
+# Odoo 18.0 Changes
+
+In commit 238a41e3, Odoo has added new modules:
+
+- project_mrp_account
+- project_mrp_sale
+- project_mrp_stock_landed_costs
+- project_purchase_stock
+- project_stock
+- project_stock_account
+- project_stock_landed_costs
+- sale_project_stock_account
+- sale_purchase_project
+
+and edited existing ones:
+- mrp_account
+- project_mrp
+- project_purchase
+- sale_project_stock
+
+## PURPOSE
+
+Currently, users can track the profitability of their projects, but they cannot allocate their timesheet-related costs to different entries. This approach is one-dimensional.
+
+For instance, it can be relevant to track costs for the project as a whole, but also for the team or department in charge, the staff, a particular service, or a specific customer simultaneously.
+
+By doing so, users can track the profitability of their company at a more granular level. They gain a better understanding of what is impacting their costs and can budget their projects accordingly.
+
+Furthermore, we would like to handle the use-case of construction companies. Indeed, when stock is allocated to a construction site (or moved back to the warehouse if it wasn't used), it is not reflected in the profitability of the project because it doesn't generate analytic entries. This leads to an incorrect overview of the project's finances.
+
+In addition, it is not easy to identify the stock moves impacting the project as there is no direct link between the two. It would be convenient for construction companies to have an overview and be able to create new pickings from the top bar of the project in their operations.
+
+At last, these extra materials used sometimes need to be re-invoiced to the customer. Currently, this has to be done manually by adding a product to the SO. This is error-prone and time-consuming. We are thus relying on the 're-invoice expenses' feature that already exists for expenses and vendor bills to make it automatic.
+
+Finally, another use-case that would benefit from these changes is companies that are engineering custom machines for their customers. They use projects to track the progress made on their prototypes but also need an overview of the POs, MOs, and stock pickings involved in the process.
+
+## FEATURE DETAILS
+
+### Project
+- Remove the 'analytic_account_id' field from projects
+- Replace it with an analytic notebook allowing to define multiple analytic accounts (one per plan)
+- Remove the analytic accounting for tasks
+- Timesheets inherit the analytic accounts configured on their project or on the distribution of their associated SOL (priority to their SOL)
+
+### Sale
+- Remove the 'analytic_account_id' field from the SO
+- Replace it with a project field. The analytic accounts of the project set on the SO are used to set a default SOL analytic distribution
+
+### Stock
+- Add an analytic costs field of operation types that indicates whether the stock picking of this type should generates AALs and do reinvoicing on validation
+- Add a project field on stock pickings, used to generate AALs using the project's accounts and also for the reinvoicing of reinvoicable products
+- Add a sales order field on projects to indicate on which SO to do the reinvoicing when validating stock pickings
+- About the AAL generation, the amount is negative for operation of type 'delivery' and positive for type 'receipt'. If automatic accounting (anglo-saxon accounting) is enabled, do not generate AALs on stock picking validtion, to avoid generating in duplicate
+- Landed costs's generated journal entries distribution receives the accounts of the stock picking's project or the MO's project that was selected
+
+### MRP
+- Remove the analytic distribution from MOs
+- Replace it with a project field
+- When generating AALs with the MO, again, the accounts are taken from the project linked to the MO
+- Remove the analytic distribution from BOMs
+- Replace it with a project field, used as a default value for setting the project of MOs
+
+### Purchase
+- Similarly to SOs, add a project field to POs
+- Again, the accounts of the project linked to the PO are used as a default value for the distribution of the POLs
+
+### Others
+- Rename 'Project Updates' into 'Dashboard'
+- Update the project profitability (report should reflect the analytic items linked to the analytic account of the 'Project' plan (in other words, we keep the current behavior))
+- Update stat buttons and add top bars actions accordingly to the changes described above (SO, PO, From WH, To WH, MO, BOMs, Analytic Items)
+- Adapt the reinvoicing of vendor bills to work with the project of the SO (and not the analytic account of the SO anymore)
+
+task-3985258
+closes odoo/odoo#169868

@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
-from odoo import models, api, fields
+from odoo import api, fields, models
 
 
 class Project(models.Model):

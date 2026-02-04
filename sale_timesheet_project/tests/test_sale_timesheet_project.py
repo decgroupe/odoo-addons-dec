@@ -1,15 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2024
 
-from odoo.addons.mail.tests.common import mail_new_test_user
-from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 from odoo.tests import tagged
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.sale_timesheet.tests.common import TestCommonSaleTimesheet
 
 
 @tagged("-at_install", "post_install")
 class TestSaleTimesheetProject(TestCommonSaleTimesheet):
-
     def _create_so(self, partner_id):
         return (
             self.env["sale.order"]
@@ -45,12 +43,13 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         self.assertEqual(project_id.user_id, sale_order_id.user_id)
         self.assertEqual(project_id.allow_timesheets, True)
         self.assertEqual(project_id.allow_billable, True)
-        self.assertEqual(project_id.bill_type, "customer_project")
-        self.assertEqual(project_id.pricing_type, "fixed_rate")
+        # `pricing_type` cannot be `fixed_rate` since Odoo 18.0 because it implies that
+        # a sale order line is linked to the project itsef
+        self.assertEqual(project_id.pricing_type, "task_rate")
 
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def setUpClass(cls):
+        super().setUpClass()
 
         cls.project_model = cls.env["project.project"]
 
@@ -81,14 +80,14 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         # no project should be linked to this newly created SO
         self.assertFalse(self.sale_order.project_id)
         # store global proejct count for future compare
-        project_count = self.project_model.search([], count=True)
+        project_count = self.project_model.search_count([])
         self.sale_order.action_create_project()
         # a newly created project should be linked to this SO
         self.assertTrue(self.sale_order.project_id)
         # project should be visible in sale form view
         self.assertTrue(self.sale_order.visible_project)
         # a new project should have been created
-        self.assertEqual(self.project_model.search([], count=True), project_count + 1)
+        self.assertEqual(self.project_model.search_count([]), project_count + 1)
         # only one contract should be linked to this project
         self.assertEqual(self.sale_order.project_id.contract_count, 1)
         # this SO shoud be the contract of this project
@@ -103,17 +102,17 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         # the linked project should stay the same
         self.assertEqual(project_id, self.sale_order.project_id)
         # no new project should have been created
-        self.assertEqual(self.project_model.search([], count=True), project_count)
+        self.assertEqual(self.project_model.search_count([]), project_count)
         # retry with override context key
         self.sale_order.with_context(override_project_id=True).action_create_project()
         # no new project should have been created
-        self.assertEqual(self.project_model.search([], count=True), project_count)
+        self.assertEqual(self.project_model.search_count([]), project_count)
         # rename existing project name to "breaks" domain match
         project_id.name = project_id.name + "#1"
         # retry again with override context key
         self.sale_order.with_context(override_project_id=True).action_create_project()
         # a new project should have been created
-        self.assertEqual(self.project_model.search([], count=True), project_count + 1)
+        self.assertEqual(self.project_model.search_count([]), project_count + 1)
         project_count += 1
         # the newly created project should have replaced the old one
         self.assertNotEqual(project_id, self.sale_order.project_id)
@@ -155,6 +154,7 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         self.assertEqual(task_id.sale_order_id, self.sale_order)
         self.assertEqual(task_id.sale_line_id, sale_order_line)
         task_id.exclude_from_sale_order = True
+        task_id.invalidate_recordset()
         self.assertFalse(task_id.sale_order_id)
         self.assertFalse(task_id.sale_line_id)
         # task should not be billable anymore
@@ -164,7 +164,7 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         # project should not be visible in sale form view
         self.assertFalse(self.sale_order.visible_project)
         # add a new service line
-        so_line = self._create_so_line(self.sale_order)
+        _so_line = self._create_so_line(self.sale_order)
         # no project should be linked to this newly created SO
         self.assertFalse(self.sale_order.project_id)
         # but project could be visible now in sale form view (built-in logic)
@@ -181,8 +181,7 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         self.assertTrue(self.sale_order.visible_project)
         task_id = self.sale_order.project_id.task_ids
         self.assertEqual(task_id.sale_order_id, self.sale_order)
-        # manual call to recompute to mimic `env.cr.commit()`
-        task_id.recompute()
+        task_id.invalidate_recordset()
         self.assertEqual(task_id.sale_order_id, self.sale_order)
         # create a new sale order
         new_sale_order = self._create_so(self.partner_a)
@@ -193,12 +192,12 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         # ensure task is always linked to its own sale order
         self.assertEqual(task_id.sale_order_id, self.sale_order)
         # add a new service line
-        new_so_line = self._create_so_line(new_sale_order)
+        _new_so_line = self._create_so_line(new_sale_order)
         # sale confirmation
         new_sale_order.action_confirm()
         # get newly created task
         new_task_id = new_sale_order.project_id.task_ids - task_id
-        new_task_id.recompute()
+        new_task_id.invalidate_recordset()
 
     def test_04_task_so_from_project_contract(self):
         """Purpose of this test is to check `_compute_sale_order_id` behaviour, because
@@ -206,7 +205,7 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
         value is pre-filled when task is created, so no computation is done.
         TODO: Check in Odoo > 14.0 if `modified` is called on non readonly computed
         fields in the create method"""
-        so_line = self._create_so_line(self.sale_order)
+        _so_line = self._create_so_line(self.sale_order)
         # create project manually
         self.sale_order.action_create_project()
         # create a first task manually
@@ -214,6 +213,7 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
             {
                 "name": "T1",
                 "project_id": self.sale_order.project_id.id,
+                "exclude_from_sale_order": False,
             }
         )
         self.assertEqual(mt1_id.sale_order_id, self.sale_order)
@@ -222,6 +222,7 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
             {
                 "name": "T2",
                 "project_id": self.sale_order.project_id.id,
+                "exclude_from_sale_order": False,
             }
         )
         self.assertEqual(mt2_id.sale_order_id, self.sale_order)
@@ -237,6 +238,7 @@ class TestSaleTimesheetProject(TestCommonSaleTimesheet):
             {
                 "name": "T2",
                 "project_id": self.sale_order.project_id.id,
+                "exclude_from_sale_order": False,
             }
         )
         # no sale order should be automatically attached
