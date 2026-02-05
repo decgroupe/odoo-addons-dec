@@ -5,18 +5,17 @@ from odoo import models, fields
 
 
 class HelpdeskTicket(models.Model):
-    _inherit = 'helpdesk.ticket'
+    _inherit = "helpdesk.ticket"
 
     partner_department_id = fields.Many2one(
-        'res.country.department',
-        related='partner_id.department_id',
+        "res.country.department",
+        related="partner_id.country_department_id",
         string="Department",
         store=True,
     )
     partner_state_id = fields.Many2one(
-        'res.country.state',
-        related='partner_id.state_id',
+        "res.country.state",
+        related="partner_id.state_id",
         string="State",
         store=True,
     )
-
