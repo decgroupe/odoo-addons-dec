@@ -11,4 +11,5 @@ class ResCityZip(models.Model):
         string="Department",
         related="city_id.department_id",
         help="Department of this city",
+        domain="[('state_id', '=?', state_id)]",
     )
