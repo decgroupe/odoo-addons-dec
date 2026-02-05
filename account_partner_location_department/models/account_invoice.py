@@ -9,7 +9,7 @@ class AccountMove(models.Model):
 
     partner_department_id = fields.Many2one(
         comodel_name="res.country.department",
-        related="partner_id.department_id",
+        related="partner_id.country_department_id",
         string="Department",
         store=True,
     )

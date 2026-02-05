@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="account_invoice_filter_view">
         <field
             name="name"
         >account.invoice.select@account_partner_location_department</field>
         <field name="model">account.move</field>
-        <field name="inherit_id" ref="account_partner_location.account_invoice_filter_view" />
+        <field
+            name="inherit_id"
+            ref="account_partner_location.account_invoice_filter_view"
+        />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_zip_id']" position="after">
                 <field name="partner_department_id" />
@@ -26,5 +28,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
