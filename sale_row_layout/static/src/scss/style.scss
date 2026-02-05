@@ -1,5 +1,6 @@
 .row_group {
     margin: 0px 0 !important;
+    --gutter-x: 0px;
 }
 
 .row_table th {
@@ -35,6 +36,5 @@
 }
 
 .row_layout label {
-    font-size: 1.1rem !important;
     font-weight: bold !important;
 }

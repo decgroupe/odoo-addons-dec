@@ -8,5 +8,8 @@ class TestSaleRowLayout(TransactionCase):
     def setUp(self):
         super().setUp()
 
-    # def test_01_(self):
-    #     pass
+    def test_01_do_nothing(self):
+        # Nothing to test for now, just make sure the module is properly installed.
+        # A visual test is still required to check that the layout is correct and
+        # that the correct groups are applied on the correct elements.
+        pass

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!--
         Inherited view to make the order lines list in the form non-editable
         for the members of some usability groups.
@@ -11,9 +10,8 @@
         <field name="name">sale.order.form.editable.list@sale_row_layout</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups_id" eval="[(4, ref('product.group_stock_packaging'))]" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+            <xpath expr="//field[@name='order_line']/list" position="attributes">
                 <attribute name="editable" />
             </xpath>
         </field>
@@ -26,7 +24,6 @@
         <!-- Set high priority to ensure this view is loaded lastly -->
         <field name="priority" eval="100" />
         <field name="arch" type="xml">
-
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='name']"
                 position="after"
@@ -36,16 +33,16 @@
                     class="row_group"
                     col="2"
                     colspan="4"
-                    attrs="{'invisible':[('display_type', '!=', False)]}"
+                    invisible="display_type != False"
                 >
                     <group class="row_group">
                         <table class="row_layout row_table">
                             <thead>
-                            <tr>
-                                <th class="row_cell" name="row_label_10" />
-                                <th class="row_cell" name="row_label_20" />
-                                <th class="row_cell" name="row_label_30" />
-                            </tr>
+                                <tr>
+                                    <th class="row_cell" name="row_label_10" />
+                                    <th class="row_cell" name="row_label_20" />
+                                    <th class="row_cell" name="row_label_30" />
+                                </tr>
                             </thead>
                             <tr>
                                 <td class="row_cell" name="row1_field_10" />
@@ -57,11 +54,11 @@
                     <group class="row_group">
                         <table class="row_layout row_table">
                             <thead>
-                            <tr>
-                                <th class="row_cell" name="row_label_40" />
-                                <th class="row_cell" name="row_label_50" />
-                                <th class="row_cell" name="row_label_60" />
-                            </tr>
+                                <tr>
+                                    <th class="row_cell" name="row_label_40" />
+                                    <th class="row_cell" name="row_label_50" />
+                                    <th class="row_cell" name="row_label_60" />
+                                </tr>
                             </thead>
                             <tr>
                                 <td class="row_cell" name="row1_field_40" />
@@ -77,10 +74,9 @@
                     class="row_group"
                     col="2"
                     colspan="4"
-                    attrs="{'invisible':[('display_type', '!=', False)]}"
+                    invisible="display_type != False"
                 >
-                    <group class="row_group" col="1" colspan="1">
-                    </group>
+                    <group class="row_group" col="1" colspan="1" />
                     <group class="row_group" col="1" colspan="1">
                         <table class="row_layout row_total">
                             <tr>
@@ -102,7 +98,6 @@
                         </table>
                     </group>
                 </group>
-
             </xpath>
         </field>
     </record>
@@ -114,19 +109,8 @@
             name="inherit_id"
             ref="sale_row_layout.empty_row_layout_sale_order_form_view"
         />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
-
-            <!-- Remove div container for :
-                <field name="product_uom_qty"/>
-                <field name="product_uom"/>
-            in order to keep good alignement with next fields (step 1/2) -->
-            <xpath
-                expr="//label[@for='product_uom_qty']/following-sibling::div"
-                position="attributes"
-            >
-                <attribute name="name">product_uom_div</attribute>
-            </xpath>
-
             <xpath
                 expr="//field[@name='order_line']/form//label[@for='product_uom_qty']"
                 position="attributes"
@@ -143,8 +127,8 @@
                 expr="//field[@name='order_line']/form//field[@name='discount']"
                 position="attributes"
             >
-                <!-- Also set group visibility restriction since it only exists on the div container -->
-                <attribute name="groups">product.group_discount_per_so_line</attribute>
+                <!-- Also set group visibility restriction since it only exists on the "t" container -->
+                <attribute name="groups">sale.group_discount_per_so_line</attribute>
             </xpath>
 
             <xpath expr="//th[@name='row_label_10']" position="inside">
@@ -154,7 +138,7 @@
                 />
             </xpath>
             <xpath expr="//th[@name='row_label_20']" position="inside">
-                <label for="product_uom" groups="uom.group_uom"/>
+                <label for="product_uom" groups="uom.group_uom" />
             </xpath>
             <xpath expr="//th[@name='row_label_30']" position="inside">
                 <label for="purchase_price" />
@@ -176,6 +160,11 @@
                 />
             </xpath>
             <xpath expr="//td[@name='row1_field_20']" position="inside">
+                <!-- WARNING: There is two "product_uom" fields in the view -->
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='product_uom']"
+                    position="move"
+                />
                 <xpath
                     expr="//field[@name='order_line']/form//field[@name='product_uom']"
                     position="move"
@@ -194,14 +183,14 @@
                 />
             </xpath>
             <xpath expr="//td[@name='row1_field_50']" position="inside">
-                <field name="discount" position="move"/>
+                <field name="discount" position="move" />
             </xpath>
 
-            <!-- Remove div container for :
+            <!-- Remove div container (name is "ordered_qty", was "product_uom_div" before) for :
                 <field name="product_uom_qty"/>
                 <field name="product_uom"/>
             in order to keep good alignement with next fields (step 2/2) -->
-            <xpath expr="//div[@name='product_uom_div']" position="replace" />
+            <xpath expr="//div[@name='ordered_qty']" position="replace" />
 
             <!-- Remove div container for discount since not used anymore -->
             <xpath
@@ -210,5 +199,4 @@
             />
         </field>
     </record>
-
 </odoo>
