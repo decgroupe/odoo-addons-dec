@@ -7,6 +7,8 @@ from odoo.tests.common import TransactionCase
 class TestHelpdeskPartnerLocationDepartment(TransactionCase):
     def setUp(self):
         super().setUp()
+        self.HelpdeskTicket = self.env["helpdesk.ticket"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("partner_department_id", self.HelpdeskTicket._fields)
+        self.assertIn("partner_state_id", self.HelpdeskTicket._fields)
