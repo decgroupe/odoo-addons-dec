@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="crm_lead_view_form">
         <field name="name">crm.lead.oppor.inherited.crm@project_crm_link</field>
         <field name="model">crm.lead</field>
@@ -17,6 +16,29 @@
                             'bypass_supermanager_check': True,
                         }"
                     />
+                    <div class="alert alert-info" role="alert">
+                        <span class="text-info">
+                            <p>
+                                <i
+                                    class="fa fa-info-circle me-2 text-info"
+                                    title="Warning"
+                                />
+                                <b>Related Projects:</b>
+                                <p>
+                                    To link an existing project, open the project and
+                                    set the "Opportunity Link" field to this record or
+                                    just use the "Add Line".
+                                    <br />
+                                    The purpose of this list is to group all projects
+                                    related to this opportunity in one place for better
+                                    visibility and management.
+                                </p>
+                                <i>Only projects that are not already linked to another
+                                opportunity can be added here. (Projects automatically
+                                created (by SO) are also listed here.)</i>
+                            </p>
+                        </span>
+                    </div>
                 </page>
             </page>
             <xpath expr="//div[@name='button_box']" position="inside">
@@ -25,7 +47,7 @@
                     name="action_view_related_projects"
                     class="oe_stat_button"
                     icon="fa-puzzle-piece"
-                    attrs="{'invisible': [('related_project_count', '=', 0)]}"
+                    invisible="not related_project_count"
                 >
                     <field
                         name="related_project_count"
@@ -36,5 +58,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

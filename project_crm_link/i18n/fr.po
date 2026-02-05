@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-30 15:19+0000\n"
-"PO-Revision-Date: 2023-10-30 16:20+0100\n"
+"POT-Creation-Date: 2026-06-03 10:54+0000\n"
+"PO-Revision-Date: 2026-06-03 15:43+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,31 +15,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__display_name
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
+msgid ""
+"<i class=\"fa fa-info-circle me-2 text-info\" title=\"Warning\"/>\n"
+"                                <b>Related Projects:</b>"
+msgstr ""
+"<i class=\"fa fa-info-circle me-2 text-info\" title=\"Warning\"/>\n"
+"                               <b>Projets connexes :</b>"
 
 #. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__id
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project__id
-msgid "ID"
-msgstr "ID"
-
-#. module: project_crm_link
-#: model:ir.model.fields,help:project_crm_link.field_crm_lead__xid
-#: model:ir.model.fields,help:project_crm_link.field_project_project__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead____last_update
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
+msgid ""
+"<i>Only projects that are not already linked to another\n"
+"                                opportunity can be added here. (Projects "
+"automatically\n"
+"                                created (by SO) are also listed here.)</i>"
+msgstr ""
+"<i>Seuls les projets qui ne sont pas déjà associés à une autre\n"
+"                                opportunité peuvent être ajoutés ici. (Les "
+"projets créés automatiquement\n"
+"                                (par SO) apparaissent également dans cette "
+"liste.)</i>"
 
 #. module: project_crm_link
 #: model:ir.model,name:project_crm_link.model_crm_lead
@@ -86,7 +85,53 @@ msgstr ""
 "plusieurs opportunités"
 
 #. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__xid
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
+msgid ""
+"To link an existing project, open the project and\n"
+"                                    set the \"Opportunity Link\" field to "
+"this record or\n"
+"                                    just use the \"Add Line\".\n"
+"                                    <br/>\n"
+"                                    The purpose of this list is to group "
+"all projects\n"
+"                                    related to this opportunity in one "
+"place for better\n"
+"                                    visibility and management."
+msgstr ""
+"Pour associer un projet existant, ouvrez le projet et\n"
+"                                    définissez le champ « Lien avec "
+"l'opportunité » sur cet enregistrement ou\n"
+"                                    utilisez simplement la fonction "
+"« Ajouter une ligne ».\n"
+"                                   <br/> \n"
+"                                    Cette liste a pour but de regrouper "
+"tous les projets\n"
+"                                    liés à cette opportunité en un seul "
+"endroit afin d'en améliorer\n"
+"                                    la visibilité et la gestion."
+
+#. module: project_crm_link
+#: model:ir.model.fields,help:project_crm_link.field_project_project__linked_lead_id
+msgid ""
+"Use this field to link this project with an existing opportunity. This will "
+"allow you to retrieve this project from the opportunity's form « Related "
+"Projects » tab."
+msgstr ""
+"Utilisez ce champ pour associer ce projet à une opportunité existante. Cela "
+"vous permettra de retrouver ce projet dans l'onglet « Projets associés » du "
+"formulaire de l'opportunité."
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

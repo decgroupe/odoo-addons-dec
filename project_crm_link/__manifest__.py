@@ -1,6 +1,7 @@
 {
     "name": "Project CRM Link",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -8,8 +9,9 @@
         "project_identification",
         "project_typefast",
         "project_acl",
+        "project_action_view",
         "crm",
-        "crm_timesheet",
+        "crm_timesheet",  # OCA module
         "crm_lead_number",
         "web_m2x_options",
     ],
@@ -17,5 +19,5 @@
         "views/project_project.xml",
         "views/crm_lead.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

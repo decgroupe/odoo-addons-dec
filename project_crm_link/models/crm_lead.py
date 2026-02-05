@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2022
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class CrmLead(models.Model):
@@ -23,12 +23,15 @@ class CrmLead(models.Model):
         if "context" not in action:
             action["context"] = {
                 "group_by": "linked_lead_id",
+                # Allows anyone to create a new project from this view, even without
+                # being in the SuperManager group (from `project_acl` module)
                 "bypass_supermanager_check": True,
             }
             if len(self.ids) == 1:
                 action["context"]["default_partner_id"] = self.partner_id.id
         return action
 
+    @api.depends("related_project_ids")
     def _compute_related_project_count(self):
         for rec in self:
             rec.related_project_count = len(rec.related_project_ids)

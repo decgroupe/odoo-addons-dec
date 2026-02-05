@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:28+0000\n"
-"PO-Revision-Date: 2023-11-28 10:28+0000\n"
+"POT-Creation-Date: 2026-06-03 10:54+0000\n"
+"PO-Revision-Date: 2026-06-03 10:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__display_name
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project__display_name
-msgid "Display Name"
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
+msgid ""
+"<i class=\"fa fa-info-circle me-2 text-info\" title=\"Warning\"/>\n"
+"                                <b>Related Projects:</b>"
 msgstr ""
 
 #. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__id
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project__id
-msgid "ID"
-msgstr ""
-
-#. module: project_crm_link
-#: model:ir.model.fields,help:project_crm_link.field_crm_lead__xid
-#: model:ir.model.fields,help:project_crm_link.field_project_project__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead____last_update
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project____last_update
-msgid "Last Modified on"
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
+msgid ""
+"<i>Only projects that are not already linked to another\n"
+"                                opportunity can be added here. (Projects automatically\n"
+"                                created (by SO) are also listed here.)</i>"
 msgstr ""
 
 #. module: project_crm_link
@@ -82,7 +73,21 @@ msgid ""
 msgstr ""
 
 #. module: project_crm_link
-#: model:ir.model.fields,field_description:project_crm_link.field_crm_lead__xid
-#: model:ir.model.fields,field_description:project_crm_link.field_project_project__xid
-msgid "XML-ID"
+#: model_terms:ir.ui.view,arch_db:project_crm_link.crm_lead_view_form
+msgid ""
+"To link an existing project, open the project and\n"
+"                                    set the \"Opportunity Link\" field to this record or\n"
+"                                    just use the \"Add Line\".\n"
+"                                    <br/>\n"
+"                                    The purpose of this list is to group all projects\n"
+"                                    related to this opportunity in one place for better\n"
+"                                    visibility and management."
+msgstr ""
+
+#. module: project_crm_link
+#: model:ir.model.fields,help:project_crm_link.field_project_project__linked_lead_id
+msgid ""
+"Use this field to link this project with an existing opportunity. This will "
+"allow you to retrieve this project from the opportunity's form « Related "
+"Projects » tab."
 msgstr ""
