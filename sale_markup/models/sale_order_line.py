@@ -4,7 +4,7 @@
 import logging
 
 from odoo import api, fields, models
-from odoo.tools import float_is_zero, float_round
+from odoo.tools import float_round
 
 _logger = logging.getLogger(__name__)
 
@@ -12,101 +12,47 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    # taux_marge = marge_commerciale/cout_achat_HT * 100
-    margin_percent = fields.Float("Margin (%)", digits=(16, 2))
+    # marge_commerciale = prix_vente_HT - cout_achat_HT
+    # - taux_marge = marge_commerciale/cout_achat_HT * 100
+    # - taux_marque = marge_commerciale/prix_vente_HT * 100
 
-    # taux_marque = marge_commerciale/prix_vente_HT * 100
-    markup_percent = fields.Float("Markup (%)", digits=(16, 2))
-
-    # Remove `price_unit` from @onchange to avoid price bouncing
-    # with markup, margin, etc.
-    @api.onchange("product_id", "product_uom", "product_uom_qty", "tax_id")
-    def _onchange_discount(self):
-        previous_discount = self.discount
-        super()._onchange_discount()
-        if self.discount != previous_discount:
-            _logger.info(
-                "_onchange_discount: %f -> %f", previous_discount, self.discount
-            )
-
-    @api.onchange("markup_percent")
-    def onchange_markup_percent(self):
-        vals = {}
-        if self.purchase_price > 0 and self.discount < 100:
-            if self.markup_percent < 100:
-                discount_ratio = 1 - self.discount / 100.0
-                markup_ratio = 1 - self.markup_percent / 100.0
-                price = self.purchase_price / (discount_ratio * markup_ratio)
-                price = float_round(price, precision_digits=2)
-            else:
-                price = 0
-
-            if self._onchange_origin and self._onchange_origin in (
-                "discount",
-                "price_unit",
-            ):
-                # Do not update `price_unit` when `discount` is at the origin
-                # of the @onchange event to avoid rounding issues
-                # Note that `_onchange_origin` is set from function
-                # `_update_markup_percent`
-                pass
-            else:
-                vals.update({"price_unit": price})
-        else:
-            vals.update({"markup_percent": 0})
-
-        if "markup_percent" in vals:
-            _logger.info(
-                "onchange_markup_percent: set markup_percent=%f",
-                vals.get("markup_percent"),
-            )
-        if "price_unit" in vals:
-            _logger.info(
-                "onchange_markup_percent: set price_unit=%f", vals.get("price_unit")
-            )
-
-        self.update(vals)
-
-    @api.onchange(
-        "purchase_price",
-        "product_uom_qty",
-        "price_unit",
-        "discount",
-        "margin",
+    markup_percent = fields.Float(
+        "Markup (%)",
+        compute="_compute_markup",
+        inverse="_inverse_markup_percent",
+        store=True,
+        groups="base.group_user",
+        precompute=True,
+        help="Markup percentage based on the cost price. "
+        "It is computed as: (Unit Price - Cost Price) / Cost Price * 100",
     )
-    def _update_markup_percent(self):
-        if self.product_uom_qty > 0:
-            margin = self.margin * 100 / self.product_uom_qty
+
+    @api.depends(
+        "price_unit", "product_uom_qty", "purchase_price", "discount", "margin"
+    )
+    def _compute_markup(self):
+        self.markup_percent = 0
+        for line in self:
+            if line.product_uom_qty > 0 and line.discount < 100 and line.price_unit > 0:
+                margin = line.margin * 100 / line.product_uom_qty
+                price = line.price_unit - (line.price_unit * line.discount / 100.0)
+                line.markup_percent = margin / price
+
+    # onchange method is needed to update the price unit when the user changes the
+    # markup percent manually on the form view since the "inverse" method is only
+    # called on "write"
+    @api.onchange("markup_percent")
+    def _inverse_markup_percent(self):
+        line = self
+        if (
+            line.purchase_price > 0
+            and line.discount < 100
+            and line.markup_percent < 100
+        ):
+            discount_ratio = 1 - line.discount / 100.0
+            markup_ratio = 1 - line.markup_percent / 100.0
+            price = line.purchase_price / (discount_ratio * markup_ratio)
+            line.price_unit = float_round(price, precision_digits=2)
         else:
-            margin = 0
-
-        if self.discount < 100 and self.price_unit > 0:
-            price = self.price_unit - (self.price_unit * self.discount / 100.0)
-            markup = margin / price
-        else:
-            markup = 0
-
-        if not float_is_zero(markup - self.markup_percent, precision_digits=2):
-            _logger.info(
-                "_product_markup: set markup_percent=%f (sender=%s)",
-                markup,
-                self._onchange_sender,
-            )
-            self.markup_percent = markup
-
-    @api.onchange("product_uom", "product_uom_qty")
-    def product_uom_change(self):
-        # Store current markup
-        previous_markup_percent = self.markup_percent
-        # Recompute price_unit
-        super().product_uom_change()
-
-        if self._onchange_origin and self._onchange_origin in ("product_id"):
-            # Do not update `price_unit` when `product_id` is at the origin
-            # of the @onchange event to avoid price issues when a rule
-            # with a fixed price has already set the discount property
-            pass
-        else:
-            # Restore previous markup and update price_unit
-            self.markup_percent = previous_markup_percent
-            self.onchange_markup_percent()
+            line.price_unit = 0
+            line.markup_percent = 0

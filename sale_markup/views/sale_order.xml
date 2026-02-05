@@ -1,22 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="sale_order_form_view" >
+    <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_markup</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_row_layout.row_layout_sale_order_form_view"/>
+        <field
+            name="inherit_id"
+            ref="sale_row_layout.row_layout_sale_order_form_view"
+        />
         <field name="arch" type="xml">
             <xpath expr="//th[@name='row_label_60']" position="inside">
-                <label for="markup_percent" class="row_label"/>
+                <label for="markup_percent" class="row_label" />
             </xpath>
             <xpath expr="//td[@name='row1_field_60']" position="inside">
-                <field name="markup_percent"/>
+                <field name="markup_percent" />
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree//field[@name='discount']" position="after">
-                <field name="markup_percent"/>
+            <xpath
+                expr="//field[@name='order_line']/list//field[@name='discount']"
+                position="after"
+            >
+                <field name="markup_percent" />
             </xpath>
-
         </field>
     </record>
-
 </odoo>
