@@ -1,0 +1,1 @@
+First enable "Analytic Accounting" and "Analytic Tags" in settings
