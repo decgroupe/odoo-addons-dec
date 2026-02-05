@@ -5,7 +5,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestCrmLeadPartnerLocationDepartment(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.lead_model = self.env["crm.lead"]

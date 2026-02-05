@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-30 15:25+0000\n"
+"POT-Creation-Date: 2026-06-03 09:57+0000\n"
 "PO-Revision-Date: 2023-10-30 16:26+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -21,26 +21,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:crm_lead_partner_location_department.crm_case_opportunities_filter_view
 msgid "Department"
 msgstr "Département"
-
-#. module: crm_lead_partner_location_department
-#: model:ir.model.fields,field_description:crm_lead_partner_location_department.field_crm_lead__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: crm_lead_partner_location_department
-#: model:ir.model.fields,field_description:crm_lead_partner_location_department.field_crm_lead__id
-msgid "ID"
-msgstr "ID"
-
-#. module: crm_lead_partner_location_department
-#: model:ir.model.fields,help:crm_lead_partner_location_department.field_crm_lead__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: crm_lead_partner_location_department
-#: model:ir.model.fields,field_description:crm_lead_partner_location_department.field_crm_lead____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: crm_lead_partner_location_department
 #: model:ir.model,name:crm_lead_partner_location_department.model_crm_lead
@@ -67,7 +47,17 @@ msgstr "Région du destinataire"
 msgid "State"
 msgstr "Région"
 
-#. module: crm_lead_partner_location_department
-#: model:ir.model.fields,field_description:crm_lead_partner_location_department.field_crm_lead__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
