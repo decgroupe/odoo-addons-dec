@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
 
     partner_shipping_department_id = fields.Many2one(
         comodel_name="res.country.department",
-        related="partner_shipping_id.department_id",
+        related="partner_shipping_id.country_department_id",
         string="Shipping Partner's Department",
         store=True,
     )
