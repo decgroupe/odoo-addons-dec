@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- ./addons/sale/views/sale_views.xml -->
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form@sale_traceability</field>
@@ -13,9 +12,10 @@
                 position="before"
             >
                 <div name="traceability_container">
+                    <b>Documents linked to this line from <code
+                    >sale_traceability</code> module :</b>
                 </div>
             </xpath>
         </field>
     </record>
-
 </odoo>
