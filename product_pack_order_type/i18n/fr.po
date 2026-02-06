@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
+"POT-Creation-Date: 2026-06-03 10:47+0000\n"
 "PO-Revision-Date: 2023-11-28 14:04+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
@@ -23,38 +23,6 @@ msgid "All"
 msgstr "Tout"
 
 #. module: product_pack_order_type
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__display_name
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__display_name
-#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__display_name
-#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: product_pack_order_type
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__id
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__id
-#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__id
-#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: product_pack_order_type
-#: model:ir.model.fields,help:product_pack_order_type.field_product_product__xid
-#: model:ir.model.fields,help:product_pack_order_type.field_product_template__xid
-#: model:ir.model.fields,help:product_pack_order_type.field_purchase_order_line__xid
-#: model:ir.model.fields,help:product_pack_order_type.field_sale_order_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: product_pack_order_type
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product____last_update
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template____last_update
-#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line____last_update
-#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
-
-#. module: product_pack_order_type
 #: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__pack_order_type
 #: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__pack_order_type
 #: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__pack_order_type
@@ -63,14 +31,9 @@ msgid "Order Type"
 msgstr "Type de commande"
 
 #. module: product_pack_order_type
-#: model:ir.model,name:product_pack_order_type.model_product_product
+#: model:ir.model,name:product_pack_order_type.model_product_template
 msgid "Product"
 msgstr "Produit"
-
-#. module: product_pack_order_type
-#: model:ir.model,name:product_pack_order_type.model_product_template
-msgid "Product Template"
-msgstr "Modèle de produit"
 
 #. module: product_pack_order_type
 #: model:ir.model.fields,help:product_pack_order_type.field_product_product__pack_order_type
@@ -108,10 +71,20 @@ msgstr "Vente"
 msgid "Sales Order Line"
 msgstr "Ligne de commandes de vente"
 
-#. module: product_pack_order_type
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_product__xid
-#: model:ir.model.fields,field_description:product_pack_order_type.field_product_template__xid
-#: model:ir.model.fields,field_description:product_pack_order_type.field_purchase_order_line__xid
-#: model:ir.model.fields,field_description:product_pack_order_type.field_sale_order_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "Product Template"
+#~ msgstr "Modèle de produit"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

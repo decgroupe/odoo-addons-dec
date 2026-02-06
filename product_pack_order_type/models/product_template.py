@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sept 2020
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
@@ -18,16 +18,27 @@ class ProductTemplate(models.Model):
         "* All: Everywhere\n"
         "* Sale: Only when added in a Sale Order\n"
         "* Purchase: Only when added in a Purchase Order",
+        default="all",
     )
 
-    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
+        """
+        The field `pack_line_ids` cannot be copied by the ORM even with `copy=True` and
+        even with `copy=True` on `parent_product_id` field.
+        The only workaround is to copy the lines manually in the `copy` method (not
+        copy_data, because we need the ID of the new product to set it in
+        `parent_product_id` field.
+        """
         self.ensure_one()
         if default is None:
             default = {}
+
         res = super().copy(default=default)
+        # if previous product had pack lines, copy them and link them to the new product
+        # WARNING: The `parent_product_id` field is related to `product.product` and
+        # not `product.template`, so we need to get the variant ID.
         if self.pack_line_ids:
-            new_lines = []
-            for line in self.pack_line_ids:
-                new_lines.append(line.copy({"parent_product_id": res.id}).id)
+            _pack_lines = self.pack_line_ids.copy(
+                {"parent_product_id": res.product_variant_id.id}
+            )
         return res

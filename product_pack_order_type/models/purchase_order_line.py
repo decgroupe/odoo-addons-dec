@@ -13,6 +13,6 @@ class PurchaseOrderLine(models.Model):
 
     def expand_pack_line(self, write=False):
         self.ensure_one()
-        if self.product_id.pack_ok:
-            if self.pack_order_type in ("all", "purchase"):
-                super().expand_pack_line(write)
+        if self.product_id.pack_ok and self.pack_order_type in ("all", "purchase"):
+            return super().expand_pack_line(write)
+        return
