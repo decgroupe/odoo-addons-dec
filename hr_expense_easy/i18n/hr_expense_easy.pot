@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:19+0000\n"
-"PO-Revision-Date: 2023-11-28 10:19+0000\n"
+"POT-Creation-Date: 2026-06-03 10:21+0000\n"
+"PO-Revision-Date: 2026-06-03 10:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_administrative_supplies
 #: model:product.template,name:hr_expense_easy.product_product_expense_administrative_supplies_product_template
 msgid "Administrative supplies"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_advertising
 #: model:product.template,name:hr_expense_easy.product_product_expense_advertising_product_template
 msgid "Advertising"
 msgstr ""
@@ -33,91 +31,75 @@ msgid "Amount (Tax incl.)"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "April"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "August"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_bus
+#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__automatic_tax_amount
+msgid "Automatic tax amount"
+msgstr ""
+
+#. module: hr_expense_easy
 #: model:product.template,name:hr_expense_easy.product_product_expense_bus_product_template
 msgid "Bus"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:ir.model.fields,field_description:hr_expense_easy.field_product_product__can_be_expensed
-#: model:ir.model.fields,field_description:hr_expense_easy.field_product_template__can_be_expensed
-msgid "Can be Expensed"
-msgstr ""
-
-#. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_car_park
 #: model:product.template,name:hr_expense_easy.product_product_expense_car_park_product_template
 msgid "Car park"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_car_rent
 #: model:product.template,name:hr_expense_easy.product_product_expense_car_rent_product_template
 msgid "Car rent"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_carrier
 #: model:product.template,name:hr_expense_easy.product_product_expense_carrier_product_template
 msgid "Carrier"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__comments
+#: model_terms:ir.ui.view,arch_db:hr_expense_easy.hr_expense_sheet_form_view
 msgid "Comments"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_consumption
 #: model:product.template,name:hr_expense_easy.product_product_expense_consumption_product_template
 msgid "Consumption"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense.py:0
-#, python-format
 msgid "Create attachment"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_customer_gifts
 #: model:product.template,name:hr_expense_easy.product_product_expense_customer_gifts_product_template
 msgid "Customer gifts"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "December"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_decoration
 #: model:product.template,name:hr_expense_easy.product_product_expense_decoration_product_template
 msgid "Decoration"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__display_name
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense_sheet__display_name
-#: model:ir.model.fields,field_description:hr_expense_easy.field_product_template__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_documentation_book
 #: model:product.template,name:hr_expense_easy.product_product_expense_documentation_book_product_template
 msgid "Documentation / Book"
 msgstr ""
@@ -128,13 +110,11 @@ msgid "Duplicate"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_equipment_rental
 #: model:product.template,name:hr_expense_easy.product_product_expense_equipment_rental_product_template
 msgid "Equipment rental"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_exhibition_fair
 #: model:product.template,name:hr_expense_easy.product_product_expense_exhibition_fair_product_template
 msgid "Exhibition / Fair"
 msgstr ""
@@ -155,219 +135,181 @@ msgid "Expense Report Summary"
 msgstr ""
 
 #. module: hr_expense_easy
+#: model:ir.model.fields,field_description:hr_expense_easy.field_product_product__can_be_expensed
+#: model:ir.model.fields,field_description:hr_expense_easy.field_product_template__can_be_expensed
+msgid "Expenses"
+msgstr ""
+
+#. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "February"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_food
 #: model:product.template,name:hr_expense_easy.product_product_expense_food_product_template
 msgid "Food"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_foodstuffs
 #: model:product.template,name:hr_expense_easy.product_product_expense_foodstuffs_product_template
 msgid "Foodstuffs"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_fuel
 #: model:product.template,name:hr_expense_easy.product_product_expense_fuel_product_template
 msgid "Fuel"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_hotel
 #: model:product.template,name:hr_expense_easy.product_product_expense_hotel_product_template
 msgid "Hotel"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__id
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense_sheet__id
-#: model:ir.model.fields,field_description:hr_expense_easy.field_product_template__id
-msgid "ID"
-msgstr ""
-
-#. module: hr_expense_easy
-#: model:ir.model.fields,help:hr_expense_easy.field_hr_expense__xid
-#: model:ir.model.fields,help:hr_expense_easy.field_hr_expense_sheet__xid
-#: model:ir.model.fields,help:hr_expense_easy.field_product_template__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_infraction
 #: model:product.template,name:hr_expense_easy.product_product_expense_infraction_product_template
 msgid "Infraction"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_internet
 #: model:product.template,name:hr_expense_easy.product_product_expense_internet_product_template
 msgid "Internet"
 msgstr ""
 
 #. module: hr_expense_easy
-#: code:addons/hr_expense_easy/models/hr_expense.py:0
-#, python-format
-msgid "Invalid tax amount"
-msgstr ""
-
-#. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "January"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "July"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "June"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense____last_update
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense_sheet____last_update
-#: model:ir.model.fields,field_description:hr_expense_easy.field_product_template____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_maintenance_repair_equipment
 #: model:product.template,name:hr_expense_easy.product_product_expense_maintenance_repair_equipment_product_template
 msgid "Maintenance / Repair equipment"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle
 #: model:product.template,name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle_product_template
 msgid "Maintenance / Repair vehicle"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_maintenance_products
 #: model:product.template,name:hr_expense_easy.product_product_expense_maintenance_products_product_template
 msgid "Maintenance products"
 msgstr ""
 
 #. module: hr_expense_easy
+#: model:ir.model.fields,help:hr_expense_easy.field_hr_expense__manual_tax_amount
+msgid "Manually forced tax amount in company currency"
+msgstr ""
+
+#. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "March"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "May"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_membership_fee
 #: model:product.template,name:hr_expense_easy.product_product_expense_membership_fee_product_template
 msgid "Membership fee"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_metro
 #: model:product.template,name:hr_expense_easy.product_product_expense_metro_product_template
 msgid "Metro"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_newspapers
 #: model:product.template,name:hr_expense_easy.product_product_expense_newspapers_product_template
 msgid "Newspapers"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "November"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "October"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_other_insurance
 #: model:product.template,name:hr_expense_easy.product_product_expense_other_insurance_product_template
 msgid "Other insurance"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_pharmacy
 #: model:product.template,name:hr_expense_easy.product_product_expense_pharmacy_product_template
 msgid "Pharmacy"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_phone
 #: model:product.template,name:hr_expense_easy.product_product_expense_phone_product_template
 msgid "Phone"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_plane
 #: model:product.template,name:hr_expense_easy.product_product_expense_plane_product_template
 msgid "Plane"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_postal_charges
 #: model:product.template,name:hr_expense_easy.product_product_expense_postal_charges_product_template
 msgid "Postal charges"
 msgstr ""
 
 #. module: hr_expense_easy
 #: model:ir.model,name:hr_expense_easy.model_product_template
-msgid "Product Template"
+msgid "Product"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_publication_and_print
 #: model:product.template,name:hr_expense_easy.product_product_expense_publication_and_print_product_template
 msgid "Publication and print"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_restaurant
 #: model:product.template,name:hr_expense_easy.product_product_expense_restaurant_product_template
 msgid "Restaurant"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_room_rental
 #: model:product.template,name:hr_expense_easy.product_product_expense_room_rental_product_template
 msgid "Room rental"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences
 #: model:product.template,name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences_product_template
 msgid "Seminars, colloquiums, conferences"
 msgstr ""
 
 #. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense_sheet.py:0
-#, python-format
 msgid "September"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_small_equipment
 #: model:product.template,name:hr_expense_easy.product_product_expense_small_equipment_product_template
 msgid "Small equipment"
 msgstr ""
@@ -379,132 +321,46 @@ msgid "Specify whether the product can be selected in an expense."
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__tax_amount
-msgid "Taxes"
+#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__manual_tax_amount
+msgid "Tax amount (manual)"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_taxi
 #: model:product.template,name:hr_expense_easy.product_product_expense_taxi_product_template
 msgid "Taxi"
 msgstr ""
 
 #. module: hr_expense_easy
-#: code:addons/hr_expense_easy/models/hr_expense.py:0
-#, python-format
-msgid "The tax %s should be configured with price included"
+#: model:ir.model.fields,help:hr_expense_easy.field_hr_expense__automatic_tax_amount
+msgid ""
+"Technical field to know if the tax amount was automatically computed or "
+"manually forced"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_tips_usual_donations
+#. odoo-python
+#: code:addons/hr_expense_easy/models/hr_expense.py:0
+msgid "The tax %(tax)s should be configured with price included"
+msgstr ""
+
+#. module: hr_expense_easy
 #: model:product.template,name:hr_expense_easy.product_product_expense_tips_usual_donations_product_template
 msgid "Tips, usual donations"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_toll
 #: model:product.template,name:hr_expense_easy.product_product_expense_toll_product_template
 msgid "Toll"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_train
 #: model:product.template,name:hr_expense_easy.product_product_expense_train_product_template
 msgid "Train"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_training
 #: model:product.template,name:hr_expense_easy.product_product_expense_training_product_template
 msgid "Training"
-msgstr ""
-
-#. module: hr_expense_easy
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_administrative_supplies
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_advertising
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_bus
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_car_park
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_car_rent
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_carrier
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_consumption
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_customer_gifts
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_decoration
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_documentation_book
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_equipment_rental
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_exhibition_fair
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_food
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_foodstuffs
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_fuel
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_hotel
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_infraction
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_internet
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_maintenance_products
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_membership_fee
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_metro
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_newspapers
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_other_insurance
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_pharmacy
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_phone
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_plane
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_postal_charges
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_publication_and_print
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_restaurant
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_room_rental
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_small_equipment
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_taxi
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_tips_usual_donations
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_toll
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_train
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_training
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_various
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_vehicle_insurance
-#: model:product.product,uom_name:hr_expense_easy.product_product_expense_work_clothes
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_administrative_supplies_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_advertising_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_bus_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_car_park_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_car_rent_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_carrier_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_consumption_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_customer_gifts_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_decoration_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_documentation_book_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_equipment_rental_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_exhibition_fair_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_food_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_foodstuffs_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_fuel_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_hotel_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_infraction_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_internet_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_maintenance_products_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_membership_fee_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_metro_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_newspapers_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_other_insurance_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_pharmacy_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_phone_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_plane_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_postal_charges_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_publication_and_print_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_restaurant_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_room_rental_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_small_equipment_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_taxi_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_tips_usual_donations_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_toll_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_train_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_training_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_various_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_vehicle_insurance_product_template
-#: model:product.template,uom_name:hr_expense_easy.product_product_expense_work_clothes_product_template
-msgid "Units"
 msgstr ""
 
 #. module: hr_expense_easy
@@ -513,13 +369,11 @@ msgid "VAT"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_various
 #: model:product.template,name:hr_expense_easy.product_product_expense_various_product_template
 msgid "Various"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_vehicle_insurance
 #: model:product.template,name:hr_expense_easy.product_product_expense_vehicle_insurance_product_template
 msgid "Vehicle insurance"
 msgstr ""
@@ -530,108 +384,12 @@ msgid "View Attachments"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:product.product,name:hr_expense_easy.product_product_expense_work_clothes
 #: model:product.template,name:hr_expense_easy.product_product_expense_work_clothes_product_template
 msgid "Work clothes"
 msgstr ""
 
 #. module: hr_expense_easy
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense__xid
-#: model:ir.model.fields,field_description:hr_expense_easy.field_hr_expense_sheet__xid
-#: model:ir.model.fields,field_description:hr_expense_easy.field_product_template__xid
-msgid "XML-ID"
-msgstr ""
-
-#. module: hr_expense_easy
+#. odoo-python
 #: code:addons/hr_expense_easy/models/hr_expense.py:0
-#, python-format
 msgid "You cannot duplicate a posted or approved expense."
-msgstr ""
-
-#. module: hr_expense_easy
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_administrative_supplies
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_advertising
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_bus
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_car_park
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_car_rent
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_carrier
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_consumption
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_customer_gifts
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_decoration
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_documentation_book
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_equipment_rental
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_exhibition_fair
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_food
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_foodstuffs
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_fuel
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_hotel
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_infraction
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_internet
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_products
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_membership_fee
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_metro
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_newspapers
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_other_insurance
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_pharmacy
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_phone
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_plane
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_postal_charges
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_publication_and_print
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_restaurant
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_room_rental
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_small_equipment
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_taxi
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_tips_usual_donations
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_toll
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_train
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_training
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_various
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_vehicle_insurance
-#: model:product.product,weight_uom_name:hr_expense_easy.product_product_expense_work_clothes
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_administrative_supplies_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_advertising_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_bus_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_car_park_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_car_rent_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_carrier_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_consumption_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_customer_gifts_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_decoration_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_documentation_book_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_equipment_rental_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_exhibition_fair_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_food_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_foodstuffs_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_fuel_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_hotel_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_infraction_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_internet_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_products_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_equipment_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_maintenance_repair_vehicle_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_membership_fee_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_metro_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_newspapers_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_other_insurance_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_pharmacy_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_phone_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_plane_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_postal_charges_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_publication_and_print_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_restaurant_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_room_rental_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_seminars_colloquiums_conferences_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_small_equipment_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_taxi_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_tips_usual_donations_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_toll_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_train_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_training_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_various_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_vehicle_insurance_product_template
-#: model:product.template,weight_uom_name:hr_expense_easy.product_product_expense_work_clothes_product_template
-msgid "kg"
 msgstr ""

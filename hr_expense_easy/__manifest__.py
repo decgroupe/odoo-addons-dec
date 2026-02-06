@@ -1,6 +1,7 @@
 {
-    "name": "Easy expense sheet (HE)",
-    "version": "14.0.1.0.0",
+    "name": "Easy Expense Sheet (HR)",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -14,5 +15,5 @@
         "data/product_category.xml",
         "data/product_product.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

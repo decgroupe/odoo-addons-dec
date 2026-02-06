@@ -1,94 +1,123 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="hr_expense_sheet_form_view">
         <field name="name">hr.expense.sheet.form@hr_expense_easy</field>
         <field name="model">hr.expense.sheet</field>
         <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='expense_line_ids']" position="attributes">
-                <attribute name="widget" remove="many2many" />
-                <attribute
-                    name="context"
-                    operation="python_dict"
-                    key="default_employee_id"
-                >employee_id</attribute>
+                <attribute name="widget" remove="expense_lines_widget" />
+                <attribute name="context" operation="update">
+                    {"default_employee_id": employee_id,}
+                </attribute>
             </xpath>
-            <xpath expr="//field[@name='expense_line_ids']/tree" position="attributes">
+            <xpath expr="//field[@name='expense_line_ids']/list" position="attributes">
                 <attribute name="editable">bottom</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='state']"
+                expr="//field[@name='expense_line_ids']/list/field[@name='state']"
                 position="after"
             >
-                <field name="sheet_id" invisible="1" />
-                <field name="employee_id" invisible="1" />
+                <field name="sheet_id" column_invisible="1" />
+                <field name="employee_id" column_invisible="1" />
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='message_unread']"
-                position="before"
+                expr="//field[@name='expense_line_ids']/list/field[@name='price_unit']"
+                position="attributes"
             >
-                <field name="product_id" required="1"/>
-                <field name="product_uom_id" optional="hide" />
-                <field name="product_uom_category_id" optional="hide" />
-                <xpath
-                    expr="//field[@name='expense_line_ids']/tree/field[@name='name']"
-                    position="move"
-                />
-                <field name="unit_amount" />
+                <attribute name="optional">show</attribute>
+                <attribute name="readonly">False</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='sale_order_id']"
+                expr="//field[@name='expense_line_ids']/list/field[@name='sale_order_id']"
                 position="attributes"
             >
                 <attribute name="optional">hide</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='attachment_number']"
+                expr="//field[@name='expense_line_ids']/list/field[@name='nb_attachment']"
                 position="attributes"
             >
                 <attribute name="optional">hide</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/button[@name='action_get_attachment_view']"
+                expr="//field[@name='expense_line_ids']/list/button[@name='action_get_attachment_view']"
                 position="attributes"
             >
                 <attribute name="title">View Attachments</attribute>
-                <attribute name="string"/>
+                <attribute name="string" />
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='unit_amount']"
+                expr="//field[@name='expense_line_ids']/list/field[@name='price_unit']"
                 position="attributes"
             >
                 <attribute name="string">Amount (Tax incl.)</attribute>
+                <!-- <attribute name="options">{'currency_field': 'currency_id', 'field_digits': True}</attribute> -->
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='tax_ids']"
-                position="after"
+                expr="//field[@name='expense_line_ids']/list/field[@name='currency_id']"
+                position="attributes"
             >
-                <field name="tax_amount" string="VAT" /> 
+                <attribute name="readonly">False</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='tax_ids']"
+                expr="//field[@name='expense_line_ids']/list/field[@name='tax_ids']"
                 position="attributes"
             >
                 <attribute name="optional">hide</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/tree/field[@name='total_amount']"
+                expr="//field[@name='expense_line_ids']/list/field[@name='tax_amount_currency']"
+                position="attributes"
+            >
+                <attribute name="readonly">False</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/list/field[@name='tax_amount']"
+                position="attributes"
+            >
+                <attribute name="string">VAT</attribute>
+                <attribute name="readonly">False</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/list/field[@name='tax_amount']"
                 position="after"
             >
-                <field name="comments" /> 
+                <field name="description" position="move" />
                 <button
                     name="action_duplicate"
                     title="Duplicate"
                     type="object"
                     icon="fa-copy"
-                    attrs="{'invisible': [('state', 'in', ('done', 'approved'))]}"
-                >
-                </button>
+                    invisible="state in ('done', 'approved')"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/list/field[@name='description']"
+                position="attributes"
+            >
+                <attribute name="string">Comments</attribute>
+                <attribute name="optional">show</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/list/field[@name='total_amount_currency']"
+                position="attributes"
+            >
+                <!-- <attribute name="readonly">False</attribute> -->
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/list/field[@name='total_amount']"
+                position="attributes"
+            >
+                <!-- <attribute name="readonly">False</attribute> -->
+                <attribute name="force_save">1</attribute>
             </xpath>
         </field>
     </record>
-
 </odoo>
