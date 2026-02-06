@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"POT-Creation-Date: 2026-06-03 10:49+0000\n"
+"PO-Revision-Date: 2026-06-03 10:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,10 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product__display_name
-#: model:ir.model.fields,field_description:product_public_code.field_product_template__display_name
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__display_name
-msgid "Display Name"
+#: model:ir.model.fields,help:product_public_code.field_product_template__public_code
+msgid "Commercial code used for public display, e.g. on e-commerce or POS."
+msgstr ""
+
+#. module: product_public_code
+#: model:ir.model.fields,help:product_public_code.field_product_product__public_code
+msgid ""
+"Commercial code used for public display, e.g. on e-commerce or POS. It is "
+"not used for internal purposes, and can be duplicated across variants."
 msgstr ""
 
 #. module: product_public_code
@@ -28,34 +33,13 @@ msgid "Has a Public Code"
 msgstr ""
 
 #. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product__id
-#: model:ir.model.fields,field_description:product_public_code.field_product_template__id
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: product_public_code
-#: model:ir.model.fields,help:product_public_code.field_product_product__xid
-#: model:ir.model.fields,help:product_public_code.field_product_template__xid
-#: model:ir.model.fields,help:product_public_code.field_sale_order_line__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product____last_update
-#: model:ir.model.fields,field_description:product_public_code.field_product_template____last_update
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: product_public_code
-#: model:ir.model,name:product_public_code.model_product_product
+#: model:ir.model,name:product_public_code.model_product_template
 msgid "Product"
 msgstr ""
 
 #. module: product_public_code
-#: model:ir.model,name:product_public_code.model_product_template
-msgid "Product Template"
+#: model:ir.model,name:product_public_code.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: product_public_code
@@ -67,11 +51,4 @@ msgstr ""
 #. module: product_public_code
 #: model:ir.model,name:product_public_code.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product__xid
-#: model:ir.model.fields,field_description:product_public_code.field_product_template__xid
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__xid
-msgid "XML-ID"
 msgstr ""

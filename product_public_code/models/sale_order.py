@@ -9,11 +9,9 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("product_id")
     def product_id_change(self):
-        res = super().product_id_change()
         if self.product_id and self.product_id.public_code:
-            parts = list(self.name.partition("\n"))
-            parts[0] = "[{}] {}".format(
-                self.product_id.public_code, self.product_id.name
-            )
-            self.name = "".join(parts)
-        return res
+            # split name between product name and description
+            name, separator, description = self.name.partition("\n")
+            # reformat name to replace product default code with public code
+            name = f"[{self.product_id.public_code}] {self.product_id.name}"
+            self.name = f"{name}{separator}{description}"

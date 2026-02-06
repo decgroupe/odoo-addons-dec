@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 14:05+0100\n"
+"POT-Creation-Date: 2026-06-03 08:40+0000\n"
+"PO-Revision-Date: 2026-06-03 11:41+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,14 +15,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product__display_name
-#: model:ir.model.fields,field_description:product_public_code.field_product_template__display_name
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#: model:ir.model.fields,help:product_public_code.field_product_template__public_code
+msgid "Commercial code used for public display, e.g. on e-commerce or POS."
+msgstr ""
+"Code commercial utilisé pour l'affichage public, par exemple sur les sites "
+"de commerce électronique ou aux points de vente."
+
+#. module: product_public_code
+#: model:ir.model.fields,help:product_public_code.field_product_product__public_code
+msgid ""
+"Commercial code used for public display, e.g. on e-commerce or POS. It is "
+"not used for internal purposes, and can be duplicated across variants."
+msgstr ""
+"Code commercial destiné à l'affichage public, par exemple sur un site de "
+"commerce électronique ou à un point de vente. Il n'est pas utilisé à des "
+"fins internes et peut être réutilisé pour plusieurs variantes."
 
 #. module: product_public_code
 #: model_terms:ir.ui.view,arch_db:product_public_code.product_template_search_view
@@ -30,35 +40,14 @@ msgid "Has a Public Code"
 msgstr "A une référence commerciale"
 
 #. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product__id
-#: model:ir.model.fields,field_description:product_public_code.field_product_template__id
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: product_public_code
-#: model:ir.model.fields,help:product_public_code.field_product_product__xid
-#: model:ir.model.fields,help:product_public_code.field_product_template__xid
-#: model:ir.model.fields,help:product_public_code.field_sale_order_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product____last_update
-#: model:ir.model.fields,field_description:product_public_code.field_product_template____last_update
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: product_public_code
-#: model:ir.model,name:product_public_code.model_product_product
+#: model:ir.model,name:product_public_code.model_product_template
 msgid "Product"
 msgstr "Produits"
 
 #. module: product_public_code
-#: model:ir.model,name:product_public_code.model_product_template
-msgid "Product Template"
-msgstr "Modèle de produit"
+#: model:ir.model,name:product_public_code.model_product_product
+msgid "Product Variant"
+msgstr "Variante d'article"
 
 #. module: product_public_code
 #: model:ir.model.fields,field_description:product_public_code.field_product_product__public_code
@@ -71,12 +60,23 @@ msgstr "Référence commerciale"
 msgid "Sales Order Line"
 msgstr "Ligne de commande de vente"
 
-#. module: product_public_code
-#: model:ir.model.fields,field_description:product_public_code.field_product_product__xid
-#: model:ir.model.fields,field_description:product_public_code.field_product_template__xid
-#: model:ir.model.fields,field_description:product_public_code.field_sale_order_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Product Template"
+#~ msgstr "Modèle de produit"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Attribute"
 #~ msgstr "Attribut"
@@ -126,8 +126,12 @@ msgstr "XML-ID"
 #~ msgid "Cost Price"
 #~ msgstr "Prix de revient"
 
-#~ msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
-#~ msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
+#~ msgid ""
+#~ "Cost used for stock valuation in standard price and as a first price to set "
+#~ "in average/FIFO."
+#~ msgstr ""
+#~ "Coût utilisé pour la valorisation des stocks au prix standard et comme "
+#~ "premier prix à définir en moyenne / FIFO."
 
 #~ msgid "Create Date"
 #~ msgstr "Date de création"
@@ -261,9 +265,6 @@ msgstr "XML-ID"
 #~ msgid "Price at which the product is sold to customers."
 #~ msgstr "Prix auquel le produit est vendu aux clients."
 
-#~ msgid "Product Qty"
-#~ msgstr "Qté de produit"
-
 #~ msgid "Product UOM"
 #~ msgstr "UdM du produit"
 
@@ -351,8 +352,10 @@ msgstr "XML-ID"
 #~ msgid "Template"
 #~ msgstr "Modèle"
 
-#~ msgid "UoM (Unit of Measure) is the unit of measurement for the inventory control"
-#~ msgstr "UdM (Unité de mesure) est l'unité utilisée pour le contrôle d'inventaire"
+#~ msgid ""
+#~ "UoM (Unit of Measure) is the unit of measurement for the inventory control"
+#~ msgstr ""
+#~ "UdM (Unité de mesure) est l'unité utilisée pour le contrôle d'inventaire"
 
 #~ msgid "Used by REF manager Market"
 #~ msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
