@@ -5,8 +5,12 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMrpBomDates(TransactionCase):
+    """Test the existence of the new fields on BoM"""
+
     def setUp(self):
         super().setUp()
+        self.BoM = self.env["mrp.bom"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("date_start", self.BoM._fields)
+        self.assertIn("date_stop", self.BoM._fields)

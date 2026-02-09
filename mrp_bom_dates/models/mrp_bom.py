@@ -11,7 +11,6 @@ class MrpBom(models.Model):
         string="Valid From",
         copy=False,
     )
-
     date_stop = fields.Date(
         string="Valid Until",
         copy=False,

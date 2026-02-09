@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_bom_form_view">
         <field name="name">mrp.bom.form@mrp_bom_dates</field>
         <field name="model">mrp.bom</field>
@@ -19,7 +18,7 @@
     <record model="ir.ui.view" id="mrp_bom_tree_view">
         <field name="name">mrp.bom.tree@mrp_bom_dates</field>
         <field name="model">mrp.bom</field>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="inherit_id" ref="mrp.mrp_bom_tree_view" />
         <field name="arch" type="xml">
             <field name="product_tmpl_id" position="after">
@@ -28,5 +27,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
