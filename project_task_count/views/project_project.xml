@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="project_project_filter_view">
         <field name="name">project.project.select@project_task_count</field>
         <field name="model">project.project</field>
@@ -16,4 +15,14 @@
         </field>
     </record>
 
+    <!-- Add "filter_task_todo" to existing context -->
+    <record
+        model="ir.actions.act_window"
+        id="project_identification.open_view_contract_all"
+    >
+        <field name="context">{
+            'search_default_is_contract': 1,
+            'search_default_filter_task_todo': 1
+        }</field>
+    </record>
 </odoo>

@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class Project(models.Model):
@@ -14,29 +14,20 @@ class Project(models.Model):
         help="Number of currently open tasks",
     )
 
-    @api.depends(
-        "task_ids",
-        "task_ids.stage_id",
-        "task_ids.stage_id.is_closed",
-        "task_ids.type_id",
-    )
+    @api.depends("task_ids", "task_ids.is_closed", "task_ids.type_id")
     def _compute_todo_task_count(self):
+        self.todo_task_count = 0
         time_tracking_type = self.env.ref("project_identification.time_tracking_type")
-        task_data = self.env["project.task"].read_group(
-            [
-                ("project_id", "in", self.ids),
-                "|",
-                ("stage_id.is_closed", "=", False),
-                ("stage_id", "=", False),
-                "|",
-                ("type_id", "=", False),
-                ("type_id", "!=", time_tracking_type.id),
-            ],
+        domain = [
+            ("project_id", "in", self.ids),
+            ("is_closed", "=", False),
+            # exclude time-tracking tasks from the count
+            ("type_id", "!=", time_tracking_type.id),
+        ]
+        task_data = self.env["project.task"]._read_group(
+            domain,
             ["project_id"],
-            ["project_id"],
+            ["__count"],
         )
-        result = dict(
-            (data["project_id"][0], data["project_id_count"]) for data in task_data
-        )
-        for rec in self:
-            rec.todo_task_count = result.get(rec.id, 0)
+        for project, count in task_data:
+            project.todo_task_count = count
