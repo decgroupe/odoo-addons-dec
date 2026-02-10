@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <template
         id="project_merge.view_email_template_notification_diff"
         inherit_id="mail_qweb.view_email_template_notification"
@@ -27,7 +26,6 @@
 
     <template id="project_merge.view_mail_template_merged_projects">
         <t t-call="project_merge.view_email_template_notification_diff">
-
             <t t-if="env.context.get('src_object')">
                 <t t-set="src_object_id" t-value="env.context.get('src_object')" />
             </t>
@@ -103,7 +101,6 @@
 
     <template id="project_merge.view_mail_template_merged_tasks">
         <t t-call="project_merge.view_email_template_notification_diff">
-
             <t t-if="env.context.get('src_object')">
                 <t t-set="src_object_id" t-value="env.context.get('src_object')" />
             </t>
@@ -145,10 +142,12 @@
                             Assigned To
                         </td>
                         <td>
-                            <t t-esc="src_object_id.user_id.display_name" />
+                            <t t-esc="src_object_id.user_ids.mapped('display_name')" />
                         </td>
                         <td>
-                            <t t-esc="object.dst_object_id.user_id.display_name" />
+                            <t
+                                t-esc="object.dst_object_id.user_ids.mapped('display_name')"
+                            />
                         </td>
                     </tr>
                     <tr>
@@ -178,7 +177,6 @@
                 </table>
 
                 <p>The task <t t-esc="src_object_id.name" /> is now deleted</p>
-
             </t>
             <t t-set="content_message_action">
                 <a t-att-href="object.dst_object_id.get_access_link()">
@@ -190,5 +188,4 @@
             </t>
         </t>
     </template>
-
 </odoo>

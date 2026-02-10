@@ -1,19 +1,22 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record model="mail.template" id="merged_projects">
         <field name="name">Project Merge Notification Email</field>
         <field name="model_id" ref="project_merge.model_merge_project_project_wizard" />
         <field name="email_from">${object.company_id.partner_id.email}</field>
-        <field name="partner_to">${ctx.get('partner_to') and ctx['partner_to'] or False}</field>
-        <field name="email_to">${ctx.get('email_to') and ctx['email_to'] or False}</field>
+        <field
+            name="partner_to"
+        >${ctx.get('partner_to') and ctx['partner_to'] or False}</field>
+        <field
+            name="email_to"
+        >${ctx.get('email_to') and ctx['email_to'] or False}</field>
         <field
             name="subject"
         >The project "${ctx.get('src_object') and ctx['src_object'].name or '---'}" has been merged.</field>
         <field name="auto_delete" eval="True" />
-        <field name="lang">${object.company_id.partner_id.lang}</field>
-        <field name="body_type">qweb</field>
-        <field name="body_view_id" ref="view_mail_template_merged_projects" />
+        <field name="lang">{{ object.company_id.partner_id.lang }}</field>
+        <field name="body_html" type="html">
+            <t t-call="project_merge.view_mail_template_merged_projects" />
+        </field>
     </record>
-
 </odoo>

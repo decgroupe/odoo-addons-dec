@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 07:45+0000\n"
-"PO-Revision-Date: 2024-04-16 13:45+0200\n"
+"POT-Creation-Date: 2026-06-03 10:54+0000\n"
+"PO-Revision-Date: 2026-06-03 15:46+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: project_merge
+#: model:mail.template,body_html:project_merge.merged_projects
+msgid ""
+"<t t-call=\"project_merge.view_mail_template_merged_projects\"/>\n"
+"        "
+msgstr ""
+
+#. module: project_merge
+#: model:mail.template,body_html:project_merge.merged_tasks
+msgid ""
+"<t t-call=\"project_merge.view_mail_template_merged_tasks\"/>\n"
+"        "
+msgstr ""
 
 #. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.view_mail_template_merged_projects
@@ -79,32 +93,14 @@ msgstr "Données"
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__display_name
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__display_name
-#: model:ir.model.fields,field_description:project_merge.field_project_project__display_name
-#: model:ir.model.fields,field_description:project_merge.field_project_task__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: project_merge
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__number_group
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__number_group
-msgid "Group of Objects"
-msgstr "Groupe d’objets"
-
-#. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__id
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__id
-#: model:ir.model.fields,field_description:project_merge.field_project_project__id
-#: model:ir.model.fields,field_description:project_merge.field_project_task__id
 msgid "ID"
 msgstr "ID"
-
-#. module: project_merge
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard____last_update
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard____last_update
-#: model:ir.model.fields,field_description:project_merge.field_project_project____last_update
-#: model:ir.model.fields,field_description:project_merge.field_project_task____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: project_merge
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__write_uid
@@ -123,12 +119,6 @@ msgstr "Dernière mise à jour le"
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__line_ids
 msgid "Lines"
 msgstr "Lignes"
-
-#. module: project_merge
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__maximum_group
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__maximum_group
-msgid "Maximum of Group of Objects"
-msgstr "Limite Maximum du Groupe d'Objets"
 
 #. module: project_merge
 #: model:ir.model,name:project_merge.model_merge_project_project_wizard
@@ -153,8 +143,6 @@ msgid "Merge the following records"
 msgstr "Fusionner les enregistrements suivants"
 
 #. module: project_merge
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__group_by_name
-#: model:ir.model.fields,field_description:project_merge.field_merge_project_task_wizard__group_by_name
 #: model_terms:ir.ui.view,arch_db:project_merge.view_mail_template_merged_projects
 #: model_terms:ir.ui.view,arch_db:project_merge.view_mail_template_merged_tasks
 msgid "Name"
@@ -171,12 +159,6 @@ msgid "Open Task"
 msgstr "Ouvrir la Tâche"
 
 #. module: project_merge
-#: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
-#: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
-msgid "Options"
-msgstr "Options"
-
-#. module: project_merge
 #: model:ir.model,name:project_merge.model_project_project
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__dst_object_id
 #: model:ir.model.fields,field_description:project_merge.field_merge_project_project_wizard__object_ids
@@ -185,29 +167,19 @@ msgid "Project"
 msgstr "Projet"
 
 #. module: project_merge
+#: model:mail.template,name:project_merge.merged_projects
+msgid "Project Merge Notification Email"
+msgstr "E-mail de notification de fusion de projet"
+
+#. module: project_merge
+#: model:mail.template,name:project_merge.merged_tasks
+msgid "Project's Task Merge Notification Email"
+msgstr "E-mail de notification de fusion des tâches du projet"
+
+#. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.view_mail_template_merged_projects
 msgid "Responsible"
 msgstr "Responsable"
-
-#. module: project_merge
-#: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
-#: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
-msgid "Search duplicates based on duplicated data in"
-msgstr "Recherche de doublons basés sur les données dupliquées dans"
-
-#. module: project_merge
-#: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
-#: model_terms:ir.ui.view,arch_db:project_merge.merge_project_task_wizard_form
-msgid ""
-"Select the list of fields used to search for\n"
-"                        duplicated records. If you select several fields,\n"
-"                        Odoo will propose you to merge only those having\n"
-"                        all these fields in common. (not one of the fields)."
-msgstr ""
-"Sélectionnez la liste des champs utilisés pour chercher\n"
-"                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
-"                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
-"                        tous ces champs en commun (pas uniquement l'un des champs)."
 
 #. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.merge_project_project_wizard_form
@@ -254,12 +226,8 @@ msgstr "Le projet"
 
 #. module: project_merge
 #: model:mail.template,subject:project_merge.merged_projects
-msgid ""
-"The project \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\""
-" has been merged."
-msgstr ""
-"Le projet \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\" a"
-" été fusionné."
+msgid "The project \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\" has been merged."
+msgstr "Le projet \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\" a été fusionné."
 
 #. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.view_mail_template_merged_tasks
@@ -268,12 +236,8 @@ msgstr "La tâche"
 
 #. module: project_merge
 #: model:mail.template,subject:project_merge.merged_tasks
-msgid ""
-"The task \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\" "
-"has been merged."
-msgstr ""
-"La tâche \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\" a "
-"été fusionnée."
+msgid "The task \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\" has been merged."
+msgstr "La tâche \"${ctx.get('src_object') and ctx['src_object'].name or '---'}\" a été fusionnée."
 
 #. module: project_merge
 #: model_terms:ir.ui.view,arch_db:project_merge.view_mail_template_merged_projects
@@ -304,6 +268,32 @@ msgstr "🧙‍♂️ Assistant de fusion"
 #: model:ir.actions.act_window,name:project_merge.action_project_task_merge
 msgid "🧙‍♂️ Merge ..."
 msgstr "🧙‍♂️ Fusionner ..."
+
+#~ msgid "Group of Objects"
+#~ msgstr "Groupe d’objets"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Maximum of Group of Objects"
+#~ msgstr "Limite Maximum du Groupe d'Objets"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Search duplicates based on duplicated data in"
+#~ msgstr "Recherche de doublons basés sur les données dupliquées dans"
+
+#~ msgid ""
+#~ "Select the list of fields used to search for\n"
+#~ "                        duplicated records. If you select several fields,\n"
+#~ "                        Odoo will propose you to merge only those having\n"
+#~ "                        all these fields in common. (not one of the fields)."
+#~ msgstr ""
+#~ "Sélectionnez la liste des champs utilisés pour chercher\n"
+#~ "                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
+#~ "                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
+#~ "                        tous ces champs en commun (pas uniquement l'un des champs)."
 
 #~ msgid "ID of the record defined in xml file"
 #~ msgstr "ID de l'enregistrement défini dans le fichier xml"

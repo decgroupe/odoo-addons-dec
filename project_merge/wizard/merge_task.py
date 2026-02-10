@@ -27,18 +27,20 @@ class MergeTask(models.TransientModel):
         default=lambda self: self.env.user.company_id,
     )
 
-    def _merge(self, object_ids, dst_object=None, extra_checks=True):
+    def _merge(self, object_ids, dst_object=None, unique_xmlid=False):
+        """Merge tasks, suppressing auto-subscribe notifications."""
         return super()._merge(
             object_ids,
             dst_object.with_context(mail_auto_subscribe_no_notify=True),
-            extra_checks,
+            unique_xmlid,
         )
 
     def _log_merge_operation(self, src_objects, dst_object):
-        super()._log_merge_operation(src_objects, dst_object)
+        """Send notification email to the task assignee after a merge."""
+        res = super()._log_merge_operation(src_objects, dst_object)
         template_id = self.env.ref("project_merge.merged_tasks")
         for src_object in src_objects:
-            partner_id = src_object.user_id.mapped("partner_id")
+            partner_id = src_object.user_ids.mapped("partner_id")
             if partner_id:
                 partner_to = ",".join(str(id) for id in partner_id.ids)
             else:
@@ -48,3 +50,4 @@ class MergeTask(models.TransientModel):
             template_id.with_context(
                 src_object=src_object, partner_to=partner_to
             ).send_mail(self.id, force_send=False)
+        return res

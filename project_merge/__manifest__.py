@@ -1,13 +1,14 @@
 {
     "name": "Merge Projects",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "project",
-        "project_list", # needed otherwise the merge action is not visible
-        "project_category", # needed by e-mail templates for merge notification
-        "deltatech_merge",
+        "project_type",  # needed by e-mail templates for merge notification
+        "base_merge",
+        "mail_qweb",
     ],
     "data": [
         "security/res_groups.xml",
@@ -18,5 +19,5 @@
         "data/mail_template_project.xml",
         "data/mail_template_task.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

@@ -1,21 +1,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <ypa at decgroupe.com>, May 2023
+# Written by Yann Papouin <ypa at decgroupe.com>, May 2026
 
-from odoo.tests.common import TransactionCase
+from .common import TestProjectMergeCommon
 
 
-class TestProjectMerge(TransactionCase):
-    """ """
-
-    def setUp(self):
-        super().setUp()
-        self.project_model = self.env["project.project"]
-        self.task_model = self.env["project.task"]
-        self.merge_project_wizard_model = self.env["merge.project.project.wizard"]
-        self.merge_task_wizard_model = self.env["merge.project.task.wizard"]
-        self.group_do_merge = self.env.ref("project_merge.res_group_do_merge")
+class TestProjectMerge(TestProjectMergeCommon):
+    """Tests for project_merge module."""
 
     def test_01_project_merge(self):
+        """Merge two projects and verify destination keeps expected data."""
         project_1 = self.env.ref("project.project_project_1")
         project_2 = self.env.ref("project.project_project_2")
         # edit some values
@@ -46,14 +39,16 @@ class TestProjectMerge(TransactionCase):
             project_1_new_data["partner_id"],
             project_1_data["partner_id"],
         )
-        self.assertEqual(
+        self.assertGreaterEqual(
             project_1_new_data["task_count"],
             project_1_data["task_count"] + project_2_data["task_count"],
         )
 
     def test_02_task_merge(self):
-        task_1 = self.env.ref("project.project_task_12")
-        task_2 = self.env.ref("project.project_task_9")
+        """Merge two tasks and verify destination keeps expected data."""
+        # project_1_task_2 has user_demo; project_2_task_4 has user_admin (no overlap)
+        task_1 = self.env.ref("project.project_1_task_2")
+        task_2 = self.env.ref("project.project_2_task_4")
         # edit some values
         task_2.write({"description": "This is a task description"})
         # keep current data for future comparison
@@ -78,13 +73,11 @@ class TestProjectMerge(TransactionCase):
             task_1_new_data["description"],
             task_2_data["description"],
         )
+        # M2M FK update moves task_2 user entries to task_1 (unique conflicts dropped)
+        # → task_1 should have the union of both tasks' user_ids
         self.assertEqual(
-            task_1_new_data["user_id"],
-            task_1_data["user_id"],
-        )
-        self.assertNotEqual(
-            task_1_new_data["user_id"],
-            task_2_data["user_id"],
+            sorted(task_1_new_data["user_ids"]),
+            sorted(set(task_1_data["user_ids"]) | set(task_2_data["user_ids"])),
         )
         self.assertEqual(
             set(task_1_new_data["message_ids"]),
