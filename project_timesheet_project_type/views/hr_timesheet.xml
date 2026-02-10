@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record model="ir.ui.view" id="timesheet_search_view">
-        <field name="name">account.analytic.line.search@hr_workflow_dec</field>
+        <field
+            name="name"
+        >account.analytic.line.search@project_timesheet_project_type</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
         <field name="arch" type="xml">
@@ -16,5 +17,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
