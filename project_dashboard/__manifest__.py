@@ -1,22 +1,24 @@
 {
     "name": "Project Dashboard",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "web_one2many_kanban",
-        "project_category",
-        "project_task_count",
-        "mrp_project",
+        "project_type",  # was "project_category"
+        # "project_partner_location",
+        "project_task_count", # for `todo_task_count`
+        "mrp_project",  # for `todo_production_count`
     ],
     "data": [
-        "views/assets.xml",
         "views/project_project.xml",
         "views/project_type.xml",
         "views/menu.xml",
     ],
-    "qweb": [
-        "static/src/xml/dashboard_actions.xml",
+    "demo": [
+        "demo/project_type.xml",
+        "demo/project_project.xml",
+        "demo/project_task.xml",
+        "demo/project_project_dates.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

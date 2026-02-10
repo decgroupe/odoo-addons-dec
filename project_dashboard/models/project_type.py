@@ -1,6 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2021
 
+import json
 import logging
 from datetime import datetime
 
@@ -29,6 +30,7 @@ class ProjectType(models.Model):
     )
     date_field = fields.Char(
         string="Date Reference",
+        default="create_date",
         help="Name of the field to use as reference when computing "
         "projects count per year",
     )
@@ -60,33 +62,57 @@ class ProjectType(models.Model):
         string="Number of projects from year-2 and older",
         compute="_compute_todo_projects",
     )
-    dashboard_project_ids = fields.One2many(
-        comodel_name="project.project",
-        inverse_name="type_id",
-        string="Projects",
-        domain=lambda self: [
-            "|",
-            "&",
-            ("todo_task_count", ">", 0),
-            "|",
-            ("favorite_user_ids", "=", self.env.uid),
-            ("message_is_follower", "=", True),
-            ("dashboard_sequence", ">", 0),
-        ],
-        # We put the field context in the model definition because odoo 12
-        # does not evaluate the field context in kanban view definition
-        context={
-            "kanban_fields": [
-                "name",
-                "display_name",
-                "dashboard_sequence",
-                "kanban_description",
-            ]
-        },
+    kanban_dashboard = fields.Text(
+        compute="_kanban_dashboard",
     )
 
+    def _get_dashboard_data(self):
+        dashboard_data = {}
+        for rec in self:
+            project_ids = self.env["project.project"].search(
+                # domain explanation: we want to display in the dashboard all projects
+                # per type that are either:
+                # - having tasks to do and followed/favorited by the user
+                # - or simply having a dashboard sequence defined (to force visibility
+                #   on dashboard even without tasks or followers)
+                [
+                    ("type_id", "child_of", rec.id),
+                    "|",
+                    "&",
+                    ("todo_task_count", ">", 0),
+                    "|",
+                    ("favorite_user_ids", "=", self.env.uid),
+                    ("message_is_follower", "=", True),
+                    ("dashboard_sequence", ">", 0),
+                ],
+                order="dashboard_sequence desc, sequence, name, id",
+            )
+            projects = []
+            for project in project_ids:
+                projects.append(
+                    {
+                        "id": project.id,
+                        "name": project.name,
+                        "display_name": project.display_name,
+                        "dashboard_sequence": project.dashboard_sequence,
+                        "kanban_description": project.kanban_description,
+                    }
+                )
+            dashboard_data[rec.id] = {
+                "projects": projects,
+            }
+        return dashboard_data
+
+    @api.depends("project_ids", "project_ids.task_ids")
+    def _kanban_dashboard(self):
+        dashboard_data = self._get_dashboard_data()
+        for rec in self:
+            rec.kanban_dashboard = json.dumps(dashboard_data[rec.id])
+
     @api.depends(
+        "date_field",
         "project_ids",
+        "project_ids.type_id",
         "project_ids.todo_task_count",
         "project_ids.todo_production_count",
     )
@@ -112,33 +138,33 @@ class ProjectType(models.Model):
         for date_field in dashboard_dates:
             date_field_year = date_field + ":year"
             child_ids = self.env["project.type"].search([("id", "child_of", self.ids)])
-            fields = ["type_id", "user_id", date_field]
             groupby = ["type_id", "user_id", date_field_year]
-            fetch_data = Project.read_group(
-                [
-                    ("type_id", "child_of", self.ids),
-                    ("|"),
-                    ("todo_task_count", ">", 0),
-                    ("todo_production_count", ">", 0),
-                ],
-                fields=fields,
+            aggregates = ["__count"]
+            domain = [
+                ("type_id", "child_of", self.ids),
+                ("|"),
+                ("todo_task_count", ">", 0),
+                ("todo_production_count", ">", 0),
+            ]
+            fetch_data = Project._read_group(
+                domain=domain,
                 groupby=groupby,
-                lazy=False,
+                aggregates=aggregates,
             )
             result_per_date_reference[date_field] = [
                 [
-                    data["type_id"][0],
-                    data["user_id"] and data["user_id"][0],
-                    data["__count"],
-                    int(data[date_field_year]),
+                    type_id.id,  # type_id.id
+                    user_id.id,  # user_id.id
+                    date.year,  # date_field.year
+                    count,
                 ]
-                for data in fetch_data
+                for type_id, user_id, date, count in fetch_data
             ]
 
         COL_TYPE = 0
         COL_USER = 1
-        COL_COUNT = 2
-        COL_DATE = 3
+        COL_DATE = 2
+        COL_COUNT = 3
 
         current_year = datetime.today().year
         for rec in type_ids:
@@ -208,7 +234,7 @@ class ProjectType(models.Model):
         return {
             "type": "ir.actions.act_window",
             "view_type": "form",
-            "view_mode": "form,tree",
+            "view_mode": "form,list",
             "res_model": "project.project",
             "target": "current",
             "context": self.env.context,

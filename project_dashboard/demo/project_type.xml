@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="project_type_a" model="project.type">
+        <field name="name">☔ Type A</field>
+        <field name="dashboard_ok" eval="True" />
+    </record>
+
+    <record id="project_type_b" model="project.type">
+        <field name="name">🌟 Type B</field>
+        <field name="dashboard_ok" eval="True" />
+    </record>
+
+    <record id="project_type_c" model="project.type">
+        <field name="name">🌈 Type C</field>
+        <field name="dashboard_ok" eval="True" />
+    </record>
+</odoo>

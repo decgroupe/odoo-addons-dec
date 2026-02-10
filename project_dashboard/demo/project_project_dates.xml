@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="project_a_0" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=247)" />
+    </record>
+
+    <record id="project_a_1" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=22)" />
+    </record>
+
+    <record id="project_a_2" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=868)" />
+    </record>
+
+    <record id="project_a_3" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=824)" />
+    </record>
+
+    <record id="project_a_4" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=793)" />
+    </record>
+
+    <record id="project_b_0" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=167)" />
+    </record>
+
+    <record id="project_b_1" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=372)" />
+    </record>
+
+    <record id="project_b_2" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=972)" />
+    </record>
+
+    <record id="project_b_3" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=1)" />
+    </record>
+
+    <record id="project_c_0" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=536)" />
+    </record>
+
+    <record id="project_c_1" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=149)" />
+    </record>
+
+    <record id="project_c_2" model="project.project">
+        <field name="create_date" eval="DateTime.now() - relativedelta(days=753)" />
+    </record>
+</odoo>

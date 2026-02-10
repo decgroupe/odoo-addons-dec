@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="project_a_0" model="project.project">
+        <field name="name">Website Redesign (Type A)</field>
+        <field name="type_id" ref="project_type_a" />
+        <field name="dashboard_sequence" eval="1" />
+        <field name="user_id" eval="False" />
+    </record>
+
+    <record id="project_a_1" model="project.project">
+        <field name="name">Client Alpha Implementation (Type A)</field>
+        <field name="type_id" ref="project_type_a" />
+        <field name="dashboard_sequence" eval="2" />
+    </record>
+
+    <record id="project_a_2" model="project.project">
+        <field name="name">Audit 2026 (Type A)</field>
+        <field name="type_id" ref="project_type_a" />
+        <field name="dashboard_sequence" eval="False" />
+    </record>
+
+    <record id="project_a_3" model="project.project">
+        <field name="name">New Product Launch (Type A)</field>
+        <field name="type_id" ref="project_type_a" />
+        <field name="dashboard_sequence" eval="False" />
+    </record>
+
+    <record id="project_a_4" model="project.project">
+        <field name="name">Data Warehouse Setup (Type A)</field>
+        <field name="type_id" ref="project_type_a" />
+        <field name="dashboard_sequence" eval="False" />
+    </record>
+
+    <record id="project_b_0" model="project.project">
+        <field name="name">Office Renovation (Type B)</field>
+        <field name="type_id" ref="project_type_b" />
+        <field name="dashboard_sequence" eval="1" />
+    </record>
+
+    <record id="project_b_1" model="project.project">
+        <field name="name">Network Security Upgrade (Type B)</field>
+        <field name="type_id" ref="project_type_b" />
+        <field name="dashboard_sequence" eval="2" />
+    </record>
+
+    <record id="project_b_2" model="project.project">
+        <field name="name">Server Migration (Type B)</field>
+        <field name="type_id" ref="project_type_b" />
+        <field name="dashboard_sequence" eval="3" />
+    </record>
+
+    <record id="project_b_3" model="project.project">
+        <field name="name">Customer Support Portal (Type B)</field>
+        <field name="type_id" ref="project_type_b" />
+        <field name="dashboard_sequence" eval="False" />
+    </record>
+
+    <record id="project_c_0" model="project.project">
+        <field name="name">CRM Integration (Type C)</field>
+        <field name="type_id" ref="project_type_c" />
+        <field name="dashboard_sequence" eval="False" />
+    </record>
+
+    <record id="project_c_1" model="project.project">
+        <field name="name">Legacy System Phase-out (Type C)</field>
+        <field name="type_id" ref="project_type_c" />
+        <field name="dashboard_sequence" eval="1" />
+    </record>
+
+    <record id="project_c_2" model="project.project">
+        <field name="name">Cloud Infrastructure Upgrade (Type C)</field>
+        <field name="type_id" ref="project_type_c" />
+        <field name="dashboard_sequence" eval="2" />
+    </record>
+</odoo>

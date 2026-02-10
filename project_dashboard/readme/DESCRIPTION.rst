@@ -1,1 +1,0 @@
-Configure types to be displayed in a dashboard.

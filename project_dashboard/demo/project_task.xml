@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="task_a_0_0" model="project.task">
+        <field name="name">Development Sprint 1</field>
+        <field name="project_id" ref="project_a_0" />
+    </record>
+
+    <record id="task_a_0_1" model="project.task">
+        <field name="name">Unit Testing</field>
+        <field name="project_id" ref="project_a_0" />
+    </record>
+
+    <record id="task_a_0_2" model="project.task">
+        <field name="name">API Integration</field>
+        <field name="project_id" ref="project_a_0" />
+    </record>
+
+    <record id="task_a_0_3" model="project.task">
+        <field name="name">UAT</field>
+        <field name="project_id" ref="project_a_0" />
+    </record>
+
+    <record id="task_a_0_4" model="project.task">
+        <field name="name">Bug Fixes</field>
+        <field name="project_id" ref="project_a_0" />
+    </record>
+
+    <record id="task_a_1_0" model="project.task">
+        <field name="name">Unit Testing</field>
+        <field name="project_id" ref="project_a_1" />
+    </record>
+
+    <record id="task_a_1_1" model="project.task">
+        <field name="name">Deployment</field>
+        <field name="project_id" ref="project_a_1" />
+    </record>
+
+    <record id="task_a_1_2" model="project.task">
+        <field name="name">Design Phase</field>
+        <field name="project_id" ref="project_a_1" />
+    </record>
+
+    <record id="task_a_1_3" model="project.task">
+        <field name="name">Development Sprint 1</field>
+        <field name="project_id" ref="project_a_1" />
+    </record>
+
+    <record id="task_a_1_4" model="project.task">
+        <field name="name">API Integration</field>
+        <field name="project_id" ref="project_a_1" />
+    </record>
+
+    <record id="task_a_1_5" model="project.task">
+        <field name="name">Initial Meeting</field>
+        <field name="project_id" ref="project_a_1" />
+    </record>
+
+    <record id="task_a_2_0" model="project.task">
+        <field name="name">Bug Fixes</field>
+        <field name="project_id" ref="project_a_2" />
+    </record>
+
+    <record id="task_a_2_1" model="project.task">
+        <field name="name">Testing</field>
+        <field name="project_id" ref="project_a_2" />
+    </record>
+
+    <record id="task_a_2_2" model="project.task">
+        <field name="name">Feedback Session</field>
+        <field name="project_id" ref="project_a_2" />
+    </record>
+
+    <record id="task_a_2_3" model="project.task">
+        <field name="name">Requirement Analysis</field>
+        <field name="project_id" ref="project_a_2" />
+    </record>
+
+    <record id="task_a_2_4" model="project.task">
+        <field name="name">Project Sign-off</field>
+        <field name="project_id" ref="project_a_2" />
+    </record>
+
+    <record id="task_a_3_0" model="project.task">
+        <field name="name">Development Sprint 1</field>
+        <field name="project_id" ref="project_a_3" />
+    </record>
+
+    <record id="task_a_3_1" model="project.task">
+        <field name="name">Deployment</field>
+        <field name="project_id" ref="project_a_3" />
+    </record>
+
+    <record id="task_a_3_2" model="project.task">
+        <field name="name">Testing</field>
+        <field name="project_id" ref="project_a_3" />
+    </record>
+
+    <record id="task_a_3_3" model="project.task">
+        <field name="name">Requirement Analysis</field>
+        <field name="project_id" ref="project_a_3" />
+    </record>
+
+    <record id="task_a_3_4" model="project.task">
+        <field name="name">Project Sign-off</field>
+        <field name="project_id" ref="project_a_3" />
+    </record>
+
+    <record id="task_a_3_5" model="project.task">
+        <field name="name">Frontend Implementation</field>
+        <field name="project_id" ref="project_a_3" />
+    </record>
+
+    <record id="task_a_3_6" model="project.task">
+        <field name="name">Unit Testing</field>
+        <field name="project_id" ref="project_a_3" />
+    </record>
+
+    <record id="task_a_4_0" model="project.task">
+        <field name="name">Development Sprint 1</field>
+        <field name="project_id" ref="project_a_4" />
+    </record>
+
+    <record id="task_a_4_1" model="project.task">
+        <field name="name">Testing</field>
+        <field name="project_id" ref="project_a_4" />
+    </record>
+
+    <record id="task_a_4_2" model="project.task">
+        <field name="name">User Training</field>
+        <field name="project_id" ref="project_a_4" />
+    </record>
+
+    <record id="task_a_4_3" model="project.task">
+        <field name="name">Design Phase</field>
+        <field name="project_id" ref="project_a_4" />
+    </record>
+
+    <record id="task_a_4_4" model="project.task">
+        <field name="name">Deployment</field>
+        <field name="project_id" ref="project_a_4" />
+    </record>
+
+    <record id="task_a_4_5" model="project.task">
+        <field name="name">Feedback Session</field>
+        <field name="project_id" ref="project_a_4" />
+    </record>
+
+    <record id="task_b_0_0" model="project.task">
+        <field name="name">Backend Logic</field>
+        <field name="project_id" ref="project_b_0" />
+    </record>
+
+    <record id="task_b_0_1" model="project.task">
+        <field name="name">Feedback Session</field>
+        <field name="project_id" ref="project_b_0" />
+    </record>
+
+    <record id="task_b_0_2" model="project.task">
+        <field name="name">Deployment</field>
+        <field name="project_id" ref="project_b_0" />
+    </record>
+
+    <record id="task_b_0_3" model="project.task">
+        <field name="name">Project Sign-off</field>
+        <field name="project_id" ref="project_b_0" />
+    </record>
+
+    <record id="task_b_0_4" model="project.task">
+        <field name="name">Bug Fixes</field>
+        <field name="project_id" ref="project_b_0" />
+    </record>
+
+    <record id="task_b_0_5" model="project.task">
+        <field name="name">API Integration</field>
+        <field name="project_id" ref="project_b_0" />
+    </record>
+
+    <record id="task_b_0_6" model="project.task">
+        <field name="name">Unit Testing</field>
+        <field name="project_id" ref="project_b_0" />
+    </record>
+
+    <record id="task_b_1_0" model="project.task">
+        <field name="name">Frontend Implementation</field>
+        <field name="project_id" ref="project_b_1" />
+    </record>
+
+    <record id="task_b_1_1" model="project.task">
+        <field name="name">Requirement Analysis</field>
+        <field name="project_id" ref="project_b_1" />
+    </record>
+
+    <record id="task_b_1_2" model="project.task">
+        <field name="name">User Training</field>
+        <field name="project_id" ref="project_b_1" />
+    </record>
+
+    <record id="task_b_1_3" model="project.task">
+        <field name="name">Initial Meeting</field>
+        <field name="project_id" ref="project_b_1" />
+    </record>
+
+    <record id="task_b_1_4" model="project.task">
+        <field name="name">Testing</field>
+        <field name="project_id" ref="project_b_1" />
+    </record>
+
+    <record id="task_b_1_5" model="project.task">
+        <field name="name">Development Sprint 1</field>
+        <field name="project_id" ref="project_b_1" />
+    </record>
+
+    <record id="task_b_1_6" model="project.task">
+        <field name="name">Project Sign-off</field>
+        <field name="project_id" ref="project_b_1" />
+    </record>
+
+    <record id="task_b_2_0" model="project.task">
+        <field name="name">Backend Logic</field>
+        <field name="project_id" ref="project_b_2" />
+    </record>
+
+    <record id="task_b_2_1" model="project.task">
+        <field name="name">Documentation</field>
+        <field name="project_id" ref="project_b_2" />
+    </record>
+
+    <record id="task_b_2_2" model="project.task">
+        <field name="name">Bug Fixes</field>
+        <field name="project_id" ref="project_b_2" />
+    </record>
+
+    <record id="task_b_2_3" model="project.task">
+        <field name="name">Final Review</field>
+        <field name="project_id" ref="project_b_2" />
+    </record>
+
+    <record id="task_b_2_4" model="project.task">
+        <field name="name">Project Sign-off</field>
+        <field name="project_id" ref="project_b_2" />
+    </record>
+
+    <record id="task_b_2_5" model="project.task">
+        <field name="name">UAT</field>
+        <field name="project_id" ref="project_b_2" />
+    </record>
+
+    <record id="task_b_2_6" model="project.task">
+        <field name="name">Design Phase</field>
+        <field name="project_id" ref="project_b_2" />
+    </record>
+
+    <record id="task_b_3_0" model="project.task">
+        <field name="name">UAT</field>
+        <field name="project_id" ref="project_b_3" />
+    </record>
+
+    <record id="task_b_3_1" model="project.task">
+        <field name="name">Deployment</field>
+        <field name="project_id" ref="project_b_3" />
+    </record>
+
+    <record id="task_b_3_2" model="project.task">
+        <field name="name">Unit Testing</field>
+        <field name="project_id" ref="project_b_3" />
+    </record>
+
+    <record id="task_b_3_3" model="project.task">
+        <field name="name">Integration Testing</field>
+        <field name="project_id" ref="project_b_3" />
+    </record>
+
+    <record id="task_b_3_4" model="project.task">
+        <field name="name">Backend Logic</field>
+        <field name="project_id" ref="project_b_3" />
+    </record>
+
+    <record id="task_b_3_5" model="project.task">
+        <field name="name">Frontend Implementation</field>
+        <field name="project_id" ref="project_b_3" />
+    </record>
+
+    <record id="task_b_3_6" model="project.task">
+        <field name="name">Development Sprint 1</field>
+        <field name="project_id" ref="project_b_3" />
+    </record>
+
+    <record id="task_c_0_0" model="project.task">
+        <field name="name">API Integration</field>
+        <field name="project_id" ref="project_c_0" />
+    </record>
+
+    <record id="task_c_0_1" model="project.task">
+        <field name="name">Frontend Implementation</field>
+        <field name="project_id" ref="project_c_0" />
+    </record>
+
+    <record id="task_c_0_2" model="project.task">
+        <field name="name">Database Schema Design</field>
+        <field name="project_id" ref="project_c_0" />
+    </record>
+
+    <record id="task_c_0_3" model="project.task">
+        <field name="name">Integration Testing</field>
+        <field name="project_id" ref="project_c_0" />
+    </record>
+
+    <record id="task_c_1_0" model="project.task">
+        <field name="name">Requirement Analysis</field>
+        <field name="project_id" ref="project_c_1" />
+    </record>
+
+    <record id="task_c_1_1" model="project.task">
+        <field name="name">Feedback Session</field>
+        <field name="project_id" ref="project_c_1" />
+    </record>
+
+    <record id="task_c_1_2" model="project.task">
+        <field name="name">Bug Fixes</field>
+        <field name="project_id" ref="project_c_1" />
+    </record>
+
+    <record id="task_c_1_3" model="project.task">
+        <field name="name">Integration Testing</field>
+        <field name="project_id" ref="project_c_1" />
+    </record>
+
+    <record id="task_c_1_4" model="project.task">
+        <field name="name">Documentation</field>
+        <field name="project_id" ref="project_c_1" />
+    </record>
+
+    <record id="task_c_1_5" model="project.task">
+        <field name="name">Development Sprint 2</field>
+        <field name="project_id" ref="project_c_1" />
+    </record>
+
+    <record id="task_c_2_0" model="project.task">
+        <field name="name">Development Sprint 1</field>
+        <field name="project_id" ref="project_c_2" />
+    </record>
+
+    <record id="task_c_2_1" model="project.task">
+        <field name="name">Backend Logic</field>
+        <field name="project_id" ref="project_c_2" />
+    </record>
+
+    <record id="task_c_2_2" model="project.task">
+        <field name="name">Unit Testing</field>
+        <field name="project_id" ref="project_c_2" />
+    </record>
+
+    <record id="task_c_2_3" model="project.task">
+        <field name="name">User Training</field>
+        <field name="project_id" ref="project_c_2" />
+    </record>
+
+    <record id="task_c_2_4" model="project.task">
+        <field name="name">Requirement Analysis</field>
+        <field name="project_id" ref="project_c_2" />
+    </record>
+
+    <record id="task_c_2_5" model="project.task">
+        <field name="name">Deployment</field>
+        <field name="project_id" ref="project_c_2" />
+    </record>
+
+    <record id="task_c_2_6" model="project.task">
+        <field name="name">Integration Testing</field>
+        <field name="project_id" ref="project_c_2" />
+    </record>
+</odoo>

@@ -5,7 +5,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models
 from odoo.addons.tools_miscellaneous.tools.webclient import set_view_mode_first
-from odoo.addons.web.controllers.main import clean_action
+from odoo.addons.web.controllers.utils import clean_action
 
 
 class ProjectProject(models.Model):
@@ -23,7 +23,7 @@ class ProjectProject(models.Model):
 
     def _compute_kanban_description(self):
         for rec in self:
-            rec.kanban_description = rec.partner_shipping_id.display_name
+            rec.kanban_description = False # rec.partner_shipping_id.display_name
 
     def action_open_all_tasks(self, view_domain=False, view_type=False):
         action = self.env["ir.actions.actions"]._for_xml_id(
