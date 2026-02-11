@@ -68,156 +68,147 @@
                             - right for secondary actions. -->
                             <div class="row g-0 mb16 mt-1 me-2">
                                 <!-- Main action: To-Do button -->
-                                <div name="card_primary_left" class="col-6">
-                                    <button
-                                        class="btn btn-primary"
-                                        name="action_open_project_from_dashboard"
-                                        type="object"
-                                        context="{
-                                            'search_default_filter_task_todo': 1,
-                                            'search_default_filter_open_productions': 1
-                                        }"
-                                    >
-                                        <t
-                                        t-esc="record.todo_project_count.value"
-                                    /> To-do
-                                    </button>
-                                </div>
+                                <t t-call="cardLeft" />
                                 <!-- Secondary actions: other filters -->
-                                <div class="col-4 offset-1">
-                                    <!-- Unassigned with count -->
-                                    <div class="d-flex">
-                                        <a
-                                            name="action_open_project_from_dashboard"
-                                            type="object"
-                                            context="{
-                                                'search_default_unassigned_projects': 1,
-                                                'search_default_filter_task_todo': 1,
-                                                'search_default_filter_open_productions': 1
-                                            }"
-                                            class="mb0 me-auto fw-bold"
-                                        >Unassigned</a>
-                                        <t
-                                            t-esc="record.todo_project_count_unassigned.value"
-                                        />
-                                    </div>
-                                    <!-- Current Year with count -->
-                                    <div
-                                        class="d-flex"
-                                        t-if="1 or record.todo_project_count_year_nm0.value > 0"
-                                    >
-                                        <a
-                                            name="action_open_project_from_dashboard"
-                                            type="object"
-                                            context="{
-                                                'search_default_filter_year_current': 1,
-                                                'search_default_filter_task_todo': 1,
-                                                'search_default_filter_open_productions': 1
-                                            }"
-                                            class="mb0 me-auto fw-bold"
-                                        >Current Year</a>
-                                        <t
-                                            t-esc="record.todo_project_count_year_nm0.value"
-                                        />
-                                    </div>
-                                    <!-- Previous Year with count -->
-                                    <div
-                                        class="d-flex"
-                                        t-if="1 or record.todo_project_count_year_nm1.value > 0"
-                                    >
-                                        <a
-                                            name="action_open_project_from_dashboard"
-                                            type="object"
-                                            context="{
-                                                'search_default_filter_year_previous': 1,
-                                                'search_default_filter_task_todo': 1,
-                                                'search_default_filter_open_productions': 1
-                                            }"
-                                            class="mb0 me-auto fw-bold"
-                                        >Previous Year</a>
-                                        <t
-                                            t-esc="record.todo_project_count_year_nm1.value"
-                                        />
-                                    </div>
-                                    <!-- More Older with count -->
-                                    <div
-                                        class="d-flex"
-                                        t-if="1 or record.todo_project_count_year_nm2.value > 0"
-                                    >
-                                        <a
-                                            name="action_open_project_from_dashboard"
-                                            type="object"
-                                            context="{
-                                                'search_default_filter_year_older': 1,
-                                                'search_default_filter_task_todo': 1,
-                                                'search_default_filter_open_productions': 1
-                                            }"
-                                            class="mb0 me-auto fw-bold"
-                                        >More Older</a>
-                                        <t
-                                            t-esc="record.todo_project_count_year_nm2.value"
-                                        />
-                                    </div>
-                                </div>
+                                <t t-call="cardRight" />
                             </div>
                             <div class="row mt-3">
-                                <span
-                                    style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-                                >
-                                    <ul
-                                        class="list-group list-group-flush flex-wrap flex-row flex-lg-column"
-                                    >
-                                        <t
-                                            t-foreach="dashboard.projects"
-                                            t-as="project"
-                                        >
-                                            <li
-                                                class="list-group-item flex-grow-1"
-                                                style="padding: 0rem 0rem;"
-                                            >
-                                                <a
-                                                    type="object"
-                                                    name="action_open_project"
-                                                    title="Open project form"
-                                                    t-attf-context="{'project_id': #{project.id} }"
-                                                >
-                                                    <span
-                                                        style="display: inline-block; min-width: 14px; text-align: center;"
-                                                    >
-                                                        <t
-                                                            t-if="project.dashboard_sequence > 0"
-                                                        >
-                                                            <i
-                                                                class="fa fa-thumb-tack"
-                                                            />
-                                                        </t>
-                                                        <t t-else="">
-                                                            <i class="fa fa-star" />
-                                                        </t>
-                                                    </span>
-                                                </a>
-                                                <span>&amp;nbsp;</span>
-                                                <a
-                                                    name="action_open_project_tasks"
-                                                    type="object"
-                                                    title="View tasks"
-                                                    t-attf-context="{'project_id': #{project.id} }"
-                                                >
-                                                    <t t-esc="project.display_name" />
-                                                    <t
-                                                        t-if="project.kanban_description"
-                                                    >
-                                                        <t
-                                                            t-esc="project.kanban_description"
-                                                        />
-                                                    </t>
-                                                </a>
-                                            </li>
-                                        </t>
-                                    </ul>
-                                </span>
+                                <t t-call="cardBottom" />
                             </div>
                         </main>
+                    </t>
+                    <t t-name="cardLeft">
+                        <div class="col-6">
+                            <button
+                                class="btn btn-primary"
+                                name="action_open_project_from_dashboard"
+                                type="object"
+                                context="{
+                                    'search_default_filter_task_todo': 1,
+                                    'search_default_filter_open_productions': 1
+                                }"
+                            >
+                                <t t-esc="record.todo_project_count.value" /> To-do
+                            </button>
+                        </div>
+                    </t>
+                    <t t-name="cardRight">
+                        <div class="col-4 offset-1">
+                            <!-- Unassigned with count -->
+                            <div class="d-flex">
+                                <a
+                                    name="action_open_project_from_dashboard"
+                                    type="object"
+                                    context="{
+                                        'search_default_unassigned_projects': 1,
+                                        'search_default_filter_task_todo': 1,
+                                        'search_default_filter_open_productions': 1
+                                    }"
+                                    class="mb0 me-auto fw-bold"
+                                >Unassigned</a>
+                                <t t-esc="record.todo_project_count_unassigned.value" />
+                            </div>
+                            <!-- Current Year with count -->
+                            <div
+                                class="d-flex"
+                                t-if="1 or record.todo_project_count_year_nm0.value > 0"
+                            >
+                                <a
+                                    name="action_open_project_from_dashboard"
+                                    type="object"
+                                    context="{
+                                        'search_default_filter_year_current': 1,
+                                        'search_default_filter_task_todo': 1,
+                                        'search_default_filter_open_productions': 1
+                                    }"
+                                    class="mb0 me-auto fw-bold"
+                                >Current Year</a>
+                                <t t-esc="record.todo_project_count_year_nm0.value" />
+                            </div>
+                            <!-- Previous Year with count -->
+                            <div
+                                class="d-flex"
+                                t-if="1 or record.todo_project_count_year_nm1.value > 0"
+                            >
+                                <a
+                                    name="action_open_project_from_dashboard"
+                                    type="object"
+                                    context="{
+                                        'search_default_filter_year_previous': 1,
+                                        'search_default_filter_task_todo': 1,
+                                        'search_default_filter_open_productions': 1
+                                    }"
+                                    class="mb0 me-auto fw-bold"
+                                >Previous Year</a>
+                                <t t-esc="record.todo_project_count_year_nm1.value" />
+                            </div>
+                            <!-- More Older with count -->
+                            <div
+                                class="d-flex"
+                                t-if="1 or record.todo_project_count_year_nm2.value > 0"
+                            >
+                                <a
+                                    name="action_open_project_from_dashboard"
+                                    type="object"
+                                    context="{
+                                        'search_default_filter_year_older': 1,
+                                        'search_default_filter_task_todo': 1,
+                                        'search_default_filter_open_productions': 1
+                                    }"
+                                    class="mb0 me-auto fw-bold"
+                                >More Older</a>
+                                <t t-esc="record.todo_project_count_year_nm2.value" />
+                            </div>
+                        </div>
+                    </t>
+                    <t t-name="projectLine">
+                        <a
+                            type="object"
+                            name="action_open_project"
+                            title="Open project form"
+                            t-attf-context="{'project_id': #{project.id} }"
+                        >
+                            <span
+                                style="display: inline-block; min-width: 14px; text-align: center;"
+                            >
+                                <t t-if="project.dashboard_sequence > 0">
+                                    <i class="fa fa-thumb-tack" />
+                                </t>
+                                <t t-else="">
+                                    <i class="fa fa-star" />
+                                </t>
+                            </span>
+                        </a>
+                        <span>&amp;nbsp;</span>
+                        <a
+                            name="action_open_project_tasks"
+                            type="object"
+                            title="View tasks"
+                            t-attf-context="{'project_id': #{project.id} }"
+                        >
+                            <t t-esc="project.display_name" />
+                            <t t-if="project.kanban_description">
+                                <t t-esc="project.kanban_description" />
+                            </t>
+                        </a>
+                    </t>
+                    <t t-name="cardBottom">
+                        <span
+                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                        >
+                            <ul
+                                class="list-group list-group-flush flex-wrap flex-row flex-lg-column"
+                            >
+                                <t t-foreach="dashboard.projects" t-as="project">
+                                    <li
+                                        class="list-group-item flex-grow-1"
+                                        style="padding: 0rem 0rem;"
+                                    >
+                                        <t t-call="projectLine" />
+                                    </li>
+                                </t>
+                            </ul>
+                        </span>
                     </t>
                 </templates>
             </kanban>
