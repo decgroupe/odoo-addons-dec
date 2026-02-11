@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:55+0000\n"
-"PO-Revision-Date: 2023-11-28 09:55+0000\n"
+"POT-Creation-Date: 2026-06-03 10:17+0000\n"
+"PO-Revision-Date: 2026-06-03 10:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,26 +21,16 @@ msgid "Analytic Line"
 msgstr ""
 
 #. module: crm_timesheet_lead_context
-#: model:ir.model.fields,field_description:crm_timesheet_lead_context.field_account_analytic_line__display_name
-msgid "Display Name"
+#: model:ir.model.fields,help:crm_timesheet_lead_context.field_account_analytic_line__lead_id_domain
+msgid "Dynamic domain used for the `lead_id` field"
 msgstr ""
 
 #. module: crm_timesheet_lead_context
-#: model:ir.model.fields,field_description:crm_timesheet_lead_context.field_account_analytic_line__id
-msgid "ID"
+#: model:ir.model.fields,field_description:crm_timesheet_lead_context.field_account_analytic_line__lead_id
+msgid "Lead/Opportunity"
 msgstr ""
 
 #. module: crm_timesheet_lead_context
-#: model:ir.model.fields,help:crm_timesheet_lead_context.field_account_analytic_line__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: crm_timesheet_lead_context
-#: model:ir.model.fields,field_description:crm_timesheet_lead_context.field_account_analytic_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: crm_timesheet_lead_context
-#: model:ir.model.fields,field_description:crm_timesheet_lead_context.field_account_analytic_line__xid
-msgid "XML-ID"
+#: model:ir.model.fields,field_description:crm_timesheet_lead_context.field_account_analytic_line__lead_id_domain
+msgid "Lead/Opportunity Domain"
 msgstr ""

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field name="name">account.analytic.line.form@crm_timesheet_lead_context</field>
         <field name="model">account.analytic.line</field>
@@ -8,12 +7,12 @@
             name="inherit_id"
             ref="hr_timesheet_autofill.hr_timesheet_line_form_view"
         />
-        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
         <field name="priority">50</field>
         <field name="arch" type="xml">
             <field name="task_id" position="after">
                 <field
                     name="lead_id"
+                    groups="sales_team.group_sale_salesman"
                     context="{
                         'active_test': False,
                         'default_project_id': project_id,
@@ -23,5 +22,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
