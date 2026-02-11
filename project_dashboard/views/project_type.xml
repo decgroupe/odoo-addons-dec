@@ -29,7 +29,7 @@
     </record>
 
     <record model="ir.ui.view" id="project_type_kanban_view">
-        <field name="model">project.type.kanban</field>
+        <field name="name">project.type.kanban</field>
         <field name="model">project.type</field>
         <field name="arch" type="xml">
             <kanban highlight_color="color" create="false" can_open="false">

@@ -1,12 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2021
 
-from lxml import etree
 
-from odoo import _, api, fields, models
-
-from odoo.addons.tools_miscellaneous.tools.webclient import set_view_mode_first
-from odoo.addons.web.controllers.utils import clean_action
+from odoo import api, fields, models
 
 
 class ProjectProject(models.Model):
@@ -53,4 +49,3 @@ class ProjectProject(models.Model):
             else:
                 # fallback on `create_date` if no `type_id` or `date_field` defined
                 rec.type_date = rec.create_date
-

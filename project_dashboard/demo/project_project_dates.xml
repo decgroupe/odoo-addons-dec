@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="project_a_0" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=247)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_a_0')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=247)}" />
+    </function>
 
-    <record id="project_a_1" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=22)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_a_1')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=22)}" />
+    </function>
 
-    <record id="project_a_2" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=868)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_a_2')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=868)}" />
+    </function>
 
-    <record id="project_a_3" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=824)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_a_3')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=824)}" />
+    </function>
 
-    <record id="project_a_4" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=793)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_a_4')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=793)}" />
+    </function>
 
-    <record id="project_b_0" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=167)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_b_0')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=167)}" />
+    </function>
 
-    <record id="project_b_1" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=372)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_b_1')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=372)}" />
+    </function>
 
-    <record id="project_b_2" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=972)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_b_2')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=972)}" />
+    </function>
 
-    <record id="project_b_3" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=1)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_b_3')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=1)}" />
+    </function>
 
-    <record id="project_c_0" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=536)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_c_0')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=536)}" />
+    </function>
 
-    <record id="project_c_1" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=149)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_c_1')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=149)}" />
+    </function>
 
-    <record id="project_c_2" model="project.project">
-        <field name="create_date" eval="DateTime.now() - relativedelta(days=753)" />
-    </record>
+    <function model="project.project" name="write">
+        <value eval="[ref('project_dashboard.project_c_2')]" />
+        <value eval="{'create_date': DateTime.now() - relativedelta(days=753)}" />
+    </function>
 </odoo>

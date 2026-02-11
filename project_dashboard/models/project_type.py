@@ -5,7 +5,7 @@ import json
 import logging
 from datetime import datetime
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 from odoo.addons.tools_miscellaneous.tools.context import (
@@ -63,7 +63,7 @@ class ProjectType(models.Model):
         compute="_compute_todo_projects",
     )
     kanban_dashboard = fields.Text(
-        compute="_kanban_dashboard",
+        compute="_compute_kanban_dashboard",
     )
 
     def _get_dashboard_data(self):
@@ -104,7 +104,7 @@ class ProjectType(models.Model):
         return dashboard_data
 
     @api.depends("project_ids", "project_ids.task_ids")
-    def _kanban_dashboard(self):
+    def _compute_kanban_dashboard(self):
         dashboard_data = self._get_dashboard_data()
         for rec in self:
             rec.kanban_dashboard = json.dumps(dashboard_data[rec.id])
@@ -233,7 +233,8 @@ class ProjectType(models.Model):
         )
         try:
             ctx = safe_eval(action.get("context", "{}"), eval_ctx)
-        except:
+        except Exception as e:
+            _logger.error("Error while evaluating action context: %s", e)
             ctx = {}
         # Add or override `active_id` and `active_ids` otherwise the web
         # client keeps the `id` from the `project.type`
