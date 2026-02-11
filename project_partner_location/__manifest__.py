@@ -1,10 +1,12 @@
 {
     "name": "Project Partner Location",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "project",
+        "project_identification",
         "sale_timesheet_project",
         "sale_partner_location",
         "mrp_project_task",
@@ -15,5 +17,5 @@
         "views/project_project.xml",
         "views/project_task.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

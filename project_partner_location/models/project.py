@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class Project(models.Model):
@@ -34,57 +34,35 @@ class Project(models.Model):
         "contract_ids", "contract_ids.partner_shipping_id", "sale_order_id", "name"
     )
     def _compute_partner_shipping_id(self):
+        self.partner_shipping_id = False
         for rec in self:
             if rec.contract_ids:
                 contract_id = rec.contract_ids[0]
                 rec.partner_shipping_id = contract_id.partner_shipping_id
             elif rec.sale_order_id:
                 rec.partner_shipping_id = rec.sale_order_id.partner_shipping_id
-            elif rec.name:
+            else:
+                # fallback to search for a sale order with the same name as the project
                 sale_id = self.env["sale.order"].search(
                     [("name", "=", rec.name)], limit=1
                 )
                 if sale_id:
                     rec.partner_shipping_id = sale_id.partner_shipping_id
-                else:
-                    rec.partner_shipping_id = False
-            else:
-                rec.partner_shipping_id = False
 
     @api.depends(
         "partner_shipping_id",
         "partner_shipping_zip_id",
         "partner_id",
     )
-    def _get_name_identifications(self):
-        res = super()._get_name_identifications()
+    def _get_name_identifications(self, base_name=None):
+        res = super()._get_name_identifications(base_name=base_name)
         # Add partner and its location to quickly identify a contract
         if self.partner_shipping_id:
-            pre = self.partner_shipping_id._get_contact_type_emoji()
-            name = ("%s %s") % (pre, self.partner_shipping_id.display_name)
-            res.append(name)
-        if self.partner_shipping_zip_id:
-            name = ("🗺️ %s") % (self.partner_shipping_zip_id.display_name,)
-            res.append(name)
-        # Fallback to default `partner_id`
-        if not self.partner_shipping_id and self.partner_id:
-            pre = self.partner_id._get_contact_type_emoji()
-            name = ("%s %s") % (pre, self.partner_id.display_name)
-            res.append(name)
+            res.append(self.partner_shipping_id.display_name)
+            if self.partner_shipping_zip_id:
+                name = f"🗺️ {self.partner_shipping_zip_id.display_name}"
+                res.append(name)
+        elif self.partner_id:
+            # Fallback to default `partner_id`
+            res.append(self.partner_id.display_name)
         return res
-
-    def assign_partner_from_sale_order(self):
-        # This is intended to be a one-call fix after a paradigm change
-        # Note that no `onchange` will be called for a such editing
-        for rec in self:
-            partner_id = False
-            if rec.sale_order_id:
-                partner_id = rec.sale_order_id.partner_id
-            elif rec.name:
-                sale_id = self.env["sale.order"].search(
-                    [("name", "=", rec.name)], limit=1
-                )
-                if sale_id:
-                    partner_id = sale_id.partner_id
-            if partner_id and partner_id != rec.partner_id:
-                rec.partner_id = partner_id
