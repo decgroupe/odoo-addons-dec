@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2026
 
 from odoo.tests.common import TransactionCase
+from odoo.tools.safe_eval import safe_eval
 
 
 class TestProjectDashboard(TransactionCase):
@@ -102,3 +103,51 @@ class TestProjectDashboard(TransactionCase):
         data = types._get_dashboard_data()
         type_a_projects = data[self.type_a.id]["projects"]
         self.assertEqual(len(type_a_projects), 5)
+
+    def test_03_action_open_project(self):
+        # test action for 1st project of type A
+        action = self.type_a.with_context(
+            project_id=self.project_a_0.id
+        ).action_open_project()
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(action["view_type"], "form")
+        self.assertEqual(action["view_mode"], "form,list")
+        self.assertEqual(action["res_model"], "project.project")
+        self.assertEqual(action["target"], "current")
+        self.assertEqual(action["context"], {"project_id": self.project_a_0.id})
+        self.assertEqual(action["res_id"], self.project_a_0.id)
+
+    def test_04_action_open_project_tasks(self):
+        # test action for 1st project of type A
+        action = self.type_a.with_context(
+            project_id=self.project_a_0.id
+        ).action_open_project_tasks()
+        self.assertEqual(action["name"], "Tasks")
+        self.assertEqual(action["res_model"], "project.task")
+        # use `safe_eval` to replace `active_id` with its value in the domain
+        domain = safe_eval(action.get("domain"), action.get("context"))
+        self.assertEqual(
+            domain,
+            [
+                ("project_id", "=", self.project_a_0.id),
+                ("display_in_project", "=", True),
+            ],
+        )
+
+    def test_05_action_open_projects_from_dashboard(self):
+        # test action for 1st project of type A
+        action = self.type_a.action_open_projects_from_dashboard()
+        self.assertEqual(action["name"], "Project")
+        self.assertEqual(action["display_name"], "Project")
+        self.assertEqual(action["res_model"], "project.project")
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(
+            action["xml_id"], "project_dashboard.action_project_kanban_from_dashboard"
+        )
+        self.assertEqual(action["domain"], "[('type_id', 'child_of', active_id)]")
+        self.assertEqual(action["context"], "{'default_type_id': active_id}")
+        client_context = {"active_id": self.type_a.id}
+        # use `safe_eval` to replace `active_id` with its value in the domain
+        domain = safe_eval(action.get("domain"), client_context)
+        projects = self.env["project.project"].search(domain)
+        self.assertEqual(len(projects), 5)  # 5 projects

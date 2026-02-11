@@ -193,24 +193,14 @@ class ProjectType(models.Model):
                 ]
             )
 
-    def action_open_project_from_dashboard(self):
+    def action_open_projects_from_dashboard(self):
         action = self.env["ir.actions.actions"]._for_xml_id(
             "project_dashboard.action_project_kanban_from_dashboard"
         )
         context = safe_eval_action_context_string_to_dict(action)
         if len(self.ids) == 1:
-            if self.date_field:
-                context.update(
-                    {
-                        "date_field": self.date_field,
-                    }
-                )
             if self.open_default_groupby:
-                context.update(
-                    {
-                        "group_by": self.open_default_groupby,
-                    }
-                )
+                context.update({"group_by": self.open_default_groupby})
             ctx_as_string = safe_eval_active_context_dict_to_string(context)
             return dict(action, context=ctx_as_string)
         else:

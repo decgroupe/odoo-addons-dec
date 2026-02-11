@@ -81,7 +81,7 @@
                         <div class="col-6">
                             <button
                                 class="btn btn-primary"
-                                name="action_open_project_from_dashboard"
+                                name="action_open_projects_from_dashboard"
                                 type="object"
                                 context="{
                                     'search_default_filter_task_todo': 1,
@@ -97,7 +97,7 @@
                             <!-- Unassigned with count -->
                             <div class="d-flex">
                                 <a
-                                    name="action_open_project_from_dashboard"
+                                    name="action_open_projects_from_dashboard"
                                     type="object"
                                     context="{
                                         'search_default_unassigned_projects': 1,
@@ -114,7 +114,7 @@
                                 t-if="1 or record.todo_project_count_year_nm0.value > 0"
                             >
                                 <a
-                                    name="action_open_project_from_dashboard"
+                                    name="action_open_projects_from_dashboard"
                                     type="object"
                                     context="{
                                         'search_default_filter_year_current': 1,
@@ -131,7 +131,7 @@
                                 t-if="1 or record.todo_project_count_year_nm1.value > 0"
                             >
                                 <a
-                                    name="action_open_project_from_dashboard"
+                                    name="action_open_projects_from_dashboard"
                                     type="object"
                                     context="{
                                         'search_default_filter_year_previous': 1,
@@ -148,7 +148,7 @@
                                 t-if="1 or record.todo_project_count_year_nm2.value > 0"
                             >
                                 <a
-                                    name="action_open_project_from_dashboard"
+                                    name="action_open_projects_from_dashboard"
                                     type="object"
                                     context="{
                                         'search_default_filter_year_older': 1,

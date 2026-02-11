@@ -54,30 +54,3 @@ class ProjectProject(models.Model):
                 # fallback on `create_date` if no `type_id` or `date_field` defined
                 rec.type_date = rec.create_date
 
-    def action_open_all_tasks(self, view_domain=False, view_type=False):
-        action = self.env["ir.actions.actions"]._for_xml_id("project.action_view_task")
-        act = clean_action(action, self.env)
-
-        project_ids = self.ids
-        # We cannot rely on `self.ids` as it depends of loaded data in the
-        # web client (Expand Group or Load More UI actions), so we get back
-        # the original domain copied in context and we make our own search
-        # view_domain = self.env.context.get('view_domain')
-        if view_domain:
-            project_ids = self.search(view_domain).ids
-
-        act["context"] = {}
-        act["domain"] = [("project_id", "in", project_ids)]
-        if view_type:
-            act["views"] = set_view_mode_first(act["views"], view_type)
-
-        return act
-
-    def open_tasks(self):
-        # Override active_id and active_ids because they are probably project
-        # types
-        self_active = self.with_context(
-            active_id=self.id,
-            active_ids=self.ids,
-        )
-        return super(ProjectProject, self_active).open_tasks()
