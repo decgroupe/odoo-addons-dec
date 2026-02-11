@@ -73,11 +73,14 @@
                                         class="btn btn-primary"
                                         name="action_open_project_from_dashboard"
                                         type="object"
-                                        context="{'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}"
+                                        context="{
+                                            'search_default_filter_task_todo': 1,
+                                            'search_default_filter_open_productions': 1
+                                        }"
                                     >
                                         <t
                                         t-esc="record.todo_project_count.value"
-                                    /> To Do
+                                    /> To-do
                                     </button>
                                 </div>
                                 <!-- Secondary actions: other filters -->
@@ -87,7 +90,11 @@
                                         <a
                                             name="action_open_project_from_dashboard"
                                             type="object"
-                                            context="{'search_default_unassigned_projects': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}"
+                                            context="{
+                                                'search_default_unassigned_projects': 1,
+                                                'search_default_filter_task_todo': 1,
+                                                'search_default_filter_open_productions': 1
+                                            }"
                                             class="mb0 me-auto fw-bold"
                                         >Unassigned</a>
                                         <t
@@ -102,7 +109,11 @@
                                         <a
                                             name="action_open_project_from_dashboard"
                                             type="object"
-                                            context="{'search_default_filter_year_current': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}"
+                                            context="{
+                                                'search_default_filter_year_current': 1,
+                                                'search_default_filter_task_todo': 1,
+                                                'search_default_filter_open_productions': 1
+                                            }"
                                             class="mb0 me-auto fw-bold"
                                         >Current Year</a>
                                         <t
@@ -117,7 +128,11 @@
                                         <a
                                             name="action_open_project_from_dashboard"
                                             type="object"
-                                            context="{'search_default_filter_year_previous': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}"
+                                            context="{
+                                                'search_default_filter_year_previous': 1,
+                                                'search_default_filter_task_todo': 1,
+                                                'search_default_filter_open_productions': 1
+                                            }"
                                             class="mb0 me-auto fw-bold"
                                         >Previous Year</a>
                                         <t
@@ -132,7 +147,11 @@
                                         <a
                                             name="action_open_project_from_dashboard"
                                             type="object"
-                                            context="{'search_default_filter_year_older': 1, 'search_default_filter_task_todo': 1, 'search_default_filter_open_productions': 1}"
+                                            context="{
+                                                'search_default_filter_year_older': 1,
+                                                'search_default_filter_task_todo': 1,
+                                                'search_default_filter_open_productions': 1
+                                            }"
                                             class="mb0 me-auto fw-bold"
                                         >More Older</a>
                                         <t

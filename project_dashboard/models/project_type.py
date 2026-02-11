@@ -6,12 +6,12 @@ import logging
 from datetime import datetime
 
 from odoo import _, api, fields, models
+from odoo.tools.safe_eval import safe_eval
+
 from odoo.addons.tools_miscellaneous.tools.context import (
     safe_eval_action_context_string_to_dict,
     safe_eval_active_context_dict_to_string,
 )
-from odoo.tools.safe_eval import safe_eval
-
 
 _logger = logging.getLogger(__name__)
 
@@ -117,93 +117,79 @@ class ProjectType(models.Model):
         "project_ids.todo_production_count",
     )
     def _compute_todo_projects(self):
+        # zeroing all counts
         self.todo_project_count = 0
         self.todo_project_count_unassigned = 0
         self.todo_project_count_year_nm0 = 0
         self.todo_project_count_year_nm1 = 0
         self.todo_project_count_year_nm2 = 0
+
         Project = self.env["project.project"]
+        # keep only types with `date_field` set for the search and groupby to avoid
+        # unnecessary load of all projects of types without `date_field`
         type_ids = self.filtered("date_field")
-        dashboard_dates = []
-        for date in type_ids.mapped("date_field"):
-            if date not in dashboard_dates:
-                # Ensure that the named field exists in the model
-                if date in Project._fields:
-                    dashboard_dates.append(date)
-                else:
-                    _logger.warning(
-                        _("Field %s not found in %s model") % (date, Project)
-                    )
-        result_per_date_reference = {}
-        for date_field in dashboard_dates:
-            date_field_year = date_field + ":year"
-            child_ids = self.env["project.type"].search([("id", "child_of", self.ids)])
-            groupby = ["type_id", "user_id", date_field_year]
-            aggregates = ["__count"]
-            domain = [
-                ("type_id", "child_of", self.ids),
-                ("|"),
-                ("todo_task_count", ">", 0),
-                ("todo_production_count", ">", 0),
-            ]
-            fetch_data = Project._read_group(
-                domain=domain,
-                groupby=groupby,
-                aggregates=aggregates,
-            )
-            result_per_date_reference[date_field] = [
-                [
-                    type_id.id,  # type_id.id
-                    user_id.id,  # user_id.id
-                    date.year,  # date_field.year
-                    count,
-                ]
-                for type_id, user_id, date, count in fetch_data
-            ]
-
-        COL_TYPE = 0
-        COL_USER = 1
-        COL_DATE = 2
-        COL_COUNT = 3
-
+        # group by `type_id`, `user_id` and year of `type_date` (which is a copy of
+        # the content of the date field defined on type)
+        groupby = ["type_id", "user_id", "type_date:year"]
+        aggregates = ["__count"]
+        domain = [
+            ("type_id", "child_of", self.ids),
+            ("|"),
+            ("todo_task_count", ">", 0),
+            ("todo_production_count", ">", 0),
+        ]
+        fetch_data = Project._read_group(
+            domain=domain,
+            groupby=groupby,
+            aggregates=aggregates,
+        )
+        # map fetch_data to a dict with keys `type_id`, `user_id` and `year`
+        # for easier use in the loop below
+        result = [
+            {
+                "type_id": type_id.id,
+                "user_id": user_id.id,
+                "year": type_date.year,
+                "count": count,
+            }
+            for type_id, user_id, type_date, count in fetch_data
+        ]
+        # compute counts on project type based on the grouped data. We loop only on
+        # types with `date_field` defined to avoid unnecessary loops
         current_year = datetime.today().year
         for rec in type_ids:
-            if rec.date_field not in dashboard_dates:
-                # Ignore missing date field
-                continue
-            result = result_per_date_reference[rec.date_field]
             child_ids = self.env["project.type"].search([("id", "child_of", rec.id)])
             rec.todo_project_count = sum(
-                [r[COL_COUNT] for r in result if r[COL_TYPE] in child_ids.ids]
+                [r["count"] for r in result if r["type_id"] in child_ids.ids]
             )
             rec.todo_project_count_unassigned = sum(
                 [
-                    r[COL_COUNT]
+                    r["count"]
                     for r in result
-                    if r[COL_TYPE] in child_ids.ids and not r[COL_USER]
+                    if r["type_id"] in child_ids.ids and not r["user_id"]
                 ]
             )
             rec.todo_project_count_year_nm0 = sum(
                 [
-                    r[COL_COUNT]
+                    r["count"]
                     for r in result
-                    if r[COL_TYPE] in child_ids.ids and r[COL_DATE] == current_year
+                    if r["type_id"] in child_ids.ids and r["year"] == current_year
                 ]
             )
             rec.todo_project_count_year_nm1 = sum(
                 [
-                    r[COL_COUNT]
+                    r["count"]
                     for r in result
-                    if r[COL_TYPE] in child_ids.ids and r[COL_DATE] == current_year - 1
+                    if r["type_id"] in child_ids.ids and r["year"] == current_year - 1
                 ]
             )
             rec.todo_project_count_year_nm2 = sum(
                 [
-                    r[COL_COUNT]
+                    r["count"]
                     for r in result
-                    if r[COL_TYPE] in child_ids.ids
-                    and r[COL_DATE]
-                    and r[COL_DATE] <= current_year - 2
+                    if r["type_id"] in child_ids.ids
+                    and r["year"]
+                    and r["year"] <= current_year - 2
                 ]
             )
 

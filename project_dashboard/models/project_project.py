@@ -4,6 +4,7 @@
 from lxml import etree
 
 from odoo import _, api, fields, models
+
 from odoo.addons.tools_miscellaneous.tools.webclient import set_view_mode_first
 from odoo.addons.web.controllers.utils import clean_action
 
@@ -12,6 +13,14 @@ class ProjectProject(models.Model):
     _inherit = "project.project"
     _order = "dashboard_sequence desc, sequence, name, id"
 
+    type_date = fields.Date(
+        string="Type Date",
+        compute="_compute_type_date",
+        store=True,
+        help="Date used as reference for computing projects count per year on "
+        "dashboard. It is a copy of the date field defined on project type, but "
+        "stored on project to be able to use it in search domain, group by and views.",
+    )
     dashboard_sequence = fields.Integer(
         string="Dashboard Position",
         default=0,
@@ -21,14 +30,32 @@ class ProjectProject(models.Model):
 
     kanban_description = fields.Char(compute="_compute_kanban_description")
 
+    def write(self, vals):
+        result = super().write(vals)
+        if result:
+            date_fields = self.mapped("type_id").mapped("date_field")
+            # check if one of the `date_fields` is in vals, if yes, then update
+            # `type_date` for all projects
+            if any(date_field in vals for date_field in date_fields):
+                self._compute_type_date()
+        return result
+
     def _compute_kanban_description(self):
         for rec in self:
-            rec.kanban_description = False # rec.partner_shipping_id.display_name
+            rec.kanban_description = False  # rec.partner_shipping_id.display_name
+
+    @api.depends("type_id", "type_id.date_field")
+    def _compute_type_date(self):
+        for rec in self:
+            date_field = rec.type_id.date_field
+            if date_field and date_field in rec._fields:
+                rec.type_date = getattr(rec, date_field, False)
+            else:
+                # fallback on `create_date` if no `type_id` or `date_field` defined
+                rec.type_date = rec.create_date
 
     def action_open_all_tasks(self, view_domain=False, view_type=False):
-        action = self.env["ir.actions.actions"]._for_xml_id(
-            "project.action_view_task"
-        )
+        action = self.env["ir.actions.actions"]._for_xml_id("project.action_view_task")
         act = clean_action(action, self.env)
 
         project_ids = self.ids
@@ -54,39 +81,3 @@ class ProjectProject(models.Model):
             active_ids=self.ids,
         )
         return super(ProjectProject, self_active).open_tasks()
-
-    @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super(ProjectProject, self).fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
-        )
-        if view_type == "search":
-            date_field = self.env.context.get("date_field", False)
-            if date_field:
-                res["arch"] = self._add_year_filters(res["arch"], date_field)
-        return res
-
-    @api.model
-    def _add_year_filters(self, view_arch, date_field):
-        doc = etree.XML(view_arch)
-        for node in doc.xpath("//separator[last()]"):
-            extra_nodes = [
-                "<separator/>",
-                """<filter string="{0}" name="filter_year_older" domain="[('{1}', '&lt;=', (datetime.date.today() - relativedelta(years=2)).strftime('%Y-12-31')),]"/>""".format(
-                    _("More Older"), date_field
-                ),
-                """<filter string="{0}" name="filter_year_previous" domain="[('{1}', '&gt;=', (datetime.date.today() - relativedelta(years=1)).strftime('%Y-01-01')),('{1}', '&lt;', datetime.date.today().strftime('%Y-01-01')),]"/>""".format(
-                    _("Previous Year"), date_field
-                ),
-                """<filter string="{0}" name="filter_year_current" domain="[('{1}', '&gt;=', datetime.date.today().strftime('%Y-01-01'))]"/>""".format(
-                    _("Current Year"), date_field
-                ),
-            ]
-
-            for extra_node in extra_nodes:
-                new_node = etree.XML(extra_node)
-                node.addnext(new_node)
-
-        return etree.tostring(doc, encoding="unicode")
