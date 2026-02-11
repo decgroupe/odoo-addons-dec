@@ -14,7 +14,7 @@
                     <small>
                         <div name="project_id">
                             <a name="action_view_project_form" type="object">
-                                <div class="o_kanban_project_title">
+                                <div class="o_kanban_project_title text-truncate">
                                     <i class="fa fa-puzzle-piece" />
                                     <span>&amp;nbsp;</span>
                                     <t t-esc="record.project_id.value" />

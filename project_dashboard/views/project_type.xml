@@ -97,7 +97,7 @@
                         </main>
                     </t>
                     <t t-name="cardLeft">
-                        <div class="col-6">
+                        <div class="col-3">
                             <button
                                 class="btn btn-primary"
                                 name="action_open_projects_from_dashboard"
@@ -112,7 +112,7 @@
                         </div>
                     </t>
                     <t t-name="cardRight">
-                        <div class="col-4 offset-1">
+                        <div class="col-7 offset-1">
                             <!-- Unassigned with count -->
                             <div class="d-flex">
                                 <a
@@ -212,9 +212,7 @@
                         </a>
                     </t>
                     <t t-name="cardBottom">
-                        <span
-                            style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-                        >
+                        <span class="text-truncate">
                             <ul
                                 class="list-group list-group-flush flex-wrap flex-row flex-lg-column"
                             >
