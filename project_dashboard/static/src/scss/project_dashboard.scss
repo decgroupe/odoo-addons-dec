@@ -1,0 +1,17 @@
+.o_kanban_record_supertop {
+    margin: -8px -8px 8px -8px;
+    padding: 4px 4px 4px 8px;
+    box-shadow: 0px 2px 3px #c7c7c7;
+    background-color: #fafafa;
+    // background-color: $o-action;
+    // color: white;
+    height: 30px;
+
+    .o_kanban_project_title {
+        // color: white;
+        color: rgb(95, 95, 95);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

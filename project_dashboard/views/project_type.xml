@@ -45,10 +45,29 @@
                     <t t-name="menu">
                         <a
                             role="menuitem"
-                            name="%(action_project_kanban_from_dashboard)d"
-                            type="action"
+                            name="action_open_all_projects"
+                            type="object"
                             class="dropdown-item"
-                        >View All Tasks</a>
+                        >Projects</a>
+                        <a
+                            role="menuitem"
+                            name="action_open_all_projects_tasks"
+                            type="object"
+                            class="dropdown-item"
+                        >Tasks</a>
+                        <div role="separator" class="dropdown-divider" />
+                        <a
+                            class="dropdown-item"
+                            role="menuitem"
+                            type="open"
+                            groups="!project.group_project_manager"
+                        >View</a>
+                        <a
+                            class="dropdown-item"
+                            role="menuitem"
+                            type="open"
+                            groups="project.group_project_manager"
+                        >Settings</a>
                         <div role="separator" class="dropdown-divider" />
                         <field name="color" widget="kanban_color_picker" />
                     </t>

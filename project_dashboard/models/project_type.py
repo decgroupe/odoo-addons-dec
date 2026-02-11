@@ -123,6 +123,7 @@ class ProjectType(models.Model):
         self.todo_project_count_year_nm0 = 0
         self.todo_project_count_year_nm1 = 0
         self.todo_project_count_year_nm2 = 0
+        current_year = datetime.today().year
 
         Project = self.env["project.project"]
         # keep only types with `date_field` set for the search and groupby to avoid
@@ -149,14 +150,14 @@ class ProjectType(models.Model):
             {
                 "type_id": type_id.id,
                 "user_id": user_id.id,
-                "year": type_date.year,
+                "year": type_date.year if type_date else current_year,
                 "count": count,
             }
             for type_id, user_id, type_date, count in fetch_data
         ]
         # compute counts on project type based on the grouped data. We loop only on
         # types with `date_field` defined to avoid unnecessary loops
-        current_year = datetime.today().year
+
         for rec in type_ids:
             child_ids = self.env["project.type"].search([("id", "child_of", rec.id)])
             rec.todo_project_count = sum(
@@ -243,3 +244,13 @@ class ProjectType(models.Model):
             }
         )
         return dict(action, context=ctx)
+
+    def action_open_all_projects(self):
+        # use action from `project_action_view`
+        action = self.mapped("project_ids").action_view()
+        return action
+
+    def action_open_all_projects_tasks(self):
+        # use action from `project_action_view`
+        action = self.mapped("project_ids").action_view_all_tasks()
+        return action

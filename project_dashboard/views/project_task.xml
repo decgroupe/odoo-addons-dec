@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_task_kanban">
+        <field name="name">project.task.kanban@project_dashboard</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//t[@t-name='card']/main/*[1]" position="before">
+                <div name="supertop" class="o_kanban_record_supertop" t-if="record.project_id.raw_value">
+                    <small>
+                        <div name="project_id" >
+                            <a name="action_view_project_form" type="object">
+                                <div class="o_kanban_project_title">
+                                    <i class="fa fa-puzzle-piece" />
+                                    <span>&amp;nbsp;</span>
+                                    <t t-esc="record.project_id.value" />
+                                </div>
+                            </a>
+                        </div>
+                    </small>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
