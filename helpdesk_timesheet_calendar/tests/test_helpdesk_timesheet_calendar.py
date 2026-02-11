@@ -5,8 +5,9 @@ from odoo.tests.common import TransactionCase
 
 
 class TestHelpdeskTimesheetCalendar(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    """Tests for helpdesk_timesheet_calendar module."""
 
-    # def test_01_(self):
-    #     pass
+    @classmethod
+    def setUpClass(cls):
+        """Set up shared test data."""
+        super().setUpClass()
