@@ -7,7 +7,7 @@
     "depends": [
         "project_action_view",
         "project_type",  # was "project_category"
-        # "project_partner_location",
+        "project_partner_location",
         "project_task_count",  # for `todo_task_count`
         "mrp_project",  # for `todo_production_count`
     ],

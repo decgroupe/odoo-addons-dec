@@ -38,7 +38,7 @@ class ProjectProject(models.Model):
 
     def _compute_kanban_description(self):
         for rec in self:
-            rec.kanban_description = False  # rec.partner_shipping_id.display_name
+            rec.kanban_description = rec.partner_shipping_id.display_name
 
     @api.depends("type_id", "type_id.date_field")
     def _compute_type_date(self):
