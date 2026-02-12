@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_bom_form_view">
         <field name="name">mrp.bom.form@mrp_bom_prices</field>
         <field name="model">mrp.bom</field>
@@ -8,7 +7,7 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='bom_line_ids']/tree//field[@name='product_uom_id']"
+                expr="//field[@name='bom_line_ids']/list//field[@name='product_uom_id']"
                 position="after"
             >
                 <field name="public_price" />
@@ -31,5 +30,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

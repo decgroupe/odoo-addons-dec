@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class MrpBom(models.Model):

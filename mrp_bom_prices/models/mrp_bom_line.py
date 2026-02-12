@@ -11,12 +11,10 @@ class MrpBomLine(models.Model):
         compute="_compute_prices",
         digits="Purchase Price",
     )
-
     unit_price = fields.Float(
         compute="_compute_prices",
         digits="Purchase Price",
     )
-
     public_price = fields.Float(
         compute="_compute_prices",
         digits="Purchase Price",
@@ -34,21 +32,20 @@ class MrpBomLine(models.Model):
         self.unit_price = 0
         self.cost_price = 0
         self.public_price = 0
-        for line in self:
-            if line.product_id:
-                # Get purchase/cost price
-                if line.seller_id:
-                    price = line.seller_id.list_price_unit
-                else:
-                    price = line.product_id.standard_price
-                line.unit_price = line.product_id.uom_id._compute_price(
-                    price,
-                    line.product_uom_id,
-                )
-                # Compute total cost price
-                line.cost_price = line.unit_price * line.product_qty
-                # Compute public price
-                line.public_price = line.product_id.uom_id._compute_price(
-                    line.product_id.lst_price,
-                    line.product_uom_id,
-                )
+        for rec in self.filtered("product_id"):
+            # Get purchase/cost price
+            if rec.seller_id:
+                price = rec.seller_id.list_price_unit
+            else:
+                price = rec.product_id.standard_price
+            rec.unit_price = rec.product_id.uom_id._compute_price(
+                price,
+                rec.product_uom_id,
+            )
+            # Compute total cost price
+            rec.cost_price = rec.unit_price * rec.product_qty
+            # Compute public price
+            rec.public_price = rec.product_id.uom_id._compute_price(
+                rec.product_id.lst_price,
+                rec.product_uom_id,
+            )
