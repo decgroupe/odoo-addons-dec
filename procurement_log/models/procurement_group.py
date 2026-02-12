@@ -3,13 +3,22 @@
 
 import logging
 
-from odoo import _, api, models
+from odoo import api, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
 
 class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
+
+    def test_create_product_exception(self, product_data, message, user_id):
+        product_id = self.env["product.product"].create(product_data)
+        try:
+            with self._cr.savepoint():
+                raise UserError(message)
+        except UserError as e:
+            self._log_exception(product_id, e.args[0], user_id)
 
     def _log_exception(self, product_id, message, user_id):
         # Create a new cursor to save this exception activity in database
@@ -29,11 +38,12 @@ class ProcurementGroup(models.Model):
                 log_to_current_transaction = False
                 if _self._log_exception_as_activity(_product_id, message, _user_id):
                     # Commit this created activity to keep it even after a rollback
-                    cr.commit()
+                    env0.cr.commit()
             else:
                 log_to_current_transaction = True
         # The product has probably been created in the current transaction, so we also
-        # log this exception activity into it
+        # log this exception activity into it, because if a rollback happens, there is
+        # no reason to keep an activity for a product that won't exist.
         if log_to_current_transaction:
             self._log_exception_as_activity(product_id, message, user_id)
 
@@ -56,23 +66,19 @@ class ProcurementGroup(models.Model):
                 "mail.mail_activity_data_warning", raise_if_not_found=False
             )
             _logger.info(
-                "Creating new exception (Activity): {}: {}".format(
-                    product_id.display_name,
-                    note,
-                )
+                f"Creating new exception (Activity): {product_id.display_name}: {note}"
             )
             activity_data = {
+                "automated": True,
                 "activity_type_id": activity_type_id and activity_type_id.id or False,
                 "note": note,
-                "summary": _("Exception"),
+                "summary": self.env._("Exception"),
                 "user_id": user_id.id,
                 "res_id": product_id.id,
                 "res_model_id": model_product_product.id,
             }
             _logger.info(activity_data)
-            activity_id = MailActivity.create(activity_data)
-            # call flush to ensure computed fields (like res_model) are written to DB
-            activity_id.flush()
+            _activity_id = MailActivity.create(activity_data)
             return True
         else:
             return False
