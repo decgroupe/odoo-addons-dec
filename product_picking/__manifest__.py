@@ -1,6 +1,7 @@
 {
     "name": "Product Picking",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -10,5 +11,5 @@
         "views/product_template.xml",
         "views/product_product.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
