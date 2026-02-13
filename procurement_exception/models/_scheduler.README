@@ -1,18 +1,18 @@
 SIMPLE ANALYZE OF ODOO'S NEW PROCUREMENT PROCESS
 
 #   addons\stock\wizard\stock_scheduler_compute.py
-('stock.scheduler.compute')._procure_calculation_orderpoint 
-    """ 
+('stock.scheduler.compute')._procure_calculation_orderpoint
+    """
     Run Scheduler Manually and internally call:
     ('procurement.group').run_scheduler()
     """
 
 # addons\stock\models\stock_rule.py
 ('procurement.group').run_scheduler()
-    """ 
-    Call the scheduler as SUPERUSER in order to check the running procurements 
-    (super method), to check the minimum stock rules and the availability 
-    of moves. 
+    """
+    Call the scheduler as SUPERUSER in order to check the running procurements
+    (super method), to check the minimum stock rules and the availability
+    of moves.
     """
 
 # addons\stock_account\models\stock.py
@@ -21,15 +21,15 @@ SIMPLE ANALYZE OF ODOO'S NEW PROCUREMENT PROCESS
 
 # addons\stock\models\stock_rule.py
 ('procurement.group')._run_scheduler_tasks()
-    """ 
+    """
     Minimum stock rules => _procure_orderpoint_confirm
         Search all confirmed stock_moves and try to assign them
-        Merge duplicated quants 
+        Merge duplicated quants
     """
 
 # addons\stock\models\stock_rule.py
 ('procurement.group')._procure_orderpoint_confirm()
-    """ 
+    """
     Create procurements based on orderpoints.
 
         foreach orderpoint:

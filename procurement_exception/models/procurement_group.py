@@ -2,8 +2,9 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
 from odoo import api, models
-from odoo.addons.stock.models.stock_rule import ProcurementException
 from odoo.exceptions import MissingError, UserError
+
+from odoo.addons.stock.models.stock_rule import ProcurementException
 
 
 class ProcurementGroup(models.Model):
@@ -23,11 +24,14 @@ class ProcurementGroup(models.Model):
         except ProcurementException as proc_except:
             # Try to intercept and then re-raise the same exception but rebuilt from
             # scratch (ProcurementException -> UserError) if `raise_user_error=True`
-            self._try_intercept_exception(proc_except, raise_user_error)
+            self.with_context(silent_UserError=True)._try_intercept_exception(
+                proc_except, raise_user_error
+            )
         return res
 
     @api.model
     def _action_confirm_one_move(self, move):
+        # from `procurement_run_mto`
         """This method override existing one to catch UserError and call
         a custom implementation of _log_next_activity to redirect the error
         according to settings of this module.
@@ -43,13 +47,15 @@ class ProcurementGroup(models.Model):
             return None
         try:
             with self._cr.savepoint():
-                super()._action_confirm_one_move(move)
+                return super()._action_confirm_one_move(move)
         except UserError as user_error:
             # Try to intercept and then re-raise exception if needed
             self._try_intercept_user_error(user_error, product_id)
+            return None
 
     @api.model
     def _action_cannot_reorder_product(self, product_id):
+        # from `procurement_run_mts`
         """This method override existing one to catch UserError and call
         a custom implementation of _log_next_activity to redirect the error
         according to settings of this module.
@@ -57,13 +63,14 @@ class ProcurementGroup(models.Model):
         """
         try:
             with self._cr.savepoint():
-                super()._action_cannot_reorder_product(product_id)
+                return super()._action_cannot_reorder_product(product_id)
         except UserError as user_error:
             # Try to intercept and then re-raise exception if needed
             self._try_intercept_user_error(user_error, product_id)
+            return None
 
     def _try_intercept_user_error(self, user_error, product_id, raise_user_error=True):
-        error = user_error.name
+        error = user_error.args[0] if user_error.args else ""
         redirections = self.env["procurement.exception"].search([])
         for redirection in redirections:
             if redirection.user_id and redirection.match(product_id, error):
@@ -79,11 +86,11 @@ class ProcurementGroup(models.Model):
         procurement_errors = proc_except.procurement_exceptions
         for procurement, error in procurement_errors:
             product_id = procurement.product_id
-            self._log_redirected_exception(procurement.product_id, error)
+            self._log_redirected_exception(product_id, error)
         # We can finally re-raise the original exception or convert it to `UserError`
         # if requested by `raise_user_error`
         if raise_user_error:
-            dummy, errors = zip(*procurement_errors)
+            _dummy, errors = zip(*procurement_errors, strict=True)
             raise UserError("\n".join(errors))
         else:
             raise proc_except
