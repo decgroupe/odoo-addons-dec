@@ -8,7 +8,6 @@
         "stock",
         "mrp",
         "purchase_stock",
-        "procurement_log",
         "stock_orderpoint_traceability",
     ],
     "data": [],

@@ -1,8 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
+import logging
+
 from odoo import _, api, models
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 
 class ProcurementGroup(models.Model):
@@ -50,8 +54,13 @@ class ProcurementGroup(models.Model):
             try:
                 with self._cr.savepoint():
                     self._action_cannot_reorder_product(product_id)
+            # only catch UserError
             except UserError as error:
-                self._log_exception(product_id, error.name, self.env.user)
+                _logger.exception(
+                    "Error while reodering product %s: %s",
+                    product_id.display_name,
+                    error,
+                )
 
     @api.model
     def _get_mts_moves_to_reorder(self):
