@@ -10,16 +10,33 @@ class ProcurementGroup(models.Model):
 
     @api.model
     def _run_scheduler_tasks(self, use_new_cursor=False, company_id=False):
-        # Check confirmed moves in MO or pickings
-        self.sudo()._try_mts_moves_without_orderpoint(
+        # check confirmed moves in MO or pickings
+        self.sudo()._try_mts_moves_without_orderpoint(company_id=company_id)
+        result = super()._run_scheduler_tasks(
             use_new_cursor=use_new_cursor, company_id=company_id
         )
-        super(ProcurementGroup, self)._run_scheduler_tasks(
-            use_new_cursor=use_new_cursor, company_id=company_id
-        )
+        # basic copy/paste of odoo's original code
+        if "scheduler_task_done" in self._context:
+            task_done = (
+                self._context.get("scheduler_task_done", {"task_done": 0})["task_done"]
+                + 1
+            )
+            self._context["scheduler_task_done"]["task_done"] = task_done
+        else:
+            task_done = self._get_scheduler_tasks_to_do()
+        if use_new_cursor:
+            self.env["ir.cron"]._notify_progress(
+                done=task_done, remaining=self._get_scheduler_tasks_to_do() - task_done
+            )
+            self.env.cr.commit()  # pylint: disable=E8102
+        return result
 
     @api.model
-    def _try_mts_moves_without_orderpoint(self, use_new_cursor=False, company_id=False):
+    def _get_scheduler_tasks_to_do(self):
+        return super()._get_scheduler_tasks_to_do() + 1
+
+    @api.model
+    def _try_mts_moves_without_orderpoint(self, company_id=False):
         if company_id and self.env.user.company_id.id != company_id:
             # To ensure that the company_id is taken into account for
             # all the processes triggered by this method
@@ -35,8 +52,6 @@ class ProcurementGroup(models.Model):
                     self._action_cannot_reorder_product(product_id)
             except UserError as error:
                 self._log_exception(product_id, error.name, self.env.user)
-        if use_new_cursor:
-            self._cr.commit()
 
     @api.model
     def _get_mts_moves_to_reorder(self):
@@ -57,16 +72,16 @@ class ProcurementGroup(models.Model):
 
     @api.model
     def _filter_mts_picking_moves_to_reorder(self, picking_ids):
-        return picking_ids.mapped("move_lines").filtered(
+        return picking_ids.mapped("move_ids").filtered(
             lambda x: x.state in ("confirmed")
             and x.procure_method == "make_to_stock"
             and x.product_id.nbr_reordering_rules == 0
             and x.location_id == self.env.ref("stock.stock_location_stock")
-            and x.created_purchase_line_id.id == False
-            and x.move_orig_ids.purchase_line_id.id == False
-            and x.created_production_id.id == False
-            and x.orderpoint_created_production_ids.ids == []
-            and x.orderpoint_created_purchase_line_ids.ids == []
+            and not x.created_purchase_line_ids
+            and not x.move_orig_ids.purchase_line_id
+            and not x.created_production_id
+            and not x.orderpoint_created_production_ids
+            and not x.orderpoint_created_purchase_line_ids
         )
 
     @api.model
@@ -76,11 +91,11 @@ class ProcurementGroup(models.Model):
             and x.procure_method == "make_to_stock"
             and x.product_id.nbr_reordering_rules == 0
             and x.location_id == self.env.ref("stock.stock_location_stock")
-            and x.created_purchase_line_id.id == False
-            and x.move_orig_ids.purchase_line_id.id == False
-            and x.created_production_id.id == False
-            and x.orderpoint_created_production_ids.ids == []
-            and x.orderpoint_created_purchase_line_ids.ids == []
+            and not x.created_purchase_line_ids
+            and not x.move_orig_ids.purchase_line_id
+            and not x.created_production_id
+            and not x.orderpoint_created_production_ids
+            and not x.orderpoint_created_purchase_line_ids
         )
 
     @api.model
