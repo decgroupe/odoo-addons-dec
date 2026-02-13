@@ -6,7 +6,7 @@
     "website": "https://decgroupe.com",
     "depends": [
         "stock",
-        "procurement_log",
+        "mail",
         "procurement_run_mto",  # to intercept `_action_confirm_one_move`
         "procurement_run_mts",  # to intercept `_action_cannot_reorder_product`
         "procurement_run_manufacture_warnings",  # to restore old warnings about no/empty BOM  # noqa: E501
