@@ -54,7 +54,7 @@ class ProcurementGroup(models.Model):
         moves_to_confirm = self._get_mto_moves_to_confirm()
         for move in moves_to_confirm:
             try:
-                product_id = move.product_id
+                _product_id = move.product_id
             except MissingError:
                 # When this function is called from a loop, then since
                 # _action_confirm is allowed to merge moves with same
@@ -64,8 +64,9 @@ class ProcurementGroup(models.Model):
             try:
                 with self._cr.savepoint():
                     self._action_confirm_one_move(move)
+            # only catch UserError
             except UserError as error:
-                self._log_exception(product_id, error.name, self.env.user)
+                _logger.exception("Error while confirming move %s: %s", move.id, error)
 
     @api.model
     def _get_mto_moves_to_confirm(self):
