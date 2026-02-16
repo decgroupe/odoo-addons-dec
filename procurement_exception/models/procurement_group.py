@@ -2,6 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
 import logging
+from hashlib import sha256
 
 from odoo import api, models
 from odoo.exceptions import MissingError, UserError
@@ -9,6 +10,7 @@ from odoo.exceptions import MissingError, UserError
 from odoo.addons.stock.models.stock_rule import ProcurementException
 
 _logger = logging.getLogger(__name__)
+
 
 class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
@@ -99,12 +101,21 @@ class ProcurementGroup(models.Model):
             raise proc_except
 
     def _log_redirected_exception(self, product_id, error):
+        redirect_rule = self.env["procurement.exception"]
         redirections = self.env["procurement.exception"].search([])
         for redirection in redirections:
             if redirection.user_id and redirection.match(product_id, error):
-                self._log_exception(product_id, error, redirection.user_id)
+                redirect_rule = redirection
                 # Stop after first redirection match
                 break
+
+        if redirect_rule:
+            self._log_exception(product_id, error, redirect_rule.user_id)
+        else:
+            _logger.info(
+                f"No redirection found for procurement exception of "
+                f"product {product_id.display_name} with error: {error}"
+            )
 
     def _log_exception(self, product_id, message, user_id):
         # Create a new cursor to save this exception activity in database
@@ -134,20 +145,27 @@ class ProcurementGroup(models.Model):
             self._log_exception_as_activity(product_id, message, user_id)
 
     def _log_exception_as_activity(self, product_id, message, user_id):
-        # note = tools.plaintext2html(message)
-        note = message
+        # it is difficult to retrieve an activity with the exact same note since the
+        # plaintext message is saved as html (tags are added, newline chars are lost).
+        # To simplify the search, we create a checksum of the message that will be
+        # added at the end of the note.
+        # The best would be to use a dedicated field (GUID) for a unique error
+        # identifier, independant from the message and its translation.
+        hash_message = sha256(message.encode("utf-8")).hexdigest()[:8]
+        footer = f"Exception-Checksum:{hash_message}"
+        note = f"{message}\n\n<p><small>{footer}</small></p>"
         MailActivity = self.env["mail.activity"]
         model_product_product = self.env.ref("product.model_product_product")
         existing_activity = MailActivity.search(
             [
                 ("res_id", "=", product_id.id),
                 ("res_model_id", "=", model_product_product.id),
-                ("note", "=", note),
+                ("note", "ilike", footer),
                 ("user_id", "=", user_id.id),
             ]
         )
         if not existing_activity:
-            # Will be None if this warning activity type has been deleted
+            # will be None if this warning activity type has been deleted
             activity_type_id = self.env.ref(
                 "mail.mail_activity_data_warning", raise_if_not_found=False
             )

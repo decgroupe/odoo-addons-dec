@@ -2,11 +2,13 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2023
 
 import logging
+import re
 from datetime import timedelta
 
-from odoo import SUPERUSER_ID, api, fields
+from odoo import SUPERUSER_ID, Command, api, fields
 from odoo.exceptions import UserError
 from odoo.tests import common
+from odoo.tests.common import new_test_user
 
 _logger = logging.getLogger(__name__)
 
@@ -35,6 +37,36 @@ class TestProcurementException(common.TransactionCase):
                 "price": 50,
             }
         )
+        self.internal_user = new_test_user(
+            self.env,
+            login="internal_user",
+            groups="base.group_user",
+        )
+
+    def _create_mto_product(
+        self, name_desc=False, buy=False, manufacture=False, vals=None
+    ):
+        routes = [self.route_mto.id]
+        if buy:
+            routes.append(self.route_buy.id)
+        if manufacture:
+            routes.append(self.route_manufacture.id)
+
+        name = "Product EXINT"
+        if name_desc:
+            name += f" ({name_desc})"
+        data = {
+            "name": name,
+            "type": "consu",
+            "is_storable": True,
+            "uom_id": self.unit_uom_id.id,
+            "route_ids": [Command.set(routes)],
+        }
+        # `vals` can be used to override some of the default values
+        # defined in `data` dict
+        vals = vals or {}
+        data.update(vals)
+        return self.env["product.product"].create(data)
 
     def _create_make_procurement(
         self, product, product_qty, uom_id, warehouse_id, date_planned=False
@@ -135,14 +167,8 @@ class TestProcurementException(common.TransactionCase):
         """Since the product is created from this test context, it will not exist
         outside this transaction until a commit.
         """
-        product_nosupplier_local_id = self.env["product.product"].create(
-            {
-                "name": "Product EXINT (No supplier) (local)",
-                "type": "consu",
-                "is_storable": True,
-                "uom_id": self.unit_uom_id.id,
-                "route_ids": [(6, 0, [self.route_buy.id, self.route_mto.id])],
-            }
+        product_nosupplier_local_id = self._create_mto_product(
+            name_desc="No supplier (local)", buy=True
         )
         with self.assertRaises(UserError):
             self._create_make_procurement(
@@ -180,15 +206,10 @@ class TestProcurementException(common.TransactionCase):
 
     def test_03_buy_product_with_supplier_local(self):
         """ """
-        product_with_supplier_local_id = self.env["product.product"].create(
-            {
-                "name": "Product EXINT (With supplier) (local)",
-                "type": "consu",
-                "is_storable": True,
-                "uom_id": self.unit_uom_id.id,
-                "route_ids": [(6, 0, [self.route_buy.id, self.route_mto.id])],
-                "seller_ids": [(6, 0, [self.supplier_info1.id])],
-            }
+        product_with_supplier_local_id = self._create_mto_product(
+            name_desc="With supplier (local)",
+            buy=True,
+            vals={"seller_ids": [Command.set([self.supplier_info1.id])]},
         )
         self._create_make_procurement(
             product_with_supplier_local_id,
@@ -200,14 +221,9 @@ class TestProcurementException(common.TransactionCase):
 
     def test_04_manufacture_product_nobom_local(self):
         """ """
-        product_nobom_id = self.env["product.product"].create(
-            {
-                "name": "Product EXINT (No BoM) (local)",
-                "type": "consu",
-                "is_storable": True,
-                "uom_id": self.unit_uom_id.id,
-                "route_ids": [(6, 0, [self.route_manufacture.id, self.route_mto.id])],
-            }
+        product_nobom_id = self._create_mto_product(
+            name_desc="No BoM (local)",
+            manufacture=True,
         )
         try:
             self._create_make_procurement(
@@ -227,14 +243,9 @@ class TestProcurementException(common.TransactionCase):
 
     def test_05_manufacture_product_with_empty_bom_local(self):
         """ """
-        product_with_bom_id = self.env["product.product"].create(
-            {
-                "name": "Product EXINT (With BoM) (local)",
-                "type": "consu",
-                "is_storable": True,
-                "uom_id": self.unit_uom_id.id,
-                "route_ids": [(6, 0, [self.route_manufacture.id, self.route_mto.id])],
-            }
+        product_with_bom_id = self._create_mto_product(
+            name_desc="(With Empty BoM) (local)",
+            manufacture=True,
         )
         _bom_id = self.env["mrp.bom"].create(
             {
@@ -265,14 +276,9 @@ class TestProcurementException(common.TransactionCase):
 
     def test_06_manufacture_product_with_bom_local(self):
         """ """
-        product_with_bom_id = self.env["product.product"].create(
-            {
-                "name": "Product EXINT (With BoM) (local)",
-                "type": "consu",
-                "is_storable": True,
-                "uom_id": self.unit_uom_id.id,
-                "route_ids": [(6, 0, [self.route_manufacture.id, self.route_mto.id])],
-            }
+        product_with_bom_id = self._create_mto_product(
+            name_desc="(With BoM) (local)",
+            manufacture=True,
         )
         bom_id = self.env["mrp.bom"].create(
             {
@@ -306,4 +312,225 @@ class TestProcurementException(common.TransactionCase):
 
     def test_10_run_scheduler(self):
         """ """
-        self.env["procurement.group"].run_scheduler()
+        ProcurementGroup = self.env["procurement.group"]
+        ProcurementGroup.run_scheduler()
+
+    def test_11_run_scheduler_new_cursor(self):
+        """ """
+        ProcurementGroup = self.env["procurement.group"]  # noqa: F841
+        # from odoo.modules.registry import Registry
+        # from unittest.mock import patch
+        # with self.assertLogs('odoo.sql_db', logging.ERROR) as capture, \
+        #         patch.object(Registry, '__new__', return_value=self.env.registry), \
+        #         patch.object(Registry, 'cursor', return_value=self.env.cr):
+        #     ProcurementGroup.run_scheduler(use_new_cursor=True)
+
+    def test_12_run_scheduler_counter(self):
+        """ """
+        ProcurementGroup = self.env["procurement.group"]
+        todo_count = ProcurementGroup._get_scheduler_tasks_to_do()
+        scheduler_task_done = {}
+        ProcurementGroup.with_context(
+            scheduler_task_done=scheduler_task_done
+        ).run_scheduler()
+        self.assertEqual(scheduler_task_done.get("task_done", 0), todo_count)
+
+    def test_20_exception_rule_product(self):
+        """ """
+        ProcurementException = self.env["procurement.exception"]
+        product_noroute = self._create_mto_product(name_desc="No route (local)")
+        another_product_noroute = self._create_mto_product(
+            name_desc="No route (local) (another)"
+        )
+        _rule1 = ProcurementException.create(
+            {
+                "name": "Rule 1",
+                "sequence": 1,
+                "user_id": self.internal_user.id,
+                "product_id": another_product_noroute.id,
+            }
+        )
+        try:
+            self._create_make_procurement(
+                product_noroute,
+                15.00,
+                product_noroute.uom_id,
+                self.warehouse1,
+            )
+        except UserError:
+            _logger.info("Procurement raised an exception as expected")
+
+        activity_id = product_noroute.activity_ids
+        self.assertEqual(len(product_noroute.activity_ids), 1)
+        self.assertNotEqual(activity_id.user_id, self.internal_user)
+        # check that user defined in rule is not assigned the activity since regex
+        # pattern does not match
+        activity_id = product_noroute.activity_ids
+        self.assertEqual(len(product_noroute.activity_ids), 1)
+        self.assertNotEqual(activity_id.user_id, self.internal_user)
+        # remove the created activity to not impact next test
+        product_noroute.activity_ids.unlink()
+        # retry with a valid rule
+        _rule2 = ProcurementException.create(
+            {
+                "name": "Rule 2",
+                "sequence": 2,
+                "user_id": self.internal_user.id,
+                "product_id": product_noroute.id,
+            }
+        )
+        try:
+            self._create_make_procurement(
+                product_noroute,
+                15.00,
+                product_noroute.uom_id,
+                self.warehouse1,
+            )
+        except UserError:
+            _logger.info("Procurement raised an exception as expected")
+
+        activity_id = product_noroute.activity_ids
+        self.assertEqual(len(product_noroute.activity_ids), 1)
+        self.assertEqual(activity_id.user_id, self.internal_user)
+        self.assertEqual(activity_id.summary, "Exception")
+        self.assertRegex(
+            activity_id.note,
+            re.compile(
+                r"No rule has been found to replenish.*"
+                r"Verify the routes configuration on the product.*",
+                re.MULTILINE | re.IGNORECASE | re.DOTALL,
+            ),
+        )
+
+    def test_21_exception_rule_category(self):
+        """ """
+        ProcurementException = self.env["procurement.exception"]
+        main_category_id = self.env["product.category"].create(
+            {"name": "Category Main"}
+        )
+        other_category_id = self.env["product.category"].create(
+            {"name": "Category (Other)"}
+        )
+        product_noroute = self._create_mto_product(
+            name_desc="No route (local)", vals={"categ_id": main_category_id.id}
+        )
+        _rule1 = ProcurementException.create(
+            {
+                "name": "Rule 1",
+                "sequence": 1,
+                "user_id": self.internal_user.id,
+                "categ_id": other_category_id.id,
+            }
+        )
+        try:
+            self._create_make_procurement(
+                product_noroute,
+                15.00,
+                product_noroute.uom_id,
+                self.warehouse1,
+            )
+        except UserError:
+            _logger.info("Procurement raised an exception as expected")
+
+        # check that user defined in rule is not assigned the activity since regex
+        # pattern does not match
+        activity_id = product_noroute.activity_ids
+        self.assertEqual(len(product_noroute.activity_ids), 1)
+        self.assertNotEqual(activity_id.user_id, self.internal_user)
+        # remove the created activity to not impact next test
+        product_noroute.activity_ids.unlink()
+        # retry with a valid rule
+        _rule2 = ProcurementException.create(
+            {
+                "name": "Rule 2",
+                "sequence": 2,
+                "user_id": self.internal_user.id,
+                "categ_id": main_category_id.id,
+            }
+        )
+        try:
+            self._create_make_procurement(
+                product_noroute,
+                15.00,
+                product_noroute.uom_id,
+                self.warehouse1,
+            )
+        except UserError:
+            _logger.info("Procurement raised an exception as expected")
+
+        activity_id = product_noroute.activity_ids
+        self.assertEqual(len(product_noroute.activity_ids), 1)
+        self.assertEqual(activity_id.user_id, self.internal_user)
+        self.assertEqual(activity_id.summary, "Exception")
+        self.assertRegex(
+            activity_id.note,
+            re.compile(
+                r"No rule has been found to replenish.*"
+                r"Verify the routes configuration on the product.*",
+                re.MULTILINE | re.IGNORECASE | re.DOTALL,
+            ),
+        )
+
+    def test_22_exception_rule_pattern(self):
+        """ """
+        ProcurementException = self.env["procurement.exception"]
+        product_noroute = self._create_mto_product(name_desc="No route (local)")
+        # create a rule with a regex pattern that does not match the exception
+        # message to check
+        _rule1 = ProcurementException.create(
+            {
+                "name": "Rule 1",
+                "sequence": 1,
+                "user_id": self.internal_user.id,
+                "regex_pattern": "Hello world.*",
+            }
+        )
+        try:
+            self._create_make_procurement(
+                product_noroute,
+                15.00,
+                product_noroute.uom_id,
+                self.warehouse1,
+            )
+        except UserError:
+            _logger.info("Procurement raised an exception as expected")
+
+        # check that user defined in rule is not assigned the activity since regex
+        # pattern does not match
+        activity_id = product_noroute.activity_ids
+        self.assertEqual(len(product_noroute.activity_ids), 1)
+        self.assertNotEqual(activity_id.user_id, self.internal_user)
+        # remove the created activity to not impact next test
+        product_noroute.activity_ids.unlink()
+        # retry with a valid rule
+        _rule2 = ProcurementException.create(
+            {
+                "name": "Rule 2",
+                "sequence": 2,
+                "user_id": self.internal_user.id,
+                "regex_pattern": "No rule has been found to replenish.*",
+            }
+        )
+        try:
+            self._create_make_procurement(
+                product_noroute,
+                15.00,
+                product_noroute.uom_id,
+                self.warehouse1,
+            )
+        except UserError:
+            _logger.info("Procurement raised an exception as expected")
+        # check that user defined in rule is now assigned the activity since regex
+        # pattern matches the exception message
+        activity_id = product_noroute.activity_ids
+        self.assertEqual(len(product_noroute.activity_ids), 1)
+        self.assertEqual(activity_id.user_id, self.internal_user)
+        self.assertEqual(activity_id.summary, "Exception")
+        self.assertRegex(
+            activity_id.note,
+            re.compile(
+                r"No rule has been found to replenish.*"
+                r"Verify the routes configuration on the product.*",
+                re.MULTILINE | re.IGNORECASE | re.DOTALL,
+            ),
+        )
