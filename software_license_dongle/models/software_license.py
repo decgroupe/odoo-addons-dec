@@ -18,8 +18,8 @@ class SoftwareLicense(models.Model):
         dongle_identifier = self.env["software.license.hardware"].get_dongle_identifier(
             hardware
         )
-        # A not zero value means that the hardware identifier comes from
-        # a dongle, that means that we can increase the valididty
+        # a non-zero value means that the hardware identifier comes from
+        # a dongle, that means that we can increase the validity
         if dongle_identifier > 0:
             res["dongle_identifier"] = dongle_identifier
         return res

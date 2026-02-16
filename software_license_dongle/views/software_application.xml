@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_application_tree_view">
         <field name="name">software.application.tree@software_license_dongle</field>
         <field name="model">software.application</field>
@@ -8,10 +7,9 @@
             name="inherit_id"
             ref="software_license.software_application_tree_view"
         />
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
             <field name="identifier" position="after">
-                <field name="dongle_product_id" />
+                <field name="dongle_product_id" groups="base.group_erp_manager" />
             </field>
         </field>
     </record>
@@ -23,10 +21,9 @@
             name="inherit_id"
             ref="software_license.software_application_form_view"
         />
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
             <field name="identifier" position="after">
-                <field name="dongle_product_id" />
+                <field name="dongle_product_id" groups="base.group_erp_manager" />
             </field>
         </field>
     </record>
@@ -38,12 +35,10 @@
             name="inherit_id"
             ref="software_license.software_application_search_view"
         />
-        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]" />
         <field name="arch" type="xml">
             <field name="identifier" position="after">
-                <field name="dongle_product_id" />
+                <field name="dongle_product_id" groups="base.group_erp_manager" />
             </field>
         </field>
     </record>
-
 </odoo>

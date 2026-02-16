@@ -9,10 +9,15 @@ from . import tea
 
 _logger = logging.getLogger(__name__)
 
-try:
-    from . import _key14
-except ImportError as e:
-    _logger.warning("Please create `_key14.py`")
+
+def get_key():
+    try:
+        from ._key14 import KEY
+
+        return KEY
+    except ImportError:
+        _logger.warning("Please create `_key14.py`")
+        return [0, 0, 0, 0]
 
 
 class SoftwareLicenseHardware(models.Model):
@@ -32,33 +37,36 @@ class SoftwareLicenseHardware(models.Model):
     @api.model
     def get_public_dongle_identifier(self, dongle_identifier):
         v = [dongle_identifier, dongle_identifier]
-        enc = tea.encipher(v, _key14.KEY)
+        enc = tea.encipher(v, get_key())
 
         public_dongle_id = []
         for value in enc:
-            public_dongle_id.append("{:02X}".format(value & 0xFFFF))
-            public_dongle_id.append("{:02X}".format(value >> 16 & 0xFFFF))
+            public_dongle_id.append(f"{value & 0xFFFF:02X}")
+            public_dongle_id.append(f"{value >> 16 & 0xFFFF:02X}")
 
         return "-".join(public_dongle_id)
 
     @api.model
     def get_dongle_identifier(self, public_dongle_identifier):
-        if not public_dongle_identifier:
-            return 0
-        parts = public_dongle_identifier.split("-")
+        """Get the original dongle identifier from the public dongle identifier.
 
-        if len(parts) != 4:
-            return 0
+        Args:
+            public_dongle_identifier (str): The public dongle identifier.
 
-        p1 = int(parts[0], 16) + (int(parts[1], 16) << 16)
-        p2 = int(parts[2], 16) + (int(parts[3], 16) << 16)
-
-        v = [p1, p2]
-        dec = tea.decipher(v, _key14.KEY)
-        if dec[0] == dec[1]:
-            return dec[0]
-        else:
-            return 0
+        Returns:
+            int: The original dongle identifier.
+        """
+        res = 0
+        if public_dongle_identifier:
+            parts = public_dongle_identifier.split("-")
+            if len(parts) == 4:
+                p1 = int(parts[0], 16) + (int(parts[1], 16) << 16)
+                p2 = int(parts[2], 16) + (int(parts[3], 16) << 16)
+                v = [p1, p2]
+                dec = tea.decipher(v, get_key())
+                if dec[0] == dec[1]:
+                    res = dec[0]
+        return res
 
     def _prepare_export_vals(self, include_license_data=True):
         res = super()._prepare_export_vals(include_license_data)
