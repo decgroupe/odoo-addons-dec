@@ -3,10 +3,9 @@
 
 
 import logging
-import datetime
 import uuid
 
-from odoo import _, api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -54,7 +53,7 @@ class User(models.Model):
 
     def send_activity_reminder(self):
         template_id = self.env.ref(
-            "mail_activity_reminder.email_template_activity_reminder"
+            "mail_activity_reminder_dec.email_template_activity_reminder"
         )
         for user in self:
             group_late_activity_ids = user._get_group_activity_ids(

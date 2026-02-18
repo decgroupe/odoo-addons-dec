@@ -1,11 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2024
 
-from odoo import http, fields
-from odoo.exceptions import UserError
+from odoo import http
 from odoo.http import request
-from odoo.tools.translate import _
 from odoo.tools.misc import format_date
+from odoo.tools.translate import _
+
 from odoo.addons.base_controller_user.controllers.main import HttpControllerUser
 
 SUCCESS = 0

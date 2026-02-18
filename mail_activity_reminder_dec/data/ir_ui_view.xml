@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <template id="mail_activity_reminder.view_email_template_activity_reminder">
+    <template id="mail_activity_reminder_dec.view_email_template_activity_reminder">
         <t t-call="mail_qweb.view_email_template_notification">
             <t t-set="do_not_reply" t-value="True" />
             <t t-set="notified_user" t-value="object" />
@@ -14,7 +13,7 @@
                     <!-- <t t-esc="ctx" /> -->
                     <t t-if="ctx.get('group_next_activity_ids')">
                         <h1 class="alert alert-info">Upcoming Activities</h1>
-                        <t t-call="mail_activity_reminder.table_group_activities">
+                        <t t-call="mail_activity_reminder_dec.table_group_activities">
                             <t
                                 t-set="group_activity_ids"
                                 t-value="ctx.get('group_next_activity_ids')"
@@ -23,7 +22,7 @@
                     </t>
                     <t t-if="ctx.get('group_late_activity_ids')">
                         <h1 class="alert alert-warning">Overdue Activities</h1>
-                        <t t-call="mail_activity_reminder.table_group_activities">
+                        <t t-call="mail_activity_reminder_dec.table_group_activities">
                             <t
                                 t-set="group_activity_ids"
                                 t-value="ctx.get('group_late_activity_ids')"
@@ -35,7 +34,7 @@
         </t>
     </template>
 
-    <template id="mail_activity_reminder.table_group_activities">
+    <template id="mail_activity_reminder_dec.table_group_activities">
         <style>
             .table_group_activities {
                 border: none;
@@ -146,7 +145,7 @@
                 <tr class="tr_tga_group_name">
                     <td class="td_tga_group_name" colspan="4">
                         <img
-                            t-attf-src="/mail_activity_reminder/static/img/{{activity_type_id.icon}}.png"
+                            t-attf-src="/mail_activity_reminder_dec/static/img/{{activity_type_id.icon}}.png"
                             t-attf-alt="{{activity_type_id.icon}}"
                         />
                         <b t-esc="activity_type_id.display_name" />
@@ -160,42 +159,42 @@
                     <td class="td_tga_group_content">
                         <div>
                             <t t-if="activity.team_user_id">
-                                <img
-                                    class="td_tga_img_avatar"
-                                    t-attf-src="/web/image/res.users/{{activity.team_user_id.id}}/image_128"
-                                    t-attf-alt="{{activity.team_user_id.display_name}}"
-                                    width="20"
-                                    height="20"
-                                />
-                            </t>
+                            <img
+                                class="td_tga_img_avatar"
+                                t-attf-src="/web/image/res.users/{{activity.team_user_id.id}}/image_128"
+                                t-attf-alt="{{activity.team_user_id.display_name}}"
+                                width="20"
+                                height="20"
+                            />
+                        </t>
                             <t t-else="">
-                                <img
-                                    class="td_tga_img_avatar"
-                                    t-attf-src="/web/image/mail.activity.team/{{activity.team_id.id}}/image_128"
-                                    t-attf-alt="{{activity.team_id.display_name}}"
-                                    width="20"
-                                    height="20"
-                                />
-                            </t>
+                            <img
+                                class="td_tga_img_avatar"
+                                t-attf-src="/web/image/mail.activity.team/{{activity.team_id.id}}/image_128"
+                                t-attf-alt="{{activity.team_id.display_name}}"
+                                width="20"
+                                height="20"
+                            />
+                        </t>
                             <a
-                                t-esc="activity.res_model_id.name"
-                                t-attf-href="/web#id=#{activity.res_id}&amp;view_type=form&amp;model=#{activity.res_model}"
-                                target="_blank"
-                                class="td_tga_group_content_link"
-                            />:
+                            t-esc="activity.res_model_id.name"
+                            t-attf-href="/web#id=#{activity.res_id}&amp;view_type=form&amp;model=#{activity.res_model}"
+                            target="_blank"
+                            class="td_tga_group_content_link"
+                        />:
                             <span t-esc="activity.res_name" />
                             <br />
                             <div
-                                t-if="activity.summary"
-                                class="td_tga_group_content_summary"
-                            >
-                                <small t-esc="activity.summary" />
-                            </div>
+                            t-if="activity.summary"
+                            class="td_tga_group_content_summary"
+                        >
+                            <small t-esc="activity.summary" />
+                        </div>
                             <div
-                                t-if="not is_html_empty(activity.note)"
-                                t-raw="activity.note"
-                                class="td_tga_group_content_note"
-                            />
+                            t-if="not is_html_empty(activity.note)"
+                            t-raw="activity.note"
+                            class="td_tga_group_content_note"
+                        />
                         </div>
                         <table class="action-table">
                             <tr>
@@ -206,11 +205,11 @@
                                         class="action action-close"
                                     >
                                         <img
-                                            t-attf-src="/mail_activity_reminder/static/img/actions/fa-check.png"
-                                            width="12"
-                                            height="12"
-                                            style="vertical-align: sub;"
-                                        /> Close
+                                        t-attf-src="/mail_activity_reminder_dec/static/img/actions/fa-check.png"
+                                        width="12"
+                                        height="12"
+                                        style="vertical-align: sub;"
+                                    /> Close
                                     </a>
                                 </td>
                                 <td>
@@ -220,11 +219,11 @@
                                         class="action action-cancel"
                                     >
                                         <img
-                                            t-attf-src="/mail_activity_reminder/static/img/actions/fa-times.png"
-                                            width="12"
-                                            height="12"
-                                            style="vertical-align: sub;"
-                                        /> Cancel
+                                        t-attf-src="/mail_activity_reminder_dec/static/img/actions/fa-times.png"
+                                        width="12"
+                                        height="12"
+                                        style="vertical-align: sub;"
+                                    /> Cancel
                                     </a>
                                 </td>
                             </tr>
@@ -242,11 +241,11 @@
                             >
                                 <div class="snooze snooze-1w">
                                     <img
-                                        t-attf-src="/mail_activity_reminder/static/img/actions/fa-bell-slash.png"
-                                        width="12"
-                                        height="12"
-                                        style="vertical-align: sub;"
-                                    /> Week
+                                    t-attf-src="/mail_activity_reminder_dec/static/img/actions/fa-bell-slash.png"
+                                    width="12"
+                                    height="12"
+                                    style="vertical-align: sub;"
+                                /> Week
                                 </div>
                             </a>
                             <a
@@ -256,11 +255,11 @@
                             >
                                 <div class="snooze snooze-1m">
                                     <img
-                                        t-attf-src="/mail_activity_reminder/static/img/actions/fa-bell-slash.png"
-                                        width="12"
-                                        height="12"
-                                        style="vertical-align: sub;"
-                                    /> Month
+                                    t-attf-src="/mail_activity_reminder_dec/static/img/actions/fa-bell-slash.png"
+                                    width="12"
+                                    height="12"
+                                    style="vertical-align: sub;"
+                                /> Month
                                 </div>
                             </a>
                             <a
@@ -270,11 +269,11 @@
                             >
                                 <div class="snooze snooze-1y">
                                     <img
-                                        t-attf-src="/mail_activity_reminder/static/img/actions/fa-bell-slash.png"
-                                        width="12"
-                                        height="12"
-                                        style="vertical-align: sub;"
-                                    /> Year
+                                    t-attf-src="/mail_activity_reminder_dec/static/img/actions/fa-bell-slash.png"
+                                    width="12"
+                                    height="12"
+                                    style="vertical-align: sub;"
+                                /> Year
                                 </div>
                             </a>
                         </div>
@@ -283,5 +282,4 @@
             </t>
         </table>
     </template>
-
 </odoo>

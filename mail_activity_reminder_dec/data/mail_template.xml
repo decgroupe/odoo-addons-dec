@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="email_template_activity_reminder" model="mail.template">
         <field name="name">Activity Reminder</field>
         <field name="model_id" ref="base.model_res_users" />
@@ -12,5 +11,4 @@
         <field name="body_view_id" ref="view_email_template_activity_reminder" />
         <field name="lang">${object.user_id.lang}</field>
     </record>
-
 </odoo>

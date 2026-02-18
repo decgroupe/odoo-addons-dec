@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="res_users_form_view">
         <field name="name">res.users.form@res_users_signature</field>
         <field name="model">res.users</field>
@@ -11,10 +10,8 @@
                     name="send_activity_reminder"
                     type="object"
                     string="Send Activity Reminder"
-                >
-            </button>
+                />
             </header>
         </field>
     </record>
-
 </odoo>

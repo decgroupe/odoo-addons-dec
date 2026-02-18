@@ -4,12 +4,12 @@
 import logging
 from datetime import date
 
+import lxml
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import format_date
-import lxml
 
 _logger = logging.getLogger(__name__)
 
