@@ -49,6 +49,8 @@ class CreateItemsWizard(models.TransientModel):
             items, separator = _extract_items_from_html(self.content, separator)
             for _index, item in enumerate(items):
                 identifier, name = item
+                if not name:
+                    name = _("Item %d", _index + 1)
                 lines.append(Command.create({"identifier": identifier, "name": name}))
             self.content_separator = separator
         self.line_ids = lines
