@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template
         id="software_license_portal.portal_software_license_layout"
         name="Portal layout: license menu entry"
@@ -31,10 +30,13 @@
         priority="40"
     >
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-            <t t-if="license_count" t-call="portal.portal_docs_entry">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/account/static/src/img/Bill.svg'" />
                 <t t-set="title">Licenses</t>
                 <t t-set="url" t-value="'/my/licenses'" />
-                <t t-set="count" t-value="license_count" />
+                <t t-set="text">Follow, download or pay your invoices</t>
+                <t t-set="placeholder_count" t-value="'license_count'" />
+                <t t-set="show_count" t-value="True" />
             </t>
         </xpath>
     </template>
@@ -42,7 +44,7 @@
     <template id="software_license_portal.license_row_layout">
         <tr class="tr_slp_license card-body">
             <td>
-                <t t-esc="license.sudo().partner_id._get_contact_type_emoji()" />
+                <t t-esc="license.sudo().partner_id._get_contact_type_symbol()" />
             </td>
             <td>
                 <a
@@ -73,7 +75,7 @@
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />
             <t t-call="portal.portal_searchbar">
-                    <t t-set="title">Licenses</t>
+                <t t-set="title">Licenses</t>
             </t>
             <t t-if="not licenses">
                 <p>There is no license linked to your account.</p>
@@ -123,31 +125,32 @@
     <template id="software_license_portal.portal_software_license_page_details">
         <div class="row">
             <div class="col-md-6">
-                <strong>Application:</strong> <t
-                    t-esc="license.application_id.name"
-                /> <t t-esc="license.application_id.info" /><br />
-                <strong>Create Date:</strong> <span t-field="license.create_date" /><br
-                />
+                <strong>Application:</strong>
+                <t t-esc="license.application_id.name" />
+                <t t-esc="license.application_id.info" />
+                <br />
+                <strong>Create Date:</strong>
+                <span t-field="license.create_date" />
+                <br />
             </div>
             <div class="col-md-6">
                 <t t-if="license.expiration_date">
-                    <strong>Expiration Date:</strong> <span
-                        t-field="license.expiration_date"
-                    /><br />
+                    <strong>Expiration Date:</strong>
+                    <span t-field="license.expiration_date" />
+                    <br />
                 </t>
                 <t t-if="license.max_allowed_hardware">
-                    <strong>Maximum Activation Count:</strong> <span
-                        t-field="license.max_allowed_hardware"
-                    /><br />
+                    <strong>Maximum Activation Count:</strong>
+                    <span t-field="license.max_allowed_hardware" />
+                    <br />
                 </t>
                 <t t-if="license.max_allowed_hardware > 0">
-                    <strong>Remaining Activations:</strong> <span
-                        t-esc="license.get_remaining_activation()"
-                    /><br />
+                    <strong>Remaining Activations:</strong>
+                    <span t-esc="license.get_remaining_activation()" />
+                    <br />
                 </t>
             </div>
-            <div class="col-md-6">
-            </div>
+            <div class="col-md-6" />
         </div>
     </template>
 
@@ -265,8 +268,7 @@
                     </div>
                 </div>
             </div>
-            <div class="oe_structure mb32" />
+            <div class="oe_structure mb32" id="oe_structure_1" />
         </t>
     </template>
-
 </odoo>

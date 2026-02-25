@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="license_test_1" model="software.license">
         <field name="application_id" ref="application_test" />
         <field name="serial">HFH0M-RLKCL-CD87N-E2B6A</field>
@@ -94,6 +93,4 @@
         <field name="validity_days">2</field>
         <field name="name" eval="same_hardware_identifier" />
     </record>
-
-
 </odoo>

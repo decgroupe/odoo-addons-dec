@@ -6,7 +6,8 @@ from dateutil.relativedelta import relativedelta
 
 import odoo.tests
 from odoo import fields
-from odoo.addons.software_license_portal.controllers.main import SUCCESS, ERROR
+
+from odoo.addons.software_license_portal.controllers.main import ERROR, SUCCESS
 from odoo.addons.software_license_portal.tests.common import (
     TestSoftwareLicensePortalBase,
 )
@@ -14,7 +15,6 @@ from odoo.addons.software_license_portal.tests.common import (
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
-
     def setUp(self):
         super().setUp()
 
@@ -63,7 +63,8 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         # validate hardware "device_uuid_1" using serial "FAKE-SERIAL" on "MyFitnessApp"
         res = self._api_validate(1001, "FAKE-SERIAL", "device_uuid_1", payload)
         self.assertEqual(res.get("message_id"), "LICENSE_NOT_FOUND")
-        # deactivate hardware "device_uuid_1" using serial "FAKE-SERIAL" on "MyFitnessApp"
+        # deactivate hardware "device_uuid_1" using serial "FAKE-SERIAL" on
+        # "MyFitnessApp"
         res = self._api_deactivate(1001, "FAKE-SERIAL", "device_uuid_1", payload)
         self.assertEqual(res.get("message_id"), "LICENSE_NOT_FOUND")
 
@@ -405,7 +406,7 @@ class TestSoftwareLicensePortal(TestSoftwareLicensePortalBase):
         }
         # activate fake device
         self._api_batch_activate("device_uuid_1", payload)
-        pass_prm3.invalidate_cache()
+        pass_prm3.invalidate_recordset()
         # ensure that only one group has been created for the couple:
         # - (device_uuid_1, device_name)
         # instead of having:

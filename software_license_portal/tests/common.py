@@ -7,13 +7,13 @@ import logging
 from lxml import html
 
 import odoo.tests
+from odoo.fields import Command
 from odoo.tests import new_test_user
 
 _logger = logging.getLogger(__name__)
 
 
 class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
-
     def setUp(self):
         super().setUp()
         ctx = {
@@ -44,26 +44,31 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
         return html.fromstring(response.text)
 
     def _in_portal(self, user_id):
-        return self.env.ref("base.group_portal") in user_id.groups_id
+        return user_id._is_portal()
 
     def _give_portal_access(self, partner_id):
         PortalWizard = self.env["portal.wizard"]
-        PortalWizardUser = self.env["portal.wizard.user"]
-        wizard_id = PortalWizard.sudo().create({})
-        wizard_user_id = PortalWizardUser.sudo().create(
-            {
-                "wizard_id": wizard_id.id,
-                "partner_id": partner_id.id,
-                "email": partner_id.email,
-                "in_portal": True,
-            }
+        # unset active_id/active_ids otherwise wizard.user_ids will be filled with
+        # garbage (because not check for `active_model` in `_default_user_ids`)
+        wizard_id = (
+            PortalWizard.with_context(active_id=False, active_ids=False)
+            .sudo()
+            .create({"partner_ids": [Command.set(partner_id.ids)]})
         )
-        return wizard_id.action_apply()
+        for wizard_user_id in wizard_id.user_ids:
+            if not wizard_user_id.is_portal:
+                wizard_user_id.action_grant_access()
+        return None
 
     def partner_authenticate(self, partner_id, custom_password=False):
+        """Authenticate a partner by giving portal access if not already, and
+        overriding the password if specified. The authentication is done by
+        HttpCase.authenticate
+        """
         user_id = partner_id.user_ids and partner_id.user_ids[0] or False
         if not user_id:
             self._give_portal_access(partner_id)
+        partner_id.invalidate_recordset()
         user_id = partner_id.user_ids and partner_id.user_ids[0] or False
         # override password
         if custom_password:
@@ -71,9 +76,9 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
         else:
             # otherwise use login as password
             user_id.password = user_id.email
-        res = self.authenticate(user_id.email, custom_password or user_id.email)
-        _logger.info("Session => %s" % res)
-        return res
+        session = self.authenticate(user_id.email, custom_password or user_id.email)
+        _logger.info("Session => %s", session)
+        return session
 
     def _get_common_payload_with_telemetry(self, device_name=False, domain_name=False):
         system_info = {}
@@ -265,7 +270,7 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
         def _log(msg, *args):
             log.append(msg % (args))
 
-        _log("Debug Pass Hardware %s - %s", pass_id, pass_id.get_xml_id())
+        _log("Debug Pass Hardware %s - %s", pass_id, pass_id.get_external_id())
         _log("Hardware IDs (%d)", len(pass_id.hardware_ids))
         for hw_id in pass_id.hardware_ids:
             _log(
@@ -273,9 +278,9 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
                 hw_id.display_name,
                 hw_id.device_fqdn,
                 hw_id.license_id.partner_id.display_name,
-                hw_id.get_xml_id(),
+                hw_id.get_external_id(),
                 hw_id.license_id.display_name,
-                hw_id.license_id.get_xml_id(),
+                hw_id.license_id.get_external_id(),
             )
         _log("Hardware Groups (%d)", len(pass_id.hardware_group_ids))
         for hwg_id in pass_id.hardware_group_ids:
@@ -283,6 +288,6 @@ class TestSoftwareLicensePortalBase(odoo.tests.HttpCase):
                 "  - %s %s - %s",
                 hwg_id.display_name,
                 hwg_id.device_fqdn,
-                hwg_id.get_xml_id(),
+                hwg_id.get_external_id(),
             )
         _logger.info("\n".join(log))

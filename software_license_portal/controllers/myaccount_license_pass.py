@@ -1,62 +1,62 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import _, http
-from odoo.addons.portal.controllers.portal import CustomerPortal
-from odoo.addons.portal.controllers.portal import pager as portal_pager
+from odoo import http
 from odoo.exceptions import AccessError
 from odoo.http import request
 from odoo.osv.expression import OR
+
+from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 
 class LicensePassCustomerPortal(CustomerPortal):
     #########################################################################
 
-    def _prepare_portal_layout_values(self):
-        values = super(LicensePassCustomerPortal, self)._prepare_portal_layout_values()
-        SoftwarePass = request.env["software.license.pass"]
-        domain = SoftwarePass._get_pass_default_portal_domain(
-            request_partner_id=request.env.user.partner_id,
-        )
-        pass_count = SoftwarePass.search_count(domain)
-        values["license_pass_count"] = pass_count
+    def _prepare_home_portal_values(self, counters):
+        values = super()._prepare_home_portal_values(counters)
+        if "license_pass_count" in counters:
+            SoftwarePass = request.env["software.license.pass"]
+            domain = SoftwarePass._get_pass_default_portal_domain(
+                request_partner_id=request.env.user.partner_id,
+            )
+            pass_count = SoftwarePass.search_count(domain)
+            values["license_pass_count"] = pass_count
         return values
 
     def _software_pass_check_access(self, pass_id):
         pass_id = request.env["software.license.pass"].browse([pass_id])
-        # pass_id = pass_id.sudo()
         try:
-            pass_id.check_access_rights("read")
-            pass_id.check_access_rule("read")
+            pass_id.check_access("read")
         except AccessError:
             raise
         return pass_id
 
     def _get_software_pass_searchbar_sortings(self):
         return {
-            "date": {"label": _("Newest"), "order": "create_date desc"},
-            "serial": {"label": _("Serial"), "order": "serial"},
-            "pack": {"label": _("Pack"), "order": "pack_id"},
+            "date": {"label": request.env._("Newest"), "order": "create_date desc"},
+            "serial": {"label": request.env._("Serial"), "order": "serial"},
+            "pack": {"label": request.env._("Pack"), "order": "pack_id"},
         }
 
     def _get_software_pass_searchbar_inputs(self):
         # search input (text)
         return {
-            "serial": {"input": "serial", "label": _("Search in Serials")},
-            "pack_id": {"input": "pack", "label": _("Search in Packs")},
+            "serial": {"input": "serial", "label": request.env._("Search in Serials")},
+            "pack_id": {"input": "pack", "label": request.env._("Search in Packs")},
             "hardware_ids": {
                 "input": "hardware",
-                "label": _("Search in Hardware identifiers"),
+                "label": request.env._("Search in Hardware identifiers"),
             },
         }
 
     def _get_software_pass_searchbar_meta_inputs(self):
         return {
-            "all": {"input": "all", "label": _("Search in All")},
+            "all": {"input": "all", "label": request.env._("Search in All")},
         }
 
     def _get_software_pass_searchbar_filters(self):
-        return {"all": {"label": _("All"), "domain": []}}
+        return {"all": {"label": request.env._("All"), "domain": []}}
 
     @http.route(
         ["/my/passes", "/my/passes/page/<int:page>"],
@@ -73,7 +73,7 @@ class LicensePassCustomerPortal(CustomerPortal):
         filterby=None,
         search=None,
         search_in="all",
-        **kw
+        **kw,
     ):
         values = self._prepare_portal_layout_values()
         SoftwarePass = request.env["software.license.pass"]
@@ -153,8 +153,15 @@ class LicensePassCustomerPortal(CustomerPortal):
         )
 
     def _pass_get_page_view_values(self, pass_sudo, **kwargs):
-        files = request.env["ir.attachment"].sudo().search(
-            [("res_model", "=", "software.license.pass"), ("res_id", "=", pass_sudo.id)]
+        files = (
+            request.env["ir.attachment"]
+            .sudo()
+            .search(
+                [
+                    ("res_model", "=", "software.license.pass"),
+                    ("res_id", "=", pass_sudo.id),
+                ]
+            )
         )
         values = {
             "page_name": "license_pass",

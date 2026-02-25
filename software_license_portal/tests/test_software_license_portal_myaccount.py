@@ -5,24 +5,28 @@
 import logging
 
 import odoo.tests
+from odoo.exceptions import AccessDenied
+
 from odoo.addons.software_license_portal.tests.common import (
     TestSoftwareLicensePortalBase,
 )
-from odoo.exceptions import AccessDenied, UserError
 
 _logger = logging.getLogger(__name__)
 
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
-
-    def setUp(self):
-        super().setUp()
+    """Tests the portal access for software licenses and passes."""
 
     def assertPortalDoc(self, el, data):
-        self.assertIn(data["text"], el.text)
-        span = el.xpath(".//span[hasclass('badge-pill')]")[0]
-        self.assertIn(data["count"], span.text)
+        # a: div > div > span
+        span_txt = el.xpath(".//span[not(hasclass('fw-bold'))]")[0]
+        self.assertIn(data["text"], span_txt.text)
+        _span_counter = el.xpath(".//span[hasclass('fw-bold')]")[0]
+        # FIXME: the counter is set from data-placeholder_count and set as text
+        # from a javascript, so we cannot test it here because the JS is not executed
+        # in the test.
+        # self.assertIn(data["count"], span_counter.text)
 
     def assertLicenseTable(self, el, data):
         license_link = el.xpath(".//a")
@@ -31,7 +35,7 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         self.assertEqual(license_link[0].get("href"), data["href"])
         tds = el.xpath(".//td")
         self.assertEqual(len(tds), 5)
-        # owner emoji: 👷 or 🏢
+        # owner symbol: 👷 or 🏢
         owner = tds[0].text
         self.assertIn(data["owner"], owner)
         # application text
@@ -56,7 +60,7 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
         self.assertEqual(pass_link[0].get("href"), data["href"])
         tds = el.xpath(".//td")
         self.assertEqual(len(tds), 6)
-        # owner emoji: 👷 or 🏢
+        # owner symbol: 👷 or 🏢
         owner = tds[0].text
         self.assertIn(data["owner"], owner)
         # ref text
@@ -125,6 +129,9 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
             data["action_args"]["hardware_name"],
         )
 
+    def setUp(self):
+        super().setUp()
+
     def test_01_my(self):
         data = [
             {
@@ -136,8 +143,15 @@ class TestSoftwareLicensePortalMyAccount(TestSoftwareLicensePortalBase):
                 "count": "1",
             },
         ]
+        # brandon.freeman55@example.com
         partner_id = self.env.ref("base.res_partner_address_15")
         self.partner_authenticate(partner_id)
+        _logger.debug(
+            "partner_id: %s, .user_ids: %s, .commercial_partner_id: %s",
+            partner_id,
+            partner_id.user_ids,
+            partner_id.user_ids.commercial_partner_id,
+        )
         response = self.url_open("/my")
         self.assertEqual(response.status_code, 200)
         doc = self.html_doc(response)

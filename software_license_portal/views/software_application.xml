@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_application_form_view">
         <field name="name">software.application.form@software_license_portal</field>
         <field name="model">software.application</field>
@@ -17,12 +16,11 @@
                     icon="fa-globe"
                 >
                     <div class="o_field_widget o_stat_info">
-                        <field name="portal_published" widget="toggle_button" />
+                        <field name="portal_published" widget="boolean_toggle" />
                     </div>
                     <span class="o_stat_text">Portal</span>
                 </button>
             </div>
         </field>
     </record>
-
 </odoo>

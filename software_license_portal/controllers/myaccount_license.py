@@ -2,33 +2,36 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
 from odoo import _, http
-from odoo.addons.portal.controllers.portal import CustomerPortal
-from odoo.addons.portal.controllers.portal import pager as portal_pager
 from odoo.exceptions import AccessError
 from odoo.http import request
 from odoo.osv.expression import OR
+
+from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.portal.controllers.portal import pager as portal_pager
 
 
 class LicenseCustomerPortal(CustomerPortal):
     #########################################################################
 
-    def _prepare_portal_layout_values(self):
-        values = super(LicenseCustomerPortal, self)._prepare_portal_layout_values()
-        SoftwareLicense = request.env["software.license"]
-        domain = SoftwareLicense._get_license_default_portal_domain(
-            request_partner_id=request.env.user.partner_id,
-            include_pass_licenses=False,
-        )
-        license_count = SoftwareLicense.search_count(domain)
-        values["license_count"] = license_count
+    # Replace _prepare_portal_layout_values to _prepare_home_portal_values function.
+    # TT38713
+
+    def _prepare_home_portal_values(self, counters):
+        values = super()._prepare_home_portal_values(counters)
+        if "license_count" in counters:
+            SoftwareLicense = request.env["software.license"]
+            domain = SoftwareLicense._get_license_default_portal_domain(
+                request_partner_id=request.env.user.partner_id,
+                include_pass_licenses=False,
+            )
+            license_count = SoftwareLicense.search_count(domain)
+            values["license_count"] = license_count
         return values
 
     def _software_license_check_access(self, lic_id):
         license_id = request.env["software.license"].browse([lic_id])
-        # license_id = license_id.sudo()
         try:
-            license_id.check_access_rights("read")
-            license_id.check_access_rule("read")
+            license_id.check_access("read")
         except AccessError:
             raise
         return license_id
@@ -77,7 +80,7 @@ class LicenseCustomerPortal(CustomerPortal):
         filterby=None,
         search=None,
         search_in="all",
-        **kw
+        **kw,
     ):
         values = self._prepare_portal_layout_values()
         SoftwareLicense = request.env["software.license"]
@@ -158,8 +161,15 @@ class LicenseCustomerPortal(CustomerPortal):
         )
 
     def _license_get_page_view_values(self, license_sudo, **kwargs):
-        files = request.env["ir.attachment"].sudo().search(
-            [("res_model", "=", "software.license"), ("res_id", "=", license_sudo.id)]
+        files = (
+            request.env["ir.attachment"]
+            .sudo()
+            .search(
+                [
+                    ("res_model", "=", "software.license"),
+                    ("res_id", "=", license_sudo.id),
+                ]
+            )
         )
         values = {
             "page_name": "license",

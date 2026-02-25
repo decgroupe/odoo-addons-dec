@@ -34,7 +34,5 @@ class SoftwareLicensePass(models.Model):
                     "Deactivate: Deleting hardware ID: %s", hardware_id.display_name
                 )
         else:
-            _logger.warning(
-                "Deactivate: Hardware ID not found: %s", hardware_name
-            )
+            _logger.warning("Deactivate: Hardware ID not found: %s", hardware_name)
         hardware_ids.unlink()

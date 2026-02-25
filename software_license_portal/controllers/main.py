@@ -1,13 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-import pprint
 import json
 
 import odoo.tools.convert as odoo_convert
 from odoo import fields, http
 from odoo.http import request
-from odoo.tools.translate import _
 
 SUCCESS = 0
 ERROR = 1

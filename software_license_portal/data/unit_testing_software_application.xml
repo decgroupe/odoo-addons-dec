@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="application_test" model="software.application">
         <field name="name">Testing</field>
         <field name="identifier">65534</field>
@@ -42,5 +41,4 @@ YwIDAQAB
 -----END PUBLIC KEY-----</field>
         <field name="info">Utilisé pour tester le système de licence avec Unity</field>
     </record>
-
 </odoo>
