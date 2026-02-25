@@ -51,37 +51,26 @@ class MailMessage(models.AbstractModel):
             else:
                 body_filename = "<empty>"
 
-            _logger.info(
-                "📧 New mail.message\n"
-                "          Message-Id: %r\n"
-                "        Message Type: %s\n"
-                "            Reply-To: %s\n"
-                "                From: %s\n"
-                "              Author: %s\n"
-                "                  To: %s\n"
-                "             Subject: %s\n"
-                "              Layout: %s\n"
-                "           Signature: %s\n"
-                "                Body: %s\n"
-                "       Activity Type: %s\n"
-                "               Model: %s\n"
-                "         Record Name: %s\n"
-                "      Record Company: %s\n"
-                " Record Alias Domain: %s\n",
-                rec.message_id,
-                rec.message_type,
-                rec.reply_to,
-                rec.email_from,
-                rec.author_id.display_name,
-                rec.partner_ids.mapped("email"),
-                rec.subject,
-                rec.email_layout_xmlid,
-                rec.email_add_signature,
-                body_filename,
-                rec.mail_activity_type_id.display_name,
-                rec.model,
-                rec.record_name,
-                rec.record_company_id.display_name,
-                rec.record_alias_domain_id.display_name,
-            )
+            data = {
+                "Message-Id": repr(rec.message_id),
+                "Message Type": rec.message_type,
+                "Reply-To": rec.reply_to,
+                "From": rec.email_from,
+                "Author": rec.author_id.display_name,
+                "To": rec.partner_ids.mapped("email"),
+                "Subject": rec.subject,
+                "Layout": rec.email_layout_xmlid,
+                "Signature": rec.email_add_signature,
+                "Body": body_filename,
+                "Activity Type": rec.mail_activity_type_id.display_name,
+                "Model": rec.model,
+                "Record Name": rec.record_name,
+                "Record Company": rec.record_company_id.display_name,
+                "Record Alias Domain": rec.record_alias_domain_id.display_name,
+            }
+            # remove empty values
+            data = {k: v for k, v in data.items() if v}
+            width = max(len(k) for k in data)
+            details = "\n".join(f"{k:>{width}}: {v}" for k, v in data.items())
+            _logger.info("📧 New mail.message\n%s\n", details)
         return record_ids

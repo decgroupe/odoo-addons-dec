@@ -13,25 +13,21 @@ class IrMailServer(models.Model):
 
     @api.model
     def _debug_outgoing_message(self, message):
-        _logger.info(
-            "📮 Outgoing E-Mail\n"
-            "   Message-Id: %r\n"
-            "  Return-Path: %s\n"
-            "     Reply-To: %s\n"
-            "         From: %s\n"
-            "           To: %s\n"
-            "           Cc: %s\n"
-            "          Bcc: %s\n"
-            "      Subject: %s\n",
-            message.get("Message-Id"),
-            message.get("Return-Path"),
-            message.get("Reply-To"),
-            message.get("From"),
-            message.get("To"),
-            message.get("Cc"),
-            message.get("Bcc"),
-            message.get("Subject"),
-        )
+        data = {
+            "Message-Id": repr(message.get("Message-Id")),
+            "Return-Path": message.get("Return-Path"),
+            "Reply-To": message.get("Reply-To"),
+            "From": message.get("From"),
+            "To": message.get("To"),
+            "Cc": message.get("Cc"),
+            "Bcc": message.get("Bcc"),
+            "Subject": message.get("Subject"),
+        }
+        # remove empty values
+        data = {k: v for k, v in data.items() if v}
+        width = max(len(k) for k in data)
+        details = "\n".join(f"{k:>{width}}: {v}" for k, v in data.items())
+        _logger.info("📮 Outgoing E-Mail\n%s\n", details)
 
     @api.model
     def send_email(

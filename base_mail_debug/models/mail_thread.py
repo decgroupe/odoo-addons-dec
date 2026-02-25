@@ -34,33 +34,25 @@ class MailThread(models.AbstractModel):
             if header and len(header) >= 2 and header[0].lower() == "received":
                 received += "\n" + header[1]
         # print result
-        _logger.info(
-            "📨 Incoming E-Mail\n"
-            "   Message-Id: %r\n"
-            "   References: %s\n"
-            "  In-Reply-To: %s\n"
-            "  Return-Path: %s\n"
-            "     Reply-To: %s\n"
-            "         Date: %s\n"
-            "         From: %s\n"
-            "           To: %s\n"
-            "           Cc: %s\n"
-            "          Bcc: %s\n"
-            "      Subject: %s\n"
-            "     Received: %s\n",
-            message.get("Message-Id"),
-            message.get("References", ""),
-            message.get("In-Reply-To", ""),
-            message.get("Return-Path", ""),
-            message.get("Reply-To", ""),
-            message.get("Date", ""),
-            message.get("From", ""),
-            message.get("To"),
-            message.get("Cc", ""),
-            message.get("Bcc", ""),
-            message.get("Subject", ""),
-            received,
-        )
+        data = {
+            "Message-Id": repr(message.get("Message-Id")),
+            "References": message.get("References", ""),
+            "In-Reply-To": message.get("In-Reply-To", ""),
+            "Return-Path": message.get("Return-Path", ""),
+            "Reply-To": message.get("Reply-To", ""),
+            "Date": message.get("Date", ""),
+            "From": message.get("From", ""),
+            "To": message.get("To"),
+            "Cc": message.get("Cc", ""),
+            "Bcc": message.get("Bcc", ""),
+            "Subject": message.get("Subject", ""),
+            "Received": received,
+        }
+        # remove empty values
+        data = {k: v for k, v in data.items() if v}
+        width = max(len(k) for k in data)
+        details = "\n".join(f"{k:>{width}}: {v}" for k, v in data.items())
+        _logger.info("📨 Incoming E-Mail\n%s\n", details)
 
     def message_process(
         self,
