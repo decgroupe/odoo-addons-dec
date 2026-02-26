@@ -90,12 +90,17 @@ class CreateItemsWizardLine(models.TransientModel):
     _name = "create.items.wizard.line"
     _description = "Create Items Wizard Line"
     _model_wizard = "create.items.wizard"
+    _order = "sequence, id"
 
     wizard_id = fields.Many2one(
         comodel_name=_model_wizard,
         string="Wizard",
         required=True,
         ondelete="cascade",
+    )
+    sequence = fields.Integer(
+        string="Sequence",
+        help="The sequence of the item in the list.",
     )
     identifier = fields.Char(
         string="Identifier",
