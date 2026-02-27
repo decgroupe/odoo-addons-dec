@@ -59,9 +59,9 @@ class Project(models.Model):
         # Add partner and its location to quickly identify a contract
         if self.partner_shipping_id:
             res.append(self.partner_shipping_id.display_name)
-            if self.partner_shipping_zip_id:
-                name = f"🗺️ {self.partner_shipping_zip_id.display_name}"
-                res.append(name)
+            # unnecessary to add the city and zip as they are already displayed in the
+            # partner name by default with the 'partner_identification_base' and
+            # 'partner_identification_location' modules
         elif self.partner_id:
             # Fallback to default `partner_id`
             res.append(self.partner_id.display_name)

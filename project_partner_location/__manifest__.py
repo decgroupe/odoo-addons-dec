@@ -5,13 +5,12 @@
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "project",
         "project_identification",
         "sale_timesheet_project",
         "sale_partner_location",
         "mrp_project_task",
         "mrp_partner_location",
-        "partner_identification_base",
+        "partner_identification_location",
     ],
     "data": [
         "views/project_project.xml",

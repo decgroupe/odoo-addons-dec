@@ -167,8 +167,7 @@ class TestProjectPartnerLocation(TestProjectIdentificationBase):
             self.pA,
             {"name_search": True},
             "ProjectA",
-            "ProjectA 👷 Partner A, Delivery Address A "
-            "→ (12345 CityA) 🗺️ 12345, CityA, France",
+            "ProjectA 👷 Partner A, Delivery Address A → (🗺️ 12345 CityA, France)",
         )
         # for project B, only assign a partner
         self.assertProjectNameSearchEqual(
