@@ -25,6 +25,10 @@ TOMATO_TEMPLATE = """<?xml version="1.0"?>
 
 
 class TestMailQweb(TransactionCase):
+    """Tests the rendering of mail templates in various conditions (with or
+    without inline css, with local links, etc) and the content of the generated emails.
+    """
+
     @contextmanager
     def patch_mail_unlink(self):
         """ """
@@ -39,27 +43,27 @@ class TestMailQweb(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+        cls.Mail = cls.env["mail.mail"]
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+
+    def setUp(self):
+        super().setUp()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
 
         # The fake class is imported here !! After the backup_registry
         from .models import FakeModel, FakeModelWithoutName
 
-        cls.loader.update_registry(
+        self.loader.update_registry(
             (
                 FakeModel,
                 FakeModelWithoutName,
             )
         )
-        cls.Mail = cls.env["mail.mail"]
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
-
-    def setUp(self):
-        super().setUp()
         ctx = {
             "mail_create_nolog": True,
             "mail_create_nosubscribe": True,
@@ -90,6 +94,10 @@ class TestMailQweb(TransactionCase):
                 "lang": "{{ object.user_id.lang }}",
             }
         )
+
+    def tearDown(self):
+        self.loader.restore_registry()
+        super().tearDown()
 
     def test_01_model_without_name(self):
         with self.patch_mail_unlink():
