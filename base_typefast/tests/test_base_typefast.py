@@ -14,8 +14,15 @@ class TestBaseTypefast(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.loader = FakeModelLoader(cls.env, cls.__module__)
-        cls.loader.backup_registry()
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+
+    def setUp(self):
+        super().setUp()
+        self.loader = FakeModelLoader(self.env, self.__module__)
+        self.loader.backup_registry()
 
         # The fake class is imported here !! After the backup_registry
         # pylint: disable=import-outside-toplevel
@@ -27,7 +34,7 @@ class TestBaseTypefast(TransactionCase):
             FakeModelM2oName,
         )
 
-        cls.loader.update_registry(
+        self.loader.update_registry(
             (
                 FakeModel,
                 FakeModelCharName,
@@ -37,13 +44,9 @@ class TestBaseTypefast(TransactionCase):
             )
         )
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.loader.restore_registry()
-        super().tearDownClass()
-
-    def setUp(self):
-        super().setUp()
+    def tearDown(self):
+        self.loader.restore_registry()
+        super().tearDown()
 
     def test_01_basic_model(self):
         fake_model = self.env["fake.model"]
