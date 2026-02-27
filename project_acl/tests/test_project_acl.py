@@ -35,6 +35,10 @@ class TestProjectAcl(TransactionCase):
             groups="project_acl.group_project_supermanager",
             context=ctx,
         )
+        # enable the supermanager check for the tests (default is disabled to avoid
+        # breaking existing tests from other module)
+        ICP = cls.env["ir.config_parameter"].sudo()
+        ICP.set_param("project_acl.supermanager_check_enabled", True)
 
     def test_01_create_project_as_project_user(self):
         with self.assertRaisesRegex(AccessError, r"Super-Manager"), self.cr.savepoint():

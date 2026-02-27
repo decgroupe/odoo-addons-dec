@@ -9,6 +9,7 @@
     ],
     "data": [
         "security/project_security.xml",
+        "data/ir_config_parameter.xml",
     ],
     "installable": True,
 }
