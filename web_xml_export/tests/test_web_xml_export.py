@@ -80,6 +80,13 @@ class TestWebXmlExport(TestWebXmlExportBase):
         )
 
     def test_03_user_export(self):
+        # create groups not related to any existing group, since because of implied
+        # groups, the result could be different depending on the modules installed and
+        # their dependencies
+        fake_group1 = self.env["res.groups"].create({"name": "Fake Group #1"})
+        fake_group1._ensure_human_xml_id()
+        fake_group2 = self.env["res.groups"].create({"name": "Fake Group #2"})
+        fake_group2._ensure_human_xml_id()
         model = self.env["res.users"]
         user = model.create(
             {
@@ -87,8 +94,8 @@ class TestWebXmlExport(TestWebXmlExportBase):
                 "groups_id": [
                     Command.set(
                         [
-                            self.ref("base.group_user"),
-                            self.ref("base.group_allow_export"),
+                            fake_group1.id,
+                            fake_group2.id,
                         ]
                     )
                 ],
@@ -136,9 +143,8 @@ class TestWebXmlExport(TestWebXmlExportBase):
                     <field name="name">Test User</field>
                     <field name="lang">en_US</field>
                     <field name="groups_id" eval="[
-                            Command.link(ref('base.group_allow_export')),
-                            Command.link(ref('base.group_user')),
-                            Command.link(ref('base.group_no_one'))
+                            Command.link(ref('xml_export.res_groups_{fake_group1.id}__fake_group_1')),
+                            Command.link(ref('xml_export.res_groups_{fake_group2.id}__fake_group_2'))
                         ]"/>
                     <field name="commercial_partner_id" ref="xml_export.res_partner_{user.commercial_partner_id.id}__test_user"/>
                     <field name="employee" eval="False"/>
