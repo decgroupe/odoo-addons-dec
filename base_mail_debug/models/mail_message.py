@@ -2,9 +2,10 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2024
 
 import logging
+import os
 import tempfile
 
-from odoo import api, models
+from odoo import api, models, tools
 
 _logger = logging.getLogger(__name__)
 
@@ -30,6 +31,9 @@ class MailMessage(models.AbstractModel):
     def create(self, vals_list):
         self._ensure_create_values(vals_list)
         record_ids = super().create(vals_list)
+        tmp_dir = tools.config["screenshots"]
+        if not os.path.exists(tmp_dir):
+            os.makedirs(tmp_dir)
         for rec, vals in zip(record_ids, vals_list, strict=True):
             # generate a random filename
             if vals.get("body"):
@@ -44,6 +48,7 @@ class MailMessage(models.AbstractModel):
                     # delete_on_close=False,
                     prefix=prefix,
                     suffix=".html",
+                    dir=tmp_dir,
                 )
                 tf.write(vals.get("body"))
                 body_filename = tf.name
