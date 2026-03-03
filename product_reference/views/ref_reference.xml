@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_reference_tree_view">
         <field name="name">ref.reference.tree@product_reference</field>
         <field name="model">ref.reference</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="value" />
                 <field name="category_id" />
                 <field name="product_id" />
                 <field name="state_id" />
                 <field name="state" invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -20,7 +19,7 @@
         <field name="model">ref.reference</field>
         <field name="inherit_id" ref="ref_reference_tree_view" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="decoration-success">state == 'quotation'</attribute>
                 <attribute name="decoration-primary">state == 'review'</attribute>
                 <attribute name="decoration-info">state == 'draft'</attribute>
@@ -48,7 +47,7 @@
                             name="web_ribbon"
                             title="Archived"
                             bg_color="bg-danger"
-                            attrs="{'invisible': [('active', '=', True)]}"
+                            invisible="active"
                         />
                     </div>
                     <group name="head">
@@ -61,38 +60,20 @@
                     </group>
                     <group name="composition">
                         <field name="name" required="1" />
-                        <field
-                            name="category_id"
-                            attrs="{
-                                'readonly': [('id', '!=', False)],
-                            }"
-                        />
-                        <field
-                            name="reference_line_ids"
-                            attrs="{
-                                'readonly': [('id', '!=', False)],
-                            }"
-                        />
+                        <field name="category_id" readonly="id" />
+                        <field name="reference_line_ids" readonly="id" />
                     </group>
                     <group name="common">
                         <group name="ref_details">
                             <field name="searchvalue" />
-                            <field
-                                name="datetime"
-                                attrs="{
-                                    'readonly': [('product_id', '!=', False)],
-                                }"
-                            />
-
+                            <field name="datetime" readonly="product_id" />
                         </group>
                         <group name="product_details">
                             <field
                                 name="product_id"
-                                attrs="{
-                                    'invisible': [('id', '=', False)],
-                                    'readonly': [('id', '!=', False)],
-                                    'required': [('id', '!=', False)],
-                                }"
+                                invisible="not id"
+                                readonly="id"
+                                required="id"
                             />
                             <field name="state_id" />
                             <field name="public_code" />
@@ -100,26 +81,20 @@
                     </group>
                     <notebook name="main_notebook">
                         <page name="general" string="Notes">
-                            <group
-                                name="versions"
-                                attrs="{'invisible': [('id', '=', False)]}"
-                            >
+                            <group name="versions" invisible="not id">
                                 <field name="current_version" />
                                 <field
                                     name="version_ids"
                                     context="{
                                         'version_ids':version_ids,
-                                        'active_id':active_id,
-                                        'active_model':active_model,
                                     }"
                                 />
                             </group>
                             <group name="notes">
                                 <field
                                     name="description"
-                                    attrs="{
-                                        'invisible': [('product_id', '=', False)],
-                                    }"
+                                    invisible="not product_id"
+                                    readonly="product_id"
                                 />
                             </group>
                         </page>
@@ -151,8 +126,7 @@
                     string="Not obsolete"
                     name="filter_not_obsolete"
                     domain="[('state', '!=', 'obsolete'),]"
-                >
-                </filter>
+                />
                 <group string="Group By" name="group_by">
                     <filter
                         string="Category"
@@ -174,7 +148,7 @@
     <record model="ir.actions.act_window" id="act_window_ref_reference">
         <field name="name">References</field>
         <field name="res_model">ref.reference</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field name="view_id" ref="ref_reference_tree_view" />
         <field name="context">{
             'search_default_filter_not_obsolete': 1,
@@ -184,7 +158,7 @@
 
     <record model="ir.actions.act_window.view" id="act_window_view_ref_reference_tree">
         <field name="sequence" eval="1" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="ref_reference_tree_view" />
         <field name="act_window_id" ref="act_window_ref_reference" />
     </record>
@@ -195,5 +169,4 @@
         <field name="view_id" ref="ref_reference_form_view" />
         <field name="act_window_id" ref="act_window_ref_reference" />
     </record>
-
 </odoo>

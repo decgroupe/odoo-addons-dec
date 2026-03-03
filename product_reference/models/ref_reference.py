@@ -3,9 +3,10 @@
 
 import logging
 
-from odoo import _, api, fields, models
-from odoo.addons.tools_miscellaneous.tools.bench import Bench
+from odoo import api, fields, models
 from odoo.osv import expression
+
+from odoo.addons.tools_miscellaneous.tools.bench import Bench
 
 from .ref_reference_line import AUTO_INC_CHAR
 
@@ -67,7 +68,7 @@ class RefReference(models.Model):
         related="state_id.code",
         store=True,
     )
-    description = fields.Text(
+    description = fields.Html(
         related="product_id.description",
         string="Internal Notes",
         readonly=False,
@@ -152,59 +153,63 @@ class RefReference(models.Model):
             "categ_id": product_categ_id,
             "sale_ok": True,
             "purchase_ok": False,
-            "type": "product",
+            "type": "consu",
+            "is_storable": True,
             "state": ref_vals.get("state"),
             "procure_method": "make_to_order",
             "supply_method": "produce",
             "list_price": 0.0,
             "standard_price": 0.0,
             "sale_delay": 60,
-            "produce_delay": 30,
+            # "produce_delay": 30,  # moved to BoM model
         }
 
-    @api.model
-    def create(self, vals):
-        if not vals.get("state"):
-            vals["state"] = "quotation"
-        product_variant_id = vals.get("product_variant_id")
-        if not product_variant_id:
-            product_vals = self._prepare_product_vals(vals)
-            product = self.env["product.product"].create(product_vals)
-            vals["product_variant_id"] = product.id
-        else:
-            product = self.env["product.product"].browse(product_variant_id)
-            product.mrp_production_request = True
-        # Retrieve product template for variant
-        if vals.get("product_id"):
-            product_tmpl_id = self.env["product.template"].browse(
-                vals.get("product_id")
-            )
-        elif vals.get("product_variant_id"):
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("state"):
+                vals["state"] = "quotation"
             product_variant_id = vals.get("product_variant_id")
-            product_tmpl_id = (
-                self.env["product.product"].browse(product_variant_id).product_tmpl_id
-            )
-        else:
-            product_tmpl_id = False
-        # Set product template since it is a required field
-        if product_tmpl_id:
-            vals["product_id"] = product_tmpl_id.id
-        if not vals.get("version_ids"):
-            author_id = self.env.context.get("author_id") or self.env.user.id
-            vals["version_ids"] = [
-                (
-                    0,
-                    0,
-                    {
-                        "name": _("Initial Version"),
-                        "version": 1,
-                        "author_id": author_id,
-                        "datetime": vals.get("datetime"),
-                    },
+            if not product_variant_id:
+                product_vals = self._prepare_product_vals(vals)
+                product = self.env["product.product"].create(product_vals)
+                vals["product_variant_id"] = product.id
+            else:
+                product = self.env["product.product"].browse(product_variant_id)
+                product.mrp_production_request = True
+            # Retrieve product template for variant
+            if vals.get("product_id"):
+                product_tmpl_id = self.env["product.template"].browse(
+                    vals.get("product_id")
                 )
-            ]
-        reference = super().create(vals)
-        return reference
+            elif vals.get("product_variant_id"):
+                product_variant_id = vals.get("product_variant_id")
+                product_tmpl_id = (
+                    self.env["product.product"]
+                    .browse(product_variant_id)
+                    .product_tmpl_id
+                )
+            else:
+                product_tmpl_id = False
+            # Set product template since it is a required field
+            if product_tmpl_id:
+                vals["product_id"] = product_tmpl_id.id
+            if not vals.get("version_ids"):
+                author_id = self.env.context.get("author_id") or self.env.user.id
+                vals["version_ids"] = [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.env._("Initial Version"),
+                            "version": 1,
+                            "author_id": author_id,
+                            "datetime": vals.get("datetime"),
+                        },
+                    )
+                ]
+        reference_ids = super().create(vals_list)
+        return reference_ids
 
     def write(self, vals):
         res = super().write(vals)
@@ -217,7 +222,7 @@ class RefReference(models.Model):
         if default is None:
             default = {}
         if not default.get("name"):
-            default["name"] = _("%s (copy)") % (self.name)
+            default["name"] = self.env._("%s (copy)") % (self.name)
         reference_id = super().copy(default)
         return reference_id
 
@@ -296,11 +301,11 @@ class RefReference(models.Model):
         description_domain = []
         tags_domain = []
 
-        def add_to(domain, filter):
+        def add_to(domain, domain_filter):
             if domain:
-                domain[:] = expression.OR([domain, filter])
+                domain[:] = expression.OR([domain, domain_filter])
             else:
-                domain[:] = filter
+                domain[:] = domain_filter
             return domain
 
         bench = Bench().start()
@@ -407,7 +412,6 @@ class RefReference(models.Model):
             int: maximum attribute value already set
         """
         reference_ids = self.env["ref.reference"]
-        md = []
         for line in reference_line_ids:
             if line.property_id != property_id:
                 domain = [
@@ -419,14 +423,6 @@ class RefReference(models.Model):
                     domain += [("attribute_id", "=", line.attribute_id.id)]
                 else:
                     domain += [("value", "=", line.value)]
-                # if not reference_ids:
-                #     domain = [
-                #         ('reference_id.category_id', '=', category_id.id)
-                #     ] + domain
-                # else:
-                #     domain = [
-                #         ('reference_id', 'in', reference_ids.ids)
-                #     ] + domain
 
                 reference_mapping_ids = (
                     self.env["ref.reference.line"].search(domain).mapped("reference_id")

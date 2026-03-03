@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_category_line_tree_view">
         <field name="name">ref.category.line.tree@product_reference</field>
         <field name="model">ref.category.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle" />
                 <field name="property_id" />
                 <field name="description" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -20,7 +19,9 @@
             <form string="Category Lines">
                 <div class="oe_title">
                     <label for="property_id" class="oe_edit_only" />
-                    <h1><field name="property_id" class="oe_inline" /></h1>
+                    <h1>
+                        <field name="property_id" class="oe_inline" />
+                    </h1>
                 </div>
                 <group>
                     <field name="sequence" invisible="0" />
@@ -35,5 +36,4 @@
         <field name="res_model">ref.category.line</field>
         <field name="view_id" ref="ref_category_line_tree_view" />
     </record>
-
 </odoo>

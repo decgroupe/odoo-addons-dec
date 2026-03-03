@@ -3,7 +3,7 @@
 
 import string
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 FMT_CHARSET = ["T", "A", "N"]
@@ -44,8 +44,11 @@ class RefProperty(models.Model):
             for c in self.format:
                 if c.upper() not in FMT_CHARSET:
                     raise UserError(
-                        _("Invalid char %s, only allowed chars are %s")
-                        % (c, FMT_CHARSET)
+                        self.env._(
+                            "Invalid char %(c)s, only allowed chars are %(charset)s",
+                            c=c,
+                            charset=FMT_CHARSET,
+                        )
                     )
 
     def _get_charset(self, index):
@@ -66,18 +69,25 @@ class RefProperty(models.Model):
         valid_length = len(self.format)
         if len(value) != valid_length:
             raise UserError(
-                _("Invalid value length, the length must be %d") % (valid_length)
+                self.env._(
+                    "Invalid value length, the length must be %(length)d",
+                    length=valid_length,
+                )
             )
 
         for i, c in enumerate(value):
             charset = self._get_charset(i)
             if c not in charset:
                 raise UserError(
-                    _("Invalid char %s, an allowed char should be in %s") % (c, charset)
+                    self.env._(
+                        "Invalid char %(c)s, an allowed char should be in %(charset)s",
+                        c=c,
+                        charset=charset,
+                    )
                 )
         return value
 
     def format_int(self, value):
         self.ensure_one()
-        if "N" in self.format and not "A" in self.format and not "T" in self.format:
-            return "{0}".format(str(value).zfill(len(self.format)))
+        if "N" in self.format and "A" not in self.format and "T" not in self.format:
+            return f"{str(value).zfill(len(self.format))}"

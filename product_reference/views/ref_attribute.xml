@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_attribute_tree_view">
         <field name="name">ref.attribute.tree@product_reference</field>
         <field name="model">ref.attribute</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="code" />
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -30,5 +29,4 @@
         <field name="res_model">ref.attribute</field>
         <field name="view_id" ref="ref_attribute_tree_view" />
     </record>
-
 </odoo>

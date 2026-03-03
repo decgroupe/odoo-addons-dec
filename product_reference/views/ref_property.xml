@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_property_tree_view">
         <field name="name">ref.property.tree@product_reference</field>
         <field name="model">ref.property</field>
         <field name="arch" type="xml">
-            <tree create="false" delete="false">
+            <list create="false" delete="false">
                 <field name="name" />
                 <field name="format" />
                 <field name="fixed" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -21,15 +20,14 @@
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" />
-                        <h1><field name="name" class="oe_inline" /></h1>
+                        <h1>
+                            <field name="name" class="oe_inline" />
+                        </h1>
                     </div>
                     <group>
                         <field name="format" />
                         <field name="fixed" />
-                        <field
-                            name="attribute_ids"
-                            attrs="{'invisible': [('fixed', '=', False)]}"
-                        />
+                        <field name="attribute_ids" invisible="not fixed" />
                     </group>
                 </sheet>
             </form>
@@ -41,5 +39,4 @@
         <field name="res_model">ref.property</field>
         <field name="view_id" ref="ref_property_tree_view" />
     </record>
-
 </odoo>

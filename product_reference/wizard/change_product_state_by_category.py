@@ -58,6 +58,6 @@ class ChangeProductStateByCategory(models.TransientModel):
     @api.onchange("category_id")
     def _onchange_category_id(self):
         if self.category_id:
-            self.domain = "[('categ_id', 'child_of', %s)]" % (self.category_id.id,)
+            self.domain = f"[('categ_id', 'child_of', {self.category_id.id})]"
         else:
             self.domain = "[]"

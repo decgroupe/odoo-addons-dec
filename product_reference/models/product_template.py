@@ -30,6 +30,7 @@ class ProductTemplate(models.Model):
 
     @api.model
     def append_extra_search(self, model, name, name_search_result, limit=100):
+        # extend extra search from `product_public_code` module
         result = super().append_extra_search(model, name, name_search_result, limit)
         result = self.append_reference_search(model, name, result, limit)
         return result

@@ -1,11 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2022
 
-import json
 
 from odoo import http
-from odoo.addons.web.controllers.main import ensure_db
 from odoo.http import request
+
+from odoo.addons.web.controllers.utils import ensure_db
 
 URL_BASE_V1 = "/api/ref/v1"
 

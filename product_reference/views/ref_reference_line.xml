@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_reference_line_tree_view">
         <field name="name">ref.reference.line.tree@product_reference</field>
         <field name="model">ref.reference.line</field>
         <field name="arch" type="xml">
-            <tree
-                string="Reference lines"
-                create="false"
-                delete="false"
-                editable="bottom"
-            >
+            <list create="false" delete="false" editable="bottom">
                 <field name="sequence" readonly="1" force_save="1" string="#" />
                 <field name="property_id" />
                 <field name="property_fixed" invisible="1" />
                 <field
                     name="attribute_id"
                     domain="[('property_id', '=', property_id)]"
-                    attrs="{
-                        'invisible': [('property_fixed', '!=', True)],
-                        'required': [('property_fixed', '=', True)],
-                    }"
+                    invisible="not property_fixed"
+                    required="property_fixed"
                 />
                 <field
                     name="value"
-                    attrs="{
-                        'invisible': [('property_fixed', '=', True)],
-                        'required': [('property_fixed', '!=', True)],
-                    }"
+                    invisible="property_fixed"
+                    required="not property_fixed"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -40,7 +30,9 @@
             <form string="Reference lines">
                 <div class="oe_title">
                     <label for="property_id" class="oe_edit_only" />
-                    <h1><field name="property_id" class="oe_inline" /></h1>
+                    <h1>
+                        <field name="property_id" class="oe_inline" />
+                    </h1>
                 </div>
                 <group>
                     <field name="sequence" invisible="1" />
@@ -48,17 +40,13 @@
                     <field
                         name="attribute_id"
                         domain="[('property_id', '=', property_id)]"
-                        attrs="{
-                            'invisible': [('property_fixed', '!=', True)],
-                            'required': [('property_fixed', '=', True)],
-                        }"
+                        invisible="not property_fixed"
+                        required="property_fixed"
                     />
                     <field
                         name="value"
-                        attrs="{
-                            'invisible': [('property_fixed', '=', True)],
-                            'required': [('property_fixed', '!=', True)],
-                        }"
+                        invisible="property_fixed"
+                        required="not property_fixed"
                     />
                 </group>
             </form>
@@ -70,5 +58,4 @@
         <field name="res_model">ref.reference.line</field>
         <field name="view_id" ref="ref_reference_line_tree_view" />
     </record>
-
 </odoo>

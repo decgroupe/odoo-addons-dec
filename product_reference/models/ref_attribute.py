@@ -32,10 +32,10 @@ class RefAttribute(models.Model):
         default=False,
     )
 
-    @api.model
-    def create(self, vals):
-        attribute_id = super().create(vals)
-        return attribute_id
+    @api.model_create_multi
+    def create(self, vals_list):
+        attribute_ids = super().create(vals_list)
+        return attribute_ids
 
     @api.onchange("code")
     def onchange_code(self):
@@ -46,7 +46,7 @@ class RefAttribute(models.Model):
     def name_get(self):
         result = []
         for attribute in self:
-            name = ("[%s] %s") % (attribute.code, attribute.name)
+            name = f"[{attribute.code}] {attribute.name}"
             result.append((attribute.id, name))
         return result
 
@@ -114,7 +114,7 @@ class RefAttribute(models.Model):
                     self._search(domain, limit=limit, access_rights_uid=name_get_uid)
                 )
             if not attribute_ids and operator in positive_operators:
-                ptrn = re.compile("(\[(.*?)\])")
+                ptrn = re.compile(r"(\[(.*?)\])")
                 res = ptrn.search(name)
                 if res:
                     attribute_ids = list(

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_version_tree_view">
         <field name="name">ref.version.tree@product_reference</field>
         <field name="model">ref.version</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="version" />
                 <field name="datetime" />
                 <field name="name" />
                 <field name="author_id" domain="[('share', '=', False)]" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -19,5 +18,4 @@
         <field name="res_model">ref.version</field>
         <field name="view_id" ref="ref_version_tree_view" />
     </record>
-
 </odoo>

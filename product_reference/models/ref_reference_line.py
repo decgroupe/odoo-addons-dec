@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 AUTO_INC_CHAR = "#"
@@ -41,25 +41,30 @@ class RefReferenceLine(models.Model):
         related="property_id.fixed",
     )
 
-    @api.model
-    def create(self, vals):
-        property_id = self.env["ref.property"].browse(vals.get("property_id"))
-        if property_id.fixed:
-            if not vals.get("attribute_id"):
-                raise UserError(
-                    _("Missing attribute for property {} : {}").format(
-                        vals.get("sequence", 0), property_id.name
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            property_id = self.env["ref.property"].browse(vals.get("property_id"))
+            if property_id.fixed:
+                if not vals.get("attribute_id"):
+                    raise UserError(
+                        self.env._(
+                            "Missing attribute for property %(num)d : %(name)s",
+                            num=vals.get("sequence", 0),
+                            name=property_id.name,
+                        )
                     )
-                )
-        else:
-            if not vals.get("value"):
-                raise UserError(
-                    _("Missing value for property {} : {}").format(
-                        vals.get("sequence", 0), property_id.name
+            else:
+                if not vals.get("value"):
+                    raise UserError(
+                        self.env._(
+                            "Missing value for property %(num)d : %(name)s",
+                            num=vals.get("sequence", 0),
+                            name=property_id.name,
+                        )
                     )
-                )
-        line_id = super().create(vals)
-        return line_id
+        line_ids = super().create(vals_list)
+        return line_ids
 
     @api.onchange("value")
     def onchange_value(self):

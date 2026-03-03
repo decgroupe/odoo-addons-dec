@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="product_template_only_form_view">
         <field name="name">product.template.product.form@product_reference</field>
         <field name="model">product.template</field>
@@ -10,10 +9,7 @@
         />
         <field name="arch" type="xml">
             <field name="default_code" position="before">
-                <field
-                    name="reference_id"
-                    attrs="{'invisible': [('reference_id', '=', False)]}"
-                />
+                <field name="reference_id" invisible="not reference_id" />
             </field>
         </field>
     </record>
@@ -37,22 +33,19 @@
                                 ('loc_row','!=',False),
                                 ('loc_case','!=',False),
                     ]"
-                >
-                </filter>
+                />
                 <separator />
                 <filter
                     string="Not obsolete"
                     name="filter_not_obsolete"
                     domain="[('state', '!=', 'obsolete'),]"
-                >
-                </filter>
+                />
                 <separator />
                 <filter
                     string="REFManager"
                     name="filter_refmanager"
                     domain="[('reference_ids', '!=', False),]"
-                >
-                </filter>
+                />
                 <separator />
             </filter>
             <xpath expr="//search" position="inside">
@@ -62,34 +55,29 @@
                         string="Category"
                         name="groupby_category"
                         context="{'group_by':'categ_id'}"
-                    >
-                    </filter>
+                    />
                     <separator />
                     <filter
                         string="Rack"
                         name="groupby_loc_rack"
                         context="{'group_by':'loc_rack'}"
-                    >
-                    </filter>
+                    />
                     <filter
                         string="Row"
                         name="groupby_loc_row"
                         context="{'group_by':'loc_row'}"
-                    >
-                    </filter>
+                    />
                     <filter
                         string="Case"
                         name="groupby_loc_case"
                         context="{'group_by':'loc_case'}"
-                    >
-                    </filter>
+                    />
                     <separator />
                     <filter
                         string="Default Code"
                         name="groupby_default_code"
                         context="{'group_by':'default_code'}"
-                    >
-                    </filter>
+                    />
                 </group>
             </xpath>
         </field>
@@ -100,25 +88,31 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product_public_code.product_template_tree_view" />
         <field name="mode">primary</field>
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <field name="name" position="before">
                 <!-- WARNING: the string character is a non-breaking space (NBSP) space -->
-                <field name="image_128" string=" " widget="image" />
+                <field
+                    name="image_1920"
+                    string=" "
+                    widget="image"
+                    options="{'preview_image': 'image_128', 'size': [24, 24], 'img_class': 'w-100 h-100'}"
+                    width="24"
+                />
             </field>
-            <tree position="attributes">
+            <list position="attributes">
                 <attribute name="decoration-success">state == 'quotation'</attribute>
                 <attribute name="decoration-primary">state == 'review'</attribute>
                 <attribute name="decoration-info">state == 'draft'</attribute>
                 <attribute name="decoration-bf">state == 'sellable'</attribute>
                 <attribute name="decoration-muted">state == 'obsolete'</attribute>
-                <!--
                 <attribute name="decoration-warning">state == ''</attribute>
-                <attribute name="decoration-muted-strike">state == 'obsolete'</attribute>
-                -->
+                <attribute
+                    name="decoration-muted-strike"
+                >state == 'obsolete'</attribute>
                 <attribute name="decoration-danger">False</attribute>
-            </tree>
+            </list>
             <field name="qty_available" position="replace" />
-            <field name="qty_available_not_res" position="replace" />
             <field name="virtual_available" position="replace" />
             <field name="categ_id" position="attributes">
                 <attribute name="class">d_categ_id</attribute>
@@ -143,7 +137,7 @@
     <record model="ir.actions.act_window" id="act_window_product_template_as_product">
         <field name="name">Products</field>
         <field name="res_model">product.template</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="limit">20</field>
         <field name="search_view_id" ref="product.product_template_search_view" />
         <field name="context">{
@@ -159,7 +153,7 @@
         model="ir.actions.act_window.view"
         id="act_window_product_template_as_product_tree"
     >
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="product_template_as_product_tree_view" />
         <field name="act_window_id" ref="act_window_product_template_as_product" />
     </record>
@@ -191,7 +185,7 @@
     <record model="ir.actions.act_window" id="act_window_product_template_as_service">
         <field name="name">Services</field>
         <field name="res_model">product.template</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="limit">20</field>
         <field
             name="search_view_id"
@@ -209,7 +203,7 @@
         model="ir.actions.act_window.view"
         id="act_window_product_template_as_service_tree"
     >
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="product_template_as_service_tree_view" />
         <field name="act_window_id" ref="act_window_product_template_as_service" />
     </record>
@@ -220,7 +214,7 @@
     >
         <field name="name">Products</field>
         <field name="res_model">product.template</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="limit">20</field>
         <field name="search_view_id" ref="product.product_template_search_view" />
         <field name="context">{
@@ -238,8 +232,7 @@
             name="act_window_id"
             ref="act_window_product_template_as_refmanager_product"
         />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="product_template_as_product_tree_view" />
     </record>
-
 </odoo>

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"POT-Creation-Date: 2026-06-03 10:49+0000\n"
+"PO-Revision-Date: 2026-06-03 10:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,33 +16,20 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_category.py:0
+msgid "%(code)s (copy)"
+msgstr ""
+
+#. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_reference.py:0
-#, python-format
 msgid "%s (copy)"
-msgstr ""
-
-#. module: product_reference
-#: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" role=\"img\" aria-label=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__active
-msgid "Active"
 msgstr ""
 
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
 msgid "Apply"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__domain
-msgid "Apply on"
 msgstr ""
 
 #. module: product_reference
@@ -52,26 +39,13 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_attribute
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__attribute_id
 msgid "Attribute"
 msgstr ""
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_attribute
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__attribute_ids
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_attribute_form_view
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_attribute_tree_view
 msgid "Attributes"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__author_id
-msgid "Author"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__auto_inc
-msgid "Auto-increment"
 msgstr ""
 
 #. module: product_reference
@@ -87,15 +61,11 @@ msgstr ""
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_category
 #: model:ir.ui.menu,name:product_reference.menu_ref_category
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_category_tree_view
 msgid "Categories"
 msgstr ""
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_category
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__category_id
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__category_id
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__category_id
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_category_form_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
@@ -103,7 +73,6 @@ msgid "Category"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__category_line_ids
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_category_line_form_view
 msgid "Category Lines"
 msgstr ""
@@ -115,19 +84,12 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_category_line
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_category_line_tree_view
 msgid "Category lines"
 msgstr ""
 
 #. module: product_reference
 #: model:ir.ui.menu,name:product_reference.menu_ref_property
 msgid "Category properties"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__code
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__code
-msgid "Code"
 msgstr ""
 
 #. module: product_reference
@@ -146,40 +108,6 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__datetime
-msgid "Create date"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__create_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__create_uid
-msgid "Created by"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__create_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__create_date
-msgid "Created on"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__current_version
-msgid "Current version"
-msgstr ""
-
-#. module: product_reference
 #: model:ir.model,name:product_reference.model_change_product_state_by_category
 msgid "Customize purchase report"
 msgstr ""
@@ -187,32 +115,6 @@ msgstr ""
 #. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.product_template_search_view
 msgid "Default Code"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__display_name
-#: model:ir.model.fields,field_description:product_reference.field_product_template__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__display_name
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__display_name
-#: model:ir.model.fields,field_description:product_reference.field_res_company__display_name
-#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__fixed
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__property_fixed
-msgid "Fixed values"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__format
-msgid "Format"
 msgstr ""
 
 #. module: product_reference
@@ -228,153 +130,39 @@ msgid "Has a Location"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__id
-#: model:ir.model.fields,field_description:product_reference.field_product_template__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__id
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__id
-#: model:ir.model.fields,field_description:product_reference.field_res_company__id
-#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__id
-msgid "ID"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,help:product_reference.field_change_product_state_by_category__xid
-#: model:ir.model.fields,help:product_reference.field_product_template__xid
-#: model:ir.model.fields,help:product_reference.field_ref_attribute__xid
-#: model:ir.model.fields,help:product_reference.field_ref_category__xid
-#: model:ir.model.fields,help:product_reference.field_ref_category_line__xid
-#: model:ir.model.fields,help:product_reference.field_ref_property__xid
-#: model:ir.model.fields,help:product_reference.field_ref_reference__xid
-#: model:ir.model.fields,help:product_reference.field_ref_reference_line__xid
-#: model:ir.model.fields,help:product_reference.field_ref_version__xid
-#: model:ir.model.fields,help:product_reference.field_res_company__xid
-#: model:ir.model.fields,help:product_reference.field_res_config_settings__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,help:product_reference.field_ref_reference__active
-msgid ""
-"If unchecked, it will allow you to hide the reference without removing it."
-msgstr ""
-
-#. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_reference.py:0
-#, python-format
 msgid "Initial Version"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__description
-msgid "Internal Notes"
-msgstr ""
-
-#. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_property.py:0
-#, python-format
-msgid "Invalid char %s, an allowed char should be in %s"
+msgid "Invalid char %(c)s, an allowed char should be in %(charset)s"
 msgstr ""
 
 #. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_property.py:0
-#, python-format
-msgid "Invalid char %s, only allowed chars are %s"
+msgid "Invalid char %(c)s, only allowed chars are %(charset)s"
 msgstr ""
 
 #. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_property.py:0
-#, python-format
-msgid "Invalid value length, the length must be %d"
+msgid "Invalid value length, the length must be %(length)d"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category____last_update
-#: model:ir.model.fields,field_description:product_reference.field_product_template____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_category____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_property____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line____last_update
-#: model:ir.model.fields,field_description:product_reference.field_ref_version____last_update
-#: model:ir.model.fields,field_description:product_reference.field_res_company____last_update
-#: model:ir.model.fields,field_description:product_reference.field_res_config_settings____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__write_uid
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__write_uid
-msgid "Last Updated by"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__write_date
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__write_date
-msgid "Last Updated on"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__reference_line_ids
-msgid "Lines"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_res_company__main_product_category_id
-#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__main_product_category_id
-msgid "Main Product Category"
-msgstr ""
-
-#. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_reference_line.py:0
-#, python-format
-msgid "Missing attribute for property {} : {}"
+msgid "Missing attribute for property %(num)d : %(name)s"
 msgstr ""
 
 #. module: product_reference
+#. odoo-python
 #: code:addons/product_reference/models/ref_reference_line.py:0
-#, python-format
-msgid "Missing value for property {} : {}"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__datetime
-msgid "Modification date"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__name
-msgid "Modification name"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__name
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__name
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__name
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__name
-msgid "Name"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__state_id
-msgid "New Status"
+msgid "Missing value for property %(num)d : %(name)s"
 msgstr ""
 
 #. module: product_reference
@@ -389,17 +177,6 @@ msgid "Notes"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__picturepath
-msgid "Path to picture"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__sequence
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__sequence
-msgid "Position"
-msgstr ""
-
-#. module: product_reference
 #: model:ir.model.constraint,message:product_reference.constraint_ref_category_line_cat_seq_uniq
 msgid "Position must be unique !"
 msgstr ""
@@ -410,39 +187,8 @@ msgid "Price Graph"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_variant_id
-msgid "Product"
-msgstr ""
-
-#. module: product_reference
 #: model:ir.model,name:product_reference.model_product_template
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__product_id
-msgid "Product Template"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__product_category_id
-msgid "Product category"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__folder_error
-msgid "Product folder error count"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__folder_count
-msgid "Product folder item count"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__folder_task
-msgid "Product folder task count"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__folder_warning
-msgid "Product folder warning count"
+msgid "Product"
 msgstr ""
 
 #. module: product_reference
@@ -456,30 +202,12 @@ msgstr ""
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_property
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_property_form_view
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_property_tree_view
 msgid "Properties"
 msgstr ""
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_property
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__property_id
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__property_id
 msgid "Property"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__property_id
-msgid "Property (owner)"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__description
-msgid "Property description"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__public_code
-msgid "Public Code"
 msgstr ""
 
 #. module: product_reference
@@ -494,18 +222,9 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.model,name:product_reference.model_ref_reference
-#: model:ir.model.fields,field_description:product_reference.field_product_product__reference_id
-#: model:ir.model.fields,field_description:product_reference.field_product_template__reference_id
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__reference_id
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__reference_id
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_form_view
 msgid "Reference"
-msgstr ""
-
-#. module: product_reference
-#: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
-msgid "Reference Management"
 msgstr ""
 
 #. module: product_reference
@@ -516,7 +235,6 @@ msgstr ""
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_reference_line
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_line_form_view
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_line_tree_view
 msgid "Reference lines"
 msgstr ""
 
@@ -532,10 +250,7 @@ msgstr ""
 
 #. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_reference
-#: model:ir.model.fields,field_description:product_reference.field_product_product__reference_ids
-#: model:ir.model.fields,field_description:product_reference.field_product_template__reference_ids
 #: model:ir.ui.menu,name:product_reference.menu_ref_reference
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_tree_view
 msgid "References"
 msgstr ""
 
@@ -550,18 +265,8 @@ msgid "Search References"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__searchvalue
-msgid "Search value"
-msgstr ""
-
-#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.change_product_state_by_category_form_view
 msgid "Select a category to pre-fill domain filter."
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,help:product_reference.field_ref_reference__state_id
-msgid "Select a state for this product"
 msgstr ""
 
 #. module: product_reference
@@ -581,25 +286,8 @@ msgid "Services"
 msgstr ""
 
 #. module: product_reference
-#: model_terms:ir.ui.view,arch_db:product_reference.res_config_settings_view_form
-msgid ""
-"Set default root product category used when creating a new reference "
-"category"
-msgstr ""
-
-#. module: product_reference
 #: model_terms:ir.ui.view,arch_db:product_reference.ref_reference_filter_view
 msgid "State"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__state
-msgid "State Code"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__state_id
-msgid "Status"
 msgstr ""
 
 #. module: product_reference
@@ -608,53 +296,13 @@ msgid "Tags"
 msgstr ""
 
 #. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__description_template
-msgid "Template"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,help:product_reference.field_ref_category__description_template
-msgid ""
-"This text is used to automatically generate the product description based on"
-" its properties"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__value
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__value
-msgid "Value"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__version
-msgid "Version"
-msgstr ""
-
-#. module: product_reference
 #: model:ir.actions.act_window,name:product_reference.act_window_ref_version
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__version_ids
-#: model_terms:ir.ui.view,arch_db:product_reference.ref_version_tree_view
 msgid "Versions"
 msgstr ""
 
 #. module: product_reference
 #: model:ir.ui.menu,name:product_reference.menu_wizard
 msgid "Wizards"
-msgstr ""
-
-#. module: product_reference
-#: model:ir.model.fields,field_description:product_reference.field_change_product_state_by_category__xid
-#: model:ir.model.fields,field_description:product_reference.field_product_template__xid
-#: model:ir.model.fields,field_description:product_reference.field_ref_attribute__xid
-#: model:ir.model.fields,field_description:product_reference.field_ref_category__xid
-#: model:ir.model.fields,field_description:product_reference.field_ref_category_line__xid
-#: model:ir.model.fields,field_description:product_reference.field_ref_property__xid
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference__xid
-#: model:ir.model.fields,field_description:product_reference.field_ref_reference_line__xid
-#: model:ir.model.fields,field_description:product_reference.field_ref_version__xid
-#: model:ir.model.fields,field_description:product_reference.field_res_company__xid
-#: model:ir.model.fields,field_description:product_reference.field_res_config_settings__xid
-msgid "XML-ID"
 msgstr ""
 
 #. module: product_reference

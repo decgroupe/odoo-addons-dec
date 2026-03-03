@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="change_product_state_by_category_form_view">
         <field name="name">Change product state by category</field>
         <field name="model">change.product.state.by.category</field>
@@ -30,8 +29,7 @@
                         name="action_update_state"
                         type="object"
                         class="btn-primary"
-                    >
-                    </button>
+                    />
                     <button special="cancel" string="Cancel" class="btn-secondary" />
                 </footer>
             </form>
@@ -52,5 +50,4 @@
         <field name="target">new</field>
         <field name="context">{}</field>
     </record>
-
 </odoo>

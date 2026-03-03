@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!--
     <delete model="ref.reference" search="[('searchvalue', '=', 'APSGMCLOTT')]"/>
     <delete model="ref.reference" search="[('searchvalue', '=', 'APSPDCALCT')]"/>
@@ -288,7 +287,6 @@
         <field name="sequence" eval="4" />
     </record>
 
-
     <record model="ref.reference" id="cpkasito00">
         <field name="category_id" ref="computerkit" />
         <field name="state">sellable</field>
@@ -325,7 +323,6 @@
         <field name="value">00</field>
         <field name="sequence" eval="4" />
     </record>
-
 
     <record model="ref.reference" id="cpkasits00">
         <field name="category_id" ref="computerkit" />
@@ -400,7 +397,6 @@
         <field name="value">23</field>
         <field name="sequence" eval="4" />
     </record>
-
 
     <record model="ref.reference" id="cpkunits23">
         <field name="category_id" ref="computerkit" />
@@ -552,5 +548,4 @@
         <field name="value">06</field>
         <field name="sequence" eval="1" />
     </record>
-
 </odoo>

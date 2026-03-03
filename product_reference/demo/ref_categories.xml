@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!--
     <delete model="ref.reference" search="[('searchvalue', '=ilike', 'APS%')]"/>
     <delete model="ref.category" search="[('code', '=', 'APS')]"/>
@@ -167,5 +166,4 @@
         <field name="property_id" ref="index" />
         <field name="sequence" eval="1" />
     </record>
-
 </odoo>

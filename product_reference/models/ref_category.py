@@ -3,7 +3,7 @@
 
 import re
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.osv import expression
 
 
@@ -48,17 +48,18 @@ class RefCategory(models.Model):
             "parent_id": parent_categ_id.id,
         }
 
-    @api.model
-    def create(self, vals):
-        product_category_id = vals.get("product_category_id")
-        if not product_category_id:
-            product_category_vals = self._prepare_product_category_vals(vals)
-            product_category = self.env["product.category"].create(
-                product_category_vals
-            )
-            vals["product_category_id"] = product_category.id
-        category_id = super().create(vals)
-        return category_id
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            product_category_id = vals.get("product_category_id")
+            if not product_category_id:
+                product_category_vals = self._prepare_product_category_vals(vals)
+                product_category = self.env["product.category"].create(
+                    product_category_vals
+                )
+                vals["product_category_id"] = product_category.id
+        category_ids = super().create(vals_list)
+        return category_ids
 
     def write(self, vals):
         name = vals.get("name")
@@ -74,7 +75,7 @@ class RefCategory(models.Model):
         if default is None:
             default = {}
         if not default.get("code"):
-            default["code"] = _("%s (copy)") % (self.code)
+            default["code"] = self.env._("%(code)s (copy)", code=self.code)
         reference_id = super().copy(default)
         return reference_id
 
@@ -88,7 +89,7 @@ class RefCategory(models.Model):
     def name_get(self):
         result = []
         for category in self:
-            name = ("[%s] %s") % (category.code, category.name)
+            name = f"[{category.code}] {category.name}"
             result.append((category.id, name))
 
         return result
@@ -157,7 +158,7 @@ class RefCategory(models.Model):
                     self._search(domain, limit=limit, access_rights_uid=name_get_uid)
                 )
             if not category_ids and operator in positive_operators:
-                ptrn = re.compile("(\[(.*?)\])")
+                ptrn = re.compile(r"(\[(.*?)\])")
                 res = ptrn.search(name)
                 if res:
                     category_ids = list(
