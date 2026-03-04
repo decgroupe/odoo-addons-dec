@@ -1,9 +1,10 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2024
 
+import logging
 import os
-
 from datetime import datetime
+
 from freezegun import freeze_time
 
 import odoo.tests
@@ -11,9 +12,20 @@ from odoo import http
 
 from .common import TestBasePermanentSessionCommon
 
+_logger = logging.getLogger(__name__)
+
 
 @odoo.tests.tagged("post_install", "-at_install")
 class TestBasePermanentSession(TestBasePermanentSessionCommon):
+    """Tests the behavior of permanent sessions"""
+
+    def _gc_sessions(self, session_expiry_delay):
+        # with Odoo 14, session garbage collection was done from
+        # `ir.autovacuum.gc_sessions()` but with Odoo 18 the main call is done from
+        # `ir.http._gc_sessions()` that simply calls `http.root.session_store.vacuum`
+        # if ODOO_SKIP_GC_SESSIONS is not set and session default delay is taken from
+        # http.get_session_max_inactivity(self.env)
+        http.root.session_store.vacuum(max_lifetime=session_expiry_delay)
 
     def _create_multiple_sessions(self):
         non_permanent_headers = {"X-Odoo-Session-Permanent": "0"}
@@ -60,13 +72,13 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
             # cleanup session folder
             http.root.session_store.delete(session)
 
-    def test_03_maintain_permanent_session(self):
+    def test_03_maintain_permanent_session(self):  # noqa: C901
         # set session expiry to 6 months
         session_expiry_delay = 86400 * 30 * 6
         # run session garbage collector
-        self.env["ir.autovacuum"].gc_sessions(session_expiry_delay)
+        self._gc_sessions(session_expiry_delay)
         # list existing sessions
-        cur_sids = http.root.session_store.list()
+        _cur_sids = http.root.session_store.list()
         # create 8 sessions (4 permanents) for our 8 users at different dates
         new_sids = dict.fromkeys(self._create_multiple_sessions(), {})
         for sid, data in new_sids.items():
@@ -74,22 +86,28 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
             data["timestamp"] = os.path.getmtime(fn)
             data["timestamp_dt"] = datetime.fromtimestamp(data["timestamp"])
             data["human_timestamp"] = data["timestamp_dt"].strftime("%Y-%m-%d %H:%M:%S")
-            print(sid, data)
+            _logger.info("%s %s", sid, data)
 
         # run maintains and vaccum
         with freeze_time("2021-03-02"):
             self.env["ir.autovacuum"].maintain_permanent_sessions()
-            self.env["ir.autovacuum"].gc_sessions(session_expiry_delay)
+            self._gc_sessions(session_expiry_delay)
 
         # check sessions
         logins = []
-        for sid, data in new_sids.items():
+        for sid, _data in new_sids.items():
             fn = http.root.session_store.get_session_filename(sid)
             session = http.root.session_store.get(sid)
             logins.append(session.login)
             timestamp = os.path.getmtime(fn)
             timestamp_dt = datetime.fromtimestamp(timestamp)
             if session.login in ("userA", "userC", "userE", "userG"):
+                _logger.info(
+                    "Permanent session %s for user %s has timestamp %s",
+                    sid,
+                    session.login,
+                    timestamp_dt,
+                )
                 self.assertTrue(session.permanent)
                 self.assertEqual(timestamp_dt.year, 2021)
                 self.assertEqual(timestamp_dt.month, 3)
@@ -127,11 +145,11 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
         # run maintains and vaccum
         with freeze_time("2021-04-05"):
             self.env["ir.autovacuum"].maintain_permanent_sessions()
-            self.env["ir.autovacuum"].gc_sessions(session_expiry_delay)
+            self._gc_sessions(session_expiry_delay)
 
         # check sessions
         logins = []
-        for sid, data in new_sids.items():
+        for sid, _data in new_sids.items():
             fn = http.root.session_store.get_session_filename(sid)
             if not os.path.exists(fn):
                 # expired sessions have been garbage collected
@@ -175,11 +193,11 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
         # run maintains and vaccum
         with freeze_time("2021-09-03"):
             self.env["ir.autovacuum"].maintain_permanent_sessions()
-            self.env["ir.autovacuum"].gc_sessions(session_expiry_delay)
+            self._gc_sessions(session_expiry_delay)
 
         # check sessions
         logins = []
-        for sid, data in new_sids.items():
+        for sid, _data in new_sids.items():
             fn = http.root.session_store.get_session_filename(sid)
             if not os.path.exists(fn):
                 # expired sessions have been garbage collected

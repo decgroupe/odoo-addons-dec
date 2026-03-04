@@ -3,13 +3,13 @@
 
 
 from odoo import http
-from odoo.addons.web.controllers.main import Session
 from odoo.http import request
 from odoo.tools.misc import str2bool
 
+from odoo.addons.web.controllers.session import Session
+
 
 class PermanentSession(Session):
-
     @http.route()
     def authenticate(self, db, login, password, base_location=None):
         """Inherits `/web/session/authenticate` to set permanent attribute to
@@ -17,6 +17,4 @@ class PermanentSession(Session):
         request.session.permanent = str2bool(
             request.httprequest.headers.get("X-Odoo-Session-Permanent", "False")
         )
-        return super(PermanentSession, self).authenticate(
-            db, login, password, base_location
-        )
+        return super().authenticate(db, login, password, base_location)

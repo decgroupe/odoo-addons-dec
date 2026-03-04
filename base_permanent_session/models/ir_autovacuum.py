@@ -3,7 +3,6 @@
 
 import logging
 import os
-from pathlib import Path
 
 from odoo import api, http, models
 
@@ -16,7 +15,8 @@ class AutoVacuum(models.AbstractModel):
     @api.model
     def maintain_permanent_sessions(self):
         store = http.root.session_store
-        for sid in store.list():
+        session_list = store.list()
+        for sid in session_list:
             session = store.get(sid)
             if not session.db == self.env.cr.dbname:
                 continue

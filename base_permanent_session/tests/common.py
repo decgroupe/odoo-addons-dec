@@ -7,17 +7,13 @@ import time
 from datetime import datetime
 from unittest.mock import patch
 
-import requests
-
 import odoo.tests
 from odoo import http
-from odoo.tests import new_test_user
-from odoo.tests.common import TransactionCase
+from odoo.tests import TEST_CURSOR_COOKIE_NAME, Opener, new_test_user
 from odoo.tools._vendor.sessions import FilesystemSessionStore
 
 
-class TestBasePermanentSessionCommon( odoo.tests.HttpCase):
-
+class TestBasePermanentSessionCommon(odoo.tests.HttpCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -44,7 +40,7 @@ class TestBasePermanentSessionCommon( odoo.tests.HttpCase):
             side_effect=_FilesystemSessionStore_save,
         )
         # process mock patch
-        r = cls.patcher.start()
+        _r = cls.patcher.start()
 
     @classmethod
     def tearDownClass(cls):
@@ -54,22 +50,15 @@ class TestBasePermanentSessionCommon( odoo.tests.HttpCase):
 
     def setUp(self):
         super().setUp()
-        self.base_url = self.env["ir.config_parameter"].get_param("web.base.url")
-        ctx = {
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
         self.users = [
-            self._create_user("userA", "userA"), #0
-            self._create_user("userB", "userB"), #1
-            self._create_user("userC", "userC"), #2
-            self._create_user("userD", "userD"), #3
-            self._create_user("userE", "userE"), #4
-            self._create_user("userF", "userF"), #5
-            self._create_user("userG", "userG"), #6
-            self._create_user("userH", "userH"), #7
+            self._create_user("userA", "userA"),  # 0
+            self._create_user("userB", "userB"),  # 1
+            self._create_user("userC", "userC"),  # 2
+            self._create_user("userD", "userD"),  # 3
+            self._create_user("userE", "userE"),  # 4
+            self._create_user("userF", "userF"),  # 5
+            self._create_user("userG", "userG"),  # 6
+            self._create_user("userH", "userH"),  # 7
         ]
 
     def _create_user(self, login, password):
@@ -90,8 +79,9 @@ class TestBasePermanentSessionCommon( odoo.tests.HttpCase):
 
     def _authenticate(self, user_index=0, headers=None):
         # reset request session to ensure cookies are cleared like it is already
-        # done in `HttpCaseCommon.setUp()`
-        self.opener = requests.Session()
+        # done in `HttpCaseCommon.setUp()` BUT use Opener instead of requests.Session
+        self.opener = Opener(self.cr)
+        self.opener.cookies[TEST_CURSOR_COOKIE_NAME] = self.http_request_key
         if not headers:
             headers = {}
         url = "/web/session/authenticate"
@@ -117,7 +107,7 @@ class TestBasePermanentSessionCommon( odoo.tests.HttpCase):
             url, data=json.dumps(data), headers=headers, timeout=600
         )
         self.assertEqual(response.status_code, 200)
-        result = json.loads(response.text)["result"]
+        _result = json.loads(response.text)["result"]
         sid = response.cookies.get("session_id")
         # extract werkzeug session
         session = http.root.session_store.get(sid)
