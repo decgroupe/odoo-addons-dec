@@ -52,11 +52,19 @@ class PurchaseOrderMerge(models.TransientModel):
     remaining_qty = fields.Float(
         string="Remaining Quantity",
         digits="Product Unit of Measure",
+        compute="_compute_qty",
     )
     qty_to_order = fields.Float(
         string="Quantity to Order",
         digits="Product Unit of Measure",
+        compute="_compute_qty",
     )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
+        record_ids._compute_qty()
+        return record_ids
 
     @api.model
     def default_get(self, fields):
@@ -64,36 +72,37 @@ class PurchaseOrderMerge(models.TransientModel):
         active_id = self._context.get("active_id")
         active_model = self._context.get("active_model")
         swo = self.env["stock.warehouse.orderpoint"]
-        sq = self.env["stock.quant"]
+        quant = self.env["stock.quant"]
         stock_location = self.env.ref(
             "stock.stock_location_stock",
             raise_if_not_found=False,
         )
 
         if active_model == "stock.warehouse.orderpoint" and active_id:
-            origin_orderpoint_id = swo.browse(active_id)[0]
+            # origin orderpoint
+            oo_id = swo.browse(active_id)[0]
             rec.update(
                 {
-                    "origin_orderpoint_id": origin_orderpoint_id.id,
-                    "product_uom_po_id": origin_orderpoint_id.product_id.uom_po_id.id,
-                    "available_qty": sq._get_available_quantity(
-                        origin_orderpoint_id.product_id,
+                    "origin_orderpoint_id": oo_id.id,
+                    "product_uom_po_id": oo_id.product_id.uom_po_id.id,
+                    "available_qty": quant._get_available_quantity(
+                        oo_id.product_id,
                         stock_location,
                     ),
-                    "product_min_qty": origin_orderpoint_id.product_min_qty,
-                    "product_max_qty": origin_orderpoint_id.product_max_qty,
-                    "qty_multiple": origin_orderpoint_id.product_id.uom_po_id.factor_inv,
+                    "product_min_qty": oo_id.product_min_qty,
+                    "product_max_qty": oo_id.product_max_qty,
+                    "qty_multiple": oo_id.product_id.uom_po_id.factor_inv,
                 }
             )
         return rec
 
-    @api.onchange(
+    @api.depends(
         "available_qty",
         "product_min_qty",
         "product_max_qty",
         "qty_multiple",
     )
-    def _onchange_quantity(self):
+    def _compute_qty(self):
         self.needed_qty = (
             max(self.product_min_qty, self.product_max_qty) - self.available_qty
         )

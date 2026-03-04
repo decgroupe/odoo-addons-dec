@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:32+0000\n"
+"POT-Creation-Date: 2026-06-03 11:12+0000\n"
 "PO-Revision-Date: 2023-11-28 15:12+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -62,16 +62,6 @@ msgstr "Nom affiché"
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__id
 msgid "ID"
 msgstr "ID"
-
-#. module: stock_orderpoint_simulator
-#: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: stock_orderpoint_simulator
-#: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__write_uid
@@ -166,31 +156,34 @@ msgstr "La quantité à approvisionner sera arrondie à ce multiple. "
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
-msgid "This multiple is normally equal to the Purchase Unit of Measure <b>ratio</b>. ("
-msgstr "Ce multiple est normalement égal au <b>ratio</b> de l'unité de mesure d'achat. ("
+msgid ""
+"This multiple is normally equal to the Purchase Unit of Measure "
+"<b>ratio</b>. ("
+msgstr ""
+"Ce multiple est normalement égal au <b>ratio</b> de l'unité de mesure "
+"d'achat. ("
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_min_qty
 msgid ""
-"When the virtual stock goes below the Min Quantity specified for this field, Odoo generates a procurement to "
-"bring the forecasted quantity to the Max Quantity."
+"When the virtual stock goes below the Min Quantity specified for this field,"
+" Odoo generates a procurement to bring the forecasted quantity to the Max "
+"Quantity."
 msgstr ""
-"Quand le stock virtuel tombe en dessous de la quantité mini indiquée dans de champ, Odoo génère un "
-"approvisionnement pour ramener la quantité prévue à la quantité maxi."
+"Quand le stock virtuel tombe en dessous de la quantité mini indiquée dans de"
+" champ, Odoo génère un approvisionnement pour ramener la quantité prévue à "
+"la quantité maxi."
 
 #. module: stock_orderpoint_simulator
 #: model:ir.model.fields,help:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__product_max_qty
 msgid ""
-"When the virtual stock goes below the Min Quantity, Odoo generates a procurement to bring the forecasted "
-"quantity to the Quantity specified as Max Quantity."
+"When the virtual stock goes below the Min Quantity, Odoo generates a "
+"procurement to bring the forecasted quantity to the Quantity specified as "
+"Max Quantity."
 msgstr ""
-"Quand le stock virtuel tombe en dessous de la quantité mini, Odoo génère un approvisionnement pour ramener la "
-"quantité prévue à la quantité indiquée ici."
-
-#. module: stock_orderpoint_simulator
-#: model:ir.model.fields,field_description:stock_orderpoint_simulator.field_stock_warehouse_orderpoint_simulator__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+"Quand le stock virtuel tombe en dessous de la quantité mini, Odoo génère un "
+"approvisionnement pour ramener la quantité prévue à la quantité indiquée "
+"ici."
 
 #. module: stock_orderpoint_simulator
 #: model_terms:ir.ui.view,arch_db:stock_orderpoint_simulator.stock_warehouse_orderpoint_simulator_form_view
@@ -207,3 +200,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:stock_orderpoint_simulator.act_window_stock_warehouse_orderpoint_simulator
 msgid "🧙‍♂️ Simulator ..."
 msgstr "🧙‍♂️ Simulateur ..."
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

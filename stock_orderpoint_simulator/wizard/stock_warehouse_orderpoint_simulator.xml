@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="stock_warehouse_orderpoint_simulator_form_view">
         <field
             name="name"
@@ -21,7 +20,7 @@
                     <field name="qty_multiple" string="Multiple" required="1" />
                     <p class="oe_grey">
                         This multiple is normally equal to the Purchase Unit of Measure <b
-                        >ratio</b>. (<field name="product_uom_po_id" readonly="1" />)
+                    >ratio</b>. (<field name="product_uom_po_id" readonly="1" />)
                         You can change it to simulate your result but don't forget to change
                         this UoM in the product form if you want match your simulation.
                     </p>
@@ -36,15 +35,13 @@
                         type="object"
                         default_focus="1"
                         context="{}"
-                    >
-                    </button>
+                    />
                     <button
                         class="btn-secondary"
                         string="Cancel"
                         special="cancel"
                         context="{}"
-                    >
-                    </button>
+                    />
                 </footer>
             </form>
         </field>
@@ -69,5 +66,4 @@
         <field name="binding_type">action</field>
         <field name="target">new</field>
     </record>
-
 </odoo>
