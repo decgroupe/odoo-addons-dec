@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
-"PO-Revision-Date: 2023-11-28 14:29+0100\n"
+"POT-Creation-Date: 2026-06-03 10:58+0000\n"
+"PO-Revision-Date: 2026-06-03 15:55+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: purchase_split
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_split_form_view
@@ -37,28 +37,14 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: purchase_split
-#: model:ir.model.fields,field_description:purchase_split.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: purchase_split
-#: model:ir.model.fields,field_description:purchase_split.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__id
 msgid "ID"
 msgstr "ID"
-
-#. module: purchase_split
-#: model:ir.model.fields,help:purchase_split.field_purchase_order__xid
-#: model:ir.model.fields,help:purchase_split.field_purchase_order_split__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: purchase_split
-#: model:ir.model.fields,field_description:purchase_split.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: purchase_split
 #: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__write_uid
@@ -96,15 +82,10 @@ msgid "Purchase Order"
 msgstr "Commande fournisseur"
 
 #. module: purchase_split
+#. odoo-python
 #: code:addons/purchase_split/wizard/purchase_order_split.py:0
-#, python-format
 msgid "Purchase Orders (after split)"
 msgstr "Commandes fournisseur (après scission)"
-
-#. module: purchase_split
-#: model:ir.actions.act_window,name:purchase_split.action_purchase_order_line_tree
-msgid "Quotation Lines"
-msgstr "Lignes de devis"
 
 #. module: purchase_split
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_split_form_view
@@ -126,6 +107,11 @@ msgid "Select lines to move to a new order"
 msgstr "Sélectionner les lignes à déplacer vers une autre commande"
 
 #. module: purchase_split
+#: model:ir.actions.act_window,name:purchase_split.action_purchase_order_line_tree
+msgid "Select lines to split"
+msgstr "Sélectionner les lignes à diviser"
+
+#. module: purchase_split
 #: model_terms:ir.ui.view,arch_db:purchase_split.purchase_order_view_form_inherit
 msgid "Split"
 msgstr "Scinder"
@@ -136,14 +122,8 @@ msgid "Vendor"
 msgstr "Fournisseur"
 
 #. module: purchase_split
-#: model:ir.model.fields,field_description:purchase_split.field_purchase_order__xid
-#: model:ir.model.fields,field_description:purchase_split.field_purchase_order_split__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: purchase_split
+#. odoo-python
 #: code:addons/purchase_split/wizard/purchase_order_split.py:0
-#, python-format
 msgid "You can't select all lines"
 msgstr "Vous ne pouvez pas sélectionner toutes les lignes"
 
@@ -151,3 +131,15 @@ msgstr "Vous ne pouvez pas sélectionner toutes les lignes"
 #: model:ir.actions.act_window,name:purchase_split.act_window_purchase_order_split
 msgid "🧙‍♂️ Split ..."
 msgstr "🧙‍♂️ Scinder ..."
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Quotation Lines"
+#~ msgstr "Lignes de devis"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

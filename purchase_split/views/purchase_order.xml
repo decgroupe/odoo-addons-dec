@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.actions.act_window" id="action_purchase_order_line_tree">
         <field name="context">{}</field>
         <field name="domain">
@@ -9,28 +8,30 @@
                 ('state', 'in', ['draft', 'sent', 'to approve']),
             ]
         </field>
-        <field name="name">Quotation Lines</field>
+        <field name="name">Select lines to split</field>
         <field name="res_model">purchase.order.line</field>
-        <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="view_id" ref="purchase.purchase_order_line_tree" />
     </record>
 
-    <record model="ir.ui.view" id="purchase_order_view_form_inherit" >
+    <record model="ir.ui.view" id="purchase_order_view_form_inherit">
         <field name="name">purchase.order.form.inherit@purchase_split</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
+        <field
+            name="inherit_id"
+            ref="purchase_stock.purchase_order_view_form_inherit"
+        />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button 
+                <button
                     class="oe_stat_button"
-                    name="%(purchase_split.action_purchase_order_line_tree)d"
+                    name="action_split"
                     string="Split"
                     help="Select lines to move to a new order"
-                    type="action"
+                    type="object"
                     icon="fa-cut"
-                    attrs="{'invisible':[('state', 'not in', ['draft', 'sent', 'to approve'])]}">
-                </button>
+                    invisible="state not in ('draft', 'sent', 'to approve')"
+                />
             </xpath>
         </field>
     </record>
-
 </odoo>

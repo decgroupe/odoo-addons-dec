@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
-from odoo import api, fields, models, _
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -41,11 +41,11 @@ class PurchaseOrderSplit(models.TransientModel):
                 {
                     "partner_id": partner_id.id,
                     "origin_order_id": origin_order_id.id,
-                    "order_line_ids": [(6, 0, order_line_ids.ids)],
+                    "order_line_ids": [Command.set(order_line_ids.ids)],
                 }
             )
             if len(order_line_ids) == len(origin_order_id.order_line):
-                raise UserError(_("You can't select all lines"))
+                raise UserError(self.env._("You can't select all lines"))
         return rec
 
     def action_split(self):
@@ -55,13 +55,13 @@ class PurchaseOrderSplit(models.TransientModel):
         elif self.origin_order_id.id:
             order_id = self.origin_order_id.copy(
                 {
-                    "order_line": [(6, 0, self.order_line_ids.ids)],
+                    "order_line": [Command.set(self.order_line_ids.ids)],
                     "group_id": self.origin_order_id.group_id.id,
                     "origin": self.origin_order_id.name,
                 }
             )
         action_vals = {
-            "name": _("Purchase Orders (after split)"),
+            "name": self.env._("Purchase Orders (after split)"),
             "view_type": "form",
             "view_mode": "form",
             "res_id": order_id.id,
