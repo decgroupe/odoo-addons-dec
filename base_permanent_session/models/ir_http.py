@@ -4,16 +4,19 @@
 import logging
 import os
 
-from odoo import api, http, models
+from odoo import http, models
 
 _logger = logging.getLogger(__name__)
 
 
-class AutoVacuum(models.AbstractModel):
-    _inherit = "ir.autovacuum"
+class IrHttp(models.AbstractModel):
+    _inherit = "ir.http"
 
-    @api.model
-    def maintain_permanent_sessions(self):
+    def _gc_sessions(self):
+        self._maintain_permanent_sessions()
+        return super()._gc_sessions()
+
+    def _maintain_permanent_sessions(self):
         store = http.root.session_store
         session_list = store.list()
         for sid in session_list:

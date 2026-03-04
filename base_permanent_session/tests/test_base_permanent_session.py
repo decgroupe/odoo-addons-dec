@@ -27,6 +27,9 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
         # http.get_session_max_inactivity(self.env)
         http.root.session_store.vacuum(max_lifetime=session_expiry_delay)
 
+    def _maintain_permanent_sessions(self):
+        self.env["ir.http"]._maintain_permanent_sessions()
+
     def _create_multiple_sessions(self):
         non_permanent_headers = {"X-Odoo-Session-Permanent": "0"}
         permanent_headers = {"X-Odoo-Session-Permanent": "1"}
@@ -90,7 +93,7 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
 
         # run maintains and vaccum
         with freeze_time("2021-03-02"):
-            self.env["ir.autovacuum"].maintain_permanent_sessions()
+            self._maintain_permanent_sessions()
             self._gc_sessions(session_expiry_delay)
 
         # check sessions
@@ -144,7 +147,7 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
 
         # run maintains and vaccum
         with freeze_time("2021-04-05"):
-            self.env["ir.autovacuum"].maintain_permanent_sessions()
+            self._maintain_permanent_sessions()
             self._gc_sessions(session_expiry_delay)
 
         # check sessions
@@ -192,7 +195,7 @@ class TestBasePermanentSession(TestBasePermanentSessionCommon):
 
         # run maintains and vaccum
         with freeze_time("2021-09-03"):
-            self.env["ir.autovacuum"].maintain_permanent_sessions()
+            self._maintain_permanent_sessions()
             self._gc_sessions(session_expiry_delay)
 
         # check sessions

@@ -5,12 +5,9 @@
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "base",
         "web",
     ],
-    "data": [
-        "data/ir_cron.xml",
-    ],
+    "data": [],
     "demo": [],
     "installable": True,
 }
