@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2021
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class ResPartnerTrainingSpecialty(models.Model):
@@ -9,6 +9,7 @@ class ResPartnerTrainingSpecialty(models.Model):
     _name = "res.partner.training.specialty"
     _order = "name"
     _rec_name = "complete_name"
+    _rec_names_search = ["complete_name", "search_name"]
 
     active = fields.Boolean(
         string="Active",
@@ -37,6 +38,7 @@ class ResPartnerTrainingSpecialty(models.Model):
         comodel_name="res.partner.training",
         string="Educational Training",
         required=True,
+        ondelete="cascade",
     )
 
     _sql_constraints = [
@@ -59,18 +61,5 @@ class ResPartnerTrainingSpecialty(models.Model):
                 suffix = rec.acronym
             else:
                 suffix = rec.name
-            rec.complete_name = "{} {}".format(rec.training_id.name, suffix)
-            rec.search_name = "{} {} {}".format(
-                rec.training_id.name, rec.acronym, rec.name
-            )
-
-    @api.model
-    def name_search(self, name="", args=None, operator="ilike", limit=100):
-        cls = type(self)
-        original_rec_name = cls._rec_name
-        cls._rec_name = "search_name"
-        result = super().name_search(
-            name=name, args=args, operator=operator, limit=limit
-        )
-        cls._rec_name = original_rec_name
-        return result
+            rec.complete_name = f"{rec.training_id.name} {suffix}"
+            rec.search_name = f"{rec.training_id.name} {rec.acronym} {rec.name}"

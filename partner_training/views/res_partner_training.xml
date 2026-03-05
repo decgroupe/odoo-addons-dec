@@ -1,18 +1,17 @@
 <?xml version="1.0" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="res_partner_training_tree_view">
-        <field name="name">res.partner.training.tree@partner_training</field>
+    <record model="ir.ui.view" id="res_partner_training_list_view">
+        <field name="name">res.partner.training.list@partner_training</field>
         <field name="model">res.partner.training</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field
                     name="specialty_ids"
                     string="Specialties or Sectors"
                     widget="many2many_tags"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -22,15 +21,13 @@
         <field name="arch" type="xml">
             <form string="Educational Training">
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <field name="active" invisible="1" />
-                        <widget
-                            name="web_ribbon"
-                            title="Archived"
-                            bg_color="bg-danger"
-                            attrs="{'invisible': [('active', '=', True)]}"
-                        />
-                    </div>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
                     <group name="title">
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only" />
@@ -43,18 +40,16 @@
                         <label for="title" class="oe_edit_only" />
                         <field name="title" />
                         <field name="specialty_ids">
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field
                                     name="name"
                                     placeholder="Personal Care and Services Support"
                                 />
                                 <field name="acronym" placeholder="PCSS" />
-                            </tree>
+                            </list>
                         </field>
-                        <group name="primary">
-                        </group>
-                        <group name="secondary">
-                        </group>
+                        <group name="primary" />
+                        <group name="secondary" />
                     </group>
                 </sheet>
             </form>
@@ -65,7 +60,7 @@
         <field name="name">Educational Trainings</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner.training</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new Educational Training
@@ -75,6 +70,4 @@
             </p>
         </field>
     </record>
-
-
 </odoo>

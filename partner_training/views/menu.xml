@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <menuitem
         id="res_partner_training_category"
         name="Educational Trainings"
         parent="contacts.res_partner_menu_config"
+        groups="partner_training.group_partner_training_user"
         sequence="4"
     />
 
@@ -13,6 +13,7 @@
         name="Trainings"
         action="res_partner_training_action"
         parent="res_partner_training_category"
+        groups="partner_training.group_partner_training_user"
         sequence="10"
     />
 
@@ -21,8 +22,7 @@
         name="Specialties"
         action="res_partner_training_specialty_action"
         parent="res_partner_training_category"
-        groups="base.group_erp_manager"
+        groups="partner_training.group_partner_training_manager"
         sequence="20"
     />
-
 </odoo>

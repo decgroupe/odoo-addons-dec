@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:26+0000\n"
-"PO-Revision-Date: 2023-11-28 13:59+0100\n"
+"POT-Creation-Date: 2026-06-03 10:43+0000\n"
+"PO-Revision-Date: 2026-06-03 15:22+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__acronym
@@ -72,7 +72,6 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: partner_training
-#: model:ir.model.fields,field_description:partner_training.field_res_partner__display_name
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__display_name
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__display_name
 msgid "Display Name"
@@ -88,7 +87,6 @@ msgstr "Formation pédagogique"
 
 #. module: partner_training
 #: model:ir.actions.act_window,name:partner_training.res_partner_training_specialty_action
-#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_tree_view
 msgid "Educational Training Specialties"
 msgstr "Spécialités de formation pédagogique"
 
@@ -108,7 +106,6 @@ msgstr "Spécialité de formation pédagogique"
 #. module: partner_training
 #: model:ir.actions.act_window,name:partner_training.res_partner_training_action
 #: model:ir.ui.menu,name:partner_training.res_partner_training_category
-#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_tree_view
 msgid "Educational Trainings"
 msgstr "Formations pédagogiques"
 
@@ -123,25 +120,10 @@ msgid "Group By"
 msgstr "Regrouper par"
 
 #. module: partner_training
-#: model:ir.model.fields,field_description:partner_training.field_res_partner__id
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__id
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__id
 msgid "ID"
 msgstr "ID"
-
-#. module: partner_training
-#: model:ir.model.fields,help:partner_training.field_res_partner__xid
-#: model:ir.model.fields,help:partner_training.field_res_partner_training__xid
-#: model:ir.model.fields,help:partner_training.field_res_partner_training_specialty__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: partner_training
-#: model:ir.model.fields,field_description:partner_training.field_res_partner____last_update
-#: model:ir.model.fields,field_description:partner_training.field_res_partner_training____last_update
-#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__write_uid
@@ -166,6 +148,11 @@ msgstr ""
 "fins de suivi et d'analyse."
 
 #. module: partner_training
+#: model:res.groups,name:partner_training.group_partner_training_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: partner_training
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training__name
 #: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__name
 msgid "Name"
@@ -182,6 +169,11 @@ msgstr "Le nom doit être unique !"
 #: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_specialty_form_view
 msgid "PCSS"
 msgstr "ASSP"
+
+#. module: partner_training
+#: model:ir.module.category,name:partner_training.module_category_partner_training
+msgid "Partner Training"
+msgstr "Formation du partenaire"
 
 #. module: partner_training
 #: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_form_view
@@ -203,7 +195,7 @@ msgid "Specialties"
 msgstr "Spécialités"
 
 #. module: partner_training
-#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_tree_view
+#: model_terms:ir.ui.view,arch_db:partner_training.res_partner_training_list_view
 msgid "Specialties or Sectors"
 msgstr "Spécialités ou filières"
 
@@ -218,8 +210,15 @@ msgid "Trainings"
 msgstr "Formations"
 
 #. module: partner_training
-#: model:ir.model.fields,field_description:partner_training.field_res_partner__xid
-#: model:ir.model.fields,field_description:partner_training.field_res_partner_training__xid
-#: model:ir.model.fields,field_description:partner_training.field_res_partner_training_specialty__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model:res.groups,name:partner_training.group_partner_training_user
+msgid "User"
+msgstr "Utilisateur"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

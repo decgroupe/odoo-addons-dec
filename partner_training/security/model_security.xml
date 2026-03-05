@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.module.category" id="module_category_partner_training">
+        <field name="name">Partner Training</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record model="res.groups" id="group_partner_training_user">
+        <field name="name">User</field>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]" />
+        <field name="category_id" ref="module_category_partner_training" />
+    </record>
+
+    <record model="res.groups" id="group_partner_training_manager">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_partner_training" />
+        <field
+            name="implied_ids"
+            eval="[Command.link(ref('group_partner_training_user'))]"
+        />
+        <field
+            name="users"
+            eval="[
+                Command.link(ref('base.user_root')),
+                Command.link(ref('base.user_admin'))
+            ]"
+        />
+    </record>
+</odoo>
