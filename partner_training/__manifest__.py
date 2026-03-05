@@ -16,5 +16,8 @@
         "views/res_partner.xml",
         "views/menu.xml",
     ],
+    "demo": [
+        "demo/res_partner_training_demo.xml",
+    ],
     "installable": True,
 }

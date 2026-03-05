@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record model="res.partner.training" id="res_partner_training_bac_demo">
+        <field name="name">BAC</field>
+    </record>
+    <record model="res.partner.training" id="res_partner_training_bts_demo">
+        <field name="name">BTS</field>
+    </record>
+    <record model="res.partner.training" id="res_partner_training_dut_demo">
+        <field name="name">DUT</field>
+    </record>
+
+    <record
+        model="res.partner.training.specialty"
+        id="res_partner_training_specialty_bac_sti2d_demo"
+    >
+        <field
+            name="name"
+        >Sciences et technologies de l'industrie et du developpement durable</field>
+        <field name="acronym">STI2D</field>
+        <field name="training_id" ref="res_partner_training_bac_demo" />
+    </record>
+    <record
+        model="res.partner.training.specialty"
+        id="res_partner_training_specialty_bac_stmg_demo"
+    >
+        <field
+            name="name"
+        >Sciences et technologies du management et de la gestion</field>
+        <field name="acronym">STMG</field>
+        <field name="training_id" ref="res_partner_training_bac_demo" />
+    </record>
+
+    <record
+        model="res.partner.training.specialty"
+        id="res_partner_training_specialty_bts_cpi_demo"
+    >
+        <field name="name">Conception de produits industriels</field>
+        <field name="acronym">CPI</field>
+        <field name="training_id" ref="res_partner_training_bts_demo" />
+    </record>
+    <record
+        model="res.partner.training.specialty"
+        id="res_partner_training_specialty_bts_sio_demo"
+    >
+        <field name="name">Services informatiques aux organisations</field>
+        <field name="acronym">SIO</field>
+        <field name="training_id" ref="res_partner_training_bts_demo" />
+    </record>
+
+    <record
+        model="res.partner.training.specialty"
+        id="res_partner_training_specialty_dut_geii_demo"
+    >
+        <field name="name">Genie electrique et informatique industrielle</field>
+        <field name="acronym">GEII</field>
+        <field name="training_id" ref="res_partner_training_dut_demo" />
+    </record>
+    <record
+        model="res.partner.training.specialty"
+        id="res_partner_training_specialty_dut_gmp_demo"
+    >
+        <field name="name">Genie mecanique et productique</field>
+        <field name="acronym">GMP</field>
+        <field name="training_id" ref="res_partner_training_dut_demo" />
+    </record>
+</odoo>
