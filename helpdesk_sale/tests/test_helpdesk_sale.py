@@ -1,12 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2025
 
-from odoo.tests.common import TransactionCase
 from odoo import fields
+from odoo.tests.common import TransactionCase
 
 
 class TestHelpdeskSale(TransactionCase):
-
     def setUp(self):
         super().setUp()
         self.ticket5 = self.env.ref("helpdesk_mgmt.helpdesk_ticket_5")
@@ -39,13 +38,13 @@ class TestHelpdeskSale(TransactionCase):
         self.assertEqual(sale_id.origin, self.ticket5.number)
         self.assertEqual(sale_id.date_order, fields.Datetime.today())
         self.assertEqual(
-            sale_id.summary, ("Case %s: %s") % (self.ticket5.number, self.ticket5.name)
+            sale_id.summary, (f"Case {self.ticket5.number}: {self.ticket5.name}")
         )
         self.assertRegex(
             sale_id.message_ids[0].body,
-            ("Created from helpdesk ticket.*%s") % (self.ticket5.number),
+            (f"Created from helpdesk ticket.*{self.ticket5.number}"),
         )
         self.assertRegex(
             self.ticket5.message_ids[0].body,
-            ("New quotation.*%s") % (sale_id.name),
+            (f"New quotation.*{sale_id.name}"),
         )
