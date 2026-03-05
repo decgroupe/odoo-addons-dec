@@ -1,9 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
-
-from odoo import _, api, fields, models
-from odoo.tools import float_compare
+from odoo import api, fields, models
 
 
 class MrpConsumeLine(models.TransientModel):
@@ -22,13 +20,6 @@ class MrpConsumeLine(models.TransientModel):
     product_id = fields.Many2one(
         comodel_name="product.product",
         string="Product",
-    )
-    product_tracking = fields.Selection(
-        related="product_id.tracking",
-    )
-    lot_id = fields.Many2one(
-        comodel_name="stock.production.lot",
-        string="Lot/Serial Number",
     )
     qty_to_consume = fields.Float(
         string="To Consume",
@@ -50,49 +41,14 @@ class MrpConsumeLine(models.TransientModel):
         digits="Product Unit of Measure",
     )
 
-    @api.onchange("lot_id")
-    def _onchange_lot_id(self):
-        """When the user is encoding a produce line for a tracked product, we apply
-        some logic to help him. This onchange will automatically switch `qty_done`
-        to 1.0.
-        """
-        res = {}
-        if self.product_id.tracking == "serial":
-            self.qty_done = 1
-        return res
-
-    @api.onchange("qty_done")
-    def _onchange_qty_done(self):
-        """When the user is encoding a produce line for a tracked product, we apply
-        some logic to help him. This onchange will warn him if he set `qty_done`
-        to a non-supported value.
-        """
-        res = {}
-        if self.product_id.tracking == "serial" and self.qty_done:
-            if (
-                float_compare(
-                    self.qty_done,
-                    1.0,
-                    precision_rounding=self.move_id.product_id.uom_id.rounding,
-                )
-                != 0
-            ):
-                message = (
-                    _(
-                        "You can only process 1.0 %s of products with unique "
-                        "serial number."
-                    )
-                    % self.product_id.uom_id.name
-                )
-                res["warning"] = {"title": _("Warning"), "message": message}
-        return res
-
     @api.onchange("product_id")
     def _onchange_product_id(self):
+        """Set product UoM from product definition."""
         self.product_uom_id = self.product_id.uom_id.id
 
     @api.depends("qty_done", "qty_reserved", "qty_to_consume")
     def _compute_is_m_status(self):
+        """Compute minimize/maximize button states."""
         for line in self:
             line.is_minimized = line.qty_done == 0
             line.is_maximized = (line.qty_done == line.qty_reserved) or (
@@ -102,9 +58,15 @@ class MrpConsumeLine(models.TransientModel):
     def action_minimize_qty_done(self):
         self.ensure_one()
         self.qty_done = 0
-        return self.consume_id._reopen()
+        if self.consume_id:
+            return self.consume_id._reopen()
+        else:
+            return True
 
     def action_maximize_qty_done_reserved(self):
         self.ensure_one()
         self.qty_done = self.qty_reserved
-        return self.consume_id._reopen()
+        if self.consume_id:
+            return self.consume_id._reopen()
+        else:
+            return True

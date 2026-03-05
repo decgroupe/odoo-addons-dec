@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_consume_wizard_view">
         <field name="name">MRP Consume</field>
         <field name="model">mrp.consume</field>
@@ -8,42 +7,16 @@
             <form string="Consume">
                 <group>
                     <group>
-                        <field name="serial" invisible="1" />
                         <field name="company_id" invisible="1" />
                         <field name="production_id" invisible="1" />
                         <field name="product_id" readonly="1" />
                         <label for="product_qty" string="Quantity" />
                         <div class="o_row">
-                            <field
-                                name="product_qty"
-                                readonly="1"
-                                attrs="{'readonly': [('serial', '=', True)]}"
-                            />
+                            <field name="product_qty" />
                             <field
                                 name="product_uom_id"
                                 readonly="1"
                                 groups="uom.group_uom"
-                            />
-                        </div>
-                        <field name="product_tracking" invisible="1" />
-                        <label
-                            for="finished_lot_id"
-                            attrs="{'invisible': [('product_tracking', '=', 'none')]}"
-                        />
-                        <div class="o_row">
-                            <field
-                                name="finished_lot_id"
-                                attrs="{'invisible': [('product_tracking', '=', 'none')], 'required': [('product_tracking', '!=', 'none'), ('finished_lot_id', '!=', False)]}"
-                                context="{'default_product_id': product_id, 'default_company_id': company_id}"
-                            />
-                            <button
-                                name="action_generate_serial"
-                                type="object"
-                                class="btn btn-primary fa fa-plus-square-o"
-                                aria-label="Creates a new serial/lot number"
-                                title="Creates a new serial/lot number"
-                                role="img"
-                                attrs="{'invisible': ['|', ('product_tracking', '=', 'none'), ('finished_lot_id', '!=', False)]}"
                             />
                         </div>
                     </group>
@@ -52,68 +25,51 @@
                             name="action_remove_make_to_order"
                             string="Only show products from stock"
                             type="object"
-                            solid_icon="fa-magic"
-                        >
-                        </button>
+                            icon="fa-magic"
+                        />
                     </group>
                 </group>
                 <group>
-                    <field
-                        name="line_ids"
-                        attrs="{'invisible': [('line_ids', '=', [])]}"
-                        nolabel="1"
-                        context="{'w_production': True, 'active_id': production_id, 'default_lot_id': finished_lot_id}"
-                    >
-                        <tree
+                    <field name="line_ids" invisible="not line_ids" nolabel="1">
+                        <list
                             editable="top"
                             delete="0"
                             decoration-danger="(qty_to_consume &lt; qty_done) or (qty_done &gt; qty_reserved)"
                         >
                             <field
                                 name="product_id"
-                                attrs="{'readonly': [('move_id', '!=', False)]}"
+                                readonly="move_id"
                                 required="1"
                                 domain="[('id', '!=', parent.product_id)]"
                                 force_save="1"
                             />
-                            <field name="product_tracking" invisible="1" />
-                            <field
-                                name="lot_id"
-                                attrs="{'readonly': [('product_tracking', '=', 'none')]}"
-                                force_save="1"
-                                context="{'default_product_id': product_id}"
-                                domain="[('product_id', '=', product_id)]"
-                                groups="stock.group_production_lot"
-                            />
                             <field name="qty_to_consume" readonly="1" force_save="1" />
                             <field name="qty_reserved" readonly="1" force_save="1" />
-                            <field name="is_minimized" invisible="1" />
+                            <field name="is_minimized" column_invisible="1" />
                             <button
                                 name="action_minimize_qty_done"
                                 title="Minimize"
                                 type="object"
-                                attrs="{'invisible': [('is_minimized', '=', True)]}"
+                                invisible="is_minimized"
                                 icon="fa-backward"
-                            >
-                            </button>
+                            />
                             <field name="qty_done" />
-                            <field name="is_maximized" invisible="1" />
+                            <field name="is_maximized" column_invisible="1" />
                             <button
                                 name="action_maximize_qty_done_reserved"
                                 title="Maximize"
                                 type="object"
-                                attrs="{'invisible': [('is_maximized', '=', True)]}"
+                                invisible="is_maximized"
                                 icon="fa-forward"
-                            >
-                            </button>
+                            />
                             <field
                                 name="product_uom_id"
                                 readonly="1"
                                 force_save="1"
                                 groups="uom.group_uom"
                             />
-                            <field name="move_id" invisible="1" />
-                        </tree>
+                            <field name="move_id" column_invisible="1" />
+                        </list>
                     </field>
                 </group>
                 <footer>
@@ -123,31 +79,26 @@
                         confirm="Are you sure that you want to consume these lines?"
                         type="object"
                         class="btn-primary"
-                    >
-                    </button>
-                    <button string="Cancel" class="btn-secondary" special="cancel">
-                    </button>
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
                     <button
                         name="action_minimize_qty_done"
                         string="Minimize all"
                         type="object"
                         icon="fa-fast-backward"
-                    >
-                    </button>
+                    />
                     <button
                         name="action_maximize_qty_done_reserved"
                         string="Maximize all (reserved only)"
                         type="object"
                         icon="fa-fast-forward"
-                    >
-                    </button>
+                    />
                     <button
                         name="action_maximize_qty_done_to_consume"
                         string="Maximize all"
                         type="object"
                         icon="fa-fast-forward"
-                    >
-                    </button>
+                    />
                 </footer>
             </form>
         </field>
@@ -161,5 +112,4 @@
         <field name="context">{}</field>
         <field name="target">new</field>
     </record>
-
 </odoo>
