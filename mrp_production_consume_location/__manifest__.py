@@ -1,6 +1,7 @@
 {
     "name": "Manufacturing Product Location on Consume Line",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -8,8 +9,12 @@
         "product_location",
     ],
     "data": [
-        "views/assets.xml",
         "wizard/mrp_consume.xml",
     ],
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "mrp_production_consume_location/static/src/scss/style.scss",
+        ],
+    },
+    "installable": True,
 }

@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class MrpConsumeLine(models.TransientModel):
@@ -15,7 +15,10 @@ class MrpConsumeLine(models.TransientModel):
     )
 
     @api.depends(
-        "product_id", "product_id.loc_rack", "product_id.loc_row", "product_id.loc_case"
+        "product_id",
+        "product_id.loc_rack",
+        "product_id.loc_row",
+        "product_id.loc_case",
     )
     def _compute_product_location(self):
         for line in self:
@@ -32,16 +35,19 @@ class MrpConsumeLine(models.TransientModel):
 
     def action_create_inventory_activity(self):
         self.ensure_one()
-        # If the user deleted todo activity type.
+        # if the user deleted todo activity type.
         try:
             activity_type_id = self.env.ref("mail.mail_activity_data_todo").id
-        except:
+        except Exception:  # noqa: E722
             activity_type_id = False
         vals = {
             "activity_type_id": activity_type_id,
-            "summary": _("Requires inventory"),
+            "summary": self.env._("Requires inventory"),
             "res_id": self.product_id.product_tmpl_id.id,
             "res_model_id": self.env.ref("product.model_product_template").id,
         }
         self.inventory_activity_id = self.env["mail.activity"].create(vals)
-        return self.product_produce_id._reopen()
+        if self.consume_id:
+            return self.consume_id._reopen()
+        else:
+            return True

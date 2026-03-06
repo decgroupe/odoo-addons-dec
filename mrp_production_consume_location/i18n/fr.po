@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:23+0000\n"
-"PO-Revision-Date: 2023-11-28 13:46+0100\n"
+"POT-Creation-Date: 2026-06-03 10:35+0000\n"
+"PO-Revision-Date: 2026-06-03 15:05+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,42 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_production_consume_location
 #: model:ir.model,name:mrp_production_consume_location.model_mrp_consume_line
 msgid "Consume Production Line"
-msgstr "Consommer une ligne de production"
-
-#. module: mrp_production_consume_location
-#: model:ir.model.fields,field_description:mrp_production_consume_location.field_mrp_consume_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Consommer la production (ligne)"
 
 #. module: mrp_production_consume_location
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume_location.mrp_consume_wizard_view
 msgid "Do you want to create an activity that requires inventory?"
-msgstr "Voulez-vous créer une activité qui demande un inventaire?"
-
-#. module: mrp_production_consume_location
-#: model:ir.model.fields,field_description:mrp_production_consume_location.field_mrp_consume_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_production_consume_location
-#: model:ir.model.fields,help:mrp_production_consume_location.field_mrp_consume_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+msgstr "Voulez-vous créer une activité qui demande un inventaire ?"
 
 #. module: mrp_production_consume_location
 #: model:ir.model.fields,field_description:mrp_production_consume_location.field_mrp_consume_line__inventory_activity_id
 msgid "Inventory Activity"
 msgstr "Activité d’inventaire"
-
-#. module: mrp_production_consume_location
-#: model:ir.model.fields,field_description:mrp_production_consume_location.field_mrp_consume_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: mrp_production_consume_location
 #: model_terms:ir.ui.view,arch_db:mrp_production_consume_location.mrp_consume_wizard_view
@@ -63,8 +43,9 @@ msgid "Product Location"
 msgstr "Emplacement du produit"
 
 #. module: mrp_production_consume_location
-#: code:addons/mrp_production_consume_location/wizard/mrp_consume.py:0
-#, python-format
+#. odoo-python
+#: code:addons/mrp_production_consume_location/tests/test_mrp_consume_line.py:0
+#: code:addons/mrp_production_consume_location/wizard/mrp_consume_line.py:0
 msgid "Requires inventory"
 msgstr "Nécessite un inventaire"
 
@@ -74,9 +55,19 @@ msgid ""
 "This button will create an activity requesting an inventory for this "
 "product."
 msgstr ""
-"Ce bouton créera une activité demandant un inventaire pour ce produit."
+"Ce bouton permet de créer une demande d'inventaire pour ce produit."
 
-#. module: mrp_production_consume_location
-#: model:ir.model.fields,field_description:mrp_production_consume_location.field_mrp_consume_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
