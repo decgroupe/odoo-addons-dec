@@ -5,26 +5,27 @@ import logging
 from binascii import Error as binascii_error
 
 from odoo import tools
-from odoo.addons.mail.models.mail_message import _image_dataurl
 from odoo.tools.misc import clean_context
+
+from odoo.addons.mail.models.mail_message import _image_dataurl
 
 _logger = logging.getLogger(__name__)
 
 
 # Reuse logic from `odoo/addons/mail/models/mail_message.py:Message.create`
 def convert_images_to_attachments(record, field_name):
+    # pylint: disable=W8121
     Attachments = record.env["ir.attachment"].with_context(
         clean_context(record._context)
     )
     data_to_url = {}
-    attachment_ids = []
 
     def base64_to_boundary(match):
         key = match.group(2)
         if not data_to_url.get(key):
-            name = match.group(4) if match.group(4) else "image%s" % len(data_to_url)
+            name = match.group(4) if match.group(4) else f"image{len(data_to_url)}"
             try:
-                attachment = Attachments.create(
+                att = Attachments.create(
                     {
                         "name": name,
                         "datas": match.group(2),
@@ -42,18 +43,13 @@ def convert_images_to_attachments(record, field_name):
                 # matched by the regexp
                 return match.group(3)
             else:
-                attachment.generate_access_token()
-                attachment_ids.append((4, attachment.id))
+                att.generate_access_token()
+                att.append((4, att.id))
                 data_to_url[key] = [
-                    "/web/image/%s?access_token=%s"
-                    % (attachment.id, attachment.access_token),
+                    f"/web/image/{att.id}?access_token={att.access_token}",
                     name,
                 ]
-        return '%s%s alt="%s"' % (
-            data_to_url[key][0],
-            match.group(3),
-            data_to_url[key][1],
-        )
+        return f'{data_to_url[key][0]}{match.group(3)} alt="{data_to_url[key][1]}"'
 
     record.write(
         {

@@ -19,14 +19,14 @@ def safe_eval_active_context_string_to_dict(context):
             context,
             locals_dict=locals_dict,
         )
-    except:
+    except:  # noqa: E722
         ctx_as_dict = {}
     return ctx_as_dict
 
 
 def safe_eval_active_context_dict_to_string(context):
     ctx_as_string = str(context).replace(
-        "'{0}'".format(DUMMY_ACTIVE_ID),
+        f"'{DUMMY_ACTIVE_ID}'",
         "active_id",
     )
     return ctx_as_string

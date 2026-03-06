@@ -35,11 +35,7 @@ class Bench:
         """
         Return time elapsed.
         """
-        res = "{:02}:{:02}:{:02}".format(
-            int(self.hours),
-            int(self.minutes),
-            int(self.seconds),
-        )
+        res = f"{int(self.hours):02}:{int(self.minutes):02}:{int(self.seconds):02}"
         return res
 
     # def __enter__(self):

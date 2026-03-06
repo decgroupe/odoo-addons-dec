@@ -18,8 +18,8 @@ def update_translation(env, xmlid, vals):
     for lang in env["res.lang"].get_installed():
         # the Gettext alias `_` will use `inspect.currentframe` to retrieve references
         # on `context` and `cr`, that's why we are faking them here
-        context = {"lang": lang[0]}
-        cr = env.cr
+        context = {"lang": lang[0]}  # noqa: F811
+        cr = env.cr  # noqa: F841
         # ready to update translation
         rec_with_lang = rec.with_context(**context)
         trans_vals = {}

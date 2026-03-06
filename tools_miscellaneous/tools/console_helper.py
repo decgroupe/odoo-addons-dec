@@ -57,8 +57,10 @@ def invisible(text):
 def strikethrough(text):
     return FORMAT_SEQ % (_STRIKETHROUGH) + text + RESET_SEQ
 
+
 def black(text):
     return FORMAT_SEQ % (_FG_BLACK) + text + RESET_SEQ
+
 
 def red(text):
     return FORMAT_SEQ % (_FG_RED) + text + RESET_SEQ
