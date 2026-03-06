@@ -1,1 +1,0 @@
-Add partner academy to analytic lines
