@@ -12,7 +12,7 @@
                 <field
                     name="orderpoint_id"
                     readonly="1"
-                    attrs="{'invisible': [('orderpoint_id', '=', False)]}"
+                    invisible="not orderpoint_id"
                 />
             </field>
             <button name="action_view_mo_delivery" position="before">
@@ -22,15 +22,16 @@
                     string="Stock Moves"
                     class="oe_stat_button"
                     icon="fa-arrows-v"
-                    attrs="{'invisible': [('state', 'not in', ('progress', 'done'))]}"
+                    invisible="state not in ('progress', 'done')"
                 >
                 </button>
             </button>
-            <xpath expr="//field[@name='move_raw_ids']" position="attributes">
+
+            <!-- <xpath expr="//field[@name='move_raw_ids']" position="attributes">
                 <attribute name="context">
                 {
                     'form_view_ref': 'mrp_traceability.stock_move_details_form_view',
-                    'default_date': date_planned_start,
+                    'default_date': date_start,
                     'default_date_deadline': date_deadline,
                     'default_location_id': location_src_id,
                     'default_location_dest_id': production_location_id,
@@ -40,24 +41,25 @@
                     'default_company_id': company_id
                 }
                 </attribute>
-            </xpath>
-            <xpath expr="//field[@name='move_raw_ids']/tree" position="attributes">
+            </xpath> -->
+
+            <xpath expr="//field[@name='move_raw_ids']/list" position="attributes">
                 <attribute name="class">d_mrp_production</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='move_raw_ids']/tree/field[@name='product_id']"
+                expr="//field[@name='move_raw_ids']/list/field[@name='product_id']"
                 position="before"
             >
                 <field name="id" widget="widget_id" groups="base.group_erp_manager" />
             </xpath>
             <xpath
-                expr="//field[@name='move_raw_ids']/tree/field[@name='name']"
+                expr="//field[@name='move_raw_ids']/list/field[@name='name']"
                 position="attributes"
             >
                 <attribute name="invisible">False</attribute>
             </xpath>
-            <xpath expr="//field[@name='move_raw_ids']/tree" position="inside">
-                <field name="action_view_created_item_visible" invisible="1" />
+            <xpath expr="//field[@name='move_raw_ids']/list" position="inside">
+                <field name="action_view_created_item_visible" column_invisible="1" />
                 <field
                     name="mrp_status"
                     string="Procurement status"
@@ -67,7 +69,7 @@
                     name="action_view_created_item"
                     title="Open"
                     type="object"
-                    attrs="{'invisible': [('action_view_created_item_visible', '=', False),]}"
+                    invisible="not action_view_created_item_visible"
                     icon="fa-external-link"
                 >
                 </button>

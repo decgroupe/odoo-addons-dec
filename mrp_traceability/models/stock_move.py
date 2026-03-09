@@ -56,8 +56,7 @@ class StockMove(models.Model):
 
     @api.depends(
         "procure_method",
-        "product_type",
-        "created_purchase_line_id",
+        "created_purchase_line_ids",
         "move_orig_ids.purchase_line_id",
         "created_production_id",
     )
@@ -105,7 +104,7 @@ class StockMove(models.Model):
             if not production_id.move_raw_ids and not production_move_id.move_orig_ids:
                 continue
             if production_id.bom_id:
-                bom_name = production_id.bom_id.name_get()[0][1]
+                bom_name = production_id.bom_id.display_name
             else:
                 bom_name = "???"
             _logger.info(

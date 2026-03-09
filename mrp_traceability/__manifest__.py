@@ -1,6 +1,7 @@
 {
     "name": "Manufacturing Traceability",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -10,16 +11,20 @@
         "purchase_stock",
         "stock_traceability",
         "stock_orderpoint_traceability",
-        "stock_mrp_traceability",
+        # "stock_mrp_traceability",
         "web_base_view",
     ],
     "data": [
-        "views/assets.xml",
         "views/stock_move.xml",
         "views/mrp_production.xml",
         "views/stock_picking.xml",
     ],
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "mrp_traceability/static/src/scss/style.scss",
+        ],
+    },
+    "installable": True,
     "post_init_hook": "post_init_hook",
     "force_post_init_hook": True,
 }

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
-"PO-Revision-Date: 2023-11-28 13:54+0100\n"
+"POT-Creation-Date: 2026-06-03 10:41+0000\n"
+"PO-Revision-Date: 2026-06-03 15:20+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
-
-#. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
-msgid "Close"
-msgstr "Fermer"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_traceability
 #: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__move_conv_dest_ids
@@ -28,64 +23,47 @@ msgid "Destination Moves (After Conversion)"
 msgstr "Mouvements de destination (après conversion)"
 
 #. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
-msgid "Details"
-msgstr "Détails"
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_finished_products_form_view
+msgid "Finished Products"
+msgstr "Produits finis"
 
 #. module: mrp_traceability
-#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__display_name
-#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#: model:ir.model,name:mrp_traceability.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Fabrication"
 
 #. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
-msgid "Done/Reserved"
-msgstr "Terminé/Réservé"
+#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__finished_picking_move_ids
+msgid "Moves on pickings associated with this manufacturing order output"
+msgstr ""
+"Mouvements sur les bons de préparation associés avec les produits finis de "
+"cette fabrication"
 
 #. module: mrp_traceability
-#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__id
-#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_traceability
-#: model:ir.model.fields,help:mrp_traceability.field_mrp_production__xid
-#: model:ir.model.fields,help:mrp_traceability.field_stock_move__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_traceability
-#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production____last_update
-#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
-
-#. module: mrp_traceability
-#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__mrp_status
-msgid "Manufacturing Upstream Status"
-msgstr "État en amont de la fabrication"
-
-#. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_tree_view
 msgid "Open"
 msgstr "Ouvert"
 
 #. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
-msgid "Open Advanced Form View"
-msgstr "Ouvrir la vue étendue"
+#: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
+msgid ""
+"Open (mrp_traceability) list view with all `stock.move` linked to this "
+"manufacturing order."
+msgstr ""
+"Ouvrir la vue en liste (mrp_traceability) contenant toutes les opérations "
+"`stock.move` associées à cet ordre de fabrication."
 
 #. module: mrp_traceability
 #: model:ir.model.fields,help:mrp_traceability.field_stock_move__move_conv_dest_ids
 msgid "Optional: final stock move when building a product"
-msgstr "Facultatif: dernier mouvement de stock lors de la fabrication d'un produit"
+msgstr ""
+"Facultatif: dernier mouvement de stock lors de la fabrication d'un produit"
 
 #. module: mrp_traceability
 #: model:ir.model.fields,help:mrp_traceability.field_stock_move__move_conv_orig_ids
 msgid "Optional: raw stock moves when building a product"
-msgstr "Facultatif: les mouvements de stock brut lors de la fabrication d'un produit"
+msgstr ""
+"Facultatif: les mouvements de stock brut lors de la fabrication d'un produit"
 
 #. module: mrp_traceability
 #: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__move_conv_orig_ids
@@ -93,29 +71,39 @@ msgid "Original Moves (Before Conversion)"
 msgstr "Mouvements originaux (avant la conversion)"
 
 #. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
-msgid "Procurement status"
-msgstr "État de l'appro."
+#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__finished_picking_ids
+msgid "Pickings associated with this manufacturing order output"
+msgstr ""
+"Préparations de commandes associées à la production de cette fabrication"
 
 #. module: mrp_traceability
-#: model:ir.model,name:mrp_traceability.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
+#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__finished_picking_names
+msgid "Pickings names associated with this manufacturing order output"
+msgstr ""
+"Nom des préparations de commandes associées à la production de cette "
+"fabrication"
+
+#. module: mrp_traceability
+#. odoo-python
+#: code:addons/mrp_traceability/models/stock_move.py:0
+msgid "Possible invalid data (raw count)"
+msgstr "Données potentiellement erronées (nombre brut)"
+
+#. module: mrp_traceability
+#. odoo-python
+#: code:addons/mrp_traceability/models/stock_move.py:0
+msgid "Possible invalid data (same product)"
+msgstr "Données potentiellement erronées (même article)"
+
+#. module: mrp_traceability
+#: model:ir.model,name:mrp_traceability.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements de produit (Ligne de mouvement de stock)"
 
 #. module: mrp_traceability
 #: model:ir.actions.act_window,name:mrp_traceability.stock_move_open_picking
 msgid "Receptions"
 msgstr "Réceptions"
-
-#. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
-msgid "Reserved"
-msgstr "Réservé"
-
-#. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
-msgid "Save"
-msgstr "Sauvegarder"
 
 #. module: mrp_traceability
 #: model:ir.model,name:mrp_traceability.model_stock_move
@@ -125,22 +113,44 @@ msgstr "Mouvement de stock"
 #. module: mrp_traceability
 #: model:ir.actions.act_window,name:mrp_traceability.action_mrp_production_stock_moves
 #: model_terms:ir.ui.view,arch_db:mrp_traceability.mrp_production_form_view
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_tree_view
 msgid "Stock Moves"
 msgstr "Mouvements de stocks"
 
-#. module: mrp_traceability
-#: model:ir.model.fields,field_description:mrp_traceability.field_mrp_production__xid
-#: model:ir.model.fields,field_description:mrp_traceability.field_stock_move__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Close"
+#~ msgstr "Fermer"
 
-#. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.admin_stock_move_details_form_view
-msgid "stock.move.details.form#admin@mrp_traceability"
-msgstr ""
+#~ msgid "Details"
+#~ msgstr "Détails"
 
-#. module: mrp_traceability
-#: model_terms:ir.ui.view,arch_db:mrp_traceability.stock_move_details_form_view
-msgid "stock.move.details.form@mrp_traceability"
-msgstr ""
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "Done/Reserved"
+#~ msgstr "Terminé/Réservé"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "Open Advanced Form View"
+#~ msgstr "Ouvrir la vue étendue"
+
+#~ msgid "Procurement status"
+#~ msgstr "État de l'appro."
+
+#~ msgid "Production Order"
+#~ msgstr "Ordre de fabrication"
+
+#~ msgid "Reserved"
+#~ msgstr "Réservé"
+
+#~ msgid "Save"
+#~ msgstr "Sauvegarder"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
