@@ -219,7 +219,7 @@ class TestStockTraceabilityOrderpoint(TransactionCase):
         self.assertEqual(action["res_id"], new_purchase_line_ids.id)
 
     def test_04_is_action_view_created_items_visible(self):
-        """Test that is_action_view_created_item_visible method properly
+        """Test that action_view_created_item_visible computation method properly
         indicates if there are manufacturing orders and purchase order lines
         created by orderpoints linked to the stock moves.
         """
@@ -231,10 +231,10 @@ class TestStockTraceabilityOrderpoint(TransactionCase):
         self.assertEqual(len(new_production_ids), 1)
         self.assertEqual(len(new_purchase_line_ids), 1)
         # check visibility for production order move
-        self.assertTrue(move_out.is_action_view_created_item_visible())
+        self.assertTrue(move_out.action_view_created_item_visible)
         # check visibility for component move
         component_move = new_production_ids.move_raw_ids[0]
-        self.assertTrue(component_move.is_action_view_created_item_visible())
+        self.assertTrue(component_move.action_view_created_item_visible)
 
     def test_05_no_created_items(self):
         """Test that stock moves not linked to manufacturing orders or purchase
@@ -266,8 +266,8 @@ class TestStockTraceabilityOrderpoint(TransactionCase):
         # check that action_view_created_item returns False
         action = move.action_view_created_item()
         self.assertFalse(action)
-        # check that is_action_view_created_item_visible returns False
-        self.assertFalse(move.is_action_view_created_item_visible())
+        # check that action_view_created_item_visible returns False
+        self.assertFalse(move.action_view_created_item_visible)
 
     def test_06_orderpoint_head_desc(self):
         """Test get_head_desc method of stock.warehouse.orderpoint."""

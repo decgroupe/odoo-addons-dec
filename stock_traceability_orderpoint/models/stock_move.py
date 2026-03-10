@@ -61,21 +61,20 @@ class StockMove(models.Model):
 
         return res
 
-    def action_view_created_item(self):
-        self.ensure_one()
-        action = super().action_view_created_item()
-        if not action:
-            if self.orderpoint_created_purchase_line_ids:
-                action = self.orderpoint_created_purchase_line_ids.action_view()
-            elif self.orderpoint_created_production_ids:
-                action = self.orderpoint_created_production_ids.action_view()
-        return action
-
-    def is_action_view_created_item_visible(self):
-        res = super().is_action_view_created_item_visible()
-        if not res:
-            res = (
-                self.orderpoint_created_purchase_line_ids
-                or self.orderpoint_created_production_ids
-            )
+    def _get_mto_created_items(self):
+        res = super()._get_mto_created_items()
+        if self.orderpoint_created_purchase_line_ids:
+            action = self.orderpoint_created_purchase_line_ids.action_view()
+            res["stock_traceability_orderpoint"] = {
+                "priority": 20,
+                "record": self.orderpoint_created_purchase_line_ids,
+                "action": action,
+            }
+        elif self.orderpoint_created_production_ids:
+            action = self.orderpoint_created_production_ids.action_view()
+            res["stock_traceability_orderpoint"] = {
+                "priority": 20,
+                "record": self.orderpoint_created_production_ids,
+                "action": action,
+            }
         return res
