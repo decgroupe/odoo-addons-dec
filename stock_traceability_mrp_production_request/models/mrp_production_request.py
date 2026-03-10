@@ -1,5 +1,5 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
+# Written by Yann Papouin <ypa at decgroupe.com>, Mar 2026
 
 from odoo import api, fields, models
 
