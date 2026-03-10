@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -30,53 +30,6 @@ class StockMove(models.Model):
         copy=False,
         help="Optional: raw stock moves when building a product",
     )
-
-    mrp_status = fields.Html(
-        compute="_compute_mrp_status",
-        string="Manufacturing Upstream Status",
-        default="",
-        store=False,
-    )
-
-    def _get_mto_mrp_status(self, html=False):
-        return self._get_mto_status(html)
-
-    def _get_mts_mrp_status(self, html=False):
-        return self._get_mts_status(html)
-
-    def get_mrp_status(self, html=False):
-        status = []
-        if self.procure_method == "make_to_order":
-            status = self._get_mto_mrp_status(html)
-        elif self.procure_method == "make_to_stock":
-            status = self._get_mts_mrp_status(html)
-
-        status += self._get_assignable_status(html)
-        return self._format_status_header(status, html)
-
-    @api.depends(
-        "procure_method",
-        "created_purchase_line_ids",
-        "move_orig_ids.purchase_line_id",
-        "created_production_id",
-    )
-    def _compute_mrp_status(self):
-        for move in self:
-            move.mrp_status = move.get_mrp_status(html=True)
-
-    def action_view_created_item(self):
-        self.ensure_one()
-        view = super().action_view_created_item()
-        if not view:
-            pass
-        return view
-
-    def is_action_view_created_item_visible(self):
-        self.ensure_one()
-        res = super().is_action_view_created_item_visible()
-        if not res:
-            pass
-        return res
 
     def action_view_picking(self):
         action = self.env["ir.actions.actions"]._for_xml_id(
@@ -108,15 +61,16 @@ class StockMove(models.Model):
             else:
                 bom_name = "???"
             _logger.info(
-                "Processing %s %s %s"
-                % (production_id.name, production_id.state, bom_name)
+                "Processing %s %s %s", production_id.name, production_id.state, bom_name
             )
             raw_move_ids = production_move_id.move_orig_ids
             if (
                 production_move_id.product_id.id
                 in raw_move_ids.mapped("product_id").ids
             ):
-                raise ValidationError("Possible invalid data (same product)")
+                raise ValidationError(
+                    self.env._("Possible invalid data (same product)")
+                )
             if len(production_id.move_raw_ids) != len(raw_move_ids):
                 if len(raw_move_ids) == 0 and production_id.state == "cancel":
                     # Ok relink
@@ -127,7 +81,9 @@ class StockMove(models.Model):
                         # ok Relink + re-attach
                         pass
                 else:
-                    raise ValidationError("Possible invalid data (raw count)")
+                    raise ValidationError(
+                        self.env._("Possible invalid data (raw count)")
+                    )
 
             production_move_id.move_conv_orig_ids = production_id.move_raw_ids
             production_move_id.move_orig_ids = False

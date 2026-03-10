@@ -3,8 +3,7 @@
 
 import logging
 
-from odoo import api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -23,6 +22,7 @@ class StockMoveLine(models.Model):
             # remove state from context to avoid unwanted side effects (since
             # `mail.tracking.email` also have a `state` field)
             context.pop("default_state", None)
+            # pylint: disable=W8121
             record = record.with_context(context)
         res = super()._log_message(record, move, template, vals)
         return res

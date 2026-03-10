@@ -13,11 +13,14 @@ Manufacturing Traceability
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/github-DEC%2Fodoo--addons--dec-lightgray.png?logo=github
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+.. |badge3| image:: https://img.shields.io/badge/github-DEC%2Fodoo--addons--dec-lightgray.png?logo=github
     :target: https://github.com/DEC/odoo-addons-dec/tree/18.0/mrp_traceability
     :alt: DEC/odoo-addons-dec
 
-|badge1| |badge2|
+|badge1| |badge2| |badge3|
 
 Get line informations from procurement analysis.
 
