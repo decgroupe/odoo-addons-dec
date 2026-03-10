@@ -6,35 +6,18 @@ import logging
 import freezegun
 
 from odoo import Command
-from odoo.tests.common import TransactionCase, new_test_user
 
 from ..models.mail_activity import ACTIVITY_STATE_SYMBOLS
-from ..models.mrp_production import PRODUCTION_STATE_SYMBOLS
 from ..models.product import PRODUCT_TYPE_SYMBOLS
-from ..models.purchase_order import PURCHASE_STATE_SYMBOLS
 from ..models.stock_move import MOVE_STATE_SYMBOLS
 from ..models.stock_picking import PICKING_STATE_SYMBOLS
+from .common import TestStockTraceabilityBase
 
 _logger = logging.getLogger(__name__)
 
 
-class TestStockTraceability(TransactionCase):
+class TestStockTraceability(TestStockTraceabilityBase):
     """Tests for Stock Traceability module."""
-
-    def _check_states(self, state_symbol_dict, model_name, field_name="state"):
-        model = self.env[model_name]
-        state_field = model._fields[field_name]
-        states = [s[0] for s in state_field.selection]
-        # ensure that all hard-coded states have a symbol match
-        for state in states:
-            self.assertIn(state, state_symbol_dict)
-        # just check that no extra symbol is defined in the other way
-        unknown_states = [s for s in state_symbol_dict.keys() if s not in states]
-        if unknown_states:
-            msg = f"`{model_name}` state symbol dict defined for unknown states:"
-            for s in unknown_states:
-                msg += f"\n\t- {s}"
-            _logger.warning(msg)
 
     @classmethod
     def setUpClass(cls):
@@ -79,97 +62,6 @@ class TestStockTraceability(TransactionCase):
         self.assertEqual(desc, "📅Planned")
         activity.action_done()
         self.assertFalse(activity.exists())
-
-    def test_03_production_states(self):
-        """Tests that all hard-coded production states have a symbol match"""
-        self._check_states(PRODUCTION_STATE_SYMBOLS, "mrp.production")
-
-    def test_04_production_head_description(self):
-        production = self.env["mrp.production"].create(
-            {
-                "product_id": self.env.ref("product.product_product_4").id,
-                "product_qty": 5,
-                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
-            }
-        )
-        head, desc = production.get_head_desc()
-        self.assertEqual(head, f"🔧{production.name}")
-        self.assertEqual(desc, "✨Draft")
-        # change state to confirmed
-        production.action_confirm()
-        head, desc = production.get_head_desc()
-        self.assertEqual(head, f"🔧{production.name}")
-        self.assertEqual(desc, "🏳️Confirmed")
-
-    def test_05_purchase_states(self):
-        """Tests that all hard-coded purchase states have a symbol match"""
-        self._check_states(PURCHASE_STATE_SYMBOLS, "purchase.order")
-
-    def test_06_purchase_head_description(self):
-        ctx = {
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
-        purchase_user = new_test_user(
-            self.env,
-            login="action_view-user",
-            groups="purchase.group_purchase_user",
-            context=ctx,
-        )
-        purchase_order = (
-            self.env["purchase.order"]
-            .with_user(purchase_user)
-            .create(
-                {
-                    "partner_id": self.env.ref("base.res_partner_12").id,
-                    "order_line": [
-                        Command.create(
-                            {
-                                "product_id": self.env.ref(
-                                    "product.product_product_5"
-                                ).id,
-                                "product_qty": 10,
-                                "product_uom": self.env.ref("uom.product_uom_unit").id,
-                                "price_unit": 15.0,
-                            },
-                        )
-                    ],
-                }
-            )
-        )
-        po_name = f"🛒{purchase_order.name}"
-        head, desc = purchase_order.order_line[0].get_head_desc()
-        self.assertEqual(head, po_name)
-        self.assertEqual(desc, "🏳️RFQ")
-        # change state to approved
-        self.env.company.write(
-            {
-                "po_double_validation": "two_step",
-                # require validation above 1.00 currency unit
-                "po_double_validation_amount": 1.00,
-            }
-        )
-        purchase_order.button_confirm()
-        head, desc = purchase_order.order_line[0].get_head_desc()
-        self.assertEqual(head, po_name)
-        self.assertEqual(desc, "⏳To Approve")
-        # approve and confirm
-        purchase_order.with_user(self.env.user).button_approve()
-        head, desc = purchase_order.order_line[0].get_head_desc()
-        self.assertEqual(head, po_name)
-        self.assertEqual(desc, "💲Purchase Order")
-        # change state to done
-        purchase_order.button_done()
-        head, desc = purchase_order.order_line[0].get_head_desc()
-        self.assertEqual(head, po_name)
-        self.assertEqual(desc, "✅Locked")
-        # change state to cancelled
-        purchase_order.button_cancel()
-        head, desc = purchase_order.order_line[0].get_head_desc()
-        self.assertEqual(head, po_name)
-        self.assertEqual(desc, "❌Cancelled")
 
     def test_07_product_types(self):
         """Tests that all hard-coded purchase states have a symbol match"""
@@ -294,8 +186,14 @@ class TestStockTraceability(TransactionCase):
                 "location_dest_id": self.env.ref("stock.stock_location_customers").id,
             }
         )
-        # add some move lines for [FURN_1118] Corner Desk Left Sit
-        product = self.env.ref("product.product_product_13")
+        # add some move lines for new product
+        product = self.env["product.product"].create(
+            {"name": "Test Product", "type": "consu", "is_storable": True}
+        )
+        # set stock available quantity to 10
+        # self.env["stock.quant"]._update_available_quantity(
+        #     product, picking.location_id, 10
+        # )
         move = self.env["stock.move"].create(
             {
                 "name": "Test Move",
@@ -405,6 +303,3 @@ class TestStockTraceability(TransactionCase):
         head, desc = procurement_group.get_head_desc()
         self.assertEqual(head, "📋Test Procurement Group")
         self.assertFalse(desc)
-
-    def test_30_(self):
-        pass

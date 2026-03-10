@@ -1,51 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!--
     <record model="ir.ui.view" id="picking_form_view">
         <field name="name">stock.picking.form@stock_traceability</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority" eval="1000" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//field[@name='move_ids_without_package']/list/field[@name='product_id']"
-                position="before"
-            >
-                <field name="id" widget="widget_id" groups="base.group_erp_manager" />
-            </xpath>
             <xpath
                 expr="//field[@name='move_ids_without_package']/list/field[@name='product_id']"
                 position="after"
             >
                 <field
-                    name="procure_method"
-                    groups="base.group_erp_manager"
-                    readonly="state in ['draft', 'cancel', 'partially_available', 'assigned', 'done'] or procure_method == 'make_to_order'"
-                    column_invisible="parent.picking_type_code == 'incoming'"
-                    invisible="picking_type_code == 'incoming'"
-                    force_save="1"
-                />
-                <field
-                    name="move_orig_ids"
-                    groups="base.group_no_one"
-                    optional="hide"
-                />
-                <field
-                    name="move_dest_ids"
-                    groups="base.group_no_one"
-                    optional="hide"
-                />
-                <field
                     name="product_supplier_code"
+                    string="Seller Code"
+                    optional="show"
                     column_invisible="parent.picking_type_code != 'incoming'"
                 />
                 <field
                     name="product_supplier_name"
+                    string="Seller Name"
+                    optional="show"
                     column_invisible="parent.picking_type_code != 'incoming'"
+                />
+                <field
+                    name="move_orig_ids"
+                    widget="many2many_tags"
+                    readonly="1"
+                    optional="hide"
+                />
+                <field
+                    name="move_dest_ids"
+                    widget="many2many_tags"
+                    readonly="1"
+                    optional="hide"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='move_ids_without_package']/list/field[@name='lot_ids']"
+                position="after"
+            >
+                <field name="group_id" string="📋" optional="hide" />
+                <field
+                    name="pick_status"
+                    string="Procurement Status"
+                    class="d_move_procurement_status"
+                />
+                <button
+                    name="action_view_created_item"
+                    title="Open"
+                    type="object"
+                    invisible="not action_view_created_item_visible"
+                    icon="fa-external-link"
                 />
             </xpath>
         </field>
     </record>
--->
 
     <record model="ir.ui.view" id="edit_procure_method_picking_form_view">
         <field

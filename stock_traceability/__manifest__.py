@@ -5,20 +5,12 @@
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "stock",
-        "stock_actions",
-        "purchase",
-        "purchase_action_view",
-        "purchase_stock",
-        "mrp",
-        "mrp_action_view",
-        "mail",
-        "mail_action_view",
-        "product_location",
-        "product_small_supply",
-        "product_supplierinfo_picking",
-        "stock_picking_colored",
-        "web_base_view",
+        "stock_actions",  # public access to  assign/cancel/etc. actions
+        "mail_action_view",  # mail activity support for product exceptions
+        "product_location",  # product rack, row, case locations
+        "product_supplierinfo_picking",  # vendor product code/name
+        "web_base_view",  # common styles
+        # "stock_picking_colored",
     ],
     "data": [
         "views/stock_picking.xml",

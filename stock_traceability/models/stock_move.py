@@ -1,6 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
+from collections import defaultdict
 from datetime import datetime
 
 from odoo import api, fields, models
@@ -29,8 +30,14 @@ MOVE_STATE_SYMBOLS = {
 class StockMove(models.Model):
     _inherit = "stock.move"
 
+    pick_status = fields.Html(
+        string="Picking Upstream Status",
+        compute="_compute_pick_status",
+        default="",
+        store=False,
+    )
     final_location = fields.Char(
-        "Final location",
+        string="Final location",
         compute="_compute_final_location",
         help="Get final location name",
         readonly=True,
@@ -39,14 +46,6 @@ class StockMove(models.Model):
         string="Show Link to Created Item",
         compute="_compute_action_view_created_item_visible",
         readonly=True,
-    )
-    created_purchase_line_archive = fields.Integer(
-        readonly=True,
-        copy=False,
-    )
-    created_production_archive = fields.Integer(
-        readonly=True,
-        copy=False,
     )
     product_activity_id = fields.Many2one(
         comodel_name="mail.activity",
@@ -60,30 +59,57 @@ class StockMove(models.Model):
         for rec in self:
             rec.state_symbol = MOVE_STATE_SYMBOLS.get(rec.state, "")
 
-    def _archive_purchase_line(self, values):
-        if "created_purchase_line_id" in values:
-            if values["created_purchase_line_id"]:
-                values["created_purchase_line_archive"] = values[
-                    "created_purchase_line_id"
-                ]
+    def _get_mto_pick_status(self, html=False):
+        return self._get_mto_status(html)
 
-    def _archive_production(self, values):
-        if "created_production_id" in values:
-            if values["created_production_id"]:
-                values["created_production_archive"] = values["created_production_id"]
+    def _get_mts_pick_status(self, html=False):
+        return self._get_mts_status(html)
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            self._archive_purchase_line(vals)
-            self._archive_production(vals)
-        record_ids = super().create(vals_list)
-        return record_ids
+    def get_pick_status(self, html=False):
+        status = []
+        if self.procure_method == "make_to_order":
+            status += self._get_mto_pick_status(html)
+        elif self.procure_method == "make_to_stock":
+            status += self._get_mts_pick_status(html)
 
-    def write(self, values):
-        self._archive_purchase_line(values)
-        self._archive_production(values)
-        return super().write(values)
+        upstream_moves = self._get_upstreams()
+        for move in upstream_moves:
+            upstream_status = []
+            if self.procure_method == "make_to_order":
+                upstream_status += move._get_mto_pick_status(html)
+            elif self.procure_method == "make_to_stock":
+                upstream_status += move._get_mts_pick_status(html)
+            # Check if status is not a duplicate, it could happen in some
+            # cases where we can have self.created_production_id identical to
+            # move.production_id
+            for upstream_status_line in upstream_status:
+                if upstream_status_line not in status:
+                    status.append(upstream_status_line)
+
+        if self.picking_code == "incoming":
+            for group_id in self.move_dest_ids.mapped("group_id"):
+                head, desc = group_id.get_head_desc()
+                head += "📥"
+                status.append(format_hd(head, desc, html))
+
+        if self.picking_code == "outgoing":
+            for group_id in self.move_orig_ids.mapped("group_id"):
+                head, desc = group_id.get_head_desc()
+                head += "📤"
+                status.append(format_hd(head, desc, html))
+
+        status += self._get_assignable_status(html)
+        return self._format_status_header(status, html)
+
+    @api.depends(
+        "procure_method",
+        "quantity",
+        "state",
+        "action_view_created_item_visible",
+    )
+    def _compute_pick_status(self):
+        for move in self:
+            move.pick_status = move.get_pick_status(html=True)
 
     @api.depends("move_dest_ids", "location_dest_id", "product_id")
     def _compute_final_location(self):
@@ -139,42 +165,46 @@ class StockMove(models.Model):
             activity = move.env["mail.activity"].search(domain, limit=1)
             move.product_activity_id = activity
 
+    def _get_mto_created_items(self):
+        self.ensure_one()
+        res = defaultdict(lambda: {"priority": 0, "record": False})
+        if self.product_activity_id:
+            action = self.product_activity_id.action_view()
+            res["stock_traceability"] = {
+                "priority": 10,
+                "record": self.product_activity_id,
+                "action": action,
+            }
+        return res
+
+    def _get_mto_created_item(self):
+        """Get the nearest created item linked to this move."""
+        self.ensure_one()
+        res = self._get_mto_created_items()
+        if res:
+            return max(res.values(), key=lambda x: x["priority"])
+        return False
+
     def action_view_created_item(self):
         """Generate an action that will match the nearest object linked
         to this move. It is used to open a Purchase, Sale, etc.
         """
         self.ensure_one()
         action = False
-        if self.created_purchase_line_ids:
-            action = self.created_purchase_line_ids.mapped("order_id").action_view()
-        elif self.move_orig_ids.purchase_line_id:
-            action = self.move_orig_ids.purchase_line_id.order_id.action_view()
-        elif self.purchase_line_id:
-            action = self.purchase_line_id.order_id.action_view()
-        elif self.created_production_id:
-            action = self.created_production_id.action_view()
-        elif self.production_id:
-            action = self.production_id.action_view()
-        elif self.product_activity_id:
-            action = self.product_activity_id.action_view()
+        created_item = self._get_mto_created_item()
+        if created_item:
+            action = created_item["action"]
         return action
 
     def _compute_action_view_created_item_visible(self):
+        """Compute the boolean field `action_view_created_item_visible` that will be
+        used to display or not a link to the created item.
+        It is now useless to inherits from `is_action_view_created_item_visible` since
+        everything is done from `_get_mto_created_item`
+        """
         for move in self:
-            move.action_view_created_item_visible = (
-                move.is_action_view_created_item_visible()
-            )
-
-    def is_action_view_created_item_visible(self):
-        self.ensure_one()
-        return (
-            self.created_purchase_line_ids
-            or self.move_orig_ids.purchase_line_id
-            or self.purchase_line_id
-            or self.created_production_id
-            or self.production_id
-            or self.product_activity_id
-        )
+            created_item = move._get_mto_created_item()
+            move.action_view_created_item_visible = bool(created_item)
 
     def action_open_stock_move_form(self):
         action = {
@@ -223,24 +253,11 @@ class StockMove(models.Model):
 
     def _get_mto_status(self, html=False):
         res = []
-        if self.created_purchase_line_id:
-            head, desc = self.created_purchase_line_id.get_head_desc()
-            res.append(format_hd(head, desc, html))
-        elif self.move_orig_ids.purchase_line_id:
-            head, desc = self.move_orig_ids.purchase_line_id.get_head_desc()
-            res.append(format_hd(head, desc, html))
-        elif self.purchase_line_id:
-            head, desc = self.purchase_line_id.get_head_desc()
-            res.append(format_hd(head, desc, html))
-        elif self.created_production_id:
-            head, desc = self.created_production_id.get_head_desc()
-            res.append(format_hd(head, desc, html))
-        elif self.production_id:
-            head, desc = self.production_id.get_head_desc()
-            res.append(format_hd(head, desc, html))
-        elif self.product_activity_id:
-            head, desc = self.product_activity_id.get_head_desc(self.product_id)
-            res.append(format_hd(head, desc, html))
+        created_item = self._get_mto_created_item()
+        if created_item:
+            for record_id in created_item["record"]:
+                head, desc = record_id.get_head_desc()
+                res.append(format_hd(head, desc, html))
         else:
             res.append(f"❓(???)[{self.state}]")
             # Since the current status is unknown, fallback using mts status
@@ -258,6 +275,9 @@ class StockMove(models.Model):
                 res.append(format_hd(head, desc, html))
 
         return res
+
+    def _get_mts_pre_archive(self):
+        return False
 
     def _get_mts_status(self, html=False):
         res = []
@@ -286,13 +306,9 @@ class StockMove(models.Model):
             head, desc = self._get_stock_location(html)
             res.append(format_hd(head, desc, html=False))
 
-        pre = False
-        if self.created_purchase_line_archive and not self.created_purchase_line_id:
-            pre = "♻️PO/"
-        elif self.created_production_archive and not self.created_production_id:
-            pre = "♻️MO/"
-        if pre:
-            res.append(f"{pre}{self.env._('canceled')}")
+        pre_archive = self._get_mts_pre_archive()
+        if pre_archive:
+            res.append(f"{pre_archive}{self.env._('canceled')}")
 
         if (
             self.state not in ("assigned", "done", "cancel")
@@ -350,28 +366,18 @@ class StockMove(models.Model):
                     res += move
         return res
 
-    def _format_status_header(self, status, html=False):
-        # Add support for 'product_small_supply' module
-        if (
-            "small_supply" in self.product_id._fields
-            and self.product_id.type == "consu"
-            and self.product_id.is_storable
-            and self.product_id.small_supply
-        ):
-            # Translate field name to display string
-            small_supply_field_name = self.env["ir.translation"].get_field_string(
-                self.product_id._name
-            )["small_supply"]
-            head = f"⛽{small_supply_field_name}"
-        else:
-            product_type = dict(
-                self.product_id._fields["type"]._description_selection(self.env)
-            ).get(self.product_id.type)
-            head = f"{self.product_id.type_symbol}{product_type}"
+    def _get_pre_header(self):
+        product_type = dict(
+            self.product_id._fields["type"]._description_selection(self.env)
+        ).get(self.product_id.type)
+        head = f"{self.product_id.type_symbol}{product_type}"
+        return head
 
+    def _format_status_header(self, status, html=False):
+        head = self._get_pre_header()
         # WARNING: This will also checks for request.session.debug
         if self.env.user.has_group("base.group_no_one"):
-            head = f"{head} ({self.id})"
+            head = f"{head} (ID: {self.id})"
         status.insert(0, head)
         if html:
             list_as_html = "".join(list(map(li, status)))

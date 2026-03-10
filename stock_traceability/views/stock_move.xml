@@ -185,9 +185,7 @@
             <xpath expr="//group[@name='origin_grp']" position="replace">
                 <group name="main_origin_grp" colspan="2">
                     <group name="origin_grp_col1">$0</group>
-                    <group name="origin_grp_col2">
-                        <field name="created_purchase_line_ids" />
-                    </group>
+                    <group name="origin_grp_col2" />
                 </group>
             </xpath>
 
