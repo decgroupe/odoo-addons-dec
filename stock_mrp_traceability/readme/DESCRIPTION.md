@@ -1,1 +1,0 @@
-Show picking line origin.

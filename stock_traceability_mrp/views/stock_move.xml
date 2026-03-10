@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record model="ir.ui.view" id="stock_move_form_view">
-        <field name="name">stock.move.form@stock_mrp_traceability</field>
+        <field name="name">stock.move.form@stock_traceability_mrp</field>
         <field name="model">stock.move</field>
         <field name="inherit_id" ref="stock_traceability.stock_move_form_view" />
         <field name="arch" type="xml">
