@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="stock_move_tree_view">
-        <field name="name">stock.move.tree.picking.button@sale_mrp_traceability</field>
+        <field name="name">stock.move.list.picking.button@sale_mrp_traceability</field>
         <field name="model">stock.move</field>
         <field name="arch" type="xml">
-            <tree
-                string="Stock Moves"
-                decoration-muted="state == 'cancel'"
-                create="false"
-            >
+            <list decoration-muted="state == 'cancel'" create="false">
                 <field name="id" widget="widget_id" groups="base.group_erp_manager" />
                 <field name="product_id" />
                 <field name="product_uom" />
@@ -24,12 +19,10 @@
                     name="action_view_created_item"
                     title="Open"
                     type="object"
-                    attrs="{'invisible': [('action_view_created_item_visible', '=', False),]}"
+                    invisible="not action_view_created_item_visible"
                     icon="fa-external-link"
-                >
-                </button>
-            </tree>
+                />
+            </list>
         </field>
     </record>
-
 </odoo>
