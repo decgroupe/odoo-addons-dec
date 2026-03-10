@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_traceability_orderpoint
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-03 11:14+0000\n"
+"PO-Revision-Date: 2026-06-03 16:21+0200\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: stock_traceability_orderpoint
+#: model:ir.model.fields,field_description:stock_traceability_orderpoint.field_stock_move__orderpoint_created_production_ids
+msgid "Created Production Orders by Orderpoint"
+msgstr "Fabrication créées par un ordre de réappro."
+
+#. module: stock_traceability_orderpoint
+#: model:ir.model.fields,field_description:stock_traceability_orderpoint.field_stock_move__orderpoint_created_purchase_line_ids
+msgid "Created Purchase Order Lines by Orderpoint"
+msgstr "Commandes fournisseur créées par un ordre de réappro."
+
+#. module: stock_traceability_orderpoint
+#: model:ir.model,name:stock_traceability_orderpoint.model_stock_warehouse_orderpoint
+msgid "Minimum Inventory Rule"
+msgstr "Règle de stock minimum"
+
+#. module: stock_traceability_orderpoint
+#: model:ir.model.fields,field_description:stock_traceability_orderpoint.field_product_template__orderpoint_ids
+msgid "Minimum Stock Rules"
+msgstr "Règle de stock minimum"
+
+#. module: stock_traceability_orderpoint
+#: model:ir.model,name:stock_traceability_orderpoint.model_product_template
+msgid "Product"
+msgstr "Produit"
+
+#. module: stock_traceability_orderpoint
+#: model:ir.model,name:stock_traceability_orderpoint.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

@@ -5,7 +5,7 @@ from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
-class TestStockOrderpointTraceability(TransactionCase):
+class TestStockTraceabilityOrderpoint(TransactionCase):
     """Tests stock.warehouse.orderpoint traceability with manufacturing orders."""
 
     @classmethod
