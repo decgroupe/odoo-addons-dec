@@ -75,9 +75,9 @@ class StockMove(models.Model):
         upstream_moves = self._get_upstreams()
         for move in upstream_moves:
             upstream_status = []
-            if self.procure_method == "make_to_order":
+            if move.procure_method == "make_to_order":
                 upstream_status += move._get_mto_pick_status(html)
-            elif self.procure_method == "make_to_stock":
+            elif move.procure_method == "make_to_stock":
                 upstream_status += move._get_mts_pick_status(html)
             # Check if status is not a duplicate, it could happen in some
             # cases where we can have self.created_production_id identical to
@@ -89,13 +89,13 @@ class StockMove(models.Model):
         if self.picking_code == "incoming":
             for group_id in self.move_dest_ids.mapped("group_id"):
                 head, desc = group_id.get_head_desc()
-                head += "📥"
+                head = "📥" + head
                 status.append(format_hd(head, desc, html))
 
         if self.picking_code == "outgoing":
             for group_id in self.move_orig_ids.mapped("group_id"):
                 head, desc = group_id.get_head_desc()
-                head += "📤"
+                head = "📤" + head
                 status.append(format_hd(head, desc, html))
 
         status += self._get_assignable_status(html)
@@ -228,7 +228,10 @@ class StockMove(models.Model):
             self.state
         )
         if self.procure_method == "make_to_order":
-            head = f"❓{self.env._(self.procure_method)}"
+            # the "alien" case: an MTO should never be used to get head description
+            # since it should always be linked to a created item (sale order,
+            # purchase order, etc.) but we need to handle the case for testing purposes
+            head = "👽MTO"
         else:
             head = f"📦{self.env._('Stock')}"
         desc = f"{self.state_symbol}{state}"
@@ -259,7 +262,6 @@ class StockMove(models.Model):
                 head, desc = record_id.get_head_desc()
                 res.append(format_hd(head, desc, html))
         else:
-            res.append(f"❓(???)[{self.state}]")
             # Since the current status is unknown, fallback using mts status
             # to print archive when exists
             res.extend(self._get_mts_status(html))

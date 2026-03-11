@@ -8,4 +8,6 @@ class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
 
     def get_head_desc(self):
-        return f"📋{self.sudo().name}", ""
+        head = "📋"
+        desc = self.sudo().name
+        return head, desc
