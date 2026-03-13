@@ -20,6 +20,7 @@ class StockMove(models.Model):
         "product_uom_qty",
         "procure_method",
         "move_orig_ids",
+        "move_orig_ids.state",
     )
     def _compute_received(self):
         self.received = False
