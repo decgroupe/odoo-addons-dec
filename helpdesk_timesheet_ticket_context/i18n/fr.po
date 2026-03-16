@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:15+0000\n"
-"PO-Revision-Date: 2023-11-28 11:53+0100\n"
+"POT-Creation-Date: 2026-06-03 10:21+0000\n"
+"PO-Revision-Date: 2026-06-03 14:38+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: helpdesk_timesheet_ticket_context
 #: model:ir.model,name:helpdesk_timesheet_ticket_context.model_account_analytic_line
@@ -23,10 +23,9 @@ msgid "Analytic Line"
 msgstr "Ligne analytique"
 
 #. module: helpdesk_timesheet_ticket_context
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_account_analytic_line__display_name
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_helpdesk_ticket__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#: model:ir.model.fields,help:helpdesk_timesheet_ticket_context.field_account_analytic_line__ticket_id_domain
+msgid "Dynamic domain used for the `ticket_id` field"
+msgstr "Domaine dynamique utilisé pour le champ `ticket_id`"
 
 #. module: helpdesk_timesheet_ticket_context
 #: model:ir.model,name:helpdesk_timesheet_ticket_context.model_helpdesk_ticket
@@ -34,25 +33,26 @@ msgid "Helpdesk Ticket"
 msgstr "Ticket d'assistance"
 
 #. module: helpdesk_timesheet_ticket_context
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_account_analytic_line__id
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_helpdesk_ticket__id
-msgid "ID"
-msgstr "ID"
+#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_account_analytic_line__ticket_id
+msgid "Ticket"
+msgstr "Ticket"
 
 #. module: helpdesk_timesheet_ticket_context
-#: model:ir.model.fields,help:helpdesk_timesheet_ticket_context.field_account_analytic_line__xid
-#: model:ir.model.fields,help:helpdesk_timesheet_ticket_context.field_helpdesk_ticket__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_account_analytic_line__ticket_id_domain
+msgid "Ticket Domain"
+msgstr "Domaine du ticket"
 
-#. module: helpdesk_timesheet_ticket_context
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_account_analytic_line____last_update
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_helpdesk_ticket____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: helpdesk_timesheet_ticket_context
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_account_analytic_line__xid
-#: model:ir.model.fields,field_description:helpdesk_timesheet_ticket_context.field_helpdesk_ticket__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
