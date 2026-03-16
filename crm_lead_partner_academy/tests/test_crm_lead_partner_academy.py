@@ -5,8 +5,12 @@ from odoo.tests.common import TransactionCase
 
 
 class TestCrmLeadPartnerAcademy(TransactionCase):
+    """Test the crm_lead_partner_academy module."""
+
     def setUp(self):
         super().setUp()
+        self.crm_lead_model = self.env["crm.lead"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("partner_academy_id", self.crm_lead_model._fields)
+        self.assertIn("partner_shipping_academy_id", self.crm_lead_model._fields)

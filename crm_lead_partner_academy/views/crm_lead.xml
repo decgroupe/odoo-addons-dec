@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="crm_case_oppor_tree_view">
-        <field name="name">crm.lead.tree.opportunity@crm_lead_partner_academy</field>
+        <field name="name">crm.lead.list.opportunity@crm_lead_partner_academy</field>
         <field name="model">crm.lead</field>
         <field
             name="inherit_id"
@@ -10,7 +9,7 @@
         />
         <field name="priority" eval="15" />
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='partner_shipping_id']" position="after">
+            <xpath expr="//list/field[@name='partner_shipping_id']" position="after">
                 <field
                     name="partner_shipping_academy_id"
                     string="Academy"
@@ -49,5 +48,4 @@
             </filter>
         </field>
     </record>
-
 </odoo>
