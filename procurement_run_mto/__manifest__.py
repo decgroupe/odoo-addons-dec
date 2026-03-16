@@ -9,7 +9,7 @@
         "mrp",
         "purchase_stock",
         "mrp_production_request",
-        "stock_orderpoint_traceability",
+        "stock_traceability_orderpoint",
     ],
     "data": [],
     "installable": True,
