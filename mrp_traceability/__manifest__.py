@@ -10,8 +10,7 @@
         "sale_stock",
         "purchase_stock",
         "stock_traceability",
-        "stock_orderpoint_traceability",
-        # "stock_mrp_traceability",
+        "stock_traceability_orderpoint",
         "web_base_view",
     ],
     "data": [
