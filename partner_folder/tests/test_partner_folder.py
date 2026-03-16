@@ -5,8 +5,11 @@ from odoo.tests.common import TransactionCase
 
 
 class TestPartnerFolder(TransactionCase):
+    """Test the partner_folder module."""
+
     def setUp(self):
         super().setUp()
+        self.partner_model = self.env["res.partner"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("folder_uri", self.partner_model._fields)
