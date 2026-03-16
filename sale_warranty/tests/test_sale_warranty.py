@@ -5,8 +5,11 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleWarranty(TransactionCase):
+    """Test the sale_warranty module."""
+
     def setUp(self):
         super().setUp()
+        self.sale_order_model = self.env["sale.order"]
 
-    # def test_01_(self):
-    #     pass
+    def test_01_field_names(self):
+        self.assertIn("warranty", self.sale_order_model._fields)

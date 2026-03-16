@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:31+0000\n"
+"POT-Creation-Date: 2026-06-03 11:07+0000\n"
 "PO-Revision-Date: 2023-11-28 14:40+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -16,26 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
-
-#. module: sale_warranty
-#: model:ir.model.fields,field_description:sale_warranty.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: sale_warranty
-#: model:ir.model.fields,field_description:sale_warranty.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_warranty
-#: model:ir.model.fields,help:sale_warranty.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: sale_warranty
-#: model:ir.model.fields,field_description:sale_warranty.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: sale_warranty
 #: model:ir.model,name:sale_warranty.model_sale_order
@@ -52,7 +32,17 @@ msgstr "Durée de garantie en année(s)"
 msgid "Warranty period"
 msgstr "Garantie"
 
-#. module: sale_warranty
-#: model:ir.model.fields,field_description:sale_warranty.field_sale_order__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
