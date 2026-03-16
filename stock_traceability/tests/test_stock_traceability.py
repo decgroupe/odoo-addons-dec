@@ -26,6 +26,27 @@ class TestStockTraceability(TestStockTraceabilityBase):
     def setUp(self):
         super().setUp()
 
+        # create a fake "supply" route without implying "manufacture" or "buy" rules
+        # to avoid dependencies with other modules in our tests
+        self.route_pull_from_supplier = self.env["stock.route"].create(
+            {
+                "name": "PFV",
+                "active": True,
+                "product_selectable": True,
+            }
+        )
+        _pfv_rule = self.env["stock.rule"].create(
+            {
+                "route_id": self.route_pull_from_supplier.id,
+                "warehouse_id": self.warehouse.id,
+                "name": "PFV Rule",
+                "picking_type_id": self.env.ref("stock.picking_type_in").id,
+                "location_src_id": self.location_supplier.id,
+                "location_dest_id": self.location_stock.id,
+                "procure_method": "make_to_stock",
+            }
+        )
+
     def test_01_activity_states(self):
         """Tests that all hard-coded mail activity states have a symbol match"""
         self._check_states(ACTIVITY_STATE_SYMBOLS, "mail.activity")
@@ -113,16 +134,12 @@ class TestStockTraceability(TestStockTraceabilityBase):
         self._check_states(PICKING_STATE_SYMBOLS, "stock.picking")
 
     def test_06_picking_head_description(self):
+        # check default head description
         head, desc = self.picking_out.get_head_desc()
         self.assertEqual(head, f"🗳️{self.picking_out.name}")
         self.assertEqual(desc, "🏳️Draft")
-
-        # warehouse = self.env.ref("stock.warehouse0")
-        # route_buy = warehouse.buy_pull_id.route_id
-        # route_mto = warehouse.mto_pull_id.route_id
-        # route_mto.active = True
-        # product.route_ids = [Command.link(route_buy.id), Command.link(route_mto.id)]
-
+        # set fake supply route
+        self.product.route_ids = [Command.link(self.route_pull_from_supplier.id)]
         # add some move lines for our test product
         move = self._create_picking_move(
             self.product,
@@ -205,6 +222,8 @@ class TestStockTraceability(TestStockTraceabilityBase):
         self.assertEqual(desc, "❌Cancelled")
 
     def test_09_move_mto_head_description(self):
+        # set fake supply route
+        self.product.route_ids = [Command.link(self.route_pull_from_supplier.id)]
         # add some move lines for our test product
         move = self._create_picking_move(
             self.product,

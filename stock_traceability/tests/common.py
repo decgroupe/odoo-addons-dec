@@ -105,6 +105,11 @@ class TestStockTraceabilityBase(TransactionCase):
             groups="stock.group_stock_user",
             context=ctx,
         )
+        self.warehouse = self.env.ref("stock.warehouse0")
+        # route_buy = warehouse.buy_pull_id.route_id
+        # route_mto = warehouse.mto_pull_id.route_id
+        # route_mto.active = True
+
         # locations
         self.location_stock = self.env.ref("stock.stock_location_stock")
         self.location_customers = self.env.ref("stock.stock_location_customers")
