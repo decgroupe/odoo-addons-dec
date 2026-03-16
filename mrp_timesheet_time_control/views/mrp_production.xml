@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_form_view">
         <field name="name">mrp.production.form@mrp_timesheet_time_control</field>
         <field name="model">mrp.production</field>
@@ -8,18 +7,17 @@
         <field name="arch" type="xml">
             <!-- Sub-tree view for timesheet_ids -->
             <xpath
-                expr="//field[@name='timesheet_ids']/tree//field[@name='date']"
+                expr="//field[@name='timesheet_ids']/list//field[@name='date']"
                 position="attributes"
             >
-                <attribute name="invisible">1</attribute>
+                <attribute name="column_invisible">1</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='timesheet_ids']/tree//field[@name='date']"
+                expr="//field[@name='timesheet_ids']/list//field[@name='date']"
                 position="after"
             >
                 <field name="date_time" string="Date" required="1" />
             </xpath>
         </field>
     </record>
-
 </odoo>
