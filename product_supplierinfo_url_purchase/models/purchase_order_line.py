@@ -12,21 +12,26 @@ class PurchaseOrderLine(models.Model):
         compute="_compute_product_supplier_url",
     )
 
-    @api.depends("partner_id", "product_id")
+    @api.depends(
+        "partner_id",
+        "product_id",
+        "product_qty",
+        "product_qty",
+        "product_uom",
+        "order_id.date_order",
+    )
     def _compute_product_supplier_url(self):
-        for rec in self:
-            supplier_info = rec.product_id.seller_ids.filtered(
-                lambda s: (s.product_id == rec.product_id and s.name == rec.partner_id)
+        self.product_supplier_url = False
+        for line in self:
+            # use the same logic as `_compute_price_unit_and_date_planned_and_name` to
+            # find the supplier info to get the URL
+            params = line._get_select_sellers_params()
+            seller = line.product_id._select_seller(
+                partner_id=line.partner_id,
+                quantity=line.product_qty,
+                date=line.order_id.date_order and line.order_id.date_order.date(),
+                uom_id=line.product_uom,
+                params=params,
             )
-            if not supplier_info:
-                supplier_info = rec.product_id.seller_ids.filtered(
-                    lambda s: (
-                        s.product_tmpl_id == rec.product_id.product_tmpl_id
-                        and s.name == rec.partner_id
-                    )
-                )
-            if supplier_info:
-                url = supplier_info[0].url or ""
-                rec.product_supplier_url = url
-            else:
-                rec.product_supplier_url = False
+            if seller and seller.url:
+                line.product_supplier_url = seller.url
