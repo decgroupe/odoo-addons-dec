@@ -22,7 +22,7 @@ class MrpProduction(models.Model):
 
     @api.depends("move_raw_ids", "move_raw_ids.state")
     def _compute_purchase_progress(self):
-        self.purchase_progress = 100
+        self.purchase_progress = 0
         for rec in self.filtered("move_raw_ids"):
             all_move_ids = rec.move_raw_ids.filtered(
                 lambda x: x.state != "cancel"
