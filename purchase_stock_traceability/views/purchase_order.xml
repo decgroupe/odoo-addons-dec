@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="purchase_order_view_form_inherit">
         <field
             name="name"
@@ -10,9 +9,10 @@
             name="inherit_id"
             ref="purchase_line_procurement_group.purchase_order_form"
         />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <xpath
-                expr="//notebook//field[@name='order_line']/tree/field[@name='procurement_group_id']"
+                expr="//notebook//field[@name='order_line']/list/field[@name='procurement_group_id']"
                 position="replace"
             >
                 <field name="procurement_origin" class="d_move_procurement_status" />
@@ -23,10 +23,8 @@
                     type="object"
                     attrs="{'invisible': [('action_view_origin_item_visible', '=', False),]}"
                     icon="fa-external-link"
-                >
-                </button>
+                />
             </xpath>
         </field>
     </record>
-
 </odoo>

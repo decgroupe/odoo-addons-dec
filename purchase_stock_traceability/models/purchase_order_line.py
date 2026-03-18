@@ -2,12 +2,11 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
 from odoo import api, fields, models
+
 from odoo.addons.tools_miscellaneous.tools.html_helper import (
-    b,
     div,
     format_hd,
     li,
-    small,
     ul,
 )
 
