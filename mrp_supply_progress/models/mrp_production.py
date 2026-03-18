@@ -26,7 +26,7 @@ class MrpProduction(models.Model):
             res = res and (self.stage_id.code == "build_ready")
         return res
 
-    @api.depends("move_raw_ids", "move_raw_ids.state")
+    @api.depends("move_raw_ids", "move_raw_ids.received")
     def _compute_supply_progress(self):
         self.supply_progress = 100
         for rec in self.filtered("move_raw_ids"):

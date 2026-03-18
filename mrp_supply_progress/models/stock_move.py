@@ -12,6 +12,7 @@ class StockMove(models.Model):
         compute="_compute_received",
         help="If received, then the product should be available "
         "to be used on production",
+        store=True,
     )
 
     @api.depends(
