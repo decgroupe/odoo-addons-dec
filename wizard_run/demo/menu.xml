@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_generate_user_random_signature"
+        action="action_generate_user_random_signature_wizard_view"
+        parent="base.menu_users"
+        sequence="200"
+    />
+</odoo>

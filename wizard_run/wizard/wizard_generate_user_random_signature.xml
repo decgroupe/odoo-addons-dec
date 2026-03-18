@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="generate_user_random_signature_wizard_view">
+        <field name="model">wizard.generate_user_random_signature</field>
+        <field name="inherit_id" ref="wizard_run.wizard_run_wizard_view" />
+        <field name="arch" type="xml">
+            <p name="title" position="inside">
+                Generate random signatures for all users.
+            </p>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="action_generate_user_random_signature_wizard_view"
+    >
+        <field name="name">Generate Random Signatures</field>
+        <field name="res_model">wizard.generate_user_random_signature</field>
+        <field name="view_id" ref="generate_user_random_signature_wizard_view" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

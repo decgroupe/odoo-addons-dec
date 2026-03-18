@@ -4,7 +4,7 @@
 import logging
 import threading
 
-from odoo import api, models, tools
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -13,40 +13,24 @@ class WizardRun(models.TransientModel):
     _name = "wizard.run"
     _description = "Run Method from Wizard"
 
-    def _threaded_run(self, scheduler_cron_xml_id=False):
-        with api.Environment.manage():
+    def _threaded_run(self):
+        with self.env.registry.cursor() as new_cr:
             # As this function is in a new thread, we need to open a new
             # cursor, because the old one may be closed
-            new_cr = self.pool.cursor()
             self = self.with_env(self.env(cr=new_cr))
-            if scheduler_cron_xml_id:
-                scheduler_cron = self.sudo().env.ref(scheduler_cron_xml_id)
-                # Avoid to run the scheduler multiple times in the same time
-                try:
-                    with tools.mute_logger("odoo.sql_db"):
-                        self._cr.execute(
-                            "SELECT id FROM ir_cron WHERE id = %s FOR UPDATE NOWAIT",
-                            (scheduler_cron.id,),
-                        )
-                except Exception:
-                    _logger.info("Attempt to run aborted, as already running")
-                    self._cr.rollback()
-                    self._cr.close()
-                    return {}
-
-            self.execute()
-            new_cr.commit()
-            new_cr.close()
+            try:
+                self.execute()
+                new_cr.commit()
+            except Exception as e:
+                _logger.info("Attempt to execute aborted: %s", e)
+                new_cr.rollback()
+            finally:
+                new_cr.close()
             return {}
 
     def run(self):
         self.pre_execute()
-        thread = threading.Thread(
-            target=self._threaded_run,
-            # Try to get xml id from context, that way it can be set
-            # in button context
-            args=(self.env.context.get("scheduler_cron_xml_id"),),
-        )
+        thread = threading.Thread(target=self._threaded_run)
         thread.start()
         return {
             "type": "ir.actions.act_window_close",
