@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="purchase_order_view_form_inherit">
+    <record model="ir.ui.view" id="purchase_order_form_view">
         <field name="name">purchase.order.form.inherit@purchase_traceability</field>
         <field name="model">purchase.order</field>
-        <field
-            name="inherit_id"
-            ref="purchase_stock.purchase_order_view_form_inherit"
-        />
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/form//field[@name='account_analytic_id']"
+                expr="//field[@name='order_line']/list//field[@name='analytic_distribution']"
                 position="before"
             >
-                <field name="product_type" invisible="1" />
-                <field
-                    name="sale_line_id"
-                    attrs="{'invisible': [('product_type', '!=', 'service')]}"
-                />
+                <field name="sale_line_id" optional="hide" />
             </xpath>
         </field>
     </record>
 
+    <record model="ir.ui.view" id="purchase_order_line_form_view">
+        <field name="name">purchase.order.line.form@purchase_traceability</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='analytic_distribution']" position="before">
+                <field name="sale_line_id" invisible="not sale_line_id" />
+            </xpath>
+        </field>
+    </record>
 </odoo>
