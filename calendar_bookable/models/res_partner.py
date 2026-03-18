@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import fields, models, api, tools
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -14,5 +14,6 @@ class ResPartner(models.Model):
     bookable = fields.Boolean(
         string="Bookable",
         default=False,
-        help="If checked, the calendar will consider this partner as a bookable resource",
+        help="If checked, the calendar will consider this partner as a "
+        "bookable resource",
     )
