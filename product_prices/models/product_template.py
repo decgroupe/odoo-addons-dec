@@ -198,6 +198,7 @@ class ProductTemplate(models.Model):
             Pricelist = self.env["product.pricelist"]._ensure_history_struct(
                 history, hkey
             )
+            pricelist = None
             company_id = product.company_id or self.env.company
             if company_id and company_id.partner_id:
                 pricelist = (
@@ -205,8 +206,6 @@ class ProductTemplate(models.Model):
                         history=history
                     )
                 )
-            else:
-                pricelist = None
             if pricelist:
                 product.default_sell_price = pricelist._get_product_price(
                     product, qty, partner, uom_id=product.uom_id.id
