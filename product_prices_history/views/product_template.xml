@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="product_template_form_view">
         <field name="name">product.template.form@product_prices_history</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view" />
-        <field name="groups_id" eval="[ (4, ref('base.group_erp_manager'))]" />
+        <field name="inherit_id" ref="product_prices.product_template_form_view" />
         <field name="arch" type="xml">
-
             <xpath
                 expr="//div[@name='default_sell_price']//button[@name='open_price_graph']"
                 position="after"
@@ -17,9 +14,9 @@
                     class="oe_inline oe_link"
                     type="object"
                     string="Show History"
-                    context="{'active_id': active_id, 'price_type': 'sell'}"
-                >
-                </button>
+                    context="{'active_id': id, 'price_type': 'sell'}"
+                    groups="base.group_erp_manager"
+                />
             </xpath>
 
             <xpath
@@ -31,11 +28,10 @@
                     class="oe_inline oe_link"
                     type="object"
                     string="Show History"
-                    context="{'active_id': active_id, 'price_type': 'purchase'}"
-                >
-                </button>
+                    context="{'active_id': id, 'price_type': 'purchase'}"
+                    groups="base.group_erp_manager"
+                />
             </xpath>
-
         </field>
     </record>
 
@@ -43,7 +39,7 @@
         <field name="name">Prices History (Purchase)</field>
         <field name="res_model">product.prices.history</field>
         <field name="binding_model_id" ref="product.model_product_template"/>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="target">current</field>
         <field name="context">{'active_id': active_id, 'price_type': 'sell'}</field>
     </record>
@@ -52,7 +48,7 @@
         <field name="name">Prices History (Sell)</field>
         <field name="res_model">product.prices.history</field>
         <field name="binding_model_id" ref="product.model_product_template"/>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="target">current</field>
         <field name="context">{'active_id': active_id, 'price_type': 'purchase'}</field>
     </record> -->
@@ -82,5 +78,4 @@
             name="code"
         >action = records.with_context(price_type="purchase").show_product_prices_history()</field>
     </record>
-
 </odoo>

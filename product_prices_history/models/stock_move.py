@@ -9,6 +9,7 @@ class StockMove(models.Model):
 
     def _action_done(self, cancel_backorder=False):
         res = super()._action_done(cancel_backorder=cancel_backorder)
-        self.mapped("product_tmpl_id").update_default_sell_price()
-        self.mapped("product_tmpl_id").update_default_purchase_price()
+        product_tmpl_ids = self.mapped("product_id.product_tmpl_id")
+        product_tmpl_ids.update_default_sell_price()
+        product_tmpl_ids.update_default_purchase_price()
         return res

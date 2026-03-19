@@ -3,11 +3,11 @@
 
 import logging
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 from odoo.tools import float_compare
-from odoo.tools.safe_eval import safe_eval
 from odoo.tools.misc import split_every
 from odoo.tools.progressbar import progressbar as pb
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -57,15 +57,15 @@ class ProductProduct(models.Model):
 
     def _get_product_ids_with_moves(self):
         moves = self.env["stock.move"].search([])
-        move_group = self.env["stock.move"].read_group(
-            [("id", "in", moves.ids)], ["product_id"], ["product_id"], lazy=False
+        move_group = self.env["stock.move"]._read_group(
+            [("id", "in", moves.ids)], ["product_id"], ["__count"]
         )
         return [x["product_id"][0] for x in move_group]
 
     def _get_product_ids_with_prices_history(self, price_type):
         prices = self.env["product.prices.history"].search([("type", "=", price_type)])
-        price_group = self.env["product.prices.history"].read_group(
-            [("id", "in", prices.ids)], ["product_id"], ["product_id"], lazy=False
+        price_group = self.env["product.prices.history"]._read_group(
+            [("id", "in", prices.ids)], ["product_id"], ["__count"]
         )
         return [x["product_id"][0] for x in price_group]
 
@@ -95,7 +95,6 @@ class ProductProduct(models.Model):
             )
             idx += SPLIT
             self.browse(ids).update_default_purchase_price()
-            self.env.cr.commit()
 
         products = self.search(
             search_domain
@@ -113,7 +112,6 @@ class ProductProduct(models.Model):
             )
             idx += SPLIT
             self.browse(ids).update_default_sell_price()
-            self.env.cr.commit()
 
     def update_default_prices(self):
         self._update_default_prices(self.ids)

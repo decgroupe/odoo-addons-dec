@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 10:27+0000\n"
+"POT-Creation-Date: 2026-06-03 10:49+0000\n"
+"PO-Revision-Date: 2026-06-03 10:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,9 +44,6 @@ msgstr ""
 
 #. module: product_prices_history
 #: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__display_name
-#: model:ir.model.fields,field_description:product_prices_history.field_product_product__display_name
-#: model:ir.model.fields,field_description:product_prices_history.field_product_template__display_name
-#: model:ir.model.fields,field_description:product_prices_history.field_stock_move__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -57,26 +54,7 @@ msgstr ""
 
 #. module: product_prices_history
 #: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__id
-#: model:ir.model.fields,field_description:product_prices_history.field_product_product__id
-#: model:ir.model.fields,field_description:product_prices_history.field_product_template__id
-#: model:ir.model.fields,field_description:product_prices_history.field_stock_move__id
 msgid "ID"
-msgstr ""
-
-#. module: product_prices_history
-#: model:ir.model.fields,help:product_prices_history.field_product_prices_history__xid
-#: model:ir.model.fields,help:product_prices_history.field_product_product__xid
-#: model:ir.model.fields,help:product_prices_history.field_product_template__xid
-#: model:ir.model.fields,help:product_prices_history.field_stock_move__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history____last_update
-#: model:ir.model.fields,field_description:product_prices_history.field_product_product____last_update
-#: model:ir.model.fields,field_description:product_prices_history.field_product_template____last_update
-#: model:ir.model.fields,field_description:product_prices_history.field_stock_move____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: product_prices_history
@@ -110,7 +88,7 @@ msgid "Last sell price from history"
 msgstr ""
 
 #. module: product_prices_history
-#: model:ir.model,name:product_prices_history.model_product_product
+#: model:ir.model,name:product_prices_history.model_product_template
 #: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__product_id
 #: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_search_view
 msgid "Product"
@@ -120,13 +98,12 @@ msgstr ""
 #: model:ir.actions.act_window,name:product_prices_history.product_prices_history_action
 #: model:ir.model,name:product_prices_history.model_product_prices_history
 #: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_form_view
-#: model_terms:ir.ui.view,arch_db:product_prices_history.product_prices_history_tree_view
 msgid "Product Prices History"
 msgstr ""
 
 #. module: product_prices_history
-#: model:ir.model,name:product_prices_history.model_product_template
-msgid "Product Template"
+#: model:ir.model,name:product_prices_history.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: product_prices_history
@@ -170,17 +147,7 @@ msgid "Type"
 msgstr ""
 
 #. module: product_prices_history
-#: model:ir.model.fields,field_description:product_prices_history.field_product_prices_history__xid
-#: model:ir.model.fields,field_description:product_prices_history.field_product_product__xid
-#: model:ir.model.fields,field_description:product_prices_history.field_product_template__xid
-#: model:ir.model.fields,field_description:product_prices_history.field_stock_move__xid
-msgid "XML-ID"
-msgstr ""
-
-#. module: product_prices_history
 #: model:ir.actions.server,name:product_prices_history.ir_cron_update_default_prices_ir_actions_server
-#: model:ir.cron,cron_name:product_prices_history.ir_cron_update_default_prices
-#: model:ir.cron,name:product_prices_history.ir_cron_update_default_prices
 msgid "💲 Prices History: Store sell/purchase prices"
 msgstr ""
 

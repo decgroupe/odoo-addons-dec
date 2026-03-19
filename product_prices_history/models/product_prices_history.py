@@ -5,7 +5,7 @@ from odoo import fields, models
 
 
 class ProductPricesHistory(models.Model):
-    """Keep track of the ``product.template`` purchase and sell prices."""
+    """Keep track of the `product.template` purchase and sell prices."""
 
     _name = "product.prices.history"
     _rec_name = "datetime"
@@ -18,7 +18,7 @@ class ProductPricesHistory(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
-        default=_get_default_company_id,
+        default=lambda self: self._get_default_company_id(),
         required=True,
     )
     company_currency_id = fields.Many2one(
