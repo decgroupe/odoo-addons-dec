@@ -2,7 +2,7 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2020
 # ruff: noqa: E501
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class ProductPricelist(models.Model):
@@ -24,6 +24,7 @@ class ProductPricelist(models.Model):
                     },
                 },
             }
+        return self.with_context(history=history)
 
     @api.model
     def _addto_history(
@@ -152,11 +153,11 @@ class ProductPricelist(models.Model):
         for product in products:
             # Build a history key based on function parameters
             hkey = (product, quantity, uom)
-            self._addto_history(hkey, _('Using {}').format(self.name), action='open')
+            self._addto_history(hkey, self.env._('Using {}').format(self.name), action='open')
             if len(rules) > 0:
-                self._addto_history(hkey, _('{} rule(s) loaded').format(len(rules)))
+                self._addto_history(hkey, self.env._('{} rule(s) loaded').format(len(rules)))
             else:
-                self._addto_history(hkey, _('No rules loaded at this step'), action='close')
+                self._addto_history(hkey, self.env._('No rules loaded at this step'), action='close')
 
             suitable_rule = self.env['product.pricelist.item']
 
@@ -172,10 +173,10 @@ class ProductPricelist(models.Model):
             else:
                 qty_in_product_uom = quantity
 
-            history_state_id = self._addto_history(hkey, _('Quantity is %(quantity)d', quantity=qty_in_product_uom))
+            history_state_id = self._addto_history(hkey, self.env._('Quantity is %(quantity)d', quantity=qty_in_product_uom))
 
             for rule in rules:
-                last_state_id = self._addto_history(hkey, _('Parse rule [%(rule_id)d] %(rule_name)s', rule_id=rule.id, rule_name=rule.name), last_state_id=history_state_id)
+                last_state_id = self._addto_history(hkey, self.env._('Parse rule [%(rule_id)d] %(rule_name)s', rule_id=rule.id, rule_name=rule.name), last_state_id=history_state_id)
                 if rule.with_context(hkey=hkey, last_state_id=last_state_id)._is_applicable_for(product, qty_in_product_uom):
                     suitable_rule = rule
                     break
@@ -184,7 +185,7 @@ class ProductPricelist(models.Model):
                 # This step is needed for proper graph generation, otherwise, the
                 # price computation step would be directly linked to the last rule
                 # parsing step.
-                self._addto_history(hkey, _('No suitable rule found'), last_state_id=history_state_id)
+                self._addto_history(hkey, self.env._('No suitable rule found'), last_state_id=history_state_id)
 
             if compute_price:
                 price = suitable_rule._compute_price(
@@ -195,10 +196,10 @@ class ProductPricelist(models.Model):
             results[product.id] = (price, suitable_rule.id)
 
             if suitable_rule:
-                rule_name = _('with rule [%(rule_id)d] %(rule_name)s', rule_id=suitable_rule.id, rule_name=suitable_rule.name)
+                rule_name = self.env._('with rule [%(rule_id)d] %(rule_name)s', rule_id=suitable_rule.id, rule_name=suitable_rule.name)
             else:
-                rule_name = _("without any rule")
-            self._addto_history(hkey, _('Returns %(price)s %(rule_name)s', price=price, rule_name=rule_name), action='close')
+                rule_name = self.env._("without any rule")
+            self._addto_history(hkey, self.env._('Returns %(price)s %(rule_name)s', price=price, rule_name=rule_name), action='close')
 
         return results
     # yapf: enable

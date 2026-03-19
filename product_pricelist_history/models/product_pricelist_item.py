@@ -3,7 +3,7 @@
 # ruff: noqa: E501
 # ruff: noqa: E731
 
-from odoo import _, api, models, tools
+from odoo import api, models, tools
 
 
 class ProductPricelistItem(models.Model):
@@ -51,7 +51,7 @@ class ProductPricelistItem(models.Model):
             hkey = self.env.context.get("hkey", False)
             last_state_id = self.env.context.get("last_state_id", False)
             self._addto_history(
-                hkey, _("Rule %(rule_id)d ignored: %(msg)s", rule_id=self.id, msg=msg), last_state_id=last_state_id, set_as_last_state=False
+                hkey, self.env._("Rule %(rule_id)d ignored: %(msg)s", rule_id=self.id, msg=msg), last_state_id=last_state_id, set_as_last_state=False
             )
 
         self.ensure_one()
@@ -60,7 +60,7 @@ class ProductPricelistItem(models.Model):
         is_product_template = product._name == 'product.template'
         if self.min_quantity and qty_in_product_uom < self.min_quantity:
             _addto_history(
-                _(
+                self.env._(
                     "Quantity %(quantity)d is less than min_quantity %(min_quantity)d",
                     quantity=qty_in_product_uom,
                     min_quantity=self.min_quantity,
@@ -74,7 +74,7 @@ class ProductPricelistItem(models.Model):
                 and not product.categ_id.parent_path.startswith(self.categ_id.parent_path)
             ):
                 _addto_history(
-                    _(
+                    self.env._(
                         "Product category %(product_category)s does not match "
                         "rule category %(rule_category)s",
                         product_category=product.categ_id,
@@ -86,21 +86,21 @@ class ProductPricelistItem(models.Model):
             # Applied on a specific product template/variant
             if is_product_template:
                 if self.applied_on == "1_product" and product._origin.id != self.product_tmpl_id.id:
-                    _addto_history(_("Product template %(product_template)s does not match rule template %(rule_template)s", product_template=product, rule_template=self.product_tmpl_id))
+                    _addto_history(self.env._("Product template %(product_template)s does not match rule template %(rule_template)s", product_template=product, rule_template=self.product_tmpl_id))
                     res = False
                 elif self.applied_on == "0_product_variant" and not (
                     product.product_variant_count == 1
                     and product.product_variant_id.id == self.product_id.id
                 ):
                     # product self acceptable on template if has only one variant
-                    _addto_history(_("Product template %(product_template)s does not match rule variant %(rule_variant)s", product_template=product, rule_variant=self.product_id))
+                    _addto_history(self.env._("Product template %(product_template)s does not match rule variant %(rule_variant)s", product_template=product, rule_variant=self.product_id))
                     res = False
             else:
                 if self.applied_on == "1_product" and product.product_tmpl_id.id != self.product_tmpl_id.id:
-                    _addto_history(_("Product variant %(product_variant)s does not match rule template %(rule_template)s", product_variant=product, rule_template=self.product_tmpl_id))
+                    _addto_history(self.env._("Product variant %(product_variant)s does not match rule template %(rule_template)s", product_variant=product, rule_template=self.product_tmpl_id))
                     res = False
                 elif self.applied_on == "0_product_variant" and product.id != self.product_id.id:
-                    _addto_history(_("Product variant %(product_variant)s does not match rule variant %(rule_variant)s", product_variant=product, rule_variant=self.product_id))
+                    _addto_history(self.env._("Product variant %(product_variant)s does not match rule variant %(rule_variant)s", product_variant=product, rule_variant=self.product_id))
                     res = False
 
         return res
@@ -155,11 +155,11 @@ class ProductPricelistItem(models.Model):
 
         if self.compute_price == 'fixed':
             price = convert(self.fixed_price)
-            self._addto_history(hkey, _('Price (fixed) set to {}').format(price))
+            self._addto_history(hkey, self.env._('Price (fixed) set to {}').format(price))
         elif self.compute_price == 'percentage':
             base_price = self._compute_base_price(product, quantity, uom, date, currency)
             price = (base_price - (base_price * (self.percent_price / 100))) or 0.0
-            self._addto_history(hkey, _('Price (percentage) set to {}').format(price))
+            self._addto_history(hkey, self.env._('Price (percentage) set to {}').format(price))
         elif self.compute_price == 'formula':
             base_price = self._compute_base_price(product, quantity, uom, date, currency)
             # complete formula
@@ -168,24 +168,24 @@ class ProductPricelistItem(models.Model):
             price = base_price - (base_price * (discount / 100))
 
             if discount:
-                self._addto_history(hkey, _('Price discounted to %(price)d (%(discount)d%)', price=price, discount=discount))
+                self._addto_history(hkey, self.env._('Price discounted to %(price)d (%(discount)d%)', price=price, discount=discount))
 
             if self.price_round:
                 price = tools.float_round(price, precision_rounding=self.price_round)
-                self._addto_history(hkey, _('Price rounded to {}').format(price))
+                self._addto_history(hkey, self.env._('Price rounded to {}').format(price))
 
             if self.price_surcharge:
                 price_surcharge = convert(self.price_surcharge)
-                self._addto_history(hkey, _('Price surcharge applied %(price)d (+%(surcharge)d)',price=price+price_surcharge, surcharge=price_surcharge))
+                self._addto_history(hkey, self.env._('Price surcharge applied %(price)d (+%(surcharge)d)',price=price+price_surcharge, surcharge=price_surcharge))
                 price += price_surcharge
 
             if self.price_min_margin:
                 price = max(price, price_limit + convert(self.price_min_margin))
-                self._addto_history(hkey, _('Price updated (minimum margin) to %(price)d', price=price))
+                self._addto_history(hkey, self.env._('Price updated (minimum margin) to %(price)d', price=price))
 
             if self.price_max_margin:
                 price = min(price, price_limit + convert(self.price_max_margin))
-                self._addto_history(hkey, _('Price updated (maximum margin) to %(price)d', price=price))
+                self._addto_history(hkey, self.env._('Price updated (maximum margin) to %(price)d', price=price))
         else:  # empty self, or extended pricelist price computation logic
             price = self._compute_base_price(product, quantity, uom, date, currency)
 
@@ -201,7 +201,7 @@ class ProductPricelistItem(models.Model):
 
         if history and history.get("level") > 0:
             hkey = (product, quantity, uom)
-            self._addto_history(hkey, _("Base price is {}").format(price))
+            self._addto_history(hkey, self.env._("Base price is {}").format(price))
         return price
 
     # This method is a copy/paste of the one in:
@@ -224,7 +224,7 @@ class ProductPricelistItem(models.Model):
         hkey = (product, quantity, uom)
         rule_base = self.base or 'list_price'
         if rule_base == 'pricelist' and self.base_pricelist_id:
-            self._addto_history(hkey, _('Price is based on another pricelist: %(pricelist)s', pricelist=self.base_pricelist_id.name))
+            self._addto_history(hkey, self.env._('Price is based on another pricelist: %(pricelist)s', pricelist=self.base_pricelist_id.name))
             self._addto_history(hkey, indent=True)
             price = self.base_pricelist_id._get_product_price(
                 product, quantity, currency=self.base_pricelist_id.currency_id, uom=uom, date=date
@@ -232,11 +232,11 @@ class ProductPricelistItem(models.Model):
             src_currency = self.base_pricelist_id.currency_id
             self._addto_history(hkey, unindent=True)
         elif rule_base == "standard_price":
-            self._addto_history(hkey, _('Price is based on "%(rule_base)s"', rule_base=rule_base))
+            self._addto_history(hkey, self.env._('Price is based on "%(rule_base)s"', rule_base=rule_base))
             src_currency = product.cost_currency_id
             price = product._price_compute(rule_base, uom=uom, date=date)[product.id]
         else: # list_price
-            self._addto_history(hkey, _('Price is based on "%(rule_base)s"', rule_base=rule_base))
+            self._addto_history(hkey, self.env._('Price is based on "%(rule_base)s"', rule_base=rule_base))
             src_currency = product.currency_id
             price = product._price_compute(rule_base, uom=uom, date=date)[product.id]
 
