@@ -168,7 +168,7 @@ class ProductPricelistItem(models.Model):
             price = base_price - (base_price * (discount / 100))
 
             if discount:
-                self._addto_history(hkey, self.env._('Price discounted to %(price)d (%(discount)d%)', price=price, discount=discount))
+                self._addto_history(hkey, self.env._('Price discounted to %(price)d (%(discount)d%%)', price=price, discount=discount))
 
             if self.price_round:
                 price = tools.float_round(price, precision_rounding=self.price_round)
