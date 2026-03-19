@@ -9,7 +9,8 @@ from odoo import fields, models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    # Override digit field to increase precision and track changes
+    # Override to track changes (note that digits cannot be set anymore to increase
+    # precision)
     standard_price = fields.Float(
         # digits="Purchase Price",
         tracking=True,

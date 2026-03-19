@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.progressbar import progressbar as pb
 
@@ -13,7 +13,8 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    # Override digit field to increase precision and track changes
+    # Override to track changes (note that digits cannot be set anymore to increase
+    # precision)
     standard_price = fields.Float(
         # digits="Purchase Price",
         tracking=True,
@@ -142,24 +143,41 @@ class ProductTemplate(models.Model):
         self.default_purchase_price_graph = False
         self.default_purchase_price_po_uom = 0
         self.default_purchase_price_graph_po_uom = False
-        for rec in pb(self):
-            seller_id = rec.main_seller_id
-            if rec.main_seller_id:
-                rec.default_purchase_price = seller_id.list_price_unit
-                rec.default_purchase_price_graph = seller_id.list_price_unit_graph
-                rec.default_purchase_price_po_uom = seller_id.list_price
-                rec.default_purchase_price_graph_po_uom = seller_id.list_price_graph
+        history = {}
+        for product in pb(self):
+            qty = 1.0
+            partner = False
+            hkey = (product, qty, partner)
+            Pricelist = self.env["product.pricelist"]._ensure_history_struct(
+                history, hkey
+            )
+            seller_id = product.main_seller_id
+            if product.main_seller_id:
+                product.default_purchase_price = seller_id.list_price_unit
+                product.default_purchase_price_graph = seller_id.list_price_unit_graph
+                product.default_purchase_price_po_uom = seller_id.list_price
+                product.default_purchase_price_graph_po_uom = seller_id.list_price_graph
             else:
-                msg = (
-                    "No default seller assigned to this product "
-                    "(missing 'main_seller_id')"
+                Pricelist._addto_history(
+                    hkey,
+                    message=self.env._(
+                        "No default seller assigned to this product "
+                        "(missing 'main_seller_id'), fallback to standard price."
+                    ),
                 )
-                msg = "no seller"
-                graph = ["flowchart", f'A["{msg}"]']
-                rec.default_purchase_price = rec.standard_price
-                rec.default_purchase_price_graph = "\n".join(graph)
-                rec.default_purchase_price_po_uom = rec.standard_price_po_uom
-                rec.default_purchase_price_graph_po_uom = "\n".join(graph)
+                Pricelist._addto_history(
+                    hkey,
+                    message=self.env._(
+                        "Price set to %(price)s", price=product.standard_price
+                    ),
+                )
+                graph = (
+                    history[hkey]["graph"]["header"] + history[hkey]["graph"]["body"]
+                )
+                product.default_purchase_price = product.standard_price
+                product.default_purchase_price_graph = "\n".join(graph)
+                product.default_purchase_price_po_uom = product.standard_price_po_uom
+                product.default_purchase_price_graph_po_uom = "\n".join(graph)
 
     @api.depends(
         "company_id",
@@ -177,7 +195,9 @@ class ProductTemplate(models.Model):
             qty = 1.0
             partner = False
             hkey = (product, qty, partner)
-            self.env["product.pricelist"]._ensure_history_struct(history, hkey)
+            Pricelist = self.env["product.pricelist"]._ensure_history_struct(
+                history, hkey
+            )
             company_id = product.company_id or self.env.company
             if company_id and company_id.partner_id:
                 pricelist = (
@@ -185,20 +205,26 @@ class ProductTemplate(models.Model):
                         history=history
                     )
                 )
-                if pricelist:
-                    product.default_sell_price = pricelist._get_product_price(
-                        product, qty, partner, uom_id=product.uom_id.id
-                    )
-
+            else:
+                pricelist = None
+            if pricelist:
+                product.default_sell_price = pricelist._get_product_price(
+                    product, qty, partner, uom_id=product.uom_id.id
+                )
             else:
                 product.default_sell_price = product.list_price
-                self.env["product.pricelist"].with_context(
-                    history=history
-                )._addto_history(
+                Pricelist._addto_history(
                     hkey,
-                    message="No company assigned to this product "
-                    "(missing 'property_product_pricelist')",
-                    action="end",
+                    message=self.env._(
+                        "Missing sale pricelist (no 'property_product_pricelist'), "
+                        "fallback to list price."
+                    ),
+                )
+                Pricelist._addto_history(
+                    hkey,
+                    message=self.env._(
+                        "Price set to %(price)s", price=product.list_price
+                    ),
                 )
             graph = history[hkey]["graph"]["header"] + history[hkey]["graph"]["body"]
             product.default_sell_price_graph = "\n".join(graph)
@@ -221,7 +247,7 @@ class ProductTemplate(models.Model):
         product_id = self.product_variant_id
         return {
             "sequence": 2,
-            "note": _("By-pass {}").format(self.default_code),
+            "note": self.env._("By-pass %(code)s", code=self.default_code),
             "pricelist_id": pricelists.ids[0],
             "product_tmpl_id": self.id,
             "product_id": product_id.id,
@@ -238,7 +264,7 @@ class ProductTemplate(models.Model):
             pricelists = Pricelist.search(self._get_pricelist_search_domain())
             if not pricelists:
                 raise UserError(
-                    _(
+                    self.env._(
                         "No sale pricelist found!, you must create at least "
                         "one sale pricelist to use by-pass functionality"
                     )
@@ -253,7 +279,7 @@ class ProductTemplate(models.Model):
             else:
                 if len(pricelist_items) > 1:
                     raise UserError(
-                        _(
+                        self.env._(
                             "Too many pricelist items for this product!, only "
                             "one sale pricelist item must exist for this "
                             "product to disable by-pass functionality"
