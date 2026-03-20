@@ -17,11 +17,14 @@ class CrmLead(models.Model):
             lost_stage_id = self._stage_find(domain=[("is_lost", "=", True)])
             won_stage_id = self._stage_find(domain=[("is_won", "=", True)])
             if vals.get("stage_id") == lost_stage_id.id:
-                # archive
+                # set an `is_lost` stage
                 self.action_set_lost()
                 enforce_date_closed = True
+                # enforce probability to 0 for lost stage (like odoo's default
+                # behaviour for won stage)
+                vals.update({'probability': 0, 'automated_probability': 0})
             elif vals.get("stage_id") == won_stage_id.id:
-                # unarchive and set an `is_won` stage
+                # set an `is_won` stage
                 self.action_set_won()
         return super(
             CrmLead, self.with_context(enforce_date_closed=enforce_date_closed)
@@ -33,18 +36,39 @@ class CrmLead(models.Model):
         else:
             lost_stage_id = self._stage_find(domain=[("is_lost", "=", True)])
             additional_values["stage_id"] = lost_stage_id.id
-
-            res = super(CrmLead, self.with_context(action_set=True)).action_set_lost(
-                **additional_values
-            )
+            res = super(
+                CrmLead,
+                self.with_context(
+                    action_set=True,
+                    disable_auto_archive=True,
+                ),
+            ).action_set_lost(**additional_values)
             return res
 
     def action_set_won(self):
         if self.env.context.get("action_set"):
             return False
         else:
-            res = super(CrmLead, self.with_context(action_set=True)).action_set_won()
+            res = super(
+                CrmLead,
+                self.with_context(
+                    action_set=True,
+                    disable_auto_unarchive=True,
+                ),
+            ).action_set_won()
             return res
+
+    def action_archive(self):
+        if self.env.context.get("disable_auto_archive", False):
+            return None
+        else:
+            return super().action_archive()
+
+    def action_unarchive(self):
+        if self.env.context.get("disable_auto_unarchive", False):
+            return None
+        else:
+            return super().action_unarchive()
 
     def _handle_won_lost(self, vals):
         # use this handle to hook write and set the `date_closed`
