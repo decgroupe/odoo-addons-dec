@@ -52,3 +52,21 @@ class HrExpenseSheet(models.Model):
             suffix = date.strftime("%B")
 
         return f"{prefix}-{suffix}"
+
+    @api.depends("expense_line_ids.total_amount", "expense_line_ids.tax_amount")
+    def _compute_amount(self):
+        res = super()._compute_amount()
+        for sheet in self:
+            auto_tax_amount = sum(
+                sheet.expense_line_ids.filtered(
+                    lambda expense: expense.automatic_tax_amount
+                ).mapped("tax_amount")
+            )
+            manual_tax_amount = sum(
+                sheet.expense_line_ids.filtered(
+                    lambda expense: not expense.automatic_tax_amount
+                ).mapped("manual_tax_amount")
+            )
+            sheet.total_tax_amount = auto_tax_amount + manual_tax_amount
+            sheet.untaxed_amount = sheet.total_amount - sheet.total_tax_amount
+        return res

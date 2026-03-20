@@ -70,19 +70,11 @@
                 <attribute name="force_save">1</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='expense_line_ids']/list/field[@name='tax_amount_currency']"
-                position="attributes"
+                expr="//field[@name='expense_line_ids']/list/field[@name='tax_ids']"
+                position="after"
             >
-                <attribute name="readonly">False</attribute>
-                <attribute name="force_save">1</attribute>
-            </xpath>
-            <xpath
-                expr="//field[@name='expense_line_ids']/list/field[@name='tax_amount']"
-                position="attributes"
-            >
-                <attribute name="string">VAT</attribute>
-                <attribute name="readonly">False</attribute>
-                <attribute name="force_save">1</attribute>
+                <field name="manual_tax_amount" string="VAT" />
+                <field name="automatic_tax_amount" optional="hide" />
             </xpath>
             <xpath
                 expr="//field[@name='expense_line_ids']/list/field[@name='tax_amount']"
@@ -117,6 +109,12 @@
             >
                 <!-- <attribute name="readonly">False</attribute> -->
                 <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='expense_line_ids']/list/field[@name='total_amount']"
+                position="after"
+            >
+                <field name="untaxed_amount_currency" optional="hide" />
             </xpath>
         </field>
     </record>

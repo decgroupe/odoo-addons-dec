@@ -3,16 +3,27 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_compare
 
 
 class HrExpense(models.Model):
     _inherit = "hr.expense"
 
-    # disable readonly in fields definition instead of XML view because precompute
-    # automatically force recomputation of readonly fields (check for `bad_names`)
-    # even if values are provided in create/write vals
-    tax_amount_currency = fields.Monetary(readonly=False)
-    tax_amount = fields.Monetary(readonly=False)
+    manual_tax_amount = fields.Monetary(
+        string="Tax amount (manual)",
+        currency_field="company_currency_id",
+        compute="_compute_manual_tax_amount",
+        precompute=True,
+        store=True,
+        readonly=False,
+        help="Manually forced tax amount in company currency",
+    )
+    automatic_tax_amount = fields.Boolean(
+        string="Automatic tax amount",
+        compute="_compute_automatic_tax_amount",
+        help="Technical field to know if the tax amount was automatically "
+        "computed or manually forced",
+    )
 
     @api.depends("product_id")
     def _compute_from_product(self):
@@ -28,6 +39,7 @@ class HrExpense(models.Model):
         _res = super()._needs_product_price_computation()
         return False
 
+    @api.depends("manual_tax_amount")
     def _compute_tax_amount_currency(self):
         # ensure that all taxes uses the `price_include`
         for expense in self:
@@ -39,11 +51,36 @@ class HrExpense(models.Model):
                             tax=tax_id.display_name,
                         )
                     )
-        return super()._compute_tax_amount_currency()
+        manual_tax_expenses = self.filtered(lambda exp: not exp.automatic_tax_amount)
+        for expense in manual_tax_expenses:
+            expense.tax_amount_currency = expense.manual_tax_amount
+            expense.untaxed_amount_currency = (
+                expense.total_amount_currency - expense.tax_amount_currency
+            )
+        return super(
+            HrExpense, self - manual_tax_expenses
+        )._compute_tax_amount_currency()
 
     @api.depends("price_unit")
     def _compute_tax_amount(self):
         return super()._compute_tax_amount()
+
+    @api.depends("tax_amount")
+    def _compute_manual_tax_amount(self):
+        for expense in self:
+            expense.manual_tax_amount = expense.tax_amount
+
+    @api.depends("tax_amount", "manual_tax_amount")
+    def _compute_automatic_tax_amount(self):
+        for expense in self:
+            expense.automatic_tax_amount = (
+                float_compare(
+                    expense.tax_amount,
+                    expense.manual_tax_amount,
+                    precision_rounding=expense.currency_id.rounding,
+                )
+                == 0
+            )
 
     def action_duplicate(self):
         self.ensure_one()
