@@ -6,7 +6,7 @@
         <field name="fold" eval="True"/>
         <field name="is_lost">True</field>
         <field name="sequence">150</field>
-        <field name="probability">10</field>
+        <field name="probability">0</field>
     </record>
 
 </odoo>

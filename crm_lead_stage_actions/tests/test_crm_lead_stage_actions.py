@@ -42,7 +42,7 @@ class TestCrmLeadStageActions(TransactionCase):
             self.assertFalse(self.case_22.date_closed)
             self.case_22.action_set_lost()
             self.assertEqual(self.case_22.stage_id, self.stage_lost)
-            self.assertFalse(self.case_22.active)
+            self.assertTrue(self.case_22.active)
             self.assertEqual(self.case_22.date_closed, now)
 
     def test_02_action_set_won(self):
@@ -71,13 +71,13 @@ class TestCrmLeadStageActions(TransactionCase):
         with freeze_time(now_p2s):
             self.case_22.action_set_won()
             self.assertEqual(self.case_22.stage_id, self.stage_won)
-            self.assertTrue(self.case_22.active)
+            self.assertFalse(self.case_22.active)
             self.assertEqual(self.case_22.date_closed, now_p2s)
 
     def test_05_set_stage(self):
         # drag-and-drop to columns in kanban view
         self.case_22.stage_id = self.stage_lost
-        self.assertFalse(self.case_22.active)
+        self.assertTrue(self.case_22.active)
         self.assertEqual(self.case_22.probability, 0.0)
         self.case_22.stage_id = self.stage_won
         self.assertTrue(self.case_22.active)
