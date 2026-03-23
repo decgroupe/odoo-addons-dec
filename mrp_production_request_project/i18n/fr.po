@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"POT-Creation-Date: 2026-06-03 10:37+0000\n"
 "PO-Revision-Date: 2023-11-28 13:48+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -18,31 +18,21 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: mrp_production_request_project
-#: model:ir.model.fields,field_description:mrp_production_request_project.field_mrp_production_request_create_mo__display_name
-msgid "Display Name"
-msgstr "Nom d'affichage"
-
-#. module: mrp_production_request_project
-#: model:ir.model.fields,field_description:mrp_production_request_project.field_mrp_production_request_create_mo__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_production_request_project
-#: model:ir.model.fields,help:mrp_production_request_project.field_mrp_production_request_create_mo__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_production_request_project
-#: model:ir.model.fields,field_description:mrp_production_request_project.field_mrp_production_request_create_mo____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: mrp_production_request_project
 #: model:ir.model,name:mrp_production_request_project.model_mrp_production_request_create_mo
 msgid "Wizard to create Manufacturing Orders"
 msgstr "Assistant pour créer des ordres de fabrication"
 
-#. module: mrp_production_request_project
-#: model:ir.model.fields,field_description:mrp_production_request_project.field_mrp_production_request_create_mo__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom d'affichage"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
