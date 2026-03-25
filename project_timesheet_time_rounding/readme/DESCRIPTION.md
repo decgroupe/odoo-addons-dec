@@ -1,0 +1,1 @@
+Round time to nearest quarter hour.
