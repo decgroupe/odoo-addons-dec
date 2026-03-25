@@ -1,6 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2026
 
+from odoo.exceptions import AccessError
+from odoo.tests import Form, new_test_user
 from odoo.tests.common import TransactionCase
 
 
@@ -105,3 +107,65 @@ class TestProjectCrmLink(TransactionCase):
                 "Test Project 2 [XLD/00080] Test Lead A",
             ],
         )
+
+    def test_04_bypass_supermanager_check_from_crm_form(self):
+        """Test that the project_id field context in crm_timesheet_lead_view_form
+        allows any project manager user to create a project from the CRM lead form,
+        bypassing the supermanager restriction."""
+        # enable supermanager check (disabled by default to not break other modules)
+        ICP = self.env["ir.config_parameter"].sudo()
+        ICP.set_param("project_acl.supermanager_check_enabled", True)
+        # create a project manager user (NOT supermanager) with CRM and timesheet access
+        mail_ctx = {
+            "mail_create_nolog": True,
+            "mail_create_nosubscribe": True,
+            "mail_notrack": True,
+            "no_reset_password": True,
+        }
+        project_manager = new_test_user(
+            self.env,
+            login="project_crm_link-project_manager",
+            groups=(
+                "project.group_project_manager,"
+                "sales_team.group_sale_salesman,"
+                "hr_timesheet.group_hr_timesheet_user"
+            ),
+            context=mail_ctx,
+        )
+        # create a lead owned by the project_manager to satisfy CRM record rules
+        lead = self.env["crm.lead"].create(
+            {
+                "name": "Test Lead for Form Test",
+                "type": "opportunity",
+                "user_id": project_manager.id,
+            }
+        )
+        # verify that project creation is blocked without bypass (supermanager check)
+        with self.assertRaisesRegex(AccessError, r"Super-Manager"), self.cr.savepoint():
+            self.env["project.project"].with_user(project_manager).create(
+                {"name": "New Project"}
+            )
+        # open the crm_timesheet lead form view; our module patches project_id to
+        # include bypass_supermanager_check in its context
+        view = self.env.ref("crm_timesheet.crm_lead_view_form")
+        lead_form = Form(
+            lead.with_user(project_manager),
+            view=view,
+        )
+        # verify the project_id field context from the view includes the bypass key
+        # pylint: disable=protected-access
+        project_id_ctx = lead_form._get_context("project_id")  # type: ignore[reportPrivateUsage]
+        self.assertIn("bypass_supermanager_check", project_id_ctx)
+        self.assertTrue(project_id_ctx["bypass_supermanager_check"])
+        # create a new project using that context (simulates quick-create from the UI)
+        new_project = (
+            self.env["project.project"]
+            .with_user(project_manager)
+            .with_context(**project_id_ctx)
+            .create({"name": "New Project From CRM Form"})
+        )
+        self.assertTrue(new_project.exists())
+        # set the project on the form and save
+        lead_form.project_id = new_project
+        saved_lead = lead_form.save()
+        self.assertEqual(saved_lead.project_id, new_project)

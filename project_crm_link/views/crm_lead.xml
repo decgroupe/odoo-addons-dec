@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- Disable Super-Manager needed to create a project -->
+    <record model="ir.ui.view" id="crm_timesheet_lead_view_form">
+        <field name="name">crm.lead.form@project_crm_link</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm_timesheet.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <field name="project_id" position="attributes">
+                <attribute
+                    name="context"
+                >{'bypass_supermanager_check': True}</attribute>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="crm_lead_view_form">
         <field name="name">crm.lead.oppor.inherited.crm@project_crm_link</field>
         <field name="model">crm.lead</field>
