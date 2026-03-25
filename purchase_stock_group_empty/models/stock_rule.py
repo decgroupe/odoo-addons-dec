@@ -9,11 +9,11 @@ class StockRule(models.Model):
 
     def _make_po_get_domain(self, company_id, values, partner):
         domain = super()._make_po_get_domain(company_id, values, partner)
-        # Force group_id to False if not set to only group purchase orders
+        # force `group_id` to False if not set to only group purchase orders
         # without group_id set
         group_id_set = False
-        for filter in domain:
-            if filter[0] == "group_id":
+        for condition in domain:
+            if isinstance(condition, list | tuple) and condition[0] == "group_id":
                 group_id_set = True
         if not group_id_set:
             domain += (("group_id", "=", False),)

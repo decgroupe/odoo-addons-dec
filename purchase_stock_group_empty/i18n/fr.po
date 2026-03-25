@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
+"POT-Creation-Date: 2026-06-03 10:59+0000\n"
 "PO-Revision-Date: 2023-11-28 14:30+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
@@ -18,31 +18,21 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: purchase_stock_group_empty
-#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: purchase_stock_group_empty
-#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule__id
-msgid "ID"
-msgstr "ID"
-
-#. module: purchase_stock_group_empty
-#: model:ir.model.fields,help:purchase_stock_group_empty.field_stock_rule__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: purchase_stock_group_empty
-#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: purchase_stock_group_empty
 #: model:ir.model,name:purchase_stock_group_empty.model_stock_rule
 msgid "Stock Rule"
 msgstr "Règle de stock"
 
-#. module: purchase_stock_group_empty
-#: model:ir.model.fields,field_description:purchase_stock_group_empty.field_stock_rule__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
