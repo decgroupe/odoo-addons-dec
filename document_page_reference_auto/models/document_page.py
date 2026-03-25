@@ -11,7 +11,7 @@ class DocumentPage(models.Model):
     _inherit = "document.page"
 
     @api.onchange("name")
-    def on_name_change(self):
+    def _onchange_name(self):
         if self.name and not self.reference:
             res = "page_"
             parts = re.split(r"'|,| ", self.name)
