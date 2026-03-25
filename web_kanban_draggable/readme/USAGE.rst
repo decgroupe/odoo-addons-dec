@@ -1,1 +1,0 @@
-Set the value `columns_draggable=False` as a kanban attribute.
