@@ -8,5 +8,6 @@ class TestSalePricelistAnalysis(TransactionCase):
     def setUp(self):
         super().setUp()
 
-    # def test_01_(self):
-    #     pass
+    def test_01_nothing(self):
+        # this module only adds a menu entry, so nothing to test for now
+        pass
