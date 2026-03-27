@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_res_partner_search_city">
         <field name="name">res.partner.select@partner_search_city</field>
         <field name="model">res.partner</field>
@@ -15,5 +14,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
