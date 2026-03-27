@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:14+0000\n"
+"POT-Creation-Date: 2026-06-03 09:58+0000\n"
 "PO-Revision-Date: 2023-11-28 11:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,31 +23,21 @@ msgid "Convert images to attachments"
 msgstr "Convertir les images en pièces jointes"
 
 #. module: document_page_image_to_attachment
-#: model:ir.model.fields,field_description:document_page_image_to_attachment.field_document_page__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: document_page_image_to_attachment
 #: model:ir.model,name:document_page_image_to_attachment.model_document_page
 msgid "Document Page"
 msgstr "Page"
 
-#. module: document_page_image_to_attachment
-#: model:ir.model.fields,field_description:document_page_image_to_attachment.field_document_page__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: document_page_image_to_attachment
-#: model:ir.model.fields,help:document_page_image_to_attachment.field_document_page__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: document_page_image_to_attachment
-#: model:ir.model.fields,field_description:document_page_image_to_attachment.field_document_page____last_update
-msgid "Last Modified on"
-msgstr "Dernière mise à jour le"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: document_page_image_to_attachment
-#: model:ir.model.fields,field_description:document_page_image_to_attachment.field_document_page__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière mise à jour le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
