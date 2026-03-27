@@ -5,4 +5,6 @@ from odoo import models
 
 
 class MrpProduction(models.Model):
+    """Allow changing the BoM on a manufacturing order when not locked."""
+
     _inherit = "mrp.production"
