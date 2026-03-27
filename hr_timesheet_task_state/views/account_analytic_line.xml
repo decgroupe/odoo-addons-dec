@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field name="name">account.analytic.line.form@hr_timesheet_task_state</field>
         <field name="model">account.analytic.line</field>
@@ -15,12 +14,10 @@
                     string=""
                     name="task_stage_id"
                     widget="statusbar"
-                    attrs="{'invisible': [('task_id', '=', False)]}"
+                    invisible="not task_id"
                     options="{'clickable': '1', 'fold_field': 'fold'}"
-                >
-                </field>
+                />
             </xpath>
         </field>
     </record>
-
 </odoo>
