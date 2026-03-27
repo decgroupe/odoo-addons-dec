@@ -1,10 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <ypa at decgroupe.com>, May 2021
+# Written by Yann Papouin <ypa at decgroupe.com>, Mar 2026
 
 from odoo import api, fields, models
 
 
 class DocumentPage(models.Model):
+    """Extend document.page to compute and display category complete name."""
+
     _inherit = "document.page"
     _parent_name = "parent_id"
     _parent_store = True
@@ -15,22 +17,19 @@ class DocumentPage(models.Model):
         string="Complete Name",
         compute="_compute_complete_name",
         store=True,
+        recursive=True,
     )
 
     @api.depends("name", "parent_id.complete_name")
     def _compute_complete_name(self):
+        """Compute the full hierarchical name for category pages."""
         for rec in self:
             if rec.parent_id and rec.type == "category":
-                rec.complete_name = "%s / %s" % (
-                    rec.parent_id.complete_name,
-                    rec.name,
-                )
+                rec.complete_name = f"{rec.parent_id.complete_name} / {rec.name}"
             else:
                 rec.complete_name = rec.name
 
-    @api.depends("name", "complete_name", "type")
-    def name_get(self):
-        result = []
+    def _compute_display_name(self):
+        """Override display name to use complete_name for all document pages."""
         for rec in self:
-            result.append((rec.id, rec.complete_name))
-        return result
+            rec.display_name = rec.complete_name
