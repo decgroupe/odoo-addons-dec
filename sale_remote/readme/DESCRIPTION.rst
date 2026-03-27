@@ -1,1 +1,0 @@
- Allow RPC on sales.

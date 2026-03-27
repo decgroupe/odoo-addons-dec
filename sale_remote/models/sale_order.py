@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
     def create_line(
         self, product_id, product_uom_id, product_uom_qty=1.0, markup_percent=0
     ):
+        """Create a sale order line by playing onchanges and return its id."""
         self.ensure_one()
         vals = {
             "order_id": self.id,
@@ -21,7 +22,7 @@ class SaleOrder(models.Model):
         vals["product_uom_qty"] = product_uom_qty
         vals = self.env["sale.order.line"].play_onchanges(vals, ["product_uom_qty"])
         if markup_percent:
-            # We need to remove price_unit to get a new one, take a look on
+            # we need to remove price_unit to get a new one, take a look on
             # _get_new_values
             # from oca/server-tools/onchange_helper/models/base.py
             vals.pop("price_unit")
