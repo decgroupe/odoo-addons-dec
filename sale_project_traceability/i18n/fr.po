@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"POT-Creation-Date: 2026-06-03 11:05+0000\n"
 "PO-Revision-Date: 2023-11-28 14:38+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
@@ -17,42 +17,26 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. module: sale_project_traceability
-#: model:ir.model.fields,field_description:sale_project_traceability.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: sale_project_traceability
-#: model:ir.model.fields,field_description:sale_project_traceability.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: sale_project_traceability
-#: model:ir.model.fields,help:sale_project_traceability.field_sale_order_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: sale_project_traceability
-#: model:ir.model.fields,field_description:sale_project_traceability.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
 
-#. module: sale_project_traceability
-#: model:res.groups,name:sale_project_traceability.group_sale_project_traceability
-msgid "Project/task traceability (project)"
-msgstr "Traçabilité des tâches de projet (project)"
+#~ msgid "Project/task traceability (project)"
+#~ msgstr "Traçabilité des tâches de projet (project)"
 
-#. module: sale_project_traceability
-#: model:ir.model,name:sale_project_traceability.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Ligne de commande de vente"
+#~ msgid "Sales Order Line"
+#~ msgstr "Ligne de commande de vente"
 
-#. module: sale_project_traceability
-#: model:ir.model.fields,field_description:sale_project_traceability.field_sale_order_line__task_ids
-msgid "Tasks"
-msgstr "Tâches"
+#~ msgid "Tasks"
+#~ msgstr "Tâches"
 
-#. module: sale_project_traceability
-#: model:ir.model.fields,field_description:sale_project_traceability.field_sale_order_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
