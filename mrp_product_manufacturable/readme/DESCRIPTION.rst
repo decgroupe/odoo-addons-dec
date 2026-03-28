@@ -1,1 +1,0 @@
-Use a new computed field to know if a product is manufacturable instead of analyzing its BoMs every time.

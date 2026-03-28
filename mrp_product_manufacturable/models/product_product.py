@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2021
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class ProductProduct(models.Model):
@@ -14,6 +14,7 @@ class ProductProduct(models.Model):
 
     @api.depends("bom_ids", "bom_ids.active", "bom_ids.type")
     def _compute_manufacturable(self):
+        """Compute whether the product is manufacturable based on its BOMs."""
         self.manufacturable = False
         product_ids = self.search(
             [

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_form_view">
-        <field name="name">mrp.production.form@mrp_create</field>
+        <field name="name">mrp.production.form@mrp_product_manufacturable</field>
         <field name="model">mrp.production</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view" />
@@ -12,5 +11,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
