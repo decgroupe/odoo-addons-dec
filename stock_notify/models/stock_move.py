@@ -13,18 +13,24 @@ class StockMove(models.Model):
     )
 
     def write(self, vals):
+        """Override write to send a notification when a move becomes assigned."""
         if vals.get("state") == "assigned":
             for rec in self.filtered("notify_assigned").filtered("picking_id"):
-                product_name = rec.product_id.name_get()[0][1]
+                product_name = rec.product_id.display_name
                 group_id = rec.group_id and rec.group_id.name or ""
                 rec.picking_id.message_post(
                     body=_(
-                        "Product <small><b>%s</b></small> was reserved and is "
-                        "now ready to be picked up for <small><b>%s</b></small>."
-                        "<br>Please open and validate %s."
+                        "Product <small><b>%(product)s</b></small> was reserved"
+                        " and is now ready to be picked up for"
+                        " <small><b>%(origin)s</b></small>."
+                        "<br>Please open and validate %(picking)s."
                     )
-                    % (product_name, rec.picking_id.origin, rec.picking_id.name),
-                    subject=_("⏱️ %s picking ready") % (group_id),
+                    % {
+                        "product": product_name,
+                        "origin": rec.picking_id.origin,
+                        "picking": rec.picking_id.name,
+                    },
+                    subject=_("⏱️ %(group)s picking ready") % {"group": group_id},
                     subtype_id=self.env.ref("mail.mt_note").id,
                 )
-        return super(StockMove, self).write(vals)
+        return super().write(vals)
