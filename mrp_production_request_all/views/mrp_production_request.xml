@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_request_form_view">
         <field
             name="name"
@@ -22,17 +21,9 @@
                     type="object"
                     class="oe_highlight"
                     groups="mrp_production_request.group_mrp_production_request_manager"
-                    attrs="{'invisible': [
-                            ('|'),
-                                ('state', '!=', 'approved'),
-                                ('&amp;'),
-                                    ('state', '=', 'approved'),
-                                    ('pending_qty', '=', 0),
-                        ]}"
-                >
-                </button>
+                    invisible="state != 'approved' or pending_qty == 0"
+                />
             </button>
         </field>
     </record>
-
 </odoo>

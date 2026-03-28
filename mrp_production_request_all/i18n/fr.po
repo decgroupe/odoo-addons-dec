@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:23+0000\n"
+"POT-Creation-Date: 2026-06-03 10:36+0000\n"
 "PO-Revision-Date: 2023-11-28 13:47+0100\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
@@ -21,26 +21,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp_production_request_all.mrp_production_request_form_view
 msgid "Create all Manufacturing Orders"
 msgstr "Créer tous les ordres de fabrication"
-
-#. module: mrp_production_request_all
-#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request__display_name
-msgid "Display Name"
-msgstr "Nom d'affichage"
-
-#. module: mrp_production_request_all
-#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_production_request_all
-#: model:ir.model.fields,help:mrp_production_request_all.field_mrp_production_request__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_production_request_all
-#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: mrp_production_request_all
 #: model:ir.model,name:mrp_production_request_all.model_mrp_production_request
@@ -59,10 +39,20 @@ msgstr ""
 "1 unité - Si la quantité demandée est 5.0 alors cela va générer 5 × MO de 1 "
 "unité"
 
-#. module: mrp_production_request_all
-#: model:ir.model.fields,field_description:mrp_production_request_all.field_mrp_production_request__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom d'affichage"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Production Order"
 #~ msgstr "Odre de fabrication"
