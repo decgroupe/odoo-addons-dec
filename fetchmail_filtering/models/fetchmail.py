@@ -3,14 +3,14 @@
 
 import logging
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 from odoo.tools import ormcache
 from odoo.tools.config import config, to_list
 
 _logger = logging.getLogger(__name__)
 
 
-class FetchmailServer(models.AbstractModel):
+class FetchmailServer(models.Model):
     _inherit = "fetchmail.server"
 
     allowed_databases = fields.Char(
@@ -23,16 +23,17 @@ class FetchmailServer(models.AbstractModel):
     @api.model
     @ormcache()
     def _get_db_fetchmail_allowedlist(self):
+        """Return the list of databases allowed by the global config option."""
         res = []
         allowedlist = config.get("db_fetchmail_allowedlist")
         if allowedlist:
             res = to_list(allowedlist)
         return res
 
-    def fetch_mail(self):
-        # We use `fetch_mail` instead of `_fetch_mails`
+    def fetch_mail(self, raise_exception=True):
+        """Filter servers by allowed databases before fetching mail."""
+        # we use `fetch_mail` instead of `_fetch_mails`
         fetchmail_server_ids = self.env["fetchmail.server"]
-
         for fetchmail_server_id in self:
             fetch_allowed = False
             if fetchmail_server_id.allowed_databases:
@@ -42,15 +43,14 @@ class FetchmailServer(models.AbstractModel):
                     fetch_allowed = self.env.cr.dbname in to_list(
                         fetchmail_server_id.allowed_databases
                     )
-
             if not fetch_allowed:
                 fetch_allowed = (
                     self.env.cr.dbname in self._get_db_fetchmail_allowedlist()
                 )
-
             if fetch_allowed:
                 fetchmail_server_ids += fetchmail_server_id
             else:
                 _logger.info("fetch_mail disabled for %s", fetchmail_server_id.name)
-
-        return super(FetchmailServer, fetchmail_server_ids).fetch_mail()
+        return super(FetchmailServer, fetchmail_server_ids).fetch_mail(
+            raise_exception=raise_exception
+        )
