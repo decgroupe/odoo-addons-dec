@@ -8,7 +8,13 @@ class Employee(models.Model):
     _inherit = "hr.employee"
 
     def _generate_vcard(self):
+        """Generate a VCard string for the employee."""
         self.ensure_one()
+        adr = self.address_id
+        address = (
+            f"ADR;TYPE=WORK:;;{adr.street} {adr.street2}"
+            f";{adr.city};;{adr.zip};{adr.country_id.name}"
+        )
         res = "\n".join(
             [
                 "BEGIN:VCARD",
@@ -18,10 +24,9 @@ class Employee(models.Model):
                 f"TITLE:{self.job_title}",
                 f"EMAIL;TYPE=INTERNET,pref:{self.work_email}",
                 f"TEL;TYPE=CELL:{self.mobile_phone}",
-                f"TEL;TYPE=WORK:{self.address_id.phone}",
-                f"TEL;TYPE=FAX:{self.address_id.fax}",
-                f"ADR;TYPE=WORK:;;{self.address_id.street} {self.address_id.street2};{self.address_id.city};;{self.address_id.zip};{self.address_id.country_id.name}",
-                f"URL:{self.address_id.website}",
+                f"TEL;TYPE=WORK:{adr.phone}",
+                address,
+                f"URL:{adr.website}",
                 "END:VCARD",
             ]
         )

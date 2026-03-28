@@ -4,16 +4,14 @@
 
 from odoo import http
 from odoo.http import request
-from odoo.tools.translate import _
 
 
 class VCardController(http.Controller):
     """Http Controller for VCard"""
 
-    #######################################################################
-
     @http.route("/vcard/<string:email>.vcf", type="http", auth="none")
-    def test(self, email, **kwargs):
+    def vcard(self, email, **kwargs):
+        """Return a VCard file for the employee matching the given email."""
         employee = (
             request.env["hr.employee"]
             .sudo()
