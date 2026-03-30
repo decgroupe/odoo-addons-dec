@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import fields, models
+from odoo import fields, models, modules
 
 logger = logging.getLogger(__name__)
 
@@ -25,26 +25,41 @@ class IrMailServer(models.Model):
         user=None,
         password=None,
         encryption=None,
+        smtp_from=None,
+        ssl_certificate=None,
+        ssl_private_key=None,
         smtp_debug=False,
         mail_server_id=None,
+        allow_archived=False,
     ):
         # Use default server like odoo/addons/base/models/ir_mail_server.py
         mail_server = self.sudo()
         if mail_server_id:
             mail_server = mail_server.browse(mail_server_id)
         elif not host:
-            mail_server = mail_server.search([], order="sequence", limit=1)
+            mail_server, _smtp_from = self.sudo()._find_mail_server(smtp_from)
 
-        res = super().connect(
+        connection = super().connect(
             host=host,
             port=port,
             user=user,
             password=password,
             encryption=encryption,
+            smtp_from=smtp_from,
+            ssl_certificate=ssl_certificate,
+            ssl_private_key=ssl_private_key,
             smtp_debug=smtp_debug,
             mail_server_id=mail_server_id,
+            allow_archived=allow_archived,
         )
         # Keep a track of the smtp server used to create the `smtp_session`
         if mail_server:
-            res.mail_server_id = mail_server.id
-        return res
+            if not connection and modules.module.current_test:
+                logger.warning(
+                    "No connection returned for mail server %s because of a "
+                    "mocked SMTP server in test mode",
+                    mail_server.name,
+                )
+            else:
+                connection.mail_server_id = mail_server.id
+        return connection
