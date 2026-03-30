@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="crm_lead_view_form">
         <field name="name">crm.lead.form@crm_timesheet_time_control</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm_timesheet.crm_lead_view_form" />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
-
             <field name="project_id" position="attributes">
                 <attribute name="domain">[('allow_timesheets', '=', True)]</attribute>
             </field>
@@ -16,10 +15,10 @@
                 <field
                     name="timesheet_ids"
                     context="{'default_project_id': project_id, 'default_user_id': uid, 'form_view_ref': 'hr_timesheet_autofill.hr_timesheet_line_form_view'}"
-                    attrs="{'invisible':[('project_id', '=', False)]}"
+                    invisible="not project_id"
                     groups="hr_timesheet.group_hr_timesheet_user"
                 >
-                    <tree editable="bottom" delete="true">
+                    <list editable="bottom" delete="true">
                         <field name="project_id" invisible="1" />
                         <field name="date" invisible="1" widget="date" />
                         <field name="date_time" string="Date" required="1" />
@@ -30,11 +29,9 @@
                             string="Duration (Hour(s))"
                             widget="float_time"
                         />
-                    </tree>
+                    </list>
                 </field>
             </xpath>
-
         </field>
     </record>
-
 </odoo>

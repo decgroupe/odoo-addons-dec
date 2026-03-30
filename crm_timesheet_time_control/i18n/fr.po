@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:56+0000\n"
+"POT-Creation-Date: 2026-06-03 09:58+0000\n"
 "PO-Revision-Date: 2023-11-28 11:45+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -17,12 +17,8 @@ msgstr ""
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
 
-#. module: crm_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_lead_view_form
-msgid "Date"
-msgstr "Date"
+#~ msgid "Date"
+#~ msgstr "Date"
 
-#. module: crm_timesheet_time_control
-#: model_terms:ir.ui.view,arch_db:crm_timesheet_time_control.crm_lead_view_form
-msgid "Duration (Hour(s))"
-msgstr "Durée (Heure(s))"
+#~ msgid "Duration (Hour(s))"
+#~ msgstr "Durée (Heure(s))"
