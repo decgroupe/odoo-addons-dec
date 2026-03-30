@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2024
 
-from odoo import api, models, tools, _
+from odoo import api, models, tools
 
 
 class CalendarEvent(models.Model):
@@ -9,7 +9,7 @@ class CalendarEvent(models.Model):
 
     @api.model
     def _odoo_attendee_commands(self, google_event):
-        """Hook `google_event` data before being processed by `google_calendar` module"""
+        """Hook `google_event` data before being processed by `google_calendar`."""
         # replace in-place emails (google email => odoo email)
         google_attendees = google_event.attendees or []
         for attendee in google_attendees:
@@ -25,9 +25,10 @@ class CalendarEvent(models.Model):
         return attendee_commands, partner_commands
 
     def _google_values(self):
-        """Replace values prepared by odoo  before being sent to google"""
+        """Replace values prepared by odoo before being sent to google."""
 
         def replace_email(item, user_id):
+            """Replace email in item with google_calendar_cal_id if available."""
             if item and user_id and user_id.google_calendar_cal_id:
                 email = item.get("email")
                 if email and email != user_id.google_calendar_cal_id:
