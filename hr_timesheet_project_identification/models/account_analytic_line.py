@@ -14,6 +14,7 @@ class AccountAnalyticLine(models.Model):
 
     @api.depends("project_id")
     def _compute_project_identification(self):
+        """Compute the project identification string from the linked project."""
         self.project_identification = False
         for rec in self.filtered("project_id"):
             identifications = rec.project_id._get_name_identifications()
