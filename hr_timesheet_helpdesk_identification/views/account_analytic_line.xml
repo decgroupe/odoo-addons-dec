@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field
             name="name"
@@ -14,11 +13,10 @@
             <xpath expr="//form/sheet//field[@name='ticket_id']" position="after">
                 <field
                     name="ticket_identification"
-                    attrs="{'invisible': [('ticket_id', '=', False)]}"
+                    invisible="not ticket_id"
                     string=""
                 />
             </xpath>
         </field>
     </record>
-
 </odoo>
