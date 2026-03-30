@@ -12,6 +12,7 @@ class WebEnvironmentRibbonBackend(models.AbstractModel):
     @api.model
     @ormcache()
     def _get_db_ribbon_ignorelist(self):
+        """Return the list of database names for which the ribbon must be hidden."""
         res = []
         ignorelist = config.get("db_ribbon_ignorelist")
         if ignorelist:
@@ -20,10 +21,7 @@ class WebEnvironmentRibbonBackend(models.AbstractModel):
 
     @api.model
     def get_environment_ribbon(self):
-        """
-        This method returns the ribbon data from ir config parameters
-        :return: dictionary
-        """
+        """Return ribbon data, hiding the ribbon name for ignored databases."""
         res = super().get_environment_ribbon()
         if self.env.cr.dbname in self._get_db_ribbon_ignorelist():
             res["name"] = ""
