@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field
             name="name"
@@ -13,13 +12,8 @@
         <field name="priority">25</field>
         <field name="arch" type="xml">
             <field name="lead_id" position="after">
-                <field
-                    name="lead_identification"
-                    attrs="{'invisible': [('lead_id', '=', False)]}"
-                    string=""
-                />
+                <field name="lead_identification" invisible="not lead_id" string="" />
             </field>
         </field>
     </record>
-
 </odoo>
