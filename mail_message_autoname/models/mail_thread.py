@@ -9,7 +9,7 @@ class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
     def _message_compute_author(
-        self, author_id=None, email_from=None, raise_exception=True
+        self, author_id=None, email_from=None, raise_on_email=True
     ):
         """Reformat email if no name information:
         yanapa@laposte.net -> "yanapa@laposte.net <yanapa@laposte.net>" that way it will
@@ -17,12 +17,11 @@ class MailThread(models.AbstractModel):
         "notifications@mydomain.com"
         """
         author_id, email_from = super()._message_compute_author(
-            author_id, email_from, raise_exception
+            author_id, email_from, raise_on_email
         )
         # reformat email if no name information
         if not author_id and email_from:
-            name_emails = tools.email_split_tuples(email_from)
-            name_from_email = name_emails[0][0] if name_emails else False
+            name_from_email, _ = tools.parse_contact_from_email(email_from)
             if not name_from_email:
                 email_from = tools.formataddr((email_from, email_from))
 

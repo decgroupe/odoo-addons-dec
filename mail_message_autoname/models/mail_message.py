@@ -10,14 +10,18 @@ class MailMessage(models.AbstractModel):
 
     @api.model_create_multi
     def create(self, vals_list):
+        """Auto-set record_name even when explicitly set to False."""
         for vals in vals_list:
             self._autoadd_record_name(vals)
         return super().create(vals_list)
 
     def _autoadd_record_name(self, vals):
-        # Note that there is already a similar implementation in `create` of
-        # `odoo/addons/mail/models/mail_message.py` but it doesn't take care
-        # if `record_name` was set to False
+        """Ensure record_name is always populated when model and res_id are present.
+
+        Note that there is already a similar implementation in `create` of
+        `odoo/addons/mail/models/mail_message.py` but it doesn't take care
+        if `record_name` was set to False
+        """
         if "default_record_name" in self.env.context:
             return
         if not vals.get("record_name"):
