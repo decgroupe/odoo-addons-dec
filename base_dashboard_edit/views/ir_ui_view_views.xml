@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_view_custom_form">
-        <field name="name">res.city.zip.form@base_dashboard_edit</field>
+        <field name="name">ir.ui.view.custom.form@base_dashboard_edit</field>
         <field name="model">ir.ui.view.custom</field>
         <field name="inherit_id" ref="base.view_view_custom_form" />
         <field name="arch" type="xml">
@@ -12,8 +11,8 @@
         </field>
     </record>
 
-    <record id="view_view_custom_tree" model="ir.ui.view">
-        <field name="name">res.city.zip.tree@base_dashboard_edit</field>
+    <record model="ir.ui.view" id="view_view_custom_tree">
+        <field name="name">ir.ui.view.custom.list@base_dashboard_edit</field>
         <field name="model">ir.ui.view.custom</field>
         <field name="inherit_id" ref="base.view_view_custom_tree" />
         <field name="arch" type="xml">
@@ -23,8 +22,8 @@
         </field>
     </record>
 
-    <record id="view_view_custom_search" model="ir.ui.view">
-        <field name="name">res.city.zip.search@base_dashboard_edit</field>
+    <record model="ir.ui.view" id="view_view_custom_search">
+        <field name="name">ir.ui.view.custom.search@base_dashboard_edit</field>
         <field name="model">ir.ui.view.custom</field>
         <field name="inherit_id" ref="base.view_view_custom_search" />
         <field name="arch" type="xml">
@@ -32,7 +31,7 @@
         </field>
     </record>
 
-<!--
+    <!--
     <record id="action_ui_view_custom" model="ir.actions.act_window">
         <field name="name">Customized Views</field>
         <field name="type">ir.actions.act_window</field>
@@ -43,5 +42,4 @@
             >Customized views are used when users reorganize the content of their dashboard views (via web client)</p></field>
     </record>
 -->
-
 </odoo>
