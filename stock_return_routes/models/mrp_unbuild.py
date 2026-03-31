@@ -1,7 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
-from odoo import _, models
+from odoo import models
+
 from odoo.addons.tools_miscellaneous.tools.html_helper import div, ul
 
 
@@ -9,22 +10,20 @@ class MrpUnbuild(models.Model):
     _inherit = "mrp.unbuild"
 
     def _generate_produce_moves(self):
+        """Override to update MTO routes and link produced moves to consumed moves."""
         self.ensure_one()
         moves = super()._generate_produce_moves()
+        # update routes for products returning to stock
         ids = moves.mapped("product_id").update_routes_after_return_to_stock(self.name)
         edited_products = self.env["product.product"].browse(ids)
         if edited_products:
-            title = _("Following product's routes has been edited:")
+            title = self.env._("Following product's routes has been edited:")
             product_lines = []
-            for product_names in edited_products.mapped("display_name"):
-                product_lines.append("<li>%s</li>" % (product_names,))
+            for product_name in edited_products.mapped("display_name"):
+                product_lines.append(f"<li>{product_name}</li>")
             body = div(title) + ul("".join(product_lines))
             self.message_post(body=body)
-
+        # link produced moves to consumed moves for traceability
+        for move in moves:
+            move.move_orig_ids = self.consume_line_ids
         return moves
-
-    def _generate_move_from_raw_moves(self, raw_move, factor):
-        self.ensure_one()
-        move = super()._generate_move_from_raw_moves(raw_move, factor)
-        move.move_orig_ids = self.consume_line_ids
-        return move
