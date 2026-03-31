@@ -5,6 +5,8 @@ from odoo import fields, models
 
 
 class AccountAnalyticLine(models.Model):
+    """extend account.analytic.line to link timesheets to sale orders."""
+
     _inherit = "account.analytic.line"
 
     sale_id = fields.Many2one(
