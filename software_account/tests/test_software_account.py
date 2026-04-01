@@ -99,6 +99,7 @@ class TestSoftwareAccount(TransactionCase):
         self.assertIn("name", field_names)
         self.assertIn("image", field_names)
         self.assertIn("rules", field_names)
+        self.assertIn("account_count", field_names)
 
     def test_06_supplier_list_view_fields(self):
         """Check that expected fields are present in the supplier list view arch."""
@@ -117,3 +118,46 @@ class TestSoftwareAccount(TransactionCase):
         self.assertIn("email", field_names)
         self.assertIn("product_id", field_names)
         self.assertIn("partner_id", field_names)
+
+    def test_08_supplier_account_count(self):
+        """Verify account_count reflects the number of linked accounts."""
+        self.assertEqual(self.supplier.account_count, 0)
+        acc1 = self.env["software.account"].create(
+            {
+                "supplier_id": self.supplier.id,
+                "login": "user1",
+                "password": "pass1",
+                "email": "user1@example.com",
+            }
+        )
+        self.supplier.invalidate_recordset()
+        self.assertEqual(self.supplier.account_count, 1)
+        acc2 = self.env["software.account"].create(
+            {
+                "supplier_id": self.supplier.id,
+                "login": "user2",
+                "password": "pass2",
+                "email": "user2@example.com",
+            }
+        )
+        self.supplier.invalidate_recordset()
+        self.assertEqual(self.supplier.account_count, 2)
+        acc1.unlink()
+        acc2.unlink()
+
+    def test_09_action_view_accounts(self):
+        """Verify the smart button action returns an act_window filtered by supplier."""
+        acc = self.env["software.account"].create(
+            {
+                "supplier_id": self.supplier.id,
+                "login": "smart@example.com",
+                "password": "pw",
+                "email": "smart@example.com",
+            }
+        )
+        action = self.supplier.action_view_accounts()
+        self.assertEqual(action["type"], "ir.actions.act_window")
+        self.assertEqual(action["res_model"], "software.account")
+        self.assertIn(("supplier_id", "=", self.supplier.id), action["domain"])
+        self.assertEqual(action["context"]["default_supplier_id"], self.supplier.id)
+        acc.unlink()
