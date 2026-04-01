@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
-"PO-Revision-Date: 2023-11-28 13:50+0100\n"
+"POT-Creation-Date: 2026-06-03 10:39+0000\n"
+"PO-Revision-Date: 2026-06-03 15:13+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_stock_actions
 #: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
@@ -24,13 +24,33 @@ msgstr "Êtes-vous sûr de vouloir annuler ce mouvement ?"
 
 #. module: mrp_stock_actions
 #: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
+msgid "Are you sure you want to change procure method of this move?"
+msgstr ""
+"Êtes-vous sûr de vouloir modifier le mode d'approvisionnement de ce "
+"transfert ?"
+
+#. module: mrp_stock_actions
+#: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
 msgid "Cancel"
 msgstr "Annuler"
 
 #. module: mrp_stock_actions
 #: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
-msgid "Check availability"
-msgstr "Vérifier la disponibilité"
+msgid ""
+"Change procure method to « Make to Order » and make a restock order (buy, "
+"manufacture)"
+msgstr ""
+"Modifier le mode d'approvisionnement en « Fabrication sur commande » "
+"(MTO) et passer une commande de réapprovisionnement (achat, fabrication)"
+
+#. module: mrp_stock_actions
+#: model_terms:ir.ui.view,arch_db:mrp_stock_actions.mrp_production_form_view
+msgid "Unreserve all and re-check availability"
+msgstr ""
+"Annuler toutes les réservations et vérifier à nouveau la disponibilité"
+
+#~ msgid "Check availability"
+#~ msgstr "Vérifier la disponibilité"
 
 #~ msgid "Production Order"
 #~ msgstr "Ordre de fabrication"
