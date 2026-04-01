@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -16,12 +16,14 @@ class ProductTemplate(models.Model):
 
     @api.depends("public_categ_ids")
     def _compute_public_categ_id(self):
+        """Compute the main public category as the first element of public_categ_ids."""
         for record in self:
             record.public_categ_id = (
                 record.public_categ_ids and record.public_categ_ids[0] or False
             )
 
     def set_main_public_category(self, categ_id):
+        """Set the given category as the main public category, keeping others."""
         for rec in self:
             if not rec.public_categ_ids:
                 categ_ids = [categ_id]
@@ -33,6 +35,6 @@ class ProductTemplate(models.Model):
                 ]
             rec.write(
                 {
-                    "public_categ_ids": [(6, 0, categ_ids)],
+                    "public_categ_ids": [Command.set(categ_ids)],
                 }
             )

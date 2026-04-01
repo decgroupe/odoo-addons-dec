@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="product_template_search_view_website">
         <field name="name">product.template.search@website_sale_main_category</field>
         <field name="model">product.template</field>
@@ -15,10 +14,8 @@
                     string="Website Main Product Category"
                     name="groupby_public_categ_id"
                     context="{'group_by':'public_categ_id'}"
-                >
-                </filter>
+                />
             </field>
         </field>
     </record>
-
 </odoo>

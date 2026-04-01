@@ -8,4 +8,5 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     def set_main_public_category(self, categ_id):
+        """Delegate set_main_public_category to the product template."""
         self.mapped("product_tmpl_id").set_main_public_category(categ_id)
