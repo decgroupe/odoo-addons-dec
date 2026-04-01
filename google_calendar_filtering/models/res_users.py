@@ -3,7 +3,8 @@
 
 import logging
 
-from odoo import _, api, models
+from odoo import api, models
+
 from odoo.addons.google_calendar.utils.google_calendar import GoogleCalendarService
 
 _logger = logging.getLogger(__name__)
@@ -13,6 +14,7 @@ class User(models.Model):
     _inherit = "res.users"
 
     def _sync_google_calendar(self, calendar_service: GoogleCalendarService):
+        """Sync Google Calendar for this user if the database is allowed."""
         allowed = self.env["google.calendar.sync"]._get_db_allowedlist()
         if self.env.cr.dbname in allowed:
             return super()._sync_google_calendar(calendar_service)
@@ -22,6 +24,7 @@ class User(models.Model):
 
     @api.model
     def _sync_all_google_calendar(self):
+        """Sync Google Calendar for all users if the database is allowed."""
         allowed = self.env["google.calendar.sync"]._get_db_allowedlist()
         if self.env.cr.dbname in allowed:
             return super()._sync_all_google_calendar()
@@ -30,7 +33,8 @@ class User(models.Model):
             return None
 
     def sync_google_calendar(self):
-        google = GoogleCalendarService(self.env['google.service'])
+        """Manually trigger Google Calendar sync for the selected users."""
+        google = GoogleCalendarService(self.env["google.service"])
         for user in self:
             if user.google_calendar_rtoken:
                 user.with_user(user).sudo()._sync_google_calendar(google)

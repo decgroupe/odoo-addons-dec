@@ -3,15 +3,12 @@
 
 import logging
 
-from odoo import _, api, models, fields
-from odoo.osv import expression
+from odoo import api, fields, models
 from odoo.tools.progressbar import progressbar as pb
 
 from odoo.addons.google_calendar.utils.google_calendar import (
     GoogleCalendarService,
-    InvalidSyncToken,
 )
-from odoo.addons.google_calendar.models.google_sync import google_calendar_token
 
 _logger = logging.getLogger(__name__)
 
@@ -25,25 +22,20 @@ class CalendarEvent(models.Model):
         store=True,
     )
 
-    odoo12 = fields.Boolean(
-        string="Created with Odoo <= 12.0",
-        compute="_compute_odoo12",
-        store=True,
-    )
-
     @api.model
     def _get_public_fields(self):
-        return super()._get_public_fields() | {"duplicate_count", "odoo12"}
-
-    def _compute_odoo12(self):
-        for rec in self:
-            rec.odoo12 = rec.id <= 10868
+        """Extend public fields to include duplicate_count."""
+        return super()._get_public_fields() | {"duplicate_count"}
 
     @api.depends("start", "stop", "start_date", "stop_date", "allday", "name")
     def _compute_duplicate_count(self):
+        """Compute the number of duplicate events based on name and date."""
         self.action_recompute_duplicate_count()
 
     def action_recompute_duplicate_count(self):
+        """Recompute duplicate_count for the current recordset.
+        When called during module installation, resets all counts to 0.
+        """
         if self.env.context.get("module") == "google_calendar_filtering":
             self.write({"duplicate_count": 0})
         else:
@@ -80,6 +72,7 @@ class CalendarEvent(models.Model):
         return None
 
     def action_sync2google(self):
+        """Manually push the selected events to Google Calendar."""
         calendar_service = GoogleCalendarService(self.env["google.service"])
 
         # Odoo -> Google
@@ -101,7 +94,7 @@ class CalendarEvent(models.Model):
             # user.google_calendar_sync_token = next_sync_token
 
             if full_sync:
-                raise Exception("We don't want full sync")
+                raise ValueError("We don't want full sync")
 
             if (not rec.google_id and rec.active) or rec.need_sync:
                 rec.with_context(send_updates=False)._sync_odoo2google(calendar_service)
