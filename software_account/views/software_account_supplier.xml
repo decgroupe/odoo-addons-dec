@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_account_supplier_kanban_view">
         <field name="name">software.account.supplier.kanban@software_account</field>
         <field name="model">software.account.supplier</field>
@@ -9,21 +8,21 @@
                 <field name="id" />
                 <field name="image" />
                 <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
-                            <div class="o_kanban_image">
-                                <img
-                                    t-att-src="kanban_image('software.account.supplier', 'image', record.id.raw_value)"
-                                    alt="Supplier"
-                                />
-                            </div>
-                            <div class="oe_kanban_details">
-                                <strong class="o_kanban_record_title"><field
-                                        name="name"
-                                    /></strong>
-                                <div name="tags" />
-                            </div>
-                        </div>
+                    <t t-name="card" class="flex-row">
+                        <aside class="o_kanban_aside_full">
+                            <field
+                                name="image"
+                                options="{
+                                    'placeholder': '/base/static/img/company_image.png',
+                                    'size': [64, 64],
+                                    'img_class': 'object-fit-cover'
+                                }"
+                                widget="image"
+                            />
+                        </aside>
+                        <main class="ps-2 ms-1">
+                            <field name="name" class="fw-bold fs-4 me-auto" />
+                        </main>
                     </t>
                 </templates>
             </kanban>
@@ -34,9 +33,9 @@
         <field name="name">software.account.supplier.tree@software_account</field>
         <field name="model">software.account.supplier</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -74,7 +73,7 @@
     <record model="ir.actions.act_window" id="act_window_software_account_supplier">
         <field name="name">Suppliers</field>
         <field name="res_model">software.account.supplier</field>
-        <field name="view_mode">kanban,form,tree</field>
+        <field name="view_mode">kanban,form,list</field>
         <field name="view_id" ref="software_account_supplier_tree_view" />
         <field name="search_view_id" ref="software_account_supplier_search_view" />
     </record>
@@ -94,7 +93,7 @@
         id="act_window_view_software_account_supplier_tree"
     >
         <field name="sequence" eval="2" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="software_account_supplier_tree_view" />
         <field name="act_window_id" ref="act_window_software_account_supplier" />
     </record>
@@ -108,5 +107,4 @@
         <field name="view_id" ref="software_account_supplier_form_view" />
         <field name="act_window_id" ref="act_window_software_account_supplier" />
     </record>
-
 </odoo>
