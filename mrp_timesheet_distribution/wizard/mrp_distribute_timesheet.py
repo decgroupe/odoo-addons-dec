@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 import pytz
 
-from odoo import _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -15,17 +15,6 @@ _logger = logging.getLogger(__name__)
 class MrpDistributeTimesheet(models.TransientModel):
     _name = "mrp.distribute.timesheet"
     _description = "Distribute working time along multiple production orders"
-
-    @api.model
-    def _default_date_time(self):
-        def ceil_dt(dt, delta):
-            return dt + (datetime.min - dt) % delta
-
-        return ceil_dt(fields.Datetime.now(), timedelta(minutes=-15))
-
-    @api.model
-    def _default_reason(self):
-        return self.env.ref("mrp_timesheet_distribution.layout_and_wiring")
 
     production_ids = fields.Many2many(
         comodel_name="mrp.production",
@@ -36,11 +25,11 @@ class MrpDistributeTimesheet(models.TransientModel):
         comodel_name="mrp.distribute.timesheet.reason",
         string="Reason",
         required=True,
-        default=_default_reason,
+        default=lambda self: self._default_reason(),
     )
     custom_reason = fields.Char(string="Other Reason")
     date_time = fields.Datetime(
-        default=_default_date_time,
+        default=lambda self: self._default_date_time(),
         required=True,
     )
     unit_amount = fields.Float(
@@ -59,25 +48,41 @@ class MrpDistributeTimesheet(models.TransientModel):
     excluded_end_time = fields.Datetime()
 
     @api.model
-    def default_get(self, fields):
-        rec = super().default_get(fields)
+    def _default_date_time(self):
+        """Return the default date/time rounded down to the nearest 15 minutes."""
+
+        def ceil_dt(dt, delta):
+            return dt + (datetime.min - dt) % delta
+
+        return ceil_dt(fields.Datetime.now(), timedelta(minutes=-15))
+
+    @api.model
+    def _default_reason(self):
+        """Return the default distribution reason."""
+        return self.env.ref("mrp_timesheet_distribution.layout_and_wiring")
+
+    @api.model
+    def default_get(self, fields_list):
+        """Override to populate production_ids from active records context."""
+        rec = super().default_get(fields_list)
         active_ids = self._context.get("active_ids")
         active_model = self._context.get("active_model")
-
         if active_model == "mrp.production" and active_ids:
             production_ids = self.env["mrp.production"].browse(active_ids)
             rec.update({"production_ids": production_ids.ids})
         return rec
 
     def action_reopen(self):
+        """Reopen the wizard."""
         return self._reopen()
 
-    def _reopen(self, id=False):
+    def _reopen(self, rec_id=False):
+        """Return an action to reopen the wizard with the given record id."""
         return {
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "view_type": "form",
-            "res_id": id or self.id,
+            "res_id": rec_id or self.id,
             "res_model": self._name,
             "target": "new",
             "context": {
@@ -86,16 +91,18 @@ class MrpDistributeTimesheet(models.TransientModel):
         }
 
     def action_distribute(self):
+        """Distribute the timesheet entries across selected production orders."""
         self._do_distribute()
 
     def action_distribute_continue(self):
+        """Distribute and immediately reopen the wizard for the next distribution."""
         self._do_distribute()
         mrp_distribute_timesheet_id = self.create(
             {
                 "date_time": self.timesheet_line_ids[-1].end_time,
                 "reason_id": self.reason_id.id,
                 "exclude_time": self.exclude_time,
-                "production_ids": [(6, 0, self.production_ids.ids)],
+                "production_ids": [Command.set(self.production_ids.ids)],
             }
         )
         mrp_distribute_timesheet_id.onchange_date_time()
@@ -103,15 +110,14 @@ class MrpDistributeTimesheet(models.TransientModel):
 
     @api.onchange("date_time")
     def onchange_date_time(self):
-        # Convert datetime into user timezone to manipulate hours and minutes
-        tz = self.env.context.get("tz") or self.env.user.tz
+        """Compute excluded start/end times based on user's work schedule."""
+        # convert datetime into user timezone to manipulate hours and minutes
+        tz = self.env.context.get("tz") or self.env.user.tz or "UTC"
         date_time_tz = pytz.timezone(tz).normalize(pytz.utc.localize(self.date_time))
-
         resource_calendar_id = self.env.user.resource_calendar_id
         attendance_ids = resource_calendar_id.attendance_ids.filtered(
             lambda r: r.dayofweek == str(self.date_time.weekday())
         )
-
         st = et = False
         for attendance_id in attendance_ids:
             if attendance_id.day_period == "morning":
@@ -124,13 +130,11 @@ class MrpDistributeTimesheet(models.TransientModel):
                 et = date_time_tz.replace(
                     hour=round(hour), minute=round(minute), second=0
                 )
-
-        # Set start and end time in user timezone
+        # set start and end time in user timezone
         if not st or not et:
             st = date_time_tz.replace(hour=12, minute=0, second=0)
             et = date_time_tz.replace(hour=13, minute=30, second=0)
-
-        # Convert back data to UTC since all datetime data must be
+        # convert back data to UTC since all datetime data must be
         # stored without timezone info (means UTC)
         self.excluded_start_time = pytz.utc.normalize(st).replace(tzinfo=None)
         self.excluded_end_time = pytz.utc.normalize(et).replace(tzinfo=None)
@@ -143,13 +147,15 @@ class MrpDistributeTimesheet(models.TransientModel):
         "excluded_end_time",
     )
     def _compute_timesheet_line_ids(self):
+        """Compute the preview distribution lines based on date/time and duration."""
         self.timesheet_line_ids.unlink()
         if self.production_ids and self.date_time and self.unit_amount:
             start = self.date_time
             end = start + timedelta(hours=self.unit_amount)
-
             if (
                 self.exclude_time
+                and self.excluded_start_time
+                and self.excluded_end_time
                 and self.excluded_end_time > start >= self.excluded_start_time
             ):
                 start = self.excluded_end_time
@@ -157,6 +163,8 @@ class MrpDistributeTimesheet(models.TransientModel):
                 self._generate_timesheet_interval(start, end)
             elif (
                 self.exclude_time
+                and self.excluded_start_time
+                and self.excluded_end_time
                 and end > self.excluded_start_time
                 and start < self.excluded_end_time
             ):
@@ -172,6 +180,7 @@ class MrpDistributeTimesheet(models.TransientModel):
                 self._generate_timesheet_interval(start, end)
 
     def _generate_timesheet_interval(self, start, end):
+        """Create evenly distributed timesheet line records between start and end."""
         diff = (end - start) / len(self.production_ids)
         i = 0
         line_ids = self.env["mrp.distribute.timesheet.line"]
@@ -188,6 +197,7 @@ class MrpDistributeTimesheet(models.TransientModel):
 
     @api.model
     def _get_or_create_task(self, project_id, name):
+        """Find an existing task or create a new one for the given project and name."""
         time_tracking_type = self.env.ref("project_identification.time_tracking_type")
         stage_done = self.env.ref("project_task_default_stage.project_tt_deployment")
         task_id = self.env["project.task"].search(
@@ -208,18 +218,18 @@ class MrpDistributeTimesheet(models.TransientModel):
         return task_id
 
     def _do_distribute(self):
+        """Create analytic lines for each timesheet line in the distribution."""
         if not self.timesheet_line_ids:
-            raise ValidationError(_("The number of timesheet lines cannot be 0."))
-
+            raise ValidationError(
+                self.env._("The number of timesheet lines cannot be 0.")
+            )
         for line_id in self.timesheet_line_ids:
             name = self.reason_id.name
             if self.reason_id == self.env.ref("mrp_timesheet_distribution.other"):
                 name = self.custom_reason
-
             vals_line = line_id._prepare_analytic_line(name)
-            if not "task_id" in vals_line:
+            if "task_id" not in vals_line:
                 vals_line["task_id"] = self._get_or_create_task(
                     line_id.project_id, name
                 ).id
-
             self.env["account.analytic.line"].create(vals_line)

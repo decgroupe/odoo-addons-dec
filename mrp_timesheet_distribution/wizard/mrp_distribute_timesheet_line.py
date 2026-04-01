@@ -20,6 +20,7 @@ class MrpDistributeTimesheetLine(models.TransientModel):
     end_time = fields.Datetime()
 
     def _prepare_analytic_line(self, name):
+        """Prepare values dict for creating an analytic line from this line."""
         diff = self.end_time - self.start_time
         hours = diff.total_seconds() / 3600
         vals = {
