@@ -1,71 +1,92 @@
-<template>
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
 
-    <t t-name="CalendarView.sidebar.options">
-        <div class="o_calendar_options">
-            <h3 t-if="widget.title"><t t-esc="widget.title" /></h3>
-            <div class="o_calendar_options_items">
-                <div
-                    t-foreach="widget.options"
-                    t-as="opt"
-                    t-if="opt.display == null || opt.display"
-                    class="o_calendar_option_item"
-                    t-att-data-name="opt.name"
-                >
-
-                    <t
-                        t-set="id_for_label"
-                        t-value="_.uniqueId('o_calendar_option_item')"
+    <t t-name="web_calendar_options.CalendarOptionsPanel">
+        <div class="o_calendar_options mt-4">
+            <div
+                class="o_calendar_options_header fw-bolder small text-muted text-uppercase mb-2"
+            >
+                <t t-esc="title" />
+            </div>
+            <div class="d-flex flex-column gap-3">
+                <div class="o-checkbox form-check">
+                    <input
+                        type="checkbox"
+                        id="o_calendar_option_weekends"
+                        class="form-check-input"
+                        t-att-checked="props.isWeekendVisible ? true : undefined"
+                        t-on-change="onWeekendToggle"
                     />
-
-                    <t t-if="opt.type == 'boolean'">
-                        <div
-                            class="custom-control custom-control-inline custom-checkbox"
+                    <label for="o_calendar_option_weekends" class="form-check-label">
+                        <t t-esc="labelWeekends" />
+                    </label>
+                </div>
+                <div>
+                    <label
+                        for="o_calendar_option_slot_duration"
+                        class="form-label mb-1 small text-muted"
+                    >
+                        <t t-esc="labelSlotDuration" />
+                    </label>
+                    <select
+                        id="o_calendar_option_slot_duration"
+                        class="form-select form-select-sm"
+                        t-on-change="onSlotDurationChange"
+                    >
+                        <t
+                            t-foreach="slotIntervals"
+                            t-as="interval"
+                            t-key="interval[0]"
                         >
-                            <input
-                                type="checkbox"
-                                t-att-id="id_for_label"
-                                name="selection"
-                                class="custom-control-input"
-                                t-att-checked="opt.default_value === true ? true : undefined"
-                            />
-
-                            <label
-                                t-att-for="id_for_label"
-                                class="custom-control-label"
+                            <option
+                                t-att-value="interval[0]"
+                                t-att-selected="props.slotDuration === interval[0] ? true : undefined"
                             >
-                                <t t-esc="opt.label" />
-                            </label>
-                        </div>
-                    </t>
-
-                    <t t-if="opt.type == 'list'">
-                        <div class="custom-control custom-control-inline custom-list">
-                            <label
-                                t-att-for="id_for_label"
-                                class="custom-control-label"
+                                <t t-esc="interval[1]" />
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                <div>
+                    <label
+                        for="o_calendar_option_snap_duration"
+                        class="form-label mb-1 small text-muted"
+                    >
+                        <t t-esc="labelSnapDuration" />
+                    </label>
+                    <select
+                        id="o_calendar_option_snap_duration"
+                        class="form-select form-select-sm"
+                        t-on-change="onSnapDurationChange"
+                    >
+                        <t
+                            t-foreach="slotIntervals"
+                            t-as="interval"
+                            t-key="interval[0]"
+                        >
+                            <option
+                                t-att-value="interval[0]"
+                                t-att-selected="props.snapDuration === interval[0] ? true : undefined"
                             >
-                                <t t-esc="opt.label" />
-                            </label>
-                            <select
-                                t-att-id="id_for_label"
-                                class="custom-control-select"
-                            >
-                                <t t-foreach="opt.values" t-as="opt_value">
-                                    <option
-                                        class=""
-                                        t-att-value="opt_value[0]"
-                                        t-att-selected="opt.default_value === opt_value[0] ? true : undefined"
-                                    >
-                                        <t t-esc="opt_value[1]" />
-                                    </option>
-                                </t>
-                            </select>
-                        </div>
-                    </t>
-
+                                <t t-esc="interval[1]" />
+                            </option>
+                        </t>
+                    </select>
                 </div>
             </div>
         </div>
     </t>
 
-</template>
+    <t t-inherit="web.CalendarController" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_calendar_sidebar')]" position="inside">
+            <OptionsPanel t-props="optionsPanelProps" />
+        </xpath>
+    </t>
+
+    <t t-inherit="calendar.AttendeeCalendarController" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_calendar_sidebar')]" position="inside">
+            <OptionsPanel t-props="optionsPanelProps" />
+        </xpath>
+    </t>
+
+</templates>

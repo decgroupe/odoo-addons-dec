@@ -1,44 +1,8 @@
 .o_calendar_container {
     .o_calendar_sidebar_container {
         .o_calendar_options {
-            padding: 8px;
-            border-top: 1px solid lightgray;
-
-            .custom-control-select {
-                width: unset;
-                border: 0px;
-                outline: 0px;
-                font-size: x-small;
-                color: gray;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                appearance: none;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-            }
-        }
-    }
-
-    .o_calendar_view {
-        .o_calendar_widget {
-            .fc-business-container {
-                // Original web_calendar.scss set z-index=0 for
-                // everything. Since we don't want having a business container
-                // that blocks every interactions with events, we put it
-                // under the default index
-                z-index: -1;
-            }
-        }
-    }
-}
-
-.fc-agenda-view {
-    .fc-day-grid {
-        .fc-row {
-            .fc-content-skeleton {
-                // Fix non-clickable header meetings (all-day)
-                z-index: 1;
-            }
+            padding: 0 8px 8px;
+            border-top: 1px solid var(--o-gray-200, lightgray);
         }
     }
 }
