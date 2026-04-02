@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="software_license_tree_view">
-        <field name="name">software.license.tree@software_license_legacy</field>
+    <record model="ir.ui.view" id="software_license_list_view">
+        <field name="name">software.license.list@software_license_legacy</field>
         <field name="model">software.license</field>
         <field name="inherit_id" ref="software_license.software_license_tree_view" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="system_classic" optional="hide"/>
-                <field name="system_cave" optional="hide"/>
-                <field name="system_rift" optional="hide"/>
-                <field name="system_vive" optional="hide"/>
+                <field name="system_classic" optional="hide" />
+                <field name="system_cave" optional="hide" />
+                <field name="system_rift" optional="hide" />
+                <field name="system_vive" optional="hide" />
             </field>
         </field>
     </record>
@@ -22,21 +21,10 @@
         <field name="arch" type="xml">
             <field name="application_id" position="after">
                 <field name="main_hardware_id" invisible="1" />
-                <field
-                    name="main_hardware_name"
-                    attrs="{
-                    'invisible': [('main_hardware_id', '=', False)],
-                }"
-                />
+                <field name="main_hardware_name" invisible="not main_hardware_id" />
                 <field
                     name="main_hardware_dongle_identifier"
-                    attrs="{
-                    'invisible': [
-                        ('|'),
-                        ('dongle_product_id', '=', 0),
-                        ('main_hardware_dongle_identifier', '=', 0),
-                    ],
-                }"
+                    invisible="not dongle_product_id or not main_hardware_dongle_identifier"
                 />
                 <separator />
             </field>
@@ -63,5 +51,4 @@
             </filter>
         </field>
     </record>
-
 </odoo>

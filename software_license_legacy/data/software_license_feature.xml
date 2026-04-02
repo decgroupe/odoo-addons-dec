@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="feature_property_system" model="software.license.feature.property">
         <field name="name">system</field>
     </record>
@@ -24,5 +23,4 @@
         <field name="property_id" ref="feature_property_system" />
         <field name="name">vive</field>
     </record>
-
 </odoo>

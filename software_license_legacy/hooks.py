@@ -3,14 +3,12 @@
 
 import logging
 
-from odoo import SUPERUSER_ID, api
-
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook(cr, registry):
+def post_init_hook(env):
+    """Update system computed fields for all existing software licenses."""
     _logger.info("Update systems")
-    env = api.Environment(cr, SUPERUSER_ID, {})
     # Update stages
     license_ids = env["software.license"].search([])
     license_ids._compute_system()

@@ -4,7 +4,6 @@
 import logging
 
 from odoo import api, fields, models
-from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
 
@@ -57,6 +56,7 @@ class SoftwareLicense(models.Model):
 
     @api.depends("hardware_ids")
     def _compute_main_hardware(self):
+        """Compute the main hardware from the first hardware entry."""
         for rec in self:
             if rec.hardware_ids:
                 rec.main_hardware_id = rec.hardware_ids[0]
@@ -65,6 +65,7 @@ class SoftwareLicense(models.Model):
 
     @api.depends("feature_ids")
     def _compute_system(self):
+        """Compute system boolean fields based on feature values."""
         if self.env.context.get("module") == "software_license_legacy":
             return
         property_system = self.env.ref(SYSTEM)
@@ -93,12 +94,12 @@ class SoftwareLicense(models.Model):
                             feature.value_id.name,
                         )
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Create a license record and set system features and main hardware."""
 
-        def try_create_property_value(field_name, value_ref):
-            if vals.get(field_name):
+        def try_create_property_value(record, values, field_name, value_ref):
+            if values.get(field_name):
                 sequence = len(record.feature_ids) + 1
                 feature_vals = {
                     "license_id": record.id,
@@ -108,23 +109,18 @@ class SoftwareLicense(models.Model):
                 }
                 self.env["software.license.feature"].create(feature_vals)
 
-        try_create_property_value("system_classic", CLASSIC)
-        try_create_property_value("system_cave", CAVE)
-        try_create_property_value("system_rift", RIFT)
-        try_create_property_value("system_vive", VIVE)
+        record_ids = super().create(vals_list)
+        for rec, vals in zip(record_ids, vals_list, strict=True):
+            try_create_property_value(rec, vals, "system_classic", CLASSIC)
+            try_create_property_value(rec, vals, "system_cave", CAVE)
+            try_create_property_value(rec, vals, "system_rift", RIFT)
+            try_create_property_value(rec, vals, "system_vive", VIVE)
+            if vals.get("main_hardware_name"):
+                hardware_vals = {
+                    "license_id": rec.id,
+                    "name": vals.get("main_hardware_name"),
+                    "dongle_identifier": vals.get("main_hardware_dongle_identifier"),
+                }
+                self.env["software.license.hardware"].create(hardware_vals)
 
-        if vals.get("main_hardware_name"):
-            hardware_vals = {
-                "license_id": record.id,
-                "name": vals.get("main_hardware_name"),
-                "dongle_identifier": vals.get("main_hardware_dongle_identifier"),
-            }
-            self.env["software.license.hardware"].create(hardware_vals)
-
-        return record
-
-    def write(self, vals):
-        res = super().write(vals)
-        for rec in self:
-            pass
-        return res
+        return record_ids
