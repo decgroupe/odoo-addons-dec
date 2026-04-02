@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="purchase_order_tree_view">
-        <field name="name">purchase.order.tree@purchase_delivery_rate</field>
+        <field name="name">purchase.order.list@purchase_delivery_rate</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_tree" />
         <field name="arch" type="xml">
@@ -10,18 +9,14 @@
                 <field
                     name="picked_rate"
                     widget="progressbar"
-                    attrs="{
-                        'invisible': [
-                            ('state', 'not in', ['purchase', 'done', 'cancel'])
-                        ]}"
-                >
-                </field>
+                    invisible="state not in ('purchase', 'done', 'cancel')"
+                />
             </field>
         </field>
     </record>
 
     <record model="ir.ui.view" id="purchase_order_alt_tree_view">
-        <field name="name">purchase.order.alt.tree@purchase_delivery_rate</field>
+        <field name="name">purchase.order.alt.list@purchase_delivery_rate</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_view_tree" />
         <field name="arch" type="xml">
@@ -29,12 +24,8 @@
                 <field
                     name="picked_rate"
                     widget="progressbar"
-                    attrs="{
-                        'invisible': [
-                            ('state', 'not in', ['purchase', 'done', 'cancel'])
-                        ]}"
-                >
-                </field>
+                    invisible="state not in ('purchase', 'done', 'cancel')"
+                />
             </field>
         </field>
     </record>
@@ -51,14 +42,9 @@
                 <field
                     name="picked_rate"
                     widget="progressbar"
-                    attrs="{
-                        'invisible': [
-                            ('state', 'not in', ['purchase', 'done', 'cancel'])
-                        ]}"
-                >
-                </field>
+                    invisible="state not in ('purchase', 'done', 'cancel')"
+                />
             </xpath>
         </field>
     </record>
-
 </odoo>
