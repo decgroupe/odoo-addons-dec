@@ -23,19 +23,16 @@ class SaleOrderLine(models.Model):
         "considered as fully billed, even when there may be ordered "
         "or delivered quantities pending to bill.",
         readonly=True,
-        states={
-            "sale": [("readonly", False)],
-            "done": [("readonly", False)],
-        },
         copy=False,
     )
 
     @api.depends("force_invoiced", "order_id.force_invoiced")
     def _compute_invoice_status(self):
-        res = super(SaleOrderLine, self)._compute_invoice_status()
+        """Compute invoice status, taking into account line-level force_invoiced."""
+        res = super()._compute_invoice_status()
         for line in self:
-            if line.state == ('draft'):
-                line.invoice_status = 'no'
+            if line.state == "draft":
+                line.invoice_status = "no"
             elif (
                 float_is_zero(
                     line.price_total, precision_rounding=line.currency_id.rounding
@@ -48,5 +45,6 @@ class SaleOrderLine(models.Model):
         return res
 
     def action_force_invoiced(self):
+        """Toggle force_invoiced on the sale order line."""
         for rec in self:
             rec.force_invoiced = not rec.force_invoiced
