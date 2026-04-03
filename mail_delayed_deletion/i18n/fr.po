@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:21+0000\n"
+"POT-Creation-Date: 2026-06-03 10:27+0000\n"
 "PO-Revision-Date: 2023-11-28 11:58+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -21,39 +21,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_mail__delayed_deletion
 msgid "Delayed Deletion"
 msgstr "Suppression différée"
-
-#. module: mail_delayed_deletion
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_mail__display_name
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_message__display_name
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_thread__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mail_delayed_deletion
-#: model:ir.model,name:mail_delayed_deletion.model_mail_thread
-msgid "Email Thread"
-msgstr "Discussion par courriel"
-
-#. module: mail_delayed_deletion
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_mail__id
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_message__id
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_thread__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mail_delayed_deletion
-#: model:ir.model.fields,help:mail_delayed_deletion.field_mail_mail__xid
-#: model:ir.model.fields,help:mail_delayed_deletion.field_mail_message__xid
-#: model:ir.model.fields,help:mail_delayed_deletion.field_mail_thread__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mail_delayed_deletion
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_mail____last_update
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_message____last_update
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_thread____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: mail_delayed_deletion
 #: model:ir.model,name:mail_delayed_deletion.model_mail_message
@@ -74,15 +41,24 @@ msgstr ""
 "date/heure spécifiée"
 
 #. module: mail_delayed_deletion
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_mail__xid
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_message__xid
-#: model:ir.model.fields,field_description:mail_delayed_deletion.field_mail_thread__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: mail_delayed_deletion
 #: model:ir.actions.server,name:mail_delayed_deletion.ir_cron_mail_delayed_deletion_ir_actions_server
-#: model:ir.cron,cron_name:mail_delayed_deletion.ir_cron_mail_delayed_deletion
-#: model:ir.cron,name:mail_delayed_deletion.ir_cron_mail_delayed_deletion
 msgid "📧 Mail Delayed Deletion"
 msgstr "📧 Suppression différée des e-mails"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "Email Thread"
+#~ msgstr "Discussion par courriel"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

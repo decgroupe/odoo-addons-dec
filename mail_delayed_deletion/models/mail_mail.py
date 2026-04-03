@@ -18,28 +18,23 @@ class MailMail(models.AbstractModel):
         "date/time",
     )
 
-    @api.model
-    def create(self, vals):
-        res = super(MailMail, self).create(vals)
-        name = "%s (%s)" % (res.message_id, res.subject)
-        _logger.info("✉️ Creating %s", name)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Create mail records and log their creation."""
+        records = super().create(vals_list)
+        for res in records:
+            name = f"{res.message_id} ({res.subject})"
+            _logger.info("✉️ Creating %s", name)
+        return records
 
     def _get_delayed_deletion_days(self):
+        """Return the configured number of days before delayed deletion."""
         ICP = self.env["ir.config_parameter"].sudo()
         delayed_deletion_days = int(ICP.get_param("mail_delayed_deletion.days"))
         return delayed_deletion_days
 
-    def _send(
-        self,
-        auto_commit=False,
-        raise_exception=False,
-        smtp_session=None,
-    ):
-        res = super()._send(auto_commit, raise_exception, smtp_session)
-        return res
-
     def _delay_auto_delete(self):
+        """Delay deletion of auto-delete mails by setting a scheduled date."""
         delayed_deletion_days = self._get_delayed_deletion_days()
         if delayed_deletion_days:
             mail_ids = self.browse(self.ids).filtered("auto_delete")
@@ -68,6 +63,7 @@ class MailMail(models.AbstractModel):
 
     @api.model
     def action_delayed_deletion(self):
+        """Search and unlink all mails whose delayed deletion date has passed."""
         domain = [
             ("delayed_deletion", "<=", datetime.today()),
         ]
@@ -76,11 +72,11 @@ class MailMail(models.AbstractModel):
             mail_ids.unlink()
 
     def unlink(self):
+        """Log deletion details before removing mail records."""
         for rec in self:
-            name = "%s (%s) (mail_message_id: %s)" % (
-                rec.message_id,
-                rec.subject,
-                rec.mail_message_id,
+            name = (
+                f"{rec.message_id} ({rec.subject})"
+                f" (mail_message_id: {rec.mail_message_id})"
             )
             if rec.delayed_deletion:
                 _logger.info(

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="email_message_tree_view">
         <field name="name">mail.mail.form@mail_delayed_deletion</field>
         <field name="model">mail.mail</field>
@@ -11,5 +10,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
