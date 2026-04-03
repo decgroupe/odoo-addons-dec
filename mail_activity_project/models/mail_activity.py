@@ -2,7 +2,8 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2022
 
 import logging
-from odoo import models, api, fields
+
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -19,6 +20,7 @@ class MailActivity(models.Model):
 
     @api.depends("res_model", "res_id")
     def _compute_project_id(self):
+        """Compute the related project for each activity based on its linked record."""
         for activity in self:
             res_model = activity.res_model
             res_id = activity.res_id

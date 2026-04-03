@@ -1,8 +1,7 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mail_activity_view_tree">
-        <field name="name">mail.activity.view.tree@mail_activity_project</field>
+        <field name="name">mail.activity.view.list@mail_activity_project</field>
         <field name="model">mail.activity</field>
         <field name="inherit_id" ref="mail.mail_activity_view_tree" />
         <field name="arch" type="xml">
@@ -15,10 +14,7 @@
     <record model="ir.ui.view" id="mail_activity_view_form_board">
         <field name="name">mail.activity.view.form@mail_activity_project</field>
         <field name="model">mail.activity</field>
-        <field
-            name="inherit_id"
-            ref="mail_activity_board.mail_activity_view_form_board"
-        />
+        <field name="inherit_id" ref="mail.mail_activity_view_form_popup" />
         <field name="arch" type="xml">
             <field name="activity_type_id" position="before">
                 <field name="project_id" readonly="True" />
@@ -27,26 +23,22 @@
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_kanban">
-        <field
-            name="name"
-        >mail.activity.boards.view.kanban@mail_activity_project</field>
+        <field name="name">mail.activity.view.kanban@mail_activity_project</field>
         <field name="model">mail.activity</field>
-        <field name="inherit_id" ref="mail_activity_board.mail_activity_view_kanban" />
+        <field name="inherit_id" ref="mail.mail_activity_view_kanban_open_target" />
         <field name="arch" type="xml">
-            <strong class="o_kanban_record_title" position="inside">
+            <xpath expr="//field[@name='summary']" position="after">
                 <field name="project_id" />
-            </strong>
+            </xpath>
         </field>
     </record>
 
     <record model="ir.ui.view" id="mail_activity_view_search">
-        <field
-            name="name"
-        >mail.activity.boards.view.search@mail_activity_project</field>
+        <field name="name">mail.activity.view.search@mail_activity_project</field>
         <field name="model">mail.activity</field>
         <field name="inherit_id" ref="mail_activity_board.mail_activity_view_search" />
         <field name="arch" type="xml">
-            <xpath expr='//field[@name="res_model_id"]' position='before'>
+            <xpath expr='//field[@name="res_model"]' position='before'>
                 <field name="project_id" />
             </xpath>
             <xpath expr='//filter[@name="activittype"]' position='after'>
@@ -58,5 +50,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
