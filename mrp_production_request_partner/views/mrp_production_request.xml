@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_request_form_view">
         <field
             name="name"
@@ -19,10 +18,10 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="mrp_production_request_tree_view">
+    <record model="ir.ui.view" id="mrp_production_request_list_view">
         <field
             name="name"
-        >mrp.production.request.tree@mrp_production_request_partner</field>
+        >mrp.production.request.list@mrp_production_request_partner</field>
         <field name="model">mrp.production.request</field>
         <field
             name="inherit_id"
@@ -35,7 +34,6 @@
             </field>
         </field>
     </record>
-
 
     <record model="ir.ui.view" id="mrp_production_request_search_view">
         <field
@@ -63,5 +61,4 @@
             </filter>
         </field>
     </record>
-
 </odoo>

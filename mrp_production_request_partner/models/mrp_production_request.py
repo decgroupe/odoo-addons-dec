@@ -16,12 +16,15 @@ class MrpProductionRequest(models.Model):
         string="ZIP Location",
     )
 
-    @api.model
-    def create(self, values):
-        production_request = super().create(values)
-        # Use sale_order_id from sale_mrp_production_request_link module
-        # to retrieve partner_id
-        sale_order_id = production_request.sale_order_id
-        if sale_order_id:
-            production_request.partner_id = sale_order_id.partner_shipping_id
-        return production_request
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Create production requests and auto-populate partner_id from
+        sale_order_id."""
+        production_requests = super().create(vals_list)
+        for production_request in production_requests:
+            # use sale_order_id from sale_mrp_production_request_link module
+            # to retrieve partner_id
+            sale_order_id = production_request.sale_order_id
+            if sale_order_id:
+                production_request.partner_id = sale_order_id.partner_shipping_id
+        return production_requests
