@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_production_request_form_view">
         <field
             name="name"
@@ -16,26 +15,15 @@
                 <field name="production_name" invisible="1" />
                 <field
                     name="use_common_procurement_group"
-                    attrs="{'invisible': 
-                        [
-                            '|',
-                            ('state', 'not in', ('draft', 'to_approve')),
-                                '|',
-                                ('done_qty', '&gt;', 0),
-                                ('manufactured_qty', '&gt;', 0),
-                        ]}"
-                >
-                </field>
+                    readonly="state not in ('draft', 'to_approve')"
+                    invisible="state not in ('draft', 'to_approve') or done_qty > 0 or manufactured_qty > 0"
+                />
                 <field
                     name="common_procurement_group_id"
-                    attrs="{'invisible': 
-                        [
-                            ('use_common_procurement_group', '=', False)
-                        ]}"
-                >
-                </field>
+                    readonly="state not in ('draft', 'to_approve')"
+                    invisible="not use_common_procurement_group"
+                />
             </field>
         </field>
     </record>
-
 </odoo>

@@ -1,6 +1,7 @@
 {
     "name": "MRP Production Request Procurement",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -11,5 +12,5 @@
         "views/mrp_production_request.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": False,
+    "installable": True,
 }

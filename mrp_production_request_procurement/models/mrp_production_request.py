@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Aug 2020
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class MrpProductionRequest(models.Model):
@@ -14,10 +14,6 @@ class MrpProductionRequest(models.Model):
     use_common_procurement_group = fields.Boolean(
         string="Use Common Procurement Group",
         readonly=True,
-        states={
-            "draft": [("readonly", False)],
-            "to_approve": [("readonly", False)],
-        },
         help="If checked, when the first manufacturing order is created "
         "a procurement order is first created based on the MO sequence. ",
     )
@@ -26,15 +22,13 @@ class MrpProductionRequest(models.Model):
         comodel_name="procurement.group",
         copy=False,
         readonly=True,
-        states={
-            "draft": [("readonly", False)],
-            "to_approve": [("readonly", False)],
-        },
     )
 
     @api.model
     def _create_sequence(self, vals):
-        # Generate and store a unique name as base for all production orders
+        """Override to generate and store a unique production name used as
+        prefix for all manufacturing orders linked to this request."""
+        # generate and store a unique name as base for all production orders
         if not vals.get("name") or vals.get("name") == "/":
             if vals.get("picking_type_id"):
                 picking_type_id = self.env["stock.picking.type"].browse(
@@ -50,6 +44,8 @@ class MrpProductionRequest(models.Model):
         return vals
 
     def button_approved(self):
+        """Override to create a common procurement group when approving
+        the request if the option is enabled and no group exists yet."""
         res = super().button_approved()
         for mr in self:
             if mr.use_common_procurement_group and not mr.common_procurement_group_id:
