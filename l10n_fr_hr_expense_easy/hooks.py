@@ -9,6 +9,7 @@ MODULE = "hr_expense_easy"
 
 
 def get_account(env, code):
+    """Search and return an account.account record by its code."""
     Account = env["account.account"]
     account = Account.search([("code", "=", code)], limit=1)
     if not account:
@@ -17,12 +18,14 @@ def get_account(env, code):
 
 
 def assign_category_account(env, ref, code):
+    """Assign an accounting account to an expense category by ref and code."""
     account = get_account(env, code)
     category_id = env.ref(MODULE + ".cat_" + ref)
     category_id.property_account_expense_categ_id = account
 
 
 def assign_product_account(env, ref, code, tax_id=False):
+    """Assign an accounting account and optional supplier tax to an expense product."""
     account = get_account(env, code)
     product_id = env.ref(MODULE + ".product_product_expense_" + ref)
     product_id.property_account_expense_id = account
@@ -31,21 +34,25 @@ def assign_product_account(env, ref, code, tax_id=False):
         product_id.supplier_taxes_id = tax_id
 
 
-def post_init_hook(cr, registry):
-    from odoo import api, SUPERUSER_ID
-
-    env = api.Environment(cr, SUPERUSER_ID, {})
-
-    vat_20_00 = env.ref("l10n_fr.1_tva_acq_normale_TTC")
-    vat_10_00 = env.ref("l10n_fr.1_tva_acq_intermediaire_TTC")
-    vat_05_50 = env.ref("l10n_fr.1_tva_acq_reduite_TTC")
-    vat_02_10 = env.ref("l10n_fr.1_tva_acq_super_reduite_TTC")
-
+def post_init_hook(env):
+    """Assign French accounting accounts and taxes to hr_expense_easy categories
+    and products after module installation."""
+    # load french VAT taxes using company-specific xml ids (account.{cid}_...)
+    cid = env.company.id
+    vat_20_00 = env.ref(f"account.{cid}_tva_acq_normale_TTC", raise_if_not_found=False)
+    vat_10_00 = env.ref(
+        f"account.{cid}_tva_acq_intermediaire_TTC", raise_if_not_found=False
+    )
+    vat_05_50 = env.ref(f"account.{cid}_tva_acq_reduite_TTC", raise_if_not_found=False)
+    vat_02_10 = env.ref(
+        f"account.{cid}_tva_acq_super_reduite_TTC", raise_if_not_found=False
+    )
+    # assign expense category accounts
     assign_category_account(env, "transport", "625100")
     assign_category_account(env, "catering", "625600")
     assign_category_account(env, "lodging", "625100")
     assign_category_account(env, "other", "472000")
-
+    # assign expense product accounts
     assign_product_account(env, "plane", "625100")
     assign_product_account(env, "bus", "625100")
     assign_product_account(env, "fuel", "606800")
@@ -55,13 +62,10 @@ def post_init_hook(cr, registry):
     assign_product_account(env, "toll", "625100", vat_20_00)
     assign_product_account(env, "taxi", "625100")
     assign_product_account(env, "train", "625100")
-
     assign_product_account(env, "consumption", "625600", vat_10_00)
     assign_product_account(env, "restaurant", "625600", vat_10_00)
     assign_product_account(env, "food", "625600", vat_05_50)
-
     assign_product_account(env, "hotel", "625100")
-
     assign_product_account(env, "infraction", "637800")
     assign_product_account(env, "vehicle_insurance", "616300")
     assign_product_account(env, "other_insurance", "616100")
