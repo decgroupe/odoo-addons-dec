@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2020
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class PurchaseOrder(models.Model):
@@ -18,13 +18,14 @@ class PurchaseOrder(models.Model):
         store=False,
     )
 
+    @api.depends("order_line.move_dest_ids", "picking_ids")
     def _compute_outgoing_picking(self):
+        """Compute outgoing picking ids and count."""
         for order in self:
-            order.outgoing_picking_ids = order.order_line.mapped(
-                "move_dest_ids"
-            ).mapped("picking_id")
-            order.outgoing_picking_ids -= order.picking_ids
-            order.outgoing_picking_count = len(order.outgoing_picking_ids)
+            pickings = order.order_line.mapped("move_dest_ids").mapped("picking_id")
+            pickings -= order.picking_ids
+            order.outgoing_picking_ids = pickings
+            order.outgoing_picking_count = len(pickings)
 
     def action_view_outgoing_picking(self):
         """This function returns an action that display existing outgoing
@@ -39,10 +40,10 @@ class PurchaseOrder(models.Model):
         # override the context to get rid of the default filtering on
         # operation type
         action["context"] = {}
-        pick_ids = self.mapped("outgoing_picking_ids")
+        pick_ids = self.outgoing_picking_ids
         # choose the view_mode accordingly
         if not pick_ids or len(pick_ids) > 1:
-            action["domain"] = "[('id', 'in', %s)]" % (pick_ids.ids)
+            action["domain"] = f"[('id', 'in', {pick_ids.ids})]"
         elif len(pick_ids) == 1:
             res = self.env.ref("stock.view_picking_form", False)
             form_view = [(res and res.id or False, "form")]
