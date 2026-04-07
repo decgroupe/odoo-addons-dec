@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_log_tree_view">
-        <field name="name">ref.log.tree@product_reference</field>
+        <field name="name">ref.log.list@product_reference_logging</field>
         <field name="model">ref.log</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="username" />
                 <field name="operation" />
                 <field name="localcomputername" />
                 <field name="ipaddress" />
                 <field name="datetime" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -20,5 +19,4 @@
         <field name="res_model">ref.log</field>
         <field name="view_id" ref="ref_log_tree_view" />
     </record>
-
 </odoo>
