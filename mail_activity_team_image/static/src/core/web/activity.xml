@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t
+        t-name="mail_activity_team_image.Activity"
+        t-inherit="mail.Activity"
+        t-inherit-mode="extension"
+    >
+        <!-- show the team avatar in the sidebar when no user is assigned -->
+        <xpath expr="//div[hasclass('o-mail-Activity-sidebar')]/a" position="after">
+            <img
+                class="o-mail-Activity-avatar o_avatar rounded"
+                t-if="!props.activity.user_id and props.activity.team_id"
+                t-attf-src="/web/image/mail.activity.team/{{ props.activity.team_id[0] }}/image_128"
+                t-att-alt="props.activity.team_id[1]"
+            />
+        </xpath>
+    </t>
+
+</templates>

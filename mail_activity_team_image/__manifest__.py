@@ -1,6 +1,6 @@
 {
     "name": "Mail Activity Team Image",
-    "version": "14.0.1.0.1",
+    "version": "18.0.1.0.0",
     "author": "DEC",
     "category": "Social Network",
     "website": "https://decgroupe.com",
@@ -9,11 +9,12 @@
         "mail_activity_team",
     ],
     "data": [
-        'views/assets.xml',
         "views/mail_activity_team.xml",
     ],
-    "qweb": [
-        "static/src/xml/activity.xml",
-    ],
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "mail_activity_team_image/static/src/core/web/*.xml",
+        ],
+    },
+    "installable": True,
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mail_activity_team_view_form">
         <field name="name">mail.activity.team.view.form@mail_activity_team_image</field>
         <field name="model">mail.activity.team</field>
@@ -19,5 +18,4 @@
             </group>
         </field>
     </record>
-
 </odoo>
