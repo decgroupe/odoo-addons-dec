@@ -1,8 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2021
 
-from odoo import _, api, fields, models
+import logging
+
+from odoo import api, fields, models
 from odoo.tools import formatLang
+
+_logger = logging.getLogger(__name__)
 
 
 class MrpProduction(models.Model):
@@ -12,7 +16,6 @@ class MrpProduction(models.Model):
         string="Currency",
         related="company_id.currency_id",
         readonly=True,
-        relation="res.currency",
     )
     consumed_value = fields.Monetary(
         string="Consumed Value",
@@ -23,6 +26,7 @@ class MrpProduction(models.Model):
 
     @api.depends("move_raw_ids")
     def _compute_consumed_value(self):
+        """Compute consumed value of raw materials using purchase price history."""
         PricesHistory = self.env["product.prices.history"]
         PRICE_TYPE = "purchase"
         self.consumed_value = 0
@@ -41,11 +45,12 @@ class MrpProduction(models.Model):
                 )
                 if history:
                     price = history.get_price(PRICE_TYPE)
-                    rec.consumed_value += price * move_id.quantity_done
+                    rec.consumed_value += price * move_id.quantity
                 else:
-                    print(move_id)
+                    _logger.warning("No price history found for move %s", move_id)
 
     def button_mark_done(self):
+        """Mark manufacturing order as done and post consumed value message."""
         moves_done = {}
         for rec in self:
             all_move_ids = rec.move_raw_ids.filtered(lambda x: x.state == "done")
@@ -58,12 +63,13 @@ class MrpProduction(models.Model):
         return res
 
     def _message_post_consumed_value(self):
+        """Post a message log with the consumed value of the manufacturing order."""
         self.ensure_one()
         formatted_price = formatLang(
             self.env,
             self.consumed_value,
             currency_obj=self.company_currency_id,
         )
-        message = _("Consumed value = %s") % (formatted_price)
-        # Use message log to post a message without notifications
+        message = self.env._("Consumed value = %s") % (formatted_price)
+        # use message log to post a message without notifications
         self._message_log(body=message)
