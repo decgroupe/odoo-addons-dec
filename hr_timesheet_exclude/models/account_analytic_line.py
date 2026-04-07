@@ -24,6 +24,8 @@ class AccountAnalyticLine(models.Model):
         "project_id.exclude_from_timesheet",
     )
     def _compute_posted_in_timesheet(self):
+        """Compute if the timesheet line is posted based on project/task exclude
+        flags."""
         for rec in self:
             rec.posted_in_timesheet = True
             if rec.project_id:

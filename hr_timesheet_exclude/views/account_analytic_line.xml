@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="timesheet_search_view">
         <field name="name">account.analytic.line.search@hr_timesheet_exclude</field>
         <field name="model">account.analytic.line</field>
@@ -11,8 +10,7 @@
                     name="filter_posted_in_timesheet"
                     string="Posted in Timesheets"
                     domain="[('posted_in_timesheet', '=', True)]"
-                >
-                </filter>
+                />
                 <separator />
             </xpath>
         </field>
@@ -21,18 +19,18 @@
     <record model="ir.ui.view" id="hr_timesheet_line_form_view">
         <field name="name">account.analytic.line.form@hr_timesheet_exclude</field>
         <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet_autofill.hr_timesheet_line_form_view" />
+        <field
+            name="inherit_id"
+            ref="hr_timesheet_autofill.hr_timesheet_line_form_view"
+        />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='amount']" position="before">
                 <!-- Use exclude field from `sale_timesheet_line_exclude` -->
                 <field name="exclude_from_sale_order" />
             </xpath>
             <xpath expr="//field[@name='amount']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('exclude_from_sale_order', '=', True)]}</attribute>
+                <attribute name="invisible">exclude_from_sale_order == True</attribute>
             </xpath>
         </field>
     </record>
-
 </odoo>
