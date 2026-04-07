@@ -21,10 +21,12 @@ class ProcurementGroup(models.Model):
     )
 
     def _compute_sale_order(self):
+        """Compute the number of sale orders linked to this procurement group."""
         for procurement in self:
             procurement.sale_order_count = len(procurement.sale_order_ids)
 
     def action_view_sale_orders(self):
+        """Open the list of sale orders linked to this procurement group."""
         self.ensure_one()
         action = self.env["sale.order"].action_view()
         action["domain"] = [("procurement_group_id", "=", self.id)]
