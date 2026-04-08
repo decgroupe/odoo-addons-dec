@@ -1,8 +1,7 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="partner_tree_view">
-        <field name="name">res.partner.tree@partner_folder</field>
+        <field name="name">res.partner.list@partner_sale_dates</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_tree" />
         <field name="arch" type="xml">
@@ -19,7 +18,6 @@
         <field name="model">res.partner</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="sale.res_partner_view_buttons" />
-        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
         <field name="arch" type="xml">
             <!-- Button name was "%(sale.act_res_partner_2_sale_order)d" in 12.0
             and changed to "action_view_sale_order" in 13.0 -->
@@ -40,13 +38,16 @@
             </button>
 
             <group name="sale" position="inside">
-                <field name="last_quotation_date" />
-                <field name="last_sale_date" />
-                <field name="last_sale_delivery_date" />
+                <field
+                    name="last_quotation_date"
+                    groups="sales_team.group_sale_salesman"
+                />
+                <field name="last_sale_date" groups="sales_team.group_sale_salesman" />
+                <field
+                    name="last_sale_delivery_date"
+                    groups="sales_team.group_sale_salesman"
+                />
             </group>
-
         </field>
     </record>
-
-
 </odoo>

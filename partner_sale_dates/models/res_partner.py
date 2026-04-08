@@ -34,25 +34,23 @@ class ResPartner(models.Model):
     )
 
     def _compute_shipping_sale_order_count(self):
+        """Compute the number of sales orders where partner is shipping address."""
         # retrieve all children partners and prefetch 'parent_id' on them
         all_partners = self.with_context(active_test=False).search(
             [("id", "child_of", self.ids)]
         )
         all_partners.read(["parent_id"])
-
-        sale_order_groups = self.env["sale.order"].read_group(
+        sale_order_groups = self.env["sale.order"]._read_group(
             domain=[("partner_shipping_id", "in", all_partners.ids)],
-            fields=["partner_shipping_id"],
             groupby=["partner_shipping_id"],
+            aggregates=["__count"],
         )
         self.shipping_sale_order_count = 0
-        for group in pb(sale_order_groups):
-            partner = self.browse(group["partner_shipping_id"][0])
+        for partner_shipping, count in pb(sale_order_groups):
+            partner = partner_shipping
             while partner:
                 if partner in self:
-                    partner.shipping_sale_order_count += group[
-                        "partner_shipping_id_count"
-                    ]
+                    partner.shipping_sale_order_count += count
                 partner = partner.parent_id
 
     @api.depends("sale_order_ids.date_order", "sale_order_ids.state")
@@ -104,6 +102,8 @@ class ResPartner(models.Model):
             partner.last_sale_delivery_date = order.effective_last_date
 
     def action_open_shipping_sale_orders(self):
+        """Open a list view of sales orders where the partner is the
+        shipping address."""
         action = self.env["ir.actions.actions"]._for_xml_id(
             "sale.act_res_partner_2_sale_order"
         )
