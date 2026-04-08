@@ -62,6 +62,7 @@ class RefMarketBomLine(models.Model):
     )
 
     def _convert_qty_to_hours(self):
+        """Convert the product quantity to hours using the product UoM."""
         uom_hour = self.env.ref("uom.product_uom_hour")
         if (
             uom_hour

@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class RefMarketBom(models.Model):
@@ -41,6 +41,7 @@ class RefMarketBom(models.Model):
     )
 
     def _compute_labortime(self):
+        """Compute the total labor time from BoM lines that match labor services."""
         labor_service_ids = self.get_labortime_services()
         for rec in self:
             rec.labortime = 0

@@ -22,5 +22,6 @@ class ProductProduct(models.Model):
 
     @api.depends("market_bom_ids")
     def _compute_market_bom_id(self):
+        """Compute the first market BoM for prefetching purposes."""
         for p in self:
             p.market_bom_id = p.market_bom_ids[:1].id

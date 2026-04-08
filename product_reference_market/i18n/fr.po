@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 14:07+0100\n"
+"POT-Creation-Date: 2026-06-03 10:50+0000\n"
+"PO-Revision-Date: 2026-06-03 15:38+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__activity_name
@@ -47,8 +47,6 @@ msgid "Description"
 msgstr "Description"
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_product_product__display_name
-#: model:ir.model.fields,field_description:product_reference_market.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__display_name
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__display_name
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__display_name
@@ -58,25 +56,14 @@ msgstr "Nom affiché"
 #. module: product_reference_market
 #: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__sequence
 msgid "Gives the sequence order when displaying."
-msgstr "Donne l'ordre d'affichage"
+msgstr "Donne l'ordre d'affichage."
 
 #. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_product_product__id
-#: model:ir.model.fields,field_description:product_reference_market.field_product_template__id
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__id
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__id
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__id
 msgid "ID"
 msgstr "ID"
-
-#. module: product_reference_market
-#: model:ir.model.fields,help:product_reference_market.field_product_product__xid
-#: model:ir.model.fields,help:product_reference_market.field_product_template__xid
-#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom__xid
-#: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__xid
-#: model:ir.model.fields,help:product_reference_market.field_ref_market_category__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: product_reference_market
 #: model:ir.model.fields,help:product_reference_market.field_ref_market_bom_line__locked_price
@@ -97,15 +84,6 @@ msgstr "Temps de main d'oeuvre"
 msgid "Labor hour(s) computed from BoM"
 msgstr ""
 "Heure(s) de main d'oeuvre calculée(s) à partir de la nomenclature du tarif"
-
-#. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_product_product____last_update
-#: model:ir.model.fields,field_description:product_reference_market.field_product_template____last_update
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom____last_update
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line____last_update
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__write_uid
@@ -200,7 +178,7 @@ msgid "Price"
 msgstr "Prix"
 
 #. module: product_reference_market
-#: model:ir.model,name:product_reference_market.model_product_product
+#: model:ir.model,name:product_reference_market.model_product_template
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__product_id
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__product_id
 msgid "Product"
@@ -212,7 +190,6 @@ msgid "Product Qty"
 msgstr "Qté de produit"
 
 #. module: product_reference_market
-#: model:ir.model,name:product_reference_market.model_product_template
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__product_tmpl_id
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__product_tmpl_id
 msgid "Product Template"
@@ -222,6 +199,11 @@ msgstr "Modèle de produit"
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__product_uom_id
 msgid "Product UOM"
 msgstr "UdM du produit"
+
+#. module: product_reference_market
+#: model:ir.model,name:product_reference_market.model_product_product
+msgid "Product Variant"
+msgstr "Variante d'article"
 
 #. module: product_reference_market
 #: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__sequence
@@ -255,14 +237,14 @@ msgstr "UdM (Unité de mesure) est l'unité utilisée pour le contrôle d'invent
 msgid "Used by REF manager Market"
 msgstr "Utilisé par le gestionnaire de tarif de REF Manager"
 
-#. module: product_reference_market
-#: model:ir.model.fields,field_description:product_reference_market.field_product_product__xid
-#: model:ir.model.fields,field_description:product_reference_market.field_product_template__xid
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom__xid
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_bom_line__xid
-#: model:ir.model.fields,field_description:product_reference_market.field_ref_market_category__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Create Date"
 #~ msgstr "Date de création"
