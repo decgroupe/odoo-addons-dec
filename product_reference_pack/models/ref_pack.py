@@ -56,27 +56,31 @@ class RefPack(models.Model):
         required=True,
     )
 
-    @api.model
-    def create(self, vals):
-        if vals.get("product_id"):
-            product_tmpl_id = self.env["product.template"].browse(
-                vals.get("product_id")
-            )
-        elif vals.get("product_variant_id"):
-            product_variant_id = vals.get("product_variant_id")
-            product_tmpl_id = (
-                self.env["product.product"].browse(product_variant_id).product_tmpl_id
-            )
-        else:
-            product_tmpl_id = False
-
-        if product_tmpl_id:
-            vals["product_id"] = product_tmpl_id.id
-        ref_pack = super().create(vals)
-        ref_pack._set_product_tmpl_default_values()
-        return ref_pack
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Create ref.pack records and set default values on the related product."""
+        for vals in vals_list:
+            if vals.get("product_id"):
+                product_tmpl_id = self.env["product.template"].browse(
+                    vals.get("product_id")
+                )
+            elif vals.get("product_variant_id"):
+                product_variant_id = vals.get("product_variant_id")
+                product_tmpl_id = (
+                    self.env["product.product"]
+                    .browse(product_variant_id)
+                    .product_tmpl_id
+                )
+            else:
+                product_tmpl_id = False
+            if product_tmpl_id:
+                vals["product_id"] = product_tmpl_id.id
+        ref_packs = super().create(vals_list)
+        ref_packs._set_product_tmpl_default_values()
+        return ref_packs
 
     def _set_product_tmpl_default_values(self):
+        """Set default pack-related values on the product template for each record."""
         for rec in self:
             rec.product_id.pack_ok = True
             rec.product_id.pack_type = "detailed"
@@ -91,6 +95,7 @@ class RefPack(models.Model):
 
     @api.depends("product_id", "product_id.product_variant_id")
     def _compute_product_variant_id(self):
+        """Compute the product variant from the product template."""
         for rec in self:
             rec.product_variant_id = rec.with_context(
                 active_test=False
@@ -100,6 +105,7 @@ class RefPack(models.Model):
             )
 
     def _inverse_product_variant_id(self):
+        """Set the product template from the selected product variant."""
         for rec in self:
             rec.product_id = rec.with_context(
                 active_test=False

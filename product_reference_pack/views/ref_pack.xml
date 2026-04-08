@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record model="ir.ui.view" id="ref_pack_tree_view">
-        <field name="name">ref.pack.tree@product_reference</field>
+    <record model="ir.ui.view" id="ref_pack_list_view">
+        <field name="name">ref.pack.list@product_reference_pack</field>
         <field name="model">ref.pack</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="product_id" />
                 <field name="default_code" />
                 <field name="public_code" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record model="ir.ui.view" id="ref_pack_form_view">
-        <field name="name">ref.pack.form@product_reference</field>
+        <field name="name">ref.pack.form@product_reference_pack</field>
         <field name="model">ref.pack</field>
         <field name="arch" type="xml">
             <form string="Pack">
@@ -48,14 +47,14 @@
     <record model="ir.actions.act_window" id="act_window_ref_pack">
         <field name="name">Packs</field>
         <field name="res_model">ref.pack</field>
-        <field name="view_mode">form,tree</field>
-        <field name="view_id" ref="ref_pack_tree_view" />
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="ref_pack_list_view" />
     </record>
 
     <record model="ir.actions.act_window.view" id="act_window_view_ref_pack_tree">
         <field name="sequence" eval="1" />
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="ref_pack_tree_view" />
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="ref_pack_list_view" />
         <field name="act_window_id" ref="act_window_ref_pack" />
     </record>
 
@@ -65,5 +64,4 @@
         <field name="view_id" ref="ref_pack_form_view" />
         <field name="act_window_id" ref="act_window_ref_pack" />
     </record>
-
 </odoo>

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:27+0000\n"
-"PO-Revision-Date: 2023-11-28 14:08+0100\n"
+"POT-Creation-Date: 2026-06-03 10:51+0000\n"
+"PO-Revision-Date: 2026-06-03 15:39+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__default_code
 msgid "Code"
 msgstr "Code"
+
+#. module: product_reference_pack
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__public_code
+msgid "Commercial code used for public display, e.g. on e-commerce or POS."
+msgstr "Code commercial utilisé pour l'affichage public, par exemple sur les sites de commerce électronique ou aux points de vente."
 
 #. module: product_reference_pack
 #: model:ir.model.fields.selection,name:product_reference_pack.selection__ref_pack__type__company
@@ -53,32 +58,9 @@ msgid "ID"
 msgstr "ID"
 
 #. module: product_reference_pack
-#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: product_reference_pack
-#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__standard_price
-msgid ""
-"In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
-"        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
-"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
-"        Used to compute margins on sale orders."
-msgstr ""
-"En Prix Standard & AVCO : valeur du produit (calculée automatiquement en AVCO).\n"
-"         En FIFO : valeur de la prochaine unité qui sortira du stock (calculée automatiquement).\n"
-"         Utilisé pour évaluer le produit lorsque le coût d'achat n'est pas connu (par exemple, ajustement des stocks).\n"
-"         Utilisé pour calculer les marges sur les bons de commande."
-
-#. module: product_reference_pack
 #: model_terms:ir.ui.view,arch_db:product_reference_pack.product_template_search_view
 msgid "Is not a Pack"
 msgstr "N'est pas un Pack"
-
-#. module: product_reference_pack
-#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: product_reference_pack
 #: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__write_uid
@@ -124,7 +106,6 @@ msgstr "Utilisateur des packs"
 #. module: product_reference_pack
 #: model:ir.actions.act_window,name:product_reference_pack.act_window_ref_pack
 #: model:ir.ui.menu,name:product_reference_pack.menu_ref_pack
-#: model_terms:ir.ui.view,arch_db:product_reference_pack.ref_pack_tree_view
 msgid "Packs"
 msgstr "Packs"
 
@@ -159,9 +140,24 @@ msgid "Services"
 msgstr "Prestations"
 
 #. module: product_reference_pack
-#: model:ir.model.fields,field_description:product_reference_pack.field_ref_pack__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model:ir.model.fields,help:product_reference_pack.field_ref_pack__standard_price
+msgid ""
+"Value of the product (automatically computed in AVCO).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to compute margins on sale orders."
+msgstr ""
+"Valeur du produit (calculée automatiquement en AVCO).\n"
+"        Utilisée pour estimer le produit quand le coût d'achat n'est pas connu (par ex. ajustement d'inventaire).\n"
+"        Utilisée pour calculer les marges sur les commandes clients."
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Cost used for stock valuation in standard price and as a first price to set in average/FIFO."
 #~ msgstr "Coût utilisé pour la valorisation des stocks au prix standard et comme premier prix à définir en moyenne / FIFO."
