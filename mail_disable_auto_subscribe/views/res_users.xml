@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- Update preferences form !-->
     <record model="ir.ui.view" id="res_users_preferences_form_view">
         <field
@@ -10,9 +9,9 @@
         <field name="inherit_id" ref="base.view_users_form_simple_modif" />
         <field name="arch" type="xml">
             <field name="notification_type" position="after">
-                <field name="auto_subscribe_on_tag" readonly="0" />
-                <field name="auto_subscribe_on_message" readonly="0" />
-                <field name="auto_subscribe_on_activity" readonly="0" />
+                <field name="auto_subscribe_on_tag" />
+                <field name="auto_subscribe_on_message" />
+                <field name="auto_subscribe_on_activity" />
             </field>
         </field>
     </record>
@@ -24,11 +23,10 @@
         <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
             <field name="notification_type" position="after">
-                <field name="auto_subscribe_on_tag" readonly="0" />
-                <field name="auto_subscribe_on_message" readonly="0" />
-                <field name="auto_subscribe_on_activity" readonly="0" />
+                <field name="auto_subscribe_on_tag" />
+                <field name="auto_subscribe_on_message" />
+                <field name="auto_subscribe_on_activity" />
             </field>
         </field>
     </record>
-
 </odoo>

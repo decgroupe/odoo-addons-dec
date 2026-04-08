@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:21+0000\n"
+"POT-Creation-Date: 2026-06-03 10:27+0000\n"
 "PO-Revision-Date: 2023-11-28 11:58+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
+
+#. module: mail_disable_auto_subscribe
+#: model:ir.model,name:mail_disable_auto_subscribe.model_mail_activity
+msgid "Activity"
+msgstr "Activité"
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_partner__auto_subscribe_on_activity
@@ -46,14 +51,6 @@ msgid "Default exclusion"
 msgstr "Exclusion de « Défaut »"
 
 #. module: mail_disable_auto_subscribe
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_message_subtype__display_name
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_thread__display_name
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_partner__display_name
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_users__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mail_disable_auto_subscribe
 #: model:ir.model,name:mail_disable_auto_subscribe.model_mail_thread
 msgid "Email Thread"
 msgstr "Discussion par courriel"
@@ -62,22 +59,6 @@ msgstr "Discussion par courriel"
 #: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_message_subtype__excluded_res_model_ids
 msgid "Excluded models"
 msgstr "Modèles exclus"
-
-#. module: mail_disable_auto_subscribe
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_message_subtype__id
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_thread__id
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_partner__id
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_users__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mail_disable_auto_subscribe
-#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_mail_message_subtype__xid
-#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_mail_thread__xid
-#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_partner__xid
-#: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_users__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model.fields,help:mail_disable_auto_subscribe.field_res_partner__auto_subscribe_on_activity
@@ -115,14 +96,6 @@ msgstr ""
 "`mail_post_autofollow=True` au contexte dans `message_post()`"
 
 #. module: mail_disable_auto_subscribe
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_message_subtype____last_update
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_thread____last_update
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_partner____last_update
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_users____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: mail_disable_auto_subscribe
 #: model:ir.model,name:mail_disable_auto_subscribe.model_mail_message_subtype
 msgid "Message subtypes"
 msgstr "Sous-types de messages"
@@ -135,16 +108,24 @@ msgstr ""
 
 #. module: mail_disable_auto_subscribe
 #: model:ir.model,name:mail_disable_auto_subscribe.model_res_users
-msgid "Users"
+#, fuzzy
+msgid "User"
 msgstr "Utilisateurs"
 
-#. module: mail_disable_auto_subscribe
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_message_subtype__xid
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_mail_thread__xid
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_partner__xid
-#: model:ir.model.fields,field_description:mail_disable_auto_subscribe.field_res_users__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Message"
 #~ msgstr "Message"

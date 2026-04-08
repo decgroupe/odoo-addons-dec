@@ -8,21 +8,13 @@ from odoo import models
 class ResUsers(models.Model):
     _inherit = "res.users"
 
-    def __init__(self, pool, cr):
-        """Override of __init__ to add access rights on new fields.
-        Access rights are disabled by default, but allowed
-        on some specific fields defined in
-        self.SELF_{READ/WRITE}ABLE_FIELDS.
+    @property
+    def SELF_WRITEABLE_FIELDS(self):
+        """Extend writeable fields so users can edit their own
+        auto-subscribe settings.
         """
-        init_res = super().__init__(pool, cr)
-        type(self).SELF_WRITEABLE_FIELDS = list(
-            set(
-                self.SELF_WRITEABLE_FIELDS
-                + [
-                    "auto_subscribe_on_tag",
-                    "auto_subscribe_on_message",
-                    "auto_subscribe_on_activity",
-                ]
-            )
-        )
-        return init_res
+        return super().SELF_WRITEABLE_FIELDS + [
+            "auto_subscribe_on_tag",
+            "auto_subscribe_on_message",
+            "auto_subscribe_on_activity",
+        ]

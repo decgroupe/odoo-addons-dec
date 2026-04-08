@@ -16,6 +16,10 @@ class MailMessageSubtype(models.Model):
     )
 
     def _filter_subtypes(self, model_name, pack_ids):
+        """Filter subtype id lists based on model exclusions.
+        Returns pack_ids unchanged when not in auto-subscribe context or when
+        model_name is not excluded. Otherwise removes excluded subtypes.
+        """
         res = pack_ids
         if model_name and not self.env.context.get("manual_message_subscribe"):
             domain = [("excluded_res_model_ids.model", "=", model_name)]
@@ -32,6 +36,10 @@ class MailMessageSubtype(models.Model):
         "self.env.uid", "model_name", keys=("manual_message_subscribe",)
     )
     def _get_auto_subscription_subtypes(self, model_name):
+        """Override to filter out excluded subtypes for automatic subscriptions.
+        Removes subtypes that have model_name in their excluded_res_model_ids list
+        from the def_ids (default subscription subset).
+        """
         (
             child_ids,
             def_ids,
@@ -40,11 +48,15 @@ class MailMessageSubtype(models.Model):
             relation,
         ) = super()._get_auto_subscription_subtypes(model_name)
         # Apply filtering and unpack values (KEEP THE COMMA !!!)
-        def_ids,  = self._filter_subtypes(model_name, [def_ids])
+        (def_ids,) = self._filter_subtypes(model_name, [def_ids])
         return child_ids, def_ids, all_int_ids, parent, relation
 
     @tools.ormcache("self.env.uid", "model_name")
     def _default_subtypes(self, model_name):
+        """Override to filter out excluded subtypes for default subscriptions.
+        Removes subtypes that have model_name in their excluded_res_model_ids list
+        from all three returned subtype id lists.
+        """
         subtype_ids, internal_ids, external_ids = super()._default_subtypes(model_name)
         # Apply filtering and unpack values
         subtype_ids, internal_ids, external_ids = self._filter_subtypes(

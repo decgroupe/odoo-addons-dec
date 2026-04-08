@@ -8,7 +8,11 @@ from odoo import models
 class MailThread(models.AbstractModel):
     _inherit = "mail.thread"
 
-    def message_subscribe(self, partner_ids=None, channel_ids=None, subtype_ids=None):
+    def message_subscribe(self, partner_ids=None, subtype_ids=None):
+        """Override to tag manual subscriptions with a context key.
+        This allows subtype filtering to distinguish between auto and manual
+        subscriptions.
+        """
         _self = self
         if (
             "mail_post_autofollow" not in _self.env.context
@@ -17,13 +21,16 @@ class MailThread(models.AbstractModel):
             _self = _self.with_context(manual_message_subscribe=True)
         return super(MailThread, _self).message_subscribe(
             partner_ids=partner_ids,
-            channel_ids=channel_ids,
             subtype_ids=subtype_ids,
         )
 
-    def _message_subscribe(
-        self, partner_ids=None, channel_ids=None, subtype_ids=None, customer_ids=None
-    ):
+    def _message_subscribe(self, partner_ids=None, subtype_ids=None, customer_ids=None):
+        """Override to filter auto-subscribed partners based on their preferences.
+        Partners with auto_subscribe_on_tag=False are filtered out when the
+        subscription is triggered by a mail post with autofollow enabled.
+        Partners with auto_subscribe_on_activity=False are filtered out when the
+        subscription is triggered by an activity assignment.
+        """
         if self.env.context.get("mail_post_autofollow") and partner_ids:
             partner_ids = (
                 self.env["res.partner"]
@@ -38,21 +45,27 @@ class MailThread(models.AbstractModel):
                 .filtered("auto_subscribe_on_activity")
                 .ids
             )
-        return super(MailThread, self)._message_subscribe(
+        return super()._message_subscribe(
             partner_ids=partner_ids,
-            channel_ids=channel_ids,
             subtype_ids=subtype_ids,
             customer_ids=customer_ids,
         )
 
-    def _message_post_after_hook(
-        self,
-        message,
-        msg_vals,
-    ):
-        if msg_vals["author_id"] and msg_vals["model"] and self.ids:
-            partner_id = self.env["res.partner"].browse(msg_vals["author_id"])
-            if partner_id and not partner_id.auto_subscribe_on_message:
-                self = self.with_context(mail_create_nosubscribe=True)
-
-        return super(MailThread, self)._message_post_after_hook(message, msg_vals)
+    def message_post(self, **kwargs):
+        """Override to prevent author auto-subscribe when they opted out.
+        When the posting user or the explicit author has auto_subscribe_on_message
+        set to False, mail_create_nosubscribe is injected into the context so
+        the base message_post does not subscribe them as a follower.
+        """
+        _self = self
+        # determine the effective author that would be auto-subscribed
+        if self.env.user.active:
+            real_author = self.env.user.partner_id
+        else:
+            author_id = kwargs.get("author_id")
+            real_author = (
+                self.env["res.partner"].browse(author_id) if author_id else None
+            )
+        if real_author and not real_author.auto_subscribe_on_message:
+            _self = _self.with_context(mail_create_nosubscribe=True)
+        return super(MailThread, _self).message_post(**kwargs)
