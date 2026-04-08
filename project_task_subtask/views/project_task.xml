@@ -53,6 +53,14 @@
                                 icon="fa-ban"
                                 invisible="state == 'cancelled' or hide_button == True"
                             />
+                            <button
+                                name="action_convert_to_task"
+                                type="object"
+                                title="Convert to task"
+                                icon="fa-level-up"
+                                invisible="hide_button == True"
+                                confirm="Convert this checklist item into a sub-task?"
+                            />
                             <field name="reviewer_id" optional="hide" />
                             <field name="deadline" optional="hide" />
                         </list>

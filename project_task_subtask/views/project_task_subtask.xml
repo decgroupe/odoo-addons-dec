@@ -12,6 +12,15 @@
         <field name="model">project.task.subtask</field>
         <field name="arch" type="xml">
             <form string="Subtask Message">
+                <header>
+                    <button
+                        name="action_convert_to_task"
+                        string="Convert to Task"
+                        type="object"
+                        class="btn-primary"
+                        confirm="Convert this checklist item into a sub-task?"
+                    />
+                </header>
                 <sheet>
                     <group>
                         <field name="name" />

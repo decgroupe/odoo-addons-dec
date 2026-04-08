@@ -6,7 +6,7 @@
 # Copyright 2018 Kolushov Alexandr <https://it-projects.info/team/KolushovAlexandr>
 # License MIT (https://opensource.org/licenses/MIT).
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 
 SUBTASK_STATES = {
@@ -180,3 +180,30 @@ class ProjectTaskSubtask(models.Model):
     def action_delete(self):
         """Delete the current subtask records."""
         self.unlink()
+
+    def action_convert_to_task(self):
+        """Convert this checklist item into a child task of the parent task,
+        then delete the checklist item."""
+        state_map = {
+            "done": "1_done",
+            "cancelled": "1_canceled",
+            "todo": "02_changes_requested",
+            "waiting": "04_waiting_normal",
+        }
+        for record in self:
+            record.task_id.write(
+                {
+                    "child_ids": [
+                        Command.create(
+                            {
+                                "name": record.name,
+                                "project_id": record.task_id.project_id.id,
+                                "user_ids": [record.user_id.id],
+                                "description": record.note or "",
+                                "state": state_map.get(record.state, "01_in_progress"),
+                            }
+                        )
+                    ]
+                }
+            )
+            record.unlink()

@@ -160,18 +160,14 @@ class TestProjectTaskSubtask(TestProjectTaskSubtaskCommon):
         task_as_assignee = self.task.with_user(self.user_assignee)
         # with active subtasks, the progress bar should contain HTML
         self.assertIn("task_progress", task_as_assignee.kanban_subtasks_progress_bar)
-        self.assertIn(
-            "kanban_subtasks", task_as_assignee.kanban_subtasks_progress_list
-        )
+        self.assertIn("kanban_subtasks", task_as_assignee.kanban_subtasks_progress_list)
 
     def test_14_action_delete(self):
         """Check that action_delete removes the subtask."""
         subtask = self._create_subtask()
         subtask_id = subtask.id
         subtask.action_delete()
-        remaining = self.env["project.task.subtask"].search(
-            [("id", "=", subtask_id)]
-        )
+        remaining = self.env["project.task.subtask"].search([("id", "=", subtask_id)])
         self.assertFalse(remaining)
 
     def test_15_send_subtask_email_self_reviewer_and_user(self):
@@ -241,3 +237,42 @@ class TestProjectTaskSubtask(TestProjectTaskSubtaskCommon):
         )
         self.task.invalidate_recordset()
         self.assertGreater(len(self.task.message_ids), msg_count_before)
+
+    def test_21_convert_to_task(self):
+        """Check that action_convert_to_task creates a child task and removes the
+        item."""
+        subtask = self._create_subtask(state="done")
+        subtask_id = subtask.id
+        subtask_name = subtask.name
+        children_before = len(self.task.child_ids)
+        subtask.action_convert_to_task()
+        self.task.invalidate_recordset()
+        self.assertEqual(len(self.task.child_ids), children_before + 1)
+        child = self.task.child_ids[-1]
+        self.assertEqual(child.name, subtask_name)
+        self.assertEqual(child.project_id, self.project)
+        self.assertIn(self.user_assignee, child.user_ids)
+        self.assertEqual(child.state, "1_done")
+        remaining = self.env["project.task.subtask"].search([("id", "=", subtask_id)])
+        self.assertFalse(remaining)
+
+    def test_22_convert_to_task_state_mapping(self):
+        """Check that each subtask state maps to the correct task state."""
+        state_map = {
+            "done": "1_done",
+            "cancelled": "1_canceled",
+            "todo": "02_changes_requested",
+            "waiting": "04_waiting_normal",
+        }
+        for subtask_state, expected_task_state in state_map.items():
+            subtask = self._create_subtask(state=subtask_state)
+            subtask.action_convert_to_task()
+            self.task.invalidate_recordset()
+            child = self.task.child_ids.filtered(
+                lambda t: t.state == expected_task_state  # noqa: B023
+            )
+            self.assertTrue(
+                child,
+                f"No child task with state '{expected_task_state}' for subtask "
+                f"state '{subtask_state}'",
+            )
