@@ -7,8 +7,7 @@
 # License MIT (https://opensource.org/licenses/MIT).
 
 from odoo import api, fields, models
-from odoo.exceptions import Warning as UserError
-from odoo.tools.translate import _
+from odoo.exceptions import UserError
 
 SUBTASK_STATES = {
     "done": "Done",
@@ -58,7 +57,7 @@ class ProjectTaskSubtask(models.Model):
         string="Task",
         ondelete="cascade",
         required=True,
-        index="1",
+        index=True,
     )
     task_state = fields.Char(
         string="Task state",
@@ -75,13 +74,17 @@ class ProjectTaskSubtask(models.Model):
         string="Deadline",
     )
 
+    @api.depends_context("uid")
     def _compute_recolor(self):
+        """Compute if the row should be highlighted for the current user."""
         self.recolor = False
         for record in self:
             if self.env.user == record.user_id and record.state == "todo":
                 record.recolor = True
 
+    @api.depends_context("uid")
     def _compute_hide_button(self):
+        """Compute if action buttons should be hidden for the current user."""
         self.hide_button = False
         for record in self:
             if (
@@ -91,19 +94,17 @@ class ProjectTaskSubtask(models.Model):
                 record.hide_button = True
 
     def _compute_reviewer_id(self):
+        """Compute the reviewer from the record creator."""
         self.reviewer_id = False
         for record in self:
             record.reviewer_id = record.create_uid
 
-    @api.model
-    def _needaction_domain_get(self):
-        if self._needaction:
-            return [("state", "=", "todo"), ("user_id", "=", self.env.uid)]
-        return []
-
     def write(self, vals):
-        old_names = dict(list(zip(self.mapped("id"), self.mapped("name"))))
-        result = super(ProjectTaskSubtask, self).write(vals)
+        """Override write to send notification emails on state/name/user changes."""
+        old_names = dict(
+            list(zip(self.mapped("id"), self.mapped("name"), strict=False))
+        )
+        result = super().write(vals)
         for r in self:
             if vals.get("state"):
                 r.task_id.send_subtask_email(
@@ -115,7 +116,9 @@ class ProjectTaskSubtask(models.Model):
                     or self.env.user._is_admin()
                 ):
                     raise UserError(
-                        _("Only users related to that subtask can change " "the state.")
+                        self.env._(
+                            "Only users related to that subtask can change the state."
+                        )
                     )
             if vals.get("name"):
                 r.task_id.send_subtask_email(
@@ -131,7 +134,9 @@ class ProjectTaskSubtask(models.Model):
                     or self.env.user._is_admin()
                 ):
                     raise UserError(
-                        _("Only users related to that subtask can change " "the name.")
+                        self.env._(
+                            "Only users related to that subtask can change the name."
+                        )
                     )
             if vals.get("user_id"):
                 r.task_id.send_subtask_email(
@@ -139,31 +144,39 @@ class ProjectTaskSubtask(models.Model):
                 )
         return result
 
-    @api.model
-    def create(self, vals):
-        result = super(ProjectTaskSubtask, self).create(vals)
-        vals = self._add_missing_default_values(vals)
-        task = self.env["project.task"].browse(vals.get("task_id"))
-        task.send_subtask_email(
-            vals["name"], vals["state"], vals["reviewer_id"], vals["user_id"]
-        )
-        return result
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Create subtask records and send notification emails after creation."""
+        records = super().create(vals_list)
+        for record in records:
+            record.task_id.send_subtask_email(
+                record.name,
+                record.state,
+                record.reviewer_id.id,
+                record.user_id.id,
+            )
+        return records
 
     def change_state_done(self):
+        """Set the subtask state to done."""
         for record in self:
             record.state = "done"
 
     def change_state_todo(self):
+        """Set the subtask state to todo."""
         for record in self:
             record.state = "todo"
 
     def change_state_cancelled(self):
+        """Set the subtask state to cancelled."""
         for record in self:
             record.state = "cancelled"
 
     def change_state_waiting(self):
+        """Set the subtask state to waiting."""
         for record in self:
             record.state = "waiting"
 
     def action_delete(self):
+        """Delete the current subtask records."""
         self.unlink()

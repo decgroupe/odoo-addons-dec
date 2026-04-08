@@ -2,7 +2,6 @@
 <!--Copyright 2017 Karamov Ilmir <https://it-projects.info/team/ilmir-k>
     License MIT (https://opensource.org/licenses/MIT). -->
 <odoo>
-
     <!-- <record model="ir.rule" id="project_description_subtask_rule"> -->
     <!--   <field name="name">Project: only reviewer can change description</field> -->
     <!--   <field name="model_id" ref="project_task_subtask.model_project_task_subtask"/>  -->
@@ -33,5 +32,4 @@
     <!--   <field name="groups" eval="[(4, ref('base.group_sale_manager'))]"/> -->
     <!--   <field name="domain_force">[('uid','!=','reviewer_id')]</field> -->
     <!-- </record> -->
-
 </odoo>

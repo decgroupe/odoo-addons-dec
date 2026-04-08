@@ -6,18 +6,19 @@
 # Translation Bot <i18n-bot@it-projects.info>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 10:05+0000\n"
-"PO-Revision-Date: 2023-10-27 12:06+0200\n"
+"POT-Creation-Date: 2026-06-03 10:55+0000\n"
+"PO-Revision-Date: 2026-06-03 15:48+0200\n"
 "Last-Translator: Translation Bot <i18n-bot@it-projects.info>, 2018\n"
-"Language-Team: French (https://www.transifex.com/it-projects-llc/teams/76080/fr/)\n"
+"Language-Team: French (https://www.transifex.com/it-projects-llc/teams/"
+"76080/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task__user_done_subtask_progress
@@ -71,9 +72,7 @@ msgid "Assigned to"
 msgstr "Assigné à"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:0
 #: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__cancelled
-#, python-format
 msgid "Cancelled"
 msgstr "Annulé"
 
@@ -104,6 +103,22 @@ msgid "Checklist"
 msgstr "Liste de contrôle"
 
 #. module: project_task_subtask
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_form_view
+msgid "Convert this checklist item into a sub-task?"
+msgstr "Transformer cet élément de la liste de contrôle en sous-tâche ?"
+
+#. module: project_task_subtask
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_form_view
+msgid "Convert to Task"
+msgstr "Convertir en tâche"
+
+#. module: project_task_subtask
+#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
+msgid "Convert to task"
+msgstr "Convertir en tâche"
+
+#. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__create_uid
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__reviewer_id
 msgid "Created by"
@@ -125,27 +140,20 @@ msgid "Default User"
 msgstr "Utilisateur par défaut"
 
 #. module: project_task_subtask
-#: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_form_view
-msgid "Delete"
-msgstr "Supprimer"
-
-#. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__name
 #: model_terms:ir.ui.view,arch_db:project_task_subtask.project_task_subtask_search_view
 msgid "Description"
 msgstr "Description"
 
 #. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__display_name
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task.py:0
-#: code:addons/project_task_subtask/models/project_task_subtask.py:0
 #: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__done
-#, python-format
 msgid "Done"
 msgstr "Terminé"
 
@@ -170,30 +178,23 @@ msgid "Hide Button"
 msgstr "Masquer les boutons"
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task.py:0
-#, python-format
 msgid "I updated checklist item assigned to me"
 msgstr "J'ai mis à jour l'élément de la liste de contrôle qui m'est attribué"
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task.py:0
-#, python-format
 msgid "I updated checklist item, now its assigned to"
 msgstr ""
 "J'ai mis à jour l'élément de la liste de contrôle, maintenant il est "
 "attribué à"
 
 #. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__id
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__id
 msgid "ID"
 msgstr "ID"
-
-#. module: project_task_subtask
-#: model:ir.model.fields,help:project_task_subtask.field_project_task__xid
-#: model:ir.model.fields,help:project_task_subtask.field_project_task_subtask__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_exception_icon
@@ -214,12 +215,6 @@ msgstr "Barre de progression des sous-tâches Kanban"
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task__kanban_subtasks_progress_list
 msgid "Kanban Subtasks Progress List"
 msgstr "Liste de progression des sous-tâches Kanban"
-
-#. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task____last_update
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: project_task_subtask
 #: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__write_uid
@@ -287,15 +282,15 @@ msgid "Note"
 msgstr "Remarque"
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task_subtask.py:0
-#, python-format
 msgid "Only users related to that subtask can change the name."
 msgstr ""
 "Seuls les utilisateurs associés à cette sous-tâche peuvent changer son nom."
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task_subtask.py:0
-#, python-format
 msgid "Only users related to that subtask can change the state."
 msgstr ""
 "Seuls les utilisateurs associés à cette sous-tâche peuvent changer son état."
@@ -317,9 +312,8 @@ msgid "Responsible User"
 msgstr "Responsable"
 
 #. module: project_task_subtask
-#. openerp-web
+#. odoo-javascript
 #: code:addons/project_task_subtask/static/src/xml/templates.xml:0
-#, python-format
 msgid "Sort"
 msgstr "Trier"
 
@@ -380,15 +374,13 @@ msgid "Task state"
 msgstr "État de la tâche"
 
 #. module: project_task_subtask
-#: code:addons/project_task_subtask/models/project_task_subtask.py:0
 #: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__todo
-#, python-format
 msgid "To-Do"
 msgstr "À faire"
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task.py:0
-#, python-format
 msgid "Todo"
 msgstr "À faire"
 
@@ -398,15 +390,14 @@ msgid "Type of the exception activity on record."
 msgstr "Type d'activité d'exception enregistrée."
 
 #. module: project_task_subtask
-#. openerp-web
+#. odoo-javascript
 #: code:addons/project_task_subtask/static/src/xml/templates.xml:0
-#, python-format
 msgid "Unsort"
 msgstr "Annuler le tri"
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task.py:0
-#, python-format
 msgid "Updated from"
 msgstr "Mis à jour depuis"
 
@@ -416,22 +407,15 @@ msgid "User"
 msgstr "Utilisateur"
 
 #. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task.py:0
-#: code:addons/project_task_subtask/models/project_task_subtask.py:0
 #: model:ir.model.fields.selection,name:project_task_subtask.selection__project_task_subtask__state__waiting
-#, python-format
 msgid "Waiting"
 msgstr "En attente"
 
 #. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task__xid
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: project_task_subtask
+#. odoo-python
 #: code:addons/project_task_subtask/models/project_task.py:0
-#, python-format
 msgid "Your Checklist:"
 msgstr "Votre liste de contrôle :"
 
@@ -440,10 +424,20 @@ msgstr "Votre liste de contrôle :"
 msgid "project.task.subtask"
 msgstr "project.task.subtask"
 
-#. module: project_task_subtask
-#: model:ir.model.fields,field_description:project_task_subtask.field_project_task_subtask__activity_team_user_ids
-msgid "test field"
-msgstr "champ de test"
+#~ msgid "Delete"
+#~ msgstr "Supprimer"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
+
+#~ msgid "test field"
+#~ msgstr "champ de test"
 
 #~ msgid "<li><b>To-Do{}</b></li>"
 #~ msgstr "<li><b>À faire{}</b></li>"

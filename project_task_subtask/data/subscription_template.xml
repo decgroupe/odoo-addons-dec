@@ -3,7 +3,6 @@
     Copyright 2017 Karamov Ilmir <https://it-projects.info/team/ilmir-k>
     License MIT (https://opensource.org/licenses/MIT). -->
 <odoo>
-
     <record id="subtasks_subtype" model="mail.message.subtype">
         <field name="name">All checklist updates</field>
         <field name="res_model">project.task</field>
@@ -24,5 +23,4 @@
         <field name="relation_field">project_id</field>
         <field name="default" eval="True" />
     </record>
-
 </odoo>

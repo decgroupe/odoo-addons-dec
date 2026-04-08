@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="project_task_form_view">
         <field name="name">project.task.form@project_task_subtask</field>
         <field name="model">project.task</field>
@@ -13,50 +12,50 @@
                         name="subtask_ids"
                         context="{'default_user_id': default_user}"
                     >
-                        <tree
+                        <list
                             editable="bottom"
                             decoration-danger="recolor == True"
                             decoration-muted="state == 'cancelled'"
                             decoration-success="state == 'done'"
                             decoration-info="state == 'waiting'"
                         >
-                            <field name="name" widget="text"/>
-                            <field name="recolor" invisible='True' />
+                            <field name="name" widget="text" />
+                            <field name="recolor" column_invisible='True' />
                             <field name="user_id" domain="[('share', '=', False)]" />
-                            <field name="state" optional="show"/>
-                            <field name="note" optional="hide"/>
-                            <field name="hide_button" invisible='True' />
+                            <field name="state" optional="show" />
+                            <field name="note" optional="hide" />
+                            <field name="hide_button" column_invisible='True' />
                             <button
                                 name="change_state_done"
                                 title="Change state to DONE"
                                 type="object"
                                 icon="fa-check"
-                                attrs="{'invisible': ['|', ('state', 'in',['done', 'cancelled']), ('hide_button', '=', True)]}"
+                                invisible="state in ['done', 'cancelled'] or hide_button == True"
                             />
                             <button
                                 name="change_state_todo"
                                 title="Change state to TODO"
                                 type="object"
                                 icon="fa-caret-square-o-right"
-                                attrs="{'invisible': [ '|',('state', '=', 'todo'), ('hide_button', '=', True)]}"
+                                invisible="state == 'todo' or hide_button == True"
                             />
                             <button
                                 name="change_state_waiting"
                                 type="object"
                                 title="Change state to WAITING"
                                 icon="fa-pause"
-                                attrs="{'invisible': [ '|',('state', '=', 'waiting'), ('hide_button', '=', True)]}"
+                                invisible="state == 'waiting' or hide_button == True"
                             />
                             <button
                                 name="change_state_cancelled"
                                 type="object"
                                 title="Change state to CANCELLED"
                                 icon="fa-ban"
-                                attrs="{'invisible': [ '|',('state', '=', 'cancelled'), ('hide_button', '=', True)]}"
+                                invisible="state == 'cancelled' or hide_button == True"
                             />
-                            <field name="reviewer_id" optional="hide"/>
-                            <field name="deadline" optional="hide"/>
-                        </tree>
+                            <field name="reviewer_id" optional="hide" />
+                            <field name="deadline" optional="hide" />
+                        </list>
                     </field>
                 </group>
             </xpath>
@@ -68,17 +67,16 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_kanban" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name ='tag_ids']" position="after">
+            <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="kanban_subtasks_progress_bar" invisible="1" />
                 <field name="kanban_subtasks_progress_list" invisible="1" />
             </xpath>
-            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+            <xpath expr="//footer" position="before">
                 <div>
-                    <t t-raw="record.kanban_subtasks_progress_bar.raw_value" />
-                    <t t-raw="record.kanban_subtasks_progress_list.raw_value" />
+                    <t t-out="record.kanban_subtasks_progress_bar.raw_value" />
+                    <t t-out="record.kanban_subtasks_progress_list.raw_value" />
                 </div>
             </xpath>
         </field>
     </record>
-
 </odoo>

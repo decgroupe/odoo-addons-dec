@@ -8,27 +8,24 @@
 {
     "name": "Project Task Checklist",
     "category": "Project Management",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "application": False,
-    "author": "DEC" "IT-Projects LLC, Manaev Rafael",
+    "author": "DEC, IT-Projects LLC, Manaev Rafael",
     "website": "https://decgroupe.com",
-    "license": "Other OSI approved licence",  # MIT
+    "license": "AGPL-3",
     "depends": ["base", "project"],
-    "external_dependencies": {"python": [], "bin": []},
     "data": [
         "security/ir.model.access.csv",
         "security/project_security.xml",
         "views/project_task_subtask.xml",
         "views/project_task.xml",
         "views/menu.xml",
-        "views/assets.xml",
         "data/subscription_template.xml",
     ],
-    "qweb": ["static/src/xml/templates.xml"],
-    "demo": ["demo/project_task_subtask_demo.xml"],
-    "post_load": None,
-    "pre_init_hook": None,
-    "post_init_hook": None,
-    "auto_install": False,
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "project_task_subtask/static/src/scss/kanban_styles.scss",
+        ],
+    },
+    "installable": True,
 }
