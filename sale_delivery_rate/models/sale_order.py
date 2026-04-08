@@ -23,6 +23,7 @@ class SaleOrder(models.Model):
 
     @api.depends("state", "order_line.qty_delivered", "order_line.product_uom_qty")
     def _compute_sent_rate(self):
+        """Compute the rate of sent products for each sale order."""
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
@@ -31,10 +32,7 @@ class SaleOrder(models.Model):
             sent_count = 0
             line_count = 0
             for line in sale.order_line:
-                if (
-                    line.product_id.type in ("consu", "product")
-                    and line.product_uom_qty > 0
-                ):
+                if line.product_id.type == "consu" and line.product_uom_qty > 0:
                     line_count += 1
                     if (
                         float_compare(
@@ -48,17 +46,17 @@ class SaleOrder(models.Model):
             if line_count > 0:
                 sale.sent_rate = sent_count * 100 / line_count
 
-    @api.depends("tasks_ids", "tasks_ids.progress", "tasks_ids.stage_id")
+    @api.depends("tasks_ids", "tasks_ids.progress", "tasks_ids.is_closed")
     def _compute_task_rate(self):
+        """Compute the task progression rate for each sale order."""
         self.task_rate = 100
         for sale in self:
             all_task_ids = sale.tasks_ids
             total_progress = 0
             if all_task_ids:
                 for task_id in all_task_ids:
-                    # If the task stage is cancel or done, consider its
-                    # progress as 100%
-                    if task_id.stage_id.is_closed:
+                    # if the task is in a closed state, consider its progress as 100%
+                    if task_id.is_closed:
                         total_progress += 100
                     else:
                         total_progress += task_id.progress
@@ -66,6 +64,7 @@ class SaleOrder(models.Model):
 
     @api.depends("sent_rate", "task_rate")
     def _compute_delivery_rate(self):
+        """Compute the overall delivery rate based on sent and task rates."""
         self.delivery_rate = 100
         for sale in self:
             if sale.picking_ids and sale.tasks_ids:

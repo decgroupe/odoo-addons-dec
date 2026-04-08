@@ -24,6 +24,7 @@ class SaleOrderLine(models.Model):
         "state", "qty_delivered", "product_uom_qty", "display_type", "invoice_status"
     )
     def _compute_delivery_status(self):
+        """Compute the delivery status for each sale order line."""
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
