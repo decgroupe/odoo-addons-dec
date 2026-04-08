@@ -1,18 +1,17 @@
 {
     "name": "Product Reference Analytic",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "product_reference",
         "product_analytic",
-        "account_analytic_parent",
     ],
     "data": [
         "data/account_analytic_account.xml",
         "views/ref_category.xml",
-        "views/res_config_settings.xml",
     ],
     "post_init_hook": "post_init",
-    "installable": False,
+    "installable": True,
 }

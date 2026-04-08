@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record id="product_analytic_group" model="account.analytic.group">
+    <record model="account.analytic.plan" id="product_analytic_group">
         <field name="name">Products</field>
     </record>
-
 </odoo>

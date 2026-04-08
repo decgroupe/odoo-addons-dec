@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
+    <!--
     <record model="ir.ui.view" id="res_config_settings_view_form">
-        <field name="name">res.config.settings.view.form@product_reference</field>
+        <field name="name">res.config.settings.view.form@product_reference_analytic</field>
         <field name="model">res.config.settings</field>
         <field name="priority" eval="35" />
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
@@ -18,7 +18,7 @@
                             Automatically create an income analytic account when creating a new reference category
                         </div>
                         <div class="content-group">
-                            <div class="mt16" attrs="">
+                            <div class="mt16">
                                 <field
                                     name="auto_create_reference_category_analytic_account"
                                     class="o_light_label"
@@ -30,6 +30,5 @@
                 </div>
             </xpath>
         </field>
-    </record>
-
+    </record> -->
 </odoo>
