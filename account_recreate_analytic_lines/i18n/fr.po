@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:53+0000\n"
+"POT-Creation-Date: 2026-06-03 09:54+0000\n"
 "PO-Revision-Date: 2023-11-28 11:16+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -18,36 +18,14 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #. module: account_recreate_analytic_lines
+#. odoo-python
 #: code:addons/account_recreate_analytic_lines/models/account_invoice.py:0
-#, python-format
-msgid "Cannot match a single invoice line to move line %s (%d match)"
+#, fuzzy
+msgid ""
+"Cannot match a single invoice line to move line %(name)s (%(count)d match)"
 msgstr ""
-"Impossible de faire correspondre une ligne de facture à l'écriture "
-"comptable %s (%d correspondances)"
-
-#. module: account_recreate_analytic_lines
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move__display_name
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line_update__display_name
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_update__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: account_recreate_analytic_lines
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move__id
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line__id
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line_update__id
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_update__id
-msgid "ID"
-msgstr "ID"
-
-#. module: account_recreate_analytic_lines
-#: model:ir.model.fields,help:account_recreate_analytic_lines.field_account_move__xid
-#: model:ir.model.fields,help:account_recreate_analytic_lines.field_account_move_line__xid
-#: model:ir.model.fields,help:account_recreate_analytic_lines.field_account_move_line_update__xid
-#: model:ir.model.fields,help:account_recreate_analytic_lines.field_account_move_update__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+"Impossible de faire correspondre une ligne de facture à l'écriture comptable"
+" %s (%d correspondances)"
 
 #. module: account_recreate_analytic_lines
 #: model:ir.model,name:account_recreate_analytic_lines.model_account_move
@@ -58,19 +36,6 @@ msgstr "Pièce comptable"
 #: model:ir.model,name:account_recreate_analytic_lines.model_account_move_line
 msgid "Journal Item"
 msgstr "Écriture comptable"
-
-#. module: account_recreate_analytic_lines
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move____last_update
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line_update____last_update
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_update____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
-
-#. module: account_recreate_analytic_lines
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line_update__product_id
-msgid "Product"
-msgstr "Article"
 
 #. module: account_recreate_analytic_lines
 #: model_terms:ir.ui.view,arch_db:account_recreate_analytic_lines.account_invoice_update_form
@@ -92,13 +57,23 @@ msgstr "Mettre à jour les champs non juridiques des lignes de facturation"
 msgid "Wizard to update non-legal fields of invoice"
 msgstr "Assistant pour mettre à jour les champs non juridiques de facture"
 
-#. module: account_recreate_analytic_lines
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move__xid
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line__xid
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_line_update__xid
-#: model:ir.model.fields,field_description:account_recreate_analytic_lines.field_account_move_update__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "Product"
+#~ msgstr "Article"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Invoice"
 #~ msgstr "Facture"
