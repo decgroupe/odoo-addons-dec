@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="web_widget_markdown.MarkdownField">
+        <t t-if="props.readonly">
+            <div t-ref="preview" class="o_field_markdown" />
+        </t>
+        <t t-else="">
+            <div class="o_field_markdown_widget">
+                <div class="o_field_markdown_toolbar">
+                    <t
+                        t-if="state.renderMode === 'live' or state.renderMode === 'code'"
+                    >
+                        <div class="btn-group btn-group-sm" role="group">
+                            <t t-foreach="editActions" t-as="action" t-key="action.key">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    t-att-data-action="action.key"
+                                    t-att-title="action.title"
+                                    t-on-click="onEditAction"
+                                >
+                                    <i t-att-class="'fa ' + action.icon" />
+                                </button>
+                            </t>
+                        </div>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                t-att-class="{ active: state.indentWithTab }"
+                                title="Tab key indentation (toggle)"
+                                t-on-click="onToggleIndentWithTab"
+                            >
+                                <i class="fa fa-keyboard-o" />
+                            </button>
+                        </div>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                title="Insert image (Ctrl+Shift+I)"
+                                t-on-click="onInsertImage"
+                            >
+                                <i class="fa fa-file-image-o" />
+                            </button>
+                        </div>
+                        <input
+                            type="file"
+                            t-ref="imageInput"
+                            accept="image/*"
+                            class="d-none"
+                            t-on-change="onImageFileSelected"
+                        />
+                    </t>
+                    <t t-if="state.renderMode === 'view'">
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-outline-secondary"
+                            title="Save as PDF"
+                            t-on-click="onPrint"
+                        >
+                            <i class="fa fa-print" /> Save as PDF
+                        </button>
+                    </t>
+                    <div class="flex-grow-1" />
+                    <div class="btn-group btn-group-sm" role="group">
+                        <t t-foreach="modes" t-as="mode" t-key="mode.key">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                t-att-class="{ active: state.renderMode === mode.key }"
+                                t-att-value="mode.key"
+                                t-att-title="mode.title"
+                                t-on-click="onModeChange"
+                            >
+                                <i t-att-class="'fa ' + mode.icon" />
+                                <span t-esc="' ' + mode.label" />
+                            </button>
+                        </t>
+                    </div>
+                </div>
+                <div
+                    class="o_field_markdown_body"
+                    t-att-class="'o_field_markdown_body--' + state.renderMode"
+                >
+                    <t
+                        t-if="state.renderMode === 'live' or state.renderMode === 'code'"
+                    >
+                        <div t-ref="editor" class="o_field_markdown_editor" />
+                    </t>
+                    <t t-elif="state.renderMode === 'view'">
+                        <div t-ref="preview" class="o_field_markdown_preview_pane" />
+                    </t>
+                    <t t-elif="state.renderMode === 'output'">
+                        <pre
+                            t-ref="htmlOutput"
+                            class="o_field_markdown_output_pane o_field_markdown_output_pane--html"
+                        />
+                        <pre
+                            t-ref="cssOutput"
+                            class="o_field_markdown_output_pane o_field_markdown_output_pane--css"
+                        />
+                    </t>
+                </div>
+            </div>
+        </t>
+    </t>
+
+</templates>
