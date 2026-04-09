@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="project_task_form">
         <field name="name">project.task.form@project_markdown</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='description']" position="after">
-                <field name="description_markdown" widget="bootstrap_markdown" />
+                <field name="description_markdown" widget="markdown" />
             </xpath>
             <xpath expr="//field[@name='description']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('description_html_visible', '=', False)]}</attribute>
+                <attribute name="invisible">not description_html_visible</attribute>
             </xpath>
             <xpath expr="//field[@name='description_markdown']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('description_markdown_visible', '=', False)]}</attribute>
+                <attribute name="invisible">not description_markdown_visible</attribute>
             </xpath>
             <xpath expr="//page[@name='extra_info']/group" position="inside">
                 <group name="description_visibility">
@@ -27,5 +22,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
