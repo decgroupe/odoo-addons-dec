@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:56+0000\n"
+"POT-Creation-Date: 2026-06-03 09:58+0000\n"
 "PO-Revision-Date: 2023-11-28 11:46+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -28,12 +28,6 @@ msgid "Content Markdown"
 msgstr "Contenu Markdown"
 
 #. module: document_page_markdown
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page__display_name
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page_history__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: document_page_markdown
 #: model:ir.model,name:document_page_markdown.model_document_page
 msgid "Document Page"
 msgstr "Page"
@@ -43,26 +37,17 @@ msgstr "Page"
 msgid "Document Page History"
 msgstr "Historique de la page"
 
-#. module: document_page_markdown
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page__id
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page_history__id
-msgid "ID"
-msgstr "ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
 
-#. module: document_page_markdown
-#: model:ir.model.fields,help:document_page_markdown.field_document_page__xid
-#: model:ir.model.fields,help:document_page_markdown.field_document_page_history__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#. module: document_page_markdown
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page____last_update
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page_history____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
 
-#. module: document_page_markdown
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page__xid
-#: model:ir.model.fields,field_description:document_page_markdown.field_document_page_history__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

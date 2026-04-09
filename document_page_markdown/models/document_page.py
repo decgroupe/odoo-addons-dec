@@ -1,9 +1,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Sep 2022
 
-import re
-import string
-
 from odoo import fields, models
 
 
@@ -20,10 +17,11 @@ class DocumentPage(models.Model):
     )
 
     def write(self, vals):
-        res = super(DocumentPage, self).write(vals)
+        """Override write to create history when markdown content changes."""
+        res = super().write(vals)
         if res:
             for rec in self.filtered(lambda x: x.type == "content"):
-                # create a new history when markdown content has changed, and also
+                # create a new history when markdown content has changed, also
                 # add the html content
                 if rec.content_markdown != rec.history_head.content_markdown:
                     rec._create_history(
@@ -38,6 +36,7 @@ class DocumentPage(models.Model):
         return res
 
     def _create_history(self, vals):
+        """Override to ensure markdown content is always stored in history."""
         self.ensure_one()
         # if markdown content is missing (when recomputing content with
         # `_inverse_content`) always add it

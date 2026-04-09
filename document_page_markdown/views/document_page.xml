@@ -1,13 +1,12 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_wiki_form_view">
         <field name="name">document.page.form@document_page_markdown</field>
         <field name="model">document.page</field>
         <field name="inherit_id" ref="document_page.view_wiki_form" />
         <field name="arch" type="xml">
             <field name="content" position="after">
-                <field name="content_markdown" widget="bootstrap_markdown" />
+                <field name="content_markdown" widget="markdown" />
             </field>
         </field>
     </record>
@@ -30,5 +29,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
