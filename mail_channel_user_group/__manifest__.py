@@ -1,6 +1,6 @@
 {
     "name": "Mail Channel User Group",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "DEC",
     "license": "AGPL-3",
     "website": "https://decgroupe.com",
@@ -8,5 +8,5 @@
         "mail",
     ],
     "data": [],
-    "installable": False,
+    "installable": True,
 }
