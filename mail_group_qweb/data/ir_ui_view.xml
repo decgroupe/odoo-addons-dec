@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="mail_group_qweb.view_email_template_part_members_avatar">
+        <style>
+            .table_avatar {
+                margin-top:8px;
+                width:100%;
+                align:center;
+            }
+            .tr_avatar {
+                line-height:normal;
+            }
+            .td_avatar {
+                width:10%;
+                padding-right:8px;
+                text-align:right;
+            }
+            .td_partner {
+                width:70%;
+            }
+            .td_partner a {
+                text-decoration:none;
+                font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+                color:rgba(0,0,0,0.87);
+                font-size:12px;
+                line-height:16px;
+            }
+            .td_notify {
+                width:20%;
+            }
+            .img_avatar {
+                width:16px;
+                height:16px;
+                vertical-align:sub;
+                border-radius:50%;
+            }
+        </style>
+        <table class="table_avatar" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+                <t t-foreach="members" t-as="member">
+                    <t t-set="partner" t-value="member.partner_id" />
+                    <tr class="tr_avatar">
+                        <td class="td_avatar">
+                            <t t-if="partner">
+                                <img
+                                    class="img_avatar"
+                                    t-attf-src="/web/image/res.partner/{{partner.id}}/image_128"
+                                />
+                            </t>
+                            <t t-else="">
+                                <img
+                                    class="img_avatar"
+                                    t-attf-src="/web/image/res.partner/0/image_128"
+                                />
+                            </t>
+                        </td>
+                        <td class="td_partner">
+                            <t t-if="partner">
+                                <a t-attf-href="mailto:{{partner.email_formatted}}">
+                                    <t t-esc="partner.display_name" />
+                                </a>
+                            </t>
+                            <t t-else="">
+                                <a t-attf-href="mailto:{{member.email_normalized}}">
+                                    <t t-esc="member.email" />
+                                </a>
+                            </t>
+                        </td>
+                        <td class="td_notify">
+                            <i t-if="notifs.get(partner.id) == 'email'">e-mail</i>
+                            <i t-if="notifs.get(partner.id) == 'inbox'">inbox</i>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+
+    <template
+        id="mail_group_qweb.view_email_template_part_also_notified"
+        inherit_id="mail_qweb.view_email_template_part_also_notified"
+    >
+        <t t-foreach="recipients_groups_data" t-as="recipients_group_data">
+            <t t-if="recipients_group_data['_origin'] == 'mail_group_qweb'">
+                <p
+                    class="notify_group"
+                    t-if="recipients_group_data['notification_group_name'] == 'user'"
+                >Internal Users</p>
+                <p
+                    class="notify_group"
+                    t-if="recipients_group_data['notification_group_name'] in ('portal', 'portal_customer')"
+                >Portal Users</p>
+                <p
+                    class="notify_group"
+                    t-if="recipients_group_data['notification_group_name'] == 'customer'"
+                >External Partners</p>
+                <t t-set="members" t-value="recipients_group_data['_members']" />
+                <t
+                    t-set="notifs"
+                    t-value="recipients_group_data['_members_notif_mode']"
+                />
+                <div>
+                    <t
+                        t-call="mail_group_qweb.view_email_template_part_members_avatar"
+                    />
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="mail_group_qweb.mail_group_footer">
+        <div id="o_mg_message_footer">________________________________________<br />
+            <small>
+            <a t-att-href="group_url">#<t t-esc="group" /> </a> |
+            <a t-att-href="mailto_url" t-esc="group_mail" /> |
+            <a t-att-href="unsub_url" t-esc="unsub_label" />
+        </small>
+        </div>
+    </template>
+</odoo>
