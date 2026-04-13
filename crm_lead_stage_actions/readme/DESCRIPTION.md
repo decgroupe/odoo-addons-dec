@@ -1,0 +1,41 @@
+This module automates CRM lead status transitions when a lead is moved to a
+stage marked as "won" or "lost" in the Kanban view.
+
+- When a lead is dragged to a **lost stage**, the `action_set_lost` method is
+  triggered, the probability is set to 0, and the `date_closed` field is
+  populated automatically.
+- When a lead is dragged to a **won stage**, the `action_set_won` method is
+  triggered and the `date_closed` field is populated automatically.
+- Archiving a lead keeps its current stage unchanged (no automatic stage
+  transition on archive).
+- A new `is_lost` boolean field is added to `crm.stage` to mark a stage as a
+  "lost" stage, complementing the existing `is_won` field.
+
+## Technical details
+
+**`is_lost` field on `crm.stage`**
+
+A new `is_lost = fields.Boolean` field is added to `crm.stage` to identify
+stages that represent a lost pipeline state, analogous to the native `is_won`
+field. The field is exposed in the stage search, list, and form views.
+
+**Stage-triggered lost/won transitions (`crm.lead.write`)**
+
+The `write` method is overridden on `crm.lead`. When `stage_id` changes to a
+stage with `is_lost=True`, `action_set_lost` is called, the probability and
+automated probability are forced to 0, and the `enforce_date_closed` context
+flag is set. When `stage_id` changes to the won stage, `action_set_won` is
+called instead.
+
+**Archive/unarchive guards**
+
+`action_archive` and `action_unarchive` are overridden to respect the context
+flags `disable_auto_archive` and `disable_auto_unarchive` respectively. This
+prevents automatic archiving/unarchiving side-effects when
+`action_set_lost`/`action_set_won` are called internally.
+
+**`date_closed` enforcement (`crm.lead._handle_won_lost`)**
+
+`_handle_won_lost` is overridden to inject `date_closed = Datetime.now()` into
+the write values when the `enforce_date_closed` context flag is set, ensuring
+a closed date is always recorded when a lead moves to a lost stage.

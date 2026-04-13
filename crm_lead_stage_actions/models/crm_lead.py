@@ -12,6 +12,7 @@ class CrmLead(models.Model):
     _inherit = "crm.lead"
 
     def write(self, vals):
+        """Override write to trigger lost/won actions and enforce date_closed."""
         enforce_date_closed = False
         if vals.get("stage_id"):
             lost_stage_id = self._stage_find(domain=[("is_lost", "=", True)])
@@ -22,7 +23,7 @@ class CrmLead(models.Model):
                 enforce_date_closed = True
                 # enforce probability to 0 for lost stage (like odoo's default
                 # behaviour for won stage)
-                vals.update({'probability': 0, 'automated_probability': 0})
+                vals.update({"probability": 0, "automated_probability": 0})
             elif vals.get("stage_id") == won_stage_id.id:
                 # set an `is_won` stage
                 self.action_set_won()
@@ -31,6 +32,7 @@ class CrmLead(models.Model):
         ).write(vals)
 
     def action_set_lost(self, **additional_values):
+        """Override action_set_lost to move to the lost stage without archiving."""
         if self.env.context.get("action_set"):
             return False
         else:
@@ -46,6 +48,7 @@ class CrmLead(models.Model):
             return res
 
     def action_set_won(self):
+        """Override action_set_won to move to the won stage without unarchiving."""
         if self.env.context.get("action_set"):
             return False
         else:
@@ -59,18 +62,25 @@ class CrmLead(models.Model):
             return res
 
     def action_archive(self):
+        """Override action_archive to skip archiving when the context flag is set."""
         if self.env.context.get("disable_auto_archive", False):
             return None
         else:
             return super().action_archive()
 
     def action_unarchive(self):
+        """Override action_unarchive to skip unarchiving when the context
+        flag is set.
+        """
         if self.env.context.get("disable_auto_unarchive", False):
             return None
         else:
             return super().action_unarchive()
 
     def _handle_won_lost(self, vals):
+        """Override _handle_won_lost to enforce date_closed when moving to
+        lost stage.
+        """
         # use this handle to hook write and set the `date_closed`
         if self.env.context.get("enforce_date_closed"):
             vals["date_closed"] = fields.Datetime.now()
@@ -78,5 +88,8 @@ class CrmLead(models.Model):
 
     @api.model
     def _onchange_stage_id_values(self, stage_id):
+        """Override _onchange_stage_id_values to propagate stage-specific
+        field values.
+        """
         vals = super()._onchange_stage_id_values(stage_id)
         return vals

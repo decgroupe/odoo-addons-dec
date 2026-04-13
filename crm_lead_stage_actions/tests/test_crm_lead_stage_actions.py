@@ -5,38 +5,14 @@ import datetime
 
 from freezegun import freeze_time
 
-from odoo.tests.common import TransactionCase
+from .common import TestCrmLeadStageActionsCommon
 
 
-class TestCrmLeadStageActions(TransactionCase):
-
-    def setUp(self):
-        super().setUp()
-        # tracks stages
-        self.stage_new = self.env.ref("crm.stage_lead1")
-        self.stage_qualified = self.env.ref("crm.stage_lead2")
-        self.stage_proposition = self.env.ref("crm.stage_lead3")
-        self.stage_won = self.env.ref("crm.stage_lead4")
-        self.stage_lost = self.env.ref("crm_lead_stage_actions.stage_lead_lost")
-        # get existing cases
-        self.case_22 = self.env.ref("crm.crm_case_22")
-        self.assertEqual(self.case_22.stage_id, self.stage_proposition)
-        # already set to won in `odoo/addons/crm/data/crm_lead_demo.xml`
-        self.case_23 = self.env.ref("crm.crm_case_23")
-        self.assertEqual(self.case_23.stage_id, self.stage_won)
-        # already set to lost in `odoo/addons/crm/data/crm_lead_demo.xml`
-        self.case_28 = self.env.ref("crm.crm_case_28")
-        self.assertFalse(self.case_28.active)
-        self.assertEqual(self.case_28.stage_id, self.stage_new)
-        # but default's module behaviour is too keep current state, so we manually
-        # override it
-        self.case_28.stage_id = self.stage_lost
-
-    def _now(self):
-        now = datetime.datetime.now().replace(microsecond=0)
-        return now
+class TestCrmLeadStageActions(TestCrmLeadStageActionsCommon):
+    """Tests for crm_lead_stage_actions module."""
 
     def test_01_action_set_lost(self):
+        """Setting a lead as lost moves it to the lost stage and sets date_closed."""
         now = self._now()
         with freeze_time(now):
             self.assertFalse(self.case_22.date_closed)
@@ -46,6 +22,7 @@ class TestCrmLeadStageActions(TransactionCase):
             self.assertEqual(self.case_22.date_closed, now)
 
     def test_02_action_set_won(self):
+        """Setting a lead as won moves it to the won stage and sets date_closed."""
         now = self._now()
         with freeze_time(now):
             self.assertFalse(self.case_22.date_closed)
@@ -55,18 +32,19 @@ class TestCrmLeadStageActions(TransactionCase):
             self.assertEqual(self.case_22.date_closed, now)
 
     def test_03_action_archive_keep_stage(self):
+        """Archiving a lead keeps its current stage unchanged."""
         self.assertEqual(self.case_22.stage_id, self.stage_proposition)
         self.case_22.action_archive()
         self.assertFalse(self.case_22.active)
         self.assertEqual(self.case_22.stage_id, self.stage_proposition)
 
     def test_04_action_set_won_from_archive(self):
+        """Setting an archived lead as won updates date_closed without unarchiving."""
         now = self._now()
         with freeze_time(now):
             self.case_22.action_archive()
             self.assertFalse(self.case_22.active)
             self.assertEqual(self.case_22.date_closed, now)
-
         now_p2s = now + datetime.timedelta(seconds=2)
         with freeze_time(now_p2s):
             self.case_22.action_set_won()
@@ -75,6 +53,7 @@ class TestCrmLeadStageActions(TransactionCase):
             self.assertEqual(self.case_22.date_closed, now_p2s)
 
     def test_05_set_stage(self):
+        """Dragging a lead to another column in kanban triggers correct behaviour."""
         # drag-and-drop to columns in kanban view
         self.case_22.stage_id = self.stage_lost
         self.assertTrue(self.case_22.active)
