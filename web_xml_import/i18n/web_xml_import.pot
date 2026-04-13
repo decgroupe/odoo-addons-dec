@@ -1,0 +1,127 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* web_xml_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-03 11:17+0000\n"
+"PO-Revision-Date: 2026-06-03 11:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: web_xml_import
+#: model:ir.ui.menu,name:web_xml_import.menu_xml_data
+msgid "<XML/>"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__active
+msgid "Active"
+msgstr ""
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Archived"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__content
+msgid "Data"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__note
+msgid "Description"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__id
+msgid "ID"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,help:web_xml_import.field_xml_data__xid
+msgid "ID of the record defined in xml file"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,help:web_xml_import.field_xml_data__active
+msgid "If unchecked, it will allow you to hide this data without removing it."
+msgstr ""
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Import (Init)"
+msgstr ""
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Import (Update)"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__module
+msgid "Module"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__name
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Name"
+msgstr ""
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "XML Data"
+msgstr ""
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_search_view
+msgid "XML Datas"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__xid
+msgid "XML-ID"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.actions.act_window,name:web_xml_import.act_window_xml_data
+msgid "XMLs"
+msgstr ""
+
+#. module: web_xml_import
+#: model:ir.model,name:web_xml_import.model_xml_data
+msgid "xml.data"
+msgstr ""

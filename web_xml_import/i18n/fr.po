@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* web_xml_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-03 11:17+0000\n"
+"PO-Revision-Date: 2026-06-03 13:54+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: web_xml_import
+#: model:ir.ui.menu,name:web_xml_import.menu_xml_data
+msgid "<XML/>"
+msgstr "<XML/>"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__content
+msgid "Data"
+msgstr "Données"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__note
+msgid "Description"
+msgstr "Description"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__id
+msgid "ID"
+msgstr "ID"
+
+#. module: web_xml_import
+#: model:ir.model.fields,help:web_xml_import.field_xml_data__xid
+msgid "ID of the record defined in xml file"
+msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#. module: web_xml_import
+#: model:ir.model.fields,help:web_xml_import.field_xml_data__active
+msgid "If unchecked, it will allow you to hide this data without removing it."
+msgstr "Si cette case n'est pas cochée, cela vous permettra de masquer ces données sans les supprimer."
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Import (Init)"
+msgstr "Importer (Initialisation)"
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Import (Update)"
+msgstr "Importer (Mise à jour)"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__write_uid
+msgid "Last Updated by"
+msgstr "Modifié par"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__write_date
+msgid "Last Updated on"
+msgstr "Modifié le"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__module
+msgid "Module"
+msgstr "Module"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__name
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "Name"
+msgstr "Nom"
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_form_view
+msgid "XML Data"
+msgstr "Données XML"
+
+#. module: web_xml_import
+#: model_terms:ir.ui.view,arch_db:web_xml_import.xml_data_search_view
+msgid "XML Datas"
+msgstr "Données XML"
+
+#. module: web_xml_import
+#: model:ir.model.fields,field_description:web_xml_import.field_xml_data__xid
+msgid "XML-ID"
+msgstr "XML-ID"
+
+#. module: web_xml_import
+#: model:ir.actions.act_window,name:web_xml_import.act_window_xml_data
+msgid "XMLs"
+msgstr "XMLs"
+
+#. module: web_xml_import
+#: model:ir.model,name:web_xml_import.model_xml_data
+msgid "xml.data"
+msgstr "xml.data"

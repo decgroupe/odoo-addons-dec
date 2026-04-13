@@ -44,14 +44,17 @@ class XmlData(models.Model):
     )
 
     def action_import_init(self):
+        """Import XML data using init mode."""
         for rec in self:
             rec._import(mode="init")
 
     def action_import_update(self):
+        """Import XML data using update mode."""
         for rec in self:
             rec._import(mode="update")
 
     def _check_xmldoc(self, doc, name):
+        """Validate an XML document against the Odoo import RelaxNG schema."""
         schema = os.path.join(config["root_path"], "import_xml.rng")
         relaxng = etree.RelaxNG(etree.parse(schema))
         try:
@@ -66,26 +69,29 @@ class XmlData(models.Model):
                     p = subprocess.run(args, stdout=subprocess.PIPE)
                     _logger.warning(p.stdout.decode())
                 except Exception:
-                    _logger.warn("Run manually:\n%s", " ".join(args))
+                    _logger.warning("Run manually:\n%s", " ".join(args))
             else:
                 for e in relaxng.error_log:
                     _logger.warning(e)
                 _logger.info(
-                    "Install 'jingtrang' for more precise and useful validation messages."
+                    "Install 'jingtrang' for more precise and "
+                    "useful validation messages."
                 )
-                _logger.warn("Or run manually if needed:\n%s", " ".join(args))
+                _logger.warning("Or run manually if needed:\n%s", " ".join(args))
             raise
 
     def _import(self, mode="init"):
-        """This code is partially the same that `convert_xml_import` from
-        `odoo.tools.convert`, excepts that data is loaded from a string instead of
-        a file
+        """Import the stored XML content using Odoo's xml_import mechanism.
+
+        This code is partially the same as `convert_xml_import` from
+        `odoo.tools.convert`, except that data is loaded from a string instead
+        of a file.
         """
         self.ensure_one()
         doc = etree.fromstring(self.content.encode("utf-8"))
         self._check_xmldoc(doc, self.name)
         obj = xml_import(
-            self.env.cr,
+            self.env,
             module=self.module,
             idref=None,
             mode=mode,
