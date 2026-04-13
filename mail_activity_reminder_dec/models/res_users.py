@@ -1,7 +1,6 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Jun 2024
 
-
 import logging
 import uuid
 
@@ -20,15 +19,19 @@ class User(models.Model):
     )
 
     def _generate_new_activity_reminder_access_token(self):
+        """Generate a new UUID-based access token for activity reminders."""
         return str(uuid.uuid4())
 
     def generate_new_activity_reminder_access_token(self):
+        """Regenerate the activity reminder access token for each user in the set."""
         for user in self:
             user.activity_reminder_access_token = (
                 user._generate_new_activity_reminder_access_token()
             )
 
     def _get_reminder_base_domain(self):
+        """Return the base domain to find activities assigned to this user or their
+        team."""
         self.ensure_one()
         return [
             "|",
@@ -39,6 +42,7 @@ class User(models.Model):
         ]
 
     def _get_group_activity_ids(self, domain, order):
+        """Return activities grouped by type matching the given domain and order."""
         self.ensure_one()
         activity_ids = self.env["mail.activity"].search(
             self._get_reminder_base_domain() + domain, order=order
@@ -52,6 +56,7 @@ class User(models.Model):
         return group_activity_ids
 
     def send_activity_reminder(self):
+        """Send the activity reminder email to each user with pending activities."""
         template_id = self.env.ref(
             "mail_activity_reminder_dec.email_template_activity_reminder"
         )

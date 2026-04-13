@@ -7,7 +7,7 @@ from datetime import date
 import lxml
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import format_date
 
@@ -18,6 +18,7 @@ class MailActivity(models.Model):
     _inherit = "mail.activity"
 
     def action_snooze(self, unit, value, from_date=None):
+        """Snooze the activity by extending its deadline by the given unit and value."""
         self.ensure_one()
         today = date.today()
         if unit == "d" or unit == "day":
@@ -29,7 +30,7 @@ class MailActivity(models.Model):
         elif unit == "y" or unit == "year":
             delta = relativedelta(years=value)
         else:
-            raise UserError(_("Invalid time unit code"))
+            raise UserError(self.env._("Invalid time unit code"))
         for rec in self:
             if from_date:
                 previous_deadline = fields.Date.to_date(from_date)
@@ -39,19 +40,24 @@ class MailActivity(models.Model):
                 date_deadline = today + delta
             else:
                 date_deadline = previous_deadline + delta
-
-            notify_txt = _("Deadline extended from %s to %s (by %s)") % (
-                format_date(self.env, previous_deadline),
-                format_date(self.env, date_deadline),
-                self.env.user.name,
+            notify_txt = self.env._(
+                "Deadline extended from %(prev)s to %(next)s (by %(user)s)",
+                prev=format_date(self.env, previous_deadline),
+                next=format_date(self.env, date_deadline),
+                user=self.env.user.name,
             )
-            notify_html = "<small><br /> - %s</small>" % (notify_txt)
-            root = lxml.html.fromstring(rec.note)
-            if (node := root.xpath(".")) and node[0].tag == "p":
-                node[0].insert(0, lxml.etree.XML(notify_html))
-                note = lxml.etree.tostring(root, pretty_print=False, encoding="UTF-8")
+            notify_html = f"<small><br /> - {notify_txt}</small>"
+            if not rec.note:
+                note = notify_html
             else:
-                note = rec.note + notify_html
+                root = lxml.html.fromstring(rec.note)
+                if (node := root.xpath(".")) and node[0].tag == "p":
+                    node[0].insert(0, lxml.etree.XML(notify_html))
+                    note = lxml.etree.tostring(
+                        root, pretty_print=False, encoding="UTF-8"
+                    )
+                else:
+                    note = rec.note + notify_html
             rec.write(
                 {
                     "date_deadline": date_deadline,

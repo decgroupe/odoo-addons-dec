@@ -3,12 +3,15 @@
     <record id="email_template_activity_reminder" model="mail.template">
         <field name="name">Activity Reminder</field>
         <field name="model_id" ref="base.model_res_users" />
-        <field name="email_from">${object.user_id.email_formatted |safe}</field>
-        <field name="email_to">${object.user_id.email}</field>
+        <field name="email_from">{{object.user_id.email_formatted}}</field>
+        <field name="email_to">{{object.user_id.email}}</field>
         <field name="auto_delete" eval="True" />
         <field name="subject">Activity Reminder</field>
-        <field name="body_type">qweb</field>
-        <field name="body_view_id" ref="view_email_template_activity_reminder" />
-        <field name="lang">${object.user_id.lang}</field>
+        <field name="lang">{{ object.user_id.lang }}</field>
+        <field name="body_html" type="html">
+            <t
+                t-call="mail_activity_reminder_dec.view_email_template_activity_reminder"
+            />
+        </field>
     </record>
 </odoo>

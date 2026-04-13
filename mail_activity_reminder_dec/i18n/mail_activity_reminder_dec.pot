@@ -1,143 +1,139 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* mail_activity_reminder
+# 	* mail_activity_reminder_dec
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-03 10:26+0000\n"
-"PO-Revision-Date: 2026-06-03 14:44+0200\n"
+"POT-Creation-Date: 2026-06-03 10:25+0000\n"
+"PO-Revision-Date: 2026-06-03 10:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: mail_activity_reminder_dec
 #: model:mail.template,body_html:mail_activity_reminder_dec.email_template_activity_reminder
 msgid ""
-"<t t-"
-"call=\"mail_activity_reminder_dec.view_email_template_activity_reminder\"/"
-">\n"
+"<t t-call=\"mail_activity_reminder_dec.view_email_template_activity_reminder\"/>\n"
 "        "
 msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model:ir.model,name:mail_activity_reminder_dec.model_mail_activity
 msgid "Activity"
-msgstr "Activité"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model:ir.model,name:mail_activity_reminder_dec.model_mail_activity_mixin
 msgid "Activity Mixin"
-msgstr "Combinaison d'activités"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model:mail.template,name:mail_activity_reminder_dec.email_template_activity_reminder
 #: model:mail.template,subject:mail_activity_reminder_dec.email_template_activity_reminder
 msgid "Activity Reminder"
-msgstr "Rappel d'activités"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model:ir.model.fields,field_description:mail_activity_reminder_dec.field_res_users__activity_reminder_access_token
 msgid "Activity Reminder Access Token"
-msgstr "Jeton d'accès au rappel d'activités"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/controllers/main.py:0
 msgid "Activity cancelled"
-msgstr "Activité annulée"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/controllers/main.py:0
 msgid "Activity closed"
-msgstr "Activité clôturée"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/controllers/main.py:0
 msgid "Activity not found"
-msgstr "Activité non trouvée"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Cancel"
-msgstr "Annuler"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Close"
-msgstr "Fermer"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Deadline"
-msgstr "Echéance"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/models/mail_activity.py:0
 msgid "Deadline extended from %(prev)s to %(next)s (by %(user)s)"
-msgstr "Échéance repoussée du %(prev)s au %(next)s (par %(user)s)"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Document"
-msgstr "Document"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/models/mail_activity.py:0
 msgid "Invalid time unit code"
-msgstr "Unité de temps incorrecte"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/controllers/main.py:0
 msgid "Invalid token"
-msgstr "Jeton non valide"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Month"
-msgstr "Mois"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/controllers/main.py:0
 msgid "New deadline is %(new)s (was %(old)s)"
-msgstr "La nouvelle échéance est %(new)s (était %(old)s)"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.view_email_template_activity_reminder
 msgid "Overdue Activities"
-msgstr "Activités en retard"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.res_users_form_view
 msgid "Send Activity Reminder"
-msgstr "Envoyer un rappel d'activités"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Snooze 1 month (±30 days)"
-msgstr "Repousser d'1 mois (±30 jours)"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Snooze 1 week (7 days)"
-msgstr "Repousser d'1 semaine (7 jours)"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Snooze 1 year (±365 days)"
-msgstr "Repousser d'1 an (±365 jours)"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
@@ -146,34 +142,32 @@ msgid ""
 "This activity has probably been closed by you or someone in your team since "
 "this reminder was sent."
 msgstr ""
-"Cette activité a probablement été clôturée par vous ou un membre de votre "
-"équipe depuis l'envoi de ce rappel."
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.view_email_template_activity_reminder
 msgid "Upcoming Activities"
-msgstr "Activités à venir"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model:ir.model,name:mail_activity_reminder_dec.model_res_users
 msgid "User"
-msgstr "Utilisateur"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Week"
-msgstr "Semaine"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "Year"
-msgstr "Année"
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #. odoo-python
 #: code:addons/mail_activity_reminder_dec/controllers/main.py:0
 msgid "You have probably received a new reminder since this one."
-msgstr "Vous avez probablement reçu un nouveau rappel depuis celui-ci."
+msgstr ""
 
 #. module: mail_activity_reminder_dec
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
@@ -189,21 +183,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mail_activity_reminder_dec.table_group_activities
 msgid "{{activity_type_id.icon}}"
 msgstr ""
-
-#~ msgid "Display Name"
-#~ msgstr "Nom affiché"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "ID of the record defined in xml file"
-#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Dernière Modification le"
-
-#~ msgid "XML-ID"
-#~ msgstr "XML-ID"
-
-#~ msgid "Reminder"
-#~ msgstr "Rappel"

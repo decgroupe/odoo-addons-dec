@@ -2,11 +2,11 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jul 2024
 
 from odoo import http
+from odoo.http import Controller as HttpController
 from odoo.http import request
 from odoo.tools.misc import format_date
-from odoo.tools.translate import _
 
-from odoo.addons.base_controller_user.controllers.main import HttpControllerUser
+# from odoo.addons.base_controller_user.controllers.main import HttpController
 
 SUCCESS = 0
 ERROR = 1
@@ -16,30 +16,34 @@ URL_VAR_ACTIVITY = "/activity/<int:activity_id>"
 URL_VAR_SNOOZE = "/snooze/<int:value>/<string:unit>"
 
 
-class MailActivityReminderController(HttpControllerUser):
+class MailActivityReminderController(HttpController):
     """Http Controller for Mail Activity Reminder"""
 
     #######################################################################
 
     def _get_user_id(self, token):
+        """Look up a user by their activity reminder access token."""
         domain = [
             ("activity_reminder_access_token", "=", token),
         ]
         user_id = request.env["res.users"].sudo().search(domain, limit=1)
-        if user_id:
-            # fix translation issues
+        # fix translation issues using "base_controller_user" module
+        if user_id and hasattr(self, "_update_user_with_context"):
             user_id = self._update_user_with_context(
                 user_id, override_request_user=True
             )
         return user_id
 
     def _get_activity_id(self, activity_id):
+        """Browse a mail.activity record by id."""
         return request.env["mail.activity"].browse(activity_id)
 
     def _render_activity_reminder_message(
         self, message=False, subject=False, warning=False, user=False
     ):
-        return request.env.ref("mail_qweb.view_email_template_notification")._render(
+        """Render the activity reminder notification email template."""
+        return request.env["ir.qweb"]._render(
+            "mail_qweb.view_email_template_notification",
             {
                 "env": request.env,
                 "do_not_reply": True,
@@ -47,32 +51,37 @@ class MailActivityReminderController(HttpControllerUser):
                 "content_subject": subject,
                 "content_message": message,
                 "content_warning": warning,
-            }
+            },
         )
 
     def _render_activity_reminder_message_activity_update(
         self, message=False, user=False, activity=False
     ):
+        """Render the activity update reminder message with the activity subject."""
         return self._render_activity_reminder_message(
             message=message,
             user=user,
-            subject="%s: %s" % (activity.res_model_id_name, activity.res_name),
+            subject=f"{activity.res_model_id_name}: {activity.res_name}",
         )
 
     def _render_activity_reminder_not_found_message(self, user=False):
+        """Render the activity not found reminder message."""
         return self._render_activity_reminder_message(
             user=user,
-            message=_(
+            message=request.env._(
                 "This activity has probably been closed by you or someone in your "
                 "team since this reminder was sent."
             ),
-            warning=_("Activity not found"),
+            warning=request.env._("Activity not found"),
         )
 
     def _render_activity_reminder_invalid_token_message(self):
+        """Render the invalid token reminder message."""
         return self._render_activity_reminder_message(
-            message=_("You have probably received a new reminder since this one."),
-            warning=_("Invalid token"),
+            message=request.env._(
+                "You have probably received a new reminder since this one."
+            ),
+            warning=request.env._("Invalid token"),
         )
 
     @http.route(
@@ -83,11 +92,12 @@ class MailActivityReminderController(HttpControllerUser):
         csrf=False,
     )
     def activity_close(self, activity_id, token=None, **kwargs):
+        """Handle close action from an activity reminder email link."""
         user_id = self._get_user_id(token)
         if user_id:
             activity_id = self._get_activity_id(activity_id)
             if activity_id.exists():
-                message = _("Activity closed")
+                message = request.env._("Activity closed")
                 render = self._render_activity_reminder_message_activity_update(
                     message,
                     user=user_id,
@@ -108,17 +118,18 @@ class MailActivityReminderController(HttpControllerUser):
         csrf=False,
     )
     def activity_cancel(self, activity_id, token=None, **kwargs):
+        """Handle cancel action from an activity reminder email link."""
         user_id = self._get_user_id(token)
         if user_id:
             activity_id = self._get_activity_id(activity_id)
             if activity_id.exists():
-                message = _("Activity cancelled")
+                message = request.env._("Activity cancelled")
                 render = self._render_activity_reminder_message_activity_update(
                     message,
                     user=user_id,
                     activity=activity_id,
                 )
-                activity_id.unlink()
+                activity_id.with_user(user_id).unlink()
                 return render
             else:
                 return self._render_activity_reminder_not_found_message(user=user_id)
@@ -135,15 +146,17 @@ class MailActivityReminderController(HttpControllerUser):
     def activity_snooze(
         self, activity_id, value, unit, token=None, date=None, **kwargs
     ):
+        """Handle snooze action from an activity reminder email link."""
         user_id = self._get_user_id(token)
         if user_id:
             activity_id = self._get_activity_id(activity_id).with_user(user_id)
             if activity_id.exists():
                 previous_deadline = activity_id.date_deadline
                 activity_id.action_snooze(unit, value)
-                message = _("New deadline is %s (was %s)") % (
-                    format_date(user_id.env, activity_id.date_deadline),
-                    format_date(user_id.env, previous_deadline),
+                message = request.env._(
+                    "New deadline is %(new)s (was %(old)s)",
+                    new=format_date(user_id.env, activity_id.date_deadline),
+                    old=format_date(user_id.env, previous_deadline),
                 )
                 return self._render_activity_reminder_message_activity_update(
                     message,
@@ -156,6 +169,7 @@ class MailActivityReminderController(HttpControllerUser):
             return self._render_activity_reminder_invalid_token_message()
 
     def _get_ip_from_request(self, req):
+        """Extract the client IP address from the request, handling proxies."""
         ip_addr = req.httprequest.environ.get("HTTP_X_FORWARDED_FOR")
         if ip_addr:
             ip_addr = ip_addr.split(",")[0]
