@@ -1,10 +1,12 @@
 {
     "name": "Manufacturing Bom Replace Components",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
         "mrp",
+        "mrp_bom_prices",
         "mrp_bom_supplier",
         "mrp_buy_consu",
         "queue_job",
@@ -15,5 +17,5 @@
         "wizard/replace_bom_components.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": False,
+    "installable": True,
 }

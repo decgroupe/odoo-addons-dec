@@ -3,7 +3,7 @@
 
 import logging
 
-from odoo import fields, models, api, _
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -51,10 +51,10 @@ class ReplaceBomComponents(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
+        """Populate bom_ids and bom_product_ids from the active BoM records."""
         rec = super().default_get(fields)
         active_ids = self._context.get("active_ids")
         active_model = self._context.get("active_model")
-
         if active_model == "mrp.bom" and active_ids:
             bom_ids = self.env["mrp.bom"].browse(active_ids)
             rec.update(
@@ -68,25 +68,34 @@ class ReplaceBomComponents(models.TransientModel):
         return rec
 
     def action_replace(self):
+        """Enqueue the replacement job via queue_job."""
         self.with_delay()._do_replace()
 
+    def action_replace_immediately(self):
+        """Perform the replacement job immediately."""
+        self._do_replace()
+
     def _do_replace(self):
+        """Perform the actual product replacement in the selected BoMs.
+
+        Iterates over all selected BoMs, replaces each component product
+        matching the replacement list, and posts a tracking note on each
+        modified BoM.
+        """
         previous_product_ids = self.replacement_ids.mapped("previous_product_id")
-        boms_data = self.env["mrp.bom.line"].read_group(
-            [
+        boms_data = self.env["mrp.bom.line"]._read_group(
+            domain=[
                 ("product_id", "in", previous_product_ids.ids),
                 ("bom_id", "in", self.bom_ids.ids),
             ],
-            ["bom_id"],
-            ["bom_id"],
+            groupby=["bom_id"],
+            aggregates=["__count"],
         )
-        bom_to_process_ids = [x["bom_id"][0] for x in boms_data]
-
-        for bom_id in self.env["mrp.bom"].browse(bom_to_process_ids):
-            _logger.info("Processing BoM %s", bom_id.code)
+        for bom, _count in boms_data:
+            _logger.info("Processing BoM %s", bom.code)
             values = {"lines": {}}
             replace_count = 0
-            for bom_line in bom_id.bom_line_ids.filtered(
+            for bom_line in bom.bom_line_ids.filtered(
                 lambda x: x.product_id in previous_product_ids
             ):
                 for replacement_id in self.replacement_ids:
@@ -98,10 +107,9 @@ class ReplaceBomComponents(models.TransientModel):
                         bom_line.product_id = replacement_id.new_product_id
                         replace_count += 1
                         break
-
             if replace_count > 0:
-                bom_id.message_post_with_view(
+                bom.message_post_with_source(
                     "mrp_bom_replace_components.track_bom_line_template",
-                    values=values,
+                    render_values=values,
                     subtype_id=self.env.ref("mail.mt_note").id,
                 )

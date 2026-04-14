@@ -4,36 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:22+0000\n"
-"PO-Revision-Date: 2023-11-28 10:22+0000\n"
+"POT-Creation-Date: 2026-06-03 10:32+0000\n"
+"PO-Revision-Date: 2026-06-03 10:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "<strong>Added:</strong>"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "<strong>Bill of materials has changed.</strong><br/>"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "<strong>Edited:</strong>"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "<strong>Removed:</strong>"
-msgstr ""
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
@@ -52,11 +32,6 @@ msgid "Before"
 msgstr ""
 
 #. module: mrp_bom_replace_components
-#: model:ir.model,name:mrp_bom_replace_components.model_mrp_bom
-msgid "Bill of Material"
-msgstr ""
-
-#. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components__bom_ids
 msgid "Bill of Materials"
 msgstr ""
@@ -67,13 +42,13 @@ msgid "Cancel"
 msgstr ""
 
 #. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "Component"
+#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.replace_bom_components_form_view
+msgid "Confirm Replacement (delayed)"
 msgstr ""
 
 #. module: mrp_bom_replace_components
 #: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.replace_bom_components_form_view
-msgid "Confirm Replacement"
+msgid "Confirm Replacement (immediate)"
 msgstr ""
 
 #. module: mrp_bom_replace_components
@@ -89,7 +64,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: mrp_bom_replace_components
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_mrp_bom__display_name
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components__display_name
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__display_name
 msgid "Display Name"
@@ -101,29 +75,14 @@ msgid "Do you want to proceed replacement?"
 msgstr ""
 
 #. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "Field"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_mrp_bom__id
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components__id
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__id
 msgid "ID"
 msgstr ""
 
 #. module: mrp_bom_replace_components
-#: model:ir.model.fields,help:mrp_bom_replace_components.field_mrp_bom__xid
-#: model:ir.model.fields,help:mrp_bom_replace_components.field_replace_bom_components__xid
-#: model:ir.model.fields,help:mrp_bom_replace_components.field_replace_bom_tuple__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_mrp_bom____last_update
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components____last_update
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple____last_update
-msgid "Last Modified on"
+#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_line_template
+msgid "L"
 msgstr ""
 
 #. module: mrp_bom_replace_components
@@ -154,11 +113,6 @@ msgid "New"
 msgstr ""
 
 #. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "New Value"
-msgstr ""
-
-#. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__owner_id
 msgid "Owner"
 msgstr ""
@@ -166,11 +120,6 @@ msgstr ""
 #. module: mrp_bom_replace_components
 #: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__previous_product_id
 msgid "Previous"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model_terms:ir.ui.view,arch_db:mrp_bom_replace_components.track_bom_template
-msgid "Previous Value"
 msgstr ""
 
 #. module: mrp_bom_replace_components
@@ -204,13 +153,6 @@ msgstr ""
 #. module: mrp_bom_replace_components
 #: model:ir.model,name:mrp_bom_replace_components.model_replace_bom_tuple
 msgid "Tuple to store product to replace"
-msgstr ""
-
-#. module: mrp_bom_replace_components
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_mrp_bom__xid
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_components__xid
-#: model:ir.model.fields,field_description:mrp_bom_replace_components.field_replace_bom_tuple__xid
-msgid "XML-ID"
 msgstr ""
 
 #. module: mrp_bom_replace_components

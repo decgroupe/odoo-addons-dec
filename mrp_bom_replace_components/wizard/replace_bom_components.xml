@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="replace_bom_components_form_view">
         <field name="name">replace.bom.components@mrp_bom_replace_components</field>
         <field name="model">replace.bom.components</field>
@@ -14,8 +13,8 @@
                 <group>
                     <field name="bom_product_ids" invisible="1" />
                     <field name="replacement_ids">
-                        <tree editable="bottom">
-                            <field name="owner_id" invisible="1" />
+                        <list editable="bottom">
+                            <field name="owner_id" column_invisible="1" />
                             <field
                                 name="previous_product_id"
                                 domain="[('id', 'in', parent.bom_product_ids)]"
@@ -25,7 +24,7 @@
                                 name="new_product_id"
                                 options="{'no_create_edit': True, 'no_quick_create': True}"
                             />
-                        </tree>
+                        </list>
                         <form string="Mapping">
                             <field name="previous_product_id" />
                             <field name="new_product_id" />
@@ -35,27 +34,33 @@
                 <footer>
                     <button
                         class="btn-primary"
-                        string="Confirm Replacement"
+                        string="Confirm Replacement (delayed)"
                         confirm="Do you want to proceed replacement?"
                         name="action_replace"
                         type="object"
                         default_focus="1"
                         context="{}"
-                    >
-                    </button>
+                    />
+                    <button
+                        class="btn-primary"
+                        string="Confirm Replacement (immediate)"
+                        confirm="Do you want to proceed replacement?"
+                        name="action_replace_immediately"
+                        type="object"
+                        context="{}"
+                    />
                     <button
                         class="btn-secondary"
                         string="Cancel"
                         special="cancel"
                         context="{}"
-                    >
-                    </button>
+                    />
                 </footer>
             </form>
         </field>
     </record>
 
-    <record id="act_window_replace_bom_components" model="ir.actions.act_window">
+    <record model="ir.actions.act_window" id="act_window_replace_bom_components">
         <field name="name">🧙‍♂️ Replace components ...</field>
         <field name="binding_model_id" ref="mrp.model_mrp_bom" />
         <field name="binding_view_types">list</field>
@@ -64,5 +69,4 @@
         <field name="binding_type">action</field>
         <field name="target">new</field>
     </record>
-
 </odoo>
