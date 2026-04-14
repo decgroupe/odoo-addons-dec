@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_application_image_form_view">
-        <field name="name">software.application.image.form</field>
+        <field
+            name="name"
+        >software.application.image.form@software_application_launcher</field>
         <field name="model">software.application.image</field>
         <field name="arch" type="xml">
             <form string="Application Images">
@@ -38,5 +39,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

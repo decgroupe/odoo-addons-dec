@@ -1,11 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2021
 
-import json
 
 from odoo import http
 from odoo.http import request
-from odoo.tools.translate import _
 
 URL_V2_BASE = "/api/launcher/v2"
 URL_V2_LAUNCHER_IDENTIFIER = URL_V2_BASE + "/identifier/<int:launcher_identifier>"
@@ -33,6 +31,7 @@ class SoftwareApplicationLauncherControllerV2(http.Controller):
     def _sal_api_v2_get_manifest(
         self, launcher_identifier, asset_identifier=False, with_tooltips=False
     ):
+        """Build and return the launcher manifest data structure."""
         res = {
             "applications": [],
             "resources": [],
@@ -71,6 +70,7 @@ class SoftwareApplicationLauncherControllerV2(http.Controller):
         csrf=False,
     )
     def sal_api_v2_get_manifest(self, launcher_identifier, **kwargs):
+        """Return the launcher manifest without tooltip images."""
         return self._sal_api_v2_get_manifest(launcher_identifier)
 
     @http.route(
@@ -81,6 +81,7 @@ class SoftwareApplicationLauncherControllerV2(http.Controller):
         csrf=False,
     )
     def sal_api_v2_get_manifest_with_images(self, launcher_identifier, **kwargs):
+        """Return the launcher manifest including tooltip images."""
         return self._sal_api_v2_get_manifest(launcher_identifier, with_tooltips=True)
 
     @http.route(
@@ -93,6 +94,7 @@ class SoftwareApplicationLauncherControllerV2(http.Controller):
     def sal_api_v2_get_manifest_from_identifier(
         self, launcher_identifier, asset_identifier, **kwargs
     ):
+        """Return the launcher manifest filtered by application identifier."""
         return self._sal_api_v2_get_manifest(
             launcher_identifier,
             asset_identifier=asset_identifier,

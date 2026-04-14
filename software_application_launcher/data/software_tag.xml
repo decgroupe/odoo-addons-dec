@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="tag_tool" model="software.tag">
         <field name="name">tool</field>
     </record>
-
 </odoo>

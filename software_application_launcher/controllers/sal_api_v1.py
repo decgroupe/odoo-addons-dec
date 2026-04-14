@@ -3,7 +3,6 @@
 
 from odoo import http
 from odoo.http import request
-from odoo.tools.translate import _
 
 URL_V1_BASE = "/api/launcher/v1"
 URL_V1_MANIFEST = URL_V1_BASE + "/Manifest"
@@ -19,6 +18,7 @@ class SoftwareApplicationLauncherController(http.Controller):
     #######################################################################
 
     def _sal_api_v1_get_manifest(self, with_tooltips=False, extra_domain=False):
+        """Build and return the launcher manifest data structure."""
         res = {
             "version": 2,
             "applications": [],
@@ -53,6 +53,7 @@ class SoftwareApplicationLauncherController(http.Controller):
         csrf=False,
     )
     def sal_api_v1_get_manifest(self, **kwargs):
+        """Return the launcher manifest without tooltip images."""
         domain = []
         return self._sal_api_v1_get_manifest(extra_domain=domain)
 
@@ -64,6 +65,7 @@ class SoftwareApplicationLauncherController(http.Controller):
         csrf=False,
     )
     def sal_api_v1_get_manifest_with_images(self, **kwargs):
+        """Return the launcher manifest including tooltip images."""
         return self._sal_api_v1_get_manifest(with_tooltips=True)
 
     @http.route(
@@ -74,5 +76,6 @@ class SoftwareApplicationLauncherController(http.Controller):
         csrf=False,
     )
     def sal_api_v1_get_manifest_from_identifier(self, identifier, **kwargs):
+        """Return the launcher manifest filtered by application identifier."""
         domain = [("identifier", "=", identifier)]
         return self._sal_api_v1_get_manifest(with_tooltips=True, extra_domain=domain)

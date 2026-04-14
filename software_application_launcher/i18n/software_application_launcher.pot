@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:31+0000\n"
-"PO-Revision-Date: 2023-11-28 10:31+0000\n"
+"POT-Creation-Date: 2026-06-03 11:07+0000\n"
+"PO-Revision-Date: 2026-06-03 11:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
 #: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_image_form_view
 msgid "Application Images"
+msgstr ""
+
+#. module: software_application_launcher
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__application_ids
+#: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
+msgid "Applications"
 msgstr ""
 
 #. module: software_application_launcher
@@ -44,7 +50,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: software_application_launcher
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__display_name
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__display_name
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__display_name
 msgid "Display Name"
@@ -61,17 +66,9 @@ msgid "Display as « Soon »"
 msgstr ""
 
 #. module: software_application_launcher
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__id
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__id
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__id
 msgid "ID"
-msgstr ""
-
-#. module: software_application_launcher
-#: model:ir.model.fields,help:software_application_launcher.field_software_application__xid
-#: model:ir.model.fields,help:software_application_launcher.field_software_application_image__xid
-#: model:ir.model.fields,help:software_application_launcher.field_software_tag__xid
-msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: software_application_launcher
@@ -91,13 +88,6 @@ msgid "Image of the application (automatically resized)."
 msgstr ""
 
 #. module: software_application_launcher
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_application____last_update
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image____last_update
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: software_application_launcher
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__write_uid
 #: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__write_uid
 msgid "Last Updated by"
@@ -110,8 +100,23 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: software_application_launcher
-#: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
+#: model:ir.model.fields.selection,name:software_application_launcher.selection__software_application__type__launcher
 msgid "Launcher"
+msgstr ""
+
+#. module: software_application_launcher
+#: model:ir.actions.act_window,name:software_application_launcher.act_window_software_application_launcher
+msgid "Launcher Apps"
+msgstr ""
+
+#. module: software_application_launcher
+#: model:ir.ui.menu,name:software_application_launcher.menu_software_application_launcher
+msgid "Launchers"
+msgstr ""
+
+#. module: software_application_launcher
+#: model_terms:ir.ui.view,arch_db:software_application_launcher.software_application_form_view
+msgid "Manifest"
 msgstr ""
 
 #. module: software_application_launcher
@@ -175,8 +180,8 @@ msgid "Tag name already exists!"
 msgstr ""
 
 #. module: software_application_launcher
+#. odoo-python
 #: code:addons/software_application_launcher/models/software_tag.py:0
-#, python-format
 msgid "This tag cannot be removed"
 msgstr ""
 
@@ -191,8 +196,6 @@ msgid "Tooltips"
 msgstr ""
 
 #. module: software_application_launcher
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__xid
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_application_image__xid
-#: model:ir.model.fields,field_description:software_application_launcher.field_software_tag__xid
-msgid "XML-ID"
+#: model:ir.model.fields,field_description:software_application_launcher.field_software_application__type
+msgid "Type"
 msgstr ""

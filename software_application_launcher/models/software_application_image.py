@@ -1,7 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
+import base64
+import logging
+
 from odoo import api, fields, models, tools
+
+_logger = logging.getLogger(__name__)
 
 
 class SoftwareApplicationImage(models.Model):
@@ -10,6 +15,7 @@ class SoftwareApplicationImage(models.Model):
 
     @api.model
     def _default_name(self):
+        """Compute a default name for a new image based on existing siblings."""
         res = 0
         if "image_ids" in self.env.context:
             for o2m in self.env.context.get("image_ids"):
@@ -26,7 +32,7 @@ class SoftwareApplicationImage(models.Model):
                         if image_num > res:
                             res = image_num
                     except ValueError:
-                        pass
+                        _logger.debug("image name suffix is not a number: %s", name)
         return "tooltip_%.2d" % (res + 1)
 
     name = fields.Char(
@@ -60,31 +66,38 @@ class SoftwareApplicationImage(models.Model):
 
     @api.model
     def default_get(self, fields):
+        """Return default field values for a new image record."""
         res = super().default_get(fields)
         return res
 
     @api.depends("image")
     def _compute_image(self):
+        """Compute the resized image from the raw image binary."""
         for rec in self:
             if rec.env.context.get("bin_size"):
                 rec.resized_image = rec.image
             elif rec.resize_x and rec.resize_y:
-                rec.resized_image = tools.image_process(
-                    rec.image, size=(rec.resize_x, rec.resize_y), quality=30
-                )
+                raw = base64.b64decode(rec.image or b"") or False
+                if raw:
+                    processed = tools.image_process(
+                        raw, size=(rec.resize_x, rec.resize_y), quality=30
+                    )
+                    rec.resized_image = (
+                        base64.b64encode(processed) if processed else False
+                    )
+                else:
+                    rec.resized_image = False
             else:
                 rec.resized_image = rec.image
 
     @api.depends("resize_x", "resize_y")
     def _inverse_image(self):
+        """Store the original image from the resized image value."""
         self.ensure_one()
         for rec in self:
-            value = rec.resized_image
-            if isinstance(value, str):
-                value = value.encode("ascii")
-            if rec.resize_x and rec.resize_y:
-                rec.image = tools.image_process(
-                    value, size=(rec.resize_x, rec.resize_y)
-                )
+            raw = base64.b64decode(rec.resized_image or b"") or False
+            if rec.resize_x and rec.resize_y and raw:
+                processed = tools.image_process(raw, size=(rec.resize_x, rec.resize_y))
+                rec.image = base64.b64encode(processed) if processed else False
             else:
-                rec.image = value
+                rec.image = rec.resized_image

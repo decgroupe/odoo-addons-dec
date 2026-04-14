@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -21,6 +21,7 @@ class SoftwareTag(models.Model):
     ]
 
     def unlink(self):
+        """Prevent deletion of the protected 'tool' tag."""
         if self.env.ref("software_application_launcher.tag_tool").id in self.ids:
-            raise UserError(_("This tag cannot be removed"))
+            raise UserError(self.env._("This tag cannot be removed"))
         return super().unlink()

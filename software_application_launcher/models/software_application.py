@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2021
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class SoftwareApplication(models.Model):
@@ -63,18 +63,29 @@ class SoftwareApplication(models.Model):
         return res
 
     def write(self, vals):
+        """Clear launcher images when application type is set to 'other'."""
         if "type" in vals:
             if vals.get("type") == "other":
                 vals.update(
                     {
                         "corner_image": False,
                         "pictogram_image": False,
-                        "image_ids": [(6, 0, [])],
+                        "image_ids": [Command.clear()],
                     }
                 )
         return super().write(vals)
 
+    @api.model
+    def _get_launcher_manifest_domain(self):
+        """Return the domain to filter applications
+        included in the launcher manifest.
+        """
+        return [
+            ("type", "in", ["inhouse", "resource"]),
+        ]
+
     def _get_launcher_manifest_entry(self, with_tooltips=False):
+        """Build and return the manifest entry dict for this application."""
         self.ensure_one()
         is_tool = False
         tag_tool = self.env.ref("software_application_launcher.tag_tool")

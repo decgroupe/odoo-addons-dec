@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="software_application_form_view">
-        <field name="name">software.application.form@software_license_launcher</field>
+        <field
+            name="name"
+        >software.application.form@software_application_launcher</field>
         <field name="model">software.application</field>
         <field
             name="inherit_id"
@@ -10,13 +11,15 @@
         />
         <field name="arch" type="xml">
             <field name="resource_ids" position="attributes">
-                <attribute name="attrs">{'invisible': [('type', 'not in', ['inhouse', 'launcher'])]}</attribute>
+                <attribute
+                    name="invisible"
+                >type not in ['inhouse', 'launcher']</attribute>
             </field>
             <page name="resources" position="before">
                 <page
                     string="Applications"
                     name="launcher_applications"
-                    attrs="{'invisible': [('type', '!=', 'launcher')]}"
+                    invisible="type != ['launcher']"
                 >
                     <field name="application_ids" />
                 </page>
@@ -25,7 +28,7 @@
                 <page
                     string="Manifest"
                     name="manifest"
-                    attrs="{'invisible': [('type', 'not in', ['inhouse', 'resource'])]}"
+                    invisible="type not in ['inhouse', 'resource']"
                 >
                     <group name="properties">
                         <group>
@@ -50,7 +53,7 @@
                             nolabel="1"
                             class="o_website_sale_image_list"
                             context="{
-                                'default_application_id': active_id,
+                                'default_application_id': id,
                                 'image_ids': image_ids,
                                 'default_resize_x': 225,
                                 'default_resize_y': 150,
@@ -64,7 +67,7 @@
                                 <field name="name" />
                                 <field name="resized_image" />
                                 <templates>
-                                    <t t-name="kanban-box">
+                                    <t t-name="card">
                                         <div
                                             class="o_attachment oe_kanban_global_click o_website_sale_image_card"
                                         >
@@ -138,14 +141,13 @@
                     </group>
                 </page>
             </page>
-
         </field>
     </record>
 
     <record model="ir.actions.act_window" id="act_window_software_application_launcher">
         <field name="name">Launcher Apps</field>
         <field name="res_model">software.application</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field
             name="view_id"
             ref="software_application.software_application_tree_view"
@@ -157,5 +159,4 @@
         <field name="domain">[('type', '=', 'launcher')]</field>
         <field name="context">{'default_type': 'launcher'}</field>
     </record>
-
 </odoo>

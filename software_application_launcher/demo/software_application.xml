@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="software.application" id="res_spacelauncher_userguide">
         <field name="name">Space-Launcher's Userguide</field>
         <field name="type">resource</field>
@@ -44,7 +43,7 @@
     <record model="software.application" id="sa_spacelauncher">
         <field name="name">Space-Launcher</field>
         <field name="type">launcher</field>
-        <field name="identifier" eval="998"/>
+        <field name="identifier" eval="998" />
         <field
             name="image"
             type="base64"
@@ -156,8 +155,10 @@
     <record model="software.application" id="sa_securia">
         <field name="name">Securia Privacy</field>
         <field name="type">inhouse</field>
-        <field name="info">This application is private and should not be visible externally (e.g., in portal or API).</field>
-        <field name="identifier" eval="100"/>
+        <field
+            name="info"
+        >This application is private and should not be visible externally (e.g., in portal or API).</field>
+        <field name="identifier" eval="100" />
         <field
             name="image"
             type="base64"
@@ -177,5 +178,4 @@
             ]"
         />
     </record>
-
 </odoo>
