@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_bom_track_components
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-03 10:32+0000\n"
+"PO-Revision-Date: 2026-06-03 10:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "<strong>Added:</strong>"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid ""
+"<strong>Bill of materials has changed.</strong>\n"
+"            <br/>"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "<strong>Edited:</strong>"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "<strong>Removed:</strong>"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model:ir.model,name:mrp_bom_track_components.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "Component"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "Field"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "L"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "New Value"
+msgstr ""
+
+#. module: mrp_bom_track_components
+#: model_terms:ir.ui.view,arch_db:mrp_bom_track_components.track_bom_template
+msgid "Previous Value"
+msgstr ""

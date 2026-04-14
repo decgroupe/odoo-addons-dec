@@ -1,5 +1,5 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
-# Written by Yann Papouin <ypa at decgroupe.com>, Nov 2020
+# Written by Yann Papouin <ypa at decgroupe.com>, Apr 2026
 
 
 from odoo import models
@@ -107,7 +107,7 @@ class MrpBom(models.Model):
             for key in TRACKED_FIELDS:
                 tracked_fields[key] = IrModelFields.get_field_string(BomLine._name)[key]
             self.message_post_with_source(
-                "mrp_bom_replace_components.track_bom_template",
+                "mrp_bom_track_components.track_bom_template",
                 render_values={
                     "tracked_fields": tracked_fields,
                     "edited_lines": edited_lines,
