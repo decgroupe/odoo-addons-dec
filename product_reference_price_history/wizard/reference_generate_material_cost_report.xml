@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="reference_generate_material_cost_report_wizard_view">
+        <field
+            name="name"
+        >reference.generate_material_cost_report.form@product_reference_price_history</field>
         <field name="model">reference.generate_material_cost_report</field>
         <field name="inherit_id" ref="wizard_run.wizard_run_wizard_view" />
         <field name="arch" type="xml">
@@ -12,7 +14,7 @@
                 <group>
                     <field name="use_custom_date_range" />
                 </group>
-                <group attrs="{'invisible': [('use_custom_date_range', '=', False)]}">
+                <group invisible="not use_custom_date_range">
                     <p name="custom_dates_help">
                         The wizard will try, for each reference, to find the most
                         recent price between <b>Before</b> and <b>After</b> and the
@@ -47,5 +49,4 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
 </odoo>

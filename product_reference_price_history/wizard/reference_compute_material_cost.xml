@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="reference_compute_material_cost_wizard_view">
+        <field
+            name="name"
+        >reference.compute_material_cost.form@product_reference_price_history</field>
         <field name="model">reference.compute_material_cost</field>
         <field name="inherit_id" ref="wizard_run.wizard_run_wizard_view" />
         <field name="arch" type="xml">
@@ -18,5 +20,4 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
 </odoo>

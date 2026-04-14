@@ -23,9 +23,7 @@ class RefPrice(models.Model):
     value = fields.Float("Price")
     product_count = fields.Integer("Products")
 
-    def name_get(self):
-        result = []
-        for price in self:
-            result.append((price.id, ""))
-
-        return result
+    def _compute_display_name(self):
+        """Return an empty string as display name for all prices."""
+        for record in self:
+            record.display_name = ""

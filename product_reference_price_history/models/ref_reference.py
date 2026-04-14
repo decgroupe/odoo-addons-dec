@@ -3,9 +3,9 @@
 
 import logging
 from datetime import datetime
+from urllib.parse import urlencode
 
 from dateutil.relativedelta import relativedelta
-from werkzeug.urls import url_encode
 
 from odoo import api, fields, models
 from odoo.tools.misc import formatLang
@@ -23,15 +23,16 @@ class RefReference(models.Model):
     )
 
     def run_material_cost_scheduler(self):
+        """Run the material cost scheduler for all or selected references."""
         if not self.ids:
             domain = []
             references = self.search(domain)
         else:
             references = self
-
         references._run_material_cost_scheduler()
 
     def _run_material_cost_scheduler(self):
+        """Compute material cost for each reference and store a new price if changed."""
         MrpBom = self.env["mrp.bom"]
         RefPrice = self.env["ref.price"]
 
@@ -45,7 +46,9 @@ class RefReference(models.Model):
             cost_price = 0.0
             product_count = 0
             if rec.product_id and rec.product_id.bom_ids:
-                bom_id = MrpBom._bom_find(product_tmpl=rec.product_id)
+                bom_id = MrpBom._bom_find(rec.product_variant_id)[
+                    rec.product_variant_id
+                ]
                 if bom_id:
                     _logger.info(
                         "Compute material cost price for [%s] %s",
@@ -93,7 +96,7 @@ class RefReference(models.Model):
         total_seconds = (end_time - start_time).total_seconds()
         hours, remainder = divmod(total_seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
-        duration = "{:02}:{:02}:{:02}".format(int(hours), int(minutes), int(seconds))
+        duration = f"{int(hours):02}:{int(minutes):02}:{int(seconds):02}"
 
         ctx = self.env.context.copy()
         ctx.update(
@@ -104,7 +107,7 @@ class RefReference(models.Model):
             }
         )
 
-        self.with_context(ctx).generate_material_cost_report()
+        self.with_context(**ctx).generate_material_cost_report()
 
     def generate_material_cost_report(
         self,
@@ -113,6 +116,7 @@ class RefReference(models.Model):
         format_prices=True,
         email_to=False,
     ):
+        """Generate and send the material cost report email."""
         domain = [("state", "!=", "obsolete")]
         if self.ids:
             domain += [("id", "in", self.ids)]
@@ -123,6 +127,8 @@ class RefReference(models.Model):
         )
 
     def _get_price_from_range(self, date_before=False, date_after=False):
+        """Return the most recent price within the given date range
+        for this reference."""
         self.ensure_one()
         domain = [("reference_id", "=", self.id)]
         if date_before:
@@ -132,6 +138,7 @@ class RefReference(models.Model):
         return self.env["ref.price"].search(domain, limit=1)
 
     def _get_last_prices(self):
+        """Return the last 2 price records for this reference."""
         self.ensure_one()
         domain = [("reference_id", "=", self.id)]
         return self.env["ref.price"].search(domain, limit=2)
@@ -139,7 +146,9 @@ class RefReference(models.Model):
     def _generate_material_cost_report(
         self, date_before, date_after, format_prices, email_to
     ):
-        # Get current day as seen by the user (timezone)
+        """Build report lines for references with increased costs
+        and send the report."""
+        # get current day as seen by the user (timezone)
         today = fields.Date.context_today(self)
 
         report_lines = []
@@ -179,9 +188,7 @@ class RefReference(models.Model):
                     total_references += 1
                     total_products += line.get("price0_product_count", 0)
                     _logger.info(
-                        "[{}] {} added for reporting".format(
-                            rec.value, rec.product_id.name
-                        )
+                        f"[{rec.value}] {rec.product_id.name} added for reporting"
                     )
                     # if len(report_lines) > 10:
                     #     break
@@ -198,24 +205,24 @@ class RefReference(models.Model):
         )
 
         if report_lines:
-            self.with_context(ctx)._send_report(report_lines, email_to)
+            self.with_context(**ctx)._send_report(report_lines, email_to)
 
     def _get_reference_report_line(self, reference, prices, format_prices):
+        """Build a report line dict for a single reference
+        with price comparison data."""
         base = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         ref_action = self.env["ir.actions.actions"]._for_xml_id(
             "product_reference.act_window_ref_reference"
         )
-        href = "%s/web#%s" % (
-            base,
-            url_encode(
-                {
-                    "id": reference.id,
-                    "model": "ref.reference",
-                    "action": ref_action["id"],
-                    "view_type": "form",
-                }
-            ),
+        query = urlencode(
+            {
+                "id": reference.id,
+                "model": "ref.reference",
+                "action": ref_action["id"],
+                "view_type": "form",
+            }
         )
+        href = f"{base}/web#{query}"
 
         def formatted_price(value):
             if format_prices:
@@ -251,6 +258,7 @@ class RefReference(models.Model):
 
     @api.model
     def _get_cost_report_default_email(self):
+        """Return the default recipient email from system parameters."""
         email = (
             self.env["ir.config_parameter"]
             .sudo()
@@ -259,7 +267,8 @@ class RefReference(models.Model):
         return email
 
     def _send_report(self, report_lines, email_to=False):
-        # Sort by diff
+        """Sort report lines and send the material cost report by email."""
+        # sort by diff
         report_lines = sorted(
             report_lines,
             key=lambda k: k["diff_percent"],
@@ -291,7 +300,7 @@ class RefReference(models.Model):
             "author_id": self.env.user.partner_id.id,
         }
         # Render the e-mail using given context
-        email_template.sudo().with_context(ctx).send_mail(
+        email_template.sudo().with_context(**ctx).send_mail(
             False, force_send=True, email_values=values
         )
         # Note that we could set `force_send` to False in order to

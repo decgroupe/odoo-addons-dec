@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="ref_price_tree_view">
-        <field name="name">ref.price.tree@product_reference_price_history</field>
+        <field name="name">ref.price.list@product_reference_price_history</field>
         <field name="model">ref.price</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="date" />
                 <field name="value" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -28,5 +27,4 @@
         <field name="res_model">ref.price</field>
         <field name="view_id" ref="ref_price_tree_view" />
     </record>
-
 </odoo>

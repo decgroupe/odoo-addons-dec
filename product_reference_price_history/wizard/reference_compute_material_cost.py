@@ -10,7 +10,9 @@ class ReferenceComputeMaterialCost(models.TransientModel):
     _description = "Compute Material Cost Manually"
 
     def pre_execute(self):
+        """Pre-execution hook (no-op for this wizard)."""
         pass
 
     def execute(self):
+        """Execute the material cost computation for all references."""
         self.env["ref.reference"].run_material_cost_scheduler()
