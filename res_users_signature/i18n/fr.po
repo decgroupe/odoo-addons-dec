@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
-"PO-Revision-Date: 2023-11-28 14:31+0100\n"
+"POT-Creation-Date: 2026-06-03 11:00+0000\n"
+"PO-Revision-Date: 2026-06-03 15:58+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,7 +14,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: res_users_signature
+#. odoo-python
+#: code:addons/res_users_signature/models/res_users_signature_template.py:0
+msgid "%s (copy)"
+msgstr "%s (copie)"
 
 #. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_res_users__signature_social_buttons
@@ -59,18 +65,25 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
+msgid "Custom Logo"
+msgstr "Logo personnalisé"
+
+#. module: res_users_signature
 #: model:ir.model,name:res_users_signature.model_hr_department
 msgid "Department"
 msgstr "Département"
 
 #. module: res_users_signature
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__display_name
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__display_name
-#: model:ir.model.fields,field_description:res_users_signature.field_res_partner__display_name
-#: model:ir.model.fields,field_description:res_users_signature.field_res_users__display_name
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
+
+#. module: res_users_signature
+#: model:ir.model,name:res_users_signature.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion par e-mail"
 
 #. module: res_users_signature
 #: model:ir.model,name:res_users_signature.model_hr_employee
@@ -78,16 +91,17 @@ msgid "Employee"
 msgstr "Employé"
 
 #. module: res_users_signature
+#. odoo-python
 #: code:addons/res_users_signature/models/res_users_signature_template.py:0
-#, python-format
-msgid "Failed to render template %r using values %r"
-msgstr "Echec de rendu du modèle %r utilisant les valeurs %r"
+msgid "Failed to render template %(template)r using values %(variables)r"
+msgstr ""
+"Echec de rendu du modèle %(template)r utilisant les valeurs %(variables)r"
 
 #. module: res_users_signature
 #: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
 #: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
-msgid "Generate Signatures from Company Template"
-msgstr "Générer des signatures à partir du modèle de la société"
+msgid "HTML"
+msgstr "HTML"
 
 #. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__body_html
@@ -95,31 +109,9 @@ msgid "Html Version"
 msgstr "Version Html"
 
 #. module: res_users_signature
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__id
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__id
-#: model:ir.model.fields,field_description:res_users_signature.field_res_partner__id
-#: model:ir.model.fields,field_description:res_users_signature.field_res_users__id
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__id
 msgid "ID"
 msgstr "ID"
-
-#. module: res_users_signature
-#: model:ir.model.fields,help:res_users_signature.field_hr_department__xid
-#: model:ir.model.fields,help:res_users_signature.field_hr_employee__xid
-#: model:ir.model.fields,help:res_users_signature.field_res_partner__xid
-#: model:ir.model.fields,help:res_users_signature.field_res_users__xid
-#: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: res_users_signature
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_department____last_update
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee____last_update
-#: model:ir.model.fields,field_description:res_users_signature.field_res_partner____last_update
-#: model:ir.model.fields,field_description:res_users_signature.field_res_users____last_update
-#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__write_uid
@@ -187,6 +179,12 @@ msgid "Primary Color"
 msgstr "Couleur principale"
 
 #. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
+msgid "Report Signature"
+msgstr "Signature de rapport"
+
+#. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_res_users_signature_template__primary_color
 msgid ""
 "Same color as the one used to render this signature, it will be used as a "
@@ -214,6 +212,17 @@ msgstr ""
 "servira de référence lors du remplacement par celle du département"
 
 #. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
+msgid "Short Signature"
+msgstr "Signature courte"
+
+#. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.department_form_view
+msgid "Signature Branding"
+msgstr "Identité visuelle de signature"
+
+#. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_logo
 msgid "Signature Logo"
 msgstr "Logo personnalisé"
@@ -228,6 +237,12 @@ msgstr "Nom de fichier du logo de la signature"
 #: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_signature_template_form_view
 msgid "Signature Template"
 msgstr "Modèle de signature"
+
+#. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
+msgid "Signatures"
+msgstr "Signatures"
 
 #. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_social_buttons
@@ -247,6 +262,18 @@ msgid "Technical field only used to get the original file name and extension"
 msgstr ""
 "Champ technique utilisé uniquement pour obtenir le nom et l’extension du "
 "fichier d’origine"
+
+#. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
+msgid "Template"
+msgstr "Modèle"
+
+#. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
+msgid "Text"
+msgstr "Texte"
 
 #. module: res_users_signature
 #: model:ir.model.fields,field_description:res_users_signature.field_res_users__signature_text
@@ -273,6 +300,12 @@ msgstr ""
 "pas le rendu html"
 
 #. module: res_users_signature
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_form_view
+#: model_terms:ir.ui.view,arch_db:res_users_signature.res_users_preferences_form_view
+msgid "Update Signatures"
+msgstr "Mettre à jour les signatures"
+
+#. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_hr_employee__other_work_emails
 msgid "Use one line per e-mail"
 msgstr "Utiliser une ligne par courriel"
@@ -283,10 +316,15 @@ msgid "Use one line per website"
 msgstr "Utiliser une ligne par site Web"
 
 #. module: res_users_signature
+#: model:ir.model,name:res_users_signature.model_res_users
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: res_users_signature
+#. odoo-python
 #: code:addons/res_users_signature/models/res_users_signature_template.py:0
-#, python-format
-msgid "User %s is not linked to an employee"
-msgstr "L'utilisateur %s n'est pas lié à un employé"
+msgid "User %(name)s is not linked to an employee"
+msgstr "L'utilisateur %(name)s n'est pas lié à un employé"
 
 #. module: res_users_signature
 #: model:res.users.signature.template,name:res_users_signature.user_signature_template
@@ -294,20 +332,18 @@ msgid "User Signature Template"
 msgstr "Modèle de signature de base"
 
 #. module: res_users_signature
-#: model:ir.model,name:res_users_signature.model_res_users
-msgid "Users"
-msgstr "Utilisateurs"
-
-#. module: res_users_signature
 #: model:ir.model.fields,help:res_users_signature.field_hr_employee__work_phone_extension
 msgid "Work Phone Extension"
 msgstr "Numéro de poste du téléphone professionnel"
 
-#. module: res_users_signature
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_department__xid
-#: model:ir.model.fields,field_description:res_users_signature.field_hr_employee__xid
-#: model:ir.model.fields,field_description:res_users_signature.field_res_partner__xid
-#: model:ir.model.fields,field_description:res_users_signature.field_res_users__xid
-#: model:ir.model.fields,field_description:res_users_signature.field_res_users_signature_template__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Generate Signatures from Company Template"
+#~ msgstr "Générer des signatures à partir du modèle de la société"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

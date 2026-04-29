@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="ir.ui.view" id="res_users_signature_template_form_view">
         <field name="name">res.users.signature.template.form@res_users_signature</field>
         <field name="model">res.users.signature.template</field>
@@ -21,8 +20,7 @@
                             <field name="color_suffix" />
                             <field name="primary_color" />
                         </group>
-                        <group name="secondary">
-                        </group>
+                        <group name="secondary" />
                         <label for="body_text" />
                         <field name="body_text" />
                         <label for="body_html" />
@@ -34,5 +32,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

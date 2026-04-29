@@ -2,15 +2,12 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Jan 2022
 
 import base64
-import functools
 import io
 
 import odoo.http as http
-from odoo import _, tools
+from odoo import tools
 from odoo.http import request
-from odoo.modules import get_resource_path
 from odoo.tools.mimetypes import guess_mimetype
-
 
 URL_BASE = "/web/static/signature"
 
@@ -39,16 +36,17 @@ class SignatureController(http.Controller):
             image_data = io.BytesIO(image_base64)
             mimetype = guess_mimetype(image_base64, default="image/png")
             mtime = user_id.write_date
-            response = http.send_file(
+
+            response = http._send_file(
                 image_data,
-                filename=signature_logo_filename,
+                request.httprequest.environ,
+                download_name=signature_logo_filename,
                 mimetype=mimetype,
-                mtime=mtime,
+                last_modified=mtime,
             )
         else:
-            placeholder = functools.partial(
-                get_resource_path, "web", "static", "src", "img"
-            )
-            response = http.send_file(placeholder("placeholder.png"))
+            response = http.Stream.from_path(
+                tools.file_path("web/static/img/logo.png")
+            ).get_response()
 
         return response

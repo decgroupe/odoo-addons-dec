@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- Update preferences form !-->
     <record model="ir.ui.view" id="res_users_preferences_form_view">
         <field name="name">res.users.preferences.form@res_users_signature</field>
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form_simple_modif" />
         <field name="arch" type="xml">
-            <field name="signature" position="before">
-                <field name="signature_template" readonly="0" />
-                <field name="signature_text" readonly="0" />
-                <field
-                    name="signature_logo"
-                    widget="image"
-                    class="oe_avatar"
-                    readonly="0"
-                    filename="signature_logo_filename"
-                />
-                <field name="signature_logo_filename" invisible="1" />
-            </field>
-            <field name="signature" position="after">
-                <field name="signature_answer" readonly="0" />
-                <field name="signature_social_buttons" readonly="0" />
-                <button
-                    name="action_generate_signatures"
-                    string="Generate Signatures from Company Template"
-                    type="object"
-                    class="btn-primary"
-                    attrs="{
-                        'invisible': [
-                            ('name', '=', False),
-                        ]
-                    }"
-                >
-                </button>
-            </field>
+            <page name="preferences_page" position="after">
+                <page name="signature_page" string="Signatures">
+                    <group string="Template" col="4">
+                        <field
+                            name="signature_template"
+                            string="Template"
+                            readonly="0"
+                        />
+                        <button
+                            name="action_generate_signatures"
+                            string="Update Signatures"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not name"
+                        />
+                    </group>
+                    <group string="Text">
+                        <field name="signature_text" string="Report Signature" />
+                    </group>
+                    <group string="HTML" col="4">
+                        <field name="signature" />
+                        <field
+                            name="signature_logo"
+                            string="Custom Logo"
+                            widget="image"
+                            class="oe_avatar"
+                            readonly="0"
+                            filename="signature_logo_filename"
+                        />
+                        <field name="signature_answer" string="Short Signature" />
+                        <field name="signature_social_buttons" />
+                    </group>
+                </page>
+            </page>
         </field>
     </record>
 
@@ -44,35 +49,40 @@
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
-            <field name="signature" position="before">
-                <field name="signature_template" />
-                <field name="signature_text" />
-                <field
-                    name="signature_logo"
-                    widget="image"
-                    class="oe_avatar"
-                    readonly="0"
-                    filename="signature_logo_filename"
-                />
-                <field name="signature_logo_filename" invisible="1" />
-            </field>
-            <field name="signature" position="after">
-                <field name="signature_answer" readonly="0" />
-                <field name="signature_social_buttons" readonly="0" />
-                <button
-                    name="action_generate_signatures"
-                    string="Generate Signatures from Company Template"
-                    type="object"
-                    class="btn-primary"
-                    attrs="{
-                        'invisible': [
-                            ('name', '=', False),
-                        ]
-                    }"
-                >
-                </button>
-            </field>
+            <page name="preferences" position="after">
+                <page name="signature_page" string="Signatures">
+                    <group string="Template" col="4">
+                        <field
+                            name="signature_template"
+                            string="Template"
+                            readonly="0"
+                        />
+                        <button
+                            name="action_generate_signatures"
+                            string="Update Signatures"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not name"
+                        />
+                    </group>
+                    <group string="Text">
+                        <field name="signature_text" string="Report Signature" />
+                    </group>
+                    <group string="HTML" col="4">
+                        <field name="signature" />
+                        <field
+                            name="signature_logo"
+                            string="Custom Logo"
+                            widget="image"
+                            class="oe_avatar"
+                            readonly="0"
+                            filename="signature_logo_filename"
+                        />
+                        <field name="signature_answer" string="Short Signature" />
+                        <field name="signature_social_buttons" />
+                    </group>
+                </page>
+            </page>
         </field>
     </record>
-
 </odoo>

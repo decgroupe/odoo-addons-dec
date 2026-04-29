@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 from dateutil.relativedelta import relativedelta
 from werkzeug import urls
 
-from odoo import _, fields, models, tools
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 from ..controllers import main
@@ -103,27 +103,17 @@ class ResUsersSignatureTemplate(models.Model):
         sanitize=False,
     )
 
-    def _render_template(self, template_txt, res_id):
-        self.ensure_one()
-        # try to load the template
-        try:
-            mako_env = (
-                mako_safe_template_env
-                if self.env.context.get("safe")
-                else mako_template_env
-            )
-            template = mako_env.from_string(tools.ustr(template_txt))
-        except Exception:
-            _logger.info("Failed to load template %r", template_txt, exc_info=True)
-            return False
+    def copy_data(self, default=None):
+        default = dict(default or {})
+        vals_list = super().copy_data(default=default)
+        if "name" not in default:
+            for plan, vals in zip(self, vals_list, strict=True):
+                vals["name"] = self.env._("%s (copy)", plan.name)
+        return vals_list
 
-        user = self.env["res.users"].browse(res_id)
-        if not user.employee_ids:
-            raise UserError(_("User %s is not linked to an employee") % user.name)
-        else:
-            employee = user.employee_ids[0]
-
-        # Get firstname and lastname from name
+    def _build_template_variables(self, user, employee):
+        """Build the dict of variables exposed to mako templates."""
+        # get firstname and lastname from name
         name = employee.name.split(" ", 1)
         if len(name) > 1:
             name = [" ".join(name[1:]), name[0]]
@@ -132,8 +122,7 @@ class ResUsersSignatureTemplate(models.Model):
                 name.append("")
         firstname = name[1]
         lastname = name[0]
-
-        # Combine all e-mails to a list
+        # combine all e-mails to a list
         emails = []
         if employee.work_email:
             emails.append(employee.work_email)
@@ -141,8 +130,7 @@ class ResUsersSignatureTemplate(models.Model):
             for email in employee.other_work_emails.split("\n"):
                 if email not in emails:
                     emails.append(email)
-
-        # Combine all websites to a list
+        # combine all websites to a list
         websites = []
         if employee.address_id.website:
             websites.append(employee.address_id.website)
@@ -150,6 +138,10 @@ class ResUsersSignatureTemplate(models.Model):
             for website in employee.other_websites.split("\n"):
                 if website not in websites:
                     websites.append(website)
+
+        def replace_space_thinspace(value):
+            """Replace standard space with thinspace."""
+            return value.replace(" ", "\u2009")
 
         website = employee.address_id.website or ""
         email = employee.work_email or ""
@@ -159,16 +151,11 @@ class ResUsersSignatureTemplate(models.Model):
         street1 = employee.address_id.street or ""
         street2 = employee.address_id.street2 or ""
         city = employee.address_id.city or ""
-        zip = employee.address_id.zip or ""
+        zip_code = employee.address_id.zip or ""
         company_name = employee.address_id.name or ""
         company_phone = employee.address_id.phone or ""
         company_fax = employee.address_id.fax or ""
-
-        def replace_space_thinspace(value):
-            """Replace standard space with thinspace"""
-            return value.replace(" ", " ")
-
-        variables = {
+        return {
             "user": user,
             "company": user.company_id,
             "employee": employee,
@@ -183,7 +170,7 @@ class ResUsersSignatureTemplate(models.Model):
             "street1": street1,
             "street2": street2,
             "city": city,
-            "zip": zip,
+            "zip": zip_code,
             "company_name": company_name,
             "company_phone": replace_space_thinspace(company_phone),
             "company_phone_callable": company_phone.replace(" ", ""),
@@ -194,38 +181,66 @@ class ResUsersSignatureTemplate(models.Model):
             "ctx": self._context,  # context kw would clash with mako internals
         }
 
+    def _apply_brand_replacements(self, render_result, employee):
+        """Apply logo URL and color replacements based on department settings."""
+        if self.logo_url and employee.user_id.signature_logo:
+            base = main.URL_BASE
+            if base[-1] != "/":
+                base += "/"
+            signature_logo_url = urljoin(base, employee.user_id.signature_logo_filename)
+            render_result = render_result.replace(self.logo_url, signature_logo_url)
+        elif self.logo_url and employee.department_id.signature_logo_url:
+            render_result = render_result.replace(
+                self.logo_url, employee.department_id.signature_logo_url
+            )
+        if self.color_suffix and employee.department_id.signature_color_suffix:
+            render_result = render_result.replace(
+                self.color_suffix, employee.department_id.signature_color_suffix
+            )
+        if self.primary_color and employee.department_id.signature_primary_color:
+            render_result = render_result.replace(
+                self.primary_color, employee.department_id.signature_primary_color
+            )
+        return render_result
+
+    def _render_template(self, template_txt, res_id):
+        """Render a mako template for the given user (identified by res_id)."""
+        self.ensure_one()
+        # try to load the template
+        try:
+            mako_env = (
+                mako_safe_template_env
+                if self.env.context.get("safe")
+                else mako_template_env
+            )
+            template = mako_env.from_string(template_txt)
+        except Exception:
+            _logger.info("Failed to load template %r", template_txt, exc_info=True)
+            return False
+        user = self.env["res.users"].browse(res_id)
+        if not user.employee_ids:
+            raise UserError(
+                self.env._("User %(name)s is not linked to an employee", name=user.name)
+            )
+        employee = user.employee_ids[0]
+        variables = self._build_template_variables(user, employee)
+
         try:
             render_result = template.render(variables)
-
-            if self.logo_url and employee.user_id.signature_logo:
-                base = main.URL_BASE
-                if base[-1] != "/":
-                    base += "/"
-                signature_logo_url = urljoin(
-                    base, employee.user_id.signature_logo_filename
-                )
-                render_result = render_result.replace(self.logo_url, signature_logo_url)
-            elif self.logo_url and employee.department_id.signature_logo_url:
-                render_result = render_result.replace(
-                    self.logo_url, employee.department_id.signature_logo_url
-                )
-            if self.color_suffix and employee.department_id.signature_color_suffix:
-                render_result = render_result.replace(
-                    self.color_suffix, employee.department_id.signature_color_suffix
-                )
-            if self.primary_color and employee.department_id.signature_primary_color:
-                render_result = render_result.replace(
-                    self.primary_color, employee.department_id.signature_primary_color
-                )
-
+            render_result = self._apply_brand_replacements(render_result, employee)
         except Exception as e:
             _logger.info(
-                "Failed to render template %r using values %r" % (template, variables),
+                "Failed to render template %r using values %r",
+                template,
+                variables,
                 exc_info=True,
             )
             raise UserError(
-                _("Failed to render template %r using values %r")
-                % (template, variables)
-                + "\n\n%s: %s" % (type(e).__name__, str(e))
-            )
+                self.env._(
+                    "Failed to render template %(template)r using values %(variables)r",
+                    template=template,
+                    variables=variables,
+                )
+                + f"\n\n{type(e).__name__}: {str(e)}"
+            ) from e
         return render_result

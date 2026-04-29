@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-
     <record model="res.users.signature.template" id="user_signature_template">
         <field name="name">User Signature Template</field>
         <field name="body_text">${firstname} ${lastname}
@@ -15,7 +14,6 @@ ${email}
         <field name="logo_url">/logo.png</field>
         <field name="primary_color">#404040</field>
         <field name="body_html" type="html">
-
             <table
                 style="width: 510px;"
                 width="510"
@@ -63,178 +61,178 @@ ${email}
                             >
                                 <tbody>
                                     <tr>
-                                        <td style="padding-bottom: 12px;">
-                                            <table
-                                                style="padding-left: 2px; font-weight: normal; width: 100%;"
-                                                width="100%"
-                                                cellspacing="0"
-                                                cellpadding="0"
-                                                border="0"
-                                            >
-                                                <tbody>
-                                                    <tr>
-                                                        <td
-                                                            style="font-size: 11px; line-height: 21px; color: #4e4b4c;"
-                                                        >
+                                    <td style="padding-bottom: 12px;">
+                                        <table
+                                            style="padding-left: 2px; font-weight: normal; width: 100%;"
+                                            width="100%"
+                                            cellspacing="0"
+                                            cellpadding="0"
+                                            border="0"
+                                        >
+                                            <tbody>
+                                                <tr>
+                                                    <td
+                                                        style="font-size: 11px; line-height: 21px; color: #4e4b4c;"
+                                                    >
                                                             <span
-                                                                style="color: #404040; padding: 0px; margin: 0px; font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;font-size:16px;"
-                                                            >${firstname} ${lastname}
+                                                        style="color: #404040; padding: 0px; margin: 0px; font-size: 16px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;font-size:16px;"
+                                                    >${firstname} ${lastname}
                                                             </span>
                                                             <br />
                                                             <span
-                                                                style="font-family: Arial, Helvetica, sans-serif;font-size:14px;"
-                                                            >${job_title}&#160;&#124;&#160;</span><span
-                                                                style="font-family: Arial, Helvetica, sans-serif;color:#404040;font-size:14px;"
-                                                            >DEC</span>
+                                                        style="font-family: Arial, Helvetica, sans-serif;font-size:14px;"
+                                                    >${job_title}&#160;&#124;&#160;</span><span
+                                                        style="font-family: Arial, Helvetica, sans-serif;color:#404040;font-size:14px;"
+                                                    >DEC</span>
                                                             <br />
                                                             <br />
                                                             <span
-                                                                style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
-                                                            >A&#160;</span><span
-                                                                style="text-decoration: none !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
-                                                            >${street1} ${street2} ${zip} ${city.upper()}</span>
+                                                        style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
+                                                    >A&#160;</span><span
+                                                        style="text-decoration: none !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
+                                                    >${street1} ${street2} ${zip} ${city.upper()}</span>
                                                             <br />
                                                             % if phone:
                                                             <span
-                                                                style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
-                                                            >M&#160;</span><a
-                                                                href="tel:${phone_callable}"
-                                                                style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
-                                                                target="_blank"
-                                                            >${phone}</a>&#160;<i
-                                                                style="color: #FFF;"
-                                                            > ­</i>
+                                                        style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
+                                                    >M&#160;</span><a
+                                                        href="tel:${phone_callable}"
+                                                        style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
+                                                        target="_blank"
+                                                    >${phone}</a>&#160;<i
+                                                        style="color: #FFF;"
+                                                    > ­</i>
                                                             % endif
                                                             <span
-                                                                style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
-                                                            >T&#160;</span><a
-                                                                href="tel:${company_phone_callable}"
-                                                                style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
-                                                                target="_blank"
-                                                            >${company_phone}&#160;ext&#160;${phone_ext}</a>&#160;<i
-                                                                style="color: #FFF;"
-                                                            > ­</i>
+                                                        style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
+                                                    >T&#160;</span><a
+                                                        href="tel:${company_phone_callable}"
+                                                        style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
+                                                        target="_blank"
+                                                    >${company_phone}&#160;ext&#160;${phone_ext}</a>&#160;<i
+                                                        style="color: #FFF;"
+                                                    > ­</i>
                                                             <span
-                                                                style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
-                                                            >F&#160;</span><a
-                                                                href="tel:${company_fax_callable}"
-                                                                style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
-                                                                target="_blank"
-                                                            >${company_fax}</a>&#160;<i
-                                                                style="color: #FFF;"
-                                                            > ­</i>
+                                                        style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
+                                                    >F&#160;</span><a
+                                                        href="tel:${company_fax_callable}"
+                                                        style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
+                                                        target="_blank"
+                                                    >${company_fax}</a>&#160;<i
+                                                        style="color: #FFF;"
+                                                    > ­</i>
 
                                                             % for email in emails:
                                                             <span
-                                                                style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
-                                                            >E&#160;</span><a
-                                                                href="mailto:${email}"
-                                                                style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
-                                                                target="_blank"
-                                                            >${email}</a><i
-                                                                style="color: #FFF;"
-                                                            > ­</i>
+                                                        style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
+                                                    >E&#160;</span><a
+                                                        href="mailto:${email}"
+                                                        style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
+                                                        target="_blank"
+                                                    >${email}</a><i
+                                                        style="color: #FFF;"
+                                                    > ­</i>
                                                             % endfor
                                                             % for website in websites:
                                                             <span
-                                                                style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
-                                                            >W&#160;</span><a
-                                                                href="${website}"
-                                                                style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
-                                                                target="_blank"
-                                                            >${website.lstrip('http://').lstrip('https://')}</a><i
-                                                                style="color: #FFF;"
-                                                            > ­</i>
+                                                        style="color:#404040; font-weight: bold;font-family: Arial, Helvetica, sans-serif;"
+                                                    >W&#160;</span><a
+                                                        href="${website}"
+                                                        style="text-decoration: underline !important; color: #4e4b4c;font-family: Arial, Helvetica, sans-serif;"
+                                                        target="_blank"
+                                                    >${website.lstrip('http://').lstrip('https://')}</a><i
+                                                        style="color: #FFF;"
+                                                    > ­</i>
                                                             % endfor
                                                         </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
                                     % if user.signature_social_buttons:
                                     <tr>
-                                        <td style="padding-top: 12px">
-                                            <table
-                                                cellspacing="0"
-                                                cellpadding="0"
-                                                border="0"
-                                            >
-                                                <tbody>
-                                                    <tr>
+                                    <td style="padding-top: 12px">
+                                        <table
+                                            cellspacing="0"
+                                            cellpadding="0"
+                                            border="0"
+                                        >
+                                            <tbody>
+                                                <tr>
                                                     % if company.social_facebook:
                                                         <td style="padding-right: 4px;">
-                                                            <a
-                                                                href="${company.social_facebook}"
-                                                                style="text-decoration:none;"
-                                                                target="_blank"
-                                                            >
-                                                                <img
-                                                                    src="/res_users_signature/static/img/social_facebook.jpg"
-                                                                    alt="facebook"
-                                                                    style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
-                                                                    width="24"
-                                                                    height="24"
-                                                                />
-                                                            </a>
-                                                        </td>
+                                                    <a
+                                                        href="${company.social_facebook}"
+                                                        style="text-decoration:none;"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/res_users_signature/static/img/social_facebook.jpg"
+                                                            alt="facebook"
+                                                            style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
+                                                            width="24"
+                                                            height="24"
+                                                        />
+                                                    </a>
+                                                </td>
                                                     % endif
                                                     % if company.social_linkedin:
                                                         <td style="padding-right: 4px;">
-                                                            <a
-                                                                href="${company.social_linkedin}"
-                                                                style="text-decoration:none;"
-                                                                target="_blank"
-                                                            >
-                                                                <img
-                                                                    src="/res_users_signature/static/img/social_linkedin.jpg"
-                                                                    alt="linkedin"
-                                                                    style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
-                                                                    width="24"
-                                                                    height="24"
-                                                                />
-                                                            </a>
-                                                        </td>
+                                                    <a
+                                                        href="${company.social_linkedin}"
+                                                        style="text-decoration:none;"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/res_users_signature/static/img/social_linkedin.jpg"
+                                                            alt="linkedin"
+                                                            style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
+                                                            width="24"
+                                                            height="24"
+                                                        />
+                                                    </a>
+                                                </td>
                                                     % endif
                                                     % if company.social_twitter:
                                                         <td style="padding-right: 4px;">
-                                                            <a
-                                                                href="${company.social_twitter}"
-                                                                style="text-decoration:none;"
-                                                                target="_blank"
-                                                            >
-                                                                <img
-                                                                    src="/res_users_signature/static/img/social_twitter.jpg"
-                                                                    alt="twitter"
-                                                                    style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
-                                                                    width="24"
-                                                                    height="24"
-                                                                />
-                                                            </a>
-                                                        </td>
+                                                    <a
+                                                        href="${company.social_twitter}"
+                                                        style="text-decoration:none;"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/res_users_signature/static/img/social_twitter.jpg"
+                                                            alt="twitter"
+                                                            style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
+                                                            width="24"
+                                                            height="24"
+                                                        />
+                                                    </a>
+                                                </td>
                                                     % endif
                                                     % if company.social_youtube:
                                                         <td style="padding-right: 4px;">
-                                                            <a
-                                                                href="${company.social_youtube}"
-                                                                style="text-decoration:none;"
-                                                                target="_blank"
-                                                            >
-                                                                <img
-                                                                    src="/res_users_signature/static/img/social_youtube.jpg"
-                                                                    alt="youtube"
-                                                                    style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
-                                                                    width="24"
-                                                                    height="24"
-                                                                />
-                                                            </a>
-                                                        </td>
+                                                    <a
+                                                        href="${company.social_youtube}"
+                                                        style="text-decoration:none;"
+                                                        target="_blank"
+                                                    >
+                                                        <img
+                                                            src="/res_users_signature/static/img/social_youtube.jpg"
+                                                            alt="youtube"
+                                                            style="height: 24px; width: 24px; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;"
+                                                            width="24"
+                                                            height="24"
+                                                        />
+                                                    </a>
+                                                </td>
                                                     % endif
                                                     </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
                                     % endif
                                 </tbody>
                             </table>
@@ -242,14 +240,12 @@ ${email}
                     </tr>
                 </tbody>
             </table>
-
         </field>
         <field name="body_lightweight_html" type="html">
-<div>
+            <div>
     --<br />
     ${firstname} ${lastname}${', ' + user.employee_ids.job_title if user.employee_ids.job_title else ''} | ${company_name}
 </div>
         </field>
     </record>
-
 </odoo>

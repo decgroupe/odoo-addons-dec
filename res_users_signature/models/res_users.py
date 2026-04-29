@@ -3,14 +3,7 @@
 
 import os
 
-from odoo import fields, models, api
-
-
-def removeprefix(self: str, prefix: str) -> str:
-    if self.startswith(prefix):
-        return self[len(prefix) :]
-    else:
-        return self[:]
+from odoo import api, fields, models
 
 
 class ResUsers(models.Model):
@@ -44,28 +37,20 @@ class ResUsers(models.Model):
         help="Technical field only used to get the original file name " "and extension",
     )
 
-    def __init__(self, pool, cr):
-        """Override of __init__ to add access rights on notification_email_send
-        and alias fields. Access rights are disabled by default, but allowed
-        on some specific fields defined in self.SELF_{READ/WRITE}ABLE_FIELDS.
-        """
-        init_res = super().__init__(pool, cr)
-        type(self).SELF_WRITEABLE_FIELDS = list(
-            set(
-                self.SELF_WRITEABLE_FIELDS
-                + [
-                    "signature_text",
-                    "signature_answer",
-                    "signature_template",
-                    "signature_social_buttons",
-                    "signature_logo",
-                    "signature_logo_filename",
-                ]
-            )
-        )
-        return init_res
+    @property
+    def SELF_WRITEABLE_FIELDS(self):
+        """Extend writable fields to include all signature-related fields."""
+        return super().SELF_WRITEABLE_FIELDS + [
+            "signature_text",
+            "signature_answer",
+            "signature_template",
+            "signature_social_buttons",
+            "signature_logo",
+            "signature_logo_filename",
+        ]
 
     def _generate_from_template(self, template, origin_user_id=False):
+        """Generate all signature fields from a template for this user."""
         self.ensure_one()
         if not template:
             return
@@ -82,6 +67,8 @@ class ResUsers(models.Model):
         )
 
     def action_generate_signatures(self):
+        """Action to regenerate all signature fields using the user's template
+        or the global one."""
         global_template = self.env.ref("res_users_signature.user_signature_template")
         for user in self:
             template = user.signature_template or global_template
@@ -89,9 +76,11 @@ class ResUsers(models.Model):
 
     @api.onchange("signature_template")
     def onchange_signature_template(self):
+        """Regenerate signatures when the signature template changes."""
         self._generate_from_template(self.signature_template, self._origin)
 
     def write(self, vals):
+        """Override write to sync the logo filename when signature_logo changes."""
         res = super().write(vals)
         if "signature_logo" in vals:
             # Update the filename with the one given on the filesystem
@@ -101,6 +90,7 @@ class ResUsers(models.Model):
         return res
 
     def _get_signature_logo_filename(self, logo_filename=None):
+        """Return the filename used to serve the signature logo over HTTP."""
         fname = "%d" % (self.id)
         if logo_filename:
             logo_name, logo_ext = os.path.splitext(logo_filename)
