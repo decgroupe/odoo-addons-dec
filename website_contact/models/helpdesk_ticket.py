@@ -8,6 +8,7 @@ class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
     def _should_notify_new_ticket(self):
+        """Also notify when the ticket was created from the public contact form."""
         res = super()._should_notify_new_ticket()
         if not res:
             res = self.env.context.get("contact_ticket", False)

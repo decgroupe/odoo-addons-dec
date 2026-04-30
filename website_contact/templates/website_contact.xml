@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template id="create_contact_message" name="Contact">
         <t t-call="website.layout">
-
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 pt-2">
@@ -362,11 +360,8 @@
                             </div>
                         </form>
                     </t>
-
                 </div>
             </div>
-
         </t>
     </template>
-
 </odoo>

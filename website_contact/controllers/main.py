@@ -5,18 +5,17 @@ import base64
 import json
 
 import odoo.http as http
-from odoo import SUPERUSER_ID, _, tools
-from odoo.addons.tools_miscellaneous.tools.html_helper import b, p
+from odoo import SUPERUSER_ID, tools
 from odoo.exceptions import UserError, ValidationError
 from odoo.http import request
 
+from odoo.addons.tools_miscellaneous.tools.html_helper import b, p
 
 URL_BASE = "/contact"
 
-# Because of ./odoo/addons/website_form/static/src/snippets/s_website_form/000.js
-# In the `send` function the attachment field is split into multiple fields, the first
-# index is for the case when multiple fields with the same name would exists in the same
-# form, the second index is for when multiple files are attached.
+# because of the website form js, the attachment field is split into multiple fields:
+# the first index is for when multiple fields with the same name exist in the same form,
+# the second index is for when multiple files are attached.
 ATTACHMENT_IDX = "attachment[%d][%d]"
 ATTACHMENT_000_NAME = ATTACHMENT_IDX % (0, 0)
 
@@ -27,31 +26,35 @@ class WebsiteContactController(http.Controller):
     #######################################################################
 
     def _get_origins(self):
+        """Return a dict mapping origin keys to their translated labels."""
         return {
-            "private": _("A private person"),
-            "school": _("A school"),
-            "company": _("A company "),
+            "private": request.env._("A private person"),
+            "school": request.env._("A school"),
+            "company": request.env._("A company "),
         }
 
     def _get_company_label(self, origin):
+        """Return the translated company label for the given origin, or False."""
         if origin == "school":
-            res = _("School")
+            res = request.env._("School")
         elif origin == "company":
-            res = _("Company")
+            res = request.env._("Company")
         else:
             res = False
         return res
 
     def _get_description(self):
-        res = _("Company Name") + ":\n- \n"
-        res += _("Full Address (street, zipcode, city)") + ":\n- \n"
-        res += _("Your Request") + ":\n- \n"
+        """Return a default description template with translated field labels."""
+        res = request.env._("Company Name") + ":\n- \n"
+        res += request.env._("Full Address (street, zipcode, city)") + ":\n- \n"
+        res += request.env._("Your Request") + ":\n- \n"
         return res
 
-    def _save_attachments(self, model, id, public=False):
+    def _save_attachments(self, model, record_id, public=False):
+        """Save uploaded files as attachments linked to the given model record."""
         IrAttachment = request.env["ir.attachment"]
         attachment_ids = IrAttachment
-        # We browse files directly without `.getlist("inputname")`
+        # browse files directly without `.getlist("inputname")`
         for file in request.httprequest.files:
             c_file = request.httprequest.files[file]
             data = c_file.read()
@@ -61,7 +64,7 @@ class WebsiteContactController(http.Controller):
                         "name": c_file.filename,
                         "datas": base64.b64encode(data),
                         "res_model": model,
-                        "res_id": id,
+                        "res_id": record_id,
                     }
                 )
             if public:
@@ -70,14 +73,15 @@ class WebsiteContactController(http.Controller):
     #######################################################################
 
     @http.route(
-        URL_BASE + "/ticket/new/<string:filter>",
+        URL_BASE + "/ticket/new/<string:ticket_filter>",
         type="http",
         auth="public",
         website=True,
     )
-    def create_new_ticket_from_contactform(self, filter, **kw):
+    def create_new_ticket_from_contactform(self, ticket_filter, **kw):
+        """Render the contact form for creating a new helpdesk ticket."""
         categories = http.request.env["helpdesk.ticket.category"].search(
-            [("active", "=", True), ("public_filter", "=", filter)]
+            [("active", "=", True), ("public_filter", "=", ticket_filter)]
         )
         return http.request.render(
             "website_contact.create_contact_message",
@@ -97,7 +101,7 @@ class WebsiteContactController(http.Controller):
                 "show_description_form_group": True,
                 "show_references_form_group": True,
                 "show_attachment_form_group": True,
-                "submit_text": _("Submit"),
+                "submit_text": request.env._("Submit"),
                 "form_action": URL_BASE + "/ticket/submit",
                 "force_action": "",
                 "success_mode": "redirect",
@@ -109,22 +113,24 @@ class WebsiteContactController(http.Controller):
         URL_BASE + "/ticket/submit", type="http", auth="public", website=True, csrf=True
     )
     def submit_ticket_from_contactform(self, **kw):
+        """Submit the contact form and create a helpdesk ticket if recaptcha passes."""
         try:
-            # The except clause below should not let what has been done inside
-            # here be committed. It should not either roll back everything in
-            # this controller method. Instead, we use a savepoint to roll back
+            # the except clause below should not let what has been done inside
+            # here be committed. it should not either roll back everything in
+            # this controller method. instead, we use a savepoint to roll back
             # what has been done inside the try clause.
             with request.env.cr.savepoint():
                 if request.env["ir.http"]._verify_request_recaptcha_token(
                     "website_form"
                 ):
                     return self._handle_submit_ticket_from_contactform(**kw)
-            error = _("Suspicious activity detected by Google reCaptcha.")
+            error = request.env._("Suspicious activity detected by Google reCaptcha.")
         except (ValidationError, UserError) as e:
             error = e.args[0]
         return json.dumps({"error": error})
 
     def _handle_submit_ticket_from_contactform(self, **kw):
+        """Create a helpdesk ticket from the submitted contact form data."""
         channel_id = (
             request.env["helpdesk.ticket.channel"].sudo().search([("name", "=", "Web")])
         )
@@ -140,13 +146,13 @@ class WebsiteContactController(http.Controller):
             if len(team_ids) == 1:
                 # Assign `team_id` if there is one and only one match
                 team_id = team_ids[0]
+        description = ""
         if kw.get("description"):
             desc = {
-                _("Origin"): self._get_origins().get(kw.get("origin"), ""),
-                _("Message"): tools.plaintext2html(kw.get("description")),
-                _("References"): kw.get("references"),
+                request.env._("Origin"): self._get_origins().get(kw.get("origin"), ""),
+                request.env._("Message"): tools.plaintext2html(kw.get("description")),
+                request.env._("References"): kw.get("references"),
             }
-            description = ""
             for head in desc:
                 if desc[head]:
                     description += p(b(head + ":") + "<br/>" + desc[head])
@@ -181,28 +187,43 @@ class WebsiteContactController(http.Controller):
 
     @http.route(URL_BASE + "/lead/new", type="http", auth="public", website=True)
     def create_new_lead_from_contactform1(self, **kw):
+        """Render the first step of the lead creation contact form."""
         return http.request.render(
             "website_contact.create_contact_message",
             {
                 "show_origin_form_group": True,
                 "show_email_form_group": True,
                 "origin": self._get_origins(),
-                "submit_text": _("Next"),
-                "form_action": URL_BASE + "/lead/next",
+                "submit_text": request.env._("Next"),
+                "form_action": URL_BASE + "/lead/new/save",
                 "force_action": "",
-                "success_mode": "",
-                "success_page": "",
+                "success_mode": "redirect",
+                "success_page": URL_BASE + "/lead/next",
             },
         )
 
-    @http.route(URL_BASE + "/lead/next", type="http", auth="public", website=True)
+    @http.route(
+        URL_BASE + "/lead/new/save", type="http", auth="public", website=True, csrf=True
+    )
     def create_new_lead_from_contactform2(self, **kw):
+        """Store form data in session and return JSON to trigger JS redirect."""
+        request.session["wc_lead_email"] = kw.get("email", "")
+        request.session["wc_lead_origin"] = kw.get("origin", "")
+        return json.dumps({"id": 1})
+
+    @http.route(URL_BASE + "/lead/next", type="http", auth="public", website=True)
+    def create_new_lead_from_contactform3(self, **kw):
+        """Render the second step of the lead creation contact form from session."""
+        email = request.session.get("wc_lead_email", "")
+        origin = request.session.get("wc_lead_origin", "")
+        if not email and not origin:
+            return http.request.redirect(URL_BASE + "/lead/new")
         partner_id = (
             request.env["res.partner"]
             .sudo()
-            .search([("email", "ilike", kw.get("email"))], limit=1)
+            .search([("email", "ilike", email)], limit=1)
         )
-        company_label = self._get_company_label(kw.get("origin"))
+        company_label = self._get_company_label(origin)
         return http.request.render(
             "website_contact.create_contact_message",
             {
@@ -218,11 +239,11 @@ class WebsiteContactController(http.Controller):
                 "show_subject_form_group": True,
                 "show_description_form_group": True,
                 "show_attachment_form_group": partner_id.id is not False,
-                "email": kw.get("email"),
+                "email": email,
                 "description": "",
                 "partner_id": partner_id.id,
                 "partner_name": partner_id.name,
-                "submit_text": _("Submit"),
+                "submit_text": request.env._("Submit"),
                 "form_action": URL_BASE + "/lead/submit",
                 "force_action": "",
                 "success_mode": "redirect",
@@ -234,22 +255,24 @@ class WebsiteContactController(http.Controller):
         URL_BASE + "/lead/submit", type="http", auth="public", website=True, csrf=True
     )
     def submit_lead_from_contactform(self, **kw):
+        """Submit the contact form and create a CRM lead if recaptcha passes."""
         try:
-            # The except clause below should not let what has been done inside
-            # here be committed. It should not either roll back everything in
-            # this controller method. Instead, we use a savepoint to roll back
+            # the except clause below should not let what has been done inside
+            # here be committed. it should not either roll back everything in
+            # this controller method. instead, we use a savepoint to roll back
             # what has been done inside the try clause.
             with request.env.cr.savepoint():
                 if request.env["ir.http"]._verify_request_recaptcha_token(
                     "website_form"
                 ):
                     return self._handle_submit_lead_from_contactform(**kw)
-            error = _("Suspicious activity detected by Google reCaptcha.")
+            error = request.env._("Suspicious activity detected by Google reCaptcha.")
         except (ValidationError, UserError) as e:
             error = e.args[0]
         return json.dumps({"error": error})
 
     def _handle_submit_lead_from_contactform(self, **kw):
+        """Create a CRM lead from the submitted contact form data."""
         description = kw.get("description")
         if description and kw.get("origin"):
             description = kw.get("origin") + "\n" + description

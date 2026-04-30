@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="contactus" model="ir.ui.view">
         <field name="name">Contact Us</field>
         <field name="type">qweb</field>
@@ -9,7 +8,7 @@
             <t name="Contact Us" t-name="website_contact.contactus">
                 <t t-call="website.layout">
                     <div id="wrap">
-                        <div class="oe_structure">
+                        <div id="oe_structure_website_contact_top" class="oe_structure">
                             <section class="pt8 pb8">
                                 <div class="container">
                                     <div class="row s_nb_column_fixed">
@@ -23,14 +22,17 @@
                         <div class="container mt-2">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <div class="oe_structure">
+                                    <div
+                                        id="oe_structure_website_contact_desc"
+                                        class="oe_structure"
+                                    >
                                         <section class="s_text_block">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <p>
                                                             Contact us about anything related to our company or services.<br
-                                                            />
+                                                        />
                                                             We'll do our best to get back to you as soon as possible.
                                                         </p>
                                                     </div>
@@ -62,13 +64,13 @@
                                                         <small>
                                                             Sample request:
                                                             <ul>
-                                                                <li
-                                                                >Quote request/modification</li>
-                                                                <li
-                                                                >Receive a product sales brochure</li>
-                                                                <li
-                                                                >General information request</li>
-                                                            </ul>
+                                                            <li
+                                                            >Quote request/modification</li>
+                                                            <li
+                                                            >Receive a product sales brochure</li>
+                                                            <li
+                                                            >General information request</li>
+                                                        </ul>
                                                         </small>
                                                     </div>
                                                 </div>
@@ -97,10 +99,10 @@
                                                         <small>
                                                             Sample request:
                                                             <ul>
-                                                                <li
-                                                                >Accounting / Invoicing</li>
-                                                                <li>Delivery</li>
-                                                            </ul>
+                                                            <li
+                                                            >Accounting / Invoicing</li>
+                                                            <li>Delivery</li>
+                                                        </ul>
                                                         </small>
                                                     </div>
                                                 </div>
@@ -129,12 +131,12 @@
                                                         <small>
                                                             Sample request:
                                                             <ul>
-                                                                <li
-                                                                >Troubleshooting / Repair</li>
-                                                                <li
-                                                                >Receive a product leaflet</li>
-                                                                <li>Bug report</li>
-                                                            </ul>
+                                                            <li
+                                                            >Troubleshooting / Repair</li>
+                                                            <li
+                                                            >Receive a product leaflet</li>
+                                                            <li>Bug report</li>
+                                                        </ul>
                                                         </small>
                                                     </div>
                                                 </div>
@@ -142,12 +144,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <t t-call="website.company_description" />
-                                </div>
                             </div>
                         </div>
-                        <div class="oe_structure mt-2" />
+                        <div
+                            id="oe_structure_website_contact_bottom"
+                            class="oe_structure mt-2"
+                        />
                     </div>
                 </t>
             </t>
@@ -160,5 +162,4 @@
         <field name="website_published">True</field>
         <field name="view_id" ref="contactus" />
     </record>
-
 </odoo>

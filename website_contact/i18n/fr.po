@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:33+0000\n"
+"POT-Creation-Date: 2026-06-03 11:18+0000\n"
 "PO-Revision-Date: 2023-11-28 15:43+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -19,58 +19,44 @@ msgstr ""
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "0243302732"
-msgstr "0243302732"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "0675308813"
-msgstr "0675308813"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "3 place d'Italie"
 msgstr "3 place d'Italie"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "<span>Administrative</span>"
 msgstr "<span>Administratif</span>"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "<span>Commercial</span>"
 msgstr "<span>Commercial</span>"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "<span>Service</span>"
 msgstr "<span>Technique / SAV</span>"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "A company "
 msgstr "Une entreprise "
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "A private person"
 msgstr "Un particulier"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "A school"
 msgstr "Un établissement scolaire"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Accounting / Invoicing"
 msgstr "Comptabilité / Facturation"
 
@@ -86,7 +72,6 @@ msgstr "Pièces jointes"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Bug report"
 msgstr "Rapport de bug"
 
@@ -101,21 +86,16 @@ msgid "City"
 msgstr "Ville"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Company"
 msgstr "Société"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Company Name"
 msgstr "Nom de votre société ou établissement"
-
-#. module: website_contact
-#: model:utm.source,name:website_contact.utm_source_contact_form
-msgid "Contact Form"
-msgstr "Formulaire de contact"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -124,33 +104,22 @@ msgstr "Contactez-nous"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Contact us"
 msgstr "Contactez-nous"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid ""
 "Contact us about anything related to our company or services.<br/>\n"
 "                                                            We'll do our best to get back to you as soon as possible."
 msgstr ""
 "Contactez-nous pour tout ce qui concerne notre société ou nos services.<br/>\n"
-"                                                            Nous ferons de notre mieux pour vous répondre dans les "
-"plus brefs délais."
+"                                                            Nous ferons de notre mieux pour vous répondre dans les plus brefs délais."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Delivery"
 msgstr "Livraison"
-
-#. module: website_contact
-#: model:ir.model.fields,field_description:website_contact.field_crm_lead__display_name
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket__display_name
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -158,8 +127,8 @@ msgid "From"
 msgstr "De"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Full Address (street, zipcode, city)"
 msgstr "Adresse complète (rue, code postal, ville)"
 
@@ -170,7 +139,6 @@ msgstr "Fonction"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "General information request"
 msgstr "Demande d’informations générales"
 
@@ -185,30 +153,9 @@ msgid "Helpdesk Ticket Category"
 msgstr "Catégorie de ticket d'assistance"
 
 #. module: website_contact
-#: model:ir.model.fields,field_description:website_contact.field_crm_lead__id
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket__id
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__id
-msgid "ID"
-msgstr "ID"
-
-#. module: website_contact
-#: model:ir.model.fields,help:website_contact.field_crm_lead__xid
-#: model:ir.model.fields,help:website_contact.field_helpdesk_ticket__xid
-#: model:ir.model.fields,help:website_contact.field_helpdesk_ticket_category__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "Jane Doe"
 msgstr "Michel Blanc"
-
-#. module: website_contact
-#: model:ir.model.fields,field_description:website_contact.field_crm_lead____last_update
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket____last_update
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category____last_update
-msgid "Last Modified on"
-msgstr "Dernière Modification le"
 
 #. module: website_contact
 #: model:ir.model,name:website_contact.model_crm_lead
@@ -221,8 +168,8 @@ msgid "MO/210433 SO210155"
 msgstr "MO/210433 SO210155"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Message"
 msgstr "Message"
 
@@ -232,14 +179,14 @@ msgid "Mobile"
 msgstr "Mobile"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Next"
 msgstr "Suivant"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Origin"
 msgstr "Origine"
 
@@ -256,16 +203,22 @@ msgstr "Téléphone"
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid ""
-"Please indicate the reference(s) of the products concerned for a service request (references generally start with "
-"three letters) or the serial number (MO)."
+"Please indicate the reference(s) of the products concerned for a service "
+"request (references generally start with three letters) or the serial number"
+" (MO)."
 msgstr ""
-"Merci d'indiquer la ou les références des produits concernés pour une demande de SAV (les références débutent "
-"généralement par trois lettres) ou le numéro de série (MO)."
+"Merci d'indiquer la ou les références des produits concernés pour une "
+"demande de SAV (les références débutent généralement par trois lettres) ou "
+"le numéro de série (MO)."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Please note that an e-mail will be sent to this address with a link to this request."
-msgstr "Veuillez noter qu’un e-mail sera envoyé à cette adresse avec un lien vers cette demande."
+msgid ""
+"Please note that an e-mail will be sent to this address with a link to this "
+"request."
+msgstr ""
+"Veuillez noter qu’un e-mail sera envoyé à cette adresse avec un lien vers "
+"cette demande."
 
 #. module: website_contact
 #: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__public_filter
@@ -274,45 +227,42 @@ msgstr "Filtre public"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Quote request/modification"
 msgstr "Demande / modification de devis"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Receive a product leaflet"
 msgstr "Recevoir une notice produit"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Receive a product sales brochure"
 msgstr "Recevoir une plaquette commerciale produit"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-#, python-format
 msgid "References"
 msgstr "Références"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Sample request:"
 msgstr "Exemple de demande :"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "School"
 msgstr "École"
 
 #. module: website_contact
 #: model:ir.model.fields,help:website_contact.field_helpdesk_ticket_category__public_filter
 msgid "Selectable on a public contact form with a predefined filter"
-msgstr "Sélectionnable sur un formulaire de contact public avec un filtre prédéfini"
+msgstr ""
+"Sélectionnable sur un formulaire de contact public avec un filtre prédéfini"
 
 #. module: website_contact
 #: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__sequence
@@ -330,14 +280,14 @@ msgid "Subject"
 msgstr "Sujet"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Submit"
 msgstr "Envoyer"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Suspicious activity detected by Google reCaptcha."
 msgstr "Activité suspecte détectée par Google reCaptcha."
 
@@ -348,8 +298,12 @@ msgstr "Formateur"
 
 #. module: website_contact
 #: model:ir.model.fields,help:website_contact.field_helpdesk_ticket_category__sequence
-msgid "The sequence field is used to define order in which categories are displayed."
-msgstr "Le champ séquence est utilisé pour définir l'ordre dans lequel les catégories sont affichées."
+msgid ""
+"The sequence field is used to define order in which categories are "
+"displayed."
+msgstr ""
+"Le champ séquence est utilisé pour définir l'ordre dans lequel les "
+"catégories sont affichées."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -358,16 +312,8 @@ msgstr "Il y a une limite de 5 fichiers et un total de 10 Mo."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
-#: model_terms:website.page,arch_db:website_contact.contactus_page
 msgid "Troubleshooting / Repair"
 msgstr "Dépannage / Réparation"
-
-#. module: website_contact
-#: model:ir.model.fields,field_description:website_contact.field_crm_lead__xid
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket__xid
-#: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__xid
-msgid "XML-ID"
-msgstr "XML-ID"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -390,8 +336,8 @@ msgid "Your Name"
 msgstr "Votre nom"
 
 #. module: website_contact
+#. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#, python-format
 msgid "Your Request"
 msgstr "Votre demande"
 
@@ -404,6 +350,30 @@ msgstr "Code postal"
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "jane.doe@example.com"
 msgstr "michel.blanc@example.com"
+
+#~ msgid "0243302732"
+#~ msgstr "0243302732"
+
+#~ msgid "0675308813"
+#~ msgstr "0675308813"
+
+#~ msgid "Contact Form"
+#~ msgstr "Formulaire de contact"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière Modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Anti-Spam Security"
 #~ msgstr "Sécurité antispam"
