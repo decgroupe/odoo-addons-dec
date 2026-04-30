@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mail_activity_redirection_tree_view">
         <field
             name="name"
-        >mail.activity.redirection.tree@mail_activity_redirection</field>
+        >mail.activity.redirection.list@mail_activity_redirection</field>
         <field name="model">mail.activity.redirection</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget='handle' />
                 <field name="name" />
                 <field name="user_id" />
@@ -15,7 +14,7 @@
                 <field name="activity_type_ids" />
                 <field name="qweb_templates" />
                 <field name="regex_pattern" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -28,15 +27,13 @@
             <form string="Activities Redirection">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-
-            <field name="active" invisible="1" />
-            <widget
+                        <field name="active" invisible="1" />
+                        <widget
                             name="web_ribbon"
                             title="Archived"
                             bg_color="bg-danger"
-                            attrs="{'invisible': [('active', '=', True)]}"
+                            invisible="active"
                         />
-
                     </div>
                     <group name="head">
                         <div class="oe_title">
@@ -59,18 +56,18 @@
                     </group>
                     <div>
                         Test your expression on <a
-                            href="https://regex101.com/"
-                        >regex101.com</a>
+                        href="https://regex101.com/"
+                    >regex101.com</a>
                     </div>
                     <group>
                         <field name="activity_ids">
-                            <tree>
+                            <list>
                                 <field name="create_date" />
                                 <field name="res_name" />
                                 <field name="activity_type_id" />
                                 <field name="summary" />
                                 <field name="date_deadline" />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>
@@ -112,7 +109,7 @@
     <record model="ir.actions.act_window" id="act_window_mail_activity_redirection">
         <field name="name">Activities Redirections</field>
         <field name="res_model">mail.activity.redirection</field>
-        <field name="view_mode">form,tree</field>
+        <field name="view_mode">form,list</field>
         <field name="view_id" ref="mail_activity_redirection_tree_view" />
         <field name="search_view_id" ref="mail_activity_redirection_search_view" />
     </record>
@@ -122,7 +119,7 @@
         id="act_window_view_mail_activity_redirection_tree"
     >
         <field name="sequence" eval="1" />
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="mail_activity_redirection_tree_view" />
         <field name="act_window_id" ref="act_window_mail_activity_redirection" />
     </record>
@@ -136,5 +133,4 @@
         <field name="view_id" ref="mail_activity_redirection_form_view" />
         <field name="act_window_id" ref="act_window_mail_activity_redirection" />
     </record>
-
 </odoo>

@@ -66,14 +66,17 @@ class MailActivityRedirection(models.Model):
 
     @api.model
     def _default_sequence(self):
+        """Return the next sequence value for a new redirection rule."""
         rule = self.search([], limit=1, order="sequence DESC")
         return rule.sequence + 1
 
     @api.model
     def _default_regex(self):
+        """Return the default regex pattern that matches any string."""
         return ".*"
 
     def get_activity_type_xmlids(self):
+        """Return the list of XML IDs for all activity types in this rule."""
         res = []
         for rec in self.filtered("activity_type_ids"):
             xml_ids = [
@@ -85,6 +88,7 @@ class MailActivityRedirection(models.Model):
         return res
 
     def get_model_names(self):
+        """Return the list of model technical names targeted by this rule."""
         res = []
         for rec in self.filtered("model_ids"):
             for model_id in rec.model_ids:
@@ -92,6 +96,7 @@ class MailActivityRedirection(models.Model):
         return res
 
     def get_qweb_template_xmlids(self):
+        """Return the list of XML IDs for all QWeb templates in this rule."""
         res = []
         for rec in self.filtered("qweb_templates"):
             for qweb_template in rec.qweb_templates:
@@ -107,6 +112,9 @@ class MailActivityRedirection(models.Model):
         qweb_template_xmlid,
         note,
     ):
+        """Check whether this redirection rule matches the given activity
+        parameters and return True if all conditions are satisfied.
+        """
         _logger.debug(
             "Match test against %s, %s, %s, %s, %s, %s",
             model_name,

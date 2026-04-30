@@ -1,7 +1,7 @@
 {
     "name": "Mail Activity Redirection",
     "summary": "Redirect activities to specific users",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "DEC",
     "category": "Social Network",
     "website": "https://decgroupe.com",
@@ -15,5 +15,5 @@
         "views/mail_activity_redirection.xml",
         "views/res_config_settings.xml",
     ],
-    "installable": False,
+    "installable": True,
 }

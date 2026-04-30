@@ -1,9 +1,9 @@
 # Copyright 2021 DEC SARL, Inc - All Rights Reserved.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, models
-
 import logging
+
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -33,8 +33,11 @@ class MailActivityMixin(models.AbstractModel):
                 note=note,
             ):
                 _logger.info(
-                    _("Activity redirected to %s by rule %s")
-                    % (redirection.user_id.name, redirection.name)
+                    self.env._(
+                        "Activity redirected to %(user)s by rule %(rule)s",
+                        user=redirection.user_id.name,
+                        rule=redirection.name,
+                    )
                 )
                 # Replace User with the one set in redirection rule
                 act_values["user_id"] = redirection.user_id.id
@@ -60,7 +63,7 @@ class MailActivityMixin(models.AbstractModel):
         summary="",
         views_or_xmlid="",
         render_context=None,
-        **act_values
+        **act_values,
     ):
         """Basic hook to keep a value of the original xmlid before its use for
         rendering.
@@ -74,5 +77,5 @@ class MailActivityMixin(models.AbstractModel):
             summary,
             views_or_xmlid,
             render_context,
-            **act_values
+            **act_values,
         )
