@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="software.account.supplier" id="software_account_supplier_google">
+        <field name="name">Google</field>
+        <field
+            name="rules"
+        >Account required for Google Workspace and related services.</field>
+        <field
+            name="image"
+            type="base64"
+            file="software_account/static/img/google.png"
+        />
+    </record>
+
+    <record model="software.account.supplier" id="software_account_supplier_microsoft">
+        <field name="name">Microsoft</field>
+        <field
+            name="rules"
+        >Account required for Microsoft 365 and Azure services.</field>
+        <field
+            name="image"
+            type="base64"
+            file="software_account/static/img/microsoft.png"
+        />
+    </record>
+
+    <record model="software.account.supplier" id="software_account_supplier_steam">
+        <field name="name">Steam</field>
+        <field name="rules">Account required to manage Steam game licenses.</field>
+        <field
+            name="image"
+            type="base64"
+            file="software_account/static/img/steam.png"
+        />
+    </record>
+
+    <record model="software.account.supplier" id="software_account_supplier_meta">
+        <field name="name">Meta</field>
+        <field
+            name="rules"
+        >Account required for Meta Business Suite and advertising.</field>
+        <field name="image" type="base64" file="software_account/static/img/meta.png" />
+    </record>
+
+    <record model="software.account.supplier" id="software_account_supplier_apple">
+        <field name="name">Apple</field>
+        <field
+            name="rules"
+        >Account required for Apple Developer Program and App Store.</field>
+        <field
+            name="image"
+            type="base64"
+            file="software_account/static/img/apple.png"
+        />
+    </record>
+</odoo>

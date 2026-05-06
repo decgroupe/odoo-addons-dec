@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Google accounts -->
+    <record model="software.account" id="software_account_google_1">
+        <field name="supplier_id" ref="software_account_supplier_google" />
+        <field name="login">admin.workspace</field>
+        <field name="password">G00gl3P@ss!1</field>
+        <field name="email">admin@example.com</field>
+        <field name="firstname">Alice</field>
+        <field name="lastname">Martin</field>
+        <field name="info">Main Google Workspace admin account.</field>
+    </record>
+
+    <record model="software.account" id="software_account_google_2">
+        <field name="supplier_id" ref="software_account_supplier_google" />
+        <field name="login">billing.google</field>
+        <field name="password">G00gl3P@ss!2</field>
+        <field name="email">billing@example.com</field>
+        <field name="firstname">Bob</field>
+        <field name="lastname">Dupont</field>
+        <field name="info">Google Workspace billing account.</field>
+    </record>
+
+    <!-- Microsoft accounts -->
+    <record model="software.account" id="software_account_microsoft_1">
+        <field name="supplier_id" ref="software_account_supplier_microsoft" />
+        <field name="login">admin@example.onmicrosoft.com</field>
+        <field name="password">M1cr0s0ftP@ss!1</field>
+        <field name="email">admin@example.com</field>
+        <field name="firstname">Alice</field>
+        <field name="lastname">Martin</field>
+        <field name="info">Microsoft 365 global administrator.</field>
+    </record>
+
+    <record model="software.account" id="software_account_microsoft_2">
+        <field name="supplier_id" ref="software_account_supplier_microsoft" />
+        <field name="login">azure.devops</field>
+        <field name="password">M1cr0s0ftP@ss!2</field>
+        <field name="email">devops@example.com</field>
+        <field name="firstname">Charlie</field>
+        <field name="lastname">Lefebvre</field>
+        <field name="info">Azure DevOps service account.</field>
+    </record>
+
+    <record model="software.account" id="software_account_microsoft_3">
+        <field name="supplier_id" ref="software_account_supplier_microsoft" />
+        <field name="login">licenses.ms365</field>
+        <field name="password">M1cr0s0ftP@ss!3</field>
+        <field name="email">licenses@example.com</field>
+        <field name="firstname">Diana</field>
+        <field name="lastname">Bernard</field>
+        <field name="info">Microsoft 365 license management account.</field>
+    </record>
+
+    <!-- Steam accounts -->
+    <record model="software.account" id="software_account_steam_1">
+        <field name="supplier_id" ref="software_account_supplier_steam" />
+        <field name="login">steam_corp_main</field>
+        <field name="password">St3amP@ss!1</field>
+        <field name="email">gaming@example.com</field>
+        <field name="firstname">Eric</field>
+        <field name="lastname">Rousseau</field>
+        <field name="pin">1234</field>
+        <field name="info">Main Steam account for corporate game licenses.</field>
+    </record>
+
+    <record model="software.account" id="software_account_steam_2">
+        <field name="supplier_id" ref="software_account_supplier_steam" />
+        <field name="login">steam_corp_backup</field>
+        <field name="password">St3amP@ss!2</field>
+        <field name="email">gaming2@example.com</field>
+        <field name="firstname">Eric</field>
+        <field name="lastname">Rousseau</field>
+        <field name="pin">5678</field>
+        <field name="info">Backup Steam account for game licenses.</field>
+    </record>
+
+    <!-- Meta accounts -->
+    <record model="software.account" id="software_account_meta_1">
+        <field name="supplier_id" ref="software_account_supplier_meta" />
+        <field name="login">meta.business.main</field>
+        <field name="password">M3taP@ss!1</field>
+        <field name="email">social@example.com</field>
+        <field name="firstname">Fanny</field>
+        <field name="lastname">Girard</field>
+        <field name="info">Meta Business Suite main account.</field>
+    </record>
+
+    <record model="software.account" id="software_account_meta_2">
+        <field name="supplier_id" ref="software_account_supplier_meta" />
+        <field name="login">meta.ads.manager</field>
+        <field name="password">M3taP@ss!2</field>
+        <field name="email">ads@example.com</field>
+        <field name="firstname">Fanny</field>
+        <field name="lastname">Girard</field>
+        <field name="info">Meta Ads Manager account for paid campaigns.</field>
+    </record>
+
+    <!-- Apple accounts -->
+    <record model="software.account" id="software_account_apple_1">
+        <field name="supplier_id" ref="software_account_supplier_apple" />
+        <field name="login">dev@example.com</field>
+        <field name="password">Appl3P@ss!1</field>
+        <field name="email">dev@example.com</field>
+        <field name="firstname">Georges</field>
+        <field name="lastname">Petit</field>
+        <field name="info">Apple Developer Program main account.</field>
+    </record>
+
+    <record model="software.account" id="software_account_apple_2">
+        <field name="supplier_id" ref="software_account_supplier_apple" />
+        <field name="login">appstore.distrib</field>
+        <field name="password">Appl3P@ss!2</field>
+        <field name="email">appstore@example.com</field>
+        <field name="firstname">Helene</field>
+        <field name="lastname">Morel</field>
+        <field name="info">App Store distribution account.</field>
+    </record>
+</odoo>

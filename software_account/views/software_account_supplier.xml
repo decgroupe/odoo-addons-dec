@@ -15,7 +15,7 @@
                                 options="{
                                     'placeholder': '/base/static/img/company_image.png',
                                     'size': [64, 64],
-                                    'img_class': 'object-fit-cover'
+                                    'img_class': 'object-fit-contain'
                                 }"
                                 widget="image"
                             />

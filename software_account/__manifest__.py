@@ -16,5 +16,9 @@
         "views/software_account_supplier.xml",
         "views/menu.xml",
     ],
+    "demo": [
+        "demo/software_account_supplier.xml",
+        "demo/software_account.xml",
+    ],
     "installable": True,
 }
