@@ -11,10 +11,10 @@
                 <field name="email" />
                 <field name="firstname" />
                 <field name="lastname" />
-                <field name="product_id" />
-                <field name="production_id" />
-                <field name="partner_id" />
-                <field name="datetime" />
+                <field name="product_id" optional="hide" />
+                <field name="production_id" optional="hide" />
+                <field name="partner_id" optional="hide" />
+                <field name="datetime" optional="hide" />
             </list>
         </field>
     </record>
@@ -25,39 +25,68 @@
         <field name="arch" type="xml">
             <form string="Account">
                 <sheet>
-                    <group>
-                        <div class="oe_title">
-                            <label for="login" class="oe_edit_only" />
-                            <h1>
-                                <field name="login" />
-                            </h1>
-                        </div>
-                        <group>
-                            <field name="supplier_id" />
-                        </group>
-                    </group>
-                    <group>
-                        <group>
-                            <field name="password" />
-                            <field name="question" />
-                            <field name="answer" />
-                            <field name="pin" />
-                            <field name="datetime" />
-                        </group>
-                        <group>
-                            <field name="email" />
-                            <field name="firstname" />
-                            <field name="lastname" />
-                        </group>
-                    </group>
-                    <group>
-                        <field name="product_id" />
-                        <field name="production_id" />
-                        <field name="partner_id" />
-                    </group>
-                    <group>
-                        <field name="info" />
-                    </group>
+                    <field
+                        name="supplier_image"
+                        widget="image"
+                        class="oe_avatar"
+                        options="{
+                            'placeholder': '/base/static/img/company_image.png',
+                            'img_class': 'object-fit-contain'
+                        }"
+                    />
+                    <div class="oe_title">
+                        <label for="login" />
+                        <h1>
+                            <field name="login" placeholder="Login" />
+                        </h1>
+                        <field
+                            name="supplier_id"
+                            placeholder="Supplier"
+                            options="{'no_create': True}"
+                        />
+                    </div>
+                    <notebook>
+                        <page string="Credentials" name="credentials">
+                            <group>
+                                <group string="Authentication">
+                                    <field name="password" />
+                                    <field name="pin" />
+                                </group>
+                                <group string="Identity">
+                                    <field name="email" />
+                                    <field name="firstname" />
+                                    <field name="lastname" />
+                                </group>
+                            </group>
+                            <group string="Security Question">
+                                <field
+                                    name="question"
+                                    nolabel="1"
+                                    placeholder="Security question..."
+                                />
+                                <field
+                                    name="answer"
+                                    nolabel="1"
+                                    placeholder="Answer..."
+                                />
+                            </group>
+                        </page>
+                        <page string="Links" name="links">
+                            <group>
+                                <field name="product_id" />
+                                <field name="production_id" />
+                                <field name="partner_id" />
+                                <field name="datetime" />
+                            </group>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field
+                                name="info"
+                                nolabel="1"
+                                placeholder="Additional information..."
+                            />
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

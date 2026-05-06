@@ -15,6 +15,10 @@ class SoftwareAccount(models.Model):
         string="Supplier",
         required=True,
     )
+    supplier_image = fields.Binary(
+        related="supplier_id.image",
+        string="Supplier Logo",
+    )
     login = fields.Char(
         string="Login",
         size=64,
