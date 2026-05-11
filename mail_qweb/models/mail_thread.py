@@ -237,7 +237,8 @@ class MailThread(models.AbstractModel):
             kwargs
             and kwargs.get("email_layout_xmlid") == "mail.mail_notification_light"
         ):
-            # force signature for light template
+            # force signature for light templat, must also be added to
+            # notify_valid_parameters list
             kwargs["add_sign"] = True
         return super().message_notify(
             body=body,
@@ -253,3 +254,7 @@ class MailThread(models.AbstractModel):
             attachment_ids=attachment_ids,
             **kwargs,
         )
+
+    def _get_notify_valid_parameters(self):
+        notify_valid_parameters = super()._get_notify_valid_parameters()
+        return notify_valid_parameters | {"add_sign"}
