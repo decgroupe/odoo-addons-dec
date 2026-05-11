@@ -28,7 +28,12 @@
         <field name="inherit_id" ref="base.module_tree" />
         <field name="arch" type="xml">
             <xpath expr="//list/field[@name='shortdesc']" position="before">
-                <field name="icon_image" widget="image" class="oe_avatar" />
+                <field
+                    name="icon_image"
+                    widget="image"
+                    options="{'size': [24, 24]}"
+                    width="28"
+                />
             </xpath>
         </field>
     </record>
