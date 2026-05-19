@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="crm_case_oppor_tree_view">
-        <field name="name">crm.lead.tree.opportunity@crm_lead_activity_my</field>
+        <field name="name">crm.lead.list.opportunity@crm_lead_activity_my</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
         <field name="arch" type="xml">
@@ -12,11 +11,11 @@
             <field name="stage_id" position="attributes">
                 <attribute name="decoration-bf">1</attribute>
             </field>
-            <xpath expr="//tree/field[@name='activity_ids']" position="attributes">
+            <xpath expr="//list/field[@name='activity_ids']" position="attributes">
                 <attribute name="optional">hide</attribute>
             </xpath>
             <xpath
-                expr="//tree/field[@name='activity_date_deadline_my']"
+                expr="//list/field[@name='my_activity_date_deadline']"
                 position="before"
             >
                 <field
@@ -26,23 +25,18 @@
                 />
             </xpath>
             <xpath
-                expr="//tree/field[@name='activity_date_deadline_my']"
+                expr="//list/field[@name='my_activity_date_deadline']"
                 position="after"
             >
                 <field name="activity_my_state" invisible="1" />
                 <button
                     name="action_snooze"
                     class="text-warning"
-                    attrs="{'invisible': ['|', '|',
-                        ('activity_my_ids', '=', []),
-                        ('activity_my_state', '=', 'planned'),
-                        ('activity_my_state', '=', False),],
-                    }"
+                    invisible="not activity_my_ids or activity_my_state == 'planned' or not activity_my_state"
                     type="object"
                     title="Snooze 7d"
                     icon="fa-bell-slash"
-                >
-                </button>
+                />
             </xpath>
         </field>
     </record>
@@ -51,11 +45,10 @@
         <field name="name">crm.lead.kanban.lead@crm_lead_activity_my</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="priority" eval="99" />
         <field name="arch" type="xml">
-            <xpath expr="//kanban/field[@name='activity_state']" position="after">
+            <xpath expr="//kanban/field[@name='team_id']" position="after">
                 <field name="activity_my_state" />
-            </xpath>
-            <xpath expr="//kanban/field[@name='activity_ids']" position="after">
                 <field name="activity_my_ids" />
                 <field name="date_deadline" />
             </xpath>
@@ -67,16 +60,11 @@
                     help="This bar allows to filter the opportunities based on scheduled activities."
                 />
             </xpath>
-            <xpath
-                expr="//kanban//templates//div[hasclass('o_kanban_record_bottom')]"
-                position="before"
-            >
+            <xpath expr="//kanban//templates//footer" position="before">
                 <small name="date_deadline">
                     <div t-if="record.date_deadline.raw_value" class="my-1">
-                        <i class="fa fa-calendar" title="Deadline" /> <field
-                            name="date_deadline"
-                            widget="remaining_days"
-                        />
+                        <i class="fa fa-calendar" title="Deadline" />
+                        <field name="date_deadline" widget="remaining_days" />
                     </div>
                 </small>
             </xpath>
@@ -95,5 +83,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>
