@@ -2,9 +2,12 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Feb 2022
 
 import logging
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+
+import pytz
 
 from odoo import api, fields, models
+from odoo.tools import SQL
 
 _logger = logging.getLogger(__name__)
 
@@ -81,6 +84,7 @@ class MailActivityMyMixin(models.AbstractModel):
 
     @api.depends("activity_my_ids.state")
     def _compute_activity_my_state(self):
+        """Compute activity_my_state based on the current user's activities."""
         for record in self:
             states = record.activity_my_ids.mapped("state")
             if "overdue" in states:
@@ -94,52 +98,63 @@ class MailActivityMyMixin(models.AbstractModel):
 
     @api.depends("activity_my_ids.user_id")
     def _compute_activity_my_user_id(self):
+        """Compute the user id from the first of the current user's activities."""
         for record in self:
             activity = record.activity_my_ids[:1]
             record.activity_my_user_id = activity.user_id
 
     @api.depends("activity_my_ids.activity_type_id")
     def _compute_activity_my_type_id(self):
+        """Compute the activity type from the first of the current user's activities."""
         for record in self:
             activity = record.activity_my_ids[:1]
             record.activity_my_type_id = activity.activity_type_id
 
     @api.depends("activity_my_ids.date_deadline")
     def _compute_activity_my_date_deadline(self):
+        """Compute the deadline from the first of the current user's activities."""
         for record in self:
             activity = record.activity_my_ids[:1]
             record.activity_my_date_deadline = activity.date_deadline
 
     @api.depends("activity_my_ids.icon")
     def _compute_activity_my_type_icon(self):
+        """Compute the activity type icon from the first of the current user's
+        activities."""
         for record in self:
             activity = record.activity_my_ids[:1]
             record.activity_my_type_icon = activity.icon
 
     @api.depends("activity_my_ids.summary")
     def _compute_activity_my_summary(self):
+        """Compute the summary from the first of the current user's activities."""
         for record in self:
             activity = record.activity_my_ids[:1]
             record.activity_my_summary = activity.summary
 
     def _search_activity_my_date_deadline(self, operator, operand):
+        """Search on activity_my_date_deadline field."""
         if operator == "=" and not operand:
             return [("activity_my_ids", "=", False)]
         return [("activity_my_ids.date_deadline", operator, operand)]
 
     @api.model
     def _search_activity_my_user_id(self, operator, operand):
+        """Search on activity_my_user_id field."""
         return [("activity_my_ids.user_id", operator, operand)]
 
     @api.model
     def _search_activity_my_type_id(self, operator, operand):
+        """Search on activity_my_type_id field."""
         return [("activity_my_ids.activity_type_id", operator, operand)]
 
     @api.model
     def _search_activity_my_summary(self, operator, operand):
+        """Search on activity_my_summary field."""
         return [("activity_my_ids.summary", operator, operand)]
 
     def action_snooze(self):
+        """Snooze the current user's next activity by 7 days."""
         self.ensure_one()
         today = date.today()
         my_next_activity = self.activity_my_ids[:1]
@@ -152,79 +167,57 @@ class MailActivityMyMixin(models.AbstractModel):
             my_next_activity.write({"date_deadline": date_deadline})
         return True
 
-    # yapf: disable
-    def _read_progress_bar(self, domain, group_by, progress_bar):
-        """ This method is a copy/paste of existing implementation for
-            activity_state, except following:
-            - `activity_state` replaced with `activity_my_state`
-            - `_last_activity_state` replaced with `_last_activity_my_state`
-            - `AND mail_activity.user_id = '{user}'` added to the WHERE join
-            - `user=self._uid,` added to format params
+    def _read_group_groupby(self, groupby_spec, query):
+        """Override to support groupby on activity_my_state with user filtering.
+
+        This is an adaptation of mail.activity.mixin._read_group_groupby for
+        the user-specific activity state. It adds a WHERE clause to filter
+        activities belonging to the current user only.
         """
-        group_by_fname = group_by.partition(':')[0]
-        if not (progress_bar['field'] == 'activity_my_state' and self._fields[group_by_fname].store):
-            return super()._read_progress_bar(domain, group_by, progress_bar)
-
-        # optimization for 'activity_my_state'
-
-        # explicitly check access rights, since we bypass the ORM
-        self.check_access_rights('read')
-        query = self._where_calc(domain)
-        self._apply_ir_rules(query, 'read')
-        gb = group_by.partition(':')[0]
-        annotated_groupbys = [
-            self._read_group_process_groupby(gb, query)
-            for gb in [group_by, 'activity_my_state']
-        ]
-        groupby_dict = {gb['groupby']: gb for gb in annotated_groupbys}
-        for gb in annotated_groupbys:
-            if gb['field'] == 'activity_my_state':
-                gb['qualified_field'] = '"_last_activity_my_state"."activity_my_state"'
-        groupby_terms, orderby_terms = self._read_group_prepare('activity_my_state', [], annotated_groupbys, query)
-        select_terms = [
-            '%s as "%s"' % (gb['qualified_field'], gb['groupby'])
-            for gb in annotated_groupbys
-        ]
-        from_clause, where_clause, where_params = query.get_sql()
-        tz = self._context.get('tz') or self.env.user.tz or 'UTC'
-        select_query = """
-            SELECT 1 AS id, count(*) AS "__count", {fields}
-            FROM {from_clause}
-            JOIN (
-                SELECT res_id,
+        if groupby_spec != "activity_my_state":
+            return super()._read_group_groupby(groupby_spec, query)
+        self.check_field_access_rights("read", ["activity_my_state"])
+        self.env["mail.activity"].flush_model(
+            ["res_model", "res_id", "user_id", "date_deadline"]
+        )
+        self.env["res.users"].flush_model(["partner_id"])
+        self.env["res.partner"].flush_model(["tz"])
+        tz = "UTC"
+        if self.env.context.get("tz") in pytz.all_timezones_set:
+            tz = self.env.context["tz"]
+        sql_join = SQL(
+            """
+            (SELECT res_id,
                 CASE
-                    WHEN min(date_deadline - (now() AT TIME ZONE COALESCE(res_partner.tz, %s))::date) > 0 THEN 'planned'
-                    WHEN min(date_deadline - (now() AT TIME ZONE COALESCE(res_partner.tz, %s))::date) < 0 THEN 'overdue'
-                    WHEN min(date_deadline - (now() AT TIME ZONE COALESCE(res_partner.tz, %s))::date) = 0 THEN 'today'
+                    WHEN min(EXTRACT(day from (
+                        mail_activity.date_deadline - DATE_TRUNC(
+                            'day', %(today_utc)s AT TIME ZONE
+                            COALESCE(mail_activity.user_tz, %(tz)s)
+                        )))) > 0 THEN 'planned'
+                    WHEN min(EXTRACT(day from (
+                        mail_activity.date_deadline - DATE_TRUNC(
+                            'day', %(today_utc)s AT TIME ZONE
+                            COALESCE(mail_activity.user_tz, %(tz)s)
+                        )))) < 0 THEN 'overdue'
+                    WHEN min(EXTRACT(day from (
+                        mail_activity.date_deadline - DATE_TRUNC(
+                            'day', %(today_utc)s AT TIME ZONE
+                            COALESCE(mail_activity.user_tz, %(tz)s)
+                        )))) = 0 THEN 'today'
                     ELSE null
                 END AS activity_my_state
-                FROM mail_activity
-                JOIN res_users ON (res_users.id = mail_activity.user_id)
-                JOIN res_partner ON (res_partner.id = res_users.partner_id)
-                WHERE res_model = '{model}' AND mail_activity.user_id = '{user}'
-                GROUP BY res_id
-            ) AS "_last_activity_my_state" ON ("{table}".id = "_last_activity_my_state".res_id)
-            WHERE {where_clause}
-            GROUP BY {group_by}
-        """.format(
-            fields=', '.join(select_terms),
-            from_clause=from_clause,
-            model=self._name,
-            user=self._uid,
-            table=self._table,
-            where_clause=where_clause or '1=1',
-            group_by=', '.join(groupby_terms),
+            FROM mail_activity
+            WHERE res_model = %(res_model)s
+                AND mail_activity.active = true
+                AND mail_activity.user_id = %(user_id)s
+            GROUP BY res_id)
+            """,
+            res_model=self._name,
+            today_utc=pytz.utc.localize(datetime.utcnow()),
+            tz=tz,
+            user_id=self._uid,
         )
-        self.env.cr.execute(select_query, [tz] * 3 + where_params)
-        fetched_data = self.env.cr.dictfetchall()
-        self._read_group_resolve_many2one_fields(fetched_data, annotated_groupbys)
-        data = [
-            {key: self._read_group_prepare_data(key, val, groupby_dict)
-             for key, val in row.items()}
-            for row in fetched_data
-        ]
-        return [
-            self._read_group_format_result(vals, annotated_groupbys, [group_by], domain)
-            for vals in data
-        ]
-    # yapf: enable
+        alias = query.left_join(
+            self._table, "id", sql_join, "res_id", "last_activity_my_state"
+        )
+        return SQL.identifier(alias, "activity_my_state")

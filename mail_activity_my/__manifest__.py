@@ -1,6 +1,6 @@
 {
     "name": "Mail Activity My",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "DEC",
     "category": "Social Network",
     "website": "https://decgroupe.com",
@@ -9,11 +9,12 @@
         "mail",
         "base_fontawesome",
     ],
-    "data": [
-        "views/mail_activity_my_assets.xml",
-    ],
-    "qweb": [
-        "static/src/xml/mail_activity_my.xml",
-    ],
-    "installable": False,
+    "assets": {
+        "web.assets_backend": [
+            "mail_activity_my/static/src/scss/mail_activity_my.scss",
+            "mail_activity_my/static/src/xml/mail_activity_my.xml",
+            "mail_activity_my/static/src/js/mail_activity_my.esm.js",
+        ],
+    },
+    "installable": True,
 }

@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
 
-    <t t-name="mail.KanbanActivityMy">
-        <div class="o_kanban_inline_block dropdown o_kanban_selection o_mail_activity">
-            <a
-                class="dropdown-toggle o-no-caret o_activity_btn"
-                data-boundary="viewport"
-                data-flip="false"
-                data-toggle="dropdown"
-                role="button"
-            >
-                <!-- span classes are generated dynamically (see _render) -->
-                <span
-                    t-att-title="widget.selection[widget.activityState]"
-                    role="img"
-                    t-att-aria-label="widget.selection[widget.activity_my_state]"
-                />
-            </a>
-            <div class="dropdown-menu o_activity" role="menu" />
-        </div>
+    <t t-name="mail_activity_my.ActivityButtonMy">
+        <a
+            class="o-mail-ActivityButton"
+            role="button"
+            t-on-click.prevent.stop="onClick"
+            t-ref="button"
+            t-att-aria-label="title"
+            t-att-title="title"
+        >
+            <i class="fa fa-fw fa-lg" t-att-class="buttonClass" role="img" />
+        </a>
     </t>
 
-    <t t-name="mail.ListActivityMy" t-extend="mail.KanbanActivity">
-        <t t-jquery=".o_mail_activity" t-operation="append">
-            <span class="o_activity_my_summary" />
-        </t>
+    <t t-name="mail_activity_my.ListActivityButtonMy">
+        <button
+            class="o-mail-ActivityButton btn btn-link btn-dark p-0 w-100 text-start text-truncate"
+            t-on-click.prevent.stop="onClick"
+            t-ref="button"
+            t-att-aria-label="title"
+            t-att-title="title"
+        >
+            <i class="fa fa-fw fa-lg" t-att-class="buttonClass" role="img" />
+            <t t-slot="default" />
+        </button>
+    </t>
+
+    <t t-name="mail_activity_my.KanbanActivityMy">
+        <ActivityButton record="props.record" />
+    </t>
+
+    <t t-name="mail_activity_my.ListActivityMy">
+        <ActivityButton record="props.record">
+            <span class="o-mail-ListActivityMy-summary" t-out="summaryText" />
+        </ActivityButton>
     </t>
 
 </templates>
