@@ -1,6 +1,7 @@
 {
     "name": "Project My Activities",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -14,5 +15,5 @@
         "views/project_task.xml",
         "views/project_project.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
