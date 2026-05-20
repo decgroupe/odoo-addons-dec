@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:29+0000\n"
-"PO-Revision-Date: 2023-11-28 10:29+0000\n"
+"POT-Creation-Date: 2026-06-03 10:57+0000\n"
+"PO-Revision-Date: 2026-06-03 10:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 
 #. module: purchase_merge
+#. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_order_merge.py:0
-#, python-format
 msgid ""
 "All orders must have the same supplier.\n"
 "You have selected orders from these partners:\n"
@@ -74,21 +74,13 @@ msgid "Delete"
 msgstr ""
 
 #. module: purchase_merge
-#: model:ir.model.fields,field_description:purchase_merge.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: purchase_merge
-#: model:ir.model.fields,field_description:purchase_merge.field_purchase_order__id
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__id
 msgid "ID"
-msgstr ""
-
-#. module: purchase_merge
-#: model:ir.model.fields,help:purchase_merge.field_purchase_order__xid
-#: model:ir.model.fields,help:purchase_merge.field_purchase_order_merge__xid
-msgid "ID of the record defined in xml file"
 msgstr ""
 
 #. module: purchase_merge
@@ -102,14 +94,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase_merge.purchase_order_merge_form_view
 msgid ""
 "In <b>merge</b> mode, select an existing order to merge it\n"
-"                    with remaining orders or use <b>create</b> mode to create \n"
+"                    with remaining orders or use <b>create</b> mode to create\n"
 "                    a new purchase order dedicated to this merge."
-msgstr ""
-
-#. module: purchase_merge
-#: model:ir.model.fields,field_description:purchase_merge.field_purchase_order____last_update
-#: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: purchase_merge
@@ -160,8 +146,8 @@ msgid "Origin Procurement Groups"
 msgstr ""
 
 #. module: purchase_merge
+#. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_order_merge.py:0
-#, python-format
 msgid "Please select two or more orders in the list view"
 msgstr ""
 
@@ -177,8 +163,8 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: purchase_merge
+#. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_order_merge.py:0
-#, python-format
 msgid "Purchase Orders (after merge)"
 msgstr ""
 
@@ -193,8 +179,8 @@ msgid "Select Options"
 msgstr ""
 
 #. module: purchase_merge
+#. odoo-python
 #: code:addons/purchase_merge/wizard/purchase_order_merge.py:0
-#, python-format
 msgid ""
 "Selection contains order(s) in incompatible states:\n"
 "%s"
@@ -203,12 +189,6 @@ msgstr ""
 #. module: purchase_merge
 #: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__partner_id
 msgid "Vendor"
-msgstr ""
-
-#. module: purchase_merge
-#: model:ir.model.fields,field_description:purchase_merge.field_purchase_order__xid
-#: model:ir.model.fields,field_description:purchase_merge.field_purchase_order_merge__xid
-msgid "XML-ID"
 msgstr ""
 
 #. module: purchase_merge

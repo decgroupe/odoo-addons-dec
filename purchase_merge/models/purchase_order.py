@@ -8,4 +8,5 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     def _get_mergeable_states(self):
+        """Return the tuple of states that allow merging."""
         return ("draft", "sent", "to approve")
