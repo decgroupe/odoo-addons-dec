@@ -13,7 +13,7 @@ Procurement exception manager
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-DEC%2Fodoo--addons--dec-lightgray.png?logo=github
@@ -22,10 +22,34 @@ Procurement exception manager
 
 |badge1| |badge2| |badge3|
 
-Intercept procurement exception and redirect them using custom rules.
+This module redirects procurement exception activities to the right
+recipients based on configurable redirection rules.
 
-Check if this redirection is still pertinent against
-``mail_activity_redirection`` module.
+- It helps route exception follow-up to the right team without manual
+  reassignment.
+- It keeps exception handling aligned with your company workflow for
+  procurement-related activities.
+
+Technical details
+-----------------
+
+**Procurement exception redirection**
+
+The module extends procurement exception handling so generated
+activities can be reassigned through module-specific redirection logic
+instead of default recipient assignment.
+
+**Rule-based recipient resolution**
+
+Recipient selection is computed from configured redirection rules and
+applied at activity creation/update time so exception notifications
+reach the intended users.
+
+**Compatibility note**
+
+The behavior should be reviewed when deployed together with modules that
+also alter activity recipients, such as mail_activity_redirection, to
+ensure there is no overlap or conflicting redirection chain.
 
 **Table of contents**
 
