@@ -6,7 +6,7 @@
     "website": "https://decgroupe.com",
     "depends": [
         "product_reference",
-        "product_analytic",
+        "product_analytic_legacy",
     ],
     "data": [
         "data/account_analytic_account.xml",
