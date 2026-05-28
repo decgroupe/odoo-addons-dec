@@ -6,7 +6,7 @@
     "website": "https://decgroupe.com",
     "depends": [
         "account",
-        "product_analytic",
+        "product_analytic_legacy",
         "product_category_analytic",
         "account_invoice_update_wizard",  # akretion/odoo-usability
     ],
