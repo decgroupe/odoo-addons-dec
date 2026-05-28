@@ -50,6 +50,10 @@ class ResUsers(models.Model):
         compute="_compute_signin_link_url",
         string="Signin URL",
     )
+    signin_link_token_failures = fields.Integer(
+        copy=False,
+        groups="auth_unique_link.group_impersonate",
+    )
 
     @api.depends("signin_link_token", "signin_link_expiration")
     def _compute_signin_link_valid(self):
@@ -75,7 +79,14 @@ class ResUsers(models.Model):
             )
 
     def signin_link_cancel(self):
-        return self.write({"signin_link_token": False, "signin_link_expiration": False})
+        """Cancel the current signin link token and reset the failure counter."""
+        return self.write(
+            {
+                "signin_link_token": False,
+                "signin_link_expiration": False,
+                "signin_link_token_failures": 0,
+            }
+        )
 
     def signin_link_prepare(self, expiration=False, basic=False):
         """generate a new token for the partners with the given validity, if
@@ -98,7 +109,11 @@ class ResUsers(models.Model):
                 # We need to sudo since only admin user is allowed to write
                 # other user fields
                 rec.sudo().write(
-                    {"signin_link_token": token, "signin_link_expiration": expiration}
+                    {
+                        "signin_link_token": token,
+                        "signin_link_expiration": expiration,
+                        "signin_link_token_failures": 0,
+                    }
                 )
         return True
 
@@ -129,6 +144,11 @@ class ResUsers(models.Model):
                 raise UserError(_("Signin link token '%s' is no longer valid") % token)
             return False
         return user
+
+    @api.model
+    def _signin_link_is_basic_token(self, token):
+        """Return True if the token is a 6-digit numeric code (basic mode)."""
+        return bool(token) and token.isdigit() and len(token) == 6
 
     @api.model
     def _get_signin_link_expiration_minutes(self):
@@ -177,6 +197,9 @@ class ResUsers(models.Model):
         return True
 
     def _check_credentials(self, credential, env):
+        """Override to support signin link token as a credential and track
+        failed attempts for 6-digit tokens to prevent brute-force attacks.
+        """
         try:
             return super()._check_credentials(credential, env)
         except AccessDenied:
@@ -187,4 +210,29 @@ class ResUsers(models.Model):
                 token=password, uid=self.env.uid, check_validity=True
             )
             if not res:
+                # increment failure counter when a 6-digit code is submitted
+                # to limit brute-force; clear the token after 3 failures so
+                # the user must request a new one.
+                # use a dedicated cursor for both the read and the write so
+                # that (a) we see the latest committed token value (bypassing
+                # any stale ORM cache on the auth cursor) and (b) the write
+                # survives the auth cursor rollback that follows AccessDenied.
+                if self._signin_link_is_basic_token(password):
+                    with self.env.registry.cursor() as cr:
+                        user = self.env(cr=cr)["res.users"].sudo().browse(self.env.uid)
+                        if user.exists() and self._signin_link_is_basic_token(
+                            user.signin_link_token
+                        ):
+                            failures = user.signin_link_token_failures + 1
+                            if failures >= 3:
+                                _logger.warning(
+                                    "signin link token for user %s cleared after "
+                                    "%d failed attempts",
+                                    user.login,
+                                    failures,
+                                )
+                                user.signin_link_cancel()
+                            else:
+                                user.write({"signin_link_token_failures": failures})
+                            user.env.flush_all()
                 raise

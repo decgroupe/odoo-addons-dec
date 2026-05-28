@@ -1,6 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2024
 
+import random
+from contextlib import contextmanager
+from unittest.mock import patch
 
 from odoo import Command
 from odoo.tests import common
@@ -41,6 +44,49 @@ class TestAuthUniqueLinkCommon(common.TransactionCase):
         # ensure portal access is active
         self.assertTrue(self._in_portal(user_id))
         return user_id
+
+    def _prepare_basic_token(self, user_id):
+        """Prepare a fresh basic (6-digit) token for user_id and return
+        a (actual_token, wrong_token) tuple where wrong_token is a
+        different 6-digit code guaranteed not to match.
+
+        The token is written on the test cursor directly so that both the
+        test cursor and any env created from it (via _patch_registry_cursor)
+        can read the committed-in-savepoint value.
+        """
+        actual = str(random.SystemRandom().randint(0, 999_999)).zfill(6)
+        user_id.sudo().write(
+            {
+                "signin_link_token": actual,
+                "signin_link_expiration": False,
+                "signin_link_token_failures": 0,
+            }
+        )
+        # shift by 1 mod 10^6 to get a code that is never equal to actual
+        wrong = str((int(actual) + 1) % 1_000_000).zfill(6)
+        return actual, wrong
+
+    @contextmanager
+    def _patch_registry_cursor(self):
+        """Patch registry.cursor() to yield the test cursor (no commit or
+        close) so that writes inside _check_credentials remain visible to the
+        test transaction.
+
+        This is needed because in production _check_credentials opens a new
+        cursor to persist the failure counter even after the auth cursor is
+        rolled back on AccessDenied.  In tests, the portal user row lives in
+        an uncommitted savepoint; new cursors cannot see it, so we redirect
+        the registry cursor to the test cursor instead.
+        """
+        test_cr = self.env.cr
+
+        @contextmanager
+        def _fake_cursor():
+            # yield the test cursor; skip commit/close to preserve test isolation
+            yield test_cr
+
+        with patch.object(self.env.registry, "cursor", _fake_cursor):
+            yield
 
     def _get_impersonate_wizard(self, user_id):
         # use our wizard to generate an access token
