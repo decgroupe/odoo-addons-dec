@@ -5,7 +5,7 @@
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
-        "product_analytic",  # OCA module, see oca_dependencies.txt
+        "product_analytic_legacy",
     ],
     "data": [],
     "installable": True,
