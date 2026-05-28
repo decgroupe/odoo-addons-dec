@@ -22,13 +22,13 @@
             </calendar>
         </field>
     </record>
-
+    <!--
     <record model="ir.actions.act_window.view" id="act_hr_timesheet_line_view_calendar">
         <field name="view_mode">calendar</field>
         <field name="sequence">3</field>
         <field name="view_id" ref="hr_timesheet_line_calendar" />
         <field name="act_window_id" ref="hr_timesheet.act_hr_timesheet_line" />
-    </record>
+    </record> -->
 
     <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
         <field name="view_id" ref="hr_timesheet.hr_timesheet_line_form" />
