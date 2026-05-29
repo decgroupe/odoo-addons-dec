@@ -1,7 +1,7 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2026
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import AccessDenied
 
 
@@ -22,9 +22,10 @@ class MergeUomUom(models.TransientModel):
     )
 
     def _merge(self, object_ids, dst_object=None, extra_checks=True):
+        """Override to restrict merge to users with the do-merge group."""
         if not self.env.user.has_group("uom_merge.res_group_do_merge"):
             raise AccessDenied(
-                _(
+                self.env._(
                     "You don't have the right to merge units of measure. "
                     "Please contact an Administrator."
                 )
@@ -32,4 +33,5 @@ class MergeUomUom(models.TransientModel):
         return super()._merge(object_ids, dst_object, extra_checks)
 
     def _delete_source_objects(self, src_objects):
+        """Override to delete source UoM records with elevated privileges."""
         return super()._delete_source_objects(src_objects.sudo())

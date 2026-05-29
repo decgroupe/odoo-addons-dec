@@ -2,47 +2,18 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2026
 
 from odoo.exceptions import AccessDenied
-from odoo.tests import new_test_user
-from odoo.tests.common import TransactionCase
+
+from .common import TestUomMergeCommon
 
 
-class TestUomMerge(TransactionCase):
-    """ """
-
-    def setUp(self):
-        super().setUp()
-        self.uom_model = self.env["uom.uom"]
-        self.merge_uom_wizard_model = self.env["merge.uom.uom.wizard"]
-        self.group_do_merge = self.env.ref("uom_merge.res_group_do_merge")
-        ctx = {
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
-        self.user = new_test_user(
-            self.env,
-            login="uom_merge-user",
-            groups="base.group_user",
-            context=ctx,
-        )
-
-    def _create_uom(self, name, category_id, uom_type="smaller", factor=1000.0):
-        return self.uom_model.create(
-            {
-                "name": name,
-                "category_id": category_id,
-                "uom_type": uom_type,
-                "factor": factor,
-            }
-        )
+class TestUomMerge(TestUomMergeCommon):
+    """Tests for uom_merge module."""
 
     def test_01_merge(self):
+        """Check that two UoM records can be merged by an authorized user."""
         categ_unit = self.env.ref("uom.product_uom_categ_unit")
         uom_a = self._create_uom("TestUoM-A", categ_unit.id)
         uom_b = self._create_uom("TestUoM-B", categ_unit.id)
-        uom_a_id = uom_a.id
-        uom_b_id = uom_b.id
         wizard_id = self.merge_uom_wizard_model.create(
             {
                 "object_ids": (uom_a + uom_b).ids,
@@ -54,6 +25,7 @@ class TestUomMerge(TransactionCase):
         self.assertFalse(uom_b.exists())
 
     def test_02_merge_no_right(self):
+        """Check that merging without the right group raises AccessDenied."""
         categ_unit = self.env.ref("uom.product_uom_categ_unit")
         uom_a = self._create_uom("TestUoM-C", categ_unit.id)
         uom_b = self._create_uom("TestUoM-D", categ_unit.id)
@@ -65,3 +37,12 @@ class TestUomMerge(TransactionCase):
         )
         with self.assertRaises(AccessDenied):
             wizard_id.action_merge()
+
+    def test_03_skip_category_validation(self):
+        """Check that _check_category_reference_uniqueness is skipped with flag."""
+        categ_unit = self.env.ref("uom.product_uom_categ_unit")
+        uom = self._create_uom("TestUoM-E", categ_unit.id)
+        # calling with the skip flag should return early without raising
+        uom.with_context(
+            skip_uom_category_validation=True
+        )._check_category_reference_uniqueness()

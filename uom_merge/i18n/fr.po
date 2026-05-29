@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* uom_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-03 11:15+0000\n"
+"PO-Revision-Date: 2026-06-03 16:23+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#. module: uom_merge
+#: model_terms:ir.ui.view,arch_db:uom_merge.merge_uom_uom_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: uom_merge
+#: model_terms:ir.ui.view,arch_db:uom_merge.merge_uom_uom_wizard_form
+msgid "Close"
+msgstr "Fermer"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__current_line_id
+msgid "Current Line"
+msgstr "Ligne actuelle"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Modifié par"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__write_date
+msgid "Last Updated on"
+msgstr "Modifié le"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__line_ids
+msgid "Lines"
+msgstr "Lignes"
+
+#. module: uom_merge
+#: model_terms:ir.ui.view,arch_db:uom_merge.merge_uom_uom_wizard_form
+msgid "Merge Records"
+msgstr "Fusionner les enregistrements"
+
+#. module: uom_merge
+#: model:ir.model,name:uom_merge.model_merge_uom_uom_wizard
+msgid "Merge Unit of Measure Wizard"
+msgstr "Assistant de fusion des unités de mesure"
+
+#. module: uom_merge
+#: model:ir.model,name:uom_merge.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "Unité de mesure du produit"
+
+#. module: uom_merge
+#: model_terms:ir.ui.view,arch_db:uom_merge.merge_uom_uom_wizard_form
+msgid ""
+"Selected records will be merged together.\n"
+"                            All documents linked to one of these record\n"
+"                            will be redirected to the destination record.\n"
+"                            You can remove records from this list to avoid merging them."
+msgstr ""
+"Les enregistrements sélectionnés seront fusionnés.\n"
+"                             Tous les documents liés à l'un de ces enregistrements\n"
+"                             seront redirigés vers l'enregistrement de destination.\n"
+"                             Vous pouvez enlever des enregistrements de cette liste "
+"pour éviter de les fusionner."
+
+#. module: uom_merge
+#: model:res.groups,name:uom_merge.res_group_do_merge
+msgid "Show Unit of Measure Wizard Merge Action"
+msgstr "Afficher l'action d'assistance de fusion des unités de mesure"
+
+#. module: uom_merge
+#: model_terms:ir.ui.view,arch_db:uom_merge.merge_uom_uom_wizard_form
+msgid "Skip these records"
+msgstr "Ignorer ces enregistrements"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__state
+msgid "State"
+msgstr "État"
+
+#. module: uom_merge
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__dst_object_id
+#: model:ir.model.fields,field_description:uom_merge.field_merge_uom_uom_wizard__object_ids
+msgid "Unit of Measure"
+msgstr "Unité de mesure"
+
+#. module: uom_merge
+#. odoo-python
+#: code:addons/uom_merge/wizard/merge_uom_uom.py:0
+msgid ""
+"You don't have the right to merge units of measure. Please contact an Administrator."
+msgstr ""
+"Vous n'êtes pas autorisé à fusionner des unités de mesure. Veuillez contacter un "
+"administrateur."
+
+#. module: uom_merge
+#: model:ir.actions.act_window,name:uom_merge.action_uom_uom_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr "🧙‍♂️ Fusionner ..."
+
+#. module: uom_merge
+#: model_terms:ir.ui.view,arch_db:uom_merge.merge_uom_uom_wizard_form
+msgid "🧙‍♂️ Merge Wizard"
+msgstr "🧙‍♂️ Assistant de fusion"
