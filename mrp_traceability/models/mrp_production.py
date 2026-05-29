@@ -22,17 +22,18 @@ class MrpProduction(models.Model):
         string="Moves on pickings associated with this manufacturing order output",
     )
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        # Update finished moves or they will be named « New »
-        if vals.get("move_finished_ids"):
-            rec.move_finished_ids.write({"name": rec.name})
-        # Update raw moves or they will be named « New »
-        if vals.get("move_raw_ids"):
-            rec.move_raw_ids.write({"name": rec.name})
-        rec._update_raw_move_conv_dest_ids(vals)
-        return rec
+    @api.model_create_multi
+    def create(self, vals_list):
+        record_ids = super().create(vals_list)
+        for rec, vals in zip(record_ids, vals_list, strict=True):
+            # Update finished moves or they will be named « New »
+            if vals.get("move_finished_ids"):
+                rec.move_finished_ids.write({"name": rec.name})
+            # Update raw moves or they will be named « New »
+            if vals.get("move_raw_ids"):
+                rec.move_raw_ids.write({"name": rec.name})
+            rec._update_raw_move_conv_dest_ids(vals)
+        return record_ids
 
     def write(self, vals):
         res = super().write(vals)
