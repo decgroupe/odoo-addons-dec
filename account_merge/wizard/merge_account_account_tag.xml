@@ -1,64 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record id="merge_account_account_tag_wizard_form" model="ir.ui.view">
-        <field name='name'>merge.account.account.tag.wizard.form@account_merge</field>
-        <field name='model'>merge.account.account.tag.wizard</field>
-        <field name='arch' type='xml'>
-            <form string='🧙‍♂️ Merge Wizard'>
+    <record model="ir.ui.view" id="merge_account_account_tag_wizard_form">
+        <field name="name">merge.account.account.tag.wizard.form@account_merge</field>
+        <field name="model">merge.account.account.tag.wizard</field>
+        <field name="arch" type="xml">
+            <form string="🧙‍♂️ Merge Wizard">
                 <sheet>
                     <field name="state" invisible="1" />
-                    <p
-                        class="oe_grey"
-                        attrs="{'invisible': [('state', '!=', ('option'))]}"
-                    >
-                        Select the list of fields used to search for
-                        duplicated records. If you select several fields,
-                        Odoo will propose you to merge only those having
-                        all these fields in common. (not one of the fields).
-                    </p>
-                    <group
-                        attrs="{'invisible': ['|', ('state', 'not in', ('selection', 'finished')), ('number_group', '=', 0)]}"
-                    >
-                        <field name="number_group" />
-                    </group>
-                    <group
-                        string="Search duplicates based on duplicated data in"
-                        attrs="{'invisible': [('state', 'not in', ('option',))]}"
-                    >
-                        <field name='group_by_name' />
-                    </group>
-                    <separator
-                        string="Options"
-                        attrs="{'invisible': [('state', 'not in', ('option',))]}"
-                    />
-                    <group
-                        attrs="{'invisible': [('state', 'not in', ('option','finished'))]}"
-                    >
-                        <field
-                            name='maximum_group'
-                            attrs="{'readonly': [('state', 'in', ('finished'))]}"
-                        />
-                    </group>
                     <separator
                         string="Merge the following tags"
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
+                        invisible="state in ('option', 'finished')"
                     />
-                    <group
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
-                        col="1"
-                    >
+                    <group invisible="state in ('option', 'finished')" col="1">
                         <p class="oe_grey">
-                            Selected tags will be merged together.
-                            All documents linked to one of these tags
-                            will be redirected to the destination tag.
-                            You can remove tags from this list to avoid merging them.
+                            Selected tags will be merged together. All documents
+                            linked to one of these tags will be redirected to the
+                            destination tag. You can remove tags from this list to
+                            avoid merging them.
                         </p>
                         <group col="2">
                             <field
                                 name="dst_object_id"
                                 domain="[('id', 'in', object_ids or False)]"
-                                attrs="{'required': [('state', '=', 'selection')]}"
+                                required="state == 'selection'"
                             />
                         </group>
                         <field name="object_ids" nolabel="1" />
@@ -66,39 +30,39 @@
                 </sheet>
                 <footer>
                     <button
-                        name='action_merge'
-                        string='Merge Tags'
-                        class='oe_highlight'
-                        type='object'
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished' ))]}"
+                        name="action_merge"
+                        string="Merge Tags"
+                        class="oe_highlight"
+                        type="object"
+                        invisible="state in ('option', 'finished')"
                     />
                     <button
-                        name='action_skip'
-                        string='Skip these tags'
-                        type='object'
-                        attrs="{'invisible': [('state', '!=', 'selection')]}"
+                        name="action_skip"
+                        string="Skip these tags"
+                        type="object"
+                        invisible="state != 'selection'"
                     />
                     <button
                         special="cancel"
                         string="Cancel"
                         type="object"
                         class="btn btn-secondary oe_inline"
-                        attrs="{'invisible': [('state', '=', 'finished')]}"
+                        invisible="state == 'finished'"
                     />
                     <button
                         special="cancel"
                         string="Close"
                         type="object"
                         class="btn btn-secondary oe_inline"
-                        attrs="{'invisible': [('state', '!=', 'finished')]}"
+                        invisible="state != 'finished'"
                     />
                 </footer>
             </form>
         </field>
     </record>
-    
-    <record id="action_account_account_tag_merge" model="ir.actions.act_window">
-        <field name="name">🧙‍♂️ Merge ...</field>
+
+    <record model="ir.actions.act_window" id="action_account_account_tag_merge">
+        <field name="name">🧙‍♂️ Merge ...</field>
         <field name="binding_model_id" ref="account.model_account_account_tag" />
         <field name="binding_view_types">list</field>
         <field name="res_model">merge.account.account.tag.wizard</field>
@@ -107,5 +71,4 @@
         <field name="groups_id" eval="[(4, ref('account_merge.res_group_do_merge'))]" />
         <field name="target">new</field>
     </record>
-
 </odoo>

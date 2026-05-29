@@ -20,5 +20,11 @@ class MergeAccountTax(models.TransientModel):
         string="Destination Account Tax",
     )
 
-    def _merge(self, object_ids, dst_object=None, extra_checks=True):
-        return super()._merge(object_ids, dst_object, extra_checks)
+    def _get_fk_on(self, table):
+        """Exclude repartition lines from FK updates to preserve dst tax structure."""
+        relations = super()._get_fk_on(table)
+        return [(t, c) for t, c in relations if t != "account_tax_repartition_line"]
+
+    def _merge(self, object_ids, dst_object=None, unique_xmlid=False):
+        """Merge account taxes with unique xmlid enforcement."""
+        return super()._merge(object_ids, dst_object, unique_xmlid=True)

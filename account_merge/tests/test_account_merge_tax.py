@@ -6,17 +6,20 @@ from odoo.tests.common import TransactionCase, tagged
 
 @tagged("post_install", "-at_install")
 class TestAccountMergeTax(TransactionCase):
+    """Tests for account_merge module (account.tax)."""
 
     def _create_tax(self, name, type_tax_use, amount):
+        """Create an account tax for testing."""
         return self.env["account.tax"].create(
             {
-                "name": "Test Sale Tax",
-                "type_tax_use": "sale",
-                "amount": "20",
+                "name": name,
+                "type_tax_use": type_tax_use,
+                "amount": amount,
             }
         )
 
     def __create_xmlid(self, res_model, res_id, name, module):
+        """Create an ir.model.data record (xmlid) for a given record."""
         return self.env["ir.model.data"].create(
             {
                 "module": module,
@@ -27,9 +30,11 @@ class TestAccountMergeTax(TransactionCase):
         )
 
     def _create_xmlid(self, record_id, name, module):
+        """Create an xmlid for the given record using its model name."""
         return self.__create_xmlid(record_id._name, record_id.id, name, module)
 
     def setUp(self):
+        """Set up shared test data."""
         super().setUp()
         self.tax_model = self.env["account.tax"]
         self.merge_account_tax_wizard_model = self.env["merge.account.tax.wizard"]
@@ -41,16 +46,13 @@ class TestAccountMergeTax(TransactionCase):
         self._create_xmlid(self.purchase_tax, "test_purchase_tax", "account_merge")
 
     def test_01_merge(self):
+        """Verify merging two account taxes redirects xmlids to destination."""
         # get a first tax reference
         t1 = self.sale_tax
-        # keep current data for future comparison
-        t1_data = t1.read()[0]
         # get another tax reference that will be merged in to the first one
         t2 = self.purchase_tax
         # edit some values
         t2.write({})
-        # keep current data for future comparison
-        t2_data = t2.read()[0]
         # execute merge
         wizard_id = self.merge_account_tax_wizard_model.create(
             {

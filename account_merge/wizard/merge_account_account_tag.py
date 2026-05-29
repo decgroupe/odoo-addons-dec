@@ -20,5 +20,6 @@ class MergeAccountAccountTag(models.TransientModel):
         string="Destination Account Tag",
     )
 
-    def _merge(self, object_ids, dst_object=None, extra_checks=True):
-        return super()._merge(object_ids, dst_object, extra_checks)
+    def _merge(self, object_ids, dst_object=None, unique_xmlid=False):
+        """Merge account tags."""
+        return super()._merge(object_ids, dst_object, unique_xmlid)

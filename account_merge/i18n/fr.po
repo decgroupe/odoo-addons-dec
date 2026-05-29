@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 09:53+0000\n"
-"PO-Revision-Date: 2023-11-28 11:15+0100\n"
+"POT-Creation-Date: 2026-06-03 09:54+0000\n"
+"PO-Revision-Date: 2026-06-03 14:16+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: account_merge
 #: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard__object_ids
@@ -74,28 +74,10 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: account_merge
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard__number_group
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_tax_wizard__number_group
-msgid "Group of Objects"
-msgstr "Groupe d’objets"
-
-#. module: account_merge
 #: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard__id
 #: model:ir.model.fields,field_description:account_merge.field_merge_account_tax_wizard__id
 msgid "ID"
 msgstr "ID"
-
-#. module: account_merge
-#: model:ir.model.fields,help:account_merge.field_merge_account_account_tag_wizard__xid
-#: model:ir.model.fields,help:account_merge.field_merge_account_tax_wizard__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: account_merge
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard____last_update
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_tax_wizard____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: account_merge
 #: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard__write_uid
@@ -114,12 +96,6 @@ msgstr "Dernière mise à jour le"
 #: model:ir.model.fields,field_description:account_merge.field_merge_account_tax_wizard__line_ids
 msgid "Lines"
 msgstr "Lignes"
-
-#. module: account_merge
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard__maximum_group
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_tax_wizard__maximum_group
-msgid "Maximum of Group of Objects"
-msgstr "Limite Maximum du Groupe d'Objets"
 
 #. module: account_merge
 #: model:ir.model,name:account_merge.model_merge_account_account_tag_wizard
@@ -152,44 +128,12 @@ msgid "Merge the following taxes"
 msgstr "Fusionner les taxes suivantes"
 
 #. module: account_merge
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard__group_by_name
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_tax_wizard__group_by_name
-msgid "Name"
-msgstr "Nom"
-
-#. module: account_merge
-#: model_terms:ir.ui.view,arch_db:account_merge.merge_account_account_tag_wizard_form
-#: model_terms:ir.ui.view,arch_db:account_merge.merge_account_tax_wizard_form
-msgid "Options"
-msgstr "Options"
-
-#. module: account_merge
-#: model_terms:ir.ui.view,arch_db:account_merge.merge_account_account_tag_wizard_form
-#: model_terms:ir.ui.view,arch_db:account_merge.merge_account_tax_wizard_form
-msgid "Search duplicates based on duplicated data in"
-msgstr "Recherche de doublons basés sur les données dupliquées dans"
-
-#. module: account_merge
-#: model_terms:ir.ui.view,arch_db:account_merge.merge_account_account_tag_wizard_form
-#: model_terms:ir.ui.view,arch_db:account_merge.merge_account_tax_wizard_form
-msgid ""
-"Select the list of fields used to search for\n"
-"                        duplicated records. If you select several fields,\n"
-"                        Odoo will propose you to merge only those having\n"
-"                        all these fields in common. (not one of the fields)."
-msgstr ""
-"Sélectionnez la liste des champs utilisés pour chercher\n"
-"                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
-"                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
-"                        tous ces champs en commun (pas uniquement l'un des champs)."
-
-#. module: account_merge
 #: model_terms:ir.ui.view,arch_db:account_merge.merge_account_account_tag_wizard_form
 msgid ""
-"Selected tags will be merged together.\n"
-"                            All documents linked to one of these tags\n"
-"                            will be redirected to the destination tag.\n"
-"                            You can remove tags from this list to avoid merging them."
+"Selected tags will be merged together. All documents\n"
+"                            linked to one of these tags will be redirected to the\n"
+"                            destination tag. You can remove tags from this list to\n"
+"                            avoid merging them."
 msgstr ""
 "Les tags sélectionnés seront fusionnés.\n"
 "                             Tous les documents liés à l'un de ces tags\n"
@@ -199,10 +143,10 @@ msgstr ""
 #. module: account_merge
 #: model_terms:ir.ui.view,arch_db:account_merge.merge_account_tax_wizard_form
 msgid ""
-"Selected taxes will be merged together.\n"
-"                            All documents linked to one of these taxes\n"
-"                            will be redirected to the destination tax.\n"
-"                            You can remove taxes from this list to avoid merging them."
+"Selected taxes will be merged together. All documents\n"
+"                            linked to one of these taxes will be redirected to the\n"
+"                            destination tax. You can remove taxes from this list to\n"
+"                            avoid merging them."
 msgstr ""
 "Les taxes sélectionnées seront fusionnées.\n"
 "                             Tous les documents liés à l'une de ces taxes\n"
@@ -231,10 +175,10 @@ msgid "State"
 msgstr "Région"
 
 #. module: account_merge
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_account_tag_wizard__xid
-#: model:ir.model.fields,field_description:account_merge.field_merge_account_tax_wizard__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#: model:ir.actions.act_window,name:account_merge.action_account_account_tag_merge
+#: model:ir.actions.act_window,name:account_merge.action_account_tax_merge
+msgid "🧙‍♂️ Merge ..."
+msgstr "🧙‍♂️ Fusionner ..."
 
 #. module: account_merge
 #: model_terms:ir.ui.view,arch_db:account_merge.merge_account_account_tag_wizard_form
@@ -242,11 +186,40 @@ msgstr "XML-ID"
 msgid "🧙‍♂️ Merge Wizard"
 msgstr "🧙‍♂️ Assistant de fusion"
 
-#. module: account_merge
-#: model:ir.actions.act_window,name:account_merge.action_account_account_tag_merge
-#: model:ir.actions.act_window,name:account_merge.action_account_tax_merge
-msgid "🧙‍♂️ Merge ..."
-msgstr "🧙‍♂️ Fusionner ..."
+#~ msgid "Group of Objects"
+#~ msgstr "Groupe d’objets"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Maximum of Group of Objects"
+#~ msgstr "Limite Maximum du Groupe d'Objets"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Search duplicates based on duplicated data in"
+#~ msgstr "Recherche de doublons basés sur les données dupliquées dans"
+
+#~ msgid ""
+#~ "Select the list of fields used to search for\n"
+#~ "                        duplicated records. If you select several fields,\n"
+#~ "                        Odoo will propose you to merge only those having\n"
+#~ "                        all these fields in common. (not one of the fields)."
+#~ msgstr ""
+#~ "Sélectionnez la liste des champs utilisés pour chercher\n"
+#~ "                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
+#~ "                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
+#~ "                        tous ces champs en commun (pas uniquement l'un des champs)."
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Finished"
 #~ msgstr "Terminé"

@@ -1,2 +1,0 @@
-- Merge account tags
-- Merge account taxes

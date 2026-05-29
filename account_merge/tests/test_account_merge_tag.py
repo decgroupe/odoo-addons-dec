@@ -5,7 +5,10 @@ from odoo.tests.common import TransactionCase
 
 
 class TestAccountMergeTag(TransactionCase):
+    """Tests for account_merge module (account.account.tag)."""
+
     def setUp(self):
+        """Set up shared test data."""
         super().setUp()
         self.tag_model = self.env["account.account.tag"]
         self.merge_account_tag_wizard_model = self.env[
@@ -14,6 +17,7 @@ class TestAccountMergeTag(TransactionCase):
         self.group_do_merge = self.env.ref("account_merge.res_group_do_merge")
 
     def test_01_merge(self):
+        """Verify merging two account tags transfers account associations to dst."""
         # get a first tag reference
         at1 = self.env.ref("account.account_tag_financing")
         # keep current data for future comparison

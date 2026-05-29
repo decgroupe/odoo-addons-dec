@@ -1,0 +1,2 @@
+Please install account_menu module from account-financial-tools
+repository
