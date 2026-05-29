@@ -1,7 +1,7 @@
 {
     "name": "Sale Timesheet Project Schedule",
     "version": "14.0.1.0.0",
-    "author": "DECn",
+    "author": "DEC",
     "website": "https://decgroupe.com",
     "category": "Schedule",
     "depends": [
