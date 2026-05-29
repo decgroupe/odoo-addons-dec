@@ -5,7 +5,10 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMergeResCityZip(TransactionCase):
+    """Tests for base_location_merge module (res.city.zip)."""
+
     def setUp(self):
+        """Set up shared test references."""
         super().setUp()
         self.tag_model = self.env["res.city.zip"]
         self.merge_wizard_model = self.env["merge.res.city.zip.wizard"]
@@ -14,6 +17,7 @@ class TestMergeResCityZip(TransactionCase):
         )
 
     def test_01_merge(self):
+        """Verify that merging zip records keeps the destination and removes others."""
         city = self.env.ref("base_location_merge.demo_lemans_city")
         # get zip references
         z1 = self.env.ref("base_location_merge.demo_lemans_72000_zip")
@@ -25,9 +29,6 @@ class TestMergeResCityZip(TransactionCase):
         # edit some values
         z2.write({})
         z3.write({})
-        # keep current data for future comparison
-        z2_data = z2.read()[0]
-        z3_data = z3.read()[0]
         # execute merge
         wizard_id = self.merge_wizard_model.create(
             {

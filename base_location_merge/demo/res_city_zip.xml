@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="res.city.zip" id="demo_lemans_72000_zip">
         <field name="name">72000</field>
         <field name="city_id" ref="demo_lemans_city" />
@@ -45,5 +44,4 @@
         <field name="name">46326</field>
         <field name="city_id" ref="demo_valprionde_city" />
     </record>
-
 </odoo>

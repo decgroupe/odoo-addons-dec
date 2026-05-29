@@ -5,7 +5,10 @@ from odoo.tests.common import TransactionCase
 
 
 class TestMergeResCity(TransactionCase):
+    """Tests for base_location_merge module (res.city)."""
+
     def setUp(self):
+        """Set up shared test references."""
         super().setUp()
         self.tag_model = self.env["res.city"]
         self.merge_wizard_model = self.env["merge.res.city.wizard"]
@@ -14,6 +17,7 @@ class TestMergeResCity(TransactionCase):
         )
 
     def test_01_merge(self):
+        """Verify that merging city records consolidates all associated zip codes."""
         # get a first city reference
         c1 = self.env.ref("base_location_merge.demo_montcuq_city")
         # keep current data for future comparison

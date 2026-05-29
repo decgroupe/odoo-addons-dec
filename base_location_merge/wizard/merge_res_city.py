@@ -21,7 +21,8 @@ class MergeResCity(models.TransientModel):
     )
 
     def _merge(self, object_ids, dst_object=None, extra_checks=True):
-        # Before merging cities, we first need to merge same zip by name
+        """Merge cities: first merge same-named zip codes, then merge cities."""
+        # before merging cities, we first need to merge same zip by name
         res_city_ids = self.env[self._model_merge].browse(object_ids)
         groups = {}
         for zip_id in res_city_ids.mapped("zip_ids"):
@@ -37,13 +38,12 @@ class MergeResCity(models.TransientModel):
                 groups[group_key]["ref"] = zip_id
             groups[group_key]["ids"].append(zip_id.id)
 
-        # We have grouped all zips by name so we can now merge them using
+        # we have grouped all zips by name so we can now merge them using
         # their own merge wizard. Note that ref is a reference to a zip_id
         # owned by dst_object
         city_zip_wiz = self.env["merge.res.city.zip.wizard"].create({})
-        for key, value in groups.items():
+        for _key, value in groups.items():
             city_zip_wiz._merge(value["ids"], value["ref"])
         city_zip_wiz.unlink()
-
-        # Finally also merge selected cities
+        # finally also merge selected cities
         return super()._merge(object_ids, dst_object, extra_checks)

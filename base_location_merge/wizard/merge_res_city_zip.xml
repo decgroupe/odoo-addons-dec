@@ -1,54 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record id="merge_res_city_zip_wizard_form" model="ir.ui.view">
+    <record model="ir.ui.view" id="merge_res_city_zip_wizard_form">
         <field name='name'>merge.res.city.zip.wizard.form@base_location_merge</field>
         <field name='model'>merge.res.city.zip.wizard</field>
         <field name='arch' type='xml'>
             <form string='🧙‍♂️ Merge Wizard'>
                 <sheet>
-                    <field name="state" invisible="1" />
-                    <p
-                        class="oe_grey"
-                        attrs="{'invisible': [('state', '!=', ('option'))]}"
-                    >
-                        Select the list of fields used to search for
-                        duplicated records. If you select several fields,
-                        Odoo will propose you to merge only those having
-                        all these fields in common. (not one of the fields).
-                    </p>
-                    <group
-                        attrs="{'invisible': ['|', ('state', 'not in', ('selection', 'finished')), ('number_group', '=', 0)]}"
-                    >
-                        <field name="number_group" />
-                    </group>
-                    <group
-                        string="Search duplicates based on duplicated data in"
-                        attrs="{'invisible': [('state', 'not in', ('option',))]}"
-                    >
-                        <field name='group_by_name' />
-                        <field name='group_by_city_id' />
-                    </group>
-                    <separator
-                        string="Options"
-                        attrs="{'invisible': [('state', 'not in', ('option',))]}"
-                    />
-                    <group
-                        attrs="{'invisible': [('state', 'not in', ('option','finished'))]}"
-                    >
-                        <field
-                            name='maximum_group'
-                            attrs="{'readonly': [('state', 'in', ('finished'))]}"
-                        />
-                    </group>
                     <separator
                         string="Merge the following locations"
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
+                        invisible="state in ('option', 'finished')"
                     />
-                    <group
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished'))]}"
-                        col="1"
-                    >
+                    <group invisible="state in ('option', 'finished')" col="1">
                         <p class="oe_grey">
                             Selected locations will be merged together.
                             All documents linked to one of these locations
@@ -59,7 +21,7 @@
                             <field
                                 name="dst_object_id"
                                 domain="[('id', 'in', object_ids or False)]"
-                                attrs="{'required': [('state', '=', 'selection')]}"
+                                required="state == 'selection'"
                             />
                         </group>
                         <field name="object_ids" nolabel="1" />
@@ -71,34 +33,34 @@
                         string='Merge Locations'
                         class='oe_highlight'
                         type='object'
-                        attrs="{'invisible': [('state', 'in', ('option', 'finished' ))]}"
+                        invisible="state in ('option', 'finished')"
                     />
                     <button
                         name='action_skip'
                         string='Skip these locations'
                         type='object'
-                        attrs="{'invisible': [('state', '!=', 'selection')]}"
+                        invisible="state != 'selection'"
                     />
                     <button
                         special="cancel"
                         string="Cancel"
                         type="object"
                         class="btn btn-secondary oe_inline"
-                        attrs="{'invisible': [('state', '=', 'finished')]}"
+                        invisible="state == 'finished'"
                     />
                     <button
                         special="cancel"
                         string="Close"
                         type="object"
                         class="btn btn-secondary oe_inline"
-                        attrs="{'invisible': [('state', '!=', 'finished')]}"
+                        invisible="state != 'finished'"
                     />
                 </footer>
             </form>
         </field>
     </record>
 
-    <record id="action_res_city_zip_merge" model="ir.actions.act_window">
+    <record model="ir.actions.act_window" id="action_res_city_zip_merge">
         <field name="name">🧙‍♂️ Merge ...</field>
         <field name="binding_model_id" ref="base_location.model_res_city_zip" />
         <field name="binding_view_types">list</field>
@@ -111,5 +73,4 @@
         />
         <field name="target">new</field>
     </record>
-
 </odoo>

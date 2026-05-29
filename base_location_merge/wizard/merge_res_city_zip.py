@@ -20,7 +20,6 @@ class MergeResCityZip(models.TransientModel):
         string="Destination City/Location",
     )
 
-    group_by_city_id = fields.Boolean("City")
-
     def _merge(self, object_ids, dst_object=None, extra_checks=True):
+        """Merge city zip records into the destination zip record."""
         return super()._merge(object_ids, dst_object, extra_checks)
