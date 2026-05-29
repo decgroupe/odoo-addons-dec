@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record id="website_rewrite_form_view" model="ir.ui.view">
+    <record model="ir.ui.view" id="website_rewrite_form_view">
         <field name="name">website.rewrite.form@website_redirection_mgmt</field>
         <field name="model">website.rewrite</field>
         <field name="inherit_id" ref="website.view_website_rewrite_form" />
         <field name="arch" type="xml">
-                <xpath expr="//form/sheet/group/group[1]" position="attributes">
+            <xpath expr="//form/sheet/group/group[1]" position="attributes">
                 <attribute name="string">Redirection</attribute>
             </xpath>
             <xpath expr="//form/sheet/group/group[1]" position="after">
@@ -22,7 +21,7 @@
                     />
                 </group>
                 <group string="Notes" name="notes">
-                    <field name="note"/>
+                    <field name="note" />
                 </group>
             </xpath>
         </field>
@@ -79,5 +78,4 @@
             </filter>
         </field>
     </record>
-
 </odoo>

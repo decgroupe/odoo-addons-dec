@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-02 13:38+0000\n"
-"PO-Revision-Date: 2025-07-02 15:37+0200\n"
+"POT-Creation-Date: 2026-06-03 11:18+0000\n"
+"PO-Revision-Date: 2026-06-03 16:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: website_redirection_mgmt
 #: model_terms:ir.ui.view,arch_db:website_redirection_mgmt.website_rewrite_form_view
@@ -54,7 +54,6 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: website_redirection_mgmt
-#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__display_name
 #: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
@@ -70,16 +69,9 @@ msgid "Grouping"
 msgstr "Regroupement"
 
 #. module: website_redirection_mgmt
-#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite__id
 #: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__id
 msgid "ID"
 msgstr "ID"
-
-#. module: website_redirection_mgmt
-#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite____last_update
-#: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: website_redirection_mgmt
 #: model:ir.model.fields,field_description:website_redirection_mgmt.field_website_rewrite_group__write_uid
@@ -114,7 +106,6 @@ msgstr "Notes"
 
 #. module: website_redirection_mgmt
 #: model:ir.model.fields,help:website_redirection_mgmt.field_website_rewrite__look
-#, fuzzy
 msgid "Physical representation of the link"
 msgstr "Représentation physique du lien"
 
@@ -189,3 +180,6 @@ msgstr "Website Rewrite Group"
 #: model:ir.model,name:website_redirection_mgmt.model_website_rewrite
 msgid "Website rewrite"
 msgstr "Website rewrite"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"

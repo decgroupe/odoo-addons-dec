@@ -3,7 +3,6 @@
 
 import logging
 
-
 from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
@@ -55,6 +54,7 @@ class WebsiteRewrite(models.Model):
 
     @api.onchange("url_from", "url_to")
     def onchange_url(self):
+        """Auto-generate name from url_from and url_to when both are set."""
         for rec in self:
             if rec.url_from and rec.url_to:
                 # override the name if it is empty or already contains the arrow
