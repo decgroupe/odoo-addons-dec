@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="base_references_result_list_view">
+        <field name="name">base.references.result.list@base_references</field>
+        <field name="model">base.references.result</field>
+        <field name="arch" type="xml">
+            <list string="Record References" create="false" delete="false">
+                <field name="model" />
+                <field name="res_id" string="Record ID" />
+                <field name="record_display_name" string="Display Name" />
+                <field name="field_name" string="Field" />
+                <field name="field_label" string="Field Label" />
+                <field name="reference_type" />
+                <button
+                    name="action_open_record"
+                    type="object"
+                    string="Open Record"
+                    icon="fa-external-link"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="base_references_result_form_view">
+        <field name="name">base.references.result.form@base_references</field>
+        <field name="model">base.references.result</field>
+        <field name="arch" type="xml">
+            <form string="Reference Detail">
+                <group>
+                    <group string="Referencing Record">
+                        <field name="model" />
+                        <field name="res_id" string="Record ID" />
+                        <field name="record_display_name" string="Display Name" />
+                    </group>
+                    <group string="Referencing Field">
+                        <field name="field_id" />
+                        <field name="field_name" string="Field Name" />
+                        <field name="field_label" string="Field Label" />
+                        <field name="reference_type" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_open_record"
+                        type="object"
+                        string="Open Record"
+                        class="btn-primary"
+                    />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

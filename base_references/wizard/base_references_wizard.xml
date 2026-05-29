@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="base_references_wizard_form_view">
+        <field name="name">base.references.wizard.form@base_references</field>
+        <field name="model">base.references.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Find Record References">
+                <group>
+                    <group string="Target Record">
+                        <field name="model_id" readonly="1" />
+                        <field name="model_name" invisible="1" />
+                        <field name="res_id" />
+                        <field name="record_display_name" readonly="1" />
+                    </group>
+                    <group string="Search Results" invisible="not result_count">
+                        <field name="result_count" readonly="1" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="action_search_references"
+                        type="object"
+                        string="Search References"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

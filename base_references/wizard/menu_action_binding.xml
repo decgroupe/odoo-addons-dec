@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="act_window_find_references">
+        <field name="name">🧙‍♂️ Find References ...</field>
+        <field name="binding_model_id" ref="base.model_ir_model" />
+        <field name="binding_view_types">form</field>
+        <field name="res_model">base.references.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="binding_type">action</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_find_record_references_wizard,access find record references wizard,model_base_references_wizard,base.group_system,1,1,1,1
+access_find_record_references_result,access find record references result,model_base_references_result,base.group_system,1,1,1,1
