@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 13:12+0000\n"
-"PO-Revision-Date: 2022-08-30 15:14+0200\n"
+"POT-Creation-Date: 2026-06-03 10:38+0000\n"
+"PO-Revision-Date: 2026-06-03 15:11+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,32 +15,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_schedule
 #: model:ir.model.fields,help:mrp_schedule.field_mrp_production__schedulable
-msgid "A scheduling activity will be automatically created and synced while schedulable is set"
-msgstr "Une activité de planification sera automatiquement créée et synchronisée lorsque l'option \"Planifiable\" est activée"
-
-#. module: mrp_schedule
-#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: mrp_schedule
-#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__id
-msgid "ID"
-msgstr "ID"
-
-#. module: mrp_schedule
-#: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgid ""
+"A scheduling activity will be automatically created and synced while "
+"schedulable is set"
+msgstr ""
+"Une activité de planification sera automatiquement créée et synchronisée "
+"lorsque l'option \"Planifiable\" est activée"
 
 #. module: mrp_schedule
 #: model:ir.model,name:mrp_schedule.model_mrp_production
-msgid "Production Order"
-msgstr "Ordre de fabrication"
+msgid "Manufacturing Order"
+msgstr "Fabrication"
 
 #. module: mrp_schedule
 #: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__schedulable
@@ -51,3 +40,12 @@ msgstr "Planifiable"
 #: model:ir.model.fields,field_description:mrp_schedule.field_mrp_production__scheduling_activity_id
 msgid "Scheduling Activity"
 msgstr "Activité de planification"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"

@@ -9,6 +9,7 @@ class MrpProduction(models.Model):
     _name = "mrp.production"
 
     def _get_schedule_date_fields(self):
+        """Map manufacturing dates used by scheduling activities."""
         res = super()._get_schedule_date_fields()
         res.update(
             {
@@ -21,10 +22,9 @@ class MrpProduction(models.Model):
 
     @api.depends("state")
     def _compute_schedulable(self):
-        super()._compute_schedulable()
+        """Recompute schedulable when state changes on manufacturing orders."""
+        return super()._compute_schedulable()
 
     def _is_schedulable(self):
-        res = super()._is_schedulable()
-        if res and self.state in ["done", "cancel"]:
-            res = False
-        return res
+        """Allow scheduling only for non-completed and non-cancelled orders."""
+        return super()._is_schedulable() and self.state not in ["done", "cancel"]
