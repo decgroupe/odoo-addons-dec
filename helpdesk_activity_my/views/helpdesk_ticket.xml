@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record model="ir.ui.view" id="ticket_tree_view">
         <field name="name">helpdesk.ticket.view.tree@helpdesk_activity_my</field>
         <field name="model">helpdesk.ticket</field>
@@ -15,12 +14,12 @@
                 <button
                     name="action_snooze"
                     class="text-warning"
-                    attrs="{'invisible': [('activity_my_ids', '=', [])]}"
+                    groups="base.group_user"
+                    invisible="not activity_my_ids"
                     type="object"
                     string="Snooze 7d"
                     icon="fa-bell-slash"
-                >
-                </button>
+                />
             </xpath>
             <field name="last_stage_update" position="attributes">
                 <attribute name="widget">remaining_days</attribute>
@@ -32,6 +31,7 @@
         <field name="name">helpdesk.ticket.kanban@helpdesk_activity_my</field>
         <field name="model">helpdesk.ticket</field>
         <field name="inherit_id" ref="helpdesk_mgmt.view_helpdesk_ticket_kanban" />
+        <field name="priority">100</field>
         <field name="arch" type="xml">
             <xpath expr="//kanban/progressbar" position="replace">
                 <progressbar
@@ -42,15 +42,10 @@
                 />
             </xpath>
             <xpath
-                expr="//kanban//templates//field[@name='activity_state']"
-                position="replace"
-            >
-                <field name="activity_my_state" invisible="1" />
-            </xpath>
-            <xpath
                 expr="//kanban//templates//field[@name='activity_ids']"
                 position="after"
             >
+                <field name="activity_my_state" invisible="1" />
                 <field
                     name="activity_my_ids"
                     widget="kanban_activity_my"
@@ -59,12 +54,16 @@
                 <t
                     t-if="record.activity_my_state.raw_value !== 'planned' and record.activity_my_state.raw_value !== false "
                 >
-                    <a name="action_snooze" type="object" title="Snooze 7d">
+                    <a
+                        name="action_snooze"
+                        type="object"
+                        title="Snooze 7d"
+                        groups="base.group_user"
+                    >
                         <i class="text-warning fa fa-fw fa-bell-slash" role="img" />
                     </a>
                 </t>
             </xpath>
         </field>
     </record>
-
 </odoo>
