@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:24+0000\n"
-"PO-Revision-Date: 2023-11-28 13:51+0100\n"
+"POT-Creation-Date: 2026-06-03 10:39+0000\n"
+"PO-Revision-Date: 2026-06-03 15:15+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,13 +15,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: mrp_swap_production
+#. odoo-python
 #: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:0
-#, python-format
-msgid "%s must be the same"
-msgstr "%s doivent être les mêmes"
+msgid "Both production orders must be issued from a production request"
+msgstr ""
+"Les deux ordres de fabrication doivent être créés à partir d'une demande "
+"de fabrication"
 
 #. module: mrp_swap_production
 #: model_terms:ir.ui.view,arch_db:mrp_swap_production.mrp_swap_production_form_view
@@ -68,18 +70,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: mrp_swap_production
-#: model:ir.model.fields,help:mrp_swap_production.field_mrp_swap_production__xid
-#: model:ir.model.fields,help:mrp_swap_production.field_mrp_swap_production_line__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: mrp_swap_production
-#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production____last_update
-#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: mrp_swap_production
 #: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__write_uid
 #: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__write_uid
 msgid "Last Updated by"
@@ -93,7 +83,7 @@ msgstr "Dernière mise à jour le"
 
 #. module: mrp_swap_production
 #: model:ir.model,name:mrp_swap_production.model_mrp_swap_production_line
-msgid "Line for swaping two manufacturing orders"
+msgid "Line for swapping two manufacturing orders"
 msgstr "Ligne pour l’échange de deux fabrications"
 
 #. module: mrp_swap_production
@@ -106,6 +96,31 @@ msgstr "L'autre"
 #: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__product_id
 msgid "Product"
 msgstr "Article"
+
+#. module: mrp_swap_production
+#. odoo-python
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:0
+msgid "Production order %(production)s must have a project"
+msgstr "La fabrication %(production)s doit être associé à un projet"
+
+#. module: mrp_swap_production
+#. odoo-python
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:0
+msgid ""
+"Production order %(production)s with timesheet entries must have "
+"`allow_timesheets` enabled"
+msgstr ""
+"La fabrication %(production)s contenant des saisies de feuille de temps "
+"doit avoir l'option `allow_timesheets` activée"
+
+#. module: mrp_swap_production
+#. odoo-python
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:0
+msgid ""
+"Production order %(production)s with timesheet entries must have a project"
+msgstr ""
+"La fabrication %(production)s comportant des saisies de feuille de temps "
+"doit être associé à un projet"
 
 #. module: mrp_swap_production
 #: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__swap_final_moves
@@ -133,18 +148,32 @@ msgid "To"
 msgstr "Vers"
 
 #. module: mrp_swap_production
-#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production__xid
-#: model:ir.model.fields,field_description:mrp_swap_production.field_mrp_swap_production_line__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#. odoo-python
+#: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:0
+msgid "`%(field)s` value must be identical for %(first)s and %(second)s"
+msgstr ""
+"La valeur de `%(field)s` doit être identique pour %(first)s et %(second)s"
 
 #. module: mrp_swap_production
+#. odoo-python
 #: code:addons/mrp_swap_production/wizard/mrp_swap_production.py:0
-#, python-format
-msgid "🔄 Swapped with %s"
-msgstr "🔄 Permuté avec %s"
+msgid "🔄 Swapped with %(record)s"
+msgstr "🔄 Permuté avec %(record)s"
 
 #. module: mrp_swap_production
 #: model:ir.actions.act_window,name:mrp_swap_production.act_window_swap_production
-msgid "🧙‍♂️ Swap this manufacturing order ..."
-msgstr "🧙‍♂️ Échanger cette fabrication ..."
+msgid "🧙‍♂️ Swap this manufacturing order ..."
+msgstr "🧙‍♂️ Échanger cette fabrication ..."
+
+#, python-format
+#~ msgid "%s must be the same"
+#~ msgstr "%s doivent être les mêmes"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"

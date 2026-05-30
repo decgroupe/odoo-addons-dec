@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="group_swap_production" model="res.groups">
         <field name="name">Display the swap manufacturing order action</field>
         <field name="implied_ids" eval="[(4, ref('mrp.group_mrp_user'))]" />
@@ -10,5 +9,4 @@
             eval="[(4, ref('base.user_admin')), (4, ref('base.user_root'))]"
         />
     </record>
-
 </odoo>

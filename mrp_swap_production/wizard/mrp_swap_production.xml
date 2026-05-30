@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="mrp_swap_production_form_view">
         <field name="name">mrp.swap.production@mrp_swap_production</field>
         <field name="model">mrp.swap.production</field>
@@ -17,8 +16,7 @@
                             ('product_id', '=', product_id),
                             ('state', '!=', 'cancel'),
                         ]"
-                    >
-                    </field>
+                    />
                 </group>
                 <group>
                     <field name="swap_line_ids" />
@@ -30,10 +28,8 @@
                         string="Confirm"
                         class="btn-primary"
                         context="{}"
-                    >
-                    </button>
-                    <button special="cancel" string="Cancel" class="btn-secondary">
-                    </button>
+                    />
+                    <button special="cancel" string="Cancel" class="btn-secondary" />
                 </footer>
             </form>
         </field>
@@ -43,6 +39,7 @@
         <field name="name">🧙‍♂️ Swap this manufacturing order ...</field>
         <field name="binding_model_id" ref="mrp.model_mrp_production" />
         <field name="binding_view_types">form</field>
+        <field name="context">{'default_this_production_id': active_id}</field>
         <field name="res_model">mrp.swap.production</field>
         <field name="view_mode">form</field>
         <field
@@ -66,5 +63,4 @@
         }"
     >
     </act_window> -->
-
 </odoo>

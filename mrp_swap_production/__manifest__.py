@@ -1,6 +1,7 @@
 {
     "name": "Manufacturing Swap Production",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "depends": [
@@ -14,5 +15,5 @@
         "wizard/mrp_swap_production.xml",
         "wizard/mrp_swap_production_line.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
