@@ -9,6 +9,7 @@ class Project(models.Model):
     _name = "project.project"
 
     def _get_schedule_date_fields(self):
+        """Map scheduling mixin date keys to project date fields."""
         res = super()._get_schedule_date_fields()
         res.update(
             {
@@ -21,11 +22,9 @@ class Project(models.Model):
 
     @api.depends("active")
     def _compute_schedulable(self):
-        super()._compute_schedulable()
+        """Recompute schedulable when project activation changes."""
+        return super()._compute_schedulable()
 
     def _is_schedulable(self):
-        res = super()._is_schedulable()
-        if res:
-            if not self.active:
-                res = False
-        return res
+        """Allow scheduling only for active projects."""
+        return super()._is_schedulable() and self.active

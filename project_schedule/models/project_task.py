@@ -9,10 +9,11 @@ class ProjectTask(models.Model):
     _name = "project.task"
 
     def _get_schedule_date_fields(self):
+        """Map scheduling mixin date keys to task date fields."""
         res = super()._get_schedule_date_fields()
         res.update(
             {
-                "start": "date_start",
+                "start": "date_assign",
                 "stop": "date_end",
                 "deadline": "date_deadline",
             }
