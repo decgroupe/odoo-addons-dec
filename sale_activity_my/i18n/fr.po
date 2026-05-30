@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:30+0000\n"
+"POT-Creation-Date: 2026-06-03 11:01+0000\n"
 "PO-Revision-Date: 2023-11-28 14:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -16,26 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.0.1\n"
-
-#. module: sale_activity_my
-#: model:ir.model.fields,field_description:sale_activity_my.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: sale_activity_my
-#: model:ir.model.fields,field_description:sale_activity_my.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_activity_my
-#: model:ir.model.fields,help:sale_activity_my.field_sale_order__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: sale_activity_my
-#: model:ir.model.fields,field_description:sale_activity_my.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: sale_activity_my
 #: model:ir.model.fields,field_description:sale_activity_my.field_sale_order__activity_my_ids
@@ -90,10 +70,20 @@ msgstr ""
 "Aujourd'hui : L'activité est planifiée pour aujourd'hui\n"
 "Planifiées : Activités futures."
 
-#. module: sale_activity_my
-#: model:ir.model.fields,field_description:sale_activity_my.field_sale_order__xid
-msgid "XML-ID"
-msgstr "XML-ID"
+#~ msgid "Display Name"
+#~ msgstr "Nom affiché"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Overdue"
 #~ msgstr "Retard"
@@ -168,8 +158,13 @@ msgstr "XML-ID"
 #~ msgid "Delivery address for current sales order."
 #~ msgstr "Adresse de livraison du bon de commande en cours."
 
-#~ msgid "Delivery date you can promise to the customer, computed from product lead times and from the shipping policy of the order."
-#~ msgstr "Date de livraison que vous pouvez promettre au client, calculée à partir des délais de livraison des articles et de la politique d'expédition de la commande."
+#~ msgid ""
+#~ "Delivery date you can promise to the customer, computed from product lead "
+#~ "times and from the shipping policy of the order."
+#~ msgstr ""
+#~ "Date de livraison que vous pouvez promettre au client, calculée à partir des"
+#~ " délais de livraison des articles et de la politique d'expédition de la "
+#~ "commande."
 
 #~ msgid "Expected Date"
 #~ msgstr "Date prévue"
@@ -288,11 +283,19 @@ msgstr "XML-ID"
 #~ msgid "Remaining Validity Days"
 #~ msgstr "Jours de Validité Restants"
 
-#~ msgid "Request a online signature to the customer in order to confirm orders automatically."
-#~ msgstr "Demander une signature électronique au client pour confirmer les commandes automatiquement."
+#~ msgid ""
+#~ "Request a online signature to the customer in order to confirm orders "
+#~ "automatically."
+#~ msgstr ""
+#~ "Demander une signature électronique au client pour confirmer les commandes "
+#~ "automatiquement."
 
-#~ msgid "Request an online payment to the customer in order to confirm orders automatically."
-#~ msgstr "Nécessite un paiement en ligne de la part du client pour confirmer la commande automatiquement."
+#~ msgid ""
+#~ "Request an online payment to the customer in order to confirm orders "
+#~ "automatically."
+#~ msgstr ""
+#~ "Nécessite un paiement en ligne de la part du client pour confirmer la "
+#~ "commande automatiquement."
 
 #~ msgid "Responsible User"
 #~ msgstr "Responsable"
@@ -331,11 +334,20 @@ msgstr "XML-ID"
 #~ msgid "The payment communication of this sale order."
 #~ msgstr "La communication de paiement de ce bon de commande."
 
-#~ msgid "The rate of the currency to the currency of rate 1 applicable at the date of the order"
-#~ msgstr "Le taux de conversion de la devise vers la devise de taux 1 applicable à la date de la commande"
+#~ msgid ""
+#~ "The rate of the currency to the currency of rate 1 applicable at the date of"
+#~ " the order"
+#~ msgstr ""
+#~ "Le taux de conversion de la devise vers la devise de taux 1 applicable à la "
+#~ "date de la commande"
 
-#~ msgid "This is the delivery date promised to the customer. If set, the delivery order will be scheduled based on this date rather than product lead times."
-#~ msgstr "C'est la date de livraison promise au client. Si elle est définie, le bon de livraison se basera sur cette date plutôt que celle définié grâce au délai indiqué sur l'article. "
+#~ msgid ""
+#~ "This is the delivery date promised to the customer. If set, the delivery "
+#~ "order will be scheduled based on this date rather than product lead times."
+#~ msgstr ""
+#~ "C'est la date de livraison promise au client. Si elle est définie, le bon de"
+#~ " livraison se basera sur cette date plutôt que celle définié grâce au délai "
+#~ "indiqué sur l'article. "
 
 #~ msgid "Type Name"
 #~ msgstr "Nom du Type"
@@ -352,8 +364,12 @@ msgstr "XML-ID"
 #~ msgid "Validity"
 #~ msgstr "Validité"
 
-#~ msgid "Validity date of the quotation, after this date, the customer won't be able to validate the quotation online."
-#~ msgstr "Date de validité du devis. Après cette date, le client ne pourra plus valider son devis en ligne. "
+#~ msgid ""
+#~ "Validity date of the quotation, after this date, the customer won't be able "
+#~ "to validate the quotation online."
+#~ msgstr ""
+#~ "Date de validité du devis. Après cette date, le client ne pourra plus "
+#~ "valider son devis en ligne. "
 
 #~ msgid "Website Messages"
 #~ msgstr "Messages du site web"
@@ -362,4 +378,6 @@ msgstr "XML-ID"
 #~ msgstr "Historique de communication du site web"
 
 #~ msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-#~ msgstr "Vous pouvez trouver un client à partir de son nom, e-mail, numéro d'identification fiscale ou référence."
+#~ msgstr ""
+#~ "Vous pouvez trouver un client à partir de son nom, e-mail, numéro "
+#~ "d'identification fiscale ou référence."
