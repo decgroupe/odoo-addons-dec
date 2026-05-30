@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:32+0000\n"
-"PO-Revision-Date: 2023-11-28 15:08+0100\n"
+"POT-Creation-Date: 2026-06-03 11:11+0000\n"
+"PO-Revision-Date: 2026-06-03 16:16+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
@@ -58,24 +58,9 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: stock_merge
-#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__number_group
-msgid "Group of Objects"
-msgstr "Groupe d’objets"
-
-#. module: stock_merge
 #: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__id
 msgid "ID"
 msgstr "ID"
-
-#. module: stock_merge
-#: model:ir.model.fields,help:stock_merge.field_merge_stock_move_wizard__xid
-msgid "ID of the record defined in xml file"
-msgstr "ID de l'enregistrement défini dans le fichier xml"
-
-#. module: stock_merge
-#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: stock_merge
 #: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__write_uid
@@ -93,14 +78,9 @@ msgid "Lines"
 msgstr "Lignes"
 
 #. module: stock_merge
-#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__maximum_group
-msgid "Maximum of Group of Objects"
-msgstr "Limite Maximum du Groupe d'Objets"
-
-#. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid "Merge Records"
-msgstr "Fusionner les enregistrements"
+msgid "Merge Moves"
+msgstr "Fusionner les mouvements"
 
 #. module: stock_merge
 #: model:ir.model,name:stock_merge.model_merge_stock_move_wizard
@@ -109,49 +89,21 @@ msgstr "Assistant de fusion des mouvements de stock"
 
 #. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid "Merge the following records"
-msgstr "Fusionner les enregistrements suivants"
-
-#. module: stock_merge
-#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__group_by_name
-msgid "Name"
-msgstr "Nom"
-
-#. module: stock_merge
-#: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid "Options"
-msgstr "Options"
-
-#. module: stock_merge
-#: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid "Search duplicates based on duplicated data in"
-msgstr "Recherche de doublons basés sur les données dupliquées dans"
+msgid "Merge the following moves"
+msgstr "Fusionner les mouvements suivants"
 
 #. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
 msgid ""
-"Select the list of fields used to search for\n"
-"                        duplicated records. If you select several fields,\n"
-"                        Odoo will propose you to merge only those having\n"
-"                        all these fields in common. (not one of the fields)."
+"Selected moves will be merged together. All\n"
+"                            documents linked to one of these moves will be\n"
+"                            redirected to the destination move. You can remove\n"
+"                            moves from this list to avoid merging them."
 msgstr ""
-"Sélectionnez la liste des champs utilisés pour chercher\n"
-"                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
-"                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
-"                        tous ces champs en commun (pas uniquement l'un des champs)."
-
-#. module: stock_merge
-#: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid ""
-"Selected records will be merged together.\n"
-"                            All documents linked to one of these record\n"
-"                            will be redirected to the destination record.\n"
-"                            You can remove records from this list to avoid merging them."
-msgstr ""
-"Les enregistrements sélectionnés seront fusionnés.\n"
-"                             Tous les documents liés à l'un de ces enregistrements\n"
-"                             seront redirigés vers l'enregistrement de destination.\n"
-"                             Vous pouvez enlever des enregistrements de cette liste pour éviter de les fusionner."
+"Les mouvements sélectionnés seront fusionnés.\n"
+"                             Tous les documents liés à l'un de ces mouvements\n"
+"                             seront redirigés vers le mouvement de destination.\n"
+"                             Vous pouvez enlever des mouvements de cette liste pour éviter de les fusionner."
 
 #. module: stock_merge
 #: model:res.groups,name:stock_merge.res_group_do_merge
@@ -160,8 +112,8 @@ msgstr "Afficher l'action d'assistance de fusion des mouvements de stock"
 
 #. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
-msgid "Skip these records"
-msgstr "Ignorer ces enregistrements"
+msgid "Skip these moves"
+msgstr "Ignorer ces mouvements"
 
 #. module: stock_merge
 #: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__state
@@ -174,11 +126,6 @@ msgid "Stock Move"
 msgstr "Mouvement de stock"
 
 #. module: stock_merge
-#: model:ir.model.fields,field_description:stock_merge.field_merge_stock_move_wizard__xid
-msgid "XML-ID"
-msgstr "XML-ID"
-
-#. module: stock_merge
 #: model_terms:ir.ui.view,arch_db:stock_merge.merge_stock_move_wizard_form
 msgid "🧙‍♂️ Merge Wizard"
 msgstr "🧙‍♂️ Assistant de fusion"
@@ -187,6 +134,41 @@ msgstr "🧙‍♂️ Assistant de fusion"
 #: model:ir.actions.act_window,name:stock_merge.action_stock_move_merge
 msgid "🧙‍♂️ Merge ..."
 msgstr "🧙‍♂️ Fusionner ..."
+
+#~ msgid "Group of Objects"
+#~ msgstr "Groupe d’objets"
+
+#~ msgid "ID of the record defined in xml file"
+#~ msgstr "ID de l'enregistrement défini dans le fichier xml"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "Maximum of Group of Objects"
+#~ msgstr "Limite Maximum du Groupe d'Objets"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Search duplicates based on duplicated data in"
+#~ msgstr "Recherche de doublons basés sur les données dupliquées dans"
+
+#~ msgid ""
+#~ "Select the list of fields used to search for\n"
+#~ "                        duplicated records. If you select several fields,\n"
+#~ "                        Odoo will propose you to merge only those having\n"
+#~ "                        all these fields in common. (not one of the fields)."
+#~ msgstr ""
+#~ "Sélectionnez la liste des champs utilisés pour chercher\n"
+#~ "                        les enregistrements dupliqués. Si vous sélectionnez plusieurs champs,\n"
+#~ "                        Odoo vous proposera de fusionner seulement ceux qui ont\n"
+#~ "                        tous ces champs en commun (pas uniquement l'un des champs)."
+
+#~ msgid "XML-ID"
+#~ msgstr "XML-ID"
 
 #~ msgid "Finished"
 #~ msgstr "Terminé"

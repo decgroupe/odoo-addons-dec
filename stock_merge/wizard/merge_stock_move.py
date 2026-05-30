@@ -24,19 +24,19 @@ class MergeStockMove(models.TransientModel):
         related="dst_object_id.company_id",
         string="Company",
         readonly=True,
-        default=lambda self: self.env.user.company_id,
     )
 
-    def _merge(self, object_ids, dst_object=None, extra_checks=True):
-        return super()._merge(
-            object_ids,
-            dst_object.with_context(mail_auto_subscribe_no_notify=True),
-            extra_checks,
-        )
+    def _merge(self, object_ids, dst_object=None, unique_xmlid=False):
+        """Merge stock moves while disabling auto-subscribe notification."""
+        if dst_object:
+            dst_object = dst_object.with_context(mail_auto_subscribe_no_notify=True)
+        return super()._merge(object_ids, dst_object, unique_xmlid)
 
     def _log_merge_operation(self, src_objects, dst_object):
-        super()._log_merge_operation(src_objects, dst_object)
+        """Cancel source moves before they are deleted by the merge wizard."""
+        result = super()._log_merge_operation(src_objects, dst_object)
         # Force state to cancel to allow the `_merge` to `unlink` useless stock
         # moves. We are doing this in `_log_merge_operation` as this is the
         # last method called before unlink
         src_objects.write({"state": "cancel"})
+        return result
