@@ -9,7 +9,8 @@ class Project(models.Model):
 
     @api.depends("contract_ids", "contract_ids.state")
     def _compute_schedulable(self):
-        super()._compute_schedulable()
+        """Recompute schedulable when contract states change."""
+        return super()._compute_schedulable()
 
     def _is_schedulable(self):
         res = super()._is_schedulable()

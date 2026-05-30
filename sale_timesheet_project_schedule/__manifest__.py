@@ -1,6 +1,7 @@
 {
     "name": "Sale Timesheet Project Schedule",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC",
     "website": "https://decgroupe.com",
     "category": "Schedule",
@@ -9,5 +10,5 @@
         "project_schedule",
     ],
     "data": [],
-    "installable": False,
+    "installable": True,
 }
