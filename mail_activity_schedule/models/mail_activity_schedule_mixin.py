@@ -21,13 +21,15 @@ class MailActivityScheduleMixin(models.AbstractModel):
         store=True,
     )
 
-    @api.model
-    def create(self, vals):
-        rec = super(MailActivityScheduleMixin, self).create(vals)
-        if rec.schedulable:
-            rec._ensure_scheduling_activity()
-            rec._sync_with_scheduling_activity(vals)
-        return rec
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Create records and ensure scheduling activities stay synchronized."""
+        records = super().create(vals_list)
+        for rec, vals in zip(records, vals_list, strict=True):
+            if rec.schedulable:
+                rec._ensure_scheduling_activity()
+                rec._sync_with_scheduling_activity(vals)
+        return records
 
     def write(self, vals):
         res = super().write(vals)
@@ -44,6 +46,7 @@ class MailActivityScheduleMixin(models.AbstractModel):
         return res
 
     def _get_scheduling_activity_deadline(self):
+        """Return the scheduling deadline as a date value."""
         self.ensure_one()
         res = False
         date_fields = self._get_schedule_date_fields()
@@ -61,14 +64,22 @@ class MailActivityScheduleMixin(models.AbstractModel):
         if not res:
             # Finally, if no date at all is set, then use the current day
             res = fields.Date.context_today(self)
-        return res
+        return fields.Date.to_date(res)
 
     def _prepare_scheduling_activity_data(self):
+        """Build values used to create the scheduling activity."""
         self.ensure_one()
         act_type = self.env.ref("mail_activity_schedule.mail_activity_schedule")
+        user = False
+        if "user_id" in self._fields and self.user_id:
+            user = self.user_id
+        elif "user_ids" in self._fields and self.user_ids:
+            user = self.user_ids[:1]
+        else:
+            user = self.env.user
         return {
             "activity_type_id": act_type.id,
-            "user_id": self.user_id.id,
+            "user_id": user.id,
             "automated": True,
         }
 
@@ -77,7 +88,7 @@ class MailActivityScheduleMixin(models.AbstractModel):
             return
         for rec in self:
             if not rec.schedulable:
-                raise UserError("You cannot ensure a scheduling activity")
+                raise UserError(self.env._("You cannot ensure a scheduling activity"))
 
             if not rec.scheduling_activity_id:
                 activity_data = rec._prepare_scheduling_activity_data()

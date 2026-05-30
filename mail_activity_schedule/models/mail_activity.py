@@ -44,14 +44,11 @@ class MailActivity(models.Model):
 
     def _sync_with_related_object(self, vals):
         if (
-            "date_start" in vals
-            or "date_stop" in vals
-            or "date_deadline" in vals
-            and not self.env.context.get("syncing_mail_activity", False)
-        ):
+            "date_start" in vals or "date_stop" in vals or "date_deadline" in vals
+        ) and not self.env.context.get("syncing_mail_activity", False):
             for rec in self:
                 context_name = "syncing_" + rec.res_model.replace(".", "_")
-                rec = rec.with_context({context_name: True})
+                rec = rec.with_context(**{context_name: True})
                 model = rec.env[rec.res_model]
                 if hasattr(model, "_get_schedule_date_fields"):
                     data = {}
@@ -69,28 +66,18 @@ class MailActivity(models.Model):
                         ).write(data)
 
     def _sync_with_event(self, vals):
-        if (
-            "date_start" in vals
-            or "date_stop" in vals
-            and not self.env.context.get("syncing_mail_activity", False)
+        if ("date_start" in vals or "date_stop" in vals) and not self.env.context.get(
+            "syncing_mail_activity", False
         ):
             for rec in self.filtered("calendar_event_id").with_context(
                 syncing_calendar_event=True
             ):
-                if rec.calendar_event_id.allday:
-                    rec.calendar_event_id.write(
-                        {
-                            "start": rec.date_start,
-                            "stop": rec.date_stop,
-                        }
-                    )
-                else:
-                    rec.calendar_event_id.write(
-                        {
-                            "start_datetime": rec.date_start,
-                            "stop_datetime": rec.date_stop,
-                        }
-                    )
+                rec.calendar_event_id.write(
+                    {
+                        "start": rec.date_start,
+                        "stop": rec.date_stop,
+                    }
+                )
 
     def _compute_assigned_resource(self):
         self.assigned_resource = False

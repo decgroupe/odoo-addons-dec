@@ -22,7 +22,7 @@ class CalendarEvent(models.Model):
             and not self.env.context.get("syncing_calendar_event", False)
         ):
             for rec in self.with_context(syncing_mail_activity=True):
-                if self.allday:
+                if rec.allday:
                     # We don't use `start_date` nor `stop_date` to have a
                     # better precision for gantt view. But `start` and `stop`
                     # are set in user timezone, so we need to convert them
@@ -50,7 +50,7 @@ class CalendarEvent(models.Model):
                 else:
                     rec.activity_ids.write(
                         {
-                            "date_start": rec.start_datetime,
-                            "date_stop": rec.stop_datetime,
+                            "date_start": rec.start,
+                            "date_stop": rec.stop,
                         }
                     )
