@@ -2,14 +2,22 @@
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2020
 
 from odoo import http
+
 from odoo.addons.report_aeroo.controllers.main import AerooReportController
-from odoo.addons.web.controllers.main import serialize_exception
-from odoo.addons.web_pdf_preview.controllers.main import set_content_disposition_inline
+
+
+def set_content_disposition_inline(response):
+    """Force inline content disposition for preview responses."""
+    content_disposition = response.headers.get("Content-Disposition")
+    if content_disposition:
+        response.headers["Content-Disposition"] = content_disposition.replace(
+            "attachment", "inline", 1
+        )
+    return response
 
 
 class PreviewAerooReportController(AerooReportController):
     @http.route("/web/report_aeroo", type="http", auth="user")
-    @serialize_exception
     def generate_aeroo_report(
         self,
         report_id,
@@ -20,7 +28,8 @@ class PreviewAerooReportController(AerooReportController):
         token,
         debug=False,
     ):
-        result = super(PreviewAerooReportController, self).generate_aeroo_report(
+        """Generate an Aeroo report and force inline content disposition."""
+        result = super().generate_aeroo_report(
             report_id,
             record_ids,
             context,
@@ -33,7 +42,6 @@ class PreviewAerooReportController(AerooReportController):
         return result
 
     @http.route("/report/preview_aeroo", type="http", auth="user")
-    @serialize_exception
     def generate_aeroo_preview(
         self,
         report_id,
@@ -44,6 +52,7 @@ class PreviewAerooReportController(AerooReportController):
         token,
         debug=False,
     ):
+        """Generate the Aeroo preview through the standard report endpoint."""
         return self.generate_aeroo_report(
             report_id,
             record_ids,

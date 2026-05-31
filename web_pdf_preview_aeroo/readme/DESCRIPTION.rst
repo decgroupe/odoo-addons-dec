@@ -1,1 +1,0 @@
-Open PDF reports directly in the browser.
