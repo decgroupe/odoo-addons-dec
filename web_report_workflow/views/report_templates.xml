@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <template id="report_assets_common" inherit_id="web.report_assets_common">
-        <xpath expr="link[last()]" position="after">
-            <link
-                rel="stylesheet"
-                type="text/scss"
-                href="/web_report_workflow/static/src/css/style.scss"
-            />
-        </xpath>
-    </template>
-
-    <template id="external_layout_standard" inherit_id="web.external_layout_standard">
-
+    <template
+        id="external_layout_standard"
+        inherit_id="web.external_layout_standard"
+        priority="100"
+    >
         <xpath expr="//div[@name='company_address']" position="replace">
             <div class="company_header col-6" name="company_address">
                 <div
@@ -35,36 +27,39 @@
         </xpath>
 
         <xpath
-            expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']"
+            expr="//div[contains(@t-attf-class, 'footer o_company_')]"
             position="replace"
         >
-            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            <div
+                t-attf-class="footer o_company_#{company.id}_layout {{report_type != 'pdf' and 'mt-auto'}}"
+            >
                 <div class="text-center" style="border-top: 1px solid black;">
                     <ul class="list-inline mb4">
-                        <li class="list-inline-item" t-if="company.report_footer"><span
-                                t-field="company.report_footer"
-                            /></li>
+                        <li class="list-inline-item" t-if="company.report_footer">
+                            <span t-field="company.report_footer" />
+                        </li>
                         <li class="list-inline-item" t-if="company.vat">| <t
-                                t-esc="(company.country_id.vat_label or 'Tax ID').replace(' ','\N{NO-BREAK SPACE}')"
-                            /> <span t-field="company.vat" /></li>
+                            t-esc="(company.country_id.vat_label or 'Tax ID').replace(' ','\N{NO-BREAK SPACE}')"
+                        /> <span t-field="company.vat" /></li>
                         <li class="list-inline-item" t-if="company.siret">| SIRET <span
-                                t-field="company.siret"
-                            /></li>
+                            t-field="company.siret"
+                        /></li>
                         <li class="list-inline-item" t-if="company.ape">| APE <span
-                                t-field="company.ape"
-                            /></li>
-                        <li
-                            class="list-inline-item"
-                            t-if="company.report_bank_footer"
-                        ><span t-field="company.report_bank_footer" /></li>
+                            t-field="company.ape"
+                        /></li>
+                        <li class="list-inline-item" t-if="company.report_bank_footer">
+                            <span t-field="company.report_bank_footer" />
+                        </li>
                     </ul>
                     <div t-if="report_type == 'pdf'" class="text-muted">
+                        <span
+                        t-if="display_name_in_footer"
+                        t-out="str(o.name) + ', '"
+                    />
                         Page: <span class="page" /> / <span class="topage" />
                     </div>
                 </div>
             </div>
         </xpath>
-
     </template>
-
 </odoo>
