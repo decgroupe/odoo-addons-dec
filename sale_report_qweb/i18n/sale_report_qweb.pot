@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_report_qweb
+# 	* sale_report_qweb
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-03 14:59+0000\n"
-"PO-Revision-Date: 2020-11-03 14:59+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2026-06-03 11:05+0000\n"
+"PO-Revision-Date: 2026-06-03 11:05+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,29 +18,22 @@ msgstr ""
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
 msgid "<span>Disc.(%)</span>"
-msgstr "<span>Rem.(%)</span>"
+msgstr ""
 
 #. module: sale_report_qweb
-#: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
-msgid "<strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_excluded\">Subtotal (Tax-Excluded)</strong>\n"
-"            <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Subtotal (Tax-Included)</strong>"
-msgstr "<strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_excluded\">Sous-Total HT</strong>\n"
-"                                    <strong class=\"mr16\" groups=\"account.group_show_line_subtotals_tax_included\">Sous-Total TTC</strong>"
+#: model_terms:ir.ui.view,arch_db:sale_report_qweb.document_tax_totals
+msgid "<span>Subtotal (Tax-Excluded)</span>"
+msgstr ""
 
 #. module: sale_report_qweb
-#: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
-msgid "<strong>Subtotal (Tax-Excluded)</strong>"
-msgstr "<strong>Sous-total HT</strong>"
-
-#. module: sale_report_qweb
-#: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:sale_report_qweb.document_tax_totals
 msgid "<strong>Total (Tax-Included)</strong>"
-msgstr "<strong>Total TTC</strong>"
+msgstr ""
 
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
 msgid "Amount (Tax-Excluded)"
-msgstr "Montant HT"
+msgstr ""
 
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
@@ -50,7 +43,17 @@ msgstr ""
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
 msgid "Quantity"
-msgstr "Quantité"
+msgstr ""
+
+#. module: sale_report_qweb
+#: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
+msgid "Subtotal (Tax-Excluded)"
+msgstr ""
+
+#. module: sale_report_qweb
+#: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
+msgid "Subtotal (Tax-Included)"
+msgstr ""
 
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
@@ -60,10 +63,9 @@ msgstr ""
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
 msgid "Total Price (Tax-Included)"
-msgstr "Prix TTC"
+msgstr ""
 
 #. module: sale_report_qweb
 #: model_terms:ir.ui.view,arch_db:sale_report_qweb.report_saleorder_document
 msgid "Unit Price (Tax-Excluded)"
-msgstr "P.U. HT"
-
+msgstr ""

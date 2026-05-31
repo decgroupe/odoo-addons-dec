@@ -1,41 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
-
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+        priority="99"
+    >
         <xpath expr="//table[hasclass('o_main_table')]/thead/tr" position="replace">
             <tr>
                 <!-- TODO: remove in master -->
                 <t t-set="colspan" t-value="5" />
                 <th class="text-left">Description</th>
                 <th class="text-right" style="min-width:5rem">Quantity</th>
-                <th class="text-right" style="min-width:5rem">Unit Price (Tax-Excluded)</th>
-                <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                <th
+                    class="text-right"
+                    style="min-width:5rem"
+                >Unit Price (Tax-Excluded)</th>
+                <th
+                    t-if="display_discount"
+                    class="text-right"
+                    groups="sale.group_discount_per_so_line"
+                >
                     <span>Disc.(%)</span>
                     <!-- TODO: remove in master -->
                     <t t-set="colspan" t-value="colspan+1" />
                 </th>
                 <th class="text-right" style="min-width:5rem">Taxes</th>
                 <th class="text-right" style="min-width:5rem">
-                    <t groups="account.group_show_line_subtotals_tax_excluded">Amount (Tax-Excluded)</t>
-                    <t groups="account.group_show_line_subtotals_tax_included">Total Price (Tax-Included)</t>
+                    <t
+                        groups="account.group_show_line_subtotals_tax_excluded"
+                    >Amount (Tax-Excluded)</t>
+                    <t
+                        groups="account.group_show_line_subtotals_tax_included"
+                    >Total Price (Tax-Included)</t>
                 </th>
             </tr>
         </xpath>
 
-        <xpath expr="//table[hasclass('o_main_table')]/tbody//tr[hasclass('is-subtotal')]/td[1]/strong" position="replace">
-            <strong class="mr16" groups="account.group_show_line_subtotals_tax_excluded">Subtotal (Tax-Excluded)</strong>
-            <strong class="mr16" groups="account.group_show_line_subtotals_tax_included">Subtotal (Tax-Included)</strong>
+        <xpath
+            expr="//table[hasclass('o_main_table')]/tbody//tr[hasclass('is-subtotal')]/td[1]/strong"
+            position="replace"
+        >
+            <strong
+                class="mr16"
+                groups="account.group_show_line_subtotals_tax_excluded"
+            >Subtotal (Tax-Excluded)</strong>
+            <strong
+                class="mr16"
+                groups="account.group_show_line_subtotals_tax_included"
+            >Subtotal (Tax-Included)</strong>
         </xpath>
+    </template>
 
-        <xpath expr="//tr[hasclass('o_subtotal')]/td[1]/strong" position="replace">
-            <strong>Subtotal (Tax-Excluded)</strong>
+    <template
+        id="document_tax_totals"
+        inherit_id="sale.document_tax_totals"
+        priority="99"
+    >
+        <xpath expr="//tr[hasclass('o_subtotal')]/td[1]/span" position="replace">
+            <span>Subtotal (Tax-Excluded)</span>
         </xpath>
 
         <xpath expr="//tr[hasclass('o_total')]/td[1]/strong" position="replace">
             <strong>Total (Tax-Included)</strong>
         </xpath>
-
     </template>
-
 </odoo>

@@ -1,6 +1,7 @@
 {
     "name": "Sale (Qweb report)",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
     "author": "DEC, Yann Papouin",
     "website": "https://decgroupe.com",
     "summary": """Sale order report""",
@@ -10,5 +11,5 @@
     "data": [
         "report/sale_order.xml",
     ],
-    "installable": False,
+    "installable": True,
 }
