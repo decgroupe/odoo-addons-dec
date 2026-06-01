@@ -85,12 +85,16 @@ class MrpProduction(models.Model):
             if activity_stage_id:
                 stage_id = activity_stage_id
         elif self.state in ("done"):
-            move_finished_ids = self.move_finished_ids.filtered(
-                lambda x: x.state in ("done", "cancel")
-            )
-            picking_move_ids = move_finished_ids.mapped("move_dest_ids")
-            if not all(m.state in ("done", "cancel") for m in picking_move_ids):
-                stage_id = stages["dispatch_ready"]
+            activity_stage_id = self._get_stage_from_activity()
+            if activity_stage_id:
+                stage_id = activity_stage_id
+            else:
+                move_finished_ids = self.move_finished_ids.filtered(
+                    lambda x: x.state in ("done", "cancel")
+                )
+                picking_move_ids = move_finished_ids.mapped("move_dest_ids")
+                if not all(m.state in ("done", "cancel") for m in picking_move_ids):
+                    stage_id = stages["dispatch_ready"]
         return stage_id
 
     @api.depends(
@@ -138,6 +142,7 @@ class MrpProduction(models.Model):
         self.write(
             {
                 "state": "confirmed",
+                "date_start": False,
             }
         )
         return {"type": "ir.actions.client", "tag": "soft_reload"}
