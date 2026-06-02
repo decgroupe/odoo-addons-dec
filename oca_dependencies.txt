@@ -2,11 +2,12 @@ account-analytic https://github.com/decgroupe/account-analytic 18.0-dec
 account-financial-tools
 account-invoice-reporting
 account-invoicing
+akretion-odoo-usability https://github.com/akretion/odoo-usability 18.0
 credit-control
 crm
+e-commerce
 field-service
 helpdesk
-e-commerce
 hr
 hr-holidays
 knowledge https://github.com/decgroupe/knowledge 18.0-dec
