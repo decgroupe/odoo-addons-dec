@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 10:28+0000\n"
-"PO-Revision-Date: 2023-11-28 10:28+0000\n"
+"POT-Creation-Date: 2026-06-03 10:54+0000\n"
+"PO-Revision-Date: 2026-06-03 10:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,37 +16,46 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: project_dashboard
-#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
-msgid "<i class=\"fa fa-ellipsis-v\" title=\"menu\"/>"
+#: model_terms:ir.ui.view,arch_db:project_dashboard.view_task_kanban
+msgid ""
+"<i class=\"fa fa-puzzle-piece\"/>\n"
+"                                    <span>&amp;nbsp;</span>"
 msgstr ""
 
 #. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
-msgid "<span>View</span>"
+msgid "<span>&amp;nbsp;</span>"
 msgstr ""
 
 #. module: project_dashboard
+#: model:project.project,name:project_dashboard.project_a_2
+msgid "Audit 2026 (Type A)"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.project,name:project_dashboard.project_c_0
+msgid "CRM Integration (Type C)"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.project,name:project_dashboard.project_a_1
+msgid "Client Alpha Implementation (Type A)"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.project,name:project_dashboard.project_c_2
+msgid "Cloud Infrastructure Upgrade (Type C)"
+msgstr ""
+
+#. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
-msgid "All"
-msgstr ""
-
-#. module: project_dashboard
-#. openerp-web
-#: code:addons/project_dashboard/static/src/xml/dashboard_actions.xml:0
-#, python-format
-msgid "All Tasks"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__color
-msgid "Color Index"
-msgstr ""
-
-#. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:0
-#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
-#, python-format
 msgid "Current Year"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.project,name:project_dashboard.project_b_3
+msgid "Customer Support Portal (Type B)"
 msgstr ""
 
 #. module: project_dashboard
@@ -58,105 +67,34 @@ msgid "Dashboard"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_project__dashboard_sequence
-msgid "Dashboard Position"
+#: model:project.project,name:project_dashboard.project_a_4
+msgid "Data Warehouse Setup (Type A)"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__date_field
-msgid "Date Reference"
+#: model:project.project,name:project_dashboard.project_c_1
+msgid "Legacy System Phase-out (Type C)"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__open_default_groupby
-msgid "Default Group By"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_project__display_name
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: project_dashboard
-#: code:addons/project_dashboard/models/project_type.py:0
-#, python-format
-msgid "Field %s not found in %s model"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_project__id
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__id
-msgid "ID"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,help:project_dashboard.field_project_project__xid
-#: model:ir.model.fields,help:project_dashboard.field_project_type__xid
-msgid "ID of the record defined in xml file"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,help:project_dashboard.field_project_project__dashboard_sequence
-msgid ""
-"If set, then this project will be displayed on the dashboard. A higher value"
-" indicats an higher priority."
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_project__kanban_description
-msgid "Kanban Description"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_project____last_update
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:0
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
-#, python-format
 msgid "More Older"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,help:project_dashboard.field_project_type__open_default_groupby
-msgid ""
-"Name of the field to use as default group by when opening projects of this "
-"type"
+#: model:project.project,name:project_dashboard.project_b_1
+msgid "Network Security Upgrade (Type B)"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,help:project_dashboard.field_project_type__date_field
-msgid ""
-"Name of the field to use as reference when computing projects count per year"
+#: model:project.project,name:project_dashboard.project_a_3
+msgid "New Product Launch (Type A)"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__todo_project_count
-msgid "Number of projects"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__todo_project_count_year_nm0
-msgid "Number of projects from current year"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__todo_project_count_year_nm1
-msgid "Number of projects from year-1"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__todo_project_count_year_nm2
-msgid "Number of projects from year-2 and older"
-msgstr ""
-
-#. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__todo_project_count_unassigned
-msgid "Number of projects unassigned"
+#: model:project.project,name:project_dashboard.project_b_0
+msgid "Office Renovation (Type B)"
 msgstr ""
 
 #. module: project_dashboard
@@ -165,10 +103,25 @@ msgid "Open project form"
 msgstr ""
 
 #. module: project_dashboard
-#: code:addons/project_dashboard/models/project_project.py:0
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
-#, python-format
 msgid "Previous Year"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.project,label_productions:project_dashboard.project_a_0
+#: model:project.project,label_productions:project_dashboard.project_a_1
+#: model:project.project,label_productions:project_dashboard.project_a_2
+#: model:project.project,label_productions:project_dashboard.project_a_3
+#: model:project.project,label_productions:project_dashboard.project_a_4
+#: model:project.project,label_productions:project_dashboard.project_b_0
+#: model:project.project,label_productions:project_dashboard.project_b_1
+#: model:project.project,label_productions:project_dashboard.project_b_2
+#: model:project.project,label_productions:project_dashboard.project_b_3
+#: model:project.project,label_productions:project_dashboard.project_c_0
+#: model:project.project,label_productions:project_dashboard.project_c_1
+#: model:project.project,label_productions:project_dashboard.project_c_2
+msgid "Productions"
 msgstr ""
 
 #. module: project_dashboard
@@ -184,25 +137,50 @@ msgid "Project Type"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__dashboard_project_ids
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__project_ids
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "Projects"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__dashboard_ok
-msgid "Show in Dashboard"
+#: model:project.project,name:project_dashboard.project_b_2
+msgid "Server Migration (Type B)"
 msgstr ""
 
 #. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
-msgid "To Do"
+msgid "Settings"
 msgstr ""
 
 #. module: project_dashboard
-#: model_terms:ir.ui.view,arch_db:project_dashboard.project_project_filter_view
+#: model:project.project,label_tasks:project_dashboard.project_a_0
+#: model:project.project,label_tasks:project_dashboard.project_a_1
+#: model:project.project,label_tasks:project_dashboard.project_a_2
+#: model:project.project,label_tasks:project_dashboard.project_a_3
+#: model:project.project,label_tasks:project_dashboard.project_a_4
+#: model:project.project,label_tasks:project_dashboard.project_b_0
+#: model:project.project,label_tasks:project_dashboard.project_b_1
+#: model:project.project,label_tasks:project_dashboard.project_b_2
+#: model:project.project,label_tasks:project_dashboard.project_b_3
+#: model:project.project,label_tasks:project_dashboard.project_c_0
+#: model:project.project,label_tasks:project_dashboard.project_c_1
+#: model:project.project,label_tasks:project_dashboard.project_c_2
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "Tasks"
+msgstr ""
+
+#. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "To-do"
+msgstr ""
+
+#. module: project_dashboard
 #: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
 msgid "Unassigned"
+msgstr ""
+
+#. module: project_dashboard
+#: model_terms:ir.ui.view,arch_db:project_dashboard.project_type_kanban_view
+msgid "View"
 msgstr ""
 
 #. module: project_dashboard
@@ -211,7 +189,21 @@ msgid "View tasks"
 msgstr ""
 
 #. module: project_dashboard
-#: model:ir.model.fields,field_description:project_dashboard.field_project_project__xid
-#: model:ir.model.fields,field_description:project_dashboard.field_project_type__xid
-msgid "XML-ID"
+#: model:project.project,name:project_dashboard.project_a_0
+msgid "Website Redesign (Type A)"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.type,name:project_dashboard.project_type_a
+msgid "☔ Type A"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.type,name:project_dashboard.project_type_c
+msgid "🌈 Type C"
+msgstr ""
+
+#. module: project_dashboard
+#: model:project.type,name:project_dashboard.project_type_b
+msgid "🌟 Type B"
 msgstr ""
