@@ -58,7 +58,6 @@
                         </notebook>
                     </group>
                 </sheet>
-                <chatter />
             </form>
         </field>
     </record>
