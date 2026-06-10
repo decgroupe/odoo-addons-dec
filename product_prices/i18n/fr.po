@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-03 10:50+0000\n"
-"PO-Revision-Date: 2026-06-03 15:36+0200\n"
+"PO-Revision-Date: 2026-06-09 15:16+0200\n"
 "Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.7\n"
 
 #. module: product_prices
 #: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
@@ -229,7 +229,7 @@ msgstr "Graphe du prix d'achat (UdM par défaut)"
 #. module: product_prices
 #: model_terms:ir.ui.view,arch_db:product_prices.product_template_form_view
 msgid "Purchase Prices"
-msgstr "Prix d'achats"
+msgstr "Prix d’achat"
 
 #. module: product_prices
 #: model:ir.model.fields,help:product_prices.field_product_product__default_purchase_price
@@ -255,7 +255,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_prices.field_product_product__list_price
 #: model:ir.model.fields,field_description:product_prices.field_product_template__list_price
 msgid "Sales Price"
-msgstr "Prix de ventes"
+msgstr "Prix de vente"
 
 #. module: product_prices
 #: model:ir.model.fields,field_description:product_prices.field_product_product__same_uom
