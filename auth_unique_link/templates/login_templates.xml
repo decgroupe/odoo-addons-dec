@@ -20,10 +20,24 @@
         name="Magic Login buttons"
         priority="100"
     >
-        <xpath expr="//form" position="attributes">
+        <!-- Set an ID on the form for easier targeting -->
+        <xpath expr="//form[@t-attf-action='/web/login']" position="attributes">
             <attribute name="id">login-form</attribute>
         </xpath>
-        <xpath expr="//form" position="replace">
+
+        <!-- Set an ID on this login label for easier targeting -->
+        <xpath
+            expr="//form[@id='login-form']//label[@for='login']"
+            position="attributes"
+        >
+            <attribute name="id">login-label</attribute>
+        </xpath>
+
+        <!--
+        Add a new form for the Magic Link login and move the original form to
+        the right side of the page.
+        -->
+        <xpath expr="//form[@id='login-form']" position="replace">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-container">
@@ -41,7 +55,7 @@
                             />
 
                             <div class="form-group field-login">
-                                <label for="email">Email</label>
+                                <label for="email" class="form-label">Email</label>
                                 <input
                                     type="text"
                                     placeholder="johndoe@example.com"
@@ -55,7 +69,7 @@
                                 />
                             </div>
 
-                            <p id="link-instruction" class="small">
+                            <p id="link-instruction" class="smaller">
                             We will email you a magic sign in link.
                             </p>
 
@@ -84,7 +98,7 @@
 
                             <t t-if="request.session.debug">
                                 <div class="form-group checkbox">
-                                    <label>
+                                    <label class="form-label">
                                         <input
                                             type="checkbox"
                                             name="basic"
@@ -117,10 +131,16 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-container">
+                        <!-- Re-insert the original login form here -->
                         <t>$0</t>
                     </div>
                 </div>
             </div>
+        </xpath>
+
+        <!-- Move the user switch component before the login form -->
+        <xpath expr="//form[@id='login-form']" position="before">
+            <xpath expr="//owl-component[@name='web.user_switch']" position="move" />
         </xpath>
     </template>
 </odoo>

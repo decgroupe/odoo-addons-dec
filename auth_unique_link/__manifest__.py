@@ -21,6 +21,8 @@
     "assets": {
         "web.assets_frontend": [
             "auth_unique_link/static/src/css/style.scss",
+            "auth_unique_link/static/src/core/user_switch/user_switch.esm.js",
+            "auth_unique_link/static/src/core/user_switch/user_switch.xml",
         ],
     },
     "installable": True,

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.login_user_switch" t-inherit-mode="extension">
+        <xpath
+            expr="//t[@t-else='' and contains(@t-portal, 'label.form-label')]"
+            position="attributes"
+        >
+            <attribute name="t-portal">'#login-label'</attribute>
+        </xpath>
+    </t>
+
+</templates>
