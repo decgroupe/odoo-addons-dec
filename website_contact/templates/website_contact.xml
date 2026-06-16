@@ -364,4 +364,168 @@
             </div>
         </t>
     </template>
+
+    <template id="create_job_application" name="Job Application Form">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 pt-2">
+                        <h3 class="text-center">Job Application</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-10 mx-auto form p-2 mb-5">
+                <div class="px-2">
+                    <form
+                        id="form_job_application"
+                        action="/contact/job/submit"
+                        data-force_action=""
+                        data-model_name=""
+                        data-success-mode="redirect"
+                        data-success-page="/contactus-thank-you"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="justify-content-center s_website_form"
+                    >
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                        />
+                        <div
+                            class="form-group s_website_form_field required s_website_form_required"
+                        >
+                            <label
+                                class="control-label s_website_form_label"
+                                for="name"
+                            >Name</label>
+                            <input
+                                type="text"
+                                class="form-control s_website_form_input"
+                                name="name"
+                                required="True"
+                                placeholder="Jane Doe"
+                            />
+                        </div>
+                        <div class="form-group s_website_form_field">
+                            <label
+                                class="control-label s_website_form_label"
+                                for="phone"
+                            >Phone</label>
+                            <input
+                                type="text"
+                                class="form-control s_website_form_input"
+                                name="phone"
+                                placeholder="0600000000"
+                            />
+                        </div>
+                        <div
+                            class="form-group s_website_form_field required s_website_form_required"
+                        >
+                            <label
+                                class="control-label s_website_form_label"
+                                for="email"
+                            >E-Mail</label>
+                            <input
+                                type="email"
+                                class="form-control s_website_form_input"
+                                name="email"
+                                required="True"
+                                placeholder="jane.doe@example.com"
+                            />
+                        </div>
+                        <div
+                            class="form-group s_website_form_field required s_website_form_required"
+                        >
+                            <label
+                                class="control-label s_website_form_label"
+                                for="employment_type"
+                            >Type of job wanted</label>
+                            <select
+                                class="form-control s_website_form_input"
+                                name="employment_type"
+                                id="employment_type"
+                                required="True"
+                            >
+                                <option value="">-- Select --</option>
+                                <option value="permanent">Permanent Contract</option>
+                                <option value="fixed_term">Fixed-Term Contract</option>
+                                <option value="work_study">Work-Study Program</option>
+                                <option value="internship">Internship</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div
+                            class="form-group s_website_form_field required s_website_form_required"
+                        >
+                            <label
+                                class="control-label s_website_form_label"
+                                for="subject"
+                            >Subject</label>
+                            <input
+                                type="text"
+                                class="form-control s_website_form_input"
+                                name="subject"
+                                required="True"
+                            />
+                        </div>
+                        <div
+                            class="form-group s_website_form_field required s_website_form_required"
+                        >
+                            <label
+                                class="control-label s_website_form_label"
+                                for="message"
+                            >Message</label>
+                            <textarea
+                                class="form-control s_website_form_input"
+                                name="message"
+                                style="min-height: 180px"
+                                required="True"
+                            />
+                        </div>
+                        <div
+                            class="form-group s_website_form_field required s_website_form_required"
+                        >
+                            <label
+                                class="control-label s_website_form_label"
+                                for="attachment"
+                            >CV (Resume)</label>
+                            <div
+                                class="alert alert-danger mt-2"
+                                role="alert"
+                                id="validation"
+                                style="display: none;"
+                            />
+                            <input
+                                class="form-control o_website_form_input"
+                                name="attachment"
+                                id="attachment"
+                                type="file"
+                                accept=".pdf,.docx,.odt,.txt"
+                                required="True"
+                            />
+                            <div class="small">
+                                Accepted formats: <t
+                                t-esc="', '.join(allowed_extensions)"
+                            />
+                            </div>
+                        </div>
+                        <div
+                            class="text-center s_website_form_submit"
+                            data-name="Submit Button"
+                        >
+                            <button
+                                id="submit_button"
+                                type="submit"
+                                class="btn btn-primary btn-block s_website_form_send"
+                            >Submit my application</button>
+                        </div>
+                        <div class="text-center">
+                            <span id="s_website_form_result" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
 </odoo>

@@ -3,10 +3,12 @@
 
 import base64
 import json
+import os
 
 import odoo.http as http
 from odoo import SUPERUSER_ID, tools
 from odoo.exceptions import UserError, ValidationError
+from odoo.fields import Command
 from odoo.http import request
 
 from odoo.addons.tools_miscellaneous.tools.html_helper import b, p
@@ -316,3 +318,101 @@ class WebsiteContactController(http.Controller):
         if kw.get(ATTACHMENT_000_NAME):
             self._save_attachments("crm.lead", lead_id.id)
         return json.dumps({"id": lead_id.id})
+
+    #######################################################################
+
+    @http.route(URL_BASE + "/job/new", type="http", auth="public", website=True)
+    def create_new_job_from_contactform(self, **kw):
+        """Render the contact form for submitting a job application."""
+        return http.request.render(
+            "website_contact.create_job_application",
+            {"allowed_extensions": self._get_allowed_cv_extensions()},
+        )
+
+    @http.route(
+        URL_BASE + "/job/submit", type="http", auth="public", website=True, csrf=True
+    )
+    def submit_job_from_contactform(self, **kw):
+        """Submit the job application form and send an email if recaptcha passes."""
+        try:
+            # the except clause below should not let what has been done inside
+            # here be committed. it should not either roll back everything in
+            # this controller method. instead, we use a savepoint to roll back
+            # what has been done inside the try clause.
+            with request.env.cr.savepoint():
+                if request.env["ir.http"]._verify_request_recaptcha_token(
+                    "website_form"
+                ):
+                    return self._handle_submit_job_from_contactform(**kw)
+            error = request.env._("Suspicious activity detected by Google reCaptcha.")
+        except (ValidationError, UserError) as e:
+            error = e.args[0]
+        return json.dumps({"error": error})
+
+    def _get_allowed_cv_extensions(self):
+        """Return a set of allowed file extensions for CV attachments."""
+        return {".pdf", ".docx", ".odt", ".txt"}
+
+    def _handle_submit_job_from_contactform(self, **kw):
+        """Validate the CV, build an email body and send it to job contact."""
+        cv_file = None
+        if kw.get(ATTACHMENT_000_NAME):
+            cv_file = request.httprequest.files.get(ATTACHMENT_000_NAME)
+        if not cv_file or not cv_file.filename:
+            raise ValidationError(request.env._("A CV file is required."))
+        allowed_extensions = self._get_allowed_cv_extensions()
+        _, ext = os.path.splitext(cv_file.filename)
+        if ext.lower() not in allowed_extensions:
+            raise ValidationError(
+                request.env._(
+                    "Only %(extensions)s files are allowed for the CV.",
+                    extensions=", ".join(allowed_extensions),
+                )
+            )
+        name = kw.get("name", "")
+        email_from = kw.get("email", "")
+        employment_type = kw.get("employment_type", "")
+        body = p(b(request.env._("Name") + " : ") + name)
+        if kw.get("phone"):
+            body += p(b(request.env._("Phone") + " : ") + kw.get("phone"))
+        body += p(b(request.env._("E-Mail") + " : ") + email_from)
+        if employment_type:
+            body += p(b(request.env._("Type of job wanted") + " : ") + employment_type)
+        body += p(b(request.env._("Subject") + " : ") + kw.get("subject", ""))
+        if kw.get("message"):
+            body += p(
+                b(request.env._("Message") + " : ")
+                + "<br/>"
+                + tools.plaintext2html(kw.get("message"))
+            )
+        cv_data = cv_file.read()
+        attachment = (
+            request.env["ir.attachment"]
+            .sudo()
+            .create(
+                {
+                    "name": cv_file.filename,
+                    "datas": base64.b64encode(cv_data),
+                    "res_model": "mail.mail",
+                    "res_id": 0,
+                }
+            )
+        )
+        ICP = request.env["ir.config_parameter"].sudo()
+        email_to = ICP.get_param("website_contact.job_contact_email")
+        mail = (
+            request.env["mail.mail"]
+            .sudo()
+            .create(
+                {
+                    "subject": kw.get("subject", ""),
+                    "email_from": email_from,
+                    "reply_to": email_from,
+                    "email_to": email_to,
+                    "body_html": body,
+                    "attachment_ids": [Command.link(attachment.id)],
+                }
+            )
+        )
+        mail.send()
+        return json.dumps({"id": mail.id})

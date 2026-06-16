@@ -12,6 +12,7 @@
     ],
     "data": [
         "data/utm_data.xml",
+        "data/ir_config_parameter.xml",
         "views/helpdesk_ticket_category.xml",
         "templates/website_contact.xml",
         "templates/website_page_contactus.xml",

@@ -363,3 +363,90 @@ class TestWebsiteContact(TestWebsiteContactCommon):
             )
         self.assertIsNotNone(result1)
         self.assertIsNotNone(result2)
+
+    def test_28_submit_job_missing_cv(self):
+        """_handle_submit_job_from_contactform raises ValidationError when CV is
+        missing."""
+        ctrl = WebsiteContactController()
+        kw = {
+            "name": "Jean Dupont",
+            "email": "jean@example.com",
+            "employment_type": "CDI",
+            "subject": "CDI Developer",
+            "message": "I am interested.",
+        }
+        with MockRequest(self.env):
+            with self.assertRaises(ValidationError):
+                ctrl._handle_submit_job_from_contactform(**kw)
+
+    def test_29_submit_job_invalid_cv_extension(self):
+        """_handle_submit_job_from_contactform raises ValidationError for bad
+        CV extension."""
+        ctrl = WebsiteContactController()
+        mock_file = Mock()
+        mock_file.filename = "photo.jpg"
+        mock_file.read.return_value = b"image data"
+        kw = {
+            "name": "Jean Dupont",
+            "email": "jean@example.com",
+            "employment_type": "CDD",
+            "subject": "CDD Position",
+            "message": "Test message",
+            ATTACHMENT_000_NAME: mock_file.filename,
+        }
+        with MockRequest(self.env) as mock_req:
+            mock_req.httprequest.files = {ATTACHMENT_000_NAME: mock_file}
+            with self.assertRaises(ValidationError):
+                ctrl._handle_submit_job_from_contactform(**kw)
+
+    def test_30_submit_job_success(self):
+        """_handle_submit_job_from_contactform creates a mail.mail record."""
+        ctrl = WebsiteContactController()
+        mock_file = Mock()
+        mock_file.filename = "cv.pdf"
+        mock_file.read.return_value = b"pdf content"
+        kw = {
+            "name": "Jean Dupont",
+            "phone": "0600000000",
+            "email": "jean@example.com",
+            "employment_type": "CDI",
+            "subject": "CDI Developer",
+            "message": "I am interested in a CDI position.",
+            ATTACHMENT_000_NAME: mock_file.filename,
+        }
+        with MockRequest(self.env) as mock_req:
+            mock_req.httprequest.files = {ATTACHMENT_000_NAME: mock_file}
+            result = ctrl._handle_submit_job_from_contactform(**kw)
+        data = json.loads(result)
+        self.assertIn("id", data)
+        mail = self.env["mail.mail"].browse(data["id"])
+        self.assertTrue(mail.exists())
+        self.assertEqual(mail.email_to, "job@mycompany.com")
+        self.assertEqual(len(mail.attachment_ids), 1)
+        self.assertEqual(mail.attachment_ids[0].name, "cv.pdf")
+
+    def test_31_submit_job_success_with_bracketed_file_key(self):
+        """_handle_submit_job_from_contactform accepts website-form file keys."""
+        ctrl = WebsiteContactController()
+        mock_file = Mock()
+        mock_file.filename = "cv.pdf"
+        mock_file.read.return_value = b"pdf content"
+        kw = {
+            "name": "Jean Dupont",
+            "phone": "0600000000",
+            "email": "jean@example.com",
+            "employment_type": "CDI",
+            "subject": "CDI Developer",
+            "message": "I am interested in a CDI position.",
+            ATTACHMENT_000_NAME: mock_file.filename,
+        }
+        with MockRequest(self.env) as mock_req:
+            mock_req.httprequest.files = {ATTACHMENT_000_NAME: mock_file}
+            result = ctrl._handle_submit_job_from_contactform(**kw)
+        data = json.loads(result)
+        self.assertIn("id", data)
+        mail = self.env["mail.mail"].browse(data["id"])
+        self.assertTrue(mail.exists())
+        self.assertEqual(mail.email_to, "job@mycompany.com")
+        self.assertEqual(len(mail.attachment_ids), 1)
+        self.assertEqual(mail.attachment_ids[0].name, "cv.pdf")

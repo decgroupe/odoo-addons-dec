@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="job_contact_email" model="ir.config_parameter">
+        <field name="key">website_contact.job_contact_email</field>
+        <field name="value">job@mycompany.com</field>
+    </record>
+</odoo>

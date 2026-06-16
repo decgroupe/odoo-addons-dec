@@ -21,7 +21,7 @@
                         </div>
                         <div class="container mt-2">
                             <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-10">
                                     <div
                                         id="oe_structure_website_contact_desc"
                                         class="oe_structure"
@@ -59,7 +59,7 @@
                                                         <span>Commercial</span>
                                                     </a>
                                                     <div
-                                                        class="mt-4 contact-button-sample"
+                                                        class="my-3 mx-3 small contact-button-sample"
                                                     >
                                                         <small>
                                                             Sample request:
@@ -94,7 +94,7 @@
                                                         <span>Administrative</span>
                                                     </a>
                                                     <div
-                                                        class="mt-4 contact-button-sample"
+                                                        class="my-3 mx-3 small contact-button-sample"
                                                     >
                                                         <small>
                                                             Sample request:
@@ -126,7 +126,7 @@
                                                         <span>Service</span>
                                                     </a>
                                                     <div
-                                                        class="mt-4 contact-button-sample"
+                                                        class="my-3 mx-3 small contact-button-sample"
                                                     >
                                                         <small>
                                                             Sample request:
@@ -136,6 +136,40 @@
                                                             <li
                                                             >Receive a product leaflet</li>
                                                             <li>Bug report</li>
+                                                        </ul>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card mb-4">
+                                                <div class="card-body">
+                                                    <a
+                                                        role="button"
+                                                        t-attf-href="/contact/job/new"
+                                                        class="btn btn-primary contact-button"
+                                                        id="o_contact_job"
+                                                    >
+                                                        <t t-translation="off">
+                                                            <i
+                                                                class="fa fa-fw fa-briefcase"
+                                                                role="img"
+                                                            />
+                                                        </t>
+                                                        <span>Job Application</span>
+                                                    </a>
+                                                    <div
+                                                        class="my-3 mx-3 small contact-button-sample"
+                                                    >
+                                                        <small>
+                                                        Sample request:
+                                                        <ul>
+                                                            <li
+                                                            >Apply for an existing job posting</li>
+                                                            <li>Open application</li>
+                                                            <li
+                                                            >Permanent, fixed-term, work-study, or internship...</li>
                                                         </ul>
                                                         </small>
                                                     </div>

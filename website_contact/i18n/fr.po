@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-03 11:18+0000\n"
-"PO-Revision-Date: 2023-11-28 15:43+0100\n"
+"POT-Creation-Date: 2026-06-24 06:53+0000\n"
+"PO-Revision-Date: 2026-06-24 09:03+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,12 +15,228 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.9\n"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "3 place d'Italie"
 msgstr "3 place d'Italie"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<select class=\"form-control s_website_form_input\" name=\"employment_type\" id=\"employment_type\" required=\"True\">\n"
+"                                <option value=\"\">-- Select --</option>\n"
+"                                <option value=\"permanent\">Permanent Contract</option>\n"
+"                                <option value=\"fixed_term\">Fixed-Term Contract</option>\n"
+"                                <option value=\"work_study\">Work-Study Program</option>\n"
+"                                <option value=\"internship\">Internship</option>\n"
+"                                <option value=\"other\">Other</option>\n"
+"                            </select>"
+msgstr ""
+"<select class=\"form-control s_website_form_input\" name=\"employment_type\" id=\"employment_type\" required=\"True\">\n"
+"                                <option value=\"\">-- Sélectionner --</option>\n"
+"                                <option value=\"permanent\">CDI</option>\n"
+"                                <option value=\"fixed_term\">CDD</option>\n"
+"                                <option value=\"work_study\">Alternance</option>\n"
+"                                <option value=\"internship\">Stage</option>\n"
+"                                <option value=\"other\">Autre</option>\n"
+"                            </select>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Add Attachments</span>\n"
+"                                        <span class=\"s_website_form_mark\"/>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Ajouter des pièces jointes</span>\n"
+"                                       <span class=\"s_website_form_mark\"/>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">CV (Resume)</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">CV (Curriculum vitae)</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Category</span>\n"
+"                                            <span class=\"s_website_form_mark\"/>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Catégorie</span>\n"
+"                                           <span class=\"s_website_form_mark\"/>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">City</span>\n"
+"                                                <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Ville</span>\n"
+"                                                <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">E-Mail</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">E-mail</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">First Name</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Prénom</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">From</span>\n"
+"                                    <span class=\"s_website_form_mark\"/>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">De</span>\n"
+"                                   <span class=\"s_website_form_mark\"/>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Function</span>\n"
+"                                    <span class=\"s_website_form_mark\"/>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Fonction</span>\n"
+"                                   <span class=\"s_website_form_mark\"/>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">Last Name</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Nom</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">Message</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Message</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid "<span class=\"s_website_form_label_content\">Mobile</span>"
+msgstr "<span class=\"s_website_form_label_content\">Mobile</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid "<span class=\"s_website_form_label_content\">Phone</span>"
+msgstr "<span class=\"s_website_form_label_content\">Téléphone</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">Phone</span>\n"
+"                                <span class=\"s_website_form_mark\"/>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Téléphone</span>\n"
+"                                <span class=\"s_website_form_mark\"/>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">References</span>\n"
+"                                        <span class=\"s_website_form_mark\"/>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Références</span>\n"
+"                                        <span class=\"s_website_form_mark\"/>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Street</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Rue</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Subject</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Sujet</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">Subject</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Sujet</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid ""
+"<span class=\"s_website_form_label_content\">Type of job wanted</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Type d'emploi recherché</span>\n"
+"                                <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">You Are</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Vous êtes</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Your Email Address</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Votre adresse e-mail</span>\n"
+"                                        <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid "<span class=\"s_website_form_label_content\">Your Message</span>"
+msgstr "<span class=\"s_website_form_label_content\">Votre message</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Your Name</span>\n"
+"                                    <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Votre nom</span>\n"
+"                                    <span class=\"s_website_form_mark\"> *</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+msgid ""
+"<span class=\"s_website_form_label_content\">Zip Code</span>\n"
+"                                                <span class=\"s_website_form_mark\"> *</span>"
+msgstr ""
+"<span class=\"s_website_form_label_content\">Code postal</span>\n"
+"                                                <span class=\"s_website_form_mark\"> *</span>"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
@@ -34,8 +250,19 @@ msgstr "<span>Commercial</span>"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
+msgid "<span>Job Application</span>"
+msgstr "<span>Candidature à un poste</span>"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.contactus
 msgid "<span>Service</span>"
 msgstr "<span>Technique / SAV</span>"
+
+#. module: website_contact
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
+msgid "A CV file is required."
+msgstr "Un fichier CV est obligatoire."
 
 #. module: website_contact
 #. odoo-python
@@ -56,14 +283,19 @@ msgid "A school"
 msgstr "Un établissement scolaire"
 
 #. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid "Accepted formats: PDF, DOCX, ODT, TXT"
+msgstr "Formats acceptés : PDF, DOCX, ODT, TXT"
+
+#. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
 msgid "Accounting / Invoicing"
 msgstr "Comptabilité / Facturation"
 
 #. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Add Attachments"
-msgstr "Ajouter des pièces jointes"
+#: model_terms:ir.ui.view,arch_db:website_contact.contactus
+msgid "Apply for an existing job posting"
+msgstr "Postuler à une offre d'emploi existante"
 
 #. module: website_contact
 #: model:ir.model.fields,field_description:website_contact.field_crm_lead__attachment_ids
@@ -74,16 +306,6 @@ msgstr "Pièces jointes"
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
 msgid "Bug report"
 msgstr "Rapport de bug"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Category"
-msgstr "Catégorie"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "City"
-msgstr "Ville"
 
 #. module: website_contact
 #. odoo-python
@@ -122,20 +344,27 @@ msgid "Delivery"
 msgstr "Livraison"
 
 #. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "From"
-msgstr "De"
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid "Dupont"
+msgstr "Dupont"
+
+#. module: website_contact
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
+msgid "E-Mail"
+msgstr "Courriel"
+
+#. module: website_contact
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
+msgid "First Name"
+msgstr "Prénom"
 
 #. module: website_contact
 #. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
 msgid "Full Address (street, zipcode, city)"
 msgstr "Adresse complète (rue, code postal, ville)"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Function"
-msgstr "Fonction"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.contactus
@@ -158,6 +387,22 @@ msgid "Jane Doe"
 msgstr "Michel Blanc"
 
 #. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid "Jean"
+msgstr "Jean"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid "Job Application"
+msgstr "Candidature"
+
+#. module: website_contact
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
+msgid "Last Name"
+msgstr "Nom "
+
+#. module: website_contact
 #: model:ir.model,name:website_contact.model_crm_lead
 msgid "Lead/Opportunity"
 msgstr "Piste/opportunité"
@@ -174,15 +419,21 @@ msgid "Message"
 msgstr "Message"
 
 #. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Mobile"
-msgstr "Mobile"
-
-#. module: website_contact
 #. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
 msgid "Next"
 msgstr "Suivant"
+
+#. module: website_contact
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
+msgid "Only %(extensions)s files are allowed for the CV."
+msgstr "Seuls les fichiers %(extensions)s sont autorisés pour le CV."
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.contactus
+msgid "Open application"
+msgstr "Candidature spontanée"
 
 #. module: website_contact
 #. odoo-python
@@ -196,29 +447,29 @@ msgid "Paris"
 msgstr "Paris"
 
 #. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+#: model_terms:ir.ui.view,arch_db:website_contact.contactus
+msgid "Permanent, fixed-term, work-study, or internship..."
+msgstr "CDI ou CDD ou alternance ou stage..."
+
+#. module: website_contact
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
 msgid "Phone"
 msgstr "Téléphone"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid ""
-"Please indicate the reference(s) of the products concerned for a service "
-"request (references generally start with three letters) or the serial number"
-" (MO)."
+"Please indicate the reference(s) of the products concerned for a service request (references generally start with three letters) or "
+"the serial number (MO)."
 msgstr ""
-"Merci d'indiquer la ou les références des produits concernés pour une "
-"demande de SAV (les références débutent généralement par trois lettres) ou "
-"le numéro de série (MO)."
+"Merci d'indiquer la ou les références des produits concernés pour une demande de SAV (les références débutent généralement par trois "
+"lettres) ou le numéro de série (MO)."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid ""
-"Please note that an e-mail will be sent to this address with a link to this "
-"request."
-msgstr ""
-"Veuillez noter qu’un e-mail sera envoyé à cette adresse avec un lien vers "
-"cette demande."
+msgid "Please note that an e-mail will be sent to this address with a link to this request."
+msgstr "Veuillez noter qu’un e-mail sera envoyé à cette adresse avec un lien vers cette demande."
 
 #. module: website_contact
 #: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__public_filter
@@ -243,7 +494,6 @@ msgstr "Recevoir une plaquette commerciale produit"
 #. module: website_contact
 #. odoo-python
 #: code:addons/website_contact/controllers/main.py:0
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "References"
 msgstr "Références"
 
@@ -261,8 +511,7 @@ msgstr "École"
 #. module: website_contact
 #: model:ir.model.fields,help:website_contact.field_helpdesk_ticket_category__public_filter
 msgid "Selectable on a public contact form with a predefined filter"
-msgstr ""
-"Sélectionnable sur un formulaire de contact public avec un filtre prédéfini"
+msgstr "Sélectionnable sur un formulaire de contact public avec un filtre prédéfini"
 
 #. module: website_contact
 #: model:ir.model.fields,field_description:website_contact.field_helpdesk_ticket_category__sequence
@@ -270,12 +519,8 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Street"
-msgstr "Rue"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
 msgid "Subject"
 msgstr "Sujet"
 
@@ -284,6 +529,11 @@ msgstr "Sujet"
 #: code:addons/website_contact/controllers/main.py:0
 msgid "Submit"
 msgstr "Envoyer"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid "Submit my application"
+msgstr "Envoyer ma candidature"
 
 #. module: website_contact
 #. odoo-python
@@ -298,12 +548,8 @@ msgstr "Formateur"
 
 #. module: website_contact
 #: model:ir.model.fields,help:website_contact.field_helpdesk_ticket_category__sequence
-msgid ""
-"The sequence field is used to define order in which categories are "
-"displayed."
-msgstr ""
-"Le champ séquence est utilisé pour définir l'ordre dans lequel les "
-"catégories sont affichées."
+msgid "The sequence field is used to define order in which categories are displayed."
+msgstr "Le champ séquence est utilisé pour définir l'ordre dans lequel les catégories sont affichées."
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
@@ -316,24 +562,10 @@ msgid "Troubleshooting / Repair"
 msgstr "Dépannage / Réparation"
 
 #. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "You Are"
-msgstr "Vous êtes"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Your Email Address"
-msgstr "Votre adresse email"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Your Message"
-msgstr "Votre message"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Your Name"
-msgstr "Votre nom"
+#. odoo-python
+#: code:addons/website_contact/controllers/main.py:0
+msgid "Type of job wanted"
+msgstr "Type d'emploi recherché"
 
 #. module: website_contact
 #. odoo-python
@@ -343,13 +575,65 @@ msgstr "Votre demande"
 
 #. module: website_contact
 #: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
-msgid "Zip Code"
-msgstr "Code postal"
-
-#. module: website_contact
-#: model_terms:ir.ui.view,arch_db:website_contact.create_contact_message
 msgid "jane.doe@example.com"
 msgstr "michel.blanc@example.com"
+
+#. module: website_contact
+#: model_terms:ir.ui.view,arch_db:website_contact.create_job_application
+msgid "jean.dupont@example.com"
+msgstr "jean.dupont@example.com"
+
+#, fuzzy
+#~ msgid "<span>Candidature</span>"
+#~ msgstr "<span>Administratif</span>"
+
+#~ msgid "Add Attachments"
+#~ msgstr "Ajouter des pièces jointes"
+
+#~ msgid "Category"
+#~ msgstr "Catégorie"
+
+#~ msgid "City"
+#~ msgstr "Ville"
+
+#~ msgid "From"
+#~ msgstr "De"
+
+#~ msgid "Function"
+#~ msgstr "Fonction"
+
+#~ msgid "Mobile"
+#~ msgstr "Mobile"
+
+#~ msgid "Street"
+#~ msgstr "Rue"
+
+#~ msgid "You Are"
+#~ msgstr "Vous êtes"
+
+#~ msgid "Your Email Address"
+#~ msgstr "Votre adresse email"
+
+#~ msgid "Your Message"
+#~ msgstr "Votre message"
+
+#~ msgid "Your Name"
+#~ msgstr "Votre nom"
+
+#~ msgid "Zip Code"
+#~ msgstr "Code postal"
+
+#, fuzzy
+#~ msgid "Message :"
+#~ msgstr "Message"
+
+#, fuzzy
+#~ msgid "Phone :"
+#~ msgstr "Téléphone"
+
+#, fuzzy
+#~ msgid "Subject :"
+#~ msgstr "Sujet"
 
 #~ msgid "0243302732"
 #~ msgstr "0243302732"
@@ -359,9 +643,6 @@ msgstr "michel.blanc@example.com"
 
 #~ msgid "Contact Form"
 #~ msgstr "Formulaire de contact"
-
-#~ msgid "Display Name"
-#~ msgstr "Nom affiché"
 
 #~ msgid "ID"
 #~ msgstr "ID"
