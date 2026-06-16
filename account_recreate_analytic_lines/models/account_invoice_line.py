@@ -5,7 +5,7 @@ import logging
 
 from odoo import api, models
 
-from odoo.addons.product_analytic.models.account_move import INV_TYPE_MAP
+from odoo.addons.product_analytic_legacy.models.account_move import INV_TYPE_MAP
 
 _logger = logging.getLogger(__name__)
 
