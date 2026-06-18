@@ -128,28 +128,6 @@ class IrMailServer(models.Model):
                 message["Bcc"] = ",".join(bcc)
 
     @api.model
-    def _debug_outgoing_message(self, message):
-        _logger.info(
-            "📮 Outgoing E-Mail\n"
-            "   Message-Id: %r\n"
-            "  Return-Path: %s\n"
-            "     Reply-To: %s\n"
-            "         From: %s\n"
-            "           To: %s\n"
-            "           Cc: %s\n"
-            "          Bcc: %s\n"
-            "      Subject: %s\n",
-            message.get("Message-Id"),
-            message.get("Return-Path"),
-            message.get("Reply-To"),
-            message.get("From"),
-            message.get("To"),
-            message.get("Cc"),
-            message.get("Bcc"),
-            message.get("Subject"),
-        )
-
-    @api.model
     def send_email(
         self,
         message,
@@ -169,7 +147,6 @@ class IrMailServer(models.Model):
             self._update_cc_addresses(mail_server, message)
             self._update_bcc_addresses(mail_server, message)
 
-        self._debug_outgoing_message(message)
         message_id = super().send_email(
             message,
             mail_server_id=mail_server_id,
