@@ -9,8 +9,6 @@ from unittest.mock import patch
 from odoo.tests import new_test_user
 from odoo.tests.common import TransactionCase
 
-from odoo.addons.base.models.ir_mail_server import IrMailServer
-
 _test_logger = logging.getLogger("odoo.tests")
 
 
@@ -50,7 +48,8 @@ class TestBaseMailAutoCopyCommon(TransactionCase):
         return mail_server
 
     def _send_email(self, msg, check_fn):
-        send_email_origin = IrMailServer.send_email
+        IrMailServer = self.env["ir.mail_server"]
+        send_email_origin = type(IrMailServer).send_email
 
         def _ir_mail_server_send_email(model, message, *args, **kwargs):
             check_fn(message)
@@ -58,13 +57,13 @@ class TestBaseMailAutoCopyCommon(TransactionCase):
 
         # patch `send_mail` to check content
         with patch.object(
-            IrMailServer,
+            type(IrMailServer),
             "send_email",
             autospec=True,
-            wraps=IrMailServer,
+            wraps=type(IrMailServer),
             side_effect=_ir_mail_server_send_email,
         ) as _ir_mail_server_send_email_mock:
-            res = self.env["ir.mail_server"].send_email(msg)
+            res = IrMailServer.send_email(msg)
         return res
 
     def _create_user(self, login):
