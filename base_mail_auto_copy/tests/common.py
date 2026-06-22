@@ -50,19 +50,43 @@ class TestBaseMailAutoCopyCommon(TransactionCase):
     def _send_email(self, msg, check_fn):
         IrMailServer = self.env["ir.mail_server"]
         send_email_origin = type(IrMailServer).send_email
+        prepare_email_origin = type(IrMailServer)._prepare_email_message
+
+        captured_smtp_to_list = None
+
+        def _prepare_email_message_wrapper(model, message, smtp_session):
+            nonlocal captured_smtp_to_list
+            # `prepare_email_message` returns a tuple of (smtp_from, smtp_to_list, msg)
+            # and delete the "Bcc" header from the message, so we need to capture the
+            # smtp_to_list before it gets deleted
+            smtp_from, smtp_to_list, message = prepare_email_origin(
+                model, message, smtp_session
+            )
+            captured_smtp_to_list = smtp_to_list
+            return smtp_from, smtp_to_list, message
 
         def _ir_mail_server_send_email(model, message, *args, **kwargs):
-            check_fn(message)
-            return send_email_origin(model, message, *args, **kwargs)
+            res = send_email_origin(model, message, *args, **kwargs)
+            check_fn(message, captured_smtp_to_list)
+            return res
 
-        # patch `send_mail` to check content
-        with patch.object(
-            type(IrMailServer),
-            "send_email",
-            autospec=True,
-            wraps=type(IrMailServer),
-            side_effect=_ir_mail_server_send_email,
-        ) as _ir_mail_server_send_email_mock:
+        # patch both methods to intercept smtp_to_list
+        with (
+            patch.object(
+                type(IrMailServer),
+                "_prepare_email_message",
+                autospec=True,
+                wraps=type(IrMailServer),
+                side_effect=_prepare_email_message_wrapper,
+            ),
+            patch.object(
+                type(IrMailServer),
+                "send_email",
+                autospec=True,
+                wraps=type(IrMailServer),
+                side_effect=_ir_mail_server_send_email,
+            ),
+        ):
             res = IrMailServer.send_email(msg)
         return res
 

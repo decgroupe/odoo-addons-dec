@@ -39,9 +39,9 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         self.assertEqual(mail_server, False)
 
     def test_02_unknown_user(self):
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # No BCC auto-copy expected (unknown user)
+            self.assertEqual(smtp_to_list, ["jane@example.com"])
 
         mail_server = self._get_mail_server()
         self.assertTrue(mail_server.auto_add_sender)
@@ -54,10 +54,10 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         user = self._create_user("john@example.com")
         user.copy_sent_email = True
 
-        def check(message):
-            self.assertIn("Bcc", message)
-            self.assertEqual(message["Bcc"], "John Doe <john@example.com>")
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # john@example.com should be BCC'd in smtp_to_list
+            self.assertIn("jane@example.com", smtp_to_list)
+            self.assertIn("john@example.com", smtp_to_list)
 
         res = self._send_email(self._get_message_from_john_to_jane(), check)
         self.assertEqual(res, self.MESSAGE_ID)
@@ -67,9 +67,9 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         mail_server = self._get_mail_server()
         self.assertFalse(mail_server)
 
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # No BCC without active mail server
+            self.assertEqual(smtp_to_list, ["jane@example.com"])
 
         res = self._send_email(self._get_message_from_john_to_jane(), check)
         self.assertEqual(res, self.MESSAGE_ID)
@@ -80,9 +80,9 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         user = self._create_user("john@example.com")
         user.copy_sent_email = False
 
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # No BCC when copy_sent_email is False
+            self.assertEqual(smtp_to_list, ["jane@example.com"])
 
         res = self._send_email(self._get_message_from_john_to_jane(), check)
         self.assertEqual(res, self.MESSAGE_ID)
@@ -93,9 +93,9 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         user = self._create_user("john@example.com")
         user.copy_sent_email = True
 
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # No BCC when server auto_add_sender is disabled
+            self.assertEqual(smtp_to_list, ["jane@example.com"])
 
         res = self._send_email(self._get_message_from_john_to_jane(), check)
         self.assertEqual(res, self.MESSAGE_ID)
@@ -104,10 +104,10 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         mail_server = self._get_mail_server()
         mail_server.auto_cc_addresses = "aladdin@test.example.com"
 
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertIn("Cc", message)
-            self.assertEqual(message["Cc"], "aladdin@test.example.com")
+        def check(message, smtp_to_list):
+            # Both To and auto-added Cc should be in smtp_to_list
+            self.assertIn("jane@example.com", smtp_to_list)
+            self.assertIn("aladdin@test.example.com", smtp_to_list)
 
         res = self._send_email(self._get_message_from_john_to_jane(), check)
         self.assertEqual(res, self.MESSAGE_ID)
@@ -118,12 +118,12 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         # user = self._create_user("john@example.com")
         # user.copy_sent_email = False
 
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertIn("Cc", message)
-            self.assertEqual(
-                message["Cc"], "jasmine@test.example.com, aladdin@test.example.com"
-            )
+        def check(message, smtp_to_list):
+            # All recipients (To, existing Cc, and auto-added Cc) should be
+            # in smtp_to_list
+            self.assertIn("jane@example.com", smtp_to_list)
+            self.assertIn("jasmine@test.example.com", smtp_to_list)
+            self.assertIn("aladdin@test.example.com", smtp_to_list)
 
         msg = self._get_message_from_john_to_jane()
         msg["Cc"] = "jasmine@test.example.com"
@@ -135,10 +135,10 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         mail_server = self._get_mail_server()
         mail_server.auto_bcc_addresses = "archive_copy@example.com"
 
-        def check(message):
-            self.assertIn("Bcc", message)
-            self.assertEqual(message["Bcc"], "archive_copy@example.com")
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # Both To and auto-added BCC should be in smtp_to_list
+            self.assertIn("jane@example.com", smtp_to_list)
+            self.assertIn("archive_copy@example.com", smtp_to_list)
 
         msg = self._get_message_from_john_to_jane()
         res = self._send_email(msg, check)
@@ -148,12 +148,11 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         mail_server = self._get_mail_server()
         mail_server.auto_bcc_addresses = "archive_copy@example.com"
 
-        def check(message):
-            self.assertIn("Bcc", message)
-            self.assertEqual(
-                message["Bcc"], "archive_copy#2@example.com, archive_copy@example.com"
-            )
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # Both existing and auto-added BCC addresses should be in smtp_to_list
+            self.assertIn("jane@example.com", smtp_to_list)
+            self.assertIn("archive_copy#2@example.com", smtp_to_list)
+            self.assertIn("archive_copy@example.com", smtp_to_list)
 
         msg = self._get_message_from_john_to_jane()
         msg["Bcc"] = "archive_copy#2@example.com"
@@ -166,15 +165,13 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         user = self._create_user("john@example.com")
         user.copy_sent_email = True
 
-        def check(message):
-            self.assertIn("Bcc", message)
-            self.assertEqual(
-                message["Bcc"],
-                "archive_copy#2@example.com, "
-                "archive_copy@example.com, "
-                "John Doe <john@example.com>",
-            )
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # All BCC addresses (existing, auto-added, and user copy) should be
+            # in smtp_to_list
+            self.assertIn("jane@example.com", smtp_to_list)
+            self.assertIn("archive_copy#2@example.com", smtp_to_list)
+            self.assertIn("archive_copy@example.com", smtp_to_list)
+            self.assertIn("john@example.com", smtp_to_list)
 
         msg = self._get_message_from_john_to_jane()
         msg["Bcc"] = "archive_copy#2@example.com"
@@ -188,9 +185,9 @@ class TestBaseMailAutoCopy(TestBaseMailAutoCopyCommon):
         user = self._create_user("john@example.com")
         user.copy_sent_email = True
 
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # john@example.com should be ignored even though copy_sent_email is True
+            self.assertEqual(smtp_to_list, ["jane@example.com"])
 
         res = self._send_email(self._get_message_from_john_to_jane(), check)
         self.assertEqual(res, self.MESSAGE_ID)
@@ -251,9 +248,9 @@ class TestBaseMailAutoCopyPost(TestBaseMailAutoCopyCommon):
 
         # build raw email; even with copy_sent_email=True for john, auto-BCC must
         # be suppressed because the message originates from a mail group
-        def check(message):
-            self.assertNotIn("Bcc", message)
-            self.assertNotIn("Cc", message)
+        def check(message, smtp_to_list):
+            # Should only contain jane@example.com (no auto-BCC from mail group)
+            self.assertEqual(smtp_to_list, [user_jane.email])
 
         msg = self._build_email_from_mail(mail_id, to=user_jane.email)
         res = self._send_email(msg, check)

@@ -73,7 +73,10 @@ class IrMailServer(models.Model):
             ignore_auto_add_sender = False
             from_rfc2822 = extract_rfc2822_addresses(message["From"])
             reason = "Unknown"
-            if mail_message_id.model in ("mail.channel", "mail.group"):
+            if mail_message_id and mail_message_id.model in (
+                "mail.channel",
+                "mail.group",
+            ):
                 # do not automatically add sender to bcc if the message comes
                 # from a channel or a mail group
                 channel_email_from_rfc2822 = extract_rfc2822_addresses(
