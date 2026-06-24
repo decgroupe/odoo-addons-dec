@@ -1,29 +1,14 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Dec 2024
 
-import contextlib
 from unittest import mock
 
 import odoo.service.common
 from odoo.release import RELEASE_LEVELS_DISPLAY
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
-from odoo.tools.misc import DotDict
 
-
-@contextlib.contextmanager
-def MockDebugRequest(env):
-    request = mock.Mock(
-        db=None,
-        env=env,
-        session=DotDict(
-            debug=True,
-        ),
-    )
-    with contextlib.ExitStack() as s:
-        odoo.http._request_stack.push(request)
-        s.callback(odoo.http._request_stack.pop)
-        yield request
+from odoo.addons.website.tools import MockRequest
 
 
 class TestBaseModuleMigrationTracking(TransactionCase):
@@ -90,7 +75,9 @@ class TestBaseModuleMigrationTracking(TransactionCase):
     def test_02_form(self):
         # Get view with debug mode enabled in mocked http request
         def open_module_base_form():
-            with MockDebugRequest(self.env):
+            with MockRequest(self.env) as mock:
+                # simulate a debug HTTP request so base.group_no_one is active
+                mock.session.debug = True
                 self.assertTrue(self.env.user.has_group("base.group_no_one"))
                 return Form(
                     self.module_base,
