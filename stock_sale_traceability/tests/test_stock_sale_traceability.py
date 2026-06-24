@@ -1,29 +1,12 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Mar 2026
 
-import contextlib
-from unittest.mock import Mock
-
 from lxml import etree
 
 import odoo
 from odoo.tests.common import TransactionCase
-from odoo.tools.misc import DotDict
 
-
-@contextlib.contextmanager
-def MockDebugRequest(env):
-    request = Mock(
-        db=None,
-        env=env,
-        session=DotDict(
-            debug=True,
-        ),
-    )
-    with contextlib.ExitStack() as s:
-        odoo.http._request_stack.push(request)
-        s.callback(odoo.http._request_stack.pop)
-        yield request
+from odoo.addons.website.tools import MockRequest
 
 
 class TestStockSaleTraceability(TransactionCase):
@@ -88,7 +71,9 @@ class TestStockSaleTraceability(TransactionCase):
     def test_04_sale_line_id_appears_once_in_stock_move_form_view(self):
         """sale_line_id field is present exactly once in the stock.move form view
         arch."""
-        with MockDebugRequest(self.env):
+        with MockRequest(self.env) as mock:
+            # simulate a debug HTTP request so base.group_no_one is active
+            mock.session.debug = True
             self.assertTrue(self.env.user.has_group("base.group_no_one"))
             view_info = self.env["stock.move"].get_view(view_type="form")
         arch = etree.fromstring(view_info["arch"].encode())
