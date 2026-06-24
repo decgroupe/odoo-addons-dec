@@ -6,6 +6,8 @@ from contextlib import contextmanager
 from datetime import date, timedelta
 from unittest.mock import patch
 
+from freezegun import freeze_time
+
 from odoo import fields
 from odoo.exceptions import UserError
 
@@ -29,33 +31,65 @@ class TestMailActivityReminderDec(TestMailActivityReminderDecCommon):
         with patch.object(type(Mail), "unlink", _disabled_unlink):
             yield
 
-    def test_01_action_snooze_day(self):
+    @freeze_time("2026-04-15")
+    def test_01a_action_snooze_day(self):
         """Snoozing by day extends the deadline by N days."""
-        original_deadline = self.activity.date_deadline
+        self.activity.write({"date_deadline": date(2026, 5, 15)})
         self.activity.action_snooze_custom("day", 3)
-        expected = original_deadline + timedelta(days=3)
-        self.assertEqual(self.activity.date_deadline, expected)
+        self.assertEqual(self.activity.date_deadline, date(2026, 5, 18))
 
-    def test_02_action_snooze_week(self):
+    @freeze_time("2026-06-20")
+    def test_01b_action_snooze_day(self):
+        """Snoozing by day for expired deadlines."""
+        self.activity.write({"date_deadline": date(2026, 5, 15)})
+        self.activity.action_snooze_custom("day", 3)
+        self.assertEqual(self.activity.date_deadline, date(2026, 6, 23))
+
+    @freeze_time("2026-04-15")
+    def test_02a_action_snooze_week(self):
         """Snoozing by week extends the deadline by N weeks."""
-        original_deadline = self.activity.date_deadline
+        self.activity.write({"date_deadline": date(2026, 5, 15)})
         self.activity.action_snooze_custom("week", 1)
-        expected = original_deadline + timedelta(weeks=1)
-        self.assertEqual(self.activity.date_deadline, expected)
+        self.assertEqual(self.activity.date_deadline, date(2026, 5, 22))
 
-    def test_03_action_snooze_month(self):
+    @freeze_time("2026-06-20")
+    def test_02b_action_snooze_week(self):
+        """Snoozing by week for expired deadlines."""
+        self.activity.write({"date_deadline": date(2026, 5, 15)})
+        self.activity.action_snooze_custom("week", 1)
+        self.assertEqual(self.activity.date_deadline, date(2026, 6, 27))
+
+    @freeze_time("2026-04-15")
+    def test_03a_action_snooze_month(self):
         """Snoozing by month extends the deadline by N months."""
         # use a future deadline so snooze is computed from that date
         self.activity.write({"date_deadline": date(2026, 5, 15)})
         self.activity.action_snooze_custom("month", 1)
         self.assertEqual(self.activity.date_deadline, date(2026, 6, 15))
 
-    def test_04_action_snooze_year(self):
+    @freeze_time("2026-06-20")
+    def test_03b_action_snooze_month(self):
+        """Snoozing by month for expired deadlines."""
+        # use an expired deadline so snooze is computed from "today"
+        self.activity.write({"date_deadline": date(2026, 5, 15)})
+        self.activity.action_snooze_custom("month", 1)
+        self.assertEqual(self.activity.date_deadline, date(2026, 7, 20))
+
+    @freeze_time("2026-04-15")
+    def test_04a_action_snooze_year(self):
         """Snoozing by year extends the deadline by N years."""
         # use a future deadline so snooze is computed from that date
-        self.activity.write({"date_deadline": date(2026, 7, 1)})
+        self.activity.write({"date_deadline": date(2026, 5, 15)})
         self.activity.action_snooze_custom("year", 1)
-        self.assertEqual(self.activity.date_deadline, date(2027, 7, 1))
+        self.assertEqual(self.activity.date_deadline, date(2027, 5, 15))
+
+    @freeze_time("2026-06-20")
+    def test_04b_action_snooze_year(self):
+        """Snoozing by year for expired deadlines."""
+        # use an expired deadline so snooze is computed from "today"
+        self.activity.write({"date_deadline": date(2026, 5, 15)})
+        self.activity.action_snooze_custom("year", 1)
+        self.assertEqual(self.activity.date_deadline, date(2027, 6, 20))
 
     def test_05_action_snooze_invalid_unit(self):
         """Snoozing with an invalid unit raises a UserError."""
