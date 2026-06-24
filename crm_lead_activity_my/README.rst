@@ -40,7 +40,7 @@ Technical details
 
 ``crm.lead`` inherits ``mail.activity.my.mixin``, which provides the
 computed fields ``activity_my_ids``, ``activity_my_state``,
-``activity_my_date_deadline``, and the ``action_snooze()`` method.
+``activity_my_date_deadline``, and the ``action_snooze_my()`` method.
 
 **View extensions**
 

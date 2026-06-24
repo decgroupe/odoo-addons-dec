@@ -34,8 +34,8 @@ class TestCrmLeadActivityMy(TestCrmLeadActivityMyCommon):
         self.assertIn("activity_my_state", self.env["crm.lead"]._fields)
         self.assertIn("activity_my_date_deadline", self.env["crm.lead"]._fields)
 
-    def test_04_action_snooze(self):
-        """Check that action_snooze postpones the next user activity by 7 days."""
+    def test_04_action_snooze_my(self):
+        """Check that action_snooze_my postpones the next user activity by 7 days."""
         today = date.today()
         activity = self.lead.activity_schedule(
             activity_type_id=self.activity_type.id,
@@ -43,6 +43,6 @@ class TestCrmLeadActivityMy(TestCrmLeadActivityMyCommon):
             user_id=self.env.uid,
         )
         self.assertEqual(activity.date_deadline, today)
-        self.lead.action_snooze()
+        self.lead.action_snooze_my()
         expected = today + timedelta(days=7)
         self.assertEqual(activity.date_deadline, expected)

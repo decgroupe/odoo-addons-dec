@@ -30,7 +30,7 @@
             >
                 <field name="activity_my_state" invisible="1" />
                 <button
-                    name="action_snooze"
+                    name="action_snooze_my"
                     class="text-warning"
                     invisible="not activity_my_ids or activity_my_state == 'planned' or not activity_my_state"
                     type="object"
@@ -76,7 +76,7 @@
                 <t
                     t-if="record.activity_my_state.raw_value !== 'planned' and record.activity_my_state.raw_value !== false "
                 >
-                    <a name="action_snooze" type="object" title="Snooze 7d">
+                    <a name="action_snooze_my" type="object" title="Snooze 7d">
                         <i class="text-warning fa fa-fw fa-bell-slash" role="img" />
                     </a>
                 </t>
