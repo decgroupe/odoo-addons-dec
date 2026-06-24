@@ -42,7 +42,7 @@ The following computed fields are added to models inheriting the mixin:
 - **My Activity Type Icon** (``activity_my_type_icon``): icon of the
   activity type
 
-An ``action_snooze`` method is also provided to postpone the next
+An ``action_snooze_my`` method is also provided to postpone the next
 activity by 7 days (or reschedule it to today + 7 days if it is already
 overdue).
 

@@ -153,7 +153,7 @@ class MailActivityMyMixin(models.AbstractModel):
         """Search on activity_my_summary field."""
         return [("activity_my_ids.summary", operator, operand)]
 
-    def action_snooze(self):
+    def action_snooze_my(self):
         """Snooze the current user's next activity by 7 days."""
         self.ensure_one()
         today = date.today()

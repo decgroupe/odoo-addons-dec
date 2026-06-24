@@ -54,16 +54,16 @@ class TestMailActivityMy(TestMailActivityMyCommon):
         self.assertEqual(self.record.activity_my_date_deadline, act.date_deadline)
 
     def test_07_action_snooze_future_deadline(self):
-        """action_snooze postpones a future activity by 7 days."""
+        """action_snooze_my postpones a future activity by 7 days."""
         act = self._make_activity(self.record, self.user, days_from_today=3)
         original_deadline = act.date_deadline
-        self.record.action_snooze()
+        self.record.action_snooze_my()
         self.assertEqual(act.date_deadline, original_deadline + timedelta(days=7))
 
     def test_08_action_snooze_overdue_deadline(self):
-        """action_snooze reschedules an overdue activity to today + 7 days."""
+        """action_snooze_my reschedules an overdue activity to today + 7 days."""
         self._make_activity(self.record, self.user, days_from_today=-5)
-        self.record.action_snooze()
+        self.record.action_snooze_my()
         expected = fields.Date.today() + timedelta(days=7)
         act = self.record.activity_my_ids[:1]
         self.assertEqual(act.date_deadline, expected)
@@ -89,8 +89,8 @@ class TestMailActivityMy(TestMailActivityMyCommon):
         self.assertEqual(self.record.activity_my_type_icon, act.activity_type_id.icon)
 
     def test_12_action_snooze_no_activity(self):
-        """action_snooze returns True when there are no activities."""
-        result = self.record.action_snooze()
+        """action_snooze_my returns True when there are no activities."""
+        result = self.record.action_snooze_my()
         self.assertTrue(result)
 
     def test_13_read_group_by_activity_my_state(self):
