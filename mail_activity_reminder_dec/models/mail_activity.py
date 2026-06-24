@@ -54,7 +54,7 @@ class MailActivity(models.Model):
                 if (node := root.xpath(".")) and node[0].tag == "p":
                     node[0].insert(0, lxml.etree.XML(notify_html))
                     note = lxml.etree.tostring(
-                        root, pretty_print=False, encoding="UTF-8"
+                        root, pretty_print=False, encoding="unicode"
                     )
                 else:
                     note = rec.note + notify_html
