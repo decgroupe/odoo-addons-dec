@@ -5,7 +5,9 @@ from lxml import etree
 
 from odoo import Command
 
-from .common import MockDebugRequest, TestPurchaseOrderStockPickingLinkCommon
+from odoo.addons.website.tools import MockRequest
+
+from .common import TestPurchaseOrderStockPickingLinkCommon
 
 
 class TestPurchaseOrderStockPickingLink(TestPurchaseOrderStockPickingLinkCommon):
@@ -69,7 +71,9 @@ class TestPurchaseOrderStockPickingLink(TestPurchaseOrderStockPickingLinkCommon)
     def test_05_form_view_fields(self):
         """Verify that outgoing_picking_ids and outgoing_picking_count are present
         in the combined purchase order form view arch."""
-        with MockDebugRequest(self.env):
+        with MockRequest(self.env) as mock:
+            # simulate a debug HTTP request so base.group_no_one is active
+            mock.session.debug = True
             self.assertTrue(self.env.user.has_group("base.group_no_one"))
             view_info = self.env["purchase.order"].get_view(view_type="form")
         arch = etree.fromstring(view_info["arch"].encode())
