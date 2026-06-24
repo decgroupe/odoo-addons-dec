@@ -1,27 +1,8 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Apr 2026
 
-import contextlib
-from unittest.mock import Mock
-
-import odoo
 from odoo import Command
 from odoo.tests.common import TransactionCase
-from odoo.tools.misc import DotDict
-
-
-@contextlib.contextmanager
-def MockDebugRequest(env):
-    """Simulate a debug HTTP request so base.group_no_one is active."""
-    request = Mock(
-        db=None,
-        env=env,
-        session=DotDict(debug=True),
-    )
-    with contextlib.ExitStack() as s:
-        odoo.http._request_stack.push(request)
-        s.callback(odoo.http._request_stack.pop)
-        yield request
 
 
 class TestMrpStockValueCommon(TransactionCase):

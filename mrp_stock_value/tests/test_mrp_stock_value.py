@@ -3,7 +3,9 @@
 
 from lxml import etree
 
-from .common import MockDebugRequest, TestMrpStockValueCommon
+from odoo.addons.website.tools import MockRequest
+
+from .common import TestMrpStockValueCommon
 
 
 class TestMrpStockValue(TestMrpStockValueCommon):
@@ -49,7 +51,9 @@ class TestMrpStockValue(TestMrpStockValueCommon):
 
     def test_04_form_view_fields(self):
         """Consumed value and currency fields appear in the combined form view arch."""
-        with MockDebugRequest(self.env):
+        with MockRequest(self.env) as mock:
+            # simulate a debug HTTP request so base.group_no_one is active
+            mock.session.debug = True
             self.assertTrue(self.env.user.has_group("base.group_no_one"))
             view_info = self.env["mrp.production"].get_view(view_type="form")
         arch = etree.fromstring(view_info["arch"].encode())
