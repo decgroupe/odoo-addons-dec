@@ -1,28 +1,9 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2023
 
-import contextlib
-from unittest.mock import Mock
+from odoo.tests.common import TransactionCase, new_test_user
 
-import odoo
-from odoo.tests import new_test_user
-from odoo.tests.common import TransactionCase
-from odoo.tools.misc import DotDict
-
-
-@contextlib.contextmanager
-def MockDebugRequest(env):
-    request = Mock(
-        db=None,
-        env=env,
-        session=DotDict(
-            debug=True,
-        ),
-    )
-    with contextlib.ExitStack() as s:
-        odoo.http._request_stack.push(request)
-        s.callback(odoo.http._request_stack.pop)
-        yield request
+from odoo.addons.website.tools import MockRequest
 
 
 class TestAccountTagTechnical(TransactionCase):
@@ -49,7 +30,9 @@ class TestAccountTagTechnical(TransactionCase):
         self.env.ref("base.group_no_one").write({"users": [(4, self.user.id)]})
         self.assertFalse(self.user.has_group("base.group_no_one"))
         # retry with debug mode enabled in mocked http request
-        with MockDebugRequest(self.env):
+        with MockRequest(self.env) as mock:
+            # simulate a debug HTTP request so base.group_no_one is active
+            mock.session.debug = True
             self.assertTrue(self.user.has_group("base.group_no_one"))
             tech_name = tag_financing.with_user(self.user).display_name
         self.assertEqual(tech_name, "Financing Activities [account_tag_financing]")
