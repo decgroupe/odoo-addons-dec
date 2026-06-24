@@ -3,7 +3,9 @@
 
 from lxml import etree
 
-from .common import MockDebugRequest, TestHrTimesheetExcludeCommon
+from odoo.addons.website.tools import MockRequest
+
+from .common import TestHrTimesheetExcludeCommon
 
 
 class TestHrTimesheetExclude(TestHrTimesheetExcludeCommon):
@@ -74,7 +76,9 @@ class TestHrTimesheetExclude(TestHrTimesheetExcludeCommon):
 
     def test_07_project_form_view_fields(self):
         """Check that exclude_from_timesheet is present in the project form view."""
-        with MockDebugRequest(self.env):
+        with MockRequest(self.env) as mock:
+            # simulate a debug HTTP request so base.group_no_one is active
+            mock.session.debug = True
             self.assertTrue(self.env.user.has_group("base.group_no_one"))
             view_info = self.env["project.project"].get_view(view_type="form")
         arch = etree.fromstring(view_info["arch"].encode())
@@ -83,7 +87,9 @@ class TestHrTimesheetExclude(TestHrTimesheetExcludeCommon):
 
     def test_08_task_form_view_fields(self):
         """Check that exclude_from_timesheet is present in the task form view."""
-        with MockDebugRequest(self.env):
+        with MockRequest(self.env) as mock:
+            # simulate a debug HTTP request so base.group_no_one is active
+            mock.session.debug = True
             self.assertTrue(self.env.user.has_group("base.group_no_one"))
             view_info = self.env["project.task"].get_view(view_type="form")
         arch = etree.fromstring(view_info["arch"].encode())
