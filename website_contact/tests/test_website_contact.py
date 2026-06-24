@@ -9,12 +9,13 @@ from lxml import etree
 
 from odoo.exceptions import ValidationError
 
+from odoo.addons.website.tools import MockRequest
 from odoo.addons.website_contact.controllers.main import (
     ATTACHMENT_000_NAME,
     WebsiteContactController,
 )
 
-from .common import MockRequest, TestWebsiteContactCommon
+from .common import TestWebsiteContactCommon
 
 
 class TestWebsiteContact(TestWebsiteContactCommon):
@@ -209,7 +210,8 @@ class TestWebsiteContact(TestWebsiteContactCommon):
             "category": "0",
             ATTACHMENT_000_NAME: "somefile.txt",
         }
-        with MockRequest(self.env):
+        with MockRequest(self.env) as mock:
+            mock.httprequest.files = {}
             result = ctrl._handle_submit_ticket_from_contactform(**kw)
         data = json.loads(result)
         self.assertIn("id", data)
@@ -296,7 +298,8 @@ class TestWebsiteContact(TestWebsiteContactCommon):
             "origin": "private",
             ATTACHMENT_000_NAME: "somefile.txt",
         }
-        with MockRequest(self.env):
+        with MockRequest(self.env) as mock:
+            mock.httprequest.files = {}
             result = ctrl._handle_submit_lead_from_contactform(**kw)
         data = json.loads(result)
         self.assertIn("id", data)
