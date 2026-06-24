@@ -1,29 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Nov 2023
 
-import contextlib
-from unittest.mock import Mock
-
-import odoo
 from odoo.exceptions import UserError
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
-from odoo.tools.misc import DotDict
 
-
-@contextlib.contextmanager
-def MockDebugRequest(env):
-    request = Mock(
-        db=None,
-        env=env,
-        session=DotDict(
-            debug=True,
-        ),
-    )
-    with contextlib.ExitStack() as s:
-        odoo.http._request_stack.push(request)
-        s.callback(odoo.http._request_stack.pop)
-        yield request
+from odoo.addons.website.tools import MockRequest
 
 
 class TestSoftwareLicenseFeature(TransactionCase):
@@ -125,7 +107,9 @@ class TestSoftwareLicenseFeature(TransactionCase):
         # also test `name_get``
         self.assertEqual(feature1_id.value_id.display_name, "Silver")
         # retry with debug mode enabled in mocked http request
-        with MockDebugRequest(self.env):
+        with MockRequest(self.env) as mock:
+            # simulate a debug HTTP request so base.group_no_one is active
+            mock.session.debug = True
             feature1_id.value_id.invalidate_recordset()
             self.assertEqual(feature1_id.value_id.display_name, "Silver (Edition)")
         # sub-test with missing `value`
