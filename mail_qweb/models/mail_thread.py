@@ -176,7 +176,10 @@ class MailThread(models.AbstractModel):
         )
         if "object" not in res:
             res["object"] = res["record"]
-        res["recipients_groups_data"] = msg_vals["recipients_groups_data"]
+        # add a list of textual recipients to the template context in order to
+        # to write who are notified of this message, but fallback to an empty dict
+        # if information is not available.
+        res["recipients_groups_data"] = msg_vals.get("recipients_groups_data", {})
         res["content_message_align"] = self._get_notify_content_message_align(message)
         return res
 
