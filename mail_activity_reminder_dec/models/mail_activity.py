@@ -17,7 +17,7 @@ _logger = logging.getLogger(__name__)
 class MailActivity(models.Model):
     _inherit = "mail.activity"
 
-    def action_snooze(self, unit, value, from_date=None):
+    def action_snooze_custom(self, unit, value, from_date=None):
         """Snooze the activity by extending its deadline by the given unit and value."""
         self.ensure_one()
         today = date.today()

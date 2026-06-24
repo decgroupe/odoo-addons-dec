@@ -23,7 +23,7 @@ method is a no-op. A new UUID token is generated on demand by
 
 **Snooze (`mail.activity`)**
 
-`action_snooze(unit, value, from_date=None)` extends the deadline of each
+`action_snooze_custom(unit, value, from_date=None)` extends the deadline of each
 activity in the recordset. The new deadline is computed from the current
 deadline (or `from_date` if provided, but never in the past). Supported units
 are `day`, `week`, `month`, and `year`. A localised notification is appended

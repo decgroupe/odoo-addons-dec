@@ -32,14 +32,14 @@ class TestMailActivityReminderDec(TestMailActivityReminderDecCommon):
     def test_01_action_snooze_day(self):
         """Snoozing by day extends the deadline by N days."""
         original_deadline = self.activity.date_deadline
-        self.activity.action_snooze("day", 3)
+        self.activity.action_snooze_custom("day", 3)
         expected = original_deadline + timedelta(days=3)
         self.assertEqual(self.activity.date_deadline, expected)
 
     def test_02_action_snooze_week(self):
         """Snoozing by week extends the deadline by N weeks."""
         original_deadline = self.activity.date_deadline
-        self.activity.action_snooze("week", 1)
+        self.activity.action_snooze_custom("week", 1)
         expected = original_deadline + timedelta(weeks=1)
         self.assertEqual(self.activity.date_deadline, expected)
 
@@ -47,25 +47,25 @@ class TestMailActivityReminderDec(TestMailActivityReminderDecCommon):
         """Snoozing by month extends the deadline by N months."""
         # use a future deadline so snooze is computed from that date
         self.activity.write({"date_deadline": date(2026, 5, 15)})
-        self.activity.action_snooze("month", 1)
+        self.activity.action_snooze_custom("month", 1)
         self.assertEqual(self.activity.date_deadline, date(2026, 6, 15))
 
     def test_04_action_snooze_year(self):
         """Snoozing by year extends the deadline by N years."""
         # use a future deadline so snooze is computed from that date
         self.activity.write({"date_deadline": date(2026, 7, 1)})
-        self.activity.action_snooze("year", 1)
+        self.activity.action_snooze_custom("year", 1)
         self.assertEqual(self.activity.date_deadline, date(2027, 7, 1))
 
     def test_05_action_snooze_invalid_unit(self):
         """Snoozing with an invalid unit raises a UserError."""
         with self.assertRaises(UserError):
-            self.activity.action_snooze("invalid", 1)
+            self.activity.action_snooze_custom("invalid", 1)
 
     def test_06_action_snooze_from_date(self):
         """Snoozing from a past date extends from that date instead of deadline."""
         from_date = fields.Date.to_date("2025-01-01")
-        self.activity.action_snooze("day", 7, from_date=from_date)
+        self.activity.action_snooze_custom("day", 7, from_date=from_date)
         expected = from_date + timedelta(days=7)
         # if from_date is in the past, snooze starts from today
         today = date.today()
@@ -144,7 +144,7 @@ class TestMailActivityReminderDec(TestMailActivityReminderDecCommon):
         """Snoozing appends a notification text to an existing non-p note."""
         self.activity.write({"note": "<div>existing note</div>"})
         original_deadline = self.activity.date_deadline
-        self.activity.action_snooze("day", 1)
+        self.activity.action_snooze_custom("day", 1)
         expected = original_deadline + timedelta(days=1)
         self.assertEqual(self.activity.date_deadline, expected)
         self.assertIn("Deadline extended", self.activity.note or "")
@@ -153,7 +153,7 @@ class TestMailActivityReminderDec(TestMailActivityReminderDecCommon):
         """Snoozing inserts a notification before a <p> note element."""
         self.activity.write({"note": "<p>original note</p>"})
         original_deadline = self.activity.date_deadline
-        self.activity.action_snooze("week", 1)
+        self.activity.action_snooze_custom("week", 1)
         expected = original_deadline + timedelta(weeks=1)
         self.assertEqual(self.activity.date_deadline, expected)
         self.assertIsNotNone(self.activity.note)
