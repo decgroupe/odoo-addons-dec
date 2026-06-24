@@ -46,14 +46,14 @@ in ``models/helpdesk_ticket.py``. This brings the computed fields
 The inherited list view adds ``activity_my_ids`` and
 ``activity_my_date_deadline`` after ``user_id``, keeps
 ``last_stage_update`` with the ``remaining_days`` widget, and adds the
-``action_snooze`` button.
+``action_snooze_my`` button.
 
 **Kanban view customization**
 
 The inherited kanban view replaces the default progressbar to use
 ``activity_my_state``, then injects ``activity_my_state`` and
 ``activity_my_ids`` next to ``activity_ids`` and exposes a kanban
-``action_snooze`` object action.
+``action_snooze_my`` object action.
 
 **Table of contents**
 

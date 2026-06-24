@@ -35,7 +35,7 @@ class TestHelpdeskActivityMy(TestHelpdeskActivityMyCommon):
             view_id=self.ticket_tree_view.id, view_type="list"
         )
         arch = etree.fromstring(view_info["arch"].encode())
-        snooze_buttons = arch.xpath("//button[@name='action_snooze']")
+        snooze_buttons = arch.xpath("//button[@name='action_snooze_my']")
         self.assertEqual(len(snooze_buttons), 1)
 
     def test_04_kanban_view_has_snooze_action(self):
@@ -44,5 +44,5 @@ class TestHelpdeskActivityMy(TestHelpdeskActivityMyCommon):
             view_id=self.ticket_kanban_view.id, view_type="kanban"
         )
         arch = etree.fromstring(view_info["arch"].encode())
-        snooze_actions = arch.xpath("//a[@name='action_snooze'][@type='object']")
+        snooze_actions = arch.xpath("//a[@name='action_snooze_my'][@type='object']")
         self.assertEqual(len(snooze_actions), 1)

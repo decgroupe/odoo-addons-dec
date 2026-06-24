@@ -12,7 +12,7 @@
                 <field name="activity_my_ids" widget="list_activity_my" />
                 <field name="activity_my_date_deadline" widget="remaining_days" />
                 <button
-                    name="action_snooze"
+                    name="action_snooze_my"
                     class="text-warning"
                     groups="base.group_user"
                     invisible="not activity_my_ids"
@@ -55,7 +55,7 @@
                     t-if="record.activity_my_state.raw_value !== 'planned' and record.activity_my_state.raw_value !== false "
                 >
                     <a
-                        name="action_snooze"
+                        name="action_snooze_my"
                         type="object"
                         title="Snooze 7d"
                         groups="base.group_user"
