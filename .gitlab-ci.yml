@@ -4,7 +4,7 @@ services:
 
 variables:
   # https://docs.gitlab.com/runner/configuration/feature-flags.html
-  FF_TIMESTAMPS: 1
+  FF_TIMESTAMPS: 0
   # PostgreSQL
   POSTGRES_USER: odoo
   POSTGRES_PASSWORD: odoo
