@@ -57,11 +57,10 @@ class TestMaintenanceIoT(TestMaintenanceIoTBase):
         self.assertTrue(request_id.exists())
         self.assertEqual(request_id.name, "Title of my request")
         self.assertEqual(request_id.maintenance_type, "corrective")
-        # note: Upgrading lxml from 5.2.1 to 6.0.2 caused a change in the way
-        # HTML is serialized, hence the test has been adapted accordingly.
-        self.assertHTMLEqual(
-            request_id.description, "<span>Description of the issue</span>"
-        )
+        # html serialization is not always consistent across lxml versions, so we use
+        # assertHTMLEqual to compare HTML content. (from 5.2.1 to 6.0.2, the <p> tag
+        # becomes a <div> tag, but this change is now reverted)
+        self.assertHTMLEqual(request_id.description, "<p>Description of the issue</p>")
         self.assertMaintenanceAutoActivity(request_id.activity_ids)
         # update with same query identifier
         payload["params"]["name"] = "Different title for my request"
