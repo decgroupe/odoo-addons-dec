@@ -64,7 +64,7 @@ class MrpProduction(models.Model):
         )
         project_data = {
             # name is not required for a production order
-            "name": data.get("name", "/"),
+            "name": data.get("name", "/") or "/",
             "partner_id": data.get("partner_id", False),
             "type_id": time_tracking_type_id.id,
         }
