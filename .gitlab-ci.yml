@@ -17,6 +17,7 @@ stages:
 
 pre-commit:
   stage: lint
+  needs: []
   tags:
     - _odoo
   variables:
@@ -36,6 +37,7 @@ pre-commit:
 
 odoo_tests_module:
   stage: test
+  needs: []
   tags:
     - _odoo
   variables:
@@ -62,6 +64,7 @@ odoo_tests_module:
     # Config (server wide modules, log handler for test stats)
     - echo "server_wide_modules=base,web" >> /etc/odoo.cfg
     - echo "log_handler=odoo.tests.stats:DEBUG,odoo.cli.server:DEBUG" >> /etc/odoo.cfg
+    - echo "test_debug_modules=1" >> /etc/odoo.cfg
     ####################################################################################
     # test module extracted from commit title: [FIX] module_name: ... / [IMP] module_name: ...
     - MODULE_FROM_COMMIT=$(echo "$CI_COMMIT_TITLE" | sed -nE
@@ -83,6 +86,7 @@ odoo_tests_module:
 
 odoo_tests_all:
   stage: test
+  needs: []
   tags:
     - _odoo
   variables:
@@ -119,6 +123,7 @@ odoo_tests_all:
     - echo "server_wide_modules=base,web" >> /etc/odoo.cfg
     - echo "screenshots=$CI_PROJECT_DIR/odoo_tests" >> /etc/odoo.cfg
     - echo "log_handler=odoo.tests.stats:DEBUG,odoo.cli.server:DEBUG" >> /etc/odoo.cfg
+    - echo "test_debug_modules=1" >> /etc/odoo.cfg
     # Exclude some modules
     - EXCLUDE=product_create_prefill,website_sale_product_public_code,mail_activity_team_schedule,mail_activity_schedule_dhxgantt,project_schedule,mrp_schedule,sale_timesheet_project_schedule,web_report_workflow,account_report_qweb,sale_report_qweb,l10n_fr_hr_expense_easy
     # - INCLUDE=software_license_portal
