@@ -1,7 +1,11 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, May 2026
 
+import logging
+
 from .common import TestProjectMergeCommon
+
+_logger = logging.getLogger(__name__)
 
 
 class TestProjectMerge(TestProjectMergeCommon):
@@ -16,6 +20,20 @@ class TestProjectMerge(TestProjectMergeCommon):
         # keep current data for future comparison
         project_1_data = project_1.read()[0]
         project_2_data = project_2.read()[0]
+        # create analytic lines for both projects to test that they are moved to
+        # the destination project
+        _al1_p1 = self.env["account.analytic.line"].create(
+            {
+                "name": "Line #1 for project 1",
+                "account_id": project_1.account_id.id,
+            }
+        )
+        _al1_p2 = self.env["account.analytic.line"].create(
+            {
+                "name": "Line #1 for project 2",
+                "account_id": project_2.account_id.id,
+            }
+        )
         # merge both projects
         wizard_id = self.merge_project_wizard_model.create(
             {
