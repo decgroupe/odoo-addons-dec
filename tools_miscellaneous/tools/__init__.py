@@ -1,7 +1,6 @@
 from . import bench
 from . import html_helper
 from . import console_helper
-from . import context
 
 # import the real Gettext shortcut
 from odoo import _ as _t
