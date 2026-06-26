@@ -8,12 +8,36 @@ from datetime import datetime
 from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
-from odoo.addons.tools_miscellaneous.tools.context import (
-    safe_eval_action_context_string_to_dict,
-    safe_eval_active_context_dict_to_string,
-)
-
 _logger = logging.getLogger(__name__)
+
+
+DUMMY_ACTIVE_ID = "#ACTIVE_ID"
+
+
+def safe_eval_action_context_string_to_dict(action):
+    return safe_eval_active_context_string_to_dict(action.get("context", "{}"))
+
+
+def safe_eval_active_context_string_to_dict(context):
+    locals_dict = {
+        "active_id": DUMMY_ACTIVE_ID,
+    }
+    try:
+        ctx_as_dict = safe_eval(
+            context,
+            locals_dict=locals_dict,
+        )
+    except:  # noqa: E722
+        ctx_as_dict = {}
+    return ctx_as_dict
+
+
+def safe_eval_active_context_dict_to_string(context):
+    ctx_as_string = str(context).replace(
+        f"'{DUMMY_ACTIVE_ID}'",
+        "active_id",
+    )
+    return ctx_as_string
 
 
 class ProjectType(models.Model):
