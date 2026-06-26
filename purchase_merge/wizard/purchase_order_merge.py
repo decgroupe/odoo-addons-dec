@@ -1,9 +1,13 @@
 # Copyright (C) DEC SARL, Inc - All Rights Reserved.
 # Written by Yann Papouin <ypa at decgroupe.com>, Oct 2020
 
+import logging
+
 from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.float_utils import float_compare
+
+_logger = logging.getLogger(__name__)
 
 
 class PurchaseOrderMerge(models.TransientModel):
@@ -140,32 +144,122 @@ class PurchaseOrderMerge(models.TransientModel):
     def _same_product(self, l1, l2):
         """Return True if two lines share the same product."""
         res = l1.product_id == l2.product_id
+        if res:
+            _logger.debug(
+                "✅ [%s] == [%s] Same product: %s",
+                l1.id,
+                l2.id,
+                l1.product_id.display_name,
+            )
+        else:
+            _logger.debug(
+                "❌ [%s] <> [%s] Different products: '%s' != '%s'",
+                l1.id,
+                l2.id,
+                l1.product_id.display_name,
+                l2.product_id.display_name,
+            )
         return res
 
     def _same_uom(self, l1, l2):
         """Return True if two lines share the same unit of measure."""
         res = l1.product_uom == l2.product_uom
+        if res:
+            _logger.debug(
+                "✅ [%s] == [%s] Same unit of measure: %s",
+                l1.id,
+                l2.id,
+                l1.product_uom.name,
+            )
+        else:
+            _logger.debug(
+                "❌ [%s] <> [%s] Different units of measure: '%s' != '%s'",
+                l1.id,
+                l2.id,
+                l1.product_uom.name,
+                l2.product_uom.name,
+            )
         return res
 
     def _same_price(self, l1, l2):
         """Return True if two lines have the same unit price."""
         dp = self.env["decimal.precision"].precision_get("Product Price")
         res = float_compare(l1.price_unit, l2.price_unit, precision_digits=dp) == 0
+        if res:
+            _logger.debug(
+                "✅ [%s] == [%s] Same unit price: %s",
+                l1.id,
+                l2.id,
+                l1.price_unit,
+            )
+        else:
+            _logger.debug(
+                "❌ [%s] <> [%s] Different unit prices: '%s' != '%s'",
+                l1.id,
+                l2.id,
+                l1.price_unit,
+                l2.price_unit,
+            )
         return res
 
     def _same_procurement(self, l1, l2):
         """Return True if two lines belong to the same procurement group."""
         res = l1.procurement_group_id == l2.procurement_group_id
+        if res:
+            _logger.debug(
+                "✅ [%s] == [%s] Same procurement group: %s",
+                l1.id,
+                l2.id,
+                l1.procurement_group_id.display_name,
+            )
+        else:
+            _logger.debug(
+                "❌ [%s] <> [%s] Different procurement groups: '%s' != '%s'",
+                l1.id,
+                l2.id,
+                l1.procurement_group_id.display_name,
+                l2.procurement_group_id.display_name,
+            )
         return res
 
     def _same_taxes(self, l1, l2):
         """Return True if two lines have the same taxes."""
         res = l1.taxes_id == l2.taxes_id
+        if res:
+            _logger.debug(
+                "✅ [%s] == [%s] Same taxes: %s",
+                l1.id,
+                l2.id,
+                l1.taxes_id.mapped("display_name"),
+            )
+        else:
+            _logger.debug(
+                "❌ [%s] <> [%s] Different taxes: '%s' != '%s'",
+                l1.id,
+                l2.id,
+                l1.taxes_id.mapped("display_name"),
+                l2.taxes_id.mapped("display_name"),
+            )
         return res
 
     def _same_name(self, l1, l2):
         """Return True if two lines have the same description."""
         res = l1.name == l2.name
+        if res:
+            _logger.debug(
+                "✅ [%s] == [%s] Same description: %s",
+                l1.id,
+                l2.id,
+                l1.name,
+            )
+        else:
+            _logger.debug(
+                "❌ [%s] <> [%s] Different descriptions: '%s' != '%s'",
+                l1.id,
+                l2.id,
+                l1.name,
+                l2.name,
+            )
         return res
 
     def _same_lines(self, l1, l2):
@@ -178,8 +272,18 @@ class PurchaseOrderMerge(models.TransientModel):
             and self._same_taxes(l1, l2)
             and self._same_name(l1, l2)
         ):
+            _logger.debug(
+                "Lines [%s] and [%s] are identical and can be merged",
+                l1.id,
+                l2.id,
+            )
             return True
         else:
+            _logger.debug(
+                "Lines [%s] and [%s] are not identical and cannot be merged",
+                l1.id,
+                l2.id,
+            )
             return False
 
     def _try_merging(self, line):
@@ -233,10 +337,11 @@ class PurchaseOrderMerge(models.TransientModel):
                     merged = False
                 if not merged:
                     sequence += 1
-                    line.write(
+                    line.update(
                         {
                             "sequence": sequence,
                             "order_id": self.order_id.id,
+                            "price_unit": line.price_unit,  # avoid recomputation
                         }
                     )
         if po_line_unlink_ids:
