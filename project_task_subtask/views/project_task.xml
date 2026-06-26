@@ -4,6 +4,7 @@
         <field name="name">project.task.form@project_task_subtask</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="before">
                 <group name="checklist">
