@@ -31,7 +31,7 @@ class PurchaseOrderLine(models.Model):
                 "date_planned": line.date_planned,
             }
 
-        super()._compute_price_unit_and_date_planned_and_name()
+        res = super()._compute_price_unit_and_date_planned_and_name()
         # log a small diff table per line showing before -> after
         for line in self:
             before = pre_values.get(line.id, {})
@@ -51,3 +51,4 @@ class PurchaseOrderLine(models.Model):
                 _logger.info(
                     "Diff for line %s:\nBefore: %s\nAfter: %s", line.id, before, after
                 )
+        return res

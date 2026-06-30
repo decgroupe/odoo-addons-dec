@@ -17,6 +17,7 @@
     </record>
 
     <!-- IMPORTANT: Create lines in a separate tag to avoid recomputation of prices -->
+    <!-- pylint : oca-disable=duplicate-xml-fields -->
     <record id="purchase_order_1" model="purchase.order">
         <field
             name="order_line"
@@ -58,6 +59,7 @@
     </record>
 
     <!-- IMPORTANT: Create lines in a separate tag to avoid recomputation of prices -->
+    <!-- pylint : oca-disable=duplicate-xml-fields -->
     <record id="purchase_order_2" model="purchase.order">
         <field
             name="order_line"
@@ -104,6 +106,7 @@
     </record>
 
     <!-- IMPORTANT: Create lines in a separate tag to avoid recomputation of prices -->
+    <!-- pylint : oca-disable=duplicate-xml-fields -->
     <record id="purchase_order_3" model="purchase.order">
         <field
             name="order_line"
