@@ -60,6 +60,26 @@ class PurchaseOrderMerge(models.TransientModel):
         compute="_compute_qty",
     )
 
+    @api.model
+    def _get_stock_location(self):
+        """Return the default internal stock location for the current company."""
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)],
+            limit=1,
+        )
+        if warehouse:
+            return warehouse.lot_stock_id
+        return self.env["stock.location"].search(
+            [
+                ("usage", "=", "internal"),
+                "|",
+                ("company_id", "=", self.env.company.id),
+                ("company_id", "=", False),
+            ],
+            order="company_id desc, id",
+            limit=1,
+        )
+
     @api.model_create_multi
     def create(self, vals_list):
         record_ids = super().create(vals_list)
@@ -73,10 +93,7 @@ class PurchaseOrderMerge(models.TransientModel):
         active_model = self._context.get("active_model")
         swo = self.env["stock.warehouse.orderpoint"]
         quant = self.env["stock.quant"]
-        stock_location = self.env.ref(
-            "stock.stock_location_stock",
-            raise_if_not_found=False,
-        )
+        stock_location = self._get_stock_location()
 
         if active_model == "stock.warehouse.orderpoint" and active_id:
             # origin orderpoint
