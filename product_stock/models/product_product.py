@@ -7,6 +7,26 @@ from odoo import api, fields, models
 class Product(models.Model):
     _inherit = "product.product"
 
+    @api.model
+    def _get_default_inventory_location(self):
+        """Return the default internal stock location for the current company."""
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)],
+            limit=1,
+        )
+        if warehouse:
+            return warehouse.lot_stock_id
+        return self.env["stock.location"].search(
+            [
+                ("usage", "=", "internal"),
+                "|",
+                ("company_id", "=", self.env.company.id),
+                ("company_id", "=", False),
+            ],
+            order="company_id desc, id",
+            limit=1,
+        )
+
     last_move_id = fields.Many2one(
         comodel_name="stock.move",
         compute="_compute_last_stock_move",
@@ -71,7 +91,9 @@ class Product(models.Model):
     @api.model
     def search_need_inventory_update(self, inventory_start_date):
         """Find products with stock moves that were not inventoried recently."""
-        stock_location = self.env.ref("stock.stock_location_stock")
+        stock_location = self._get_default_inventory_location()
+        if not stock_location:
+            return []
         inventoried_products = set(
             self.search_inventory_done_at_location(
                 inventory_start_date, stock_location.id
@@ -107,12 +129,14 @@ class Product(models.Model):
 
     def _compute_last_inventory(self):
         """Compute the latest inventory values for each product."""
+        self.last_inventory_line_id = False
+        self.last_inventory_date = False
+        self.last_inventory_quantity = False
         if not self:
-            self.last_inventory_line_id = False
-            self.last_inventory_date = False
-            self.last_inventory_quantity = False
             return
-        stock_location = self.env.ref("stock.stock_location_stock")
+        stock_location = self._get_default_inventory_location()
+        if not stock_location:
+            return
         move_domain = [
             ("product_id", "in", self.ids),
             ("state", "=", "done"),
@@ -132,9 +156,6 @@ class Product(models.Model):
             if product and max_date
         }
         if not max_date_by_product:
-            self.last_inventory_line_id = False
-            self.last_inventory_date = False
-            self.last_inventory_quantity = False
             return
         candidate_moves = self.env["stock.move"].search(
             [
