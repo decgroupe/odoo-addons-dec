@@ -237,7 +237,7 @@ class StockMove(models.Model):
         desc = f"{self.state_symbol}{state}"
         return head, desc
 
-    def _get_stock_location(self, html=False):
+    def _get_stock_coordinates(self, html=False):
         def try_append_loc(location, loc):
             if loc:
                 if html:
@@ -287,7 +287,7 @@ class StockMove(models.Model):
         head, desc = self.get_head_desc()
         res.append(format_hd(head, desc, html))
 
-        stock_location = self.env.ref("stock.stock_location_stock")
+        stock_location = self.get_stock_location()
 
         # Print location only when destination moves are for stock
         # or if this move is the final one to stock
@@ -305,7 +305,7 @@ class StockMove(models.Model):
             different_product = False
 
         if same_destination or different_product:
-            head, desc = self._get_stock_location(html)
+            head, desc = self._get_stock_coordinates(html)
             res.append(format_hd(head, desc, html=False))
 
         pre_archive = self._get_mts_pre_archive()
@@ -389,3 +389,23 @@ class StockMove(models.Model):
 
     def action_close_dialog(self):
         return {"type": "ir.actions.act_window_close"}
+
+    @api.model
+    def get_stock_location(self):
+        """Return the default internal stock location for the current company."""
+        warehouse = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)],
+            limit=1,
+        )
+        if warehouse:
+            return warehouse.lot_stock_id
+        return self.env["stock.location"].search(
+            [
+                ("usage", "=", "internal"),
+                "|",
+                ("company_id", "=", self.env.company.id),
+                ("company_id", "=", False),
+            ],
+            order="company_id desc, id",
+            limit=1,
+        )

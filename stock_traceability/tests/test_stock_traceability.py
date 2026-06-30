@@ -272,8 +272,8 @@ class TestStockTraceability(TestStockTraceabilityBase):
         self.assertEqual(head, "📋")
         self.assertEqual(desc, "Test Procurement Group")
 
-    def test_11_move_get_stock_location(self):
-        """Tests _get_stock_location method with and without location fields"""
+    def test_11_move_get_stock_coordinates(self):
+        """Tests _get_stock_coordinates method with and without location fields"""
         move = self._create_picking_move(
             self.product,
             self.picking_out,
@@ -281,15 +281,15 @@ class TestStockTraceability(TestStockTraceabilityBase):
             product_uom_qty=10,
         )
         # test without location fields set
-        head, desc = move._get_stock_location(html=False)
+        head, desc = move._get_stock_coordinates(html=False)
         self.assertIn("Not Set", desc)
         self.assertIn("Location", head)
         # test with location fields set
         self.product.loc_rack = "Rack A"
-        head, desc = move._get_stock_location(html=False)
+        head, desc = move._get_stock_coordinates(html=False)
         self.assertIn("Rack A", desc)
         # test HTML version
-        head, desc = move._get_stock_location(html=True)
+        head, desc = move._get_stock_coordinates(html=True)
         self.assertIn("Location", head)
 
     def test_12_move_format_status_header(self):
