@@ -81,11 +81,12 @@ class ProcurementGroup(models.Model):
 
     @api.model
     def _filter_mts_picking_moves_to_reorder(self, picking_ids):
+        stock_location_id = self.env["stock.move"].get_stock_location()
         return picking_ids.mapped("move_ids").filtered(
             lambda x: x.state in ("confirmed")
             and x.procure_method == "make_to_stock"
             and x.product_id.nbr_reordering_rules == 0
-            and x.location_id == self.env.ref("stock.stock_location_stock")
+            and x.location_id == stock_location_id
             and not x.created_purchase_line_ids
             and not x.move_orig_ids.purchase_line_id
             and not x.created_production_id
@@ -95,11 +96,12 @@ class ProcurementGroup(models.Model):
 
     @api.model
     def _filter_mts_production_moves_to_reorder(self, production_ids):
+        stock_location_id = self.env["stock.move"].get_stock_location()
         return production_ids.mapped("move_raw_ids").filtered(
             lambda x: x.state in ("confirmed")
             and x.procure_method == "make_to_stock"
             and x.product_id.nbr_reordering_rules == 0
-            and x.location_id == self.env.ref("stock.stock_location_stock")
+            and x.location_id == stock_location_id
             and not x.created_purchase_line_ids
             and not x.move_orig_ids.purchase_line_id
             and not x.created_production_id
