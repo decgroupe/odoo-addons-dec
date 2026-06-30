@@ -8,8 +8,6 @@
         "product",
         "stock",
     ],
-    "data": [
-        "views/product_product.xml",
-    ],
-    "installable": False,  # Stock inventory is now manage by stock.quant/stock.move (is_inventory) => Major refactoring
+    "data": [],
+    "installable": True,
 }

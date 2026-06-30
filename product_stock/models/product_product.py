@@ -12,132 +12,167 @@ class Product(models.Model):
         compute="_compute_last_stock_move",
         string="Last Stock Move (« New » or « Cancelled » states are excluded)",
     )
-    # don't use related here, because last_move_id cannot be searched
-    #   related="last_move_id.date"
     last_move_date = fields.Datetime(
-        compute="_compute_last_inventory",
+        compute="_compute_last_stock_move",
         string="Last Stock Move Date",
     )
     last_inventory_line_id = fields.Many2one(
-        comodel_name="stock.inventory.line",
+        comodel_name="stock.quant",
         compute="_compute_last_inventory",
     )
     last_inventory_quantity = fields.Char(
         compute="_compute_last_inventory",
     )
-    # don't use related here, because last_inventory_line_id cannot be searched
-    #   related="last_inventory_line_id.inventory_id.date"
     last_inventory_date = fields.Datetime(
         compute="_compute_last_inventory",
     )
 
     def _compute_last_stock_move(self):
+        """Compute the latest non-draft stock move for each product."""
         if not self:
             self.last_move_id = False
             self.last_move_date = False
             return
-        # flush fields to make sure DB is up to date
-        self.flush()
-        # use a raw sql query to get the last stock move
-        query = """
-            SELECT id, product_id
-            FROM (
-                SELECT id, product_id, date, ROW_NUMBER()
-                OVER (PARTITION BY product_id ORDER BY date DESC) AS rn
-                FROM stock_move
-                WHERE state NOT IN ('draft', 'cancel')
-            ) ranked
-            WHERE rn = 1 and product_id in %s;
-        """
-        self.env.cr.execute(query, [tuple(self.ids)])
-        rows = self.env.cr.fetchall()
-        # create a mapping between product_id and last stock_move database id
-        product_last_move = {row[1]: row[0] for row in rows}
+        move_domain = [
+            ("product_id", "in", self.ids),
+            ("state", "not in", ["draft", "cancel"]),
+        ]
+        grouped_moves = self.env["stock.move"]._read_group(
+            move_domain,
+            ["product_id"],
+            ["date:max"],
+        )
+        max_date_by_product = {
+            product.id: max_date
+            for product, max_date in grouped_moves
+            if product and max_date
+        }
+        if not max_date_by_product:
+            self.last_move_id = False
+            self.last_move_date = False
+            return
+        candidate_moves = self.env["stock.move"].search(
+            [
+                *move_domain,
+                ("product_id", "in", list(max_date_by_product.keys())),
+                ("date", "in", list(set(max_date_by_product.values()))),
+            ],
+            order="product_id, date desc, id desc",
+        )
+        last_move_by_product = {}
+        for move in candidate_moves:
+            if move.date == max_date_by_product.get(move.product_id.id):
+                last_move_by_product.setdefault(move.product_id.id, move)
         for rec in self:
-            move_id = product_last_move.get(rec.id)
-            rec.last_move_id = self.env["stock.move"].browse(move_id)
-            rec.last_move_date = rec.last_move_id.date
+            move = last_move_by_product.get(rec.id)
+            rec.last_move_id = move
+            rec.last_move_date = move.date if move else False
 
     @api.model
     def search_need_inventory_update(self, inventory_start_date):
-        """The purpose of this method is to find all products that have stock moves
-        but have not been inventoried since the given date.
-        """
-        # FIXME: the location_id should be passed as a parameter
-        query = """
-            SELECT product_id
-            FROM stock_move
-            WHERE product_id NOT IN (
-                SELECT product_id
-                FROM stock_inventory_line
-                WHERE inventory_date >= %(date)s
+        """Find products with stock moves that were not inventoried recently."""
+        stock_location = self.env.ref("stock.stock_location_stock")
+        inventoried_products = set(
+            self.search_inventory_done_at_location(
+                inventory_start_date, stock_location.id
             )
-            AND state NOT IN ('draft', 'cancel')
-            GROUP BY product_id;
-        """
-        self._cr.execute(query, {"date": inventory_start_date})
-        ids = list(map(lambda x: x[0], self._cr.fetchall()))
-        return ids
+        )
+        grouped_moves = self.env["stock.move"]._read_group(
+            [
+                ("state", "not in", ["draft", "cancel"]),
+                ("product_id", "not in", list(inventoried_products)),
+            ],
+            ["product_id"],
+            ["__count"],
+        )
+        return [product.id for product, _count in grouped_moves if product]
 
     @api.model
     def search_inventory_done_at_location(self, create_date, location_id):
-        query = """
-            SELECT product_id
-            FROM stock_move
-            WHERE product_id IN (
-                SELECT product_id
-                FROM stock_inventory_line
-                WHERE inventory_date >= %(date)s
-            )
-            AND (location_id = %(location_id)s or location_dest_id = %(location_id)s)
-            GROUP BY product_id;
-        """
-        self._cr.execute(
-            query,
-            {"date": create_date, "location_id": location_id},
+        """Find products inventoried at the requested location since a date."""
+        create_date = fields.Datetime.to_datetime(create_date)
+        grouped_moves = self.env["stock.move"]._read_group(
+            [
+                ("state", "=", "done"),
+                ("is_inventory", "=", True),
+                ("date", ">=", create_date),
+                "|",
+                ("location_id", "=", location_id),
+                ("location_dest_id", "=", location_id),
+            ],
+            ["product_id"],
+            ["__count"],
         )
-        ids = list(map(lambda x: x[0], self._cr.fetchall()))
-        return ids
+        return [product.id for product, _count in grouped_moves if product]
 
     def _compute_last_inventory(self):
+        """Compute the latest inventory values for each product."""
         if not self:
             self.last_inventory_line_id = False
             self.last_inventory_date = False
             self.last_inventory_quantity = False
             return
-        # FIXME: this ref does not exist in the stock module outside a demo database
         stock_location = self.env.ref("stock.stock_location_stock")
-        # SQL query to get the last inventory line for all products at once and use a
-        # dictionary to store the results
-        query = """
-            SELECT id, product_id
-            FROM (
-                SELECT id, product_id, inventory_date, ROW_NUMBER()
-                OVER (PARTITION BY product_id ORDER BY inventory_date DESC) AS rn
-                FROM stock_inventory_line
-                WHERE location_id = %(location_id)s
-                AND product_id IN %(product_ids)s
-            ) ranked
-            WHERE rn = 1;
-            """
-        self.env.cr.execute(
-            query,
-            {
-                "product_ids": tuple(self.ids),
-                "location_id": stock_location.id,
-            },
+        move_domain = [
+            ("product_id", "in", self.ids),
+            ("state", "=", "done"),
+            ("is_inventory", "=", True),
+            "|",
+            ("location_id", "=", stock_location.id),
+            ("location_dest_id", "=", stock_location.id),
+        ]
+        grouped_moves = self.env["stock.move"]._read_group(
+            move_domain,
+            ["product_id"],
+            ["date:max"],
         )
-        rows = self.env.cr.fetchall()
-        # create a mapping between product_id and last stock_inventory_line database id
-        product_last_inventory = {row[1]: row[0] for row in rows}
-        for rec in self:
-            inventory_line_id = product_last_inventory.get(rec.id)
-            rec.last_inventory_line_id = self.env["stock.inventory.line"].browse(
-                inventory_line_id
+        max_date_by_product = {
+            product.id: max_date
+            for product, max_date in grouped_moves
+            if product and max_date
+        }
+        if not max_date_by_product:
+            self.last_inventory_line_id = False
+            self.last_inventory_date = False
+            self.last_inventory_quantity = False
+            return
+        candidate_moves = self.env["stock.move"].search(
+            [
+                *move_domain,
+                ("product_id", "in", list(max_date_by_product.keys())),
+                ("date", "in", list(set(max_date_by_product.values()))),
+            ],
+            order="product_id, date desc, id desc",
+        )
+        last_inventory_move_by_product = {}
+        for inventory_move in candidate_moves:
+            if inventory_move.date == max_date_by_product.get(
+                inventory_move.product_id.id
+            ):
+                last_inventory_move_by_product.setdefault(
+                    inventory_move.product_id.id,
+                    inventory_move,
+                )
+        quant_by_product = {
+            quant.product_id.id: quant
+            for quant in self.env["stock.quant"].search(
+                [
+                    ("product_id", "in", list(max_date_by_product.keys())),
+                    ("location_id", "=", stock_location.id),
+                ],
+                order="product_id, id desc",
             )
-            if rec.last_inventory_line_id:
-                rec.last_inventory_date = rec.last_inventory_line_id.inventory_id.date
-                rec.last_inventory_quantity = f"{rec.last_inventory_line_id.product_qty} {rec.last_inventory_line_id.product_uom_id.name}"
+        }
+        for rec in self:
+            inventory_quant = quant_by_product.get(rec.id)
+            inventory_move = last_inventory_move_by_product.get(rec.id)
+            rec.last_inventory_line_id = inventory_quant
+            if rec.last_inventory_line_id and inventory_move:
+                rec.last_inventory_date = inventory_move.date
+                rec.last_inventory_quantity = (
+                    f"{rec.last_inventory_line_id.quantity} "
+                    f"{rec.last_inventory_line_id.product_uom_id.name}"
+                )
             else:
                 rec.last_inventory_date = False
                 rec.last_inventory_quantity = False
